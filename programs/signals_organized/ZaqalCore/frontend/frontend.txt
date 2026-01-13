@@ -1,0 +1,8 @@
+ZaqalCore.frontend.clock
+ZaqalCore.frontend.ftq
+ZaqalCore.frontend.io_fetchOut_bits_mask
+ZaqalCore.frontend.io_fetchOut_bits_pc
+ZaqalCore.frontend.io_fetchOut_ready
+ZaqalCore.frontend.io_fetchOut_valid
+ZaqalCore.frontend.pcReg
+ZaqalCore.frontend.reset

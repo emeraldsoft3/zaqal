@@ -1,0 +1,4 @@
+ZaqalCore.frontend.ftq.ram_mask.io_deq_bits_MPORT.addr
+ZaqalCore.frontend.ftq.ram_mask.io_deq_bits_MPORT.clk
+ZaqalCore.frontend.ftq.ram_mask.io_deq_bits_MPORT.data
+ZaqalCore.frontend.ftq.ram_mask.io_deq_bits_MPORT.en

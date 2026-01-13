@@ -1,0 +1,9 @@
+ZaqalCore.frontend.ftq.ram_mask.MPORT.addr
+ZaqalCore.frontend.ftq.ram_mask.MPORT.clk
+ZaqalCore.frontend.ftq.ram_mask.MPORT.data
+ZaqalCore.frontend.ftq.ram_mask.MPORT.en
+ZaqalCore.frontend.ftq.ram_mask.MPORT.mask
+ZaqalCore.frontend.ftq.ram_mask.MPORT.pipeline_addr_0
+ZaqalCore.frontend.ftq.ram_mask.MPORT.pipeline_data_0
+ZaqalCore.frontend.ftq.ram_mask.MPORT.pipeline_valid_0
+ZaqalCore.frontend.ftq.ram_mask.MPORT.valid

@@ -1,0 +1,105 @@
+[*]
+[*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
+[*] Mon Jan 12 07:47:10 2026
+[*]
+[dumpfile] "/home/emerald/zaqal/programs/vcd/ZaqalCore.vcd"
+[dumpfile_mtime] "Thu Jan  8 11:14:00 2026"
+[dumpfile_size] 15688
+[savefile] "/home/emerald/zaqal/programs/vcd/ZaqalCoreGTK.vcd.gtkw"
+[timestart] 0
+[size] 1908 1001
+[pos] 32767 32767
+*-6.047855 30 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] ZaqalCore.
+[treeopen] ZaqalCore.frontend.
+[treeopen] ZaqalCore.frontend.ftq.
+[treeopen] ZaqalCore.frontend.ftq.ram_mask.
+[treeopen] ZaqalCore.frontend.ftq.ram_pc.
+[sst_width] 214
+[signals_width] 238
+[sst_expanded] 1
+[sst_vpaned_height] 293
+@28
+ZaqalCore.frontend.clock
+ZaqalCore.frontend.ftq
+@22
+ZaqalCore.frontend.io_fetchOut_bits_mask[7:0]
+ZaqalCore.frontend.io_fetchOut_bits_pc[63:0]
+@28
+ZaqalCore.frontend.io_fetchOut_ready
+ZaqalCore.frontend.io_fetchOut_valid
+@22
+ZaqalCore.frontend.pcReg[63:0]
+@28
+ZaqalCore.frontend.reset
+ZaqalCore.frontend.ftq.clock
+ZaqalCore.frontend.ftq.deq_ptr_value[2:0]
+ZaqalCore.frontend.ftq.do_deq
+ZaqalCore.frontend.ftq.do_enq
+ZaqalCore.frontend.ftq.empty
+ZaqalCore.frontend.ftq.enq_ptr_value[2:0]
+ZaqalCore.frontend.ftq.full
+@22
+ZaqalCore.frontend.ftq.io_deq_bits_mask[7:0]
+ZaqalCore.frontend.ftq.io_deq_bits_pc[63:0]
+@28
+ZaqalCore.frontend.ftq.io_deq_ready
+ZaqalCore.frontend.ftq.io_deq_valid
+@22
+ZaqalCore.frontend.ftq.io_enq_bits_mask[7:0]
+ZaqalCore.frontend.ftq.io_enq_bits_pc[63:0]
+@28
+ZaqalCore.frontend.ftq.io_enq_ready
+ZaqalCore.frontend.ftq.io_enq_valid
+ZaqalCore.frontend.ftq.maybe_full
+ZaqalCore.frontend.ftq.ptr_match
+@22
+ZaqalCore.frontend.ftq.ram_mask[7:0]
+ZaqalCore.frontend.ftq.ram_pc[63:0]
+@28
+ZaqalCore.frontend.ftq.reset
+@22
+ZaqalCore.frontend.ftq.ram_mask.MPORT[7:0]
+ZaqalCore.frontend.ftq.ram_pc.MPORT[63:0]
+@28
+ZaqalCore.frontend.ftq.ram_mask.MPORT.addr[2:0]
+ZaqalCore.frontend.ftq.ram_mask.MPORT.clk
+@22
+ZaqalCore.frontend.ftq.ram_mask.MPORT.data[7:0]
+@28
+ZaqalCore.frontend.ftq.ram_mask.MPORT.en
+ZaqalCore.frontend.ftq.ram_mask.MPORT.mask
+ZaqalCore.frontend.ftq.ram_mask.MPORT.pipeline_addr_0[2:0]
+@22
+ZaqalCore.frontend.ftq.ram_mask.MPORT.pipeline_data_0[7:0]
+@28
+ZaqalCore.frontend.ftq.ram_mask.MPORT.pipeline_valid_0
+ZaqalCore.frontend.ftq.ram_mask.MPORT.valid
+ZaqalCore.frontend.ftq.ram_mask.io_deq_bits_MPORT.addr[2:0]
+ZaqalCore.frontend.ftq.ram_mask.io_deq_bits_MPORT.clk
+@22
+ZaqalCore.frontend.ftq.ram_mask.io_deq_bits_MPORT.data[7:0]
+@28
+ZaqalCore.frontend.ftq.ram_mask.io_deq_bits_MPORT.en
+ZaqalCore.frontend.ftq.ram_pc.MPORT.addr[2:0]
+ZaqalCore.frontend.ftq.ram_pc.MPORT.clk
+@22
+ZaqalCore.frontend.ftq.ram_pc.MPORT.data[63:0]
+@28
+ZaqalCore.frontend.ftq.ram_pc.MPORT.en
+ZaqalCore.frontend.ftq.ram_pc.MPORT.mask
+ZaqalCore.frontend.ftq.ram_pc.MPORT.pipeline_addr_0[2:0]
+@22
+ZaqalCore.frontend.ftq.ram_pc.MPORT.pipeline_data_0[63:0]
+@28
+ZaqalCore.frontend.ftq.ram_pc.MPORT.pipeline_valid_0
+ZaqalCore.frontend.ftq.ram_pc.MPORT.valid
+@29
+ZaqalCore.frontend.ftq.ram_pc.io_deq_bits_MPORT.addr[2:0]
+ZaqalCore.frontend.ftq.ram_pc.io_deq_bits_MPORT.clk
+@23
+ZaqalCore.frontend.ftq.ram_pc.io_deq_bits_MPORT.data[63:0]
+@29
+ZaqalCore.frontend.ftq.ram_pc.io_deq_bits_MPORT.en
+[pattern_trace] 1
+[pattern_trace] 0
