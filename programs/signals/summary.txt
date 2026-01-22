@@ -1,0 +1,23 @@
+Total signals: 138
+Unique modules: 18
+Files created: 18
+
+Top 20 modules by signal count:
+  1. ZaqalCore/imem: 43 signals
+  2. ZaqalCore/frontend/ftq: 20 signals
+  3. ZaqalCore/frontend/ftq/ram_mask/MPORT: 9 signals
+  4. ZaqalCore/frontend/ftq/ram_pc/MPORT: 9 signals
+  5. ZaqalCore/frontend: 8 signals
+  6. ZaqalCore: 7 signals
+  7. ZaqalCore/imem/mem_1/outData: 4 signals
+  8. ZaqalCore/imem/mem_0/outData: 4 signals
+  9. ZaqalCore/imem/mem_6/outData: 4 signals
+ 10. ZaqalCore/imem/mem_4/outData: 4 signals
+ 11. ZaqalCore/imem/mem_2/outData: 4 signals
+ 12. ZaqalCore/imem/mem_5/outData: 4 signals
+ 13. ZaqalCore/imem/mem_3/outData: 4 signals
+ 14. ZaqalCore/imem/mem_7/outData: 4 signals
+ 15. ZaqalCore/frontend/ftq/ram_mask/io_deq_bits_MPORT: 4 signals
+ 16. ZaqalCore/frontend/ftq/ram_pc/io_deq_bits_MPORT: 4 signals
+ 17. ZaqalCore/frontend/ftq/ram_mask: 1 signals
+ 18. ZaqalCore/frontend/ftq/ram_pc: 1 signals

@@ -1,5 +1,7 @@
 ZaqalCore.clock
 ZaqalCore.frontend
+ZaqalCore.imem
 ZaqalCore.io_success
 ZaqalCore.printf
+ZaqalCore.printf_1
 ZaqalCore.reset

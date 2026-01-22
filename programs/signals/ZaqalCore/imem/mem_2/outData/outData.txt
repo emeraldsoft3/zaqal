@@ -1,0 +1,4 @@
+ZaqalCore.imem.mem_2.outData.addr
+ZaqalCore.imem.mem_2.outData.clk
+ZaqalCore.imem.mem_2.outData.data
+ZaqalCore.imem.mem_2.outData.en

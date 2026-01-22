@@ -134,7 +134,7 @@ def main():
         sys.exit(1)
     
     vcd_file = sys.argv[1]
-    output_dir = "signals_organized"
+    output_dir = "signals"
     
     if not os.path.exists(vcd_file):
         print(f"Error: VCD file not found: {vcd_file}")

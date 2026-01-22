@@ -1,17 +1,18 @@
-package zaqal
+package zaqal.frontend
 
+import zaqal._
 import chisel3._
 import chisel3.util._
 
-class ZaqalFrontend extends Module {
+class Frontend extends Module {
   val io = IO(new Bundle {
-    val fetchOut = Decoupled(new ZaqalFetchPacket)
+    val fetchOut = Decoupled(new FetchPacket)
   })
 
   val pcReg = RegInit("h8000_0000".U(64.W)) // Standard RISC-V start address
   
   // Create a Queue with 8 entries to buffer our 8-wide blocks
-  val ftq = Module(new Queue(new ZaqalFetchPacket, 8))
+  val ftq = Module(new Queue(new FetchPacket, 8))
 
  
   // Logic: Always push a new 8-instruction block if there is room
