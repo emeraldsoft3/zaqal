@@ -1,51 +1,32 @@
-package zaqal
+package zaqal.frontend
 
 import chisel3._
 import chisel3.util._
-import chisel3.util.experimental.loadMemoryFromFile
+import zaqal._
 
 class InstructionMemory extends Module {
   val io = IO(new Bundle {
-    val req  = Flipped(Decoupled(new FetchPacket)) 
-    val resp = Decoupled(Vec(8, UInt(32.W)))
+    val req  = Flipped(Decoupled(UInt(64.W)))
+    val resp = Decoupled(new FetchPacket)
   })
 
-  // 1. Define the Memory (1024 rows of 8 instructions)
-  val mem = SyncReadMem(1024, Vec(8, UInt(32.W)))
+  // Hardcode the heartbeat.hex into a ROM
+  val rom = VecInit(Seq(
+    "h00100093".U, // addi x1, x0, 1
+    "h00a00113".U, // addi x2, x0, 10
+    "h00108093".U, // addi x1, x1, 1
+    "hff9ff06f".U  // jal x0, loop
+  ).padTo(8, 0.U)) // Pad to 8 instructions to match our width
 
-  // 2. Load the Hex file 
-  // Note: For Mill/Verilator, the path is relative to the project root
-  loadMemoryFromFile(mem, "src/main/resources/program.hex")
+  val s1_valid = RegNext(io.req.fire, false.B)
+  val s1_pc    = RegNext(io.req.bits)
 
-  // 3. Logic for Reading
-  val ren = io.req.fire
-  // Align PC to the 32-byte block index
-  // 0x8000_0000 >> 5 becomes the index for the first block
-  val raddr = io.req.bits.pc(log2Up(1024 * 32) - 1, 5) 
+  io.resp.valid             := s1_valid
+  io.resp.bits.pc           := s1_pc
+  io.resp.bits.instructions := rom // Directly use the ROM
+  io.resp.bits.mask         := "b11111111".U    //mask, If a jump happens in the middle of a block (e.g., at the 3rd instruction), the mask might become 00000111 to tell the CPU to ignore the instructions after the jump.
+  io.resp.bits.target       := 0.U
+  io.resp.bits.taken        := false.B
   
-  val outData = mem.read(raddr, ren)
-
-  // 4. Fallback ROM (If loadMemoryFromFile fails in simulation, this ensures you see data)
-  // This is a common "Safety Net" in high-end core development
-  val romData = VecInit(Seq(
-    "h00008137".U(32.W), // lui sp, 0x8
-    "h00000113".U(32.W), // li sp, sp (placeholder)
-    "h00000413".U(32.W), // li sp, sp (placeholder)
-    "h00000413".U(32.W), // li sp, sp (placeholder)
-    "h11111537".U(32.W), // lui a0, 0x11111
-    "h1115051b".U(32.W), // addiw a0, a0, 273
-    "h00010001".U(32.W), // nop
-    "h00010001".U(32.W)  // nop
-  ))
-
-  // 5. Handshake & Pipelining
-  io.req.ready := io.resp.ready
-  
-  // The data takes 1 cycle to arrive from the memory
-  val validDelay = RegNext(io.req.fire, false.B)
-  io.resp.valid := validDelay
-  
-  // If memory is empty (all zeros), use the ROM fallback for now so we can debug
-  val isMemEmpty = outData.asUInt === 0.U
-  io.resp.bits := Mux(isMemEmpty, romData, outData)
+  io.req.ready := true.B
 }

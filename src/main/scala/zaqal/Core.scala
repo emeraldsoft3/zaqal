@@ -2,44 +2,31 @@ package zaqal
 
 import chisel3._
 import chisel3.util._
-
+import zaqal.frontend._
+import zaqal.backend._
+import utility.GTimer
 
 class Core extends Module {
-  // The "success" output is just a simple way to tell the testbench 
-  // that the core is powered on and running without crashing.
   val io = IO(new Bundle {
     val success = Output(Bool())
   })
 
+  // 1. Instantiate the two major halves of the CPU
   val frontend = Module(new Frontend)
-  val imem     = Module(new InstructionMemory)
+  val backend  = Module(new Backend)
 
-  imem.io.req <> frontend.io.fetchOut
-  imem.io.resp.ready := true.B
+  // 2. The "Golden Loop": Redirects flow from Backend back to BPU
+  // This allows the 'JAL' instruction to actually change the PC
+  frontend.io.redirect := backend.io.redirect
 
- 
+  // 3. The Instruction Flow: Connect Frontend (FTQ) to Backend (Backend)
+  backend.io.issue <> frontend.io.fetchPacket
 
-  when(imem.io.resp.fire) {
-    printf("Zaqal IMEM Match! First Instruction in block: %x\n", imem.io.resp.bits(0))
+  when(!frontend.io.fetchPacket.ready) {
+     // This would print if the backend was refusing instructions
+     // printf("[%d] CORE STALL: Backend not ready\n", GTimer())
   }
 
-  when(frontend.io.fetchOut.fire) {
-    // Print the PC in hex
-    printf("Zaqal Fetched 8-wide block at PC: %x, Mask: %b\n", 
-           frontend.io.fetchOut.bits.pc, 
-           frontend.io.fetchOut.bits.mask)
-  }
-
-  // Inside ZaqalCore class:
-val decoders = Seq.fill(8)(Module(new Decoder))
-
-for (i <- 0 until 8) {
-  decoders(i).io.inst := imem.io.resp.bits(i)
-  
-  when(imem.io.resp.fire && decoders(i).io.out.has_dest) {
-    printf("Slot %d: Found instruction writing to Register x%d\n", i.U, decoders(i).io.out.dst_reg)
-  }
-}
-
+  // 4. Global Status
   io.success := true.B
 }
