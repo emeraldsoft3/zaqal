@@ -1,0 +1,41 @@
+// Initialization
+00100093 // 00: addi x1, x0, 1     (x1 = 1, counter)
+04000113 // 04: addi x2, x0, 64    (x2 = 64, limit)
+00000213 // 08: addi x4, x0, 0     (x4 = total sum)
+
+// Start of Outer Loop (PC: 0x0C)
+00120233 // 0c: add  x4, x4, x1    (Sum += counter)
+001002b3 // 10: add  x5, x0, x1    (Temp x5 = x1)
+00200313 // 14: addi x6, x0, 2     (Divisor)
+
+// Check if Even/Odd (Inner logic)
+0062d433 // 18: div  x8, x5, x6    (x8 = x5 / 2)
+002404b3 // 1c: mul  x9, x8, x6    (x9 = x8 * 2)
+00929463 // 20: bne  x5, x9, 8     (If Odd, skip next instr)
+00120233 // 24: add  x4, x4, x1    (Bonus add if even)
+
+// Long straight path to fill FTQ
+00120213 // 28: addi x4, x4, 1
+00120213 // 2c: addi x4, x4, 1
+00120213 // 30: addi x4, x4, 1
+00120213 // 34: addi x4, x4, 1
+00120213 // 38: addi x4, x4, 1
+00120213 // 3c: addi x4, x4, 1
+00120213 // 40: addi x4, x4, 1
+00120213 // 44: addi x4, x4, 1
+00120213 // 48: addi x4, x4, 1
+00120213 // 4c: addi x4, x4, 1
+00120213 // 50: addi x4, x4, 1
+00120213 // 54: addi x4, x4, 1
+00120213 // 58: addi x4, x4, 1
+00120213 // 5c: addi x4, x4, 1
+00120213 // 60: addi x4, x4, 1
+00120213 // 64: addi x4, x4, 1
+
+// Loop Control
+00108093 // 68: addi x1, x1, 1     (Increment counter)
+fe20ace3 // 6c: blt  x1, x2, -72   (If x1 < x2, jump back to 0x0C)
+
+// Exit
+00625513 // 70: srli x10, x4, 6    (x10 = total_sum >> 6, which is divide by 64)
+0000006f // 74: jal  x0, 0         (Halt)

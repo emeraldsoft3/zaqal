@@ -11,14 +11,22 @@ class FTQ extends Module {
     val flush = Input(Bool())
   })
 
-  // Agile: Use a standard Chisel Queue as our initial FTQ
-  val queue = Module(new Queue(new FetchPacket, entries = 4))
+  // Increased to 64 for stress testing
+  val queue = Module(new Queue(new FetchPacket, entries = 64))
   
   queue.io.enq <> io.in
   io.out       <> queue.io.deq
 
-  // When a redirect happens, we clear the queue
-  when(io.flush) {
-    queue.reset := true.B // Simplest way to flush in Agile V1
-  }
+  // EXPOSE THESE FOR THE DEBUGGER
+  //val write_ptr = GtkwaveWorkaround.getWritePtr(queue) // We'll look for this in GTK
+  val debug_enq_fire = io.in.valid && io.in.ready
+
+  // The FTQ must be cleared if the BPU was wrong
+  queue.reset := reset.asBool || io.flush
+  
+  // Debug Output
+  val occupancy = queue.io.count
+  chisel3.dontTouch(occupancy)
+
+  
 }

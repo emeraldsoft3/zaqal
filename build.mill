@@ -1,0 +1,26 @@
+import mill._
+import mill.scalalib._
+import mill.api.Task
+
+object zaqal extends ScalaModule {
+  override def scalaVersion = "2.13.15"
+
+  val projectDir = os.Path("/home/emerald/zaqal")
+  override def sources = Task.Input { Seq(PathRef(projectDir / "src" / "main" / "scala")) }
+  override def resources = Task.Input { Seq(PathRef(projectDir / "src" / "resources")) }
+
+  override def mvnDeps = Task {
+    Seq(
+      mvn"org.chipsalliance::chisel:6.6.0",
+      mvn"edu.berkeley.cs::chiseltest:6.0.0"
+    )
+  }
+
+  override def scalacPluginMvnDeps = Task {
+    Seq(mvn"org.chipsalliance:::chisel-plugin:6.6.0")
+  }
+
+  override def scalacOptions = Task {
+    Seq("-Ymacro-annotations")
+  }
+}

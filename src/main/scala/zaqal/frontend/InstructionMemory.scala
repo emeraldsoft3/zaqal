@@ -25,8 +25,9 @@ class InstructionMemory extends Module {
   io.resp.bits.pc           := s1_pc
   io.resp.bits.instructions := rom // Directly use the ROM
   io.resp.bits.mask         := "b11111111".U    //mask, If a jump happens in the middle of a block (e.g., at the 3rd instruction), the mask might become 00000111 to tell the CPU to ignore the instructions after the jump.
-  io.resp.bits.target       := 0.U
-  io.resp.bits.taken        := false.B
+  io.resp.bits.prediction.target       := 0.U
+  io.resp.bits.prediction.taken        := false.B
+  io.resp.bits.prediction.slot         := 0.U
   
   io.req.ready := true.B
 }
