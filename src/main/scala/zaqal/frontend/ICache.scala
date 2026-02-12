@@ -8,6 +8,7 @@ class ICache extends Module {
   val io = IO(new Bundle {
     val pc = Input(UInt(64.W))
     val insts = Output(Vec(8, UInt(32.W)))
+    val ready = Output(Bool())
   })
 
   val program = VecInit(Seq(
@@ -27,4 +28,6 @@ class ICache extends Module {
     val idx = index + i.U
     io.insts(i) := Mux(idx < program.length.U, program(idx), "h00000013".U) // NOP if out of bounds
   }
+
+  io.ready := true.B
 }

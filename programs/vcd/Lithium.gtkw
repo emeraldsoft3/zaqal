@@ -1,0 +1,90 @@
+[*]
+[*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
+[*] Thu Feb 12 08:33:52 2026
+[*]
+[dumpfile] "/home/emerald/zaqal/programs/vcd/Lithium.vcd"
+[dumpfile_mtime] "Wed Feb 11 10:47:36 2026"
+[dumpfile_size] 333844
+[savefile] "/home/emerald/zaqal/programs/vcd/Lithium.gtkw"
+[timestart] 0
+[size] 1908 1007
+[pos] 32735 32735
+*-6.000000 61 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] Core.
+[treeopen] Core.backend.
+[treeopen] Core.backend.exec.
+[treeopen] Core.frontend.
+[sst_width] 456
+[signals_width] 480
+[sst_expanded] 1
+[sst_vpaned_height] 295
+@22
+Core.frontend.bpu.io_out_bits_pc[63:0]
+Core.frontend.ftq.io_fromBpu_bits_pc[63:0]
+@28
+Core.frontend.ftq.io_toIfu_valid
+@22
+Core.frontend.icache.io_pc[63:0]
+@28
+Core.frontend.icache.io_ready
+@22
+Core.frontend.ftq.io_toICache_bits_pc[63:0]
+@28
+Core.frontend.ifu.io_icache_ready
+Core.frontend.ifu.io_icache_ready
+@22
+Core.frontend.ifu.io_fetch_req_bits_pc[63:0]
+@28
+Core.frontend.ifu.io_fetch_req_ready
+@29
+Core.frontend.ifu.io_fetch_req_valid
+@22
+Core.frontend.ftq.io_fromBpu_bits_ftqPtr[5:0]
+Core.frontend.ftq.io_fromBpu_bits_instructions_0[31:0]
+Core.frontend.ftq.ram_0_pc[63:0]
+Core.frontend.ftq.ram_1_ftqPtr[5:0]
+Core.frontend.ftq.ram_1_instructions_0[31:0]
+Core.frontend.ftq.ram_2_instructions_0[31:0]
+Core.frontend.ftq.ram_1_pc[63:0]
+Core.frontend.ftq.ram_2_pc[63:0]
+Core.frontend.ftq.ram_3_pc[63:0]
+Core.frontend.ftq.ram_4_pc[63:0]
+Core.frontend.ftq.ram_5_pc[63:0]
+Core.frontend.ftq.ram_6_pc[63:0]
+Core.frontend.ftq.ram_7_pc[63:0]
+Core.frontend.ftq.ram_8_pc[63:0]
+Core.frontend.ftq.ram_9_pc[63:0]
+Core.frontend.ftq.ram_10_pc[63:0]
+Core.frontend.ftq.io_fromBpu_bits_pc[63:0]
+Core.frontend.ftq.io_toICache_bits_pc[63:0]
+@28
+Core.frontend.ftq.io_toIfu_valid
+Core.frontend.ftq.io_fromBpu_valid
+@22
+Core.frontend.bpu.io_out_bits_pc[63:0]
+@28
+Core.clock
+@22
+Core.frontend.icache.io_pc[63:0]
+Core.frontend.ifu.io_insts_in_0[31:0]
+@28
+Core.frontend.ibuf.inst_idx[2:0]
+@22
+Core.frontend.ibuf.io_inst_data_bits_pc[63:0]
+Core.backend.exec.decoder.io_inst[31:0]
+@28
+Core.backend.exec.printf
+@22
+Core.backend.exec.res[63:0]
+Core.backend.exec.regFile.regs_0[63:0]
+Core.backend.exec.regFile.regs_1[63:0]
+Core.backend.exec.regFile.regs_2[63:0]
+Core.backend.exec.regFile.regs_3[63:0]
+Core.backend.exec.regFile.regs_4[63:0]
+Core.backend.exec.regFile.regs_5[63:0]
+Core.backend.exec.regFile.regs_6[63:0]
+@28
+Core.backend.exec.regFile.reset
+Core.frontend.ftq.io_fromBpu_valid
+[pattern_trace] 1
+[pattern_trace] 0

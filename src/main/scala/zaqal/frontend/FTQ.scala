@@ -8,35 +8,54 @@ class FTQ extends Module {
   val io = IO(new Bundle {
     val fromBpu   = Flipped(Decoupled(new FetchPacket))
     val toIfu     = Decoupled(new FetchPacket)
-    val fromIfu   = Flipped(Decoupled(new FetchPacket))
-    val toBackend = Decoupled(new FetchPacket)
+    val toICache  = Decoupled(new FetchPacket)
+    val readPtr   = Input(UInt(6.W))
+    val readData  = Output(new FetchPacket)
     val flush     = Input(Bool())
     val occupancy = Output(UInt(7.W))
   })
 
-  // Two-stage structure:
-  // 1. Prediction Queue (Wait for IFU)
-  val predQueue = Module(new Queue(new FetchPacket, entries = 32))
-  predQueue.io.enq <> io.fromBpu
-  io.toIfu         <> predQueue.io.deq
+  // Manual Circular Queue for Metadata (XiangShan style)
+  val entriesSize = 64
+  val ram = Reg(Vec(entriesSize, new FetchPacket))
+  val enqPtr = RegInit(0.U(6.W))
+  val deqPtr = RegInit(0.U(6.W)) // This acts as the 'next to fetch' pointer
+  val count  = RegInit(0.U(7.W))
 
-  // 2. Ready Queue (Wait for Backend)
-  val readyQueue = Module(new Queue(new FetchPacket, entries = 32))
-  readyQueue.io.enq <> io.fromIfu
-  io.toBackend      <> readyQueue.io.deq
+  val full  = count === entriesSize.U
+  val empty = count === 0.U
 
-  // EXPOSE THESE FOR THE DEBUGGER
-  //val write_ptr = GtkwaveWorkaround.getWritePtr(queue) // We'll look for this in GTK
-  //val debug_enq_fire = io.in.valid && io.in.ready // This was for the old single queue
+  // 1. Enqueue from BPU
+  io.fromBpu.ready := !full
+  when(io.fromBpu.fire) {
+    ram(enqPtr) := io.fromBpu.bits
+    enqPtr := enqPtr + 1.U
+    count  := count + 1.U
+  }
 
-  // Global Flushes
-  predQueue.reset  := reset.asBool || io.flush
-  readyQueue.reset := reset.asBool || io.flush
+  // 2. Issuing to IFU and ICache
+  io.toIfu.valid := !empty
+  io.toIfu.bits  := ram(deqPtr)
+  io.toIfu.bits.ftqPtr := deqPtr
+
+  io.toICache.valid := io.toIfu.valid
+  io.toICache.bits  := io.toIfu.bits
+
+  when(io.toIfu.fire) {
+    deqPtr := deqPtr + 1.U
+    count  := count - 1.U
+  }
+
+  // 3. Backend Read Port
+  io.readData := ram(io.readPtr)
+
+  // Flush logic
+  when(io.flush) {
+    enqPtr := 0.U
+    deqPtr := 0.U
+    count  := 0.U
+  }
   
-  // Debug Output
-  
-  io.occupancy := predQueue.io.count + readyQueue.io.count
+  io.occupancy := count
   chisel3.dontTouch(io.occupancy)
-
-  
 }

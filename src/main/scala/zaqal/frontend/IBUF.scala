@@ -14,8 +14,6 @@ class IBUF extends Module {
   val current_packet = Reg(new FetchPacket)
   val busy = RegInit(false.B)
 
-  val predecoder = Module(new Predecoder)
-  
   // Logic to step through the 8 instructions in a packet
   io.inst_data.ready := !busy
   
@@ -25,13 +23,12 @@ class IBUF extends Module {
     inst_idx := 0.U
   }
 
-  predecoder.io.inst := current_packet.instructions(inst_idx)
-
   // Dispatch logic (Kunminghu Alignment: Dispatch raw instructions + hints)
   io.out.valid      := busy
   io.out.bits.inst_raw := current_packet.instructions(inst_idx)
-  io.out.bits.pre      := predecoder.io.out
+  io.out.bits.pre      := current_packet.pre_decoded(inst_idx)
   io.out.bits.pc       := current_packet.pc + (inst_idx << 2)
+  io.out.bits.ftqPtr   := current_packet.ftqPtr
 
   when(io.out.fire) {
     inst_idx := inst_idx + 1.U

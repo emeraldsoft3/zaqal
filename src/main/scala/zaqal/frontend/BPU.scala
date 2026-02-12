@@ -52,4 +52,9 @@ class BPU extends Module {
   io.out.bits.mask       := mask
   io.out.bits.prediction := meta
   io.out.bits.instructions := VecInit(Seq.fill(8)(0.U(32.W)))
+  io.out.bits.ftqPtr       := 0.U
+  for (i <- 0 until 8) {
+    io.out.bits.pre_decoded(i).is_rvc := false.B
+    io.out.bits.pre_decoded(i).is_cfi := false.B
+  }
 }

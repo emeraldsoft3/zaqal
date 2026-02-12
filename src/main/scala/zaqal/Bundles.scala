@@ -14,8 +14,10 @@ class PredictionMeta extends Bundle {
 class FetchPacket extends Bundle {
   val pc           = UInt(64.W)
   val instructions = Vec(8, UInt(32.W))
+  val pre_decoded  = Vec(8, new PreDecodeSignals)
   val mask         = UInt(8.W)
   val prediction   = new PredictionMeta
+  val ftqPtr       = UInt(6.W) // Pointer to FTQ entry (64 entries)
 }
 
 // Signals produced by the Frontend Predecoder (Kunminghu Alignment)
@@ -38,6 +40,7 @@ class MicroOp extends Bundle {
   val pc       = UInt(64.W)
   val inst_raw = UInt(32.W)
   val pre      = new PreDecodeSignals
+  val ftqPtr   = UInt(6.W) // Track origin FTQ entry
 }
 
 // Redirect signal from Backend to Frontend

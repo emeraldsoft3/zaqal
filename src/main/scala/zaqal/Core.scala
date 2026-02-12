@@ -33,6 +33,10 @@ class Core extends Module {
   backend.io.dispatch  <> frontend.io.dispatch
   frontend.io.redirect := backend.io.redirect
 
+  // Metadata access (XiangShan style) - Tie off for now
+  frontend.io.ftq_read_ptr := 0.U 
+  dontTouch(frontend.io.ftq_read_data)
+
   // 4. Connect Internal Signals to External Debug Pins
   io.debug_ftq_valid       := frontend.io.debug_ftq_valid
   io.debug_ftq_flush       := frontend.io.debug_ftq_flush

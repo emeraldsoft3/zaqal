@@ -1,0 +1,11 @@
+BPU.sv
+FTQ.sv
+IFU.sv
+ICache.sv
+IBUF.sv
+Frontend.sv
+Decoder.sv
+RegFile.sv
+Execute.sv
+Backend.sv
+Core.sv
