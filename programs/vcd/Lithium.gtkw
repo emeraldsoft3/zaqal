@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
-[*] Tue Feb 17 07:47:11 2026
+[*] Tue Feb 17 10:44:46 2026
 [*]
 [dumpfile] "/home/emerald/zaqal/programs/vcd/Lithium.vcd"
-[dumpfile_mtime] "Wed Feb 11 10:47:36 2026"
-[dumpfile_size] 333844
+[dumpfile_mtime] "Tue Feb 17 08:33:57 2026"
+[dumpfile_size] 320325
 [savefile] "/home/emerald/zaqal/programs/vcd/Lithium.gtkw"
-[timestart] 0
+[timestart] 211
 [size] 1908 1007
-[pos] 130943 130943
-*-6.000000 172 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[pos] -1 -1
+*-6.000000 941 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] Core.
 [treeopen] Core.backend.
 [treeopen] Core.backend.exec.
@@ -21,6 +21,9 @@
 @28
 [color] 1
 Core.clock
+@22
+[color] 1
+Core.io_debug_cycle_count[63:0]
 @200
 -BPU
 @22
@@ -45,14 +48,13 @@ Core.frontend.bpu.io_out_bits_prediction_target[63:0]
 Core.frontend.bpu.io_out_bits_prediction_taken
 [color] 3
 Core.frontend.bpu.io_out_bits_prediction_slot[2:0]
+@29
+Core.frontend.bpu.io_out_ready
+@28
+Core.frontend.bpu.io_out_valid
 @200
 -FTQ
-@23
-[color] 2
-Core.frontend.ftq.io_fromBpu_bits_instructions_0[31:0]
 @22
-[color] 2
-Core.frontend.ftq.io_fromBpu_bits_ftqPtr[5:0]
 [color] 2
 Core.frontend.ftq.io_fromBpu_bits_pc[63:0]
 [color] 2
@@ -70,12 +72,6 @@ Core.frontend.ftq.io_fromBpu_ready
 Core.frontend.ftq.io_fromBpu_valid
 @22
 [color] 2
-Core.frontend.ftq.ram_0_instructions_0[31:0]
-[color] 2
-Core.frontend.ftq.ram_0_ftqPtr[5:0]
-[color] 2
-Core.frontend.ftq.ram_1_instructions_0[31:0]
-[color] 2
 Core.frontend.ftq.io_toIfu_bits_pc[63:0]
 @28
 [color] 2
@@ -91,6 +87,45 @@ Core.frontend.ftq.enqPtr[5:0]
 Core.frontend.ftq.deqPtr[5:0]
 [color] 2
 Core.frontend.ftq.count[6:0]
+[color] 2
+Core.frontend.ftq.ram_0_mask[7:0]
+[color] 2
+Core.frontend.ftq.ram_0_pc[63:0]
+@28
+[color] 2
+Core.frontend.ftq.ram_0_prediction_slot[2:0]
+[color] 2
+Core.frontend.ftq.ram_0_prediction_taken
+@22
+[color] 2
+Core.frontend.ftq.ram_0_prediction_target[63:0]
+[color] 2
+Core.frontend.ftq.ram_1_mask[7:0]
+[color] 2
+Core.frontend.ftq.ram_1_pc[63:0]
+@28
+[color] 2
+Core.frontend.ftq.ram_1_prediction_taken
+@22
+[color] 2
+Core.frontend.ftq.ram_1_prediction_target[63:0]
+@28
+[color] 2
+Core.frontend.ftq.ram_1_prediction_slot[2:0]
+@22
+[color] 2
+Core.frontend.ftq.ram_3_mask[7:0]
+[color] 2
+Core.frontend.ftq.ram_3_pc[63:0]
+@28
+[color] 2
+Core.frontend.ftq.ram_3_prediction_taken
+@22
+[color] 2
+Core.frontend.ftq.ram_3_prediction_target[63:0]
+@28
+[color] 2
+Core.frontend.ftq.ram_3_prediction_slot[2:0]
 @200
 -IFU
 @28

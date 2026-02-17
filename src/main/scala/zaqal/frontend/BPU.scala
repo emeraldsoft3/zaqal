@@ -51,4 +51,5 @@ class BPU extends Module {
   io.out.bits.pc         := s0_pc
   io.out.bits.mask       := mask
   io.out.bits.prediction := meta
+  io.out.bits.ftqPtr     := 0.U // Initialized as dummy, FTQ will overwrite
 }

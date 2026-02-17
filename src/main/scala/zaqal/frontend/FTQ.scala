@@ -7,8 +7,8 @@ import zaqal._
 class FTQ extends Module {
   val io = IO(new Bundle {
     val fromBpu   = Flipped(Decoupled(new FetchRequest))
-    val toIfu     = Decoupled(new FetchPacket)
-    val toICache  = Decoupled(new FetchPacket)
+    val toIfu     = Decoupled(new FetchRequest)
+    val toICache  = Decoupled(new FetchRequest)
     val readPtr   = Input(UInt(6.W))
     val readData  = Output(new FetchPacket)
     val flush     = Input(Bool())
@@ -17,7 +17,7 @@ class FTQ extends Module {
 
   // Manual Circular Queue for Metadata (XiangShan style)
   val entriesSize = 64
-  val ram = Reg(Vec(entriesSize, new FetchPacket))
+  val ram = Reg(Vec(entriesSize, new FetchRequest))
   val enqPtr = RegInit(0.U(6.W))
   val deqPtr = RegInit(0.U(6.W)) // This acts as the 'next to fetch' pointer
   val count  = RegInit(0.U(7.W))
@@ -28,13 +28,11 @@ class FTQ extends Module {
   // 1. Enqueue from BPU
   io.fromBpu.ready := !full
   when(io.fromBpu.fire) {
-    val newPacket = Wire(new FetchPacket)
-    newPacket := DontCare
-    newPacket.pc         := io.fromBpu.bits.pc
-    newPacket.mask       := io.fromBpu.bits.mask
-    newPacket.prediction := io.fromBpu.bits.prediction
+    val newReq = Wire(new FetchRequest)
+    newReq := io.fromBpu.bits
+    newReq.ftqPtr := enqPtr // Tag it with the entry index
     
-    ram(enqPtr) := newPacket
+    ram(enqPtr) := newReq
     enqPtr := enqPtr + 1.U
     count  := count + 1.U
   }
@@ -42,7 +40,6 @@ class FTQ extends Module {
   // 2. Issuing to IFU and ICache
   io.toIfu.valid := !empty
   io.toIfu.bits  := ram(deqPtr)
-  io.toIfu.bits.ftqPtr := deqPtr
 
   io.toICache.valid := io.toIfu.valid
   io.toICache.bits  := io.toIfu.bits
@@ -52,8 +49,15 @@ class FTQ extends Module {
     count  := count - 1.U
   }
 
-  // 3. Backend Read Port
-  io.readData := ram(io.readPtr)
+  // 3. Backend Read Port (This is metadata only now)
+  val readPacket = Wire(new FetchPacket)
+  readPacket := DontCare
+  readPacket.pc         := ram(io.readPtr).pc
+  readPacket.mask       := ram(io.readPtr).mask
+  readPacket.prediction := ram(io.readPtr).prediction
+  readPacket.ftqPtr     := io.readPtr
+
+  io.readData := readPacket
 
   // Flush logic
   when(io.flush) {

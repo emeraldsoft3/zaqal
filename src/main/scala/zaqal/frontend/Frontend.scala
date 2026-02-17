@@ -24,6 +24,7 @@ class Frontend extends Module {
     val debug_ftq_pred_slot   = Output(UInt(3.W))
 
     val debug_ftq_occupancy = Output(UInt(7.W))
+    val debug_ftq_insts     = Output(Vec(8, UInt(32.W)))
   })
 
   // 1. Instantiate the sub-modules
@@ -77,4 +78,5 @@ class Frontend extends Module {
   io.debug_ftq_pred_slot   := ftq.io.fromBpu.bits.prediction.slot
 
   io.debug_ftq_occupancy := ftq.io.occupancy
+  io.debug_ftq_insts     := icache.io.insts
 }
