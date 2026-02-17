@@ -1,6 +1,6 @@
 [*]
 [*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
-[*] Thu Feb 12 08:33:52 2026
+[*] Tue Feb 17 07:47:11 2026
 [*]
 [dumpfile] "/home/emerald/zaqal/programs/vcd/Lithium.vcd"
 [dumpfile_mtime] "Wed Feb 11 10:47:36 2026"
@@ -8,83 +8,202 @@
 [savefile] "/home/emerald/zaqal/programs/vcd/Lithium.gtkw"
 [timestart] 0
 [size] 1908 1007
-[pos] 32735 32735
-*-6.000000 61 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[pos] 130943 130943
+*-6.000000 172 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] Core.
 [treeopen] Core.backend.
 [treeopen] Core.backend.exec.
 [treeopen] Core.frontend.
-[sst_width] 456
-[signals_width] 480
+[sst_width] 344
+[signals_width] 515
 [sst_expanded] 1
 [sst_vpaned_height] 295
+@28
+[color] 1
+Core.clock
+@200
+-BPU
 @22
+[color] 3
+Core.frontend.bpu.s0_pc[63:0]
+[color] 3
+Core.frontend.bpu.mask[7:0]
+@28
+[color] 3
+Core.frontend.bpu.meta_slot[2:0]
+[color] 3
+Core.frontend.bpu.meta_taken
+@22
+[color] 3
+Core.frontend.bpu.meta_target[63:0]
+[color] 3
 Core.frontend.bpu.io_out_bits_pc[63:0]
-Core.frontend.ftq.io_fromBpu_bits_pc[63:0]
+[color] 3
+Core.frontend.bpu.io_out_bits_prediction_target[63:0]
 @28
-Core.frontend.ftq.io_toIfu_valid
-@22
-Core.frontend.icache.io_pc[63:0]
-@28
-Core.frontend.icache.io_ready
-@22
-Core.frontend.ftq.io_toICache_bits_pc[63:0]
-@28
-Core.frontend.ifu.io_icache_ready
-Core.frontend.ifu.io_icache_ready
-@22
-Core.frontend.ifu.io_fetch_req_bits_pc[63:0]
-@28
-Core.frontend.ifu.io_fetch_req_ready
-@29
-Core.frontend.ifu.io_fetch_req_valid
-@22
-Core.frontend.ftq.io_fromBpu_bits_ftqPtr[5:0]
+[color] 3
+Core.frontend.bpu.io_out_bits_prediction_taken
+[color] 3
+Core.frontend.bpu.io_out_bits_prediction_slot[2:0]
+@200
+-FTQ
+@23
+[color] 2
 Core.frontend.ftq.io_fromBpu_bits_instructions_0[31:0]
-Core.frontend.ftq.ram_0_pc[63:0]
-Core.frontend.ftq.ram_1_ftqPtr[5:0]
-Core.frontend.ftq.ram_1_instructions_0[31:0]
-Core.frontend.ftq.ram_2_instructions_0[31:0]
-Core.frontend.ftq.ram_1_pc[63:0]
-Core.frontend.ftq.ram_2_pc[63:0]
-Core.frontend.ftq.ram_3_pc[63:0]
-Core.frontend.ftq.ram_4_pc[63:0]
-Core.frontend.ftq.ram_5_pc[63:0]
-Core.frontend.ftq.ram_6_pc[63:0]
-Core.frontend.ftq.ram_7_pc[63:0]
-Core.frontend.ftq.ram_8_pc[63:0]
-Core.frontend.ftq.ram_9_pc[63:0]
-Core.frontend.ftq.ram_10_pc[63:0]
+@22
+[color] 2
+Core.frontend.ftq.io_fromBpu_bits_ftqPtr[5:0]
+[color] 2
 Core.frontend.ftq.io_fromBpu_bits_pc[63:0]
-Core.frontend.ftq.io_toICache_bits_pc[63:0]
+[color] 2
+Core.frontend.ftq.io_fromBpu_bits_mask[7:0]
 @28
-Core.frontend.ftq.io_toIfu_valid
+[color] 2
+Core.frontend.ftq.io_fromBpu_bits_prediction_taken
+@22
+[color] 2
+Core.frontend.ftq.io_fromBpu_bits_prediction_target[63:0]
+@28
+[color] 2
+Core.frontend.ftq.io_fromBpu_ready
+[color] 2
 Core.frontend.ftq.io_fromBpu_valid
 @22
-Core.frontend.bpu.io_out_bits_pc[63:0]
+[color] 2
+Core.frontend.ftq.ram_0_instructions_0[31:0]
+[color] 2
+Core.frontend.ftq.ram_0_ftqPtr[5:0]
+[color] 2
+Core.frontend.ftq.ram_1_instructions_0[31:0]
+[color] 2
+Core.frontend.ftq.io_toIfu_bits_pc[63:0]
 @28
-Core.clock
+[color] 2
+Core.frontend.ftq.io_toIfu_ready
+[color] 2
+Core.frontend.ftq.io_toIfu_valid
 @22
-Core.frontend.icache.io_pc[63:0]
-Core.frontend.ifu.io_insts_in_0[31:0]
+[color] 2
+Core.frontend.ftq.io_toICache_bits_pc[63:0]
+[color] 2
+Core.frontend.ftq.enqPtr[5:0]
+[color] 2
+Core.frontend.ftq.deqPtr[5:0]
+[color] 2
+Core.frontend.ftq.count[6:0]
+@200
+-IFU
 @28
+[color] 5
+Core.frontend.ifu.io_icache_ready
+@22
+[color] 5
+Core.frontend.ifu.io_insts_in_0[31:0]
+[color] 5
+Core.frontend.ifu.io_insts_in_1[31:0]
+[color] 5
+Core.frontend.ifu.io_insts_in_2[31:0]
+[color] 5
+Core.frontend.ifu.io_insts_in_3[31:0]
+[color] 5
+Core.frontend.ifu.io_fetch_req_bits_pc[63:0]
+[color] 5
+Core.frontend.ifu.packet_instructions_0[31:0]
+[color] 5
+Core.frontend.ifu.packet_pc[63:0]
+@200
+-Icache
+@22
+[color] 6
+Core.frontend.icache.io_insts_0[31:0]
+[color] 6
+Core.frontend.icache.io_insts_1[31:0]
+[color] 6
+Core.frontend.icache.idx[5:0]
+[color] 6
+Core.frontend.icache.io_pc[63:0]
+[color] 6
+Core.frontend.icache.program_0[31:0]
+[color] 6
+Core.frontend.icache.program_1[31:0]
+@200
+-IBUF
+@28
+[color] 1
+Core.frontend.ibuf.busy
+@22
+[color] 1
+Core.frontend.ibuf.current_packet_instructions_0[31:0]
+[color] 1
+Core.frontend.ibuf.current_packet_instructions_1[31:0]
+[color] 1
+Core.frontend.ibuf.current_packet_pc[63:0]
+@28
+[color] 1
 Core.frontend.ibuf.inst_idx[2:0]
 @22
-Core.frontend.ibuf.io_inst_data_bits_pc[63:0]
-Core.backend.exec.decoder.io_inst[31:0]
+[color] 1
+Core.frontend.ibuf.io_inst_data_bits_instructions_0[31:0]
+[color] 1
+Core.frontend.ibuf.io_inst_data_bits_instructions_1[31:0]
 @28
-Core.backend.exec.printf
+[color] 1
+Core.frontend.ibuf.io_inst_data_ready
+[color] 1
+Core.frontend.ibuf.io_inst_data_valid
 @22
-Core.backend.exec.res[63:0]
-Core.backend.exec.regFile.regs_0[63:0]
-Core.backend.exec.regFile.regs_1[63:0]
-Core.backend.exec.regFile.regs_2[63:0]
-Core.backend.exec.regFile.regs_3[63:0]
-Core.backend.exec.regFile.regs_4[63:0]
-Core.backend.exec.regFile.regs_5[63:0]
-Core.backend.exec.regFile.regs_6[63:0]
+[color] 1
+Core.frontend.ibuf.io_inst_data_bits_pc[63:0]
 @28
-Core.backend.exec.regFile.reset
-Core.frontend.ftq.io_fromBpu_valid
+[color] 1
+Core.frontend.ibuf.io_out_ready
+[color] 1
+Core.frontend.ibuf.io_out_valid
+@200
+-Decoder
+@22
+[color] 2
+Core.backend.exec.decoder.io_inst[31:0]
+[color] 2
+Core.backend.exec.decoder.io_out_imm[63:0]
+[color] 2
+Core.backend.exec.decoder.io_out_rd[4:0]
+@28
+[color] 2
+Core.backend.exec.decoder.io_out_is_addi
+@22
+[color] 2
+Core.backend.exec.decoder.io_out_rs1[4:0]
+[color] 2
+Core.backend.exec.decoder.opcode[6:0]
+@200
+-RegFile
+@22
+[color] 3
+Core.backend.exec.regFile.io_rd_addr[4:0]
+[color] 3
+Core.backend.exec.regFile.io_rd_data[63:0]
+[color] 3
+Core.backend.exec.regFile.io_rs1_addr[4:0]
+[color] 3
+Core.backend.exec.regFile.io_rs1_data[63:0]
+@28
+[color] 3
+Core.backend.exec.regFile.io_wen
+@22
+[color] 3
+Core.backend.exec.regFile.regs_0[63:0]
+[color] 3
+Core.backend.exec.regFile.regs_1[63:0]
+[color] 3
+Core.backend.exec.regFile.regs_2[63:0]
+[color] 3
+Core.backend.exec.regFile.regs_3[63:0]
+[color] 3
+Core.backend.exec.regFile.regs_4[63:0]
+[color] 3
+Core.backend.exec.regFile.regs_5[63:0]
+[color] 3
+Core.backend.exec.regFile.regs_6[63:0]
 [pattern_trace] 1
 [pattern_trace] 0

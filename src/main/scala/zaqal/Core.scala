@@ -23,6 +23,8 @@ class Core extends Module {
     // Signals leaving the Frontend (heading to Backend)
     val debug_ftq_valid_out   = Output(Bool())
     val debug_ftq_ready_out   = Output(Bool())
+
+    val debug_cycle_count     = Output(UInt(64.W))
   })
 
   // 1. Instantiate the Modules
@@ -52,6 +54,11 @@ class Core extends Module {
   // Handshake with Backend
   io.debug_ftq_valid_out   := frontend.io.dispatch.valid
   io.debug_ftq_ready_out   := frontend.io.dispatch.ready
+
+  // Cycle Counter logic
+  val cycle_reg = RegInit(0.U(64.W))
+  cycle_reg := cycle_reg + 1.U
+  io.debug_cycle_count := cycle_reg
 
   io.success := true.B
 }

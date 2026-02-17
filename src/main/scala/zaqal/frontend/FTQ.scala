@@ -6,7 +6,7 @@ import zaqal._
 
 class FTQ extends Module {
   val io = IO(new Bundle {
-    val fromBpu   = Flipped(Decoupled(new FetchPacket))
+    val fromBpu   = Flipped(Decoupled(new FetchRequest))
     val toIfu     = Decoupled(new FetchPacket)
     val toICache  = Decoupled(new FetchPacket)
     val readPtr   = Input(UInt(6.W))
@@ -28,7 +28,13 @@ class FTQ extends Module {
   // 1. Enqueue from BPU
   io.fromBpu.ready := !full
   when(io.fromBpu.fire) {
-    ram(enqPtr) := io.fromBpu.bits
+    val newPacket = Wire(new FetchPacket)
+    newPacket := DontCare
+    newPacket.pc         := io.fromBpu.bits.pc
+    newPacket.mask       := io.fromBpu.bits.mask
+    newPacket.prediction := io.fromBpu.bits.prediction
+    
+    ram(enqPtr) := newPacket
     enqPtr := enqPtr + 1.U
     count  := count + 1.U
   }

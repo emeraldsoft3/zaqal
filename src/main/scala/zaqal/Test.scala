@@ -33,7 +33,7 @@ object ZaqalTest extends App {
 
     // --- MAIN SIMULATION LOOP ---
     val resetCycles = 5
-    val maxCycles = 100 // Increased to see the Backend "breathing"
+    val maxCycles = 150 // Increased to see the Backend "breathing"
     
     for (cycle <- 0 until maxCycles) {
       // 1. Apply Reset

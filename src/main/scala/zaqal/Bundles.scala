@@ -10,6 +10,14 @@ class PredictionMeta extends Bundle {
   val slot      = UInt(3.W)  // Which of the 8 instructions is the branch? (0-7)
 }
 
+// Lightweight request from BPU to FTQ
+class FetchRequest extends Bundle {
+  val pc         = UInt(64.W)
+  val mask       = UInt(8.W)
+  val prediction = new PredictionMeta
+  val ftqPtr     = UInt(6.W) // Added to help IFU tag the packet
+}
+
 // Packet of instructions fetched from I-Cache
 class FetchPacket extends Bundle {
   val pc           = UInt(64.W)

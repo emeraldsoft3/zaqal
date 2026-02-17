@@ -18,7 +18,6 @@ class Frontend extends Module {
     val debug_ftq_flush       = Output(Bool())
     val debug_ftq_pc          = Output(UInt(32.W))
     val debug_ftq_mask        = Output(UInt(8.W))
-    val debug_ftq_insts       = Output(Vec(8, UInt(32.W)))
     val debug_ftq_ready       = Output(Bool())
     val debug_ftq_pred_target = Output(UInt(64.W))
     val debug_ftq_pred_taken  = Output(Bool())
@@ -72,7 +71,6 @@ class Frontend extends Module {
   io.debug_ftq_flush       := ftq.io.flush
   io.debug_ftq_pc          := ftq.io.fromBpu.bits.pc
   io.debug_ftq_mask        := ftq.io.fromBpu.bits.mask
-  io.debug_ftq_insts       := ftq.io.fromBpu.bits.instructions
   io.debug_ftq_ready       := ftq.io.fromBpu.ready
   io.debug_ftq_pred_target := ftq.io.fromBpu.bits.prediction.target
   io.debug_ftq_pred_taken  := ftq.io.fromBpu.bits.prediction.taken

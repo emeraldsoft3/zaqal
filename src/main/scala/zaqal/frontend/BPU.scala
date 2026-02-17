@@ -7,7 +7,7 @@ import zaqal._
 class BPU extends Module {
   val io = IO(new Bundle {
     val redirect = Input(new BPURedirect)
-    val out      = Decoupled(new FetchPacket)
+    val out      = Decoupled(new FetchRequest)
   })
 
   val s0_pc = RegInit("h8000_0000".U(64.W))
@@ -51,10 +51,4 @@ class BPU extends Module {
   io.out.bits.pc         := s0_pc
   io.out.bits.mask       := mask
   io.out.bits.prediction := meta
-  io.out.bits.instructions := VecInit(Seq.fill(8)(0.U(32.W)))
-  io.out.bits.ftqPtr       := 0.U
-  for (i <- 0 until 8) {
-    io.out.bits.pre_decoded(i).is_rvc := false.B
-    io.out.bits.pre_decoded(i).is_cfi := false.B
-  }
 }
