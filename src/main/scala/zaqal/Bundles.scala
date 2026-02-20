@@ -37,8 +37,12 @@ class PreDecodeSignals extends Bundle {
 // Signals produced by the Backend Main Decoder
 class DecodeSignals extends Bundle {
   val is_addi = Bool()
+  val is_add  = Bool()  // R-type ADD
+  val is_mul  = Bool()  // M-extension MUL
+  val is_div  = Bool()  // M-extension DIV (signed)
   val rd      = UInt(5.W)
   val rs1     = UInt(5.W)
+  val rs2     = UInt(5.W)  // Source register 2 (R-type)
   val imm     = SInt(64.W)
 }
 

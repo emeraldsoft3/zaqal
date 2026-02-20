@@ -15,9 +15,9 @@ class Execute extends Module {
 
   decoder.io.inst := io.in.bits.inst_raw
 
-  // Default connections for RegFile
+  // Wire up both source registers
   regFile.io.rs1_addr := decoder.io.out.rs1
-  regFile.io.rs2_addr := 0.U // Not used for ADDI
+  regFile.io.rs2_addr := decoder.io.out.rs2
   regFile.io.wen      := false.B
   regFile.io.rd_addr  := decoder.io.out.rd
   regFile.io.rd_data  := 0.U
@@ -25,18 +25,52 @@ class Execute extends Module {
   // Decoupled handshake
   io.in.ready := true.B
 
-  // ALU Logic for ADDI
-  when(io.in.fire && decoder.io.out.is_addi) {
-    val rs1_data = regFile.io.rs1_data
-    val imm      = decoder.io.out.imm.asUInt
-    val res      = rs1_data + imm
-    
-    when(decoder.io.out.rd =/= 0.U) {
-      regFile.io.wen     := true.B
-      regFile.io.rd_data := res
-      
-      // Monitor for console
-      printf(p"CORE EXECUTE: pc=${Hexadecimal(io.in.bits.pc)} x${decoder.io.out.rd} = x${decoder.io.out.rs1}($rs1_data) + ${decoder.io.out.imm} | Result: $res\n")
+  val rs1_data = regFile.io.rs1_data
+  val rs2_data = regFile.io.rs2_data
+  val imm      = decoder.io.out.imm.asUInt
+
+  // ALU Logic
+  when(io.in.fire) {
+    val rd = decoder.io.out.rd
+
+    // ADDI: rd = rs1 + imm
+    when(decoder.io.out.is_addi) {
+      val res = rs1_data + imm
+      when(rd =/= 0.U) {
+        regFile.io.wen     := true.B
+        regFile.io.rd_data := res
+        printf(p"CORE EXECUTE: pc=${Hexadecimal(io.in.bits.pc)} ADDI x$rd = x${decoder.io.out.rs1}($rs1_data) + ${decoder.io.out.imm} | Result: $res\n")
+      }
+    }
+
+    // ADD: rd = rs1 + rs2
+    .elsewhen(decoder.io.out.is_add) {
+      val res = rs1_data + rs2_data
+      when(rd =/= 0.U) {
+        regFile.io.wen     := true.B
+        regFile.io.rd_data := res
+        printf(p"CORE EXECUTE: pc=${Hexadecimal(io.in.bits.pc)} ADD  x$rd = x${decoder.io.out.rs1}($rs1_data) + x${decoder.io.out.rs2}($rs2_data) | Result: $res\n")
+      }
+    }
+
+    // MUL: rd = rs1 * rs2  (lower 64 bits)
+    .elsewhen(decoder.io.out.is_mul) {
+      val res = rs1_data * rs2_data
+      when(rd =/= 0.U) {
+        regFile.io.wen     := true.B
+        regFile.io.rd_data := res
+        printf(p"CORE EXECUTE: pc=${Hexadecimal(io.in.bits.pc)} MUL  x$rd = x${decoder.io.out.rs1}($rs1_data) * x${decoder.io.out.rs2}($rs2_data) | Result: $res\n")
+      }
+    }
+
+    // DIV: rd = rs1 / rs2  (signed)
+    .elsewhen(decoder.io.out.is_div) {
+      val res = (rs1_data.asSInt / rs2_data.asSInt).asUInt
+      when(rd =/= 0.U) {
+        regFile.io.wen     := true.B
+        regFile.io.rd_data := res
+        printf(p"CORE EXECUTE: pc=${Hexadecimal(io.in.bits.pc)} DIV  x$rd = x${decoder.io.out.rs1}($rs1_data) / x${decoder.io.out.rs2}($rs2_data) | Result: $res\n")
+      }
     }
   }
 }
