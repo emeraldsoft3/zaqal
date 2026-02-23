@@ -65,6 +65,7 @@ class Frontend extends Module {
 
   // Handlers for Redirects (Branch Mispredictions)
   ftq.io.flush := io.redirect.valid
+  ibuf.io.flush := io.redirect.valid
   bpu.io.redirect := io.redirect
 
   // 6. Debug Port Mapping

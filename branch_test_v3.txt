@@ -1,0 +1,73 @@
+mill zaqal.runMain zaqal.ZaqalTest
+71] zaqal.compile compiling 1 Scala source to out/zaqal/compile.dest/classes ...
+71] [warn] 10 feature warnings; re-run with -feature for details
+71] [warn] one warning found
+71] done compiling
+71] compiling 1 Scala source to out/zaqal/compile.dest/classes ...
+71] [warn] 52 feature warnings; re-run with -feature for details
+71] [warn] one warning found
+71] done compiling
+77] zaqal.runMain
+--- Starting ZAQAL Agile V1.0 Simulation ---
+CORE EXECUTE: pc=0000000080000000 ADDI x  1 = x  0(                    0) +                     9 | Result:                     9
+CORE EXECUTE: pc=0000000080000004 ADDI x  2 = x  0(                    0) +                    64 | Result:                    64
+CORE EXECUTE: pc=0000000080000008 ADDI x  4 = x  0(                    0) +                     0 | Result:                     0
+CORE EXECUTE: pc=000000008000000c ADD  x  4 = x  4(                    0) + x  1(                    9) | Result:                     9
+CORE EXECUTE: pc=0000000080000010 ADD  x  5 = x  0(                    0) + x  1(                    9) | Result:                     9
+CORE EXECUTE: pc=0000000080000014 ADDI x  6 = x  0(                    0) +                     2 | Result:                     2
+CORE EXECUTE: pc=0000000080000018 DIV  x  8 = x                    9(                    9) / x                    2(                    2) | Result:                     4 (after 32-cycle stall)
+CORE EXECUTE: pc=000000008000001c MUL  x  9 = x  8(                    4) * x  6(                    2) | Result:                                        8
+[Cycle 48] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: pc=0000000080000020 BNE  x  5(                    9) != x  9(                    8) | TAKEN: target=0000000080000028
+CORE EXECUTE: pc=0000000080000028 ADDI x  4 = x  4(                    9) +                     1 | Result:                    10
+CORE EXECUTE: pc=000000008000002c ADDI x  4 = x  4(                   10) +                     1 | Result:                    11
+CORE EXECUTE: pc=0000000080000030 ADDI x  4 = x  4(                   11) +                     1 | Result:                    12
+CORE EXECUTE: pc=0000000080000034 ADDI x  4 = x  4(                   12) +                     1 | Result:                    13
+CORE EXECUTE: pc=0000000080000038 ADDI x  4 = x  4(                   13) +                     1 | Result:                    14
+CORE EXECUTE: pc=000000008000003c ADDI x  4 = x  4(                   14) +                     1 | Result:                    15
+CORE EXECUTE: pc=0000000080000040 ADDI x  4 = x  4(                   15) +                     1 | Result:                    16
+CORE EXECUTE: pc=0000000080000044 ADDI x  4 = x  4(                   16) +                     1 | Result:                    17
+CORE EXECUTE: pc=0000000080000048 ADDI x  4 = x  4(                   17) +                     1 | Result:                    18
+CORE EXECUTE: pc=000000008000004c ADDI x  4 = x  4(                   18) +                     1 | Result:                    19
+CORE EXECUTE: pc=0000000080000050 ADDI x  4 = x  4(                   19) +                     1 | Result:                    20
+CORE EXECUTE: pc=0000000080000054 ADDI x  4 = x  4(                   20) +                     1 | Result:                    21
+CORE EXECUTE: pc=0000000080000058 ADDI x  4 = x  4(                   21) +                     1 | Result:                    22
+CORE EXECUTE: pc=000000008000005c ADDI x  4 = x  4(                   22) +                     1 | Result:                    23
+CORE EXECUTE: pc=0000000080000060 ADDI x  4 = x  4(                   23) +                     1 | Result:                    24
+CORE EXECUTE: pc=0000000080000064 ADDI x  4 = x  4(                   24) +                     1 | Result:                    25
+CORE EXECUTE: pc=0000000080000068 ADDI x  1 = x  1(                    9) +                     1 | Result:                    10
+CORE EXECUTE: pc=0000000080000000 ADDI x  1 = x  0(                    0) +                     9 | Result:                     9
+CORE EXECUTE: pc=0000000080000004 ADDI x  2 = x  0(                    0) +                    64 | Result:                    64
+CORE EXECUTE: pc=0000000080000008 ADDI x  4 = x  0(                    0) +                     0 | Result:                     0
+CORE EXECUTE: pc=000000008000000c ADD  x  4 = x  4(                    0) + x  1(                    9) | Result:                     9
+CORE EXECUTE: pc=0000000080000010 ADD  x  5 = x  0(                    0) + x  1(                    9) | Result:                     9
+CORE EXECUTE: pc=0000000080000014 ADDI x  6 = x  0(                    0) +                     2 | Result:                     2
+CORE EXECUTE: pc=0000000080000018 DIV  x  8 = x                    9(                    9) / x                    2(                    2) | Result:                     4 (after 32-cycle stall)
+CORE EXECUTE: pc=000000008000001c MUL  x  9 = x  8(                    4) * x  6(                    2) | Result:                                        8
+[Cycle 110] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: pc=0000000080000020 BNE  x  5(                    9) != x  9(                    8) | TAKEN: target=0000000080000028
+CORE EXECUTE: pc=0000000080000028 ADDI x  4 = x  4(                    9) +                     1 | Result:                    10
+CORE EXECUTE: pc=000000008000002c ADDI x  4 = x  4(                   10) +                     1 | Result:                    11
+CORE EXECUTE: pc=0000000080000030 ADDI x  4 = x  4(                   11) +                     1 | Result:                    12
+CORE EXECUTE: pc=0000000080000034 ADDI x  4 = x  4(                   12) +                     1 | Result:                    13
+CORE EXECUTE: pc=0000000080000038 ADDI x  4 = x  4(                   13) +                     1 | Result:                    14
+CORE EXECUTE: pc=000000008000003c ADDI x  4 = x  4(                   14) +                     1 | Result:                    15
+CORE EXECUTE: pc=0000000080000040 ADDI x  4 = x  4(                   15) +                     1 | Result:                    16
+CORE EXECUTE: pc=0000000080000044 ADDI x  4 = x  4(                   16) +                     1 | Result:                    17
+CORE EXECUTE: pc=0000000080000048 ADDI x  4 = x  4(                   17) +                     1 | Result:                    18
+CORE EXECUTE: pc=000000008000004c ADDI x  4 = x  4(                   18) +                     1 | Result:                    19
+CORE EXECUTE: pc=0000000080000050 ADDI x  4 = x  4(                   19) +                     1 | Result:                    20
+CORE EXECUTE: pc=0000000080000054 ADDI x  4 = x  4(                   20) +                     1 | Result:                    21
+CORE EXECUTE: pc=0000000080000058 ADDI x  4 = x  4(                   21) +                     1 | Result:                    22
+CORE EXECUTE: pc=000000008000005c ADDI x  4 = x  4(                   22) +                     1 | Result:                    23
+CORE EXECUTE: pc=0000000080000060 ADDI x  4 = x  4(                   23) +                     1 | Result:                    24
+CORE EXECUTE: pc=0000000080000064 ADDI x  4 = x  4(                   24) +                     1 | Result:                    25
+CORE EXECUTE: pc=0000000080000068 ADDI x  1 = x  1(                    9) +                     1 | Result:                    10
+CORE EXECUTE: pc=0000000080000000 ADDI x  1 = x  0(                    0) +                     9 | Result:                     9
+CORE EXECUTE: pc=0000000080000004 ADDI x  2 = x  0(                    0) +                    64 | Result:                    64
+CORE EXECUTE: pc=0000000080000008 ADDI x  4 = x  0(                    0) +                     0 | Result:                     0
+CORE EXECUTE: pc=000000008000000c ADD  x  4 = x  4(                    0) + x  1(                    9) | Result:                     9
+CORE EXECUTE: pc=0000000080000010 ADD  x  5 = x  0(                    0) + x  1(                    9) | Result:                     9
+CORE EXECUTE: pc=0000000080000014 ADDI x  6 = x  0(                    0) +                     2 | Result:                     2
+--- Simulation Finished. CSV generated: ftq_dump.csv ---
+77/77, SUCCESS] mill zaqal.runMain zaqal.ZaqalTest 11s

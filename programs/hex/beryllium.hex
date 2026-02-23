@@ -1,5 +1,5 @@
 // Initialization
-00100093 // 00: addi x1, x0, 1     (x1 = 1, counter)
+00a00093 // 00: addi x1, x0, 10     (x1 = 10, counter)
 04000113 // 04: addi x2, x0, 64    (x2 = 64, limit)
 00000213 // 08: addi x4, x0, 0     (x4 = total sum)
 
@@ -9,8 +9,8 @@
 00200313 // 14: addi x6, x0, 2     (Divisor)
 
 // Check if Even/Odd (Inner logic)
-0062d433 // 18: div  x8, x5, x6    (x8 = x5 / 2)
-002404b3 // 1c: mul  x9, x8, x6    (x9 = x8 * 2)
+0262c433 // 18: div  x8, x5, x6    (x8 = x5 / 2) for temp % divisor == 0 a trick used, divide, decimal will be lost as no floating point support, than multiply back , than subtract to see what was lost to get the remainder
+026404b3 // 1c: mul  x9, x8, x6    (x9 = x8 * 2)
 00929463 // 20: bne  x5, x9, 8     (If Odd, skip next instr)
 00120233 // 24: add  x4, x4, x1    (Bonus add if even)
 

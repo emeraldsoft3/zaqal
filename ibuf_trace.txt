@@ -1,0 +1,89 @@
+mill zaqal.runMain zaqal.ZaqalTest
+71] zaqal.compile compiling 1 Scala source to out/zaqal/compile.dest/classes ...
+71] [warn] 13 feature warnings; re-run with -feature for details
+71] [warn] one warning found
+71] done compiling
+77] zaqal.runMain
+--- Starting ZAQAL Agile V1.0 Simulation ---
+CORE EXECUTE: pc=0000000080000000 ADDI x  1 = x  0(                    0) +                    10 | Result:                    10
+IBUF FIRE: pc=0000000080000000 inst=00a00093 idx= 0 busy= 1
+CORE EXECUTE: pc=0000000080000004 ADDI x  2 = x  0(                    0) +                    64 | Result:                    64
+IBUF FIRE: pc=0000000080000004 inst=04000113 idx= 1 busy= 1
+CORE EXECUTE: pc=0000000080000008 ADDI x  4 = x  0(                    0) +                     0 | Result:                     0
+IBUF FIRE: pc=0000000080000008 inst=00000213 idx= 2 busy= 1
+CORE EXECUTE: pc=000000008000000c ADD  x  4 = x  4(                    0) + x  1(                   10) | Result:                    10
+IBUF FIRE: pc=000000008000000c inst=00120233 idx= 3 busy= 1
+CORE EXECUTE: pc=0000000080000010 ADD  x  5 = x  0(                    0) + x  1(                   10) | Result:                    10
+IBUF FIRE: pc=0000000080000010 inst=001002b3 idx= 4 busy= 1
+CORE EXECUTE: pc=0000000080000014 ADDI x  6 = x  0(                    0) +                     2 | Result:                     2
+IBUF FIRE: pc=0000000080000014 inst=00200313 idx= 5 busy= 1
+IBUF FIRE: pc=0000000080000018 inst=0262c433 idx= 6 busy= 1
+CORE EXECUTE: pc=0000000080000018 DIV  x  8 = x                   10(                   10) / x                    2(                    2) | Result:                     5 (after 32-cycle stall)
+CORE EXECUTE: pc=000000008000001c MUL  x  9 = x  8(                    5) * x  6(                    2) | Result:                                       10
+IBUF FIRE: pc=000000008000001c inst=026404b3 idx= 7 busy= 1
+CORE EXECUTE: pc=0000000080000040 ADDI x  4 = x  4(                   10) +                     1 | Result:                    11
+IBUF FIRE: pc=0000000080000040 inst=00120213 idx= 0 busy= 1
+CORE EXECUTE: pc=0000000080000044 ADDI x  4 = x  4(                   11) +                     1 | Result:                    12
+IBUF FIRE: pc=0000000080000044 inst=00120213 idx= 1 busy= 1
+CORE EXECUTE: pc=0000000080000048 ADDI x  4 = x  4(                   12) +                     1 | Result:                    13
+IBUF FIRE: pc=0000000080000048 inst=00120213 idx= 2 busy= 1
+CORE EXECUTE: pc=000000008000004c ADDI x  4 = x  4(                   13) +                     1 | Result:                    14
+IBUF FIRE: pc=000000008000004c inst=00120213 idx= 3 busy= 1
+CORE EXECUTE: pc=0000000080000050 ADDI x  4 = x  4(                   14) +                     1 | Result:                    15
+IBUF FIRE: pc=0000000080000050 inst=00120213 idx= 4 busy= 1
+CORE EXECUTE: pc=0000000080000054 ADDI x  4 = x  4(                   15) +                     1 | Result:                    16
+IBUF FIRE: pc=0000000080000054 inst=00120213 idx= 5 busy= 1
+CORE EXECUTE: pc=0000000080000058 ADDI x  4 = x  4(                   16) +                     1 | Result:                    17
+IBUF FIRE: pc=0000000080000058 inst=00120213 idx= 6 busy= 1
+CORE EXECUTE: pc=000000008000005c ADDI x  4 = x  4(                   17) +                     1 | Result:                    18
+IBUF FIRE: pc=000000008000005c inst=00120213 idx= 7 busy= 1
+CORE EXECUTE: pc=0000000080000000 ADDI x  1 = x  0(                    0) +                    10 | Result:                    10
+IBUF FIRE: pc=0000000080000000 inst=00a00093 idx= 0 busy= 1
+CORE EXECUTE: pc=0000000080000004 ADDI x  2 = x  0(                    0) +                    64 | Result:                    64
+IBUF FIRE: pc=0000000080000004 inst=04000113 idx= 1 busy= 1
+CORE EXECUTE: pc=0000000080000008 ADDI x  4 = x  0(                    0) +                     0 | Result:                     0
+IBUF FIRE: pc=0000000080000008 inst=00000213 idx= 2 busy= 1
+CORE EXECUTE: pc=000000008000000c ADD  x  4 = x  4(                    0) + x  1(                   10) | Result:                    10
+IBUF FIRE: pc=000000008000000c inst=00120233 idx= 3 busy= 1
+CORE EXECUTE: pc=0000000080000010 ADD  x  5 = x  0(                    0) + x  1(                   10) | Result:                    10
+IBUF FIRE: pc=0000000080000010 inst=001002b3 idx= 4 busy= 1
+CORE EXECUTE: pc=0000000080000014 ADDI x  6 = x  0(                    0) +                     2 | Result:                     2
+IBUF FIRE: pc=0000000080000014 inst=00200313 idx= 5 busy= 1
+IBUF FIRE: pc=0000000080000018 inst=0262c433 idx= 6 busy= 1
+CORE EXECUTE: pc=0000000080000018 DIV  x  8 = x                   10(                   10) / x                    2(                    2) | Result:                     5 (after 32-cycle stall)
+CORE EXECUTE: pc=000000008000001c MUL  x  9 = x  8(                    5) * x  6(                    2) | Result:                                       10
+IBUF FIRE: pc=000000008000001c inst=026404b3 idx= 7 busy= 1
+CORE EXECUTE: pc=0000000080000040 ADDI x  4 = x  4(                   10) +                     1 | Result:                    11
+IBUF FIRE: pc=0000000080000040 inst=00120213 idx= 0 busy= 1
+CORE EXECUTE: pc=0000000080000044 ADDI x  4 = x  4(                   11) +                     1 | Result:                    12
+IBUF FIRE: pc=0000000080000044 inst=00120213 idx= 1 busy= 1
+CORE EXECUTE: pc=0000000080000048 ADDI x  4 = x  4(                   12) +                     1 | Result:                    13
+IBUF FIRE: pc=0000000080000048 inst=00120213 idx= 2 busy= 1
+CORE EXECUTE: pc=000000008000004c ADDI x  4 = x  4(                   13) +                     1 | Result:                    14
+IBUF FIRE: pc=000000008000004c inst=00120213 idx= 3 busy= 1
+CORE EXECUTE: pc=0000000080000050 ADDI x  4 = x  4(                   14) +                     1 | Result:                    15
+IBUF FIRE: pc=0000000080000050 inst=00120213 idx= 4 busy= 1
+CORE EXECUTE: pc=0000000080000054 ADDI x  4 = x  4(                   15) +                     1 | Result:                    16
+IBUF FIRE: pc=0000000080000054 inst=00120213 idx= 5 busy= 1
+CORE EXECUTE: pc=0000000080000058 ADDI x  4 = x  4(                   16) +                     1 | Result:                    17
+IBUF FIRE: pc=0000000080000058 inst=00120213 idx= 6 busy= 1
+CORE EXECUTE: pc=000000008000005c ADDI x  4 = x  4(                   17) +                     1 | Result:                    18
+IBUF FIRE: pc=000000008000005c inst=00120213 idx= 7 busy= 1
+CORE EXECUTE: pc=0000000080000000 ADDI x  1 = x  0(                    0) +                    10 | Result:                    10
+IBUF FIRE: pc=0000000080000000 inst=00a00093 idx= 0 busy= 1
+CORE EXECUTE: pc=0000000080000004 ADDI x  2 = x  0(                    0) +                    64 | Result:                    64
+IBUF FIRE: pc=0000000080000004 inst=04000113 idx= 1 busy= 1
+CORE EXECUTE: pc=0000000080000008 ADDI x  4 = x  0(                    0) +                     0 | Result:                     0
+IBUF FIRE: pc=0000000080000008 inst=00000213 idx= 2 busy= 1
+CORE EXECUTE: pc=000000008000000c ADD  x  4 = x  4(                    0) + x  1(                   10) | Result:                    10
+IBUF FIRE: pc=000000008000000c inst=00120233 idx= 3 busy= 1
+CORE EXECUTE: pc=0000000080000010 ADD  x  5 = x  0(                    0) + x  1(                   10) | Result:                    10
+IBUF FIRE: pc=0000000080000010 inst=001002b3 idx= 4 busy= 1
+CORE EXECUTE: pc=0000000080000014 ADDI x  6 = x  0(                    0) +                     2 | Result:                     2
+IBUF FIRE: pc=0000000080000014 inst=00200313 idx= 5 busy= 1
+IBUF FIRE: pc=0000000080000018 inst=0262c433 idx= 6 busy= 1
+CORE EXECUTE: pc=0000000080000018 DIV  x  8 = x                   10(                   10) / x                    2(                    2) | Result:                     5 (after 32-cycle stall)
+CORE EXECUTE: pc=000000008000001c MUL  x  9 = x  8(                    5) * x  6(                    2) | Result:                                       10
+IBUF FIRE: pc=000000008000001c inst=026404b3 idx= 7 busy= 1
+--- Simulation Finished. CSV generated: ftq_dump.csv ---
+77/77, SUCCESS] mill zaqal.runMain zaqal.ZaqalTest 12s

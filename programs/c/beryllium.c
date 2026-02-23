@@ -1,5 +1,5 @@
 int main() {
-    int counter = 1;    // x1
+    int counter = 10;    // x1
     int limit = 64;     // x2
     int total_sum = 0;  // x4
 

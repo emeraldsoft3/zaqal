@@ -1,0 +1,85 @@
+mill zaqal.runMain zaqal.ZaqalTest
+71] zaqal.compile compiling 2 Scala sources to out/zaqal/compile.dest/classes ...
+71] [warn] 65 feature warnings; re-run with -feature for details
+71] [warn] one warning found
+71] done compiling
+77] zaqal.runMain
+--- Starting ZAQAL Agile V1.0 Simulation ---
+CORE EXECUTE: pc=0000000080000000 ADDI x  1 = x  0(                    0) +                     9 | Result:                     9
+CORE EXECUTE: pc=0000000080000004 ADDI x  2 = x  0(                    0) +                    64 | Result:                    64
+CORE EXECUTE: pc=0000000080000008 ADDI x  4 = x  0(                    0) +                     0 | Result:                     0
+CORE EXECUTE: pc=000000008000000c ADD  x  4 = x  4(                    0) + x  1(                    9) | Result:                     9
+CORE EXECUTE: pc=0000000080000010 ADD  x  5 = x  0(                    0) + x  1(                    9) | Result:                     9
+CORE EXECUTE: pc=0000000080000014 ADDI x  6 = x  0(                    0) +                     2 | Result:                     2
+CORE EXECUTE: pc=0000000080000018 DIV  x  8 = x                    9(                    9) / x                    2(                    2) | Result:                     4 (after 32-cycle stall)
+CORE EXECUTE: pc=000000008000001c MUL  x  9 = x  8(                    4) * x  6(                    2) | Result:                                        8
+[Cycle 48] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: pc=0000000080000020 BNE  x  5(                    9) != x  9(                    8) | TAKEN: target=0000000080000028
+[Cycle 51] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: pc=0000000080000020 BNE  x  5(                    9) != x  9(                    8) | TAKEN: target=0000000080000028
+[Cycle 54] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: pc=0000000080000020 BNE  x  5(                    9) != x  9(                    8) | TAKEN: target=0000000080000028
+[Cycle 57] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: pc=0000000080000020 BNE  x  5(                    9) != x  9(                    8) | TAKEN: target=0000000080000028
+[Cycle 60] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: pc=0000000080000020 BNE  x  5(                    9) != x  9(                    8) | TAKEN: target=0000000080000028
+[Cycle 63] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: pc=0000000080000020 BNE  x  5(                    9) != x  9(                    8) | TAKEN: target=0000000080000028
+[Cycle 66] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: pc=0000000080000020 BNE  x  5(                    9) != x  9(                    8) | TAKEN: target=0000000080000028
+[Cycle 69] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: pc=0000000080000020 BNE  x  5(                    9) != x  9(                    8) | TAKEN: target=0000000080000028
+[Cycle 72] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: pc=0000000080000020 BNE  x  5(                    9) != x  9(                    8) | TAKEN: target=0000000080000028
+[Cycle 75] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: pc=0000000080000020 BNE  x  5(                    9) != x  9(                    8) | TAKEN: target=0000000080000028
+[Cycle 78] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: pc=0000000080000020 BNE  x  5(                    9) != x  9(                    8) | TAKEN: target=0000000080000028
+[Cycle 81] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: pc=0000000080000020 BNE  x  5(                    9) != x  9(                    8) | TAKEN: target=0000000080000028
+[Cycle 84] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: pc=0000000080000020 BNE  x  5(                    9) != x  9(                    8) | TAKEN: target=0000000080000028
+[Cycle 87] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: pc=0000000080000020 BNE  x  5(                    9) != x  9(                    8) | TAKEN: target=0000000080000028
+[Cycle 90] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: pc=0000000080000020 BNE  x  5(                    9) != x  9(                    8) | TAKEN: target=0000000080000028
+[Cycle 93] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: pc=0000000080000020 BNE  x  5(                    9) != x  9(                    8) | TAKEN: target=0000000080000028
+[Cycle 96] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: pc=0000000080000020 BNE  x  5(                    9) != x  9(                    8) | TAKEN: target=0000000080000028
+[Cycle 99] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: pc=0000000080000020 BNE  x  5(                    9) != x  9(                    8) | TAKEN: target=0000000080000028
+[Cycle 102] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: pc=0000000080000020 BNE  x  5(                    9) != x  9(                    8) | TAKEN: target=0000000080000028
+[Cycle 105] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: pc=0000000080000020 BNE  x  5(                    9) != x  9(                    8) | TAKEN: target=0000000080000028
+[Cycle 108] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: pc=0000000080000020 BNE  x  5(                    9) != x  9(                    8) | TAKEN: target=0000000080000028
+[Cycle 111] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: pc=0000000080000020 BNE  x  5(                    9) != x  9(                    8) | TAKEN: target=0000000080000028
+[Cycle 114] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: pc=0000000080000020 BNE  x  5(                    9) != x  9(                    8) | TAKEN: target=0000000080000028
+[Cycle 117] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: pc=0000000080000020 BNE  x  5(                    9) != x  9(                    8) | TAKEN: target=0000000080000028
+[Cycle 120] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: pc=0000000080000020 BNE  x  5(                    9) != x  9(                    8) | TAKEN: target=0000000080000028
+[Cycle 123] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: pc=0000000080000020 BNE  x  5(                    9) != x  9(                    8) | TAKEN: target=0000000080000028
+[Cycle 126] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: pc=0000000080000020 BNE  x  5(                    9) != x  9(                    8) | TAKEN: target=0000000080000028
+[Cycle 129] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: pc=0000000080000020 BNE  x  5(                    9) != x  9(                    8) | TAKEN: target=0000000080000028
+[Cycle 132] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: pc=0000000080000020 BNE  x  5(                    9) != x  9(                    8) | TAKEN: target=0000000080000028
+[Cycle 135] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: pc=0000000080000020 BNE  x  5(                    9) != x  9(                    8) | TAKEN: target=0000000080000028
+[Cycle 138] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: pc=0000000080000020 BNE  x  5(                    9) != x  9(                    8) | TAKEN: target=0000000080000028
+[Cycle 141] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: pc=0000000080000020 BNE  x  5(                    9) != x  9(                    8) | TAKEN: target=0000000080000028
+[Cycle 144] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: pc=0000000080000020 BNE  x  5(                    9) != x  9(                    8) | TAKEN: target=0000000080000028
+[Cycle 147] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: pc=0000000080000020 BNE  x  5(                    9) != x  9(                    8) | TAKEN: target=0000000080000028
+--- Simulation Finished. CSV generated: ftq_dump.csv ---
+77/77, SUCCESS] mill zaqal.runMain zaqal.ZaqalTest 11s

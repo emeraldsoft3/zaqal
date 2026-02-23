@@ -1,0 +1,128 @@
+mill zaqal.runMain zaqal.ZaqalTest
+77] zaqal.runMain
+--- Starting ZAQAL Agile V1.0 Simulation ---
+CORE EXECUTE: pc=0000000080000000 ADDI x  1 = x  0(                    0) +                     9 | Result:                     9
+CORE EXECUTE: pc=0000000080000004 ADDI x  2 = x  0(                    0) +                    64 | Result:                    64
+CORE EXECUTE: pc=0000000080000008 ADDI x  4 = x  0(                    0) +                     0 | Result:                     0
+CORE EXECUTE: pc=000000008000000c ADD  x  4 = x  4(                    0) + x  1(                    9) | Result:                     9
+CORE EXECUTE: pc=0000000080000010 ADD  x  5 = x  0(                    0) + x  1(                    9) | Result:                     9
+CORE EXECUTE: pc=0000000080000014 ADDI x  6 = x  0(                    0) +                     2 | Result:                     2
+CORE EXECUTE: pc=0000000080000018 DIV  x  8 = x                    9(                    9) / x                    2(                    2) | Result:                     4 (after 32-cycle stall)
+CORE EXECUTE: pc=000000008000001c MUL  x  9 = x  8(                    4) * x  6(                    2) | Result:                                        8
+[Cycle 48] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: pc=0000000080000020 BNE  x  5(                    9) != x  9(                    8) | TAKEN: target=0000000080000028
+CORE EXECUTE: pc=0000000080000024 ADD  x  4 = x  4(                    9) + x  1(                    9) | Result:                    18
+CORE EXECUTE: pc=0000000080000028 ADDI x  4 = x  4(                   18) +                     1 | Result:                    19
+CORE EXECUTE: pc=000000008000002c ADDI x  4 = x  4(                   19) +                     1 | Result:                    20
+CORE EXECUTE: pc=0000000080000030 ADDI x  4 = x  4(                   20) +                     1 | Result:                    21
+CORE EXECUTE: pc=0000000080000034 ADDI x  4 = x  4(                   21) +                     1 | Result:                    22
+CORE EXECUTE: pc=0000000080000038 ADDI x  4 = x  4(                   22) +                     1 | Result:                    23
+CORE EXECUTE: pc=000000008000003c ADDI x  4 = x  4(                   23) +                     1 | Result:                    24
+[Cycle 56] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: pc=0000000080000020 BNE  x  5(                    9) != x  9(                    8) | TAKEN: target=0000000080000028
+CORE EXECUTE: pc=0000000080000024 ADD  x  4 = x  4(                   24) + x  1(                    9) | Result:                    33
+CORE EXECUTE: pc=0000000080000028 ADDI x  4 = x  4(                   33) +                     1 | Result:                    34
+CORE EXECUTE: pc=000000008000002c ADDI x  4 = x  4(                   34) +                     1 | Result:                    35
+CORE EXECUTE: pc=0000000080000030 ADDI x  4 = x  4(                   35) +                     1 | Result:                    36
+CORE EXECUTE: pc=0000000080000034 ADDI x  4 = x  4(                   36) +                     1 | Result:                    37
+CORE EXECUTE: pc=0000000080000038 ADDI x  4 = x  4(                   37) +                     1 | Result:                    38
+CORE EXECUTE: pc=000000008000003c ADDI x  4 = x  4(                   38) +                     1 | Result:                    39
+[Cycle 64] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: pc=0000000080000020 BNE  x  5(                    9) != x  9(                    8) | TAKEN: target=0000000080000028
+CORE EXECUTE: pc=0000000080000024 ADD  x  4 = x  4(                   39) + x  1(                    9) | Result:                    48
+CORE EXECUTE: pc=0000000080000028 ADDI x  4 = x  4(                   48) +                     1 | Result:                    49
+CORE EXECUTE: pc=000000008000002c ADDI x  4 = x  4(                   49) +                     1 | Result:                    50
+CORE EXECUTE: pc=0000000080000030 ADDI x  4 = x  4(                   50) +                     1 | Result:                    51
+CORE EXECUTE: pc=0000000080000034 ADDI x  4 = x  4(                   51) +                     1 | Result:                    52
+CORE EXECUTE: pc=0000000080000038 ADDI x  4 = x  4(                   52) +                     1 | Result:                    53
+CORE EXECUTE: pc=000000008000003c ADDI x  4 = x  4(                   53) +                     1 | Result:                    54
+[Cycle 72] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: pc=0000000080000020 BNE  x  5(                    9) != x  9(                    8) | TAKEN: target=0000000080000028
+CORE EXECUTE: pc=0000000080000024 ADD  x  4 = x  4(                   54) + x  1(                    9) | Result:                    63
+CORE EXECUTE: pc=0000000080000028 ADDI x  4 = x  4(                   63) +                     1 | Result:                    64
+CORE EXECUTE: pc=000000008000002c ADDI x  4 = x  4(                   64) +                     1 | Result:                    65
+CORE EXECUTE: pc=0000000080000030 ADDI x  4 = x  4(                   65) +                     1 | Result:                    66
+CORE EXECUTE: pc=0000000080000034 ADDI x  4 = x  4(                   66) +                     1 | Result:                    67
+CORE EXECUTE: pc=0000000080000038 ADDI x  4 = x  4(                   67) +                     1 | Result:                    68
+CORE EXECUTE: pc=000000008000003c ADDI x  4 = x  4(                   68) +                     1 | Result:                    69
+[Cycle 80] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: pc=0000000080000020 BNE  x  5(                    9) != x  9(                    8) | TAKEN: target=0000000080000028
+CORE EXECUTE: pc=0000000080000024 ADD  x  4 = x  4(                   69) + x  1(                    9) | Result:                    78
+CORE EXECUTE: pc=0000000080000028 ADDI x  4 = x  4(                   78) +                     1 | Result:                    79
+CORE EXECUTE: pc=000000008000002c ADDI x  4 = x  4(                   79) +                     1 | Result:                    80
+CORE EXECUTE: pc=0000000080000030 ADDI x  4 = x  4(                   80) +                     1 | Result:                    81
+CORE EXECUTE: pc=0000000080000034 ADDI x  4 = x  4(                   81) +                     1 | Result:                    82
+CORE EXECUTE: pc=0000000080000038 ADDI x  4 = x  4(                   82) +                     1 | Result:                    83
+CORE EXECUTE: pc=000000008000003c ADDI x  4 = x  4(                   83) +                     1 | Result:                    84
+[Cycle 88] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: pc=0000000080000020 BNE  x  5(                    9) != x  9(                    8) | TAKEN: target=0000000080000028
+CORE EXECUTE: pc=0000000080000024 ADD  x  4 = x  4(                   84) + x  1(                    9) | Result:                    93
+CORE EXECUTE: pc=0000000080000028 ADDI x  4 = x  4(                   93) +                     1 | Result:                    94
+CORE EXECUTE: pc=000000008000002c ADDI x  4 = x  4(                   94) +                     1 | Result:                    95
+CORE EXECUTE: pc=0000000080000030 ADDI x  4 = x  4(                   95) +                     1 | Result:                    96
+CORE EXECUTE: pc=0000000080000034 ADDI x  4 = x  4(                   96) +                     1 | Result:                    97
+CORE EXECUTE: pc=0000000080000038 ADDI x  4 = x  4(                   97) +                     1 | Result:                    98
+CORE EXECUTE: pc=000000008000003c ADDI x  4 = x  4(                   98) +                     1 | Result:                    99
+[Cycle 96] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: pc=0000000080000020 BNE  x  5(                    9) != x  9(                    8) | TAKEN: target=0000000080000028
+CORE EXECUTE: pc=0000000080000024 ADD  x  4 = x  4(                   99) + x  1(                    9) | Result:                   108
+CORE EXECUTE: pc=0000000080000028 ADDI x  4 = x  4(                  108) +                     1 | Result:                   109
+CORE EXECUTE: pc=000000008000002c ADDI x  4 = x  4(                  109) +                     1 | Result:                   110
+CORE EXECUTE: pc=0000000080000030 ADDI x  4 = x  4(                  110) +                     1 | Result:                   111
+CORE EXECUTE: pc=0000000080000034 ADDI x  4 = x  4(                  111) +                     1 | Result:                   112
+CORE EXECUTE: pc=0000000080000038 ADDI x  4 = x  4(                  112) +                     1 | Result:                   113
+CORE EXECUTE: pc=000000008000003c ADDI x  4 = x  4(                  113) +                     1 | Result:                   114
+[Cycle 104] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: pc=0000000080000020 BNE  x  5(                    9) != x  9(                    8) | TAKEN: target=0000000080000028
+CORE EXECUTE: pc=0000000080000024 ADD  x  4 = x  4(                  114) + x  1(                    9) | Result:                   123
+CORE EXECUTE: pc=0000000080000028 ADDI x  4 = x  4(                  123) +                     1 | Result:                   124
+CORE EXECUTE: pc=000000008000002c ADDI x  4 = x  4(                  124) +                     1 | Result:                   125
+CORE EXECUTE: pc=0000000080000030 ADDI x  4 = x  4(                  125) +                     1 | Result:                   126
+CORE EXECUTE: pc=0000000080000034 ADDI x  4 = x  4(                  126) +                     1 | Result:                   127
+CORE EXECUTE: pc=0000000080000038 ADDI x  4 = x  4(                  127) +                     1 | Result:                   128
+CORE EXECUTE: pc=000000008000003c ADDI x  4 = x  4(                  128) +                     1 | Result:                   129
+[Cycle 112] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: pc=0000000080000020 BNE  x  5(                    9) != x  9(                    8) | TAKEN: target=0000000080000028
+CORE EXECUTE: pc=0000000080000024 ADD  x  4 = x  4(                  129) + x  1(                    9) | Result:                   138
+CORE EXECUTE: pc=0000000080000028 ADDI x  4 = x  4(                  138) +                     1 | Result:                   139
+CORE EXECUTE: pc=000000008000002c ADDI x  4 = x  4(                  139) +                     1 | Result:                   140
+CORE EXECUTE: pc=0000000080000030 ADDI x  4 = x  4(                  140) +                     1 | Result:                   141
+CORE EXECUTE: pc=0000000080000034 ADDI x  4 = x  4(                  141) +                     1 | Result:                   142
+CORE EXECUTE: pc=0000000080000038 ADDI x  4 = x  4(                  142) +                     1 | Result:                   143
+CORE EXECUTE: pc=000000008000003c ADDI x  4 = x  4(                  143) +                     1 | Result:                   144
+[Cycle 120] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: pc=0000000080000020 BNE  x  5(                    9) != x  9(                    8) | TAKEN: target=0000000080000028
+CORE EXECUTE: pc=0000000080000024 ADD  x  4 = x  4(                  144) + x  1(                    9) | Result:                   153
+CORE EXECUTE: pc=0000000080000028 ADDI x  4 = x  4(                  153) +                     1 | Result:                   154
+CORE EXECUTE: pc=000000008000002c ADDI x  4 = x  4(                  154) +                     1 | Result:                   155
+CORE EXECUTE: pc=0000000080000030 ADDI x  4 = x  4(                  155) +                     1 | Result:                   156
+CORE EXECUTE: pc=0000000080000034 ADDI x  4 = x  4(                  156) +                     1 | Result:                   157
+CORE EXECUTE: pc=0000000080000038 ADDI x  4 = x  4(                  157) +                     1 | Result:                   158
+CORE EXECUTE: pc=000000008000003c ADDI x  4 = x  4(                  158) +                     1 | Result:                   159
+[Cycle 128] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: pc=0000000080000020 BNE  x  5(                    9) != x  9(                    8) | TAKEN: target=0000000080000028
+CORE EXECUTE: pc=0000000080000024 ADD  x  4 = x  4(                  159) + x  1(                    9) | Result:                   168
+CORE EXECUTE: pc=0000000080000028 ADDI x  4 = x  4(                  168) +                     1 | Result:                   169
+CORE EXECUTE: pc=000000008000002c ADDI x  4 = x  4(                  169) +                     1 | Result:                   170
+CORE EXECUTE: pc=0000000080000030 ADDI x  4 = x  4(                  170) +                     1 | Result:                   171
+CORE EXECUTE: pc=0000000080000034 ADDI x  4 = x  4(                  171) +                     1 | Result:                   172
+CORE EXECUTE: pc=0000000080000038 ADDI x  4 = x  4(                  172) +                     1 | Result:                   173
+CORE EXECUTE: pc=000000008000003c ADDI x  4 = x  4(                  173) +                     1 | Result:                   174
+[Cycle 136] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: pc=0000000080000020 BNE  x  5(                    9) != x  9(                    8) | TAKEN: target=0000000080000028
+CORE EXECUTE: pc=0000000080000024 ADD  x  4 = x  4(                  174) + x  1(                    9) | Result:                   183
+CORE EXECUTE: pc=0000000080000028 ADDI x  4 = x  4(                  183) +                     1 | Result:                   184
+CORE EXECUTE: pc=000000008000002c ADDI x  4 = x  4(                  184) +                     1 | Result:                   185
+CORE EXECUTE: pc=0000000080000030 ADDI x  4 = x  4(                  185) +                     1 | Result:                   186
+CORE EXECUTE: pc=0000000080000034 ADDI x  4 = x  4(                  186) +                     1 | Result:                   187
+CORE EXECUTE: pc=0000000080000038 ADDI x  4 = x  4(                  187) +                     1 | Result:                   188
+CORE EXECUTE: pc=000000008000003c ADDI x  4 = x  4(                  188) +                     1 | Result:                   189
+[Cycle 144] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: pc=0000000080000020 BNE  x  5(                    9) != x  9(                    8) | TAKEN: target=0000000080000028
+CORE EXECUTE: pc=0000000080000024 ADD  x  4 = x  4(                  189) + x  1(                    9) | Result:                   198
+CORE EXECUTE: pc=0000000080000028 ADDI x  4 = x  4(                  198) +                     1 | Result:                   199
+CORE EXECUTE: pc=000000008000002c ADDI x  4 = x  4(                  199) +                     1 | Result:                   200
+CORE EXECUTE: pc=0000000080000030 ADDI x  4 = x  4(                  200) +                     1 | Result:                   201
+CORE EXECUTE: pc=0000000080000034 ADDI x  4 = x  4(                  201) +                     1 | Result:                   202
+--- Simulation Finished. CSV generated: ftq_dump.csv ---
+77/77, SUCCESS] mill zaqal.runMain zaqal.ZaqalTest 6s

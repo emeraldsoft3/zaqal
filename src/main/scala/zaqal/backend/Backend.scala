@@ -15,7 +15,6 @@ class Backend extends Module {
   // Enforce Handshake Integrity
   exec.io.in <> io.dispatch
 
-  // Default redirect (no branch prediction logic yet in Backend)
-  io.redirect.valid := false.B
-  io.redirect.target := 0.U
+  // Route redirection from Execute to Frontend
+  io.redirect := exec.io.redirect
 }

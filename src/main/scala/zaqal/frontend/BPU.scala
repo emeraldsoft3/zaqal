@@ -27,22 +27,27 @@ class BPU extends Module {
   meta.slot   := 0.U
   mask        := "hFF".U
 
+  val mask_reg = RegInit("hFF".U(8.W))
+
   when(io.redirect.valid) {
     next_pc := align(io.redirect.target)
-    // Create mask based on target offset (e.g., if target is 0x0C, mask ignores first 3 instructions)
     val offset = io.redirect.target(4, 2)
     mask := ("hFF".U << offset)(7, 0)
+    mask_reg := ("hFF".U << offset)(7, 0)
   } .elsewhen(is_loop_exit_block && io.out.fire) {
-    // PREDICTION: Jump from 0x6C back to 0x0C
-    next_pc     := align("h8000_0000".U) // Go to the 0x00 block
+    next_pc     := align("h8000_0000".U)
     meta.target := "h8000_000c".U
     meta.taken  := true.B
-    meta.slot   := 3.U                   // 0x6C is the 4th instruction (index 3)
-    mask        := "h0F".U               // Only instructions 0, 1, 2, 3 in this block are valid
+    meta.slot   := 3.U
+    mask        := "h0F".U
+    mask_reg    := "hFF".U // Reset for next block
   } .elsewhen(io.out.fire) {
     next_pc := s0_pc + 32.U
+    mask    := mask_reg
+    mask_reg := "hFF".U // Reset after use
   } .otherwise {
     next_pc := s0_pc
+    mask    := mask_reg
   }
 
   s0_pc := next_pc

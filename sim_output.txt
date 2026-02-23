@@ -1,0 +1,45 @@
+mill zaqal.runMain zaqal.ZaqalTest
+77] zaqal.runMain
+--- Starting ZAQAL Agile V1.0 Simulation ---
+CORE EXECUTE: pc=0000000080000000 ADDI x  1 = x  0(                    0) +                    10 | Result:                    10
+CORE EXECUTE: pc=0000000080000004 ADDI x  2 = x  0(                    0) +                    64 | Result:                    64
+CORE EXECUTE: pc=0000000080000008 ADDI x  4 = x  0(                    0) +                     0 | Result:                     0
+CORE EXECUTE: pc=000000008000000c ADD  x  4 = x  4(                    0) + x  1(                   10) | Result:                    10
+CORE EXECUTE: pc=0000000080000010 ADD  x  5 = x  0(                    0) + x  1(                   10) | Result:                    10
+CORE EXECUTE: pc=0000000080000014 ADDI x  6 = x  0(                    0) +                     2 | Result:                     2
+CORE EXECUTE: pc=0000000080000018 DIV  x  8 = x                   10(                   10) / x                    2(                    2) | Result:                     5 (after 32-cycle stall)
+CORE EXECUTE: pc=000000008000001c MUL  x  9 = x  8(                    5) * x  6(                    2) | Result:                                       10
+CORE EXECUTE: pc=0000000080000040 ADDI x  4 = x  4(                   10) +                     1 | Result:                    11
+CORE EXECUTE: pc=0000000080000044 ADDI x  4 = x  4(                   11) +                     1 | Result:                    12
+CORE EXECUTE: pc=0000000080000048 ADDI x  4 = x  4(                   12) +                     1 | Result:                    13
+CORE EXECUTE: pc=000000008000004c ADDI x  4 = x  4(                   13) +                     1 | Result:                    14
+CORE EXECUTE: pc=0000000080000050 ADDI x  4 = x  4(                   14) +                     1 | Result:                    15
+CORE EXECUTE: pc=0000000080000054 ADDI x  4 = x  4(                   15) +                     1 | Result:                    16
+CORE EXECUTE: pc=0000000080000058 ADDI x  4 = x  4(                   16) +                     1 | Result:                    17
+CORE EXECUTE: pc=000000008000005c ADDI x  4 = x  4(                   17) +                     1 | Result:                    18
+CORE EXECUTE: pc=0000000080000000 ADDI x  1 = x  0(                    0) +                    10 | Result:                    10
+CORE EXECUTE: pc=0000000080000004 ADDI x  2 = x  0(                    0) +                    64 | Result:                    64
+CORE EXECUTE: pc=0000000080000008 ADDI x  4 = x  0(                    0) +                     0 | Result:                     0
+CORE EXECUTE: pc=000000008000000c ADD  x  4 = x  4(                    0) + x  1(                   10) | Result:                    10
+CORE EXECUTE: pc=0000000080000010 ADD  x  5 = x  0(                    0) + x  1(                   10) | Result:                    10
+CORE EXECUTE: pc=0000000080000014 ADDI x  6 = x  0(                    0) +                     2 | Result:                     2
+CORE EXECUTE: pc=0000000080000018 DIV  x  8 = x                   10(                   10) / x                    2(                    2) | Result:                     5 (after 32-cycle stall)
+CORE EXECUTE: pc=000000008000001c MUL  x  9 = x  8(                    5) * x  6(                    2) | Result:                                       10
+CORE EXECUTE: pc=0000000080000040 ADDI x  4 = x  4(                   10) +                     1 | Result:                    11
+CORE EXECUTE: pc=0000000080000044 ADDI x  4 = x  4(                   11) +                     1 | Result:                    12
+CORE EXECUTE: pc=0000000080000048 ADDI x  4 = x  4(                   12) +                     1 | Result:                    13
+CORE EXECUTE: pc=000000008000004c ADDI x  4 = x  4(                   13) +                     1 | Result:                    14
+CORE EXECUTE: pc=0000000080000050 ADDI x  4 = x  4(                   14) +                     1 | Result:                    15
+CORE EXECUTE: pc=0000000080000054 ADDI x  4 = x  4(                   15) +                     1 | Result:                    16
+CORE EXECUTE: pc=0000000080000058 ADDI x  4 = x  4(                   16) +                     1 | Result:                    17
+CORE EXECUTE: pc=000000008000005c ADDI x  4 = x  4(                   17) +                     1 | Result:                    18
+CORE EXECUTE: pc=0000000080000000 ADDI x  1 = x  0(                    0) +                    10 | Result:                    10
+CORE EXECUTE: pc=0000000080000004 ADDI x  2 = x  0(                    0) +                    64 | Result:                    64
+CORE EXECUTE: pc=0000000080000008 ADDI x  4 = x  0(                    0) +                     0 | Result:                     0
+CORE EXECUTE: pc=000000008000000c ADD  x  4 = x  4(                    0) + x  1(                   10) | Result:                    10
+CORE EXECUTE: pc=0000000080000010 ADD  x  5 = x  0(                    0) + x  1(                   10) | Result:                    10
+CORE EXECUTE: pc=0000000080000014 ADDI x  6 = x  0(                    0) +                     2 | Result:                     2
+CORE EXECUTE: pc=0000000080000018 DIV  x  8 = x                   10(                   10) / x                    2(                    2) | Result:                     5 (after 32-cycle stall)
+CORE EXECUTE: pc=000000008000001c MUL  x  9 = x  8(                    5) * x  6(                    2) | Result:                                       10
+--- Simulation Finished. CSV generated: ftq_dump.csv ---
+77/77, SUCCESS] mill zaqal.runMain zaqal.ZaqalTest 10s

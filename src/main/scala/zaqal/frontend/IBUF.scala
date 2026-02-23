@@ -7,6 +7,7 @@ import zaqal._
 class IBUF extends Module {
   val io = IO(new Bundle {
     val inst_data = Flipped(Decoupled(new FetchPacket)) // From IFU
+    val flush     = Input(Bool())
     val out       = Decoupled(new MicroOp)              // To Backend
   })
 
@@ -14,26 +15,36 @@ class IBUF extends Module {
   val current_packet = Reg(new FetchPacket)
   val busy = RegInit(false.B)
 
-  // Logic to step through the 8 instructions in a packet
-  io.inst_data.ready := !busy
+  // Logic to step through the instructions in a packet
+  // Lookahead to see if next instruction is valid according to mask
+  val next_inst_valid = (inst_idx < 7.U) && current_packet.mask(inst_idx + 1.U)
+  val will_finish_packet = io.out.fire && !next_inst_valid
+
+  // Seamless Switching: Allow accepting a new packet if we are idle OR finishing the current one
+  val accept_new_packet  = (!busy || will_finish_packet) && io.inst_data.valid && !io.flush
+
+  io.inst_data.ready := !busy || will_finish_packet
   
-  when(!busy && io.inst_data.valid) {
+  when(io.flush) {
+    busy := false.B
+  } .elsewhen(accept_new_packet) {
     current_packet := io.inst_data.bits
-    busy := true.B
-    inst_idx := 0.U
+    busy           := true.B
+    // Start at the first bit set in the mask (usually 0, but can be >0 for branch targets)
+    inst_idx       := PriorityEncoder(io.inst_data.bits.mask)
+  } .elsewhen(io.out.fire) {
+    when(next_inst_valid) {
+      inst_idx := inst_idx + 1.U
+    } .otherwise {
+      busy := false.B
+    }
   }
 
   // Dispatch logic (Kunminghu Alignment: Dispatch raw instructions + hints)
-  io.out.valid      := busy
+  // Ensure we only dispatch if the current instruction is valid in the mask
+  io.out.valid      := busy && current_packet.mask(inst_idx)
   io.out.bits.inst_raw := current_packet.instructions(inst_idx)
   io.out.bits.pre      := current_packet.pre_decoded(inst_idx)
   io.out.bits.pc       := current_packet.pc + (inst_idx << 2)
   io.out.bits.ftqPtr   := current_packet.ftqPtr
-
-  when(io.out.fire) {
-    inst_idx := inst_idx + 1.U
-    when(inst_idx === 7.U) {
-      busy := false.B
-    }
-  }
 }
