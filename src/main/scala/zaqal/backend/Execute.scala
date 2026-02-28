@@ -102,16 +102,43 @@ class Execute extends Module {
       divState   := s_busy
     }
 
+    // Default: Check for Ghost Jumps (BPU jumped, but this isn't a branch)
+    when(io.in.fire && io.in.bits.is_predicted_taken && !decoder.io.out.is_branch) {
+      io.redirect.valid := true.B
+      io.redirect.target := io.in.bits.pc + 4.U
+      printf(p"CORE EXECUTE: GHOST JUMP MISPREDICT! pc=${Hexadecimal(io.in.bits.pc)} (Not a branch) -> Redirecting to ${Hexadecimal(io.redirect.target)}\n")
+    }
+
     // BNE: if rs1 != rs2, redirect to pc + imm
     .elsewhen(decoder.io.out.is_bne) {
       val taken = rs1_data =/= rs2_data
-      when(taken) {
-        val target = (io.in.bits.pc.asSInt + decoder.io.out.imm).asUInt
-        io.redirect.valid  := true.B
-        io.redirect.target := target
-        printf(p"CORE EXECUTE: pc=${Hexadecimal(io.in.bits.pc)} BNE  x${decoder.io.out.rs1}($rs1_data) != x${decoder.io.out.rs2}($rs2_data) | TAKEN: target=${Hexadecimal(target)}\n")
+      val predicted_taken = io.in.bits.is_predicted_taken
+      
+      val target_pc = (io.in.bits.pc.asSInt + decoder.io.out.imm).asUInt
+      val fallthrough_pc = io.in.bits.pc + 4.U
+
+      when(taken =/= predicted_taken) {
+        io.redirect.valid := true.B
+        io.redirect.target := Mux(taken, target_pc, fallthrough_pc)
+        printf(p"CORE EXECUTE: MISPREDICT! pc=${Hexadecimal(io.in.bits.pc)} BNE taken=$taken pred=$predicted_taken -> Redirecting to ${Hexadecimal(io.redirect.target)}\n")
       } .otherwise {
-        printf(p"CORE EXECUTE: pc=${Hexadecimal(io.in.bits.pc)} BNE  x${decoder.io.out.rs1}($rs1_data) == x${decoder.io.out.rs2}($rs2_data) | NOT TAKEN\n")
+        printf(p"CORE EXECUTE: pc=${Hexadecimal(io.in.bits.pc)} BNE taken=$taken pred=$predicted_taken (Correct)\n")
+      }
+    }
+
+    .elsewhen(decoder.io.out.is_blt) {
+      val taken = rs1_data.asSInt < rs2_data.asSInt
+      val predicted_taken = io.in.bits.is_predicted_taken
+
+      val target_pc = (io.in.bits.pc.asSInt + decoder.io.out.imm).asUInt
+      val fallthrough_pc = io.in.bits.pc + 4.U
+
+      when(taken =/= predicted_taken) {
+        io.redirect.valid := true.B
+        io.redirect.target := Mux(taken, target_pc, fallthrough_pc)
+        printf(p"CORE EXECUTE: MISPREDICT! pc=${Hexadecimal(io.in.bits.pc)} BLT taken=$taken pred=$predicted_taken -> Redirecting to ${Hexadecimal(io.redirect.target)}\n")
+      } .otherwise {
+        printf(p"CORE EXECUTE: pc=${Hexadecimal(io.in.bits.pc)} BLT taken=$taken pred=$predicted_taken (Correct)\n")
       }
     }
   }

@@ -1,0 +1,107 @@
+mill zaqal.runMain zaqal.ZaqalTest
+71] zaqal.compile compiling 1 Scala source to out/zaqal/compile.dest/classes ...
+71] [warn] 24 feature warnings; re-run with -feature for details
+71] [warn] one warning found
+71] done compiling
+77] zaqal.runMain
+--- Starting ZAQAL Agile V1.0 Simulation ---
+FTQ: enqPtr=  0 deqPtr=  0 count=   0 enq= 1 deq= 0
+FTQ: enqPtr=  1 deqPtr=  0 count=   1 enq= 1 deq= 1
+CORE EXECUTE: pc=0000000080000000 ADDI x  1 = x  0(                    0) +                    10 | Result:                    10
+FTQ: enqPtr=  2 deqPtr=  1 count=   1 enq= 1 deq= 0
+CORE EXECUTE: pc=0000000080000004 ADDI x  2 = x  0(                    0) +                    11 | Result:                    11
+FTQ: enqPtr=  3 deqPtr=  1 count=   2 enq= 1 deq= 0
+CORE EXECUTE: pc=0000000080000008 ADDI x  4 = x  0(                    0) +                     0 | Result:                     0
+FTQ: enqPtr=  4 deqPtr=  1 count=   3 enq= 1 deq= 0
+CORE EXECUTE: pc=000000008000000c ADD  x  4 = x  4(                    0) + x  1(                   10) | Result:                    10
+FTQ: enqPtr=  5 deqPtr=  1 count=   4 enq= 1 deq= 0
+CORE EXECUTE: pc=0000000080000010 ADD  x  5 = x  0(                    0) + x  1(                   10) | Result:                    10
+FTQ: enqPtr=  6 deqPtr=  1 count=   5 enq= 1 deq= 0
+CORE EXECUTE: pc=0000000080000014 ADDI x  6 = x  0(                    0) +                     2 | Result:                     2
+FTQ: enqPtr=  7 deqPtr=  1 count=   6 enq= 1 deq= 0
+FTQ: enqPtr=  8 deqPtr=  1 count=   7 enq= 1 deq= 0
+FTQ: enqPtr=  9 deqPtr=  1 count=   8 enq= 1 deq= 0
+FTQ: enqPtr= 10 deqPtr=  1 count=   9 enq= 1 deq= 0
+FTQ: enqPtr= 11 deqPtr=  1 count=  10 enq= 1 deq= 0
+FTQ: enqPtr= 12 deqPtr=  1 count=  11 enq= 1 deq= 0
+FTQ: enqPtr= 13 deqPtr=  1 count=  12 enq= 1 deq= 0
+FTQ: enqPtr= 14 deqPtr=  1 count=  13 enq= 1 deq= 0
+FTQ: enqPtr= 15 deqPtr=  1 count=  14 enq= 1 deq= 0
+FTQ: enqPtr= 16 deqPtr=  1 count=  15 enq= 1 deq= 0
+FTQ: enqPtr= 17 deqPtr=  1 count=  16 enq= 1 deq= 0
+FTQ: enqPtr= 18 deqPtr=  1 count=  17 enq= 1 deq= 0
+FTQ: enqPtr= 19 deqPtr=  1 count=  18 enq= 1 deq= 0
+FTQ: enqPtr= 20 deqPtr=  1 count=  19 enq= 1 deq= 0
+FTQ: enqPtr= 21 deqPtr=  1 count=  20 enq= 1 deq= 0
+FTQ: enqPtr= 22 deqPtr=  1 count=  21 enq= 1 deq= 0
+FTQ: enqPtr= 23 deqPtr=  1 count=  22 enq= 1 deq= 0
+FTQ: enqPtr= 24 deqPtr=  1 count=  23 enq= 1 deq= 0
+FTQ: enqPtr= 25 deqPtr=  1 count=  24 enq= 1 deq= 0
+FTQ: enqPtr= 26 deqPtr=  1 count=  25 enq= 1 deq= 0
+FTQ: enqPtr= 27 deqPtr=  1 count=  26 enq= 1 deq= 0
+FTQ: enqPtr= 28 deqPtr=  1 count=  27 enq= 1 deq= 0
+FTQ: enqPtr= 29 deqPtr=  1 count=  28 enq= 1 deq= 0
+FTQ: enqPtr= 30 deqPtr=  1 count=  29 enq= 1 deq= 0
+FTQ: enqPtr= 31 deqPtr=  1 count=  30 enq= 1 deq= 0
+FTQ: enqPtr= 32 deqPtr=  1 count=  31 enq= 1 deq= 0
+FTQ: enqPtr= 33 deqPtr=  1 count=  32 enq= 1 deq= 0
+FTQ: enqPtr= 34 deqPtr=  1 count=  33 enq= 1 deq= 0
+FTQ: enqPtr= 35 deqPtr=  1 count=  34 enq= 1 deq= 0
+FTQ: enqPtr= 36 deqPtr=  1 count=  35 enq= 1 deq= 0
+FTQ: enqPtr= 37 deqPtr=  1 count=  36 enq= 1 deq= 0
+FTQ: enqPtr= 38 deqPtr=  1 count=  37 enq= 1 deq= 0
+FTQ: enqPtr= 39 deqPtr=  1 count=  38 enq= 1 deq= 0
+FTQ: enqPtr= 40 deqPtr=  1 count=  39 enq= 1 deq= 0
+CORE EXECUTE: pc=0000000080000018 DIV  x  8 = x                   10(                   10) / x                    2(                    2) | Result:                     5 (after 32-cycle stall)
+FTQ: enqPtr= 41 deqPtr=  1 count=  40 enq= 1 deq= 0
+FTQ: enqPtr= 42 deqPtr=  1 count=  41 enq= 1 deq= 1
+FTQ: enqPtr= 43 deqPtr=  2 count=  41 enq= 1 deq= 0
+FTQ: enqPtr= 44 deqPtr=  2 count=  42 enq= 1 deq= 0
+FTQ: enqPtr= 45 deqPtr=  2 count=  43 enq= 1 deq= 0
+FTQ: enqPtr= 46 deqPtr=  2 count=  44 enq= 1 deq= 0
+FTQ: enqPtr= 47 deqPtr=  2 count=  45 enq= 1 deq= 0
+FTQ: enqPtr= 48 deqPtr=  2 count=  46 enq= 1 deq= 0
+FTQ: enqPtr= 49 deqPtr=  2 count=  47 enq= 1 deq= 0
+FTQ: enqPtr= 50 deqPtr=  2 count=  48 enq= 1 deq= 0
+FTQ: enqPtr= 51 deqPtr=  2 count=  49 enq= 1 deq= 0
+FTQ: enqPtr= 52 deqPtr=  2 count=  50 enq= 1 deq= 0
+FTQ: enqPtr= 53 deqPtr=  2 count=  51 enq= 1 deq= 0
+FTQ: enqPtr= 54 deqPtr=  2 count=  52 enq= 1 deq= 0
+FTQ: enqPtr= 55 deqPtr=  2 count=  53 enq= 1 deq= 0
+FTQ: enqPtr= 56 deqPtr=  2 count=  54 enq= 1 deq= 0
+FTQ: enqPtr= 57 deqPtr=  2 count=  55 enq= 1 deq= 0
+FTQ: enqPtr= 58 deqPtr=  2 count=  56 enq= 1 deq= 0
+FTQ: enqPtr= 59 deqPtr=  2 count=  57 enq= 1 deq= 0
+FTQ: enqPtr= 60 deqPtr=  2 count=  58 enq= 1 deq= 0
+FTQ: enqPtr= 61 deqPtr=  2 count=  59 enq= 1 deq= 0
+FTQ: enqPtr= 62 deqPtr=  2 count=  60 enq= 1 deq= 0
+FTQ: enqPtr= 63 deqPtr=  2 count=  61 enq= 1 deq= 0
+FTQ: enqPtr=  0 deqPtr=  2 count=  62 enq= 1 deq= 0
+FTQ: enqPtr=  1 deqPtr=  2 count=  63 enq= 1 deq= 0
+CORE EXECUTE: pc=000000008000001c DIV  x  8 = x                   10(                   10) / x                    2(                    2) | Result:                     5 (after 32-cycle stall)
+CORE EXECUTE: pc=0000000080000020 DIV  x  8 = x                   10(                   10) / x                    2(                    2) | Result:                     5 (after 32-cycle stall)
+CORE EXECUTE: pc=0000000080000024 DIV  x  8 = x                   10(                   10) / x                    2(                    2) | Result:                     5 (after 32-cycle stall)
+CORE EXECUTE: pc=0000000080000028 DIV  x  8 = x                   10(                   10) / x                    2(                    2) | Result:                     5 (after 32-cycle stall)
+CORE EXECUTE: pc=000000008000002c MUL  x  9 = x  8(                    5) * x  6(                    2) | Result:                                       10
+CORE EXECUTE: pc=0000000080000030 BNE taken= 0 pred= 0 (Correct)
+CORE EXECUTE: pc=0000000080000034 ADDI x  7 = x  7(                    0) +                     7 | Result:                     7
+CORE EXECUTE: pc=0000000080000038 ADDI x  4 = x  4(                   10) +                     1 | Result:                    11
+CORE EXECUTE: pc=000000008000003c ADDI x  4 = x  4(                   11) +                     1 | Result:                    12
+FTQ: enqPtr=  2 deqPtr=  2 count=  64 enq= 0 deq= 1
+CORE EXECUTE: pc=0000000080000040 ADDI x  4 = x  4(                   12) +                     1 | Result:                    13
+FTQ: enqPtr=  2 deqPtr=  3 count=  63 enq= 1 deq= 0
+CORE EXECUTE: pc=0000000080000044 ADDI x  4 = x  4(                   13) +                     1 | Result:                    14
+CORE EXECUTE: pc=0000000080000048 ADDI x  4 = x  4(                   14) +                     1 | Result:                    15
+CORE EXECUTE: pc=000000008000004c ADDI x  4 = x  4(                   15) +                     1 | Result:                    16
+CORE EXECUTE: pc=0000000080000050 ADDI x  4 = x  4(                   16) +                     1 | Result:                    17
+CORE EXECUTE: pc=0000000080000054 ADDI x  4 = x  4(                   17) +                     1 | Result:                    18
+CORE EXECUTE: pc=0000000080000058 ADDI x  4 = x  4(                   18) +                     1 | Result:                    19
+CORE EXECUTE: pc=000000008000005c ADDI x  4 = x  4(                   19) +                     1 | Result:                    20
+FTQ: enqPtr=  3 deqPtr=  3 count=  64 enq= 0 deq= 1
+CORE EXECUTE: pc=0000000080000060 ADDI x  4 = x  4(                   20) +                     1 | Result:                    21
+FTQ: enqPtr=  3 deqPtr=  4 count=  63 enq= 1 deq= 0
+CORE EXECUTE: pc=0000000080000064 ADDI x  4 = x  4(                   21) +                     1 | Result:                    22
+CORE EXECUTE: pc=0000000080000068 ADDI x  4 = x  4(                   22) +                     1 | Result:                    23
+CORE EXECUTE: pc=000000008000006c ADDI x  4 = x  4(                   23) +                     1 | Result:                    24
+--- Simulation Finished. CSV generated: ftq_dump.csv ---
+77/77, SUCCESS] mill zaqal.runMain zaqal.ZaqalTest 1s

@@ -38,6 +38,8 @@ class Decoder extends Module {
   io.out.is_bne    := (opcode === "b1100011".U) && (funct3 === "b001".U)
   io.out.is_branch := (opcode === "b1100011".U)
 
+  io.out.is_blt := (opcode === "b1100011".U) && (funct3 === "b100".U)
+
   // Select immediate based on instruction type
   when(io.out.is_branch) {
     io.out.imm := b_imm

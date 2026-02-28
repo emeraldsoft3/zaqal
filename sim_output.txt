@@ -1,45 +1,1471 @@
 mill zaqal.runMain zaqal.ZaqalTest
+71] zaqal.compile compiling 1 Scala source to out/zaqal/compile.dest/classes ...
+71] [warn] 11 feature warnings; re-run with -feature for details
+71] [warn] one warning found
+71] done compiling
+71] compiling 1 Scala source to out/zaqal/compile.dest/classes ...
+71] [warn] 52 feature warnings; re-run with -feature for details
+71] [warn] one warning found
+71] done compiling
 77] zaqal.runMain
 --- Starting ZAQAL Agile V1.0 Simulation ---
-CORE EXECUTE: pc=0000000080000000 ADDI x  1 = x  0(                    0) +                    10 | Result:                    10
-CORE EXECUTE: pc=0000000080000004 ADDI x  2 = x  0(                    0) +                    64 | Result:                    64
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000000 ADDI x  1 = x  0(                    0) +                     9 | Result:                     9
+CORE EXECUTE: pc=0000000080000004 ADDI x  2 = x  0(                    0) +                    11 | Result:                    11
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
 CORE EXECUTE: pc=0000000080000008 ADDI x  4 = x  0(                    0) +                     0 | Result:                     0
-CORE EXECUTE: pc=000000008000000c ADD  x  4 = x  4(                    0) + x  1(                   10) | Result:                    10
-CORE EXECUTE: pc=0000000080000010 ADD  x  5 = x  0(                    0) + x  1(                   10) | Result:                    10
+CORE EXECUTE: pc=000000008000000c ADD  x  4 = x  4(                    0) + x  1(                    9) | Result:                     9
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000010 ADD  x  5 = x  0(                    0) + x  1(                    9) | Result:                     9
 CORE EXECUTE: pc=0000000080000014 ADDI x  6 = x  0(                    0) +                     2 | Result:                     2
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000018 DIV  x  8 = x                    9(                    9) / x                    2(                    2) | Result:                     4 (after 32-cycle stall)
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=000000008000001c MUL  x  9 = x  8(                    4) * x  6(                    2) | Result:                                        8
+CORE EXECUTE: pc=0000000080000020 BNE taken= 1 pred= 1 (Correct)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000040 ADDI x  4 = x  4(                    9) +                     1 | Result:                    10
+CORE EXECUTE: pc=0000000080000044 ADDI x  4 = x  4(                   10) +                     1 | Result:                    11
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000048 ADDI x  4 = x  4(                   11) +                     1 | Result:                    12
+CORE EXECUTE: pc=000000008000004c ADDI x  4 = x  4(                   12) +                     1 | Result:                    13
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000050 ADDI x  4 = x  4(                   13) +                     1 | Result:                    14
+CORE EXECUTE: pc=0000000080000054 ADDI x  4 = x  4(                   14) +                     1 | Result:                    15
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000058 ADDI x  4 = x  4(                   15) +                     1 | Result:                    16
+CORE EXECUTE: pc=000000008000005c ADDI x  4 = x  4(                   16) +                     1 | Result:                    17
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000060 ADDI x  4 = x  4(                   17) +                     1 | Result:                    18
+CORE EXECUTE: pc=0000000080000064 ADDI x  4 = x  4(                   18) +                     1 | Result:                    19
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000068 ADDI x  1 = x  1(                    9) +                     1 | Result:                    10
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=000000008000000c ADD  x  4 = x  4(                   19) + x  1(                   10) | Result:                    29
+CORE EXECUTE: pc=0000000080000010 ADD  x  5 = x  0(                    0) + x  1(                   10) | Result:                    10
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000014 ADDI x  6 = x  0(                    0) +                     2 | Result:                     2
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
 CORE EXECUTE: pc=0000000080000018 DIV  x  8 = x                   10(                   10) / x                    2(                    2) | Result:                     5 (after 32-cycle stall)
 CORE EXECUTE: pc=000000008000001c MUL  x  9 = x  8(                    5) * x  6(                    2) | Result:                                       10
-CORE EXECUTE: pc=0000000080000040 ADDI x  4 = x  4(                   10) +                     1 | Result:                    11
-CORE EXECUTE: pc=0000000080000044 ADDI x  4 = x  4(                   11) +                     1 | Result:                    12
-CORE EXECUTE: pc=0000000080000048 ADDI x  4 = x  4(                   12) +                     1 | Result:                    13
-CORE EXECUTE: pc=000000008000004c ADDI x  4 = x  4(                   13) +                     1 | Result:                    14
-CORE EXECUTE: pc=0000000080000050 ADDI x  4 = x  4(                   14) +                     1 | Result:                    15
-CORE EXECUTE: pc=0000000080000054 ADDI x  4 = x  4(                   15) +                     1 | Result:                    16
-CORE EXECUTE: pc=0000000080000058 ADDI x  4 = x  4(                   16) +                     1 | Result:                    17
-CORE EXECUTE: pc=000000008000005c ADDI x  4 = x  4(                   17) +                     1 | Result:                    18
-CORE EXECUTE: pc=0000000080000000 ADDI x  1 = x  0(                    0) +                    10 | Result:                    10
-CORE EXECUTE: pc=0000000080000004 ADDI x  2 = x  0(                    0) +                    64 | Result:                    64
-CORE EXECUTE: pc=0000000080000008 ADDI x  4 = x  0(                    0) +                     0 | Result:                     0
-CORE EXECUTE: pc=000000008000000c ADD  x  4 = x  4(                    0) + x  1(                   10) | Result:                    10
-CORE EXECUTE: pc=0000000080000010 ADD  x  5 = x  0(                    0) + x  1(                   10) | Result:                    10
+[Cycle 99] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: MISPREDICT! pc=0000000080000020 BNE taken= 0 pred= 1 -> Redirecting to 0000000080000024
+CORE EXECUTE: pc=0000000080000024 ADD  x  4 = x  4(                   29) + x  1(                   10) | Result:                    39
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000028 ADDI x  4 = x  4(                   39) +                     1 | Result:                    40
+CORE EXECUTE: pc=000000008000002c ADDI x  4 = x  4(                   40) +                     1 | Result:                    41
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000030 ADDI x  4 = x  4(                   41) +                     1 | Result:                    42
+CORE EXECUTE: pc=0000000080000034 ADDI x  4 = x  4(                   42) +                     1 | Result:                    43
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000038 ADDI x  4 = x  4(                   43) +                     1 | Result:                    44
+CORE EXECUTE: pc=000000008000003c ADDI x  4 = x  4(                   44) +                     1 | Result:                    45
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000040 ADDI x  4 = x  4(                   45) +                     1 | Result:                    46
+CORE EXECUTE: pc=0000000080000044 ADDI x  4 = x  4(                   46) +                     1 | Result:                    47
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000048 ADDI x  4 = x  4(                   47) +                     1 | Result:                    48
+CORE EXECUTE: pc=000000008000004c ADDI x  4 = x  4(                   48) +                     1 | Result:                    49
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000050 ADDI x  4 = x  4(                   49) +                     1 | Result:                    50
+CORE EXECUTE: pc=0000000080000054 ADDI x  4 = x  4(                   50) +                     1 | Result:                    51
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000058 ADDI x  4 = x  4(                   51) +                     1 | Result:                    52
+CORE EXECUTE: pc=000000008000005c ADDI x  4 = x  4(                   52) +                     1 | Result:                    53
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000060 ADDI x  4 = x  4(                   53) +                     1 | Result:                    54
+CORE EXECUTE: pc=0000000080000064 ADDI x  4 = x  4(                   54) +                     1 | Result:                    55
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000068 ADDI x  1 = x  1(                   10) +                     1 | Result:                    11
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=000000008000000c ADD  x  4 = x  4(                   55) + x  1(                   11) | Result:                    66
+CORE EXECUTE: pc=0000000080000010 ADD  x  5 = x  0(                    0) + x  1(                   11) | Result:                    11
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
 CORE EXECUTE: pc=0000000080000014 ADDI x  6 = x  0(                    0) +                     2 | Result:                     2
-CORE EXECUTE: pc=0000000080000018 DIV  x  8 = x                   10(                   10) / x                    2(                    2) | Result:                     5 (after 32-cycle stall)
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000018 DIV  x  8 = x                   11(                   11) / x                    2(                    2) | Result:                     5 (after 32-cycle stall)
 CORE EXECUTE: pc=000000008000001c MUL  x  9 = x  8(                    5) * x  6(                    2) | Result:                                       10
-CORE EXECUTE: pc=0000000080000040 ADDI x  4 = x  4(                   10) +                     1 | Result:                    11
-CORE EXECUTE: pc=0000000080000044 ADDI x  4 = x  4(                   11) +                     1 | Result:                    12
-CORE EXECUTE: pc=0000000080000048 ADDI x  4 = x  4(                   12) +                     1 | Result:                    13
-CORE EXECUTE: pc=000000008000004c ADDI x  4 = x  4(                   13) +                     1 | Result:                    14
-CORE EXECUTE: pc=0000000080000050 ADDI x  4 = x  4(                   14) +                     1 | Result:                    15
-CORE EXECUTE: pc=0000000080000054 ADDI x  4 = x  4(                   15) +                     1 | Result:                    16
-CORE EXECUTE: pc=0000000080000058 ADDI x  4 = x  4(                   16) +                     1 | Result:                    17
-CORE EXECUTE: pc=000000008000005c ADDI x  4 = x  4(                   17) +                     1 | Result:                    18
-CORE EXECUTE: pc=0000000080000000 ADDI x  1 = x  0(                    0) +                    10 | Result:                    10
-CORE EXECUTE: pc=0000000080000004 ADDI x  2 = x  0(                    0) +                    64 | Result:                    64
-CORE EXECUTE: pc=0000000080000008 ADDI x  4 = x  0(                    0) +                     0 | Result:                     0
-CORE EXECUTE: pc=000000008000000c ADD  x  4 = x  4(                    0) + x  1(                   10) | Result:                    10
-CORE EXECUTE: pc=0000000080000010 ADD  x  5 = x  0(                    0) + x  1(                   10) | Result:                    10
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000020 BNE taken= 1 pred= 1 (Correct)
+CORE EXECUTE: pc=0000000080000040 ADDI x  4 = x  4(                   66) +                     1 | Result:                    67
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000044 ADDI x  4 = x  4(                   67) +                     1 | Result:                    68
+CORE EXECUTE: pc=0000000080000048 ADDI x  4 = x  4(                   68) +                     1 | Result:                    69
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=000000008000004c ADDI x  4 = x  4(                   69) +                     1 | Result:                    70
+CORE EXECUTE: pc=0000000080000050 ADDI x  4 = x  4(                   70) +                     1 | Result:                    71
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000054 ADDI x  4 = x  4(                   71) +                     1 | Result:                    72
+CORE EXECUTE: pc=0000000080000058 ADDI x  4 = x  4(                   72) +                     1 | Result:                    73
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=000000008000005c ADDI x  4 = x  4(                   73) +                     1 | Result:                    74
+CORE EXECUTE: pc=0000000080000060 ADDI x  4 = x  4(                   74) +                     1 | Result:                    75
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000064 ADDI x  4 = x  4(                   75) +                     1 | Result:                    76
+CORE EXECUTE: pc=0000000080000068 ADDI x  1 = x  1(                   11) +                     1 | Result:                    12
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=000000008000000c ADD  x  4 = x  4(                   76) + x  1(                   12) | Result:                    88
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000010 ADD  x  5 = x  0(                    0) + x  1(                   12) | Result:                    12
 CORE EXECUTE: pc=0000000080000014 ADDI x  6 = x  0(                    0) +                     2 | Result:                     2
-CORE EXECUTE: pc=0000000080000018 DIV  x  8 = x                   10(                   10) / x                    2(                    2) | Result:                     5 (after 32-cycle stall)
-CORE EXECUTE: pc=000000008000001c MUL  x  9 = x  8(                    5) * x  6(                    2) | Result:                                       10
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000018 DIV  x  8 = x                   12(                   12) / x                    2(                    2) | Result:                     6 (after 32-cycle stall)
+CORE EXECUTE: pc=000000008000001c MUL  x  9 = x  8(                    6) * x  6(                    2) | Result:                                       12
+[Cycle 210] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: MISPREDICT! pc=0000000080000020 BNE taken= 0 pred= 1 -> Redirecting to 0000000080000024
+CORE EXECUTE: pc=0000000080000024 ADD  x  4 = x  4(                   88) + x  1(                   12) | Result:                   100
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000028 ADDI x  4 = x  4(                  100) +                     1 | Result:                   101
+CORE EXECUTE: pc=000000008000002c ADDI x  4 = x  4(                  101) +                     1 | Result:                   102
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000030 ADDI x  4 = x  4(                  102) +                     1 | Result:                   103
+CORE EXECUTE: pc=0000000080000034 ADDI x  4 = x  4(                  103) +                     1 | Result:                   104
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000038 ADDI x  4 = x  4(                  104) +                     1 | Result:                   105
+CORE EXECUTE: pc=000000008000003c ADDI x  4 = x  4(                  105) +                     1 | Result:                   106
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000040 ADDI x  4 = x  4(                  106) +                     1 | Result:                   107
+CORE EXECUTE: pc=0000000080000044 ADDI x  4 = x  4(                  107) +                     1 | Result:                   108
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000048 ADDI x  4 = x  4(                  108) +                     1 | Result:                   109
+CORE EXECUTE: pc=000000008000004c ADDI x  4 = x  4(                  109) +                     1 | Result:                   110
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000050 ADDI x  4 = x  4(                  110) +                     1 | Result:                   111
+CORE EXECUTE: pc=0000000080000054 ADDI x  4 = x  4(                  111) +                     1 | Result:                   112
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000058 ADDI x  4 = x  4(                  112) +                     1 | Result:                   113
+CORE EXECUTE: pc=000000008000005c ADDI x  4 = x  4(                  113) +                     1 | Result:                   114
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000060 ADDI x  4 = x  4(                  114) +                     1 | Result:                   115
+CORE EXECUTE: pc=0000000080000064 ADDI x  4 = x  4(                  115) +                     1 | Result:                   116
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000068 ADDI x  1 = x  1(                   12) +                     1 | Result:                    13
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=000000008000000c ADD  x  4 = x  4(                  116) + x  1(                   13) | Result:                   129
+CORE EXECUTE: pc=0000000080000010 ADD  x  5 = x  0(                    0) + x  1(                   13) | Result:                    13
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000014 ADDI x  6 = x  0(                    0) +                     2 | Result:                     2
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000018 DIV  x  8 = x                   13(                   13) / x                    2(                    2) | Result:                     6 (after 32-cycle stall)
+CORE EXECUTE: pc=000000008000001c MUL  x  9 = x  8(                    6) * x  6(                    2) | Result:                                       12
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000020 BNE taken= 1 pred= 1 (Correct)
+CORE EXECUTE: pc=0000000080000040 ADDI x  4 = x  4(                  129) +                     1 | Result:                   130
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000044 ADDI x  4 = x  4(                  130) +                     1 | Result:                   131
+CORE EXECUTE: pc=0000000080000048 ADDI x  4 = x  4(                  131) +                     1 | Result:                   132
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=000000008000004c ADDI x  4 = x  4(                  132) +                     1 | Result:                   133
+CORE EXECUTE: pc=0000000080000050 ADDI x  4 = x  4(                  133) +                     1 | Result:                   134
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000054 ADDI x  4 = x  4(                  134) +                     1 | Result:                   135
+CORE EXECUTE: pc=0000000080000058 ADDI x  4 = x  4(                  135) +                     1 | Result:                   136
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=000000008000005c ADDI x  4 = x  4(                  136) +                     1 | Result:                   137
+CORE EXECUTE: pc=0000000080000060 ADDI x  4 = x  4(                  137) +                     1 | Result:                   138
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000064 ADDI x  4 = x  4(                  138) +                     1 | Result:                   139
+CORE EXECUTE: pc=0000000080000068 ADDI x  1 = x  1(                   13) +                     1 | Result:                    14
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=000000008000000c ADD  x  4 = x  4(                  139) + x  1(                   14) | Result:                   153
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000010 ADD  x  5 = x  0(                    0) + x  1(                   14) | Result:                    14
+CORE EXECUTE: pc=0000000080000014 ADDI x  6 = x  0(                    0) +                     2 | Result:                     2
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000018 DIV  x  8 = x                   14(                   14) / x                    2(                    2) | Result:                     7 (after 32-cycle stall)
+CORE EXECUTE: pc=000000008000001c MUL  x  9 = x  8(                    7) * x  6(                    2) | Result:                                       14
+[Cycle 321] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: MISPREDICT! pc=0000000080000020 BNE taken= 0 pred= 1 -> Redirecting to 0000000080000024
+CORE EXECUTE: pc=0000000080000024 ADD  x  4 = x  4(                  153) + x  1(                   14) | Result:                   167
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000028 ADDI x  4 = x  4(                  167) +                     1 | Result:                   168
+CORE EXECUTE: pc=000000008000002c ADDI x  4 = x  4(                  168) +                     1 | Result:                   169
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000030 ADDI x  4 = x  4(                  169) +                     1 | Result:                   170
+CORE EXECUTE: pc=0000000080000034 ADDI x  4 = x  4(                  170) +                     1 | Result:                   171
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000038 ADDI x  4 = x  4(                  171) +                     1 | Result:                   172
+CORE EXECUTE: pc=000000008000003c ADDI x  4 = x  4(                  172) +                     1 | Result:                   173
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000040 ADDI x  4 = x  4(                  173) +                     1 | Result:                   174
+CORE EXECUTE: pc=0000000080000044 ADDI x  4 = x  4(                  174) +                     1 | Result:                   175
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000048 ADDI x  4 = x  4(                  175) +                     1 | Result:                   176
+CORE EXECUTE: pc=000000008000004c ADDI x  4 = x  4(                  176) +                     1 | Result:                   177
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000050 ADDI x  4 = x  4(                  177) +                     1 | Result:                   178
+CORE EXECUTE: pc=0000000080000054 ADDI x  4 = x  4(                  178) +                     1 | Result:                   179
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000058 ADDI x  4 = x  4(                  179) +                     1 | Result:                   180
+CORE EXECUTE: pc=000000008000005c ADDI x  4 = x  4(                  180) +                     1 | Result:                   181
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000060 ADDI x  4 = x  4(                  181) +                     1 | Result:                   182
+CORE EXECUTE: pc=0000000080000064 ADDI x  4 = x  4(                  182) +                     1 | Result:                   183
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000068 ADDI x  1 = x  1(                   14) +                     1 | Result:                    15
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=000000008000000c ADD  x  4 = x  4(                  183) + x  1(                   15) | Result:                   198
+CORE EXECUTE: pc=0000000080000010 ADD  x  5 = x  0(                    0) + x  1(                   15) | Result:                    15
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000014 ADDI x  6 = x  0(                    0) +                     2 | Result:                     2
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000018 DIV  x  8 = x                   15(                   15) / x                    2(                    2) | Result:                     7 (after 32-cycle stall)
+CORE EXECUTE: pc=000000008000001c MUL  x  9 = x  8(                    7) * x  6(                    2) | Result:                                       14
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000020 BNE taken= 1 pred= 1 (Correct)
+CORE EXECUTE: pc=0000000080000040 ADDI x  4 = x  4(                  198) +                     1 | Result:                   199
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000044 ADDI x  4 = x  4(                  199) +                     1 | Result:                   200
+CORE EXECUTE: pc=0000000080000048 ADDI x  4 = x  4(                  200) +                     1 | Result:                   201
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=000000008000004c ADDI x  4 = x  4(                  201) +                     1 | Result:                   202
+CORE EXECUTE: pc=0000000080000050 ADDI x  4 = x  4(                  202) +                     1 | Result:                   203
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000054 ADDI x  4 = x  4(                  203) +                     1 | Result:                   204
+CORE EXECUTE: pc=0000000080000058 ADDI x  4 = x  4(                  204) +                     1 | Result:                   205
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=000000008000005c ADDI x  4 = x  4(                  205) +                     1 | Result:                   206
+CORE EXECUTE: pc=0000000080000060 ADDI x  4 = x  4(                  206) +                     1 | Result:                   207
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000064 ADDI x  4 = x  4(                  207) +                     1 | Result:                   208
+CORE EXECUTE: pc=0000000080000068 ADDI x  1 = x  1(                   15) +                     1 | Result:                    16
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=000000008000000c ADD  x  4 = x  4(                  208) + x  1(                   16) | Result:                   224
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000010 ADD  x  5 = x  0(                    0) + x  1(                   16) | Result:                    16
+CORE EXECUTE: pc=0000000080000014 ADDI x  6 = x  0(                    0) +                     2 | Result:                     2
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000018 DIV  x  8 = x                   16(                   16) / x                    2(                    2) | Result:                     8 (after 32-cycle stall)
+CORE EXECUTE: pc=000000008000001c MUL  x  9 = x  8(                    8) * x  6(                    2) | Result:                                       16
+[Cycle 432] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: MISPREDICT! pc=0000000080000020 BNE taken= 0 pred= 1 -> Redirecting to 0000000080000024
+CORE EXECUTE: pc=0000000080000024 ADD  x  4 = x  4(                  224) + x  1(                   16) | Result:                   240
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000028 ADDI x  4 = x  4(                  240) +                     1 | Result:                   241
+CORE EXECUTE: pc=000000008000002c ADDI x  4 = x  4(                  241) +                     1 | Result:                   242
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000030 ADDI x  4 = x  4(                  242) +                     1 | Result:                   243
+CORE EXECUTE: pc=0000000080000034 ADDI x  4 = x  4(                  243) +                     1 | Result:                   244
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000038 ADDI x  4 = x  4(                  244) +                     1 | Result:                   245
+CORE EXECUTE: pc=000000008000003c ADDI x  4 = x  4(                  245) +                     1 | Result:                   246
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000040 ADDI x  4 = x  4(                  246) +                     1 | Result:                   247
+CORE EXECUTE: pc=0000000080000044 ADDI x  4 = x  4(                  247) +                     1 | Result:                   248
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000048 ADDI x  4 = x  4(                  248) +                     1 | Result:                   249
+CORE EXECUTE: pc=000000008000004c ADDI x  4 = x  4(                  249) +                     1 | Result:                   250
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000050 ADDI x  4 = x  4(                  250) +                     1 | Result:                   251
+CORE EXECUTE: pc=0000000080000054 ADDI x  4 = x  4(                  251) +                     1 | Result:                   252
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000058 ADDI x  4 = x  4(                  252) +                     1 | Result:                   253
+CORE EXECUTE: pc=000000008000005c ADDI x  4 = x  4(                  253) +                     1 | Result:                   254
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000060 ADDI x  4 = x  4(                  254) +                     1 | Result:                   255
+CORE EXECUTE: pc=0000000080000064 ADDI x  4 = x  4(                  255) +                     1 | Result:                   256
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000068 ADDI x  1 = x  1(                   16) +                     1 | Result:                    17
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=000000008000000c ADD  x  4 = x  4(                  256) + x  1(                   17) | Result:                   273
+CORE EXECUTE: pc=0000000080000010 ADD  x  5 = x  0(                    0) + x  1(                   17) | Result:                    17
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000014 ADDI x  6 = x  0(                    0) +                     2 | Result:                     2
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000018 DIV  x  8 = x                   17(                   17) / x                    2(                    2) | Result:                     8 (after 32-cycle stall)
+CORE EXECUTE: pc=000000008000001c MUL  x  9 = x  8(                    8) * x  6(                    2) | Result:                                       16
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000020 BNE taken= 1 pred= 1 (Correct)
+CORE EXECUTE: pc=0000000080000040 ADDI x  4 = x  4(                  273) +                     1 | Result:                   274
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000044 ADDI x  4 = x  4(                  274) +                     1 | Result:                   275
+CORE EXECUTE: pc=0000000080000048 ADDI x  4 = x  4(                  275) +                     1 | Result:                   276
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=000000008000004c ADDI x  4 = x  4(                  276) +                     1 | Result:                   277
+CORE EXECUTE: pc=0000000080000050 ADDI x  4 = x  4(                  277) +                     1 | Result:                   278
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000054 ADDI x  4 = x  4(                  278) +                     1 | Result:                   279
+CORE EXECUTE: pc=0000000080000058 ADDI x  4 = x  4(                  279) +                     1 | Result:                   280
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=000000008000005c ADDI x  4 = x  4(                  280) +                     1 | Result:                   281
+CORE EXECUTE: pc=0000000080000060 ADDI x  4 = x  4(                  281) +                     1 | Result:                   282
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000064 ADDI x  4 = x  4(                  282) +                     1 | Result:                   283
+CORE EXECUTE: pc=0000000080000068 ADDI x  1 = x  1(                   17) +                     1 | Result:                    18
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=000000008000000c ADD  x  4 = x  4(                  283) + x  1(                   18) | Result:                   301
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000010 ADD  x  5 = x  0(                    0) + x  1(                   18) | Result:                    18
+CORE EXECUTE: pc=0000000080000014 ADDI x  6 = x  0(                    0) +                     2 | Result:                     2
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000018 DIV  x  8 = x                   18(                   18) / x                    2(                    2) | Result:                     9 (after 32-cycle stall)
+CORE EXECUTE: pc=000000008000001c MUL  x  9 = x  8(                    9) * x  6(                    2) | Result:                                       18
+[Cycle 543] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: MISPREDICT! pc=0000000080000020 BNE taken= 0 pred= 1 -> Redirecting to 0000000080000024
+CORE EXECUTE: pc=0000000080000024 ADD  x  4 = x  4(                  301) + x  1(                   18) | Result:                   319
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000028 ADDI x  4 = x  4(                  319) +                     1 | Result:                   320
+CORE EXECUTE: pc=000000008000002c ADDI x  4 = x  4(                  320) +                     1 | Result:                   321
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000030 ADDI x  4 = x  4(                  321) +                     1 | Result:                   322
+CORE EXECUTE: pc=0000000080000034 ADDI x  4 = x  4(                  322) +                     1 | Result:                   323
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000038 ADDI x  4 = x  4(                  323) +                     1 | Result:                   324
+CORE EXECUTE: pc=000000008000003c ADDI x  4 = x  4(                  324) +                     1 | Result:                   325
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000040 ADDI x  4 = x  4(                  325) +                     1 | Result:                   326
+CORE EXECUTE: pc=0000000080000044 ADDI x  4 = x  4(                  326) +                     1 | Result:                   327
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000048 ADDI x  4 = x  4(                  327) +                     1 | Result:                   328
+CORE EXECUTE: pc=000000008000004c ADDI x  4 = x  4(                  328) +                     1 | Result:                   329
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000050 ADDI x  4 = x  4(                  329) +                     1 | Result:                   330
+CORE EXECUTE: pc=0000000080000054 ADDI x  4 = x  4(                  330) +                     1 | Result:                   331
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000058 ADDI x  4 = x  4(                  331) +                     1 | Result:                   332
+CORE EXECUTE: pc=000000008000005c ADDI x  4 = x  4(                  332) +                     1 | Result:                   333
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000060 ADDI x  4 = x  4(                  333) +                     1 | Result:                   334
+CORE EXECUTE: pc=0000000080000064 ADDI x  4 = x  4(                  334) +                     1 | Result:                   335
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000068 ADDI x  1 = x  1(                   18) +                     1 | Result:                    19
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=000000008000000c ADD  x  4 = x  4(                  335) + x  1(                   19) | Result:                   354
+CORE EXECUTE: pc=0000000080000010 ADD  x  5 = x  0(                    0) + x  1(                   19) | Result:                    19
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000014 ADDI x  6 = x  0(                    0) +                     2 | Result:                     2
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000018 DIV  x  8 = x                   19(                   19) / x                    2(                    2) | Result:                     9 (after 32-cycle stall)
+CORE EXECUTE: pc=000000008000001c MUL  x  9 = x  8(                    9) * x  6(                    2) | Result:                                       18
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000020 BNE taken= 1 pred= 1 (Correct)
+CORE EXECUTE: pc=0000000080000040 ADDI x  4 = x  4(                  354) +                     1 | Result:                   355
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000044 ADDI x  4 = x  4(                  355) +                     1 | Result:                   356
+CORE EXECUTE: pc=0000000080000048 ADDI x  4 = x  4(                  356) +                     1 | Result:                   357
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=000000008000004c ADDI x  4 = x  4(                  357) +                     1 | Result:                   358
+CORE EXECUTE: pc=0000000080000050 ADDI x  4 = x  4(                  358) +                     1 | Result:                   359
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000054 ADDI x  4 = x  4(                  359) +                     1 | Result:                   360
+CORE EXECUTE: pc=0000000080000058 ADDI x  4 = x  4(                  360) +                     1 | Result:                   361
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=000000008000005c ADDI x  4 = x  4(                  361) +                     1 | Result:                   362
+CORE EXECUTE: pc=0000000080000060 ADDI x  4 = x  4(                  362) +                     1 | Result:                   363
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000064 ADDI x  4 = x  4(                  363) +                     1 | Result:                   364
+CORE EXECUTE: pc=0000000080000068 ADDI x  1 = x  1(                   19) +                     1 | Result:                    20
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=000000008000000c ADD  x  4 = x  4(                  364) + x  1(                   20) | Result:                   384
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000010 ADD  x  5 = x  0(                    0) + x  1(                   20) | Result:                    20
+CORE EXECUTE: pc=0000000080000014 ADDI x  6 = x  0(                    0) +                     2 | Result:                     2
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000018 DIV  x  8 = x                   20(                   20) / x                    2(                    2) | Result:                    10 (after 32-cycle stall)
+CORE EXECUTE: pc=000000008000001c MUL  x  9 = x  8(                   10) * x  6(                    2) | Result:                                       20
+[Cycle 654] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: MISPREDICT! pc=0000000080000020 BNE taken= 0 pred= 1 -> Redirecting to 0000000080000024
+CORE EXECUTE: pc=0000000080000024 ADD  x  4 = x  4(                  384) + x  1(                   20) | Result:                   404
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000028 ADDI x  4 = x  4(                  404) +                     1 | Result:                   405
+CORE EXECUTE: pc=000000008000002c ADDI x  4 = x  4(                  405) +                     1 | Result:                   406
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000030 ADDI x  4 = x  4(                  406) +                     1 | Result:                   407
+CORE EXECUTE: pc=0000000080000034 ADDI x  4 = x  4(                  407) +                     1 | Result:                   408
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000038 ADDI x  4 = x  4(                  408) +                     1 | Result:                   409
+CORE EXECUTE: pc=000000008000003c ADDI x  4 = x  4(                  409) +                     1 | Result:                   410
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000040 ADDI x  4 = x  4(                  410) +                     1 | Result:                   411
+CORE EXECUTE: pc=0000000080000044 ADDI x  4 = x  4(                  411) +                     1 | Result:                   412
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000048 ADDI x  4 = x  4(                  412) +                     1 | Result:                   413
+CORE EXECUTE: pc=000000008000004c ADDI x  4 = x  4(                  413) +                     1 | Result:                   414
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000050 ADDI x  4 = x  4(                  414) +                     1 | Result:                   415
+CORE EXECUTE: pc=0000000080000054 ADDI x  4 = x  4(                  415) +                     1 | Result:                   416
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000058 ADDI x  4 = x  4(                  416) +                     1 | Result:                   417
+CORE EXECUTE: pc=000000008000005c ADDI x  4 = x  4(                  417) +                     1 | Result:                   418
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000060 ADDI x  4 = x  4(                  418) +                     1 | Result:                   419
+CORE EXECUTE: pc=0000000080000064 ADDI x  4 = x  4(                  419) +                     1 | Result:                   420
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000068 ADDI x  1 = x  1(                   20) +                     1 | Result:                    21
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=000000008000000c ADD  x  4 = x  4(                  420) + x  1(                   21) | Result:                   441
+CORE EXECUTE: pc=0000000080000010 ADD  x  5 = x  0(                    0) + x  1(                   21) | Result:                    21
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000014 ADDI x  6 = x  0(                    0) +                     2 | Result:                     2
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000018 DIV  x  8 = x                   21(                   21) / x                    2(                    2) | Result:                    10 (after 32-cycle stall)
+CORE EXECUTE: pc=000000008000001c MUL  x  9 = x  8(                   10) * x  6(                    2) | Result:                                       20
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000020 BNE taken= 1 pred= 1 (Correct)
+CORE EXECUTE: pc=0000000080000040 ADDI x  4 = x  4(                  441) +                     1 | Result:                   442
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000044 ADDI x  4 = x  4(                  442) +                     1 | Result:                   443
+CORE EXECUTE: pc=0000000080000048 ADDI x  4 = x  4(                  443) +                     1 | Result:                   444
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=000000008000004c ADDI x  4 = x  4(                  444) +                     1 | Result:                   445
+CORE EXECUTE: pc=0000000080000050 ADDI x  4 = x  4(                  445) +                     1 | Result:                   446
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000054 ADDI x  4 = x  4(                  446) +                     1 | Result:                   447
+CORE EXECUTE: pc=0000000080000058 ADDI x  4 = x  4(                  447) +                     1 | Result:                   448
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=000000008000005c ADDI x  4 = x  4(                  448) +                     1 | Result:                   449
+CORE EXECUTE: pc=0000000080000060 ADDI x  4 = x  4(                  449) +                     1 | Result:                   450
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000064 ADDI x  4 = x  4(                  450) +                     1 | Result:                   451
+CORE EXECUTE: pc=0000000080000068 ADDI x  1 = x  1(                   21) +                     1 | Result:                    22
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=000000008000000c ADD  x  4 = x  4(                  451) + x  1(                   22) | Result:                   473
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000010 ADD  x  5 = x  0(                    0) + x  1(                   22) | Result:                    22
+CORE EXECUTE: pc=0000000080000014 ADDI x  6 = x  0(                    0) +                     2 | Result:                     2
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000018 DIV  x  8 = x                   22(                   22) / x                    2(                    2) | Result:                    11 (after 32-cycle stall)
+CORE EXECUTE: pc=000000008000001c MUL  x  9 = x  8(                   11) * x  6(                    2) | Result:                                       22
+[Cycle 765] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: MISPREDICT! pc=0000000080000020 BNE taken= 0 pred= 1 -> Redirecting to 0000000080000024
+CORE EXECUTE: pc=0000000080000024 ADD  x  4 = x  4(                  473) + x  1(                   22) | Result:                   495
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000028 ADDI x  4 = x  4(                  495) +                     1 | Result:                   496
+CORE EXECUTE: pc=000000008000002c ADDI x  4 = x  4(                  496) +                     1 | Result:                   497
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000030 ADDI x  4 = x  4(                  497) +                     1 | Result:                   498
+CORE EXECUTE: pc=0000000080000034 ADDI x  4 = x  4(                  498) +                     1 | Result:                   499
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000038 ADDI x  4 = x  4(                  499) +                     1 | Result:                   500
+CORE EXECUTE: pc=000000008000003c ADDI x  4 = x  4(                  500) +                     1 | Result:                   501
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000040 ADDI x  4 = x  4(                  501) +                     1 | Result:                   502
+CORE EXECUTE: pc=0000000080000044 ADDI x  4 = x  4(                  502) +                     1 | Result:                   503
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000048 ADDI x  4 = x  4(                  503) +                     1 | Result:                   504
+CORE EXECUTE: pc=000000008000004c ADDI x  4 = x  4(                  504) +                     1 | Result:                   505
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000050 ADDI x  4 = x  4(                  505) +                     1 | Result:                   506
+CORE EXECUTE: pc=0000000080000054 ADDI x  4 = x  4(                  506) +                     1 | Result:                   507
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000058 ADDI x  4 = x  4(                  507) +                     1 | Result:                   508
+CORE EXECUTE: pc=000000008000005c ADDI x  4 = x  4(                  508) +                     1 | Result:                   509
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000060 ADDI x  4 = x  4(                  509) +                     1 | Result:                   510
+CORE EXECUTE: pc=0000000080000064 ADDI x  4 = x  4(                  510) +                     1 | Result:                   511
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000068 ADDI x  1 = x  1(                   22) +                     1 | Result:                    23
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=000000008000000c ADD  x  4 = x  4(                  511) + x  1(                   23) | Result:                   534
+CORE EXECUTE: pc=0000000080000010 ADD  x  5 = x  0(                    0) + x  1(                   23) | Result:                    23
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000014 ADDI x  6 = x  0(                    0) +                     2 | Result:                     2
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000018 DIV  x  8 = x                   23(                   23) / x                    2(                    2) | Result:                    11 (after 32-cycle stall)
+CORE EXECUTE: pc=000000008000001c MUL  x  9 = x  8(                   11) * x  6(                    2) | Result:                                       22
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000020 BNE taken= 1 pred= 1 (Correct)
+CORE EXECUTE: pc=0000000080000040 ADDI x  4 = x  4(                  534) +                     1 | Result:                   535
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000044 ADDI x  4 = x  4(                  535) +                     1 | Result:                   536
+CORE EXECUTE: pc=0000000080000048 ADDI x  4 = x  4(                  536) +                     1 | Result:                   537
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=000000008000004c ADDI x  4 = x  4(                  537) +                     1 | Result:                   538
+CORE EXECUTE: pc=0000000080000050 ADDI x  4 = x  4(                  538) +                     1 | Result:                   539
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000054 ADDI x  4 = x  4(                  539) +                     1 | Result:                   540
+CORE EXECUTE: pc=0000000080000058 ADDI x  4 = x  4(                  540) +                     1 | Result:                   541
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=000000008000005c ADDI x  4 = x  4(                  541) +                     1 | Result:                   542
+CORE EXECUTE: pc=0000000080000060 ADDI x  4 = x  4(                  542) +                     1 | Result:                   543
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000064 ADDI x  4 = x  4(                  543) +                     1 | Result:                   544
+CORE EXECUTE: pc=0000000080000068 ADDI x  1 = x  1(                   23) +                     1 | Result:                    24
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=000000008000000c ADD  x  4 = x  4(                  544) + x  1(                   24) | Result:                   568
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000010 ADD  x  5 = x  0(                    0) + x  1(                   24) | Result:                    24
+CORE EXECUTE: pc=0000000080000014 ADDI x  6 = x  0(                    0) +                     2 | Result:                     2
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000018 DIV  x  8 = x                   24(                   24) / x                    2(                    2) | Result:                    12 (after 32-cycle stall)
+CORE EXECUTE: pc=000000008000001c MUL  x  9 = x  8(                   12) * x  6(                    2) | Result:                                       24
+[Cycle 876] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: MISPREDICT! pc=0000000080000020 BNE taken= 0 pred= 1 -> Redirecting to 0000000080000024
+CORE EXECUTE: pc=0000000080000024 ADD  x  4 = x  4(                  568) + x  1(                   24) | Result:                   592
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000028 ADDI x  4 = x  4(                  592) +                     1 | Result:                   593
+CORE EXECUTE: pc=000000008000002c ADDI x  4 = x  4(                  593) +                     1 | Result:                   594
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000030 ADDI x  4 = x  4(                  594) +                     1 | Result:                   595
+CORE EXECUTE: pc=0000000080000034 ADDI x  4 = x  4(                  595) +                     1 | Result:                   596
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000038 ADDI x  4 = x  4(                  596) +                     1 | Result:                   597
+CORE EXECUTE: pc=000000008000003c ADDI x  4 = x  4(                  597) +                     1 | Result:                   598
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000040 ADDI x  4 = x  4(                  598) +                     1 | Result:                   599
+CORE EXECUTE: pc=0000000080000044 ADDI x  4 = x  4(                  599) +                     1 | Result:                   600
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000048 ADDI x  4 = x  4(                  600) +                     1 | Result:                   601
+CORE EXECUTE: pc=000000008000004c ADDI x  4 = x  4(                  601) +                     1 | Result:                   602
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000050 ADDI x  4 = x  4(                  602) +                     1 | Result:                   603
+CORE EXECUTE: pc=0000000080000054 ADDI x  4 = x  4(                  603) +                     1 | Result:                   604
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000058 ADDI x  4 = x  4(                  604) +                     1 | Result:                   605
+CORE EXECUTE: pc=000000008000005c ADDI x  4 = x  4(                  605) +                     1 | Result:                   606
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000060 ADDI x  4 = x  4(                  606) +                     1 | Result:                   607
+CORE EXECUTE: pc=0000000080000064 ADDI x  4 = x  4(                  607) +                     1 | Result:                   608
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000068 ADDI x  1 = x  1(                   24) +                     1 | Result:                    25
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=000000008000000c ADD  x  4 = x  4(                  608) + x  1(                   25) | Result:                   633
+CORE EXECUTE: pc=0000000080000010 ADD  x  5 = x  0(                    0) + x  1(                   25) | Result:                    25
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000014 ADDI x  6 = x  0(                    0) +                     2 | Result:                     2
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000018 DIV  x  8 = x                   25(                   25) / x                    2(                    2) | Result:                    12 (after 32-cycle stall)
+CORE EXECUTE: pc=000000008000001c MUL  x  9 = x  8(                   12) * x  6(                    2) | Result:                                       24
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000020 BNE taken= 1 pred= 1 (Correct)
+CORE EXECUTE: pc=0000000080000040 ADDI x  4 = x  4(                  633) +                     1 | Result:                   634
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000044 ADDI x  4 = x  4(                  634) +                     1 | Result:                   635
+CORE EXECUTE: pc=0000000080000048 ADDI x  4 = x  4(                  635) +                     1 | Result:                   636
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=000000008000004c ADDI x  4 = x  4(                  636) +                     1 | Result:                   637
+CORE EXECUTE: pc=0000000080000050 ADDI x  4 = x  4(                  637) +                     1 | Result:                   638
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000054 ADDI x  4 = x  4(                  638) +                     1 | Result:                   639
+CORE EXECUTE: pc=0000000080000058 ADDI x  4 = x  4(                  639) +                     1 | Result:                   640
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=000000008000005c ADDI x  4 = x  4(                  640) +                     1 | Result:                   641
+CORE EXECUTE: pc=0000000080000060 ADDI x  4 = x  4(                  641) +                     1 | Result:                   642
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000064 ADDI x  4 = x  4(                  642) +                     1 | Result:                   643
+CORE EXECUTE: pc=0000000080000068 ADDI x  1 = x  1(                   25) +                     1 | Result:                    26
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=000000008000000c ADD  x  4 = x  4(                  643) + x  1(                   26) | Result:                   669
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000010 ADD  x  5 = x  0(                    0) + x  1(                   26) | Result:                    26
+CORE EXECUTE: pc=0000000080000014 ADDI x  6 = x  0(                    0) +                     2 | Result:                     2
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000018 DIV  x  8 = x                   26(                   26) / x                    2(                    2) | Result:                    13 (after 32-cycle stall)
+CORE EXECUTE: pc=000000008000001c MUL  x  9 = x  8(                   13) * x  6(                    2) | Result:                                       26
+[Cycle 987] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: MISPREDICT! pc=0000000080000020 BNE taken= 0 pred= 1 -> Redirecting to 0000000080000024
+CORE EXECUTE: pc=0000000080000024 ADD  x  4 = x  4(                  669) + x  1(                   26) | Result:                   695
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000028 ADDI x  4 = x  4(                  695) +                     1 | Result:                   696
+CORE EXECUTE: pc=000000008000002c ADDI x  4 = x  4(                  696) +                     1 | Result:                   697
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000030 ADDI x  4 = x  4(                  697) +                     1 | Result:                   698
+CORE EXECUTE: pc=0000000080000034 ADDI x  4 = x  4(                  698) +                     1 | Result:                   699
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000038 ADDI x  4 = x  4(                  699) +                     1 | Result:                   700
+CORE EXECUTE: pc=000000008000003c ADDI x  4 = x  4(                  700) +                     1 | Result:                   701
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000040 ADDI x  4 = x  4(                  701) +                     1 | Result:                   702
+CORE EXECUTE: pc=0000000080000044 ADDI x  4 = x  4(                  702) +                     1 | Result:                   703
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000048 ADDI x  4 = x  4(                  703) +                     1 | Result:                   704
+CORE EXECUTE: pc=000000008000004c ADDI x  4 = x  4(                  704) +                     1 | Result:                   705
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000050 ADDI x  4 = x  4(                  705) +                     1 | Result:                   706
+CORE EXECUTE: pc=0000000080000054 ADDI x  4 = x  4(                  706) +                     1 | Result:                   707
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000058 ADDI x  4 = x  4(                  707) +                     1 | Result:                   708
+CORE EXECUTE: pc=000000008000005c ADDI x  4 = x  4(                  708) +                     1 | Result:                   709
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000060 ADDI x  4 = x  4(                  709) +                     1 | Result:                   710
+CORE EXECUTE: pc=0000000080000064 ADDI x  4 = x  4(                  710) +                     1 | Result:                   711
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000068 ADDI x  1 = x  1(                   26) +                     1 | Result:                    27
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=000000008000000c ADD  x  4 = x  4(                  711) + x  1(                   27) | Result:                   738
+CORE EXECUTE: pc=0000000080000010 ADD  x  5 = x  0(                    0) + x  1(                   27) | Result:                    27
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000014 ADDI x  6 = x  0(                    0) +                     2 | Result:                     2
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000018 DIV  x  8 = x                   27(                   27) / x                    2(                    2) | Result:                    13 (after 32-cycle stall)
+CORE EXECUTE: pc=000000008000001c MUL  x  9 = x  8(                   13) * x  6(                    2) | Result:                                       26
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000020 BNE taken= 1 pred= 1 (Correct)
+CORE EXECUTE: pc=0000000080000040 ADDI x  4 = x  4(                  738) +                     1 | Result:                   739
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000044 ADDI x  4 = x  4(                  739) +                     1 | Result:                   740
+CORE EXECUTE: pc=0000000080000048 ADDI x  4 = x  4(                  740) +                     1 | Result:                   741
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=000000008000004c ADDI x  4 = x  4(                  741) +                     1 | Result:                   742
+CORE EXECUTE: pc=0000000080000050 ADDI x  4 = x  4(                  742) +                     1 | Result:                   743
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000054 ADDI x  4 = x  4(                  743) +                     1 | Result:                   744
+CORE EXECUTE: pc=0000000080000058 ADDI x  4 = x  4(                  744) +                     1 | Result:                   745
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=000000008000005c ADDI x  4 = x  4(                  745) +                     1 | Result:                   746
+CORE EXECUTE: pc=0000000080000060 ADDI x  4 = x  4(                  746) +                     1 | Result:                   747
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000064 ADDI x  4 = x  4(                  747) +                     1 | Result:                   748
+CORE EXECUTE: pc=0000000080000068 ADDI x  1 = x  1(                   27) +                     1 | Result:                    28
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=000000008000000c ADD  x  4 = x  4(                  748) + x  1(                   28) | Result:                   776
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000010 ADD  x  5 = x  0(                    0) + x  1(                   28) | Result:                    28
+CORE EXECUTE: pc=0000000080000014 ADDI x  6 = x  0(                    0) +                     2 | Result:                     2
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000018 DIV  x  8 = x                   28(                   28) / x                    2(                    2) | Result:                    14 (after 32-cycle stall)
+CORE EXECUTE: pc=000000008000001c MUL  x  9 = x  8(                   14) * x  6(                    2) | Result:                                       28
+[Cycle 1098] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: MISPREDICT! pc=0000000080000020 BNE taken= 0 pred= 1 -> Redirecting to 0000000080000024
+CORE EXECUTE: pc=0000000080000024 ADD  x  4 = x  4(                  776) + x  1(                   28) | Result:                   804
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000028 ADDI x  4 = x  4(                  804) +                     1 | Result:                   805
+CORE EXECUTE: pc=000000008000002c ADDI x  4 = x  4(                  805) +                     1 | Result:                   806
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000030 ADDI x  4 = x  4(                  806) +                     1 | Result:                   807
+CORE EXECUTE: pc=0000000080000034 ADDI x  4 = x  4(                  807) +                     1 | Result:                   808
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000038 ADDI x  4 = x  4(                  808) +                     1 | Result:                   809
+CORE EXECUTE: pc=000000008000003c ADDI x  4 = x  4(                  809) +                     1 | Result:                   810
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000040 ADDI x  4 = x  4(                  810) +                     1 | Result:                   811
+CORE EXECUTE: pc=0000000080000044 ADDI x  4 = x  4(                  811) +                     1 | Result:                   812
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000048 ADDI x  4 = x  4(                  812) +                     1 | Result:                   813
+CORE EXECUTE: pc=000000008000004c ADDI x  4 = x  4(                  813) +                     1 | Result:                   814
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000050 ADDI x  4 = x  4(                  814) +                     1 | Result:                   815
+CORE EXECUTE: pc=0000000080000054 ADDI x  4 = x  4(                  815) +                     1 | Result:                   816
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000058 ADDI x  4 = x  4(                  816) +                     1 | Result:                   817
+CORE EXECUTE: pc=000000008000005c ADDI x  4 = x  4(                  817) +                     1 | Result:                   818
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000060 ADDI x  4 = x  4(                  818) +                     1 | Result:                   819
+CORE EXECUTE: pc=0000000080000064 ADDI x  4 = x  4(                  819) +                     1 | Result:                   820
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000068 ADDI x  1 = x  1(                   28) +                     1 | Result:                    29
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=000000008000000c ADD  x  4 = x  4(                  820) + x  1(                   29) | Result:                   849
+CORE EXECUTE: pc=0000000080000010 ADD  x  5 = x  0(                    0) + x  1(                   29) | Result:                    29
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000014 ADDI x  6 = x  0(                    0) +                     2 | Result:                     2
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000018 DIV  x  8 = x                   29(                   29) / x                    2(                    2) | Result:                    14 (after 32-cycle stall)
+CORE EXECUTE: pc=000000008000001c MUL  x  9 = x  8(                   14) * x  6(                    2) | Result:                                       28
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000020 BNE taken= 1 pred= 1 (Correct)
+CORE EXECUTE: pc=0000000080000040 ADDI x  4 = x  4(                  849) +                     1 | Result:                   850
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000044 ADDI x  4 = x  4(                  850) +                     1 | Result:                   851
+CORE EXECUTE: pc=0000000080000048 ADDI x  4 = x  4(                  851) +                     1 | Result:                   852
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=000000008000004c ADDI x  4 = x  4(                  852) +                     1 | Result:                   853
+CORE EXECUTE: pc=0000000080000050 ADDI x  4 = x  4(                  853) +                     1 | Result:                   854
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000054 ADDI x  4 = x  4(                  854) +                     1 | Result:                   855
+CORE EXECUTE: pc=0000000080000058 ADDI x  4 = x  4(                  855) +                     1 | Result:                   856
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=000000008000005c ADDI x  4 = x  4(                  856) +                     1 | Result:                   857
+CORE EXECUTE: pc=0000000080000060 ADDI x  4 = x  4(                  857) +                     1 | Result:                   858
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000064 ADDI x  4 = x  4(                  858) +                     1 | Result:                   859
+CORE EXECUTE: pc=0000000080000068 ADDI x  1 = x  1(                   29) +                     1 | Result:                    30
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=000000008000000c ADD  x  4 = x  4(                  859) + x  1(                   30) | Result:                   889
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000010 ADD  x  5 = x  0(                    0) + x  1(                   30) | Result:                    30
+CORE EXECUTE: pc=0000000080000014 ADDI x  6 = x  0(                    0) +                     2 | Result:                     2
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000018 DIV  x  8 = x                   30(                   30) / x                    2(                    2) | Result:                    15 (after 32-cycle stall)
+CORE EXECUTE: pc=000000008000001c MUL  x  9 = x  8(                   15) * x  6(                    2) | Result:                                       30
+[Cycle 1209] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: MISPREDICT! pc=0000000080000020 BNE taken= 0 pred= 1 -> Redirecting to 0000000080000024
+CORE EXECUTE: pc=0000000080000024 ADD  x  4 = x  4(                  889) + x  1(                   30) | Result:                   919
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000028 ADDI x  4 = x  4(                  919) +                     1 | Result:                   920
+CORE EXECUTE: pc=000000008000002c ADDI x  4 = x  4(                  920) +                     1 | Result:                   921
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000030 ADDI x  4 = x  4(                  921) +                     1 | Result:                   922
+CORE EXECUTE: pc=0000000080000034 ADDI x  4 = x  4(                  922) +                     1 | Result:                   923
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000038 ADDI x  4 = x  4(                  923) +                     1 | Result:                   924
+CORE EXECUTE: pc=000000008000003c ADDI x  4 = x  4(                  924) +                     1 | Result:                   925
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000040 ADDI x  4 = x  4(                  925) +                     1 | Result:                   926
+CORE EXECUTE: pc=0000000080000044 ADDI x  4 = x  4(                  926) +                     1 | Result:                   927
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000048 ADDI x  4 = x  4(                  927) +                     1 | Result:                   928
+CORE EXECUTE: pc=000000008000004c ADDI x  4 = x  4(                  928) +                     1 | Result:                   929
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000050 ADDI x  4 = x  4(                  929) +                     1 | Result:                   930
+CORE EXECUTE: pc=0000000080000054 ADDI x  4 = x  4(                  930) +                     1 | Result:                   931
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000058 ADDI x  4 = x  4(                  931) +                     1 | Result:                   932
+CORE EXECUTE: pc=000000008000005c ADDI x  4 = x  4(                  932) +                     1 | Result:                   933
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000060 ADDI x  4 = x  4(                  933) +                     1 | Result:                   934
+CORE EXECUTE: pc=0000000080000064 ADDI x  4 = x  4(                  934) +                     1 | Result:                   935
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000068 ADDI x  1 = x  1(                   30) +                     1 | Result:                    31
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=000000008000000c ADD  x  4 = x  4(                  935) + x  1(                   31) | Result:                   966
+CORE EXECUTE: pc=0000000080000010 ADD  x  5 = x  0(                    0) + x  1(                   31) | Result:                    31
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000014 ADDI x  6 = x  0(                    0) +                     2 | Result:                     2
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000018 DIV  x  8 = x                   31(                   31) / x                    2(                    2) | Result:                    15 (after 32-cycle stall)
+CORE EXECUTE: pc=000000008000001c MUL  x  9 = x  8(                   15) * x  6(                    2) | Result:                                       30
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000020 BNE taken= 1 pred= 1 (Correct)
+CORE EXECUTE: pc=0000000080000040 ADDI x  4 = x  4(                  966) +                     1 | Result:                   967
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000044 ADDI x  4 = x  4(                  967) +                     1 | Result:                   968
+CORE EXECUTE: pc=0000000080000048 ADDI x  4 = x  4(                  968) +                     1 | Result:                   969
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=000000008000004c ADDI x  4 = x  4(                  969) +                     1 | Result:                   970
+CORE EXECUTE: pc=0000000080000050 ADDI x  4 = x  4(                  970) +                     1 | Result:                   971
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000054 ADDI x  4 = x  4(                  971) +                     1 | Result:                   972
+CORE EXECUTE: pc=0000000080000058 ADDI x  4 = x  4(                  972) +                     1 | Result:                   973
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=000000008000005c ADDI x  4 = x  4(                  973) +                     1 | Result:                   974
+CORE EXECUTE: pc=0000000080000060 ADDI x  4 = x  4(                  974) +                     1 | Result:                   975
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000064 ADDI x  4 = x  4(                  975) +                     1 | Result:                   976
+CORE EXECUTE: pc=0000000080000068 ADDI x  1 = x  1(                   31) +                     1 | Result:                    32
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=000000008000000c ADD  x  4 = x  4(                  976) + x  1(                   32) | Result:                  1008
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000010 ADD  x  5 = x  0(                    0) + x  1(                   32) | Result:                    32
+CORE EXECUTE: pc=0000000080000014 ADDI x  6 = x  0(                    0) +                     2 | Result:                     2
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000018 DIV  x  8 = x                   32(                   32) / x                    2(                    2) | Result:                    16 (after 32-cycle stall)
+CORE EXECUTE: pc=000000008000001c MUL  x  9 = x  8(                   16) * x  6(                    2) | Result:                                       32
+[Cycle 1320] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: MISPREDICT! pc=0000000080000020 BNE taken= 0 pred= 1 -> Redirecting to 0000000080000024
+CORE EXECUTE: pc=0000000080000024 ADD  x  4 = x  4(                 1008) + x  1(                   32) | Result:                  1040
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000028 ADDI x  4 = x  4(                 1040) +                     1 | Result:                  1041
+CORE EXECUTE: pc=000000008000002c ADDI x  4 = x  4(                 1041) +                     1 | Result:                  1042
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000030 ADDI x  4 = x  4(                 1042) +                     1 | Result:                  1043
+CORE EXECUTE: pc=0000000080000034 ADDI x  4 = x  4(                 1043) +                     1 | Result:                  1044
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000038 ADDI x  4 = x  4(                 1044) +                     1 | Result:                  1045
+CORE EXECUTE: pc=000000008000003c ADDI x  4 = x  4(                 1045) +                     1 | Result:                  1046
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000040 ADDI x  4 = x  4(                 1046) +                     1 | Result:                  1047
+CORE EXECUTE: pc=0000000080000044 ADDI x  4 = x  4(                 1047) +                     1 | Result:                  1048
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000048 ADDI x  4 = x  4(                 1048) +                     1 | Result:                  1049
+CORE EXECUTE: pc=000000008000004c ADDI x  4 = x  4(                 1049) +                     1 | Result:                  1050
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000050 ADDI x  4 = x  4(                 1050) +                     1 | Result:                  1051
+CORE EXECUTE: pc=0000000080000054 ADDI x  4 = x  4(                 1051) +                     1 | Result:                  1052
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000058 ADDI x  4 = x  4(                 1052) +                     1 | Result:                  1053
+CORE EXECUTE: pc=000000008000005c ADDI x  4 = x  4(                 1053) +                     1 | Result:                  1054
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000060 ADDI x  4 = x  4(                 1054) +                     1 | Result:                  1055
+CORE EXECUTE: pc=0000000080000064 ADDI x  4 = x  4(                 1055) +                     1 | Result:                  1056
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000068 ADDI x  1 = x  1(                   32) +                     1 | Result:                    33
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=000000008000000c ADD  x  4 = x  4(                 1056) + x  1(                   33) | Result:                  1089
+CORE EXECUTE: pc=0000000080000010 ADD  x  5 = x  0(                    0) + x  1(                   33) | Result:                    33
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000014 ADDI x  6 = x  0(                    0) +                     2 | Result:                     2
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000018 DIV  x  8 = x                   33(                   33) / x                    2(                    2) | Result:                    16 (after 32-cycle stall)
+CORE EXECUTE: pc=000000008000001c MUL  x  9 = x  8(                   16) * x  6(                    2) | Result:                                       32
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000020 BNE taken= 1 pred= 1 (Correct)
+CORE EXECUTE: pc=0000000080000040 ADDI x  4 = x  4(                 1089) +                     1 | Result:                  1090
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000044 ADDI x  4 = x  4(                 1090) +                     1 | Result:                  1091
+CORE EXECUTE: pc=0000000080000048 ADDI x  4 = x  4(                 1091) +                     1 | Result:                  1092
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=000000008000004c ADDI x  4 = x  4(                 1092) +                     1 | Result:                  1093
+CORE EXECUTE: pc=0000000080000050 ADDI x  4 = x  4(                 1093) +                     1 | Result:                  1094
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000054 ADDI x  4 = x  4(                 1094) +                     1 | Result:                  1095
+CORE EXECUTE: pc=0000000080000058 ADDI x  4 = x  4(                 1095) +                     1 | Result:                  1096
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=000000008000005c ADDI x  4 = x  4(                 1096) +                     1 | Result:                  1097
+CORE EXECUTE: pc=0000000080000060 ADDI x  4 = x  4(                 1097) +                     1 | Result:                  1098
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000064 ADDI x  4 = x  4(                 1098) +                     1 | Result:                  1099
+CORE EXECUTE: pc=0000000080000068 ADDI x  1 = x  1(                   33) +                     1 | Result:                    34
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=000000008000000c ADD  x  4 = x  4(                 1099) + x  1(                   34) | Result:                  1133
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000010 ADD  x  5 = x  0(                    0) + x  1(                   34) | Result:                    34
+CORE EXECUTE: pc=0000000080000014 ADDI x  6 = x  0(                    0) +                     2 | Result:                     2
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000018 DIV  x  8 = x                   34(                   34) / x                    2(                    2) | Result:                    17 (after 32-cycle stall)
+CORE EXECUTE: pc=000000008000001c MUL  x  9 = x  8(                   17) * x  6(                    2) | Result:                                       34
+[Cycle 1431] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: MISPREDICT! pc=0000000080000020 BNE taken= 0 pred= 1 -> Redirecting to 0000000080000024
+CORE EXECUTE: pc=0000000080000024 ADD  x  4 = x  4(                 1133) + x  1(                   34) | Result:                  1167
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000028 ADDI x  4 = x  4(                 1167) +                     1 | Result:                  1168
+CORE EXECUTE: pc=000000008000002c ADDI x  4 = x  4(                 1168) +                     1 | Result:                  1169
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000030 ADDI x  4 = x  4(                 1169) +                     1 | Result:                  1170
+CORE EXECUTE: pc=0000000080000034 ADDI x  4 = x  4(                 1170) +                     1 | Result:                  1171
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000038 ADDI x  4 = x  4(                 1171) +                     1 | Result:                  1172
+CORE EXECUTE: pc=000000008000003c ADDI x  4 = x  4(                 1172) +                     1 | Result:                  1173
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000040 ADDI x  4 = x  4(                 1173) +                     1 | Result:                  1174
+CORE EXECUTE: pc=0000000080000044 ADDI x  4 = x  4(                 1174) +                     1 | Result:                  1175
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000048 ADDI x  4 = x  4(                 1175) +                     1 | Result:                  1176
+CORE EXECUTE: pc=000000008000004c ADDI x  4 = x  4(                 1176) +                     1 | Result:                  1177
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000050 ADDI x  4 = x  4(                 1177) +                     1 | Result:                  1178
+CORE EXECUTE: pc=0000000080000054 ADDI x  4 = x  4(                 1178) +                     1 | Result:                  1179
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000058 ADDI x  4 = x  4(                 1179) +                     1 | Result:                  1180
+CORE EXECUTE: pc=000000008000005c ADDI x  4 = x  4(                 1180) +                     1 | Result:                  1181
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000060 ADDI x  4 = x  4(                 1181) +                     1 | Result:                  1182
+CORE EXECUTE: pc=0000000080000064 ADDI x  4 = x  4(                 1182) +                     1 | Result:                  1183
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000068 ADDI x  1 = x  1(                   34) +                     1 | Result:                    35
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=000000008000000c ADD  x  4 = x  4(                 1183) + x  1(                   35) | Result:                  1218
+CORE EXECUTE: pc=0000000080000010 ADD  x  5 = x  0(                    0) + x  1(                   35) | Result:                    35
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000014 ADDI x  6 = x  0(                    0) +                     2 | Result:                     2
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000018 DIV  x  8 = x                   35(                   35) / x                    2(                    2) | Result:                    17 (after 32-cycle stall)
+CORE EXECUTE: pc=000000008000001c MUL  x  9 = x  8(                   17) * x  6(                    2) | Result:                                       34
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000020 BNE taken= 1 pred= 1 (Correct)
+CORE EXECUTE: pc=0000000080000040 ADDI x  4 = x  4(                 1218) +                     1 | Result:                  1219
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000044 ADDI x  4 = x  4(                 1219) +                     1 | Result:                  1220
+CORE EXECUTE: pc=0000000080000048 ADDI x  4 = x  4(                 1220) +                     1 | Result:                  1221
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=000000008000004c ADDI x  4 = x  4(                 1221) +                     1 | Result:                  1222
+CORE EXECUTE: pc=0000000080000050 ADDI x  4 = x  4(                 1222) +                     1 | Result:                  1223
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000054 ADDI x  4 = x  4(                 1223) +                     1 | Result:                  1224
+CORE EXECUTE: pc=0000000080000058 ADDI x  4 = x  4(                 1224) +                     1 | Result:                  1225
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=000000008000005c ADDI x  4 = x  4(                 1225) +                     1 | Result:                  1226
+CORE EXECUTE: pc=0000000080000060 ADDI x  4 = x  4(                 1226) +                     1 | Result:                  1227
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000064 ADDI x  4 = x  4(                 1227) +                     1 | Result:                  1228
+CORE EXECUTE: pc=0000000080000068 ADDI x  1 = x  1(                   35) +                     1 | Result:                    36
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=000000008000000c ADD  x  4 = x  4(                 1228) + x  1(                   36) | Result:                  1264
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000010 ADD  x  5 = x  0(                    0) + x  1(                   36) | Result:                    36
+CORE EXECUTE: pc=0000000080000014 ADDI x  6 = x  0(                    0) +                     2 | Result:                     2
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000018 DIV  x  8 = x                   36(                   36) / x                    2(                    2) | Result:                    18 (after 32-cycle stall)
+CORE EXECUTE: pc=000000008000001c MUL  x  9 = x  8(                   18) * x  6(                    2) | Result:                                       36
+[Cycle 1542] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: MISPREDICT! pc=0000000080000020 BNE taken= 0 pred= 1 -> Redirecting to 0000000080000024
+CORE EXECUTE: pc=0000000080000024 ADD  x  4 = x  4(                 1264) + x  1(                   36) | Result:                  1300
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000028 ADDI x  4 = x  4(                 1300) +                     1 | Result:                  1301
+CORE EXECUTE: pc=000000008000002c ADDI x  4 = x  4(                 1301) +                     1 | Result:                  1302
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000030 ADDI x  4 = x  4(                 1302) +                     1 | Result:                  1303
+CORE EXECUTE: pc=0000000080000034 ADDI x  4 = x  4(                 1303) +                     1 | Result:                  1304
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000038 ADDI x  4 = x  4(                 1304) +                     1 | Result:                  1305
+CORE EXECUTE: pc=000000008000003c ADDI x  4 = x  4(                 1305) +                     1 | Result:                  1306
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000040 ADDI x  4 = x  4(                 1306) +                     1 | Result:                  1307
+CORE EXECUTE: pc=0000000080000044 ADDI x  4 = x  4(                 1307) +                     1 | Result:                  1308
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000048 ADDI x  4 = x  4(                 1308) +                     1 | Result:                  1309
+CORE EXECUTE: pc=000000008000004c ADDI x  4 = x  4(                 1309) +                     1 | Result:                  1310
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000050 ADDI x  4 = x  4(                 1310) +                     1 | Result:                  1311
+CORE EXECUTE: pc=0000000080000054 ADDI x  4 = x  4(                 1311) +                     1 | Result:                  1312
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000058 ADDI x  4 = x  4(                 1312) +                     1 | Result:                  1313
+CORE EXECUTE: pc=000000008000005c ADDI x  4 = x  4(                 1313) +                     1 | Result:                  1314
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000060 ADDI x  4 = x  4(                 1314) +                     1 | Result:                  1315
+CORE EXECUTE: pc=0000000080000064 ADDI x  4 = x  4(                 1315) +                     1 | Result:                  1316
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000068 ADDI x  1 = x  1(                   36) +                     1 | Result:                    37
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=000000008000000c ADD  x  4 = x  4(                 1316) + x  1(                   37) | Result:                  1353
+CORE EXECUTE: pc=0000000080000010 ADD  x  5 = x  0(                    0) + x  1(                   37) | Result:                    37
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000014 ADDI x  6 = x  0(                    0) +                     2 | Result:                     2
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000018 DIV  x  8 = x                   37(                   37) / x                    2(                    2) | Result:                    18 (after 32-cycle stall)
+CORE EXECUTE: pc=000000008000001c MUL  x  9 = x  8(                   18) * x  6(                    2) | Result:                                       36
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000020 BNE taken= 1 pred= 1 (Correct)
+CORE EXECUTE: pc=0000000080000040 ADDI x  4 = x  4(                 1353) +                     1 | Result:                  1354
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000044 ADDI x  4 = x  4(                 1354) +                     1 | Result:                  1355
+CORE EXECUTE: pc=0000000080000048 ADDI x  4 = x  4(                 1355) +                     1 | Result:                  1356
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=000000008000004c ADDI x  4 = x  4(                 1356) +                     1 | Result:                  1357
+CORE EXECUTE: pc=0000000080000050 ADDI x  4 = x  4(                 1357) +                     1 | Result:                  1358
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000054 ADDI x  4 = x  4(                 1358) +                     1 | Result:                  1359
+CORE EXECUTE: pc=0000000080000058 ADDI x  4 = x  4(                 1359) +                     1 | Result:                  1360
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=000000008000005c ADDI x  4 = x  4(                 1360) +                     1 | Result:                  1361
+CORE EXECUTE: pc=0000000080000060 ADDI x  4 = x  4(                 1361) +                     1 | Result:                  1362
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000064 ADDI x  4 = x  4(                 1362) +                     1 | Result:                  1363
+CORE EXECUTE: pc=0000000080000068 ADDI x  1 = x  1(                   37) +                     1 | Result:                    38
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=000000008000000c ADD  x  4 = x  4(                 1363) + x  1(                   38) | Result:                  1401
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000010 ADD  x  5 = x  0(                    0) + x  1(                   38) | Result:                    38
+CORE EXECUTE: pc=0000000080000014 ADDI x  6 = x  0(                    0) +                     2 | Result:                     2
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000018 DIV  x  8 = x                   38(                   38) / x                    2(                    2) | Result:                    19 (after 32-cycle stall)
+CORE EXECUTE: pc=000000008000001c MUL  x  9 = x  8(                   19) * x  6(                    2) | Result:                                       38
+[Cycle 1653] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: MISPREDICT! pc=0000000080000020 BNE taken= 0 pred= 1 -> Redirecting to 0000000080000024
+CORE EXECUTE: pc=0000000080000024 ADD  x  4 = x  4(                 1401) + x  1(                   38) | Result:                  1439
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000028 ADDI x  4 = x  4(                 1439) +                     1 | Result:                  1440
+CORE EXECUTE: pc=000000008000002c ADDI x  4 = x  4(                 1440) +                     1 | Result:                  1441
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000030 ADDI x  4 = x  4(                 1441) +                     1 | Result:                  1442
+CORE EXECUTE: pc=0000000080000034 ADDI x  4 = x  4(                 1442) +                     1 | Result:                  1443
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000038 ADDI x  4 = x  4(                 1443) +                     1 | Result:                  1444
+CORE EXECUTE: pc=000000008000003c ADDI x  4 = x  4(                 1444) +                     1 | Result:                  1445
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000040 ADDI x  4 = x  4(                 1445) +                     1 | Result:                  1446
+CORE EXECUTE: pc=0000000080000044 ADDI x  4 = x  4(                 1446) +                     1 | Result:                  1447
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000048 ADDI x  4 = x  4(                 1447) +                     1 | Result:                  1448
+CORE EXECUTE: pc=000000008000004c ADDI x  4 = x  4(                 1448) +                     1 | Result:                  1449
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000050 ADDI x  4 = x  4(                 1449) +                     1 | Result:                  1450
+CORE EXECUTE: pc=0000000080000054 ADDI x  4 = x  4(                 1450) +                     1 | Result:                  1451
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000058 ADDI x  4 = x  4(                 1451) +                     1 | Result:                  1452
+CORE EXECUTE: pc=000000008000005c ADDI x  4 = x  4(                 1452) +                     1 | Result:                  1453
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000060 ADDI x  4 = x  4(                 1453) +                     1 | Result:                  1454
+CORE EXECUTE: pc=0000000080000064 ADDI x  4 = x  4(                 1454) +                     1 | Result:                  1455
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000068 ADDI x  1 = x  1(                   38) +                     1 | Result:                    39
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=000000008000000c ADD  x  4 = x  4(                 1455) + x  1(                   39) | Result:                  1494
+CORE EXECUTE: pc=0000000080000010 ADD  x  5 = x  0(                    0) + x  1(                   39) | Result:                    39
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000014 ADDI x  6 = x  0(                    0) +                     2 | Result:                     2
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000018 DIV  x  8 = x                   39(                   39) / x                    2(                    2) | Result:                    19 (after 32-cycle stall)
+CORE EXECUTE: pc=000000008000001c MUL  x  9 = x  8(                   19) * x  6(                    2) | Result:                                       38
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000020 BNE taken= 1 pred= 1 (Correct)
+CORE EXECUTE: pc=0000000080000040 ADDI x  4 = x  4(                 1494) +                     1 | Result:                  1495
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000044 ADDI x  4 = x  4(                 1495) +                     1 | Result:                  1496
+CORE EXECUTE: pc=0000000080000048 ADDI x  4 = x  4(                 1496) +                     1 | Result:                  1497
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=000000008000004c ADDI x  4 = x  4(                 1497) +                     1 | Result:                  1498
+CORE EXECUTE: pc=0000000080000050 ADDI x  4 = x  4(                 1498) +                     1 | Result:                  1499
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000054 ADDI x  4 = x  4(                 1499) +                     1 | Result:                  1500
+CORE EXECUTE: pc=0000000080000058 ADDI x  4 = x  4(                 1500) +                     1 | Result:                  1501
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=000000008000005c ADDI x  4 = x  4(                 1501) +                     1 | Result:                  1502
+CORE EXECUTE: pc=0000000080000060 ADDI x  4 = x  4(                 1502) +                     1 | Result:                  1503
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000064 ADDI x  4 = x  4(                 1503) +                     1 | Result:                  1504
+CORE EXECUTE: pc=0000000080000068 ADDI x  1 = x  1(                   39) +                     1 | Result:                    40
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=000000008000000c ADD  x  4 = x  4(                 1504) + x  1(                   40) | Result:                  1544
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000010 ADD  x  5 = x  0(                    0) + x  1(                   40) | Result:                    40
+CORE EXECUTE: pc=0000000080000014 ADDI x  6 = x  0(                    0) +                     2 | Result:                     2
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000018 DIV  x  8 = x                   40(                   40) / x                    2(                    2) | Result:                    20 (after 32-cycle stall)
+CORE EXECUTE: pc=000000008000001c MUL  x  9 = x  8(                   20) * x  6(                    2) | Result:                                       40
+[Cycle 1764] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: MISPREDICT! pc=0000000080000020 BNE taken= 0 pred= 1 -> Redirecting to 0000000080000024
+CORE EXECUTE: pc=0000000080000024 ADD  x  4 = x  4(                 1544) + x  1(                   40) | Result:                  1584
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000028 ADDI x  4 = x  4(                 1584) +                     1 | Result:                  1585
+CORE EXECUTE: pc=000000008000002c ADDI x  4 = x  4(                 1585) +                     1 | Result:                  1586
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000030 ADDI x  4 = x  4(                 1586) +                     1 | Result:                  1587
+CORE EXECUTE: pc=0000000080000034 ADDI x  4 = x  4(                 1587) +                     1 | Result:                  1588
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000038 ADDI x  4 = x  4(                 1588) +                     1 | Result:                  1589
+CORE EXECUTE: pc=000000008000003c ADDI x  4 = x  4(                 1589) +                     1 | Result:                  1590
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000040 ADDI x  4 = x  4(                 1590) +                     1 | Result:                  1591
+CORE EXECUTE: pc=0000000080000044 ADDI x  4 = x  4(                 1591) +                     1 | Result:                  1592
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000048 ADDI x  4 = x  4(                 1592) +                     1 | Result:                  1593
+CORE EXECUTE: pc=000000008000004c ADDI x  4 = x  4(                 1593) +                     1 | Result:                  1594
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000050 ADDI x  4 = x  4(                 1594) +                     1 | Result:                  1595
+CORE EXECUTE: pc=0000000080000054 ADDI x  4 = x  4(                 1595) +                     1 | Result:                  1596
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000058 ADDI x  4 = x  4(                 1596) +                     1 | Result:                  1597
+CORE EXECUTE: pc=000000008000005c ADDI x  4 = x  4(                 1597) +                     1 | Result:                  1598
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000060 ADDI x  4 = x  4(                 1598) +                     1 | Result:                  1599
+CORE EXECUTE: pc=0000000080000064 ADDI x  4 = x  4(                 1599) +                     1 | Result:                  1600
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000068 ADDI x  1 = x  1(                   40) +                     1 | Result:                    41
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=000000008000000c ADD  x  4 = x  4(                 1600) + x  1(                   41) | Result:                  1641
+CORE EXECUTE: pc=0000000080000010 ADD  x  5 = x  0(                    0) + x  1(                   41) | Result:                    41
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000014 ADDI x  6 = x  0(                    0) +                     2 | Result:                     2
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000018 DIV  x  8 = x                   41(                   41) / x                    2(                    2) | Result:                    20 (after 32-cycle stall)
+CORE EXECUTE: pc=000000008000001c MUL  x  9 = x  8(                   20) * x  6(                    2) | Result:                                       40
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000020 BNE taken= 1 pred= 1 (Correct)
+CORE EXECUTE: pc=0000000080000040 ADDI x  4 = x  4(                 1641) +                     1 | Result:                  1642
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000044 ADDI x  4 = x  4(                 1642) +                     1 | Result:                  1643
+CORE EXECUTE: pc=0000000080000048 ADDI x  4 = x  4(                 1643) +                     1 | Result:                  1644
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=000000008000004c ADDI x  4 = x  4(                 1644) +                     1 | Result:                  1645
+CORE EXECUTE: pc=0000000080000050 ADDI x  4 = x  4(                 1645) +                     1 | Result:                  1646
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000054 ADDI x  4 = x  4(                 1646) +                     1 | Result:                  1647
+CORE EXECUTE: pc=0000000080000058 ADDI x  4 = x  4(                 1647) +                     1 | Result:                  1648
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=000000008000005c ADDI x  4 = x  4(                 1648) +                     1 | Result:                  1649
+CORE EXECUTE: pc=0000000080000060 ADDI x  4 = x  4(                 1649) +                     1 | Result:                  1650
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000064 ADDI x  4 = x  4(                 1650) +                     1 | Result:                  1651
+CORE EXECUTE: pc=0000000080000068 ADDI x  1 = x  1(                   41) +                     1 | Result:                    42
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=000000008000000c ADD  x  4 = x  4(                 1651) + x  1(                   42) | Result:                  1693
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000010 ADD  x  5 = x  0(                    0) + x  1(                   42) | Result:                    42
+CORE EXECUTE: pc=0000000080000014 ADDI x  6 = x  0(                    0) +                     2 | Result:                     2
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000018 DIV  x  8 = x                   42(                   42) / x                    2(                    2) | Result:                    21 (after 32-cycle stall)
+CORE EXECUTE: pc=000000008000001c MUL  x  9 = x  8(                   21) * x  6(                    2) | Result:                                       42
+[Cycle 1875] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: MISPREDICT! pc=0000000080000020 BNE taken= 0 pred= 1 -> Redirecting to 0000000080000024
+CORE EXECUTE: pc=0000000080000024 ADD  x  4 = x  4(                 1693) + x  1(                   42) | Result:                  1735
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000028 ADDI x  4 = x  4(                 1735) +                     1 | Result:                  1736
+CORE EXECUTE: pc=000000008000002c ADDI x  4 = x  4(                 1736) +                     1 | Result:                  1737
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000030 ADDI x  4 = x  4(                 1737) +                     1 | Result:                  1738
+CORE EXECUTE: pc=0000000080000034 ADDI x  4 = x  4(                 1738) +                     1 | Result:                  1739
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000038 ADDI x  4 = x  4(                 1739) +                     1 | Result:                  1740
+CORE EXECUTE: pc=000000008000003c ADDI x  4 = x  4(                 1740) +                     1 | Result:                  1741
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000040 ADDI x  4 = x  4(                 1741) +                     1 | Result:                  1742
+CORE EXECUTE: pc=0000000080000044 ADDI x  4 = x  4(                 1742) +                     1 | Result:                  1743
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000048 ADDI x  4 = x  4(                 1743) +                     1 | Result:                  1744
+CORE EXECUTE: pc=000000008000004c ADDI x  4 = x  4(                 1744) +                     1 | Result:                  1745
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000050 ADDI x  4 = x  4(                 1745) +                     1 | Result:                  1746
+CORE EXECUTE: pc=0000000080000054 ADDI x  4 = x  4(                 1746) +                     1 | Result:                  1747
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000058 ADDI x  4 = x  4(                 1747) +                     1 | Result:                  1748
+CORE EXECUTE: pc=000000008000005c ADDI x  4 = x  4(                 1748) +                     1 | Result:                  1749
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000060 ADDI x  4 = x  4(                 1749) +                     1 | Result:                  1750
+CORE EXECUTE: pc=0000000080000064 ADDI x  4 = x  4(                 1750) +                     1 | Result:                  1751
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000068 ADDI x  1 = x  1(                   42) +                     1 | Result:                    43
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=000000008000000c ADD  x  4 = x  4(                 1751) + x  1(                   43) | Result:                  1794
+CORE EXECUTE: pc=0000000080000010 ADD  x  5 = x  0(                    0) + x  1(                   43) | Result:                    43
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000014 ADDI x  6 = x  0(                    0) +                     2 | Result:                     2
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000018 DIV  x  8 = x                   43(                   43) / x                    2(                    2) | Result:                    21 (after 32-cycle stall)
+CORE EXECUTE: pc=000000008000001c MUL  x  9 = x  8(                   21) * x  6(                    2) | Result:                                       42
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000020 BNE taken= 1 pred= 1 (Correct)
+CORE EXECUTE: pc=0000000080000040 ADDI x  4 = x  4(                 1794) +                     1 | Result:                  1795
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000044 ADDI x  4 = x  4(                 1795) +                     1 | Result:                  1796
+CORE EXECUTE: pc=0000000080000048 ADDI x  4 = x  4(                 1796) +                     1 | Result:                  1797
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=000000008000004c ADDI x  4 = x  4(                 1797) +                     1 | Result:                  1798
+CORE EXECUTE: pc=0000000080000050 ADDI x  4 = x  4(                 1798) +                     1 | Result:                  1799
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000054 ADDI x  4 = x  4(                 1799) +                     1 | Result:                  1800
+CORE EXECUTE: pc=0000000080000058 ADDI x  4 = x  4(                 1800) +                     1 | Result:                  1801
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=000000008000005c ADDI x  4 = x  4(                 1801) +                     1 | Result:                  1802
+CORE EXECUTE: pc=0000000080000060 ADDI x  4 = x  4(                 1802) +                     1 | Result:                  1803
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000064 ADDI x  4 = x  4(                 1803) +                     1 | Result:                  1804
+CORE EXECUTE: pc=0000000080000068 ADDI x  1 = x  1(                   43) +                     1 | Result:                    44
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=000000008000000c ADD  x  4 = x  4(                 1804) + x  1(                   44) | Result:                  1848
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000010 ADD  x  5 = x  0(                    0) + x  1(                   44) | Result:                    44
+CORE EXECUTE: pc=0000000080000014 ADDI x  6 = x  0(                    0) +                     2 | Result:                     2
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000018 DIV  x  8 = x                   44(                   44) / x                    2(                    2) | Result:                    22 (after 32-cycle stall)
+CORE EXECUTE: pc=000000008000001c MUL  x  9 = x  8(                   22) * x  6(                    2) | Result:                                       44
+[Cycle 1986] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: MISPREDICT! pc=0000000080000020 BNE taken= 0 pred= 1 -> Redirecting to 0000000080000024
+CORE EXECUTE: pc=0000000080000024 ADD  x  4 = x  4(                 1848) + x  1(                   44) | Result:                  1892
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000028 ADDI x  4 = x  4(                 1892) +                     1 | Result:                  1893
+CORE EXECUTE: pc=000000008000002c ADDI x  4 = x  4(                 1893) +                     1 | Result:                  1894
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000030 ADDI x  4 = x  4(                 1894) +                     1 | Result:                  1895
+CORE EXECUTE: pc=0000000080000034 ADDI x  4 = x  4(                 1895) +                     1 | Result:                  1896
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000038 ADDI x  4 = x  4(                 1896) +                     1 | Result:                  1897
+CORE EXECUTE: pc=000000008000003c ADDI x  4 = x  4(                 1897) +                     1 | Result:                  1898
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
+CORE EXECUTE: pc=0000000080000040 ADDI x  4 = x  4(                 1898) +                     1 | Result:                  1899
+CORE EXECUTE: pc=0000000080000044 ADDI x  4 = x  4(                 1899) +                     1 | Result:                  1900
+BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c
+CORE EXECUTE: pc=0000000080000048 ADDI x  4 = x  4(                 1900) +                     1 | Result:                  1901
+CORE EXECUTE: pc=000000008000004c ADDI x  4 = x  4(                 1901) +                     1 | Result:                  1902
+BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)
 --- Simulation Finished. CSV generated: ftq_dump.csv ---
-77/77, SUCCESS] mill zaqal.runMain zaqal.ZaqalTest 10s
+77/77, SUCCESS] mill zaqal.runMain zaqal.ZaqalTest 33s

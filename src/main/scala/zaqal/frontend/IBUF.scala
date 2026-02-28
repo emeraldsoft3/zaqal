@@ -16,9 +16,12 @@ class IBUF extends Module {
   val busy = RegInit(false.B)
 
   // Logic to step through the instructions in a packet
-  // Lookahead to see if next instruction is valid according to mask
-  val next_inst_valid = (inst_idx < 7.U) && current_packet.mask(inst_idx + 1.U)
-  val will_finish_packet = io.out.fire && !next_inst_valid
+  // Lookahead: Find the next valid instruction index in the current mask after the current index
+  val remaining_mask = current_packet.mask & ("hFE".U << inst_idx)(7, 0)
+  val has_next_inst  = remaining_mask.orR
+  val next_inst_idx  = PriorityEncoder(remaining_mask)
+
+  val will_finish_packet = io.out.fire && !has_next_inst
 
   // Seamless Switching: Allow accepting a new packet if we are idle OR finishing the current one
   val accept_new_packet  = (!busy || will_finish_packet) && io.inst_data.valid && !io.flush
@@ -33,8 +36,8 @@ class IBUF extends Module {
     // Start at the first bit set in the mask (usually 0, but can be >0 for branch targets)
     inst_idx       := PriorityEncoder(io.inst_data.bits.mask)
   } .elsewhen(io.out.fire) {
-    when(next_inst_valid) {
-      inst_idx := inst_idx + 1.U
+    when(has_next_inst) {
+      inst_idx := next_inst_idx
     } .otherwise {
       busy := false.B
     }
@@ -47,4 +50,5 @@ class IBUF extends Module {
   io.out.bits.pre      := current_packet.pre_decoded(inst_idx)
   io.out.bits.pc       := current_packet.pc + (inst_idx << 2)
   io.out.bits.ftqPtr   := current_packet.ftqPtr
+  io.out.bits.is_predicted_taken := current_packet.prediction.taken && (inst_idx === current_packet.prediction.slot)
 }

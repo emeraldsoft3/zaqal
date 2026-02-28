@@ -41,6 +41,7 @@ class DecodeSignals extends Bundle {
   val is_mul  = Bool()  // M-extension MUL
   val is_div  = Bool()  // M-extension DIV (signed)
   val is_bne  = Bool()  // B-type BNE
+  val is_blt  = Bool()  // B-type BLT
   val is_branch = Bool() // General branch hint
   val rd      = UInt(5.W)
   val rs1     = UInt(5.W)
@@ -55,6 +56,7 @@ class MicroOp extends Bundle {
   val inst_raw = UInt(32.W)
   val pre      = new PreDecodeSignals
   val ftqPtr   = UInt(6.W) // Track origin FTQ entry
+  val is_predicted_taken = Bool()
 }
 
 // Redirect signal from Backend to Frontend

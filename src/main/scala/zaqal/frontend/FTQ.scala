@@ -34,7 +34,6 @@ class FTQ extends Module {
     
     ram(enqPtr) := newReq
     enqPtr := enqPtr + 1.U
-    count  := count + 1.U
   }
 
   // 2. Issuing to IFU and ICache
@@ -46,7 +45,6 @@ class FTQ extends Module {
 
   when(io.toIfu.fire) {
     deqPtr := deqPtr + 1.U
-    count  := count - 1.U
   }
 
   // 3. Backend Read Port (This is metadata only now)
@@ -59,11 +57,19 @@ class FTQ extends Module {
 
   io.readData := readPacket
 
-  // Flush logic
+  // Flush and Count Logic
   when(io.flush) {
     enqPtr := 0.U
     deqPtr := 0.U
     count  := 0.U
+  } .otherwise {
+    val enq = io.fromBpu.fire
+    val deq = io.toIfu.fire
+    when(enq && !deq) {
+      count := count + 1.U
+    } .elsewhen(!enq && deq) {
+      count := count - 1.U
+    }
   }
   
   io.occupancy := count

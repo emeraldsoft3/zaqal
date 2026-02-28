@@ -1,23 +1,23 @@
 [*]
 [*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
-[*] Sat Feb 21 08:49:37 2026
+[*] Sat Feb 28 11:59:24 2026
 [*]
 [dumpfile] "/home/emerald/zaqal/programs/vcd/Lithium.vcd"
-[dumpfile_mtime] "Sat Feb 21 08:47:21 2026"
-[dumpfile_size] 267067
+[dumpfile_mtime] "Sat Feb 28 11:37:05 2026"
+[dumpfile_size] 346564
 [savefile] "/home/emerald/zaqal/programs/vcd/Lithium.gtkw"
-[timestart] 343
-[size] 1908 1007
+[timestart] 1687
+[size] 1823 1007
 [pos] -1 -1
-*-6.000000 471 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-6.000000 1764 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] Core.
 [treeopen] Core.backend.
 [treeopen] Core.backend.exec.
 [treeopen] Core.frontend.
-[sst_width] 305
-[signals_width] 515
+[sst_width] 229
+[signals_width] 543
 [sst_expanded] 1
-[sst_vpaned_height] 295
+[sst_vpaned_height] 290
 @28
 [color] 1
 Core.clock
@@ -52,6 +52,8 @@ Core.frontend.bpu.io_out_ready
 Core.frontend.bpu.io_out_valid
 @200
 -FTQ
+@28
+Core.frontend.ftq.io_flush
 @22
 [color] 2
 Core.frontend.ftq.io_fromBpu_bits_pc[63:0]
@@ -152,18 +154,30 @@ Core.frontend.icache.io_insts_0[31:0]
 [color] 6
 Core.frontend.icache.io_insts_1[31:0]
 [color] 6
-Core.frontend.icache.idx[5:0]
-[color] 6
 Core.frontend.icache.io_pc[63:0]
-[color] 6
-Core.frontend.icache.program_0[31:0]
-[color] 6
-Core.frontend.icache.program_1[31:0]
 @200
 -IBUF
 @28
 [color] 1
 Core.frontend.ibuf.busy
+[color] 1
+Core.frontend.ibuf.accept_new_packet
+@22
+[color] 1
+Core.frontend.ibuf.current_packet_mask[7:0]
+@28
+[color] 1
+Core.frontend.ibuf.io_flush
+@22
+[color] 1
+Core.frontend.ibuf.io_out_bits_inst_raw[31:0]
+[color] 1
+Core.frontend.ibuf.io_out_bits_pc[63:0]
+@28
+[color] 1
+Core.frontend.ibuf.will_finish_packet
+[color] 1
+Core.frontend.ibuf.reset
 @22
 [color] 1
 Core.frontend.ibuf.current_packet_instructions_0[31:0]
@@ -210,6 +224,20 @@ Core.backend.exec.res_1[63:0]
 Core.backend.exec.res_2[127:0]
 @28
 Core.backend.exec.reset
+@22
+Core.backend.exec.fallthrough_pc[63:0]
+Core.backend.exec.fallthrough_pc_1[63:0]
+@28
+Core.backend.exec.io_redirect_valid
+@22
+Core.backend.exec.io_redirect_target[63:0]
+@28
+Core.backend.exec.taken
+Core.backend.exec.taken_1
+@23
+Core.backend.exec.target_pc[63:0]
+@22
+Core.backend.exec.target_pc_1[63:0]
 @200
 -Decoder
 @28
@@ -217,6 +245,9 @@ Core.backend.exec.decoder.io_out_is_add
 Core.backend.exec.decoder.io_out_is_addi
 Core.backend.exec.decoder.io_out_is_div
 Core.backend.exec.decoder.io_out_is_mul
+Core.backend.exec.decoder.io_out_is_bne
+Core.backend.exec.decoder.io_out_is_branch
+Core.backend.exec.decoder.io_out_is_blt
 @22
 [color] 2
 Core.backend.exec.decoder.io_inst[31:0]
