@@ -1,0 +1,4 @@
+# This fixes the sidebar/tree colors
+color_vbox 1e1e1e
+color_vtext ffffff
+color_mdvlist 1e1e1e

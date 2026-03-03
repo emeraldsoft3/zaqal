@@ -39,7 +39,7 @@ class BPU extends Module {
     mask := ("hFF".U << offset)(7, 0)
     mask_reg := ("hFF".U << offset)(7, 0)
    } 
-  //.elsewhen(is_bne_at_20 && io.out.fire) {
+  // .elsewhen(is_bne_at_20 && io.out.fire) {
   //   // Prediction: BNE at 0x20 (slot 0) is TAKEN to 0x28 (slot 2)
   //   // We fetch 0x20, skip 0x24, and fetch 0x28-0x3c in this same block.
   //   next_pc     := s0_pc + 32.U
