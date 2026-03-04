@@ -11,135 +11,23 @@ class ICache extends Module {
     val ready = Output(Bool())
   })
 
-  val program = VecInit(Seq(
- //00108093 means x24 skips , 00008093 means no skip
- "h00108093".U, // 00: addi x1, x1, 1 | 00008093 for zero| 00108093 for one|  BNE control , 1 means BNE is true and branch is taken, meaning instruction 24 skips
- "h00a10113".U, // 04: addi x2, x2, 10 | a number for division
- "h00218193".U, // 08: addi x3, x3, 2 | divided by
- "h00320213".U, // 0C: addi x4, x4, 3 | Buffer instructions
- "h00320213".U, // 10: addi x4, x4, 3 | Buffer instructions
- "h00320213".U, // 14: addi x4, x4, 3 | Buffer instructions
- "h00320213".U, // 18: addi x4, x4, 3 | Buffer instructions
- "h023142b3".U, // 1c: div  x5, x2, x3   (x5 = x2 / 3) 
- "h00101463".U, // 20: bne  x0, x1, 8    
- "h00738393".U, // 24: addi x7, x7, 7    (Bonus add to x7 if even)
+ val program = VecInit(Seq(
+  // Step 1: Initialize registers using addi (our "li" substitute)
+  "h00000093".U, // 00: addi x1, x0, 0     (x1 = 0)
+  "hfff00113".U, // 04: addi x2, x0, -1    (x2 = 0xFFFFFFFFFFFFFFFF via sign-extension)
+  "h00f00193".U, // 08: addi x3, x0, 15    (x3 = 15)
 
-  // --- Long Straight Path (FTQ Stress Test) ---
-  "h00120213".U, // 28: addi x4, x4, 1    (total_sum++)
-  "h00120213".U, // 2c: addi x4, x4, 1
-  "h00120213".U, // 30: addi x4, x4, 1
-  "h00120213".U, // 34: addi x4, x4, 1
-  "h00120213".U, // 38: addi x4, x4, 1
-  "h00120213".U, // 3c: addi x4, x4, 1
-  "h00120213".U, // 40: addi x4, x4, 1
-  "h00120213".U, // 44: addi x4, x4, 1
-  "h00120213".U, // 48: addi x4, x4, 1
-  "h00120213".U, // 4c: addi x4, x4, 1
-  "h00120213".U, // 50: addi x4, x4, 1
-  "h00120213".U, // 54: addi x4, x4, 1
-  "h00120213".U, // 58: addi x4, x4, 1
-  "h00120213".U, // 5c: addi x4, x4, 1
-  "h00120213".U, // 60: addi x4, x4, 1
-  "h00120213".U, // 64: addi x4, x4, 1
+  // Step 2: Test Logic (Register-Immediate)
+  "h00f17213".U, // 0c: andi x4, x2, 15    (x4 = x2 & 15 -> Should be 15)
+  "h00f06293".U, // 10: ori  x5, x1, 15    (x5 = x1 | 15 -> Should be 15)
+  "h00f24313".U, // 14: xori x6, x4, 15    (x6 = x4 ^ 15 -> Should be 0)
 
-  //
-  "h00120213".U, // 64: addi x4, x4, 1
-  "h00120213".U, // 64: addi x4, x4, 1
-  "h00120213".U, // 64: addi x4, x4, 1
-  "h00120213".U, // 64: addi x4, x4, 1
-  "h00120213".U, // 64: addi x4, x4, 1
-  "h00120213".U, // 64: addi x4, x4, 1
-  "h00120213".U, // 64: addi x4, x4, 1
-  "h00120213".U, // 64: addi x4, x4, 1
-  "h00120213".U, // 64: addi x4, x4, 1
-  "h00120213".U, // 64: addi x4, x4, 1
-  "h00120213".U, // 64: addi x4, x4, 1
-  "h00120213".U, // 64: addi x4, x4, 1
-  "h00120213".U, // 64: addi x4, x4, 1
-  "h00120213".U, // 64: addi x4, x4, 1
-  "h00120213".U, // 64: addi x4, x4, 1
-  "h00120213".U, // 64: addi x4, x4, 1
-  "h00120213".U, // 64: addi x4, x4, 1
-  "h00120213".U, // 64: addi x4, x4, 1
-  "h00120213".U, // 64: addi x4, x4, 1
-  "h00120213".U, // 64: addi x4, x4, 1
-  "h00120213".U, // 64: addi x4, x4, 1
-  "h00120213".U, // 64: addi x4, x4, 1
-  "h00120213".U, // 64: addi x4, x4, 1
-  "h00120213".U, // 64: addi x4, x4, 1
-  "h00120213".U, // 64: addi x4, x4, 1
-  "h00120213".U, // 64: addi x4, x4, 1
-  "h00120213".U, // 64: addi x4, x4, 1
-  "h00120213".U, // 64: addi x4, x4, 1
-  "h00120213".U, // 64: addi x4, x4, 1
-  "h00120213".U, // 64: addi x4, x4, 1
-  "h00120213".U, // 64: addi x4, x4, 1
-  "h00120213".U, // 64: addi x4, x4, 1
-  "h00120213".U, // 64: addi x4, x4, 1
-  "h00120213".U, // 64: addi x4, x4, 1
-  "h00120213".U, // 64: addi x4, x4, 1
-  "h00120213".U, // 64: addi x4, x4, 1
-  "h00120213".U, // 64: addi x4, x4, 1
-  "h00120213".U, // 64: addi x4, x4, 1
-  "h00120213".U, // 64: addi x4, x4, 1
-  "h00120213".U, // 64: addi x4, x4, 1
-  "h00120213".U, // 64: addi x4, x4, 1
-  "h00120213".U, // 64: addi x4, x4, 1
-  "h00120213".U, // 64: addi x4, x4, 1
-  "h00120213".U, // 64: addi x4, x4, 1
-  "h00120213".U, // 64: addi x4, x4, 1
-  "h00120213".U, // 64: addi x4, x4, 1
-  "h00120213".U, // 64: addi x4, x4, 1
-  "h00120213".U, // 64: addi x4, x4, 1
-  "h00120213".U, // 64: addi x4, x4, 1
-  "h00120213".U, // 64: addi x4, x4, 1
-  "h00120213".U, // 64: addi x4, x4, 1
-  "h00120213".U, // 64: addi x4, x4, 1
-  "h00120213".U, // 64: addi x4, x4, 1
-  "h00120213".U, // 64: addi x4, x4, 1
-  "h00120213".U, // 64: addi x4, x4, 1
-  "h00120213".U, // 64: addi x4, x4, 1
-  "h00120213".U, // 64: addi x4, x4, 1
-  "h00120213".U, // 64: addi x4, x4, 1
-  "h00120213".U, // 64: addi x4, x4, 1
-  "h00120213".U, // 64: addi x4, x4, 1
-  "h00120213".U, // 64: addi x4, x4, 1
-  "h00120213".U, // 64: addi x4, x4, 1
-  "h00120213".U, // 64: addi x4, x4, 1
-  "h00120213".U, // 64: addi x4, x4, 1
-  "h00120213".U, // 64: addi x4, x4, 1
-  "h00120213".U, // 64: addi x4, x4, 1
-  "h00120213".U, // 64: addi x4, x4, 1
-  "h00120213".U, // 64: addi x4, x4, 1
-  "h00120213".U, // 64: addi x4, x4, 1
-  "h00120213".U, // 64: addi x4, x4, 1
-  "h00120213".U, // 64: addi x4, x4, 1
-  "h00120213".U, // 64: addi x4, x4, 1
-  "h00120213".U, // 64: addi x4, x4, 1
-  "h00120213".U, // 64: addi x4, x4, 1
-  "h00120213".U, // 64: addi x4, x4, 1
-  "h00120213".U, // 64: addi x4, x4, 1
-  "h00120213".U, // 64: addi x4, x4, 1
-  "h00120213".U, // 64: addi x4, x4, 1
-  "h00120213".U, // 64: addi x4, x4, 1
-  "h00120213".U, // 64: addi x4, x4, 1
-  "h00120213".U, // 64: addi x4, x4, 1
-  "h00120213".U, // 64: addi x4, x4, 1
-  "h00120213".U, // 64: addi x4, x4, 1
-  "h00120213".U, // 64: addi x4, x4, 1
-  "h00120213".U, // 64: addi x4, x4, 1
-  "h00120213".U, // 64: addi x4, x4, 1
-  "h00120213".U, // 64: addi x4, x4, 1
-  "h00120213".U, // 64: addi x4, x4, 1
-  //
+  // Step 3: Test Logic (Register-Register)
+  "h003173b3".U, // 18: and  x7, x2, x3    (x7 = x2 & x3 -> Should be 15)
+  "h0030e433".U, // 1c: or   x8, x1, x3    (x8 = x1 | x3 -> Should be 15)
+  "h003244b3".U, // 20: xor  x9, x4, x3    (x9 = x4 ^ x3 -> Should be 0)
 
-  // --- Loop Control ---
-  //"h00108093".U, // 68: addi x1, x1, 1    (counter++)
-  //"hfe20ace3".U, // 6c: blt  x1, x2, -72  (If counter < limit, jump back to 0x0C)
-
-  // --- Exit ---
- // "h00625513".U, // 70: srli x10, x4, 6   (x10 = total_sum >> 6)
- // "h0000006f".U  // 74: jal  x0, 0        (Halt/Infinite Loop)
+  
 ))
 
   val index = io.pc(8, 2) // 5 bits (0-31), sufficient for 30 instructions

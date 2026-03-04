@@ -42,6 +42,12 @@ class DecodeSignals extends Bundle {
   val is_div  = Bool()  // M-extension DIV (signed)
   val is_bne  = Bool()  // B-type BNE
   val is_blt  = Bool()  // B-type BLT
+  val is_and  = Bool()  // R-type AND
+  val is_or   = Bool()  // R-type OR
+  val is_xor  = Bool()  // R-type XOR
+  val is_andi = Bool()  // I-type ANDI
+  val is_ori  = Bool()  // I-type ORI
+  val is_xori = Bool()  // I-type XORI
   val is_branch = Bool() // General branch hint
   val rd      = UInt(5.W)
   val rs1     = UInt(5.W)

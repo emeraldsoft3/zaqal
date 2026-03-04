@@ -3,8 +3,8 @@
 In this phase, we build the "compute core" of the CPU. We will implement these instructions one by one to ensure the decoder and ALU are rock-solid.
 
 ## Day 1: Logical Operations (Bitwise)
-- [ ] `AND`, `OR`, `XOR` (Register-Register)
-- [ ] `ANDI`, `ORI`, `XORI` (Register-Immediate)
+- [x] `AND`, `OR`, `XOR` (Register-Register)
+- [x] `ANDI`, `ORI`, `XORI` (Register-Immediate)
 - **Goal**: Verify bitwise logic with 0xFFFF and 0x0000 patterns.
 
 ## Day 2: Shift Operations

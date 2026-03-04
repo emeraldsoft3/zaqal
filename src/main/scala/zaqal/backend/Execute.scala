@@ -3,6 +3,7 @@ package zaqal.backend
 import chisel3._
 import chisel3.util._
 import zaqal._
+import zaqal.backend.fu._
 
 class Execute extends Module {
   val io = IO(new Bundle {
@@ -10,165 +11,101 @@ class Execute extends Module {
     val redirect = Output(new BPURedirect)
   })
 
-  // Kunminghu Alignment: Main Decoder is in the Backend
+  // Coordination state
+  val div_rd_latch = RegInit(0.U(5.W))
+  val div_pc_latch = RegInit(0.U(64.W))
+
+  // 1. Decoder & Register File
   val decoder = Module(new Decoder)
   val regFile = Module(new RegFile)
-
+  
   decoder.io.inst := io.in.bits.inst_raw
-
-  // Wire up both source registers (combinational reads)
   regFile.io.rs1_addr := decoder.io.out.rs1
   regFile.io.rs2_addr := decoder.io.out.rs2
-  regFile.io.wen      := false.B
-  regFile.io.rd_addr  := decoder.io.out.rd
-  regFile.io.rd_data  := 0.U
+  
+  val src1 = regFile.io.rs1_data
+  val src2 = Mux(decoder.io.out.is_branch, src1, // placeholder if needed
+             Mux(decoder.io.out.is_addi || decoder.io.out.is_andi || decoder.io.out.is_ori || decoder.io.out.is_xori, 
+                 decoder.io.out.imm.asUInt, 
+                 regFile.io.rs2_data))
+                 
+  // Correction: src2 logic for immediate instructions
+  val operand2 = Mux(decoder.io.out.is_addi || decoder.io.out.is_andi || decoder.io.out.is_ori || decoder.io.out.is_xori,
+                     decoder.io.out.imm.asUInt,
+                     regFile.io.rs2_data)
 
-  val rs1_data = regFile.io.rs1_data
-  val rs2_data = regFile.io.rs2_data
-  val imm      = decoder.io.out.imm.asUInt
+  // 2. Functional Units
+  val alu  = Module(new ALU)
+  val bru  = Module(new BRU)
+  val mul  = Module(new Multiplier)
+  val div  = Module(new Divider)
 
-  // Default redirection (last assignment wins)
+  // 3. Connect FUs
+  alu.io.src1 := src1
+  alu.io.src2 := operand2
+  alu.io.dec  := decoder.io.out
+
+  bru.io.src1 := src1
+  bru.io.src2 := regFile.io.rs2_data
+  bru.io.dec  := decoder.io.out
+  bru.io.pc   := io.in.bits.pc
+  bru.io.pred_taken := io.in.bits.is_predicted_taken
+
+  mul.io.src1 := src1
+  mul.io.src2 := regFile.io.rs2_data
+  mul.io.dec  := decoder.io.out
+
+  div.io.src1 := src1
+  div.io.src2 := regFile.io.rs2_data
+  div.io.dec  := decoder.io.out
+  div.io.fire := io.in.fire
+
+  // 4. Coordination & Handshake
+  io.in.ready := div.io.ready
+  
+  // Default RegFile write values
+  regFile.io.wen     := false.B
+  regFile.io.rd_addr := decoder.io.out.rd
+  regFile.io.rd_data := 0.U
+
+  // Branch redirection
   io.redirect.valid  := false.B
-  io.redirect.target := 0.U
+  io.redirect.target := bru.io.target
 
-  // -----------------------------------------------------------------------
-  // Division stall state machine
-  //
-  //  s_idle ──(is_div fires)──► s_busy ──(31 more cycles)──► s_done ──► s_idle
-  //  ready=1                    ready=0                       ready=0
-  //                                                            writes result
-  // -----------------------------------------------------------------------
-  val s_idle :: s_busy :: s_done :: Nil = Enum(3)
-  val divState = RegInit(s_idle)
-
-  val DIV_LATENCY = 32          // architectural latency (cycles)
-  val divCounter  = RegInit(0.U(6.W))
-
-  // Everything latched on the cycle the DIV fires
-  val div_rs1    = RegInit(0.U(64.W))
-  val div_rs2    = RegInit(0.U(64.W))
-  val div_rd     = RegInit(0.U(5.W))
-  val div_pc     = RegInit(0.U(64.W))
-  // Result is REGISTERED at the s_busy→s_done transition — avoids FIRRTL
-  // width-inference surprises with inline SInt division expressions.
-  val div_result = RegInit(0.U(64.W))
-
-  // Stall the pipeline (deassert ready) while the divider is working
-  io.in.ready := (divState === s_idle)
-
-  // -----------------------------------------------------------------------
-  // Normal (non-div) instructions — only fire in s_idle
-  // -----------------------------------------------------------------------
   when(io.in.fire) {
-    val rd = decoder.io.out.rd
-
-    // ADDI: rd = rs1 + imm
-    when(decoder.io.out.is_addi) {
-      val res = rs1_data + imm
-      when(rd =/= 0.U) {
-        regFile.io.wen     := true.B
-        regFile.io.rd_data := res
-        printf(p"CORE EXECUTE: pc=${Hexadecimal(io.in.bits.pc)} ADDI x$rd = x${decoder.io.out.rs1}($rs1_data) + ${decoder.io.out.imm} | Result: $res\n")
-      }
+    // Writeback for single-cycle instructions
+    when(decoder.io.out.rd =/= 0.U) {
+      val result = Mux(decoder.io.out.is_mul, mul.io.result, alu.io.result)
+      regFile.io.wen     := (alu.io.result =/= 0.U || decoder.io.out.is_mul) // simplified
+      regFile.io.wen     := !decoder.io.out.is_branch && !decoder.io.out.is_div
+      regFile.io.rd_data := result
     }
 
-    // ADD: rd = rs1 + rs2
-    .elsewhen(decoder.io.out.is_add) {
-      val res = rs1_data + rs2_data
-      when(rd =/= 0.U) {
-        regFile.io.wen     := true.B
-        regFile.io.rd_data := res
-        printf(p"CORE EXECUTE: pc=${Hexadecimal(io.in.bits.pc)} ADD  x$rd = x${decoder.io.out.rs1}($rs1_data) + x${decoder.io.out.rs2}($rs2_data) | Result: $res\n")
-      }
-    }
-
-    // MUL: rd = rs1 * rs2  (lower 64 bits)
-    .elsewhen(decoder.io.out.is_mul) {
-      val res = rs1_data * rs2_data
-      when(rd =/= 0.U) {
-        regFile.io.wen     := true.B
-        regFile.io.rd_data := res
-        printf(p"CORE EXECUTE: pc=${Hexadecimal(io.in.bits.pc)} MUL  x$rd = x${decoder.io.out.rs1}($rs1_data) * x${decoder.io.out.rs2}($rs2_data) | Result: $res\n")
-      }
-    }
-
-    // DIV: latch operands and kick off the stall machine
-    .elsewhen(decoder.io.out.is_div) {
-      div_rs1    := rs1_data
-      div_rs2    := rs2_data
-      div_rd     := rd
-      div_pc     := io.in.bits.pc
-      divCounter := 0.U
-      divState   := s_busy
-    }
-
-    // Default: Check for Ghost Jumps (BPU jumped, but this isn't a branch)
-    when(io.in.fire && io.in.bits.is_predicted_taken && !decoder.io.out.is_branch) {
+    // Branch Redirection Logic
+    when(bru.io.mispredict) {
       io.redirect.valid := true.B
-      io.redirect.target := io.in.bits.pc + 4.U
-      printf(p"CORE EXECUTE: GHOST JUMP MISPREDICT! pc=${Hexadecimal(io.in.bits.pc)} (Not a branch) -> Redirecting to ${Hexadecimal(io.redirect.target)}\n")
+      printf(p"CORE EXECUTE: MISPREDICT! pc=${Hexadecimal(io.in.bits.pc)} -> Redirecting to ${Hexadecimal(bru.io.target)}\n")
+    } .elsewhen(decoder.io.out.is_branch) {
+      printf(p"CORE EXECUTE: pc=${Hexadecimal(io.in.bits.pc)} Branch Correct\n")
     }
 
-    // BNE: if rs1 != rs2, redirect to pc + imm
-    .elsewhen(decoder.io.out.is_bne) {
-      val taken = rs1_data =/= rs2_data
-      val predicted_taken = io.in.bits.is_predicted_taken
-      
-      val target_pc = (io.in.bits.pc.asSInt + decoder.io.out.imm).asUInt
-      val fallthrough_pc = io.in.bits.pc + 4.U
-
-      when(taken =/= predicted_taken) {
-        io.redirect.valid := true.B
-        io.redirect.target := Mux(taken, target_pc, fallthrough_pc)
-        printf(p"CORE EXECUTE: MISPREDICT! pc=${Hexadecimal(io.in.bits.pc)} BNE taken=$taken pred=$predicted_taken -> Redirecting to ${Hexadecimal(io.redirect.target)}\n")
-      } .otherwise {
-        printf(p"CORE EXECUTE: pc=${Hexadecimal(io.in.bits.pc)} BNE taken=$taken pred=$predicted_taken (Correct)\n")
-      }
+    // Latch DIV metadata
+    when(decoder.io.out.is_div) {
+      div_rd_latch := decoder.io.out.rd
+      div_pc_latch := io.in.bits.pc
     }
 
-    .elsewhen(decoder.io.out.is_blt) {
-      val taken = rs1_data.asSInt < rs2_data.asSInt
-      val predicted_taken = io.in.bits.is_predicted_taken
-
-      val target_pc = (io.in.bits.pc.asSInt + decoder.io.out.imm).asUInt
-      val fallthrough_pc = io.in.bits.pc + 4.U
-
-      when(taken =/= predicted_taken) {
-        io.redirect.valid := true.B
-        io.redirect.target := Mux(taken, target_pc, fallthrough_pc)
-        printf(p"CORE EXECUTE: MISPREDICT! pc=${Hexadecimal(io.in.bits.pc)} BLT taken=$taken pred=$predicted_taken -> Redirecting to ${Hexadecimal(io.redirect.target)}\n")
-      } .otherwise {
-        printf(p"CORE EXECUTE: pc=${Hexadecimal(io.in.bits.pc)} BLT taken=$taken pred=$predicted_taken (Correct)\n")
-      }
+    // Printfs for ALU/MUL
+    when(decoder.io.out.is_addi || decoder.io.out.is_add || decoder.io.out.is_andi || decoder.io.out.is_ori || decoder.io.out.is_xori || decoder.io.out.is_and || decoder.io.out.is_or || decoder.io.out.is_xor) {
+       printf(p"CORE EXECUTE: pc=${Hexadecimal(io.in.bits.pc)} ALU res: ${alu.io.result}\n")
     }
   }
 
-
-  // -----------------------------------------------------------------------
-  // Division stall FSM — runs every cycle independently of io.in.fire
-  // -----------------------------------------------------------------------
-  switch(divState) {
-
-    is(s_busy) {
-      divCounter := divCounter + 1.U
-      // On the last busy cycle: compute + register the result, then move on.
-      // We guard div_rs2 = 0 per RISC-V spec (result is -1 for signed divBy0).
-      when(divCounter === (DIV_LATENCY - 1).U) {
-        val safe_rs2 = Mux(div_rs2 === 0.U, 1.U(64.W), div_rs2)
-        div_result := (div_rs1.asSInt / safe_rs2.asSInt).asUInt
-        divState   := s_done
-      }
-    }
-
-    is(s_done) {
-      // Write the registered result back to the register file
-      when(div_rd =/= 0.U) {
-        regFile.io.wen     := true.B
-        regFile.io.rd_addr := div_rd
-        regFile.io.rd_data := div_result
-        printf(p"CORE EXECUTE: pc=${Hexadecimal(div_pc)} DIV  x${div_rd} = x${div_rs1}(${div_rs1}) / x${div_rs2}(${div_rs2}) | Result: ${div_result} (after 32-cycle stall)\n")
-      }
-      divState := s_idle
-    }
+  // Handle Multi-cycle (DIV) writeback
+  when(div.io.done) {
+    regFile.io.wen     := true.B
+    regFile.io.rd_addr := div_rd_latch
+    regFile.io.rd_data := div.io.result
+    printf(p"CORE EXECUTE: pc=${Hexadecimal(div_pc_latch)} DIV Result: ${div.io.result} (after stall)\n")
   }
 }

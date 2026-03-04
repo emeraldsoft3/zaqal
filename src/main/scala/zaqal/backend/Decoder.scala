@@ -21,20 +21,25 @@ class Decoder extends Module {
   val i_imm = io.inst(31, 20).asSInt
   val b_imm = Cat(io.inst(31), io.inst(7), io.inst(30, 25), io.inst(11, 8), 0.U(1.W)).asSInt
 
-  // I-Type: ADDI  -> opcode=0010011, funct3=000
+
   io.out.is_addi := (opcode === "b0010011".U) && (funct3 === "b000".U)
+  io.out.is_andi := (opcode === "b0010011".U) && (funct3 === "b111".U)
+  io.out.is_ori  := (opcode === "b0010011".U) && (funct3 === "b110".U)
+  io.out.is_xori := (opcode === "b0010011".U) && (funct3 === "b100".U)
   io.out.imm     := i_imm.asSInt
 
-  // R-Type: ADD   -> opcode=0110011, funct3=000, funct7=0000000
   io.out.is_add  := (opcode === "b0110011".U) && (funct3 === "b000".U) && (funct7 === "b0000000".U)
+  io.out.is_and  := (opcode === "b0110011".U) && (funct3 === "b111".U) && (funct7 === "b0000000".U)
+  io.out.is_or   := (opcode === "b0110011".U) && (funct3 === "b110".U) && (funct7 === "b0000000".U)
+  io.out.is_xor  := (opcode === "b0110011".U) && (funct3 === "b100".U) && (funct7 === "b0000000".U)
 
-  // M-extension: MUL -> opcode=0110011, funct3=000, funct7=0000001
+
   io.out.is_mul  := (opcode === "b0110011".U) && (funct3 === "b000".U) && (funct7 === "b0000001".U)
 
-  // M-extension: DIV -> opcode=0110011, funct3=100, funct7=0000001
+
   io.out.is_div  := (opcode === "b0110011".U) && (funct3 === "b100".U) && (funct7 === "b0000001".U)
 
-  // B-type: BNE -> opcode=1100011, funct3=001
+
   io.out.is_bne    := (opcode === "b1100011".U) && (funct3 === "b001".U)
   io.out.is_branch := (opcode === "b1100011".U)
 
