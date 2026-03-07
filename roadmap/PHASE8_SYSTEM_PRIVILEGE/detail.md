@@ -2,18 +2,29 @@
 
 To run an Operating System, we need "Privilege Mode" and "Address Translation."
 
-## Week 1: CSRs & Privilege Levels
-- [ ] **Control and Status Registers (CSRs)**: `mtvec`, `mepc`, `mstatus`, etc.
-- [ ] **Privilege Modes**: Machine (M), Supervisor (S), and User (U).
-- [ ] **Traps & Interrupts**: Handling timer interrupts and software exceptions.
-- [ ] **PMP & PMA**: Implementing Physical Memory Protection and Attributes checking.
+## Goal: Supervisor Mode & Virtual Memory Support
 
-## Week 2: Virtual Memory (Sv39 MMU)
-- [ ] **Translation Lookaside Buffer (TLB)**: Caching page table entries.
-- [ ] **Page Table Walker**: Hardware walker to traverse memory if the TLB misses.
-- [ ] **Address Protection**: Checking Read/Write/Execute permissions.
+## Day 1-3: CSR Implementation
+- [ ] Implement Control and Status Registers (CSRs) for Machine and Supervisor modes.
+- **XiangShan Study**: [CSR.scala](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/backend/fu/CSR.scala) - *See how CSRs are managed.*
 
-## Week 3: Platform & Debug
-- [ ] **PLIC & CLINT**: Platform Level Interrupt Controller and Core Local Interruptor.
-- [ ] **A-Extension Integration**: Ensuring Atomics work across the MMU.
-- [ ] **RISC-V Debug Module**: JTAG/GDB support for hardware debugging (D-Extension).
+## Day 4-5: Privilege Levels & Trap Handling
+- [ ] Implement switching between M, S, and U modes.
+- [ ] Handle exceptions, interrupts, and environment calls (ecall).
+- **XiangShan Study**: [ExceptionGen.scala](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/backend/rob/ExceptionGen.scala) - *How exceptions are tracked for state recovery.*
+
+## Day 6-7: PMP & PMA
+- [ ] Implement Physical Memory Protection (PMP) and Physical Memory Attributes (PMA).
+- **XiangShan Study**: [PMP.scala](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/backend/fu/PMP.scala) and [PMA.scala](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/backend/fu/PMA.scala).
+
+## Day 8-10: TLB (Translation Lookaside Buffer)
+- [ ] Build the TLB for fast virtual-to-physical address translation.
+- **XiangShan Study**: [TLB.scala](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/cache/mmu/TLB.scala) - *Study the TLB architecture.*
+
+## Day 11-13: Page Table Walker
+- [ ] Implement a hardware walker for Sv39 page tables.
+- **XiangShan Study**: [PageTableWalker.scala](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/cache/mmu/PageTableWalker.scala) - *Study the state machine for page walking.*
+
+## Day 14-15: System Integration (PLIC/CLINT)
+- [ ] Integrate the PLIC and CLINT for interrupt management.
+- **Goal**: Boot a minimal kernel or "Hello World" in supervisor mode.

@@ -2,22 +2,32 @@
 
 This is the most complex structural change. We move from "one by one" to "do whatever is ready."
 
-## Week 1: Register Renaming & Cache
-- [ ] **Map Table (RAT)**: Mapping 31 architectural registers to 128+ physical registers.
-- [ ] **Free List**: Managing available physical registers.
-- [ ] **Register Cache**: Implementing a small, fast cache in front of the Large Physical Register File to meet timing at high frequencies.
-- [ ] **Eliminated Move**: Implementing "Zero-cycle" moves by just re-mapping.
+## Goal: High-Performance Out-of-Order Execution
 
-## Week 2: Reorder Buffer (ROB)
-- [ ] **ROB Structure**: Tracking the status of every in-flight instruction.
-- [ ] **In-Order Commit**: Ensuring that even if instructions finish out of order, they update the state in order.
-- [ ] **Exception Handling**: Flushed the pipeline correctly when an OoO instruction faults.
+## Day 1-3: Reorder Buffer (ROB) Logic
+- [ ] Implement the ROB to track in-flight instructions and manage commit.
+- **XiangShan Study**: [Rob.scala](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/backend/rob/Rob.scala) - *Study the main ROB logic.*
 
-## Week 3: Issue Queues & FU Clusters
-- [ ] **Distributed Issue Queues**: Separate queues for each cluster (ALU, MEM, BRANCH, VECTOR).
-- [ ] **Wakeup & Select Loop**: Optimizing the selection logic for GHz-level frequencies.
-- [ ] **Payload RAM Bypass**: Reducing latency for ready-to-execute instructions.
+## Day 4-5: ROB Pointers & Wrappers
+- [ ] Manage enqueue and dequeue pointers for the circular ROB buffer.
+- **XiangShan Study**: [RobEnqPtrWrapper.scala](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/backend/rob/RobEnqPtrWrapper.scala) - *See how they handle pointer wrapping.*
 
-## Week 4: Load/Store Disambiguation
-- [ ] **Load-Store Queue (LSQ)**: Ensuring a Load doesn't bypass a Store to the same address.
-- [ ] **Memory Dependency Predictor**: Guessing if a Load will conflict with a Store.
+## Day 6-8: Register Renaming (RAT Refinement)
+- [ ] Transition to a full physical register file (PRF) with Rename Alias Table (RAT).
+- **XiangShan Study**: [RenameTable.scala](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/backend/rename/RenameTable.scala) - *Deep dive into renaming.*
+
+## Day 9-11: Register Cache (Timing fix)
+- [ ] Implement a Register Cache (RC) to reduce PRF read latency.
+- **XiangShan Study**: [regcache/](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/backend/regcache/) - *Study the register cache implementation.*
+
+## Day 12-14: Issue Queues (Wakeup & Select)
+- [ ] Implement distributed issue queues for ALU, Mem, and Branch units.
+- **XiangShan Study**: [IssueQueue.scala](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/backend/issue/IssueQueue.scala) - *Wakeup and selection logic.*
+
+## Day 15-17: Memory Disambiguation (LSQ)
+- [ ] Implement Load/Store Queues to handle memory dependencies out-of-order.
+- **XiangShan Study**: [lsqueue/](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/mem/lsqueue/) - *Explore the load-store queue logic.*
+
+## Day 18-20: Exception & Flush Handling
+- [ ] Ensure precise exceptions and correct state recovery on flushes.
+- **XiangShan Study**: [ExceptionGen.scala](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/backend/rob/ExceptionGen.scala) - *How exceptions are tracked in the ROB.*

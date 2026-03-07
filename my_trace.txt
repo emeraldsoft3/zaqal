@@ -1,0 +1,9 @@
+mill zaqal.runMain zaqal.ZaqalTest
+java.lang.IllegalStateException: Worker wire broken, worker likely crashed. Connection DaemonRpcClient
+	at mill.rpc.MillRpcClient$.mill$rpc$MillRpcClient$$$_$awaitForResponse$1(MillRpcClient.scala:63)
+	at mill.rpc.MillRpcClient$$anon$1.apply(MillRpcClient.scala:96)
+	at mill.launcher.MillServerLauncher.runRpc(MillServerLauncher.scala:115)
+	at mill.launcher.MillServerLauncher.run(MillServerLauncher.scala:50)
+	at mill.launcher.MillLauncherMain$.main0(MillLauncherMain.scala:98)
+	at mill.launcher.MillLauncherMain$.main(MillLauncherMain.scala:17)
+	at mill.launcher.MillLauncherMain.main(MillLauncherMain.scala)

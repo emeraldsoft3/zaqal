@@ -24,15 +24,13 @@ class Execute extends Module {
   regFile.io.rs2_addr := decoder.io.out.rs2
   
   val src1 = regFile.io.rs1_data
-  val src2 = Mux(decoder.io.out.is_branch, src1, // placeholder if needed
-             Mux(decoder.io.out.is_addi || decoder.io.out.is_andi || decoder.io.out.is_ori || decoder.io.out.is_xori, 
-                 decoder.io.out.imm.asUInt, 
-                 regFile.io.rs2_data))
-                 
-  // Correction: src2 logic for immediate instructions
-  val operand2 = Mux(decoder.io.out.is_addi || decoder.io.out.is_andi || decoder.io.out.is_ori || decoder.io.out.is_xori,
-                     decoder.io.out.imm.asUInt,
-                     regFile.io.rs2_data)
+  val is_imm_type = decoder.io.out.is_addi || decoder.io.out.is_andi || decoder.io.out.is_ori || decoder.io.out.is_xori ||
+                    decoder.io.out.is_slli || decoder.io.out.is_srli || decoder.io.out.is_srai ||
+                    decoder.io.out.is_slliw || decoder.io.out.is_srliw || decoder.io.out.is_sraiw ||
+                    decoder.io.out.is_slti || decoder.io.out.is_sltiu ||
+                    decoder.io.out.is_lui  || decoder.io.out.is_auipc
+
+  val operand2 = Mux(is_imm_type, decoder.io.out.imm.asUInt, regFile.io.rs2_data)
 
   // 2. Functional Units
   val alu  = Module(new ALU)
@@ -43,8 +41,10 @@ class Execute extends Module {
   // 3. Connect FUs
   alu.io.src1 := src1
   alu.io.src2 := operand2
+  alu.io.pc   := io.in.bits.pc
   alu.io.dec  := decoder.io.out
-
+  
+  // ... (bru, mul, div wiring remains similar)
   bru.io.src1 := src1
   bru.io.src2 := regFile.io.rs2_data
   bru.io.dec  := decoder.io.out
@@ -76,12 +76,11 @@ class Execute extends Module {
     // Writeback for single-cycle instructions
     when(decoder.io.out.rd =/= 0.U) {
       val result = Mux(decoder.io.out.is_mul, mul.io.result, alu.io.result)
-      regFile.io.wen     := (alu.io.result =/= 0.U || decoder.io.out.is_mul) // simplified
       regFile.io.wen     := !decoder.io.out.is_branch && !decoder.io.out.is_div
       regFile.io.rd_data := result
     }
 
-    // Branch Redirection Logic
+    // Branch Redirection Logic (unchanged)
     when(bru.io.mispredict) {
       io.redirect.valid := true.B
       printf(p"CORE EXECUTE: MISPREDICT! pc=${Hexadecimal(io.in.bits.pc)} -> Redirecting to ${Hexadecimal(bru.io.target)}\n")
@@ -89,15 +88,24 @@ class Execute extends Module {
       printf(p"CORE EXECUTE: pc=${Hexadecimal(io.in.bits.pc)} Branch Correct\n")
     }
 
-    // Latch DIV metadata
+    // Latch DIV metadata (unchanged)
     when(decoder.io.out.is_div) {
       div_rd_latch := decoder.io.out.rd
       div_pc_latch := io.in.bits.pc
     }
 
     // Printfs for ALU/MUL
-    when(decoder.io.out.is_addi || decoder.io.out.is_add || decoder.io.out.is_andi || decoder.io.out.is_ori || decoder.io.out.is_xori || decoder.io.out.is_and || decoder.io.out.is_or || decoder.io.out.is_xor) {
-       printf(p"CORE EXECUTE: pc=${Hexadecimal(io.in.bits.pc)} ALU res: ${alu.io.result}\n")
+    val is_alu_op = decoder.io.out.is_addi || decoder.io.out.is_add || decoder.io.out.is_andi || decoder.io.out.is_ori || 
+                    decoder.io.out.is_xori || decoder.io.out.is_and || decoder.io.out.is_or || decoder.io.out.is_xor ||
+                    decoder.io.out.is_sll  || decoder.io.out.is_srl || decoder.io.out.is_sra ||
+                    decoder.io.out.is_slli || decoder.io.out.is_srli || decoder.io.out.is_srai ||
+                    decoder.io.out.is_sllw || decoder.io.out.is_srlw || decoder.io.out.is_sraw ||
+                    decoder.io.out.is_slliw || decoder.io.out.is_srliw || decoder.io.out.is_sraiw ||
+                    decoder.io.out.is_slt  || decoder.io.out.is_sltu || decoder.io.out.is_slti || decoder.io.out.is_sltiu ||
+                    decoder.io.out.is_lui  || decoder.io.out.is_auipc
+
+    when(is_alu_op) {
+       printf(p"CORE EXECUTE: pc=${Hexadecimal(io.in.bits.pc)} inst=${Hexadecimal(io.in.bits.inst_raw)} src1=${Hexadecimal(alu.io.src1)} src2=${Hexadecimal(alu.io.src2)} res=${Hexadecimal(alu.io.result)}\n")
     }
   }
 

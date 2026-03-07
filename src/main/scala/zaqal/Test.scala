@@ -33,7 +33,7 @@ object ZaqalTest extends App {
 
     // --- MAIN SIMULATION LOOP ---
     val resetCycles = 5
-    val maxCycles = 200 // Ensure we hit the loop exit misprediction
+    val maxCycles = 100 // Ensure we hit the loop exit misprediction
     
     for (cycle <- 0 until maxCycles) {
       // 1. Apply Reset

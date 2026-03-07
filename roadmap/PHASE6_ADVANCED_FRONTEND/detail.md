@@ -1,20 +1,36 @@
-# Phase 6: Advanced Frontend (XiangShan BPU)
+# Phase 6: Advanced AI-Frontend (Beyond TAGE)
 
-In a high-end core, the Frontend is a "Branch Prediction Factory." We will implement the multiple layers used by XiangShan.
+To feed a 6-wide OoO machine, we need near-perfect branch prediction. Zaqal will use a hybrid approach.
 
-## Week 1: Target Prediction (FTB & RAS)
-- [ ] **Fetch Target Buffer (FTB)**: Replacing traditional BTB with a more powerful target buffer capable of predicting multiple branches in a single fetch packet.
-- [ ] **Return Address Stack (RAS)**: A LIFO stack for function returns (100% accuracy for call/ret).
-- [ ] **Indirect Target Predictor**: For `JALR` instructions where the target changes dynamically.
+## Goal: Neural-Assisted Branch Prediction
 
-## Week 2: Conditional Prediction (TAGE)
-- [ ] **Bimodal Predictor**: The baseline.
-- [ ] **TAGE Predictor**: (TAgged GEometric) - The gold standard of branch prediction.
-- [ ] **Statistical Corrector (SC)**: A neural-network-like layer that fixes common TAGE mistakes.
-- [ ] **ITTAGE**: Specifically for indirect branches.
+## Day 1-3: FTB (Fetch Target Buffer) Refinement
+- [ ] Implement the FTB to store branch targets and prediction metadata.
+- **XiangShan Study**: [FTB.scala](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/frontend/FTB.scala)
 
-## Week 3: I-Cache & Fetch Logic
-- [ ] **Pre-decoder & Instruction Fold**: Identifying branches early and "folding" multiple jumps/branches in a single cycle.
-- [ ] **Instruction Fetch Queue (IFQ)**: Decoupling IF from IBUF.
-- [ ] **L1I Pre-fetcher**: Guessing the next line of code before it's even asked for.
-- [ ] **Banked I-Cache**: Delivering 16-32 bytes per cycle to the IBuffer.
+## Day 4-8: TAGE & ITTAGE Predictors
+- [ ] Implement the base TAGE (Tagged Geometric) predictor.
+- [ ] Add ITTAGE for indirect branch targets.
+- **XiangShan Study**: [Tage.scala](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/frontend/Tage.scala)
+
+## Day 9-13: Neural BPU (The Perceptron)
+- [ ] **Implementation**: Build a Perceptron table that learns branch history weights.
+- [ ] **Switchable Logic**: Implement a "mode bit" in a CSR to toggle between TAGE and Perceptron or use them in a tournament style.
+- **Goal**: Superior prediction of data-dependent patterns.
+
+## Day 14-15: BPU Composer & Performance Tuning
+- [ ] Integrate all predictors into a single BPU Composer.
+- [ ] Monitor accuracy and mispredict penalties.
+- **XiangShan Study**: [Bpu.scala](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/frontend/Bpu.scala)
+
+## Day 12: Pre-decoder & Instruction Fusion
+- [ ] Identify branches early and fuse instructions where possible.
+- **XiangShan Study**: [PreDecode.scala](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/frontend/PreDecode.scala) - *Look for branch identification logic.*
+
+## Day 13: Decoupled IF/IBUF (IFQ)
+- [ ] Redesign the fetch queue to decouple I-Cache from the IBuffer.
+- **Goal**: Allow fetch to continue even if the backend is stalled.
+
+## Day 14-15: Banked I-Cache & Prefetching
+- [ ] Implement a banked instruction cache for high bandwidth.
+- **XiangShan Study**: [icache/](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/frontend/icache/) - *Explore the I-Cache implementation.*

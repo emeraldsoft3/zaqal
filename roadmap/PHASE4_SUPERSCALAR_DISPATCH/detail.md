@@ -4,19 +4,42 @@ This is where we transition Zaqal from a simple core to a high-performance engin
 
 ## Goal: Multi-Issue Execution (6-Wide)
 
-## Day 13: The Multi-Wide IBuffer
-- [ ] Redesign `IBuffer.scala` as a banked queue (like XiangShan).
-- [ ] Ability to read 6 instructions in a single cycle.
+## Day 1: Multi-wide Frontend Interface
+- [ ] Update `FetchPacket` and `IBuffer` to support bundles of 6+ instructions.
+- **XiangShan Study**: [FrontendBundle.scala](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/frontend/FrontendBundle.scala) - *See how they define the fetch packet.*
 
-## Day 14: Parallel Decoders
+## Day 2: IBuffer Redesign (Banked Dequeue)
+- [ ] Implement parallel dequeue logic to feed multiple decoders.
+- **XiangShan Study**: [IBuffer.scala:L80-120](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/frontend/IBuffer.scala) - *How instructions are buffered and dequeued in parallel.*
+
+## Day 3: Parallel Decoders
 - [ ] Instantiate 6 `Decoder` modules in the Backend.
-- [ ] Map the 6 `IBuffer` outputs to these decoders.
+- **XiangShan Study**: [DecodeUnit.scala](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/backend/decode/DecodeUnit.scala) - *Look for parameters like `DecodeWidth`.*
 
-## Day 15: The Dispatcher (The Traffic Cop)
-- [ ] Implement the **Dispatch Tree**.
-- [ ] Routing: Send "Add" instructions to ALU ports, "Load" to Memory ports.
-- [ ] **Structural Hazard Check**: What if we have 6 Adds but only 4 ALUs? Implement stalling for the remaining 2.
+## Day 4: Register Renaming (Map Table)
+- [ ] Implement the Map Table to translate logical registers to physical registers.
+- **XiangShan Study**: [RenameTable.scala](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/backend/rename/RenameTable.scala) - *Study the RAT (Register Alias Table) implementation.*
 
-## Day 16: Handling Mispredicts in 6-Wide
-- [ ] Complexity: A branch might be in Position 3 of a 6-instruction bundle.
-- [ ] Logic: Instructions at positions 4, 5, and 6 must be discarded immediately, even if the whole bundle was valid.
+## Day 5: Free List Management
+- [ ] Build the Free List to track available physical registers.
+- **XiangShan Study**: [Rename.scala:L200-250](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/backend/rename/Rename.scala) - *Allocation and deallocation logic.*
+
+## Day 6: Dispatch Logic (The Traffic Cop)
+- [ ] Route decoded instructions to appropriate issue queues (ALU, MEM, etc.).
+- **XiangShan Study**: [Dispatch.scala](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/backend/decode/Dispatch.scala) - *How instructions are assigned to functional unit ports.*
+
+## Day 7: Structural Hazard Detection
+- [ ] Handle cases where available ports are fewer than ready instructions.
+- **Goal**: Implement backpressure from Dispatch to Frontend.
+
+## Day 8-10: Issue Queue Allocation & Selection
+- [ ] Implement the "Picker" logic for instruction selection.
+- **XiangShan Study**: [IssueQueue.scala](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/backend/issue/IssueQueue.scala) - *Study the selection (pick) and wakeup logic.*
+
+## Day 11-13: Execution Clusters
+- [ ] Group functional units into clusters (e.g., Integer, Float, Memory).
+- **XiangShan Study**: [XSCore.scala](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/XSCore.scala) - *See how the top-level core connects these components.*
+
+## Day 14-15: Flush Propagation & Completion
+- [ ] Verify that flushes correctly clear all 6 slots in the pipeline stages.
+- **Goal**: Maintain correctness while achieving 6-wide throughput.
