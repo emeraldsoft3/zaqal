@@ -42,3 +42,16 @@ This phase expansion covers the "A" (Atomic), "M" (Multiplication), and "B" (Bit
 ## Day 10: Bitmanip - Zbs (Single-bit)
 - [ ] `BSET`, `BCLR`, `BINV`, `BEXT`
 - **XiangShan Study**: [Bku.scala:L110-150](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/backend/fu/Bku.scala) - *Single-bit manipulation logic.*
+
+## Day 11-14: Floating Point Unit (FPU)
+- [ ] **F-Extension**: Single-precision FPU (RV64F).
+- [ ] **D-Extension**: Double-precision FPU (RV64D).
+- [ ] **Architecture**: Implement the FP register file (f0-f31) and status register (fcsr).
+- [ ] **Operations**: FADD, FSUB, FMUL, FDIV, FSQRT, FMIN/MAX, FCVT.
+- **XiangShan Study**: [fpu/](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/backend/fu/fpu/) - *Analyze the decoupled FP pipeline.*
+
+## Day 15: Memory/FP Integration
+- [ ] Implement `FLW`, `FSW`, `FLD`, `FSD` in the Load/Store unit.
+- **Goal**: Run basic floating point benchmarks (e.g., CoreMark-FP).
+
+---

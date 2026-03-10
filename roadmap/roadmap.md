@@ -14,10 +14,19 @@ To build a **Kunminghu-inspired**, superscalar, high-frequency RISC-V processor 
 | **0** | **Bootstrap** | [x] Completed | - |
 | **1** | **Base Integer ISA** | [/] In Progress | [Phase 1 Detail](phase1_integer_isa.md) |
 | **2** | **Simple Branching** | [ ] Planned | [Phase 2 Detail](phase2_branching.md) |
-| **3** | **Memory & Float** | [ ] Planned | [Phase 3 Detail](phase3_memory_extensions.md) |
+| **3** | **Memory & FPU** | [ ] Planned | [Phase 3 Detail](phase3_memory_extensions.md) |
 | **4** | **Superscalar Transition** | [ ] Planned | [Phase 4 Detail](phase4_superscalar.md) |
 | **5** | **Structural Optimization** | [ ] Planned | [Phase 5 Detail](phase5_structural_optimization.md) |
 | **6** | **Caches & Advanced BPU** | [ ] Planned | [Phase 6 Detail](phase6_advanced_frontend.md) |
+| **8** | **Linux & Privileged** | [ ] Planned | [Phase 8 Detail](PHASE8_SYSTEM_PRIVILEGE/detail.md) |
+
+---
+
+## Software Compatibility Goals
+Zaqal is designed to be a "real-world" processor capable of running:
+- **Linux Kernel**: Booting standard RISC-V Linux.
+- **Modern Applications**: Running software compiled for RV64GC.
+- **Windows Apps**: Compatibility via Wine on Linux.
 
 ---
 

@@ -11,9 +11,11 @@ This phase handles data movement and complex arithmetic like multiplication and 
 - [ ] `MUL`, `MULH`, `MULHSU`, `MULHU`, `MULW`
 - [ ] `DIV`, `DIVU`, `REM`, `REMU`, `DIVW`, `DIVUW`, `REMW`, `REMUW`
 
-### Day 10-12: Floating Point (F & D Extensions - Optional Start)
-- [ ] `FLW`, `FSW`, `FLD`, `FSD`
-- [ ] `FADD.S`, `FSUB.S`, `FMUL.S`, `FDIV.S`
+### Day 10-12: Floating Point (F & D Extensions)
+- [ ] **RV64F**: Single-precision floating point instructions.
+- [ ] **RV64D**: Double-precision floating point instructions.
+- [ ] Implement FPU pipeline (Fadd, Fmul, Fdiv, Fsqrt).
+- **XiangShan Study**: [fpu/](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/backend/fu/fpu/) - *Study the FP pipeline.*
 
 ---
 

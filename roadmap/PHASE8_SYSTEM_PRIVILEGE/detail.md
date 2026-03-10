@@ -25,6 +25,20 @@ To run an Operating System, we need "Privilege Mode" and "Address Translation."
 - [ ] Implement a hardware walker for Sv39 page tables.
 - **XiangShan Study**: [PageTableWalker.scala](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/cache/mmu/PageTableWalker.scala) - *Study the state machine for page walking.*
 
-## Day 14-15: System Integration (PLIC/CLINT)
-- [ ] Integrate the PLIC and CLINT for interrupt management.
-- **Goal**: Boot a minimal kernel or "Hello World" in supervisor mode.
+## Day 14-16: System Integration (SBI & UART)
+- [ ] **SBI (Supervisor Binary Interface)**: Support for OpenSBI or similar firmware.
+- [ ] **UART/Console**: Basic serial output to see the "Linux Banner."
+- **Goal**: Boot a minimal kernel and see output on the terminal.
+
+## Day 17-20: Advanced Interrupts (PLIC/CLINT)
+- [ ] **PLIC**: Platform-Level Interrupt Controller for external device interrupts.
+- [ ] **CLINT**: Core-Local Interruptor for timer and software interrupts (MTIME).
+- **Verification**: Successfully run `riscv-linux` in simulation (Spike or Verilator).
+
+---
+
+## Linux Readiness Checklist
+- [x] **RV64I/M/A/F/D** (The "G" extension).
+- [ ] **Supervisor Mode** (S-mode).
+- [ ] **Sv39/48 MMU**.
+- [ ] **Timer Interrupts** for context switching.
