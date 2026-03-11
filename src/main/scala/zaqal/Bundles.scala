@@ -64,6 +64,10 @@ class DecodeSignals extends Bundle {
   val is_sltu = Bool()  // R-type SLTU
   val is_slti = Bool()  // I-type SLTI
   val is_sltiu = Bool() // I-type SLTIU
+  val is_sub   = Bool() // R-type SUB
+  val is_addw  = Bool() // R-type ADDW
+  val is_subw  = Bool() // R-type SUBW
+  val is_addiw = Bool() // I-type ADDIW
   val is_lui   = Bool() // U-type LUI
   val is_auipc = Bool() // U-type AUIPC
   val is_branch = Bool() // General branch hint

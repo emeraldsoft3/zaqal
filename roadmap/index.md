@@ -38,6 +38,10 @@ To ensure Zaqal is a "real-world" processor, we target:
 To be truly "XiangShan-like", we must eventually implement:
 - [ ] **Multi-stage BPU** (Bimodal -> GShare -> TAGE -> ITTAGE).
 - [ ] **Instruction Buffer (IBuffer)** with banked parallel dequeue.
+- [ ] Privilege Levels (M, S, U)
+- [ ] CSRs & Exceptions
+- [ ] MMU (Sv39)
+- [ ] 32-bit Compatibility (UXL/SXL)
 - [ ] **Rename Stage** (Map Table + Free List).
 - [ ] **Reorder Buffer (ROB)** for in-order commitment.
 - [ ] **Distributed Issue Queues** (Separate queues for ALU, MEM, etc.).

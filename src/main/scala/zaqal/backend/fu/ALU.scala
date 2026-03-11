@@ -20,9 +20,10 @@ class ALU extends Module {
   val comparator = Module(new Comparator)
 
   // 2. Wiring
-  adder.io.src1   := io.src1
-  adder.io.src2   := io.src2
-  adder.io.is_add := io.dec.is_add || io.dec.is_addi || io.dec.is_auipc
+  adder.io.src1    := io.src1
+  adder.io.src2    := io.src2
+  adder.io.is_sub  := io.dec.is_sub || io.dec.is_subw
+  adder.io.is_word := io.dec.is_addw || io.dec.is_subw || io.dec.is_addiw
 
   logical.io.src1   := io.src1
   logical.io.src2   := io.src2
@@ -46,7 +47,8 @@ class ALU extends Module {
 
   // 3. Result Selection
   io.result := MuxCase(0.U, Seq(
-    (io.dec.is_add || io.dec.is_addi) -> adder.io.result,
+    (io.dec.is_add || io.dec.is_addi || io.dec.is_sub || 
+     io.dec.is_addw || io.dec.is_subw || io.dec.is_addiw) -> adder.io.result,
     (io.dec.is_auipc) -> (io.pc + io.src2), // Direct PC + Imm
     (io.dec.is_lui)   -> io.src2,           // Direct Imm
     (io.dec.is_and || io.dec.is_andi || 

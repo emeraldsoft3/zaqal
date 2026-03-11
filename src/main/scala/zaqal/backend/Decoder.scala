@@ -34,6 +34,7 @@ class Decoder extends Module {
 
   io.out.is_slti  := (opcode === "b0010011".U) && (funct3 === "b010".U)
   io.out.is_sltiu := (opcode === "b0010011".U) && (funct3 === "b011".U)
+  io.out.is_sub   := (opcode === "b0110011".U) && (funct3 === "b000".U) && (funct7 === "b0100000".U)
 
   io.out.imm     := i_imm
 
@@ -45,6 +46,9 @@ class Decoder extends Module {
   io.out.is_srl  := (opcode === "b0110011".U) && (funct3 === "b101".U) && (funct7 === "b0000000".U)
   io.out.is_sra  := (opcode === "b0110011".U) && (funct3 === "b101".U) && (funct7 === "b0100000".U)
   
+  io.out.is_addw := (opcode === "b0111011".U) && (funct3 === "b000".U) && (funct7 === "b0000000".U)
+  io.out.is_subw := (opcode === "b0111011".U) && (funct3 === "b000".U) && (funct7 === "b0100000".U)
+  
   io.out.is_sllw := (opcode === "b0111011".U) && (funct3 === "b001".U) && (funct7 === "b0000000".U)
   io.out.is_srlw := (opcode === "b0111011".U) && (funct3 === "b101".U) && (funct7 === "b0000000".U)
   io.out.is_sraw := (opcode === "b0111011".U) && (funct3 === "b101".U) && (funct7 === "b0100000".U)
@@ -53,6 +57,7 @@ class Decoder extends Module {
   io.out.is_slliw := (opcode === "b0011011".U) && (funct3 === "b001".U) && (io.inst(31, 25) === "b0000000".U)
   io.out.is_srliw := (opcode === "b0011011".U) && (funct3 === "b101".U) && (io.inst(31, 25) === "b0000000".U)
   io.out.is_sraiw := (opcode === "b0011011".U) && (funct3 === "b101".U) && (io.inst(31, 25) === "b0100000".U)
+  io.out.is_addiw := (opcode === "b0011011".U) && (funct3 === "b000".U)
   io.out.is_slt  := (opcode === "b0110011".U) && (funct3 === "b010".U) && (funct7 === "b0000000".U)
   io.out.is_sltu := (opcode === "b0110011".U) && (funct3 === "b011".U) && (funct7 === "b0000000".U)
 

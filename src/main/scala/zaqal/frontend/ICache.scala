@@ -12,13 +12,15 @@ class ICache extends Module {
   })
 
 val program = VecInit(Seq(
-  "h00100093".U, // 00: addi x1, x0, 1
-  "h12345117".U, // 04: auipc x2, 0x12345   (x2 = 0x80000004 + 0x12345000 = 0x92345004)
-  "h00200193".U, // 08: addi x3, x0, 2
-  "h00000217".U, // 0c: auipc x4, 0         (x4 = 0x8000000c + 0 = 0x8000000c)
-  "h00300293".U, // 10: addi x5, x0, 3
-  "hfffff317".U, // 14: auipc x6, 0xfffff   (x6 = 0x80000014 - 0x1000 = 0x7ffff014)
-  "h0000006f".U  // 18: jal x0, 0           (Endless loop)
+  "h00a00093".U, // 00: addi x1, x0, 10
+  "h01400113".U, // 04: addi x2, x0, 20
+  "h402081b3".U, // 08: sub x3, x1, x2         (x3 = -10 = 0xfffffffffffffff6)
+  "h80000237".U, // 0c: lui x4, 0x80000        (x4 = 0xffffffff80000000)
+  "h0012029b".U, // 10: addiw x5, x4, 1        (x5 = 0xffffffff80000001)
+  "hfff0031b".U, // 14: addiw x6, x0, -1       (x6 = 0xffffffffffffffff)
+  "h406003bb".U, // 18: subw x7, x0, x6        (x7 = 1)
+  "h0062043b".U, // 1c: addw x8, x4, x6        (0x80000000 + 0xffffffff = 0x7fffffff, sign-extend -> 0x000000007fffffff)
+  "h0000006f".U  // 20: jal x0, 0              (Endless loop)
 ).padTo(128, "h00000013".U))
 
   val relative_pc = io.pc - "h8000_0000".U

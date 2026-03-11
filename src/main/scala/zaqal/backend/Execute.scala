@@ -27,7 +27,7 @@ class Execute extends Module {
   val is_imm_type = decoder.io.out.is_addi || decoder.io.out.is_andi || decoder.io.out.is_ori || decoder.io.out.is_xori ||
                     decoder.io.out.is_slli || decoder.io.out.is_srli || decoder.io.out.is_srai ||
                     decoder.io.out.is_slliw || decoder.io.out.is_srliw || decoder.io.out.is_sraiw ||
-                    decoder.io.out.is_slti || decoder.io.out.is_sltiu ||
+                    decoder.io.out.is_slti || decoder.io.out.is_sltiu || decoder.io.out.is_addiw ||
                     decoder.io.out.is_lui  || decoder.io.out.is_auipc
 
   val operand2 = Mux(is_imm_type, decoder.io.out.imm.asUInt, regFile.io.rs2_data)
@@ -102,6 +102,7 @@ class Execute extends Module {
                     decoder.io.out.is_sllw || decoder.io.out.is_srlw || decoder.io.out.is_sraw ||
                     decoder.io.out.is_slliw || decoder.io.out.is_srliw || decoder.io.out.is_sraiw ||
                     decoder.io.out.is_slt  || decoder.io.out.is_sltu || decoder.io.out.is_slti || decoder.io.out.is_sltiu ||
+                    decoder.io.out.is_sub  || decoder.io.out.is_addw || decoder.io.out.is_subw || decoder.io.out.is_addiw ||
                     decoder.io.out.is_lui  || decoder.io.out.is_auipc
 
     when(is_alu_op) {
