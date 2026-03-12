@@ -71,6 +71,7 @@ class Decoder extends Module {
   io.out.is_div  := (opcode === "b0110011".U) && (funct3 === "b100".U) && (funct7 === "b0000001".U)
 
 
+  io.out.is_beq    := (opcode === "b1100011".U) && (funct3 === "b000".U)
   io.out.is_bne    := (opcode === "b1100011".U) && (funct3 === "b001".U)
   io.out.is_branch := (opcode === "b1100011".U)
 

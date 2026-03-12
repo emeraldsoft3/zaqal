@@ -17,10 +17,12 @@ class BRU extends Module {
     val target          = Output(UInt(64.W))
   })
 
+  val taken_beq = io.src1 === io.src2
   val taken_bne = io.src1 =/= io.src2
   val taken_blt = io.src1.asSInt < io.src2.asSInt
   
   val actual_taken = MuxCase(false.B, Seq(
+    io.dec.is_beq -> taken_beq,
     io.dec.is_bne -> taken_bne,
     io.dec.is_blt -> taken_blt
   ))

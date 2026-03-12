@@ -30,35 +30,24 @@ class BPU extends Module {
 
   val mask_reg = RegInit("hFF".U(8.W))
 
-  val is_bne_at_20 = (s0_pc === "h8000_0020".U) && mask_reg(0)
-  val is_loop_exit_at_6c = (s0_pc === "h8000_0060".U) && mask_reg(3)
+  val is_beq_at_0c = (s0_pc === "h8000_0000".U) && mask_reg(3) // 0x0c is slot 3 of 0x8000_0000
 
   when(io.redirect.valid) {
     next_pc := align(io.redirect.target)
     val offset = io.redirect.target(4, 2)
     mask := ("hFF".U << offset)(7, 0)
     mask_reg := ("hFF".U << offset)(7, 0)
+   } .elsewhen(is_beq_at_0c && io.out.fire) {
+     // Prediction: BEQ at 0x0c (slot 3) is TAKEN to 0x14 (same block, slot 5)
+     // We fetch 0x00, 04, 08, 0c. Then skip 0x10. Then fetch 0x14-0x1c.
+     next_pc     := s0_pc + 32.U
+     meta.target := "h8000_0014".U
+     meta.taken  := true.B
+     meta.slot   := 3.U
+     mask        := "hEF".U // Binary 1110_1111: Bit 4 (0x10) skipped
+     mask_reg    := "hFF".U
+     printf("BPU: Predicting BEQ at 0x0c TAKEN to 0x14 (Intra-block jump)\n")
    } 
-  // .elsewhen(is_bne_at_20 && io.out.fire) {
-  //   // Prediction: BNE at 0x20 (slot 0) is TAKEN to 0x28 (slot 2)
-  //   // We fetch 0x20, skip 0x24, and fetch 0x28-0x3c in this same block.
-  //   next_pc     := s0_pc + 32.U
-  //   meta.target := "h8000_0028".U
-  //   meta.taken  := true.B
-  //   meta.slot   := 0.U
-  //   mask        := "hFD".U // Binary 1111_1101: Bit 1 (0x24) skipped
-  //   mask_reg    := "hFF".U
-  //   printf("BPU: Predicting BNE at 0x20 TAKEN to 0x28 (Intra-block jump)\n")
-  // } //.elsewhen(is_loop_exit_at_6c && io.out.fire) {
-    // // Prediction: Loop exit at 0x6c (slot 3) is TAKEN to 0x0c (slot 3 of block 00)
-    // next_pc     := align("h8000_000c".U) // 0x8000_0000
-    // meta.target := "h8000_0000".U
-    // meta.taken  := true.B
-    // meta.slot   := 3.U // Instruction at 0x6c
-    // mask        := "h0F".U // Only 0x60, 64, 68, 6c valid in this packet
-    // mask_reg    := ("hFF".U << 3)(7, 0) // Next packet starts at slot 3 (0x0c)
-    // printf("BPU: Predicting Loop Exit at 0x6c TAKEN to 0x0c\n")
- // } 
   .elsewhen(io.out.fire) {
     next_pc := s0_pc + 32.U
     mask    := mask_reg

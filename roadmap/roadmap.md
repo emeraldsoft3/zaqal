@@ -12,12 +12,12 @@ To build a **Kunminghu-inspired**, superscalar, high-frequency RISC-V processor 
 | Phase | Focus | Status | Detail Link |
 | :--- | :--- | :--- | :--- |
 | **0** | **Bootstrap** | [x] Completed | - |
-| **1** | **Base Integer ISA** | [/] In Progress | [Phase 1 Detail](phase1_integer_isa.md) |
-| **2** | **Simple Branching** | [ ] Planned | [Phase 2 Detail](phase2_branching.md) |
-| **3** | **Memory & FPU** | [ ] Planned | [Phase 3 Detail](phase3_memory_extensions.md) |
-| **4** | **Superscalar Transition** | [ ] Planned | [Phase 4 Detail](phase4_superscalar.md) |
-| **5** | **Structural Optimization** | [ ] Planned | [Phase 5 Detail](phase5_structural_optimization.md) |
-| **6** | **Caches & Advanced BPU** | [ ] Planned | [Phase 6 Detail](phase6_advanced_frontend.md) |
+| **1** | **Base Integer ISA** | [x] Completed | [Phase 1 Detail](PHASE1_INTEGER_ISA/detail.md) |
+| **2** | **Branching & Mispredict** | [/] In Progress | [Phase 2 Detail](PHASE2_BRANCHING_MISPREDICT/detail.md) |
+| **3** | **Memory & Extensions** | [ ] Planned | [Phase 3 Detail](PHASE3_MEMORY_EXTENSIONS/detail.md) |
+| **4** | **Superscalar Dispatch** | [ ] Planned | [Phase 4 Detail](PHASE4_SUPERSCALAR_DISPATCH/detail.md) |
+| **5** | **Timing & Pipelining** | [ ] Planned | [Phase 5 Detail](PHASE5_TIMING_OPTIMIZATION/detail.md) |
+| **6** | **Caches & Advanced BPU** | [ ] Planned | [Phase 6 Detail](PHASE6_ADVANCED_FRONTEND/detail.md) |
 | **8** | **Linux & Privileged** | [ ] Planned | [Phase 8 Detail](PHASE8_SYSTEM_PRIVILEGE/detail.md) |
 
 ---

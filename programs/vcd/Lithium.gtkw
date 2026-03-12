@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
-[*] Mon Mar  9 09:41:22 2026
+[*] Thu Mar 12 08:10:24 2026
 [*]
 [dumpfile] "/home/emerald/zaqal/programs/vcd/Lithium.vcd"
-[dumpfile_mtime] "Mon Mar  9 09:25:00 2026"
-[dumpfile_size] 362306
+[dumpfile_mtime] "Thu Mar 12 06:56:05 2026"
+[dumpfile_size] 296481
 [savefile] "/home/emerald/zaqal/programs/vcd/Lithium.gtkw"
-[timestart] 195
+[timestart] 0
 [size] 1908 1007
 [pos] -1 -1
-*-6.000000 367 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-6.000000 102 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] Core.
 [treeopen] Core.backend.
 [treeopen] Core.backend.exec.
@@ -162,7 +162,7 @@ Core.frontend.icache.io_pc[63:0]
 Core.frontend.ibuf.busy
 [color] 1
 Core.frontend.ibuf.accept_new_packet
-@22
+@29
 [color] 1
 Core.frontend.ibuf.current_packet_mask[7:0]
 @28
@@ -285,7 +285,6 @@ Core.backend.exec.regFile.regs_8[63:0]
 Core.backend.exec.regFile.regs_9[63:0]
 [color] 3
 Core.backend.exec.regFile.regs_10[63:0]
-@23
 Core.backend.exec.regFile.regs_11[63:0]
 Core.backend.exec.regFile.regs_12[63:0]
 Core.backend.exec.regFile.regs_13[63:0]

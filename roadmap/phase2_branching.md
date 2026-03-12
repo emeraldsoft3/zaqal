@@ -20,3 +20,4 @@ Once the ALU instructions are complete, we move to control flow. This phase intr
 - Correctly calculate branch targets (PC + offset).
 - Correctly update the return address register (`x1/ra`).
 - Verify that a 1-cycle redirect (flush) works for every branch type.
+- **Verification**: Follow the [Comprehensive Branch Verification Checklist](file:///home/emerald/zaqal/roadmap/PHASE2_BRANCHING_MISPREDICT/detail.md#comprehensive-branch-verification-checklist) to ensure control flow integrity.

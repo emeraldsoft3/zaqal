@@ -19,7 +19,7 @@ class IBUF extends Module {
   // Lookahead: Find the next valid instruction index in the current mask after the current index
   val remaining_mask = current_packet.mask & ("hFE".U << inst_idx)(7, 0)
   val has_next_inst  = remaining_mask.orR // has next inst is 1 if remaining mask is 0, but if there is any value, it will be 1
-  val next_inst_idx  = PriorityEncoder(remaining_mask)
+  val next_inst_idx  = PriorityEncoder(remaining_mask) //0 for 11111111 , 1 for 11111110, 2 for 11111100
 
   val will_finish_packet = io.out.fire && !has_next_inst
 

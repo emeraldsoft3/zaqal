@@ -11,19 +11,18 @@ This roadmap outlines the journey to transform Zaqal from a simple prototype int
 
 ## Detailed Roadmap Phases
 
-| Phase | Title | Est. Time | Key Goal | Study Reference (XiangShan) |
+| Phase | Title | Schedule | Key Goal | Study Reference |
 | :--- | :--- | :--- | :--- | :--- |
-| **[Phase 1](./PHASE1_INTEGER_ISA/detail.md)** | **Base Integer ALU** | 1 Week (4 Days) | Mastery of 64-bit integer compute. | `backend/fu/Alu.scala` |
-| **[Phase 2](./PHASE2_BRANCHING_MISPREDICT/detail.md)** | **Branching & Mispredict** | 1 Week (4 Days) | Control flow & pipeline flushing. | `backend/fu/Branch.scala` |
-| **[Phase 3](./PHASE3_MEMORY_EXTENSIONS/detail.md)** | **Memory, Bitmanip & FPU** | 2 Weeks (10 Days) | Load/Store, B-Ext, and **Floating Point (F/D)**. | `backend/fu/LSU.scala`, `fpu/` |
-| **[Phase 4](./PHASE4_SUPERSCALAR_DISPATCH/detail.md)** | **Superscalar Dispatch** | 3 Weeks (15 Days) | 1-wide to 6-wide transition. | `backend/decode/Dispatch.scala` |
-| **[Phase 5](./PHASE5_TIMING_OPTIMIZATION/detail.md)** | **Timing & Pipelining** | 2 Weeks (10 Days) | High-frequency logic & stages. | `backend/decode/DecodeStage.scala` |
-| **[Phase 6](./PHASE6_ADVANCED_FRONTEND/detail.md)** | **Advanced Frontend** | 3 Weeks (15 Days) | **Neural BPU (Perceptron)** & FTB. | `frontend/BPU.scala`, `FTB.scala` |
-| **[Phase 7](./PHASE7_OUT_OF_ORDER/detail.md)** | **Out-of-Order Engine** | 4 Weeks (20 Days) | ROB, Register Renaming, Issue. | `backend/robuffer/ROB.scala` |
-| **[Phase 7.5](./PHASE7_MEMORY_PREFETCH/detail.md)** | **Memory Prefetching** | 2 Weeks (10 Days) | **SMS** and Stride Prefetchers. | `mem/Prefetch.scala` |
-| **[Phase 8](./PHASE8_SYSTEM_PRIVILEGE/detail.md)** | **System, Privilege & MMU** | 3 Weeks (15 Days) | **Linux Boot Readiness** (Supervisor, MMU, PLIC). | `backend/fu/CSR.scala` |
-| **[Phase 9](./PHASE9_VECTOR_ISA/detail.md)** | **AI & Vector ISA (AMX)** | 4 Weeks (20 Days) | **Matrix (AMX)** and Vector Units. | `backend/fu/vector/` |
-| **[Phase 10](./PHASE10_VERIFICATION_SOC/detail.md)** | **Verification & SoC** | Ongoing | Difftest, Linux, and Tapeout-ready. | `XSTile.scala` |
+| **[Phase 1](./PHASE1_INTEGER_ISA/detail.md)** | **Base Integer ALU** | Days 1-4 | **[COMPLETE]** Mastery of RV64I calculations. | `backend/fu/Alu.scala` |
+| **[Phase 2](./PHASE2_BRANCHING_MISPREDICT/detail.md)** | **Branching & Mispredict** | Days 5-10 | [/] Control Flow & Pipeline Integrity. | `backend/fu/Branch.scala` |
+| **[Phase 3](./PHASE3_MEMORY_EXTENSIONS/detail.md)** | **Memory & Extensions** | Days 11-32 | Memory/FPU Mastery (RV64G/Bitmanip). | `backend/fu/LSU.scala` |
+| **[Phase 4](./PHASE4_SUPERSCALAR_DISPATCH/detail.md)** | **Superscalar Dispatch** | Days 33-50 | 1-wide to 6-wide (Mapping/RAT). | `backend/decode/Dispatch.scala` |
+| **[Phase 5](./PHASE5_TIMING_OPTIMIZATION/detail.md)** | **Timing & Pipelining** | Days 51-65 | High Frequency Optimization. | `backend/decode/DecodeStage.scala` |
+| **[Phase 6](./PHASE6_ADVANCED_FRONTEND/detail.md)** | **Advanced Frontend** | Days 66-85 | **Neural BPU (Perceptron)** & FTB. | `frontend/BPU.scala` |
+| **[Phase 7](./PHASE7_OUT_OF_ORDER/detail.md)** | **Out-of-Order Engine** | Days 86-110 | ROB, Register Renaming, Issue. | `backend/robuffer/ROB.scala` |
+| **[Phase 8](./PHASE8_SYSTEM_PRIVILEGE/detail.md)** | **System & Linux Boot** | Days 111-130 | Supervisor Mode & Sv39 MMU. | `backend/fu/CSR.scala` |
+| **[Phase 9](./PHASE9_VECTOR_ISA/detail.md)** | **AI & Vector ISA** | Days 131-155 | Matrix Compute & Vector Units. | `backend/fu/vector/` |
+| **[Phase 10](./PHASE10_VERIFICATION_SOC) ** | **SoC & Tapeout** | Ongoing | Difftest & Silicon Readiness. | `XSTile.scala` |
 
 ---
 

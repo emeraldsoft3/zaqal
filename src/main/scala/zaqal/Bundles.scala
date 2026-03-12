@@ -40,6 +40,7 @@ class DecodeSignals extends Bundle {
   val is_add  = Bool()  // R-type ADD
   val is_mul  = Bool()  // M-extension MUL
   val is_div  = Bool()  // M-extension DIV (signed)
+  val is_beq  = Bool()  // B-type BEQ
   val is_bne  = Bool()  // B-type BNE
   val is_blt  = Bool()  // B-type BLT
   val is_and  = Bool()  // R-type AND
