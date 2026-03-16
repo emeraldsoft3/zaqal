@@ -37,7 +37,9 @@ class BPU extends Module {
     val offset = io.redirect.target(4, 2)
     mask := ("hFF".U << offset)(7, 0)
     mask_reg := ("hFF".U << offset)(7, 0)
-   } .elsewhen(is_beq_at_0c && io.out.fire) {
+   }
+  /* Disable hardcoded TAKEN prediction to force mispredict
+  .elsewhen(is_beq_at_0c && io.out.fire) {
      // Prediction: BEQ at 0x0c (slot 3) is TAKEN to 0x14 (same block, slot 5)
      // We fetch 0x00, 04, 08, 0c. Then skip 0x10. Then fetch 0x14-0x1c.
      next_pc     := s0_pc + 32.U
@@ -48,6 +50,7 @@ class BPU extends Module {
      mask_reg    := "hFF".U
      printf("BPU: Predicting BEQ at 0x0c TAKEN to 0x14 (Intra-block jump)\n")
    } 
+   */
   .elsewhen(io.out.fire) {
     next_pc := s0_pc + 32.U
     mask    := mask_reg

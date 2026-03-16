@@ -41,6 +41,7 @@ This phase is the most critical for understanding how the core handles "surprise
 - [ ] Refine the `Redirect` signal from Backend to Frontend.
 - [ ] Ensure `IBuffer` is cleared perfectly during a flush.
 - [ ] **Goal**: No "wrong path" instruction ever reaches execution after a mispredict.
+- [ ] **Epochs/Tags**: Implement a simple sequence bit (epoch) to tag instruction packets for faster flushing.
 
 ### Day 6: Architectural Stress Tests
 - [ ] **Back-to-Back Branches**: Verify BPU handles rapid outcome changes.
