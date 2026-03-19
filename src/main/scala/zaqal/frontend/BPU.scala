@@ -12,11 +12,7 @@ class BPU extends Module {
 
   val s0_pc = RegInit("h8000_0000".U(64.W))
 
-  // Aligns any address to a 32-byte boundary (e.g., 0x0C becomes 0x00)
   def align(addr: UInt) = addr & (~0x1F.U(64.W))
-
-  val is_loop_exit_block = (s0_pc === "h8000_0060".U) 
-  val is_test_bne_block   = (s0_pc === "h8000_0020".U)
 
   val next_pc = Wire(UInt(64.W))
   val meta    = Wire(new PredictionMeta)
@@ -30,31 +26,29 @@ class BPU extends Module {
 
   val mask_reg = RegInit("hFF".U(8.W))
 
-  val is_beq_at_0c = (s0_pc === "h8000_0000".U) && mask_reg(3) // 0x0c is slot 3 of 0x8000_0000
-
   when(io.redirect.valid) {
     next_pc := align(io.redirect.target)
     val offset = io.redirect.target(4, 2)
-    mask := ("hFF".U << offset)(7, 0)
+    mask     := ("hFF".U << offset)(7, 0)
     mask_reg := ("hFF".U << offset)(7, 0)
-   }
-  /* Disable hardcoded TAKEN prediction to force mispredict
-  .elsewhen(is_beq_at_0c && io.out.fire) {
-     // Prediction: BEQ at 0x0c (slot 3) is TAKEN to 0x14 (same block, slot 5)
-     // We fetch 0x00, 04, 08, 0c. Then skip 0x10. Then fetch 0x14-0x1c.
-     next_pc     := s0_pc + 32.U
-     meta.target := "h8000_0014".U
+  } .elsewhen(s0_pc === "h8000_0020".U && mask_reg(2) && io.out.fire) {
+     // Prediction Scenario 6: BEQ at 0x28 (slot 2 of block 0x20) is TAKEN back to 0x20 (slot 0)
+     next_pc     := s0_pc 
+     meta.target := "h8000_0020".U 
      meta.taken  := true.B
-     meta.slot   := 3.U
-     mask        := "hEF".U // Binary 1110_1111: Bit 4 (0x10) skipped
+     meta.slot   := 2.U 
+     mask        := "hFF".U // Restart block 0x20 from slot 0
      mask_reg    := "hFF".U
-     printf("BPU: Predicting BEQ at 0x0c TAKEN to 0x14 (Intra-block jump)\n")
-   } 
-   */
-  .elsewhen(io.out.fire) {
-    next_pc := s0_pc + 32.U
-    mask    := mask_reg
-    mask_reg := "hFF".U // Reset after use
+     printf("BPU: Scenario 6 - Predicting BEQ at 0x28 TAKEN to 0x20\n")
+  } .elsewhen(io.out.fire) {
+    next_pc := Mux(meta.taken, align(meta.target), s0_pc + 32.U)
+    
+    val target_is_same_block = align(meta.target) === s0_pc
+    val next_mask = Mux(meta.taken && target_is_same_block,
+                        ("hFF".U << meta.target(4,2))(7,0),
+                        "hFF".U)
+    mask     := mask_reg
+    mask_reg := next_mask
   } .otherwise {
     next_pc := s0_pc
     mask    := mask_reg
@@ -64,7 +58,12 @@ class BPU extends Module {
 
   io.out.valid := !reset.asBool
   io.out.bits.pc         := s0_pc
-  io.out.bits.mask       := mask
+  
+  // Truncate mask if a branch is TAKEN within this packet
+  // If slot N is taken, mask should only include bits 0 to N.
+  val taken_mask = (Fill(8, 1.U) >> (7.U - meta.slot))(7,0)
+  io.out.bits.mask       := Mux(meta.taken, mask & taken_mask, mask)
+  
   io.out.bits.prediction := meta
-  io.out.bits.ftqPtr     := 0.U // Initialized as dummy, FTQ will overwrite
+  io.out.bits.ftqPtr     := 0.U 
 }

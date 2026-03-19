@@ -34,7 +34,7 @@ class IBUF extends Module {
     current_packet := io.inst_data.bits
     busy           := true.B
     // Start at the first bit set in the mask (usually 0, but can be >0 for branch targets)
-    inst_idx       := PriorityEncoder(io.inst_data.bits.mask)
+    inst_idx       := PriorityEncoder(io.inst_data.bits.mask) //10000000 is 7th bit, meaning the inst_idx will be 111 (7)
   } .elsewhen(io.out.fire) {
     when(has_next_inst) {
       inst_idx := next_inst_idx

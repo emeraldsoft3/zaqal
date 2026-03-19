@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
-[*] Mon Mar 16 11:56:30 2026
+[*] Wed Mar 18 11:51:27 2026
 [*]
 [dumpfile] "/home/emerald/zaqal/programs/vcd/Lithium.vcd"
-[dumpfile_mtime] "Fri Mar 13 07:52:26 2026"
-[dumpfile_size] 301637
+[dumpfile_mtime] "Wed Mar 18 11:49:03 2026"
+[dumpfile_size] 367390
 [savefile] "/home/emerald/zaqal/programs/vcd/Lithium.gtkw"
 [timestart] 0
 [size] 1908 1007
-[pos] 32735 32920
-*-6.000000 104 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[pos] -1 -1
+*-6.000000 186 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] Core.
 [treeopen] Core.backend.
 [treeopen] Core.backend.exec.
@@ -31,9 +31,10 @@ Core.io_debug_cycle_count[63:0]
 Core.frontend.bpu.s0_pc[63:0]
 [color] 3
 Core.frontend.bpu.mask[7:0]
-@28
+@24
 [color] 3
 Core.frontend.bpu.meta_slot[2:0]
+@28
 [color] 3
 Core.frontend.bpu.meta_taken
 @22
@@ -206,7 +207,7 @@ Core.frontend.ibuf.io_out_ready
 Core.frontend.ibuf.io_out_valid
 @200
 -BRU
-@29
+@28
 Core.backend.exec.bru.io_mispredict
 @200
 -Execute
@@ -225,45 +226,13 @@ Core.backend.exec.io_redirect_valid
 Core.backend.exec.io_redirect_target[63:0]
 @200
 -Decoder
+@29
+Core.backend.exec.decoder.io_out_is_beq
 @28
-Core.backend.exec.decoder.io_out_is_add
-Core.backend.exec.decoder.io_out_is_addi
-Core.backend.exec.decoder.io_out_is_div
-Core.backend.exec.decoder.io_out_is_mul
 Core.backend.exec.decoder.io_out_is_bne
-Core.backend.exec.decoder.io_out_is_branch
 Core.backend.exec.decoder.io_out_is_blt
-@22
-[color] 2
-Core.backend.exec.decoder.io_inst[31:0]
-[color] 2
-Core.backend.exec.decoder.io_out_imm[63:0]
-[color] 2
-Core.backend.exec.decoder.io_out_rd[4:0]
-@28
-[color] 2
-Core.backend.exec.decoder.io_out_is_addi
-@22
-[color] 2
-Core.backend.exec.decoder.io_out_rs1[4:0]
-[color] 2
-Core.backend.exec.decoder.opcode[6:0]
 @200
 -RegFile
-@22
-[color] 3
-Core.backend.exec.regFile.io_rd_addr[4:0]
-[color] 3
-Core.backend.exec.regFile.io_rd_data[63:0]
-[color] 3
-Core.backend.exec.regFile.io_rs1_addr[4:0]
-[color] 3
-Core.backend.exec.regFile.io_rs1_data[63:0]
-Core.backend.exec.regFile.io_rs2_addr[4:0]
-Core.backend.exec.regFile.io_rs2_data[63:0]
-@28
-[color] 3
-Core.backend.exec.regFile.io_wen
 @22
 [color] 3
 Core.backend.exec.regFile.regs_0[63:0]
@@ -287,26 +256,5 @@ Core.backend.exec.regFile.regs_8[63:0]
 Core.backend.exec.regFile.regs_9[63:0]
 [color] 3
 Core.backend.exec.regFile.regs_10[63:0]
-Core.backend.exec.regFile.regs_11[63:0]
-Core.backend.exec.regFile.regs_12[63:0]
-Core.backend.exec.regFile.regs_13[63:0]
-Core.backend.exec.regFile.regs_14[63:0]
-Core.backend.exec.regFile.regs_15[63:0]
-Core.backend.exec.regFile.regs_16[63:0]
-Core.backend.exec.regFile.regs_17[63:0]
-Core.backend.exec.regFile.regs_18[63:0]
-Core.backend.exec.regFile.regs_19[63:0]
-Core.backend.exec.regFile.regs_20[63:0]
-Core.backend.exec.regFile.regs_21[63:0]
-Core.backend.exec.regFile.regs_22[63:0]
-Core.backend.exec.regFile.regs_23[63:0]
-Core.backend.exec.regFile.regs_24[63:0]
-Core.backend.exec.regFile.regs_25[63:0]
-Core.backend.exec.regFile.regs_26[63:0]
-Core.backend.exec.regFile.regs_27[63:0]
-Core.backend.exec.regFile.regs_28[63:0]
-Core.backend.exec.regFile.regs_29[63:0]
-Core.backend.exec.regFile.regs_30[63:0]
-Core.backend.exec.regFile.regs_31[63:0]
 [pattern_trace] 1
 [pattern_trace] 0

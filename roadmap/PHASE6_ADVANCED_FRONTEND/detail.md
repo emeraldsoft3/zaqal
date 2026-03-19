@@ -34,3 +34,18 @@ To feed a 6-wide OoO machine, we need near-perfect branch prediction. Zaqal will
 ## Day 14-15: Banked I-Cache & Prefetching
 - [ ] Implement a banked instruction cache for high bandwidth.
 - **XiangShan Study**: [icache/](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/frontend/icache/) - *Explore the I-Cache implementation.*
+
+---
+
+## Future Scope: Multi-Branch Support (The Kunminghu Goal)
+
+To achieve true performance parity with modern XiangShan cores, Zaqal must eventually support multiple branch predictions per fetch packet.
+
+### 1. Multi-Wide Pre-decode
+- Parallelize the `PreDecode` logic to identify up to 3 instructions as potential branches within a single 32B block.
+
+### 2. Multi-Target FTB (Fetch Target Buffer)
+- Upgrade the FTB to store an array of targets or "Fetch Targets" that describe a complex sequence (e.g., A -> B -> C within one block).
+
+### 3. Decoupled Multi-Prediction Pipeline
+- Transition to a fully decoupled frontend where the BPU can provide predictions 2-3 cycles ahead of the instruction fetch, allowing for complex multi-branch resolution.
