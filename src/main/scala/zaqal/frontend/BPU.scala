@@ -31,16 +31,8 @@ class BPU extends Module {
     val offset = io.redirect.target(4, 2)
     mask     := ("hFF".U << offset)(7, 0)
     mask_reg := ("hFF".U << offset)(7, 0)
-  } .elsewhen(s0_pc === "h8000_0020".U && mask_reg(2) && io.out.fire) {
-     // Prediction Scenario 6: BEQ at 0x28 (slot 2 of block 0x20) is TAKEN back to 0x20 (slot 0)
-     next_pc     := s0_pc 
-     meta.target := "h8000_0020".U 
-     meta.taken  := true.B
-     meta.slot   := 2.U 
-     mask        := "hFF".U // Restart block 0x20 from slot 0
-     mask_reg    := "hFF".U
-     printf("BPU: Scenario 6 - Predicting BEQ at 0x28 TAKEN to 0x20\n")
   } .elsewhen(io.out.fire) {
+
     next_pc := Mux(meta.taken, align(meta.target), s0_pc + 32.U)
     
     val target_is_same_block = align(meta.target) === s0_pc

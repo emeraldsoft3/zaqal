@@ -43,6 +43,9 @@ class DecodeSignals extends Bundle {
   val is_beq  = Bool()  // B-type BEQ
   val is_bne  = Bool()  // B-type BNE
   val is_blt  = Bool()  // B-type BLT
+  val is_bge  = Bool()  // B-type BGE
+  val is_bltu = Bool()  // B-type BLTU
+  val is_bgeu = Bool()  // B-type BGEU
   val is_and  = Bool()  // R-type AND
   val is_or   = Bool()  // R-type OR
   val is_xor  = Bool()  // R-type XOR

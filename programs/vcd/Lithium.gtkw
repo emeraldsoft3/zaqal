@@ -1,27 +1,27 @@
 [*]
-[*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
-[*] Wed Mar 18 11:51:27 2026
+[*] GTKWave Analyzer v3.3.111 (w)1999-2020 BSI
+[*] Thu Mar 26 08:36:03 2026
 [*]
 [dumpfile] "/home/emerald/zaqal/programs/vcd/Lithium.vcd"
-[dumpfile_mtime] "Wed Mar 18 11:49:03 2026"
-[dumpfile_size] 367390
+[dumpfile_mtime] "Thu Mar 26 08:04:09 2026"
+[dumpfile_size] 519492
 [savefile] "/home/emerald/zaqal/programs/vcd/Lithium.gtkw"
-[timestart] 0
-[size] 1908 1007
+[timestart] 521
+[size] 1920 993
 [pos] -1 -1
-*-6.000000 186 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-6.000000 772 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] Core.
 [treeopen] Core.backend.
 [treeopen] Core.backend.exec.
 [treeopen] Core.frontend.
-[sst_width] 229
-[signals_width] 543
+[sst_width] 297
+[signals_width] 495
 [sst_expanded] 1
-[sst_vpaned_height] 290
+[sst_vpaned_height] 285
 @28
 [color] 1
 Core.clock
-@22
+@24
 [color] 1
 Core.io_debug_cycle_count[63:0]
 @200
@@ -159,25 +159,15 @@ Core.frontend.icache.io_pc[63:0]
 @200
 -IBUF
 @28
-[color] 1
-Core.frontend.ibuf.busy
-[color] 1
-Core.frontend.ibuf.accept_new_packet
-[color] 1
+[color] 3
 Core.frontend.ibuf.current_packet_mask[7:0]
 [color] 1
 Core.frontend.ibuf.io_flush
 @22
-[color] 1
+[color] 3
 Core.frontend.ibuf.io_out_bits_inst_raw[31:0]
-[color] 1
+[color] 3
 Core.frontend.ibuf.io_out_bits_pc[63:0]
-@28
-[color] 1
-Core.frontend.ibuf.will_finish_packet
-[color] 1
-Core.frontend.ibuf.reset
-@22
 [color] 1
 Core.frontend.ibuf.current_packet_instructions_0[31:0]
 [color] 1
@@ -192,45 +182,22 @@ Core.frontend.ibuf.inst_idx[2:0]
 Core.frontend.ibuf.io_inst_data_bits_instructions_0[31:0]
 [color] 1
 Core.frontend.ibuf.io_inst_data_bits_instructions_1[31:0]
-@28
-[color] 1
-Core.frontend.ibuf.io_inst_data_ready
-[color] 1
-Core.frontend.ibuf.io_inst_data_valid
-@22
 [color] 1
 Core.frontend.ibuf.io_inst_data_bits_pc[63:0]
-@28
-[color] 1
-Core.frontend.ibuf.io_out_ready
-[color] 1
-Core.frontend.ibuf.io_out_valid
 @200
 -BRU
 @28
 Core.backend.exec.bru.io_mispredict
 @200
 -Execute
-@28
-Core.backend.exec.clock
-Core.backend.exec.decoder
 @22
 Core.backend.exec.io_in_bits_inst_raw[31:0]
 Core.backend.exec.io_in_bits_pc[63:0]
-@28
-Core.backend.exec.io_in_ready
-Core.backend.exec.io_in_valid
-Core.backend.exec.reset
-Core.backend.exec.io_redirect_valid
-@22
 Core.backend.exec.io_redirect_target[63:0]
 @200
 -Decoder
-@29
-Core.backend.exec.decoder.io_out_is_beq
 @28
-Core.backend.exec.decoder.io_out_is_bne
-Core.backend.exec.decoder.io_out_is_blt
+Core.backend.exec.decoder.io_out_is_beq
 @200
 -RegFile
 @22
@@ -255,6 +222,12 @@ Core.backend.exec.regFile.regs_8[63:0]
 [color] 3
 Core.backend.exec.regFile.regs_9[63:0]
 [color] 3
-Core.backend.exec.regFile.regs_10[63:0]
++{Core.backend.exec.regFile.regs_10[63:0]} Core.backend.exec.regFile.regs_10[63:0]
++{Core.backend.exec.regFile.regs_11[63:0]} Core.backend.exec.regFile.regs_11[63:0]
+Core.backend.exec.regFile.regs_12[63:0]
+Core.backend.exec.regFile.regs_13[63:0]
+Core.backend.exec.regFile.regs_14[63:0]
+Core.backend.exec.regFile.regs_15[63:0]
+Core.backend.exec.regFile.regs_16[63:0]
 [pattern_trace] 1
 [pattern_trace] 0
