@@ -23,10 +23,11 @@ This phase is the most critical for understanding how the core handles "surprise
 - [x] Create initial `ICache` test cases for `BEQ` (Taken/Not-Taken).
 - [x] Verify correct prediction (Hit) for Taken and Not-Taken.
 
-### Day 2: Inequality Branching (Signed/Unsigned)
-- [ ] Implement `BLT`, `BGE`, `BLTU`, `BGEU`.
-- [ ] **Verification**: Functional tests for comparison logic (especially `-1 < 1` for BLT vs BLTU).
-- [ ] **Goal**: Ensure the `Comparator` in the ALU/BRU handles all signedness correctly.
+### Day 2: Inequality Branching (Signed/Unsigned) [x]
+- [x] Implement `BLT`, `BGE`, `BLTU`, `BGEU`.
+- [x] **Verification**: Functional tests for comparison logic (especially `-1 < 1` for BLT vs BLTU).
+- [x] **Goal**: Ensure the `Comparator` in the ALU/BRU handles all signedness correctly.
+*(Note: ICache.scala was updated with a test program that includes JAL instructions, however these intentionally do not work yet as JAL is scheduled for Day 3)*
 
 ### Day 3: Jumps & Links (JAL/JALR)
 - [ ] Implement `JAL` and `JALR`.

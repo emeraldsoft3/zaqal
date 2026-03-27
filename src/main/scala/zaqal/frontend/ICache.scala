@@ -23,7 +23,7 @@ val program = VecInit(Seq(
   "h00128293".U, // 1c: addi x5, x5, 1
 
   // Block 1: Test BLT (Signed) (0x20 - 0x3c)
-  "h0020c063".U, // 20: blt x1, x2, 32 (Tgt 0x40) (-1 < 1 is True)
+  "h0220c063".U, // 20: blt x1, x2, 32 (Tgt 0x40) (-1 < 1 is True)
   "h00100a93".U, // 24: addi x21, x0, 1 (Fail)
   "h0200006f".U, // 28: jal x0, 32 (Next)
   "h00128293".U, // 2c: addi x5, x5, 1

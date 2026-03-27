@@ -42,8 +42,6 @@ class ALU extends Module {
 
   comparator.io.src1    := io.src1
   comparator.io.src2    := io.src2
-  comparator.io.is_slt  := io.dec.is_slt || io.dec.is_slti
-  comparator.io.is_sltu := io.dec.is_sltu || io.dec.is_sltiu
 
   // 3. Result Selection
   io.result := MuxCase(0.U, Seq(
@@ -58,6 +56,7 @@ class ALU extends Module {
      io.dec.is_slli || io.dec.is_srli || io.dec.is_srai ||
      io.dec.is_sllw || io.dec.is_srlw || io.dec.is_sraw ||
      io.dec.is_slliw || io.dec.is_srliw || io.dec.is_sraiw) -> shifter.io.result,
-    (io.dec.is_slt || io.dec.is_sltu || io.dec.is_slti || io.dec.is_sltiu) -> comparator.io.result
+    (io.dec.is_slt || io.dec.is_slti)   -> comparator.io.lt.asUInt,
+    (io.dec.is_sltu || io.dec.is_sltiu) -> comparator.io.ltu.asUInt
   ))
 }

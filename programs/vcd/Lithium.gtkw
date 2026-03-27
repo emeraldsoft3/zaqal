@@ -1,18 +1,19 @@
 [*]
 [*] GTKWave Analyzer v3.3.111 (w)1999-2020 BSI
-[*] Thu Mar 26 08:36:03 2026
+[*] Fri Mar 27 10:23:40 2026
 [*]
 [dumpfile] "/home/emerald/zaqal/programs/vcd/Lithium.vcd"
-[dumpfile_mtime] "Thu Mar 26 08:04:09 2026"
-[dumpfile_size] 519492
+[dumpfile_mtime] "Fri Mar 27 07:59:32 2026"
+[dumpfile_size] 794250
 [savefile] "/home/emerald/zaqal/programs/vcd/Lithium.gtkw"
-[timestart] 521
+[timestart] 0
 [size] 1920 993
 [pos] -1 -1
-*-6.000000 772 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-6.000000 237 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] Core.
 [treeopen] Core.backend.
 [treeopen] Core.backend.exec.
+[treeopen] Core.backend.exec.alu.
 [treeopen] Core.frontend.
 [sst_width] 297
 [signals_width] 495
@@ -194,6 +195,8 @@ Core.backend.exec.bru.io_mispredict
 Core.backend.exec.io_in_bits_inst_raw[31:0]
 Core.backend.exec.io_in_bits_pc[63:0]
 Core.backend.exec.io_redirect_target[63:0]
+Core.backend.exec.alu.comparator.io_src1[63:0]
+Core.backend.exec.alu.comparator.io_src2[63:0]
 @200
 -Decoder
 @28
@@ -229,5 +232,10 @@ Core.backend.exec.regFile.regs_13[63:0]
 Core.backend.exec.regFile.regs_14[63:0]
 Core.backend.exec.regFile.regs_15[63:0]
 Core.backend.exec.regFile.regs_16[63:0]
+Core.backend.exec.regFile.regs_21[63:0]
+Core.backend.exec.regFile.regs_22[63:0]
+Core.backend.exec.regFile.regs_23[63:0]
+@23
+Core.backend.exec.regFile.regs_24[63:0]
 [pattern_trace] 1
 [pattern_trace] 0

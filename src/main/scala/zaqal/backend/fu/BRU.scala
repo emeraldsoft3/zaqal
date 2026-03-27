@@ -17,12 +17,16 @@ class BRU extends Module {
     val target          = Output(UInt(64.W))
   })
 
-  val taken_beq  = io.src1 === io.src2
-  val taken_bne  = io.src1 =/= io.src2
-  val taken_blt  = io.src1.asSInt < io.src2.asSInt
-  val taken_bge  = io.src1.asSInt >= io.src2.asSInt
-  val taken_bltu = io.src1 < io.src2
-  val taken_bgeu = io.src1 >= io.src2
+  val comparator = Module(new Comparator)
+  comparator.io.src1 := io.src1
+  comparator.io.src2 := io.src2
+
+  val taken_beq  = comparator.io.eq
+  val taken_bne  = !comparator.io.eq
+  val taken_blt  = comparator.io.lt
+  val taken_bge  = !comparator.io.lt
+  val taken_bltu = comparator.io.ltu
+  val taken_bgeu = !comparator.io.ltu
   
   val actual_taken = MuxCase(false.B, Seq(
     io.dec.is_beq  -> taken_beq,
