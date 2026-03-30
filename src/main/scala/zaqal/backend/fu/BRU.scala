@@ -34,13 +34,20 @@ class BRU extends Module {
     io.dec.is_blt  -> taken_blt,
     io.dec.is_bge  -> taken_bge,
     io.dec.is_bltu -> taken_bltu,
-    io.dec.is_bgeu -> taken_bgeu
+    io.dec.is_bgeu -> taken_bgeu,
+    io.dec.is_jal  -> true.B,
+    io.dec.is_jalr -> true.B
   ))
 
-  val target_pc = (io.pc.asSInt + io.dec.imm).asUInt
+  val target_pc = Mux(io.dec.is_jalr,
+    (io.src1 + io.dec.imm.asUInt) & ~1.U(64.W),
+    (io.pc.asSInt + io.dec.imm).asUInt
+  )
   val fallthrough_pc = io.pc + 4.U
 
+  val is_cfi = io.dec.is_branch || io.dec.is_jal || io.dec.is_jalr
+
   io.taken      := actual_taken
-  io.mispredict := (actual_taken =/= io.pred_taken) || (io.pred_taken && !io.dec.is_branch)
+  io.mispredict := (actual_taken =/= io.pred_taken) || (io.pred_taken && !is_cfi)
   io.target     := Mux(actual_taken, target_pc, fallthrough_pc)
 }

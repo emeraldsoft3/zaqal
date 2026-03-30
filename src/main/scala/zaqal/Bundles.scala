@@ -75,6 +75,8 @@ class DecodeSignals extends Bundle {
   val is_lui   = Bool() // U-type LUI
   val is_auipc = Bool() // U-type AUIPC
   val is_branch = Bool() // General branch hint
+  val is_jal  = Bool()  // J-type JAL
+  val is_jalr = Bool()  // I-type JALR
   val rd      = UInt(5.W)
   val rs1     = UInt(5.W)
   val rs2     = UInt(5.W)  // Source register 2 (R-type)

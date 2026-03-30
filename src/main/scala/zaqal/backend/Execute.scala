@@ -75,9 +75,11 @@ class Execute extends Module {
   when(io.in.fire) {
     // Writeback for single-cycle instructions
     when(decoder.io.out.rd =/= 0.U) {
+      val is_link = decoder.io.out.is_jal || decoder.io.out.is_jalr
+      val link_addr = io.in.bits.pc + 4.U
       val result = Mux(decoder.io.out.is_mul, mul.io.result, alu.io.result)
-      regFile.io.wen     := !decoder.io.out.is_branch && !decoder.io.out.is_div
-      regFile.io.rd_data := result
+      regFile.io.wen     := (!decoder.io.out.is_branch && !decoder.io.out.is_div) || is_link
+      regFile.io.rd_data := Mux(is_link, link_addr, result)
     }
 
     // Branch Redirection Logic (unchanged)

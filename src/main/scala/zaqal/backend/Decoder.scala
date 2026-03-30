@@ -21,6 +21,7 @@ class Decoder extends Module {
   val i_imm = io.inst(31, 20).asSInt
   val b_imm = Cat(io.inst(31), io.inst(7), io.inst(30, 25), io.inst(11, 8), 0.U(1.W)).asSInt
   val u_imm = Cat(io.inst(31, 12), 0.U(12.W)).asSInt
+  val j_imm = Cat(io.inst(31), io.inst(19, 12), io.inst(20), io.inst(30, 21), 0.U(1.W)).asSInt
 
 
   io.out.is_addi := (opcode === "b0010011".U) && (funct3 === "b000".U)
@@ -74,6 +75,8 @@ class Decoder extends Module {
   io.out.is_beq    := (opcode === "b1100011".U) && (funct3 === "b000".U)
   io.out.is_bne    := (opcode === "b1100011".U) && (funct3 === "b001".U)
   io.out.is_branch := (opcode === "b1100011".U)
+  io.out.is_jal    := (opcode === "b1101111".U)
+  io.out.is_jalr   := (opcode === "b1100111".U)
 
   io.out.is_blt := (opcode === "b1100011".U) && (funct3 === "b100".U)
   io.out.is_bge := (opcode === "b1100011".U) && (funct3 === "b101".U)
@@ -85,5 +88,7 @@ class Decoder extends Module {
     io.out.imm := b_imm
   } .elsewhen(io.out.is_lui || io.out.is_auipc) {
     io.out.imm := u_imm
+  } .elsewhen(io.out.is_jal) {
+    io.out.imm := j_imm
   }
 }
