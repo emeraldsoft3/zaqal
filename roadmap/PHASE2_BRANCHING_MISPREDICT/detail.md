@@ -29,14 +29,14 @@ This phase is the most critical for understanding how the core handles "surprise
 - [x] **Goal**: Ensure the `Comparator` in the ALU/BRU handles all signedness correctly.
 *(Note: ICache.scala was updated with a test program that includes JAL instructions, however these intentionally do not work yet as JAL is scheduled for Day 3)*
 
-### Day 3: Jumps & Links (JAL/JALR)
-- [ ] Implement `JAL` and `JALR`.
-- [ ] **Link Register**: Verify `rd` (usually `x1/ra`) stores `PC + 4`.
-- [ ] **Goal**: Correctly update the register file while jumping.
+### Day 3: Jumps & Links (JAL/JALR) [x]
+- [x] Implement `JAL` and `JALR`.
+- [x] **Link Register**: Verify `rd` (usually `x1/ra`) stores `PC + 4`.
+- [x] **Goal**: Correctly update the register file while jumping.
 
-### Day 4: Indirect Jumps & Alignment Stress
-- [ ] Stress test `JALR` with runtime-calculated pointers.
-- [ ] **Verification**: Target calculation and alignment checks (2-byte/4-byte).
+### Day 4: Indirect Jumps & Alignment Stress [x]
+- [x] Stress test `JALR` with runtime-calculated pointers.
+- [x] **Verification**: Target calculation and alignment checks (2-byte/4-byte).
 
 ### Day 5: Pipeline Flush & Redirection logic
 - [ ] Refine the `Redirect` signal from Backend to Frontend.

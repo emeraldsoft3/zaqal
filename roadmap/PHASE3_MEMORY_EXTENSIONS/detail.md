@@ -1,6 +1,15 @@
 # Phase 3: Memory & Extensions (A, M, & B)
 
 This phase expansion covers the "A" (Atomic), "M" (Multiplication), and "B" (Bitmanip) extensions, plus the 64-bit Memory details.
+## Week 0: Metaprogramming & Build Hierarchy Refactor (Days 7-12)
+*Zaqal Synergy Task based on XiangShan's modular build system.*
+- [ ] **Day 7**: Migrate Zaqal from traditional SBT to the Mill build system (`build.sc`).
+- [ ] **Day 8**: Abstract common configurations (widths, queue depths) into a `case class ZaqalParams` akin to `XSCoreParams`.
+- [ ] **Day 9**: Decompose the monolithic codebase into strictly isolated compile targets (e.g., `zaqal.frontend`, `zaqal.backend`).
+- [ ] **Day 10**: Introduce a `zaqal.utility` module for standardizing Chisel `ValidIO` skid buffers and pipeline registers.
+- [ ] **Day 11**: Connect the `moduleDeps` in `build.sc` to enforce a clean Directed Acyclic Graph (DAG) for the build.
+- [ ] **Day 12**: Run `mill resolve __.compile` to verify that components can compile and test independently.
+
 
 ## Week 1: Core Memory & Alignment (Days 13-17)
 - [ ] **Day 13**: Load Instructions (LB, LH, LW, LD, LBU, LHU, LWU).
@@ -16,12 +25,20 @@ This phase expansion covers the "A" (Atomic), "M" (Multiplication), and "B" (Bit
 - [ ] **Day 21**: Bitmanip - Zbb (Basic Bit Ops: CLZ, CTZ, CPOP).
 - [ ] **Day 22**: Bitmanip - Zbs (Single-bit manipulation).
 
-## Week 3-4: Floating Point Unit (Days 23-32)
-- [ ] **Day 23-24**: FPU Front-end (FP Register file, fcsr, and decoding).
-- [ ] **Day 25-27**: FADD, FSUB, FMUL pipelines (Iterative refinement).
-- [ ] **Day 28-29**: FDIV, FSQRT (High-latency logic).
-- [ ] **Day 30**: FMIN/MAX, FCVT, F-Misc operations.
-- [ ] **Day 31**: Memory/FP Integration (FLW, FSW, FLD, FSD).
-- [ ] **Day 32**: Final Phase 3 Benchmarking (CoreMark-FP).
+## Week 3: Compressed Instructions (RV64C) (Days 23-28)
+- [ ] **Day 23**: IFU modifications for 16-bit/32-bit instruction alignment.
+- [ ] **Day 24**: Predecoder updates to expand 16-bit compressed instructions into 32-bit equivalents.
+- [ ] **Day 25**: Handling instructions crossing cache-line boundaries.
+- [ ] **Day 26**: Updates to the PC generator (incrementing by +2 or +4).
+- [ ] **Day 27**: Modifying BRU & Exceptions for 2-byte alignment restrictions.
+- [ ] **Day 28**: Verification of C extension with compiled Linux binaries.
+
+## Week 4-5: Floating Point Unit (Days 29-38)
+- [ ] **Day 29-30**: FPU Front-end (FP Register file, fcsr, and decoding).
+- [ ] **Day 31-33**: FADD, FSUB, FMUL pipelines (Iterative refinement).
+- [ ] **Day 34-35**: FDIV, FSQRT (High-latency logic).
+- [ ] **Day 36**: FMIN/MAX, FCVT, F-Misc operations.
+- [ ] **Day 37**: Memory/FP Integration (FLW, FSW, FLD, FSD).
+- [ ] **Day 38**: Final Phase 3 Benchmarking (CoreMark-FP).
 
 ---
