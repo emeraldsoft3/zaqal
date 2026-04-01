@@ -39,8 +39,53 @@ val program = VecInit(Seq(
   "h00300213".U, // 4c: addi x4, x0, 3     (Fail if executed)
   "h0000006f".U, // 50: jal x0, 0          (Fail halt)
   "h00000013".U, // 54: nop
-  "h00000013".U, // 58: nop
-  "h00000013".U, // 5c: nop
+
+  // Block 3: Epoch Flip Test (0x60 - 0x7c)
+  // Target of previous jump. Let's do a BEQ that always fails prediction to trigger a flush
+  "h00000613".U, // 60: addi x12, x0, 0    (x12 = 0)
+  "h00060e63".U, // 64: beq x12, x0, 28    (Jump to 0x80 - mispredict flush triggers!)
+  "h00500213".U, // 68: addi x4, x0, 5     (Wrong path instruction)
+  "h00060a63".U, // 6c: beq x12, x0, 20    (Shadowed branch on wrong path)
+  "h00000013".U, // 70: nop
+
+  // Block 4: Target of Epoch Test (0x80)
+  "h00100693".U, // 80: addi x13, x0, 1    (Recovery success!)
+  "h00000013".U, // 84: nop
+  "h00000013".U, // 88: nop
+  "h00000013".U, // 8c: nop
+  "h00000013".U, // 90: nop
+  "h00000013".U, // 94: nop
+  "h00000013".U, // 98: nop
+
+  // Block 5: Day 6 Tests - Page Boundary Branch at the last slot of packet (0x9c)
+  "h0240006f".U, // 9c: jal x0, 0x24 (Jump forward to 0xc0)
+  
+  // (0xa0 - 0xbc padded with NOPs to actually reach 0xc0)
+  "h00000013".U, // a0: nop
+  "h00000013".U, // a4: nop
+  "h00000013".U, // a8: nop
+  "h00000013".U, // ac: nop
+  "h00000013".U, // b0: nop
+  "h00000013".U, // b4: nop
+  "h00000013".U, // b8: nop
+  "h00000013".U, // bc: nop
+  
+  // Block 6: Target of Page Boundary check (0xc0)
+  "h00100713".U, // c0: addi x14, x0, 1    (Page boundary jump success)
+  
+  // Day 6 Tests - Back-to-Back branches (0xc4 - 0xc8)
+  "h00000793".U, // c4: addi x15, x0, 0
+  "h00078263".U, // c8: beq x15, x0, 4     (Jump to cc)
+  "h00000013".U, // cc: nop (Success)
+  "h00078263".U, // d0: beq x15, x0, 4     (Another branch right after)
+  "h00000013".U, // d4: nop (Success)
+
+  // Day 6 Tests - Hazard: ALU/Load to Branch (0xd8 - 0xdc)
+  "h00500813".U, // d8: addi x16, x0, 5    (Producer)
+  "h00080663".U, // dc: beq x16, x0, 12    (Consumer, will fail, fallthrough to 0xe0)
+  
+  // 0xe0 Final Halt!
+  "h0000006f".U, // e0: jal x0, 0          (Halt)
 ).padTo(256, "h00000013".U))
 
 

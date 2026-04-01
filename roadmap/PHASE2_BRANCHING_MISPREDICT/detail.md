@@ -38,16 +38,16 @@ This phase is the most critical for understanding how the core handles "surprise
 - [x] Stress test `JALR` with runtime-calculated pointers.
 - [x] **Verification**: Target calculation and alignment checks (2-byte/4-byte).
 
-### Day 5: Pipeline Flush & Redirection logic
-- [ ] Refine the `Redirect` signal from Backend to Frontend.
-- [ ] Ensure `IBuffer` is cleared perfectly during a flush.
-- [ ] **Goal**: No "wrong path" instruction ever reaches execution after a mispredict.
-- [ ] **Epochs/Tags**: Implement a simple sequence bit (epoch) to tag instruction packets for faster flushing.
+### Day 5: Pipeline Flush & Redirection logic [x]
+- [x] Refine the `Redirect` signal from Backend to Frontend.
+- [x] Ensure `IBuffer` is cleared perfectly during a flush.
+- [x] **Goal**: No "wrong path" instruction ever reaches execution after a mispredict.
+- [x] **Epochs/Tags**: Implement a simple sequence bit (epoch) to tag instruction packets for faster flushing.
 
-### Day 6: Architectural Stress Tests
-- [ ] **Back-to-Back Branches**: Verify BPU handles rapid outcome changes.
-- [ ] **Load-to-Branch Hazard**: Test branches following a load to its source register.
-- [ ] **Page Boundaries**: Branch at extremely end of packet/page boundaries.
+### Day 6: Architectural Stress Tests [x]
+- [x] **Back-to-Back Branches**: Verify BPU handles rapid outcome changes.
+- [x] **Load-to-Branch Hazard**: Test branches following a load to its source register.
+- [x] **Page Boundaries**: Branch at extremely end of packet/page boundaries.
 
 ---
 

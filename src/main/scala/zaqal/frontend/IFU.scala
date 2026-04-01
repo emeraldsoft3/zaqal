@@ -23,6 +23,7 @@ class IFU extends Module {
   packet.mask        := io.fetch_req.bits.mask
   packet.prediction  := io.fetch_req.bits.prediction
   packet.ftqPtr      := io.fetch_req.bits.ftqPtr
+  packet.epoch       := io.fetch_req.bits.epoch
   packet.instructions := io.insts_in
   for (i <- 0 until 8) {
     packet.pre_decoded(i) := predecoders(i).io.out

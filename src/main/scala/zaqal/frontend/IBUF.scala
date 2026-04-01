@@ -51,4 +51,5 @@ class IBUF extends Module {
   io.out.bits.pc       := current_packet.pc + (inst_idx << 2)
   io.out.bits.ftqPtr   := current_packet.ftqPtr
   io.out.bits.is_predicted_taken := current_packet.prediction.taken && (inst_idx === current_packet.prediction.slot)
+  io.out.bits.epoch    := current_packet.epoch
 }

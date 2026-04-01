@@ -31,3 +31,8 @@ This is the most complex structural change. We move from "one by one" to "do wha
 ## Day 18-20: Exception & Flush Handling
 - [ ] Ensure precise exceptions and correct state recovery on flushes.
 - **XiangShan Study**: [ExceptionGen.scala](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/backend/rob/ExceptionGen.scala) - *How exceptions are tracked in the ROB.*
+
+## Day 21-23: Branch Recovery Tag (BRT) & Shadow Testing
+- [ ] Replace the 1-bit `epoch` system with XiangShan's multi-bit `BranchTag` (BRT) arrays and redirection masks.
+- [ ] **Back-to-Back Branches**: Test 10+ unresolved branches circulating in the ROB and Issue Queues simultaneously.
+- [ ] **Shadowed Mispredictions**: Re-run the Phase 2 Day 6 tests. Verify that "killing" instructions with older branch tags correctly nullifies them without corrupting the Reorder Buffer.

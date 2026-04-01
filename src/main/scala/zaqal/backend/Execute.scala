@@ -71,6 +71,7 @@ class Execute extends Module {
   // Branch redirection
   io.redirect.valid  := false.B
   io.redirect.target := bru.io.target
+  io.redirect.epoch  := io.in.bits.epoch
 
   when(io.in.fire) {
     // Writeback for single-cycle instructions

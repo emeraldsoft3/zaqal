@@ -43,3 +43,8 @@ This is where we transition Zaqal from a simple core to a high-performance engin
 ## Day 14-15: Flush Propagation & Completion
 - [ ] Verify that flushes correctly clear all 6 slots in the pipeline stages.
 - **Goal**: Maintain correctness while achieving 6-wide throughput.
+
+## Day 16: Hazard & Shadow Branch Testing (Phase 2 Regression)
+- [ ] **Back-to-Back Branches**: Test multiple unresolved branches caught in the 6-wide decoder/issue stage.
+- [ ] **Shadowed Mispredictions**: Re-run the Epoch inversion tests from Phase 2 Day 6. Ensure parallel flushes do not corrupt the single-bit epoch state.
+- [ ] **Load-to-Branch Hazard**: Verify data forwarding and stalling works gracefully across the 6-way execution units.

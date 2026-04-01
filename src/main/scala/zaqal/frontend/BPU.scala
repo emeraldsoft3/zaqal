@@ -58,4 +58,5 @@ class BPU extends Module {
   
   io.out.bits.prediction := meta
   io.out.bits.ftqPtr     := 0.U 
+  io.out.bits.epoch      := false.B
 }

@@ -16,6 +16,7 @@ class FetchRequest extends Bundle {
   val mask       = UInt(8.W)
   val prediction = new PredictionMeta
   val ftqPtr     = UInt(6.W) // Added to help IFU tag the packet
+  val epoch      = Bool()    // Track valid fetch path
 }
 
 // Packet of instructions fetched from I-Cache
@@ -26,6 +27,7 @@ class FetchPacket extends Bundle {
   val mask         = UInt(8.W)
   val prediction   = new PredictionMeta
   val ftqPtr       = UInt(6.W) // Pointer to FTQ entry (64 entries)
+  val epoch        = Bool()
 }
 
 // Signals produced by the Frontend Predecoder (Kunminghu Alignment)
@@ -91,10 +93,12 @@ class MicroOp extends Bundle {
   val pre      = new PreDecodeSignals
   val ftqPtr   = UInt(6.W) // Track origin FTQ entry
   val is_predicted_taken = Bool()
+  val epoch    = Bool()
 }
 
 // Redirect signal from Backend to Frontend
 class BPURedirect extends Bundle {
   val valid  = Bool()
   val target = UInt(64.W)
+  val epoch  = Bool()
 }

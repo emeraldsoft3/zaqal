@@ -34,8 +34,14 @@ class Frontend extends Module {
   val icache = Module(new ICache)
   val ibuf = Module(new IBUF)
 
+  // Epoch Check Reg
+  val fetch_epoch = RegInit(false.B)
+  
   // 1. BPU -> FTQ (Prediction Path)
-  ftq.io.fromBpu <> bpu.io.out
+  ftq.io.fromBpu.valid := bpu.io.out.valid
+  bpu.io.out.ready     := ftq.io.fromBpu.ready
+  ftq.io.fromBpu.bits  := bpu.io.out.bits
+  ftq.io.fromBpu.bits.epoch := fetch_epoch
 
   // 2. FTQ -> IFU and ICache (Fetch Request Path)
   // Lock-step Handshake: Fire only if both are ready
@@ -63,10 +69,20 @@ class Frontend extends Module {
   ftq.io.readPtr := io.ftq_read_ptr
   io.ftq_read_data := ftq.io.readData
 
+  // Epoch Check Logic
+  val is_valid_redirect = io.redirect.valid && (io.redirect.epoch === fetch_epoch)
+
+  when(is_valid_redirect) {
+    fetch_epoch := ~fetch_epoch
+  }
+
   // Handlers for Redirects (Branch Mispredictions)
-  ftq.io.flush := io.redirect.valid
-  ibuf.io.flush := io.redirect.valid
-  bpu.io.redirect := io.redirect
+  ftq.io.flush := is_valid_redirect
+  ibuf.io.flush := is_valid_redirect
+  
+  bpu.io.redirect.valid  := is_valid_redirect
+  bpu.io.redirect.target := io.redirect.target
+  bpu.io.redirect.epoch  := io.redirect.epoch
 
   // 6. Debug Port Mapping
   io.debug_ftq_valid       := ftq.io.fromBpu.valid
