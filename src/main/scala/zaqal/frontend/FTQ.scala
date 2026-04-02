@@ -2,27 +2,27 @@ package zaqal.frontend
 
 import chisel3._
 import chisel3.util._
+import org.chipsalliance.cde.config.Parameters
 import zaqal._
 
-class FTQ extends Module {
+class FTQ(implicit val p: Parameters) extends Module with HasZaqalParameter {
   val io = IO(new Bundle {
     val fromBpu   = Flipped(Decoupled(new FetchRequest))
     val toIfu     = Decoupled(new FetchRequest)
     val toICache  = Decoupled(new FetchRequest)
-    val readPtr   = Input(UInt(6.W))
+    val readPtr   = Input(UInt(ftqPtrWidth.W))
     val readData  = Output(new FetchPacket)
     val flush     = Input(Bool())
-    val occupancy = Output(UInt(7.W))
+    val occupancy = Output(UInt((ftqPtrWidth + 1).W))
   })
 
   // Manual Circular Queue for Metadata (XiangShan style)
-  val entriesSize = 64
-  val ram = Reg(Vec(entriesSize, new FetchRequest))
-  val enqPtr = RegInit(0.U(6.W))
-  val deqPtr = RegInit(0.U(6.W)) // This acts as the 'next to fetch' pointer
-  val count  = RegInit(0.U(7.W))
+  val ram = Reg(Vec(ftqEntries, new FetchRequest))
+  val enqPtr = RegInit(0.U(ftqPtrWidth.W))
+  val deqPtr = RegInit(0.U(ftqPtrWidth.W)) // This acts as the 'next to fetch' pointer
+  val count  = RegInit(0.U((ftqPtrWidth + 1).W))
 
-  val full  = count === entriesSize.U
+  val full  = count === ftqEntries.U
   val empty = count === 0.U
 
   // 1. Enqueue from BPU

@@ -2,31 +2,32 @@ package zaqal
 
 import chisel3._
 import chisel3.util._
+import org.chipsalliance.cde.config.Parameters
 
 // Metadata for branch prediction
-class PredictionMeta extends Bundle {
-  val target    = UInt(64.W) // Where we think we are jumping
+class PredictionMeta(implicit val p: Parameters) extends Bundle with HasZaqalParameter {
+  val target    = UInt(xLen.W) // Where we think we are jumping
   val taken     = Bool()     // Did we actually jump?
-  val slot      = UInt(3.W)  // Which of the 8 instructions is the branch? (0-7)
+  val slot      = UInt(log2Up(fetchWidth).W)  // Which instruction in the packet is the branch?
 }
 
 // Lightweight request from BPU to FTQ
-class FetchRequest extends Bundle {
-  val pc         = UInt(64.W)
-  val mask       = UInt(8.W)
+class FetchRequest(implicit val p: Parameters) extends Bundle with HasZaqalParameter {
+  val pc         = UInt(xLen.W)
+  val mask       = UInt(fetchWidth.W)
   val prediction = new PredictionMeta
-  val ftqPtr     = UInt(6.W) // Added to help IFU tag the packet
+  val ftqPtr     = UInt(ftqPtrWidth.W) // Added to help IFU tag the packet
   val epoch      = Bool()    // Track valid fetch path
 }
 
 // Packet of instructions fetched from I-Cache
-class FetchPacket extends Bundle {
-  val pc           = UInt(64.W)
-  val instructions = Vec(8, UInt(32.W))
-  val pre_decoded  = Vec(8, new PreDecodeSignals)
-  val mask         = UInt(8.W)
+class FetchPacket(implicit val p: Parameters) extends Bundle with HasZaqalParameter {
+  val pc           = UInt(xLen.W)
+  val instructions = Vec(fetchWidth, UInt(instBits.W))
+  val pre_decoded  = Vec(fetchWidth, new PreDecodeSignals)
+  val mask         = UInt(fetchWidth.W)
   val prediction   = new PredictionMeta
-  val ftqPtr       = UInt(6.W) // Pointer to FTQ entry (64 entries)
+  val ftqPtr       = UInt(ftqPtrWidth.W) // Pointer to FTQ entry
   val epoch        = Bool()
 }
 
@@ -37,7 +38,7 @@ class PreDecodeSignals extends Bundle {
 }
 
 // Signals produced by the Backend Main Decoder
-class DecodeSignals extends Bundle {
+class DecodeSignals(implicit val p: Parameters) extends Bundle with HasZaqalParameter {
   val is_addi = Bool()
   val is_add  = Bool()  // R-type ADD
   val is_mul  = Bool()  // M-extension MUL
@@ -82,23 +83,23 @@ class DecodeSignals extends Bundle {
   val rd      = UInt(5.W)
   val rs1     = UInt(5.W)
   val rs2     = UInt(5.W)  // Source register 2 (R-type)
-  val imm     = SInt(64.W)
+  val imm     = SInt(xLen.W)
 }
 
 // The "Language" spoken between Frontend and Backend (Kunminghu)
 // Frontend produces raw instructions + hints
-class MicroOp extends Bundle {
-  val pc       = UInt(64.W)
-  val inst_raw = UInt(32.W)
+class MicroOp(implicit val p: Parameters) extends Bundle with HasZaqalParameter {
+  val pc       = UInt(xLen.W)
+  val inst_raw = UInt(instBits.W)
   val pre      = new PreDecodeSignals
-  val ftqPtr   = UInt(6.W) // Track origin FTQ entry
+  val ftqPtr   = UInt(ftqPtrWidth.W) // Track origin FTQ entry
   val is_predicted_taken = Bool()
   val epoch    = Bool()
 }
 
 // Redirect signal from Backend to Frontend
-class BPURedirect extends Bundle {
+class BPURedirect(implicit val p: Parameters) extends Bundle with HasZaqalParameter {
   val valid  = Bool()
-  val target = UInt(64.W)
+  val target = UInt(xLen.W)
   val epoch  = Bool()
 }

@@ -2,17 +2,19 @@ package zaqal.backend.fu
 
 import chisel3._
 import chisel3.util._
+import org.chipsalliance.cde.config.Parameters
 import zaqal.DecodeSignals
+import zaqal.HasZaqalParameter
 
-class Divider extends Module {
+class Divider(implicit val p: Parameters) extends Module with HasZaqalParameter {
   val io = IO(new Bundle {
-    val src1    = Input(UInt(64.W))
-    val src2    = Input(UInt(64.W))
+    val src1    = Input(UInt(xLen.W))
+    val src2    = Input(UInt(xLen.W))
     val dec     = Input(new DecodeSignals)
     val fire    = Input(Bool())
     
     val ready   = Output(Bool())
-    val result  = Output(UInt(64.W))
+    val result  = Output(UInt(xLen.W))
     val done    = Output(Bool())
   })
 
@@ -22,9 +24,9 @@ class Divider extends Module {
   val DIV_LATENCY = 32
   val counter = RegInit(0.U(6.W))
 
-  val op1 = RegInit(0.U(64.W))
-  val op2 = RegInit(0.U(64.W))
-  val res = RegInit(0.U(64.W))
+  val op1 = RegInit(0.U(xLen.W))
+  val op2 = RegInit(0.U(xLen.W))
+  val res = RegInit(0.U(xLen.W))
 
   io.ready := (state === s_idle)
   io.done  := (state === s_done)
@@ -42,7 +44,7 @@ class Divider extends Module {
     is(s_busy) {
       counter := counter + 1.U
       when(counter === (DIV_LATENCY - 1).U) {
-        val safe_rs2 = Mux(op2 === 0.U, 1.U(64.W), op2)
+        val safe_rs2 = Mux(op2 === 0.U, 1.U(xLen.W), op2)
         res   := (op1.asSInt / safe_rs2.asSInt).asUInt
         state := s_done
       }

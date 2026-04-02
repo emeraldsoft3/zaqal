@@ -2,10 +2,11 @@ package zaqal.backend
 
 import chisel3._
 import chisel3.util._
+import org.chipsalliance.cde.config.Parameters
 import zaqal._
 import zaqal.backend.fu._
 
-class Execute extends Module {
+class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter {
   val io = IO(new Bundle {
     val in       = Flipped(Decoupled(new MicroOp))
     val redirect = Output(new BPURedirect)
@@ -13,7 +14,7 @@ class Execute extends Module {
 
   // Coordination state
   val div_rd_latch = RegInit(0.U(5.W))
-  val div_pc_latch = RegInit(0.U(64.W))
+  val div_pc_latch = RegInit(0.U(xLen.W))
 
   // 1. Decoder & Register File
   val decoder = Module(new Decoder)

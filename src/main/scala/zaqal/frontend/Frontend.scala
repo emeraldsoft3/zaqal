@@ -2,29 +2,30 @@ package zaqal.frontend
 
 import chisel3._
 import chisel3.util._
+import org.chipsalliance.cde.config.Parameters
 import zaqal._
 
-class Frontend extends Module {
+class Frontend(implicit val p: Parameters) extends Module with HasZaqalParameter {
   val io = IO(new Bundle {
     val redirect     = Input(new BPURedirect)
     val dispatch     = Decoupled(new MicroOp) // Output to Backend
     
     // Backend access to FTQ (XiangShan style)
-    val ftq_read_ptr  = Input(UInt(6.W))
+    val ftq_read_ptr  = Input(UInt(ftqPtrWidth.W))
     val ftq_read_data = Output(new FetchPacket)
 
     // Debug ports
     val debug_ftq_valid       = Output(Bool())
     val debug_ftq_flush       = Output(Bool())
-    val debug_ftq_pc          = Output(UInt(32.W))
-    val debug_ftq_mask        = Output(UInt(8.W))
+    val debug_ftq_pc          = Output(UInt(xLen.W))
+    val debug_ftq_mask        = Output(UInt(fetchWidth.W))
     val debug_ftq_ready       = Output(Bool())
-    val debug_ftq_pred_target = Output(UInt(64.W))
+    val debug_ftq_pred_target = Output(UInt(xLen.W))
     val debug_ftq_pred_taken  = Output(Bool())
-    val debug_ftq_pred_slot   = Output(UInt(3.W))
+    val debug_ftq_pred_slot   = Output(UInt(log2Up(fetchWidth).W))
 
-    val debug_ftq_occupancy = Output(UInt(7.W))
-    val debug_ftq_insts     = Output(Vec(8, UInt(32.W)))
+    val debug_ftq_occupancy = Output(UInt((ftqPtrWidth + 1).W))
+    val debug_ftq_insts     = Output(Vec(fetchWidth, UInt(instBits.W)))
   })
 
   // 1. Instantiate the sub-modules

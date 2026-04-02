@@ -2,19 +2,21 @@ package zaqal.backend.fu
 
 import chisel3._
 import chisel3.util._
+import org.chipsalliance.cde.config.Parameters
 import zaqal.DecodeSignals
+import zaqal.HasZaqalParameter
 
-class BRU extends Module {
+class BRU(implicit val p: Parameters) extends Module with HasZaqalParameter {
   val io = IO(new Bundle {
-    val src1            = Input(UInt(64.W))
-    val src2            = Input(UInt(64.W))
+    val src1            = Input(UInt(xLen.W))
+    val src2            = Input(UInt(xLen.W))
     val dec             = Input(new DecodeSignals)
-    val pc              = Input(UInt(64.W))
+    val pc              = Input(UInt(xLen.W))
     val pred_taken      = Input(Bool())
     
     val taken           = Output(Bool())
     val mispredict      = Output(Bool())
-    val target          = Output(UInt(64.W))
+    val target          = Output(UInt(xLen.W))
   })
 
   val comparator = Module(new Comparator)
@@ -40,7 +42,7 @@ class BRU extends Module {
   ))
 
   val target_pc = Mux(io.dec.is_jalr,
-    (io.src1 + io.dec.imm.asUInt) & ~1.U(64.W),
+    (io.src1 + io.dec.imm.asUInt) & ~1.U(xLen.W),
     (io.pc.asSInt + io.dec.imm).asUInt
   )
   val fallthrough_pc = io.pc + 4.U

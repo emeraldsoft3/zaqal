@@ -9,13 +9,16 @@ object ZaqalTest extends App {
   val vcdPath = "programs/vcd"
   new File(vcdPath).mkdirs()
 
+  implicit val p = (new ZaqalConfig)
+  val params = p(ZaqalParamsKey)
+
   RawTester.test(new Core(), Seq(WriteVcdAnnotation)) { dut =>
     println("--- Starting ZAQAL Agile V1.0 Simulation ---")
     dut.clock.setTimeout(0)
     
     // --- CSV SETUP ---
     val csvFile = new PrintWriter(new File("ftq_dump.csv"))
-    csvFile.println("Cycle,Slot,BasePC,Mask,Inst0,Inst1,Inst2,Inst3,Inst4,Inst5,Inst6,Inst7,PredTarget,PredTaken,PredSlot") 
+    csvFile.println(s"Cycle,Slot,BasePC,Mask,${(0 until params.fetchWidth).map(i => s"Inst$i").mkString(",")},PredTarget,PredTaken,PredSlot") 
     csvFile.flush() 
 
     // The Shadow FTQ is our software model of the hardware warehouse
@@ -24,8 +27,8 @@ object ZaqalTest extends App {
     var manualReadPtr = 0 
     
     def dumpToCSV(currentCycle: Int): Unit = {
-      for (slot <- 0 until 64) {
-        val data = shadowFTQ.getOrElse(slot, "EMPTY,EMPTY,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,false,0")
+      for (slot <- 0 until params.ftqEntries) {
+        val data = shadowFTQ.getOrElse(slot, s"EMPTY,EMPTY,${(0 until params.fetchWidth).map(_ => "0x0").mkString(",")},0x0,false,0")
         csvFile.println(s"$currentCycle,$slot,$data")
       }
       csvFile.flush() 
@@ -56,13 +59,13 @@ object ZaqalTest extends App {
       if (enqValid && enqReady && !flush && cycle >= resetCycles) {
         val pc    = dut.io.debug_ftq_pc.peek().litValue
         val mask  = dut.io.debug_ftq_mask.peek().litValue
-        val insts = (0 until 8).map(i => f"0x${dut.io.debug_ftq_insts(i).peek().litValue}%08x").mkString(",")
+        val insts = (0 until params.fetchWidth).map(i => f"0x${dut.io.debug_ftq_insts(i).peek().litValue}%08x").mkString(",")
         val pTarget = dut.io.debug_ftq_pred_target.peek().litValue
         val pTaken  = dut.io.debug_ftq_pred_taken.peek().litToBoolean
         val pSlot   = dut.io.debug_ftq_pred_slot.peek().litValue
         
         shadowFTQ(manualWritePtr) = f"0x$pc%08x,${mask.toString(2)},$insts,0x$pTarget%08x,$pTaken,$pSlot"
-        manualWritePtr = (manualWritePtr + 1) % 64
+        manualWritePtr = (manualWritePtr + 1) % params.ftqEntries
       }
 
       // 4. Capture DEQUEUE (FTQ -> Backend)
@@ -73,7 +76,7 @@ object ZaqalTest extends App {
       if (deqValid && deqReady && !flush && cycle >= resetCycles) {
         // Remove from shadow map to show "EMPTY" in CSV
         shadowFTQ.remove(manualReadPtr)
-        manualReadPtr = (manualReadPtr + 1) % 64
+        manualReadPtr = (manualReadPtr + 1) % params.ftqEntries
       }
 
       // 5. Periodic Dump (Dump every cycle to see the movement)

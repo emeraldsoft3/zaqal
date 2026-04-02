@@ -2,22 +2,24 @@ package zaqal.frontend
 
 import chisel3._
 import chisel3.util._
+import org.chipsalliance.cde.config.Parameters
 import zaqal._
 
-class IBUF extends Module {
+class IBUF(implicit val p: Parameters) extends Module with HasZaqalParameter {
   val io = IO(new Bundle {
     val inst_data = Flipped(Decoupled(new FetchPacket)) // From IFU
     val flush     = Input(Bool())
     val out       = Decoupled(new MicroOp)              // To Backend
   })
 
-  val inst_idx = RegInit(0.U(3.W))
+  val inst_idx = RegInit(0.U(log2Up(fetchWidth).W))
   val current_packet = Reg(new FetchPacket)
   val busy = RegInit(false.B)
 
   // Logic to step through the instructions in a packet
   // Lookahead: Find the next valid instruction index in the current mask after the current index
-  val remaining_mask = current_packet.mask & ("hFE".U << inst_idx)(7, 0)
+  val mask_all_except_first = Reverse(Cat(0.U(1.W), Fill(fetchWidth - 1, 1.U(1.W))))
+  val remaining_mask = current_packet.mask & (mask_all_except_first << inst_idx)(fetchWidth - 1, 0)
   val has_next_inst  = remaining_mask.orR // has next inst is 1 if remaining mask is 0, but if there is any value, it will be 1
   val next_inst_idx  = PriorityEncoder(remaining_mask) //0 for 11111111 , 1 for 11111110, 2 for 11111100
 

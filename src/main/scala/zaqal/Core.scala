@@ -2,23 +2,24 @@ package zaqal
 
 import chisel3._
 import chisel3.util._
+import org.chipsalliance.cde.config.Parameters
 import zaqal.frontend.Frontend
 import zaqal.backend.Backend
 
-class Core extends Module {
+class Core(implicit val p: Parameters) extends Module with HasZaqalParameter {
   val io = IO(new Bundle {
     val success               = Output(Bool())
     // Signals entering the FTQ (from BPU/IFU)
     val debug_ftq_valid       = Output(Bool())
     val debug_ftq_flush       = Output(Bool())
-    val debug_ftq_pc          = Output(UInt(32.W))
-    val debug_ftq_mask        = Output(UInt(8.W))
-    val debug_ftq_insts       = Output(Vec(8, UInt(32.W)))
+    val debug_ftq_pc          = Output(UInt(xLen.W))
+    val debug_ftq_mask        = Output(UInt(fetchWidth.W))
+    val debug_ftq_insts       = Output(Vec(fetchWidth, UInt(instBits.W)))
     val debug_ftq_ready       = Output(Bool())
-    val debug_ftq_pred_target = Output(UInt(64.W))
+    val debug_ftq_pred_target = Output(UInt(xLen.W))
     val debug_ftq_pred_taken  = Output(Bool())
-    val debug_ftq_pred_slot   = Output(UInt(3.W))
-    val debug_ftq_occupancy   = Output(UInt(7.W))
+    val debug_ftq_pred_slot   = Output(UInt(log2Up(fetchWidth).W))
+    val debug_ftq_occupancy   = Output(UInt((ftqPtrWidth + 1).W))
 
     // Signals leaving the Frontend (heading to Backend)
     val debug_ftq_valid_out   = Output(Bool())

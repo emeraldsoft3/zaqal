@@ -2,19 +2,20 @@ package zaqal.frontend
 
 import chisel3._
 import chisel3.util._
+import org.chipsalliance.cde.config.Parameters
 import zaqal._
 
-class IFU extends Module {
+class IFU(implicit val p: Parameters) extends Module with HasZaqalParameter {
   val io = IO(new Bundle {
     val fetch_req  = Flipped(Decoupled(new FetchRequest)) // From FTQ (Request - metadata only)
     val toIbuffer  = Decoupled(new FetchPacket)         // To IBuffer (Direct)
     val icache_ready = Input(Bool())
-    val insts_in     = Input(Vec(8, UInt(32.W)))
+    val insts_in     = Input(Vec(fetchWidth, UInt(instBits.W)))
   })
 
   // IFU Logic: Take PC from FTQ
-  val predecoders = Seq.fill(8)(Module(new Predecoder))
-  for (i <- 0 until 8) {
+  val predecoders = Seq.fill(fetchWidth)(Module(new Predecoder))
+  for (i <- 0 until fetchWidth) {
     predecoders(i).io.inst := io.insts_in(i)
   }
 
@@ -25,7 +26,7 @@ class IFU extends Module {
   packet.ftqPtr      := io.fetch_req.bits.ftqPtr
   packet.epoch       := io.fetch_req.bits.epoch
   packet.instructions := io.insts_in
-  for (i <- 0 until 8) {
+  for (i <- 0 until fetchWidth) {
     packet.pre_decoded(i) := predecoders(i).io.out
   }
 

@@ -2,18 +2,20 @@ package zaqal.backend.fu
 
 import chisel3._
 import chisel3.util._
+import org.chipsalliance.cde.config.Parameters
+import zaqal.HasZaqalParameter
 
-class Shifter extends Module {
+class Shifter(implicit val p: Parameters) extends Module with HasZaqalParameter {
   val io = IO(new Bundle {
-    val src1    = Input(UInt(64.W))
-    val shamt   = Input(UInt(6.W))
+    val src1    = Input(UInt(xLen.W))
+    val shamt   = Input(UInt(log2Up(xLen).W))
     val is_sll  = Input(Bool())
     val is_srl  = Input(Bool())
     val is_sra  = Input(Bool())
     val is_sllw = Input(Bool())
     val is_srlw = Input(Bool())
     val is_sraw = Input(Bool())
-    val result  = Output(UInt(64.W))
+    val result  = Output(UInt(xLen.W))
   })
 
   // 64-bit logic

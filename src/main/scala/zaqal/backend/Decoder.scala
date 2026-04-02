@@ -2,11 +2,13 @@ package zaqal.backend
 
 import chisel3._
 import chisel3.util._
+import org.chipsalliance.cde.config.Parameters
 import zaqal.DecodeSignals
+import zaqal.HasZaqalParameter
 
-class Decoder extends Module {
+class Decoder(implicit val p: Parameters) extends Module with HasZaqalParameter {
   val io = IO(new Bundle {
-    val inst = Input(UInt(32.W))
+    val inst = Input(UInt(instBits.W))
     val out  = Output(new DecodeSignals)
   })
 
