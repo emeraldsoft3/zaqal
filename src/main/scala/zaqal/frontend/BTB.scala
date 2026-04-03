@@ -3,20 +3,17 @@ package zaqal.frontend
 import chisel3._
 import chisel3.util._
 import zaqal.common._
-import zaqal.frontend.cache._
 
-class BPU(implicit p: ZaqalParams) extends Module {
+class BTB(implicit p: ZaqalParams) extends Module {
   val io = IO(new Bundle {
     val req = Flipped(Valid(UInt(p.xLen.W)))
     val resp = Output(new BranchPredictionBus)
     val update = Flipped(Valid(new BranchPredictionBus))
   })
 
-  val btb = Module(new BTB)
-  val ras = Module(new RAS)
-
-  btb.io.req := io.req
-  io.resp := btb.io.resp
-
-  btb.io.update := io.update
+  // Simple BTB implementation
+  val entries = RegInit(VecInit(Seq.fill(16)(0.U.asTypeOf(new BranchPredictionBus))))
+  
+  // Dummy logic for now
+  io.resp := entries(io.req.bits(5, 2))
 }
