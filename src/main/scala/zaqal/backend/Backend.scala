@@ -8,7 +8,7 @@ class Backend(implicit p: ZaqalParams) extends Module {
   val io = IO(new Bundle {
     val fetchPacket = Flipped(Decoupled(new FetchPacket))
     val flush = Output(new PipelineFlushBus)
-    val brpUpdate = Output(new BranchPredictionBus)
+    val brpUpdate = Output(Valid(new BranchPredictionBus))
   })
 
   val decoder = Module(new Decoder)
@@ -39,7 +39,8 @@ class Backend(implicit p: ZaqalParams) extends Module {
   io.flush.flush := bru.io.taken
   io.flush.targetPC := pc + 4.U // Displacement usually comes from immediate
   
-  io.brpUpdate.taken := bru.io.taken
-  io.brpUpdate.target := io.flush.targetPC
-  io.brpUpdate.pc := pc
+  io.brpUpdate.valid := true.B
+  io.brpUpdate.bits.taken := bru.io.taken
+  io.brpUpdate.bits.target := io.flush.targetPC
+  io.brpUpdate.bits.pc := pc
 }

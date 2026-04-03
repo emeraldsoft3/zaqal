@@ -18,7 +18,7 @@ class ICache(implicit p: ZaqalParams) extends Module {
     0x002081b3, // add x3, x1, x2  (x3 = 3)
     0x00310863, // beq x2, x3, label (skip next) -> not taken
     0x001101b3, // add x3, x2, x1  (x3 = 3)
-    0x0000006f.U(32.W)  // j . (infinite loop)
+    0x0000006f  // j . (infinite loop)
   ).map(_.U(32.W)))
 
   val addr = io.req.bits >> 2
@@ -26,6 +26,10 @@ class ICache(implicit p: ZaqalParams) extends Module {
   io.req.ready := io.resp.ready
 
   io.resp.bits.pc := io.req.bits
+  io.resp.bits.instrs.foreach(_ := 0.U) // Initialize all to 0
   io.resp.bits.instrs(0) := mem(addr(log2Up(mem.length)-1, 0))
   io.resp.bits.mask := 1.U
+  io.resp.bits.pred_target := 0.U
+  io.resp.bits.pred_taken := false.B
+  io.resp.bits.pred_slot := 0.U
 }

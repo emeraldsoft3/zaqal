@@ -14,4 +14,9 @@ case class ZaqalParams(
   nRobEntries: Int = 64,
   nPhyRegs: Int = 64,
   xLen: Int = 64
-)
+) {
+  def fetchWidth = nFetchInstrs
+  def ftqEntries = nFrontendQueues
+}
+
+case object ZaqalParamsKey

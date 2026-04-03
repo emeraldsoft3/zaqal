@@ -19,4 +19,8 @@ class BPU(implicit p: ZaqalParams) extends Module {
   io.resp := btb.io.resp
 
   btb.io.update := io.update
+
+  // Initialize RAS push inputs to satisfy FIRRTL
+  ras.io.push.valid := false.B
+  ras.io.push.bits := 0.U
 }
