@@ -7,6 +7,8 @@ import chisel3.util._
 import org.chipsalliance.cde.config.Parameters
 import zaqal.frontend.Frontend
 import zaqal.backend.Backend
+import zaqal.utility.SkidBuffer
+
 
 class Core(implicit val p: Parameters) extends Module with HasZaqalParameter {
   val io = IO(new Bundle {
@@ -34,8 +36,8 @@ class Core(implicit val p: Parameters) extends Module with HasZaqalParameter {
   val frontend = Module(new Frontend)
   val backend  = Module(new Backend)
 
-  // 2. Connect Frontend to Backend
-  backend.io.dispatch  <> frontend.io.dispatch
+  // 2. Connect Frontend to Backend (Buffered Dispatch!)
+  backend.io.dispatch  <> SkidBuffer(frontend.io.dispatch, frontend.io.debug_ftq_flush)
   frontend.io.redirect := backend.io.redirect
 
   // Metadata access (XiangShan style) - Tie off for now

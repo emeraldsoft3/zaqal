@@ -5,6 +5,7 @@ import chisel3.util._
 import org.chipsalliance.cde.config.Parameters
 import zaqal._
 import zaqal.common._
+import zaqal.utility.SkidBuffer
 
 class Frontend(implicit val p: Parameters) extends Module with HasZaqalParameter {
   val io = IO(new Bundle {
@@ -38,31 +39,35 @@ class Frontend(implicit val p: Parameters) extends Module with HasZaqalParameter
 
   // Epoch Check Reg
   val fetch_epoch = RegInit(false.B)
+  val is_valid_redirect = io.redirect.valid && (io.redirect.epoch === fetch_epoch)
+
+  // 1. BPU -> FTQ (Prediction Path - Buffered!)
+  val bpu_out_buffered = SkidBuffer(bpu.io.out, is_valid_redirect)
+  ftq.io.fromBpu.valid        := bpu_out_buffered.valid
+  bpu_out_buffered.ready      := ftq.io.fromBpu.ready
+  ftq.io.fromBpu.bits         := bpu_out_buffered.bits
+  ftq.io.fromBpu.bits.epoch    := fetch_epoch
+
+  // 2. FTQ -> IFU and ICache (Fetch Request Path - Buffered!)
+  val ftq_to_ifu_buffered = SkidBuffer(ftq.io.toIfu, is_valid_redirect)
   
-  // 1. BPU -> FTQ (Prediction Path)
-  ftq.io.fromBpu.valid := bpu.io.out.valid
-  bpu.io.out.ready     := ftq.io.fromBpu.ready
-  ftq.io.fromBpu.bits  := bpu.io.out.bits
-  ftq.io.fromBpu.bits.epoch := fetch_epoch
-
-  // 2. FTQ -> IFU and ICache (Fetch Request Path)
   // Lock-step Handshake: Fire only if both are ready
-  ftq.io.toIfu.ready    := ifu.io.fetch_req.ready && icache.io.ready
-  ftq.io.toICache.ready := ftq.io.toIfu.ready
+  // ftq.io.toIfu.ready should be driven by the buffer's ready
+  // and we also need to inform ICache.
+  ftq_to_ifu_buffered.ready := ifu.io.fetch_req.ready && icache.io.ready
+  ftq.io.toICache.ready      := ftq_to_ifu_buffered.ready
 
-  ifu.io.fetch_req.valid := ftq.io.toIfu.valid && icache.io.ready
-  ifu.io.fetch_req.bits  := ftq.io.toIfu.bits
+  ifu.io.fetch_req.valid := ftq_to_ifu_buffered.valid && icache.io.ready
+  ifu.io.fetch_req.bits  := ftq_to_ifu_buffered.bits
 
   icache.io.pc := ftq.io.toICache.bits.pc
-  // icache valid can be tied to ftq.io.toICache.valid & ifu.io.fetch_req.ready
-  // but for a simple ROM, just driving PC is enough for now.
 
   // 3. ICache -> IFU (Instruction Data Path)
   ifu.io.icache_ready := icache.io.ready
   ifu.io.insts_in     := icache.io.insts
 
-  // 4. IFU -> IBUF (Data Path - Direct!)
-  ibuf.io.inst_data <> ifu.io.toIbuffer
+  // 4. IFU -> IBUF (Data Path - Buffered!)
+  ibuf.io.inst_data <> SkidBuffer(ifu.io.toIbuffer, is_valid_redirect)
 
   // 5. IBUF -> Backend (Dispatch Path)
   io.dispatch <> ibuf.io.out
@@ -72,8 +77,6 @@ class Frontend(implicit val p: Parameters) extends Module with HasZaqalParameter
   io.ftq_read_data := ftq.io.readData
 
   // Epoch Check Logic
-  val is_valid_redirect = io.redirect.valid && (io.redirect.epoch === fetch_epoch)
-
   when(is_valid_redirect) {
     fetch_epoch := ~fetch_epoch
   }
@@ -86,15 +89,15 @@ class Frontend(implicit val p: Parameters) extends Module with HasZaqalParameter
   bpu.io.redirect.target := io.redirect.target
   bpu.io.redirect.epoch  := io.redirect.epoch
 
-  // 6. Debug Port Mapping
-  io.debug_ftq_valid       := ftq.io.fromBpu.valid
+  // 6. Debug Port Mapping (Using the raw BPU signals for the trace)
+  io.debug_ftq_valid       := bpu.io.out.valid
   io.debug_ftq_flush       := ftq.io.flush
-  io.debug_ftq_pc          := ftq.io.fromBpu.bits.pc
-  io.debug_ftq_mask        := ftq.io.fromBpu.bits.mask
-  io.debug_ftq_ready       := ftq.io.fromBpu.ready
-  io.debug_ftq_pred_target := ftq.io.fromBpu.bits.prediction.target
-  io.debug_ftq_pred_taken  := ftq.io.fromBpu.bits.prediction.taken
-  io.debug_ftq_pred_slot   := ftq.io.fromBpu.bits.prediction.slot
+  io.debug_ftq_pc          := bpu.io.out.bits.pc
+  io.debug_ftq_mask        := bpu.io.out.bits.mask
+  io.debug_ftq_ready       := bpu.io.out.ready
+  io.debug_ftq_pred_target := bpu.io.out.bits.prediction.target
+  io.debug_ftq_pred_taken  := bpu.io.out.bits.prediction.taken
+  io.debug_ftq_pred_slot   := bpu.io.out.bits.prediction.slot
 
   io.debug_ftq_occupancy := ftq.io.occupancy
   io.debug_ftq_insts     := icache.io.insts
