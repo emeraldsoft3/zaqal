@@ -1,18 +1,18 @@
 package zaqal
 
+import zaqal.common._
+
 import chisel3._
 import chiseltest._
 import java.io.{File, PrintWriter}
 import java.nio.file.{Files, StandardCopyOption}
-import zaqal.common._
 
 object ZaqalTest extends App {
   val vcdPath = "programs/vcd"
   new File(vcdPath).mkdirs()
 
-  // Use the recovered ZaqalParams setup directly
-  implicit val p: ZaqalParams = ZaqalParams()
-  val params = p
+  implicit val p = (new ZaqalConfig)
+  val params = p(ZaqalParamsKey)
 
   RawTester.test(new Core(), Seq(WriteVcdAnnotation)) { dut =>
     println("--- Starting ZAQAL Agile V1.0 Simulation ---")
@@ -72,7 +72,7 @@ object ZaqalTest extends App {
 
       // 4. Capture DEQUEUE (FTQ -> Backend)
       // This is the new logic to see the Backend "eating" instructions
-      val deqValid = dut.io.debug_ftq_valid_out.peek().litToBoolean
+      val deqValid = dut.io.debug_ftq_valid_out.peek().litToBoolean // You may need to expose this in Core
       val deqReady = dut.io.debug_ftq_ready_out.peek().litToBoolean 
 
       if (deqValid && deqReady && !flush && cycle >= resetCycles) {
@@ -97,12 +97,9 @@ object ZaqalTest extends App {
   val targetVcd = new File("programs/vcd/Lithium.vcd")
   val testRunDir = new File("test_run_dir")
   if (testRunDir.exists()) {
-    val subDirs = testRunDir.listFiles().filter(_.isDirectory)
-    if (subDirs.nonEmpty) {
-        val vcdFiles = subDirs.flatMap(_.listFiles()).filter(_.getName.endsWith(".vcd"))
-        if (vcdFiles.nonEmpty) {
-            Files.copy(vcdFiles.sortBy(_.lastModified()).last.toPath, targetVcd.toPath, StandardCopyOption.REPLACE_EXISTING)
-        }
+    val vcdFiles = testRunDir.listFiles().filter(_.isDirectory).flatMap(_.listFiles()).filter(_.getName.endsWith(".vcd"))
+    if (vcdFiles.nonEmpty) {
+      Files.copy(vcdFiles.sortBy(_.lastModified()).last.toPath, targetVcd.toPath, StandardCopyOption.REPLACE_EXISTING)
     }
   }
 }

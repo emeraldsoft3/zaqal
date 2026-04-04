@@ -2,11 +2,12 @@ package zaqal.frontend
 
 import chisel3._
 import chisel3.util._
+import org.chipsalliance.cde.config.Parameters
 import zaqal.common._
 
-class BTB(implicit p: ZaqalParams) extends Module {
+class BTB(implicit val p: Parameters) extends Module with HasZaqalParameter {
   val io = IO(new Bundle {
-    val req = Flipped(Valid(UInt(p.xLen.W)))
+    val req = Flipped(Valid(UInt(xLen.W)))
     val resp = Output(new BranchPredictionBus)
     val update = Flipped(Valid(new BranchPredictionBus))
   })

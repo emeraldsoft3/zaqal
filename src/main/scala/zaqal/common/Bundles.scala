@@ -2,58 +2,115 @@ package zaqal.common
 
 import chisel3._
 import chisel3.util._
+import org.chipsalliance.cde.config.Parameters
 
-class CtrlBundle(implicit p: ZaqalParams) extends Bundle {
-  val rfWen = Bool()
-  val aluOp = UInt(4.W)
-  val bruOp = UInt(4.W)
-  val immSel = UInt(3.W)
-  val op1Sel = UInt(2.W)
-  val op2Sel = UInt(2.W)
+// Metadata for branch prediction
+class PredictionMeta(implicit val p: Parameters) extends Bundle with HasZaqalParameter {
+  val target    = UInt(xLen.W) // Where we think we are jumping
+  val taken     = Bool()     // Did we actually jump?
+  val slot      = UInt(log2Up(fetchWidth).W)  // Which instruction in the packet is the branch?
 }
 
-class DataBundle(implicit p: ZaqalParams) extends Bundle {
-  val src1 = UInt(p.xLen.W)
-  val src2 = UInt(p.xLen.W)
-  val imm = UInt(p.xLen.W)
+// Lightweight request from BPU to FTQ
+class FetchRequest(implicit val p: Parameters) extends Bundle with HasZaqalParameter {
+  val pc         = UInt(xLen.W)
+  val mask       = UInt(fetchWidth.W)
+  val prediction = new PredictionMeta
+  val ftqPtr     = UInt(ftqPtrWidth.W) // Added to help IFU tag the packet
+  val epoch      = Bool()    // Track valid fetch path
 }
 
-class MicroOp(implicit p: ZaqalParams) extends Bundle {
-  val pc = UInt(p.xLen.W)
-  val instr = UInt(32.W)
-  
-  val ctrl = new CtrlBundle
-  val data = new DataBundle
+// Packet of instructions fetched from I-Cache
+class FetchPacket(implicit val p: Parameters) extends Bundle with HasZaqalParameter {
+  val pc           = UInt(xLen.W)
+  val instructions = Vec(fetchWidth, UInt(instBits.W))
+  val pre_decoded  = Vec(fetchWidth, new PreDecodeSignals)
+  val mask         = UInt(fetchWidth.W)
+  val prediction   = new PredictionMeta
+  val ftqPtr       = UInt(ftqPtrWidth.W) // Pointer to FTQ entry
+  val epoch        = Bool()
+}
 
-  val pdst = UInt(6.W)
-  val psrc1 = UInt(6.W)
-  val psrc2 = UInt(6.W)
-  val ldst = UInt(5.W)
-  val lsrc1 = UInt(5.W)
-  val lsrc2 = UInt(5.W)
-  
+// Signals produced by the Frontend Predecoder (Kunminghu Alignment)
+class PreDecodeSignals extends Bundle {
+  val is_rvc = Bool() // Compressed ISA hint
+  val is_cfi = Bool() // Control Flow Instruction hint
+}
+
+// Signals produced by the Backend Main Decoder
+class DecodeSignals(implicit val p: Parameters) extends Bundle with HasZaqalParameter {
+  val is_addi = Bool()
+  val is_add  = Bool()  // R-type ADD
+  val is_mul  = Bool()  // M-extension MUL
+  val is_div  = Bool()  // M-extension DIV (signed)
+  val is_beq  = Bool()  // B-type BEQ
+  val is_bne  = Bool()  // B-type BNE
+  val is_blt  = Bool()  // B-type BLT
+  val is_bge  = Bool()  // B-type BGE
+  val is_bltu = Bool()  // B-type BLTU
+  val is_bgeu = Bool()  // B-type BGEU
+  val is_and  = Bool()  // R-type AND
+  val is_or   = Bool()  // R-type OR
+  val is_xor  = Bool()  // R-type XOR
+  val is_andi = Bool()  // I-type ANDI
+  val is_ori  = Bool()  // I-type ORI
+  val is_xori = Bool()  // I-type XORI
+  val is_sll  = Bool()  // R-type SLL
+  val is_srl  = Bool()  // R-type SRL
+  val is_sra  = Bool()  // R-type SRA
+  val is_sllw = Bool()  // R-type SLLW
+  val is_srlw = Bool()  // R-type SRLW
+  val is_sraw = Bool()  // R-type SRAW
+  val is_slli  = Bool()  // I-type SLLI (64-bit)
+  val is_srli  = Bool()  // I-type SRLI (64-bit)
+  val is_srai  = Bool()  // I-type SRAI (64-bit)
+  val is_slliw = Bool()  // I-type SLLIW (32-bit Word)
+  val is_srliw = Bool()  // I-type SRLIW (32-bit Word)
+  val is_sraiw = Bool()  // I-type SRAIW (32-bit Word)
+  val is_slt  = Bool()  // R-type SLT
+  val is_sltu = Bool()  // R-type SLTU
+  val is_slti = Bool()  // I-type SLTI
+  val is_sltiu = Bool() // I-type SLTIU
+  val is_sub   = Bool() // R-type SUB
+  val is_addw  = Bool() // R-type ADDW
+  val is_subw  = Bool() // R-type SUBW
+  val is_addiw = Bool() // I-type ADDIW
+  val is_lui   = Bool() // U-type LUI
+  val is_auipc = Bool() // U-type AUIPC
+  val is_branch = Bool() // General branch hint
+  val is_jal  = Bool()  // J-type JAL
+  val is_jalr = Bool()  // I-type JALR
+  val rd      = UInt(5.W)
+  val rs1     = UInt(5.W)
+  val rs2     = UInt(5.W)  // Source register 2 (R-type)
+  val imm     = SInt(xLen.W)
+}
+
+// The "Language" spoken between Frontend and Backend (Kunminghu)
+// Frontend produces raw instructions + hints
+class MicroOp(implicit val p: Parameters) extends Bundle with HasZaqalParameter {
+  val pc       = UInt(xLen.W)
+  val inst_raw = UInt(instBits.W)
+  val pre      = new PreDecodeSignals
+  val ftqPtr   = UInt(ftqPtrWidth.W) // Track origin FTQ entry
+  val is_predicted_taken = Bool()
+  val epoch    = Bool()
+}
+
+// Redirect signal from Backend to Frontend
+class BPURedirect(implicit val p: Parameters) extends Bundle with HasZaqalParameter {
+  val valid  = Bool()
+  val target = UInt(xLen.W)
+  val epoch  = Bool()
+}
+
+class BranchPredictionBus(implicit val p: Parameters) extends Bundle with HasZaqalParameter {
+  val pc = UInt(xLen.W)
+  val target = UInt(xLen.W)
   val taken = Bool()
-  val mispredict = Bool()
-  val robIdx = UInt(6.W)
-  val exception = Bool()
 }
 
-class FetchPacket(implicit p: ZaqalParams) extends Bundle {
-  val instrs = Vec(p.nFetchInstrs, UInt(32.W))
-  val pc = UInt(p.xLen.W)
-  val mask = UInt(p.nFetchInstrs.W)
-  val pred_target = UInt(p.xLen.W)
-  val pred_taken = Bool()
-  val pred_slot = UInt(log2Up(p.nFetchInstrs).W)
-}
-
-class BranchPredictionBus(implicit p: ZaqalParams) extends Bundle {
-  val pc = UInt(p.xLen.W)
-  val target = UInt(p.xLen.W)
-  val taken = Bool()
-}
-
-class PipelineFlushBus(implicit p: ZaqalParams) extends Bundle {
+class PipelineFlushBus(implicit val p: Parameters) extends Bundle with HasZaqalParameter {
   val flush = Bool()
-  val targetPC = UInt(p.xLen.W)
+  val targetPC = UInt(xLen.W)
 }

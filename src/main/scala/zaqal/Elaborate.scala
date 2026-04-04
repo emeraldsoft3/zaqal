@@ -1,14 +1,13 @@
 package zaqal
 
-import chisel3._
-import circt.stage.ChiselStage
 import zaqal.common._
 
+import circt.stage.ChiselStage
+
 object Elaborate extends App {
-  implicit val p = ZaqalParams()
-  val firrtl = ChiselStage.emitCHIRRTL(new Core)
-  val verilog = ChiselStage.emitSystemVerilog(new Core)
-  
-  // Custom emission logic if needed
-  os.write.over(os.pwd / "ZaqalCore.sv", verilog)
+  implicit val p = (new ZaqalConfig)
+  ChiselStage.emitSystemVerilogFile(
+    new Core(),
+    Array("--target-dir", "build", "--split-verilog")
+  )
 }
