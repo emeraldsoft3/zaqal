@@ -3,10 +3,10 @@
 This phase expansion covers the "A" (Atomic), "M" (Multiplication), and "B" (Bitmanip) extensions, plus the 64-bit Memory details.
 ## Week 0: Metaprogramming & Build Hierarchy Refactor (Days 7-12)
 *Zaqal Synergy Task based on XiangShan's modular build system.*
-- [ ] **Day 7**: Migrate Zaqal from traditional SBT to the Mill build system (`build.sc`).
-- [ ] **Day 8**: Abstract common configurations (widths, queue depths) into a `case class ZaqalParams` akin to `XSCoreParams`.
-- [ ] **Day 9**: Decompose the monolithic codebase into strictly isolated compile targets (e.g., `zaqal.frontend`, `zaqal.backend`).
-- [ ] **Day 10**: Introduce a `zaqal.utility` module for standardizing Chisel `ValidIO` skid buffers and pipeline registers.
+- [x] **Day 7**: Migrate Zaqal from traditional SBT to the Mill build system (`build.sc`).
+- [x] **Day 8**: Abstract common configurations (widths, queue depths) into a `case class ZaqalParams` akin to `XSCoreParams`.
+- [x] **Day 9**: Decompose the monolithic codebase into strictly isolated compile targets (e.g., `zaqal.frontend`, `zaqal.backend`).
+- [x] **Day 10**: Introduce a `zaqal.utility` module for standardizing Chisel `ValidIO` skid buffers and pipeline registers.
 - [ ] **Day 11**: Connect the `moduleDeps` in `build.sc` to enforce a clean Directed Acyclic Graph (DAG) for the build.
 - [ ] **Day 12**: Run `mill resolve __.compile` to verify that components can compile and test independently.
 

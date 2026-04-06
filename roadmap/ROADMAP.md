@@ -1,51 +1,58 @@
-# Zaqal Roadmap: From Basics to XiangShan-Level Performance
+# Zaqal Project Roadmap: The AI-Native (Kunminghu-Based) Core
 
-This roadmap outlines the journey of building the Zaqal processor, starting from a basic RISC-V implementation and evolving into a state-of-the-art, high-performance out-of-order processor inspired by XiangShan.
+This roadmap outlines the journey to transform Zaqal from a simple prototype into a world-class, **AI-Native**, superscalar, out-of-order RISC-V processor, following the architectural footsteps of the XiangShan project.
 
----
-
-## Phase 1: Foundation (RV64I & Tooling) - [COMPLETED]
-- [x] Day 1: [RV64I Infrastructure](roadmap/PHASE1_RV64I/day1.md)
-- [x] Day 2: [ALU & Instructions Part 1](roadmap/PHASE1_RV64I/day2.md)
-- [x] Day 3: [ALU & Instructions Part 2](roadmap/PHASE1_RV64I/day3.md)
-- [x] Day 4: [Memory Instructions basics](roadmap/PHASE1_RV64I/day4.md)
-- [x] Day 5: [Control Flow Instructions basics](roadmap/PHASE1_RV64I/day5.md)
+## Architectural Philosophy
+- **Phase 1-3: Functional Core**: Establishing correctness with 1-wide, in-order execution and foundational ISA extensions.
+- **Phase 4-5: High Frequency & Superscalar**: Scaling from 1-wide to 6-wide and optimizing for multi-GHz clock speeds.
+- **Phase 6-7: Performance Engine**: Implementing **Neural-guided BPU**, Out-of-order execution, and advanced memory prefetching.
+- **Phase 8-10: System Power**: Achieving Linux-readiness, Matrix acceleration (**AMX**), and silicon-grade verification.
 
 ---
 
-## Phase 2: Refinement & Advanced Architecture [CURRENT]
-- [x] Day 1: [M-Extension Implementation](roadmap/PHASE2_M_EXTENSION/day1.md)
-- [x] Day 2: [C-Extension Support basics](roadmap/PHASE3_C_EXTENSION/day1.md)
-- [x] Day 3: [5-Stage Pipeline Baseline](roadmap/PHASE4_PIPELINE/day1.md)
-- [x] Day 4: [Branch Prediction Unit (BPU) Start](roadmap/PHASE5_BRANCH_PREDICTION/day1.md)
-- [x] Day 5: BPU Architecture & FTB (XiangShan Doc Sections 1.1 - 1.3 | pp. 2-29)
-- [/] Day 6: Advanced Predictors & RAS (XiangShan Doc Sections 1.4 - 1.7 | pp. 30-61)
-- [ ] Day 7: FTQ & Instruction Fetch Unit (XiangShan Doc Sections 2 - 3 | pp. 62-88)
-- [ ] Day 8: ICache Design (XiangShan Doc Section 4 | pp. 89-114)
-- [x] Day 9: [Modular Reorganization](roadmap/PHASE4_PIPELINE/day9.md) - **Alignment with XiangShan Structure**
+## Master Timeline Summary
+
+| Phase | Title | Schedule | Status | Key Goal |
+| :--- | :--- | :--- | :--- | :--- |
+| **[Phase 1](./PHASE1_INTEGER_ISA/detail.md)** | **Base Integer ALU** | Days 1-4 | **[COMPLETE]** | Mastery of RV64I calculations. |
+| **[Phase 2](./PHASE2_BRANCHING_MISPREDICT/detail.md)** | **Branching & Mispredict** | Days 5-10 | **[COMPLETE]** | Control Flow & Pipeline Integrity. |
+| **[Phase 3](./PHASE3_MEMORY_EXTENSIONS/detail.md)** | **Memory & Build Refactor** | Days 11-42 | **[CURRENT]** | Mill Build, Utilities, G-extension. |
+| **[Phase 4](./PHASE4_SUPERSCALAR_DISPATCH/detail.md)** | **Superscalar Dispatch** | Days 43-60 | [ ] | 1-wide to 6-wide (Rename/RAT). |
+| **[Phase 5](./PHASE5_TIMING_OPTIMIZATION/detail.md)** | **Timing & Pipelining** | Days 61-75 | [ ] | High Frequency Optimization. |
+| **[Phase 6](./PHASE6_FRONTEND_PERFORMANCE/detail.md)** | **Advanced Front-end** | Days 76-95 | [ ] | **Neural BPU** & High-perf Caches. |
+| **[Phase 7](./PHASE7_ENGINE_PERFORMANCE/detail.md)** | **Out-of-Order Engine** | Days 96-120 | [ ] | ROB, Issue Queues, LSQ. |
+| **[Phase 8](./PHASE8_SYSTEM_PRIVILEGE/detail.md)** | **System & Linux Boot** | Days 121-140 | [ ] | Supervisor Mode & Sv39 MMU. |
+| **[Phase 9](./PHASE9_VECTOR_ISA/detail.md)** | **AI & Vector ISA** | Days 141-165 | [ ] | Matrix/AMX & Vector Units. |
+| **[Phase 10](./PHASE10_VERIFICATION_SOC/detail.md)** | **SoC & Tapeout** | Day 166+ | [ ] | Difftest & Silicon Readiness. |
 
 ---
 
-## Phase 3: High Performance (Out-of-Order & Caches)
-- [ ] Day 1: Register Renaming & Map Table
-- [ ] Day 2: Reorder Buffer (ROB) Implementation
-- [ ] Day 3: Issue Queues & Dispatch Logic
-- [ ] Day 4: Data Cache (L1 D$) & Memory Disambiguation
-- [ ] Day 5: Level 2 Cache (L2$) & Coherency basics
+## Technical Goal: The "XiangShan" Parity Checklist
+To achieve world-class performance, Zaqal must eventually implement these critical features:
+
+### Front-End
+- [x] **Skid Buffers** (Register Slices) for module decoupling.
+- [/] **FTQ (Fetch Target Queue)** with deep pointer-based skidding.
+- [ ] **Multi-stage BPU** (Bimodal -> GShare -> TAGE -> ITTAGE).
+- [ ] **Neural BPU (Perceptron)** for data-dependent branches.
+- [ ] **Instruction Buffer (IBuffer)** with banked parallel dequeue.
+
+### Execution Engine
+- [ ] **Rename Stage** (Map Table + Free List).
+- [ ] **Reorder Buffer (ROB)** for in-order commitment.
+- [ ] **Physical Register File (PRF)** with Register Cache.
+- [ ] **Distributed Issue Queues** (Separate queues for ALU, MEM, etc.).
+
+### Memory & System
+- [ ] **Advanced Load/Store Unit** (Memory Disambiguation, Speculative Loads).
+- [ ] **Intelligent Prefetchers** (Stride, Spatial, Stream).
+- [ ] **Privilege Levels** (M, S, U) & Sv39 MMU.
+- [ ] **AMX Matrix Unit** (2D Tile acceleration for AI).
 
 ---
 
-## Phase 4: Integration & Optimization
-- [ ] Day 1: Full System Integration (TileLink/AXI4)
-- [ ] Day 2: Performance Monitoring (HPM)
-- [ ] Day 3: Debug Support (JTAG/DMI)
-- [ ] Day 4: Booting Linux on Zaqal
-- [ ] Day 5: Benchmark & Performance Tuning (CoreMark, SPEC)
-
----
-
-## Future Goals
-- [ ] Vector ISA Extension (V-Extension)
-- [ ] Hypervisor Support (H-Extension)
-- [ ] Cryptographic Extensions (K-Extension)
-- [ ] Multi-Core scaling and Cache Coherency (TileLink-H)
+## Software Compatibility Goals
+- [ ] **Linux Boot**: Full support for RV64GC with Supervisor mode.
+- [ ] **GNU Toolchain**: Support for standard `gcc` and `llvm` outputs.
+- [ ] **Benchmark Excellence**: Competitive CoreMark and SPECInt scores.
+- [ ] **Windows-on-Zaqal**: Running software via **Wine** on RISC-V Linux.
