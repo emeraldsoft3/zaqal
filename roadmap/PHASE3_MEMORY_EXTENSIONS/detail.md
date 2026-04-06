@@ -7,8 +7,8 @@ This phase expansion covers the "A" (Atomic), "M" (Multiplication), and "B" (Bit
 - [x] **Day 8**: Abstract common configurations (widths, queue depths) into a `case class ZaqalParams` akin to `XSCoreParams`.
 - [x] **Day 9**: Decompose the monolithic codebase into strictly isolated compile targets (e.g., `zaqal.frontend`, `zaqal.backend`).
 - [x] **Day 10**: Introduce a `zaqal.utility` module for standardizing Chisel `ValidIO` skid buffers and pipeline registers.
-- [ ] **Day 11**: Connect the `moduleDeps` in `build.sc` to enforce a clean Directed Acyclic Graph (DAG) for the build.
-- [ ] **Day 12**: Run `mill resolve __.compile` to verify that components can compile and test independently.
+- [x] **Day 11**: Connect the `moduleDeps` in `build.sc` to enforce a clean Directed Acyclic Graph (DAG) for the build.
+- [x] **Day 12**: Run `mill resolve __.compile` to verify that components can compile and test independently.
 
 
 ## Week 1: Core Memory & Alignment (Days 13-17)

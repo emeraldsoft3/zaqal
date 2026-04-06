@@ -33,7 +33,6 @@ trait HasZaqalParameter {
 }
 
 // 4. Default configuration overlay
-class ZaqalConfig extends Config((field, _, _) => field match {
-  case ZaqalParamsKey => Some(ZaqalParams())
-  case _ => None
+class ZaqalConfig extends Config((site, here, up) => {
+  case ZaqalParamsKey => ZaqalParams()
 })

@@ -1,13 +1,16 @@
 import mill._
 import scalalib._
 
-object zaqal extends ScalaModule {
-  override def scalaVersion = "2.13.15"
+// Import the local CDE submodule build definition with a unique name
+import $file.dependencies.cde.{build => cdeBuild}
+
+// Define a common template for all Zaqal modules
+trait ZaqalModule extends ScalaModule {
+  def scalaVersion = "2.13.15"
 
   override def ivyDeps = T {
     super.ivyDeps() ++ Agg(
-      ivy"org.chipsalliance::chisel:6.6.0",
-      ivy"edu.berkeley.cs::chiseltest:6.0.0"
+      ivy"org.chipsalliance::chisel:6.6.0"
     )
   }
 
@@ -20,10 +23,41 @@ object zaqal extends ScalaModule {
   override def scalacOptions = T {
     super.scalacOptions() ++ Agg("-Ymacro-annotations")
   }
+}
 
-  override def sources = T.sources(
-    millSourcePath / "src" / "main" / "scala"
-  )
+// 1. Common Parameters & Bundles (Depends on CDE)
+object common extends ZaqalModule {
+  override def millSourcePath = os.pwd / "common"
+  override def moduleDeps = Seq(cdeBuild.cde)
+}
 
-  override def millSourcePath = os.pwd
+// 2. Generic Utilities (SkidBuffer, etc.)
+object utility extends ZaqalModule {
+  override def millSourcePath = os.pwd / "utility"
+  override def moduleDeps = Seq(common)
+}
+
+// 3. Frontend (BPU, FTQ, IFU)
+object frontend extends ZaqalModule {
+  override def millSourcePath = os.pwd / "frontend"
+  override def moduleDeps = Seq(common, utility)
+}
+
+// 4. Backend (ALU, RegFile, Decode)
+object backend extends ZaqalModule {
+  override def millSourcePath = os.pwd / "backend"
+  override def moduleDeps = Seq(common, utility)
+}
+
+// 5. Main Zaqal Core (Top level, Simulation, Elaborate)
+object zaqal extends ZaqalModule {
+  override def millSourcePath = os.pwd / "zaqal"
+  override def moduleDeps = Seq(frontend, backend)
+
+  // Simulation and Test dependencies
+  override def ivyDeps = T {
+    super.ivyDeps() ++ Agg(
+      ivy"edu.berkeley.cs::chiseltest:6.0.0"
+    )
+  }
 }
