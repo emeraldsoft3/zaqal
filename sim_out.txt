@@ -1,0 +1,59 @@
+--- Starting ZAQAL Agile V1.0 Simulation ---
+CORE EXECUTE: pc=0000000080000000 inst=0000b483 type=LOAD src1=0000000000000000 src2=0000000000000000 res=deadbeefcafebabe
+CORE EXECUTE: pc=0000000080000004 inst=0100b503 type=LOAD src1=0000000000000000 src2=0000000000000010 res=0000000000000080
+CORE EXECUTE: pc=0000000080000008 inst=01008583 type=LOAD src1=0000000000000000 src2=0000000000000010 res=ffffffffffffff80
+[Cycle 14] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: MISPREDICT! pc=000000008000000c -> Redirecting to 000000008000000c
+[Cycle 21] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: MISPREDICT! pc=000000008000000c -> Redirecting to 000000008000000c
+[Cycle 28] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: MISPREDICT! pc=000000008000000c -> Redirecting to 000000008000000c
+[Cycle 35] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: MISPREDICT! pc=000000008000000c -> Redirecting to 000000008000000c
+[Cycle 42] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: MISPREDICT! pc=000000008000000c -> Redirecting to 000000008000000c
+[Cycle 49] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: MISPREDICT! pc=000000008000000c -> Redirecting to 000000008000000c
+[Cycle 56] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: MISPREDICT! pc=000000008000000c -> Redirecting to 000000008000000c
+[Cycle 63] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: MISPREDICT! pc=000000008000000c -> Redirecting to 000000008000000c
+[Cycle 70] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: MISPREDICT! pc=000000008000000c -> Redirecting to 000000008000000c
+[Cycle 77] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: MISPREDICT! pc=000000008000000c -> Redirecting to 000000008000000c
+[Cycle 84] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: MISPREDICT! pc=000000008000000c -> Redirecting to 000000008000000c
+[Cycle 91] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: MISPREDICT! pc=000000008000000c -> Redirecting to 000000008000000c
+[Cycle 98] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: MISPREDICT! pc=000000008000000c -> Redirecting to 000000008000000c
+[Cycle 105] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: MISPREDICT! pc=000000008000000c -> Redirecting to 000000008000000c
+[Cycle 112] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: MISPREDICT! pc=000000008000000c -> Redirecting to 000000008000000c
+[Cycle 119] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: MISPREDICT! pc=000000008000000c -> Redirecting to 000000008000000c
+[Cycle 126] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: MISPREDICT! pc=000000008000000c -> Redirecting to 000000008000000c
+[Cycle 133] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: MISPREDICT! pc=000000008000000c -> Redirecting to 000000008000000c
+[Cycle 140] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: MISPREDICT! pc=000000008000000c -> Redirecting to 000000008000000c
+[Cycle 147] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: MISPREDICT! pc=000000008000000c -> Redirecting to 000000008000000c
+[Cycle 154] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: MISPREDICT! pc=000000008000000c -> Redirecting to 000000008000000c
+[Cycle 161] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: MISPREDICT! pc=000000008000000c -> Redirecting to 000000008000000c
+[Cycle 168] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: MISPREDICT! pc=000000008000000c -> Redirecting to 000000008000000c
+[Cycle 175] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: MISPREDICT! pc=000000008000000c -> Redirecting to 000000008000000c
+[Cycle 182] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: MISPREDICT! pc=000000008000000c -> Redirecting to 000000008000000c
+[Cycle 189] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: MISPREDICT! pc=000000008000000c -> Redirecting to 000000008000000c
+[Cycle 196] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: MISPREDICT! pc=000000008000000c -> Redirecting to 000000008000000c
+--- Simulation Finished. CSV generated: ftq_dump.csv ---

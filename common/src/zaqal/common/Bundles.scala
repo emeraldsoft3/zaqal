@@ -80,6 +80,16 @@ class DecodeSignals(implicit val p: Parameters) extends Bundle with HasZaqalPara
   val is_branch = Bool() // General branch hint
   val is_jal  = Bool()  // J-type JAL
   val is_jalr = Bool()  // I-type JALR
+
+  // Load Instructions (RV64I)
+  val is_lb   = Bool()
+  val is_lh   = Bool()
+  val is_lw   = Bool()
+  val is_ld   = Bool()
+  val is_lbu  = Bool()
+  val is_lhu  = Bool()
+  val is_lwu  = Bool()
+  val is_load = Bool()
   val rd      = UInt(5.W)
   val rs1     = UInt(5.W)
   val rs2     = UInt(5.W)  // Source register 2 (R-type)

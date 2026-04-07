@@ -60,7 +60,7 @@ class Frontend(implicit val p: Parameters) extends Module with HasZaqalParameter
   ifu.io.fetch_req.valid := ftq_to_ifu_buffered.valid && icache.io.ready
   ifu.io.fetch_req.bits  := ftq_to_ifu_buffered.bits
 
-  icache.io.pc := ftq.io.toICache.bits.pc
+  icache.io.pc := ftq_to_ifu_buffered.bits.pc
 
   // 3. ICache -> IFU (Instruction Data Path)
   ifu.io.icache_ready := icache.io.ready

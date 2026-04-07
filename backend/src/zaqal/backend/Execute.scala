@@ -30,7 +30,7 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
                     decoder.io.out.is_slli || decoder.io.out.is_srli || decoder.io.out.is_srai ||
                     decoder.io.out.is_slliw || decoder.io.out.is_srliw || decoder.io.out.is_sraiw ||
                     decoder.io.out.is_slti || decoder.io.out.is_sltiu || decoder.io.out.is_addiw ||
-                    decoder.io.out.is_lui  || decoder.io.out.is_auipc
+                    decoder.io.out.is_lui  || decoder.io.out.is_auipc || decoder.io.out.is_load
 
   val operand2 = Mux(is_imm_type, decoder.io.out.imm.asUInt, regFile.io.rs2_data)
 
@@ -39,6 +39,8 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   val bru  = Module(new BRU)
   val mul  = Module(new Multiplier)
   val div  = Module(new Divider)
+  val lsu  = Module(new LSU)
+  val dmem = Module(new DataMem)
 
   // 3. Connect FUs
   alu.io.src1 := src1
@@ -62,6 +64,12 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   div.io.dec  := decoder.io.out
   div.io.fire := io.in.fire
 
+  lsu.io.src1 := src1
+  lsu.io.imm  := decoder.io.out.imm
+  lsu.io.dec  := decoder.io.out
+  dmem.io.addr := lsu.io.mem_addr
+  lsu.io.mem_data := dmem.io.data
+
   // 4. Coordination & Handshake
   io.in.ready := div.io.ready
   
@@ -80,7 +88,8 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
     when(decoder.io.out.rd =/= 0.U) {
       val is_link = decoder.io.out.is_jal || decoder.io.out.is_jalr
       val link_addr = io.in.bits.pc + 4.U
-      val result = Mux(decoder.io.out.is_mul, mul.io.result, alu.io.result)
+      val result = Mux(decoder.io.out.is_mul, mul.io.result, 
+                   Mux(decoder.io.out.is_load, lsu.io.result, alu.io.result))
       regFile.io.wen     := (!decoder.io.out.is_branch && !decoder.io.out.is_div) || is_link
       regFile.io.rd_data := Mux(is_link, link_addr, result)
     }
@@ -88,7 +97,7 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
     // Branch Redirection Logic (unchanged)
     when(bru.io.mispredict) {
       io.redirect.valid := true.B
-      printf(p"CORE EXECUTE: MISPREDICT! pc=${Hexadecimal(io.in.bits.pc)} -> Redirecting to ${Hexadecimal(bru.io.target)}\n")
+      printf(p"CORE EXECUTE: MISPREDICT! pc=${Hexadecimal(io.in.bits.pc)} inst=${Hexadecimal(io.in.bits.inst_raw)} target=${Hexadecimal(bru.io.target)} pred_taken=${io.in.bits.is_predicted_taken} actual_taken=${bru.io.taken}\n")
     } .elsewhen(decoder.io.out.is_branch) {
       printf(p"CORE EXECUTE: pc=${Hexadecimal(io.in.bits.pc)} Branch Correct\n")
     }
@@ -108,10 +117,14 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
                     decoder.io.out.is_slliw || decoder.io.out.is_srliw || decoder.io.out.is_sraiw ||
                     decoder.io.out.is_slt  || decoder.io.out.is_sltu || decoder.io.out.is_slti || decoder.io.out.is_sltiu ||
                     decoder.io.out.is_sub  || decoder.io.out.is_addw || decoder.io.out.is_subw || decoder.io.out.is_addiw ||
-                    decoder.io.out.is_lui  || decoder.io.out.is_auipc
+                    decoder.io.out.is_lui  || decoder.io.out.is_auipc || decoder.io.out.is_load
 
     when(is_alu_op) {
-       printf(p"CORE EXECUTE: pc=${Hexadecimal(io.in.bits.pc)} inst=${Hexadecimal(io.in.bits.inst_raw)} src1=${Hexadecimal(alu.io.src1)} src2=${Hexadecimal(alu.io.src2)} res=${Hexadecimal(alu.io.result)}\n")
+       when(decoder.io.out.is_load) {
+         printf(p"CORE EXECUTE: pc=${Hexadecimal(io.in.bits.pc)} inst=${Hexadecimal(io.in.bits.inst_raw)} type=LOAD src1=${Hexadecimal(alu.io.src1)} src2=${Hexadecimal(decoder.io.out.imm.asUInt)} res=${Hexadecimal(regFile.io.rd_data)}\n")
+       } .otherwise {
+         printf(p"CORE EXECUTE: pc=${Hexadecimal(io.in.bits.pc)} inst=${Hexadecimal(io.in.bits.inst_raw)} type=ALU  src1=${Hexadecimal(alu.io.src1)} src2=${Hexadecimal(alu.io.src2)} res=${Hexadecimal(regFile.io.rd_data)}\n")
+       }
     }
   }
 

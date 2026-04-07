@@ -84,6 +84,16 @@ class Decoder(implicit val p: Parameters) extends Module with HasZaqalParameter 
   io.out.is_bge := (opcode === "b1100011".U) && (funct3 === "b101".U)
   io.out.is_bltu := (opcode === "b1100011".U) && (funct3 === "b110".U)
   io.out.is_bgeu := (opcode === "b1100011".U) && (funct3 === "b111".U)
+  
+  // Load Instructions (Opcode 0x03 = "b0000011")
+  io.out.is_lb   := (opcode === "b0000011".U) && (funct3 === "b000".U)
+  io.out.is_lh   := (opcode === "b0000011".U) && (funct3 === "b001".U)
+  io.out.is_lw   := (opcode === "b0000011".U) && (funct3 === "b010".U)
+  io.out.is_ld   := (opcode === "b0000011".U) && (funct3 === "b011".U)
+  io.out.is_lbu  := (opcode === "b0000011".U) && (funct3 === "b100".U)
+  io.out.is_lhu  := (opcode === "b0000011".U) && (funct3 === "b101".U)
+  io.out.is_lwu  := (opcode === "b0000011".U) && (funct3 === "b110".U)
+  io.out.is_load := (opcode === "b0000011".U)
 
   // Select immediate based on instruction type
   when(io.out.is_branch) {
@@ -92,5 +102,7 @@ class Decoder(implicit val p: Parameters) extends Module with HasZaqalParameter 
     io.out.imm := u_imm
   } .elsewhen(io.out.is_jal) {
     io.out.imm := j_imm
+  } .elsewhen(io.out.is_load) {
+    io.out.imm := i_imm // Loads use I-type immediate
   }
 }

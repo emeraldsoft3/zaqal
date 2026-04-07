@@ -13,40 +13,20 @@ class ICache(implicit val p: Parameters) extends Module with HasZaqalParameter {
     val ready = Output(Bool())
   })
 
+
 val program = VecInit(Seq(
-  // === PACKET 1 (0x00 - 0x1c) ===
-  // This packet will fill the IBUF immediately.
-  "h00100093".U, // 00: addi x1, x0, 1
-  "h00200093".U, // 04: addi x1, x0, 2
-  "h00300093".U, // 08: addi x1, x0, 3
-  "h00400093".U, // 0c: addi x1, x0, 4
-  "h00500113".U, // 10: addi x2, x0, 5
-  "h00600113".U, // 14: addi x2, x0, 6
-  "h00700113".U, // 18: addi x2, x0, 7
-  "h00800113".U, // 1c: addi x2, x0, 8
-
-  // === PACKET 2 (0x20 - 0x3c) ===
-  // While IBUF is busy dispatching Packet 1 (takes 8 cycles), 
-  // Packet 2 will be fetched and MUST "skid" into the SkidBuffer.
-  "h00900213".U, // 20: addi x4, x0, 9
-  "h00a00213".U, // 24: addi x4, x0, 10
-  "h00b00213".U, // 28: addi x4, x0, 11
-  "h00c00213".U, // 2c: addi x4, x0, 12
-  "h00d00293".U, // 30: addi x5, x0, 13
-  "h00e00293".U, // 34: addi x5, x0, 14
-  "h00f00293".U, // 38: addi x5, x0, 15
-  "h01000293".U, // 3c: addi x5, x0, 16
-
-  // === PACKET 3 (0x40 - 0x5c) ===
-  // This third fetch will be blocked at the SkidBuffer entry, 
-  // because slot0 (Packet 2) and slot1 (Packet 3) will be full.
-  "h01100313".U, // 40: addi x6, x0, 17
-  "h01200313".U, // 44: addi x6, x0, 18
-  "h01300313".U, // 48: addi x6, x0, 19
-  "h01400313".U, // 4c: addi x6, x0, 20
-  
-  // === HALT (0x50) ===
-  "h0000006f".U, // 50: jal x0, 0          (Halt)
+  "h00000093".U, // 00: addi x1, x0, 0      (Base address = 0)
+  "h00008203".U, // 04: lb   x4, 0(x1)        (Mem[0] = 0x44)
+  "h00408283".U, // 08: lb   x5, 4(x1)        (Mem[4] = 0xDD, Sign-ext)
+  "h0040c303".U, // 0c: lbu  x6, 4(x1)        (Mem[4] = 0xDD, Zero-ext)
+  "h00209383".U, // 10: lh   x7, 2(x1)        (Mem[2-3] = 0x1122)
+  "h00609403".U, // 14: lh   x8, 6(x1)        (Mem[6-7] = 0xAABB, Sign-ext)
+  "h0060d483".U, // 18: lhu  x9, 6(x1)        (Mem[6-7] = 0xAABB, Zero-ext)
+  "h0000a503".U, // 1c: lw   x10, 0(x1)       (Mem[0-3] = 0x11223344)
+  "h0040a583".U, // 20: lw   x11, 4(x1)       (Mem[4-7] = 0xAABBCCDD, Sign-ext)
+  "h0040e603".U, // 24: lwu  x12, 4(x1)       (Mem[4-7] = 0xAABBCCDD, Zero-ext)
+  "h0100b683".U, // 28: ld   x13, 16(x1)      (Mem[16-23] = 0xFFEEDDCCBBAA9988)
+  "h00000013".U  // 2c: addi x0, x0, 0        (NOP)
 ).padTo(256, "h00000013".U))
 
 
@@ -60,3 +40,5 @@ val program = VecInit(Seq(
 
   io.ready := true.B
 }
+
+

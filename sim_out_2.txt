@@ -1,0 +1,63 @@
+[info] compiling 1 Scala source to /home/emerald/zaqal/out/backend/compile.dest/classes ...
+[warn] 146 feature warnings; re-run with -feature for details
+[warn] one warning found
+[info] done compiling
+--- Starting ZAQAL Agile V1.0 Simulation ---
+CORE EXECUTE: pc=0000000080000000 inst=0000b483 type=LOAD src1=0000000000000000 src2=0000000000000000 res=deadbeefcafebabe
+CORE EXECUTE: pc=0000000080000004 inst=0100b503 type=LOAD src1=0000000000000000 src2=0000000000000010 res=0000000000000080
+CORE EXECUTE: pc=0000000080000008 inst=01008583 type=LOAD src1=0000000000000000 src2=0000000000000010 res=ffffffffffffff80
+[Cycle 14] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: MISPREDICT! pc=000000008000000c inst=0000006f target=000000008000000c pred_taken= 0 actual_taken= 1
+[Cycle 21] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: MISPREDICT! pc=000000008000000c inst=0000006f target=000000008000000c pred_taken= 0 actual_taken= 1
+[Cycle 28] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: MISPREDICT! pc=000000008000000c inst=0000006f target=000000008000000c pred_taken= 0 actual_taken= 1
+[Cycle 35] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: MISPREDICT! pc=000000008000000c inst=0000006f target=000000008000000c pred_taken= 0 actual_taken= 1
+[Cycle 42] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: MISPREDICT! pc=000000008000000c inst=0000006f target=000000008000000c pred_taken= 0 actual_taken= 1
+[Cycle 49] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: MISPREDICT! pc=000000008000000c inst=0000006f target=000000008000000c pred_taken= 0 actual_taken= 1
+[Cycle 56] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: MISPREDICT! pc=000000008000000c inst=0000006f target=000000008000000c pred_taken= 0 actual_taken= 1
+[Cycle 63] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: MISPREDICT! pc=000000008000000c inst=0000006f target=000000008000000c pred_taken= 0 actual_taken= 1
+[Cycle 70] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: MISPREDICT! pc=000000008000000c inst=0000006f target=000000008000000c pred_taken= 0 actual_taken= 1
+[Cycle 77] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: MISPREDICT! pc=000000008000000c inst=0000006f target=000000008000000c pred_taken= 0 actual_taken= 1
+[Cycle 84] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: MISPREDICT! pc=000000008000000c inst=0000006f target=000000008000000c pred_taken= 0 actual_taken= 1
+[Cycle 91] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: MISPREDICT! pc=000000008000000c inst=0000006f target=000000008000000c pred_taken= 0 actual_taken= 1
+[Cycle 98] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: MISPREDICT! pc=000000008000000c inst=0000006f target=000000008000000c pred_taken= 0 actual_taken= 1
+[Cycle 105] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: MISPREDICT! pc=000000008000000c inst=0000006f target=000000008000000c pred_taken= 0 actual_taken= 1
+[Cycle 112] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: MISPREDICT! pc=000000008000000c inst=0000006f target=000000008000000c pred_taken= 0 actual_taken= 1
+[Cycle 119] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: MISPREDICT! pc=000000008000000c inst=0000006f target=000000008000000c pred_taken= 0 actual_taken= 1
+[Cycle 126] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: MISPREDICT! pc=000000008000000c inst=0000006f target=000000008000000c pred_taken= 0 actual_taken= 1
+[Cycle 133] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: MISPREDICT! pc=000000008000000c inst=0000006f target=000000008000000c pred_taken= 0 actual_taken= 1
+[Cycle 140] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: MISPREDICT! pc=000000008000000c inst=0000006f target=000000008000000c pred_taken= 0 actual_taken= 1
+[Cycle 147] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: MISPREDICT! pc=000000008000000c inst=0000006f target=000000008000000c pred_taken= 0 actual_taken= 1
+[Cycle 154] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: MISPREDICT! pc=000000008000000c inst=0000006f target=000000008000000c pred_taken= 0 actual_taken= 1
+[Cycle 161] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: MISPREDICT! pc=000000008000000c inst=0000006f target=000000008000000c pred_taken= 0 actual_taken= 1
+[Cycle 168] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: MISPREDICT! pc=000000008000000c inst=0000006f target=000000008000000c pred_taken= 0 actual_taken= 1
+[Cycle 175] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: MISPREDICT! pc=000000008000000c inst=0000006f target=000000008000000c pred_taken= 0 actual_taken= 1
+[Cycle 182] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: MISPREDICT! pc=000000008000000c inst=0000006f target=000000008000000c pred_taken= 0 actual_taken= 1
+[Cycle 189] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: MISPREDICT! pc=000000008000000c inst=0000006f target=000000008000000c pred_taken= 0 actual_taken= 1
+[Cycle 196] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE: MISPREDICT! pc=000000008000000c inst=0000006f target=000000008000000c pred_taken= 0 actual_taken= 1
+--- Simulation Finished. CSV generated: ftq_dump.csv ---
