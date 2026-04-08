@@ -8,12 +8,16 @@ import zaqal.common._
 class LSU(implicit val p: Parameters) extends Module with HasZaqalParameter {
   val io = IO(new Bundle {
     val src1  = Input(UInt(xLen.W)) // Base address
+    val src2  = Input(UInt(xLen.W)) // Data to store
     val imm   = Input(SInt(xLen.W)) // Offset
     val dec   = Input(new DecodeSignals)
     
     // Memory Interface
-    val mem_addr = Output(UInt(xLen.W))
-    val mem_data = Input(UInt(xLen.W)) // Raw 64-bit data from memory
+    val mem_addr  = Output(UInt(xLen.W))
+    val mem_data  = Input(UInt(xLen.W)) // Raw 64-bit data from memory (for loads)
+    val mem_wen   = Output(Bool())
+    val mem_wmask = Output(UInt(8.W))
+    val mem_wdata = Output(UInt(xLen.W))
 
     val result   = Output(UInt(xLen.W)) // Extended data for WB
   })
@@ -58,4 +62,26 @@ class LSU(implicit val p: Parameters) extends Module with HasZaqalParameter {
   }
 
   io.result := res
+  
+  // Store Logic
+  val wmask = WireDefault(0.U(8.W))
+  val wdata = WireDefault(0.U(xLen.W))
+  
+  when(io.dec.is_sb) {
+    wmask := "h01".U << offset
+    wdata := io.src2(7, 0) << (offset << 3)
+  } .elsewhen(io.dec.is_sh) {
+    wmask := "h03".U << offset
+    wdata := io.src2(15, 0) << (offset << 3)
+  } .elsewhen(io.dec.is_sw) {
+    wmask := "h0f".U << offset
+    wdata := io.src2(31, 0) << (offset << 3)
+  } .elsewhen(io.dec.is_sd) {
+    wmask := "hff".U
+    wdata := io.src2
+  }
+  
+  io.mem_wen   := io.dec.is_store
+  io.mem_wmask := wmask
+  io.mem_wdata := wdata
 }

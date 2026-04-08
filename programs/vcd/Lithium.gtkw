@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.111 (w)1999-2020 BSI
-[*] Sat Apr  4 08:28:45 2026
+[*] Wed Apr  8 05:44:22 2026
 [*]
 [dumpfile] "/home/emerald/zaqal/programs/vcd/Lithium.vcd"
-[dumpfile_mtime] "Sat Apr  4 08:18:39 2026"
-[dumpfile_size] 628068
+[dumpfile_mtime] "Wed Apr  8 05:31:43 2026"
+[dumpfile_size] 642600
 [savefile] "/home/emerald/zaqal/programs/vcd/Lithium.gtkw"
 [timestart] 0
-[size] 1920 993
+[size] 1920 816
 [pos] -1 -1
-*-6.000000 206 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-6.000000 68 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] Core.
 [treeopen] Core.backend.
 [treeopen] Core.backend.exec.
@@ -17,7 +17,7 @@
 [sst_width] 297
 [signals_width] 495
 [sst_expanded] 1
-[sst_vpaned_height] 285
+[sst_vpaned_height] 229
 @28
 [color] 1
 Core.clock
@@ -99,5 +99,29 @@ Core.backend.exec.regFile.regs_22[63:0]
 Core.backend.exec.regFile.regs_23[63:0]
 Core.backend.exec.regFile.regs_24[63:0]
 Core.backend.exec.regFile.regs_25[63:0]
+@200
+-DMEM
+@23
+Core.backend.exec.dmem.mem_0[63:0]
+Core.backend.exec.dmem.mem_1[63:0]
+Core.backend.exec.dmem.mem_2[63:0]
+Core.backend.exec.dmem.mem_3[63:0]
+Core.backend.exec.dmem.mem_4[63:0]
+Core.backend.exec.dmem.mem_5[63:0]
+Core.backend.exec.dmem.mem_6[63:0]
+Core.backend.exec.dmem.mem_7[63:0]
+Core.backend.exec.dmem.mem_8[63:0]
+Core.backend.exec.dmem.mem_9[63:0]
+Core.backend.exec.dmem.mem_10[63:0]
+Core.backend.exec.dmem.mem_11[63:0]
+Core.backend.exec.dmem.mem_12[63:0]
+Core.backend.exec.dmem.mem_13[63:0]
+Core.backend.exec.dmem.mem_14[63:0]
+Core.backend.exec.dmem.mem_15[63:0]
+Core.backend.exec.dmem.mem_16[63:0]
+Core.backend.exec.dmem.mem_17[63:0]
+Core.backend.exec.dmem.mem_18[63:0]
+Core.backend.exec.dmem.mem_19[63:0]
+Core.backend.exec.dmem.mem_20[63:0]
 [pattern_trace] 1
 [pattern_trace] 0
