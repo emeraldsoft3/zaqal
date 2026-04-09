@@ -12,12 +12,12 @@ class LSU(implicit val p: Parameters) extends Module with HasZaqalParameter {
     val imm   = Input(SInt(xLen.W)) // Offset
     val dec   = Input(new DecodeSignals)
     
-    // Memory Interface
+    // Memory Interface (Updated for 128-bit unaligned support)
     val mem_addr  = Output(UInt(xLen.W))
-    val mem_data  = Input(UInt(xLen.W)) // Raw 64-bit data from memory (for loads)
+    val mem_data  = Input(UInt((xLen * 2).W)) // 128-bit window (current + next word)
     val mem_wen   = Output(Bool())
-    val mem_wmask = Output(UInt(8.W))
-    val mem_wdata = Output(UInt(xLen.W))
+    val mem_wmask = Output(UInt(16.W))        // 16-bit strobe for 128 bits
+    val mem_wdata = Output(UInt((xLen * 2).W))
 
     val result   = Output(UInt(xLen.W)) // Extended data for WB
   })
@@ -26,59 +26,48 @@ class LSU(implicit val p: Parameters) extends Module with HasZaqalParameter {
   val addr = (io.src1.asSInt + io.imm).asUInt
   io.mem_addr := addr
 
-  // Data Extraction and Extension
-  // The DataMem returns a 64-bit aligned doubleword. 
-  // We need to pick the right byte/halfword/word based on the lower bits of 'addr'.
-  val offset = addr(2, 0) // Byte offset within the 64-bit word
-
+  // Data Extraction and Extension (Generic for any offset)
+  val offset = addr(2, 0) // Byte offset (0-7)
+  
+  // Shift the 128-bit window right by the byte offset
+  val shifted_data = io.mem_data >> (offset << 3)
+  
   val res = WireDefault(0.U(xLen.W))
 
-  // Byte (LB/LBU)
-  val byte = (io.mem_data >> (offset << 3))(7, 0)
-  
-  // Halfword (LH/LHU) - assumes 2-byte alignment for simplicity in Day 13
-  val half = (io.mem_data >> (offset(2, 1) << 4))(15, 0)
-  
-  // Word (LW/LWU) - assumes 4-byte alignment
-  val word = (io.mem_data >> (offset(2) << 5))(31, 0)
-
-  // Doubleword (LD)
-  val dword = io.mem_data
-
   when(io.dec.is_lb) {
-    res := byte.asSInt.pad(xLen).asUInt
+    res := shifted_data(7, 0).asSInt.pad(xLen).asUInt
   } .elsewhen(io.dec.is_lbu) {
-    res := byte.asUInt.pad(xLen)
+    res := shifted_data(7, 0).pad(xLen)
   } .elsewhen(io.dec.is_lh) {
-    res := half.asSInt.pad(xLen).asUInt
+    res := shifted_data(15, 0).asSInt.pad(xLen).asUInt
   } .elsewhen(io.dec.is_lhu) {
-    res := half.asUInt.pad(xLen)
+    res := shifted_data(15, 0).pad(xLen)
   } .elsewhen(io.dec.is_lw) {
-    res := word.asSInt.pad(xLen).asUInt
+    res := shifted_data(31, 0).asSInt.pad(xLen).asUInt
   } .elsewhen(io.dec.is_lwu) {
-    res := word.asUInt.pad(xLen)
+    res := shifted_data(31, 0).pad(xLen)
   } .elsewhen(io.dec.is_ld) {
-    res := dword
+    res := shifted_data(63, 0)
   }
 
   io.result := res
   
-  // Store Logic
-  val wmask = WireDefault(0.U(8.W))
-  val wdata = WireDefault(0.U(xLen.W))
+  // Store Logic (Handling 128-bit width)
+  val wmask = WireDefault(0.U(16.W))
+  val wdata = WireDefault(0.U((xLen * 2).W))
   
   when(io.dec.is_sb) {
-    wmask := "h01".U << offset
-    wdata := io.src2(7, 0) << (offset << 3)
+    wmask := "h0001".U(16.W) << offset
+    wdata := io.src2(7, 0).pad(xLen * 2) << (offset << 3)
   } .elsewhen(io.dec.is_sh) {
-    wmask := "h03".U << offset
-    wdata := io.src2(15, 0) << (offset << 3)
+    wmask := "h0003".U(16.W) << offset
+    wdata := io.src2(15, 0).pad(xLen * 2) << (offset << 3)
   } .elsewhen(io.dec.is_sw) {
-    wmask := "h0f".U << offset
-    wdata := io.src2(31, 0) << (offset << 3)
+    wmask := "h000f".U(16.W) << offset
+    wdata := io.src2(31, 0).pad(xLen * 2) << (offset << 3)
   } .elsewhen(io.dec.is_sd) {
-    wmask := "hff".U
-    wdata := io.src2
+    wmask := "h00ff".U(16.W) << offset
+    wdata := io.src2(63, 0).pad(xLen * 2) << (offset << 3)
   }
   
   io.mem_wen   := io.dec.is_store

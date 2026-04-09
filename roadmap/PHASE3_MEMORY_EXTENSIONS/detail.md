@@ -12,9 +12,9 @@ This phase expansion covers the "A" (Atomic), "M" (Multiplication), and "B" (Bit
 
 
 ## Week 1: Core Memory & Alignment (Days 13-17)
-- [ ] **Day 13**: Load Instructions (LB, LH, LW, LD, LBU, LHU, LWU).
-- [ ] **Day 14**: Store Instructions (SB, SH, SW, SD).
-- [ ] **Day 15**: Memory Alignment & Byte Masking (Handling unaligned access).
+- [x] **Day 13**: Load Instructions (LB, LH, LW, LD, LBU, LHU, LWU).
+- [x] **Day 14**: Store Instructions (SB, SH, SW, SD).
+- [x] **Day 15**: Memory Alignment & Byte Masking (Handling unaligned access).
 - [ ] **Day 16**: Multiplication (RV64M) - MUL, MULH, MULW.
 - [ ] **Day 17**: Division (RV64M) - DIV, DIVU, REM, REMU (SRT-like logic).
 
