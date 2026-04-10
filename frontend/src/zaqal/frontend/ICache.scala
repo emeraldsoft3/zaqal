@@ -16,15 +16,28 @@ class ICache(implicit val p: Parameters) extends Module with HasZaqalParameter {
 
 val program = VecInit(Seq(
   "h00000093".U, // 00: NOP
-  "h02000093".U, // 04: addi x1, x0, 0x20     (Base x1 = 0x20)
-  "h01200113".U, // 08: addi x2, x0, 0x12     (x2 = 0x12)
-  "h0020A0A3".U, // 0c: sw   x2, 1(x1)         (Mem[0x21] = 0x12, UNALIGNED)
-  "h0010A303".U, // 10: lw   x6, 1(x1)         (x6 = 0x12, check Load)
-  "hdeada2b7".U, // 14: lui  x5, 0xDEADA      (x5 = 0xDEADA000)
-  "hbdc28293".U, // 18: addi x5, x5, 0xBDC    (x5 = 0xDEADA BDC)
-  "h0050B3A3".U, // 1c: sd   x5, 7(x1)         (Mem[0x27] = 0xDEADABDC, CROSS BOUNDARY 0x27-0x2E)
-  "h0070B603".U, // 20: ld   x12, 7(x1)        (x12 = 0xDEADABDC, check Load)
-  "h00000013".U  // 24: NOP
+  "h02000093".U, // 04: addi x1, x0, 0x20
+  "h01200113".U, // 08: addi x2, x0, 0x12
+  "h00000013".U, // 0c: NOP
+  "h00000013".U, // 10: NOP
+  "h02208533".U, // 14: mul  x10, x1, x2       (0x20 * 0x12 = 0x240)
+  "h00000013".U, // 18: NOP
+  "h00000013".U, // 1c: NOP
+  "h022095B3".U, // 20: mulh x11, x1, x2       (high bits = 0)
+  "h00000013".U, // 24: NOP
+  "h00000013".U, // 28: NOP
+  "hfff00093".U, // 2c: li   x1, -1            (0xFFFFFFFFFFFFFFFF)
+  "h00200113".U, // 30: li   x2, 2             (0x2)
+  "h00000013".U, // 34: NOP
+  "h00000013".U, // 38: NOP
+  "h02209633".U, // 3c: mulh x12, x1, x2       (-1 * 2 = -2 -> high bits=0xFF...FF)
+  "h022086BB".U, // 40: mulw x13, x1, x2       (word mul)
+  "h02254733".U, // 44: div  x14, x10, x2      (0x240 / 2 = 0x120)
+  "h022567B3".U, // 48: rem  x15, x10, x2      (0x240 % 2 = 0)
+  "h0220d833".U, // 4c: divu x16, x1, x2       (0xFF...FF / 2 = 0x7F...FF)
+  "h0200C8B3".U, // 50: div  x17, x1, x0       (-1 / 0 = -1)
+  "h0200E933".U, // 54: rem  x18, x1, x0       (-1 % 0 = -1)
+  "h00000013".U  // 58: NOP
 ).padTo(256, "h00000013".U))
 
 

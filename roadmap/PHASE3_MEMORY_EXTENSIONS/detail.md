@@ -15,8 +15,8 @@ This phase expansion covers the "A" (Atomic), "M" (Multiplication), and "B" (Bit
 - [x] **Day 13**: Load Instructions (LB, LH, LW, LD, LBU, LHU, LWU).
 - [x] **Day 14**: Store Instructions (SB, SH, SW, SD).
 - [x] **Day 15**: Memory Alignment & Byte Masking (Handling unaligned access).
-- [ ] **Day 16**: Multiplication (RV64M) - MUL, MULH, MULW.
-- [ ] **Day 17**: Division (RV64M) - DIV, DIVU, REM, REMU (SRT-like logic).
+- [x] **Day 16**: Multiplication (RV64M) - MUL, MULH, MULW.
+- [x] **Day 17**: Division (RV64M) - DIV, DIVU, REM, REMU (SRT-like logic).
 
 ## Week 2: Atomics & Bitmanip (Days 18-22)
 - [ ] **Day 18**: Atomics (LR/SC) - Reservation set management.

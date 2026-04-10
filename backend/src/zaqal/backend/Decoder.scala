@@ -69,10 +69,21 @@ class Decoder(implicit val p: Parameters) extends Module with HasZaqalParameter 
   io.out.is_auipc := (opcode === "b0010111".U)
 
 
-  io.out.is_mul  := (opcode === "b0110011".U) && (funct3 === "b000".U) && (funct7 === "b0000001".U)
+  io.out.is_mul    := (opcode === "b0110011".U) && (funct3 === "b000".U) && (funct7 === "b0000001".U)
+  io.out.is_mulh   := (opcode === "b0110011".U) && (funct3 === "b001".U) && (funct7 === "b0000001".U)
+  io.out.is_mulhsu := (opcode === "b0110011".U) && (funct3 === "b010".U) && (funct7 === "b0000001".U)
+  io.out.is_mulhu  := (opcode === "b0110011".U) && (funct3 === "b011".U) && (funct7 === "b0000001".U)
+  io.out.is_mulw   := (opcode === "b0111011".U) && (funct3 === "b000".U) && (funct7 === "b0000001".U)
 
-
-  io.out.is_div  := (opcode === "b0110011".U) && (funct3 === "b100".U) && (funct7 === "b0000001".U)
+  io.out.is_div    := (opcode === "b0110011".U) && (funct3 === "b100".U) && (funct7 === "b0000001".U)
+  io.out.is_divu   := (opcode === "b0110011".U) && (funct3 === "b101".U) && (funct7 === "b0000001".U)
+  io.out.is_rem    := (opcode === "b0110011".U) && (funct3 === "b110".U) && (funct7 === "b0000001".U)
+  io.out.is_remu   := (opcode === "b0110011".U) && (funct3 === "b111".U) && (funct7 === "b0000001".U)
+  
+  io.out.is_divw   := (opcode === "b0111011".U) && (funct3 === "b100".U) && (funct7 === "b0000001".U)
+  io.out.is_divuw  := (opcode === "b0111011".U) && (funct3 === "b101".U) && (funct7 === "b0000001".U)
+  io.out.is_remw   := (opcode === "b0111011".U) && (funct3 === "b110".U) && (funct7 === "b0000001".U)
+  io.out.is_remuw  := (opcode === "b0111011".U) && (funct3 === "b111".U) && (funct7 === "b0000001".U)
 
 
   io.out.is_beq    := (opcode === "b1100011".U) && (funct3 === "b000".U)
