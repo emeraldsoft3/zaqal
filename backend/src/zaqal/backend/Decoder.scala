@@ -113,6 +113,16 @@ class Decoder(implicit val p: Parameters) extends Module with HasZaqalParameter 
   io.out.is_sw    := (opcode === "b0100011".U) && (funct3 === "b010".U)
   io.out.is_sd    := (opcode === "b0100011".U) && (funct3 === "b011".U)
   io.out.is_store := (opcode === "b0100011".U)
+  
+  // Atomic Instructions (Opcode 0x2F = "b0101111")
+  val funct5 = funct7(6, 2)
+  io.out.is_lr     := (opcode === "b0101111".U) && (funct5 === "b00010".U)
+  io.out.is_sc     := (opcode === "b0101111".U) && (funct5 === "b00011".U)
+  io.out.is_lr_w   := io.out.is_lr && (funct3 === "b010".U)
+  io.out.is_lr_d   := io.out.is_lr && (funct3 === "b011".U)
+  io.out.is_sc_w   := io.out.is_sc && (funct3 === "b010".U)
+  io.out.is_sc_d   := io.out.is_sc && (funct3 === "b011".U)
+  io.out.is_atomic := (opcode === "b0101111".U)
 
   // Select immediate based on instruction type
   when(io.out.is_branch) {
@@ -121,9 +131,9 @@ class Decoder(implicit val p: Parameters) extends Module with HasZaqalParameter 
     io.out.imm := u_imm
   } .elsewhen(io.out.is_jal) {
     io.out.imm := j_imm
-  } .elsewhen(io.out.is_load) {
-    io.out.imm := i_imm // Loads use I-type immediate
-  } .elsewhen(io.out.is_store) {
-    io.out.imm := s_imm // Stores use S-type immediate
+  } .elsewhen(io.out.is_load || io.out.is_lr) {
+    io.out.imm := i_imm // Loads and LR use I-type immediate (though LR imm is usually 0)
+  } .elsewhen(io.out.is_store || io.out.is_sc) {
+    io.out.imm := s_imm // Stores and SC use S-type immediate (though SC imm is usually 0)
   }
 }

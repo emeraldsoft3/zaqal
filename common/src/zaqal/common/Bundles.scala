@@ -109,6 +109,15 @@ class DecodeSignals(implicit val p: Parameters) extends Bundle with HasZaqalPara
   val is_sd    = Bool()
   val is_store = Bool()
 
+  // Atomic Instructions (RV64A)
+  val is_lr     = Bool()
+  val is_sc     = Bool()
+  val is_lr_w   = Bool()
+  val is_lr_d   = Bool()
+  val is_sc_w   = Bool()
+  val is_sc_d   = Bool()
+  val is_atomic = Bool()
+
   val rd      = UInt(5.W)
   val rs1     = UInt(5.W)
   val rs2     = UInt(5.W)  // Source register 2 (R-type)

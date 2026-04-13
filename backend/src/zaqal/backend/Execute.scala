@@ -30,7 +30,7 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
                     decoder.io.out.is_slli || decoder.io.out.is_srli || decoder.io.out.is_srai ||
                     decoder.io.out.is_slliw || decoder.io.out.is_srliw || decoder.io.out.is_sraiw ||
                     decoder.io.out.is_slti || decoder.io.out.is_sltiu || decoder.io.out.is_addiw ||
-                    decoder.io.out.is_lui  || decoder.io.out.is_auipc || decoder.io.out.is_load
+                    decoder.io.out.is_lui  || decoder.io.out.is_auipc || decoder.io.out.is_load || decoder.io.out.is_atomic
 
   val operand2 = Mux(is_imm_type, decoder.io.out.imm.asUInt, regFile.io.rs2_data)
 
@@ -97,8 +97,8 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
       val is_link = decoder.io.out.is_jal || decoder.io.out.is_jalr
       val link_addr = io.in.bits.pc + 4.U
       val result = Mux(is_mul_op, mul.io.result, 
-                   Mux(decoder.io.out.is_load, lsu.io.result, alu.io.result))
-      regFile.io.wen     := (!decoder.io.out.is_branch && !is_div_op && !decoder.io.out.is_store) || is_link
+                   Mux(decoder.io.out.is_load || decoder.io.out.is_atomic, lsu.io.result, alu.io.result))
+      regFile.io.wen     := (!decoder.io.out.is_branch && !is_div_op && !decoder.io.out.is_store) || is_link || decoder.io.out.is_atomic
       regFile.io.rd_data := Mux(is_link, link_addr, result)
     }
 
@@ -127,11 +127,15 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
                     decoder.io.out.is_sub  || decoder.io.out.is_addw || decoder.io.out.is_subw || decoder.io.out.is_addiw ||
                     decoder.io.out.is_lui  || decoder.io.out.is_auipc || decoder.io.out.is_load || decoder.io.out.is_store
 
-    when(is_alu_op || is_mul_op) {
+    when(is_alu_op || is_mul_op || decoder.io.out.is_atomic) {
        when(decoder.io.out.is_load) {
          printf(p"CORE EXECUTE: pc=${Hexadecimal(io.in.bits.pc)} inst=${Hexadecimal(io.in.bits.inst_raw)} type=LOAD  src1=${Hexadecimal(alu.io.src1)} src2=${Hexadecimal(decoder.io.out.imm.asUInt)} res=${Hexadecimal(regFile.io.rd_data)}\n")
        } .elsewhen(decoder.io.out.is_store) {
          printf(p"CORE EXECUTE: pc=${Hexadecimal(io.in.bits.pc)} inst=${Hexadecimal(io.in.bits.inst_raw)} type=STORE src1=${Hexadecimal(alu.io.src1)} src2=${Hexadecimal(regFile.io.rs2_data)} imm=${Hexadecimal(decoder.io.out.imm.asUInt)}\n")
+       } .elsewhen(decoder.io.out.is_lr) {
+         printf(p"CORE EXECUTE: pc=${Hexadecimal(io.in.bits.pc)} inst=${Hexadecimal(io.in.bits.inst_raw)} type=LR    addr=${Hexadecimal(lsu.io.mem_addr)} res=${Hexadecimal(regFile.io.rd_data)}\n")
+       } .elsewhen(decoder.io.out.is_sc) {
+         printf(p"CORE EXECUTE: pc=${Hexadecimal(io.in.bits.pc)} inst=${Hexadecimal(io.in.bits.inst_raw)} type=SC    addr=${Hexadecimal(lsu.io.mem_addr)} data=${Hexadecimal(regFile.io.rs2_data)} res=${Hexadecimal(regFile.io.rd_data)}\n")
        } .elsewhen(is_mul_op) {
          printf(p"CORE EXECUTE: pc=${Hexadecimal(io.in.bits.pc)} inst=${Hexadecimal(io.in.bits.inst_raw)} type=MUL   src1=${Hexadecimal(mul.io.src1)} src2=${Hexadecimal(mul.io.src2)} res=${Hexadecimal(regFile.io.rd_data)}\n")
        } .otherwise {

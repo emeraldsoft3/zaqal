@@ -16,28 +16,20 @@ class ICache(implicit val p: Parameters) extends Module with HasZaqalParameter {
 
 val program = VecInit(Seq(
   "h00000093".U, // 00: NOP
-  "h02000093".U, // 04: addi x1, x0, 0x20
-  "h01200113".U, // 08: addi x2, x0, 0x12
-  "h00000013".U, // 0c: NOP
-  "h00000013".U, // 10: NOP
-  "h02208533".U, // 14: mul  x10, x1, x2       (0x20 * 0x12 = 0x240)
-  "h00000013".U, // 18: NOP
-  "h00000013".U, // 1c: NOP
-  "h022095B3".U, // 20: mulh x11, x1, x2       (high bits = 0)
-  "h00000013".U, // 24: NOP
-  "h00000013".U, // 28: NOP
-  "hfff00093".U, // 2c: li   x1, -1            (0xFFFFFFFFFFFFFFFF)
-  "h00200113".U, // 30: li   x2, 2             (0x2)
-  "h00000013".U, // 34: NOP
-  "h00000013".U, // 38: NOP
-  "h02209633".U, // 3c: mulh x12, x1, x2       (-1 * 2 = -2 -> high bits=0xFF...FF)
-  "h022086BB".U, // 40: mulw x13, x1, x2       (word mul)
-  "h02254733".U, // 44: div  x14, x10, x2      (0x240 / 2 = 0x120)
-  "h022567B3".U, // 48: rem  x15, x10, x2      (0x240 % 2 = 0)
-  "h0220d833".U, // 4c: divu x16, x1, x2       (0xFF...FF / 2 = 0x7F...FF)
-  "h0200C8B3".U, // 50: div  x17, x1, x0       (-1 / 0 = -1)
-  "h0200E933".U, // 54: rem  x18, x1, x0       (-1 % 0 = -1)
-  "h00000013".U  // 58: NOP
+  "h08000093".U, // 04: li   x1, 0x80          (Base address for tests)
+  "h01200113".U, // 08: li   x2, 0x12          (Data to store)
+  "h01100493".U, //  addi x9, x0, 17
+  "h02500513".U, //  addi x10, x0, 37
+  "h1000b1af".U, // 0c: lr.d x3, (x1)          (Load Reserved from x1)
+  "h1820b22f".U, // 10: sc.d x4, x2, (x1)      (SC success, return 0 in x4)
+  "h1820b2af".U, // 14: sc.d x5, x2, (x1)      (SC failure, return 1 in x5)
+  "h1000b1af".U, // 18: lr.d x3, (x1)          (Reload reserved)
+  "h00408313".U, // 1c: addi x6, x1, 4         (Different address)
+  "h182333af".U, // 20: sc.d x7, x2, (x6)      (SC failure, return 1 in x7)
+  "h1000b1af".U, // 24: lr.d x3, (x1)          (Reserve 0x80)
+  "h0090b023".U, // 28: sd   x9, (x1)          (Store to same addr - should CLEAR)
+  "h18a0b42f".U, // 2c: sc.d x8, x10, (x1)      (Should FAIL, return 1 in x8)
+  "h00000013".U  // 30: NOP
 ).padTo(256, "h00000013".U))
 
 

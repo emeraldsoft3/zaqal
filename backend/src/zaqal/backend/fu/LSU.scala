@@ -22,8 +22,13 @@ class LSU(implicit val p: Parameters) extends Module with HasZaqalParameter {
     val result   = Output(UInt(xLen.W)) // Extended data for WB
   })
 
+  // Reservation state
+  val reserve_valid = RegInit(false.B)
+  val reserve_addr  = RegInit(0.U(xLen.W))
+
   // Address Calculation
-  val addr = (io.src1.asSInt + io.imm).asUInt
+  val addr_raw = (io.src1.asSInt + io.imm).asUInt
+  val addr = Mux(io.dec.is_atomic, io.src1, addr_raw)
   io.mem_addr := addr
 
   // Data Extraction and Extension (Generic for any offset)
@@ -42,35 +47,51 @@ class LSU(implicit val p: Parameters) extends Module with HasZaqalParameter {
     res := shifted_data(15, 0).asSInt.pad(xLen).asUInt
   } .elsewhen(io.dec.is_lhu) {
     res := shifted_data(15, 0).pad(xLen)
-  } .elsewhen(io.dec.is_lw) {
+  } .elsewhen(io.dec.is_lw || io.dec.is_lr_w) {
     res := shifted_data(31, 0).asSInt.pad(xLen).asUInt
   } .elsewhen(io.dec.is_lwu) {
     res := shifted_data(31, 0).pad(xLen)
-  } .elsewhen(io.dec.is_ld) {
+  } .elsewhen(io.dec.is_ld || io.dec.is_lr_d) {
     res := shifted_data(63, 0)
+  } .elsewhen(io.dec.is_sc) {
+    // SC returns 0 on success, 1 on failure
+    val success = reserve_valid && (reserve_addr === addr)
+    res := !success
   }
 
   io.result := res
   
+  // LR/SC State Updates
+  when(io.dec.is_lr) {
+    reserve_valid := true.B
+    reserve_addr  := addr
+  } .elsewhen(io.dec.is_sc || io.dec.is_store) {
+    // Spec: any store from the same hart MAY clear the reservation.
+    // SC MUST clear it.
+    reserve_valid := false.B
+  }
+
   // Store Logic (Handling 128-bit width)
   val wmask = WireDefault(0.U(16.W))
   val wdata = WireDefault(0.U((xLen * 2).W))
   
+  val is_sc_success = io.dec.is_sc && reserve_valid && (reserve_addr === addr)
+
   when(io.dec.is_sb) {
     wmask := "h0001".U(16.W) << offset
     wdata := io.src2(7, 0).pad(xLen * 2) << (offset << 3)
   } .elsewhen(io.dec.is_sh) {
     wmask := "h0003".U(16.W) << offset
     wdata := io.src2(15, 0).pad(xLen * 2) << (offset << 3)
-  } .elsewhen(io.dec.is_sw) {
+  } .elsewhen(io.dec.is_sw || io.dec.is_sc_w) {
     wmask := "h000f".U(16.W) << offset
     wdata := io.src2(31, 0).pad(xLen * 2) << (offset << 3)
-  } .elsewhen(io.dec.is_sd) {
+  } .elsewhen(io.dec.is_sd || io.dec.is_sc_d) {
     wmask := "h00ff".U(16.W) << offset
     wdata := io.src2(63, 0).pad(xLen * 2) << (offset << 3)
   }
   
-  io.mem_wen   := io.dec.is_store
+  io.mem_wen   := io.dec.is_store || is_sc_success
   io.mem_wmask := wmask
   io.mem_wdata := wdata
 }

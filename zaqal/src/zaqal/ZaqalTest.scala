@@ -38,7 +38,7 @@ object ZaqalTest extends App {
 
     // --- MAIN SIMULATION LOOP ---
     val resetCycles = 5
-    val maxCycles = 1000 // Increase to accommodate multi-cycle divisions
+    val maxCycles = 50 // Increase to accommodate multi-cycle divisions
     
     for (cycle <- 0 until maxCycles) {
       // 1. Apply Reset

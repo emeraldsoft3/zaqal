@@ -19,7 +19,7 @@ This phase expansion covers the "A" (Atomic), "M" (Multiplication), and "B" (Bit
 - [x] **Day 17**: Division (RV64M) - DIV, DIVU, REM, REMU (SRT-like logic).
 
 ## Week 2: Atomics & Bitmanip (Days 18-22)
-- [ ] **Day 18**: Atomics (LR/SC) - Reservation set management.
+- [x] **Day 18**: Atomics (LR/SC) - Reservation set management.
 - [ ] **Day 19**: AMO Operations (AMOADD, AMOXOR, etc.).
 - [ ] **Day 20**: Bitmanip - Zba (Address Generation: SH1ADD, etc.).
 - [ ] **Day 21**: Bitmanip - Zbb (Basic Bit Ops: CLZ, CTZ, CPOP).
