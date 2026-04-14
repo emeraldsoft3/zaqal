@@ -18,18 +18,17 @@ val program = VecInit(Seq(
   "h00000093".U, // 00: NOP
   "h08000093".U, // 04: li   x1, 0x80          (Base address for tests)
   "h01200113".U, // 08: li   x2, 0x12          (Data to store)
-  "h01100493".U, //  addi x9, x0, 17
-  "h02500513".U, //  addi x10, x0, 37
-  "h1000b1af".U, // 0c: lr.d x3, (x1)          (Load Reserved from x1)
-  "h1820b22f".U, // 10: sc.d x4, x2, (x1)      (SC success, return 0 in x4)
-  "h1820b2af".U, // 14: sc.d x5, x2, (x1)      (SC failure, return 1 in x5)
-  "h1000b1af".U, // 18: lr.d x3, (x1)          (Reload reserved)
-  "h00408313".U, // 1c: addi x6, x1, 4         (Different address)
-  "h182333af".U, // 20: sc.d x7, x2, (x6)      (SC failure, return 1 in x7)
-  "h1000b1af".U, // 24: lr.d x3, (x1)          (Reserve 0x80)
-  "h0090b023".U, // 28: sd   x9, (x1)          (Store to same addr - should CLEAR)
-  "h18a0b42f".U, // 2c: sc.d x8, x10, (x1)      (Should FAIL, return 1 in x8)
-  "h00000013".U  // 30: NOP
+  "h00700193".U, // 08: li   x3, 7         (Data to store)
+  "h0030b023".U, // 28: sd   x3, (x1)          (Store 7 to 0x80)  
+  "habc00213".U, // 2c: li   x4, 0xABC         (Random number into x4)
+  "h0020b5af".U, // 30: amoadd.d  x11, x2, (x1) (7 + 0x12 = 0x19)
+  "h0820b62f".U, // 34: amoswap.d x12, x2, (x1) (Swap 0x19 with 0x12)
+  "h2040b6af".U, // 38: amoxor.d  x13, x4, (x1) (0x12 XOR 0xABC)
+  "h8020b7af".U, // 3c: amomin.d  x15, x2, (x1)
+  "hA020b82f".U, // 40: amomax.d  x16, x2, (x1)
+  "h4020b8af".U, // 44: amoor.d   x17, x2, (x1)
+  "h0020a72f".U, // 48: amoadd.w  x14, x2, (x1)
+  "h00000013".U  // 4c: NOP
 ).padTo(256, "h00000013".U))
 
 

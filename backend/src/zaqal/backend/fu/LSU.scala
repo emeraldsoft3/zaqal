@@ -57,6 +57,10 @@ class LSU(implicit val p: Parameters) extends Module with HasZaqalParameter {
     // SC returns 0 on success, 1 on failure
     val success = reserve_valid && (reserve_addr === addr)
     res := !success
+  } .elsewhen(io.dec.is_amo_w) {
+    res := shifted_data(31, 0).asSInt.pad(xLen).asUInt
+  } .elsewhen(io.dec.is_amo_d) {
+    res := shifted_data(63, 0)
   }
 
   io.result := res
@@ -90,8 +94,53 @@ class LSU(implicit val p: Parameters) extends Module with HasZaqalParameter {
     wmask := "h00ff".U(16.W) << offset
     wdata := io.src2(63, 0).pad(xLen * 2) << (offset << 3)
   }
+
+  // AMO Arithmetic/Logic
+  val mem_val_32 = shifted_data(31, 0).asSInt
+  val mem_val_64 = shifted_data(63, 0).asSInt
+  val src2_32     = io.src2(31, 0).asSInt
+  val src2_64     = io.src2(63, 0).asSInt
+
+  val amo_res = WireDefault(0.S(xLen.W))
+  when(io.dec.is_amo_w) {
+    val op1 = mem_val_32
+    val op2 = src2_32
+    val res_32 = MuxCase(0.S, Seq(
+      io.dec.is_amoadd  -> (op1 + op2),
+      io.dec.is_amoswap -> op2,
+      io.dec.is_amoxor  -> (op1 ^ op2),
+      io.dec.is_amoand  -> (op1 & op2),
+      io.dec.is_amoor   -> (op1 | op2),
+      io.dec.is_amomin  -> Mux(op1 < op2, op1, op2),
+      io.dec.is_amomax  -> Mux(op1 > op2, op1, op2),
+      io.dec.is_amominu -> Mux(op1.asUInt < op2.asUInt, op1, op2),
+      io.dec.is_amomaxu -> Mux(op1.asUInt > op2.asUInt, op1, op2)
+    ))
+    amo_res := res_32.pad(xLen)
+    
+    wmask := "h000f".U(16.W) << offset
+    wdata := res_32.asUInt.pad(xLen * 2) << (offset << 3)
+  } .elsewhen(io.dec.is_amo_d) {
+    val op1 = mem_val_64
+    val op2 = src2_64
+    val res_64 = MuxCase(0.S, Seq(
+      io.dec.is_amoadd  -> (op1 + op2),
+      io.dec.is_amoswap -> op2,
+      io.dec.is_amoxor  -> (op1 ^ op2),
+      io.dec.is_amoand  -> (op1 & op2),
+      io.dec.is_amoor   -> (op1 | op2),
+      io.dec.is_amomin  -> Mux(op1 < op2, op1, op2),
+      io.dec.is_amomax  -> Mux(op1 > op2, op1, op2),
+      io.dec.is_amominu -> Mux(op1.asUInt < op2.asUInt, op1, op2),
+      io.dec.is_amomaxu -> Mux(op1.asUInt > op2.asUInt, op1, op2)
+    ))
+    amo_res := res_64
+    
+    wmask := "h00ff".U(16.W) << offset
+    wdata := res_64.asUInt.pad(xLen * 2) << (offset << 3)
+  }
   
-  io.mem_wen   := io.dec.is_store || is_sc_success
+  io.mem_wen   := io.dec.is_store || is_sc_success || io.dec.is_amo_w || io.dec.is_amo_d
   io.mem_wmask := wmask
   io.mem_wdata := wdata
 }

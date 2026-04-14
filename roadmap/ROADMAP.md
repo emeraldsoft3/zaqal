@@ -23,7 +23,8 @@ This roadmap outlines the journey to transform Zaqal from a simple prototype int
 | **[Phase 7](./PHASE7_ENGINE_PERFORMANCE/detail.md)** | **Out-of-Order Engine** | Days 96-120 | [ ] | ROB, Issue Queues, LSQ. |
 | **[Phase 8](./PHASE8_SYSTEM_PRIVILEGE/detail.md)** | **System & Linux Boot** | Days 121-140 | [ ] | Supervisor Mode & Sv39 MMU. |
 | **[Phase 9](./PHASE9_VECTOR_ISA/detail.md)** | **AI & Vector ISA** | Days 141-165 | [ ] | Matrix/AMX & Vector Units. |
-| **[Phase 10](./PHASE10_VERIFICATION_SOC/detail.md)** | **SoC & Tapeout** | Day 166+ | [ ] | Difftest & Silicon Readiness. |
+| **[Phase 10](./PHASE10_VERIFICATION_SOC/detail.md)** | **SoC & Tapeout** | Day 166-180 | [ ] | Difftest & Silicon Readiness. |
+| **[Phase 11](./PHASE11_MULTI_CORE_COHERENCE/detail.md)** | **Multi-Hart & Coherence** | Day 181+ | [ ] | TileLink/CHI, L3 Cache, Coherence. |
 
 ---
 

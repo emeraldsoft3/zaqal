@@ -122,6 +122,20 @@ class Decoder(implicit val p: Parameters) extends Module with HasZaqalParameter 
   io.out.is_lr_d   := io.out.is_lr && (funct3 === "b011".U)
   io.out.is_sc_w   := io.out.is_sc && (funct3 === "b010".U)
   io.out.is_sc_d   := io.out.is_sc && (funct3 === "b011".U)
+
+  io.out.is_amoadd  := (opcode === "b0101111".U) && (funct5 === "b00000".U)
+  io.out.is_amoswap := (opcode === "b0101111".U) && (funct5 === "b00001".U)
+  io.out.is_amoxor  := (opcode === "b0101111".U) && (funct5 === "b00100".U)
+  io.out.is_amoand  := (opcode === "b0101111".U) && (funct5 === "b01100".U)
+  io.out.is_amoor   := (opcode === "b0101111".U) && (funct5 === "b01000".U)
+  io.out.is_amomin  := (opcode === "b0101111".U) && (funct5 === "b10000".U)
+  io.out.is_amomax  := (opcode === "b0101111".U) && (funct5 === "b10100".U)
+  io.out.is_amominu := (opcode === "b0101111".U) && (funct5 === "b11000".U)
+  io.out.is_amomaxu := (opcode === "b0101111".U) && (funct5 === "b11100".U)
+
+  io.out.is_amo_w := (opcode === "b0101111".U) && (funct3 === "b010".U) && !io.out.is_lr && !io.out.is_sc
+  io.out.is_amo_d := (opcode === "b0101111".U) && (funct3 === "b011".U) && !io.out.is_lr && !io.out.is_sc
+  
   io.out.is_atomic := (opcode === "b0101111".U)
 
   // Select immediate based on instruction type

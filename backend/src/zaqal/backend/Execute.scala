@@ -136,6 +136,18 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
          printf(p"CORE EXECUTE: pc=${Hexadecimal(io.in.bits.pc)} inst=${Hexadecimal(io.in.bits.inst_raw)} type=LR    addr=${Hexadecimal(lsu.io.mem_addr)} res=${Hexadecimal(regFile.io.rd_data)}\n")
        } .elsewhen(decoder.io.out.is_sc) {
          printf(p"CORE EXECUTE: pc=${Hexadecimal(io.in.bits.pc)} inst=${Hexadecimal(io.in.bits.inst_raw)} type=SC    addr=${Hexadecimal(lsu.io.mem_addr)} data=${Hexadecimal(regFile.io.rs2_data)} res=${Hexadecimal(regFile.io.rd_data)}\n")
+       } .elsewhen(decoder.io.out.is_amoadd) {
+         printf(p"CORE EXECUTE: pc=${Hexadecimal(io.in.bits.pc)} inst=${Hexadecimal(io.in.bits.inst_raw)} type=AMOADD addr=${Hexadecimal(lsu.io.mem_addr)} src2=${Hexadecimal(regFile.io.rs2_data)} res=${Hexadecimal(regFile.io.rd_data)}\n")
+       } .elsewhen(decoder.io.out.is_amoswap) {
+         printf(p"CORE EXECUTE: pc=${Hexadecimal(io.in.bits.pc)} inst=${Hexadecimal(io.in.bits.inst_raw)} type=AMOSWAP addr=${Hexadecimal(lsu.io.mem_addr)} src2=${Hexadecimal(regFile.io.rs2_data)} res=${Hexadecimal(regFile.io.rd_data)}\n")
+       } .elsewhen(decoder.io.out.is_amoxor) {
+         printf(p"CORE EXECUTE: pc=${Hexadecimal(io.in.bits.pc)} inst=${Hexadecimal(io.in.bits.inst_raw)} type=AMOXOR addr=${Hexadecimal(lsu.io.mem_addr)} src2=${Hexadecimal(regFile.io.rs2_data)} res=${Hexadecimal(regFile.io.rd_data)}\n")
+       } .elsewhen(decoder.io.out.is_amomin) {
+         printf(p"CORE EXECUTE: pc=${Hexadecimal(io.in.bits.pc)} inst=${Hexadecimal(io.in.bits.inst_raw)} type=AMOMIN  addr=${Hexadecimal(lsu.io.mem_addr)} src2=${Hexadecimal(regFile.io.rs2_data)} res=${Hexadecimal(regFile.io.rd_data)}\n")
+       } .elsewhen(decoder.io.out.is_amomax) {
+         printf(p"CORE EXECUTE: pc=${Hexadecimal(io.in.bits.pc)} inst=${Hexadecimal(io.in.bits.inst_raw)} type=AMOMAX  addr=${Hexadecimal(lsu.io.mem_addr)} src2=${Hexadecimal(regFile.io.rs2_data)} res=${Hexadecimal(regFile.io.rd_data)}\n")
+       } .elsewhen(decoder.io.out.is_amoor) {
+         printf(p"CORE EXECUTE: pc=${Hexadecimal(io.in.bits.pc)} inst=${Hexadecimal(io.in.bits.inst_raw)} type=AMOOR   addr=${Hexadecimal(lsu.io.mem_addr)} src2=${Hexadecimal(regFile.io.rs2_data)} res=${Hexadecimal(regFile.io.rd_data)}\n")
        } .elsewhen(is_mul_op) {
          printf(p"CORE EXECUTE: pc=${Hexadecimal(io.in.bits.pc)} inst=${Hexadecimal(io.in.bits.inst_raw)} type=MUL   src1=${Hexadecimal(mul.io.src1)} src2=${Hexadecimal(mul.io.src2)} res=${Hexadecimal(regFile.io.rd_data)}\n")
        } .otherwise {

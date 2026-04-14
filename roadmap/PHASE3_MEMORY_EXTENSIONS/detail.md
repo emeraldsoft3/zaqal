@@ -20,7 +20,7 @@ This phase expansion covers the "A" (Atomic), "M" (Multiplication), and "B" (Bit
 
 ## Week 2: Atomics & Bitmanip (Days 18-22)
 - [x] **Day 18**: Atomics (LR/SC) - Reservation set management.
-- [ ] **Day 19**: AMO Operations (AMOADD, AMOXOR, etc.).
+- [x] **Day 19**: AMO Operations (AMOADD, AMOXOR, etc.).
 - [ ] **Day 20**: Bitmanip - Zba (Address Generation: SH1ADD, etc.).
 - [ ] **Day 21**: Bitmanip - Zbb (Basic Bit Ops: CLZ, CTZ, CPOP).
 - [ ] **Day 22**: Bitmanip - Zbs (Single-bit manipulation).
