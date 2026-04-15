@@ -109,6 +109,14 @@ class DecodeSignals(implicit val p: Parameters) extends Bundle with HasZaqalPara
   val is_sd    = Bool()
   val is_store = Bool()
 
+  // Zba Address Generation (Bitmanip)
+  val is_sh1add    = Bool()
+  val is_sh2add    = Bool()
+  val is_sh3add    = Bool()
+  val is_sh1add_uw = Bool()
+  val is_sh2add_uw = Bool()
+  val is_sh3add_uw = Bool()
+
   // Atomic Instructions (RV64A)
   val is_lr       = Bool()
   val is_sc       = Bool()

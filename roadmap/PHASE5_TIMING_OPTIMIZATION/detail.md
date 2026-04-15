@@ -26,6 +26,8 @@ Now that the core is wide, we must make it fast. We will break the long wires th
 
 ## Day 6: ALU Critical Path Optimization
 - [ ] Break down the ALU logic (especially multipliers and adders) into smaller chunks.
+- [ ] **Zba Adder Reuse**: Refactor SH1ADD/SH2ADD/SH3ADD (and .UW variants) to pre-shift `src1` and feed it into the **single shared Adder** instead of creating 6 independent adders. Match XiangShan's `Alu.scala` lines 270-291 pattern: `shaddSource` → mux → existing `addModule`.
+- **XiangShan Study**: [Alu.scala](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/backend/fu/Alu.scala) - *See how they reuse AddModule for SHxADD via operand pre-shifting.*
 - **XiangShan Study**: [Multiplier.scala](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/backend/fu/Multiplier.scala) - *See how they pipeline the multiplication operation.*
 
 ## Day 7: Load/Store Queue Timing

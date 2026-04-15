@@ -125,7 +125,9 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
                     decoder.io.out.is_slliw || decoder.io.out.is_srliw || decoder.io.out.is_sraiw ||
                     decoder.io.out.is_slt  || decoder.io.out.is_sltu || decoder.io.out.is_slti || decoder.io.out.is_sltiu ||
                     decoder.io.out.is_sub  || decoder.io.out.is_addw || decoder.io.out.is_subw || decoder.io.out.is_addiw ||
-                    decoder.io.out.is_lui  || decoder.io.out.is_auipc || decoder.io.out.is_load || decoder.io.out.is_store
+                    decoder.io.out.is_lui  || decoder.io.out.is_auipc || decoder.io.out.is_load || decoder.io.out.is_store ||
+                    decoder.io.out.is_sh1add || decoder.io.out.is_sh2add || decoder.io.out.is_sh3add ||
+                    decoder.io.out.is_sh1add_uw || decoder.io.out.is_sh2add_uw || decoder.io.out.is_sh3add_uw
 
     when(is_alu_op || is_mul_op || decoder.io.out.is_atomic) {
        when(decoder.io.out.is_load) {

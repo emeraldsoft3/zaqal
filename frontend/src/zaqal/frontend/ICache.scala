@@ -15,20 +15,22 @@ class ICache(implicit val p: Parameters) extends Module with HasZaqalParameter {
 
 
 val program = VecInit(Seq(
-  "h00000093".U, // 00: NOP
-  "h08000093".U, // 04: li   x1, 0x80          (Base address for tests)
-  "h01200113".U, // 08: li   x2, 0x12          (Data to store)
-  "h00700193".U, // 08: li   x3, 7         (Data to store)
-  "h0030b023".U, // 28: sd   x3, (x1)          (Store 7 to 0x80)  
-  "habc00213".U, // 2c: li   x4, 0xABC         (Random number into x4)
-  "h0020b5af".U, // 30: amoadd.d  x11, x2, (x1) (7 + 0x12 = 0x19)
-  "h0820b62f".U, // 34: amoswap.d x12, x2, (x1) (Swap 0x19 with 0x12)
-  "h2040b6af".U, // 38: amoxor.d  x13, x4, (x1) (0x12 XOR 0xABC)
-  "h8020b7af".U, // 3c: amomin.d  x15, x2, (x1)
-  "hA020b82f".U, // 40: amomax.d  x16, x2, (x1)
-  "h4020b8af".U, // 44: amoor.d   x17, x2, (x1)
-  "h0020a72f".U, // 48: amoadd.w  x14, x2, (x1)
-  "h00000013".U  // 4c: NOP
+  // === Day 20: Zba Address Generation Test ===
+  "h00000013".U, // 00: NOP
+  "h00500513".U, // 04: li   a0, 5                    (rs1 for 64-bit tests)
+  "h10000593".U, // 08: li   a1, 0x100                (rs2 = base address)
+  "hFFF00613".U, // 0C: li   a2, -1                   (a2 = 0xFFFFFFFFFFFFFFFF)
+  "h02061613".U, // 10: slli a2, a2, 32               (a2 = 0xFFFFFFFF00000000)
+  "h00366613".U, // 14: ori  a2, a2, 3                (a2 = 0xFFFFFFFF00000003)
+  // --- 64-bit SHxADD tests (rs1=a0=5, rs2=a1=0x100) ---
+  "h20B522B3".U, // 18: sh1add  t0, a0, a1            (t0 = 0x100 + (5 << 1) = 0x10A)
+  "h20B54333".U, // 1C: sh2add  t1, a0, a1            (t1 = 0x100 + (5 << 2) = 0x114)
+  "h20B563B3".U, // 20: sh3add  t2, a0, a1            (t2 = 0x100 + (5 << 3) = 0x128)
+  // --- .UW tests (rs1=a2=0xFFFFFFFF00000003, rs2=a1=0x100) ---
+  "h20B62E3B".U, // 24: sh1add.uw t3, a2, a1          (t3 = 0x100 + (zext32(3) << 1) = 0x106)
+  "h20B64EBB".U, // 28: sh2add.uw t4, a2, a1          (t4 = 0x100 + (zext32(3) << 2) = 0x10C)
+  "h20B66F3B".U, // 2C: sh3add.uw t5, a2, a1          (t5 = 0x100 + (zext32(3) << 3) = 0x118)
+  "h00000013".U  // 30: NOP
 ).padTo(256, "h00000013".U))
 
 

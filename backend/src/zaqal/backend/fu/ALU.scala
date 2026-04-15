@@ -45,6 +45,15 @@ class ALU(implicit val p: Parameters) extends Module with HasZaqalParameter {
   comparator.io.src1    := io.src1
   comparator.io.src2    := io.src2
 
+  // Zba — Address Generation combinational logic
+  val zba_src1_zext = Cat(0.U(32.W), io.src1(31, 0))   // zero-extend lower 32 bits for .UW
+  val sh1add_res    = io.src2 + (io.src1 << 1)
+  val sh2add_res    = io.src2 + (io.src1 << 2)
+  val sh3add_res    = io.src2 + (io.src1 << 3)
+  val sh1add_uw_res = io.src2 + (zba_src1_zext << 1)
+  val sh2add_uw_res = io.src2 + (zba_src1_zext << 2)
+  val sh3add_uw_res = io.src2 + (zba_src1_zext << 3)
+
   // 3. Result Selection
   io.result := MuxCase(0.U, Seq(
     (io.dec.is_add || io.dec.is_addi || io.dec.is_sub || 
@@ -59,6 +68,13 @@ class ALU(implicit val p: Parameters) extends Module with HasZaqalParameter {
      io.dec.is_sllw || io.dec.is_srlw || io.dec.is_sraw ||
      io.dec.is_slliw || io.dec.is_srliw || io.dec.is_sraiw) -> shifter.io.result,
     (io.dec.is_slt || io.dec.is_slti)   -> comparator.io.lt.asUInt,
-    (io.dec.is_sltu || io.dec.is_sltiu) -> comparator.io.ltu.asUInt
+    (io.dec.is_sltu || io.dec.is_sltiu) -> comparator.io.ltu.asUInt,
+    // Zba address generation
+    (io.dec.is_sh1add)    -> sh1add_res,
+    (io.dec.is_sh2add)    -> sh2add_res,
+    (io.dec.is_sh3add)    -> sh3add_res,
+    (io.dec.is_sh1add_uw) -> sh1add_uw_res,
+    (io.dec.is_sh2add_uw) -> sh2add_uw_res,
+    (io.dec.is_sh3add_uw) -> sh3add_uw_res,
   ))
 }

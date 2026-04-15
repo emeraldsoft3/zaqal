@@ -138,6 +138,14 @@ class Decoder(implicit val p: Parameters) extends Module with HasZaqalParameter 
   
   io.out.is_atomic := (opcode === "b0101111".U)
 
+  // Zba — Address Generation (funct7 = 0010000)
+  io.out.is_sh1add    := (opcode === "b0110011".U) && (funct3 === "b010".U) && (funct7 === "b0010000".U)
+  io.out.is_sh2add    := (opcode === "b0110011".U) && (funct3 === "b100".U) && (funct7 === "b0010000".U)
+  io.out.is_sh3add    := (opcode === "b0110011".U) && (funct3 === "b110".U) && (funct7 === "b0010000".U)
+  io.out.is_sh1add_uw := (opcode === "b0111011".U) && (funct3 === "b010".U) && (funct7 === "b0010000".U)
+  io.out.is_sh2add_uw := (opcode === "b0111011".U) && (funct3 === "b100".U) && (funct7 === "b0010000".U)
+  io.out.is_sh3add_uw := (opcode === "b0111011".U) && (funct3 === "b110".U) && (funct7 === "b0010000".U)
+
   // Select immediate based on instruction type
   when(io.out.is_branch) {
     io.out.imm := b_imm
