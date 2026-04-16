@@ -15,22 +15,17 @@ class ICache(implicit val p: Parameters) extends Module with HasZaqalParameter {
 
 
 val program = VecInit(Seq(
-  // === Day 20: Zba Address Generation Test ===
-  "h00000013".U, // 00: NOP
-  "h00500513".U, // 04: li   a0, 5                    (rs1 for 64-bit tests)
-  "h10000593".U, // 08: li   a1, 0x100                (rs2 = base address)
-  "hFFF00613".U, // 0C: li   a2, -1                   (a2 = 0xFFFFFFFFFFFFFFFF)
-  "h02061613".U, // 10: slli a2, a2, 32               (a2 = 0xFFFFFFFF00000000)
-  "h00366613".U, // 14: ori  a2, a2, 3                (a2 = 0xFFFFFFFF00000003)
-  // --- 64-bit SHxADD tests (rs1=a0=5, rs2=a1=0x100) ---
-  "h20B522B3".U, // 18: sh1add  t0, a0, a1            (t0 = 0x100 + (5 << 1) = 0x10A)
-  "h20B54333".U, // 1C: sh2add  t1, a0, a1            (t1 = 0x100 + (5 << 2) = 0x114)
-  "h20B563B3".U, // 20: sh3add  t2, a0, a1            (t2 = 0x100 + (5 << 3) = 0x128)
-  // --- .UW tests (rs1=a2=0xFFFFFFFF00000003, rs2=a1=0x100) ---
-  "h20B62E3B".U, // 24: sh1add.uw t3, a2, a1          (t3 = 0x100 + (zext32(3) << 1) = 0x106)
-  "h20B64EBB".U, // 28: sh2add.uw t4, a2, a1          (t4 = 0x100 + (zext32(3) << 2) = 0x10C)
-  "h20B66F3B".U, // 2C: sh3add.uw t5, a2, a1          (t5 = 0x100 + (zext32(3) << 3) = 0x118)
-  "h00000013".U  // 30: NOP
+  // === Day 22: Zbs Single-bit Manipulation Test ===
+  "h00000513".U, // 00: li a0, 0
+  "h28051593".U, // 04: bseti a1, a0, 0  (a1 = 1)
+  "h28159613".U, // 08: bseti a2, a1, 1  (a2 = 3)
+  "h29F51693".U, // 0C: bseti a3, a0, 63 (a3 = 0x8000000000000000)
+  "h48061713".U, // 10: bclri a4, a2, 0  (a4 = 2)
+  "h68171793".U, // 14: binvi a5, a4, 1  (a5 = 0)
+  "h48161813".U, // 18: bexti a6, a2, 1  (a6 = 1)
+  "h48061893".U, // 1C: bexti a7, a2, 0  (a7 = 1)
+  "h00000013".U, // 20: NOP
+  "h00000013".U  // 24: NOP
 ).padTo(256, "h00000013".U))
 
 

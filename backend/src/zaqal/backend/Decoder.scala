@@ -146,6 +146,49 @@ class Decoder(implicit val p: Parameters) extends Module with HasZaqalParameter 
   io.out.is_sh2add_uw := (opcode === "b0111011".U) && (funct3 === "b100".U) && (funct7 === "b0010000".U)
   io.out.is_sh3add_uw := (opcode === "b0111011".U) && (funct3 === "b110".U) && (funct7 === "b0010000".U)
 
+  // Zbb — Basic Bit Ops
+  val is_zbb_op     = (funct3 === "b001".U) && (io.inst(31, 25) === "b0110000".U)
+  val zbb_sub_op    = io.inst(24, 20)
+  io.out.is_clz     := (opcode === "b0010011".U) && is_zbb_op && (zbb_sub_op === "b00000".U)
+  io.out.is_ctz     := (opcode === "b0010011".U) && is_zbb_op && (zbb_sub_op === "b00001".U)
+  io.out.is_cpop    := (opcode === "b0010011".U) && is_zbb_op && (zbb_sub_op === "b00010".U)
+  io.out.is_clzw    := (opcode === "b0011011".U) && is_zbb_op && (zbb_sub_op === "b00000".U)
+  io.out.is_ctzw    := (opcode === "b0011011".U) && is_zbb_op && (zbb_sub_op === "b00001".U)
+  io.out.is_cpopw   := (opcode === "b0011011".U) && is_zbb_op && (zbb_sub_op === "b00010".U)
+
+  io.out.is_andn    := (opcode === "b0110011".U) && (funct3 === "b111".U) && (funct7 === "b0100000".U)
+  io.out.is_orn     := (opcode === "b0110011".U) && (funct3 === "b110".U) && (funct7 === "b0100000".U)
+  io.out.is_xorn    := (opcode === "b0110011".U) && (funct3 === "b100".U) && (funct7 === "b0100000".U)
+
+  io.out.is_rol     := (opcode === "b0110011".U) && (funct3 === "b001".U) && (funct7 === "b0110000".U)
+  io.out.is_ror     := (opcode === "b0110011".U) && (funct3 === "b101".U) && (funct7 === "b0110000".U)
+  io.out.is_rori    := (opcode === "b0010011".U) && (funct3 === "b101".U) && (io.inst(31, 26) === "b011000".U)
+  io.out.is_rolw    := (opcode === "b0111011".U) && (funct3 === "b001".U) && (funct7 === "b0110000".U)
+  io.out.is_rorw    := (opcode === "b0111011".U) && (funct3 === "b101".U) && (funct7 === "b0110000".U)
+  io.out.is_roriw   := (opcode === "b0011011".U) && (funct3 === "b101".U) && (io.inst(31, 25) === "b0110000".U)
+
+  io.out.is_min     := (opcode === "b0110011".U) && (funct3 === "b100".U) && (funct7 === "b0000101".U)
+  io.out.is_max     := (opcode === "b0110011".U) && (funct3 === "b110".U) && (funct7 === "b0000101".U)
+  io.out.is_minu    := (opcode === "b0110011".U) && (funct3 === "b101".U) && (funct7 === "b0000101".U)
+  io.out.is_maxu    := (opcode === "b0110011".U) && (funct3 === "b111".U) && (funct7 === "b0000101".U)
+
+  io.out.is_rev8    := (opcode === "b0010011".U) && (funct3 === "b101".U) && (funct7 === "b0110100".U) && (zbb_sub_op === "b11000".U)
+  io.out.is_orc_b   := (opcode === "b0010011".U) && (funct3 === "b101".U) && (funct7 === "b0010100".U) && (zbb_sub_op === "b00111".U)
+  io.out.is_sextb   := (opcode === "b0010011".U) && (funct3 === "b001".U) && (funct7 === "b0110000".U) && (zbb_sub_op === "b00100".U)
+  io.out.is_sexth   := (opcode === "b0010011".U) && (funct3 === "b001".U) && (funct7 === "b0110000".U) && (zbb_sub_op === "b00101".U)
+  io.out.is_zexth   := (opcode === "b0111011".U) && (funct3 === "b100".U) && (funct7 === "b0000100".U) && (io.out.rs2 === 0.U)
+
+  // Zbs — Single-bit Ops
+  io.out.is_bset    := (opcode === "b0110011".U) && (funct3 === "b001".U) && (funct7 === "b0010100".U)
+  io.out.is_bclr    := (opcode === "b0110011".U) && (funct3 === "b001".U) && (funct7 === "b0100100".U)
+  io.out.is_binv    := (opcode === "b0110011".U) && (funct3 === "b001".U) && (funct7 === "b0110100".U)
+  io.out.is_bext    := (opcode === "b0110011".U) && (funct3 === "b101".U) && (funct7 === "b0100100".U)
+  io.out.is_bseti   := (opcode === "b0010011".U) && (funct3 === "b001".U) && (io.inst(31, 26) === "b001010".U)
+  io.out.is_bclri   := (opcode === "b0010011".U) && (funct3 === "b001".U) && (io.inst(31, 26) === "b010010".U)
+  io.out.is_binvi   := (opcode === "b0010011".U) && (funct3 === "b001".U) && (io.inst(31, 26) === "b011010".U)
+  io.out.is_bexti   := (opcode === "b0010011".U) && (funct3 === "b101".U) && (io.inst(31, 26) === "b010010".U)
+
+
   // Select immediate based on instruction type
   when(io.out.is_branch) {
     io.out.imm := b_imm

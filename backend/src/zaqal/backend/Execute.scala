@@ -30,7 +30,9 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
                     decoder.io.out.is_slli || decoder.io.out.is_srli || decoder.io.out.is_srai ||
                     decoder.io.out.is_slliw || decoder.io.out.is_srliw || decoder.io.out.is_sraiw ||
                     decoder.io.out.is_slti || decoder.io.out.is_sltiu || decoder.io.out.is_addiw ||
-                    decoder.io.out.is_lui  || decoder.io.out.is_auipc || decoder.io.out.is_load || decoder.io.out.is_atomic
+                    decoder.io.out.is_lui  || decoder.io.out.is_auipc || decoder.io.out.is_load || decoder.io.out.is_atomic ||
+                    decoder.io.out.is_rori || decoder.io.out.is_roriw ||
+                    decoder.io.out.is_bseti || decoder.io.out.is_bclri || decoder.io.out.is_binvi || decoder.io.out.is_bexti
 
   val operand2 = Mux(is_imm_type, decoder.io.out.imm.asUInt, regFile.io.rs2_data)
 
@@ -127,7 +129,20 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
                     decoder.io.out.is_sub  || decoder.io.out.is_addw || decoder.io.out.is_subw || decoder.io.out.is_addiw ||
                     decoder.io.out.is_lui  || decoder.io.out.is_auipc || decoder.io.out.is_load || decoder.io.out.is_store ||
                     decoder.io.out.is_sh1add || decoder.io.out.is_sh2add || decoder.io.out.is_sh3add ||
-                    decoder.io.out.is_sh1add_uw || decoder.io.out.is_sh2add_uw || decoder.io.out.is_sh3add_uw
+                    decoder.io.out.is_sh1add_uw || decoder.io.out.is_sh2add_uw || decoder.io.out.is_sh3add_uw ||
+                    decoder.io.out.is_clz || decoder.io.out.is_ctz || decoder.io.out.is_cpop ||
+                    decoder.io.out.is_clzw || decoder.io.out.is_ctzw || decoder.io.out.is_cpopw ||
+                    decoder.io.out.is_andn || decoder.io.out.is_orn || decoder.io.out.is_xorn ||
+                    decoder.io.out.is_rol || decoder.io.out.is_ror || decoder.io.out.is_rori ||
+                    decoder.io.out.is_rolw || decoder.io.out.is_rorw || decoder.io.out.is_roriw ||
+                    decoder.io.out.is_rev8 || decoder.io.out.is_orc_b || decoder.io.out.is_sextb ||
+                    decoder.io.out.is_sexth || decoder.io.out.is_zexth ||
+                    decoder.io.out.is_min || decoder.io.out.is_max || decoder.io.out.is_minu ||
+                    decoder.io.out.is_maxu ||
+                    decoder.io.out.is_bset || decoder.io.out.is_bseti ||
+                    decoder.io.out.is_bclr || decoder.io.out.is_bclri ||
+                    decoder.io.out.is_binv || decoder.io.out.is_binvi ||
+                    decoder.io.out.is_bext || decoder.io.out.is_bexti
 
     when(is_alu_op || is_mul_op || decoder.io.out.is_atomic) {
        when(decoder.io.out.is_load) {
