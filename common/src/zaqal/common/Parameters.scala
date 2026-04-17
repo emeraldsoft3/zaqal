@@ -11,7 +11,8 @@ case class ZaqalParams(
   ftqEntries: Int = 64,
   ftqPtrWidth: Int = 6,
   logicalRegs: Int = 32,
-  phyRegs: Int = 64
+  phyRegs: Int = 64,
+  hasCExtension: Boolean = true
 )
 
 // 2. Define the Field Key that CDE uses to locate ZaqalParams
@@ -30,6 +31,8 @@ trait HasZaqalParameter {
   def ftqPtrWidth = zP.ftqPtrWidth
   def logicalRegs = zP.logicalRegs
   def phyRegs = zP.phyRegs
+  def hasCExtension = zP.hasCExtension
+  def predictWidth = fetchWidth * (if (hasCExtension) 2 else 1)
 }
 
 // 4. Default configuration overlay

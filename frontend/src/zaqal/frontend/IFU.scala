@@ -15,10 +15,8 @@ class IFU(implicit val p: Parameters) extends Module with HasZaqalParameter {
   })
 
   // IFU Logic: Take PC from FTQ
-  val predecoders = Seq.fill(fetchWidth)(Module(new Predecoder))
-  for (i <- 0 until fetchWidth) {
-    predecoders(i).io.inst := io.insts_in(i)
-  }
+  val predecoders = Seq.fill(predictWidth)(Module(new Predecoder))
+  val raw_bits = io.insts_in.asUInt
 
   val packet = Wire(new FetchPacket)
   packet.pc          := io.fetch_req.bits.pc
@@ -26,8 +24,15 @@ class IFU(implicit val p: Parameters) extends Module with HasZaqalParameter {
   packet.prediction  := io.fetch_req.bits.prediction
   packet.ftqPtr      := io.fetch_req.bits.ftqPtr
   packet.epoch       := io.fetch_req.bits.epoch
-  packet.instructions := io.insts_in
-  for (i <- 0 until fetchWidth) {
+  
+  for (i <- 0 until predictWidth) {
+    val inst_window = if (i == predictWidth - 1) {
+      Cat(0.U(16.W), raw_bits((fetchWidth * 32) - 1, (fetchWidth * 32) - 16))
+    } else {
+      raw_bits((i * 16) + 31, i * 16)
+    }
+    predecoders(i).io.inst := inst_window
+    packet.instructions(i) := inst_window
     packet.pre_decoded(i) := predecoders(i).io.out
   }
 

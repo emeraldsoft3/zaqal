@@ -9,6 +9,7 @@ This is where we transition Zaqal from a simple core to a high-performance engin
 - **XiangShan Study**: [FrontendBundle.scala](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/frontend/FrontendBundle.scala) - *See how they define the fetch packet.*
 
 ## Day 2: IBuffer Redesign (Banked Dequeue)
+- [ ] Expand the simple 1-entry `IBuffer` into a fully decoupled multi-entry Instruction Fetch Queue (IFQ/FIFO) to handle continuous aligned and compressed instruction streaming for superscalar issue.
 - [ ] Implement parallel dequeue logic to feed multiple decoders.
 - **XiangShan Study**: [IBuffer.scala:L80-120](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/frontend/IBuffer.scala) - *How instructions are buffered and dequeued in parallel.*
 

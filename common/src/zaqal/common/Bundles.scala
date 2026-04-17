@@ -8,13 +8,13 @@ import org.chipsalliance.cde.config.Parameters
 class PredictionMeta(implicit val p: Parameters) extends Bundle with HasZaqalParameter {
   val target    = UInt(xLen.W) // Where we think we are jumping
   val taken     = Bool()     // Did we actually jump?
-  val slot      = UInt(log2Up(fetchWidth).W)  // Which instruction in the packet is the branch?
+  val slot      = UInt(log2Up(predictWidth).W)  // Which instruction in the packet is the branch?
 }
 
 // Lightweight request from BPU to FTQ
 class FetchRequest(implicit val p: Parameters) extends Bundle with HasZaqalParameter {
   val pc         = UInt(xLen.W)
-  val mask       = UInt(fetchWidth.W)
+  val mask       = UInt(predictWidth.W)
   val prediction = new PredictionMeta
   val ftqPtr     = UInt(ftqPtrWidth.W) // Added to help IFU tag the packet
   val epoch      = Bool()    // Track valid fetch path
@@ -23,9 +23,9 @@ class FetchRequest(implicit val p: Parameters) extends Bundle with HasZaqalParam
 // Packet of instructions fetched from I-Cache
 class FetchPacket(implicit val p: Parameters) extends Bundle with HasZaqalParameter {
   val pc           = UInt(xLen.W)
-  val instructions = Vec(fetchWidth, UInt(instBits.W))
-  val pre_decoded  = Vec(fetchWidth, new PreDecodeSignals)
-  val mask         = UInt(fetchWidth.W)
+  val instructions = Vec(predictWidth, UInt(instBits.W))
+  val pre_decoded  = Vec(predictWidth, new PreDecodeSignals)
+  val mask         = UInt(predictWidth.W)
   val prediction   = new PredictionMeta
   val ftqPtr       = UInt(ftqPtrWidth.W) // Pointer to FTQ entry
   val epoch        = Bool()

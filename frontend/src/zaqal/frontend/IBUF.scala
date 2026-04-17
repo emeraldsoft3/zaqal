@@ -13,46 +13,76 @@ class IBUF(implicit val p: Parameters) extends Module with HasZaqalParameter {
     val out       = Decoupled(new MicroOp)              // To Backend
   })
 
-  val inst_idx = RegInit(0.U(log2Up(fetchWidth).W))
+  val inst_idx = RegInit(0.U(log2Up(predictWidth).W))
   val current_packet = Reg(new FetchPacket)
   val busy = RegInit(false.B)
 
-  // Logic to step through the instructions in a packet
-  // Lookahead: Find the next valid instruction index in the current mask after the current index
-  val mask_all_except_first = Reverse(Cat(0.U(1.W), Fill(fetchWidth - 1, 1.U(1.W))))
-  val remaining_mask = current_packet.mask & (mask_all_except_first << inst_idx)(fetchWidth - 1, 0)
-  val has_next_inst  = remaining_mask.orR // has next inst is 1 if remaining mask is 0, but if there is any value, it will be 1
-  val next_inst_idx  = PriorityEncoder(remaining_mask) //0 for 11111111 , 1 for 11111110, 2 for 11111100
+  val residual_valid = RegInit(false.B)
+  val residual_inst  = RegInit(0.U(16.W))
+  val residual_pc    = RegInit(0.U(xLen.W))
+  val residual_pre   = Reg(new PreDecodeSignals)
+  val residual_ftq   = RegInit(0.U(ftqPtrWidth.W))
+  val residual_epoch = RegInit(false.B)
 
-  val will_finish_packet = io.out.fire && !has_next_inst
+  val is_rvc = current_packet.pre_decoded(inst_idx).is_rvc
+  val step = Mux(is_rvc, 1.U, 2.U)
+  
+  val is_cross_line = (inst_idx === (predictWidth - 1).U) && !is_rvc && current_packet.mask(inst_idx)
 
-  // Seamless Switching: Allow accepting a new packet if we are idle OR finishing the current one
+  val valid_bits_mask = (Fill(predictWidth, 1.U(1.W)) << (inst_idx + step))(predictWidth - 1, 0)
+  val remaining_mask = current_packet.mask & valid_bits_mask
+  val has_next_inst  = remaining_mask.orR
+  val next_inst_idx  = PriorityEncoder(remaining_mask)
+
+  val will_finish_packet = (io.out.fire || (busy && is_cross_line && !residual_valid)) && !has_next_inst
+
   val accept_new_packet  = (!busy || will_finish_packet) && io.inst_data.valid && !io.flush
 
   io.inst_data.ready := !busy || will_finish_packet
-  
+
   when(io.flush) {
     busy := false.B
+    residual_valid := false.B
   } .elsewhen(accept_new_packet) {
     current_packet := io.inst_data.bits
     busy           := true.B
-    // Start at the first bit set in the mask (usually 0, but can be >0 for branch targets)
-    inst_idx       := PriorityEncoder(io.inst_data.bits.mask) //10000000 is 7th bit, meaning the inst_idx will be 111 (7)
+    inst_idx       := PriorityEncoder(io.inst_data.bits.mask)
   } .elsewhen(io.out.fire) {
-    when(has_next_inst) {
+    when(residual_valid) {
+      residual_valid := false.B
+      val mask_after_resid = current_packet.mask & (Fill(predictWidth, 1.U(1.W)) << 1.U)(predictWidth - 1, 0)
+      when(mask_after_resid.orR) {
+        inst_idx := PriorityEncoder(mask_after_resid)
+      } .otherwise {
+        busy := false.B
+      }
+    } .elsewhen(has_next_inst) {
       inst_idx := next_inst_idx
     } .otherwise {
       busy := false.B
     }
+  } .elsewhen(busy && is_cross_line) {
+    residual_valid := true.B
+    residual_inst  := current_packet.instructions(inst_idx)(15, 0)
+    residual_pc    := current_packet.pc + (inst_idx << 1)
+    residual_pre   := current_packet.pre_decoded(inst_idx)
+    residual_ftq   := current_packet.ftqPtr 
+    residual_epoch := current_packet.epoch
+    busy           := false.B
   }
 
-  // Dispatch logic (Kunminghu Alignment: Dispatch raw instructions + hints)
-  // Ensure we only dispatch if the current instruction is valid in the mask
-  io.out.valid      := busy && current_packet.mask(inst_idx)
-  io.out.bits.inst_raw := current_packet.instructions(inst_idx)
-  io.out.bits.pre      := current_packet.pre_decoded(inst_idx)
-  io.out.bits.pc       := current_packet.pc + (inst_idx << 2)
-  io.out.bits.ftqPtr   := current_packet.ftqPtr
-  io.out.bits.is_predicted_taken := current_packet.prediction.taken && (inst_idx === current_packet.prediction.slot)
-  io.out.bits.epoch    := current_packet.epoch
+  io.out.valid      := (busy && current_packet.mask(inst_idx) && !is_cross_line && !residual_valid) || (busy && residual_valid)
+  
+  io.out.bits.inst_raw := Mux(residual_valid, 
+                              Cat(current_packet.instructions(0)(15, 0), residual_inst), 
+                              current_packet.instructions(inst_idx))
+                              
+  io.out.bits.pre      := Mux(residual_valid, residual_pre, current_packet.pre_decoded(inst_idx))
+  io.out.bits.pc       := Mux(residual_valid, residual_pc, current_packet.pc + (inst_idx << 1))
+  io.out.bits.ftqPtr   := Mux(residual_valid, residual_ftq, current_packet.ftqPtr)
+  
+  val is_pred_taken_normal = current_packet.prediction.taken && (inst_idx === current_packet.prediction.slot)
+  io.out.bits.is_predicted_taken := Mux(residual_valid, false.B, is_pred_taken_normal)
+  
+  io.out.bits.epoch    := Mux(residual_valid, residual_epoch, current_packet.epoch)
 }

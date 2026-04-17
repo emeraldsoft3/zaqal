@@ -26,8 +26,9 @@ This phase expansion covers the "A" (Atomic), "M" (Multiplication), and "B" (Bit
 - [ ] **Day 22**: Bitmanip - Zbs (Single-bit manipulation).
 
 ## Week 3: Compressed Instructions (RV64C) (Days 23-28)
-- [ ] **Day 23**: IFU modifications for 16-bit/32-bit instruction alignment.
+- [x] **Day 23**: IFU modifications for 16-bit/32-bit instruction alignment.
 - [ ] **Day 24**: Predecoder updates to expand 16-bit compressed instructions into 32-bit equivalents.
+  - [ ] Write a test program in `ICache.scala` and verify pipeline handling in GTKWave.
 - [ ] **Day 25**: Handling instructions crossing cache-line boundaries.
 - [ ] **Day 26**: Updates to the PC generator (incrementing by +2 or +4).
 - [ ] **Day 27**: Modifying BRU & Exceptions for 2-byte alignment restrictions.

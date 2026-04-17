@@ -15,17 +15,28 @@ class ICache(implicit val p: Parameters) extends Module with HasZaqalParameter {
 
 
 val program = VecInit(Seq(
-  // === Day 22: Zbs Single-bit Manipulation Test ===
-  "h00000513".U, // 00: li a0, 0
-  "h28051593".U, // 04: bseti a1, a0, 0  (a1 = 1)
-  "h28159613".U, // 08: bseti a2, a1, 1  (a2 = 3)
-  "h29F51693".U, // 0C: bseti a3, a0, 63 (a3 = 0x8000000000000000)
-  "h48061713".U, // 10: bclri a4, a2, 0  (a4 = 2)
-  "h68171793".U, // 14: binvi a5, a4, 1  (a5 = 0)
-  "h48161813".U, // 18: bexti a6, a2, 1  (a6 = 1)
-  "h48061893".U, // 1C: bexti a7, a2, 0  (a7 = 1)
-  "h00000013".U, // 20: NOP
-  "h00000013".U  // 24: NOP
+  // === Day 23: Alignment Test ===
+  // We want to force a 32-bit instruction to split across the packet boundary.
+  // A packet is 8x 32-bit words (256 bits). 
+  // Let's put a "c.nop" (0x0001) in the lower 16 bits of program(7).
+  // Then the lower 16 bits of a 32-bit 'li a0, 5' (0x00500513) in the upper 16 bits of program(7).
+  // Then the upper 16 bits of 'li a0, 5' in the lower 16 bits of program(8).
+
+  "h00000013".U, // 0
+  "h00000013".U, // 1
+  "h00000013".U, // 2
+  "h00000013".U, // 3
+  "h00000013".U, // 4
+  "h00000013".U, // 5
+  "h00000013".U, // 6
+  // Packet 0 Ends here!
+  // At word 7, we place: lower 16 bits of 32-bit inst (0x0513) in upper half, c.nop (0x0001) in lower half
+  "h0513_0001".U, // 7
+  // Packet 1 Begins here!
+  // At word 8, we place: upper 16 bits of 32-bit inst (0x0050) in lower half, NOP in upper half
+  "h0001_0050".U, // 8
+  
+  "h00000013".U  // NOP pad
 ).padTo(256, "h00000013".U))
 
 
