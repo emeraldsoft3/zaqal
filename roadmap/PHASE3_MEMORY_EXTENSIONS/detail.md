@@ -22,14 +22,16 @@ This phase expansion covers the "A" (Atomic), "M" (Multiplication), and "B" (Bit
 - [x] **Day 18**: Atomics (LR/SC) - Reservation set management.
 - [x] **Day 19**: AMO Operations (AMOADD, AMOXOR, etc.).
 - [x] **Day 20**: Bitmanip - Zba (Address Generation: SH1ADD, etc.).
-- [ ] **Day 21**: Bitmanip - Zbb (Basic Bit Ops: CLZ, CTZ, CPOP).
-- [ ] **Day 22**: Bitmanip - Zbs (Single-bit manipulation).
+- [x] **Day 21**: Bitmanip - Zbb (Basic Bit Ops: CLZ, CTZ, CPOP).
+- [x] **Day 22**: Bitmanip - Zbs (Single-bit manipulation).
 
 ## Week 3: Compressed Instructions (RV64C) (Days 23-28)
 - [x] **Day 23**: IFU modifications for 16-bit/32-bit instruction alignment.
-- [ ] **Day 24**: Predecoder updates to expand 16-bit compressed instructions into 32-bit equivalents.
-  - [ ] Write a test program in `ICache.scala` and verify pipeline handling in GTKWave.
-- [ ] **Day 25**: Handling instructions crossing cache-line boundaries.
+- [x] **Day 24**: Predecoder refactor: Introduction of `RVCExpander` module (XiangShan Parity).
+  - [x] Refactor inline expansion to dedicated module.
+- [ ] **Day 25**: Full RV64C Instruction Coverage.
+  - [ ] Support for Q0 (Memory), Q1 (Arith/Logic/CFI), and Q2 (Stack/CFI).
+  - [ ] Handling instructions crossing cache-line boundaries (Final Polish).
 - [ ] **Day 26**: Updates to the PC generator (incrementing by +2 or +4).
 - [ ] **Day 27**: Modifying BRU & Exceptions for 2-byte alignment restrictions.
 - [ ] **Day 28**: Verification of C extension with compiled Linux binaries.

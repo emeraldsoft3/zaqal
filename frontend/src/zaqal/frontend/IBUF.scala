@@ -46,7 +46,8 @@ class IBUF(implicit val p: Parameters) extends Module with HasZaqalParameter {
   } .elsewhen(accept_new_packet) {
     current_packet := io.inst_data.bits
     busy           := true.B
-    inst_idx       := PriorityEncoder(io.inst_data.bits.mask)
+    val start_mask = Mux(residual_valid, io.inst_data.bits.mask & ~1.U(predictWidth.W), io.inst_data.bits.mask)
+    inst_idx       := PriorityEncoder(start_mask)
   } .elsewhen(io.out.fire) {
     when(residual_valid) {
       residual_valid := false.B
@@ -75,7 +76,8 @@ class IBUF(implicit val p: Parameters) extends Module with HasZaqalParameter {
   
   io.out.bits.inst_raw := Mux(residual_valid, 
                               Cat(current_packet.instructions(0)(15, 0), residual_inst), 
-                              current_packet.instructions(inst_idx))
+                              Mux(is_rvc, current_packet.pre_decoded(inst_idx).expanded_inst, 
+                                          current_packet.instructions(inst_idx)))
                               
   io.out.bits.pre      := Mux(residual_valid, residual_pre, current_packet.pre_decoded(inst_idx))
   io.out.bits.pc       := Mux(residual_valid, residual_pc, current_packet.pc + (inst_idx << 1))

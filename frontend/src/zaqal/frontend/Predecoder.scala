@@ -12,11 +12,18 @@ class Predecoder(implicit val p: Parameters) extends Module with HasZaqalParamet
     val out  = Output(new PreDecodeSignals)
   })
 
-  // RISC-V Compressed (RVC) check: last two bits are not 11
-  io.out.is_rvc := io.inst(1, 0) =/= "b11".U
+  // RVC Expander instantiation (XiangShan Parity)
+  val rvc_expander = Module(new RVCExpander)
+  rvc_expander.io.inst := io.inst(15, 0)
+  
+  val is_rvc = rvc_expander.io.is_rvc
+  io.out.is_rvc := is_rvc
+
+  val expanded = Mux(is_rvc, rvc_expander.io.out, io.inst)
+  io.out.expanded_inst := expanded
 
   // Simple Control Flow Instruction (CFI) check for RISC-V
-  // JAL (1101111), JALR (1100111), BRANCH (1100011)
-  val opcode = io.inst(6, 0)
+  // Use expanded instruction for CFI check to support compressed branches/jumps in future
+  val opcode = expanded(6, 0)
   io.out.is_cfi := (opcode === "b1101111".U) || (opcode === "b1100111".U) || (opcode === "b1100011".U)
 }
