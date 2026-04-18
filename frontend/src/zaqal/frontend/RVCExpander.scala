@@ -21,9 +21,12 @@ class RVCExpander(implicit val p: Parameters) extends Module with HasZaqalParame
   io.is_rvc := is_rvc
 
   // Register Map Helper: C-style register (3 bits) to X-style (5 bits: x8-x15)
+  // rs1_p (common for Q0 and Q1/Misc)
   def rs1_p = Cat("b01".U(2.W), inst(9, 7))
+  // rs2_p (mostly Q1/Misc and Q2)
   def rs2_p = Cat("b01".U(2.W), inst(4, 2))
-  def rd_p  = rs1_p
+  // rd_p_q0 (Destination for Q0 loads like c.lw, c.ld)
+  def rd_p_q0 = rs2_p
 
   // Standard 5-bit register fields
   val rd_rs1 = inst(11, 7)
@@ -38,16 +41,16 @@ class RVCExpander(implicit val p: Parameters) extends Module with HasZaqalParame
         is("b000".U) { // c.addi4spn
           val uimm = Cat(inst(10, 7), inst(12, 11), inst(5), inst(6), 0.U(2.W))
           when(uimm =/= 0.U) {
-            expanded := Cat(uimm.pad(12), 2.U(5.W), "b000".U, rd_p, "b0010011".U)
+            expanded := Cat(uimm.pad(12), 2.U(5.W), "b000".U, rd_p_q0, "b0010011".U)
           }
         }
         is("b010".U) { // c.lw
           val uimm = Cat(inst(5), inst(12, 10), inst(6), 0.U(2.W))
-          expanded := Cat(uimm.pad(12), rs1_p, "b010".U, rd_p, "b0000011".U)
+          expanded := Cat(uimm.pad(12), rs1_p, "b010".U, rd_p_q0, "b0000011".U)
         }
         is("b011".U) { // c.ld
           val uimm = Cat(inst(6, 5), inst(12, 10), 0.U(3.W))
-          expanded := Cat(uimm.pad(12), rs1_p, "b011".U, rd_p, "b0000011".U)
+          expanded := Cat(uimm.pad(12), rs1_p, "b011".U, rd_p_q0, "b0000011".U)
         }
         is("b110".U) { // c.sw
           val uimm = Cat(inst(5), inst(12, 10), inst(6), 0.U(2.W))
@@ -96,7 +99,6 @@ class RVCExpander(implicit val p: Parameters) extends Module with HasZaqalParame
               val f2_low = inst(6, 5)
               val rs2_n = rs2_p
               val rd_n = rs1_p
-              val op = Mux(is_w, "b0111011".U, "b0110111".U) // Wait, logic is 0110011
               val op_arith = Mux(is_w, "b0111011".U, "b0110011".U)
               expanded := MuxCase("h00000013".U, Seq(
                 (f2_low === "b00".U) -> Cat("b0100000".U, rs2_n, rd_n, "b000".U, rd_n, op_arith), // sub
@@ -104,7 +106,8 @@ class RVCExpander(implicit val p: Parameters) extends Module with HasZaqalParame
                 (f2_low === "b10".U) -> Cat("b0000000".U, rs2_n, rd_n, "b110".U, rd_n, "b0110011".U), // or
                 (f2_low === "b11".U) -> Cat("b0000000".U, rs2_n, rd_n, "b111".U, rd_n, "b0110011".U)  // and
               ))
-              when(is_w && f2_low === "b01".U) { expanded := Cat("b0000000".U, rs2_n, rd_n, "b000".U, rd_n, "b0111011".U) } // c.addw
+              // c.addw case (spec says funct[12]=1, funct[11:10]=11, funct[6:5]=01)
+              when(is_w && f2_low === "b01".U) { expanded := Cat("b0000000".U, rs2_n, rd_n, "b000".U, rd_n, "b0111011".U) } 
             }
           }
         }

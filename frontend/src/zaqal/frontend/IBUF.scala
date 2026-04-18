@@ -48,6 +48,7 @@ class IBUF(implicit val p: Parameters) extends Module with HasZaqalParameter {
     busy           := true.B
     val start_mask = Mux(residual_valid, io.inst_data.bits.mask & ~1.U(predictWidth.W), io.inst_data.bits.mask)
     inst_idx       := PriorityEncoder(start_mask)
+    when(residual_valid) { residual_valid := false.B }
   } .elsewhen(io.out.fire) {
     when(residual_valid) {
       residual_valid := false.B
