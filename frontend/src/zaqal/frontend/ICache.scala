@@ -15,34 +15,28 @@ class ICache(implicit val p: Parameters) extends Module with HasZaqalParameter {
 
 
 val program = VecInit(Seq(
-  "h00000013".U, // 0: NOP
-  "h00000013".U, // 1: NOP
+  "h0000_0013".U, // 0: NOP
+  "h0000_0013".U, // 1: NOP
   
   // === Day 24: RVC Tests ===
-  // Word 2: c.nop (0x0001) | c.li x10, 5 (0x4515)
-  "h4515_0001".U, // 2: [x10=5] [nop]
-  // Word 3: c.addi x11, -1 (0x15fd) | c.li x12, 10 (0x4629)
-  "h4629_15fd".U, // 3: [x12=10] [x11=x11-1]
-  
-  // Word 4: c.mv x13, x10 (0x86aa) | c.add x14, x12 (0x9732)
-  "h9732_86aa".U, // 4: [x14=x14+x12] [x13=x10]
-
-  // Word 5: c.ld x10, 8(x11) (0x6588) | c.li x11, 0 (0x4581)
-  "h6588_4581".U, // 5: [x10=ld 8(x11)] [x11=0]
-  
-  // Word 6: c.sd x12, 16(x13) (0xba90) | c.addi x12, 1 (0x4605)
-  "hba90_4605".U, // 6: [sd x12, 16(x13)] [x12=x12+1]
+  "h4515_0001".U, // 2: [c.li x10, 5] [c.nop]
+  "h4629_15fd".U, // 3: [c.li x12, 10] [c.addi x11, -1]
+  "h9732_86aa".U, // 4: [c.add x14, x14, x12] [c.mv x13, x10]
+  "h6588_4581".U, // 5: [c.ld x10, 8(x11)] [c.li x11, 0]
+  "hba90_4605".U, // 6: [c.sd x12, 16(x13)] [c.li x12, 1]
   
   // === Day 23: Alignment Regression ===
-  // Packet 0 Ends here!
-  // At word 7, we place: lower 16 bits of 32-bit inst (0x0513) in upper half, c.nop (0x0001) in lower half
-  "h0513_0001".U, // 7: [li x10, 5 (part 1)] [c.nop]
-  // Packet 1 Begins here!
-  // At word 8, we place: upper 16 bits of 32-bit inst (0x0050) in lower half, NOP in upper half
-  "h0001_0050".U, // 8: [c.nop] [li x10, 5 (part 2)]
+  "h0513_0001".U, // 7: [li x10, 5 (part 1: 0513)] [c.nop]
+  "h0001_0050".U, // 8: [c.nop] [li x10, 5 (part 2: 0050)]
   
-  "h00000013".U  // NOP pad
-).padTo(256, "h00000013".U))
+  // === Day 25: Enhanced RVC Coverage ===
+  "h838d_6785".U, // 9: [c.srli x15, 2] [c.lui x15, 1]
+  "ha00a_6105".U, // 10: [c.j +4 (to word 12)] [c.addi16sp 32]
+  "h0000_0013".U, // 11: Jump target skip
+  "hc6b8_46b8".U, // 12: [c.sw x14, 4(x13)] [c.lw x15, 4(x13)]
+
+  "h0000_0013".U  // NOP pad
+).padTo(256, "h0000_0013".U))
 
 
   val relative_pc = io.pc - "h8000_0000".U

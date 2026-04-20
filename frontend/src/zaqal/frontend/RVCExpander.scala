@@ -41,24 +41,32 @@ class RVCExpander(implicit val p: Parameters) extends Module with HasZaqalParame
         is("b000".U) { // c.addi4spn
           val uimm = Cat(inst(10, 7), inst(12, 11), inst(5), inst(6), 0.U(2.W))
           when(uimm =/= 0.U) {
-            expanded := Cat(uimm.pad(12), 2.U(5.W), "b000".U, rd_p_q0, "b0010011".U)
+            expanded := Cat(uimm.pad(12)(11, 0), 2.U(5.W), 0.U(3.W), rd_p_q0(4, 0), "b0010011".U(7.W))
           }
+        }
+        is("b001".U) { // c.fld (RV32/64) or c.ld (RV128)
+          val uimm = Cat(inst(6, 5), inst(12, 10), 0.U(3.W))
+          expanded := Cat(uimm.pad(12)(11, 0), rs1_p(4, 0), 3.U(3.W), rd_p_q0(4, 0), "b0000011".U(7.W))
         }
         is("b010".U) { // c.lw
           val uimm = Cat(inst(5), inst(12, 10), inst(6), 0.U(2.W))
-          expanded := Cat(uimm.pad(12), rs1_p, "b010".U, rd_p_q0, "b0000011".U)
+          expanded := Cat(uimm.pad(12)(11, 0), rs1_p(4, 0), 2.U(3.W), rd_p_q0(4, 0), "b0000011".U(7.W))
         }
         is("b011".U) { // c.ld
           val uimm = Cat(inst(6, 5), inst(12, 10), 0.U(3.W))
-          expanded := Cat(uimm.pad(12), rs1_p, "b011".U, rd_p_q0, "b0000011".U)
+          expanded := Cat(uimm.pad(12)(11, 0), rs1_p(4, 0), 3.U(3.W), rd_p_q0(4, 0), "b0000011".U(7.W))
+        }
+        is("b101".U) { // c.fsd (RV32/64) or c.sd (RV128)
+          val uimm = Cat(inst(6, 5), inst(12, 10), 0.U(3.W))
+          expanded := Cat(uimm.pad(12)(11, 5), rs2_p(4, 0), rs1_p(4, 0), 3.U(3.W), uimm(4, 0), "b0100011".U(7.W))
         }
         is("b110".U) { // c.sw
           val uimm = Cat(inst(5), inst(12, 10), inst(6), 0.U(2.W))
-          expanded := Cat(uimm.pad(12)(11, 5), rs2_p, rs1_p, "b010".U, uimm(4, 0), "b0100011".U)
+          expanded := Cat(uimm.pad(12)(11, 5), rs2_p(4, 0), rs1_p(4, 0), 2.U(3.W), uimm(4, 0), "b0100011".U(7.W))
         }
         is("b111".U) { // c.sd
           val uimm = Cat(inst(6, 5), inst(12, 10), 0.U(3.W))
-          expanded := Cat(uimm.pad(12)(11, 5), rs2_p, rs1_p, "b011".U, uimm(4, 0), "b0100011".U)
+          expanded := Cat(uimm.pad(12)(11, 5), rs2_p(4, 0), rs1_p(4, 0), 3.U(3.W), uimm(4, 0), "b0100011".U(7.W))
         }
       }
     }
@@ -66,25 +74,25 @@ class RVCExpander(implicit val p: Parameters) extends Module with HasZaqalParame
       switch(funct3) {
         is("b000".U) { // c.addi or c.nop
           val imm = Cat(Fill(26, inst(12)), inst(12), inst(6, 2))
-          when(rd_rs1 =/= 0.U) {
-            expanded := Cat(imm(11, 0), rd_rs1, "b000".U, rd_rs1, "b0010011".U)
+          when(rd_rs1(4, 0) =/= 0.U) {
+            expanded := Cat(imm(11, 0), rd_rs1(4, 0), 0.U(3.W), rd_rs1(4, 0), "b0010011".U(7.W))
           }
         }
         is("b001".U) { // c.addiw (RV64)
           val imm = Cat(Fill(26, inst(12)), inst(12), inst(6, 2))
-          expanded := Cat(imm(11, 0), rd_rs1, "b000".U, rd_rs1, "b0011011".U)
+          expanded := Cat(imm(11, 0), rd_rs1(4, 0), 0.U(3.W), rd_rs1(4, 0), "b0011011".U(7.W))
         }
         is("b010".U) { // c.li
           val imm = Cat(Fill(26, inst(12)), inst(12), inst(6, 2))
-          expanded := Cat(imm(11, 0), 0.U(5.W), "b000".U, rd_rs1, "b0010011".U)
+          expanded := Cat(imm(11, 0), 0.U(5.W), 0.U(3.W), rd_rs1(4, 0), "b0010011".U(7.W))
         }
         is("b011".U) { 
           when(rd_rs1 === 2.U) { // c.addi16sp
             val imm = Cat(Fill(22, inst(12)), inst(12), inst(4, 3), inst(5), inst(2), inst(6), 0.U(4.W))
-            expanded := Cat(imm(11, 0), 2.U(5.W), "b000".U, 2.U(5.W), "b0010011".U)
+            expanded := Cat(imm(11, 0), 2.U(5.W), 0.U(3.W), 2.U(5.W), "b0010011".U(7.W))
           }.otherwise { // c.lui
             val imm = Cat(Fill(44, inst(12)), inst(12), inst(6, 2), 0.U(12.W))
-            expanded := Cat(imm(31, 12), rd_rs1, "b0110111".U)
+            expanded := Cat(imm(31, 12), rd_rs1(4, 0), "b0110111".U(7.W))
           }
         }
         is("b100".U) { // Misc ALU
@@ -99,15 +107,15 @@ class RVCExpander(implicit val p: Parameters) extends Module with HasZaqalParame
               val f2_low = inst(6, 5)
               val rs2_n = rs2_p
               val rd_n = rs1_p
-              val op_arith = Mux(is_w, "b0111011".U, "b0110011".U)
+              val op_arith = Mux(is_w, "b0111011".U(7.W), "b0110011".U(7.W))
               expanded := MuxCase("h00000013".U, Seq(
-                (f2_low === "b00".U) -> Cat("b0100000".U, rs2_n, rd_n, "b000".U, rd_n, op_arith), // sub
-                (f2_low === "b01".U) -> Cat("b0000000".U, rs2_n, rd_n, "b100".U, rd_n, "b0110011".U), // xor
-                (f2_low === "b10".U) -> Cat("b0000000".U, rs2_n, rd_n, "b110".U, rd_n, "b0110011".U), // or
-                (f2_low === "b11".U) -> Cat("b0000000".U, rs2_n, rd_n, "b111".U, rd_n, "b0110011".U)  // and
+                (f2_low === "b00".U) -> Cat(0x20.U(7.W), rs2_n(4, 0), rd_n(4, 0), 0.U(3.W), rd_n(4, 0), op_arith), // sub
+                (f2_low === "b01".U) -> Cat(0x00.U(7.W), rs2_n(4, 0), rd_n(4, 0), 4.U(3.W), rd_n(4, 0), 0x33.U(7.W)), // xor
+                (f2_low === "b10".U) -> Cat(0x00.U(7.W), rs2_n(4, 0), rd_n(4, 0), 6.U(3.W), rd_n(4, 0), 0x33.U(7.W)), // or
+                (f2_low === "b11".U) -> Cat(0x00.U(7.W), rs2_n(4, 0), rd_n(4, 0), 7.U(3.W), rd_n(4, 0), 0x33.U(7.W))  // and
               ))
               // c.addw case (spec says funct[12]=1, funct[11:10]=11, funct[6:5]=01)
-              when(is_w && f2_low === "b01".U) { expanded := Cat("b0000000".U, rs2_n, rd_n, "b000".U, rd_n, "b0111011".U) } 
+              when(is_w && f2_low === "b01".U) { expanded := Cat(0x00.U(7.W), rs2_n(4, 0), rd_n(4, 0), 0.U(3.W), rd_n(4, 0), 0x3B.U(7.W)) } 
             }
           }
         }
@@ -129,40 +137,40 @@ class RVCExpander(implicit val p: Parameters) extends Module with HasZaqalParame
       switch(funct3) {
         is("b000".U) { // c.slli
           val imm = Cat(inst(12), inst(6, 2))
-          expanded := Cat("b000000".U, imm, rd_rs1, "b001".U, rd_rs1, "b0010011".U)
+          expanded := Cat(0.U(7.W), imm(4, 0), rd_rs1(4, 0), 1.U(3.W), rd_rs1(4, 0), "b0010011".U(7.W))
         }
         is("b010".U) { // c.lwsp
           val uimm = Cat(inst(3, 2), inst(12), inst(6, 4), 0.U(2.W))
-          expanded := Cat(uimm.pad(12), 2.U(5.W), "b010".U, rd_rs1, "b0000011".U)
+          expanded := Cat(uimm.pad(12)(11, 0), 2.U(5.W), 2.U(3.W), rd_rs1(4, 0), "b0000011".U(7.W))
         }
         is("b011".U) { // c.ldsp
           val uimm = Cat(inst(4, 2), inst(12), inst(6, 5), 0.U(3.W))
-          expanded := Cat(uimm.pad(12), 2.U(5.W), "b011".U, rd_rs1, "b0000011".U)
+          expanded := Cat(uimm.pad(12)(11, 0), 2.U(5.W), 3.U(3.W), rd_rs1(4, 0), "b0000011".U(7.W))
         }
         is("b100".U) { // mv, add, jr, jalr
           val bit12 = inst(12)
           when(bit12 === 0.U) {
             when(rs2 === 0.U) { // c.jr
-              expanded := Cat(0.U(12.W), rd_rs1, "b000".U, 0.U(5.W), "b1100111".U)
+              expanded := Cat(0.U(12.W), rd_rs1(4, 0), 0.U(3.W), 0.U(5.W), "b1100111".U(7.W))
             }.otherwise { // c.mv
-              expanded := Cat(0.U(12.W), rs2, "b000".U, rd_rs1, "b0010011".U)
+              expanded := Cat(0.U(12.W), rs2(4, 0), 0.U(3.W), rd_rs1(4, 0), "b0010011".U(7.W))
             }
           }.otherwise {
             when(rs2 === 0.U) {
               when(rd_rs1 === 0.U) { expanded := "h00100073".U } // c.ebreak
-              .otherwise { expanded := Cat(0.U(12.W), rd_rs1, "b000".U, 1.U(5.W), "b1100111".U) } // c.jalr
+              .otherwise { expanded := Cat(0.U(12.W), rd_rs1(4, 0), 0.U(3.W), 1.U(5.W), "b1100111".U(7.W)) } // c.jalr
             }.otherwise { // c.add
-              expanded := Cat("b0000000".U, rs2, rd_rs1, "b000".U, rd_rs1, "b0110011".U)
+              expanded := Cat(0.U(7.W), rs2(4, 0), rd_rs1(4, 0), 0.U(3.W), rd_rs1(4, 0), 0x33.U(7.W))
             }
           }
         }
         is("b110".U) { // c.swsp
           val uimm = Cat(inst(8, 7), inst(12, 9), 0.U(2.W))
-          expanded := Cat(uimm.pad(12)(11, 5), rs2, 2.U(5.W), "b010".U, uimm(4, 0), "b0100011".U)
+          expanded := Cat(uimm.pad(12)(11, 5), rs2(4, 0), 2.U(5.W), 2.U(3.W), uimm(4, 0), "b0100011".U(7.W))
         }
         is("b111".U) { // c.sdsp
           val uimm = Cat(inst(9, 7), inst(12, 10), 0.U(3.W))
-          expanded := Cat(uimm.pad(12)(11, 5), rs2, 2.U(5.W), "b011".U, uimm(4, 0), "b0100011".U)
+          expanded := Cat(uimm.pad(12)(11, 5), rs2(4, 0), 2.U(5.W), 3.U(3.W), uimm(4, 0), "b0100011".U(7.W))
         }
       }
     }

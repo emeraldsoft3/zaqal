@@ -43,5 +43,6 @@ This phase expansion covers the "A" (Atomic), "M" (Multiplication), and "B" (Bit
 - [ ] **Day 36**: FMIN/MAX, FCVT, F-Misc operations.
 - [ ] **Day 37**: Memory/FP Integration (FLW, FSW, FLD, FSD).
 - [ ] **Day 38**: Final Phase 3 Benchmarking (CoreMark-FP).
+- [ ] **Day 39**: **RVC Parity for FB Unit**: Implement 16-bit expansion for all FP instructions implemented in Days 29-37.
 
 ---

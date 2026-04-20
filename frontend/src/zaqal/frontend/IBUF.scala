@@ -34,7 +34,7 @@ class IBUF(implicit val p: Parameters) extends Module with HasZaqalParameter {
   val has_next_inst  = remaining_mask.orR
   val next_inst_idx  = PriorityEncoder(remaining_mask)
 
-  val will_finish_packet = (io.out.fire || (busy && is_cross_line && !residual_valid)) && !has_next_inst
+  val will_finish_packet = (io.out.fire || (busy && is_cross_line)) && !has_next_inst
 
   val accept_new_packet  = (!busy || will_finish_packet) && io.inst_data.valid && !io.flush
 
@@ -44,15 +44,27 @@ class IBUF(implicit val p: Parameters) extends Module with HasZaqalParameter {
     busy := false.B
     residual_valid := false.B
   } .elsewhen(accept_new_packet) {
-    current_packet := io.inst_data.bits
     busy           := true.B
-    val start_mask = Mux(residual_valid, io.inst_data.bits.mask & ~1.U(predictWidth.W), io.inst_data.bits.mask)
-    inst_idx       := PriorityEncoder(start_mask)
-    when(residual_valid) { residual_valid := false.B }
+    // If we are accepting a new packet while a residual is valid, we merge them.
+    // The current instruction (stitched) will use residual_inst and current_packet.instructions(0).
+    // We should only clear residual_valid AFTER the combined instruction fires.
+    
+    // However, if we were NOT in a residual state, but we detected a cross-line in the PREVIOUS packet,
+    // we should have set residual_valid then.
+    
+    // Let's use a simpler state: If we are BUSY and see a cross-line, we must save and wait.
+    current_packet := io.inst_data.bits
+    
+    // If we just accepted a NEW packet and we have a residual bits saved,
+    // the first instruction to fire is at index 0 (the merged one).
+    // If not, it's the priority encoder of the new mask.
+    inst_idx := Mux(residual_valid, 0.U, PriorityEncoder(io.inst_data.bits.mask))
+    
   } .elsewhen(io.out.fire) {
     when(residual_valid) {
       residual_valid := false.B
-      val mask_after_resid = current_packet.mask & (Fill(predictWidth, 1.U(1.W)) << 1.U)(predictWidth - 1, 0)
+      // After firing a stitched instruction, we move to the rest of the current packet starting from index 1.
+      val mask_after_resid = current_packet.mask & ~1.U(predictWidth.W)
       when(mask_after_resid.orR) {
         inst_idx := PriorityEncoder(mask_after_resid)
       } .otherwise {
@@ -63,17 +75,24 @@ class IBUF(implicit val p: Parameters) extends Module with HasZaqalParameter {
     } .otherwise {
       busy := false.B
     }
-  } .elsewhen(busy && is_cross_line) {
+  } 
+  
+  // Transition to residual state: occurs when we are busy, at the last slot, 
+  // and it's a 32-bit instruction (not expanded RVC).
+  when(busy && is_cross_line && !residual_valid && !io.flush) {
     residual_valid := true.B
     residual_inst  := current_packet.instructions(inst_idx)(15, 0)
     residual_pc    := current_packet.pc + (inst_idx << 1)
     residual_pre   := current_packet.pre_decoded(inst_idx)
     residual_ftq   := current_packet.ftqPtr 
     residual_epoch := current_packet.epoch
-    busy           := false.B
+    busy           := false.B // Stop processing current packet
   }
 
-  io.out.valid      := (busy && current_packet.mask(inst_idx) && !is_cross_line && !residual_valid) || (busy && residual_valid)
+  // An instruction is valid to fire if:
+  // 1. We have a residual instruction AND a new packet has arrived (busy=true).
+  // 2. We are busy and NOT at a cross-line boundary.
+  io.out.valid      := busy && (residual_valid || (current_packet.mask(inst_idx) && !is_cross_line))
   
   io.out.bits.inst_raw := Mux(residual_valid, 
                               Cat(current_packet.instructions(0)(15, 0), residual_inst), 
@@ -88,4 +107,5 @@ class IBUF(implicit val p: Parameters) extends Module with HasZaqalParameter {
   io.out.bits.is_predicted_taken := Mux(residual_valid, false.B, is_pred_taken_normal)
   
   io.out.bits.epoch    := Mux(residual_valid, residual_epoch, current_packet.epoch)
+  
 }
