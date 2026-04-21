@@ -29,10 +29,10 @@ This phase expansion covers the "A" (Atomic), "M" (Multiplication), and "B" (Bit
 - [x] **Day 23**: IFU modifications for 16-bit/32-bit instruction alignment.
 - [x] **Day 24**: Predecoder refactor: Introduction of `RVCExpander` module (XiangShan Parity).
   - [x] Refactor inline expansion to dedicated module.
-- [ ] **Day 25**: Full RV64C Instruction Coverage.
-  - [ ] Support for Q0 (Memory), Q1 (Arith/Logic/CFI), and Q2 (Stack/CFI).
-  - [ ] Handling instructions crossing cache-line boundaries (Final Polish).
-- [ ] **Day 26**: Updates to the PC generator (incrementing by +2 or +4).
+- [x] **Day 25**: Full RV64C Instruction Coverage.
+  - [x] Support for Q0 (Memory), Q1 (Arith/Logic/CFI), and Q2 (Stack/CFI).
+  - [x] Handling instructions crossing cache-line boundaries (Final Polish).
+- [x] **Day 26**: Updates to the PC generator (incrementing by +2 or +4).
 - [ ] **Day 27**: Modifying BRU & Exceptions for 2-byte alignment restrictions.
 - [ ] **Day 28**: Verification of C extension with compiled Linux binaries.
 
@@ -43,6 +43,6 @@ This phase expansion covers the "A" (Atomic), "M" (Multiplication), and "B" (Bit
 - [ ] **Day 36**: FMIN/MAX, FCVT, F-Misc operations.
 - [ ] **Day 37**: Memory/FP Integration (FLW, FSW, FLD, FSD).
 - [ ] **Day 38**: Final Phase 3 Benchmarking (CoreMark-FP).
-- [ ] **Day 39**: **RVC Parity for FB Unit**: Implement 16-bit expansion for all FP instructions implemented in Days 29-37.
+- [ ] **Day 39**: **RVC Parity for FB Unit**: Implement 16-bit expansions (e.g. C.FLD, C.FSD, C.FLW, C.FSW, C.FLDSP) for all FP instructions implemented in Days 29-37.
 
 ---

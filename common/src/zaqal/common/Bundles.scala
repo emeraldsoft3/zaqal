@@ -40,6 +40,7 @@ class PreDecodeSignals extends Bundle {
 
 // Signals produced by the Backend Main Decoder
 class DecodeSignals(implicit val p: Parameters) extends Bundle with HasZaqalParameter {
+  val is_rvc = Bool()
   val is_addi = Bool()
   val is_add  = Bool()  // R-type ADD
   val is_mul   = Bool()  // M-extension MUL (low bits)

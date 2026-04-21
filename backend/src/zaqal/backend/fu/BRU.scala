@@ -45,7 +45,7 @@ class BRU(implicit val p: Parameters) extends Module with HasZaqalParameter {
     (io.src1 + io.dec.imm.asUInt) & ~1.U(xLen.W),
     (io.pc.asSInt + io.dec.imm).asUInt
   )
-  val fallthrough_pc = io.pc + 4.U
+  val fallthrough_pc = io.pc + Mux(io.dec.is_rvc, 2.U, 4.U)
 
   val is_cfi = io.dec.is_branch || io.dec.is_jal || io.dec.is_jalr
 

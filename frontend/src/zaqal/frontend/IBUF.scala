@@ -64,9 +64,10 @@ class IBUF(implicit val p: Parameters) extends Module with HasZaqalParameter {
     when(residual_valid) {
       residual_valid := false.B
       // After firing a stitched instruction, we move to the rest of the current packet starting from index 1.
-      val mask_after_resid = current_packet.mask & ~1.U(predictWidth.W)
+      val mask_after_resid = current_packet.mask & (~((1.U << 1) - 1.U)).asUInt
       when(mask_after_resid.orR) {
-        inst_idx := PriorityEncoder(mask_after_resid)
+        val next_valid_idx = PriorityEncoder(mask_after_resid)
+        inst_idx := next_valid_idx
       } .otherwise {
         busy := false.B
       }

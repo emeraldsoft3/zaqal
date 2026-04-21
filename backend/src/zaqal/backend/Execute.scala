@@ -97,7 +97,7 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
     // Writeback for single-cycle instructions
     when(decoder.io.out.rd =/= 0.U) {
       val is_link = decoder.io.out.is_jal || decoder.io.out.is_jalr
-      val link_addr = io.in.bits.pc + 4.U
+      val link_addr = io.in.bits.pc + Mux(decoder.io.out.is_rvc, 2.U, 4.U)
       val result = Mux(is_mul_op, mul.io.result, 
                    Mux(decoder.io.out.is_load || decoder.io.out.is_atomic, lsu.io.result, alu.io.result))
       regFile.io.wen     := (!decoder.io.out.is_branch && !is_div_op && !decoder.io.out.is_store) || is_link || decoder.io.out.is_atomic

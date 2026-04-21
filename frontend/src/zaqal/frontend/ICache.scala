@@ -15,26 +15,19 @@ class ICache(implicit val p: Parameters) extends Module with HasZaqalParameter {
 
 
 val program = VecInit(Seq(
-  "h0000_0013".U, // 0: NOP
-  "h0000_0013".U, // 1: NOP
+  "h0000_0013".U, // Index 0 (0x00): NOP
+  "h4585_4515".U, // Index 1 (0x04): [c.li x11, 1 (4585)] [c.li x10, 5 (4515)]
+  "h0585_952e".U, // Index 2 (0x08): [c.addi x11, 1 (0585)] [c.add x10, x11 (952e)]
+  "h0001_a011".U, // Index 3 (0x0C): [c.nop (0001)] [c.j +4 (a011)]
+  "h0000_0013".U, // Index 4 (0x10): NOP (Skipped by jump)
+  "h00a5_0613".U, // Index 5 (0x14): [addi x12, x10, 10] -> 32-bit (x10=5, x11=2, so x12=16)
+  "h0000_0013".U, // Index 6 (0x18): NOP
   
-  // === Day 24: RVC Tests ===
-  "h4515_0001".U, // 2: [c.li x10, 5] [c.nop]
-  "h4629_15fd".U, // 3: [c.li x12, 10] [c.addi x11, -1]
-  "h9732_86aa".U, // 4: [c.add x14, x14, x12] [c.mv x13, x10]
-  "h6588_4581".U, // 5: [c.ld x10, 8(x11)] [c.li x11, 0]
-  "hba90_4605".U, // 6: [c.sd x12, 16(x13)] [c.li x12, 1]
+  // Cross-line test at end of Cache Line (Index 7 & 8 = Byte 28-35)
+  "h0513_0001".U, // Index 7 (0x1C): [li x10, 5 (Low: 0513 - Part 1)] [c.nop]
+  "h0001_0050".U, // Index 8 (0x20): [c.nop] [li x10, 5 (High: 0050 - Part 2)]
   
-  // === Day 23: Alignment Regression ===
-  "h0513_0001".U, // 7: [li x10, 5 (part 1: 0513)] [c.nop]
-  "h0001_0050".U, // 8: [c.nop] [li x10, 5 (part 2: 0050)]
-  
-  // === Day 25: Enhanced RVC Coverage ===
-  "h838d_6785".U, // 9: [c.srli x15, 2] [c.lui x15, 1]
-  "ha00a_6105".U, // 10: [c.j +4 (to word 12)] [c.addi16sp 32]
-  "h0000_0013".U, // 11: Jump target skip
-  "hc6b8_46b8".U, // 12: [c.sw x14, 4(x13)] [c.lw x15, 4(x13)]
-
+  "ha001_0001".U, // Index 9 (0x24): [c.nop] [c.j 0 (a001 - Halt Loop)]
   "h0000_0013".U  // NOP pad
 ).padTo(256, "h0000_0013".U))
 

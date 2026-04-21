@@ -27,6 +27,7 @@ class Decoder(implicit val p: Parameters) extends Module with HasZaqalParameter 
   val s_imm = Cat(io.inst(31, 25), io.inst(11, 7)).asSInt
 
 
+  io.out.is_rvc := io.inst(1, 0) =/= "b11".U
   io.out.is_addi := (opcode === "b0010011".U) && (funct3 === "b000".U)
   io.out.is_andi := (opcode === "b0010011".U) && (funct3 === "b111".U)
   io.out.is_ori  := (opcode === "b0010011".U) && (funct3 === "b110".U)
