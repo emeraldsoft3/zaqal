@@ -27,7 +27,6 @@ val program = VecInit(Seq(
   "h00100613".U, // 0x24: li x12, 1 (Success Path)
   "h0000006f".U, // 0x28: j 0x28 (Halt Success)
   "h00000013".U, // 0x2C: nop
-  "h00000013".U, // 0x2C: nop
   "h00000013".U, // 0x30: nop
   "h00000013".U, // 0x34: nop
   "h00000013".U, // 0x38: nop
