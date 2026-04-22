@@ -197,6 +197,12 @@ class BPURedirect(implicit val p: Parameters) extends Bundle with HasZaqalParame
   val valid  = Bool()
   val target = UInt(xLen.W)
   val epoch  = Bool()
+  val is_exception = Bool()
+  val exc_cause    = UInt(instBits.W)
+}
+
+object Causes {
+  val inst_address_misaligned = 0.U
 }
 
 class BranchPredictionBus(implicit val p: Parameters) extends Bundle with HasZaqalParameter {

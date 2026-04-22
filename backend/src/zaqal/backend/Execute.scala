@@ -11,6 +11,7 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   val io = IO(new Bundle {
     val in       = Flipped(Decoupled(new MicroOp))
     val redirect = Output(new BPURedirect)
+    val debug_regs = Output(Vec(logicalRegs, UInt(xLen.W)))
   })
 
   // Coordination state
@@ -92,6 +93,8 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   io.redirect.valid  := false.B
   io.redirect.target := bru.io.target
   io.redirect.epoch  := io.in.bits.epoch
+  io.redirect.is_exception := bru.io.exc_valid
+  io.redirect.exc_cause    := bru.io.exc_cause
 
   when(io.in.fire) {
     // Writeback for single-cycle instructions
@@ -104,8 +107,15 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
       regFile.io.rd_data := Mux(is_link, link_addr, result)
     }
 
-    // Branch Redirection Logic (unchanged)
-    when(bru.io.mispredict) {
+    // Day 27: Basic Trap Redirection
+    // Note: This is hardcoded to 0x80000100 for now because the CSR file (mtvec)
+    // has not been implemented yet. On Day 28, this will be replaced by a CSR lookup.
+    val trapVector = "h80000100".U
+    when(bru.io.exc_valid) {
+      io.redirect.valid  := true.B
+      io.redirect.target := trapVector
+      printf(p"CORE EXECUTE: EXCEPTION! Instruction Address Misaligned at pc=${Hexadecimal(io.in.bits.pc)} target=${Hexadecimal(bru.io.target)} -> Redir to TrapVector=${Hexadecimal(trapVector)}\n")
+    } .elsewhen(bru.io.mispredict) {
       io.redirect.valid := true.B
       printf(p"CORE EXECUTE: MISPREDICT! pc=${Hexadecimal(io.in.bits.pc)} inst=${Hexadecimal(io.in.bits.inst_raw)} target=${Hexadecimal(bru.io.target)} pred_taken=${io.in.bits.is_predicted_taken} actual_taken=${bru.io.taken}\n")
     } .elsewhen(decoder.io.out.is_branch) {
@@ -180,4 +190,6 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
     regFile.io.rd_data := div.io.result
     printf(p"CORE EXECUTE: pc=${Hexadecimal(div_pc_latch)} DIV Result: ${div.io.result} (after stall)\n")
   }
+
+  io.debug_regs := regFile.io.debug_regs
 }

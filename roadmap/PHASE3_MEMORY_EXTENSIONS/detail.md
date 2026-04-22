@@ -33,7 +33,7 @@ This phase expansion covers the "A" (Atomic), "M" (Multiplication), and "B" (Bit
   - [x] Support for Q0 (Memory), Q1 (Arith/Logic/CFI), and Q2 (Stack/CFI).
   - [x] Handling instructions crossing cache-line boundaries (Final Polish).
 - [x] **Day 26**: Updates to the PC generator (incrementing by +2 or +4).
-- [ ] **Day 27**: Modifying BRU & Exceptions for 2-byte alignment restrictions.
+- [x] **Day 27**: Modifying BRU & Exceptions for 2-byte alignment restrictions.
 - [ ] **Day 28**: Verification of C extension with compiled Linux binaries.
 
 ## Week 4-5: Floating Point Unit (Days 29-38)

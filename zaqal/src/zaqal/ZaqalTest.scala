@@ -91,6 +91,12 @@ object ZaqalTest extends App {
 
     csvFile.close() 
     println(s"--- Simulation Finished. CSV generated: ftq_dump.csv ---")
+    
+    println("--- Final Register State ---")
+    for (i <- 0 until 32) {
+      val regVal = dut.io.debug_regs(i).peek().litValue
+      println(f"x$i%02d: 0x$regVal%016x")
+    }
   }
 
   // --- VCD CLEANUP LOGIC ---

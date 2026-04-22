@@ -16,9 +16,12 @@ class RegFile(implicit val p: Parameters) extends Module with HasZaqalParameter 
     val wen      = Input(Bool())
     val rd_addr  = Input(UInt(log2Up(logicalRegs).W))
     val rd_data  = Input(UInt(xLen.W))
+
+    val debug_regs = Output(Vec(logicalRegs, UInt(xLen.W)))
   })
 
   val regs = RegInit(VecInit(Seq.fill(logicalRegs)(0.U(xLen.W))))
+  io.debug_regs := regs
 
   // x0 is hardwired to 0
   io.rs1_data := Mux(io.rs1_addr === 0.U, 0.U, regs(io.rs1_addr))

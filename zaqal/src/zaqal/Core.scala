@@ -30,6 +30,7 @@ class Core(implicit val p: Parameters) extends Module with HasZaqalParameter {
     val debug_ftq_ready_out   = Output(Bool())
 
     val debug_cycle_count     = Output(UInt(64.W))
+    val debug_regs            = Output(Vec(logicalRegs, UInt(xLen.W)))
   })
 
   // 1. Instantiate the Modules
@@ -64,6 +65,7 @@ class Core(implicit val p: Parameters) extends Module with HasZaqalParameter {
   val cycle_reg = RegInit(0.U(64.W))
   cycle_reg := cycle_reg + 1.U
   io.debug_cycle_count := cycle_reg
+  io.debug_regs := backend.io.debug_regs
 
   io.success := true.B
 }

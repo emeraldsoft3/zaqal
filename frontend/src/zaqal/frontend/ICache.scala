@@ -15,25 +15,31 @@ class ICache(implicit val p: Parameters) extends Module with HasZaqalParameter {
 
 
 val program = VecInit(Seq(
-  "h0000_0013".U, // Index 0 (0x00): NOP
-  "h4585_4515".U, // Index 1 (0x04): [c.li x11, 1 (4585)] [c.li x10, 5 (4515)]
-  "h0585_952e".U, // Index 2 (0x08): [c.addi x11, 1 (0585)] [c.add x10, x11 (952e)]
-  "h0001_a011".U, // Index 3 (0x0C): [c.nop (0001)] [c.j +4 (a011)]
-  "h0000_0013".U, // Index 4 (0x10): NOP (Skipped by jump)
-  "h00a5_0613".U, // Index 5 (0x14): [addi x12, x10, 10] -> 32-bit (x10=5, x11=2, so x12=16)
-  "h0000_0013".U, // Index 6 (0x18): NOP
-  
-  // Cross-line test at end of Cache Line (Index 7 & 8 = Byte 28-35)
-  "h0513_0001".U, // Index 7 (0x1C): [li x10, 5 (Low: 0513 - Part 1)] [c.nop]
-  "h0001_0050".U, // Index 8 (0x20): [c.nop] [li x10, 5 (High: 0050 - Part 2)]
-  
-  "ha001_0001".U, // Index 9 (0x24): [c.nop] [c.j 0 (a001 - Halt Loop)]
-  "h0000_0013".U  // NOP pad
-).padTo(256, "h0000_0013".U))
+  "h80000537".U, // 0x00: lui x10, 0x80000
+  "h02250513".U, // 0x04: addi x10, x10, 0x22 (x10 = 0x80000022)
+  "h000500e7".U, // 0x08: jalr x1, 0(x10) -> Jump to 0x80000022
+  "h00000013".U, // 0x0C: nop
+  "h00000013".U, // 0x10: nop
+  "h00000013".U, // 0x14: nop
+  "h00000013".U, // 0x18: nop
+  "h00000013".U, // 0x1C: nop
+  "h00010001".U, // 0x20: c.nop; c.nop (Valid RVC target at 0x22)
+  "h00100613".U, // 0x24: li x12, 1 (Success Path)
+  "h0000006f".U, // 0x28: j 0x28 (Halt Success)
+  "h00000013".U, // 0x2C: nop
+  "h00000013".U, // 0x2C: nop
+  "h00000013".U, // 0x30: nop
+  "h00000013".U, // 0x34: nop
+  "h00000013".U, // 0x38: nop
+  "h00000013".U  // 0x3C: nop
+).padTo(64, "h00000013".U) ++ Seq(
+  "h0ee00693".U, // 0x100 (Index 64): li x13, 0xEE (Trap Path)
+  "h0000006f".U  // 0x104: j 0x104 (Halt Trap)
+).padTo(128, "h00000013".U))
 
 
   val relative_pc = io.pc - "h8000_0000".U
-  val index = relative_pc(9, 2) 
+  val index = relative_pc(11, 2) // Expanded to 11 bits (4KB range)
 
   for (i <- 0 until fetchWidth) {
     val idx = index + i.U

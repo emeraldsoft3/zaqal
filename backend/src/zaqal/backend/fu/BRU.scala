@@ -17,6 +17,8 @@ class BRU(implicit val p: Parameters) extends Module with HasZaqalParameter {
     val taken           = Output(Bool())
     val mispredict      = Output(Bool())
     val target          = Output(UInt(xLen.W))
+    val exc_valid       = Output(Bool())
+    val exc_cause       = Output(UInt(32.W))
   })
 
   val comparator = Module(new Comparator)
@@ -49,7 +51,16 @@ class BRU(implicit val p: Parameters) extends Module with HasZaqalParameter {
 
   val is_cfi = io.dec.is_branch || io.dec.is_jal || io.dec.is_jalr
 
+  // Day 27: Misalignment Check
+  // Instruction-address-misaligned exception is generated if bit 0 is nonzero.
+  // If C extension is not present, bit 1 must also be zero.
+  val is_misaligned = actual_taken && Mux(hasCExtension.B, 
+                                        target_pc(0) =/= 0.U, 
+                                        target_pc(1,0) =/= 0.U)
+
   io.taken      := actual_taken
-  io.mispredict := (actual_taken =/= io.pred_taken) || (io.pred_taken && !is_cfi)
+  io.mispredict := (actual_taken =/= io.pred_taken) || (io.pred_taken && !is_cfi) || is_misaligned
   io.target     := Mux(actual_taken, target_pc, fallthrough_pc)
+  io.exc_valid  := is_misaligned
+  io.exc_cause  := Causes.inst_address_misaligned
 }

@@ -10,6 +10,7 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
   val io = IO(new Bundle {
     val dispatch = Flipped(Decoupled(new MicroOp))
     val redirect = Output(new BPURedirect)
+    val debug_regs = Output(Vec(logicalRegs, UInt(xLen.W)))
   })
 
   val exec = Module(new Execute)
@@ -19,4 +20,5 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
 
   // Route redirection from Execute to Frontend
   io.redirect := exec.io.redirect
+  io.debug_regs := exec.io.debug_regs
 }

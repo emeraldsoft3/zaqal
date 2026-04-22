@@ -88,6 +88,8 @@ class Frontend(implicit val p: Parameters) extends Module with HasZaqalParameter
   bpu.io.redirect.valid  := is_valid_redirect
   bpu.io.redirect.target := io.redirect.target
   bpu.io.redirect.epoch  := io.redirect.epoch
+  bpu.io.redirect.is_exception := io.redirect.is_exception
+  bpu.io.redirect.exc_cause    := io.redirect.exc_cause
 
   // 6. Debug Port Mapping (Using the raw BPU signals for the trace)
   io.debug_ftq_valid       := bpu.io.out.valid
