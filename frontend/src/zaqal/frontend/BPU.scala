@@ -12,53 +12,48 @@ class BPU(implicit val p: Parameters) extends Module with HasZaqalParameter {
     val out      = Decoupled(new FetchRequest)
   })
 
-  val s0_pc = RegInit("h8000_0000".U(xLen.W))
+  val s0_pc    = RegInit("h8000_0000".U(xLen.W))
+  val mask_reg = RegInit(Fill(predictWidth, 1.U(1.W)))
+  val epoch    = RegInit(false.B) // Current Fetch Epoch
 
   def align(addr: UInt) = addr & (~((fetchWidth * 4) - 1).U(xLen.W))
 
-  val next_pc = Wire(UInt(xLen.W))
   val meta    = Wire(new PredictionMeta)
-  val mask    = Wire(UInt(predictWidth.W))
-
-  // Default: Linear flow
   meta.target := s0_pc + (fetchWidth * 4).U
   meta.taken  := false.B
   meta.slot   := 0.U
-  mask        := Fill(predictWidth, 1.U(1.W))
 
-  val mask_reg = RegInit(Fill(predictWidth, 1.U(1.W)))
+  val current_mask = Wire(UInt(predictWidth.W))
+  
+  // Logic: Only accept a redirect if the Epoch has changed!
+  val is_new_redirect = io.redirect.valid && (io.redirect.epoch =/= epoch)
 
-  when(io.redirect.valid) {
-    next_pc := align(io.redirect.target)
-    val offset = io.redirect.target(log2Up(fetchWidth * 4) - 1, 1)
-    mask     := (Fill(predictWidth, 1.U(1.W)) << offset)(predictWidth - 1, 0)
-    mask_reg := (Fill(predictWidth, 1.U(1.W)) << offset)(predictWidth - 1, 0)
+  when(is_new_redirect) {
+    s0_pc    := align(io.redirect.target)
+    val redirect_mask = (Fill(predictWidth, 1.U(1.W)) << io.redirect.target(log2Up(fetchWidth * 4) - 1, 1))(predictWidth - 1, 0)
+    mask_reg     := redirect_mask
+    current_mask := redirect_mask
+    epoch        := io.redirect.epoch // Sync with Backend's new color
   } .elsewhen(io.out.fire) {
-
-    next_pc := Mux(meta.taken, align(meta.target), s0_pc + (fetchWidth * 4).U)
+    s0_pc := Mux(meta.taken, align(meta.target), s0_pc + (fetchWidth * 4).U)
     
     val target_is_same_block = align(meta.target) === s0_pc
     val next_mask = Mux(meta.taken && target_is_same_block,
                         (Fill(predictWidth, 1.U(1.W)) << meta.target(log2Up(fetchWidth * 4) - 1, 1))(predictWidth - 1, 0),
                         Fill(predictWidth, 1.U(1.W)))
-    mask     := mask_reg
-    mask_reg := next_mask
+    mask_reg     := next_mask
+    current_mask := mask_reg
   } .otherwise {
-    next_pc := s0_pc
-    mask    := mask_reg
+    current_mask := mask_reg
   }
-
-  s0_pc := next_pc
 
   io.out.valid := !reset.asBool
   io.out.bits.pc         := s0_pc
   
-  // Truncate mask if a branch is TAKEN within this packet
-  // If slot N is taken, mask should only include bits 0 to N.
-  val taken_mask = (Fill(predictWidth, 1.U) >> ( (predictWidth - 1).U - meta.slot))(predictWidth - 1, 0)
-  io.out.bits.mask       := Mux(meta.taken, mask & taken_mask, mask)
+  val taken_mask = (Fill(predictWidth, 1.U) >> ((predictWidth - 1).U - meta.slot))(predictWidth - 1, 0)
+  io.out.bits.mask       := Mux(meta.taken, current_mask & taken_mask, current_mask)
   
   io.out.bits.prediction := meta
   io.out.bits.ftqPtr     := 0.U 
-  io.out.bits.epoch      := false.B
+  io.out.bits.epoch      := epoch // Tag every instruction with the current Color
 }

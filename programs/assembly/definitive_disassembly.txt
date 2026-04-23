@@ -1,0 +1,43 @@
+
+tmp.bin:     file format binary
+
+
+Disassembly of section .data:
+
+0000000000000000 <.data>:
+   0:	00080137          	lui	x2,0x80
+   4:	2105                	c.addiw	x2,1
+   6:	0132                	c.slli	x2,0xc
+   8:	006000ef          	jal	x1,0xe
+   c:	a001                	c.j	0xc
+   e:	1101                	c.addi	x2,-32
+  10:	ec22                	c.sdsp	x8,24(x2)
+  12:	1000                	c.addi4spn	x8,x2,32
+  14:	47a9                	c.li	x15,10
+  16:	fef42223          	sw	x15,-28(x8)
+  1a:	47d1                	c.li	x15,20
+  1c:	fef42023          	sw	x15,-32(x8)
+  20:	fe042623          	sw	x0,-20(x8)
+  24:	fe042423          	sw	x0,-24(x8)
+  28:	a815                	c.j	0x5c
+  2a:	fe842783          	lw	x15,-24(x8)
+  2e:	8b85                	c.andi	x15,1
+  30:	2781                	c.addiw	x15,0
+  32:	eb89                	c.bnez	x15,0x44
+  34:	fec42703          	lw	x14,-20(x8)
+  38:	fe442783          	lw	x15,-28(x8)
+  3c:	9fb9                	c.addw	x15,x14
+  3e:	fef42623          	sw	x15,-20(x8)
+  42:	a801                	c.j	0x52
+  44:	fec42703          	lw	x14,-20(x8)
+  48:	fe042783          	lw	x15,-32(x8)
+  4c:	9fb9                	c.addw	x15,x14
+  4e:	fef42623          	sw	x15,-20(x8)
+  52:	fe842783          	lw	x15,-24(x8)
+  56:	2785                	c.addiw	x15,1
+  58:	fef42423          	sw	x15,-24(x8)
+  5c:	fe842783          	lw	x15,-24(x8)
+  60:	0007871b          	addiw	x14,x15,0
+  64:	4791                	c.li	x15,4
+  66:	fce7d2e3          	bge	x15,x14,0x2a
+  6a:	a001                	c.j	0x6a

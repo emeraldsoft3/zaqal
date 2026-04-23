@@ -33,6 +33,10 @@ class Core(implicit val p: Parameters) extends Module with HasZaqalParameter {
     val debug_regs            = Output(Vec(logicalRegs, UInt(xLen.W)))
   })
 
+  // Cycle Counter logic
+  val cycle_reg = RegInit(0.U(64.W))
+  cycle_reg := cycle_reg + 1.U
+
   // 1. Instantiate the Modules
   val frontend = Module(new Frontend)
   val backend  = Module(new Backend)
@@ -40,6 +44,7 @@ class Core(implicit val p: Parameters) extends Module with HasZaqalParameter {
   // 2. Connect Frontend to Backend (Buffered Dispatch!)
   backend.io.dispatch  <> SkidBuffer(frontend.io.dispatch, frontend.io.debug_ftq_flush)
   frontend.io.redirect := backend.io.redirect
+  backend.io.debug_cycle := cycle_reg
 
   // Metadata access (XiangShan style) - Tie off for now
   frontend.io.ftq_read_ptr := 0.U 
@@ -61,9 +66,6 @@ class Core(implicit val p: Parameters) extends Module with HasZaqalParameter {
   io.debug_ftq_valid_out   := frontend.io.dispatch.valid
   io.debug_ftq_ready_out   := frontend.io.dispatch.ready
 
-  // Cycle Counter logic
-  val cycle_reg = RegInit(0.U(64.W))
-  cycle_reg := cycle_reg + 1.U
   io.debug_cycle_count := cycle_reg
   io.debug_regs := backend.io.debug_regs
 

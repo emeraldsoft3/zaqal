@@ -11,7 +11,9 @@ object ZaqalTest extends App {
   val vcdPath = "programs/vcd"
   new File(vcdPath).mkdirs()
 
-  implicit val p = (new ZaqalConfig)
+  implicit val p = (new ZaqalConfig).alter((site, here, up) => {
+    case ZaqalParamsKey => up(ZaqalParamsKey).copy(programFile = "programs/hex/rvc_test.hex")
+  })
   val params = p(ZaqalParamsKey)
 
   RawTester.test(new Core(), Seq(WriteVcdAnnotation)) { dut =>
@@ -38,7 +40,7 @@ object ZaqalTest extends App {
 
     // --- MAIN SIMULATION LOOP ---
     val resetCycles = 5
-    val maxCycles = 50 // Increased for AMOs
+    val maxCycles = 50 // Goldilocks length for C verification
     
     for (cycle <- 0 until maxCycles) {
       // 1. Apply Reset

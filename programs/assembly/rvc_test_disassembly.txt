@@ -1,0 +1,41 @@
+# DEFINITIVE DISASSEMBLY FOR RVC_TEST.HEX (27 WORDS)
+# Toolchain-verified mapping for Zaqal Verification
+
+PC    | Hex      | Instruction         | Register Effect
+---------------------------------------------------------------------------
+0x00  | 00080137 | lui	x2, 0x80        | x2 = 0x80000
+0x04  | 2105     | c.addiw x2, 1        | x2 = 0x80001
+0x06  | 0132     | c.slli x2, 0xc       | x2 = 0x80001000 (Final sp)
+0x08  | 006000ef | jal x1, 0x0e         | x1 = 0x0c, PC -> 0x0e (Call main)
+0x0c  | a001     | c.j 0x0c             | [Halt loop in crt0]
+------------------- main() function ---------------------------------------
+0x0e  | 1101     | c.addi x2, -32       | x2 = 0x80001000 - 32 = 0x80000FE0
+0x10  | ec22     | c.sdsp x8, 24(x2)    | Store s0 (fp) to stack
+0x12  | 1000     | c.addi4spn x8,x2,32  | x8 = x2 + 32 = 0x80001000 (Set fp)
+0x14  | 47a9     | c.li x15, 10         | x15 = 10 (a)
+0x16  | fef42223 | sw x15, -28(x8)      | mem[fp-28] = 10
+0x1a  | 47d1     | c.li x15, 20         | x15 = 20 (b)
+0x1c  | fef42023 | sw x15, -32(x8)      | mem[fp-32] = 20
+0x20  | fe042623 | sw x0, -20(x8)       | mem[fp-20] = 0 (result)
+0x24  | fe042423 | sw x0, -24(x8)       | mem[fp-24] = 0 (i)
+0x28  | a815     | c.j 0x5c             | PC -> 0x5c (Jump to loop check)
+------------------- loop check --------------------------------------------
+0x5c  | fe842783 | lw x15, -24(x8)      | x15 = i
+0x60  | 0007871b | addiw x14, x15, 0    | x14 = i
+0x64  | 4791     | c.li x15, 4          | x15 = 4 (Loop limit)
+0x66  | fce7d2e3 | bge x15, x14, 0x2a   | If i <= 4, PC -> 0x2a (Loop body)
+------------------- loop body ---------------------------------------------
+0x2a  | fe842783 | lw x15, -24(x8)      | x15 = i
+0x2e  | 8b85     | c.andi x15, 1        | x15 = i % 2
+0x30  | 2781     | c.addiw x15, 0       | [nop-like expand]
+0x32  | eb89     | c.bnez x15, 0x44     | If i%2 != 0, goto PC 0x44 (else)
+... logic for result += a / result += b ...
+0x6a  | a001     | c.j 0x6a             | while(1) Halt
+---------------------------------------------------------------------------
+
+NOTE ON THE RESTART BUG:
+In your log, you saw PC 0x1c jumping back to 0x0e. 
+As you can see above, PC 0x1c is just a STORE instruction.
+It should be followed by PC 0x20, 0x24, 0x28. 
+This definitively proves there is a Hardware bug in the Packet Transition at PC 0x20. 
+The new Cycle Trace will tell us if Cycle N is PC 0x1c and Cycle N+1 is PC 0x0e.

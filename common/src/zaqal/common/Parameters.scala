@@ -12,7 +12,8 @@ case class ZaqalParams(
   ftqPtrWidth: Int = 6,
   logicalRegs: Int = 32,
   phyRegs: Int = 64,
-  hasCExtension: Boolean = true
+  hasCExtension: Boolean = true,
+  programFile: String = "programs/hex/program.hex"
 )
 
 // 2. Define the Field Key that CDE uses to locate ZaqalParams
@@ -32,6 +33,7 @@ trait HasZaqalParameter {
   def logicalRegs = zP.logicalRegs
   def phyRegs = zP.phyRegs
   def hasCExtension = zP.hasCExtension
+  def programFile = zP.programFile
   def predictWidth = fetchWidth * (if (hasCExtension) 2 else 1)
 }
 

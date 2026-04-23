@@ -12,6 +12,7 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
     val in       = Flipped(Decoupled(new MicroOp))
     val redirect = Output(new BPURedirect)
     val debug_regs = Output(Vec(logicalRegs, UInt(xLen.W)))
+    val debug_cycle = Input(UInt(64.W))
   })
 
   // Coordination state
@@ -60,6 +61,7 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   bru.io.src2 := regFile.io.rs2_data
   bru.io.dec  := decoder.io.out
   bru.io.pc   := io.in.bits.pc
+  bru.io.is_rvc := io.in.bits.pre.is_rvc
   bru.io.pred_taken := io.in.bits.is_predicted_taken
 
   mul.io.src1 := src1
@@ -97,10 +99,11 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   io.redirect.exc_cause    := bru.io.exc_cause
 
   when(io.in.fire) {
+    printf(p"CORE EXECUTE [Cycle ${io.debug_cycle}]: pc=${Hexadecimal(io.in.bits.pc)} inst=${Hexadecimal(io.in.bits.inst_raw)} is_rvc=${io.in.bits.pre.is_rvc} epoch=${io.in.bits.epoch}\n")
     // Writeback for single-cycle instructions
     when(decoder.io.out.rd =/= 0.U) {
       val is_link = decoder.io.out.is_jal || decoder.io.out.is_jalr
-      val link_addr = io.in.bits.pc + Mux(decoder.io.out.is_rvc, 2.U, 4.U)
+      val link_addr = io.in.bits.pc + Mux(io.in.bits.pre.is_rvc, 2.U, 4.U)
       val result = Mux(is_mul_op, mul.io.result, 
                    Mux(decoder.io.out.is_load || decoder.io.out.is_atomic, lsu.io.result, alu.io.result))
       regFile.io.wen     := (!decoder.io.out.is_branch && !is_div_op && !decoder.io.out.is_store) || is_link || decoder.io.out.is_atomic

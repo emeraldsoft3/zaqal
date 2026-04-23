@@ -39,7 +39,7 @@ class Frontend(implicit val p: Parameters) extends Module with HasZaqalParameter
 
   // Epoch Check Reg
   val fetch_epoch = RegInit(false.B)
-  val is_valid_redirect = io.redirect.valid && (io.redirect.epoch === fetch_epoch)
+  val is_valid_redirect = io.redirect.valid && (io.redirect.epoch =/= fetch_epoch)
 
   // 1. BPU -> FTQ (Prediction Path - Buffered!)
   val bpu_out_buffered = SkidBuffer(bpu.io.out, is_valid_redirect)

@@ -12,6 +12,7 @@ class BRU(implicit val p: Parameters) extends Module with HasZaqalParameter {
     val src2            = Input(UInt(xLen.W))
     val dec             = Input(new DecodeSignals)
     val pc              = Input(UInt(xLen.W))
+    val is_rvc          = Input(Bool())
     val pred_taken      = Input(Bool())
     
     val taken           = Output(Bool())
@@ -43,11 +44,11 @@ class BRU(implicit val p: Parameters) extends Module with HasZaqalParameter {
     io.dec.is_jalr -> true.B
   ))
 
-  val target_pc = Mux(io.dec.is_jalr,
-    (io.src1 + io.dec.imm.asUInt) & ~1.U(xLen.W),
-    (io.pc.asSInt + io.dec.imm).asUInt
-  )
-  val fallthrough_pc = io.pc + Mux(io.dec.is_rvc, 2.U, 4.U)
+  val target_pc = (io.pc.asSInt + io.dec.imm).asUInt
+  val jalr_target = (io.src1 + io.dec.imm.asUInt) & ~1.U(xLen.W)
+  val redirect_target = Mux(io.dec.is_jalr, jalr_target, target_pc)
+  
+  val fallthrough_pc = io.pc + Mux(io.is_rvc, 2.U, 4.U)
 
   val is_cfi = io.dec.is_branch || io.dec.is_jal || io.dec.is_jalr
 
@@ -60,7 +61,11 @@ class BRU(implicit val p: Parameters) extends Module with HasZaqalParameter {
 
   io.taken      := actual_taken
   io.mispredict := (actual_taken =/= io.pred_taken) || (io.pred_taken && !is_cfi) || is_misaligned
-  io.target     := Mux(actual_taken, target_pc, fallthrough_pc)
+  io.target     := Mux(actual_taken, redirect_target, fallthrough_pc)
   io.exc_valid  := is_misaligned
-  io.exc_cause  := Causes.inst_address_misaligned
+  io.exc_cause  := 0.U // Fixed later
+
+  when(io.mispredict && is_cfi) {
+    printf(p"[BRU REDIRECT] pc=${Hexadecimal(io.pc)} target=${Hexadecimal(io.target)} actual_taken=$actual_taken is_rvc=${io.is_rvc}\n")
+  }
 }
