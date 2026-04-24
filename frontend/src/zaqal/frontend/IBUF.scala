@@ -29,7 +29,8 @@ class IBUF(implicit val p: Parameters) extends Module with HasZaqalParameter {
   
   val is_cross_line = (inst_idx === (predictWidth - 1).U) && !is_rvc && current_packet.mask(inst_idx)
 
-  val valid_bits_mask = (Fill(predictWidth, 1.U(1.W)) << (inst_idx + step))(predictWidth - 1, 0)
+  val next_idx = inst_idx +& step
+  val valid_bits_mask = (Fill(predictWidth, 1.U(1.W)) << next_idx)(predictWidth - 1, 0)
   val remaining_mask = current_packet.mask & valid_bits_mask
   val has_next_inst  = remaining_mask.orR
   val next_inst_idx  = PriorityEncoder(remaining_mask)
@@ -43,6 +44,7 @@ class IBUF(implicit val p: Parameters) extends Module with HasZaqalParameter {
   when(io.flush) {
     busy := false.B
     residual_valid := false.B
+    printf("IBUF FLUSHED!\n")
   } .elsewhen(accept_new_packet) {
     busy           := true.B
     // If we are accepting a new packet while a residual is valid, we merge them.
@@ -59,7 +61,7 @@ class IBUF(implicit val p: Parameters) extends Module with HasZaqalParameter {
     // the first instruction to fire is at index 0 (the merged one).
     // If not, it's the priority encoder of the new mask.
     inst_idx := Mux(residual_valid, 0.U, PriorityEncoder(io.inst_data.bits.mask))
-    
+    printf(p"IBUF ACCEPT: pc=${Hexadecimal(io.inst_data.bits.pc)} mask=${Binary(io.inst_data.bits.mask)} epoch=${io.inst_data.bits.epoch}\n")
   } .elsewhen(io.out.fire) {
     when(residual_valid) {
       residual_valid := false.B

@@ -40,7 +40,7 @@ object ZaqalTest extends App {
 
     // --- MAIN SIMULATION LOOP ---
     val resetCycles = 5
-    val maxCycles = 50 // Goldilocks length for C verification
+    val maxCycles = 60 // Goldilocks length for C verification
     
     for (cycle <- 0 until maxCycles) {
       // 1. Apply Reset

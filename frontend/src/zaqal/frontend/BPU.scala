@@ -25,15 +25,16 @@ class BPU(implicit val p: Parameters) extends Module with HasZaqalParameter {
 
   val current_mask = Wire(UInt(predictWidth.W))
   
-  // Logic: Only accept a redirect if the Epoch has changed!
-  val is_new_redirect = io.redirect.valid && (io.redirect.epoch =/= epoch)
+  // Logic: Only accept a redirect if the Epoch matches the current path!
+  val is_new_redirect = io.redirect.valid && (io.redirect.epoch === epoch)
 
   when(is_new_redirect) {
     s0_pc    := align(io.redirect.target)
     val redirect_mask = (Fill(predictWidth, 1.U(1.W)) << io.redirect.target(log2Up(fetchWidth * 4) - 1, 1))(predictWidth - 1, 0)
     mask_reg     := redirect_mask
     current_mask := redirect_mask
-    epoch        := io.redirect.epoch // Sync with Backend's new color
+    epoch        := ~epoch // Sync with Backend's new color
+    printf(p"BPU REDIRECT ACCEPTED: target=${Hexadecimal(s0_pc)} epoch=$epoch\n")
   } .elsewhen(io.out.fire) {
     s0_pc := Mux(meta.taken, align(meta.target), s0_pc + (fetchWidth * 4).U)
     
