@@ -47,11 +47,11 @@ class LSU(implicit val p: Parameters) extends Module with HasZaqalParameter {
     res := shifted_data(15, 0).asSInt.pad(xLen).asUInt
   } .elsewhen(io.dec.is_lhu) {
     res := shifted_data(15, 0).pad(xLen)
-  } .elsewhen(io.dec.is_lw || io.dec.is_lr_w) {
+  } .elsewhen(io.dec.is_lw || io.dec.is_lr_w || io.dec.is_flw || io.dec.is_fsw) {
     res := shifted_data(31, 0).asSInt.pad(xLen).asUInt
   } .elsewhen(io.dec.is_lwu) {
     res := shifted_data(31, 0).pad(xLen)
-  } .elsewhen(io.dec.is_ld || io.dec.is_lr_d) {
+  } .elsewhen(io.dec.is_ld || io.dec.is_lr_d || io.dec.is_fld || io.dec.is_fsd) {
     res := shifted_data(63, 0)
   } .elsewhen(io.dec.is_sc) {
     // SC returns 0 on success, 1 on failure
@@ -87,10 +87,10 @@ class LSU(implicit val p: Parameters) extends Module with HasZaqalParameter {
   } .elsewhen(io.dec.is_sh) {
     wmask := "h0003".U(16.W) << offset
     wdata := io.src2(15, 0).pad(xLen * 2) << (offset << 3)
-  } .elsewhen(io.dec.is_sw || io.dec.is_sc_w) {
+  } .elsewhen(io.dec.is_sw || io.dec.is_sc_w || io.dec.is_fsw) {
     wmask := "h000f".U(16.W) << offset
     wdata := io.src2(31, 0).pad(xLen * 2) << (offset << 3)
-  } .elsewhen(io.dec.is_sd || io.dec.is_sc_d) {
+  } .elsewhen(io.dec.is_sd || io.dec.is_sc_d || io.dec.is_fsd) {
     wmask := "h00ff".U(16.W) << offset
     wdata := io.src2(63, 0).pad(xLen * 2) << (offset << 3)
   }

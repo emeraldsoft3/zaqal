@@ -40,7 +40,7 @@ object ZaqalTest extends App {
 
     // --- MAIN SIMULATION LOOP ---
     val resetCycles = 5
-    val maxCycles = 60 // Goldilocks length for C verification
+    val maxCycles = 30 // Goldilocks length for C verification
     
     for (cycle <- 0 until maxCycles) {
       // 1. Apply Reset
@@ -98,6 +98,12 @@ object ZaqalTest extends App {
     for (i <- 0 until 32) {
       val regVal = dut.io.debug_regs(i).peek().litValue
       println(f"x$i%02d: 0x$regVal%016x")
+    }
+
+    println("--- Final FP Register State ---")
+    for (i <- 0 until 32) {
+      val regVal = dut.io.debug_fp_regs(i).peek().litValue
+      println(f"f$i%02d: 0x$regVal%016x")
     }
   }
 

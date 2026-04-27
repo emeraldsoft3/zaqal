@@ -12,6 +12,7 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
     val in       = Flipped(Decoupled(new MicroOp))
     val redirect = Output(new BPURedirect)
     val debug_regs = Output(Vec(logicalRegs, UInt(xLen.W)))
+    val debug_fp_regs = Output(Vec(32, UInt(fLen.W)))
     val debug_cycle = Input(UInt(64.W))
   })
 
@@ -22,12 +23,21 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   // 1. Decoder & Register File
   val decoder = Module(new Decoder)
   val regFile = Module(new RegFile)
+  val fpRegFile = Module(new FPRegFile)
+  val fcsr      = Module(new FCSR)
   
   decoder.io.inst := io.in.bits.inst_raw
   regFile.io.rs1_addr := decoder.io.out.rs1
   regFile.io.rs2_addr := decoder.io.out.rs2
+
+  fpRegFile.io.rs1_addr := decoder.io.out.rs1
+  fpRegFile.io.rs2_addr := decoder.io.out.rs2
+  fpRegFile.io.rs3_addr := decoder.io.out.rs3
   
   val src1 = regFile.io.rs1_data
+  val fsrc1 = fpRegFile.io.rs1_data
+  val fsrc2 = fpRegFile.io.rs2_data
+  val fsrc3 = fpRegFile.io.rs3_data
   val is_imm_type = decoder.io.out.is_addi || decoder.io.out.is_andi || decoder.io.out.is_ori || decoder.io.out.is_xori ||
                     decoder.io.out.is_slli || decoder.io.out.is_srli || decoder.io.out.is_srai ||
                     decoder.io.out.is_slliw || decoder.io.out.is_srliw || decoder.io.out.is_sraiw ||
@@ -49,6 +59,7 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   val div  = Module(new Divider)
   val lsu  = Module(new LSU)
   val dmem = Module(new DataMem)
+  val fpu  = Module(new FPU)
 
   // 3. Connect FUs
   alu.io.src1 := src1
@@ -74,7 +85,7 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   div.io.fire := io.in.fire
 
   lsu.io.src1 := src1
-  lsu.io.src2 := regFile.io.rs2_data
+  lsu.io.src2 := Mux(decoder.io.out.is_fstore, fsrc2, regFile.io.rs2_data)
   lsu.io.imm  := decoder.io.out.imm
   lsu.io.dec  := decoder.io.out
   dmem.io.addr  := lsu.io.mem_addr
@@ -83,6 +94,12 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   dmem.io.wdata := lsu.io.mem_wdata
   lsu.io.mem_data := dmem.io.data
 
+  // 4. Connect FPU
+  fpu.io.src1 := fsrc1
+  fpu.io.src2 := fsrc2
+  fpu.io.src3 := fsrc3
+  fpu.io.dec  := decoder.io.out
+
   // 4. Coordination & Handshake
   io.in.ready := div.io.ready
   
@@ -90,6 +107,32 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   regFile.io.wen     := false.B
   regFile.io.rd_addr := decoder.io.out.rd
   regFile.io.rd_data := 0.U
+
+  fpRegFile.io.wen     := false.B
+  fpRegFile.io.rd_addr := decoder.io.out.rd
+  fpRegFile.io.rd_data := 0.U
+
+  // FCSR defaults
+  fcsr.io.csr_addr  := io.in.bits.inst_raw(31, 20)
+  fcsr.io.csr_wen   := false.B
+  fcsr.io.csr_wdata := src1
+  fcsr.io.set_flags := false.B
+  fcsr.io.flags_to_set := 0.U
+
+  // FP Writeback Support
+  val is_fp_wb_to_fp = decoder.io.out.is_fload || decoder.io.out.is_fadd || decoder.io.out.is_fsub ||
+                       decoder.io.out.is_fmul || decoder.io.out.is_fdiv || decoder.io.out.is_fmadd ||
+                       decoder.io.out.is_fmv_w_x || decoder.io.out.is_fcvt_i2f || decoder.io.out.is_fsqrt ||
+                       decoder.io.out.is_fsgnj || decoder.io.out.is_fminmax
+  
+  val is_fp_wb_to_int = decoder.io.out.is_fmv_x_w || decoder.io.out.is_fcvt_f2i ||
+                        decoder.io.out.is_feq || decoder.io.out.is_flt || decoder.io.out.is_fle ||
+                        decoder.io.out.is_fclass
+
+  // RISC-V 32-bit float NaN-boxing (if fLen=64)
+  def nanBox(data: UInt): UInt = {
+    if (fLen == 64) Cat("hffffffff".U(32.W), data(31, 0)) else data
+  }
 
   // Branch redirection
   io.redirect.valid  := false.B
@@ -104,10 +147,23 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
     when(decoder.io.out.rd =/= 0.U) {
       val is_link = decoder.io.out.is_jal || decoder.io.out.is_jalr
       val link_addr = io.in.bits.pc + Mux(io.in.bits.pre.is_rvc, 2.U, 4.U)
-      val result = Mux(is_mul_op, mul.io.result, 
-                   Mux(decoder.io.out.is_load || decoder.io.out.is_atomic, lsu.io.result, alu.io.result))
-      regFile.io.wen     := (!decoder.io.out.is_branch && !is_div_op && !decoder.io.out.is_store) || is_link || decoder.io.out.is_atomic
+      val result = Mux(is_mul_op, mul.io.result,
+                   Mux(decoder.io.out.is_load || decoder.io.out.is_atomic, lsu.io.result, 
+                   Mux(is_fp_wb_to_int, fsrc1, // Placeholder for move/compare results
+                   alu.io.result)))
+                   
+      regFile.io.wen     := ((!decoder.io.out.is_branch && !is_div_op && !decoder.io.out.is_store && 
+                             !decoder.io.out.is_fload && !is_fp_wb_to_fp) || 
+                             is_link || decoder.io.out.is_atomic || is_fp_wb_to_int)
       regFile.io.rd_data := Mux(is_link, link_addr, result)
+
+      // FP Register File Writeback
+      when(is_fp_wb_to_fp) {
+        fpRegFile.io.wen := true.B
+        fpRegFile.io.rd_data := Mux(decoder.io.out.is_fload, lsu.io.result,
+                                Mux(decoder.io.out.is_fmv_w_x || decoder.io.out.is_fcvt_i2f, nanBox(src1),
+                                fpu.io.result))
+      }
     }
 
     // Day 27: Basic Trap Redirection
@@ -186,6 +242,15 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
     }
   }
 
+  // FP Debug Prints
+  val is_f_op = decoder.io.out.is_fload || decoder.io.out.is_fstore || decoder.io.out.is_fadd || decoder.io.out.is_fsub ||
+                decoder.io.out.is_fmul || decoder.io.out.is_fdiv || decoder.io.out.is_fmadd || decoder.io.out.is_fmv ||
+                decoder.io.out.is_fcvt_f2i || decoder.io.out.is_fcvt_i2f || decoder.io.out.is_fsqrt || decoder.io.out.is_feq || decoder.io.out.is_flt || decoder.io.out.is_fle
+  
+  when(io.in.fire && is_f_op) {
+    printf(p"CORE EXECUTE [Cycle ${io.debug_cycle}]: pc=${Hexadecimal(io.in.bits.pc)} inst=${Hexadecimal(io.in.bits.inst_raw)} [FPU FRONT-END] frd=${decoder.io.out.rd} frs1=${decoder.io.out.rs1} frs2=${decoder.io.out.rs2} frs3=${decoder.io.out.rs3} fsrc1=${Hexadecimal(fsrc1)} fsrc2=${Hexadecimal(fsrc2)} fsrc3=${Hexadecimal(fsrc3)}\n")
+  }
+
   // Handle Multi-cycle (DIV) writeback
   when(div.io.done) {
     regFile.io.wen     := true.B
@@ -195,4 +260,5 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   }
 
   io.debug_regs := regFile.io.debug_regs
+  io.debug_fp_regs := fpRegFile.io.debug_regs
 }

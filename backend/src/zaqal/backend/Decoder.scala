@@ -19,6 +19,7 @@ class Decoder(implicit val p: Parameters) extends Module with HasZaqalParameter 
   io.out.rd  := io.inst(11, 7)
   io.out.rs1 := io.inst(19, 15)
   io.out.rs2 := io.inst(24, 20)
+  io.out.rs3 := io.inst(31, 27)
   // RISC-V immediate extraction
   val i_imm = io.inst(31, 20).asSInt
   val b_imm = Cat(io.inst(31), io.inst(7), io.inst(30, 25), io.inst(11, 8), 0.U(1.W)).asSInt
@@ -188,6 +189,52 @@ class Decoder(implicit val p: Parameters) extends Module with HasZaqalParameter 
   io.out.is_bclri   := (opcode === "b0010011".U) && (funct3 === "b001".U) && (io.inst(31, 26) === "b010010".U)
   io.out.is_binvi   := (opcode === "b0010011".U) && (funct3 === "b001".U) && (io.inst(31, 26) === "b011010".U)
   io.out.is_bexti   := (opcode === "b0010011".U) && (funct3 === "b101".U) && (io.inst(31, 26) === "b010010".U)
+
+
+  // --- Floating Point Decoding ---
+  val is_fp_op = (opcode === "b1010011".U)
+  val fp_funct5 = io.inst(31, 27)
+  val fp_fmt    = io.inst(26, 25) // 00=S, 01=D
+  
+  io.out.is_fload  := (opcode === "b0000111".U)
+  io.out.is_flw    := io.out.is_fload && (funct3 === "b010".U)
+  io.out.is_fld    := io.out.is_fload && (funct3 === "b011".U)
+  
+  io.out.is_fstore := (opcode === "b0100111".U)
+  io.out.is_fsw    := io.out.is_fstore && (funct3 === "b010".U)
+  io.out.is_fsd    := io.out.is_fstore && (funct3 === "b011".U)
+  
+  io.out.is_fmadd  := (opcode === "b1000011".U)
+  io.out.is_fmsub  := (opcode === "b1000111".U)
+  io.out.is_fnmsub := (opcode === "b1001011".U)
+  io.out.is_fnmadd := (opcode === "b1001111".U)
+
+  io.out.is_fadd   := is_fp_op && (fp_funct5 === "b00000".U)
+  io.out.is_fsub   := is_fp_op && (fp_funct5 === "b00001".U)
+  io.out.is_fmul   := is_fp_op && (fp_funct5 === "b00010".U)
+  io.out.is_fdiv   := is_fp_op && (fp_funct5 === "b00011".U)
+  io.out.is_fsqrt  := is_fp_op && (fp_funct5 === "b01011".U)
+  
+  io.out.is_fsgnj  := is_fp_op && (fp_funct5 === "b00100".U)
+  io.out.is_fminmax := is_fp_op && (fp_funct5 === "b00101".U)
+  
+  io.out.is_fcvt_f2i := is_fp_op && (fp_funct5 === "b11000".U)
+  io.out.is_fcvt_i2f := is_fp_op && (fp_funct5 === "b11010".U)
+  
+  io.out.is_fmv_w_x := is_fp_op && (fp_funct5 === "b11110".U) && (funct3 === "b000".U)
+  io.out.is_fmv_x_w := is_fp_op && (fp_funct5 === "b11100".U) && (funct3 === "b000".U)
+  io.out.is_fmv     := io.out.is_fmv_w_x || io.out.is_fmv_x_w
+  
+  io.out.is_feq    := is_fp_op && (fp_funct5 === "b10100".U) && (funct3 === "b010".U)
+  io.out.is_flt    := is_fp_op && (fp_funct5 === "b10100".U) && (funct3 === "b001".U)
+  io.out.is_fle    := is_fp_op && (fp_funct5 === "b10100".U) && (funct3 === "b000".U)
+  
+  io.out.is_fclass := is_fp_op && (fp_funct5 === "b11100".U) && (funct3 === "b001".U)
+
+  // System/CSR for FPU (Simplified)
+  val is_system = (opcode === "b1110011".U)
+  val csr_addr  = io.inst(31, 20)
+  io.out.is_fcsr_access := is_system && (csr_addr === "h001".U || csr_addr === "h002".U || csr_addr === "h003".U)
 
 
   // Select immediate based on instruction type
