@@ -160,7 +160,7 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
       // FP Register File Writeback
       when(is_fp_wb_to_fp) {
         fpRegFile.io.wen := true.B
-        fpRegFile.io.rd_data := Mux(decoder.io.out.is_fload, lsu.io.result,
+        fpRegFile.io.rd_data := Mux(decoder.io.out.is_fload, nanBox(lsu.io.result),
                                 Mux(decoder.io.out.is_fmv_w_x || decoder.io.out.is_fcvt_i2f, nanBox(src1),
                                 fpu.io.result))
       }

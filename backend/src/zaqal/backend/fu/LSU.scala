@@ -140,7 +140,7 @@ class LSU(implicit val p: Parameters) extends Module with HasZaqalParameter {
     wdata := res_64.asUInt.pad(xLen * 2) << (offset << 3)
   }
   
-  io.mem_wen   := io.dec.is_store || is_sc_success || io.dec.is_amo_w || io.dec.is_amo_d
+  io.mem_wen   := io.dec.is_store || io.dec.is_fstore || is_sc_success || io.dec.is_amo_w || io.dec.is_amo_d
   io.mem_wmask := wmask
   io.mem_wdata := wdata
 }

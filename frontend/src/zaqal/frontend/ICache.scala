@@ -35,7 +35,7 @@ class ICache(implicit val p: Parameters) extends Module with HasZaqalParameter {
         "h002081d3".U, // 0x10: fadd.s f3, f1, f2       -> f3 = 1.0 + 2.0 = 3.0f (0x40400000)
         "h10208253".U, // 0x14: fmul.s f4, f1, f2       -> f4 = 1.0 * 2.0 = 2.0f (0x40000000)
         "h081102d3".U, // 0x18: fsub.s f5, f2, f1       -> f5 = 2.0 - 1.0 = 1.0f (0x3f800000)
-        "h18310343".U, // 0x1C: fmadd.s f6, f2, f2, f3  -> f6 = (2.0 * 2.0) + 3.0 = 7.0f (0x40e00000)
+        "h18210343".U, // 0x1C: fmadd.s f6, f2, f2, f3  -> f6 = (2.0 * 2.0) + 3.0 = 7.0f (0x40e00000)
         "h80000637".U, // 0x20: lui x12, 0x80000        -> Memory address 0x80000000
         "h00662427".U, // 0x24: fsw f6, 8(x12)          -> Store 7.0f to memory [0x80000008]
         "h00862387".U, // 0x28: flw f7, 8(x12)          -> Load back 7.0f into f7

@@ -1,0 +1,130 @@
+[ICache] FPU TEST MODE: Using hardcoded FP program.
+[ICache] Warning: programs/hex/rvc_test.hex not found, using default hardcoded program.
+--- Starting ZAQAL Agile V1.0 Simulation ---
+FPU: rs1=00000000 rs2=00000000 rs3=00000000 prod_e=-127 eC=   0 base_e=   0 eff_sub= 0 res_m=000000000000 res_s= 0
+FPU: rs1=00000000 rs2=00000000 rs3=00000000 prod_e=-127 eC=   0 base_e=   0 eff_sub= 0 res_m=000000000000 res_s= 0
+FPU: rs1=00000000 rs2=00000000 rs3=00000000 prod_e=-127 eC=   0 base_e=   0 eff_sub= 0 res_m=000000000000 res_s= 0
+FPU: rs1=00000000 rs2=00000000 rs3=00000000 prod_e=-127 eC=   0 base_e=   0 eff_sub= 0 res_m=000000000000 res_s= 0
+FPU: rs1=00000000 rs2=00000000 rs3=00000000 prod_e=-127 eC=   0 base_e=   0 eff_sub= 0 res_m=000000000000 res_s= 0
+IBUF ACCEPT: pc=0000000080000000 mask=1111111111111111 epoch= 0
+FPU: rs1=00000000 rs2=00000000 rs3=00000000 prod_e=-127 eC=   0 base_e=   0 eff_sub= 0 res_m=000000000000 res_s= 0
+CORE EXECUTE [Cycle                     6]: pc=0000000080000000 inst=3f800537 is_rvc= 0 epoch= 0
+CORE EXECUTE: pc=0000000080000000 inst=3f800537 type=ALU   src1=0000000000000000 src2=000000003f800000 res=000000003f800000
+FPU: rs1=00000000 rs2=00000000 rs3=00000000 prod_e=-127 eC=   0 base_e=   0 eff_sub= 0 res_m=000000000000 res_s= 0
+CORE EXECUTE [Cycle                     7]: pc=0000000080000004 inst=400005b7 is_rvc= 0 epoch= 0
+CORE EXECUTE: pc=0000000080000004 inst=400005b7 type=ALU   src1=0000000000000000 src2=0000000040000000 res=0000000040000000
+FPU: rs1=00000000 rs2=00000000 rs3=00000000 prod_e=-127 eC=   0 base_e=   0 eff_sub= 0 res_m=000000000000 res_s= 0
+CORE EXECUTE [Cycle                     8]: pc=0000000080000008 inst=f00500d3 is_rvc= 0 epoch= 0
+CORE EXECUTE [Cycle                     8]: pc=0000000080000008 inst=f00500d3 [FPU FRONT-END] frd=  1 frs1= 10 frs2=  0 frs3= 30 fsrc1=0000000000000000 fsrc2=0000000000000000 fsrc3=0000000000000000
+FPU: rs1=00000000 rs2=00000000 rs3=00000000 prod_e=-127 eC=   0 base_e=   0 eff_sub= 0 res_m=000000000000 res_s= 0
+CORE EXECUTE [Cycle                     9]: pc=000000008000000c inst=f0058153 is_rvc= 0 epoch= 0
+CORE EXECUTE [Cycle                     9]: pc=000000008000000c inst=f0058153 [FPU FRONT-END] frd=  2 frs1= 11 frs2=  0 frs3= 30 fsrc1=0000000000000000 fsrc2=0000000000000000 fsrc3=0000000000000000
+FPU: rs1=00000000 rs2=00000000 rs3=00000000 prod_e=-127 eC=   0 base_e=   0 eff_sub= 0 res_m=000000000000 res_s= 0
+CORE EXECUTE [Cycle                    10]: pc=0000000080000010 inst=002081d3 is_rvc= 0 epoch= 0
+CORE EXECUTE [Cycle                    10]: pc=0000000080000010 inst=002081d3 [FPU FRONT-END] frd=  3 frs1=  1 frs2=  2 frs3=  0 fsrc1=ffffffff3f800000 fsrc2=ffffffff40000000 fsrc3=0000000000000000
+FPU: rs1=3f800000 rs2=3f800000 rs3=40000000 prod_e= 127 eC= 128 base_e= 127 eff_sub= 0 res_m=000000100000 res_s= 0
+CORE EXECUTE [Cycle                    11]: pc=0000000080000014 inst=10208253 is_rvc= 0 epoch= 0
+CORE EXECUTE [Cycle                    11]: pc=0000000080000014 inst=10208253 [FPU FRONT-END] frd=  4 frs1=  1 frs2=  2 frs3=  2 fsrc1=ffffffff3f800000 fsrc2=ffffffff40000000 fsrc3=ffffffff40000000
+FPU: rs1=3f800000 rs2=40000000 rs3=00000000 prod_e=-128 eC=   0 base_e=   0 eff_sub= 0 res_m=000000000000 res_s= 0
+CORE EXECUTE [Cycle                    12]: pc=0000000080000018 inst=081102d3 is_rvc= 0 epoch= 0
+CORE EXECUTE [Cycle                    12]: pc=0000000080000018 inst=081102d3 [FPU FRONT-END] frd=  5 frs1=  2 frs2=  1 frs3=  1 fsrc1=ffffffff40000000 fsrc2=ffffffff3f800000 fsrc3=ffffffff3f800000
+FPU: rs1=40000000 rs2=3f800000 rs3=3f800000 prod_e=-128 eC= 127 base_e= 127 eff_sub= 1 res_m=000000100000 res_s= 1
+IBUF ACCEPT: pc=0000000080000020 mask=1111111111111111 epoch= 0
+CORE EXECUTE [Cycle                    13]: pc=000000008000001c inst=18310343 is_rvc= 0 epoch= 0
+CORE EXECUTE [Cycle                    13]: pc=000000008000001c inst=18310343 [FPU FRONT-END] frd=  6 frs1=  2 frs2=  3 frs3=  3 fsrc1=ffffffff40000000 fsrc2=ffffffff3f800000 fsrc3=ffffffff3f800000
+FPU: rs1=40000000 rs2=3f800000 rs3=3f800000 prod_e=-128 eC= 127 base_e= 127 eff_sub= 0 res_m=000000100000 res_s= 0
+CORE EXECUTE [Cycle                    14]: pc=0000000080000020 inst=80000637 is_rvc= 0 epoch= 0
+CORE EXECUTE: pc=0000000080000020 inst=80000637 type=ALU   src1=0000000000000000 src2=ffffffff80000000 res=ffffffff80000000
+FPU: rs1=00000000 rs2=00000000 rs3=00000000 prod_e=-127 eC=   0 base_e=   0 eff_sub= 0 res_m=000000000000 res_s= 0
+CORE EXECUTE [Cycle                    15]: pc=0000000080000024 inst=00662427 is_rvc= 0 epoch= 0
+CORE EXECUTE [Cycle                    15]: pc=0000000080000024 inst=00662427 [FPU FRONT-END] frd=  8 frs1= 12 frs2=  6 frs3=  0 fsrc1=0000000000000000 fsrc2=ffffffff3f800000 fsrc3=0000000000000000
+FPU: rs1=00000000 rs2=3f800000 rs3=00000000 prod_e=   0 eC=   0 base_e=   0 eff_sub= 0 res_m=000000000000 res_s= 0
+CORE EXECUTE [Cycle                    16]: pc=0000000080000028 inst=00862387 is_rvc= 0 epoch= 0
+CORE EXECUTE [Cycle                    16]: pc=0000000080000028 inst=00862387 [FPU FRONT-END] frd=  7 frs1= 12 frs2=  8 frs3=  0 fsrc1=0000000000000000 fsrc2=0000000000000000 fsrc3=0000000000000000
+FPU: rs1=00000000 rs2=00000000 rs3=00000000 prod_e=-127 eC=   0 base_e=   0 eff_sub= 0 res_m=000000000000 res_s= 0
+CORE EXECUTE [Cycle                    17]: pc=000000008000002c inst=00100613 is_rvc= 0 epoch= 0
+CORE EXECUTE: pc=000000008000002c inst=00100613 type=ALU   src1=0000000000000000 src2=0000000000000001 res=0000000000000001
+FPU: rs1=00000000 rs2=3f800000 rs3=00000000 prod_e=   0 eC=   0 base_e=   0 eff_sub= 0 res_m=000000000000 res_s= 0
+[Cycle 23] FTQ Flushed! Shadow copy cleared.
+CORE EXECUTE [Cycle                    18]: pc=0000000080000030 inst=0000006f is_rvc= 0 epoch= 0
+CORE EXECUTE: MISPREDICT! pc=0000000080000030 inst=0000006f target=0000000080000030 pred_taken= 0 actual_taken= 1
+FPU: rs1=00000000 rs2=00000000 rs3=00000000 prod_e=-127 eC=   0 base_e=   0 eff_sub= 0 res_m=000000000000 res_s= 0
+[BRU REDIRECT] pc=0000000080000030 target=0000000080000030 actual_taken= 1 is_rvc= 0
+FRONTEND FLUSH: epoch= 0 io.redirect.target=0000000080000030
+IBUF FLUSHED!
+BPU REDIRECT ACCEPTED: target=0000000080000240 epoch= 0
+FPU: rs1=00000000 rs2=00000000 rs3=00000000 prod_e=-127 eC=   0 base_e=   0 eff_sub= 0 res_m=000000000000 res_s= 0
+[BRU REDIRECT] pc=0000000080000030 target=0000000080000030 actual_taken= 1 is_rvc= 0
+FPU: rs1=00000000 rs2=00000000 rs3=00000000 prod_e=-127 eC=   0 base_e=   0 eff_sub= 0 res_m=000000000000 res_s= 0
+FPU: rs1=00000000 rs2=00000000 rs3=00000000 prod_e=-127 eC=   0 base_e=   0 eff_sub= 0 res_m=000000000000 res_s= 0
+FPU: rs1=00000000 rs2=00000000 rs3=00000000 prod_e=-127 eC=   0 base_e=   0 eff_sub= 0 res_m=000000000000 res_s= 0
+FPU: rs1=00000000 rs2=00000000 rs3=00000000 prod_e=-127 eC=   0 base_e=   0 eff_sub= 0 res_m=000000000000 res_s= 0
+IBUF ACCEPT: pc=0000000080000020 mask=1111111100000000 epoch= 1
+FPU: rs1=00000000 rs2=00000000 rs3=00000000 prod_e=-127 eC=   0 base_e=   0 eff_sub= 0 res_m=000000000000 res_s= 0
+--- Simulation Finished. CSV generated: ftq_dump.csv ---
+--- Final Register State ---
+x00: 0x0000000000000000
+x01: 0x0000000000000000
+x02: 0x0000000000000000
+x03: 0x0000000000000000
+x04: 0x0000000000000000
+x05: 0x0000000000000000
+x06: 0x0000000000000000
+x07: 0x0000000000000000
+x08: 0x0000000000000000
+x09: 0x0000000000000000
+x10: 0x000000003f800000
+x11: 0x0000000040000000
+x12: 0x0000000000000001
+x13: 0x0000000000000000
+x14: 0x0000000000000000
+x15: 0x0000000000000000
+x16: 0x0000000000000000
+x17: 0x0000000000000000
+x18: 0x0000000000000000
+x19: 0x0000000000000000
+x20: 0x0000000000000000
+x21: 0x0000000000000000
+x22: 0x0000000000000000
+x23: 0x0000000000000000
+x24: 0x0000000000000000
+x25: 0x0000000000000000
+x26: 0x0000000000000000
+x27: 0x0000000000000000
+x28: 0x0000000000000000
+x29: 0x0000000000000000
+x30: 0x0000000000000000
+x31: 0x0000000000000000
+--- Final FP Register State ---
+f00: 0x0000000000000000
+f01: 0xffffffff3f800000
+f02: 0xffffffff40000000
+f03: 0xffffffff3f800000
+f04: 0xffffffff00000000
+f05: 0xffffffffbf800000
+f06: 0xffffffff3f800000
+f07: 0xffffffff99aabbcc
+f08: 0x0000000000000000
+f09: 0x0000000000000000
+f10: 0x0000000000000000
+f11: 0x0000000000000000
+f12: 0x0000000000000000
+f13: 0x0000000000000000
+f14: 0x0000000000000000
+f15: 0x0000000000000000
+f16: 0x0000000000000000
+f17: 0x0000000000000000
+f18: 0x0000000000000000
+f19: 0x0000000000000000
+f20: 0x0000000000000000
+f21: 0x0000000000000000
+f22: 0x0000000000000000
+f23: 0x0000000000000000
+f24: 0x0000000000000000
+f25: 0x0000000000000000
+f26: 0x0000000000000000
+f27: 0x0000000000000000
+f28: 0x0000000000000000
+f29: 0x0000000000000000
+f30: 0x0000000000000000
+f31: 0x0000000000000000
