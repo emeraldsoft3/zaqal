@@ -19,6 +19,8 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   // Coordination state
   val div_rd_latch = RegInit(0.U(5.W))
   val div_pc_latch = RegInit(0.U(xLen.W))
+  val fpdiv_rd_latch = RegInit(0.U(5.W))
+  val fpdiv_pc_latch = RegInit(0.U(xLen.W))
 
   // 1. Decoder & Register File
   val decoder = Module(new Decoder)
@@ -60,6 +62,7 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   val lsu  = Module(new LSU)
   val dmem = Module(new DataMem)
   val fpu  = Module(new FPU)
+  val fpdiv = Module(new FPDivider)
 
   // 3. Connect FUs
   alu.io.src1 := src1
@@ -100,8 +103,13 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   fpu.io.src3 := fsrc3
   fpu.io.dec  := decoder.io.out
 
+  fpdiv.io.src1 := fsrc1
+  fpdiv.io.src2 := fsrc2
+  fpdiv.io.dec  := decoder.io.out
+  fpdiv.io.fire := io.in.fire
+
   // 4. Coordination & Handshake
-  io.in.ready := div.io.ready
+  io.in.ready := div.io.ready && fpdiv.io.ready
   
   // Default RegFile write values
   regFile.io.wen     := false.B
@@ -121,9 +129,11 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
 
   // FP Writeback Support
   val is_fp_wb_to_fp = decoder.io.out.is_fload || decoder.io.out.is_fadd || decoder.io.out.is_fsub ||
-                       decoder.io.out.is_fmul || decoder.io.out.is_fdiv || decoder.io.out.is_fmadd ||
-                       decoder.io.out.is_fmv_w_x || decoder.io.out.is_fcvt_i2f || decoder.io.out.is_fsqrt ||
+                       decoder.io.out.is_fmul || decoder.io.out.is_fmadd ||
+                       decoder.io.out.is_fmv_w_x || decoder.io.out.is_fcvt_i2f ||
                        decoder.io.out.is_fsgnj || decoder.io.out.is_fminmax
+                       
+  val is_fpdiv_op = decoder.io.out.is_fdiv || decoder.io.out.is_fsqrt
   
   val is_fp_wb_to_int = decoder.io.out.is_fmv_x_w || decoder.io.out.is_fcvt_f2i ||
                         decoder.io.out.is_feq || decoder.io.out.is_flt || decoder.io.out.is_fle ||
@@ -185,6 +195,10 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
     when(is_div_op) {
       div_rd_latch := decoder.io.out.rd
       div_pc_latch := io.in.bits.pc
+    }
+    when(is_fpdiv_op) {
+      fpdiv_rd_latch := decoder.io.out.rd
+      fpdiv_pc_latch := io.in.bits.pc
     }
 
     // Printfs for ALU/MUL
@@ -257,6 +271,13 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
     regFile.io.rd_addr := div_rd_latch
     regFile.io.rd_data := div.io.result
     printf(p"CORE EXECUTE: pc=${Hexadecimal(div_pc_latch)} DIV Result: ${div.io.result} (after stall)\n")
+  }
+
+  when(fpdiv.io.done) {
+    fpRegFile.io.wen     := true.B
+    fpRegFile.io.rd_addr := fpdiv_rd_latch
+    fpRegFile.io.rd_data := fpdiv.io.result
+    printf(p"CORE EXECUTE: pc=${Hexadecimal(fpdiv_pc_latch)} FPDIV/FSQRT Result: ${Hexadecimal(fpdiv.io.result)} (after stall)\n")
   }
 
   io.debug_regs := regFile.io.debug_regs

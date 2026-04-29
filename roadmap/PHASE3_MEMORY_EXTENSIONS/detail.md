@@ -34,12 +34,12 @@ This phase expansion covers the "A" (Atomic), "M" (Multiplication), and "B" (Bit
   - [x] Handling instructions crossing cache-line boundaries (Final Polish).
 - [x] **Day 26**: Updates to the PC generator (incrementing by +2 or +4).
 - [x] **Day 27**: Modifying BRU & Exceptions for 2-byte alignment restrictions.
-- [ ] **Day 28**: Verification of C extension with compiled Linux binaries.
+- [x] **Day 28**: Verification of C extension with compiled Linux binaries.
 
 ## Week 4-5: Floating Point Unit (Days 29-38)
-- [ ] **Day 29-30**: FPU Front-end (FP Register file, fcsr, and decoding).
-- [ ] **Day 31-33**: FADD, FSUB, FMUL pipelines (Iterative refinement).
-- [ ] **Day 34-35**: FDIV, FSQRT (High-latency logic).
+- [x] **Day 29-30**: FPU Front-end (FP Register file, fcsr, and decoding).
+- [x] **Day 31-33**: FADD, FSUB, FMUL pipelines (Iterative refinement).
+- [ ] **Day 34-35**: FDIV, FSQRT (High-latency logic) [Target: SRT-16 Digit Recurrence].
 - [ ] **Day 36**: FMIN/MAX, FCVT, F-Misc operations.
 - [ ] **Day 37**: Memory/FP Integration (FLW, FSW, FLD, FSD).
 - [ ] **Day 38**: Final Phase 3 Benchmarking (CoreMark-FP).

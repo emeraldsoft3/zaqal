@@ -28,17 +28,17 @@ class ICache(implicit val p: Parameters) extends Module with HasZaqalParameter {
     } else {
       println(s"[ICache] Warning: $path not found, using default hardcoded program.")
       Seq(
-        "h3f800537".U, // 0x00: lui x10, 0x3f800        -> x10 = 0x3f800000 (1.0f)
+        "h40800537".U, // 0x00: lui x10, 0x40800        -> x10 = 0x40800000 (4.0f)
         "h400005b7".U, // 0x04: lui x11, 0x40000        -> x11 = 0x40000000 (2.0f)
-        "hF00500D3".U, // 0x08: fmv.w.x f1, x10         -> f1 = 1.0f
-        "hF0058153".U, // 0x0C: fmv.w.x f2, x11         -> f2 = 2.0f
-        "h002081d3".U, // 0x10: fadd.s f3, f1, f2       -> f3 = 1.0 + 2.0 = 3.0f (0x40400000)
-        "h10208253".U, // 0x14: fmul.s f4, f1, f2       -> f4 = 1.0 * 2.0 = 2.0f (0x40000000)
-        "h081102d3".U, // 0x18: fsub.s f5, f2, f1       -> f5 = 2.0 - 1.0 = 1.0f (0x3f800000)
-        "h18210343".U, // 0x1C: fmadd.s f6, f2, f2, f3  -> f6 = (2.0 * 2.0) + 3.0 = 7.0f (0x40e00000)
-        "h80000637".U, // 0x20: lui x12, 0x80000        -> Memory address 0x80000000
-        "h00662427".U, // 0x24: fsw f6, 8(x12)          -> Store 7.0f to memory [0x80000008]
-        "h00862387".U, // 0x28: flw f7, 8(x12)          -> Load back 7.0f into f7
+        "h3f800637".U, // 0x08: lui x12, 0x3f800        -> x12 = 0x3f800000 (1.0f)
+        "hF00500D3".U, // 0x0C: fmv.w.x f1, x10         -> f1 = 4.0f
+        "hF0058153".U, // 0x10: fmv.w.x f2, x11         -> f2 = 2.0f
+        "hF00601D3".U, // 0x14: fmv.w.x f3, x12         -> f3 = 1.0f
+        "h18208253".U, // 0x18: fdiv.s f4, f1, f2       -> f4 = 4.0 / 2.0 = 2.0f (0x40000000)
+        "h182182d3".U, // 0x1C: fdiv.s f5, f3, f2       -> f5 = 1.0 / 2.0 = 0.5f (0x3f000000)
+        "h58008333".U, // 0x20: fsqrt.s f6, f1          -> f6 = sqrt(4.0) = 2.0f (0x40000000)
+        "h580083b3".U, // 0x24: fsqrt.s f7, f3          -> f7 = sqrt(1.0) = 1.0f (0x3f800000)
+        "h58010553".U, // 0x28: fsqrt.s f10, f2         -> f10 = sqrt(2.0) = 1.4142135f (0x3fddb3d7)
         "h00100613".U, // 0x2C: li x12, 1               -> Success flag
         "h0000006f".U  // 0x30: j 0x30                  -> Final halt loop
       )

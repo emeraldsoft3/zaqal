@@ -45,3 +45,6 @@ This master index tracks the major forks in the road for Zaqal.
 
 ## 14. [Vector/SIMD Hardware Paths](./14_vector_simd_hardware.md)
 *Hijacking 64-bit integer ALUs to run Vector math vs. building profoundly isolated FPU pipelines.*
+
+## 15. [FPU Divider & Square Root Algorithm](./15_fpu_divider_algorithm.md)
+*Balancing area against latency via iterative Radix shifts vs. Multiplicative FMA routines.*
