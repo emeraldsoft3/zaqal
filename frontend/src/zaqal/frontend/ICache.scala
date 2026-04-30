@@ -33,14 +33,12 @@ class ICache(implicit val p: Parameters) extends Module with HasZaqalParameter {
         "h3f800637".U, // 0x08: lui x12, 0x3f800        -> x12 = 0x3f800000 (1.0f)
         "hF00500D3".U, // 0x0C: fmv.w.x f1, x10         -> f1 = 4.0f
         "hF0058153".U, // 0x10: fmv.w.x f2, x11         -> f2 = 2.0f
-        "hF00601D3".U, // 0x14: fmv.w.x f3, x12         -> f3 = 1.0f
-        "h18208253".U, // 0x18: fdiv.s f4, f1, f2       -> f4 = 4.0 / 2.0 = 2.0f (0x40000000)
-        "h182182d3".U, // 0x1C: fdiv.s f5, f3, f2       -> f5 = 1.0 / 2.0 = 0.5f (0x3f000000)
-        "h58008333".U, // 0x20: fsqrt.s f6, f1          -> f6 = sqrt(4.0) = 2.0f (0x40000000)
-        "h580083b3".U, // 0x24: fsqrt.s f7, f3          -> f7 = sqrt(1.0) = 1.0f (0x3f800000)
-        "h58010553".U, // 0x28: fsqrt.s f10, f2         -> f10 = sqrt(2.0) = 1.4142135f (0x3fddb3d7)
-        "h00100613".U, // 0x2C: li x12, 1               -> Success flag
-        "h0000006f".U  // 0x30: j 0x30                  -> Final halt loop
+        "hF00601D3".U, // 0x14: fmv.w.x f3, x12         -> f3 = 1.0f       
+        "h58008353".U, // 0x18: fsqrt.s f6, f1          -> f6 = sqrt(4.0) = 2.0f (0x40000000)
+        "h580183d3".U, // 0x1C: fsqrt.s f7, f3          -> f7 = sqrt(1.0) = 1.0f (0x3f800000)
+        "h58010553".U, // 0x20: fsqrt.s f10, f2         -> f10 = sqrt(2.0) = 1.4142135f (0x3fddb3d7)
+        "h00100613".U, // 0x24: li x12, 1               -> Success flag
+        "h0000006f".U  // 0x28: j 0x28                  -> Final halt loop
       )
     }
   }

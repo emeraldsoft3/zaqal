@@ -51,6 +51,7 @@ class FPDivider(implicit val p: Parameters) extends Module with HasZaqalParamete
       val is_sqrt = io.dec.is_fsqrt
       
       when(io.fire && (is_div || is_sqrt)) {
+        printf("FPDivider: op=%d src1=%x src2=%x\n", is_sqrt, io.src1, io.src2)
         is_sqrt_reg := is_sqrt
         
         // Unpack Operands
@@ -63,7 +64,7 @@ class FPDivider(implicit val p: Parameters) extends Module with HasZaqalParamete
         val mB = Cat(eB =/= 0.S, io.src2(22, 0))
 
         when(is_sqrt) {
-          val eA_unbiased = eA - 127.S
+          val eA_unbiased = (eA - 127.S(32.W)).asSInt
           val is_odd = eA_unbiased(0)
           
           D_reg := Mux(is_odd, mA << 24.U, mA << 23.U)
@@ -71,15 +72,17 @@ class FPDivider(implicit val p: Parameters) extends Module with HasZaqalParamete
           bit_reg := 1.U << 46.U
           
           res_s := sA
-          res_e := (eA_unbiased >> 1) + 127.S
+          res_e := (eA_unbiased >> 1).asSInt + 127.S(32.W)
+          
+          printf("FSQRT START: src1=%x eA=%d unbiased=%d is_odd=%d res_e=%d\n", io.src1, eA, eA_unbiased, is_odd, (eA_unbiased >> 1).asSInt + 127.S(32.W))
           state := s_busy
         } .otherwise { // FDIV
           res_s := sA ^ sB
-          res_e := eA - eB + 127.S
+          res_e := (eA - eB) + 127.S(32.W)
           
-          div_reg := mA << 27.U
+          div_reg := mA
           divisor := mB
-          count := 27.U
+          count := 51.U // 24 cycles to shift mA into rem + 27 cycles for precision
           state := s_busy
         }
       }
@@ -99,12 +102,13 @@ class FPDivider(implicit val p: Parameters) extends Module with HasZaqalParamete
           state := s_done
           // Extract 23 bits (bits 22:0 of Q_reg, assuming leading 1 is at bit 23)
           res_m := Q_reg(22, 0)
+          printf("FSQRT DONE: Q_reg=%x res_e=%d res_m=%x\n", Q_reg, res_e, Q_reg(22, 0))
         }
       } .otherwise { // FDIV
         when(count =/= 0.U) {
           val next_div_reg = Cat(div_reg(63, 0), 0.U(1.W))
-          val rem = next_div_reg(64, 32)
-          val quo = next_div_reg(31, 0)
+          val rem = next_div_reg(64, 24)
+          val quo = next_div_reg(23, 0)
 
           when(rem >= divisor) {
             div_reg := Cat(rem - divisor, quo | 1.U)
@@ -115,14 +119,15 @@ class FPDivider(implicit val p: Parameters) extends Module with HasZaqalParamete
         } .otherwise {
           state := s_done
           // Extract quotient and normalize
-          val q_raw = div_reg(26, 0)
+          // With count=51, first bit of mA/mB (integer part) is at bit 27
+          val q_raw = div_reg(31, 0)
+          val bit27 = q_raw(27)
           val bit26 = q_raw(26)
-          val bit25 = q_raw(25)
           
-          when(bit26) {
-            res_m := q_raw(25, 3)
+          when(bit27) {
+            res_m := q_raw(26, 4)
           } .otherwise {
-            res_m := q_raw(24, 2)
+            res_m := q_raw(25, 3)
             res_e := res_e - 1.S
           }
         }
