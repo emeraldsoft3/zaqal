@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.111 (w)1999-2020 BSI
-[*] Mon Apr 27 05:30:41 2026
+[*] Fri May  1 06:53:41 2026
 [*]
 [dumpfile] "/home/emerald/zaqal/programs/vcd/Lithium.vcd"
-[dumpfile_mtime] "Mon Apr 27 05:11:08 2026"
-[dumpfile_size] 859962
+[dumpfile_mtime] "Thu Apr 30 08:34:46 2026"
+[dumpfile_size] 1018949
 [savefile] "/home/emerald/zaqal/programs/vcd/Lithium.gtkw"
 [timestart] 0
 [size] 1920 993
 [pos] -1 -1
-*-6.000000 99 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-6.000000 178 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] Core.
 [treeopen] Core.backend.
 [treeopen] Core.backend.exec.
@@ -113,7 +113,9 @@ Core.backend.exec.regFile.regs_25[63:0]
 +{Core.backend.exec.fpRegFile.regs_0[63:0]} Core.backend.exec.fpRegFile.regs_0[63:0]
 Core.backend.exec.fpRegFile.regs_1[63:0]
 Core.backend.exec.fpRegFile.regs_2[63:0]
+@23
 Core.backend.exec.fpRegFile.regs_3[63:0]
+@22
 Core.backend.exec.fpRegFile.regs_4[63:0]
 Core.backend.exec.fpRegFile.regs_5[63:0]
 Core.backend.exec.fpRegFile.regs_6[63:0]

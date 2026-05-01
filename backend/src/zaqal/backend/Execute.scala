@@ -63,6 +63,7 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   val dmem = Module(new DataMem)
   val fpu  = Module(new FPU)
   val fpdiv = Module(new FPDivider)
+  val fpmisc = Module(new FPMisc)
 
   // 3. Connect FUs
   alu.io.src1 := src1
@@ -107,6 +108,12 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   fpdiv.io.src2 := fsrc2
   fpdiv.io.dec  := decoder.io.out
   fpdiv.io.fire := io.in.fire
+
+  fpmisc.io.src1 := fsrc1
+  fpmisc.io.src2 := fsrc2
+  fpmisc.io.rs1_int := src1
+  fpmisc.io.dec  := decoder.io.out
+  fpmisc.io.inst := io.in.bits.inst_raw
 
   // 4. Coordination & Handshake
   io.in.ready := div.io.ready && fpdiv.io.ready
@@ -159,7 +166,7 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
       val link_addr = io.in.bits.pc + Mux(io.in.bits.pre.is_rvc, 2.U, 4.U)
       val result = Mux(is_mul_op, mul.io.result,
                    Mux(decoder.io.out.is_load || decoder.io.out.is_atomic, lsu.io.result, 
-                   Mux(is_fp_wb_to_int, fsrc1, // Placeholder for move/compare results
+                   Mux(is_fp_wb_to_int, fpmisc.io.result_int, 
                    alu.io.result)))
                    
       regFile.io.wen     := ((!decoder.io.out.is_branch && !is_div_op && !decoder.io.out.is_store && 
@@ -171,7 +178,8 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
       when(is_fp_wb_to_fp) {
         fpRegFile.io.wen := true.B
         fpRegFile.io.rd_data := Mux(decoder.io.out.is_fload, nanBox(lsu.io.result),
-                                Mux(decoder.io.out.is_fmv_w_x || decoder.io.out.is_fcvt_i2f, nanBox(src1),
+                                Mux(decoder.io.out.is_fmv_w_x || decoder.io.out.is_fcvt_i2f ||
+                                    decoder.io.out.is_fsgnj   || decoder.io.out.is_fminmax, fpmisc.io.result_fp,
                                 fpu.io.result))
       }
     }
@@ -259,7 +267,8 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   // FP Debug Prints
   val is_f_op = decoder.io.out.is_fload || decoder.io.out.is_fstore || decoder.io.out.is_fadd || decoder.io.out.is_fsub ||
                 decoder.io.out.is_fmul || decoder.io.out.is_fdiv || decoder.io.out.is_fmadd || decoder.io.out.is_fmv ||
-                decoder.io.out.is_fcvt_f2i || decoder.io.out.is_fcvt_i2f || decoder.io.out.is_fsqrt || decoder.io.out.is_feq || decoder.io.out.is_flt || decoder.io.out.is_fle
+                decoder.io.out.is_fcvt_f2i || decoder.io.out.is_fcvt_i2f || decoder.io.out.is_fsqrt || decoder.io.out.is_feq || 
+                decoder.io.out.is_flt || decoder.io.out.is_fle || decoder.io.out.is_fminmax || decoder.io.out.is_fsgnj || decoder.io.out.is_fclass
   
   when(io.in.fire && is_f_op) {
     printf(p"CORE EXECUTE [Cycle ${io.debug_cycle}]: pc=${Hexadecimal(io.in.bits.pc)} inst=${Hexadecimal(io.in.bits.inst_raw)} [FPU FRONT-END] frd=${decoder.io.out.rd} frs1=${decoder.io.out.rs1} frs2=${decoder.io.out.rs2} frs3=${decoder.io.out.rs3} fsrc1=${Hexadecimal(fsrc1)} fsrc2=${Hexadecimal(fsrc2)} fsrc3=${Hexadecimal(fsrc3)}\n")
