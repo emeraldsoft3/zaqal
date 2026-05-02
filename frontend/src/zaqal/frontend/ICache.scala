@@ -28,23 +28,16 @@ class ICache(implicit val p: Parameters) extends Module with HasZaqalParameter {
     } else {
       println(s"[ICache] Warning: $path not found, using default hardcoded program.")
       Seq(
-        "h40800537".U, // 0x00: lui x10, 0x40800        -> x10 = 0x40800000 (4.0f)
-        "hC00005B7".U, // 0x04: lui x11, 0xC0000        -> x11 = 0xC0000000 (-2.0f)
-        "hF00500D3".U, // 0x08: fmv.w.x f1, x10         -> f1 = 4.0f
-        "hF0058153".U, // 0x0C: fmv.w.x f2, x11         -> f2 = -2.0f
-        "h202081D3".U, // 0x10: fsgnj.s f3, f1, f2      -> f3 = -4.0f (0xc0800000)
-        "h20209253".U, // 0x14: fsgnjn.s f4, f1, f2     -> f4 = +4.0f (0x40800000)
-        "h2020A2D3".U, // 0x18: fsgnjx.s f5, f1, f2     -> f5 = -4.0f (0xc0800000)
-        "h28208353".U, // 0x1C: fmin.s f6, f1, f2       -> f6 = -2.0f (0xc0000000)
-        "h282093D3".U, // 0x20: fmax.s f7, f1, f2       -> f7 = 4.0f  (0x40800000)
-        "hA020A653".U, // 0x24: feq.s x12, f1, f2       -> x12 = 0
-        "hA01116D3".U, // 0x28: flt.s x13, f2, f1       -> x13 = 1
-        "hE00097D3".U, // 0x2C: fclass.s x15, f1        -> x15 = 0x40 (64)
-        "hC0008853".U, // 0x30: fcvt.w.s x16, f1        -> x16 = 4
-        "hD0080453".U, // 0x34: fcvt.s.w f8, x16        -> f8 = 4.0f
-        "hE00108D3".U, // 0x38: fmv.x.w x17, f2         -> x17 = 0xC0000000
-        "h00100613".U, // 0x3C: li x12, 1               -> Success flag
-        "h0000006f".U  // 0x40: j 0x40                  -> Final halt loop
+        "h00000537".U, // 0x00: lui x10, 0              -> x10 = 0
+        "h00052087".U, // 0x04: flw f1, 0(x10)          -> f1 = [0x00] = 0x11223344
+        "h00452107".U, // 0x08: flw f2, 4(x10)          -> f2 = [0x04] = 0xAABBCCDD
+        "h00152827".U, // 0x0C: fsw f1, 16(x10)         -> [16] = f1 (0x11223344)
+        "h00252A27".U, // 0x10: fsw f2, 20(x10)         -> [20] = f2 (0xAABBCCDD)
+        "h00853187".U, // 0x14: fld f3, 8(x10)          -> f3 = [0x08] = 0x5566778899AABBCC
+        "h00353C27".U, // 0x18: fsd f3, 24(x10)         -> [24] = f3 (0x5566778899AABBCC)
+        "h00208253".U, // 0x1C: fadd.s f4, f1, f2       -> f4 = f1 + f2
+        "h00100613".U, // 0x20: li x12, 1               -> Success flag
+        "h0000006f".U  // 0x24: j 0x24                  -> Final halt loop
       )
     }
   }

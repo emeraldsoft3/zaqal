@@ -244,9 +244,9 @@ class Decoder(implicit val p: Parameters) extends Module with HasZaqalParameter 
     io.out.imm := u_imm
   } .elsewhen(io.out.is_jal) {
     io.out.imm := j_imm
-  } .elsewhen(io.out.is_load || io.out.is_lr) {
-    io.out.imm := i_imm // Loads and LR use I-type immediate (though LR imm is usually 0)
-  } .elsewhen(io.out.is_store || io.out.is_sc) {
-    io.out.imm := s_imm // Stores and SC use S-type immediate (though SC imm is usually 0)
+  } .elsewhen(io.out.is_load || io.out.is_fload || io.out.is_lr) {
+    io.out.imm := i_imm // Loads and LR use I-type immediate
+  } .elsewhen(io.out.is_store || io.out.is_fstore || io.out.is_sc) {
+    io.out.imm := s_imm // Stores and SC use S-type immediate
   }
 }
