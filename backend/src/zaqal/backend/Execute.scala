@@ -93,7 +93,7 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   lsu.io.imm  := decoder.io.out.imm
   lsu.io.dec  := decoder.io.out
   dmem.io.addr  := lsu.io.mem_addr
-  dmem.io.wen   := lsu.io.mem_wen
+  dmem.io.wen   := lsu.io.mem_wen && io.in.fire
   dmem.io.wmask := lsu.io.mem_wmask
   dmem.io.wdata := lsu.io.mem_wdata
   lsu.io.mem_data := dmem.io.data

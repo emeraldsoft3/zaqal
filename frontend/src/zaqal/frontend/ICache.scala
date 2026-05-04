@@ -16,7 +16,7 @@ class ICache(implicit val p: Parameters) extends Module with HasZaqalParameter {
   // Program Loader: Reads hex from the file specified in parameters
   def loadHex(path: String): Seq[UInt] = {
     println(s"[ICache] FPU TEST MODE: Using hardcoded FP program.")
-    if (false) { // Bypassed
+    if (true) { // Enabled for Benchmarking
       val source = scala.io.Source.fromFile(path)
       val lines = source.getLines()
         .map(_.split("//")(0).trim) // Remove comments
@@ -42,7 +42,9 @@ class ICache(implicit val p: Parameters) extends Module with HasZaqalParameter {
     }
   }
 
-  val program_seq = loadHex(programFile)
+  // val hexFile = "programs/hex/coremark_fp.hex"
+  val hexFile = "programs/hex/rvc_fp.hex"
+  val program_seq = loadHex(hexFile)
   val program = VecInit(program_seq.padTo(1024, "h00000013".U)) // Increased size for larger binaries
 
 

@@ -63,6 +63,7 @@ class IBUF(implicit val p: Parameters) extends Module with HasZaqalParameter {
     inst_idx := Mux(residual_valid, 0.U, PriorityEncoder(io.inst_data.bits.mask))
     printf(p"IBUF ACCEPT: pc=${Hexadecimal(io.inst_data.bits.pc)} mask=${Binary(io.inst_data.bits.mask)} epoch=${io.inst_data.bits.epoch}\n")
   } .elsewhen(io.out.fire) {
+    printf(p"IBUF FIRE: pc=${Hexadecimal(io.out.bits.pc)} inst=${Hexadecimal(io.out.bits.inst_raw)} next_idx=${next_idx}\n")
     when(residual_valid) {
       residual_valid := false.B
       // After firing a stitched instruction, we move to the rest of the current packet starting from index 1.

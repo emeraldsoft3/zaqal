@@ -44,9 +44,9 @@ class RVCExpander(implicit val p: Parameters) extends Module with HasZaqalParame
             expanded := Cat(uimm.pad(12)(11, 0), 2.U(5.W), 0.U(3.W), rd_p_q0(4, 0), "b0010011".U(7.W))
           }
         }
-        is("b001".U) { // c.fld (RV32/64) or c.ld (RV128)
+        is("b001".U) { // c.fld (RV32/64)
           val uimm = Cat(inst(6, 5), inst(12, 10), 0.U(3.W))
-          expanded := Cat(uimm.pad(12)(11, 0), rs1_p(4, 0), 3.U(3.W), rd_p_q0(4, 0), "b0000011".U(7.W))
+          expanded := Cat(uimm.pad(12)(11, 0), rs1_p(4, 0), 3.U(3.W), rd_p_q0(4, 0), "b0000111".U(7.W))
         }
         is("b010".U) { // c.lw
           val uimm = Cat(inst(5), inst(12, 10), inst(6), 0.U(2.W))
@@ -56,9 +56,9 @@ class RVCExpander(implicit val p: Parameters) extends Module with HasZaqalParame
           val uimm = Cat(inst(6, 5), inst(12, 10), 0.U(3.W))
           expanded := Cat(uimm.pad(12)(11, 0), rs1_p(4, 0), 3.U(3.W), rd_p_q0(4, 0), "b0000011".U(7.W))
         }
-        is("b101".U) { // c.fsd (RV32/64) or c.sd (RV128)
+        is("b101".U) { // c.fsd (RV32/64)
           val uimm = Cat(inst(6, 5), inst(12, 10), 0.U(3.W))
-          expanded := Cat(uimm.pad(12)(11, 5), rs2_p(4, 0), rs1_p(4, 0), 3.U(3.W), uimm(4, 0), "b0100011".U(7.W))
+          expanded := Cat(uimm.pad(12)(11, 5), rs2_p(4, 0), rs1_p(4, 0), 3.U(3.W), uimm(4, 0), "b0100111".U(7.W))
         }
         is("b110".U) { // c.sw
           val uimm = Cat(inst(5), inst(12, 10), inst(6), 0.U(2.W))
@@ -147,8 +147,9 @@ class RVCExpander(implicit val p: Parameters) extends Module with HasZaqalParame
           val uimm = Cat(inst(4, 2), inst(12), inst(6, 5), 0.U(3.W))
           expanded := Cat(uimm.pad(12)(11, 0), 2.U(5.W), 3.U(3.W), rd_rs1(4, 0), "b0000011".U(7.W))
         }
-        is("b001".U, "b101".U) { // c.fldsp (RV32/64) or c.ldsp (RV128) - Map to NOP for now
-          expanded := "h00000013".U
+        is("b001".U) { // c.fldsp
+          val uimm = Cat(inst(4, 2), inst(12), inst(6, 5), 0.U(3.W))
+          expanded := Cat(uimm.pad(12)(11, 0), 2.U(5.W), 3.U(3.W), rd_rs1(4, 0), "b0000111".U(7.W))
         }
         is("b100".U) { // mv, add, jr, jalr
           val bit12 = inst(12)
@@ -171,10 +172,9 @@ class RVCExpander(implicit val p: Parameters) extends Module with HasZaqalParame
           val uimm = Cat(inst(8, 7), inst(12, 9), 0.U(2.W))
           expanded := Cat(uimm.pad(12)(11, 5), rs2(4, 0), 2.U(5.W), 2.U(3.W), uimm(4, 0), "b0100011".U(7.W))
         }
-        is("b111".U) { // c.sdsp or c.fsdsp (Map to NOP for now)
-          val is_sdsp = xLen.U === 64.U // Simple check for now
-          val uimm = Cat(inst(9, 7), inst(12, 10), 0.U(3.W))
-          expanded := Cat(uimm.pad(12)(11, 5), rs2(4, 0), 2.U(5.W), 3.U(3.W), uimm(4, 0), "b0100011".U(7.W))
+        is("b101".U) { // c.fsdsp
+          val uimm = Cat(inst(8, 7), inst(12, 9), 0.U(3.W))
+          expanded := Cat(uimm.pad(12)(11, 5), rs2(4, 0), 2.U(5.W), 3.U(3.W), uimm(4, 0), "b0100111".U(7.W))
         }
       }
     }
