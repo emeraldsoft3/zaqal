@@ -39,10 +39,10 @@ This phase expansion covers the "A" (Atomic), "M" (Multiplication), and "B" (Bit
 ## Week 4-5: Floating Point Unit (Days 29-38)
 - [x] **Day 29-30**: FPU Front-end (FP Register file, fcsr, and decoding).
 - [x] **Day 31-33**: FADD, FSUB, FMUL pipelines (Iterative refinement).
-- [ ] **Day 34-35**: FDIV, FSQRT (High-latency logic) [Target: SRT-16 Digit Recurrence].
-- [ ] **Day 36**: FMIN/MAX, FCVT, F-Misc operations.
-- [ ] **Day 37**: Memory/FP Integration (FLW, FSW, FLD, FSD).
-- [ ] **Day 38**: Final Phase 3 Benchmarking (CoreMark-FP).
-- [ ] **Day 39**: **RVC Parity for FB Unit**: Implement 16-bit expansions (e.g. C.FLD, C.FSD, C.FLW, C.FSW, C.FLDSP) for all FP instructions implemented in Days 29-37.
+- [x] **Day 34-35**: FDIV, FSQRT (High-latency logic) [Target: SRT-16 Digit Recurrence].
+- [x] **Day 36**: FMIN/MAX, FCVT, F-Misc operations.
+- [x] **Day 37**: Memory/FP Integration (FLW, FSW, FLD, FSD).
+- [x] **Day 38**: Final Phase 3 Benchmarking (CoreMark-FP).
+- [x] **Day 39**: **RVC Parity for FB Unit**: Implement 16-bit expansions (e.g. C.FLD, C.FSD, C.FLW, C.FSW, C.FLDSP) for all FP instructions implemented in Days 29-37.
 
 ---

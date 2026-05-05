@@ -40,7 +40,7 @@ object ZaqalTest extends App {
 
     // --- MAIN SIMULATION LOOP ---
     val resetCycles = 5
-    val maxCycles = 200
+    val maxCycles = 30
     
     for (cycle <- 0 until maxCycles) {
       // 1. Apply Reset

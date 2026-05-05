@@ -16,7 +16,7 @@ This roadmap outlines the journey to transform Zaqal from a simple prototype int
 | :--- | :--- | :--- | :--- | :--- |
 | **[Phase 1](./PHASE1_INTEGER_ISA/detail.md)** | **Base Integer ALU** | Days 1-4 | **[COMPLETE]** | Mastery of RV64I calculations. |
 | **[Phase 2](./PHASE2_BRANCHING_MISPREDICT/detail.md)** | **Branching & Mispredict** | Days 5-10 | **[COMPLETE]** | Control Flow & Pipeline Integrity. |
-| **[Phase 3](./PHASE3_MEMORY_EXTENSIONS/detail.md)** | **Memory & Build Refactor** | Days 11-42 | **[CURRENT]** | Mill Build, Utilities, G-extension. |
+| **[Phase 3](./PHASE3_MEMORY_EXTENSIONS/detail.md)** | **Memory & Build Refactor** | Days 11-42 | **[COMPLETE]** | Mill Build, Utilities, G-extension. |
 | **[Phase 4](./PHASE4_SUPERSCALAR_DISPATCH/detail.md)** | **Superscalar Dispatch** | Days 43-60 | [ ] | 1-wide to 6-wide (Rename/RAT). |
 | **[Phase 5](./PHASE5_TIMING_OPTIMIZATION/detail.md)** | **Timing & Pipelining** | Days 61-75 | [ ] | High Frequency Optimization. |
 | **[Phase 6](./PHASE6_FRONTEND_PERFORMANCE/detail.md)** | **Advanced Front-end** | Days 76-95 | [ ] | **Neural BPU** & High-perf Caches. |
