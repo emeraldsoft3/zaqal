@@ -10,7 +10,7 @@ import zaqal.utility.SkidBuffer
 class Frontend(implicit val p: Parameters) extends Module with HasZaqalParameter {
   val io = IO(new Bundle {
     val redirect     = Input(new BPURedirect)
-    val dispatch     = Decoupled(new MicroOp) // Output to Backend
+    val dispatch     = Vec(decodeWidth, Decoupled(new MicroOp)) // Output to Backend (6-wide)
     
     // Backend access to FTQ (XiangShan style)
     val ftq_read_ptr  = Input(UInt(ftqPtrWidth.W))
@@ -75,7 +75,9 @@ class Frontend(implicit val p: Parameters) extends Module with HasZaqalParameter
   ibuf.io.inst_data <> SkidBuffer(ifu.io.toIbuffer, is_valid_redirect)
 
   // 5. IBUF -> Backend (Dispatch Path)
-  io.dispatch <> ibuf.io.out
+  for (i <- 0 until decodeWidth) {
+    io.dispatch(i) <> ibuf.io.out(i)
+  }
 
   // 5. Backend -> FTQ (Metadata Read)
   ftq.io.readPtr := io.ftq_read_ptr

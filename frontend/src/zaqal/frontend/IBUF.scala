@@ -10,106 +10,103 @@ class IBUF(implicit val p: Parameters) extends Module with HasZaqalParameter {
   val io = IO(new Bundle {
     val inst_data = Flipped(Decoupled(new FetchPacket)) // From IFU
     val flush     = Input(Bool())
-    val out       = Decoupled(new MicroOp)              // To Backend
+    val out       = Vec(decodeWidth, Decoupled(new MicroOp)) // To Backend (6-wide)
   })
 
-  val inst_idx = RegInit(0.U(log2Up(predictWidth).W))
-  val current_packet = Reg(new FetchPacket)
-  val busy = RegInit(false.B)
+  // IBuffer Parameters
+  val ibufSize = 64 // Capacity in instructions
 
-  val residual_valid = RegInit(false.B)
-  val residual_inst  = RegInit(0.U(16.W))
-  val residual_pc    = RegInit(0.U(xLen.W))
-  val residual_pre   = Reg(new PreDecodeSignals)
-  val residual_ftq   = RegInit(0.U(ftqPtrWidth.W))
-  val residual_epoch = RegInit(false.B)
-
-  val is_rvc = current_packet.pre_decoded(inst_idx).is_rvc
-  val step = Mux(is_rvc, 1.U, 2.U)
+  // Storage (Register-based for multi-wide async read)
+  val buffer = Reg(Vec(ibufSize, new MicroOp))
+  val valid  = RegInit(VecInit.fill(ibufSize)(false.B))
   
-  val is_cross_line = (inst_idx === (predictWidth - 1).U) && !is_rvc && current_packet.mask(inst_idx)
+  val head = RegInit(0.U(log2Up(ibufSize).W))
+  val tail = RegInit(0.U(log2Up(ibufSize).W))
 
-  val next_idx = inst_idx +& step
-  val valid_bits_mask = (Fill(predictWidth, 1.U(1.W)) << next_idx)(predictWidth - 1, 0)
-  val remaining_mask = current_packet.mask & valid_bits_mask
-  val has_next_inst  = remaining_mask.orR
-  val next_inst_idx  = PriorityEncoder(remaining_mask)
-
-  val will_finish_packet = (io.out.fire || (busy && is_cross_line)) && !has_next_inst
-
-  val accept_new_packet  = (!busy || will_finish_packet) && io.inst_data.valid && !io.flush
-
-  io.inst_data.ready := !busy || will_finish_packet
-
-  when(io.flush) {
-    busy := false.B
-    residual_valid := false.B
-    printf("IBUF FLUSHED!\n")
-  } .elsewhen(accept_new_packet) {
-    busy           := true.B
-    // If we are accepting a new packet while a residual is valid, we merge them.
-    // The current instruction (stitched) will use residual_inst and current_packet.instructions(0).
-    // We should only clear residual_valid AFTER the combined instruction fires.
-    
-    // However, if we were NOT in a residual state, but we detected a cross-line in the PREVIOUS packet,
-    // we should have set residual_valid then.
-    
-    // Let's use a simpler state: If we are BUSY and see a cross-line, we must save and wait.
-    current_packet := io.inst_data.bits
-    
-    // If we just accepted a NEW packet and we have a residual bits saved,
-    // the first instruction to fire is at index 0 (the merged one).
-    // If not, it's the priority encoder of the new mask.
-    inst_idx := Mux(residual_valid, 0.U, PriorityEncoder(io.inst_data.bits.mask))
-    printf(p"IBUF ACCEPT: pc=${Hexadecimal(io.inst_data.bits.pc)} mask=${Binary(io.inst_data.bits.mask)} epoch=${io.inst_data.bits.epoch}\n")
-  } .elsewhen(io.out.fire) {
-    printf(p"IBUF FIRE: pc=${Hexadecimal(io.out.bits.pc)} inst=${Hexadecimal(io.out.bits.inst_raw)} next_idx=${next_idx}\n")
-    when(residual_valid) {
-      residual_valid := false.B
-      // After firing a stitched instruction, we move to the rest of the current packet starting from index 1.
-      val mask_after_resid = current_packet.mask & (~((1.U << 1) - 1.U)).asUInt
-      when(mask_after_resid.orR) {
-        val next_valid_idx = PriorityEncoder(mask_after_resid)
-        inst_idx := next_valid_idx
-      } .otherwise {
-        busy := false.B
-      }
-    } .elsewhen(has_next_inst) {
-      inst_idx := next_inst_idx
-    } .otherwise {
-      busy := false.B
-    }
-  } 
+  // 1. ENQUEUE LOGIC (XiangShan style - Distributed Write)
+  val enq_mask = io.inst_data.bits.mask
+  val enq_count = PopCount(enq_mask)
   
-  // Transition to residual state: occurs when we are busy, at the last slot, 
-  // and it's a 32-bit instruction (not expanded RVC).
-  when(busy && is_cross_line && !residual_valid && !io.flush) {
-    residual_valid := true.B
-    residual_inst  := current_packet.instructions(inst_idx)(15, 0)
-    residual_pc    := current_packet.pc + (inst_idx << 1)
-    residual_pre   := current_packet.pre_decoded(inst_idx)
-    residual_ftq   := current_packet.ftqPtr 
-    residual_epoch := current_packet.epoch
-    busy           := false.B // Stop processing current packet
+  val can_enq = (ibufSize.U - PopCount(valid.asUInt)) >= enq_count
+  io.inst_data.ready := can_enq && !io.flush
+
+  // Pre-calculate internal offsets for each slot in the incoming packet
+  val enq_offsets = Wire(Vec(predictWidth, UInt(log2Up(predictWidth + 1).W)))
+  for (i <- 0 until predictWidth) {
+    if (i == 0) enq_offsets(i) := 0.U
+    else enq_offsets(i) := PopCount(enq_mask(i-1, 0))
   }
 
-  // An instruction is valid to fire if:
-  // 1. We have a residual instruction AND a new packet has arrived (busy=true).
-  // 2. We are busy and NOT at a cross-line boundary.
-  io.out.valid      := busy && (residual_valid || (current_packet.mask(inst_idx) && !is_cross_line))
-  
-  io.out.bits.inst_raw := Mux(residual_valid, 
-                              Cat(current_packet.instructions(0)(15, 0), residual_inst), 
-                              Mux(is_rvc, current_packet.pre_decoded(inst_idx).expanded_inst, 
-                                          current_packet.instructions(inst_idx)))
-                              
-  io.out.bits.pre      := Mux(residual_valid, residual_pre, current_packet.pre_decoded(inst_idx))
-  io.out.bits.pc       := Mux(residual_valid, residual_pc, current_packet.pc + (inst_idx << 1))
-  io.out.bits.ftqPtr   := Mux(residual_valid, residual_ftq, current_packet.ftqPtr)
-  
-  val is_pred_taken_normal = current_packet.prediction.taken && (inst_idx === current_packet.prediction.slot)
-  io.out.bits.is_predicted_taken := Mux(residual_valid, false.B, is_pred_taken_normal)
-  
-  io.out.bits.epoch    := Mux(residual_valid, residual_epoch, current_packet.epoch)
-  
+  for (idx <- 0 until ibufSize) {
+    val entry_match_mask = Wire(Vec(predictWidth, Bool()))
+    for (i <- 0 until predictWidth) {
+      entry_match_mask(i) := io.inst_data.fire && enq_mask(i) && ((tail + enq_offsets(i)) % ibufSize.U === idx.U)
+    }
+    
+    val wen = entry_match_mask.asUInt.orR
+    when(wen) {
+      val sel = PriorityEncoder(entry_match_mask)
+      val entry = Wire(new MicroOp)
+      entry.pc       := io.inst_data.bits.pc(sel)
+      entry.inst_raw := io.inst_data.bits.instructions(sel)
+      entry.pre      := io.inst_data.bits.pre_decoded(sel)
+      entry.ftqPtr   := io.inst_data.bits.ftqPtr
+      entry.epoch    := io.inst_data.bits.epoch
+      
+      val is_pred_taken = io.inst_data.bits.prediction.taken && (sel === io.inst_data.bits.prediction.slot)
+      entry.is_predicted_taken := is_pred_taken
+
+      buffer(idx) := entry
+      valid(idx)  := true.B
+    }
+  }
+
+  when(io.inst_data.fire) {
+    tail := (tail + enq_count) % ibufSize.U
+  }
+
+  // 2. DEQUEUE LOGIC (Banked Parallel Read)
+  val deq_potential_mask = Wire(Vec(decodeWidth, Bool()))
+  for (i <- 0 until decodeWidth) {
+    val ptr = (head + i.U) % ibufSize.U
+    deq_potential_mask(i) := valid(ptr)
+  }
+
+  // Strict ordered dequeue: Slot i is valid only if [0...i-1] were also valid
+  val deq_valid_mask = Wire(Vec(decodeWidth, Bool()))
+  deq_valid_mask(0) := deq_potential_mask(0)
+  for (i <- 1 until decodeWidth) {
+    deq_valid_mask(i) := deq_valid_mask(i-1) && deq_potential_mask(i)
+  }
+
+  for (i <- 0 until decodeWidth) {
+    val ptr = (head + i.U) % ibufSize.U
+    io.out(i).valid := deq_valid_mask(i) && !io.flush
+    io.out(i).bits  := buffer(ptr)
+  }
+
+  val deq_fire_mask = VecInit(io.out.map(_.fire))
+  val deq_count = PopCount(deq_fire_mask)
+
+  when(deq_count > 0.U) {
+    for (i <- 0 until ibufSize) {
+      val idx = i.U
+      val fired = Mux(head + deq_count <= ibufSize.U,
+                      idx >= head && idx < head + deq_count,
+                      idx >= head || idx < (head + deq_count) % ibufSize.U)
+      when(fired) {
+        valid(i) := false.B
+      }
+    }
+    head := (head + deq_count) % ibufSize.U
+  }
+
+  // 3. FLUSH LOGIC
+  when(io.flush) {
+    head := 0.U
+    tail := 0.U
+    for (i <- 0 until ibufSize) {
+      valid(i) := false.B
+    }
+  }
 }

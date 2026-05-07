@@ -22,10 +22,12 @@ class FetchRequest(implicit val p: Parameters) extends Bundle with HasZaqalParam
 
 // Packet of instructions fetched from I-Cache
 class FetchPacket(implicit val p: Parameters) extends Bundle with HasZaqalParameter {
-  val pc           = UInt(xLen.W)
+  val pc           = Vec(predictWidth, UInt(xLen.W))
   val instructions = Vec(predictWidth, UInt(instBits.W))
   val pre_decoded  = Vec(predictWidth, new PreDecodeSignals)
   val mask         = UInt(predictWidth.W)
+  val exception_type = Vec(predictWidth, UInt(2.W)) // 0: none, 1: page fault, 2: access fault
+  val debug_seqNum = Vec(predictWidth, UInt(64.W))
   val prediction   = new PredictionMeta
   val ftqPtr       = UInt(ftqPtrWidth.W) // Pointer to FTQ entry
   val epoch        = Bool()

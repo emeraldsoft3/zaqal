@@ -43,7 +43,9 @@ class Core(implicit val p: Parameters) extends Module with HasZaqalParameter {
   val backend  = Module(new Backend)
 
   // 2. Connect Frontend to Backend (Buffered Dispatch!)
-  backend.io.dispatch  <> SkidBuffer(frontend.io.dispatch, frontend.io.debug_ftq_flush)
+  for (i <- 0 until decodeWidth) {
+    backend.io.dispatch(i) <> SkidBuffer(frontend.io.dispatch(i), frontend.io.debug_ftq_flush)
+  }
   frontend.io.redirect := backend.io.redirect
   backend.io.debug_cycle := cycle_reg
 
@@ -64,8 +66,8 @@ class Core(implicit val p: Parameters) extends Module with HasZaqalParameter {
   io.debug_ftq_occupancy   := frontend.io.debug_ftq_occupancy
 
   // Handshake with Backend
-  io.debug_ftq_valid_out   := frontend.io.dispatch.valid
-  io.debug_ftq_ready_out   := frontend.io.dispatch.ready
+  io.debug_ftq_valid_out   := frontend.io.dispatch(0).valid
+  io.debug_ftq_ready_out   := frontend.io.dispatch(0).ready
 
   io.debug_cycle_count := cycle_reg
   io.debug_regs := backend.io.debug_regs

@@ -19,12 +19,11 @@ class IFU(implicit val p: Parameters) extends Module with HasZaqalParameter {
   val raw_bits = io.insts_in.asUInt
 
   val packet = Wire(new FetchPacket)
-  packet.pc          := io.fetch_req.bits.pc
   packet.mask        := io.fetch_req.bits.mask
   packet.prediction  := io.fetch_req.bits.prediction
   packet.ftqPtr      := io.fetch_req.bits.ftqPtr
   packet.epoch       := io.fetch_req.bits.epoch
-  
+
   for (i <- 0 until predictWidth) {
     val inst_window = if (i == predictWidth - 1) {
       Cat(0.U(16.W), raw_bits((fetchWidth * 32) - 1, (fetchWidth * 32) - 16))
@@ -34,6 +33,11 @@ class IFU(implicit val p: Parameters) extends Module with HasZaqalParameter {
     predecoders(i).io.inst := inst_window
     packet.instructions(i) := inst_window
     packet.pre_decoded(i) := predecoders(i).io.out
+    
+    // NEW: Vectorized metadata for Superscalar tracking
+    packet.pc(i)             := io.fetch_req.bits.pc + (i * 2).U
+    packet.exception_type(i) := 0.U // Default: No Exception
+    packet.debug_seqNum(i)   := 0.U // Placeholder for retirement tracking
   }
 
   // Pass through the handshake

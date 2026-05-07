@@ -51,7 +51,11 @@ class FTQ(implicit val p: Parameters) extends Module with HasZaqalParameter {
   // 3. Backend Read Port (This is metadata only now)
   val readPacket = Wire(new FetchPacket)
   readPacket := DontCare
-  readPacket.pc         := ram(io.readPtr).pc
+  for (i <- 0 until predictWidth) {
+    readPacket.pc(i) := ram(io.readPtr).pc + (i * 2).U
+    readPacket.exception_type(i) := 0.U
+    readPacket.debug_seqNum(i)   := 0.U
+  }
   readPacket.mask       := ram(io.readPtr).mask
   readPacket.prediction := ram(io.readPtr).prediction
   readPacket.ftqPtr     := io.readPtr

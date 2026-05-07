@@ -15,6 +15,7 @@ case class ZaqalParams(
   hasCExtension: Boolean = true,
   hasFExtension: Boolean = true,
   fLen: Int = 64,
+  decodeWidth: Int = 6,
   programFile: String = "programs/hex/program.hex"
 )
 
@@ -37,6 +38,7 @@ trait HasZaqalParameter {
   def hasCExtension = zP.hasCExtension
   def hasFExtension = zP.hasFExtension
   def fLen = zP.fLen
+  def decodeWidth = zP.decodeWidth
   def programFile = zP.programFile
   def predictWidth = fetchWidth * (if (hasCExtension) 2 else 1)
 }

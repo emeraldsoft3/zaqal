@@ -28,16 +28,15 @@ class ICache(implicit val p: Parameters) extends Module with HasZaqalParameter {
     } else {
       println(s"[ICache] Warning: Using RVC-Parity hardcoded FPU test program (Day 39).")
       Seq(
-        "h80000537".U, // 0x00: lui x10, 0x80000        -> x10 = 0x80000000 (DataMem Base)
-        "h25042100".U, // 0x04: c.fld f8, 0(x10)  [16b] -> f8 = [0x00] = 0xAABBCCDD11223344
-                       // 0x06: c.fld f9, 8(x10)  [16b] -> f9 = [0x08] = 0x5566778899AABBCC
-        "h00940553".U, // 0x08: fadd.s f10, f8, f9      -> f10 = f8[31:0] + f9[31:0]
-        "h80000137".U, // 0x0C: lui x2, 0x80000         -> sp = 0x80000000
-        "h02010113".U, // 0x10: addi x2, x2, 32         -> sp = 0x80000020 (DataMem Offset 32)
-        "h2582A022".U, // 0x14: c.fsdsp f8, 0(sp) [16b] -> [sp+0] = f8 (Store Double)
-                       // 0x16: c.fldsp f11, 0(sp)[16b] -> f11 = [sp+0] = f8 (Load Double)
-        "h00100613".U, // 0x18: li x12, 1               -> Success flag
-        "h0000006f".U  // 0x1C: j 0x1C                  -> Final halt loop
+        "h00100293".U, // 0x00: li x5, 1
+        "h00200313".U, // 0x04: li x6, 2
+        "h00300393".U, // 0x08: li x7, 3
+        "h00400413".U, // 0x0C: li x8, 4
+        "h00500493".U, // 0x10: li x9, 5
+        "h00600513".U, // 0x14: li x10, 6
+        "h00700593".U, // 0x18: li x11, 7
+        "h00800613".U, // 0x1C: li x12, 8
+        "h0000006f".U  // 0x20: j 0x20 (Halt)
       )
     }
   }
