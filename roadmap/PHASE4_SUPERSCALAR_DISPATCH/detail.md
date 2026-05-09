@@ -5,16 +5,16 @@ This is where we transition Zaqal from a simple core to a high-performance engin
 ## Goal: Multi-Issue Execution (6-Wide)
 
 ## Day 1: Multi-wide Frontend Interface
-- [ ] Update `FetchPacket` and `IBuffer` to support bundles of 6+ instructions.
+- [x] Update `FetchPacket` and `IBuffer` to support bundles of 6+ instructions.
 - **XiangShan Study**: [FrontendBundle.scala](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/frontend/FrontendBundle.scala) - *See how they define the fetch packet.*
 
 ## Day 2: IBuffer Redesign (Banked Dequeue)
-- [ ] Expand the simple 1-entry `IBuffer` into a fully decoupled multi-entry Instruction Fetch Queue (IFQ/FIFO) to handle continuous aligned and compressed instruction streaming for superscalar issue.
-- [ ] Implement parallel dequeue logic to feed multiple decoders.
+- [x] Expand the simple 1-entry `IBuffer` into a fully decoupled multi-entry Instruction Fetch Queue (IFQ/FIFO) to handle continuous aligned and compressed instruction streaming for superscalar issue.
+- [x] Implement parallel dequeue logic to feed multiple decoders.
 - **XiangShan Study**: [IBuffer.scala:L80-120](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/frontend/IBuffer.scala) - *How instructions are buffered and dequeued in parallel.*
 
 ## Day 3: Parallel Decoders
-- [ ] Instantiate 6 `Decoder` modules in the Backend.
+- [x] Instantiate 6 `Decoder` modules in the Backend.
 - **XiangShan Study**: [DecodeUnit.scala](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/backend/decode/DecodeUnit.scala) - *Look for parameters like `DecodeWidth`.*
 
 ## Day 4: Register Renaming (Map Table)

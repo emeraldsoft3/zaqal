@@ -15,12 +15,25 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
     val debug_cycle = Input(UInt(64.W))
   })
 
+  val decoders = Seq.fill(decodeWidth)(Module(new Decoder))
+  val decoded_uops = Wire(Vec(decodeWidth, new DecodedMicroOp))
+
+  for (i <- 0 until decodeWidth) {
+    decoders(i).io.inst := io.dispatch(i).bits.inst_raw
+    decoded_uops(i).uop    := io.dispatch(i).bits
+    decoded_uops(i).decode := decoders(i).io.out
+  }
+
   val exec = Module(new Execute)
 
-  // Day 2: Still single-issue in the backend, so we only consume from port 0
-  exec.io.in <> io.dispatch(0)
+  // Day 3: Parallel decoders are ready, but execution cluster is still single-issue.
+  // We feed the first decoded uop to the Execute module.
+  exec.io.in.valid := io.dispatch(0).valid
+  exec.io.in.bits  := decoded_uops(0)
+  io.dispatch(0).ready := exec.io.in.ready
 
-  // Ports 1-5 are "stubbed" for now until Day 3 (Parallel Decoders)
+  // Ports 1-5 decoders are running in parallel, but their results are currently discarded.
+  // We keep them ready=false to avoid losing instructions until the Rename/Issue stages are built.
   for (i <- 1 until decodeWidth) {
     io.dispatch(i).ready := false.B
   }

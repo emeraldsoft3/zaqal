@@ -224,6 +224,12 @@ class MicroOp(implicit val p: Parameters) extends Bundle with HasZaqalParameter 
   val epoch    = Bool()
 }
 
+// Decoded MicroOp (Backend Internal)
+class DecodedMicroOp(implicit val p: Parameters) extends Bundle with HasZaqalParameter {
+  val uop    = new MicroOp
+  val decode = new DecodeSignals
+}
+
 // Redirect signal from Backend to Frontend
 class BPURedirect(implicit val p: Parameters) extends Bundle with HasZaqalParameter {
   val valid  = Bool()

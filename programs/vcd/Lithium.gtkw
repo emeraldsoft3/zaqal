@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.111 (w)1999-2020 BSI
-[*] Fri May  1 06:53:41 2026
+[*] Sat May  9 10:17:28 2026
 [*]
 [dumpfile] "/home/emerald/zaqal/programs/vcd/Lithium.vcd"
-[dumpfile_mtime] "Thu Apr 30 08:34:46 2026"
-[dumpfile_size] 1018949
+[dumpfile_mtime] "Sat May  9 10:11:51 2026"
+[dumpfile_size] 897602
 [savefile] "/home/emerald/zaqal/programs/vcd/Lithium.gtkw"
 [timestart] 0
 [size] 1920 993
 [pos] -1 -1
-*-6.000000 178 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-6.000000 104 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] Core.
 [treeopen] Core.backend.
 [treeopen] Core.backend.exec.
@@ -44,19 +44,35 @@ Core.frontend.ftq.enqPtr[5:0]
 Core.frontend.ftq.io_flush
 @200
 -IFU
-@22
-+{Core.frontend.ifu.packet_pc[63:0]} Core.frontend.ifu.packet_pc[63:0]
-@200
 -Icache
 @22
 Core.frontend.icache.io_pc[63:0]
 @200
 -IBUF
+@28
+Core.frontend.ibuf.io_out_0_valid
 @22
-[color] 2
-Core.frontend.ibuf.io_out_bits_inst_raw[31:0]
-[color] 2
-+{Core.frontend.ibuf.io_out_bits_pc[63:0]} Core.frontend.ibuf.io_out_bits_pc[63:0]
+Core.frontend.ibuf.io_out_0_bits_inst_raw[31:0]
+@28
+Core.frontend.ibuf.io_out_1_valid
+@22
+Core.frontend.ibuf.io_out_1_bits_inst_raw[31:0]
+@28
+Core.frontend.ibuf.io_out_2_valid
+@22
+Core.frontend.ibuf.io_out_2_bits_inst_raw[31:0]
+@28
+Core.frontend.ibuf.io_out_3_valid
+@22
+Core.frontend.ibuf.io_out_3_bits_inst_raw[31:0]
+@28
+Core.frontend.ibuf.io_out_4_valid
+@22
+Core.frontend.ibuf.io_out_4_bits_inst_raw[31:0]
+@28
+Core.frontend.ibuf.io_out_5_valid
+@23
+Core.frontend.ibuf.io_out_5_bits_inst_raw[31:0]
 @200
 -BRU
 @28
@@ -69,16 +85,7 @@ Core.backend.exec.bru.fallthrough_pc[63:0]
 +{Core.backend.io_redirect_target[63:0]} Core.backend.io_redirect_target[63:0]
 @200
 -Execute
-@22
-[color] 3
-Core.backend.exec.io_in_bits_pc[63:0]
-[color] 3
-Core.backend.exec.io_in_bits_inst_raw[31:0]
-@200
 -Decoder
-@22
-Core.backend.exec.decoder.i_imm[11:0]
-@200
 -RegFile
 @22
 Core.backend.exec.regFile.regs_0[63:0]
@@ -113,9 +120,7 @@ Core.backend.exec.regFile.regs_25[63:0]
 +{Core.backend.exec.fpRegFile.regs_0[63:0]} Core.backend.exec.fpRegFile.regs_0[63:0]
 Core.backend.exec.fpRegFile.regs_1[63:0]
 Core.backend.exec.fpRegFile.regs_2[63:0]
-@23
 Core.backend.exec.fpRegFile.regs_3[63:0]
-@22
 Core.backend.exec.fpRegFile.regs_4[63:0]
 Core.backend.exec.fpRegFile.regs_5[63:0]
 Core.backend.exec.fpRegFile.regs_6[63:0]

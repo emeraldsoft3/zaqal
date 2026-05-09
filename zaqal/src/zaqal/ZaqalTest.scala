@@ -12,7 +12,7 @@ object ZaqalTest extends App {
   new File(vcdPath).mkdirs()
 
   implicit val p = (new ZaqalConfig).alter((site, here, up) => {
-    case ZaqalParamsKey => up(ZaqalParamsKey).copy(programFile = "programs/hex/rvc_test.hex")
+    case ZaqalParamsKey => up(ZaqalParamsKey).copy(programFile = "programs/hex/superscalar_test.hex")
   })
   val params = p(ZaqalParamsKey)
 
