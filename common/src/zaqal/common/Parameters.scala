@@ -1,6 +1,7 @@
 package zaqal.common
 
 import chisel3._
+import chisel3.util._
 import org.chipsalliance.cde.config.{Config, Field, Parameters, View}
 
 // 1. Define the actual parameters dataset
@@ -40,6 +41,7 @@ trait HasZaqalParameter {
   def fLen = zP.fLen
   def decodeWidth = zP.decodeWidth
   def programFile = zP.programFile
+  def phyRegIdxWidth = log2Up(phyRegs)
   def predictWidth = fetchWidth * (if (hasCExtension) 2 else 1)
 }
 

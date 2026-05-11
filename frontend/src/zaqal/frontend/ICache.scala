@@ -16,7 +16,7 @@ class ICache(implicit val p: Parameters) extends Module with HasZaqalParameter {
   // Program Loader: Reads hex from the file specified in parameters
   def loadHex(path: String): Seq[UInt] = {
     println(s"[ICache] FPU TEST MODE: Using hardcoded FP program.")
-    if (false) { // Disabled for FPU Verification
+    if (false) { // Disabled for USER verification (Easier to edit here!)
       val source = scala.io.Source.fromFile(path)
       val lines = source.getLines()
         .map(_.split("//")(0).trim) // Remove comments
@@ -26,24 +26,20 @@ class ICache(implicit val p: Parameters) extends Module with HasZaqalParameter {
       println(s"[ICache] Loaded ${insts.length} instructions from $path")
       insts
     } else {
-      println(s"[ICache] Warning: Using RVC-Parity hardcoded FPU test program (Day 39).")
+      println(s"[ICache] Warning: Using Rename Stress Test hardcoded program (Day 4).")
       Seq(
-        "h00100293".U, // 0x00: li x5, 1
-        "h00200313".U, // 0x04: li x6, 2
-        "h00300393".U, // 0x08: li x7, 3
-        "h00400413".U, // 0x0C: li x8, 4
-        "h00500493".U, // 0x10: li x9, 5
-        "h00600513".U, // 0x14: li x10, 6
-        "h00700593".U, // 0x18: li x11, 7
-        "h00800613".U, // 0x1C: li x12, 8
-        "h0000006f".U  // 0x20: j 0x20 (Halt)
+        "h00100093".U, // 0x00: addi x1, x0, 1
+        "h00208113".U, // 0x04: addi x2, x1, 2 (RAW on x1)
+        "h00310193".U, // 0x08: addi x3, x2, 3 (RAW on x2)
+        "h00418213".U, // 0x0C: addi x4, x3, 4 (RAW on x3)
+        "h00520293".U, // 0x10: addi x5, x4, 5 (RAW on x4)
+        "h00628313".U, // 0x14: addi x6, x5, 6 (RAW on x5)
+        "h0000006f".U  // 0x18: j 0x18 (Halt)
       )
     }
   }
 
-  // val hexFile = "programs/hex/coremark_fp.hex"
-  val hexFile = "programs/hex/rvc_fp.hex"
-  val program_seq = loadHex(hexFile)
+  val program_seq = loadHex(programFile)
   val program = VecInit(program_seq.padTo(1024, "h00000013".U)) // Increased size for larger binaries
 
 

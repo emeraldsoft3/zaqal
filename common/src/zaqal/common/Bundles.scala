@@ -228,6 +228,13 @@ class MicroOp(implicit val p: Parameters) extends Bundle with HasZaqalParameter 
 class DecodedMicroOp(implicit val p: Parameters) extends Bundle with HasZaqalParameter {
   val uop    = new MicroOp
   val decode = new DecodeSignals
+
+  // Physical Register Mapping
+  val psrs1     = UInt(phyRegIdxWidth.W)
+  val psrs2     = UInt(phyRegIdxWidth.W)
+  val psrs3     = UInt(phyRegIdxWidth.W)
+  val pdest     = UInt(phyRegIdxWidth.W)
+  val old_pdest = UInt(phyRegIdxWidth.W)
 }
 
 // Redirect signal from Backend to Frontend
