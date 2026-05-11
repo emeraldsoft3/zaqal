@@ -18,8 +18,9 @@ This is where we transition Zaqal from a simple core to a high-performance engin
 - **XiangShan Study**: [DecodeUnit.scala](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/backend/decode/DecodeUnit.scala) - *Look for parameters like `DecodeWidth`.*
 
 ## Day 4: Register Renaming (Map Table)
-- [ ] Implement the Map Table to translate logical registers to physical registers.
+- [x] Implement the Map Table to translate logical registers to physical registers.
 - [ ] **Verify the above implementation** (Study the intra-bundle bypassing and state management).
+- [ ] **Renaming Parity**: Expand `RenameTable` to include separate Integer and Floating-Point RATs (XiangShan parity).
 - **XiangShan Study**: [RenameTable.scala](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/backend/rename/RenameTable.scala) - *Study the RAT (Register Alias Table) implementation.*
 
 ## Day 5: Free List Management

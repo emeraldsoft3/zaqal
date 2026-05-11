@@ -39,7 +39,7 @@ To achieve world-class performance, Zaqal must eventually implement these critic
 - [ ] **Instruction Buffer (IBuffer)** with banked parallel dequeue.
 
 ### Execution Engine
-- [ ] **Rename Stage** (Map Table + Free List).
+- [/] **Rename Stage** (Map Table + Free List) - *Target: 192 Physical Registers (Kunminghu Parity).*
 - [ ] **Reorder Buffer (ROB)** for in-order commitment.
 - [ ] **Physical Register File (PRF)** with Register Cache.
 - [ ] **Distributed Issue Queues** (Separate queues for ALU, MEM, etc.).

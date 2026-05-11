@@ -12,7 +12,7 @@ case class ZaqalParams(
   ftqEntries: Int = 64,
   ftqPtrWidth: Int = 6,
   logicalRegs: Int = 32,
-  phyRegs: Int = 64,
+  phyRegs: Int = 192, // Upgraded to XiangShan Kunminghu Parity
   hasCExtension: Boolean = true,
   hasFExtension: Boolean = true,
   fLen: Int = 64,
