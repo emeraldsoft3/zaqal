@@ -1,19 +1,17 @@
 [*]
 [*] GTKWave Analyzer v3.3.111 (w)1999-2020 BSI
-[*] Sat May  9 10:17:28 2026
+[*] Tue May 12 06:10:17 2026
 [*]
 [dumpfile] "/home/emerald/zaqal/programs/vcd/Lithium.vcd"
-[dumpfile_mtime] "Sat May  9 10:11:51 2026"
-[dumpfile_size] 897602
+[dumpfile_mtime] "Mon May 11 07:04:20 2026"
+[dumpfile_size] 942687
 [savefile] "/home/emerald/zaqal/programs/vcd/Lithium.gtkw"
 [timestart] 0
 [size] 1920 993
 [pos] -1 -1
-*-6.000000 104 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-5.900000 121 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] Core.
 [treeopen] Core.backend.
-[treeopen] Core.backend.exec.
-[treeopen] Core.frontend.
 [treeopen] Core.frontend.ifu.
 [sst_width] 297
 [signals_width] 495
@@ -52,7 +50,7 @@ Core.frontend.icache.io_pc[63:0]
 @28
 Core.frontend.ibuf.io_out_0_valid
 @22
-Core.frontend.ibuf.io_out_0_bits_inst_raw[31:0]
++{Core.frontend.ibuf.io_out_0_bits_inst_raw[31:0]} Core.frontend.ibuf.io_out_0_bits_inst_raw[31:0]
 @28
 Core.frontend.ibuf.io_out_1_valid
 @22
@@ -71,7 +69,7 @@ Core.frontend.ibuf.io_out_4_valid
 Core.frontend.ibuf.io_out_4_bits_inst_raw[31:0]
 @28
 Core.frontend.ibuf.io_out_5_valid
-@23
+@22
 Core.frontend.ibuf.io_out_5_bits_inst_raw[31:0]
 @200
 -BRU
@@ -86,10 +84,72 @@ Core.backend.exec.bru.fallthrough_pc[63:0]
 @200
 -Execute
 -Decoder
+-RAT
+@22
++{Core.backend.rat.arch_table_0[5:0]} Core.backend.rat.arch_table_0[5:0]
+Core.backend.rat.arch_table_1[5:0]
+Core.backend.rat.arch_table_2[5:0]
+Core.backend.rat.arch_table_3[5:0]
+Core.backend.rat.arch_table_4[5:0]
+Core.backend.rat.arch_table_5[5:0]
+Core.backend.rat.arch_table_6[5:0]
+Core.backend.rat.arch_table_7[5:0]
+Core.backend.rat.arch_table_8[5:0]
++{Core.backend.rat.curr_spec_table_0_0[5:0]} Core.backend.rat.curr_spec_table_0_0[5:0]
+Core.backend.rat.curr_spec_table_0_1[5:0]
+Core.backend.rat.curr_spec_table_0_2[5:0]
+Core.backend.rat.curr_spec_table_0_3[5:0]
+Core.backend.rat.curr_spec_table_1_0[5:0]
++{Core.backend.rat.curr_spec_table_1_1[5:0]} Core.backend.rat.curr_spec_table_1_1[5:0]
+Core.backend.rat.curr_spec_table_1_2[5:0]
+Core.backend.rat.curr_spec_table_1_3[5:0]
+Core.backend.rat.io_commitPorts_0_addr[4:0]
+Core.backend.rat.io_commitPorts_0_data[5:0]
+@28
+Core.backend.rat.io_commitPorts_0_wen
+@22
+Core.backend.rat.io_commitPorts_1_addr[4:0]
+Core.backend.rat.io_commitPorts_1_data[5:0]
+Core.backend.rat.io_readPorts_0_0_addr[4:0]
+Core.backend.rat.io_readPorts_0_0_data[5:0]
+Core.backend.rat.io_readPorts_0_1_addr[4:0]
+Core.backend.rat.io_readPorts_0_1_data[5:0]
+Core.backend.rat.io_readPorts_1_0_addr[4:0]
+Core.backend.rat.io_readPorts_1_0_data[5:0]
+Core.backend.rat.io_readPorts_1_1_addr[4:0]
++{Core.backend.rat.io_old_pdest_0[5:0]} Core.backend.rat.io_old_pdest_0[5:0]
+Core.backend.rat.io_old_pdest_1[5:0]
+Core.backend.rat.io_old_pdest_2[5:0]
+Core.backend.rat.io_old_pdest_3[5:0]
+Core.backend.rat.io_renamePorts_0_addr[4:0]
+@24
+Core.backend.rat.io_renamePorts_0_data[5:0]
+@22
+Core.backend.rat.io_readPorts_5_0_data[5:0]
+@28
+Core.backend.rat.io_renamePorts_0_wen
+@22
+Core.backend.rat.io_renamePorts_1_addr[4:0]
+Core.backend.rat.io_renamePorts_1_data[5:0]
+@28
+Core.backend.rat.io_renamePorts_1_wen
+@22
++{Core.backend.rat.spec_table_0[5:0]} Core.backend.rat.spec_table_0[5:0]
+Core.backend.rat.spec_table_1[5:0]
+Core.backend.rat.spec_table_2[5:0]
+Core.backend.rat.spec_table_3[5:0]
+Core.backend.rat.spec_table_4[5:0]
++{Core.backend.rat.table_init_0[5:0]} Core.backend.rat.table_init_0[5:0]
+Core.backend.rat.table_init_1[5:0]
+Core.backend.rat.table_init_2[5:0]
+Core.backend.rat.table_init_3[5:0]
+Core.backend.rat.table_init_4[5:0]
+Core.backend.rat.table_init_5[5:0]
+@200
 -RegFile
 @22
 Core.backend.exec.regFile.regs_0[63:0]
-Core.backend.exec.regFile.regs_1[63:0]
++{Core.backend.exec.regFile.regs_1[63:0]} Core.backend.exec.regFile.regs_1[63:0]
 Core.backend.exec.regFile.regs_2[63:0]
 Core.backend.exec.regFile.regs_3[63:0]
 Core.backend.exec.regFile.regs_4[63:0]
@@ -113,6 +173,7 @@ Core.backend.exec.regFile.regs_21[63:0]
 Core.backend.exec.regFile.regs_22[63:0]
 Core.backend.exec.regFile.regs_23[63:0]
 Core.backend.exec.regFile.regs_24[63:0]
+@23
 Core.backend.exec.regFile.regs_25[63:0]
 @200
 -fpReg

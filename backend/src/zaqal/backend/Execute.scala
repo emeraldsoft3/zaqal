@@ -11,7 +11,7 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   val io = IO(new Bundle {
     val in       = Flipped(Decoupled(new DecodedMicroOp))
     val redirect = Output(new BPURedirect)
-    val debug_regs = Output(Vec(logicalRegs, UInt(xLen.W)))
+    val debug_regs = Output(Vec(phyRegs, UInt(xLen.W)))
     val debug_fp_regs = Output(Vec(32, UInt(fLen.W)))
     val debug_cycle = Input(UInt(64.W))
   })
@@ -30,8 +30,8 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   val dec = io.in.bits.decode
   val uop = io.in.bits.uop
 
-  regFile.io.rs1_addr := dec.rs1
-  regFile.io.rs2_addr := dec.rs2
+  regFile.io.rs1_addr := io.in.bits.psrs1
+  regFile.io.rs2_addr := io.in.bits.psrs2
 
   fpRegFile.io.rs1_addr := dec.rs1
   fpRegFile.io.rs2_addr := dec.rs2
@@ -120,7 +120,7 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   
   // Default RegFile write values
   regFile.io.wen     := false.B
-  regFile.io.rd_addr := dec.rd
+  regFile.io.rd_addr := io.in.bits.pdest
   regFile.io.rd_data := 0.U
 
   fpRegFile.io.wen     := false.B
@@ -278,7 +278,7 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   // Handle Multi-cycle (DIV) writeback
   when(div.io.done) {
     regFile.io.wen     := true.B
-    regFile.io.rd_addr := div_rd_latch
+    regFile.io.rd_addr := io.in.bits.pdest // Multi-cycle should also use pdest
     regFile.io.rd_data := div.io.result
     printf(p"CORE EXECUTE: pc=${Hexadecimal(div_pc_latch)} DIV Result: ${div.io.result} (after stall)\n")
   }

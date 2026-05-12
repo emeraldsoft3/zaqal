@@ -8,27 +8,26 @@ import zaqal.common._
 
 class RegFile(implicit val p: Parameters) extends Module with HasZaqalParameter {
   val io = IO(new Bundle {
-    val rs1_addr = Input(UInt(log2Up(logicalRegs).W))
+    val rs1_addr = Input(UInt(phyRegIdxWidth.W))
     val rs1_data = Output(UInt(xLen.W))
-    val rs2_addr = Input(UInt(log2Up(logicalRegs).W))
+    val rs2_addr = Input(UInt(phyRegIdxWidth.W))
     val rs2_data = Output(UInt(xLen.W))
     
     val wen      = Input(Bool())
-    val rd_addr  = Input(UInt(log2Up(logicalRegs).W))
+    val rd_addr  = Input(UInt(phyRegIdxWidth.W))
     val rd_data  = Input(UInt(xLen.W))
 
-    val debug_regs = Output(Vec(logicalRegs, UInt(xLen.W)))
+    val debug_regs = Output(Vec(phyRegs, UInt(xLen.W)))
   })
 
-  val regs = RegInit(VecInit(Seq.fill(logicalRegs)(0.U(xLen.W))))
+  val regs = RegInit(VecInit(Seq.fill(phyRegs)(0.U(xLen.W))))
   io.debug_regs := regs
 
-  // x0 is hardwired to 0
+  // x0 is hardwired to 0. In physical RF, p0 is x0.
   io.rs1_data := Mux(io.rs1_addr === 0.U, 0.U, regs(io.rs1_addr))
   io.rs2_data := Mux(io.rs2_addr === 0.U, 0.U, regs(io.rs2_addr))
 
-  // Inside RegFile.scala
-  when(io.wen && io.rd_addr =/= 0.U) { // ONLY write if destination is NOT x0
+  when(io.wen && io.rd_addr =/= 0.U) {
     regs(io.rd_addr) := io.rd_data
   }
 }

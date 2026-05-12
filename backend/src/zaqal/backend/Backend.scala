@@ -14,7 +14,7 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
   val io = IO(new Bundle {
     val dispatch = Vec(decodeWidth, Flipped(Decoupled(new MicroOp)))
     val redirect = Output(new BPURedirect)
-    val debug_regs = Output(Vec(logicalRegs, UInt(xLen.W)))
+    val debug_regs = Output(Vec(phyRegs, UInt(xLen.W)))
     val debug_fp_regs = Output(Vec(32, UInt(fLen.W)))
     val debug_cycle = Input(UInt(64.W))
   })

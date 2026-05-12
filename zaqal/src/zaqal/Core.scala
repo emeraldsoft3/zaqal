@@ -30,7 +30,7 @@ class Core(implicit val p: Parameters) extends Module with HasZaqalParameter {
     val debug_ftq_ready_out   = Output(Bool())
 
     val debug_cycle_count     = Output(UInt(64.W))
-    val debug_regs            = Output(Vec(logicalRegs, UInt(xLen.W)))
+    val debug_regs            = Output(Vec(phyRegs, UInt(xLen.W)))
     val debug_fp_regs         = Output(Vec(32, UInt(fLen.W)))
   })
 
