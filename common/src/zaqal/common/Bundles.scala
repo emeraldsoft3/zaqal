@@ -211,6 +211,12 @@ class DecodeSignals(implicit val p: Parameters) extends Bundle with HasZaqalPara
   val rs2     = UInt(5.W)  // Source register 2 (R-type)
   val rs3     = UInt(5.W)  // Source register 3 (R4-type FMA)
   val imm     = SInt(xLen.W)
+
+  // Register Types (for Rename)
+  val rs1_is_fp = Bool()
+  val rs2_is_fp = Bool()
+  val rs3_is_fp = Bool()
+  val rd_is_fp  = Bool()
 }
 
 // The "Language" spoken between Frontend and Backend (Kunminghu)

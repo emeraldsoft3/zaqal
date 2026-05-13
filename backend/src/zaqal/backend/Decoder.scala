@@ -249,4 +249,15 @@ class Decoder(implicit val p: Parameters) extends Module with HasZaqalParameter 
   } .elsewhen(io.out.is_store || io.out.is_fstore || io.out.is_sc) {
     io.out.imm := s_imm // Stores and SC use S-type immediate
   }
+
+  // Register Type Selection for Renaming
+  val any_fma = io.out.is_fmadd || io.out.is_fmsub || io.out.is_fnmsub || io.out.is_fnmadd
+  val fp_r_type = is_fp_op && (io.out.is_fadd || io.out.is_fsub || io.out.is_fmul || io.out.is_fdiv || 
+                               io.out.is_fsgnj || io.out.is_fminmax || io.out.is_feq || io.out.is_flt || io.out.is_fle)
+
+  io.out.rs1_is_fp := (is_fp_op && !(io.out.is_fcvt_i2f || io.out.is_fmv_w_x)) || any_fma
+  io.out.rs2_is_fp := fp_r_type || any_fma || io.out.is_fstore
+  io.out.rs3_is_fp := any_fma
+  io.out.rd_is_fp  := io.out.is_fload || any_fma || (is_fp_op && !(io.out.is_fcvt_f2i || io.out.is_fmv_x_w || 
+                                                                  io.out.is_feq || io.out.is_flt || io.out.is_fle || io.out.is_fclass))
 }

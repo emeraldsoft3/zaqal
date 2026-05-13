@@ -16,7 +16,7 @@ class RatWritePort(implicit val p: Parameters) extends Bundle with HasZaqalParam
   val data = UInt(phyRegIdxWidth.W)
 }
 
-class RenameTable(implicit val p: Parameters) extends Module with HasZaqalParameter {
+class RenameTable(val numLogicalRegs: Int, val isFP: Boolean = false)(implicit val p: Parameters) extends Module with HasZaqalParameter {
   val io = IO(new Bundle {
     val readPorts   = Vec(decodeWidth, Vec(3, new RatReadPort))
     val renamePorts = Vec(decodeWidth, Input(new RatWritePort))
@@ -26,49 +26,54 @@ class RenameTable(implicit val p: Parameters) extends Module with HasZaqalParame
     val redirect    = Input(Bool())
     
     // Debug
-    val debug_rat   = Output(Vec(logicalRegs, UInt(phyRegIdxWidth.W)))
+    val debug_rat   = Output(Vec(numLogicalRegs, UInt(phyRegIdxWidth.W)))
   })
 
   // Initial mapping: x(i) -> p(i)
-  // x0 is always p0
-  val table_init = VecInit(Seq.tabulate(logicalRegs)(i => i.U(phyRegIdxWidth.W)))
+  val table_init = VecInit(Seq.tabulate(numLogicalRegs)(i => i.U(phyRegIdxWidth.W)))
   val spec_table = RegInit(table_init)
   val arch_table = RegInit(table_init)
 
   // 1. Rename Stage (Speculative)
   // We handle intra-bundle dependencies using a cascading wire table
-  val curr_spec_table = Wire(Vec(decodeWidth + 1, Vec(logicalRegs, UInt(phyRegIdxWidth.W))))
+  val curr_spec_table = Wire(Vec(decodeWidth + 1, Vec(numLogicalRegs, UInt(phyRegIdxWidth.W))))
   curr_spec_table(0) := spec_table
 
   for (i <- 0 until decodeWidth) {
     // Read source registers (rs1, rs2, rs3)
-    io.readPorts(i)(0).data := curr_spec_table(i)(io.readPorts(i)(0).addr)
-    io.readPorts(i)(1).data := curr_spec_table(i)(io.readPorts(i)(1).addr)
-    io.readPorts(i)(2).data := curr_spec_table(i)(io.readPorts(i)(2).addr)
+    // Intra-bundle bypassing: rs uses the latest mapping from previous instructions in the same bundle
+    if (isFP) {
+      io.readPorts(i)(0).data := curr_spec_table(i)(io.readPorts(i)(0).addr)
+      io.readPorts(i)(1).data := curr_spec_table(i)(io.readPorts(i)(1).addr)
+      io.readPorts(i)(2).data := curr_spec_table(i)(io.readPorts(i)(2).addr)
+    } else {
+      io.readPorts(i)(0).data := Mux(io.readPorts(i)(0).addr === 0.U, 0.U, curr_spec_table(i)(io.readPorts(i)(0).addr))
+      io.readPorts(i)(1).data := Mux(io.readPorts(i)(1).addr === 0.U, 0.U, curr_spec_table(i)(io.readPorts(i)(1).addr))
+      io.readPorts(i)(2).data := Mux(io.readPorts(i)(2).addr === 0.U, 0.U, curr_spec_table(i)(io.readPorts(i)(2).addr))
+    }
     
     // Capture old pdest for rd (used for ROB commit and recovery)
     io.old_pdest(i) := curr_spec_table(i)(io.renamePorts(i).addr)
     
     // Update for next instruction in the same bundle
     curr_spec_table(i+1) := curr_spec_table(i)
-    when (io.renamePorts(i).wen && io.renamePorts(i).addr =/= 0.U) {
+    val wen = if (isFP) io.renamePorts(i).wen else io.renamePorts(i).wen && io.renamePorts(i).addr =/= 0.U
+    when (wen) {
       curr_spec_table(i+1)(io.renamePorts(i).addr) := io.renamePorts(i).data
     }
   }
   
   // State Update
   when (io.redirect) {
-    // On mispredict/exception, restore speculative table from architectural state
-    // In a more advanced design, we would use snapshots here.
     spec_table := arch_table
   } .otherwise {
     spec_table := curr_spec_table(decodeWidth)
   }
 
   // 2. Commit Stage (Architectural)
-  // These are updated when instructions reach the head of the ROB and commit.
   for (i <- 0 until decodeWidth) {
-    when (io.commitPorts(i).wen && io.commitPorts(i).addr =/= 0.U) {
+    val wen = if (isFP) io.commitPorts(i).wen else io.commitPorts(i).wen && io.commitPorts(i).addr =/= 0.U
+    when (wen) {
       arch_table(io.commitPorts(i).addr) := io.commitPorts(i).data
     }
   }

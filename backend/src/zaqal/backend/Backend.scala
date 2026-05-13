@@ -15,7 +15,7 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
     val dispatch = Vec(decodeWidth, Flipped(Decoupled(new MicroOp)))
     val redirect = Output(new BPURedirect)
     val debug_regs = Output(Vec(phyRegs, UInt(xLen.W)))
-    val debug_fp_regs = Output(Vec(32, UInt(fLen.W)))
+    val debug_fp_regs = Output(Vec(phyRegs, UInt(fLen.W)))
     val debug_cycle = Input(UInt(64.W))
   })
 
@@ -30,7 +30,8 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
   }
 
   // Day 4: Register Renaming (Map Table)
-  val rat = Module(new RenameTable)
+  // Day 4: Register Renaming (Map Table)
+  val rat = Module(new RenameTableWrapper)
   
   // Simple Free List / Pdest allocator (for demonstration)
   // In a real design, this would be a proper FreeList module.
@@ -41,18 +42,17 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
   for (i <- 0 until decodeWidth) {
     val dec = decoded_uops(i).decode
     
-    // 1. Connect Read Ports
-    rat.io.readPorts(i)(0).addr := dec.rs1
-    rat.io.readPorts(i)(1).addr := dec.rs2
-    rat.io.readPorts(i)(2).addr := dec.rs3
+    // 1. Connect Decode and Read Ports
+    rat.io.dec(i) := dec
     
-    decoded_uops(i).psrs1 := rat.io.readPorts(i)(0).data
-    decoded_uops(i).psrs2 := rat.io.readPorts(i)(1).data
-    decoded_uops(i).psrs3 := rat.io.readPorts(i)(2).data
+    decoded_uops(i).psrs1 := rat.io.psrs1(i)
+    decoded_uops(i).psrs2 := rat.io.psrs2(i)
+    decoded_uops(i).psrs3 := rat.io.psrs3(i)
     
     // 2. Allocate Pdest if the instruction writes to a register
-    // Simplified: any instruction with rd != 0 that is not a branch/store writes to RF
-    val rf_wen = dec.rd =/= 0.U && !dec.is_branch && !dec.is_store
+    // In a real design, Int and FP would have separate Free Lists.
+    // For now, they share the physical register pool for simplicity of the prototype.
+    val rf_wen = (dec.rd =/= 0.U || dec.rd_is_fp) && !dec.is_branch && !dec.is_store && !dec.is_fstore && !dec.is_atomic // Simplified
     
     decoded_uops(i).pdest := Mux(rf_wen, next_pdest_ptr(i), 0.U)
     next_pdest_ptr(i+1) := Mux(io.dispatch(i).fire && rf_wen, 
@@ -83,6 +83,7 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
     rat.io.commitPorts(i).wen := false.B
     rat.io.commitPorts(i).addr := 0.U
     rat.io.commitPorts(i).data := 0.U
+    rat.io.commit_is_fp(i) := false.B
   }
   rat.io.redirect := false.B // TODO: Connect to actual redirect signal
 

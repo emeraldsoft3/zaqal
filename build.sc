@@ -60,4 +60,12 @@ object zaqal extends ZaqalModule {
       ivy"edu.berkeley.cs::chiseltest:6.0.0"
     )
   }
+
+  object test extends ScalaTests with TestModule.ScalaTest {
+    override def ivyDeps = T {
+      super.ivyDeps() ++ Agg(
+        ivy"org.scalatest::scalatest:3.2.19"
+      )
+    }
+  }
 }

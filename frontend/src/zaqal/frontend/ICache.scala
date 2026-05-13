@@ -34,7 +34,19 @@ class ICache(implicit val p: Parameters) extends Module with HasZaqalParameter {
         "h00418213".U, // 0x0C: addi x4, x3, 4 (RAW on x3)
         "h00520293".U, // 0x10: addi x5, x4, 5 (RAW on x4)
         "h00628313".U, // 0x14: addi x6, x5, 6 (RAW on x5)
-        "h0000006f".U  // 0x18: j 0x18 (Halt)
+        "h00730393".U, // 0x18: addi x7, x6, 7 (RAW on x6)
+        "h00838413".U, // 0x1C: addi x8, x7, 8
+        "h00940493".U, // 0x20: addi x9, x8, 9
+        "h00a48513".U, // 0x24: addi x10, x9, 10
+        "h00b50593".U, // 0x28: addi x11, x10, 11
+        "h00c58613".U, // 0x2C: addi x12, x11, 12
+        "h0000a087".U, // 0x30: flw f1, 0(x1)  (FP Load)
+        "h02108153".U, // 0x34: fadd.s f2, f1, f1 (FP RAW on f1)
+        "h0a2081d3".U, // 0x38: fsub.s f3, f2, f1 (FP RAW on f2)
+        "h00d60693".U, // 0x3C: addi x13, x12, 13
+        "h00e68713".U, // 0x40: addi x14, x13, 14
+        "h00f70793".U, // 0x44: addi x15, x14, 15
+        "h0000006f".U  // 0x48: j 0x48 (Halt)
       )
     }
   }

@@ -38,9 +38,10 @@ object ZaqalTest extends App {
       csvFile.flush() 
     }
 
+
     // --- MAIN SIMULATION LOOP ---
     val resetCycles = 5
-    val maxCycles = 30
+    val maxCycles = 50
     
     for (cycle <- 0 until maxCycles) {
       // 1. Apply Reset

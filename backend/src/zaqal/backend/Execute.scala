@@ -12,14 +12,14 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
     val in       = Flipped(Decoupled(new DecodedMicroOp))
     val redirect = Output(new BPURedirect)
     val debug_regs = Output(Vec(phyRegs, UInt(xLen.W)))
-    val debug_fp_regs = Output(Vec(32, UInt(fLen.W)))
+    val debug_fp_regs = Output(Vec(phyRegs, UInt(fLen.W)))
     val debug_cycle = Input(UInt(64.W))
   })
 
   // Coordination state
   val div_rd_latch = RegInit(0.U(5.W))
   val div_pc_latch = RegInit(0.U(xLen.W))
-  val fpdiv_rd_latch = RegInit(0.U(5.W))
+  val fpdiv_rd_latch = RegInit(0.U(phyRegIdxWidth.W))
   val fpdiv_pc_latch = RegInit(0.U(xLen.W))
 
   // 1. Register File (Decoder is now external)
@@ -33,9 +33,9 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   regFile.io.rs1_addr := io.in.bits.psrs1
   regFile.io.rs2_addr := io.in.bits.psrs2
 
-  fpRegFile.io.rs1_addr := dec.rs1
-  fpRegFile.io.rs2_addr := dec.rs2
-  fpRegFile.io.rs3_addr := dec.rs3
+  fpRegFile.io.rs1_addr := io.in.bits.psrs1
+  fpRegFile.io.rs2_addr := io.in.bits.psrs2
+  fpRegFile.io.rs3_addr := io.in.bits.psrs3
   
   val src1 = regFile.io.rs1_data
   val fsrc1 = fpRegFile.io.rs1_data
@@ -124,7 +124,7 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   regFile.io.rd_data := 0.U
 
   fpRegFile.io.wen     := false.B
-  fpRegFile.io.rd_addr := dec.rd
+  fpRegFile.io.rd_addr := io.in.bits.pdest
   fpRegFile.io.rd_data := 0.U
 
   // FCSR defaults
@@ -206,7 +206,7 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
       div_pc_latch := uop.pc
     }
     when(is_fpdiv_op) {
-      fpdiv_rd_latch := dec.rd
+      fpdiv_rd_latch := io.in.bits.pdest
       fpdiv_pc_latch := uop.pc
     }
 
@@ -272,7 +272,7 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
                 dec.is_flt || dec.is_fle || dec.is_fminmax || dec.is_fsgnj || dec.is_fclass
   
   when(io.in.fire && is_f_op) {
-    printf(p"CORE EXECUTE [Cycle ${io.debug_cycle}]: pc=${Hexadecimal(uop.pc)} inst=${Hexadecimal(uop.inst_raw)} [FPU FRONT-END] frd=${dec.rd} frs1=${dec.rs1} frs2=${dec.rs2} frs3=${dec.rs3} fsrc1=${Hexadecimal(fsrc1)} fsrc2=${Hexadecimal(fsrc2)} fsrc3=${Hexadecimal(fsrc3)}\n")
+    printf(p"CORE EXECUTE [Cycle ${io.debug_cycle}]: pc=${Hexadecimal(uop.pc)} inst=${Hexadecimal(uop.inst_raw)} [FPU FRONT-END] prd=${io.in.bits.pdest} prs1=${io.in.bits.psrs1} prs2=${io.in.bits.psrs2} prs3=${io.in.bits.psrs3} fsrc1=${Hexadecimal(fsrc1)} fsrc2=${Hexadecimal(fsrc2)} fsrc3=${Hexadecimal(fsrc3)}\n")
   }
 
   // Handle Multi-cycle (DIV) writeback
