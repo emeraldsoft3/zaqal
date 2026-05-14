@@ -17,6 +17,11 @@ This is where we transition Zaqal from a simple core to a high-performance engin
 - [x] Instantiate 6 `Decoder` modules in the Backend.
 - **XiangShan Study**: [DecodeUnit.scala](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/backend/decode/DecodeUnit.scala) - *Look for parameters like `DecodeWidth`.*
 
+## Day 3.5: Instruction Fusion (XiangShan Parity)
+- [ ] **Macro-Op Fusion**: Fuse patterns like `LUI`+`ADDI` into a single micro-op to save rename/issue bandwidth.
+- [ ] **Micro-Op Fusion**: Fuse Memory + ALU operations where applicable.
+- **Goal**: Increase effective dispatch width and reduce PRF pressure.
+
 ## Day 4: Register Renaming (Map Table)
 - [x] Implement the Map Table to translate logical registers to physical registers.
 - [x] **Verify the above implementation** (Study the intra-bundle bypassing and state management).

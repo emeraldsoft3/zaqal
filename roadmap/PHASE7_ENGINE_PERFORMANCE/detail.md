@@ -26,7 +26,8 @@ The goal of this phase is to turn the "Instructions-per-packet" into "Instructio
 ## Day 16-25: Issue Queues & LSQ (The Schedulers)
 - [ ] **Day 16-18**: **Distributed Issue Queues**: Parallel schedulers for ALU, Mem, and Branch.
 - [ ] **Day 19-21**: **Load/Store Queues (LSQ)**: Handle memory dependencies out-of-order.
-- [ ] **Day 22-25**: **Memory Disambiguation**: Speculative loads and store-to-load forwarding.
+- [ ] **Day 22-24**: **Memory Disambiguation**: Speculative loads and store-to-load forwarding.
+- [ ] **Day 25**: **Memory Dependence Predictor (MDP)**: Implement Store Sets (SSIT/LFST) or Wait Table to predict load/store collisions and avoid costly memory violation flushes (XiangShan parity).
 - **XiangShan Study**: [IssueQueue.scala](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/backend/issue/IssueQueue.scala)
 
 ## Day 26-35: Intelligent Memory Prefetching (L1-D Hidden Power)

@@ -22,7 +22,7 @@ To achieve true XiangShan-level performance, the front-end must provide near-per
 
 ## Day 11-15: Memory Interface (Caches)
 - [ ] **Day 11-13**: **Instruction Cache (I-Cache)**: Replace the bypass model with a real L1-I with refill logic.
-- [ ] **Day 14-15**: **Data Cache (D-Cache)**: Non-blocking L1-D with hit-under-miss support.
+- [ ] **Day 14-15**: **Data Cache (D-Cache) & MSHRs**: Non-blocking L1-D with Miss Status Handling Registers (MSHRs) for true hit-under-miss support.
 - **XiangShan Study**: [icache/](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/frontend/icache/)
 
 ## Day 16-20: Speculative State & Resilience
