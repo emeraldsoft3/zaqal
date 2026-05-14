@@ -16,8 +16,9 @@ The goal of this phase is to turn the "Instructions-per-packet" into "Instructio
 - [ ] **Day 6-8**: **Exception & Flush**: Precise exceptions and rollback state management.
 - **XiangShan Study**: [Rob.scala](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/backend/rob/Rob.scala)
 
-## Day 9-15: Register Renaming & Cache
+## Day 9-15: Register Renaming, Cache & Snapshots
 - [ ] **Day 9-11**: **Rename Alias Table (RAT)**: Map logical registers to physical ones.
+- [ ] **Day 11.5**: **Checkpoint Array (Snapshots)**: Implement 1-cycle RAT/FreeList state recovery for branch mispredicts (XiangShan parity).
 - [ ] **Day 12-13**: **Physical Register File (PRF)**: High-bandwidth multi-port RF.
 - [ ] **Day 14-15**: **Register Cache (RC)**: Reduce PRF read latency to improve Fmax.
 - **XiangShan Study**: [RenameTable.scala](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/backend/rename/RenameTable.scala)

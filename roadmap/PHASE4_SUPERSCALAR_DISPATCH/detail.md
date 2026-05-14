@@ -19,13 +19,18 @@ This is where we transition Zaqal from a simple core to a high-performance engin
 
 ## Day 4: Register Renaming (Map Table)
 - [x] Implement the Map Table to translate logical registers to physical registers.
-- [ ] **Verify the above implementation** (Study the intra-bundle bypassing and state management).
-- [ ] **Renaming Parity**: Expand `RenameTable` to include separate Integer and Floating-Point RATs (XiangShan parity).
+- [x] **Verify the above implementation** (Study the intra-bundle bypassing and state management).
+- [x] **Renaming Parity**: Expand `RenameTable` to include separate Integer and Floating-Point RATs (XiangShan parity).
 - **XiangShan Study**: [RenameTable.scala](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/backend/rename/RenameTable.scala) - *Study the RAT (Register Alias Table) implementation.*
 
 ## Day 5: Free List Management
-- [ ] Build the Free List to track available physical registers.
+- [x] Build the Free List to track available physical registers.
 - **XiangShan Study**: [Rename.scala:L200-250](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/backend/rename/Rename.scala) - *Allocation and deallocation logic.*
+
+## Day 5.5: Speculative State Snapshots (XiangShan Parity)
+- [ ] **Snapshot Study**: Study how XiangShan uses `SnapshotGenerator` to save RAT and FreeList state on every branch.
+- **Goal**: Plan the integration of Checkpoint Arrays to allow 1-cycle recovery from mispredicts.
+- **XiangShan Study**: [BaseFreeList.scala:L71](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/backend/rename/freelist/BaseFreeList.scala) - *See `SnapshotGenerator` usage.*
 
 ## Day 6: Dispatch Logic (The Traffic Cop)
 - [ ] Route decoded instructions to appropriate issue queues (ALU, MEM, etc.).

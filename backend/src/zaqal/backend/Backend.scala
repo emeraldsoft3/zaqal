@@ -30,14 +30,22 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
   }
 
   // Day 4: Register Renaming (Map Table)
-  // Day 4: Register Renaming (Map Table)
   val rat = Module(new RenameTableWrapper)
   
-  // Simple Free List / Pdest allocator (for demonstration)
-  // In a real design, this would be a proper FreeList module.
-  val pdest_ptr = RegInit(32.U(phyRegIdxWidth.W))
-  val next_pdest_ptr = Wire(Vec(decodeWidth + 1, UInt(phyRegIdxWidth.W)))
-  next_pdest_ptr(0) := pdest_ptr
+  // Day 5: Free List Management
+  val intFreeList = Module(new FreeList(phyRegs, logicalRegs))
+  val fpFreeList  = Module(new FreeList(phyRegs, logicalRegs))
+
+  // Tie off redirect and archHeadPtr for now
+  intFreeList.io.redirect := rat.io.redirect
+  intFreeList.io.archHeadPtr := 0.U
+  intFreeList.io.doAllocate := false.B // Will be set below
+
+  fpFreeList.io.redirect := rat.io.redirect
+  fpFreeList.io.archHeadPtr := 0.U
+  fpFreeList.io.doAllocate := false.B
+
+  val can_allocate_all = intFreeList.io.canAllocate && fpFreeList.io.canAllocate
 
   for (i <- 0 until decodeWidth) {
     val dec = decoded_uops(i).decode
@@ -50,17 +58,19 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
     decoded_uops(i).psrs3 := rat.io.psrs3(i)
     
     // 2. Allocate Pdest if the instruction writes to a register
-    // In a real design, Int and FP would have separate Free Lists.
-    // For now, they share the physical register pool for simplicity of the prototype.
-    val rf_wen = (dec.rd =/= 0.U || dec.rd_is_fp) && !dec.is_branch && !dec.is_store && !dec.is_fstore && !dec.is_atomic // Simplified
-    
-    decoded_uops(i).pdest := Mux(rf_wen, next_pdest_ptr(i), 0.U)
-    next_pdest_ptr(i+1) := Mux(io.dispatch(i).fire && rf_wen, 
-                               Mux(next_pdest_ptr(i) === (phyRegs-1).U, 32.U, next_pdest_ptr(i) + 1.U), 
-                               next_pdest_ptr(i))
-    
+    val rf_wen = dec.rd =/= 0.U && !dec.rd_is_fp && !dec.is_branch && !dec.is_store && !dec.is_fstore && !dec.is_atomic
+    val fp_wen = dec.rd_is_fp && !dec.is_branch && !dec.is_store && !dec.is_fstore && !dec.is_atomic
+
+    intFreeList.io.allocateReq(i) := rf_wen && io.dispatch(i).valid
+    fpFreeList.io.allocateReq(i)  := fp_wen && io.dispatch(i).valid
+
+    decoded_uops(i).pdest := MuxCase(0.U, Seq(
+      intFreeList.io.allocateReq(i) -> intFreeList.io.allocatePhyReg(i),
+      fpFreeList.io.allocateReq(i)  -> fpFreeList.io.allocatePhyReg(i)
+    ))
+
     // 3. Connect Rename Ports
-    rat.io.renamePorts(i).wen  := io.dispatch(i).fire && rf_wen
+    rat.io.renamePorts(i).wen  := io.dispatch(i).fire && (rf_wen || fp_wen)
     rat.io.renamePorts(i).addr := dec.rd
     rat.io.renamePorts(i).data := decoded_uops(i).pdest
     
@@ -70,13 +80,17 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
     when(io.dispatch(i).valid) {
       printf(p"CORE RENAME [Cycle ${io.debug_cycle}] [Port $i]: pc=${Hexadecimal(decoded_uops(i).uop.pc)} inst=${Hexadecimal(decoded_uops(i).uop.inst_raw)} ")
       printf(p"lrs1=${dec.rs1}->prs1=${decoded_uops(i).psrs1} lrs2=${dec.rs2}->prs2=${decoded_uops(i).psrs2} ")
-      when(rf_wen) {
+      when(rf_wen || fp_wen) {
         printf(p"lrd=${dec.rd}->pdest=${decoded_uops(i).pdest} (old=${decoded_uops(i).old_pdest})")
       }
       printf("\n")
     }
   }
-  pdest_ptr := next_pdest_ptr(decodeWidth)
+
+  // Update FreeList doAllocate based on whether any instruction in the bundle fired
+  val bundle_fired = io.dispatch.map(_.fire).reduce(_ || _)
+  intFreeList.io.doAllocate := bundle_fired
+  fpFreeList.io.doAllocate  := bundle_fired
   
   // Tie off commit ports and redirect for now
   for (i <- 0 until decodeWidth) {
@@ -84,6 +98,11 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
     rat.io.commitPorts(i).addr := 0.U
     rat.io.commitPorts(i).data := 0.U
     rat.io.commit_is_fp(i) := false.B
+
+    intFreeList.io.freeReq(i) := false.B
+    intFreeList.io.freePhyReg(i) := 0.U
+    fpFreeList.io.freeReq(i) := false.B
+    fpFreeList.io.freePhyReg(i) := 0.U
   }
   rat.io.redirect := false.B // TODO: Connect to actual redirect signal
 
@@ -91,12 +110,12 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
 
   // Day 3/4: Still single-issue execution.
   // We feed the first renamed uop to the Execute module.
-  exec.io.in.valid := io.dispatch(0).valid
+  exec.io.in.valid := io.dispatch(0).valid && can_allocate_all
   exec.io.in.bits  := decoded_uops(0)
-  io.dispatch(0).ready := exec.io.in.ready
+  io.dispatch(0).ready := exec.io.in.ready && can_allocate_all
 
   for (i <- 1 until decodeWidth) {
-    io.dispatch(i).ready := false.B
+    io.dispatch(i).ready := false.B // Future: Multi-issue execution
   }
 
   // Route redirection from Execute to Frontend
