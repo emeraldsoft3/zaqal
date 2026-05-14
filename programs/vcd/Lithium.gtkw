@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.111 (w)1999-2020 BSI
-[*] Wed May 13 09:55:59 2026
+[*] Thu May 14 07:55:12 2026
 [*]
 [dumpfile] "/home/emerald/zaqal/programs/vcd/Lithium.vcd"
-[dumpfile_mtime] "Wed May 13 09:50:25 2026"
-[dumpfile_size] 1471028
+[dumpfile_mtime] "Thu May 14 07:23:53 2026"
+[dumpfile_size] 1522119
 [savefile] "/home/emerald/zaqal/programs/vcd/Lithium.gtkw"
 [timestart] 72
 [size] 1920 993
 [pos] -1 -1
-*-5.900000 178 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-5.900000 111 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] Core.
 [treeopen] Core.backend.
 [treeopen] Core.backend.exec.
@@ -82,6 +82,35 @@ Core.backend.exec.bru.io_mispredict
 Core.backend.exec.bru.fallthrough_pc[63:0]
 @200
 -backend
+@28
+Core.backend.intFreeList.actualAlloc[2:0]
+@22
+Core.backend.intFreeList.dist[7:0]
+Core.backend.intFreeList.freeCount[7:0]
+Core.backend.intFreeList.freeList_0[7:0]
+Core.backend.intFreeList.freeList_1[7:0]
+Core.backend.intFreeList.freeList_2[7:0]
+Core.backend.intFreeList.freeList_3[7:0]
+Core.backend.intFreeList.freeList_4[7:0]
+Core.backend.intFreeList.freeList_5[7:0]
+Core.backend.intFreeList.headPtr[7:0]
+Core.backend.intFreeList.headPtr_next[8:0]
+Core.backend.intFreeList.io_allocatePhyReg_0[7:0]
+Core.backend.intFreeList.io_allocatePhyReg_0_next[8:0]
+Core.backend.intFreeList.io_allocatePhyReg_1[7:0]
+Core.backend.intFreeList.io_allocatePhyReg_1_next[8:0]
+Core.backend.intFreeList.io_allocatePhyReg_2[7:0]
+Core.backend.intFreeList.io_allocatePhyReg_2_next[8:0]
+@28
+Core.backend.intFreeList.io_allocateReq_0
+Core.backend.intFreeList.io_allocateReq_1
+@22
+Core.backend.intFreeList.io_freePhyReg_0[7:0]
+Core.backend.intFreeList.io_freePhyReg_1[7:0]
+@28
+Core.backend.intFreeList.offset_1[1:0]
+@29
+Core.backend.intFreeList.offset_2[2:0]
 @22
 +{Core.backend.io_redirect_target[63:0]} Core.backend.io_redirect_target[63:0]
 @200
@@ -105,16 +134,7 @@ Core.backend.rat.intRat.spec_table_5[7:0]
 Core.backend.rat.intRat.spec_table_6[7:0]
 @24
 Core.backend.rat.intRat.spec_table_7[7:0]
-Core.backend.rat.intRat.spec_table_8[7:0]
-Core.backend.rat.intRat.spec_table_9[7:0]
 @22
-Core.backend.rat.intRat.spec_table_10[7:0]
-Core.backend.rat.intRat.spec_table_11[7:0]
-Core.backend.rat.intRat.spec_table_12[7:0]
-Core.backend.rat.intRat.spec_table_13[7:0]
-Core.backend.rat.intRat.spec_table_14[7:0]
-Core.backend.rat.intRat.spec_table_0[7:0]
-Core.backend.rat.intRat.spec_table_15[7:0]
 Core.backend.rat.intRat.curr_spec_table_0_0[7:0]
 @24
 +{Core.backend.rat.intRat.curr_spec_table_0_1[7:0]} Core.backend.rat.intRat.curr_spec_table_0_1[7:0]
@@ -122,33 +142,6 @@ Core.backend.rat.intRat.curr_spec_table_0_0[7:0]
 Core.backend.rat.intRat.curr_spec_table_0_2[7:0]
 Core.backend.rat.intRat.curr_spec_table_0_3[7:0]
 Core.backend.rat.intRat.curr_spec_table_0_4[7:0]
-Core.backend.rat.intRat.curr_spec_table_0_5[7:0]
-Core.backend.rat.intRat.curr_spec_table_0_6[7:0]
-Core.backend.rat.intRat.curr_spec_table_0_7[7:0]
-Core.backend.rat.intRat.curr_spec_table_0_8[7:0]
-Core.backend.rat.intRat.curr_spec_table_0_9[7:0]
-Core.backend.rat.intRat.curr_spec_table_0_10[7:0]
-Core.backend.rat.intRat.curr_spec_table_0_11[7:0]
-Core.backend.rat.intRat.curr_spec_table_0_12[7:0]
-Core.backend.rat.intRat.curr_spec_table_0_13[7:0]
-Core.backend.rat.intRat.curr_spec_table_0_14[7:0]
-Core.backend.rat.intRat.curr_spec_table_0_15[7:0]
-Core.backend.rat.intRat.curr_spec_table_0_16[7:0]
-Core.backend.rat.intRat.curr_spec_table_0_17[7:0]
-Core.backend.rat.intRat.curr_spec_table_0_18[7:0]
-Core.backend.rat.intRat.curr_spec_table_0_19[7:0]
-Core.backend.rat.intRat.curr_spec_table_0_20[7:0]
-Core.backend.rat.intRat.curr_spec_table_0_21[7:0]
-Core.backend.rat.intRat.curr_spec_table_0_22[7:0]
-Core.backend.rat.intRat.curr_spec_table_0_23[7:0]
-Core.backend.rat.intRat.curr_spec_table_0_24[7:0]
-Core.backend.rat.intRat.curr_spec_table_0_25[7:0]
-Core.backend.rat.intRat.curr_spec_table_0_26[7:0]
-Core.backend.rat.intRat.curr_spec_table_0_27[7:0]
-Core.backend.rat.intRat.curr_spec_table_0_28[7:0]
-Core.backend.rat.intRat.curr_spec_table_0_29[7:0]
-Core.backend.rat.intRat.curr_spec_table_0_30[7:0]
-Core.backend.rat.intRat.curr_spec_table_0_31[7:0]
 Core.backend.rat.intRat.curr_spec_table_1_0[7:0]
 @24
 +{Core.backend.rat.intRat.curr_spec_table_1_1[7:0]} Core.backend.rat.intRat.curr_spec_table_1_1[7:0]
@@ -159,31 +152,6 @@ Core.backend.rat.intRat.curr_spec_table_1_4[7:0]
 Core.backend.rat.intRat.curr_spec_table_1_5[7:0]
 Core.backend.rat.intRat.curr_spec_table_1_6[7:0]
 Core.backend.rat.intRat.curr_spec_table_1_7[7:0]
-Core.backend.rat.intRat.curr_spec_table_1_8[7:0]
-Core.backend.rat.intRat.curr_spec_table_1_9[7:0]
-Core.backend.rat.intRat.curr_spec_table_1_10[7:0]
-Core.backend.rat.intRat.curr_spec_table_1_11[7:0]
-Core.backend.rat.intRat.curr_spec_table_1_12[7:0]
-Core.backend.rat.intRat.curr_spec_table_1_13[7:0]
-Core.backend.rat.intRat.curr_spec_table_1_14[7:0]
-Core.backend.rat.intRat.curr_spec_table_1_15[7:0]
-Core.backend.rat.intRat.curr_spec_table_1_16[7:0]
-Core.backend.rat.intRat.curr_spec_table_1_17[7:0]
-Core.backend.rat.intRat.curr_spec_table_1_18[7:0]
-Core.backend.rat.intRat.curr_spec_table_1_19[7:0]
-Core.backend.rat.intRat.curr_spec_table_1_20[7:0]
-Core.backend.rat.intRat.curr_spec_table_1_21[7:0]
-Core.backend.rat.intRat.curr_spec_table_1_22[7:0]
-Core.backend.rat.intRat.curr_spec_table_1_23[7:0]
-Core.backend.rat.intRat.curr_spec_table_1_24[7:0]
-Core.backend.rat.intRat.curr_spec_table_1_25[7:0]
-Core.backend.rat.intRat.curr_spec_table_1_26[7:0]
-Core.backend.rat.intRat.curr_spec_table_1_27[7:0]
-Core.backend.rat.intRat.curr_spec_table_1_28[7:0]
-Core.backend.rat.intRat.curr_spec_table_1_29[7:0]
-Core.backend.rat.intRat.curr_spec_table_1_30[7:0]
-Core.backend.rat.intRat.curr_spec_table_1_31[7:0]
-Core.backend.rat.intRat.curr_spec_table_2_0[7:0]
 +{Core.backend.rat.intRat.curr_spec_table_2_1[7:0]} Core.backend.rat.intRat.curr_spec_table_2_1[7:0]
 Core.backend.rat.intRat.curr_spec_table_2_2[7:0]
 Core.backend.rat.intRat.curr_spec_table_2_3[7:0]
@@ -199,22 +167,6 @@ Core.backend.rat.intRat.curr_spec_table_2_12[7:0]
 Core.backend.rat.intRat.curr_spec_table_2_13[7:0]
 Core.backend.rat.intRat.curr_spec_table_2_14[7:0]
 Core.backend.rat.intRat.curr_spec_table_2_15[7:0]
-Core.backend.rat.intRat.curr_spec_table_2_16[7:0]
-Core.backend.rat.intRat.curr_spec_table_2_17[7:0]
-Core.backend.rat.intRat.curr_spec_table_2_18[7:0]
-Core.backend.rat.intRat.curr_spec_table_2_19[7:0]
-Core.backend.rat.intRat.curr_spec_table_2_20[7:0]
-Core.backend.rat.intRat.curr_spec_table_2_21[7:0]
-Core.backend.rat.intRat.curr_spec_table_2_22[7:0]
-Core.backend.rat.intRat.curr_spec_table_2_23[7:0]
-Core.backend.rat.intRat.curr_spec_table_2_24[7:0]
-Core.backend.rat.intRat.curr_spec_table_2_25[7:0]
-Core.backend.rat.intRat.curr_spec_table_2_26[7:0]
-Core.backend.rat.intRat.curr_spec_table_2_27[7:0]
-Core.backend.rat.intRat.curr_spec_table_2_28[7:0]
-Core.backend.rat.intRat.curr_spec_table_2_29[7:0]
-Core.backend.rat.intRat.curr_spec_table_2_30[7:0]
-Core.backend.rat.intRat.curr_spec_table_2_31[7:0]
 Core.backend.rat.io_commitPorts_0_addr[4:0]
 @28
 Core.backend.rat.io_commitPorts_0_wen
@@ -239,21 +191,12 @@ Core.backend.rat.fpRat.spec_table_3[7:0]
 Core.backend.rat.fpRat.spec_table_4[7:0]
 Core.backend.rat.fpRat.spec_table_5[7:0]
 Core.backend.rat.fpRat.spec_table_6[7:0]
-Core.backend.rat.fpRat.spec_table_7[7:0]
-Core.backend.rat.fpRat.spec_table_8[7:0]
-Core.backend.rat.fpRat.spec_table_9[7:0]
-Core.backend.rat.fpRat.spec_table_10[7:0]
 Core.backend.rat.fpRat.curr_spec_table_0_0[7:0]
 Core.backend.rat.fpRat.curr_spec_table_0_1[7:0]
 Core.backend.rat.fpRat.curr_spec_table_0_2[7:0]
 Core.backend.rat.fpRat.curr_spec_table_0_3[7:0]
 Core.backend.rat.fpRat.curr_spec_table_0_4[7:0]
 Core.backend.rat.fpRat.curr_spec_table_0_5[7:0]
-Core.backend.rat.fpRat.curr_spec_table_0_6[7:0]
-Core.backend.rat.fpRat.curr_spec_table_0_7[7:0]
-Core.backend.rat.fpRat.curr_spec_table_0_8[7:0]
-Core.backend.rat.fpRat.curr_spec_table_0_9[7:0]
-Core.backend.rat.fpRat.curr_spec_table_0_10[7:0]
 @200
 -RegFile
 @22
@@ -486,7 +429,6 @@ Core.backend.exec.fpRegFile.regs_28[63:0]
 Core.backend.exec.fpRegFile.regs_29[63:0]
 Core.backend.exec.fpRegFile.regs_30[63:0]
 Core.backend.exec.fpRegFile.regs_31[63:0]
-@23
 Core.backend.exec.fpRegFile.regs_32[63:0]
 Core.backend.exec.fpRegFile.regs_33[63:0]
 Core.backend.exec.fpRegFile.regs_34[63:0]
