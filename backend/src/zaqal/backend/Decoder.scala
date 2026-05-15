@@ -41,6 +41,9 @@ class Decoder(implicit val p: Parameters) extends Module with HasZaqalParameter 
   io.out.is_slti  := (opcode === "b0010011".U) && (funct3 === "b010".U)
   io.out.is_sltiu := (opcode === "b0010011".U) && (funct3 === "b011".U)
   io.out.is_sub   := (opcode === "b0110011".U) && (funct3 === "b000".U) && (funct7 === "b0100000".U)
+  
+  io.out.is_fused := false.B
+  io.out.is_fused_lui_addi := false.B
 
   io.out.imm     := i_imm
 

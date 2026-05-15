@@ -212,6 +212,10 @@ class DecodeSignals(implicit val p: Parameters) extends Bundle with HasZaqalPara
   val rs3     = UInt(5.W)  // Source register 3 (R4-type FMA)
   val imm     = SInt(xLen.W)
 
+  // Fusion Flags
+  val is_fused = Bool()
+  val is_fused_lui_addi = Bool()
+
   // Register Types (for Rename)
   val rs1_is_fp = Bool()
   val rs2_is_fp = Bool()

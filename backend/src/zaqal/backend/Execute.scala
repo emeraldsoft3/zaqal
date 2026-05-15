@@ -159,7 +159,11 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   io.redirect.exc_cause    := bru.io.exc_cause
 
   when(io.in.fire) {
-    printf(p"CORE EXECUTE [Cycle ${io.debug_cycle}]: pc=${Hexadecimal(uop.pc)} inst=${Hexadecimal(uop.inst_raw)} is_rvc=${uop.pre.is_rvc} epoch=${uop.epoch}\n")
+    printf(p"CORE EXECUTE [Cycle ${io.debug_cycle}]: pc=${Hexadecimal(uop.pc)} inst=${Hexadecimal(uop.inst_raw)} is_rvc=${uop.pre.is_rvc} epoch=${uop.epoch}")
+    when(dec.is_fused) {
+      printf(" [FUSED]")
+    }
+    printf("\n")
     // Writeback for single-cycle instructions
     when(dec.rd =/= 0.U) {
       val is_link = dec.is_jal || dec.is_jalr

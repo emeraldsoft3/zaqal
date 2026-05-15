@@ -21,12 +21,40 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
 
   // Instantiate Decoders
   val decoders = Seq.fill(decodeWidth)(Module(new Decoder))
-  val decoded_uops = Wire(Vec(decodeWidth, new DecodedMicroOp))
+  val decoded_uops_raw = Wire(Vec(decodeWidth, new DecodedMicroOp))
 
   for (i <- 0 until decodeWidth) {
     decoders(i).io.inst := io.dispatch(i).bits.inst_raw
-    decoded_uops(i).uop    := io.dispatch(i).bits
-    decoded_uops(i).decode := decoders(i).io.out
+    decoded_uops_raw(i).uop    := io.dispatch(i).bits
+    decoded_uops_raw(i).decode := decoders(i).io.out
+    
+    // Default to raw
+    decoded_uops_raw(i).psrs1 := 0.U
+    decoded_uops_raw(i).psrs2 := 0.U
+    decoded_uops_raw(i).psrs3 := 0.U
+    decoded_uops_raw(i).pdest := 0.U
+    decoded_uops_raw(i).old_pdest := 0.U
+  }
+
+  // Day 3.5: Instruction Fusion (Macro-Op Fusion)
+  // Detect fusion between port 0 and port 1 for single-issue backend
+  val decoded_uops = Wire(Vec(decodeWidth, new DecodedMicroOp))
+  decoded_uops := decoded_uops_raw // Default
+
+  val is_fused_with_next = WireInit(false.B)
+  val u0_raw = decoded_uops_raw(0)
+  val u2_raw = decoded_uops_raw(2) // Next instruction starts at Port 2 if Port 0 is 4-byte
+  val can_fuse = (u0_raw.decode.is_lui || u0_raw.decode.is_auipc) && 
+                 !u0_raw.decode.is_rvc &&
+                 u2_raw.decode.is_addi && 
+                 (u0_raw.decode.rd === u2_raw.decode.rs1) && (u0_raw.decode.rd === u2_raw.decode.rd) &&
+                 (u0_raw.decode.rd =/= 0.U) && io.dispatch(0).valid && io.dispatch(2).valid
+
+  when(can_fuse) {
+    is_fused_with_next := true.B
+    decoded_uops(0).decode.is_fused := true.B
+    decoded_uops(0).decode.is_fused_lui_addi := true.B 
+    decoded_uops(0).decode.imm := (u0_raw.decode.imm + u2_raw.decode.imm)
   }
 
   // Day 4: Register Renaming (Map Table)
@@ -58,8 +86,9 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
     decoded_uops(i).psrs3 := rat.io.psrs3(i)
     
     // 2. Allocate Pdest if the instruction writes to a register
-    val rf_wen = dec.rd =/= 0.U && !dec.rd_is_fp && !dec.is_branch && !dec.is_store && !dec.is_fstore && !dec.is_atomic
-    val fp_wen = dec.rd_is_fp && !dec.is_branch && !dec.is_store && !dec.is_fstore && !dec.is_atomic
+    val is_fused_away = (i.U === 2.U) && is_fused_with_next
+    val rf_wen = dec.rd =/= 0.U && !dec.rd_is_fp && !dec.is_branch && !dec.is_store && !dec.is_fstore && !dec.is_atomic && !is_fused_away
+    val fp_wen = dec.rd_is_fp && !dec.is_branch && !dec.is_store && !dec.is_fstore && !dec.is_atomic && !is_fused_away
 
     intFreeList.io.allocateReq(i) := rf_wen && io.dispatch(i).valid
     fpFreeList.io.allocateReq(i)  := fp_wen && io.dispatch(i).valid
@@ -82,6 +111,9 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
       printf(p"lrs1=${dec.rs1}->prs1=${decoded_uops(i).psrs1} lrs2=${dec.rs2}->prs2=${decoded_uops(i).psrs2} ")
       when(rf_wen || fp_wen) {
         printf(p"lrd=${dec.rd}->pdest=${decoded_uops(i).pdest} (old=${decoded_uops(i).old_pdest})")
+      }
+      when(i.U === 0.U && is_fused_with_next) {
+        printf(" [FUSING WITH NEXT]")
       }
       printf("\n")
     }
@@ -113,9 +145,12 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
   exec.io.in.valid := io.dispatch(0).valid && can_allocate_all
   exec.io.in.bits  := decoded_uops(0)
   io.dispatch(0).ready := exec.io.in.ready && can_allocate_all
-
-  for (i <- 1 until decodeWidth) {
-    io.dispatch(i).ready := false.B // Future: Multi-issue execution
+  io.dispatch(1).ready := io.dispatch(0).ready && !u0_raw.decode.is_rvc
+  io.dispatch(2).ready := (is_fused_with_next && io.dispatch(0).ready)
+  io.dispatch(3).ready := (is_fused_with_next && io.dispatch(0).ready && !u2_raw.decode.is_rvc)
+  
+  for (i <- 4 until decodeWidth) {
+    io.dispatch(i).ready := false.B 
   }
 
   // Route redirection from Execute to Frontend
