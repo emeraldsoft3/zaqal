@@ -19,6 +19,16 @@ class RenameTableWrapper(implicit val p: Parameters) extends Module with HasZaqa
     val psrs3 = Vec(decodeWidth, Output(UInt(phyRegIdxWidth.W)))
     val old_pdest = Vec(decodeWidth, Output(UInt(phyRegIdxWidth.W)))
     
+    // Checkpoint IO
+    val useSnapshot    = Input(Bool())
+    val snptEnq        = Input(Bool())
+    val snptEnqIdx     = Input(UInt(log2Up(decodeWidth + 1).W))
+    val snptDeq        = Input(Bool())
+    val snptFlushVec   = Input(Vec(renameSnapshotNum, Bool()))
+    val snptRestoreIdx = Input(UInt(log2Up(renameSnapshotNum).W))
+    val snptEnqPtr     = Output(UInt(log2Up(renameSnapshotNum).W))
+    val snptValids     = Output(Vec(renameSnapshotNum, Bool()))
+    
     // Debug
     val debug_int_rat = Output(Vec(32, UInt(phyRegIdxWidth.W)))
     val debug_fp_rat  = Output(Vec(32, UInt(phyRegIdxWidth.W)))
@@ -29,6 +39,23 @@ class RenameTableWrapper(implicit val p: Parameters) extends Module with HasZaqa
 
   intRat.io.redirect := io.redirect
   fpRat.io.redirect  := io.redirect
+  intRat.io.useSnapshot := io.useSnapshot
+  fpRat.io.useSnapshot  := io.useSnapshot
+
+  intRat.io.snptEnq := io.snptEnq
+  intRat.io.snptEnqIdx := io.snptEnqIdx
+  intRat.io.snptDeq := io.snptDeq
+  intRat.io.snptFlushVec := io.snptFlushVec
+  intRat.io.snptRestoreIdx := io.snptRestoreIdx
+
+  fpRat.io.snptEnq := io.snptEnq
+  fpRat.io.snptEnqIdx := io.snptEnqIdx
+  fpRat.io.snptDeq := io.snptDeq
+  fpRat.io.snptFlushVec := io.snptFlushVec
+  fpRat.io.snptRestoreIdx := io.snptRestoreIdx
+
+  io.snptEnqPtr := intRat.io.snptEnqPtr
+  io.snptValids := intRat.io.snptValids
 
   for (i <- 0 until decodeWidth) {
     // 1. Route Read Ports based on DecodeSignals

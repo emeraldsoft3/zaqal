@@ -1,0 +1,352 @@
+[info] compiling 1 Scala source to /home/emerald/zaqal/out/zaqal/compile.dest/classes ...
+[warn] /home/emerald/zaqal/zaqal/src/zaqal/ZaqalTest.scala:14:16: Implicit definition should have explicit type (inferred org.chipsalliance.cde.config.Parameters) [quickfixable]
+[warn]   implicit val p = (new ZaqalConfig).alter((site, here, up) => {
+[warn]                ^
+[warn] 13 feature warnings; re-run with -feature for details
+[warn] two warnings found
+[info] done compiling
+[ICache] FPU TEST MODE: Using hardcoded FP program.
+[ICache] Warning: Using Custom Fusion Test Program.
+[warn] backend/src/zaqal/backend/FreeList.scala 63:37: [W004] Dynamic index with width 9 is too wide for Vec of size 160 (expected index width 8).
+[warn]     io.allocatePhyReg(i) := freeList(wrapAdd(headPtr, offset))
+[warn]                                     ^
+[warn] backend/src/zaqal/backend/FreeList.scala 71:15: [W004] Dynamic index with width 9 is too wide for Vec of size 160 (expected index width 8).
+[warn]       freeList(wrapAdd(tailPtr, offset)) := io.freePhyReg(i)
+[warn]               ^
+[warn] There were 2 warning(s) during hardware elaboration.
+--- Starting ZAQAL Agile V1.0 Simulation ---
+[Cycle 11] FTQ Flushed! Shadow copy cleared.
+CORE RENAME [Cycle                     6] [Port 0]: pc=0000000080000000 inst=00000663 lrs1=  0->prs1=   0 lrs2=  0->prs2=   0 
+CORE RENAME [Cycle                     6] [Port 1]: pc=0000000080000002 inst=01130000 lrs1=  6->prs1=   6 lrs2= 17->prs2=  17 
+CORE RENAME [Cycle                     6] [Port 2]: pc=0000000080000004 inst=06300113 lrs1=  0->prs1=   0 lrs2=  3->prs2=   3 lrd=  2->pdest=  32 (old=   2)
+CORE RENAME [Cycle                     6] [Port 3]: pc=0000000080000006 inst=006f0630 lrs1= 30->prs1=  30 lrs2=  6->prs2=   6 lrd= 12->pdest=  33 (old=  12)
+CORE RENAME [Cycle                     6] [Port 4]: pc=0000000080000008 inst=00c0006f lrs1=  0->prs1=   0 lrs2= 12->prs2=  12 
+CORE RENAME [Cycle                     6] [Port 5]: pc=000000008000000a inst=019300c0 lrs1=  6->prs1=   6 lrs2= 25->prs2=  25 lrd=  1->pdest=  34 (old=   1)
+CORE EXECUTE [Cycle                     6]: pc=0000000080000000 inst=00000663 fused= 0
+[BRU REDIRECT] pc=0000000080000000 target=000000008000000c actual_taken= 1 is_rvc= 0
+FRONTEND FLUSH: epoch= 0 io.redirect.target=000000008000000c
+BPU REDIRECT ACCEPTED: target=00000000800000c0 epoch= 0
+[BRU REDIRECT] pc=0000000080000000 target=000000008000000c actual_taken= 1 is_rvc= 0
+CORE RENAME [Cycle                    13] [Port 0]: pc=000000008000000c inst=00700193 lrs1=  0->prs1=   0 lrs2=  7->prs2=   0 lrd=  3->pdest=  32 (old=   0)
+CORE RENAME [Cycle                    13] [Port 1]: pc=000000008000000e inst=01130070 lrs1=  6->prs1=   0 lrs2= 17->prs2=   0 
+CORE RENAME [Cycle                    13] [Port 2]: pc=0000000080000010 inst=00300113 lrs1=  0->prs1=   0 lrs2=  3->prs2=  32 lrd=  2->pdest=  33 (old=   0)
+CORE RENAME [Cycle                    13] [Port 3]: pc=0000000080000012 inst=006f0030 lrs1= 30->prs1=   0 lrs2=  6->prs2=   0 
+CORE RENAME [Cycle                    13] [Port 4]: pc=0000000080000014 inst=0000006f lrs1=  0->prs1=   0 lrs2=  0->prs2=   0 
+CORE RENAME [Cycle                    13] [Port 5]: pc=0000000080000016 inst=00130000 lrs1=  6->prs1=   0 lrs2=  1->prs2=   0 
+CORE EXECUTE [Cycle                    13]: pc=000000008000000c inst=00700193 fused= 0
+CORE RENAME [Cycle                    14] [Port 0]: pc=0000000080000018 inst=00000013 lrs1=  0->prs1=   0 lrs2=  0->prs2=   0 
+CORE RENAME [Cycle                    14] [Port 1]: pc=000000008000001a inst=00130000 lrs1=  6->prs1=   0 lrs2=  1->prs2=   0 
+CORE RENAME [Cycle                    14] [Port 2]: pc=0000000080000010 inst=00300113 lrs1=  0->prs1=   0 lrs2=  3->prs2=  32 lrd=  2->pdest=  34 (old=   0)
+CORE RENAME [Cycle                    14] [Port 3]: pc=0000000080000012 inst=006f0030 lrs1= 30->prs1=   0 lrs2=  6->prs2=   0 
+CORE RENAME [Cycle                    14] [Port 4]: pc=0000000080000014 inst=0000006f lrs1=  0->prs1=   0 lrs2=  0->prs2=   0 
+CORE RENAME [Cycle                    14] [Port 5]: pc=0000000080000016 inst=00130000 lrs1=  6->prs1=   0 lrs2=  1->prs2=   0 
+CORE EXECUTE [Cycle                    14]: pc=0000000080000018 inst=00000013 fused= 0
+CORE RENAME [Cycle                    15] [Port 0]: pc=0000000080000024 inst=00000013 lrs1=  0->prs1=   0 lrs2=  0->prs2=   0 
+CORE RENAME [Cycle                    15] [Port 1]: pc=0000000080000026 inst=00130000 lrs1=  6->prs1=   0 lrs2=  1->prs2=   0 
+CORE RENAME [Cycle                    15] [Port 2]: pc=0000000080000010 inst=00300113 lrs1=  0->prs1=   0 lrs2=  3->prs2=  32 lrd=  2->pdest=  35 (old=   0)
+CORE RENAME [Cycle                    15] [Port 3]: pc=0000000080000012 inst=006f0030 lrs1= 30->prs1=   0 lrs2=  6->prs2=   0 
+CORE RENAME [Cycle                    15] [Port 4]: pc=0000000080000014 inst=0000006f lrs1=  0->prs1=   0 lrs2=  0->prs2=   0 
+CORE RENAME [Cycle                    15] [Port 5]: pc=0000000080000016 inst=00130000 lrs1=  6->prs1=   0 lrs2=  1->prs2=   0 
+CORE EXECUTE [Cycle                    15]: pc=0000000080000024 inst=00000013 fused= 0
+CORE RENAME [Cycle                    16] [Port 0]: pc=0000000080000028 inst=00000013 lrs1=  0->prs1=   0 lrs2=  0->prs2=   0 
+CORE RENAME [Cycle                    16] [Port 1]: pc=000000008000002a inst=00130000 lrs1=  6->prs1=   0 lrs2=  1->prs2=   0 
+CORE RENAME [Cycle                    16] [Port 2]: pc=0000000080000010 inst=00300113 lrs1=  0->prs1=   0 lrs2=  3->prs2=  32 lrd=  2->pdest=  36 (old=   0)
+CORE RENAME [Cycle                    16] [Port 3]: pc=0000000080000012 inst=006f0030 lrs1= 30->prs1=   0 lrs2=  6->prs2=   0 
+CORE RENAME [Cycle                    16] [Port 4]: pc=0000000080000014 inst=0000006f lrs1=  0->prs1=   0 lrs2=  0->prs2=   0 
+CORE RENAME [Cycle                    16] [Port 5]: pc=0000000080000016 inst=00130000 lrs1=  6->prs1=   0 lrs2=  1->prs2=   0 
+CORE EXECUTE [Cycle                    16]: pc=0000000080000028 inst=00000013 fused= 0
+CORE RENAME [Cycle                    17] [Port 0]: pc=000000008000002c inst=00000013 lrs1=  0->prs1=   0 lrs2=  0->prs2=   0 
+CORE RENAME [Cycle                    17] [Port 1]: pc=000000008000002e inst=00130000 lrs1=  6->prs1=   0 lrs2=  1->prs2=   0 
+CORE RENAME [Cycle                    17] [Port 2]: pc=0000000080000010 inst=00300113 lrs1=  0->prs1=   0 lrs2=  3->prs2=  32 lrd=  2->pdest=  37 (old=   0)
+CORE RENAME [Cycle                    17] [Port 3]: pc=0000000080000012 inst=006f0030 lrs1= 30->prs1=   0 lrs2=  6->prs2=   0 
+CORE RENAME [Cycle                    17] [Port 4]: pc=0000000080000014 inst=0000006f lrs1=  0->prs1=   0 lrs2=  0->prs2=   0 
+CORE RENAME [Cycle                    17] [Port 5]: pc=0000000080000016 inst=00130000 lrs1=  6->prs1=   0 lrs2=  1->prs2=   0 
+CORE EXECUTE [Cycle                    17]: pc=000000008000002c inst=00000013 fused= 0
+CORE RENAME [Cycle                    18] [Port 0]: pc=0000000080000030 inst=00000013 lrs1=  0->prs1=   0 lrs2=  0->prs2=   0 
+CORE RENAME [Cycle                    18] [Port 1]: pc=0000000080000032 inst=00130000 lrs1=  6->prs1=   0 lrs2=  1->prs2=   0 
+CORE RENAME [Cycle                    18] [Port 2]: pc=0000000080000010 inst=00300113 lrs1=  0->prs1=   0 lrs2=  3->prs2=  32 lrd=  2->pdest=  38 (old=   0)
+CORE RENAME [Cycle                    18] [Port 3]: pc=0000000080000012 inst=006f0030 lrs1= 30->prs1=   0 lrs2=  6->prs2=   0 
+CORE RENAME [Cycle                    18] [Port 4]: pc=0000000080000014 inst=0000006f lrs1=  0->prs1=   0 lrs2=  0->prs2=   0 
+CORE RENAME [Cycle                    18] [Port 5]: pc=0000000080000016 inst=00130000 lrs1=  6->prs1=   0 lrs2=  1->prs2=   0 
+CORE EXECUTE [Cycle                    18]: pc=0000000080000030 inst=00000013 fused= 0
+CORE RENAME [Cycle                    19] [Port 0]: pc=0000000080000034 inst=00000013 lrs1=  0->prs1=   0 lrs2=  0->prs2=   0 
+CORE RENAME [Cycle                    19] [Port 1]: pc=0000000080000036 inst=00130000 lrs1=  6->prs1=   0 lrs2=  1->prs2=   0 
+CORE RENAME [Cycle                    19] [Port 2]: pc=0000000080000010 inst=00300113 lrs1=  0->prs1=   0 lrs2=  3->prs2=  32 lrd=  2->pdest=  39 (old=   0)
+CORE RENAME [Cycle                    19] [Port 3]: pc=0000000080000012 inst=006f0030 lrs1= 30->prs1=   0 lrs2=  6->prs2=   0 
+CORE RENAME [Cycle                    19] [Port 4]: pc=0000000080000014 inst=0000006f lrs1=  0->prs1=   0 lrs2=  0->prs2=   0 
+CORE RENAME [Cycle                    19] [Port 5]: pc=0000000080000016 inst=00130000 lrs1=  6->prs1=   0 lrs2=  1->prs2=   0 
+CORE EXECUTE [Cycle                    19]: pc=0000000080000034 inst=00000013 fused= 0
+CORE RENAME [Cycle                    20] [Port 0]: pc=0000000080000038 inst=00000013 lrs1=  0->prs1=   0 lrs2=  0->prs2=   0 
+CORE RENAME [Cycle                    20] [Port 1]: pc=000000008000003a inst=00130000 lrs1=  6->prs1=   0 lrs2=  1->prs2=   0 
+CORE RENAME [Cycle                    20] [Port 2]: pc=0000000080000010 inst=00300113 lrs1=  0->prs1=   0 lrs2=  3->prs2=  32 lrd=  2->pdest=  40 (old=   0)
+CORE RENAME [Cycle                    20] [Port 3]: pc=0000000080000012 inst=006f0030 lrs1= 30->prs1=   0 lrs2=  6->prs2=   0 
+CORE RENAME [Cycle                    20] [Port 4]: pc=0000000080000014 inst=0000006f lrs1=  0->prs1=   0 lrs2=  0->prs2=   0 
+CORE RENAME [Cycle                    20] [Port 5]: pc=0000000080000016 inst=00130000 lrs1=  6->prs1=   0 lrs2=  1->prs2=   0 
+CORE EXECUTE [Cycle                    20]: pc=0000000080000038 inst=00000013 fused= 0
+CORE RENAME [Cycle                    21] [Port 0]: pc=000000008000003c inst=00000013 lrs1=  0->prs1=   0 lrs2=  0->prs2=   0 
+CORE RENAME [Cycle                    21] [Port 1]: pc=000000008000003e inst=00000000 lrs1=  0->prs1=   0 lrs2=  0->prs2=   0 
+CORE RENAME [Cycle                    21] [Port 2]: pc=0000000080000010 inst=00300113 lrs1=  0->prs1=   0 lrs2=  3->prs2=  32 lrd=  2->pdest=  41 (old=   0)
+CORE RENAME [Cycle                    21] [Port 3]: pc=0000000080000012 inst=006f0030 lrs1= 30->prs1=   0 lrs2=  6->prs2=   0 
+CORE RENAME [Cycle                    21] [Port 4]: pc=0000000080000014 inst=0000006f lrs1=  0->prs1=   0 lrs2=  0->prs2=   0 
+CORE RENAME [Cycle                    21] [Port 5]: pc=0000000080000016 inst=00130000 lrs1=  6->prs1=   0 lrs2=  1->prs2=   0 
+CORE EXECUTE [Cycle                    21]: pc=000000008000003c inst=00000013 fused= 0
+CORE RENAME [Cycle                    22] [Port 0]: pc=0000000080000040 inst=00000013 lrs1=  0->prs1=   0 lrs2=  0->prs2=   0 
+CORE RENAME [Cycle                    22] [Port 1]: pc=0000000080000042 inst=00130000 lrs1=  6->prs1=   0 lrs2=  1->prs2=   0 
+CORE RENAME [Cycle                    22] [Port 2]: pc=0000000080000010 inst=00300113 lrs1=  0->prs1=   0 lrs2=  3->prs2=  32 lrd=  2->pdest=  42 (old=   0)
+CORE RENAME [Cycle                    22] [Port 3]: pc=0000000080000012 inst=006f0030 lrs1= 30->prs1=   0 lrs2=  6->prs2=   0 
+CORE RENAME [Cycle                    22] [Port 4]: pc=0000000080000014 inst=0000006f lrs1=  0->prs1=   0 lrs2=  0->prs2=   0 
+CORE RENAME [Cycle                    22] [Port 5]: pc=0000000080000016 inst=00130000 lrs1=  6->prs1=   0 lrs2=  1->prs2=   0 
+CORE EXECUTE [Cycle                    22]: pc=0000000080000040 inst=00000013 fused= 0
+CORE RENAME [Cycle                    23] [Port 0]: pc=0000000080000044 inst=00000013 lrs1=  0->prs1=   0 lrs2=  0->prs2=   0 
+CORE RENAME [Cycle                    23] [Port 1]: pc=0000000080000046 inst=00130000 lrs1=  6->prs1=   0 lrs2=  1->prs2=   0 
+CORE RENAME [Cycle                    23] [Port 2]: pc=0000000080000010 inst=00300113 lrs1=  0->prs1=   0 lrs2=  3->prs2=  32 lrd=  2->pdest=  43 (old=   0)
+CORE RENAME [Cycle                    23] [Port 3]: pc=0000000080000012 inst=006f0030 lrs1= 30->prs1=   0 lrs2=  6->prs2=   0 
+CORE RENAME [Cycle                    23] [Port 4]: pc=0000000080000014 inst=0000006f lrs1=  0->prs1=   0 lrs2=  0->prs2=   0 
+CORE RENAME [Cycle                    23] [Port 5]: pc=0000000080000016 inst=00130000 lrs1=  6->prs1=   0 lrs2=  1->prs2=   0 
+CORE EXECUTE [Cycle                    23]: pc=0000000080000044 inst=00000013 fused= 0
+CORE RENAME [Cycle                    24] [Port 0]: pc=0000000080000048 inst=00000013 lrs1=  0->prs1=   0 lrs2=  0->prs2=   0 
+CORE RENAME [Cycle                    24] [Port 1]: pc=000000008000004a inst=00130000 lrs1=  6->prs1=   0 lrs2=  1->prs2=   0 
+CORE RENAME [Cycle                    24] [Port 2]: pc=0000000080000010 inst=00300113 lrs1=  0->prs1=   0 lrs2=  3->prs2=  32 lrd=  2->pdest=  44 (old=   0)
+CORE RENAME [Cycle                    24] [Port 3]: pc=0000000080000012 inst=006f0030 lrs1= 30->prs1=   0 lrs2=  6->prs2=   0 
+CORE RENAME [Cycle                    24] [Port 4]: pc=0000000080000014 inst=0000006f lrs1=  0->prs1=   0 lrs2=  0->prs2=   0 
+CORE RENAME [Cycle                    24] [Port 5]: pc=0000000080000016 inst=00130000 lrs1=  6->prs1=   0 lrs2=  1->prs2=   0 
+CORE EXECUTE [Cycle                    24]: pc=0000000080000048 inst=00000013 fused= 0
+CORE RENAME [Cycle                    25] [Port 0]: pc=000000008000004c inst=00000013 lrs1=  0->prs1=   0 lrs2=  0->prs2=   0 
+CORE RENAME [Cycle                    25] [Port 1]: pc=000000008000004e inst=00130000 lrs1=  6->prs1=   0 lrs2=  1->prs2=   0 
+CORE RENAME [Cycle                    25] [Port 2]: pc=0000000080000010 inst=00300113 lrs1=  0->prs1=   0 lrs2=  3->prs2=  32 lrd=  2->pdest=  45 (old=   0)
+CORE RENAME [Cycle                    25] [Port 3]: pc=0000000080000012 inst=006f0030 lrs1= 30->prs1=   0 lrs2=  6->prs2=   0 
+CORE RENAME [Cycle                    25] [Port 4]: pc=0000000080000014 inst=0000006f lrs1=  0->prs1=   0 lrs2=  0->prs2=   0 
+CORE RENAME [Cycle                    25] [Port 5]: pc=0000000080000016 inst=00130000 lrs1=  6->prs1=   0 lrs2=  1->prs2=   0 
+CORE EXECUTE [Cycle                    25]: pc=000000008000004c inst=00000013 fused= 0
+CORE RENAME [Cycle                    26] [Port 0]: pc=0000000080000050 inst=00000013 lrs1=  0->prs1=   0 lrs2=  0->prs2=   0 
+CORE RENAME [Cycle                    26] [Port 1]: pc=0000000080000052 inst=00130000 lrs1=  6->prs1=   0 lrs2=  1->prs2=   0 
+CORE RENAME [Cycle                    26] [Port 2]: pc=0000000080000010 inst=00300113 lrs1=  0->prs1=   0 lrs2=  3->prs2=  32 lrd=  2->pdest=  46 (old=   0)
+CORE RENAME [Cycle                    26] [Port 3]: pc=0000000080000012 inst=006f0030 lrs1= 30->prs1=   0 lrs2=  6->prs2=   0 
+CORE RENAME [Cycle                    26] [Port 4]: pc=0000000080000014 inst=0000006f lrs1=  0->prs1=   0 lrs2=  0->prs2=   0 
+CORE RENAME [Cycle                    26] [Port 5]: pc=0000000080000016 inst=00130000 lrs1=  6->prs1=   0 lrs2=  1->prs2=   0 
+CORE EXECUTE [Cycle                    26]: pc=0000000080000050 inst=00000013 fused= 0
+CORE RENAME [Cycle                    27] [Port 0]: pc=0000000080000054 inst=00000013 lrs1=  0->prs1=   0 lrs2=  0->prs2=   0 
+CORE RENAME [Cycle                    27] [Port 1]: pc=0000000080000056 inst=00130000 lrs1=  6->prs1=   0 lrs2=  1->prs2=   0 
+CORE RENAME [Cycle                    27] [Port 2]: pc=0000000080000010 inst=00300113 lrs1=  0->prs1=   0 lrs2=  3->prs2=  32 lrd=  2->pdest=  47 (old=   0)
+CORE RENAME [Cycle                    27] [Port 3]: pc=0000000080000012 inst=006f0030 lrs1= 30->prs1=   0 lrs2=  6->prs2=   0 
+CORE RENAME [Cycle                    27] [Port 4]: pc=0000000080000014 inst=0000006f lrs1=  0->prs1=   0 lrs2=  0->prs2=   0 
+CORE RENAME [Cycle                    27] [Port 5]: pc=0000000080000016 inst=00130000 lrs1=  6->prs1=   0 lrs2=  1->prs2=   0 
+CORE EXECUTE [Cycle                    27]: pc=0000000080000054 inst=00000013 fused= 0
+CORE RENAME [Cycle                    28] [Port 0]: pc=0000000080000058 inst=00000013 lrs1=  0->prs1=   0 lrs2=  0->prs2=   0 
+CORE RENAME [Cycle                    28] [Port 1]: pc=000000008000005a inst=00130000 lrs1=  6->prs1=   0 lrs2=  1->prs2=   0 
+CORE RENAME [Cycle                    28] [Port 2]: pc=0000000080000010 inst=00300113 lrs1=  0->prs1=   0 lrs2=  3->prs2=  32 lrd=  2->pdest=  48 (old=   0)
+CORE RENAME [Cycle                    28] [Port 3]: pc=0000000080000012 inst=006f0030 lrs1= 30->prs1=   0 lrs2=  6->prs2=   0 
+CORE RENAME [Cycle                    28] [Port 4]: pc=0000000080000014 inst=0000006f lrs1=  0->prs1=   0 lrs2=  0->prs2=   0 
+CORE RENAME [Cycle                    28] [Port 5]: pc=0000000080000016 inst=00130000 lrs1=  6->prs1=   0 lrs2=  1->prs2=   0 
+CORE EXECUTE [Cycle                    28]: pc=0000000080000058 inst=00000013 fused= 0
+CORE RENAME [Cycle                    29] [Port 0]: pc=000000008000005c inst=00000013 lrs1=  0->prs1=   0 lrs2=  0->prs2=   0 
+CORE RENAME [Cycle                    29] [Port 1]: pc=000000008000005e inst=00000000 lrs1=  0->prs1=   0 lrs2=  0->prs2=   0 
+CORE RENAME [Cycle                    29] [Port 2]: pc=0000000080000010 inst=00300113 lrs1=  0->prs1=   0 lrs2=  3->prs2=  32 lrd=  2->pdest=  49 (old=   0)
+CORE RENAME [Cycle                    29] [Port 3]: pc=0000000080000012 inst=006f0030 lrs1= 30->prs1=   0 lrs2=  6->prs2=   0 
+CORE RENAME [Cycle                    29] [Port 4]: pc=0000000080000014 inst=0000006f lrs1=  0->prs1=   0 lrs2=  0->prs2=   0 
+CORE RENAME [Cycle                    29] [Port 5]: pc=0000000080000016 inst=00130000 lrs1=  6->prs1=   0 lrs2=  1->prs2=   0 
+CORE EXECUTE [Cycle                    29]: pc=000000008000005c inst=00000013 fused= 0
+CORE RENAME [Cycle                    30] [Port 0]: pc=0000000080000060 inst=00000013 lrs1=  0->prs1=   0 lrs2=  0->prs2=   0 
+CORE RENAME [Cycle                    30] [Port 1]: pc=0000000080000062 inst=00130000 lrs1=  6->prs1=   0 lrs2=  1->prs2=   0 
+CORE RENAME [Cycle                    30] [Port 2]: pc=0000000080000010 inst=00300113 lrs1=  0->prs1=   0 lrs2=  3->prs2=  32 lrd=  2->pdest=  50 (old=   0)
+CORE RENAME [Cycle                    30] [Port 3]: pc=0000000080000012 inst=006f0030 lrs1= 30->prs1=   0 lrs2=  6->prs2=   0 
+CORE RENAME [Cycle                    30] [Port 4]: pc=0000000080000014 inst=0000006f lrs1=  0->prs1=   0 lrs2=  0->prs2=   0 
+CORE RENAME [Cycle                    30] [Port 5]: pc=0000000080000016 inst=00130000 lrs1=  6->prs1=   0 lrs2=  1->prs2=   0 
+CORE EXECUTE [Cycle                    30]: pc=0000000080000060 inst=00000013 fused= 0
+CORE RENAME [Cycle                    31] [Port 0]: pc=0000000080000064 inst=00000013 lrs1=  0->prs1=   0 lrs2=  0->prs2=   0 
+CORE RENAME [Cycle                    31] [Port 1]: pc=0000000080000066 inst=00130000 lrs1=  6->prs1=   0 lrs2=  1->prs2=   0 
+CORE RENAME [Cycle                    31] [Port 2]: pc=0000000080000010 inst=00300113 lrs1=  0->prs1=   0 lrs2=  3->prs2=  32 lrd=  2->pdest=  51 (old=   0)
+CORE RENAME [Cycle                    31] [Port 3]: pc=0000000080000012 inst=006f0030 lrs1= 30->prs1=   0 lrs2=  6->prs2=   0 
+CORE RENAME [Cycle                    31] [Port 4]: pc=0000000080000014 inst=0000006f lrs1=  0->prs1=   0 lrs2=  0->prs2=   0 
+CORE RENAME [Cycle                    31] [Port 5]: pc=0000000080000016 inst=00130000 lrs1=  6->prs1=   0 lrs2=  1->prs2=   0 
+CORE EXECUTE [Cycle                    31]: pc=0000000080000064 inst=00000013 fused= 0
+CORE RENAME [Cycle                    32] [Port 0]: pc=0000000080000068 inst=00000013 lrs1=  0->prs1=   0 lrs2=  0->prs2=   0 
+CORE RENAME [Cycle                    32] [Port 1]: pc=000000008000006a inst=00130000 lrs1=  6->prs1=   0 lrs2=  1->prs2=   0 
+CORE RENAME [Cycle                    32] [Port 2]: pc=0000000080000010 inst=00300113 lrs1=  0->prs1=   0 lrs2=  3->prs2=  32 lrd=  2->pdest=  52 (old=   0)
+CORE RENAME [Cycle                    32] [Port 3]: pc=0000000080000012 inst=006f0030 lrs1= 30->prs1=   0 lrs2=  6->prs2=   0 
+CORE RENAME [Cycle                    32] [Port 4]: pc=0000000080000014 inst=0000006f lrs1=  0->prs1=   0 lrs2=  0->prs2=   0 
+CORE RENAME [Cycle                    32] [Port 5]: pc=0000000080000016 inst=00130000 lrs1=  6->prs1=   0 lrs2=  1->prs2=   0 
+CORE EXECUTE [Cycle                    32]: pc=0000000080000068 inst=00000013 fused= 0
+CORE RENAME [Cycle                    33] [Port 0]: pc=000000008000006c inst=00000013 lrs1=  0->prs1=   0 lrs2=  0->prs2=   0 
+CORE RENAME [Cycle                    33] [Port 1]: pc=000000008000006e inst=00130000 lrs1=  6->prs1=   0 lrs2=  1->prs2=   0 
+CORE RENAME [Cycle                    33] [Port 2]: pc=0000000080000010 inst=00300113 lrs1=  0->prs1=   0 lrs2=  3->prs2=  32 lrd=  2->pdest=  53 (old=   0)
+CORE RENAME [Cycle                    33] [Port 3]: pc=0000000080000012 inst=006f0030 lrs1= 30->prs1=   0 lrs2=  6->prs2=   0 
+CORE RENAME [Cycle                    33] [Port 4]: pc=0000000080000014 inst=0000006f lrs1=  0->prs1=   0 lrs2=  0->prs2=   0 
+CORE RENAME [Cycle                    33] [Port 5]: pc=0000000080000016 inst=00130000 lrs1=  6->prs1=   0 lrs2=  1->prs2=   0 
+CORE EXECUTE [Cycle                    33]: pc=000000008000006c inst=00000013 fused= 0
+CORE RENAME [Cycle                    34] [Port 0]: pc=0000000080000070 inst=00000013 lrs1=  0->prs1=   0 lrs2=  0->prs2=   0 
+CORE RENAME [Cycle                    34] [Port 1]: pc=0000000080000072 inst=00130000 lrs1=  6->prs1=   0 lrs2=  1->prs2=   0 
+CORE RENAME [Cycle                    34] [Port 2]: pc=0000000080000010 inst=00300113 lrs1=  0->prs1=   0 lrs2=  3->prs2=  32 lrd=  2->pdest=  54 (old=   0)
+CORE RENAME [Cycle                    34] [Port 3]: pc=0000000080000012 inst=006f0030 lrs1= 30->prs1=   0 lrs2=  6->prs2=   0 
+CORE RENAME [Cycle                    34] [Port 4]: pc=0000000080000014 inst=0000006f lrs1=  0->prs1=   0 lrs2=  0->prs2=   0 
+CORE RENAME [Cycle                    34] [Port 5]: pc=0000000080000016 inst=00130000 lrs1=  6->prs1=   0 lrs2=  1->prs2=   0 
+CORE EXECUTE [Cycle                    34]: pc=0000000080000070 inst=00000013 fused= 0
+CORE RENAME [Cycle                    35] [Port 0]: pc=0000000080000074 inst=00000013 lrs1=  0->prs1=   0 lrs2=  0->prs2=   0 
+CORE RENAME [Cycle                    35] [Port 1]: pc=0000000080000076 inst=00130000 lrs1=  6->prs1=   0 lrs2=  1->prs2=   0 
+CORE RENAME [Cycle                    35] [Port 2]: pc=0000000080000010 inst=00300113 lrs1=  0->prs1=   0 lrs2=  3->prs2=  32 lrd=  2->pdest=  55 (old=   0)
+CORE RENAME [Cycle                    35] [Port 3]: pc=0000000080000012 inst=006f0030 lrs1= 30->prs1=   0 lrs2=  6->prs2=   0 
+CORE RENAME [Cycle                    35] [Port 4]: pc=0000000080000014 inst=0000006f lrs1=  0->prs1=   0 lrs2=  0->prs2=   0 
+CORE RENAME [Cycle                    35] [Port 5]: pc=0000000080000016 inst=00130000 lrs1=  6->prs1=   0 lrs2=  1->prs2=   0 
+CORE EXECUTE [Cycle                    35]: pc=0000000080000074 inst=00000013 fused= 0
+CORE RENAME [Cycle                    36] [Port 0]: pc=0000000080000078 inst=00000013 lrs1=  0->prs1=   0 lrs2=  0->prs2=   0 
+CORE RENAME [Cycle                    36] [Port 1]: pc=000000008000007a inst=00130000 lrs1=  6->prs1=   0 lrs2=  1->prs2=   0 
+CORE RENAME [Cycle                    36] [Port 2]: pc=0000000080000010 inst=00300113 lrs1=  0->prs1=   0 lrs2=  3->prs2=  32 lrd=  2->pdest=  56 (old=   0)
+CORE RENAME [Cycle                    36] [Port 3]: pc=0000000080000012 inst=006f0030 lrs1= 30->prs1=   0 lrs2=  6->prs2=   0 
+CORE RENAME [Cycle                    36] [Port 4]: pc=0000000080000014 inst=0000006f lrs1=  0->prs1=   0 lrs2=  0->prs2=   0 
+CORE RENAME [Cycle                    36] [Port 5]: pc=0000000080000016 inst=00130000 lrs1=  6->prs1=   0 lrs2=  1->prs2=   0 
+CORE EXECUTE [Cycle                    36]: pc=0000000080000078 inst=00000013 fused= 0
+CORE RENAME [Cycle                    37] [Port 0]: pc=000000008000007c inst=00000013 lrs1=  0->prs1=   0 lrs2=  0->prs2=   0 
+CORE RENAME [Cycle                    37] [Port 1]: pc=000000008000007e inst=00000000 lrs1=  0->prs1=   0 lrs2=  0->prs2=   0 
+CORE RENAME [Cycle                    37] [Port 2]: pc=0000000080000010 inst=00300113 lrs1=  0->prs1=   0 lrs2=  3->prs2=  32 lrd=  2->pdest=  57 (old=   0)
+CORE RENAME [Cycle                    37] [Port 3]: pc=0000000080000012 inst=006f0030 lrs1= 30->prs1=   0 lrs2=  6->prs2=   0 
+CORE RENAME [Cycle                    37] [Port 4]: pc=0000000080000014 inst=0000006f lrs1=  0->prs1=   0 lrs2=  0->prs2=   0 
+CORE RENAME [Cycle                    37] [Port 5]: pc=0000000080000016 inst=00130000 lrs1=  6->prs1=   0 lrs2=  1->prs2=   0 
+CORE EXECUTE [Cycle                    37]: pc=000000008000007c inst=00000013 fused= 0
+CORE RENAME [Cycle                    38] [Port 0]: pc=0000000080000080 inst=00000013 lrs1=  0->prs1=   0 lrs2=  0->prs2=   0 
+CORE RENAME [Cycle                    38] [Port 1]: pc=0000000080000082 inst=00130000 lrs1=  6->prs1=   0 lrs2=  1->prs2=   0 
+CORE RENAME [Cycle                    38] [Port 2]: pc=0000000080000010 inst=00300113 lrs1=  0->prs1=   0 lrs2=  3->prs2=  32 lrd=  2->pdest=  58 (old=   0)
+CORE RENAME [Cycle                    38] [Port 3]: pc=0000000080000012 inst=006f0030 lrs1= 30->prs1=   0 lrs2=  6->prs2=   0 
+CORE RENAME [Cycle                    38] [Port 4]: pc=0000000080000014 inst=0000006f lrs1=  0->prs1=   0 lrs2=  0->prs2=   0 
+CORE RENAME [Cycle                    38] [Port 5]: pc=0000000080000016 inst=00130000 lrs1=  6->prs1=   0 lrs2=  1->prs2=   0 
+CORE EXECUTE [Cycle                    38]: pc=0000000080000080 inst=00000013 fused= 0
+CORE RENAME [Cycle                    39] [Port 0]: pc=0000000080000084 inst=00000013 lrs1=  0->prs1=   0 lrs2=  0->prs2=   0 
+CORE RENAME [Cycle                    39] [Port 1]: pc=0000000080000086 inst=00130000 lrs1=  6->prs1=   0 lrs2=  1->prs2=   0 
+CORE RENAME [Cycle                    39] [Port 2]: pc=0000000080000010 inst=00300113 lrs1=  0->prs1=   0 lrs2=  3->prs2=  32 lrd=  2->pdest=  59 (old=   0)
+CORE RENAME [Cycle                    39] [Port 3]: pc=0000000080000012 inst=006f0030 lrs1= 30->prs1=   0 lrs2=  6->prs2=   0 
+CORE RENAME [Cycle                    39] [Port 4]: pc=0000000080000014 inst=0000006f lrs1=  0->prs1=   0 lrs2=  0->prs2=   0 
+CORE RENAME [Cycle                    39] [Port 5]: pc=0000000080000016 inst=00130000 lrs1=  6->prs1=   0 lrs2=  1->prs2=   0 
+CORE EXECUTE [Cycle                    39]: pc=0000000080000084 inst=00000013 fused= 0
+CORE RENAME [Cycle                    40] [Port 0]: pc=0000000080000088 inst=00000013 lrs1=  0->prs1=   0 lrs2=  0->prs2=   0 
+CORE RENAME [Cycle                    40] [Port 1]: pc=000000008000008a inst=00130000 lrs1=  6->prs1=   0 lrs2=  1->prs2=   0 
+CORE RENAME [Cycle                    40] [Port 2]: pc=0000000080000010 inst=00300113 lrs1=  0->prs1=   0 lrs2=  3->prs2=  32 lrd=  2->pdest=  60 (old=   0)
+CORE RENAME [Cycle                    40] [Port 3]: pc=0000000080000012 inst=006f0030 lrs1= 30->prs1=   0 lrs2=  6->prs2=   0 
+CORE RENAME [Cycle                    40] [Port 4]: pc=0000000080000014 inst=0000006f lrs1=  0->prs1=   0 lrs2=  0->prs2=   0 
+CORE RENAME [Cycle                    40] [Port 5]: pc=0000000080000016 inst=00130000 lrs1=  6->prs1=   0 lrs2=  1->prs2=   0 
+CORE EXECUTE [Cycle                    40]: pc=0000000080000088 inst=00000013 fused= 0
+CORE RENAME [Cycle                    41] [Port 0]: pc=000000008000008c inst=00000013 lrs1=  0->prs1=   0 lrs2=  0->prs2=   0 
+CORE RENAME [Cycle                    41] [Port 1]: pc=000000008000008e inst=00130000 lrs1=  6->prs1=   0 lrs2=  1->prs2=   0 
+CORE RENAME [Cycle                    41] [Port 2]: pc=0000000080000010 inst=00300113 lrs1=  0->prs1=   0 lrs2=  3->prs2=  32 lrd=  2->pdest=  61 (old=   0)
+CORE RENAME [Cycle                    41] [Port 3]: pc=0000000080000012 inst=006f0030 lrs1= 30->prs1=   0 lrs2=  6->prs2=   0 
+CORE RENAME [Cycle                    41] [Port 4]: pc=0000000080000014 inst=0000006f lrs1=  0->prs1=   0 lrs2=  0->prs2=   0 
+CORE RENAME [Cycle                    41] [Port 5]: pc=0000000080000016 inst=00130000 lrs1=  6->prs1=   0 lrs2=  1->prs2=   0 
+CORE EXECUTE [Cycle                    41]: pc=000000008000008c inst=00000013 fused= 0
+CORE RENAME [Cycle                    42] [Port 0]: pc=0000000080000090 inst=00000013 lrs1=  0->prs1=   0 lrs2=  0->prs2=   0 
+CORE RENAME [Cycle                    42] [Port 1]: pc=0000000080000092 inst=00130000 lrs1=  6->prs1=   0 lrs2=  1->prs2=   0 
+CORE RENAME [Cycle                    42] [Port 2]: pc=0000000080000010 inst=00300113 lrs1=  0->prs1=   0 lrs2=  3->prs2=  32 lrd=  2->pdest=  62 (old=   0)
+CORE RENAME [Cycle                    42] [Port 3]: pc=0000000080000012 inst=006f0030 lrs1= 30->prs1=   0 lrs2=  6->prs2=   0 
+CORE RENAME [Cycle                    42] [Port 4]: pc=0000000080000014 inst=0000006f lrs1=  0->prs1=   0 lrs2=  0->prs2=   0 
+CORE RENAME [Cycle                    42] [Port 5]: pc=0000000080000016 inst=00130000 lrs1=  6->prs1=   0 lrs2=  1->prs2=   0 
+CORE EXECUTE [Cycle                    42]: pc=0000000080000090 inst=00000013 fused= 0
+CORE RENAME [Cycle                    43] [Port 0]: pc=0000000080000094 inst=00000013 lrs1=  0->prs1=   0 lrs2=  0->prs2=   0 
+CORE RENAME [Cycle                    43] [Port 1]: pc=0000000080000096 inst=00130000 lrs1=  6->prs1=   0 lrs2=  1->prs2=   0 
+CORE RENAME [Cycle                    43] [Port 2]: pc=0000000080000010 inst=00300113 lrs1=  0->prs1=   0 lrs2=  3->prs2=  32 lrd=  2->pdest=  63 (old=   0)
+CORE RENAME [Cycle                    43] [Port 3]: pc=0000000080000012 inst=006f0030 lrs1= 30->prs1=   0 lrs2=  6->prs2=   0 
+CORE RENAME [Cycle                    43] [Port 4]: pc=0000000080000014 inst=0000006f lrs1=  0->prs1=   0 lrs2=  0->prs2=   0 
+CORE RENAME [Cycle                    43] [Port 5]: pc=0000000080000016 inst=00130000 lrs1=  6->prs1=   0 lrs2=  1->prs2=   0 
+CORE EXECUTE [Cycle                    43]: pc=0000000080000094 inst=00000013 fused= 0
+CORE RENAME [Cycle                    44] [Port 0]: pc=0000000080000098 inst=00000013 lrs1=  0->prs1=   0 lrs2=  0->prs2=   0 
+CORE RENAME [Cycle                    44] [Port 1]: pc=000000008000009a inst=00130000 lrs1=  6->prs1=   0 lrs2=  1->prs2=   0 
+CORE RENAME [Cycle                    44] [Port 2]: pc=0000000080000010 inst=00300113 lrs1=  0->prs1=   0 lrs2=  3->prs2=  32 lrd=  2->pdest=  64 (old=   0)
+CORE RENAME [Cycle                    44] [Port 3]: pc=0000000080000012 inst=006f0030 lrs1= 30->prs1=   0 lrs2=  6->prs2=   0 
+CORE RENAME [Cycle                    44] [Port 4]: pc=0000000080000014 inst=0000006f lrs1=  0->prs1=   0 lrs2=  0->prs2=   0 
+CORE RENAME [Cycle                    44] [Port 5]: pc=0000000080000016 inst=00130000 lrs1=  6->prs1=   0 lrs2=  1->prs2=   0 
+CORE EXECUTE [Cycle                    44]: pc=0000000080000098 inst=00000013 fused= 0
+--- Simulation Finished. CSV generated: ftq_dump.csv ---
+--- Final Register State ---
+p00: 0x0000000000000000
+p01: 0x0000000000000000
+p02: 0x0000000000000000
+p03: 0x0000000000000000
+p04: 0x0000000000000000
+p05: 0x0000000000000000
+p06: 0x0000000000000000
+p07: 0x0000000000000000
+p08: 0x0000000000000000
+p09: 0x0000000000000000
+p10: 0x0000000000000000
+p11: 0x0000000000000000
+p12: 0x0000000000000000
+p13: 0x0000000000000000
+p14: 0x0000000000000000
+p15: 0x0000000000000000
+p16: 0x0000000000000000
+p17: 0x0000000000000000
+p18: 0x0000000000000000
+p19: 0x0000000000000000
+p20: 0x0000000000000000
+p21: 0x0000000000000000
+p22: 0x0000000000000000
+p23: 0x0000000000000000
+p24: 0x0000000000000000
+p25: 0x0000000000000000
+p26: 0x0000000000000000
+p27: 0x0000000000000000
+p28: 0x0000000000000000
+p29: 0x0000000000000000
+p30: 0x0000000000000000
+p31: 0x0000000000000000
+p32: 0x0000000000000007
+p33: 0x0000000000000000
+p34: 0x0000000000000000
+p35: 0x0000000000000000
+p36: 0x0000000000000000
+p37: 0x0000000000000000
+p38: 0x0000000000000000
+p39: 0x0000000000000000
+p40: 0x0000000000000000
+p41: 0x0000000000000000
+p42: 0x0000000000000000
+p43: 0x0000000000000000
+p44: 0x0000000000000000
+p45: 0x0000000000000000
+p46: 0x0000000000000000
+p47: 0x0000000000000000
+p48: 0x0000000000000000
+p49: 0x0000000000000000
+p50: 0x0000000000000000
+p51: 0x0000000000000000
+p52: 0x0000000000000000
+p53: 0x0000000000000000
+p54: 0x0000000000000000
+p55: 0x0000000000000000
+p56: 0x0000000000000000
+p57: 0x0000000000000000
+p58: 0x0000000000000000
+p59: 0x0000000000000000
+p60: 0x0000000000000000
+p61: 0x0000000000000000
+p62: 0x0000000000000000
+p63: 0x0000000000000000
+--- Final FP Register State ---
+f00: 0x0000000000000000
+f01: 0x0000000000000000
+f02: 0x0000000000000000
+f03: 0x0000000000000000
+f04: 0x0000000000000000
+f05: 0x0000000000000000
+f06: 0x0000000000000000
+f07: 0x0000000000000000
+f08: 0x0000000000000000
+f09: 0x0000000000000000
+f10: 0x0000000000000000
+f11: 0x0000000000000000
+f12: 0x0000000000000000
+f13: 0x0000000000000000
+f14: 0x0000000000000000
+f15: 0x0000000000000000
+f16: 0x0000000000000000
+f17: 0x0000000000000000
+f18: 0x0000000000000000
+f19: 0x0000000000000000
+f20: 0x0000000000000000
+f21: 0x0000000000000000
+f22: 0x0000000000000000
+f23: 0x0000000000000000
+f24: 0x0000000000000000
+f25: 0x0000000000000000
+f26: 0x0000000000000000
+f27: 0x0000000000000000
+f28: 0x0000000000000000
+f29: 0x0000000000000000
+f30: 0x0000000000000000
+f31: 0x0000000000000000

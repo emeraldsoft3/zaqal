@@ -96,9 +96,9 @@ object ZaqalTest extends App {
     println(s"--- Simulation Finished. CSV generated: ftq_dump.csv ---")
     
     println("--- Final Register State ---")
-    for (i <- 0 until 32) {
+    for (i <- 0 until 64) {
       val regVal = dut.io.debug_regs(i).peek().litValue
-      println(f"x$i%02d: 0x$regVal%016x")
+      println(f"p$i%02d: 0x$regVal%016x")
     }
 
     println("--- Final FP Register State ---")

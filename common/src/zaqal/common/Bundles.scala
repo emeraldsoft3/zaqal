@@ -215,6 +215,9 @@ class DecodeSignals(implicit val p: Parameters) extends Bundle with HasZaqalPara
   // Fusion Flags
   val is_fused = Bool()
   val is_fused_lui_addi = Bool()
+  val is_fused_load_alu = Bool()
+  val is_fused_alu_store = Bool()
+  val fused_imm = SInt(xLen.W)
 
   // Register Types (for Rename)
   val rs1_is_fp = Bool()
@@ -245,6 +248,9 @@ class DecodedMicroOp(implicit val p: Parameters) extends Bundle with HasZaqalPar
   val psrs3     = UInt(phyRegIdxWidth.W)
   val pdest     = UInt(phyRegIdxWidth.W)
   val old_pdest = UInt(phyRegIdxWidth.W)
+  
+  // Speculative State Snapshot ID
+  val snapshotIdx = UInt(log2Up(renameSnapshotNum).W)
 }
 
 // Redirect signal from Backend to Frontend

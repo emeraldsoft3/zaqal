@@ -18,8 +18,8 @@ This is where we transition Zaqal from a simple core to a high-performance engin
 - **XiangShan Study**: [DecodeUnit.scala](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/backend/decode/DecodeUnit.scala) - *Look for parameters like `DecodeWidth`.*
 
 ## Day 3.5: Instruction Fusion (XiangShan Parity)
-- [ ] **Macro-Op Fusion**: Fuse patterns like `LUI`+`ADDI` into a single micro-op to save rename/issue bandwidth.
-- [ ] **Micro-Op Fusion**: Fuse Memory + ALU operations where applicable.
+- [x] **Macro-Op Fusion**: Fuse patterns like `LUI`+`ADDI` into a single micro-op to save rename/issue bandwidth.
+- [x] **Micro-Op Fusion**: Fuse Memory + ALU operations where applicable.
 - **Goal**: Increase effective dispatch width and reduce PRF pressure.
 
 ## Day 4: Register Renaming (Map Table)

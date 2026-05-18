@@ -24,6 +24,13 @@ class FreeList(val numPhyRegs: Int, val numLogicalRegs: Int)(implicit val p: Par
     // Recovery
     val redirect = Input(Bool())
     val archHeadPtr = Input(UInt(log2Up(numPhyRegs - numLogicalRegs).W)) // From ROB/Commit
+    // Checkpoint IO
+    val useSnapshot    = Input(Bool())
+    val snptEnq        = Input(Bool())
+    val snptEnqIdx     = Input(UInt(log2Up(decodeWidth + 1).W))
+    val snptDeq        = Input(Bool())
+    val snptFlushVec   = Input(Vec(renameSnapshotNum, Bool()))
+    val snptRestoreIdx = Input(UInt(log2Up(renameSnapshotNum).W))
   })
 
   val size = numPhyRegs - numLogicalRegs
@@ -38,6 +45,8 @@ class FreeList(val numPhyRegs: Int, val numLogicalRegs: Int)(implicit val p: Par
   
   // Available count tracking
   val freeCount = RegInit(size.U(log2Up(size + 1).W))
+
+  val snapshots = Module(new SnapshotGenerator(UInt(log2Up(size).W)))
 
   def wrapAdd(ptr: UInt, add: UInt): UInt = {
     val next = ptr +& add
@@ -63,21 +72,25 @@ class FreeList(val numPhyRegs: Int, val numLogicalRegs: Int)(implicit val p: Par
     }
   }
 
+  val allocMask = (1.U(decodeWidth.W) << io.snptEnqIdx) - 1.U
+  val snpt_head_ptr = wrapAdd(headPtr, PopCount(io.allocateReq.asUInt & allocMask))
+  snapshots.io.enq := io.snptEnq
+  snapshots.io.enqData := snpt_head_ptr
+  snapshots.io.deq := io.snptDeq
+  snapshots.io.redirect := io.redirect && io.useSnapshot
+  snapshots.io.flushVec := io.snptFlushVec
+
   // 3. State Update
   when (io.redirect) {
-    // Restore speculative state from architectural state
-    headPtr := io.archHeadPtr
+    // Restore speculative state from architectural state or snapshot
+    val targetHeadPtr = Mux(io.useSnapshot, snapshots.io.snapshots(io.snptRestoreIdx), io.archHeadPtr)
+    headPtr := targetHeadPtr
     // Recalculate freeCount based on distance between tailPtr and archHeadPtr
-    // freeCount = (tailPtr - archHeadPtr) mod size
-    // If tailPtr == archHeadPtr, it could be 0 or size. 
-    // Since we just redirected, we assume the committed state is what remains.
-    // However, distance formula:
-    val dist = Mux(tailPtr >= io.archHeadPtr, 
-                   tailPtr - io.archHeadPtr, 
-                   size.U - (io.archHeadPtr - tailPtr))
-    // Special case: if tailPtr == archHeadPtr, we need to know if it's full or empty.
-    // In our case, if redirected, the arch state is what's free.
-    // For now, let's assume it's correctly managed by the ROB.
+    val dist = Mux(tailPtr === targetHeadPtr,
+                   size.U,
+                   Mux(tailPtr > targetHeadPtr, 
+                       tailPtr - targetHeadPtr, 
+                       size.U - (targetHeadPtr - tailPtr)))
     freeCount := dist 
   } .otherwise {
     val actualAlloc = Mux(io.doAllocate && io.canAllocate, numAllocReq, 0.U)

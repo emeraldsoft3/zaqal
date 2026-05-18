@@ -24,6 +24,16 @@ class RenameTable(val numLogicalRegs: Int, val isFP: Boolean = false)(implicit v
     
     val old_pdest   = Vec(decodeWidth, Output(UInt(phyRegIdxWidth.W)))
     val redirect    = Input(Bool())
+    val useSnapshot = Input(Bool())
+    
+    // Checkpoint IO
+    val snptEnq        = Input(Bool())
+    val snptEnqIdx     = Input(UInt(log2Up(decodeWidth + 1).W))
+    val snptDeq        = Input(Bool())
+    val snptFlushVec   = Input(Vec(renameSnapshotNum, Bool()))
+    val snptRestoreIdx = Input(UInt(log2Up(renameSnapshotNum).W))
+    val snptEnqPtr     = Output(UInt(log2Up(renameSnapshotNum).W))
+    val snptValids     = Output(Vec(renameSnapshotNum, Bool()))
     
     // Debug
     val debug_rat   = Output(Vec(numLogicalRegs, UInt(phyRegIdxWidth.W)))
@@ -33,6 +43,8 @@ class RenameTable(val numLogicalRegs: Int, val isFP: Boolean = false)(implicit v
   val table_init = VecInit(Seq.tabulate(numLogicalRegs)(i => i.U(phyRegIdxWidth.W)))
   val spec_table = RegInit(table_init)
   val arch_table = RegInit(table_init)
+
+  val snapshots = Module(new SnapshotGenerator(Vec(numLogicalRegs, UInt(phyRegIdxWidth.W))))
 
   // 1. Rename Stage (Speculative)
   // We handle intra-bundle dependencies using a cascading wire table
@@ -62,10 +74,19 @@ class RenameTable(val numLogicalRegs: Int, val isFP: Boolean = false)(implicit v
       curr_spec_table(i+1)(io.renamePorts(i).addr) := io.renamePorts(i).data
     }
   }
+
+  snapshots.io.enq := io.snptEnq
+  snapshots.io.enqData := curr_spec_table(io.snptEnqIdx)
+  snapshots.io.deq := io.snptDeq
+  snapshots.io.redirect := io.redirect && io.useSnapshot
+  snapshots.io.flushVec := io.snptFlushVec
   
+  io.snptEnqPtr := snapshots.io.enqPtr
+  io.snptValids := snapshots.io.valids
+
   // State Update
   when (io.redirect) {
-    spec_table := arch_table
+    spec_table := Mux(io.useSnapshot, snapshots.io.snapshots(io.snptRestoreIdx), arch_table)
   } .otherwise {
     spec_table := curr_spec_table(decodeWidth)
   }

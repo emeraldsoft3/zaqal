@@ -28,15 +28,12 @@ class ICache(implicit val p: Parameters) extends Module with HasZaqalParameter {
     } else {
       println(s"[ICache] Warning: Using Custom Fusion Test Program.")
       Seq(
-        "h123450b7".U, // 0x00: lui x1, 0x12345
-        "h67808093".U, // 0x04: addi x1, x1, 0x678 (SHOULD FUSE: x1 = 0x12345678)
-        "h00000217".U, // 0x08: auipc x2, 0x0
-        "h01010113".U, // 0x0c: addi x2, x2, 0x10  (SHOULD FUSE: x2 = PC + 0x10)
-        "habcde337".U, // 0x10: lui x6, 0xABCDE
-        "h12330313".U, // 0x14: addi x6, x6, 0x123 (SHOULD FUSE: x6 = 0xABCDE123)
-        "h111113b7".U, // 0x18: lui x7, 0x11111
-        "h22238393".U, // 0x1c: addi x7, x7, 0x222 (SHOULD FUSE: x7 = 0x11111222)
-        "h0000006f".U  // 0x20: j 0x20 (Halt)
+        "h00000663".U, // 0x00: beq x0, x0, 12  (Predicted NOT TAKEN, actually TAKEN to 0x0c)
+        "h06300113".U, // 0x04: addi x2, x0, 99 (Speculative fallthrough!)
+        "h00c0006f".U, // 0x08: jal x0, 12      (Speculative jump to 0x14)
+        "h00700193".U, // 0x0c: addi x3, x0, 7   (Correct taken path target!)
+        "h00300113".U, // 0x10: addi x2, x0, 3   (Correct value for x2)
+        "h0000006f".U  // 0x14: jal x0, 0        (Halt)
       )
     }
   }

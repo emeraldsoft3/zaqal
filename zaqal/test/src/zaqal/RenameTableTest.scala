@@ -11,7 +11,7 @@ class RenameTableTest extends AnyFlatSpec with ChiselScalatestTester {
   implicit val p: Parameters = new ZaqalConfig
 
   "RenameTable" should "handle intra-bundle dependencies correctly" in {
-    test(new RenameTable) { dut =>
+    test(new RenameTable(32, false)) { dut =>
       dut.io.redirect.poke(false.B)
       
       // Initialize commit ports to 0
@@ -66,7 +66,7 @@ class RenameTableTest extends AnyFlatSpec with ChiselScalatestTester {
   }
 
   it should "ensure x0 always maps to p0" in {
-    test(new RenameTable) { dut =>
+    test(new RenameTable(32, false)) { dut =>
       dut.io.redirect.poke(false.B)
       
       // Try to rename x0 to p50
