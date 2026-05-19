@@ -1,20 +1,22 @@
 [*]
 [*] GTKWave Analyzer v3.3.111 (w)1999-2020 BSI
-[*] Thu May 14 07:55:12 2026
+[*] Tue May 19 12:23:38 2026
 [*]
 [dumpfile] "/home/emerald/zaqal/programs/vcd/Lithium.vcd"
-[dumpfile_mtime] "Thu May 14 07:23:53 2026"
-[dumpfile_size] 1522119
+[dumpfile_mtime] "Tue May 19 11:56:18 2026"
+[dumpfile_size] 1437765
 [savefile] "/home/emerald/zaqal/programs/vcd/Lithium.gtkw"
-[timestart] 72
+[timestart] 0
 [size] 1920 993
 [pos] -1 -1
-*-5.900000 111 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-5.900000 188 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] Core.
 [treeopen] Core.backend.
 [treeopen] Core.backend.exec.
 [treeopen] Core.backend.exec.alu.
+[treeopen] Core.backend.intFreeList.
 [treeopen] Core.backend.rat.
+[treeopen] Core.backend.rat.intRat.
 [treeopen] Core.frontend.
 [sst_width] 297
 [signals_width] 495
@@ -86,9 +88,11 @@ Core.backend.exec.bru.fallthrough_pc[63:0]
 Core.backend.intFreeList.actualAlloc[2:0]
 @22
 Core.backend.intFreeList.dist[7:0]
+@24
 Core.backend.intFreeList.freeCount[7:0]
-Core.backend.intFreeList.freeList_0[7:0]
++{Core.backend.intFreeList.freeList_0[7:0]} Core.backend.intFreeList.freeList_0[7:0]
 Core.backend.intFreeList.freeList_1[7:0]
+@22
 Core.backend.intFreeList.freeList_2[7:0]
 Core.backend.intFreeList.freeList_3[7:0]
 Core.backend.intFreeList.freeList_4[7:0]
@@ -109,10 +113,97 @@ Core.backend.intFreeList.io_freePhyReg_0[7:0]
 Core.backend.intFreeList.io_freePhyReg_1[7:0]
 @28
 Core.backend.intFreeList.offset_1[1:0]
-@29
 Core.backend.intFreeList.offset_2[2:0]
 @22
 +{Core.backend.io_redirect_target[63:0]} Core.backend.io_redirect_target[63:0]
+@200
+-Snaphot
+@201
+-intfreelist
+@22
++{Core.backend.intFreeList.snapshots.snapshots_0[7:0]} Core.backend.intFreeList.snapshots.snapshots_0[7:0]
++{Core.backend.intFreeList.snapshots.snapshots_1[7:0]} Core.backend.intFreeList.snapshots.snapshots_1[7:0]
+Core.backend.intFreeList.snapshots.snapshots_2[7:0]
+Core.backend.intFreeList.snapshots.snapshots_3[7:0]
+Core.backend.intFreeList.snapshots.snapshots_4[7:0]
+@24
++{Core.backend.intFreeList.snapshots.io_snapshots_0[7:0]} Core.backend.intFreeList.snapshots.io_snapshots_0[7:0]
+@22
+Core.backend.intFreeList.snapshots.io_snapshots_1[7:0]
+Core.backend.intFreeList.snapshots.io_snapshots_2[7:0]
+Core.backend.intFreeList.snapshots.io_snapshots_3[7:0]
+@28
+Core.backend.intFreeList.snapshots.io_enq
+Core.backend.intFreeList.snapshots.candidates_0[2:0]
+@22
+Core.backend.intFreeList.snapshots.candidates_0_next[3:0]
+@24
++{Core.backend.intFreeList.snapshots.io_enqData[7:0]} Core.backend.intFreeList.snapshots.io_enqData[7:0]
+@28
+Core.backend.rat.intRat.snapshots.snptValids_0
+Core.backend.rat.intRat.snapshots.snptValids_1
+Core.backend.rat.intRat.snapshots.snptValids_2
+Core.backend.rat.intRat.snapshots.snptValids_3
+@22
+Core.backend.rat.intRat.snapshots.io_enqData_0[7:0]
+@24
++{Core.backend.rat.intRat.snapshots.io_enqData_1[7:0]} Core.backend.rat.intRat.snapshots.io_enqData_1[7:0]
+@22
+Core.backend.rat.intRat.snapshots.io_enqData_2[7:0]
+Core.backend.rat.intRat.snapshots.io_enqData_3[7:0]
+Core.backend.rat.intRat.snapshots.io_enqData_4[7:0]
+Core.backend.rat.intRat.snapshots.io_enqData_5[7:0]
+Core.backend.rat.intRat.snapshots.io_enqData_6[7:0]
+Core.backend.rat.intRat.snapshots.io_enqData_7[7:0]
+Core.backend.rat.intRat.snapshots.io_enqData_8[7:0]
++{Core.backend.rat.intRat.snapshots.io_snapshots_0_0[7:0]} Core.backend.rat.intRat.snapshots.io_snapshots_0_0[7:0]
+@24
++{Core.backend.rat.intRat.snapshots.io_snapshots_0_1[7:0]} Core.backend.rat.intRat.snapshots.io_snapshots_0_1[7:0]
+@22
+Core.backend.rat.intRat.snapshots.io_snapshots_0_2[7:0]
+Core.backend.rat.intRat.snapshots.io_snapshots_0_3[7:0]
+Core.backend.rat.intRat.snapshots.io_snapshots_0_4[7:0]
+Core.backend.rat.intRat.snapshots.io_snapshots_0_5[7:0]
+Core.backend.rat.intRat.snapshots.io_snapshots_0_6[7:0]
+Core.backend.rat.intRat.snapshots.io_snapshots_0_7[7:0]
+Core.backend.rat.intRat.snapshots.io_snapshots_0_8[7:0]
+Core.backend.rat.intRat.snapshots.io_snapshots_0_9[7:0]
+Core.backend.rat.intRat.snapshots.io_snapshots_1_0[7:0]
+Core.backend.rat.intRat.snapshots.io_snapshots_1_1[7:0]
+Core.backend.rat.intRat.snapshots.io_snapshots_1_2[7:0]
+Core.backend.rat.intRat.snapshots.io_snapshots_1_3[7:0]
+Core.backend.rat.intRat.snapshots.io_snapshots_1_4[7:0]
+Core.backend.rat.intRat.snapshots.io_snapshots_1_5[7:0]
+Core.backend.rat.intRat.snapshots.io_snapshots_1_6[7:0]
+Core.backend.rat.intRat.snapshots.io_snapshots_1_7[7:0]
++{Core.backend.rat.intRat.snapshots.snapshots_0_0[7:0]} Core.backend.rat.intRat.snapshots.snapshots_0_0[7:0]
+Core.backend.rat.intRat.snapshots.snapshots_0_1[7:0]
+Core.backend.rat.intRat.snapshots.snapshots_0_2[7:0]
+Core.backend.rat.intRat.snapshots.snapshots_0_3[7:0]
+Core.backend.rat.intRat.snapshots.snapshots_0_4[7:0]
+Core.backend.rat.intRat.snapshots.snapshots_0_5[7:0]
+Core.backend.rat.intRat.snapshots.snapshots_0_6[7:0]
+Core.backend.rat.intRat.snapshots.snapshots_0_7[7:0]
+Core.backend.rat.intRat.snapshots.snapshots_0_8[7:0]
+Core.backend.rat.intRat.snapshots.snapshots_1_0[7:0]
+Core.backend.rat.intRat.snapshots.snapshots_1_1[7:0]
+Core.backend.rat.intRat.snapshots.snapshots_1_2[7:0]
+Core.backend.rat.intRat.snapshots.snapshots_1_3[7:0]
+Core.backend.rat.intRat.snapshots.snapshots_1_4[7:0]
+Core.backend.rat.intRat.snapshots.snapshots_1_5[7:0]
+Core.backend.rat.intRat.snapshots.snapshots_1_6[7:0]
+@28
+Core.backend.rat.intRat.snapshots.candidates_0[2:0]
+@22
+Core.backend.rat.intRat.snapshots.candidates_0_next[3:0]
+@28
+Core.backend.rat.intRat.snapshots.candidates_1[2:0]
+@22
+Core.backend.rat.intRat.snapshots.candidates_1_next[3:0]
+@28
+Core.backend.rat.intRat.snapshots.candidates_2[2:0]
+@22
+Core.backend.rat.intRat.snapshots.candidates_2_next[3:0]
 @200
 -Execute
 @22
@@ -124,10 +215,12 @@ Core.backend.intFreeList.offset_2[2:0]
 Core.backend.exec.alu.io_pc[63:0]
 @200
 -RAT
+@22
+Core.backend.rat.intRat.spec_table_0[7:0]
 @24
 +{Core.backend.rat.intRat.spec_table_1[7:0]} Core.backend.rat.intRat.spec_table_1[7:0]
 Core.backend.rat.intRat.spec_table_2[7:0]
-Core.backend.rat.intRat.spec_table_3[7:0]
++{Core.backend.rat.intRat.spec_table_3[7:0]} Core.backend.rat.intRat.spec_table_3[7:0]
 Core.backend.rat.intRat.spec_table_4[7:0]
 @22
 Core.backend.rat.intRat.spec_table_5[7:0]
@@ -135,6 +228,14 @@ Core.backend.rat.intRat.spec_table_6[7:0]
 @24
 Core.backend.rat.intRat.spec_table_7[7:0]
 @22
+Core.backend.rat.intRat.spec_table_8[7:0]
+Core.backend.rat.intRat.spec_table_9[7:0]
+Core.backend.rat.intRat.spec_table_10[7:0]
+Core.backend.rat.intRat.spec_table_11[7:0]
+Core.backend.rat.intRat.spec_table_12[7:0]
+Core.backend.rat.intRat.spec_table_13[7:0]
+Core.backend.rat.intRat.spec_table_14[7:0]
+Core.backend.rat.intRat.spec_table_15[7:0]
 Core.backend.rat.intRat.curr_spec_table_0_0[7:0]
 @24
 +{Core.backend.rat.intRat.curr_spec_table_0_1[7:0]} Core.backend.rat.intRat.curr_spec_table_0_1[7:0]
@@ -147,11 +248,21 @@ Core.backend.rat.intRat.curr_spec_table_1_0[7:0]
 +{Core.backend.rat.intRat.curr_spec_table_1_1[7:0]} Core.backend.rat.intRat.curr_spec_table_1_1[7:0]
 @22
 Core.backend.rat.intRat.curr_spec_table_1_2[7:0]
-Core.backend.rat.intRat.curr_spec_table_1_3[7:0]
++{Core.backend.rat.intRat.curr_spec_table_1_3[7:0]} Core.backend.rat.intRat.curr_spec_table_1_3[7:0]
 Core.backend.rat.intRat.curr_spec_table_1_4[7:0]
 Core.backend.rat.intRat.curr_spec_table_1_5[7:0]
 Core.backend.rat.intRat.curr_spec_table_1_6[7:0]
 Core.backend.rat.intRat.curr_spec_table_1_7[7:0]
+Core.backend.rat.intRat.curr_spec_table_1_8[7:0]
+Core.backend.rat.intRat.curr_spec_table_1_9[7:0]
+Core.backend.rat.intRat.curr_spec_table_1_10[7:0]
+@24
+Core.backend.rat.intRat.curr_spec_table_1_11[7:0]
+Core.backend.rat.intRat.curr_spec_table_1_12[7:0]
+@22
+Core.backend.rat.intRat.curr_spec_table_1_13[7:0]
+Core.backend.rat.intRat.curr_spec_table_1_14[7:0]
+Core.backend.rat.intRat.curr_spec_table_1_15[7:0]
 +{Core.backend.rat.intRat.curr_spec_table_2_1[7:0]} Core.backend.rat.intRat.curr_spec_table_2_1[7:0]
 Core.backend.rat.intRat.curr_spec_table_2_2[7:0]
 Core.backend.rat.intRat.curr_spec_table_2_3[7:0]
@@ -167,6 +278,22 @@ Core.backend.rat.intRat.curr_spec_table_2_12[7:0]
 Core.backend.rat.intRat.curr_spec_table_2_13[7:0]
 Core.backend.rat.intRat.curr_spec_table_2_14[7:0]
 Core.backend.rat.intRat.curr_spec_table_2_15[7:0]
++{Core.backend.rat.intRat.arch_table_0[7:0]} Core.backend.rat.intRat.arch_table_0[7:0]
+Core.backend.rat.intRat.arch_table_1[7:0]
+Core.backend.rat.intRat.arch_table_2[7:0]
+Core.backend.rat.intRat.arch_table_3[7:0]
+Core.backend.rat.intRat.arch_table_4[7:0]
+Core.backend.rat.intRat.arch_table_5[7:0]
+Core.backend.rat.intRat.arch_table_6[7:0]
+Core.backend.rat.intRat.arch_table_7[7:0]
+Core.backend.rat.intRat.arch_table_8[7:0]
+Core.backend.rat.intRat.arch_table_9[7:0]
+Core.backend.rat.intRat.arch_table_10[7:0]
+Core.backend.rat.intRat.arch_table_11[7:0]
+Core.backend.rat.intRat.arch_table_12[7:0]
+Core.backend.rat.intRat.arch_table_13[7:0]
+Core.backend.rat.intRat.arch_table_14[7:0]
+Core.backend.rat.intRat.arch_table_15[7:0]
 Core.backend.rat.io_commitPorts_0_addr[4:0]
 @28
 Core.backend.rat.io_commitPorts_0_wen
@@ -232,7 +359,9 @@ Core.backend.exec.regFile.regs_28[63:0]
 Core.backend.exec.regFile.regs_29[63:0]
 Core.backend.exec.regFile.regs_30[63:0]
 Core.backend.exec.regFile.regs_31[63:0]
+@24
 +{Core.backend.exec.regFile.regs_32[63:0]} Core.backend.exec.regFile.regs_32[63:0]
+@22
 Core.backend.exec.regFile.regs_33[63:0]
 Core.backend.exec.regFile.regs_34[63:0]
 @24
@@ -240,11 +369,15 @@ Core.backend.exec.regFile.regs_34[63:0]
 +{Core.backend.exec.regFile.regs_36[63:0]} Core.backend.exec.regFile.regs_36[63:0]
 @22
 Core.backend.exec.regFile.regs_37[63:0]
+@24
 Core.backend.exec.regFile.regs_38[63:0]
+@22
 Core.backend.exec.regFile.regs_39[63:0]
 Core.backend.exec.regFile.regs_40[63:0]
 Core.backend.exec.regFile.regs_41[63:0]
+@24
 Core.backend.exec.regFile.regs_42[63:0]
+@22
 Core.backend.exec.regFile.regs_43[63:0]
 Core.backend.exec.regFile.regs_44[63:0]
 Core.backend.exec.regFile.regs_45[63:0]
@@ -254,7 +387,9 @@ Core.backend.exec.regFile.regs_48[63:0]
 Core.backend.exec.regFile.regs_49[63:0]
 Core.backend.exec.regFile.regs_50[63:0]
 Core.backend.exec.regFile.regs_51[63:0]
+@24
 Core.backend.exec.regFile.regs_52[63:0]
+@22
 Core.backend.exec.regFile.regs_53[63:0]
 Core.backend.exec.regFile.regs_54[63:0]
 Core.backend.exec.regFile.regs_55[63:0]

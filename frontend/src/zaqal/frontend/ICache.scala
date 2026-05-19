@@ -28,12 +28,29 @@ class ICache(implicit val p: Parameters) extends Module with HasZaqalParameter {
     } else {
       println(s"[ICache] Warning: Using Custom Fusion Test Program.")
       Seq(
-        "h00000663".U, // 0x00: beq x0, x0, 12  (Predicted NOT TAKEN, actually TAKEN to 0x0c)
-        "h06300113".U, // 0x04: addi x2, x0, 99 (Speculative fallthrough!)
-        "h00c0006f".U, // 0x08: jal x0, 12      (Speculative jump to 0x14)
-        "h00700193".U, // 0x0c: addi x3, x0, 7   (Correct taken path target!)
-        "h00300113".U, // 0x10: addi x2, x0, 3   (Correct value for x2)
-        "h0000006f".U  // 0x14: jal x0, 0        (Halt)
+        "h00a00093".U, // 0x00: addi x1, x0, 10
+        "h00700493".U, // 0x04: addi x9, x0, 7
+        "h00300513".U, // 0x08: addi x10, x0, 3
+        "h00000c63".U, // 0x0c: beq x0, x0, 24  (Predicted NOT TAKEN, actually TAKEN to 0x24)
+        "h06300113".U, // 0x10: addi x2, x0, 99 (Speculative fallthrough!)
+        "h00500593".U, // 0x14: addi x11, x0, 5
+        "h00900613".U, // 0x18: addi x12, x0, 9
+        "h00b00693".U, // 0x1c: addi x13, x0, 11
+        "h00b00693".U, // 0x20: addi x13, x0, 11
+        "h00608093".U, // 0x24: addi x1, x1, 6  (Correct taken path target!)
+        "h00700493".U, // 0x28: addi x9, x0, 7
+        "h00300513".U, // 0x2c: addi x10, x0, 3
+        "h00300113".U, // 0x30: addi x2, x0, 3   (Correct value for x2)
+        "h00500593".U, // 0x34: addi x11, x0, 5
+        "h00900613".U, // 0x38: addi x12, x0, 9
+        "h02800313".U, // 0x3c: addi x6, x0, 40
+        "h03200393".U, // 0x40: addi x7, x0, 50
+        "h00700493".U, // 0x44: addi x9, x0, 7
+        "h00300513".U, // 0x48: addi x10, x0, 3
+        "h03c00413".U, // 0x4c: addi x8, x0, 60
+        "h00500593".U, // 0x50: addi x11, x0, 5
+        "h00900613".U, // 0x54: addi x12, x0, 9
+        "h0000006f".U  // 0x58: jal x0, 0        (Halt)
       )
     }
   }

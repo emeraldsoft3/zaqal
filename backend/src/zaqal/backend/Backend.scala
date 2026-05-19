@@ -157,8 +157,16 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
     // 2. Allocate Pdest if the instruction writes to a register
     // Mark the next instruction as fused away if fusion happened
     val is_fused_away = Mux(u0_raw.decode.is_rvc, i.U === 1.U, i.U === 2.U) && is_fused_with_next
-    val rf_wen = dec.rd =/= 0.U && !dec.rd_is_fp && !dec.is_branch && !dec.is_store && !dec.is_fstore && !dec.is_atomic && !is_fused_away
-    val fp_wen = dec.rd_is_fp && !dec.is_branch && !dec.is_store && !dec.is_fstore && !dec.is_atomic && !is_fused_away
+    
+    // Identify shadow parcel slots (second half of a 32-bit instruction)
+    val is_shadow = MuxCase(false.B, Seq(
+      (i.U === 1.U) -> !decoded_uops(0).decode.is_rvc,
+      (i.U === 3.U) -> !decoded_uops(2).decode.is_rvc,
+      (i.U === 5.U) -> !decoded_uops(4).decode.is_rvc
+    ))
+
+    val rf_wen = dec.rd =/= 0.U && !dec.rd_is_fp && !dec.is_branch && !dec.is_store && !dec.is_fstore && !dec.is_atomic && !is_fused_away && !is_shadow
+    val fp_wen = dec.rd_is_fp && !dec.is_branch && !dec.is_store && !dec.is_fstore && !dec.is_atomic && !is_fused_away && !is_shadow
 
     intFreeList.io.allocateReq(i) := rf_wen && io.dispatch(i).valid
     fpFreeList.io.allocateReq(i)  := fp_wen && io.dispatch(i).valid

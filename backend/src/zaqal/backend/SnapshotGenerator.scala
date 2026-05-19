@@ -25,7 +25,9 @@ class SnapshotGenerator[T <: Data](dataType: T)(implicit val p: Parameters) exte
   val snptDeqPtr = RegInit(0.U(log2Up(renameSnapshotNum).W))
   val snptValids = RegInit(VecInit(Seq.fill(renameSnapshotNum)(false.B)))
 
-  io.snapshots := snapshots
+  for (i <- 0 until renameSnapshotNum) {
+    io.snapshots(i) := Mux(io.enq && (snptEnqPtr === i.U), io.enqData, snapshots(i))
+  }
   io.enqPtr := snptEnqPtr
   io.deqPtr := snptDeqPtr
   io.valids := snptValids
@@ -38,7 +40,7 @@ class SnapshotGenerator[T <: Data](dataType: T)(implicit val p: Parameters) exte
   val isFull = snptValids(snptEnqPtr) && (snptEnqPtr === snptDeqPtr)
   val isEmpty = !snptValids(snptDeqPtr)
 
-  when(!io.redirect && !isFull && io.enq) {
+  when(!isFull && io.enq) {
     snapshots(snptEnqPtr) := io.enqData
     snptValids(snptEnqPtr) := true.B
     snptEnqPtr := ptrAdd(snptEnqPtr, 1.U)
