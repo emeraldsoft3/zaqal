@@ -26,31 +26,27 @@ class ICache(implicit val p: Parameters) extends Module with HasZaqalParameter {
       println(s"[ICache] Loaded ${insts.length} instructions from $path")
       insts
     } else {
-      println(s"[ICache] Warning: Using Custom Fusion Test Program.")
+      println(s"[ICache] Warning: Using Custom Dispatch Verification Program.")
       Seq(
-        "h00a00093".U, // 0x00: addi x1, x0, 10
-        "h00700493".U, // 0x04: addi x9, x0, 7
-        "h00300513".U, // 0x08: addi x10, x0, 3
-        "h00000c63".U, // 0x0c: beq x0, x0, 24  (Predicted NOT TAKEN, actually TAKEN to 0x24)
-        "h06300113".U, // 0x10: addi x2, x0, 99 (Speculative fallthrough!)
-        "h00500593".U, // 0x14: addi x11, x0, 5
-        "h00900613".U, // 0x18: addi x12, x0, 9
-        "h00b00693".U, // 0x1c: addi x13, x0, 11
-        "h00b00693".U, // 0x20: addi x13, x0, 11
-        "h00608093".U, // 0x24: addi x1, x1, 6  (Correct taken path target!)
-        "h00700493".U, // 0x28: addi x9, x0, 7
-        "h00300513".U, // 0x2c: addi x10, x0, 3
-        "h00300113".U, // 0x30: addi x2, x0, 3   (Correct value for x2)
-        "h00500593".U, // 0x34: addi x11, x0, 5
-        "h00900613".U, // 0x38: addi x12, x0, 9
-        "h02800313".U, // 0x3c: addi x6, x0, 40
-        "h03200393".U, // 0x40: addi x7, x0, 50
-        "h00700493".U, // 0x44: addi x9, x0, 7
-        "h00300513".U, // 0x48: addi x10, x0, 3
-        "h03c00413".U, // 0x4c: addi x8, x0, 60
-        "h00500593".U, // 0x50: addi x11, x0, 5
-        "h00900613".U, // 0x54: addi x12, x0, 9
-        "h0000006f".U  // 0x58: jal x0, 0        (Halt)
+        "h00b00093".U, // 0x00: addi x1, x0, 11   (Setup x1. Executed! -> Routed to [ALU])
+        "h00000013".U, // 0x04: NOP               (Skipped by single-issue)
+        "h00000013".U, // 0x08: NOP               (Skipped by single-issue)
+        "h00002103".U, // 0x0c: lw x2, 0(x0)      (Load from memory. Executed! -> Routed to [MEM])
+        "h00000013".U, // 0x10: NOP               (Skipped by single-issue)
+        "h00000013".U, // 0x14: NOP               (Skipped by single-issue)
+        "h00000c63".U, // 0x18: beq x0, x0, 24    (Branch. Executed! Predicted NOT TAKEN, actually TAKEN to 0x30 -> Routed to [BRU])
+        "h00000013".U, // 0x1c: NOP               (Skipped by single-issue)
+        "h00000013".U, // 0x20: NOP               (Skipped by single-issue)
+        "h003100d3".U, // 0x24: fadd.s f1, f2, f3 (FPU op. Speculative path - fetched, classified, then flushed -> Routed to [FPU])
+        "h00000013".U, // 0x28: NOP               (Skipped by single-issue)
+        "h00000013".U, // 0x2c: NOP               (Skipped by single-issue)
+        "h00102223".U, // 0x30: sw x1, 4(x0)      (Store memory. Executed post-redirect! -> Routed to [MEM])
+        "h00000013".U, // 0x34: NOP               (Skipped by single-issue)
+        "h00000013".U, // 0x38: NOP               (Skipped by single-issue)
+        "h00310253".U, // 0x3c: fadd.s f4, f5, f6 (FPU op. Executed non-speculatively! -> Routed to [FPU], rd=4, rs1=5, rs2=6)
+        "h00000013".U, // 0x40: NOP               (Skipped by single-issue)
+        "h00000013".U, // 0x44: NOP               (Skipped by single-issue)
+        "h0000006f".U  // 0x48: jal x0, 0         (Halt loop. -> Routed to [BRU])
       )
     }
   }

@@ -217,16 +217,45 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
   }
   val exec = Module(new Execute)
 
+  val dispatch = Module(new Dispatch)
+  
+  for (i <- 0 until decodeWidth) {
+    dispatch.io.in(i).valid := io.dispatch(i).valid && can_allocate_all
+    dispatch.io.in(i).bits  := decoded_uops(i)
+  }
+
+  dispatch.io.aluReady := exec.io.in.ready && can_allocate_all
+  dispatch.io.memReady := exec.io.in.ready && can_allocate_all
+  dispatch.io.bruReady := exec.io.in.ready && can_allocate_all
+  dispatch.io.fpuReady := exec.io.in.ready && can_allocate_all
+
+  // Connect the ready inputs of dispatch output ports (DecoupledIO input signals)
+  dispatch.io.aluOut(0).ready := exec.io.in.ready
+  dispatch.io.memOut(0).ready := exec.io.in.ready
+  dispatch.io.bruOut(0).ready := exec.io.in.ready
+  dispatch.io.fpuOut(0).ready := exec.io.in.ready
+
+  for (i <- 1 until decodeWidth) {
+    dispatch.io.aluOut(i).ready := false.B
+    dispatch.io.memOut(i).ready := false.B
+    dispatch.io.bruOut(i).ready := false.B
+    dispatch.io.fpuOut(i).ready := false.B
+  }
+
   redirect_valid := exec.io.redirect.valid
   restore_idx := exec.io.in.bits.snapshotIdx
 
-  // Day 3/4: Still single-issue execution.
-  // We feed the first renamed uop to the Execute module.
-  exec.io.in.valid := io.dispatch(0).valid && can_allocate_all
-  exec.io.in.bits  := decoded_uops(0)
+  // Day 6: Route active dispatch port to execution unit
+  exec.io.in.valid := dispatch.io.aluOut(0).valid || dispatch.io.memOut(0).valid || dispatch.io.bruOut(0).valid || dispatch.io.fpuOut(0).valid
+  exec.io.in.bits  := MuxCase(DontCare, Seq(
+    dispatch.io.aluOut(0).valid -> dispatch.io.aluOut(0).bits,
+    dispatch.io.memOut(0).valid -> dispatch.io.memOut(0).bits,
+    dispatch.io.bruOut(0).valid -> dispatch.io.bruOut(0).bits,
+    dispatch.io.fpuOut(0).valid -> dispatch.io.fpuOut(0).bits
+  ))
   
   // Dispatch Ready Logic (16-bit parcel offsets)
-  io.dispatch(0).ready := exec.io.in.ready && can_allocate_all
+  io.dispatch(0).ready := dispatch.io.in(0).ready
   
   // Port 1 is the second half of Port 0 if 32-bit
   io.dispatch(1).ready := (io.dispatch(0).ready && !u0_raw.decode.is_rvc) || (is_fused_with_next && io.dispatch(0).ready && u0_raw.decode.is_rvc)

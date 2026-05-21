@@ -33,7 +33,7 @@ This is where we transition Zaqal from a simple core to a high-performance engin
 - **XiangShan Study**: [Rename.scala:L200-250](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/backend/rename/Rename.scala) - *Allocation and deallocation logic.*
 
 ## Day 5.5: Speculative State Snapshots (XiangShan Parity)
-- [ ] **Snapshot Study**: Study how XiangShan uses `SnapshotGenerator` to save RAT and FreeList state on every branch.
+- [x] **Snapshot Study**: Study how XiangShan uses `SnapshotGenerator` to save RAT and FreeList state on every branch.
 - **Goal**: Plan the integration of Checkpoint Arrays to allow 1-cycle recovery from mispredicts.
 - **XiangShan Study**: [BaseFreeList.scala:L71](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/backend/rename/freelist/BaseFreeList.scala) - *See `SnapshotGenerator` usage.*
 

@@ -41,7 +41,7 @@ object ZaqalTest extends App {
 
     // --- MAIN SIMULATION LOOP ---
     val resetCycles = 5
-    val maxCycles = 50
+    val maxCycles = 100
     
     for (cycle <- 0 until maxCycles) {
       // 1. Apply Reset
@@ -85,7 +85,7 @@ object ZaqalTest extends App {
       }
 
       // 5. Periodic Dump (Dump every cycle to see the movement)
-      if (cycle >= 5 && cycle <= 80) {
+      if (cycle >= 5 && cycle <= 100) {
         dumpToCSV(cycle)
       }
 

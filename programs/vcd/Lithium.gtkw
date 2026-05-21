@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.111 (w)1999-2020 BSI
-[*] Tue May 19 12:23:38 2026
+[*] Thu May 21 08:38:00 2026
 [*]
 [dumpfile] "/home/emerald/zaqal/programs/vcd/Lithium.vcd"
-[dumpfile_mtime] "Tue May 19 11:56:18 2026"
-[dumpfile_size] 1437765
+[dumpfile_mtime] "Thu May 21 05:52:01 2026"
+[dumpfile_size] 1949063
 [savefile] "/home/emerald/zaqal/programs/vcd/Lithium.gtkw"
 [timestart] 0
 [size] 1920 993
 [pos] -1 -1
-*-5.900000 188 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-5.900000 41 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] Core.
 [treeopen] Core.backend.
 [treeopen] Core.backend.exec.
@@ -92,9 +92,9 @@ Core.backend.intFreeList.dist[7:0]
 Core.backend.intFreeList.freeCount[7:0]
 +{Core.backend.intFreeList.freeList_0[7:0]} Core.backend.intFreeList.freeList_0[7:0]
 Core.backend.intFreeList.freeList_1[7:0]
-@22
 Core.backend.intFreeList.freeList_2[7:0]
 Core.backend.intFreeList.freeList_3[7:0]
+@22
 Core.backend.intFreeList.freeList_4[7:0]
 Core.backend.intFreeList.freeList_5[7:0]
 Core.backend.intFreeList.headPtr[7:0]
@@ -118,7 +118,6 @@ Core.backend.intFreeList.offset_2[2:0]
 +{Core.backend.io_redirect_target[63:0]} Core.backend.io_redirect_target[63:0]
 @200
 -Snaphot
-@201
 -intfreelist
 @22
 +{Core.backend.intFreeList.snapshots.snapshots_0[7:0]} Core.backend.intFreeList.snapshots.snapshots_0[7:0]
@@ -206,7 +205,8 @@ Core.backend.rat.intRat.snapshots.candidates_2[2:0]
 Core.backend.rat.intRat.snapshots.candidates_2_next[3:0]
 @200
 -Execute
-@22
+@23
+[color] 1
 +{Core.backend.exec.io_in_bits_uop_inst_raw[31:0]} Core.backend.exec.io_in_bits_uop_inst_raw[31:0]
 @200
 -Decoder
@@ -361,21 +361,15 @@ Core.backend.exec.regFile.regs_30[63:0]
 Core.backend.exec.regFile.regs_31[63:0]
 @24
 +{Core.backend.exec.regFile.regs_32[63:0]} Core.backend.exec.regFile.regs_32[63:0]
-@22
 Core.backend.exec.regFile.regs_33[63:0]
 Core.backend.exec.regFile.regs_34[63:0]
-@24
 +{Core.backend.exec.regFile.regs_35[63:0]} Core.backend.exec.regFile.regs_35[63:0]
 +{Core.backend.exec.regFile.regs_36[63:0]} Core.backend.exec.regFile.regs_36[63:0]
-@22
 Core.backend.exec.regFile.regs_37[63:0]
-@24
 Core.backend.exec.regFile.regs_38[63:0]
-@22
 Core.backend.exec.regFile.regs_39[63:0]
 Core.backend.exec.regFile.regs_40[63:0]
 Core.backend.exec.regFile.regs_41[63:0]
-@24
 Core.backend.exec.regFile.regs_42[63:0]
 @22
 Core.backend.exec.regFile.regs_43[63:0]
