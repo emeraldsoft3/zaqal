@@ -1,24 +1,21 @@
 [*]
 [*] GTKWave Analyzer v3.3.111 (w)1999-2020 BSI
-[*] Thu May 21 08:38:00 2026
+[*] Fri May 22 06:20:06 2026
 [*]
 [dumpfile] "/home/emerald/zaqal/programs/vcd/Lithium.vcd"
-[dumpfile_mtime] "Thu May 21 05:52:01 2026"
-[dumpfile_size] 1949063
+[dumpfile_mtime] "Fri May 22 05:52:06 2026"
+[dumpfile_size] 2125657
 [savefile] "/home/emerald/zaqal/programs/vcd/Lithium.gtkw"
 [timestart] 0
 [size] 1920 993
 [pos] -1 -1
-*-5.900000 41 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-5.900000 116 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] Core.
 [treeopen] Core.backend.
-[treeopen] Core.backend.exec.
 [treeopen] Core.backend.exec.alu.
-[treeopen] Core.backend.intFreeList.
-[treeopen] Core.backend.rat.
 [treeopen] Core.backend.rat.intRat.
 [treeopen] Core.frontend.
-[sst_width] 297
+[sst_width] 377
 [signals_width] 495
 [sst_expanded] 1
 [sst_vpaned_height] 290
@@ -117,6 +114,83 @@ Core.backend.intFreeList.offset_2[2:0]
 @22
 +{Core.backend.io_redirect_target[63:0]} Core.backend.io_redirect_target[63:0]
 @200
+-Dispatch
+@28
+Core.backend.dispatch.can_dispatch_0
+Core.backend.dispatch.can_dispatch_1
+Core.backend.dispatch.can_dispatch_2
+Core.backend.dispatch.can_dispatch_3
+Core.backend.dispatch.can_dispatch_4
+Core.backend.dispatch.can_dispatch_5
+Core.backend.dispatch.clock
+Core.backend.dispatch.io_bruOut_0_bits_decode_is_addi
+Core.backend.dispatch.io_bruOut_0_bits_decode_is_addiw
+@22
+Core.backend.dispatch.io_in_0_bits_decode_imm[63:0]
+Core.backend.dispatch.io_in_0_bits_uop_inst_raw[31:0]
+@28
+Core.backend.dispatch.io_in_0_ready
+Core.backend.dispatch.io_in_0_valid
+@22
+Core.backend.dispatch.io_aluOut_0_bits_uop_pc[63:0]
+Core.backend.dispatch.io_in_1_bits_uop_inst_raw[31:0]
+@28
+Core.backend.dispatch.io_in_1_ready
+Core.backend.dispatch.io_in_1_valid
+@22
+Core.backend.dispatch.io_in_1_bits_uop_pc[63:0]
+Core.backend.dispatch.io_in_2_bits_uop_inst_raw[31:0]
+Core.backend.dispatch.io_in_2_bits_uop_pc[63:0]
+@28
+Core.backend.dispatch.io_in_2_ready
+Core.backend.dispatch.io_in_2_valid
+@22
+Core.backend.dispatch.io_in_3_bits_uop_inst_raw[31:0]
+@28
+Core.backend.dispatch.io_in_3_ready
+Core.backend.dispatch.io_in_3_valid
+@22
+Core.backend.dispatch.io_in_4_bits_uop_inst_raw[31:0]
+Core.backend.dispatch.io_in_4_bits_uop_pc[63:0]
+@28
+Core.backend.dispatch.io_in_4_ready
+Core.backend.dispatch.io_in_4_valid
+@22
+Core.backend.dispatch.io_in_5_bits_uop_pc[63:0]
+Core.backend.dispatch.io_in_5_bits_uop_inst_raw[31:0]
+@28
+Core.backend.dispatch.io_in_5_ready
+Core.backend.dispatch.io_in_5_valid
+@22
+Core.backend.dispatch.io_memOut_0_bits_uop_inst_raw[31:0]
+@28
+Core.backend.dispatch.io_aluOut_0_valid
+@22
+Core.backend.dispatch.io_aluOut_0_bits_uop_pc[63:0]
+@28
+Core.backend.dispatch.io_aluReady
+@22
+Core.backend.dispatch.io_aluOut_0_bits_uop_inst_raw[31:0]
+Core.backend.dispatch.io_bruOut_0_bits_uop_pc[63:0]
+@28
+Core.backend.dispatch.io_bruOut_0_valid
+Core.backend.dispatch.io_bruReady
+@22
+Core.backend.dispatch.io_bruOut_0_bits_uop_inst_raw[31:0]
+@28
+Core.backend.dispatch.io_fpuOut_0_valid
+Core.backend.dispatch.io_fpuReady
+@22
+Core.backend.dispatch.io_fpuOut_0_bits_uop_pc[63:0]
+@23
+Core.backend.dispatch.io_fpuOut_0_bits_uop_inst_raw[31:0]
+@28
+Core.backend.dispatch.io_memOut_0_valid
+Core.backend.dispatch.io_memReady
+@22
+Core.backend.dispatch.io_memOut_0_bits_uop_pc[63:0]
+Core.backend.dispatch.io_memOut_0_bits_uop_inst_raw[31:0]
+@200
 -Snaphot
 -intfreelist
 @22
@@ -205,7 +279,7 @@ Core.backend.rat.intRat.snapshots.candidates_2[2:0]
 Core.backend.rat.intRat.snapshots.candidates_2_next[3:0]
 @200
 -Execute
-@23
+@22
 [color] 1
 +{Core.backend.exec.io_in_bits_uop_inst_raw[31:0]} Core.backend.exec.io_in_bits_uop_inst_raw[31:0]
 @200

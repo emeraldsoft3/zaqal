@@ -222,6 +222,7 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
   for (i <- 0 until decodeWidth) {
     dispatch.io.in(i).valid := io.dispatch(i).valid && can_allocate_all
     dispatch.io.in(i).bits  := decoded_uops(i)
+    dispatch.io.is_fused_away(i) := Mux(u0_raw.decode.is_rvc, i.U === 1.U, i.U === 2.U) && is_fused_with_next
   }
 
   dispatch.io.aluReady := exec.io.in.ready && can_allocate_all
@@ -254,20 +255,9 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
     dispatch.io.fpuOut(0).valid -> dispatch.io.fpuOut(0).bits
   ))
   
-  // Dispatch Ready Logic (16-bit parcel offsets)
-  io.dispatch(0).ready := dispatch.io.in(0).ready
-  
-  // Port 1 is the second half of Port 0 if 32-bit
-  io.dispatch(1).ready := (io.dispatch(0).ready && !u0_raw.decode.is_rvc) || (is_fused_with_next && io.dispatch(0).ready && u0_raw.decode.is_rvc)
-
-  // Port 2 and 3 are consumed if Port 0 is 32-bit and fused with the next 32-bit instruction
-  val consumes_port_2 = is_fused_with_next && io.dispatch(0).ready && !u0_raw.decode.is_rvc
-  io.dispatch(2).ready := consumes_port_2
-  io.dispatch(3).ready := consumes_port_2 && !u1_raw.decode.is_rvc
-  
-  // Day 4/5: Dispatch other ports (not used for fusion yet)
-  for (i <- 4 until decodeWidth) {
-    io.dispatch(i).ready := false.B 
+  // Dispatch Ready Logic (Dynamic Backpressure)
+  for (i <- 0 until decodeWidth) {
+    io.dispatch(i).ready := dispatch.io.in(i).ready
   }
 
   // Route redirection from Execute to Frontend
