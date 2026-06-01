@@ -44,7 +44,7 @@ object ZaqalTest extends App {
 
     // --- MAIN SIMULATION LOOP ---
     val resetCycles = 5
-    val maxCycles = 85
+    val maxCycles = 100
     
     for (cycle <- 0 until maxCycles) {
       println(s"[TESTBENCH] Cycle $cycle")
