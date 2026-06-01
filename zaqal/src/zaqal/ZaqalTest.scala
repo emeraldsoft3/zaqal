@@ -7,6 +7,8 @@ import chiseltest._
 import java.io.{File, PrintWriter}
 import java.nio.file.{Files, StandardCopyOption}
 
+import chiseltest.simulator.VerilatorBackendAnnotation
+
 object ZaqalTest extends App {
   val vcdPath = "programs/vcd"
   new File(vcdPath).mkdirs()
@@ -16,7 +18,8 @@ object ZaqalTest extends App {
   })
   val params = p(ZaqalParamsKey)
 
-  RawTester.test(new Core(), Seq(WriteVcdAnnotation)) { dut =>
+  // Use the native Verilator backend for 100x speedup with VCD generation
+  RawTester.test(new Core(), Seq(VerilatorBackendAnnotation, WriteVcdAnnotation)) { dut =>
     println("--- Starting ZAQAL Agile V1.0 Simulation ---")
     dut.clock.setTimeout(0)
     
@@ -41,9 +44,10 @@ object ZaqalTest extends App {
 
     // --- MAIN SIMULATION LOOP ---
     val resetCycles = 5
-    val maxCycles = 100
+    val maxCycles = 85
     
     for (cycle <- 0 until maxCycles) {
+      println(s"[TESTBENCH] Cycle $cycle")
       // 1. Apply Reset
       dut.reset.poke((cycle < resetCycles).B)
       

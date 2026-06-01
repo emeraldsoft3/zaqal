@@ -14,6 +14,7 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
     val debug_cycle = Input(UInt(64.W))
     val debug_regs = Output(Vec(phyRegs, UInt(xLen.W)))
     val debug_fp_regs = Output(Vec(phyRegs, UInt(xLen.W)))
+    val wakeup = Output(new WakeupBus)
   })
 
   // 1. Instantiate Sub-Modules
@@ -134,7 +135,7 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   io.redirect.exc_cause    := bru.io.exc_cause
 
   when(io.in.fire) {
-    printf(p"CORE EXECUTE [Cycle ${io.debug_cycle}]: pc=${Hexadecimal(uop.pc)} inst=${Hexadecimal(uop.inst_raw)} fused=${dec.is_fused}\n")
+    // printf(p"CORE EXECUTE [Cycle ${io.debug_cycle}]: pc=${Hexadecimal(uop.pc)} inst=${Hexadecimal(uop.inst_raw)} fused=${dec.is_fused}\n")
     
     when(io.in.bits.pdest =/= 0.U) {
       val is_link = dec.is_jal || dec.is_jalr
@@ -150,7 +151,7 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
       regFile.io.rd_data := Mux(is_link, link_addr, result)
       
       when(dec.is_fused_load_alu) {
-        printf(p"CORE EXECUTE: FUSED LW+ADDI! mem=${Hexadecimal(lsu.io.result)} imm=${dec.fused_imm} res=${Hexadecimal(result)}\n")
+        // printf(p"CORE EXECUTE: FUSED LW+ADDI! mem=${Hexadecimal(lsu.io.result)} imm=${dec.fused_imm} res=${Hexadecimal(result)}\n")
       }
 
       when(is_fp_wb_to_fp) {
@@ -184,4 +185,15 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
 
   io.debug_regs := regFile.io.debug_regs
   io.debug_fp_regs := fpRegFile.io.debug_regs
+
+  val wu_single = io.in.fire && io.in.bits.pdest =/= 0.U && !dec.is_div && !dec.is_fdiv && !dec.is_fsqrt
+  
+  val r_wu_single = RegNext(wu_single, false.B)
+  val r_wu_pdest  = RegNext(io.in.bits.pdest, 0.U)
+
+  val wu_div = div.io.done && div_rd_latch =/= 0.U
+  val wu_fpdiv = fpdiv.io.done && fpdiv_rd_latch =/= 0.U
+
+  io.wakeup.valid := r_wu_single || wu_div || wu_fpdiv
+  io.wakeup.pdest := Mux(wu_div, div_rd_latch, Mux(wu_fpdiv, fpdiv_rd_latch, r_wu_pdest))
 }

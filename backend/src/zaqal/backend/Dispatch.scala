@@ -107,14 +107,12 @@ class Dispatch(implicit val p: Parameters) extends Module with HasZaqalParameter
     val is_alu_op = !is_mem_op && !is_bru_op && !is_fpu_op
 
     // Port readiness calculation including structural hazard checks
-    port_ready(i) := Mux(i.U >= 2.U, false.B,
-      !io.in(i).valid || (MuxCase(false.B, Seq(
-        is_alu_op -> io.aluReady,
-        is_mem_op -> io.memReady,
-        is_bru_op -> io.bruReady,
-        is_fpu_op -> io.fpuReady
-      )) && !hazard_detected(i))
-    )
+    port_ready(i) := !io.in(i).valid || (MuxCase(false.B, Seq(
+      is_alu_op -> io.aluReady,
+      is_mem_op -> io.memReady,
+      is_bru_op -> io.bruReady,
+      is_fpu_op -> io.fpuReady
+    )) && !hazard_detected(i))
   }
 
   // 2. In-Order Cascaded Dispatch Backpressure
@@ -159,12 +157,12 @@ class Dispatch(implicit val p: Parameters) extends Module with HasZaqalParameter
     
     // Debug output prints for active dispatch decisions
     when(io.in(i).valid && io.in(i).ready) {
-      printf(p"CORE DISPATCH: pc=${Hexadecimal(io.in(i).bits.uop.pc)} inst=${Hexadecimal(io.in(i).bits.uop.inst_raw)} -> Routed to [")
-      when(is_alu_op) { printf("ALU") }
-      when(is_mem_op) { printf("MEM") }
-      when(is_bru_op) { printf("BRU") }
-      when(is_fpu_op) { printf("FPU") }
-      printf("]\n")
+      // printf(p"CORE DISPATCH: pc=${Hexadecimal(io.in(i).bits.uop.pc)} inst=${Hexadecimal(io.in(i).bits.uop.inst_raw)} -> Routed to [")
+      // when(is_alu_op) { printf("ALU") }
+      // when(is_mem_op) { printf("MEM") }
+      // when(is_bru_op) { printf("BRU") }
+      // when(is_fpu_op) { printf("FPU") }
+      // printf("]\n")
     }
   }
 }

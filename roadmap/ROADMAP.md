@@ -43,6 +43,12 @@ To achieve world-class performance, Zaqal must eventually implement these critic
 - [ ] **Reorder Buffer (ROB)** for in-order commitment.
 - [ ] **Physical Register File (PRF)** with Register Cache.
 - [ ] **Distributed Issue Queues** (Separate queues for ALU, MEM, etc.).
+  - *Target Execution Units (XiangShan Kunminghu Parity):*
+    - **4 ALUs** (Integer Arithmetic & Logical)
+    - **2 MDUs** (Integer Multiplication/Division)
+    - **2 BRUs** (Branch Resolution Units)
+    - **3 LSUs** (Load/Store Units: 2 Load, 1 Store)
+    - **4 FPUs** (Floating Point Units: 2 FP Add/Misc, 2 FP FMAC)
 
 ### Memory & System
 - [ ] **Advanced Load/Store Unit** (Memory Disambiguation, Speculative Loads).

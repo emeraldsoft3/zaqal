@@ -31,6 +31,14 @@ The goal of this phase is to turn the "Instructions-per-packet" into "Instructio
 - [ ] **Day 22-24**: **Memory Disambiguation**: Speculative loads and store-to-load forwarding.
 - [ ] **Day 25**: **Memory Dependence Predictor (MDP)**: Implement Store Sets (SSIT/LFST) or Wait Table to predict load/store collisions and avoid costly memory violation flushes (XiangShan parity).
 - **Detailed Plan**: We will build distributed, out-of-order Issue Queues that wake up instructions via a broadcast bypass network and pick the oldest ready instructions using a selection matrix. For memory, the Load/Store Queues (LSQ) will allow loads to execute out-of-order and safely bypass older stores if the addresses don't match. If an older store writes to the same address a younger load is requesting, the LSQ will transparently forward the data directly. We will also build an advanced Memory Dependence Predictor (MDP) to learn which loads frequently collide with stores, artificially delaying them to prevent catastrophic memory violation flushes.
+
+### Target Execution Unit Configuration (Kunminghu Parity)
+To match the high-IPC processing power of XiangShan's Kunminghu core, Zaqal's execution engine is mapped into the following specialized execution pipelines, each fed by its own dedicated (or shared) Issue Queue port:
+- **4 ALUs**: Fully pipelined single-cycle Integer pipelines for arithmetic, logical, shift, and address generation operations.
+- **2 MDUs**: Pipelined multi-cycle Multiplication and Division execution units (often shared with two of the ALU physical ports).
+- **2 BRUs**: Branch Resolution Units to calculate branch targets and evaluate predictions.
+- **3 LSUs (Load/Store Units)**: High-bandwidth memory pipeline consisting of **2 Load pipelines** and **1 Store pipeline** (or 3 flexible Load/Store pipes) to sustain the L1-D cache throughput.
+- **4 FPUs**: Pipelined Floating-Point Units, structured as **2 FP Add/Misc units** and **2 FP FMAC (Fused Multiply-Accumulate)** units.
 - **XiangShan Study**: [IssueQueue.scala](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/backend/issue/IssueQueue.scala)
 
 ## Day 26-35: Intelligent Memory Prefetching (L1-D Hidden Power)

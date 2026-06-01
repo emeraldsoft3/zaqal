@@ -53,6 +53,7 @@ object backend extends ZaqalModule {
 object zaqal extends ZaqalModule {
   override def millSourcePath = os.pwd / "zaqal"
   override def moduleDeps = Seq(frontend, backend)
+  override def mainClass = T { Some("zaqal.ZaqalTest") }
 
   // Simulation and Test dependencies
   override def ivyDeps = T {

@@ -276,3 +276,8 @@ class PipelineFlushBus(implicit val p: Parameters) extends Bundle with HasZaqalP
   val flush = Bool()
   val targetPC = UInt(xLen.W)
 }
+
+class WakeupBus(implicit val p: Parameters) extends Bundle with HasZaqalParameter {
+  val valid = Bool()
+  val pdest = UInt(phyRegIdxWidth.W)
+}
