@@ -5,31 +5,28 @@ import chisel3.util._
 import org.chipsalliance.cde.config.Parameters
 import zaqal.common._
 
-class FPRegFile(implicit val p: Parameters) extends Module with HasZaqalParameter {
+class FPRegFile(val numReadPorts: Int = 4, val numWritePorts: Int = 3)(implicit val p: Parameters) extends Module with HasZaqalParameter {
   val io = IO(new Bundle {
-    val rs1_addr = Input(UInt(phyRegIdxWidth.W))
-    val rs1_data = Output(UInt(fLen.W))
-    val rs2_addr = Input(UInt(phyRegIdxWidth.W))
-    val rs2_data = Output(UInt(fLen.W))
-    val rs3_addr = Input(UInt(phyRegIdxWidth.W))
-    val rs3_data = Output(UInt(fLen.W))
+    val raddr = Vec(numReadPorts, Input(UInt(phyRegIdxWidth.W)))
+    val rdata = Vec(numReadPorts, Output(UInt(fLen.W)))
     
-    val wen      = Input(Bool())
-    val rd_addr  = Input(UInt(phyRegIdxWidth.W))
-    val rd_data  = Input(UInt(fLen.W))
+    val wen   = Vec(numWritePorts, Input(Bool()))
+    val waddr = Vec(numWritePorts, Input(UInt(phyRegIdxWidth.W)))
+    val wdata = Vec(numWritePorts, Input(UInt(fLen.W)))
 
     val debug_regs = Output(Vec(phyRegs, UInt(fLen.W)))
   })
 
-  // In a renamed architecture, FPRegFile stores physical registers
   val regs = RegInit(VecInit(Seq.fill(phyRegs)(0.U(fLen.W))))
   
-  io.rs1_data := regs(io.rs1_addr)
-  io.rs2_data := regs(io.rs2_addr)
-  io.rs3_data := regs(io.rs3_addr)
+  for (i <- 0 until numReadPorts) {
+    io.rdata(i) := regs(io.raddr(i))
+  }
 
-  when(io.wen) {
-    regs(io.rd_addr) := io.rd_data
+  for (i <- 0 until numWritePorts) {
+    when(io.wen(i)) {
+      regs(io.waddr(i)) := io.wdata(i)
+    }
   }
 
   io.debug_regs := regs

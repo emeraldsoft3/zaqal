@@ -6,16 +6,14 @@ import org.chipsalliance.cde.config.Parameters
 import zaqal._
 import zaqal.common._
 
-class RegFile(implicit val p: Parameters) extends Module with HasZaqalParameter {
+class RegFile(val numReadPorts: Int = 7, val numWritePorts: Int = 5)(implicit val p: Parameters) extends Module with HasZaqalParameter {
   val io = IO(new Bundle {
-    val rs1_addr = Input(UInt(phyRegIdxWidth.W))
-    val rs1_data = Output(UInt(xLen.W))
-    val rs2_addr = Input(UInt(phyRegIdxWidth.W))
-    val rs2_data = Output(UInt(xLen.W))
+    val raddr = Vec(numReadPorts, Input(UInt(phyRegIdxWidth.W)))
+    val rdata = Vec(numReadPorts, Output(UInt(xLen.W)))
     
-    val wen      = Input(Bool())
-    val rd_addr  = Input(UInt(phyRegIdxWidth.W))
-    val rd_data  = Input(UInt(xLen.W))
+    val wen   = Vec(numWritePorts, Input(Bool()))
+    val waddr = Vec(numWritePorts, Input(UInt(phyRegIdxWidth.W)))
+    val wdata = Vec(numWritePorts, Input(UInt(xLen.W)))
 
     val debug_regs = Output(Vec(phyRegs, UInt(xLen.W)))
   })
@@ -23,11 +21,13 @@ class RegFile(implicit val p: Parameters) extends Module with HasZaqalParameter 
   val regs = RegInit(VecInit(Seq.fill(phyRegs)(0.U(xLen.W))))
   io.debug_regs := regs
 
-  // x0 is hardwired to 0. In physical RF, p0 is x0.
-  io.rs1_data := Mux(io.rs1_addr === 0.U, 0.U, regs(io.rs1_addr))
-  io.rs2_data := Mux(io.rs2_addr === 0.U, 0.U, regs(io.rs2_addr))
+  for (i <- 0 until numReadPorts) {
+    io.rdata(i) := Mux(io.raddr(i) === 0.U, 0.U, regs(io.raddr(i)))
+  }
 
-  when(io.wen && io.rd_addr =/= 0.U) {
-    regs(io.rd_addr) := io.rd_data
+  for (i <- 0 until numWritePorts) {
+    when(io.wen(i) && io.waddr(i) =/= 0.U) {
+      regs(io.waddr(i)) := io.wdata(i)
+    }
   }
 }

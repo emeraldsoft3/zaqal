@@ -13,6 +13,7 @@ class FreeList(val numPhyRegs: Int, val numLogicalRegs: Int)(implicit val p: Par
   val io = IO(new Bundle {
     // Allocation Ports (Rename Stage)
     val allocateReq = Input(Vec(decodeWidth, Bool()))
+    val allocateFire = Input(Vec(decodeWidth, Bool()))
     val allocatePhyReg = Output(Vec(decodeWidth, UInt(phyRegIdxWidth.W)))
     val canAllocate = Output(Bool())
     val doAllocate = Input(Bool()) // Signal that instructions actually passed rename
@@ -93,7 +94,8 @@ class FreeList(val numPhyRegs: Int, val numLogicalRegs: Int)(implicit val p: Par
                        size.U - (targetHeadPtr - tailPtr)))
     freeCount := dist 
   } .otherwise {
-    val actualAlloc = Mux(io.doAllocate && io.canAllocate, numAllocReq, 0.U)
+    val numFiredReq = PopCount(io.allocateFire)
+    val actualAlloc = Mux(io.doAllocate && io.canAllocate, numFiredReq, 0.U)
     headPtr := wrapAdd(headPtr, actualAlloc)
     tailPtr := wrapAdd(tailPtr, numFree)
     freeCount := freeCount - actualAlloc + numFree

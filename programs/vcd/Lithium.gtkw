@@ -1,24 +1,26 @@
 [*]
 [*] GTKWave Analyzer v3.3.111 (w)1999-2020 BSI
-[*] Fri May 22 06:20:06 2026
+[*] Wed Jun  3 11:58:02 2026
 [*]
 [dumpfile] "/home/emerald/zaqal/programs/vcd/Lithium.vcd"
-[dumpfile_mtime] "Fri May 22 05:52:06 2026"
-[dumpfile_size] 2125657
+[dumpfile_mtime] "Wed Jun  3 07:11:20 2026"
+[dumpfile_size] 1945206
 [savefile] "/home/emerald/zaqal/programs/vcd/Lithium.gtkw"
-[timestart] 0
-[size] 1920 993
+[timestart] 18
+[size] 1526 808
 [pos] -1 -1
-*-5.900000 116 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-2.900000 30 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] TOP.
 [treeopen] TOP.Core.
 [treeopen] TOP.Core.backend.
-[treeopen] TOP.Core.backend.exec.alu.
+[treeopen] TOP.Core.backend.exec.
+[treeopen] TOP.Core.backend.exec.alu_0.
 [treeopen] TOP.Core.backend.rat.intRat.
 [treeopen] TOP.Core.frontend.
 [sst_width] 377
 [signals_width] 495
 [sst_expanded] 1
-[sst_vpaned_height] 290
+[sst_vpaned_height] 227
 @28
 [color] 1
 TOP.Core.clock
@@ -83,17 +85,9 @@ TOP.Core.backend.exec.bru.fallthrough_pc[63:0]
 -backend
 @28
 TOP.Core.backend.intFreeList.actualAlloc[2:0]
-@22
-TOP.Core.backend.intFreeList.dist[7:0]
 @24
 TOP.Core.backend.intFreeList.freeCount[7:0]
-+{TOP.Core.backend.intFreeList.freeList_0[7:0]} TOP.Core.backend.intFreeList.freeList_0[7:0]
-TOP.Core.backend.intFreeList.freeList_1[7:0]
-TOP.Core.backend.intFreeList.freeList_2[7:0]
-TOP.Core.backend.intFreeList.freeList_3[7:0]
 @22
-TOP.Core.backend.intFreeList.freeList_4[7:0]
-TOP.Core.backend.intFreeList.freeList_5[7:0]
 TOP.Core.backend.intFreeList.headPtr[7:0]
 TOP.Core.backend.intFreeList.headPtr_next[8:0]
 TOP.Core.backend.intFreeList.io_allocatePhyReg_0[7:0]
@@ -105,24 +99,16 @@ TOP.Core.backend.intFreeList.io_allocatePhyReg_2_next[8:0]
 @28
 TOP.Core.backend.intFreeList.io_allocateReq_0
 TOP.Core.backend.intFreeList.io_allocateReq_1
-@22
-TOP.Core.backend.intFreeList.io_freePhyReg_0[7:0]
-TOP.Core.backend.intFreeList.io_freePhyReg_1[7:0]
-@28
-TOP.Core.backend.intFreeList.offset_1[1:0]
 TOP.Core.backend.intFreeList.offset_2[2:0]
 @22
 +{TOP.Core.backend.io_redirect_target[63:0]} TOP.Core.backend.io_redirect_target[63:0]
 @200
 -Dispatch
 @28
-TOP.Core.backend.dispatch.can_dispatch_0
 TOP.Core.backend.dispatch.can_dispatch_1
 TOP.Core.backend.dispatch.can_dispatch_2
 TOP.Core.backend.dispatch.can_dispatch_3
 TOP.Core.backend.dispatch.can_dispatch_4
-TOP.Core.backend.dispatch.can_dispatch_5
-TOP.Core.backend.dispatch.clock
 TOP.Core.backend.dispatch.io_bruOut_0_bits_decode_is_addi
 TOP.Core.backend.dispatch.io_bruOut_0_bits_decode_is_addiw
 @22
@@ -167,28 +153,15 @@ TOP.Core.backend.dispatch.io_memOut_0_bits_uop_inst_raw[31:0]
 TOP.Core.backend.dispatch.io_aluOut_0_valid
 @22
 TOP.Core.backend.dispatch.io_aluOut_0_bits_uop_pc[63:0]
-@28
-TOP.Core.backend.dispatch.io_aluReady
-@22
-TOP.Core.backend.dispatch.io_aluOut_0_bits_uop_inst_raw[31:0]
 TOP.Core.backend.dispatch.io_bruOut_0_bits_uop_pc[63:0]
 @28
 TOP.Core.backend.dispatch.io_bruOut_0_valid
-TOP.Core.backend.dispatch.io_bruReady
-@22
-TOP.Core.backend.dispatch.io_bruOut_0_bits_uop_inst_raw[31:0]
-@28
 TOP.Core.backend.dispatch.io_fpuOut_0_valid
-TOP.Core.backend.dispatch.io_fpuReady
 @22
-TOP.Core.backend.dispatch.io_fpuOut_0_bits_uop_pc[63:0]
-@23
 TOP.Core.backend.dispatch.io_fpuOut_0_bits_uop_inst_raw[31:0]
 @28
 TOP.Core.backend.dispatch.io_memOut_0_valid
-TOP.Core.backend.dispatch.io_memReady
 @22
-TOP.Core.backend.dispatch.io_memOut_0_bits_uop_pc[63:0]
 TOP.Core.backend.dispatch.io_memOut_0_bits_uop_inst_raw[31:0]
 @200
 -Snaphot
@@ -208,8 +181,6 @@ TOP.Core.backend.intFreeList.snapshots.io_snapshots_3[7:0]
 @28
 TOP.Core.backend.intFreeList.snapshots.io_enq
 TOP.Core.backend.intFreeList.snapshots.candidates_0[2:0]
-@22
-TOP.Core.backend.intFreeList.snapshots.candidates_0_next[3:0]
 @24
 +{TOP.Core.backend.intFreeList.snapshots.io_enqData[7:0]} TOP.Core.backend.intFreeList.snapshots.io_enqData[7:0]
 @28
@@ -267,27 +238,31 @@ TOP.Core.backend.rat.intRat.snapshots.snapshots_1_5[7:0]
 TOP.Core.backend.rat.intRat.snapshots.snapshots_1_6[7:0]
 @28
 TOP.Core.backend.rat.intRat.snapshots.candidates_0[2:0]
-@22
-TOP.Core.backend.rat.intRat.snapshots.candidates_0_next[3:0]
-@28
 TOP.Core.backend.rat.intRat.snapshots.candidates_1[2:0]
-@22
-TOP.Core.backend.rat.intRat.snapshots.candidates_1_next[3:0]
-@28
 TOP.Core.backend.rat.intRat.snapshots.candidates_2[2:0]
 @22
 TOP.Core.backend.rat.intRat.snapshots.candidates_2_next[3:0]
 @200
 -Execute
-@22
-[color] 1
-+{TOP.Core.backend.exec.io_in_bits_uop_inst_raw[31:0]} TOP.Core.backend.exec.io_in_bits_uop_inst_raw[31:0]
-@200
 -Decoder
--ALU
 @22
-TOP.Core.backend.exec.alu.io_pc[63:0]
+TOP.Core.backend.decoders_0_io_inst[31:0]
+TOP.Core.backend.decoders_1_io_inst[31:0]
+TOP.Core.backend.decoders_2_io_inst[31:0]
+TOP.Core.backend.decoders_3_io_inst[31:0]
+TOP.Core.backend.decoders_4_io_inst[31:0]
+TOP.Core.backend.decoders_5_io_inst[31:0]
 @200
+-dispatch
+@23
+TOP.Core.backend.dispatch_io_in_0_bits_uop_inst_raw[31:0]
+TOP.Core.backend.dispatch_io_in_1_bits_uop_inst_raw[31:0]
+TOP.Core.backend.dispatch_io_in_2_bits_uop_inst_raw[31:0]
+TOP.Core.backend.dispatch_io_in_3_bits_uop_inst_raw[31:0]
+TOP.Core.backend.dispatch_io_in_4_bits_uop_inst_raw[31:0]
+TOP.Core.backend.dispatch_io_in_5_bits_uop_inst_raw[31:0]
+@200
+-ALU
 -RAT
 @22
 TOP.Core.backend.rat.intRat.spec_table_0[7:0]
@@ -310,20 +285,13 @@ TOP.Core.backend.rat.intRat.spec_table_12[7:0]
 TOP.Core.backend.rat.intRat.spec_table_13[7:0]
 TOP.Core.backend.rat.intRat.spec_table_14[7:0]
 TOP.Core.backend.rat.intRat.spec_table_15[7:0]
-TOP.Core.backend.rat.intRat.curr_spec_table_0_0[7:0]
-@24
-+{TOP.Core.backend.rat.intRat.curr_spec_table_0_1[7:0]} TOP.Core.backend.rat.intRat.curr_spec_table_0_1[7:0]
-@22
-TOP.Core.backend.rat.intRat.curr_spec_table_0_2[7:0]
-TOP.Core.backend.rat.intRat.curr_spec_table_0_3[7:0]
-TOP.Core.backend.rat.intRat.curr_spec_table_0_4[7:0]
 TOP.Core.backend.rat.intRat.curr_spec_table_1_0[7:0]
 @24
 +{TOP.Core.backend.rat.intRat.curr_spec_table_1_1[7:0]} TOP.Core.backend.rat.intRat.curr_spec_table_1_1[7:0]
-@22
 TOP.Core.backend.rat.intRat.curr_spec_table_1_2[7:0]
 +{TOP.Core.backend.rat.intRat.curr_spec_table_1_3[7:0]} TOP.Core.backend.rat.intRat.curr_spec_table_1_3[7:0]
 TOP.Core.backend.rat.intRat.curr_spec_table_1_4[7:0]
+@22
 TOP.Core.backend.rat.intRat.curr_spec_table_1_5[7:0]
 TOP.Core.backend.rat.intRat.curr_spec_table_1_6[7:0]
 TOP.Core.backend.rat.intRat.curr_spec_table_1_7[7:0]
@@ -352,27 +320,6 @@ TOP.Core.backend.rat.intRat.curr_spec_table_2_12[7:0]
 TOP.Core.backend.rat.intRat.curr_spec_table_2_13[7:0]
 TOP.Core.backend.rat.intRat.curr_spec_table_2_14[7:0]
 TOP.Core.backend.rat.intRat.curr_spec_table_2_15[7:0]
-+{TOP.Core.backend.rat.intRat.arch_table_0[7:0]} TOP.Core.backend.rat.intRat.arch_table_0[7:0]
-TOP.Core.backend.rat.intRat.arch_table_1[7:0]
-TOP.Core.backend.rat.intRat.arch_table_2[7:0]
-TOP.Core.backend.rat.intRat.arch_table_3[7:0]
-TOP.Core.backend.rat.intRat.arch_table_4[7:0]
-TOP.Core.backend.rat.intRat.arch_table_5[7:0]
-TOP.Core.backend.rat.intRat.arch_table_6[7:0]
-TOP.Core.backend.rat.intRat.arch_table_7[7:0]
-TOP.Core.backend.rat.intRat.arch_table_8[7:0]
-TOP.Core.backend.rat.intRat.arch_table_9[7:0]
-TOP.Core.backend.rat.intRat.arch_table_10[7:0]
-TOP.Core.backend.rat.intRat.arch_table_11[7:0]
-TOP.Core.backend.rat.intRat.arch_table_12[7:0]
-TOP.Core.backend.rat.intRat.arch_table_13[7:0]
-TOP.Core.backend.rat.intRat.arch_table_14[7:0]
-TOP.Core.backend.rat.intRat.arch_table_15[7:0]
-TOP.Core.backend.rat.io_commitPorts_0_addr[4:0]
-@28
-TOP.Core.backend.rat.io_commitPorts_0_wen
-@22
-TOP.Core.backend.rat.io_commitPorts_1_addr[4:0]
 TOP.Core.backend.rat.io_renamePorts_0_addr[4:0]
 @28
 TOP.Core.backend.rat.io_renamePorts_0_wen
@@ -380,6 +327,57 @@ TOP.Core.backend.rat.io_renamePorts_0_wen
 TOP.Core.backend.rat.io_renamePorts_1_addr[4:0]
 @28
 TOP.Core.backend.rat.io_renamePorts_1_wen
+@200
+-exec
+@28
+[color] 2
+TOP.Core.backend.exec.io_int_in_0_valid
+@22
+TOP.Core.backend.exec.io_fp_in_bits_uop_inst_raw[31:0]
+TOP.Core.backend.exec.io_int_in_0_bits_uop_pc[63:0]
+TOP.Core.backend.exec.io_int_in_0_bits_psrs1[7:0]
+TOP.Core.backend.exec.io_int_in_0_bits_decode_imm[63:0]
+TOP.Core.backend.exec.io_int_in_1_bits_uop_pc[63:0]
+@28
+TOP.Core.backend.exec.io_int_in_1_valid
+@22
+TOP.Core.backend.exec.io_int_in_1_bits_decode_imm[63:0]
+TOP.Core.backend.exec.io_wakeup_0_pdest[7:0]
+@28
+TOP.Core.backend.exec.io_wakeup_0_valid
+@22
+TOP.Core.backend.exec.io_wakeup_1_pdest[7:0]
+@28
+TOP.Core.backend.exec.io_wakeup_1_valid
+@22
+TOP.Core.backend.exec.io_wakeup_2_pdest[7:0]
+@28
+TOP.Core.backend.exec.io_wakeup_2_valid
+@22
+TOP.Core.backend.exec.io_wakeup_3_pdest[7:0]
+@28
+TOP.Core.backend.exec.io_wakeup_3_valid
+@22
+TOP.Core.backend.exec.io_wakeup_4_pdest[7:0]
+@28
+TOP.Core.backend.exec.io_wakeup_4_valid
+@22
+TOP.Core.backend.intIq_io_deq_0_bits_uop_pc[63:0]
+@28
+TOP.Core.backend.intIq_io_deq_0_valid
+@22
+TOP.Core.backend.intIq_io_deq_1_bits_uop_pc[63:0]
+@28
+TOP.Core.backend.intIq_io_deq_1_valid
+@200
+-alu 0
+@22
+TOP.Core.backend.exec.alu_0.adder_io_result[63:0]
+TOP.Core.backend.exec.alu_0.adder_io_src1[63:0]
+TOP.Core.backend.exec.alu_0.adder_io_src2[63:0]
+TOP.Core.backend.exec.alu_1.adder_io_result[63:0]
+TOP.Core.backend.exec.alu_1.adder_io_src1[63:0]
+TOP.Core.backend.exec.alu_1.adder_io_src2[63:0]
 @200
 -fprat
 @22
@@ -392,12 +390,113 @@ TOP.Core.backend.rat.fpRat.spec_table_3[7:0]
 TOP.Core.backend.rat.fpRat.spec_table_4[7:0]
 TOP.Core.backend.rat.fpRat.spec_table_5[7:0]
 TOP.Core.backend.rat.fpRat.spec_table_6[7:0]
-TOP.Core.backend.rat.fpRat.curr_spec_table_0_0[7:0]
-TOP.Core.backend.rat.fpRat.curr_spec_table_0_1[7:0]
-TOP.Core.backend.rat.fpRat.curr_spec_table_0_2[7:0]
-TOP.Core.backend.rat.fpRat.curr_spec_table_0_3[7:0]
-TOP.Core.backend.rat.fpRat.curr_spec_table_0_4[7:0]
-TOP.Core.backend.rat.fpRat.curr_spec_table_0_5[7:0]
+@200
+-BusyTable
+@28
+TOP.Core.backend.busyTable.next_ready_table_0
+TOP.Core.backend.busyTable.next_ready_table_1
+TOP.Core.backend.busyTable.next_ready_table_2
+TOP.Core.backend.busyTable.next_ready_table_3
+TOP.Core.backend.busyTable.next_ready_table_4
+TOP.Core.backend.busyTable.next_ready_table_5
+TOP.Core.backend.busyTable.next_ready_table_6
+TOP.Core.backend.busyTable.next_ready_table_7
+TOP.Core.backend.busyTable.next_ready_table_8
+TOP.Core.backend.busyTable.next_ready_table_9
+TOP.Core.backend.busyTable.next_ready_table_10
+TOP.Core.backend.busyTable.next_ready_table_11
+TOP.Core.backend.busyTable.next_ready_table_12
+TOP.Core.backend.busyTable.next_ready_table_13
+TOP.Core.backend.busyTable.next_ready_table_14
+TOP.Core.backend.busyTable.next_ready_table_15
+TOP.Core.backend.busyTable.next_ready_table_16
+TOP.Core.backend.busyTable.next_ready_table_17
+TOP.Core.backend.busyTable.next_ready_table_18
+TOP.Core.backend.busyTable.next_ready_table_19
+TOP.Core.backend.busyTable.next_ready_table_20
+TOP.Core.backend.busyTable.next_ready_table_21
+TOP.Core.backend.busyTable.next_ready_table_22
+TOP.Core.backend.busyTable.next_ready_table_23
+TOP.Core.backend.busyTable.next_ready_table_24
+TOP.Core.backend.busyTable.next_ready_table_25
+TOP.Core.backend.busyTable.next_ready_table_26
+TOP.Core.backend.busyTable.next_ready_table_27
+TOP.Core.backend.busyTable.next_ready_table_28
+TOP.Core.backend.busyTable.next_ready_table_29
+TOP.Core.backend.busyTable.next_ready_table_30
+TOP.Core.backend.busyTable.next_ready_table_31
+TOP.Core.backend.busyTable.next_ready_table_32
+TOP.Core.backend.busyTable.next_ready_table_33
+TOP.Core.backend.busyTable.next_ready_table_34
+TOP.Core.backend.busyTable.next_ready_table_35
+TOP.Core.backend.busyTable.next_ready_table_36
+TOP.Core.backend.busyTable.next_ready_table_37
+TOP.Core.backend.busyTable.next_ready_table_38
+TOP.Core.backend.busyTable.next_ready_table_39
+TOP.Core.backend.busyTable.next_ready_table_40
++{TOP.Core.backend.busyTable.next_ready_table_41} TOP.Core.backend.busyTable.next_ready_table_41
+TOP.Core.backend.busyTable.next_ready_table_42
+TOP.Core.backend.busyTable.next_ready_table_43
+TOP.Core.backend.busyTable.next_ready_table_44
+TOP.Core.backend.busyTable.next_ready_table_45
+TOP.Core.backend.busyTable.next_ready_table_46
+TOP.Core.backend.busyTable.next_ready_table_47
+TOP.Core.backend.busyTable.next_ready_table_48
+TOP.Core.backend.busyTable.next_ready_table_49
+TOP.Core.backend.busyTable.next_ready_table_50
+TOP.Core.backend.busyTable.ready_table_0
+TOP.Core.backend.busyTable.ready_table_1
+TOP.Core.backend.busyTable.ready_table_2
+TOP.Core.backend.busyTable.ready_table_3
+TOP.Core.backend.busyTable.ready_table_4
+TOP.Core.backend.busyTable.ready_table_5
+TOP.Core.backend.busyTable.ready_table_6
+TOP.Core.backend.busyTable.ready_table_7
+TOP.Core.backend.busyTable.ready_table_8
+TOP.Core.backend.busyTable.ready_table_9
+TOP.Core.backend.busyTable.ready_table_10
+TOP.Core.backend.busyTable.ready_table_11
+TOP.Core.backend.busyTable.ready_table_12
+TOP.Core.backend.busyTable.ready_table_13
+TOP.Core.backend.busyTable.ready_table_14
+TOP.Core.backend.busyTable.ready_table_15
+TOP.Core.backend.busyTable.ready_table_16
+TOP.Core.backend.busyTable.ready_table_17
+TOP.Core.backend.busyTable.ready_table_18
+TOP.Core.backend.busyTable.ready_table_19
+TOP.Core.backend.busyTable.ready_table_20
+TOP.Core.backend.busyTable.ready_table_21
+TOP.Core.backend.busyTable.ready_table_22
+TOP.Core.backend.busyTable.ready_table_23
+TOP.Core.backend.busyTable.ready_table_24
+TOP.Core.backend.busyTable.ready_table_25
+TOP.Core.backend.busyTable.ready_table_26
+TOP.Core.backend.busyTable.ready_table_27
+TOP.Core.backend.busyTable.ready_table_28
+TOP.Core.backend.busyTable.ready_table_29
+TOP.Core.backend.busyTable.ready_table_30
+TOP.Core.backend.busyTable.ready_table_31
+TOP.Core.backend.busyTable.ready_table_32
+TOP.Core.backend.busyTable.ready_table_33
+TOP.Core.backend.busyTable.ready_table_34
+TOP.Core.backend.busyTable.ready_table_35
+TOP.Core.backend.busyTable.ready_table_36
+TOP.Core.backend.busyTable.ready_table_37
+TOP.Core.backend.busyTable.ready_table_38
+TOP.Core.backend.busyTable.ready_table_39
+TOP.Core.backend.busyTable.ready_table_40
++{TOP.Core.backend.busyTable.ready_table_41} TOP.Core.backend.busyTable.ready_table_41
+TOP.Core.backend.busyTable.ready_table_42
+TOP.Core.backend.busyTable.ready_table_43
+TOP.Core.backend.busyTable.ready_table_44
+TOP.Core.backend.busyTable.ready_table_45
+TOP.Core.backend.busyTable.ready_table_46
+TOP.Core.backend.busyTable.ready_table_47
+TOP.Core.backend.busyTable.ready_table_48
+TOP.Core.backend.busyTable.ready_table_49
+TOP.Core.backend.busyTable.ready_table_50
+TOP.Core.backend.exec.div_io_ready
+TOP.Core.backend.exec.div_io_done
 @200
 -RegFile
 @22
@@ -443,7 +542,7 @@ TOP.Core.backend.exec.regFile.regs_37[63:0]
 TOP.Core.backend.exec.regFile.regs_38[63:0]
 TOP.Core.backend.exec.regFile.regs_39[63:0]
 TOP.Core.backend.exec.regFile.regs_40[63:0]
-TOP.Core.backend.exec.regFile.regs_41[63:0]
++{TOP.Core.backend.exec.regFile.regs_41[63:0]} TOP.Core.backend.exec.regFile.regs_41[63:0]
 TOP.Core.backend.exec.regFile.regs_42[63:0]
 @22
 TOP.Core.backend.exec.regFile.regs_43[63:0]

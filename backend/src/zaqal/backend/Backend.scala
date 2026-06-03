@@ -170,7 +170,9 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
     val fp_wen = dec.rd_is_fp && !dec.is_branch && !dec.is_store && !dec.is_fstore && !dec.is_atomic && !is_fused_away && !is_shadow
 
     intFreeList.io.allocateReq(i) := rf_wen && io.dispatch(i).valid
+    intFreeList.io.allocateFire(i) := rf_wen && io.dispatch(i).fire
     fpFreeList.io.allocateReq(i)  := fp_wen && io.dispatch(i).valid
+    fpFreeList.io.allocateFire(i) := fp_wen && io.dispatch(i).fire
 
     decoded_uops(i).pdest := MuxCase(0.U, Seq(
       intFreeList.io.allocateReq(i) -> intFreeList.io.allocatePhyReg(i),
@@ -187,15 +189,15 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
     
     // Debug Print for Rename
     when(io.dispatch(i).valid) {
-      // printf(p"CORE RENAME [Cycle ${io.debug_cycle}] [Port $i]: pc=${Hexadecimal(decoded_uops(i).uop.pc)} inst=${Hexadecimal(decoded_uops(i).uop.inst_raw)} ")
-      // printf(p"lrs1=${dec.rs1}->prs1=${decoded_uops(i).psrs1} lrs2=${dec.rs2}->prs2=${decoded_uops(i).psrs2} ")
-      // when(rf_wen || fp_wen) {
-      //   printf(p"lrd=${dec.rd}->pdest=${decoded_uops(i).pdest} (old=${decoded_uops(i).old_pdest})")
-      // }
-      // when(i.U === 0.U && is_fused_with_next) {
-      //   printf(" [FUSING WITH NEXT: u1_pc=%x u1_inst=%x]", u1_raw.uop.pc, u1_raw.uop.inst_raw)
-      // }
-      // printf("\n")
+      printf(p"CORE RENAME [Cycle ${io.debug_cycle}] [Port $i]: pc=${Hexadecimal(decoded_uops(i).uop.pc)} inst=${Hexadecimal(decoded_uops(i).uop.inst_raw)} ")
+      printf(p"lrs1=${dec.rs1}->prs1=${decoded_uops(i).psrs1} lrs2=${dec.rs2}->prs2=${decoded_uops(i).psrs2} ")
+      when(rf_wen || fp_wen) {
+        printf(p"lrd=${dec.rd}->pdest=${decoded_uops(i).pdest} (old=${decoded_uops(i).old_pdest})")
+      }
+      when(i.U === 0.U && is_fused_with_next) {
+        printf(" [FUSING WITH NEXT: u1_pc=%x u1_inst=%x]", u0_raw.uop.pc, u1_raw.uop.inst_raw)
+      }
+      printf("\n")
     }
   }
 
@@ -227,7 +229,9 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
   }
 
   val busyTable = Module(new BusyTable)
-  val aluIq = Module(new IssueQueue(16, decodeWidth, 1, 1))
+  val intIq = Module(new IssueQueue(16, decodeWidth, 2, 5))
+  val memIq = Module(new IssueQueue(8, decodeWidth, 1, 5))
+  val fpIq = Module(new IssueQueue(8, decodeWidth, 1, 5))
 
   for (i <- 0 until decodeWidth) {
     busyTable.io.allocPorts(i).valid := io.dispatch(i).fire && (intFreeList.io.allocateReq(i) || fpFreeList.io.allocateReq(i))
@@ -237,36 +241,54 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
     busyTable.io.readPorts(i)(1).addr := decoded_uops(i).psrs2
     busyTable.io.readPorts(i)(2).addr := decoded_uops(i).psrs3
 
-    aluIq.io.rs1_ready_in(i) := busyTable.io.readPorts(i)(0).ready
-    aluIq.io.rs2_ready_in(i) := busyTable.io.readPorts(i)(1).ready
-    aluIq.io.rs3_ready_in(i) := busyTable.io.readPorts(i)(2).ready
+    intIq.io.rs1_ready_in(i) := busyTable.io.readPorts(i)(0).ready
+    intIq.io.rs2_ready_in(i) := busyTable.io.readPorts(i)(1).ready
+    intIq.io.rs3_ready_in(i) := busyTable.io.readPorts(i)(2).ready
+    
+    memIq.io.rs1_ready_in(i) := busyTable.io.readPorts(i)(0).ready
+    memIq.io.rs2_ready_in(i) := busyTable.io.readPorts(i)(1).ready
+    memIq.io.rs3_ready_in(i) := busyTable.io.readPorts(i)(2).ready
+
+    fpIq.io.rs1_ready_in(i) := busyTable.io.readPorts(i)(0).ready
+    fpIq.io.rs2_ready_in(i) := busyTable.io.readPorts(i)(1).ready
+    fpIq.io.rs3_ready_in(i) := busyTable.io.readPorts(i)(2).ready
   }
 
-  busyTable.io.wakeupPorts(0).valid := exec.io.wakeup.valid
-  busyTable.io.wakeupPorts(0).bits := exec.io.wakeup.pdest
-  for (i <- 1 until decodeWidth) {
-    busyTable.io.wakeupPorts(i).valid := false.B
-    busyTable.io.wakeupPorts(i).bits := 0.U
+  for (w <- 0 until 5) {
+    busyTable.io.wakeupPorts(w).valid := exec.io.wakeup(w).valid
+    busyTable.io.wakeupPorts(w).bits := exec.io.wakeup(w).pdest
+    
+    intIq.io.wakeup(w) := exec.io.wakeup(w)
+    memIq.io.wakeup(w) := exec.io.wakeup(w)
+    fpIq.io.wakeup(w) := exec.io.wakeup(w)
+  }
+  for (w <- 5 until decodeWidth) {
+    busyTable.io.wakeupPorts(w).valid := false.B
+    busyTable.io.wakeupPorts(w).bits := 0.U
   }
 
   redirect_valid := exec.io.redirect.valid
-  restore_idx := exec.io.in.bits.snapshotIdx
+  // For simplicity, always use int_in(0) for snapshotIdx, though multiple ports can have branches.
+  // We assume only 1 branch issues per cycle, and it goes to int_in(0) (BRU).
+  restore_idx := exec.io.int_in(0).bits.snapshotIdx
 
-  aluIq.io.wakeup(0) := exec.io.wakeup
-  aluIq.io.btb_redirect := redirect_valid
+  intIq.io.btb_redirect := redirect_valid
+  memIq.io.btb_redirect := redirect_valid
+  fpIq.io.btb_redirect := redirect_valid
 
   for (i <- 0 until decodeWidth) {
-    aluIq.io.enq(i).valid := dispatch.io.aluOut(i).valid || dispatch.io.memOut(i).valid || dispatch.io.bruOut(i).valid || dispatch.io.fpuOut(i).valid
-    aluIq.io.enq(i).bits := MuxCase(dispatch.io.aluOut(i).bits, Seq(
-      dispatch.io.memOut(i).valid -> dispatch.io.memOut(i).bits,
-      dispatch.io.bruOut(i).valid -> dispatch.io.bruOut(i).bits,
-      dispatch.io.fpuOut(i).valid -> dispatch.io.fpuOut(i).bits
-    ))
+    intIq.io.enq(i).valid := dispatch.io.aluOut(i).valid || dispatch.io.bruOut(i).valid
+    intIq.io.enq(i).bits := Mux(dispatch.io.aluOut(i).valid, dispatch.io.aluOut(i).bits, dispatch.io.bruOut(i).bits)
+    dispatch.io.aluOut(i).ready := intIq.io.enq(i).ready
+    dispatch.io.bruOut(i).ready := intIq.io.enq(i).ready
 
-    dispatch.io.aluOut(i).ready := aluIq.io.enq(i).ready
-    dispatch.io.memOut(i).ready := aluIq.io.enq(i).ready
-    dispatch.io.bruOut(i).ready := aluIq.io.enq(i).ready
-    dispatch.io.fpuOut(i).ready := aluIq.io.enq(i).ready
+    memIq.io.enq(i).valid := dispatch.io.memOut(i).valid
+    memIq.io.enq(i).bits := dispatch.io.memOut(i).bits
+    dispatch.io.memOut(i).ready := memIq.io.enq(i).ready
+
+    fpIq.io.enq(i).valid := dispatch.io.fpuOut(i).valid
+    fpIq.io.enq(i).bits := dispatch.io.fpuOut(i).bits
+    dispatch.io.fpuOut(i).ready := fpIq.io.enq(i).ready
   }
 
   dispatch.io.aluReady := true.B
@@ -274,9 +296,11 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
   dispatch.io.bruReady := true.B
   dispatch.io.fpuReady := true.B
 
-  exec.io.in <> aluIq.io.deq(0)
+  exec.io.int_in(0) <> intIq.io.deq(0)
+  exec.io.int_in(1) <> intIq.io.deq(1)
+  exec.io.mem_in <> memIq.io.deq(0)
+  exec.io.fp_in <> fpIq.io.deq(0)
 
-  
   // Dispatch Ready Logic (Dynamic Backpressure)
   for (i <- 0 until decodeWidth) {
     io.dispatch(i).ready := dispatch.io.in(i).ready
