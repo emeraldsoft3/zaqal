@@ -1,12 +1,12 @@
 [*]
 [*] GTKWave Analyzer v3.3.111 (w)1999-2020 BSI
-[*] Wed Jun  3 11:58:02 2026
+[*] Wed Jun  3 17:40:42 2026
 [*]
 [dumpfile] "/home/emerald/zaqal/programs/vcd/Lithium.vcd"
-[dumpfile_mtime] "Wed Jun  3 07:11:20 2026"
-[dumpfile_size] 1945206
+[dumpfile_mtime] "Wed Jun  3 13:11:27 2026"
+[dumpfile_size] 1962515
 [savefile] "/home/emerald/zaqal/programs/vcd/Lithium.gtkw"
-[timestart] 18
+[timestart] 162
 [size] 1526 808
 [pos] -1 -1
 *-2.900000 30 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
