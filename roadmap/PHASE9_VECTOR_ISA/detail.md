@@ -26,3 +26,10 @@ Zaqal differentiates itself by integrating high-performance 2D matrix operations
 - [ ] Implement Unit-Stride and Strided vector loads.
 - **Detailed Plan**: We will build the Vector Execution Units to perform SIMD (Single Instruction, Multiple Data) arithmetic. This includes vectorized add, multiply, divide, and complex floating-point vector reductions. For the memory interface, we will implement the complex Vector Load/Store unit, supporting Unit-Stride (contiguous memory blocks), Strided (jumping by fixed offsets, great for image processing), and Indexed/Scatter-Gather operations (loading scattered elements based on an array of indices).
 - **XiangShan Study**: [VIPU.scala](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/backend/fu/vector/VIPU.scala) and [Mgu.scala](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/backend/fu/vector/Mgu.scala)
+
+## Day 21-25: Vector Out-of-Order Integration (Rename & Dispatch)
+- [ ] **Vector Rename Table (Vector RAT)**: Implement renaming logic for vector registers `v0`-`v31` mapping to vector physical registers.
+- [ ] **Vector Dispatch Queue**: Implement a decoupled queue to route vector instructions to dedicated Vector Issue Queues (VIQ).
+- **Detailed Plan**: To enable full out-of-order execution for vector operations, we must rename vector registers. We will design a Vector Rename Table (VRAT) and a Vector Free List to track vector physical registers. To prevent long-latency vector operations from clogging the main scalar dispatch pipeline, we will implement a dedicated Vector Dispatch Queue. This queue buffers renamed vector micro-ops and dispatches them to separate Vector Issue Queues (VIQs), allowing scalar instructions to bypass stalled vector instructions and execute out-of-order.
+- **XiangShan Study**: [VectorRenameTable.scala](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/backend/rename/VectorRenameTable.scala)
+
