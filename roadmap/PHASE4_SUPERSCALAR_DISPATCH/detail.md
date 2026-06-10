@@ -47,17 +47,17 @@ This is where we transition Zaqal from a simple core to a high-performance engin
 - **Goal**: Implement dynamic, resource-aware backpressure from Dispatch to Frontend.
 
 ## Day 8-10: Issue Queue Allocation & Selection
-- [ ] Implement the "Picker" logic for instruction selection.
+- [x] Implement the "Picker" logic for instruction selection.
 - **Detailed Plan**: Out-of-order execution requires buffering instructions that are waiting for their operands to become ready. We will implement distributed Issue Queues (IQs) that sit between the Dispatch stage and the Execution stage. When operands are broadcast on the bypass network, the "Wakeup" logic notifies dependent instructions. The "Selection" (or Picker) logic then scans the queue and selects the oldest ready instruction to be issued to the execution units. This involves complex age-matrix or tree-based arbitration to pick the winner within a single clock cycle.
 - **XiangShan Study**: [IssueQueue.scala](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/backend/issue/IssueQueue.scala) - *Study the selection (pick) and wakeup logic.*
 
 ## Day 11-13: Execution Clusters
-- [ ] Group functional units into clusters (e.g., Integer, Float, Memory).
+- [x] Group functional units into clusters (e.g., Integer, Float, Memory).
 - **Detailed Plan**: To achieve true superscalar multi-issue execution, the backend must be refactored from a single Execution pipeline into multiple parallel Execution Clusters. We will group the functional units—such as creating an Integer Cluster containing multiple ALUs and Branch units, a Memory Cluster for Load/Store operations, and a Floating-Point Cluster. This allows independent instructions (e.g., an ALU op and a Memory load) to be issued and executed simultaneously in the exact same clock cycle, dramatically increasing IPC (Instructions Per Cycle).
 - **XiangShan Study**: [XSCore.scala](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/XSCore.scala) - *See how the top-level core connects these components.*
 
 ## Day 14-15: Flush Propagation & Completion
-- [ ] Verify that flushes correctly clear all 6 slots in the pipeline stages.
+- [x] Verify that flushes correctly clear all 6 slots in the pipeline stages.
 - **Detailed Plan**: In a wide superscalar architecture, a branch misprediction or an exception requires flushing a massive amount of in-flight state. We must ensure that the 6-wide pipelines (Decode, Rename, Dispatch, Issue) immediately invalidate their invalid instructions upon receiving a flush signal from the Reorder Buffer or Branch Predictor. This includes carefully managing the 1-cycle latency delays between stages and ensuring that shadow parcels or fused micro-ops are also correctly flushed without causing state corruption.
 - **Goal**: Maintain correctness while achieving 6-wide throughput under heavy branch pressure.
 

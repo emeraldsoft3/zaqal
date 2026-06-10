@@ -20,10 +20,10 @@ class Dispatch(implicit val p: Parameters) extends Module with HasZaqalParameter
     val fpuOut = Vec(decodeWidth, Decoupled(new DecodedMicroOp))
     
     // Structural Hazard/Ready signals from target queues/functional units
-    val aluReady = Input(Bool())
-    val memReady = Input(Bool())
-    val bruReady = Input(Bool())
-    val fpuReady = Input(Bool())
+    val aluReady = Input(Vec(decodeWidth, Bool()))
+    val memReady = Input(Vec(decodeWidth, Bool()))
+    val bruReady = Input(Vec(decodeWidth, Bool()))
+    val fpuReady = Input(Vec(decodeWidth, Bool()))
   })
 
   // 1. Port Target Decoding & Classification for each lane
@@ -108,10 +108,10 @@ class Dispatch(implicit val p: Parameters) extends Module with HasZaqalParameter
 
     // Port readiness calculation including structural hazard checks
     port_ready(i) := !io.in(i).valid || (MuxCase(false.B, Seq(
-      is_alu_op -> io.aluReady,
-      is_mem_op -> io.memReady,
-      is_bru_op -> io.bruReady,
-      is_fpu_op -> io.fpuReady
+      is_alu_op -> io.aluReady(i),
+      is_mem_op -> io.memReady(i),
+      is_bru_op -> io.bruReady(i),
+      is_fpu_op -> io.fpuReady(i)
     )) && !hazard_detected(i))
   }
 

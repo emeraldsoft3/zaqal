@@ -26,15 +26,71 @@ class ICache(implicit val p: Parameters) extends Module with HasZaqalParameter {
       println(s"[ICache] Loaded ${insts.length} instructions from $path")
       insts
     } else {
-      println(s"[ICache] Warning: Using Custom Issue Queue OoO Verification Program.")
+      println(s"[ICache] Warning: Using Expanded Flush Verification Program.")
       Seq(
-        "h00a00113".U, // 0x00: addi x2, x0, 10   (ALU - Initialize x2 = 10)
-        "h00200193".U, // 0x04: addi x3, x0, 2    (ALU - Initialize x3 = 2)
-        "h023140b3".U, // 0x08: div x1, x2, x3    (ALU/DIV - Long latency, writes x1)
-        "h00108213".U, // 0x0c: addi x4, x1, 1    (ALU - Reads x1, waits in IQ for Wakeup)
-        "h00200293".U, // 0x10: addi x5, x0, 2    (ALU - Independent, issues OoO!)
-        "h00300313".U, // 0x14: addi x6, x0, 3    (ALU - Independent, issues OoO!)
-        "h0000006f".U  // 0x18: jal x0, 0         (BRU - Infinite loop halt)
+        "h00108093".U, // 0x00: addi x1, x1, 1
+        "h00210113".U, // 0x04: addi x2, x2, 2
+        "h00318193".U, // 0x08: addi x3, x3, 3
+        "h00420213".U, // 0x0c: addi x4, x4, 4
+        "h00528293".U, // 0x10: addi x5, x5, 5
+        "h02224333".U, // 0x14: div x6, x4, x2
+        "h00130393".U, // 0x18: addi x7, x6, 1
+        "h00002403".U, // 0x1c: lw x8, 0(x0)
+        "h00802423".U, // 0x20: sw x8, 8(x0)
+        "h00a48493".U, // 0x24: addi x9, x9, 10
+        "h01450513".U, // 0x28: addi x10, x10, 20
+        "h029545b3".U, // 0x2c: div x11, x10, x9
+        "h00000663".U, // 0x30: beq x0, x0, 12    (BRU - Branch to 0x3C, predicted not-taken but taken)
+        "h02114633".U, // 0x34: div x12, x2, x1   (ALU/DIV - WRONG PATH: should be flushed!)
+        "h00160693".U, // 0x38: addi x13, x12, 1  (ALU - WRONG PATH: waits in IQ and flushed)
+        "h06470713".U, // 0x3c: addi x14, x14, 100 (CORRECT PATH target)
+        "h03278793".U, // 0x40: addi x15, x15, 50
+        "h01080813".U, // 0x44: addi x16, x16, 16
+        "h01188893".U, // 0x48: addi x17, x17, 17
+        "h01290913".U, // 0x4c: addi x18, x18, 18
+        "h00802983".U, // 0x50: lw x19, 8(x0)
+        "h0229ca33".U, // 0x54: div x20, x19, x2
+        "h005a8a93".U, // 0x58: addi x21, x21, 5
+        "h016b0b13".U, // 0x5c: addi x22, x22, 22
+        "h017b8b93".U, // 0x60: addi x23, x23, 23
+        "h018c0c13".U, // 0x64: addi x24, x24, 24
+        "h019c8c93".U, // 0x68: addi x25, x25, 25
+        "h01ad0d13".U, // 0x6c: addi x26, x26, 26
+        "h01bd8d93".U, // 0x70: addi x27, x27, 27
+        "h016b0b13".U, // 0x5c: addi x22, x22, 22
+        "h017b8b93".U, // 0x60: addi x23, x23, 23
+        "h018c0c13".U, // 0x64: addi x24, x24, 24
+        "h019c8c93".U, // 0x68: addi x25, x25, 25
+        "h01ad0d13".U, // 0x6c: addi x26, x26, 26
+        "h01bd8d93".U, // 0x70: addi x27, x27, 27
+        "h016b0b13".U, // 0x5c: addi x22, x22, 22
+        "h017b8b93".U, // 0x60: addi x23, x23, 23
+        "h018c0c13".U, // 0x64: addi x24, x24, 24
+        "h019c8c93".U, // 0x68: addi x25, x25, 25
+        "h01ad0d13".U, // 0x6c: addi x26, x26, 26
+        "h01bd8d93".U, // 0x70: addi x27, x27, 27
+        "h016b0b13".U, // 0x5c: addi x22, x22, 22
+        "h017b8b93".U, // 0x60: addi x23, x23, 23
+        "h018c0c13".U, // 0x64: addi x24, x24, 24
+        "h019c8c93".U, // 0x68: addi x25, x25, 25
+        "h01ad0d13".U, // 0x6c: addi x26, x26, 26
+        "h01bd8d93".U, // 0x70: addi x27, x27, 27
+        "h00108093".U, // 0x00: addi x1, x1, 1
+        "h00210113".U, // 0x04: addi x2, x2, 2
+        "h00318193".U, // 0x08: addi x3, x3, 3
+        "h00420213".U, // 0x0c: addi x4, x4, 4
+        "h00528293".U, // 0x10: addi x5, x5, 5
+        "h00108093".U, // 0x00: addi x1, x1, 1
+        "h00210113".U, // 0x04: addi x2, x2, 2
+        "h00318193".U, // 0x08: addi x3, x3, 3
+        "h00420213".U, // 0x0c: addi x4, x4, 4
+        "h00528293".U, // 0x10: addi x5, x5, 5
+        "h00108093".U, // 0x00: addi x1, x1, 1
+        "h00210113".U, // 0x04: addi x2, x2, 2
+        "h00318193".U, // 0x08: addi x3, x3, 3
+        "h00420213".U, // 0x0c: addi x4, x4, 4
+        "h00528293".U, // 0x10: addi x5, x5, 5
+        "h0000006f".U  // 0x74: jal x0, 0         (Infinite loop halt)
       )
     }
   }

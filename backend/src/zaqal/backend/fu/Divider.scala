@@ -12,6 +12,7 @@ class Divider(implicit val p: Parameters) extends Module with HasZaqalParameter 
     val src2    = Input(UInt(xLen.W))
     val dec     = Input(new DecodeSignals)
     val fire    = Input(Bool())
+    val flush   = Input(Bool())
     
     val ready   = Output(Bool())
     val result  = Output(UInt(xLen.W))
@@ -44,7 +45,7 @@ class Divider(implicit val p: Parameters) extends Module with HasZaqalParameter 
     is(s_idle) {
       val is_div_any = io.dec.is_div || io.dec.is_divu || io.dec.is_rem || io.dec.is_remu ||
                        io.dec.is_divw || io.dec.is_divuw || io.dec.is_remw || io.dec.is_remuw
-      when(io.fire && is_div_any) {
+      when(io.fire && is_div_any && !io.flush) {
         val is_w = io.dec.is_divw || io.dec.is_divuw || io.dec.is_remw || io.dec.is_remuw
         val is_signed = io.dec.is_div || io.dec.is_rem || io.dec.is_divw || io.dec.is_remw
         val sign1 = Mux(is_w, io.src1(31), io.src1(xLen-1)) && is_signed
@@ -101,5 +102,9 @@ class Divider(implicit val p: Parameters) extends Module with HasZaqalParameter 
     is(s_done) {
       state := s_idle
     }
+  }
+
+  when(io.flush) {
+    state := s_idle
   }
 }

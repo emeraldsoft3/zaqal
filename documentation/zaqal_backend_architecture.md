@@ -1,6 +1,6 @@
-# Zaqal Clustered Backend Architecture
+# Zaqal Core Architecture (Frontend & Backend)
 
-This document maps out the current architecture of the Zaqal processor's backend. It traces the flow of instructions from the Instruction Buffer (IBuffer) through decoding, renaming, dispatching, queueing, and execution, up to writeback and registers wakeup.
+This document maps out the current complete architecture of the Zaqal processor (both frontend and backend). It traces the flow of instructions from branch prediction and instruction fetch, through the Instruction Buffer (IBuffer), decoding, renaming, dispatching, queueing, and execution, up to writeback and registers wakeup.
 
 ---
 
@@ -8,8 +8,12 @@ This document maps out the current architecture of the Zaqal processor's backend
 
 ```mermaid
 graph TD
-    subgraph Frontend
-        IFQ[Instruction Buffer - IBuffer]
+    subgraph Frontend Modules
+        BPU[Branch Prediction Unit - BPU]
+        FTQ[Fetch Target Queue - FTQ (64 entries)]
+        ICache[Instruction Cache - ICache]
+        IFU[Instruction Fetch Unit - IFU]
+        IBuf[Instruction Buffer - IBuffer (48 entries)]
     end
 
     subgraph Decode & Rename
@@ -57,8 +61,15 @@ graph TD
         WakeupBus[5-Port Wakeup Bus]
     end
 
-    %% Flows
-    IFQ -->|6-Wide Bundle| Decoders
+    %% Frontend Connections
+    BPU -->|Branch Target & Metadata| FTQ
+    FTQ -->|PC Fetch Address| IFU
+    FTQ -->|Synchronized Target PC| ICache
+    ICache -->|Raw Inst Bits| IFU
+    IFU -->|Predecoded FetchPacket| IBuf
+    IBuf -->|6-Wide Instruction Bundle| Decoders
+
+    %% Decode & Rename Connections
     Decoders --> Fusion
     Fusion -->|6 Decoded Ops| Rename
     Rename <--> FreeList
@@ -110,9 +121,23 @@ graph TD
 
 ## 2. Walkthrough of Stage Interactions
 
-1.  **Decode & Fusion**: Up to 6 instructions are dequeued from the `IBuffer` per cycle and decoded. Adjacent operations eligible for macro-op fusion (such as `LUI` + `ADDI`) are merged.
-2.  **Rename**: Scalar and Floating-Point logical registers are mapped to physical registers using a `RenameTableWrapper` (which manages the integer RAT, FP RAT, and checkpoint snapshots for branches).
-3.  **Dispatch**: The `Dispatch` module classifies instructions by execution type (ALU, MEM, BRU, FPU). It evaluates structural hazards against limits and applies in-order backpressure (stalling the frontend if downstream queues or ports are saturated).
-4.  **Issue Queues**: Ready instructions wait in issue queues (`intIq`, `memIq`, `fpIq`). They monitor the `WakeupBus` to clear operand dependencies.
-5.  **Execution Units**: Once operands are ready, instructions are issued to specialized execution pipelines. Long-latency operations (like the `Divider`) lock their target units and write back to the register files upon completion.
-6.  **Wakeup Broadcast**: Completed instructions broadcast their destination physical registers on the 5-port `WakeupBus` to update the `BusyTable` and wake up dependent instructions waiting in the issue queues.
+1.  **Branch Prediction & Fetch Targets (BPU & FTQ)**:
+    - The `BPU` generates the next prediction target address and metadata.
+    - These targets are enqueued into the `FTQ` (Fetch Target Queue), which acts as a metadata buffer.
+2.  **Instruction Fetching (IFU & ICache)**:
+    - The `FTQ` dequeues requests to query the `ICache` and drive the `IFU`.
+    - The `ICache` returns the instruction bytes. The `IFU` pre-decodes them (including RVC expansion from 16-bit to 32-bit instructions) and aligns them into a `FetchPacket`.
+3.  **Instruction Buffering (IBuffer)**:
+    - The `FetchPacket` is enqueued into the 48-entry `IBuffer`. The `IBuffer` decouples the variable-rate frontend from the backend, outputting up to 6 instructions per cycle.
+4.  **Decode & Fusion**: 
+    - Up to 6 instructions are dequeued from the `IBuffer` per cycle and decoded. Adjacent operations eligible for macro-op fusion (such as `LUI` + `ADDI`) are merged.
+5.  **Rename**: 
+    - Scalar and Floating-Point logical registers are mapped to physical registers using a `RenameTableWrapper` (which manages the integer RAT, FP RAT, and checkpoint snapshots for branches).
+6.  **Dispatch**: 
+    - The `Dispatch` module classifies instructions by execution type (ALU, MEM, BRU, FPU). It evaluates structural hazards against limits and applies in-order backpressure (stalling the frontend if downstream queues or ports are saturated).
+7.  **Issue Queues**: 
+    - Ready instructions wait in issue queues (`intIq`, `memIq`, `fpIq`). They monitor the `WakeupBus` to clear operand dependencies.
+8.  **Execution Units**: 
+    - Once operands are ready, instructions are issued to specialized execution pipelines. Long-latency operations (like the `Divider`) lock their target units and write back to the register files upon completion.
+9.  **Wakeup Broadcast**: 
+    - Completed instructions broadcast their destination physical registers on the 5-port `WakeupBus` to update the `BusyTable` and wake up dependent instructions waiting in the issue queues.

@@ -291,10 +291,12 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
     dispatch.io.fpuOut(i).ready := fpIq.io.enq(i).ready
   }
 
-  dispatch.io.aluReady := true.B
-  dispatch.io.memReady := true.B
-  dispatch.io.bruReady := true.B
-  dispatch.io.fpuReady := true.B
+  for (i <- 0 until decodeWidth) {
+    dispatch.io.aluReady(i) := intIq.io.enq(i).ready
+    dispatch.io.bruReady(i) := intIq.io.enq(i).ready
+    dispatch.io.memReady(i) := memIq.io.enq(i).ready
+    dispatch.io.fpuReady(i) := fpIq.io.enq(i).ready
+  }
 
   exec.io.int_in(0) <> intIq.io.deq(0)
   exec.io.int_in(1) <> intIq.io.deq(1)

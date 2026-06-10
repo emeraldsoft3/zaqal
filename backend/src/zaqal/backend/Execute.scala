@@ -104,6 +104,7 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   div.io.src2 := Mux(is_div_op0, src0_2, src1_2)
   div.io.dec  := Mux(is_div_op0, dec0, dec1)
   div.io.fire := Mux(is_div_op0, io.int_in(0).fire, io.int_in(1).fire)
+  div.io.flush := io.redirect.valid
 
   io.int_in(0).ready := Mux(is_div_op0, div.io.ready, true.B)
   io.int_in(1).ready := Mux(is_div_op1, div.io.ready, true.B)
@@ -231,6 +232,7 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   fpdiv.io.src2 := fsrc2
   fpdiv.io.dec  := decFp
   fpdiv.io.fire := io.fp_in.fire
+  fpdiv.io.flush := io.redirect.valid
 
   fpmisc.io.src1 := fsrc1
   fpmisc.io.src2 := fsrc2

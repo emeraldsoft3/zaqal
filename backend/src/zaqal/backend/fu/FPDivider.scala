@@ -11,6 +11,7 @@ class FPDivider(implicit val p: Parameters) extends Module with HasZaqalParamete
     val src2    = Input(UInt(fLen.W))
     val dec     = Input(new DecodeSignals)
     val fire    = Input(Bool())
+    val flush   = Input(Bool())
     
     val ready   = Output(Bool())
     val result  = Output(UInt(fLen.W))
@@ -50,7 +51,7 @@ class FPDivider(implicit val p: Parameters) extends Module with HasZaqalParamete
       val is_div = io.dec.is_fdiv
       val is_sqrt = io.dec.is_fsqrt
       
-      when(io.fire && (is_div || is_sqrt)) {
+      when(io.fire && (is_div || is_sqrt) && !io.flush) {
         printf("FPDivider: op=%d src1=%x src2=%x\n", is_sqrt, io.src1, io.src2)
         is_sqrt_reg := is_sqrt
         
@@ -137,5 +138,9 @@ class FPDivider(implicit val p: Parameters) extends Module with HasZaqalParamete
     is(s_done) {
       state := s_idle
     }
+  }
+
+  when(io.flush) {
+    state := s_idle
   }
 }
