@@ -17,10 +17,12 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
     val debug_regs = Output(Vec(phyRegs, UInt(xLen.W)))
     val debug_fp_regs = Output(Vec(phyRegs, UInt(xLen.W)))
     val wakeup = Vec(5, Output(new WakeupBus))
+    val snptValids = Input(Vec(renameSnapshotNum, Bool()))
+    val snptDeqPtr = Input(UInt(log2Up(renameSnapshotNum).W))
   })
 
   val alu  = Seq.fill(2)(Module(new ALU))
-  val bru  = Module(new BRU)
+  val bru  = Seq.fill(2)(Module(new BRU))
   val lsu  = Module(new LSU)
   val mul  = Module(new Multiplier)
   val div  = Module(new Divider)
@@ -44,6 +46,7 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   io.redirect.epoch := 0.U
   io.redirect.is_exception := false.B
   io.redirect.exc_cause := 0.U
+  io.redirect.snapshotIdx := 0.U
   
   fcsr.io.csr_addr  := 0.U
   fcsr.io.csr_wen   := false.B
@@ -70,12 +73,12 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   alu(0).io.pc   := uop0.pc
   alu(0).io.dec  := dec0
 
-  bru.io.src1 := src0_1
-  bru.io.src2 := Mux(dec0.is_jalr || dec0.is_branch, src0_2, dec0.imm.asUInt)
-  bru.io.pc   := uop0.pc
-  bru.io.is_rvc := uop0.pre.is_rvc
-  bru.io.pred_taken := uop0.is_predicted_taken
-  bru.io.dec  := dec0
+  bru(0).io.src1 := src0_1
+  bru(0).io.src2 := Mux(dec0.is_jalr || dec0.is_branch, src0_2, dec0.imm.asUInt)
+  bru(0).io.pc   := uop0.pc
+  bru(0).io.is_rvc := uop0.pre.is_rvc
+  bru(0).io.pred_taken := uop0.is_predicted_taken
+  bru(0).io.dec  := dec0
 
   // ---------------- INT 1 ----------------
   regFile.io.raddr(2) := io.int_in(1).bits.psrs1
@@ -95,6 +98,13 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   alu(1).io.pc   := uop1.pc
   alu(1).io.dec  := dec1
 
+  bru(1).io.src1 := src1_1
+  bru(1).io.src2 := Mux(dec1.is_jalr || dec1.is_branch, src1_2, dec1.imm.asUInt)
+  bru(1).io.pc   := uop1.pc
+  bru(1).io.is_rvc := uop1.pre.is_rvc
+  bru(1).io.pred_taken := uop1.is_predicted_taken
+  bru(1).io.dec  := dec1
+
   // Share Multiplier and Divider inputs
   mul.io.src1 := Mux(is_mul_op0, src0_1, src1_1)
   mul.io.src2 := Mux(is_mul_op0, src0_2, src1_2)
@@ -109,6 +119,40 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   io.int_in(0).ready := Mux(is_div_op0, div.io.ready, true.B)
   io.int_in(1).ready := Mux(is_div_op1, div.io.ready, true.B)
 
+  // Age-Priority Redirect/Flush Filter
+  val r0_snap = io.int_in(0).bits.snapshotIdx
+  val r1_snap = io.int_in(1).bits.snapshotIdx
+
+  val dist0 = Mux(r0_snap >= io.snptDeqPtr, r0_snap - io.snptDeqPtr, r0_snap - io.snptDeqPtr + renameSnapshotNum.U)
+  val dist1 = Mux(r1_snap >= io.snptDeqPtr, r1_snap - io.snptDeqPtr, r1_snap - io.snptDeqPtr + renameSnapshotNum.U)
+  val lane0_is_older = dist0 < dist1
+
+  val r0_valid = io.int_in(0).fire && (bru(0).io.exc_valid || bru(0).io.mispredict) && io.snptValids(r0_snap)
+  val r1_valid = io.int_in(1).fire && (bru(1).io.exc_valid || bru(1).io.mispredict) && io.snptValids(r1_snap)
+
+  when(r0_valid && r1_valid) {
+    io.redirect.valid := true.B
+    io.redirect.target := Mux(lane0_is_older, bru(0).io.target, bru(1).io.target)
+    io.redirect.epoch  := Mux(lane0_is_older, uop0.epoch, uop1.epoch)
+    io.redirect.is_exception := Mux(lane0_is_older, bru(0).io.exc_valid, bru(1).io.exc_valid)
+    io.redirect.exc_cause    := Mux(lane0_is_older, bru(0).io.exc_cause, bru(1).io.exc_cause)
+    io.redirect.snapshotIdx  := Mux(lane0_is_older, r0_snap, r1_snap)
+  } .elsewhen(r0_valid) {
+    io.redirect.valid := true.B
+    io.redirect.target := bru(0).io.target
+    io.redirect.epoch  := uop0.epoch
+    io.redirect.is_exception := bru(0).io.exc_valid
+    io.redirect.exc_cause    := bru(0).io.exc_cause
+    io.redirect.snapshotIdx  := r0_snap
+  } .elsewhen(r1_valid) {
+    io.redirect.valid := true.B
+    io.redirect.target := bru(1).io.target
+    io.redirect.epoch  := uop1.epoch
+    io.redirect.is_exception := bru(1).io.exc_valid
+    io.redirect.exc_cause    := bru(1).io.exc_cause
+    io.redirect.snapshotIdx  := r1_snap
+  }
+
   // Writebacks and latch registers
   when(io.int_in(0).fire) {
     val is_link = dec0.is_jal || dec0.is_jalr
@@ -121,14 +165,6 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
       regFile.io.wdata(0) := Mux(is_link, link_addr, result)
     }
     when(is_div_op0) { div_rd_latch := io.int_in(0).bits.pdest }
-
-    when(bru.io.exc_valid || bru.io.mispredict) {
-      io.redirect.valid := true.B
-      io.redirect.target := bru.io.target
-      io.redirect.epoch  := uop0.epoch
-      io.redirect.is_exception := bru.io.exc_valid
-      io.redirect.exc_cause    := bru.io.exc_cause
-    }
   }
 
   val wu0_valid = io.int_in(0).fire && io.int_in(0).bits.pdest =/= 0.U && !is_div_op0
@@ -138,11 +174,13 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   io.wakeup(0).pdest := r_wu0_pdest
 
   when(io.int_in(1).fire) {
+    val is_link = dec1.is_jal || dec1.is_jalr
+    val link_addr = uop1.pc + Mux(uop1.pre.is_rvc, 2.U, 4.U)
     val result = Mux(is_mul_op1, mul.io.result, alu(1).io.result)
     when(io.int_in(1).bits.pdest =/= 0.U && !is_div_op1) {
-      regFile.io.wen(1) := true.B
+      regFile.io.wen(1) := (!dec1.is_branch) || is_link
       regFile.io.waddr(1) := io.int_in(1).bits.pdest
-      regFile.io.wdata(1) := result
+      regFile.io.wdata(1) := Mux(is_link, link_addr, result)
     }
     when(is_div_op1) { div_rd_latch := io.int_in(1).bits.pdest }
   }

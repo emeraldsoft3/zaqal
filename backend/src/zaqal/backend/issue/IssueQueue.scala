@@ -10,7 +10,9 @@ class IssueQueue(val numEntries: Int, val numEnq: Int, val numDeq: Int, val numW
     val enq = Vec(numEnq, Flipped(Decoupled(new DecodedMicroOp)))
     val deq = Vec(numDeq, Decoupled(new DecodedMicroOp))
     val wakeup = Vec(numWakeup, Input(new WakeupBus))
-    val btb_redirect = Input(Bool())
+    val redirect_valid = Input(Bool())
+    val redirect_restore_idx = Input(UInt(log2Up(renameSnapshotNum).W))
+    val redirect_enq_ptr = Input(UInt(log2Up(renameSnapshotNum).W))
     
     val rs1_ready_in = Vec(numEnq, Input(Bool()))
     val rs2_ready_in = Vec(numEnq, Input(Bool()))
@@ -124,9 +126,14 @@ class IssueQueue(val numEntries: Int, val numEnq: Int, val numDeq: Int, val numW
     }
   }
 
-  when (io.btb_redirect) {
+  when (io.redirect_valid) {
     for (i <- 0 until numEntries) {
-      entries(i).valid := false.B
+      val entry_is_younger = Mux(io.redirect_restore_idx < io.redirect_enq_ptr,
+                                 entries(i).uop.snapshotIdx > io.redirect_restore_idx && entries(i).uop.snapshotIdx < io.redirect_enq_ptr,
+                                 entries(i).uop.snapshotIdx > io.redirect_restore_idx || entries(i).uop.snapshotIdx < io.redirect_enq_ptr)
+      when (entry_is_younger) {
+        entries(i).valid := false.B
+      }
     }
   }
 }

@@ -1,29 +1,32 @@
 [*]
 [*] GTKWave Analyzer v3.3.111 (w)1999-2020 BSI
-[*] Wed Jun 10 11:50:00 2026
+[*] Thu Jun 11 10:35:20 2026
 [*]
 [dumpfile] "/home/emerald/zaqal/programs/vcd/Lithium.vcd"
-[dumpfile_mtime] "Wed Jun 10 10:00:42 2026"
-[dumpfile_size] 2573661
+[dumpfile_mtime] "Thu Jun 11 10:04:46 2026"
+[dumpfile_size] 2232120
 [savefile] "/home/emerald/zaqal/programs/vcd/Lithium.gtkw"
-[timestart] 0
-[size] 1920 993
+[timestart] 32
+[size] 1882 975
 [pos] -1 -1
-*-2.900000 33 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-2.900000 47 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] TOP.
 [treeopen] TOP.Core.
 [treeopen] TOP.Core.backend.
+[treeopen] TOP.Core.backend.exec.
 [treeopen] TOP.Core.backend.exec.alu_0.
+[treeopen] TOP.Core.backend.intFreeList.
+[treeopen] TOP.Core.backend.rat.
 [treeopen] TOP.Core.backend.rat.intRat.
 [treeopen] TOP.Core.frontend.
 [sst_width] 377
 [signals_width] 510
 [sst_expanded] 1
-[sst_vpaned_height] 291
+[sst_vpaned_height] 287
 @200
 -TOP
 -Core
-@22
+@25
 +{TOP.Core.cycle_reg[63:0]} TOP.Core.cycle_reg[63:0]
 @200
 -Frontend
@@ -57,7 +60,14 @@ TOP.Core.frontend.icache.io_pc[63:0]
 @200
 -IBUF
 @28
+TOP.Core.frontend.ibuf.io_inst_data_bits_mask[15:0]
 TOP.Core.frontend.ibuf.io_out_0_valid
+TOP.Core.frontend.ibuf.can_enq
+@24
+TOP.Core.frontend.ibuf.deq_count[2:0]
+TOP.Core.frontend.ibuf.enq_count[4:0]
+@28
+TOP.Core.frontend.ibuf.io_flush
 +{TOP.Core.frontend.ibuf.io_out_0_ready} TOP.Core.frontend.ibuf.io_out_0_ready
 TOP.Core.frontend.ibuf.io_out_1_ready
 @22
@@ -82,54 +92,12 @@ TOP.Core.frontend.ibuf.io_out_4_bits_inst_raw[31:0]
 TOP.Core.frontend.ibuf.io_out_5_valid
 @22
 TOP.Core.frontend.ibuf.io_out_5_bits_inst_raw[31:0]
+@28
+TOP.Core.frontend.ibuf.buffer_47_pre_is_rvc
+@22
 +{TOP.Core.frontend.ibuf.buffer_0_inst_raw[31:0]} TOP.Core.frontend.ibuf.buffer_0_inst_raw[31:0]
-TOP.Core.frontend.ibuf.buffer_1_inst_raw[31:0]
-TOP.Core.frontend.ibuf.buffer_2_inst_raw[31:0]
-TOP.Core.frontend.ibuf.buffer_3_inst_raw[31:0]
-TOP.Core.frontend.ibuf.buffer_4_inst_raw[31:0]
-TOP.Core.frontend.ibuf.buffer_5_inst_raw[31:0]
-TOP.Core.frontend.ibuf.buffer_6_inst_raw[31:0]
-TOP.Core.frontend.ibuf.buffer_7_inst_raw[31:0]
-TOP.Core.frontend.ibuf.buffer_8_inst_raw[31:0]
-TOP.Core.frontend.ibuf.buffer_9_inst_raw[31:0]
-TOP.Core.frontend.ibuf.buffer_10_inst_raw[31:0]
-TOP.Core.frontend.ibuf.buffer_11_inst_raw[31:0]
-TOP.Core.frontend.ibuf.buffer_12_inst_raw[31:0]
-TOP.Core.frontend.ibuf.buffer_13_inst_raw[31:0]
-TOP.Core.frontend.ibuf.buffer_14_inst_raw[31:0]
-TOP.Core.frontend.ibuf.buffer_15_inst_raw[31:0]
-TOP.Core.frontend.ibuf.buffer_16_inst_raw[31:0]
-TOP.Core.frontend.ibuf.buffer_17_inst_raw[31:0]
-TOP.Core.frontend.ibuf.buffer_18_inst_raw[31:0]
-TOP.Core.frontend.ibuf.buffer_19_inst_raw[31:0]
-TOP.Core.frontend.ibuf.buffer_20_inst_raw[31:0]
-TOP.Core.frontend.ibuf.buffer_21_inst_raw[31:0]
-TOP.Core.frontend.ibuf.buffer_22_inst_raw[31:0]
-TOP.Core.frontend.ibuf.buffer_23_inst_raw[31:0]
-TOP.Core.frontend.ibuf.buffer_24_inst_raw[31:0]
-TOP.Core.frontend.ibuf.buffer_25_inst_raw[31:0]
-TOP.Core.frontend.ibuf.buffer_26_inst_raw[31:0]
-TOP.Core.frontend.ibuf.buffer_27_inst_raw[31:0]
-TOP.Core.frontend.ibuf.buffer_28_inst_raw[31:0]
-TOP.Core.frontend.ibuf.buffer_29_inst_raw[31:0]
-TOP.Core.frontend.ibuf.buffer_30_inst_raw[31:0]
-TOP.Core.frontend.ibuf.buffer_31_inst_raw[31:0]
-TOP.Core.frontend.ibuf.buffer_32_inst_raw[31:0]
-TOP.Core.frontend.ibuf.buffer_33_inst_raw[31:0]
-TOP.Core.frontend.ibuf.buffer_34_inst_raw[31:0]
-TOP.Core.frontend.ibuf.buffer_35_inst_raw[31:0]
-TOP.Core.frontend.ibuf.buffer_36_inst_raw[31:0]
-TOP.Core.frontend.ibuf.buffer_37_inst_raw[31:0]
-TOP.Core.frontend.ibuf.buffer_38_inst_raw[31:0]
-TOP.Core.frontend.ibuf.buffer_39_inst_raw[31:0]
-TOP.Core.frontend.ibuf.buffer_40_inst_raw[31:0]
-TOP.Core.frontend.ibuf.buffer_41_inst_raw[31:0]
-TOP.Core.frontend.ibuf.buffer_42_inst_raw[31:0]
-TOP.Core.frontend.ibuf.buffer_43_inst_raw[31:0]
-TOP.Core.frontend.ibuf.buffer_44_inst_raw[31:0]
-TOP.Core.frontend.ibuf.buffer_45_inst_raw[31:0]
-TOP.Core.frontend.ibuf.buffer_46_inst_raw[31:0]
-TOP.Core.frontend.ibuf.buffer_47_inst_raw[31:0]
+TOP.Core.frontend.ibuf.head[5:0]
+TOP.Core.frontend.ibuf.tail[5:0]
 TOP.Core.frontend.ibuf.io_inst_data_bits_instructions_0[31:0]
 TOP.Core.frontend.ibuf.io_inst_data_bits_instructions_1[31:0]
 TOP.Core.frontend.ibuf.io_inst_data_bits_instructions_2[31:0]
@@ -242,6 +210,14 @@ TOP.Core.backend.rat.intRat.snapshots.candidates_2[2:0]
 TOP.Core.backend.rat.intRat.snapshots.candidates_2_next[3:0]
 @200
 -RAT
+@28
+TOP.Core.backend.rat.io_snptDeqPtr[2:0]
+@24
+TOP.Core.backend.rat.io_snptEnqPtr[2:0]
+TOP.Core.backend.rat.io_snptEnqIdx[2:0]
+@28
+TOP.Core.backend.rat.io_redirect
+TOP.Core.backend.rat.io_snptRestoreIdx[2:0]
 @22
 TOP.Core.backend.rat.intRat_io_renamePorts_0_addr[4:0]
 TOP.Core.backend.rat.intRat_io_renamePorts_0_data[7:0]
@@ -287,6 +263,15 @@ TOP.Core.backend.rat.intRat.curr_spec_table_1_12[7:0]
 TOP.Core.backend.rat.intRat.curr_spec_table_1_13[7:0]
 TOP.Core.backend.rat.intRat.curr_spec_table_1_14[7:0]
 TOP.Core.backend.rat.intRat.curr_spec_table_1_15[7:0]
+TOP.Core.backend.rat.intRat.curr_spec_table_1_16[7:0]
+TOP.Core.backend.rat.intRat.curr_spec_table_1_17[7:0]
+TOP.Core.backend.rat.intRat.curr_spec_table_1_18[7:0]
+TOP.Core.backend.rat.intRat.curr_spec_table_1_19[7:0]
+@24
+TOP.Core.backend.rat.intRat.curr_spec_table_1_20[7:0]
+@22
+TOP.Core.backend.rat.intRat.curr_spec_table_1_21[7:0]
+TOP.Core.backend.rat.intRat.curr_spec_table_1_22[7:0]
 +{TOP.Core.backend.rat.intRat.curr_spec_table_2_1[7:0]} TOP.Core.backend.rat.intRat.curr_spec_table_2_1[7:0]
 TOP.Core.backend.rat.intRat.curr_spec_table_2_2[7:0]
 TOP.Core.backend.rat.intRat.curr_spec_table_2_3[7:0]
@@ -345,8 +330,21 @@ TOP.Core.backend.dispatch.io_bruOut_5_bits_uop_pc[63:0]
 [color] 2
 TOP.Core.backend.exec.io_int_in_0_valid
 @22
-TOP.Core.backend.exec.io_fp_in_bits_uop_inst_raw[31:0]
 TOP.Core.backend.exec.io_int_in_0_bits_uop_pc[63:0]
+TOP.Core.backend.exec.alu_0_io_pc[63:0]
+TOP.Core.backend.exec.bru_0_io_pc[63:0]
+TOP.Core.backend.exec.alu_1_io_pc[63:0]
+TOP.Core.backend.exec.bru_1_io_pc[63:0]
+TOP.Core.backend.exec.io_int_in_1_bits_uop_pc[63:0]
+@28
+TOP.Core.backend.exec.bru_0_io_mispredict
+TOP.Core.backend.exec.bru_1_io_mispredict
+TOP.Core.backend.exec.lane0_is_older
+TOP.Core.backend.exec.io_redirect_valid
+TOP.Core.backend.exec.io_redirect_snapshotIdx[2:0]
+@22
+TOP.Core.backend.exec.io_redirect_target[63:0]
+TOP.Core.backend.exec.io_fp_in_bits_uop_inst_raw[31:0]
 TOP.Core.backend.exec.io_int_in_0_bits_psrs1[7:0]
 TOP.Core.backend.exec.io_int_in_0_bits_decode_imm[63:0]
 TOP.Core.backend.exec.io_int_in_1_bits_uop_pc[63:0]

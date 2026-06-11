@@ -39,7 +39,7 @@ class Frontend(implicit val p: Parameters) extends Module with HasZaqalParameter
 
   // Epoch Check Reg
   val fetch_epoch = RegInit(false.B)
-  val is_valid_redirect = io.redirect.valid && (io.redirect.epoch === fetch_epoch)
+  val is_valid_redirect = io.redirect.valid
 
   when(is_valid_redirect) {
     fetch_epoch := ~fetch_epoch
@@ -97,6 +97,7 @@ class Frontend(implicit val p: Parameters) extends Module with HasZaqalParameter
   bpu.io.redirect.epoch  := io.redirect.epoch
   bpu.io.redirect.is_exception := io.redirect.is_exception
   bpu.io.redirect.exc_cause    := io.redirect.exc_cause
+  bpu.io.redirect.snapshotIdx  := io.redirect.snapshotIdx
 
   // 6. Debug Port Mapping (Using the raw BPU signals for the trace)
   io.debug_ftq_valid       := bpu.io.out.valid

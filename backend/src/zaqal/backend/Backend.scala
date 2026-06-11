@@ -20,6 +20,11 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
     val debug_cycle = Input(UInt(64.W))
   })
 
+  def wrapAdd(ptr: UInt, add: UInt): UInt = {
+    val next = ptr +& add
+    Mux(next >= renameSnapshotNum.U, next - renameSnapshotNum.U, next)
+  }
+
   // Instantiate Decoders
   val decoders = Seq.fill(decodeWidth)(Module(new Decoder))
   val decoded_uops_raw = Wire(Vec(decodeWidth, new DecodedMicroOp))
@@ -99,20 +104,27 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
   fpFreeList.io.archHeadPtr := 0.U
   fpFreeList.io.doAllocate := false.B
 
-  // Define is_branch_op
-  val is_branch_op = (decoded_uops(0).decode.is_branch || decoded_uops(0).decode.is_jalr) && io.dispatch(0).fire
+  // Define has_branch and branch_slot
+  val branch_mask = Wire(Vec(decodeWidth, Bool()))
+  for (i <- 0 until decodeWidth) {
+    branch_mask(i) := (decoded_uops(i).decode.is_branch || decoded_uops(i).decode.is_jalr) && io.dispatch(i).fire
+  }
+  val has_branch = branch_mask.asUInt.orR
+  val branch_slot = PriorityEncoder(branch_mask)
+
+  val is_branch_op = has_branch
 
   // When a branch is renamed/dispatched, we enqueue a snapshot
   rat.io.snptEnq := is_branch_op
-  rat.io.snptEnqIdx := 0.U
+  rat.io.snptEnqIdx := branch_slot
   rat.io.snptDeq := false.B
 
   intFreeList.io.snptEnq := is_branch_op
-  intFreeList.io.snptEnqIdx := 0.U
+  intFreeList.io.snptEnqIdx := branch_slot
   intFreeList.io.snptDeq := false.B
 
   fpFreeList.io.snptEnq := is_branch_op
-  fpFreeList.io.snptEnqIdx := 0.U
+  fpFreeList.io.snptEnqIdx := branch_slot
   fpFreeList.io.snptDeq := false.B
 
   // Wires for Execute redirection feedback
@@ -185,7 +197,8 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
     rat.io.renamePorts(i).data := decoded_uops(i).pdest
     
     decoded_uops(i).old_pdest := rat.io.old_pdest(i)
-    decoded_uops(i).snapshotIdx := Mux(i.U === 0.U && is_branch_op, rat.io.snptEnqPtr, 0.U)
+    val slot_is_younger_than_branch = has_branch && (i.U > branch_slot)
+    decoded_uops(i).snapshotIdx := wrapAdd(rat.io.snptEnqPtr, Mux(slot_is_younger_than_branch, 1.U, 0.U))
     
     // Debug Print for Rename
     when(io.dispatch(i).valid) {
@@ -268,13 +281,19 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
   }
 
   redirect_valid := exec.io.redirect.valid
-  // For simplicity, always use int_in(0) for snapshotIdx, though multiple ports can have branches.
-  // We assume only 1 branch issues per cycle, and it goes to int_in(0) (BRU).
-  restore_idx := exec.io.int_in(0).bits.snapshotIdx
+  restore_idx := exec.io.redirect.snapshotIdx
 
-  intIq.io.btb_redirect := redirect_valid
-  memIq.io.btb_redirect := redirect_valid
-  fpIq.io.btb_redirect := redirect_valid
+  intIq.io.redirect_valid := redirect_valid
+  intIq.io.redirect_restore_idx := restore_idx
+  intIq.io.redirect_enq_ptr := rat.io.snptEnqPtr
+
+  memIq.io.redirect_valid := redirect_valid
+  memIq.io.redirect_restore_idx := restore_idx
+  memIq.io.redirect_enq_ptr := rat.io.snptEnqPtr
+
+  fpIq.io.redirect_valid := redirect_valid
+  fpIq.io.redirect_restore_idx := restore_idx
+  fpIq.io.redirect_enq_ptr := rat.io.snptEnqPtr
 
   for (i <- 0 until decodeWidth) {
     intIq.io.enq(i).valid := dispatch.io.aluOut(i).valid || dispatch.io.bruOut(i).valid
@@ -302,6 +321,8 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
   exec.io.int_in(1) <> intIq.io.deq(1)
   exec.io.mem_in <> memIq.io.deq(0)
   exec.io.fp_in <> fpIq.io.deq(0)
+  exec.io.snptValids := rat.io.snptValids
+  exec.io.snptDeqPtr := rat.io.snptDeqPtr
 
   // Dispatch Ready Logic (Dynamic Backpressure)
   for (i <- 0 until decodeWidth) {

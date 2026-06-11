@@ -27,6 +27,7 @@ class RenameTableWrapper(implicit val p: Parameters) extends Module with HasZaqa
     val snptFlushVec   = Input(Vec(renameSnapshotNum, Bool()))
     val snptRestoreIdx = Input(UInt(log2Up(renameSnapshotNum).W))
     val snptEnqPtr     = Output(UInt(log2Up(renameSnapshotNum).W))
+    val snptDeqPtr     = Output(UInt(log2Up(renameSnapshotNum).W))
     val snptValids     = Output(Vec(renameSnapshotNum, Bool()))
     
     // Debug
@@ -55,6 +56,7 @@ class RenameTableWrapper(implicit val p: Parameters) extends Module with HasZaqa
   fpRat.io.snptRestoreIdx := io.snptRestoreIdx
 
   io.snptEnqPtr := intRat.io.snptEnqPtr
+  io.snptDeqPtr := intRat.io.snptDeqPtr
   io.snptValids := intRat.io.snptValids
 
   for (i <- 0 until decodeWidth) {

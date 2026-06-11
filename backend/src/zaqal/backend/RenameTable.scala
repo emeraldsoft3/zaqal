@@ -33,6 +33,7 @@ class RenameTable(val numLogicalRegs: Int, val isFP: Boolean = false)(implicit v
     val snptFlushVec   = Input(Vec(renameSnapshotNum, Bool()))
     val snptRestoreIdx = Input(UInt(log2Up(renameSnapshotNum).W))
     val snptEnqPtr     = Output(UInt(log2Up(renameSnapshotNum).W))
+    val snptDeqPtr     = Output(UInt(log2Up(renameSnapshotNum).W))
     val snptValids     = Output(Vec(renameSnapshotNum, Bool()))
     
     // Debug
@@ -82,6 +83,7 @@ class RenameTable(val numLogicalRegs: Int, val isFP: Boolean = false)(implicit v
   snapshots.io.flushVec := io.snptFlushVec
   
   io.snptEnqPtr := snapshots.io.enqPtr
+  io.snptDeqPtr := snapshots.io.deqPtr
   io.snptValids := snapshots.io.valids
 
   // State Update
