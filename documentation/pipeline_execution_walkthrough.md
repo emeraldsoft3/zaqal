@@ -137,6 +137,9 @@ The Issue Queue waits until the physical source registers are marked ready (via 
   * `TOP.Core.backend.intIq.io_deq_1_bits_psrs1[7:0]` / `io_deq_1_bits_psrs2[7:0]`.
   * `TOP.Core.backend.intIq.io_deq_1_bits_pdest[7:0]`.
 
+> [!NOTE]
+> **Optimized/Pruned Signals**: Unused signals in the execution block (e.g. `inst_raw` which is already decoded in the rename stage and not read by the ALU, or specific decode flags like `is_sraw` when not active) are often optimized away/pruned by FIRRTL/Verilator during compilation. Hence, `io_deq_1_bits_uop_inst_raw` may not appear in the waveforms.
+
 ### C. Execution Stage (ALU Computation)
 The ALU receives the raw 64-bit operand values and the physical destination tag (`pdest`). The ALU is a pure combinational block and does not access the RAT.
 * **ALU Inputs**:
@@ -158,13 +161,54 @@ To confirm that the value `2` is written into physical register `p32`, watch the
 ### E. Trace Backwards: Issue Queue Scheduling and Physical Tag Generation
 If you trace the signals one step backward from the execution and writeback stages:
 
-1. **Where does `waddr` / `pdest` come from?**
-   - The write address `regFile.io.waddr(0)` is driven by `io.int_in(0).bits.pdest`.
-   - Tracking this back to `Backend.scala`, the execution input `exec.io.int_in(0)` is directly bound to the Issue Queue dequeue port: `intIq.io.deq(0)`.
-   - Inside the **Issue Queue** (`IssueQueue.scala`), the `pdest` is stored in the queue entry payload register: `entries(i).uop.pdest`, which was loaded when enqueued from the dispatch bus: `intIq.io.enq(e).bits`.
-   - Going all the way back, the `pdest` tag was allocated in the **Rename Table** (`intRat` in `RenameTable.scala`) from the **Free List** of physical registers when the instruction was decoded and renamed (mapping logical `x2` to physical `p32` / `32` because it was the next available free physical register).
+1. **Where does `waddr` / `pdest` come from, and is there anything in between?**
+   - The write address `regFile.io.waddr(0)` is tied **directly** via a wire to the Issue Queue dequeue port, with absolutely no logic or register stages in between.
+   - Specifically:
+     * In `Backend.scala`, the Issue Queue dequeue port is connected directly to the Execution port:
+       ```scala
+       exec.io.int_in(0) <> intIq.io.deq(0)
+       ```
+     * In `Execute.scala`, that port's `pdest` field is connected directly to the physical register file's write address:
+       ```scala
+       regFile.io.waddr(0) := io.int_in(0).bits.pdest
+       ```
+   - Therefore, `regFile.io.waddr(0)` is just a wire alias of `intIq.io.deq(0).bits.pdest` (which is `TOP.Core.backend.intIq.io_deq_0_bits_pdest[7:0]`).
 
-2. **How is the choice between ALU 0 and ALU 1 decided?**
+2. **How is `TOP.Core.backend.intIq.io_deq_0_bits_pdest[7:0]` calculated?**
+   - It is allocated dynamically in the Rename stage of the backend (`Backend.scala`):
+     * The decoder determines if the instruction writes to a register (`rf_wen` is high).
+     * If true, it requests a free physical register from the **Integer Free List** module (`intFreeList`):
+       ```scala
+       intFreeList.io.allocateReq(i) := rf_wen && io.dispatch(i).valid
+       ```
+     * The Free List allocator responds with the next available physical register index:
+       ```scala
+       decoded_uops(i).pdest := MuxCase(0.U, Seq(
+         intFreeList.io.allocateReq(i) -> intFreeList.io.allocatePhyReg(i),
+         // ...
+       ))
+       ```
+     * In our cycle trace, the Free List popped index `32`, so `decoded_uops(i).pdest` became `32`.
+     * This renamed instruction payload is then dispatched, enqueued into the Issue Queue, and eventually dequeued onto `io_deq_0_bits_pdest`.
+
+3. **How are the Issue Queue outputs split between the Register File and the ALU?**
+   - The Issue Queue output (`intIq.io.deq(0)` / `io.int_in(0)`) splits its fields to coordinate both register reading and ALU execution:
+     * **To the Register File (Read Address)**: The source physical tags `psrs1` and `psrs2` are routed to the register file's read addresses to fetch the actual data values:
+       ```scala
+       regFile.io.raddr(0) := io.int_in(0).bits.psrs1
+       regFile.io.raddr(1) := io.int_in(0).bits.psrs2
+       ```
+     * **To the ALU (Computation)**: The ALU receives the fetched 64-bit source values (or bypassed results) and the decode signals (like `is_addi`):
+       ```scala
+       alu(0).io.src1 := src1_val
+       alu(0).io.src2 := src2_val // Muxed between regFile.io.rdata(1) and immediate
+       alu(0).io.dec  := dec0
+       ```
+     * **To the Register File (Write Tag & Data)**: 
+       - The destination physical tag `pdest` bypasses the ALU entirely and goes directly to the register file's write address: `regFile.io.waddr(0) := io.int_in(0).bits.pdest`.
+       - The ALU's result output is routed to the register file's write data input: `regFile.io.wdata(0) := result`.
+
+4. **How is the choice between ALU 0 and ALU 1 decided?**
    - The Issue Queue contains a dual-issue interface `io.deq(0)` (which drives ALU 0) and `io.deq(1)` (which drives ALU 1).
    - The routing decision is made dynamically each cycle by the **AgeDetector** module:
      - **ALU 0 (`deq(0)`) Selection**: The Issue Queue calculates a bitmask of all queue entries that are valid and have their source operands ready (`can_issue`). It queries the `AgeDetector` with this mask. The `AgeDetector` uses its internal `age(i)(j)` priority matrix (which tracks which instruction enqueued earlier) to find the **oldest ready instruction** and issues it to `deq(0)` (ALU 0).
