@@ -122,6 +122,21 @@ The Issue Queue waits until the physical source registers are marked ready (via 
 * **Operand Values**: The scheduler reads the operand values from the Physical Register File (`RegFile`) using the physical source register tags as addresses.
 * **Bypass/Wakeup Tracking**: The IQ monitors the wakeup bus (`TOP.Core.backend.exec.wakeup`) to wake up dependent instructions waiting for physical register tags.
 
+#### GTKWave Signals to Watch (Issue Queue to ALU):
+* **Port 0 Handshake (ALU 0)**:
+  * `TOP.Core.backend.intIq.io_deq_0_valid`: Dequeue valid (asserts high when an instruction is issued to ALU 0).
+  * `TOP.Core.backend.intIq.io_deq_0_ready`: Dequeue ready.
+* **Port 0 Payload (ALU 0)**:
+  * `TOP.Core.backend.intIq.io_deq_0_bits_uop_pc[63:0]`: Program Counter of the issuing instruction.
+  * `TOP.Core.backend.intIq.io_deq_0_bits_uop_inst_raw[31:0]`: Raw 32-bit instruction bits (e.g. `0x00210113` for `addi x2, x2, 2`).
+  * `TOP.Core.backend.intIq.io_deq_0_bits_psrs1[7:0]` / `io_deq_0_bits_psrs2[7:0]`: Physical source register tags.
+  * `TOP.Core.backend.intIq.io_deq_0_bits_pdest[7:0]`: Allocated physical destination register tag (e.g. `32` / `33`).
+* **Port 1 Handshake & Payload (ALU 1)**:
+  * `TOP.Core.backend.intIq.io_deq_1_valid`, `TOP.Core.backend.intIq.io_deq_1_ready`.
+  * `TOP.Core.backend.intIq.io_deq_1_bits_uop_pc[63:0]`, `TOP.Core.backend.intIq.io_deq_1_bits_uop_inst_raw[31:0]`.
+  * `TOP.Core.backend.intIq.io_deq_1_bits_psrs1[7:0]` / `io_deq_1_bits_psrs2[7:0]`.
+  * `TOP.Core.backend.intIq.io_deq_1_bits_pdest[7:0]`.
+
 ### C. Execution Stage (ALU Computation)
 The ALU receives the raw 64-bit operand values and the physical destination tag (`pdest`). The ALU is a pure combinational block and does not access the RAT.
 * **ALU Inputs**:
