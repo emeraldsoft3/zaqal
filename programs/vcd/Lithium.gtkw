@@ -1,20 +1,22 @@
 [*]
 [*] GTKWave Analyzer v3.3.111 (w)1999-2020 BSI
-[*] Thu Jun 11 10:35:20 2026
+[*] Fri Jun 12 07:14:37 2026
 [*]
 [dumpfile] "/home/emerald/zaqal/programs/vcd/Lithium.vcd"
 [dumpfile_mtime] "Thu Jun 11 10:04:46 2026"
 [dumpfile_size] 2232120
 [savefile] "/home/emerald/zaqal/programs/vcd/Lithium.gtkw"
-[timestart] 32
+[timestart] 34
 [size] 1882 975
 [pos] -1 -1
-*-2.900000 47 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-2.900000 23 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] TOP.
 [treeopen] TOP.Core.
 [treeopen] TOP.Core.backend.
 [treeopen] TOP.Core.backend.exec.
 [treeopen] TOP.Core.backend.exec.alu_0.
+[treeopen] TOP.Core.backend.exec.alu_1.
+[treeopen] TOP.Core.backend.exec.bru_0.
 [treeopen] TOP.Core.backend.intFreeList.
 [treeopen] TOP.Core.backend.rat.
 [treeopen] TOP.Core.backend.rat.intRat.
@@ -26,7 +28,7 @@
 @200
 -TOP
 -Core
-@25
+@24
 +{TOP.Core.cycle_reg[63:0]} TOP.Core.cycle_reg[63:0]
 @200
 -Frontend
@@ -158,8 +160,8 @@ TOP.Core.backend.rat.intRat.snapshots.snptValids_3
 TOP.Core.backend.rat.intRat.snapshots.io_enqData_0[7:0]
 @24
 +{TOP.Core.backend.rat.intRat.snapshots.io_enqData_1[7:0]} TOP.Core.backend.rat.intRat.snapshots.io_enqData_1[7:0]
-@22
 TOP.Core.backend.rat.intRat.snapshots.io_enqData_2[7:0]
+@22
 TOP.Core.backend.rat.intRat.snapshots.io_enqData_3[7:0]
 TOP.Core.backend.rat.intRat.snapshots.io_enqData_4[7:0]
 TOP.Core.backend.rat.intRat.snapshots.io_enqData_5[7:0]
@@ -246,7 +248,7 @@ TOP.Core.backend.rat.intRat.spec_table_15[7:0]
 TOP.Core.backend.rat.intRat.curr_spec_table_1_0[7:0]
 @24
 +{TOP.Core.backend.rat.intRat.curr_spec_table_1_1[7:0]} TOP.Core.backend.rat.intRat.curr_spec_table_1_1[7:0]
-TOP.Core.backend.rat.intRat.curr_spec_table_1_2[7:0]
++{TOP.Core.backend.rat.intRat.curr_spec_table_1_2[7:0]} TOP.Core.backend.rat.intRat.curr_spec_table_1_2[7:0]
 +{TOP.Core.backend.rat.intRat.curr_spec_table_1_3[7:0]} TOP.Core.backend.rat.intRat.curr_spec_table_1_3[7:0]
 TOP.Core.backend.rat.intRat.curr_spec_table_1_4[7:0]
 @22
@@ -388,6 +390,277 @@ TOP.Core.backend.exec.alu_0.adder_io_src2[63:0]
 TOP.Core.backend.exec.alu_1.adder_io_result[63:0]
 TOP.Core.backend.exec.alu_1.adder_io_src1[63:0]
 TOP.Core.backend.exec.alu_1.adder_io_src2[63:0]
+@28
+TOP.Core.backend.exec.alu_0.adder_io_is_sub
+TOP.Core.backend.exec.alu_0.adder_io_is_word
+@22
++{TOP.Core.backend.exec.alu_0.adder_io_result[63:0]} TOP.Core.backend.exec.alu_0.adder_io_result[63:0]
+TOP.Core.backend.exec.alu_0.adder_io_src1[63:0]
+TOP.Core.backend.exec.alu_0.adder_io_src2[63:0]
+@28
+TOP.Core.backend.exec.alu_0.bitmanip_io_is_bclr
+TOP.Core.backend.exec.alu_0.bitmanip_io_is_bclri
+TOP.Core.backend.exec.alu_0.bitmanip_io_is_bext
+TOP.Core.backend.exec.alu_0.bitmanip_io_is_bexti
+TOP.Core.backend.exec.alu_0.bitmanip_io_is_binv
+TOP.Core.backend.exec.alu_0.bitmanip_io_is_binvi
+TOP.Core.backend.exec.alu_0.bitmanip_io_is_bset
+TOP.Core.backend.exec.alu_0.bitmanip_io_is_bseti
+TOP.Core.backend.exec.alu_0.bitmanip_io_is_clz
+TOP.Core.backend.exec.alu_0.bitmanip_io_is_clzw
+TOP.Core.backend.exec.alu_0.bitmanip_io_is_cpop
+TOP.Core.backend.exec.alu_0.bitmanip_io_is_cpopw
+TOP.Core.backend.exec.alu_0.bitmanip_io_is_ctz
+TOP.Core.backend.exec.alu_0.bitmanip_io_is_ctzw
+TOP.Core.backend.exec.alu_0.bitmanip_io_is_max
+TOP.Core.backend.exec.alu_0.bitmanip_io_is_maxu
+TOP.Core.backend.exec.alu_0.bitmanip_io_is_min
+TOP.Core.backend.exec.alu_0.bitmanip_io_is_minu
+TOP.Core.backend.exec.alu_0.bitmanip_io_is_orc_b
+TOP.Core.backend.exec.alu_0.bitmanip_io_is_rev8
+TOP.Core.backend.exec.alu_0.bitmanip_io_is_sextb
+TOP.Core.backend.exec.alu_0.bitmanip_io_is_sexth
+TOP.Core.backend.exec.alu_0.bitmanip_io_is_zexth
+@22
+TOP.Core.backend.exec.alu_0.bitmanip_io_result[63:0]
+TOP.Core.backend.exec.alu_0.bitmanip_io_src1[63:0]
+TOP.Core.backend.exec.alu_0.bitmanip_io_src2[63:0]
+@28
+TOP.Core.backend.exec.alu_0.comparator_io_eq
+TOP.Core.backend.exec.alu_0.comparator_io_lt
+TOP.Core.backend.exec.alu_0.comparator_io_ltu
+@22
+TOP.Core.backend.exec.alu_0.comparator_io_src1[63:0]
+TOP.Core.backend.exec.alu_0.comparator_io_src2[63:0]
+@28
+TOP.Core.backend.exec.alu_0.io_dec_is_add
+TOP.Core.backend.exec.alu_0.io_dec_is_addi
+TOP.Core.backend.exec.alu_0.io_dec_is_addiw
+TOP.Core.backend.exec.alu_0.io_dec_is_addw
+TOP.Core.backend.exec.alu_0.io_dec_is_and
+TOP.Core.backend.exec.alu_0.io_dec_is_andi
+TOP.Core.backend.exec.alu_0.io_dec_is_andn
+TOP.Core.backend.exec.alu_0.io_dec_is_auipc
+TOP.Core.backend.exec.alu_0.io_dec_is_bclr
+TOP.Core.backend.exec.alu_0.io_dec_is_bclri
+TOP.Core.backend.exec.alu_0.io_dec_is_bext
+TOP.Core.backend.exec.alu_0.io_dec_is_bexti
+TOP.Core.backend.exec.alu_0.io_dec_is_binv
+TOP.Core.backend.exec.alu_0.io_dec_is_binvi
+TOP.Core.backend.exec.alu_0.io_dec_is_bset
+TOP.Core.backend.exec.alu_0.io_dec_is_bseti
+TOP.Core.backend.exec.alu_0.io_dec_is_clz
+TOP.Core.backend.exec.alu_0.io_dec_is_clzw
+TOP.Core.backend.exec.alu_0.io_dec_is_cpop
+TOP.Core.backend.exec.alu_0.io_dec_is_cpopw
+TOP.Core.backend.exec.alu_0.io_dec_is_ctz
+TOP.Core.backend.exec.alu_0.io_dec_is_ctzw
+TOP.Core.backend.exec.alu_0.io_dec_is_lui
+TOP.Core.backend.exec.alu_0.io_dec_is_max
+TOP.Core.backend.exec.alu_0.io_dec_is_maxu
+TOP.Core.backend.exec.alu_0.io_dec_is_min
+TOP.Core.backend.exec.alu_0.io_dec_is_minu
+TOP.Core.backend.exec.alu_0.io_dec_is_or
+TOP.Core.backend.exec.alu_0.io_dec_is_orc_b
+TOP.Core.backend.exec.alu_0.io_dec_is_ori
+TOP.Core.backend.exec.alu_0.io_dec_is_orn
+TOP.Core.backend.exec.alu_0.io_dec_is_rev8
+TOP.Core.backend.exec.alu_0.io_dec_is_rol
+TOP.Core.backend.exec.alu_0.io_dec_is_rolw
+TOP.Core.backend.exec.alu_0.io_dec_is_ror
+TOP.Core.backend.exec.alu_0.io_dec_is_rori
+TOP.Core.backend.exec.alu_0.io_dec_is_roriw
+TOP.Core.backend.exec.alu_0.io_dec_is_rorw
+TOP.Core.backend.exec.alu_0.io_dec_is_sextb
+TOP.Core.backend.exec.alu_0.io_dec_is_sexth
+TOP.Core.backend.exec.alu_0.io_dec_is_sh1add
+TOP.Core.backend.exec.alu_0.io_dec_is_sh1add_uw
+TOP.Core.backend.exec.alu_0.io_dec_is_sh2add
+TOP.Core.backend.exec.alu_0.io_dec_is_sh2add_uw
+TOP.Core.backend.exec.alu_0.io_dec_is_sh3add
+TOP.Core.backend.exec.alu_0.io_dec_is_sh3add_uw
+TOP.Core.backend.exec.alu_0.io_dec_is_sll
+TOP.Core.backend.exec.alu_0.io_dec_is_slli
+TOP.Core.backend.exec.alu_0.io_dec_is_slliw
+TOP.Core.backend.exec.alu_0.io_dec_is_sllw
+TOP.Core.backend.exec.alu_0.io_dec_is_slt
+TOP.Core.backend.exec.alu_0.io_dec_is_slti
+TOP.Core.backend.exec.alu_0.io_dec_is_sltiu
+TOP.Core.backend.exec.alu_0.io_dec_is_sltu
+TOP.Core.backend.exec.alu_0.io_dec_is_sra
+TOP.Core.backend.exec.alu_0.io_dec_is_srai
+TOP.Core.backend.exec.alu_0.io_dec_is_sraiw
+TOP.Core.backend.exec.alu_0.io_dec_is_sraw
+TOP.Core.backend.exec.alu_0.io_dec_is_srl
+TOP.Core.backend.exec.alu_0.io_dec_is_srli
+TOP.Core.backend.exec.alu_0.io_dec_is_srliw
+TOP.Core.backend.exec.alu_0.io_dec_is_srlw
+TOP.Core.backend.exec.alu_0.io_dec_is_sub
+TOP.Core.backend.exec.alu_0.io_dec_is_subw
+TOP.Core.backend.exec.alu_0.io_dec_is_xor
+TOP.Core.backend.exec.alu_0.io_dec_is_xori
+TOP.Core.backend.exec.alu_0.io_dec_is_xorn
+TOP.Core.backend.exec.alu_0.io_dec_is_zexth
+@22
+TOP.Core.backend.exec.alu_0.io_pc[63:0]
+TOP.Core.backend.exec.alu_0.io_result[63:0]
+TOP.Core.backend.exec.alu_0.io_src1[63:0]
+TOP.Core.backend.exec.alu_0.io_src2[63:0]
+@28
+TOP.Core.backend.exec.alu_0.logical_io_is_and
+TOP.Core.backend.exec.alu_0.logical_io_is_andn
+TOP.Core.backend.exec.alu_0.logical_io_is_or
+TOP.Core.backend.exec.alu_0.logical_io_is_orn
+TOP.Core.backend.exec.alu_0.logical_io_is_xor
+TOP.Core.backend.exec.alu_0.logical_io_is_xorn
+@22
+TOP.Core.backend.exec.alu_0.logical_io_result[63:0]
+TOP.Core.backend.exec.alu_0.logical_io_src1[63:0]
+TOP.Core.backend.exec.alu_0.logical_io_src2[63:0]
+TOP.Core.backend.exec.alu_0.sh1add_res[64:0]
+TOP.Core.backend.exec.alu_0.sh1add_uw_res[64:0]
+TOP.Core.backend.exec.alu_0.sh2add_res[65:0]
+TOP.Core.backend.exec.alu_0.sh2add_uw_res[65:0]
+TOP.Core.backend.exec.alu_0.sh3add_res[66:0]
+TOP.Core.backend.exec.alu_0.sh3add_uw_res[66:0]
+@28
+TOP.Core.backend.exec.alu_0.shifter_io_is_rol
+TOP.Core.backend.exec.alu_0.shifter_io_is_rolw
+TOP.Core.backend.exec.alu_0.shifter_io_is_ror
+TOP.Core.backend.exec.alu_0.shifter_io_is_rori
+TOP.Core.backend.exec.alu_0.shifter_io_is_roriw
+TOP.Core.backend.exec.alu_0.shifter_io_is_rorw
+TOP.Core.backend.exec.alu_0.shifter_io_is_sll
+TOP.Core.backend.exec.alu_0.shifter_io_is_sllw
+TOP.Core.backend.exec.alu_0.shifter_io_is_sra
+TOP.Core.backend.exec.alu_0.shifter_io_is_sraw
+TOP.Core.backend.exec.alu_0.shifter_io_is_srl
+TOP.Core.backend.exec.alu_0.shifter_io_is_srlw
+@22
+TOP.Core.backend.exec.alu_0.shifter_io_result[63:0]
+TOP.Core.backend.exec.alu_0.shifter_io_shamt[5:0]
+TOP.Core.backend.exec.alu_0.shifter_io_src1[63:0]
+TOP.Core.backend.exec.alu_0.zba_src1_zext[63:0]
+@200
+-adder
+@28
+TOP.Core.backend.exec.alu_0.adder.io_is_sub
+TOP.Core.backend.exec.alu_0.adder.io_is_word
+@22
+TOP.Core.backend.exec.alu_0.adder.io_result[63:0]
+TOP.Core.backend.exec.alu_0.adder.io_src1[63:0]
+TOP.Core.backend.exec.alu_0.adder.io_src2[63:0]
+TOP.Core.backend.exec.alu_0.adder.res[63:0]
+@200
+-bitmanip
+@22
+TOP.Core.backend.exec.alu_0.bitmanip.bclr_res[63:0]
+TOP.Core.backend.exec.alu_0.bitmanip.bext_res[63:0]
+TOP.Core.backend.exec.alu_0.bitmanip.binv_res[63:0]
+TOP.Core.backend.exec.alu_0.bitmanip.bset_res[63:0]
+TOP.Core.backend.exec.alu_0.bitmanip.clz_32[5:0]
+TOP.Core.backend.exec.alu_0.bitmanip.clz_64[6:0]
+TOP.Core.backend.exec.alu_0.bitmanip.cpop_32[5:0]
+TOP.Core.backend.exec.alu_0.bitmanip.cpop_64[6:0]
+TOP.Core.backend.exec.alu_0.bitmanip.ctz_32[5:0]
+TOP.Core.backend.exec.alu_0.bitmanip.ctz_64[6:0]
+@28
+TOP.Core.backend.exec.alu_0.bitmanip.io_is_bclr
+TOP.Core.backend.exec.alu_0.bitmanip.io_is_bclri
+TOP.Core.backend.exec.alu_0.bitmanip.io_is_bext
+TOP.Core.backend.exec.alu_0.bitmanip.io_is_bexti
+TOP.Core.backend.exec.alu_0.bitmanip.io_is_binv
+TOP.Core.backend.exec.alu_0.bitmanip.io_is_binvi
+TOP.Core.backend.exec.alu_0.bitmanip.io_is_bset
+TOP.Core.backend.exec.alu_0.bitmanip.io_is_bseti
+TOP.Core.backend.exec.alu_0.bitmanip.io_is_clz
+TOP.Core.backend.exec.alu_0.bitmanip.io_is_clzw
+TOP.Core.backend.exec.alu_0.bitmanip.io_is_cpop
+TOP.Core.backend.exec.alu_0.bitmanip.io_is_cpopw
+TOP.Core.backend.exec.alu_0.bitmanip.io_is_ctz
+TOP.Core.backend.exec.alu_0.bitmanip.io_is_ctzw
+TOP.Core.backend.exec.alu_0.bitmanip.io_is_max
+TOP.Core.backend.exec.alu_0.bitmanip.io_is_maxu
+TOP.Core.backend.exec.alu_0.bitmanip.io_is_min
+TOP.Core.backend.exec.alu_0.bitmanip.io_is_minu
+TOP.Core.backend.exec.alu_0.bitmanip.io_is_orc_b
+TOP.Core.backend.exec.alu_0.bitmanip.io_is_rev8
+TOP.Core.backend.exec.alu_0.bitmanip.io_is_sextb
+TOP.Core.backend.exec.alu_0.bitmanip.io_is_sexth
+TOP.Core.backend.exec.alu_0.bitmanip.io_is_zexth
+@22
+TOP.Core.backend.exec.alu_0.bitmanip.io_result[63:0]
+TOP.Core.backend.exec.alu_0.bitmanip.io_src1[63:0]
+TOP.Core.backend.exec.alu_0.bitmanip.io_src2[63:0]
+TOP.Core.backend.exec.alu_0.bitmanip.max_res[63:0]
+TOP.Core.backend.exec.alu_0.bitmanip.maxu_res[63:0]
+TOP.Core.backend.exec.alu_0.bitmanip.min_res[63:0]
+TOP.Core.backend.exec.alu_0.bitmanip.minu_res[63:0]
+TOP.Core.backend.exec.alu_0.bitmanip.orc_b_res[63:0]
+TOP.Core.backend.exec.alu_0.bitmanip.rev8_res[63:0]
+TOP.Core.backend.exec.alu_0.bitmanip.sextb_res[63:0]
+TOP.Core.backend.exec.alu_0.bitmanip.sexth_res[63:0]
+TOP.Core.backend.exec.alu_0.bitmanip.shamt[5:0]
+TOP.Core.backend.exec.alu_0.bitmanip.zexth_res[63:0]
+@200
+-comparator
+@28
+TOP.Core.backend.exec.alu_0.comparator.io_eq
+TOP.Core.backend.exec.alu_0.comparator.io_lt
+TOP.Core.backend.exec.alu_0.comparator.io_ltu
+@22
+TOP.Core.backend.exec.alu_0.comparator.io_src1[63:0]
+TOP.Core.backend.exec.alu_0.comparator.io_src2[63:0]
+@200
+-logical
+@28
+TOP.Core.backend.exec.alu_0.logical.io_is_and
+TOP.Core.backend.exec.alu_0.logical.io_is_andn
+TOP.Core.backend.exec.alu_0.logical.io_is_or
+TOP.Core.backend.exec.alu_0.logical.io_is_orn
+TOP.Core.backend.exec.alu_0.logical.io_is_xor
+TOP.Core.backend.exec.alu_0.logical.io_is_xorn
+@22
+TOP.Core.backend.exec.alu_0.logical.io_result[63:0]
+TOP.Core.backend.exec.alu_0.logical.io_src1[63:0]
+TOP.Core.backend.exec.alu_0.logical.io_src2[63:0]
+TOP.Core.backend.exec.alu_0.logical.res_and[63:0]
+TOP.Core.backend.exec.alu_0.logical.res_andn[63:0]
+TOP.Core.backend.exec.alu_0.logical.res_or[63:0]
+TOP.Core.backend.exec.alu_0.logical.res_orn[63:0]
+TOP.Core.backend.exec.alu_0.logical.res_xor[63:0]
+TOP.Core.backend.exec.alu_0.logical.res_xorn[63:0]
+@200
+-shifter
+@28
+TOP.Core.backend.exec.alu_0.shifter.io_is_rol
+TOP.Core.backend.exec.alu_0.shifter.io_is_rolw
+TOP.Core.backend.exec.alu_0.shifter.io_is_ror
+TOP.Core.backend.exec.alu_0.shifter.io_is_rori
+TOP.Core.backend.exec.alu_0.shifter.io_is_roriw
+TOP.Core.backend.exec.alu_0.shifter.io_is_rorw
+TOP.Core.backend.exec.alu_0.shifter.io_is_sll
+TOP.Core.backend.exec.alu_0.shifter.io_is_sllw
+TOP.Core.backend.exec.alu_0.shifter.io_is_sra
+TOP.Core.backend.exec.alu_0.shifter.io_is_sraw
+TOP.Core.backend.exec.alu_0.shifter.io_is_srl
+TOP.Core.backend.exec.alu_0.shifter.io_is_srlw
+@22
+TOP.Core.backend.exec.alu_0.shifter.io_result[63:0]
+TOP.Core.backend.exec.alu_0.shifter.io_shamt[5:0]
+TOP.Core.backend.exec.alu_0.shifter.io_src1[63:0]
+TOP.Core.backend.exec.alu_0.shifter.res_rol[126:0]
+TOP.Core.backend.exec.alu_0.shifter.res_rolw[62:0]
+TOP.Core.backend.exec.alu_0.shifter.res_ror[190:0]
+TOP.Core.backend.exec.alu_0.shifter.res_rorw[94:0]
+TOP.Core.backend.exec.alu_0.shifter.res_sll[126:0]
+TOP.Core.backend.exec.alu_0.shifter.res_sllw[31:0]
+TOP.Core.backend.exec.alu_0.shifter.res_sra[63:0]
+TOP.Core.backend.exec.alu_0.shifter.res_sraw[31:0]
+TOP.Core.backend.exec.alu_0.shifter.res_srl[63:0]
+TOP.Core.backend.exec.alu_0.shifter.res_srlw[31:0]
+TOP.Core.backend.exec.alu_0.shifter.shamt_w[4:0]
+TOP.Core.backend.exec.alu_0.shifter.src1_w[31:0]
 @200
 -fprat
 @22
@@ -399,9 +672,41 @@ TOP.Core.backend.rat.fpRat.spec_table_2[7:0]
 TOP.Core.backend.rat.fpRat.spec_table_3[7:0]
 TOP.Core.backend.rat.fpRat.spec_table_4[7:0]
 TOP.Core.backend.rat.fpRat.spec_table_5[7:0]
+@23
 TOP.Core.backend.rat.fpRat.spec_table_6[7:0]
 @200
 -RegFile
+@22
+TOP.Core.backend.exec.regFile.io_raddr_0[7:0]
+TOP.Core.backend.exec.regFile.io_raddr_1[7:0]
+TOP.Core.backend.exec.regFile.io_raddr_2[7:0]
+TOP.Core.backend.exec.regFile.io_raddr_3[7:0]
+TOP.Core.backend.exec.regFile.io_raddr_4[7:0]
+TOP.Core.backend.exec.regFile.io_raddr_5[7:0]
+TOP.Core.backend.exec.regFile.io_raddr_6[7:0]
+TOP.Core.backend.exec.regFile.io_rdata_0[63:0]
+TOP.Core.backend.exec.regFile.io_rdata_1[63:0]
+TOP.Core.backend.exec.regFile.io_rdata_2[63:0]
+TOP.Core.backend.exec.regFile.io_rdata_3[63:0]
+TOP.Core.backend.exec.regFile.io_rdata_4[63:0]
+TOP.Core.backend.exec.regFile.io_rdata_5[63:0]
+TOP.Core.backend.exec.regFile.io_rdata_6[63:0]
+TOP.Core.backend.exec.regFile.io_waddr_0[7:0]
+TOP.Core.backend.exec.regFile.io_waddr_1[7:0]
+TOP.Core.backend.exec.regFile.io_waddr_2[7:0]
+TOP.Core.backend.exec.regFile.io_waddr_3[7:0]
+TOP.Core.backend.exec.regFile.io_waddr_4[7:0]
+TOP.Core.backend.exec.regFile.io_wdata_0[63:0]
+TOP.Core.backend.exec.regFile.io_wdata_1[63:0]
+TOP.Core.backend.exec.regFile.io_wdata_2[63:0]
+TOP.Core.backend.exec.regFile.io_wdata_3[63:0]
+TOP.Core.backend.exec.regFile.io_wdata_4[63:0]
+@28
+TOP.Core.backend.exec.regFile.io_wen_0
+TOP.Core.backend.exec.regFile.io_wen_1
+TOP.Core.backend.exec.regFile.io_wen_2
+TOP.Core.backend.exec.regFile.io_wen_3
+TOP.Core.backend.exec.regFile.io_wen_4
 @24
 +{TOP.Core.backend.exec.regFile.regs_32[63:0]} TOP.Core.backend.exec.regFile.regs_32[63:0]
 +{TOP.Core.backend.exec.regFile.regs_33[63:0]} TOP.Core.backend.exec.regFile.regs_33[63:0]

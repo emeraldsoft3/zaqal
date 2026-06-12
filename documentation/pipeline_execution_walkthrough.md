@@ -139,3 +139,18 @@ To confirm that the value `2` is written into physical register `p32`, watch the
 * **Write Enable**: `TOP.Core.backend.exec.regFile.io_wen_0` (or `io_wen_1` if executed on ALU 1) asserts `1`.
 * **Write Address**: `TOP.Core.backend.exec.regFile.io_waddr_0[6:0]` (or `io_waddr_1[6:0]`) shows `32` (`0x20` in hex).
 * **Write Data**: `TOP.Core.backend.exec.regFile.io_wdata_0[63:0]` (or `io_wdata_1[63:0]`) shows `2`.
+
+### E. Trace Backwards: Issue Queue Scheduling and Physical Tag Generation
+If you trace the signals one step backward from the execution and writeback stages:
+
+1. **Where does `waddr` / `pdest` come from?**
+   - The write address `regFile.io.waddr(0)` is driven by `io.int_in(0).bits.pdest`.
+   - Tracking this back to `Backend.scala`, the execution input `exec.io.int_in(0)` is directly bound to the Issue Queue dequeue port: `intIq.io.deq(0)`.
+   - Inside the **Issue Queue** (`IssueQueue.scala`), the `pdest` is stored in the queue entry payload register: `entries(i).uop.pdest`, which was loaded when enqueued from the dispatch bus: `intIq.io.enq(e).bits`.
+   - Going all the way back, the `pdest` tag was allocated in the **Rename Table** (`intRat` in `RenameTable.scala`) from the **Free List** of physical registers when the instruction was decoded and renamed (mapping logical `x2` to physical `p32` / `32` because it was the next available free physical register).
+
+2. **How is the choice between ALU 0 and ALU 1 decided?**
+   - The Issue Queue contains a dual-issue interface `io.deq(0)` (which drives ALU 0) and `io.deq(1)` (which drives ALU 1).
+   - The routing decision is made dynamically each cycle by the **AgeDetector** module:
+     - **ALU 0 (`deq(0)`) Selection**: The Issue Queue calculates a bitmask of all queue entries that are valid and have their source operands ready (`can_issue`). It queries the `AgeDetector` with this mask. The `AgeDetector` uses its internal `age(i)(j)` priority matrix (which tracks which instruction enqueued earlier) to find the **oldest ready instruction** and issues it to `deq(0)` (ALU 0).
+     - **ALU 1 (`deq(1)`) Selection**: The Issue Queue masks out the instruction issued to ALU 0 (clearing its bit in `current_can_issue`), and queries the `AgeDetector` a second time. The `AgeDetector` selects the **second-oldest ready instruction** to issue to `deq(1)` (ALU 1).
