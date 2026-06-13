@@ -28,74 +28,69 @@ class ICache(implicit val p: Parameters) extends Module with HasZaqalParameter {
     } else {
       println(s"[ICache] Warning: Using Expanded Flush Verification Program.")
       Seq(
-        "h00200113".U, // 0x00: addi x2, x0, 2
-        "h00200193".U, // 0x04: addi x3, x0, 2
-        "h00400213".U, // 0x08: addi x4, x0, 4
-        "h00400293".U, // 0x0c: addi x5, x0, 4
-        "h00600313".U, // 0x10: addi x6, x0, 6
-        "h00700393".U, // 0x14: addi x7, x0, 7
-        "h00000013".U, // 0x18: nop
-        "h00000013".U, // 0x1c: nop
-
-        // Block 1: 0x20 - 0x3C
-        "h00000013".U, // 0x20: nop
-        "h04310E63".U, // 0x24: beq x2, x3, 92  (Branch 1: target 0x80, predicted taken, actual not-taken)
-        "h06400793".U, // 0x28: addi x15, x0, 100 (CORRECT path start)
-        "h0c800813".U, // 0x2c: addi x16, x0, 200
-        "h08521863".U, // 0x30: bne x4, x5, 144 (Branch 2: target 0xC0, predicted not-taken, actual taken)
-        "h00000013".U, // 0x34: nop
-        "h00000013".U, // 0x38: nop
-        "h00000013".U, // 0x3c: nop
-
-        // Block 2: 0x40 - 0x5C
-        "h00000013".U, // 0x40
-        "h00000013".U, // 0x44
-        "h00000013".U, // 0x48
-        "h00000013".U, // 0x4c
-        "h00000013".U, // 0x50
-        "h00000013".U, // 0x54
-        "h00000013".U, // 0x58
-        "h00000013".U, // 0x5c
-
-        // Block 3: 0x60 - 0x7C
-        "h00000013".U, // 0x60
-        "h00000013".U, // 0x64
-        "h00000013".U, // 0x68
-        "h00000013".U, // 0x6c
-        "h00000013".U, // 0x70
-        "h00000013".U, // 0x74
-        "h00000013".U, // 0x78
-        "h00000013".U, // 0x7c
-
-        // Block 4: 0x80 - 0x9C (Wrong path target of Branch 1)
-        "h3e700a13".U, // 0x80: addi x20, x0, 999 (Should be flushed!)
-        "h00000013".U, // 0x84
-        "h00000013".U, // 0x88
-        "h00000013".U, // 0x8c
-        "h00000013".U, // 0x90
-        "h00000013".U, // 0x94
-        "h00000013".U, // 0x98
-        "h00000013".U, // 0x9c
-
-        // Block 5: 0xa0 - 0xbc
-        "h00000013".U, // 0xa0
-        "h00000013".U, // 0xa4
-        "h00000013".U, // 0xa8
-        "h00000013".U, // 0xac
-        "h00000013".U, // 0xb0
-        "h00000013".U, // 0xb4
-        "h00000013".U, // 0xb8
-        "h00000013".U, // 0xbc
-
-        // Block 6: 0xc0 - 0xdc (Correct path target of Branch 2)
-        "h12c00893".U, // 0xc0: addi x17, x0, 300
-        "h19000913".U, // 0xc4: addi x18, x0, 400
-        "h0000006f".U, // 0xc8: jal x0, 0 (Halt loop)
-        "h00000013".U, // 0xcc
-        "h00000013".U, // 0xd0
-        "h00000013".U, // 0xd4
-        "h00000013".U, // 0xd8
-        "h00000013".U  // 0xdc
+        "h00108093".U, // 0x00: addi x1, x1, 1
+        "h00210113".U, // 0x04: addi x2, x2, 2
+        "h00318193".U, // 0x08: addi x3, x3, 3
+        "h00420213".U, // 0x0c: addi x4, x4, 4
+        "h00528293".U, // 0x10: addi x5, x5, 5
+        "h02224333".U, // 0x14: div x6, x4, x2
+        "h00130393".U, // 0x18: addi x7, x6, 1
+        "h00002403".U, // 0x1c: lw x8, 0(x0)
+        "h00802423".U, // 0x20: sw x8, 8(x0)
+        "h00a48493".U, // 0x24: addi x9, x9, 10
+        "h01450513".U, // 0x28: addi x10, x10, 20
+        "h029545b3".U, // 0x2c: div x11, x10, x9
+        "h00000663".U, // 0x30: beq x0, x0, 12    (BRU - Branch to 0x3C, predicted not-taken but taken)
+        "h02114633".U, // 0x34: div x12, x2, x1   (ALU/DIV - WRONG PATH: should be flushed!)
+        "h00160693".U, // 0x38: addi x13, x12, 1  (ALU - WRONG PATH: waits in IQ and flushed)
+        "h06470713".U, // 0x3c: addi x14, x14, 100 (CORRECT PATH target)
+        "h03278793".U, // 0x40: addi x15, x15, 50
+        "h01080813".U, // 0x44: addi x16, x16, 16
+        "h01188893".U, // 0x48: addi x17, x17, 17
+        "h01290913".U, // 0x4c: addi x18, x18, 18
+        "h00802983".U, // 0x50: lw x19, 8(x0)
+        "h0229ca33".U, // 0x54: div x20, x19, x2
+        "h005a8a93".U, // 0x58: addi x21, x21, 5
+        "h016b0b13".U, // 0x5c: addi x22, x22, 22
+        "h017b8b93".U, // 0x60: addi x23, x23, 23
+        "h018c0c13".U, // 0x64: addi x24, x24, 24
+        "h019c8c93".U, // 0x68: addi x25, x25, 25
+        "h01ad0d13".U, // 0x6c: addi x26, x26, 26
+        "h01bd8d93".U, // 0x70: addi x27, x27, 27
+        "h016b0b13".U, // 0x5c: addi x22, x22, 22
+        "h017b8b93".U, // 0x60: addi x23, x23, 23
+        "h018c0c13".U, // 0x64: addi x24, x24, 24
+        "h019c8c93".U, // 0x68: addi x25, x25, 25
+        "h01ad0d13".U, // 0x6c: addi x26, x26, 26
+        "h01bd8d93".U, // 0x70: addi x27, x27, 27
+        "h016b0b13".U, // 0x5c: addi x22, x22, 22
+        "h017b8b93".U, // 0x60: addi x23, x23, 23
+        "h018c0c13".U, // 0x64: addi x24, x24, 24
+        "h019c8c93".U, // 0x68: addi x25, x25, 25
+        "h01ad0d13".U, // 0x6c: addi x26, x26, 26
+        "h01bd8d93".U, // 0x70: addi x27, x27, 27
+        "h016b0b13".U, // 0x5c: addi x22, x22, 22
+        "h017b8b93".U, // 0x60: addi x23, x23, 23
+        "h018c0c13".U, // 0x64: addi x24, x24, 24
+        "h019c8c93".U, // 0x68: addi x25, x25, 25
+        "h01ad0d13".U, // 0x6c: addi x26, x26, 26
+        "h01bd8d93".U, // 0x70: addi x27, x27, 27
+        "h00108093".U, // 0x00: addi x1, x1, 1
+        "h00210113".U, // 0x04: addi x2, x2, 2
+        "h00318193".U, // 0x08: addi x3, x3, 3
+        "h00420213".U, // 0x0c: addi x4, x4, 4
+        "h00528293".U, // 0x10: addi x5, x5, 5
+        "h00108093".U, // 0x00: addi x1, x1, 1
+        "h00210113".U, // 0x04: addi x2, x2, 2
+        "h00318193".U, // 0x08: addi x3, x3, 3
+        "h00420213".U, // 0x0c: addi x4, x4, 4
+        "h00528293".U, // 0x10: addi x5, x5, 5
+        "h00108093".U, // 0x00: addi x1, x1, 1
+        "h00210113".U, // 0x04: addi x2, x2, 2
+        "h00318193".U, // 0x08: addi x3, x3, 3
+        "h00420213".U, // 0x0c: addi x4, x4, 4
+        "h00528293".U, // 0x10: addi x5, x5, 5
+        "h0000006f".U  // 0x74: jal x0, 0         (Infinite loop halt)
       )
     }
   }

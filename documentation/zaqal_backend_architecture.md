@@ -19,7 +19,7 @@ graph TD
     subgraph Decode & Rename
         Decoders[6-Wide Decoders]
         Fusion[Instruction Fusion Stage]
-        Rename[Rename Stage - RenameTable]
+        Rename[Rename Stage - RAT]
         FreeList[Free List Manager]
         Snapshots[Rename Table Snapshots]
     end
@@ -56,8 +56,8 @@ graph TD
     end
 
     subgraph Writeback & Wakeup
-        RegFile[Scalar RegFile - 7R / 5W]
-        FPRegFile[FP RegFile - 4R / 3W]
+        PhyIntRegFile[Integer Physical RegFile - 192/224 Entries]
+        PhyFPRegFile[FP Physical RegFile - 192 Entries]
         WakeupBus[5-Port Wakeup Bus]
     end
 
@@ -72,9 +72,9 @@ graph TD
     %% Decode & Rename Connections
     Decoders --> Fusion
     Fusion -->|6 Decoded Ops| Rename
-    Rename <--> FreeList
+    Rename <-->|Allocate pdest| FreeList
     Rename <--> Snapshots
-    Rename -->|6 Renamed Ops| Disp
+    Rename -->|6 Renamed Ops w/ pdest| Disp
     Disp --> Hazards
     Hazards -->|Ready & Backpressured Ops| BusyTable
     BusyTable --> intIq
@@ -95,16 +95,16 @@ graph TD
     fpIq -->|Deq 0| FPDiv
     fpIq -->|Deq 0| FPMisc
 
-    %% Writebacks & Wakeups
-    ALU0 & BRU -->|Port 0 Write| RegFile
-    ALU1 & Mul -->|Port 1 Write| RegFile
-    Div -->|Port 2 Write| RegFile
-    LSU -->|Port 3 Write| RegFile
-    FPMisc -->|Port 4 Write| RegFile
+    %% Writebacks & Wakeups (Data & pdest)
+    ALU0 & BRU -->|Result + pdest to Port 0| PhyIntRegFile
+    ALU1 & Mul -->|Result + pdest to Port 1| PhyIntRegFile
+    Div -->|Result + pdest to Port 2| PhyIntRegFile
+    LSU -->|Result + pdest to Port 3| PhyIntRegFile
+    FPMisc -->|Result + pdest to Port 4| PhyIntRegFile
 
-    LSU -->|FP Write| FPRegFile
-    FPU & FPMisc -->|FP Write| FPRegFile
-    FPDiv -->|FP Write| FPRegFile
+    LSU -->|FP Write + pdest| PhyFPRegFile
+    FPU & FPMisc -->|FP Write + pdest| PhyFPRegFile
+    FPDiv -->|FP Write + pdest| PhyFPRegFile
 
     %% Wakeup Loops
     ALU0 & BRU -->|Wakeup 0| WakeupBus
@@ -132,9 +132,9 @@ graph TD
 4.  **Decode & Fusion**: 
     - Up to 6 instructions are dequeued from the `IBuffer` per cycle and decoded. Adjacent operations eligible for macro-op fusion (such as `LUI` + `ADDI`) are merged.
 5.  **Rename**: 
-    - Scalar and Floating-Point logical registers are mapped to physical registers using a `RenameTableWrapper` (which manages the integer RAT, FP RAT, and checkpoint snapshots for branches).
+    - Scalar and Floating-Point logical registers are mapped to physical registers using a `RenameTableWrapper` (which manages the integer RAT, FP RAT, and checkpoint snapshots for branches). The `FreeList` allocates a destination physical register (`pdest`) for every instruction that writes a result.
 6.  **Dispatch**: 
-    - The `Dispatch` module classifies instructions by execution type (ALU, MEM, BRU, FPU). It evaluates structural hazards against limits and applies in-order backpressure (stalling the frontend if downstream queues or ports are saturated).
+    - The `Dispatch` module classifies instructions by execution type (ALU, MEM, BRU, FPU). It carries the allocated `pdest` down the pipeline. It evaluates structural hazards against limits and applies in-order backpressure.
 7.  **Issue Queues**: 
     - Ready instructions wait in issue queues (`intIq`, `memIq`, `fpIq`). They monitor the `WakeupBus` to clear operand dependencies.
 8.  **Execution Units**: 
