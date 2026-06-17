@@ -63,3 +63,9 @@ To achieve world-class performance, Zaqal must eventually implement these critic
 - [ ] **GNU Toolchain**: Support for standard `gcc` and `llvm` outputs.
 - [ ] **Benchmark Excellence**: Competitive CoreMark and SPECInt scores.
 - [ ] **Windows-on-Zaqal**: Running software via **Wine** on RISC-V Linux.
+
+---
+
+## Future Evaluation: Architecture Design Decisions
+Before finalizing the Out-of-Order Engine (Phase 7) and Multi-Core coherence (Phase 11), a comprehensive review of the design forks must be evaluated. 
+Please refer to the [Design Decisions Index](./design_decisions/list.md) to form a "Phase 12" roadmap covering SMT, L2 cache exclusivity, and Vector/SIMD pathing.

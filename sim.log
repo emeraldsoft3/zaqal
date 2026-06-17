@@ -1,82 +1,562 @@
-[ICache] Loaded 27 instructions from programs/hex/rvc_test.hex
+[info] compiling 1 Scala source to /home/emerald/zaqal/out/backend/compile.dest/classes ...
+[warn] 195 feature warnings; re-run with -feature for details
+[warn] one warning found
+[info] done compiling
+[ICache] FPU TEST MODE: Using hardcoded FP program.
+[ICache] Warning: Using Load-to-Branch Hazard Verification Program.
+[warn] backend/src/zaqal/backend/FreeList.scala 64:37: [W004] Dynamic index with width 9 is too wide for Vec of size 160 (expected index width 8).
+[warn]     io.allocatePhyReg(i) := freeList(wrapAdd(headPtr, offset))
+[warn]                                     ^
+[warn] backend/src/zaqal/backend/FreeList.scala 72:15: [W004] Dynamic index with width 9 is too wide for Vec of size 160 (expected index width 8).
+[warn]       freeList(wrapAdd(tailPtr, offset)) := io.freePhyReg(i)
+[warn]               ^
+[warn] There were 2 warning(s) during hardware elaboration.
+clang: warning: argument unused during compilation: '-dynamiclib' [-Wunused-command-line-argument]
 --- Starting ZAQAL Agile V1.0 Simulation ---
-IBUF ACCEPT: pc=0000000080000000 mask=1111111111111111 epoch= 0
-CORE EXECUTE [Cycle                     6]: pc=0000000080000000 inst=00080137 is_rvc= 0 epoch= 0
-CORE EXECUTE: pc=0000000080000000 inst=00080137 type=ALU   src1=0000000000000000 src2=0000000000080000 res=0000000000080000
-CORE EXECUTE [Cycle                     7]: pc=0000000080000004 inst=0011011b is_rvc= 1 epoch= 0
-CORE EXECUTE: pc=0000000080000004 inst=0011011b type=ALU   src1=0000000000080000 src2=0000000000000001 res=0000000000080001
-CORE EXECUTE [Cycle                     8]: pc=0000000080000006 inst=00c11113 is_rvc= 1 epoch= 0
-CORE EXECUTE: pc=0000000080000006 inst=00c11113 type=ALU   src1=0000000000080001 src2=000000000000000c res=0000000080001000
-[Cycle 14] FTQ Flushed! Shadow copy cleared.
-CORE EXECUTE [Cycle                     9]: pc=0000000080000008 inst=006000ef is_rvc= 0 epoch= 0
-CORE EXECUTE: MISPREDICT! pc=0000000080000008 inst=006000ef target=000000008000000e pred_taken= 0 actual_taken= 1
-[BRU REDIRECT] pc=0000000080000008 target=000000008000000e actual_taken= 1 is_rvc= 0
-FRONTEND FLUSH: epoch= 0 io.redirect.target=000000008000000e
-IBUF FLUSHED!
-BPU REDIRECT ACCEPTED: target=0000000080000120 epoch= 0
-[BRU REDIRECT] pc=0000000080000008 target=000000008000000e actual_taken= 1 is_rvc= 0
-IBUF ACCEPT: pc=0000000080000000 mask=1111111110000000 epoch= 1
-CORE EXECUTE [Cycle                    16]: pc=000000008000000e inst=fe010113 is_rvc= 1 epoch= 1
-CORE EXECUTE: pc=000000008000000e inst=fe010113 type=ALU   src1=0000000080001000 src2=ffffffffffffffe0 res=0000000080000fe0
-CORE EXECUTE [Cycle                    17]: pc=0000000080000010 inst=00813c23 is_rvc= 1 epoch= 1
-CORE EXECUTE: pc=0000000080000010 inst=00813c23 type=STORE src1=0000000080000fe0 src2=0000000000000000 imm=0000000000000018
-DATA MEM WRITE: addr=0000000080000ff8 index= 63 wmask=        11111111
-                index= 63 data=0000000000000000
-                index=  0 data=aabbccdd11223344
-CORE EXECUTE [Cycle                    18]: pc=0000000080000012 inst=02010413 is_rvc= 1 epoch= 1
-CORE EXECUTE: pc=0000000080000012 inst=02010413 type=ALU   src1=0000000080000fe0 src2=0000000000000020 res=0000000080001000
-CORE EXECUTE [Cycle                    19]: pc=0000000080000014 inst=00a00793 is_rvc= 1 epoch= 1
-CORE EXECUTE: pc=0000000080000014 inst=00a00793 type=ALU   src1=0000000000000000 src2=000000000000000a res=000000000000000a
-CORE EXECUTE [Cycle                    20]: pc=0000000080000016 inst=fef42223 is_rvc= 0 epoch= 1
-CORE EXECUTE: pc=0000000080000016 inst=fef42223 type=STORE src1=0000000080001000 src2=000000000000000a imm=ffffffffffffffe4
-DATA MEM WRITE: addr=0000000080000fe4 index= 60 wmask=        11110000
-                index= 60 data=0000000a00000000
-                index= 61 data=0000000000000000
-CORE EXECUTE [Cycle                    21]: pc=000000008000001a inst=01400793 is_rvc= 1 epoch= 1
-CORE EXECUTE: pc=000000008000001a inst=01400793 type=ALU   src1=0000000000000000 src2=0000000000000014 res=0000000000000014
-CORE EXECUTE [Cycle                    22]: pc=000000008000001c inst=fef42023 is_rvc= 0 epoch= 1
-CORE EXECUTE: pc=000000008000001c inst=fef42023 type=STORE src1=0000000080001000 src2=0000000000000014 imm=ffffffffffffffe0
-DATA MEM WRITE: addr=0000000080000fe0 index= 60 wmask=            1111
-                index= 60 data=0000000a00000014
-                index= 61 data=0000000000000000
-CORE EXECUTE [Cycle                    23]: pc=000000008000000e inst=fe010113 is_rvc= 1 epoch= 1
-CORE EXECUTE: pc=000000008000000e inst=fe010113 type=ALU   src1=0000000080000fe0 src2=ffffffffffffffe0 res=0000000080000fc0
-CORE EXECUTE [Cycle                    24]: pc=0000000080000010 inst=00813c23 is_rvc= 1 epoch= 1
-CORE EXECUTE: pc=0000000080000010 inst=00813c23 type=STORE src1=0000000080000fc0 src2=0000000080001000 imm=0000000000000018
-DATA MEM WRITE: addr=0000000080000fd8 index= 59 wmask=        11111111
-                index= 59 data=0000000080001000
-                index= 60 data=0000000a00000014
+[TESTBENCH] Cycle 0
+[TESTBENCH] Cycle 1
+[TESTBENCH] Cycle 2
+[TESTBENCH] Cycle 3
+[TESTBENCH] Cycle 4
+[TESTBENCH] Cycle 5
+[TESTBENCH] Cycle 6
+[TESTBENCH] Cycle 7
+[TESTBENCH] Cycle 8
+[TESTBENCH] Cycle 9
+[TESTBENCH] Cycle 10
+CORE RENAME [Cycle                    5] [Port 0]: pc=0000000080000000 inst=00002303 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 lrd= 6->pdest= 32 (old=  6)
+CORE RENAME [Cycle                    5] [Port 1]: pc=0000000080000002 inst=16630000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                    5] [Port 2]: pc=0000000080000004 inst=00031663 lrs1= 6->prs1= 32 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                    5] [Port 3]: pc=0000000080000006 inst=03930003 lrs1= 6->prs1= 32 lrs2=25->prs2= 25 
+CORE RENAME [Cycle                    5] [Port 4]: pc=0000000080000008 inst=04d00393 lrs1= 0->prs1=  0 lrs2=13->prs2= 13 lrd= 7->pdest= 33 (old=  7)
+CORE RENAME [Cycle                    5] [Port 5]: pc=000000008000000a inst=001304d0 lrs1= 2->prs1=  2 lrs2= 4->prs2=  4 
+CORE RENAME [Cycle                    6] [Port 0]: pc=0000000080000004 inst=00031663 lrs1= 6->prs1= 32 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                    6] [Port 1]: pc=0000000080000006 inst=03930003 lrs1= 6->prs1= 32 lrs2=25->prs2= 25 
+CORE RENAME [Cycle                    6] [Port 2]: pc=0000000080000008 inst=04d00393 lrs1= 0->prs1=  0 lrs2=13->prs2= 13 lrd= 7->pdest= 33 (old=  7)
+CORE RENAME [Cycle                    6] [Port 3]: pc=000000008000000a inst=001304d0 lrs1= 2->prs1=  2 lrs2= 4->prs2=  4 
+CORE RENAME [Cycle                    6] [Port 4]: pc=000000008000000c inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                    6] [Port 5]: pc=000000008000000e inst=0a130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+[BRU REDIRECT] pc=0000000080000004 target=0000000080000010 actual_taken=1 is_rvc=0
+CORE RENAME [Cycle                    7] [Port 0]: pc=0000000080000008 inst=04d00393 lrs1= 0->prs1=  0 lrs2=13->prs2= 13 lrd= 7->pdest= 33 (old=  7)
+CORE RENAME [Cycle                    7] [Port 1]: pc=000000008000000a inst=001304d0 lrs1= 2->prs1=  2 lrs2= 4->prs2=  4 
+CORE RENAME [Cycle                    7] [Port 2]: pc=000000008000000c inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                    7] [Port 3]: pc=000000008000000e inst=0a130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                    7] [Port 4]: pc=0000000080000010 inst=06300a13 lrs1= 0->prs1=  0 lrs2= 3->prs2=  3 lrd=20->pdest= 34 (old= 20)
+CORE RENAME [Cycle                    7] [Port 5]: pc=0000000080000012 inst=006f0630 lrs1= 2->prs1=  2 lrs2= 8->prs2=  8 
+[BRU REDIRECT] pc=0000000080000004 target=0000000080000010 actual_taken=1 is_rvc=0
+BPU REDIRECT ACCEPTED: target=0000000080000010 epoch=0
+FRONTEND FLUSH: epoch=0 io.redirect.target=0000000080000010
+[TESTBENCH] Cycle 11
+[TESTBENCH] Cycle 12
+[TESTBENCH] Cycle 13
+[Cycle 13] FTQ Flushed! Shadow copy cleared.
+[TESTBENCH] Cycle 14
+[TESTBENCH] Cycle 15
+[TESTBENCH] Cycle 16
+[TESTBENCH] Cycle 17
+[TESTBENCH] Cycle 18
+[TESTBENCH] Cycle 19
+CORE RENAME [Cycle                   14] [Port 0]: pc=0000000080000010 inst=06300a13 lrs1= 0->prs1=  0 lrs2= 3->prs2=  3 lrd=20->pdest= 33 (old= 20)
+CORE RENAME [Cycle                   14] [Port 1]: pc=0000000080000012 inst=006f0630 lrs1= 2->prs1=  2 lrs2= 8->prs2=  8 
+CORE RENAME [Cycle                   14] [Port 2]: pc=0000000080000014 inst=0000006f lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   14] [Port 3]: pc=0000000080000016 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   14] [Port 4]: pc=0000000080000018 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   14] [Port 5]: pc=000000008000001a inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+[TESTBENCH] Cycle 20
+CORE RENAME [Cycle                   15] [Port 0]: pc=0000000080000014 inst=0000006f lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   15] [Port 1]: pc=0000000080000016 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   15] [Port 2]: pc=0000000080000018 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+[TESTBENCH] Cycle 21
+CORE RENAME [Cycle                   15] [Port 3]: pc=000000008000001a inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   15] [Port 4]: pc=000000008000001c inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   15] [Port 5]: pc=000000008000001e inst=00000000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   16] [Port 0]: pc=0000000080000018 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   16] [Port 1]: pc=000000008000001a inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   16] [Port 2]: pc=000000008000001c inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   16] [Port 3]: pc=000000008000001e inst=00000000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   16] [Port 4]: pc=0000000080000020 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   16] [Port 5]: pc=0000000080000022 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+[BRU REDIRECT] pc=0000000080000014 target=0000000080000014 actual_taken=1 is_rvc=0
+[TESTBENCH] Cycle 22
+[Cycle 22] FTQ Flushed! Shadow copy cleared.
+BPU REDIRECT ACCEPTED: target=0000000080000014 epoch=1
+FRONTEND FLUSH: epoch=1 io.redirect.target=0000000080000014
+[TESTBENCH] Cycle 23
+[TESTBENCH] Cycle 24
+[TESTBENCH] Cycle 25
+[TESTBENCH] Cycle 26
+[TESTBENCH] Cycle 27
+[TESTBENCH] Cycle 28
+CORE RENAME [Cycle                   23] [Port 0]: pc=0000000080000014 inst=0000006f lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   23] [Port 1]: pc=0000000080000016 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   23] [Port 2]: pc=0000000080000018 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   23] [Port 3]: pc=000000008000001a inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   23] [Port 4]: pc=000000008000001c inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   23] [Port 5]: pc=000000008000001e inst=00000000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+[TESTBENCH] Cycle 29
+CORE RENAME [Cycle                   24] [Port 0]: pc=0000000080000018 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   24] [Port 1]: pc=000000008000001a inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   24] [Port 2]: pc=000000008000001c inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   24] [Port 3]: pc=000000008000001e inst=00000000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   24] [Port 4]: pc=0000000080000020 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   24] [Port 5]: pc=0000000080000022 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+[BRU REDIRECT] pc=0000000080000014 target=0000000080000014 actual_taken=1 is_rvc=0
+[TESTBENCH] Cycle 30
+[Cycle 30] FTQ Flushed! Shadow copy cleared.
+BPU REDIRECT ACCEPTED: target=0000000080000014 epoch=0
+FRONTEND FLUSH: epoch=0 io.redirect.target=0000000080000014
+[TESTBENCH] Cycle 31
+[TESTBENCH] Cycle 32
+[TESTBENCH] Cycle 33
+[TESTBENCH] Cycle 34
+[TESTBENCH] Cycle 35
+[TESTBENCH] Cycle 36
+[TESTBENCH] Cycle 37
+CORE RENAME [Cycle                   31] [Port 0]: pc=0000000080000014 inst=0000006f lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   31] [Port 1]: pc=0000000080000016 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   31] [Port 2]: pc=0000000080000018 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   31] [Port 3]: pc=000000008000001a inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   31] [Port 4]: pc=000000008000001c inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   31] [Port 5]: pc=000000008000001e inst=00000000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   32] [Port 0]: pc=0000000080000018 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   32] [Port 1]: pc=000000008000001a inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   32] [Port 2]: pc=000000008000001c inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   32] [Port 3]: pc=000000008000001e inst=00000000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   32] [Port 4]: pc=0000000080000020 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   32] [Port 5]: pc=0000000080000022 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+[BRU REDIRECT] pc=0000000080000014 target=0000000080000014 actual_taken=1 is_rvc=0
+[TESTBENCH] Cycle 38
+[Cycle 38] FTQ Flushed! Shadow copy cleared.
+BPU REDIRECT ACCEPTED: target=0000000080000014 epoch=1
+FRONTEND FLUSH: epoch=1 io.redirect.target=0000000080000014
+[TESTBENCH] Cycle 39
+[TESTBENCH] Cycle 40
+[TESTBENCH] Cycle 41
+[TESTBENCH] Cycle 42
+[TESTBENCH] Cycle 43
+[TESTBENCH] Cycle 44
+CORE RENAME [Cycle                   39] [Port 0]: pc=0000000080000014 inst=0000006f lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   39] [Port 1]: pc=0000000080000016 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   39] [Port 2]: pc=0000000080000018 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   39] [Port 3]: pc=000000008000001a inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   39] [Port 4]: pc=000000008000001c inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   39] [Port 5]: pc=000000008000001e inst=00000000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+[TESTBENCH] Cycle 45
+CORE RENAME [Cycle                   40] [Port 0]: pc=0000000080000018 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   40] [Port 1]: pc=000000008000001a inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   40] [Port 2]: pc=000000008000001c inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   40] [Port 3]: pc=000000008000001e inst=00000000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   40] [Port 4]: pc=0000000080000020 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   40] [Port 5]: pc=0000000080000022 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+[BRU REDIRECT] pc=0000000080000014 target=0000000080000014 actual_taken=1 is_rvc=0
+[TESTBENCH] Cycle 46
+[Cycle 46] FTQ Flushed! Shadow copy cleared.
+BPU REDIRECT ACCEPTED: target=0000000080000014 epoch=0
+FRONTEND FLUSH: epoch=0 io.redirect.target=0000000080000014
+[TESTBENCH] Cycle 47
+[TESTBENCH] Cycle 48
+[TESTBENCH] Cycle 49
+[TESTBENCH] Cycle 50
+[TESTBENCH] Cycle 51
+[TESTBENCH] Cycle 52
+CORE RENAME [Cycle                   47] [Port 0]: pc=0000000080000014 inst=0000006f [TESTBENCH] Cycle 53
+[TESTBENCH] Cycle 54
+[Cycle 54] FTQ Flushed! Shadow copy cleared.
+[TESTBENCH] Cycle 55
+[TESTBENCH] Cycle 56
+[TESTBENCH] Cycle 57
+[TESTBENCH] Cycle 58
+[TESTBENCH] Cycle 59
+[TESTBENCH] Cycle 60
+lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   47] [Port 1]: pc=0000000080000016 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   47] [Port 2]: pc=0000000080000018 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   47] [Port 3]: pc=000000008000001a inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   47] [Port 4]: pc=000000008000001c inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   47] [Port 5]: pc=000000008000001e inst=00000000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   48] [Port 0]: pc=0000000080000018 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   48] [Port 1]: pc=000000008000001a inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   48] [Port 2]: pc=000000008000001c inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+[TESTBENCH] Cycle 61
+CORE RENAME [Cycle                   48] [Port 3]: pc=000000008000001e inst=00000000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   48] [Port 4]: pc=0000000080000020 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   48] [Port 5]: pc=0000000080000022 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+[BRU REDIRECT] pc=0000000080000014 target=0000000080000014 actual_taken=1 is_rvc=0
+BPU REDIRECT ACCEPTED: target=0000000080000014 epoch=1
+FRONTEND FLUSH: epoch=1 io.redirect.target=0000000080000014
+CORE RENAME [Cycle                   55] [Port 0]: pc=0000000080000014 inst=0000006f lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   55] [Port 1]: pc=0000000080000016 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   55] [Port 2]: pc=0000000080000018 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   55] [Port 3]: pc=000000008000001a inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   55] [Port 4]: pc=000000008000001c inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   55] [Port 5]: pc=000000008000001e inst=00000000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   56] [Port 0]: pc=0000000080000018 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   56] [Port 1]: pc=000000008000001a inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   56] [Port 2]: pc=000000008000001c inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   56] [Port 3]: pc=000000008000001e inst=00000000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   56] [Port 4]: pc=0000000080000020 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   56] [Port 5]: pc=0000000080000022 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+[BRU REDIRECT] pc=0000000080000014 target=0000000080000014 actual_taken=1 is_rvc=0
+[TESTBENCH] Cycle 62
+[Cycle 62] FTQ Flushed! Shadow copy cleared.
+BPU REDIRECT ACCEPTED: target=0000000080000014 epoch=0
+FRONTEND FLUSH: epoch=0 io.redirect.target=0000000080000014
+[TESTBENCH] Cycle 63
+[TESTBENCH] Cycle 64
+[TESTBENCH] Cycle 65
+[TESTBENCH] Cycle 66
+[TESTBENCH] Cycle 67
+[TESTBENCH] Cycle 68
+CORE RENAME [Cycle                   63] [Port 0]: pc=0000000080000014 inst=0000006f lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   63] [Port 1]: pc=0000000080000016 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   63] [Port 2]: pc=0000000080000018 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   63] [Port 3]: pc=000000008000001a inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   63] [Port 4]: pc=000000008000001c inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   63] [Port 5]: pc=000000008000001e inst=00000000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+[TESTBENCH] Cycle 69
+CORE RENAME [Cycle                   64] [Port 0]: pc=0000000080000018 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   64] [Port 1]: pc=000000008000001a inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   64] [Port 2]: pc=000000008000001c inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   64] [Port 3]: pc=000000008000001e inst=00000000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   64] [Port 4]: pc=0000000080000020 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   64] [Port 5]: pc=0000000080000022 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+[BRU REDIRECT] pc=0000000080000014 target=0000000080000014 actual_taken=1 is_rvc=0
+BPU REDIRECT ACCEPTED: target=0000000080000014 epoch=1
+FRONTEND FLUSH: epoch=1 io.redirect.target=0000000080000014
+[TESTBENCH] Cycle 70
+[Cycle 70] FTQ Flushed! Shadow copy cleared.
+[TESTBENCH] Cycle 71
+[TESTBENCH] Cycle 72
+[TESTBENCH] Cycle 73
+[TESTBENCH] Cycle 74
+[TESTBENCH] Cycle 75
+[TESTBENCH] Cycle 76
+CORE RENAME [Cycle                   71] [Port 0]: pc=0000000080000014 inst=0000006f lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   71] [Port 1]: pc=0000000080000016 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   71] [Port 2]: pc=0000000080000018 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   71] [Port 3]: pc=000000008000001a inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   71] [Port 4]: pc=000000008000001c inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   71] [Port 5]: pc=000000008000001e inst=00000000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+[TESTBENCH] Cycle 77
+CORE RENAME [Cycle                   72] [Port 0]: pc=0000000080000018 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   72] [Port 1]: pc=000000008000001a inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   72] [Port 2]: pc=000000008000001c inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   72] [Port 3]: pc=000000008000001e inst=00000000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   72] [Port 4]: pc=0000000080000020 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   72] [Port 5]: pc=0000000080000022 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+[BRU REDIRECT] pc=0000000080000014 target=0000000080000014 actual_taken=1 is_rvc=0
+[TESTBENCH] Cycle 78
+[Cycle 78] FTQ Flushed! Shadow copy cleared.
+BPU REDIRECT ACCEPTED: target=0000000080000014 epoch=0
+FRONTEND FLUSH: epoch=0 io.redirect.target=0000000080000014
+[TESTBENCH] Cycle 79
+[TESTBENCH] Cycle 80
+[TESTBENCH] Cycle 81
+[TESTBENCH] Cycle 82
+[TESTBENCH] Cycle 83
+[TESTBENCH] Cycle 84
+CORE RENAME [Cycle                   79] [Port 0]: pc=0000000080000014 inst=0000006f lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   79] [Port 1]: pc=0000000080000016 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   79] [Port 2]: pc=0000000080000018 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   79] [Port 3]: pc=000000008000001a inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   79] [Port 4]: pc=000000008000001c inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   79] [Port 5]: pc=000000008000001e inst=00000000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+[TESTBENCH] Cycle 85
+CORE RENAME [Cycle                   80] [Port 0]: pc=0000000080000018 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   80] [Port 1]: pc=000000008000001a inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   80] [Port 2]: pc=000000008000001c inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   80] [Port 3]: pc=000000008000001e inst=00000000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   80] [Port 4]: pc=0000000080000020 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   80] [Port 5]: pc=0000000080000022 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+[BRU REDIRECT] pc=0000000080000014 target=0000000080000014 actual_taken=1 is_rvc=0
+[TESTBENCH] Cycle 86
+[Cycle 86] FTQ Flushed! Shadow copy cleared.
+BPU REDIRECT ACCEPTED: target=0000000080000014 epoch=1
+FRONTEND FLUSH: epoch=1 io.redirect.target=0000000080000014
+[TESTBENCH] Cycle 87
+[TESTBENCH] Cycle 88
+[TESTBENCH] Cycle 89
+[TESTBENCH] Cycle 90
+[TESTBENCH] Cycle 91
+[TESTBENCH] Cycle 92
+CORE RENAME [Cycle                   87] [Port 0]: pc=0000000080000014 inst=0000006f lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   87] [Port 1]: pc=0000000080000016 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   87] [Port 2]: pc=0000000080000018 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   87] [Port 3]: pc=000000008000001a inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   87] [Port 4]: pc=000000008000001c inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   87] [Port 5]: pc=000000008000001e inst=00000000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+[TESTBENCH] Cycle 93
+CORE RENAME [Cycle                   88] [Port 0]: pc=0000000080000018 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   88] [Port 1]: pc=000000008000001a inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   88] [Port 2]: pc=000000008000001c inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   88] [Port 3]: pc=000000008000001e inst=00000000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   88] [Port 4]: pc=0000000080000020 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   88] [Port 5]: pc=0000000080000022 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+[BRU REDIRECT] pc=0000000080000014 target=0000000080000014 actual_taken=1 is_rvc=0
+[TESTBENCH] Cycle 94
+[Cycle 94] FTQ Flushed! Shadow copy cleared.
+BPU REDIRECT ACCEPTED: target=0000000080000014 epoch=0
+FRONTEND FLUSH: epoch=0 io.redirect.target=0000000080000014
+[TESTBENCH] Cycle 95
+[TESTBENCH] Cycle 96
+[TESTBENCH] Cycle 97
+[TESTBENCH] Cycle 98
+[TESTBENCH] Cycle 99
+[TESTBENCH] Cycle 100
+CORE RENAME [Cycle                   95] [Port 0]: pc=0000000080000014 inst=0000006f lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   95] [Port 1]: pc=0000000080000016 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   95] [Port 2]: pc=0000000080000018 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   95] [Port 3]: pc=000000008000001a inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   95] [Port 4]: pc=000000008000001c inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   95] [Port 5]: pc=000000008000001e inst=00000000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+[TESTBENCH] Cycle 101
+CORE RENAME [Cycle                   96] [Port 0]: pc=0000000080000018 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   96] [Port 1]: pc=000000008000001a inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   96] [Port 2]: pc=000000008000001c inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   96] [Port 3]: pc=000000008000001e inst=00000000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   96] [Port 4]: pc=0000000080000020 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   96] [Port 5]: pc=0000000080000022 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+[BRU REDIRECT] pc=0000000080000014 target=0000000080000014 actual_taken=1 is_rvc=0
+[TESTBENCH] Cycle 102
+[Cycle 102] FTQ Flushed! Shadow copy cleared.
+BPU REDIRECT ACCEPTED: target=0000000080000014 epoch=1
+FRONTEND FLUSH: epoch=1 io.redirect.target=0000000080000014
+[TESTBENCH] Cycle 103
+[TESTBENCH] Cycle 104
+[TESTBENCH] Cycle 105
+[TESTBENCH] Cycle 106
+[TESTBENCH] Cycle 107
+[TESTBENCH] Cycle 108
+[TESTBENCH] Cycle 109
+[TESTBENCH] Cycle 110
+[Cycle 110] FTQ Flushed! Shadow copy cleared.
+[TESTBENCH] Cycle 111
+[TESTBENCH] Cycle 112
+[TESTBENCH] Cycle 113
+[TESTBENCH] Cycle 114
+CORE RENAME [Cycle                  103] [Port 0]: pc=0000000080000014 inst=0000006f lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  103] [Port 1]: pc=0000000080000016 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  103] [Port 2]: pc=0000000080000018 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  103] [Port 3]: pc=000000008000001a inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  103] [Port 4]: pc=000000008000001c inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  103] [Port 5]: pc=000000008000001e inst=00000000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  104] [Port 0]: pc=0000000080000018 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  104] [Port 1]: pc=000000008000001a inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  104] [Port 2]: pc=000000008000001c inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  104] [Port 3]: pc=000000008000001e inst=00000000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  104] [Port 4]: pc=0000000080000020 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  104] [Port 5]: pc=0000000080000022 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+[BRU REDIRECT] pc=0000000080000014 target=0000000080000014 actual_taken=1 is_rvc=0
+BPU REDIRECT ACCEPTED: target=0000000080000014 epoch=0
+FRONTEND FLUSH: epoch=0 io.redirect.target=0000000080000014
+[TESTBENCH] Cycle 115
+[TESTBENCH] Cycle 116
+CORE RENAME [Cycle                  111] [Port 0]: pc=0000000080000014 inst=0000006f lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  111] [Port 1]: pc=0000000080000016 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  111] [Port 2]: pc=0000000080000018 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  111] [Port 3]: pc=000000008000001a inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  111] [Port 4]: pc=000000008000001c inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  111] [Port 5]: pc=000000008000001e inst=00000000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+[TESTBENCH] Cycle 117
+CORE RENAME [Cycle                  112] [Port 0]: pc=0000000080000018 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  112] [Port 1]: pc=000000008000001a inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  112] [Port 2]: pc=000000008000001c inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  112] [Port 3]: pc=000000008000001e inst=00000000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  112] [Port 4]: pc=0000000080000020 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  112] [Port 5]: pc=0000000080000022 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+[BRU REDIRECT] pc=0000000080000014 target=0000000080000014 actual_taken=1 is_rvc=0
+[TESTBENCH] Cycle 118
+[Cycle 118] FTQ Flushed! Shadow copy cleared.
+BPU REDIRECT ACCEPTED: target=0000000080000014 epoch=1
+FRONTEND FLUSH: epoch=1 io.redirect.target=0000000080000014
+[TESTBENCH] Cycle 119
+[TESTBENCH] Cycle 120
+[TESTBENCH] Cycle 121
+[TESTBENCH] Cycle 122
+[TESTBENCH] Cycle 123
+[TESTBENCH] Cycle 124
+CORE RENAME [Cycle                  119] [Port 0]: pc=0000000080000014 inst=0000006f lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  119] [Port 1]: pc=0000000080000016 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  119] [Port 2]: pc=0000000080000018 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  119] [Port 3]: pc=000000008000001a inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  119] [Port 4]: pc=000000008000001c inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  119] [Port 5]: pc=000000008000001e inst=00000000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+[TESTBENCH] Cycle 125
+CORE RENAME [Cycle                  120] [Port 0]: pc=0000000080000018 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  120] [Port 1]: pc=000000008000001a inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  120] [Port 2]: pc=000000008000001c inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  120] [Port 3]: pc=000000008000001e inst=00000000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  120] [Port 4]: pc=0000000080000020 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  120] [Port 5]: pc=0000000080000022 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+[BRU REDIRECT] pc=0000000080000014 target=0000000080000014 actual_taken=1 is_rvc=0
+[TESTBENCH] Cycle 126
+[Cycle 126] FTQ Flushed! Shadow copy cleared.
+BPU REDIRECT ACCEPTED: target=0000000080000014 epoch=0
+FRONTEND FLUSH: epoch=0 io.redirect.target=0000000080000014
+[TESTBENCH] Cycle 127
+[TESTBENCH] Cycle 128
+[TESTBENCH] Cycle 129
+[TESTBENCH] Cycle 130
+[TESTBENCH] Cycle 131
+[TESTBENCH] Cycle 132
+CORE RENAME [Cycle                  127] [Port 0]: pc=0000000080000014 inst=0000006f lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  127] [Port 1]: pc=0000000080000016 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  127] [Port 2]: pc=0000000080000018 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  127] [Port 3]: pc=000000008000001a inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  127] [Port 4]: pc=000000008000001c inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  127] [Port 5]: pc=000000008000001e inst=00000000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+[TESTBENCH] Cycle 133
+CORE RENAME [Cycle                  128] [Port 0]: pc=0000000080000018 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  128] [Port 1]: pc=000000008000001a inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  128] [Port 2]: pc=000000008000001c inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  128] [Port 3]: pc=000000008000001e inst=00000000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  128] [Port 4]: pc=0000000080000020 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  128] [Port 5]: pc=0000000080000022 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+[BRU REDIRECT] pc=0000000080000014 target=0000000080000014 actual_taken=1 is_rvc=0
+[TESTBENCH] Cycle 134
+[Cycle 134] FTQ Flushed! Shadow copy cleared.
+BPU REDIRECT ACCEPTED: target=0000000080000014 epoch=1
+FRONTEND FLUSH: epoch=1 io.redirect.target=0000000080000014
+[TESTBENCH] Cycle 135
+[TESTBENCH] Cycle 136
+[TESTBENCH] Cycle 137
+[TESTBENCH] Cycle 138
+[TESTBENCH] Cycle 139
+[TESTBENCH] Cycle 140
+CORE RENAME [Cycle                  135] [Port 0]: pc=0000000080000014 inst=0000006f lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  135] [Port 1]: pc=0000000080000016 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  135] [Port 2]: pc=0000000080000018 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  135] [Port 3]: pc=000000008000001a inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  135] [Port 4]: pc=000000008000001c inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  135] [Port 5]: pc=000000008000001e inst=00000000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+[TESTBENCH] Cycle 141
+CORE RENAME [Cycle                  136] [Port 0]: pc=0000000080000018 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  136] [Port 1]: pc=000000008000001a inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  136] [Port 2]: pc=000000008000001c inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  136] [Port 3]: pc=000000008000001e inst=00000000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  136] [Port 4]: pc=0000000080000020 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  136] [Port 5]: pc=0000000080000022 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+[BRU REDIRECT] pc=0000000080000014 target=0000000080000014 actual_taken=1 is_rvc=0
+[TESTBENCH] Cycle 142
+[Cycle 142] FTQ Flushed! Shadow copy cleared.
+BPU REDIRECT ACCEPTED: target=0000000080000014 epoch=0
+FRONTEND FLUSH: epoch=0 io.redirect.target=0000000080000014
+[TESTBENCH] Cycle 143
+[TESTBENCH] Cycle 144
+[TESTBENCH] Cycle 145
+[TESTBENCH] Cycle 146
+[TESTBENCH] Cycle 147
+[TESTBENCH] Cycle 148
+CORE RENAME [Cycle                  143] [Port 0]: pc=0000000080000014 inst=0000006f lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  143] [Port 1]: pc=0000000080000016 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  143] [Port 2]: pc=0000000080000018 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  143] [Port 3]: pc=000000008000001a inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  143] [Port 4]: pc=000000008000001c inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  143] [Port 5]: pc=000000008000001e inst=00000000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+[TESTBENCH] Cycle 149
+CORE RENAME [Cycle                  144] [Port 0]: pc=0000000080000018 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  144] [Port 1]: pc=000000008000001a inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  144] [Port 2]: pc=000000008000001c inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  144] [Port 3]: pc=000000008000001e inst=00000000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  144] [Port 4]: pc=0000000080000020 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  144] [Port 5]: pc=0000000080000022 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+[BRU REDIRECT] pc=0000000080000014 target=0000000080000014 actual_taken=1 is_rvc=0
 --- Simulation Finished. CSV generated: ftq_dump.csv ---
 --- Final Register State ---
-x00: 0x0000000000000000
-x01: 0x000000008000000c
-x02: 0x0000000080000fc0
-x03: 0x0000000000000000
-x04: 0x0000000000000000
-x05: 0x0000000000000000
-x06: 0x0000000000000000
-x07: 0x0000000000000000
-x08: 0x0000000080001000
-x09: 0x0000000000000000
-x10: 0x0000000000000000
-x11: 0x0000000000000000
-x12: 0x0000000000000000
-x13: 0x0000000000000000
-x14: 0x0000000000000000
-x15: 0x0000000000000014
-x16: 0x0000000000000000
-x17: 0x0000000000000000
-x18: 0x0000000000000000
-x19: 0x0000000000000000
-x20: 0x0000000000000000
-x21: 0x0000000000000000
-x22: 0x0000000000000000
-x23: 0x0000000000000000
-x24: 0x0000000000000000
-x25: 0x0000000000000000
-x26: 0x0000000000000000
-x27: 0x0000000000000000
-x28: 0x0000000000000000
-x29: 0x0000000000000000
-x30: 0x0000000000000000
-x31: 0x0000000000000000
+p00: 0x0000000000000000
+p01: 0x0000000000000000
+p02: 0x0000000000000000
+p03: 0x0000000000000000
+p04: 0x0000000000000000
+p05: 0x0000000000000000
+p06: 0x0000000000000000
+p07: 0x0000000000000000
+p08: 0x0000000000000000
+p09: 0x0000000000000000
+p10: 0x0000000000000000
+p11: 0x0000000000000000
+p12: 0x0000000000000000
+p13: 0x0000000000000000
+p14: 0x0000000000000000
+p15: 0x0000000000000000
+p16: 0x0000000000000000
+p17: 0x0000000000000000
+p18: 0x0000000000000000
+p19: 0x0000000000000000
+p20: 0x0000000000000000
+p21: 0x0000000000000000
+p22: 0x0000000000000000
+p23: 0x0000000000000000
+p24: 0x0000000000000000
+p25: 0x0000000000000000
+p26: 0x0000000000000000
+p27: 0x0000000000000000
+p28: 0x0000000000000000
+p29: 0x0000000000000000
+p30: 0x0000000000000000
+p31: 0x0000000000000000
+p32: 0x0000000011223344
+p33: 0x0000000000000063
+p34: 0x0000000000000000
+p35: 0x0000000000000000
+p36: 0x0000000000000000
+p37: 0x0000000000000000
+p38: 0x0000000000000000
+p39: 0x0000000000000000
+p40: 0x0000000000000000
+p41: 0x0000000000000000
+p42: 0x0000000000000000
+p43: 0x0000000000000000
+p44: 0x0000000000000000
+p45: 0x0000000000000000
+p46: 0x0000000000000000
+p47: 0x0000000000000000
+p48: 0x0000000000000000
+p49: 0x0000000000000000
+p50: 0x0000000000000000
+p51: 0x0000000000000000
+p52: 0x0000000000000000
+p53: 0x0000000000000000
+p54: 0x0000000000000000
+p55: 0x0000000000000000
+p56: 0x0000000000000000
+p57: 0x0000000000000000
+p58: 0x0000000000000000
+p59: 0x0000000000000000
+p60: 0x0000000000000000
+p61: 0x0000000000000000
+p62: 0x0000000000000000
+p63: 0x0000000000000000
+--- Final FP Register State ---
+f00: 0x0000000000000000
+f01: 0x0000000000000000
+f02: 0x0000000000000000
+f03: 0x0000000000000000
+f04: 0x0000000000000000
+f05: 0x0000000000000000
+f06: 0x0000000000000000
+f07: 0x0000000000000000
+f08: 0x0000000000000000
+f09: 0x0000000000000000
+f10: 0x0000000000000000
+f11: 0x0000000000000000
+f12: 0x0000000000000000
+f13: 0x0000000000000000
+f14: 0x0000000000000000
+f15: 0x0000000000000000
+f16: 0x0000000000000000
+f17: 0x0000000000000000
+f18: 0x0000000000000000
+f19: 0x0000000000000000
+f20: 0x0000000000000000
+f21: 0x0000000000000000
+f22: 0x0000000000000000
+f23: 0x0000000000000000
+f24: 0x0000000000000000
+f25: 0x0000000000000000
+f26: 0x0000000000000000
+f27: 0x0000000000000000
+f28: 0x0000000000000000
+f29: 0x0000000000000000
+f30: 0x0000000000000000
+f31: 0x0000000000000000

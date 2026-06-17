@@ -241,10 +241,8 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   }
   
   val wuMem_valid = io.mem_in.fire && io.mem_in.bits.pdest =/= 0.U && !decMem.is_fload
-  val r_wuMem_valid = RegNext(wuMem_valid, false.B)
-  val r_wuMem_pdest = RegNext(io.mem_in.bits.pdest, 0.U)
-  io.wakeup(3).valid := r_wuMem_valid
-  io.wakeup(3).pdest := r_wuMem_pdest
+  io.wakeup(3).valid := wuMem_valid
+  io.wakeup(3).pdest := io.mem_in.bits.pdest
   // We omit fload wakeup from integer WakeupBus since it wakes up FP regs
 
   // ---------------- FP ----------------

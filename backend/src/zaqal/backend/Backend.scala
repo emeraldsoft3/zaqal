@@ -30,7 +30,7 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
   val decoded_uops_raw = Wire(Vec(decodeWidth, new DecodedMicroOp))
 
   for (i <- 0 until decodeWidth) {
-    decoders(i).io.inst := io.dispatch(i).bits.inst_raw
+    decoders(i).io.inst := io.dispatch(i).bits.pre.expanded_inst
     decoded_uops_raw(i).uop    := io.dispatch(i).bits
     decoded_uops_raw(i).decode := decoders(i).io.out
     
@@ -107,7 +107,7 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
   // Define has_branch and branch_slot
   val branch_mask = Wire(Vec(decodeWidth, Bool()))
   for (i <- 0 until decodeWidth) {
-    branch_mask(i) := (decoded_uops(i).decode.is_branch || decoded_uops(i).decode.is_jalr) && io.dispatch(i).fire
+    branch_mask(i) := (decoded_uops(i).decode.is_branch || decoded_uops(i).decode.is_jalr || decoded_uops(i).decode.is_jal) && io.dispatch(i).fire
   }
   val has_branch = branch_mask.asUInt.orR
   val branch_slot = PriorityEncoder(branch_mask)
@@ -157,6 +157,15 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
 
   val can_allocate_all = intFreeList.io.canAllocate && fpFreeList.io.canAllocate
 
+  val is_shadow_vec = Wire(Vec(decodeWidth, Bool()))
+  val is_val_inst_vec = Wire(Vec(decodeWidth, Bool()))
+  is_shadow_vec(0) := false.B
+  is_val_inst_vec(0) := true.B
+  for (j <- 1 until decodeWidth) {
+    is_shadow_vec(j) := is_val_inst_vec(j - 1) && !decoded_uops(j - 1).decode.is_rvc
+    is_val_inst_vec(j) := !is_shadow_vec(j)
+  }
+
   for (i <- 0 until decodeWidth) {
     val dec = decoded_uops(i).decode
     
@@ -172,11 +181,7 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
     val is_fused_away = Mux(u0_raw.decode.is_rvc, i.U === 1.U, i.U === 2.U) && is_fused_with_next
     
     // Identify shadow parcel slots (second half of a 32-bit instruction)
-    val is_shadow = MuxCase(false.B, Seq(
-      (i.U === 1.U) -> !decoded_uops(0).decode.is_rvc,
-      (i.U === 3.U) -> !decoded_uops(2).decode.is_rvc,
-      (i.U === 5.U) -> !decoded_uops(4).decode.is_rvc
-    ))
+    val is_shadow = is_shadow_vec(i)
 
     val rf_wen = dec.rd =/= 0.U && !dec.rd_is_fp && !dec.is_branch && !dec.is_store && !dec.is_fstore && !dec.is_atomic && !is_fused_away && !is_shadow
     val fp_wen = dec.rd_is_fp && !dec.is_branch && !dec.is_store && !dec.is_fstore && !dec.is_atomic && !is_fused_away && !is_shadow
@@ -268,12 +273,25 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
   }
 
   for (w <- 0 until 5) {
-    busyTable.io.wakeupPorts(w).valid := exec.io.wakeup(w).valid
-    busyTable.io.wakeupPorts(w).bits := exec.io.wakeup(w).pdest
-    
-    intIq.io.wakeup(w) := exec.io.wakeup(w)
-    memIq.io.wakeup(w) := exec.io.wakeup(w)
-    fpIq.io.wakeup(w) := exec.io.wakeup(w)
+    if (w == 3) {
+      val reg_wakeup = Wire(new WakeupBus)
+      reg_wakeup.valid := RegNext(exec.io.wakeup(w).valid, false.B)
+      reg_wakeup.pdest := RegNext(exec.io.wakeup(w).pdest, 0.U)
+
+      busyTable.io.wakeupPorts(w).valid := reg_wakeup.valid
+      busyTable.io.wakeupPorts(w).bits  := reg_wakeup.pdest
+      
+      intIq.io.wakeup(w) := exec.io.wakeup(w) // Keep it combinational for intIq load-to-branch zero stall
+      memIq.io.wakeup(w) := reg_wakeup
+      fpIq.io.wakeup(w)  := reg_wakeup
+    } else {
+      busyTable.io.wakeupPorts(w).valid := exec.io.wakeup(w).valid
+      busyTable.io.wakeupPorts(w).bits := exec.io.wakeup(w).pdest
+      
+      intIq.io.wakeup(w) := exec.io.wakeup(w)
+      memIq.io.wakeup(w) := exec.io.wakeup(w)
+      fpIq.io.wakeup(w)  := exec.io.wakeup(w)
+    }
   }
   for (w <- 5 until decodeWidth) {
     busyTable.io.wakeupPorts(w).valid := false.B

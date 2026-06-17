@@ -30,6 +30,8 @@ The goal of this phase is to turn the "Instructions-per-packet" into "Instructio
 - [ ] **Day 19-21**: **Load/Store Queues (LSQ)**: Handle memory dependencies out-of-order.
 - [ ] **Day 22-24**: **Memory Disambiguation**: Speculative loads and store-to-load forwarding.
 - [ ] **Day 25**: **Memory Dependence Predictor (MDP)**: Implement Store Sets (SSIT/LFST) or Wait Table to predict load/store collisions and avoid costly memory violation flushes (XiangShan parity).
+- [ ] **Day 25.5**: **RV64D (Double Precision FPU)**: Complete the "G" extension requirement by adding 64-bit double precision paths to the FPU execution units, missing from Phase 3.
+- [ ] **Day 25.8**: **Advanced Micro-op Fusion**: Implement advanced fusion rules (e.g. Memory + ALU) in the decoders and issue queues.
 - **Detailed Plan**: We will build distributed, out-of-order Issue Queues that wake up instructions via a broadcast bypass network and pick the oldest ready instructions using a selection matrix. For memory, the Load/Store Queues (LSQ) will allow loads to execute out-of-order and safely bypass older stores if the addresses don't match. If an older store writes to the same address a younger load is requesting, the LSQ will transparently forward the data directly. We will also build an advanced Memory Dependence Predictor (MDP) to learn which loads frequently collide with stores, artificially delaying them to prevent catastrophic memory violation flushes.
 
 ### Target Execution Unit Configuration (Kunminghu Parity)

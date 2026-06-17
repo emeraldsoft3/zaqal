@@ -29,14 +29,15 @@ class Dispatch(implicit val p: Parameters) extends Module with HasZaqalParameter
   // 1. Port Target Decoding & Classification for each lane
   val port_ready = Wire(Vec(decodeWidth, Bool()))
 
-  // Shadow parcel logic (slots 1, 3, 5 are shadows of standard 32-bit instructions in slots 0, 2, 4)
+  // Shadow parcel logic (dynamic scanning based on RVC status)
   val is_shadow = Wire(Vec(decodeWidth, Bool()))
+  val is_val_inst = Wire(Vec(decodeWidth, Bool()))
   is_shadow(0) := false.B
-  is_shadow(1) := !io.in(0).bits.decode.is_rvc
-  is_shadow(2) := false.B
-  is_shadow(3) := !io.in(2).bits.decode.is_rvc
-  is_shadow(4) := false.B
-  is_shadow(5) := !io.in(4).bits.decode.is_rvc
+  is_val_inst(0) := true.B
+  for (j <- 1 until decodeWidth) {
+    is_shadow(j) := is_val_inst(j - 1) && !io.in(j - 1).bits.decode.is_rvc
+    is_val_inst(j) := !is_shadow(j)
+  }
 
   // Capacity parameters for the current execution cluster
   val max_alu_units   = 1.U
@@ -107,7 +108,7 @@ class Dispatch(implicit val p: Parameters) extends Module with HasZaqalParameter
     val is_alu_op = !is_mem_op && !is_bru_op && !is_fpu_op
 
     // Port readiness calculation including structural hazard checks
-    port_ready(i) := !io.in(i).valid || (MuxCase(false.B, Seq(
+    port_ready(i) := !io.in(i).valid || is_shadow(i) || io.is_fused_away(i) || (MuxCase(false.B, Seq(
       is_alu_op -> io.aluReady(i),
       is_mem_op -> io.memReady(i),
       is_bru_op -> io.bruReady(i),

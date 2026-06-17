@@ -26,18 +26,14 @@ class ICache(implicit val p: Parameters) extends Module with HasZaqalParameter {
       println(s"[ICache] Loaded ${insts.length} instructions from $path")
       insts
     } else {
-      println(s"[ICache] Warning: Using Expanded Flush Verification Program.")
+      println(s"[ICache] Warning: Using Load-to-Branch Hazard Verification Program.")
       Seq(
-        "h00100093".U, // 0x00: addi x1, x0, 1
-        "h00200113".U, // 0x04: addi x2, x0, 2
-        "h02224333".U, // 0x08: div x6, x4, x2
-        "h00030463".U, // 0x0c: beq x6, x0, 8      (Branch 1: dependent on x6. Target is 0x0c + 8 = 0x14. Predicted Not-Taken)
-        "h00030863".U, // 0x10: beq x6, x0, 16     (Branch 2: dependent on x6. Target is 0x10 + 16 = 0x20. Predicted Not-Taken)
-        "h06400713".U, // 0x14: addi x14, x0, 100  (Target of Branch 1 - CORRECT PATH)
-        "h01000813".U, // 0x18: addi x16, x0, 16   (CORRECT PATH)
-        "h0000006f".U, // 0x1c: jal x0, 0          (CORRECT PATH HALT)
-        "h03200793".U, // 0x20: addi x15, x0, 50   (Target of Branch 2 - WRONG PATH: must never execute!)
-        "h0000006f".U  // 0x24: jal x0, 0          (Infinite loop halt)
+        "h00002303".U, // 0x00: lw x6, 0(x0)        (Loads non-zero h11223344 from memory)
+        "h00031663".U, // 0x04: bne x6, x0, 12      (Branch to target 0x10, depends on x6)
+        "h04d00393".U, // 0x08: addi x7, x0, 77     (Wrong path - speculative)
+        "h00000013".U, // 0x0c: nop
+        "h06300a13".U, // 0x10: addi x20, x0, 99    (Correct path target)
+        "h0000006f".U  // 0x14: jal x0, 0           (Halt loop)
       )
     }
   }

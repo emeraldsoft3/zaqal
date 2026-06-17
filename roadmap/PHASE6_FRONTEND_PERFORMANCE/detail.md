@@ -22,10 +22,11 @@ To achieve true XiangShan-level performance, the front-end must provide near-per
 - **Detailed Plan**: To complement TAGE, we will implement a Neural Perceptron predictor. Perceptrons excel at predicting branches that have complex, linear data dependencies rather than just historical correlations. The BPU will become a decoupled, 2-stage pipeline. To protect this massive predictive state, we will implement Branch Checkpointing, storing snapshots of the Global History Register (GHR) and Return Address Stack (RAS) in the Fetch Target Queue (FTQ). If a misprediction occurs, we can restore the exact predictor state in a single clock cycle, avoiding massive penalty delays.
 - **XiangShan Study**: [Bpu.scala](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/frontend/Bpu.scala)
 
-## Day 11-15: Memory Interface (Caches)
-- [ ] **Day 11-13**: **Instruction Cache (I-Cache)**: Replace the bypass model with a real L1-I with refill logic.
+## Day 11-15: Memory Interface (Caches & uOp Cache)
+- [ ] **Day 11**: **uOp Cache (L0 Decoded Cache)**: Implement decoded instruction cache to bypass decoders and increase fetch bandwidth (XiangShan parity).
+- [ ] **Day 12-13**: **Instruction Cache (I-Cache)**: Replace the bypass model with a real L1-I with refill logic.
 - [ ] **Day 14-15**: **Data Cache (D-Cache) & MSHRs**: Non-blocking L1-D with Miss Status Handling Registers (MSHRs) for true hit-under-miss support.
-- **Detailed Plan**: We will rip out the simple mock instruction memory and build a genuine, Set-Associative Level-1 Instruction Cache (L1-I) with cache-line refill logic from the L2/Main Memory. For the Data Cache (L1-D), we will implement a non-blocking architecture using Miss Status Handling Registers (MSHRs). MSHRs allow the cache to continue serving new memory requests even while waiting for a previous cache miss to be fetched from main memory, unlocking the true potential of out-of-order execution (Hit-Under-Miss).
+- **Detailed Plan**: We will rip out the simple mock instruction memory and build a genuine, Set-Associative Level-1 Instruction Cache (L1-I) with cache-line refill logic from the L2/Main Memory. To further decouple fetch from decode, we will introduce a uOp Cache (L0 Decoded Cache) that caches already-decoded micro-operations, saving significant decoding power and increasing frontend bandwidth. For the Data Cache (L1-D), we will implement a non-blocking architecture using Miss Status Handling Registers (MSHRs). MSHRs allow the cache to continue serving new memory requests even while waiting for a previous cache miss to be fetched from main memory, unlocking the true potential of out-of-order execution (Hit-Under-Miss).
 - **XiangShan Study**: [icache/](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/frontend/icache/)
 
 ## Day 16-20: Speculative State & Resilience
