@@ -74,9 +74,9 @@ class Frontend(implicit val p: Parameters) extends Module with HasZaqalParameter
   // 4. IFU -> IBUF (Data Path - Buffered!)
   ibuf.io.inst_data <> SkidBuffer(ifu.io.toIbuffer, is_valid_redirect)
 
-  // 5. IBUF -> Backend (Dispatch Path)
+  // 5. IBUF -> Backend (Dispatch Path - Pipelined Staging Boundary!)
   for (i <- 0 until decodeWidth) {
-    io.dispatch(i) <> ibuf.io.out(i)
+    io.dispatch(i) <> SkidBuffer(ibuf.io.out(i), is_valid_redirect)
   }
 
   // 5. Backend -> FTQ (Metadata Read)

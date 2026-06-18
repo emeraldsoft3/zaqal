@@ -5,7 +5,7 @@ Now that the core is wide, we must make it fast. We will break the long wires th
 ## Goal: High Frequency (Fmax) Optimization
 
 ## Day 1: Pipelined Decode
-- [ ] Add registers between the `IBuffer` and the `Decode` units.
+- [x] Add registers between the `IBuffer` and the `Decode` units.
 - **Detailed Plan**: Decoding a 6-wide instruction bundle involves massive fan-out and deep combinatorial logic, especially when determining instruction boundaries and extracting immediates. To prevent this from becoming a critical path, we will insert pipeline registers (a full staging boundary) between the Instruction Buffer dequeue and the Decode payload generation. This splits the frontend delivery and the backend decode into distinct clock cycles, dramatically improving maximum frequency (Fmax).
 - **XiangShan Study**: [DecodeStage.scala](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/backend/decode/DecodeStage.scala) - *How they structure the decode stage logic.*
 
