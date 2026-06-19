@@ -251,6 +251,7 @@ class DecodedMicroOp(implicit val p: Parameters) extends Bundle with HasZaqalPar
   
   // Speculative State Snapshot ID
   val snapshotIdx = UInt(log2Up(renameSnapshotNum).W)
+  val is_fused_away = Bool()
 }
 
 // Redirect signal from Backend to Frontend

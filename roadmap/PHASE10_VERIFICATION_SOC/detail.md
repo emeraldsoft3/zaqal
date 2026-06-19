@@ -26,3 +26,9 @@ The final step is proving it works and making it a real chip.
 ## Day 10+: Performance Benchmarking & Linux Boot
 - [ ] Run CoreMark, SpecInt, and finally boot BusyBox Linux.
 - **Detailed Plan**: The ultimate milestone of any high-performance processor project. We will compile and run industry-standard benchmarks like CoreMark, Dhrystone, and SPECint to precisely measure Zaqal's Instructions Per Clock (IPC) and compare it against targets like ARM Cortex-A76 or XiangShan. Finally, we will compile a full Buildroot/BusyBox Linux kernel, mount a root filesystem, and watch Zaqal boot an interactive Linux shell in simulation and eventually on an FPGA.
+
+## Day 11: 14nm Physical Design Sign-off (Tapeout Readiness)
+- [ ] Run full-chip logic synthesis, physical placement, clock tree synthesis (CTS), and routing targeting the 14nm PDK.
+- [ ] Perform sign-off Static Timing Analysis (STA), DRC (Design Rule Checking), and LVS (Layout vs Schematic) verification.
+- **Detailed Plan**: The final physical gate of the design. We will run the entire Zaqal SoC through the OpenROAD/OpenLane flow (or commercial EDA tools) targeting a commercial-grade 14nm process node model. We will construct the clock tree (CTS) to minimize skew across the wide 6-wide core, run routing to solve congestion around the execution clusters, and run sign-off STA to ensure the complete chip meets our 1.0–1.5 GHz target frequency without setup/hold violations.
+

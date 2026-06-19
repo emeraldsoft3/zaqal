@@ -41,6 +41,7 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
     decoded_uops_raw(i).pdest := 0.U
     decoded_uops_raw(i).old_pdest := 0.U
     decoded_uops_raw(i).snapshotIdx := 0.U
+    decoded_uops_raw(i).is_fused_away := false.B
   }
 
   // Day 3.5: Instruction Fusion (Macro-Op Fusion)
@@ -204,6 +205,7 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
     decoded_uops(i).old_pdest := rat.io.old_pdest(i)
     val slot_is_younger_than_branch = has_branch && (i.U > branch_slot)
     decoded_uops(i).snapshotIdx := wrapAdd(rat.io.snptEnqPtr, Mux(slot_is_younger_than_branch, 1.U, 0.U))
+    decoded_uops(i).is_fused_away := is_fused_away
     
     // Debug Print for Rename
     when(io.dispatch(i).valid) {
@@ -240,10 +242,19 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
 
   val dispatch = Module(new Dispatch)
   
+  val rename_out = Wire(Vec(decodeWidth, Decoupled(new DecodedMicroOp)))
+  val dispatch_in_buffered = Wire(Vec(decodeWidth, Decoupled(new DecodedMicroOp)))
+
   for (i <- 0 until decodeWidth) {
-    dispatch.io.in(i).valid := io.dispatch(i).valid && can_allocate_all
-    dispatch.io.in(i).bits  := decoded_uops(i)
-    dispatch.io.is_fused_away(i) := Mux(u0_raw.decode.is_rvc, i.U === 1.U, i.U === 2.U) && is_fused_with_next
+    rename_out(i).valid := io.dispatch(i).valid && can_allocate_all
+    rename_out(i).bits  := decoded_uops(i)
+    
+    dispatch_in_buffered(i) <> SkidBuffer(rename_out(i), exec.io.redirect.valid)
+    
+    dispatch.io.in(i).valid := dispatch_in_buffered(i).valid
+    dispatch.io.in(i).bits  := dispatch_in_buffered(i).bits
+    dispatch.io.is_fused_away(i) := dispatch_in_buffered(i).bits.is_fused_away
+    dispatch_in_buffered(i).ready := dispatch.io.in(i).ready
   }
 
   val busyTable = Module(new BusyTable)
@@ -344,7 +355,7 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
 
   // Dispatch Ready Logic (Dynamic Backpressure)
   for (i <- 0 until decodeWidth) {
-    io.dispatch(i).ready := dispatch.io.in(i).ready
+    io.dispatch(i).ready := rename_out(i).ready && can_allocate_all
   }
 
   // Route redirection from Execute to Frontend

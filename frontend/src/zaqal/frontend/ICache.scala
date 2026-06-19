@@ -26,13 +26,13 @@ class ICache(implicit val p: Parameters) extends Module with HasZaqalParameter {
       println(s"[ICache] Loaded ${insts.length} instructions from $path")
       insts
     } else {
-      println(s"[ICache] Warning: Using Load-to-Branch Hazard Verification Program.")
+      println(s"[ICache] Warning: Using basic ADDI test program for Pipelined Dispatch verification.")
       Seq(
-        "h00002303".U, // 0x00: lw x6, 0(x0)        (Loads non-zero h11223344 from memory)
-        "h00031663".U, // 0x04: bne x6, x0, 12      (Branch to target 0x10, depends on x6)
-        "h04d00393".U, // 0x08: addi x7, x0, 77     (Wrong path - speculative)
-        "h00000013".U, // 0x0c: nop
-        "h06300a13".U, // 0x10: addi x20, x0, 99    (Correct path target)
+        "h00500293".U, // 0x00: addi x5, x0, 5      (x5 = 5)
+        "h00a00313".U, // 0x04: addi x6, x0, 10     (x6 = 10)
+        "h00628393".U, // 0x08: addi x7, x5, 6      (x7 = 5 + 6 = 11)
+        "h00730413".U, // 0x0c: addi x8, x6, 7      (x8 = 10 + 7 = 17)
+        "h00828493".U, // 0x10: addi x9, x5, 8      (x9 = 5 + 8 = 13)
         "h0000006f".U  // 0x14: jal x0, 0           (Halt loop)
       )
     }

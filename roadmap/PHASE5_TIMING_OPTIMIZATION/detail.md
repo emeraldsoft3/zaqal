@@ -4,13 +4,15 @@ Now that the core is wide, we must make it fast. We will break the long wires th
 
 ## Goal: High Frequency (Fmax) Optimization
 
+Our primary goal is to target a **14nm process node** (using predictive standard cell libraries like ASAP7/ASAP14 calibrated for 14nm). We will run the RTL through logic synthesis and Place & Route (P&R) to obtain realistic wire length resistance and capacitance (RC) delays, running Static Timing Analysis (STA) to calculate the actual physical $F_{max}$ and identify real routing bottlenecks.
+
 ## Day 1: Pipelined Decode
 - [x] Add registers between the `IBuffer` and the `Decode` units.
 - **Detailed Plan**: Decoding a 6-wide instruction bundle involves massive fan-out and deep combinatorial logic, especially when determining instruction boundaries and extracting immediates. To prevent this from becoming a critical path, we will insert pipeline registers (a full staging boundary) between the Instruction Buffer dequeue and the Decode payload generation. This splits the frontend delivery and the backend decode into distinct clock cycles, dramatically improving maximum frequency (Fmax).
 - **XiangShan Study**: [DecodeStage.scala](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/backend/decode/DecodeStage.scala) - *How they structure the decode stage logic.*
 
 ## Day 2: Pipelined Dispatch
-- [ ] Add registers between `Decode` and `Dispatch`.
+- [x] Add registers between `Decode` and `Dispatch`.
 - **Detailed Plan**: Dispatching involves routing instructions to multiple issue queues based on structural hazards and dependency checks. This routing logic is highly combinatorial. By placing a skid buffer or a pipeline register array between Decode/Rename and Dispatch, we give the synthesizer a clear boundary to retime the logic. This ensures that the complex prefix-sum routing logic does not chain together with the Decode stage logic.
 - **XiangShan Study**: [Dispatch.scala](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/backend/decode/Dispatch.scala) - *Look for staging registers.*
 
@@ -39,15 +41,15 @@ Now that the core is wide, we must make it fast. We will break the long wires th
 - **Detailed Plan**: Memory operations require calculating an address (Base + Offset), translating it (TLB), and accessing the D-Cache, all within tight timing margins. We will optimize this by splitting address generation (AGU) and cache access into separate pipeline stages. We will also implement fast-path TLB lookups to ensure the address translation doesn't delay the cache hit/miss determination.
 - **XiangShan Study**: [LoadUnit.scala](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/mem/pipeline/LoadUnit.scala) - *Study the load request pipeline.*
 
-## Day 8: Critical Path Analysis (Static Timing)
-- [ ] Use synthesis tools to find the slowest path in the design.
-- **Detailed Plan**: We will run the RTL through a synthesis tool (like Yosys or Vivado) and perform Static Timing Analysis (STA). This will give us a precise report of the Worst Negative Slack (WNS). We will methodically track down the top 5 longest timing paths in the core, analyzing the Chisel code that generated those paths to understand where the combinatorial logic is too deep.
+## Day 8: Physical Synthesis & Critical Path Analysis (Static Timing)
+- [ ] Set up a physical synthesis and Place & Route (P&R) toolchain using Yosys and OpenROAD/OpenLane (targeting 14nm standard cells).
+- **Detailed Plan**: We will run the Chisel-generated Verilog through logic synthesis (Yosys / Synopsys Design Compiler) and physical Place & Route (OpenROAD / Cadence Innovus) with a 14nm PDK model. We will perform Static Timing Analysis (STA) on the resulting routed netlist to calculate the actual wire RC parasitics. This will generate a precise report of the Worst Negative Slack (WNS) and identify the critical paths where physical wire length or gate delays are limiting $F_{max}$.
 
-## Day 9: Logic Restructuring
-- [ ] Rewrite complex Muxes or priority encoders to use tree-based logic.
-- **Detailed Plan**: Based on the timing reports, we will refactor the slowest parts of the design. Long chains of `if-else` statements in Chisel often compile into slow, serialized multiplexer chains. We will rewrite these using parallel tree-based reductions, fast priority encoders, and one-hot encoding to drastically minimize the gate depth and balance the propagation delays.
+## Day 9: Logic Restructuring & Delay Balancing
+- [ ] Rewrite complex Muxes, priority encoders, and arithmetic paths to use tree-based logic.
+- **Detailed Plan**: Based on the STA reports, we will refactor the slowest physical paths. Long combinatorial chains (e.g., in multiplexers or priority encoders) will be restructured into parallel tree-based reductions. We will also optimize arithmetic units by reusing shared adders/shifters to reduce gate depth and alleviate physical routing congestion.
 
 ## Day 10: Retiming & Final Optimization
-- [ ] Use Chisel's `RegNext` strategically to balance paths.
-- **Detailed Plan**: Retiming involves shifting flip-flops backward or forward through combinatorial logic without changing the functional behavior. We will use `RegNext` and explicit Chisel pipelining to move registers out of fast paths and into slow paths, perfectly balancing the delay across all pipeline stages. 
-- **Goal**: Reach target Fmax (e.g., 500MHz+ in simulation).
+- [ ] Use Chisel's `RegNext` and skid buffers strategically to balance pipeline stages.
+- **Detailed Plan**: Retiming involves shifting flip-flop boundaries across combinatorial logic. Using STA feedback, we will insert staging registers (`RegNext` or skid buffers) at the exact boundaries where wire delays are high. This balances clock cycle distribution across all pipeline stages.
+- **Goal**: Achieve a target virtual frequency $F_{max}$ of **1.0 GHz to 1.5 GHz** (matching physical XiangShan/SiFive parity on a 14nm process node).
