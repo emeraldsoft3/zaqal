@@ -266,9 +266,9 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
     busyTable.io.allocPorts(i).valid := io.dispatch(i).fire && (intFreeList.io.allocateReq(i) || fpFreeList.io.allocateReq(i))
     busyTable.io.allocPorts(i).bits := decoded_uops(i).pdest
 
-    busyTable.io.readPorts(i)(0).addr := decoded_uops(i).psrs1
-    busyTable.io.readPorts(i)(1).addr := decoded_uops(i).psrs2
-    busyTable.io.readPorts(i)(2).addr := decoded_uops(i).psrs3
+    busyTable.io.readPorts(i)(0).addr := dispatch_in_buffered(i).bits.psrs1
+    busyTable.io.readPorts(i)(1).addr := dispatch_in_buffered(i).bits.psrs2
+    busyTable.io.readPorts(i)(2).addr := dispatch_in_buffered(i).bits.psrs3
 
     intIq.io.rs1_ready_in(i) := busyTable.io.readPorts(i)(0).ready
     intIq.io.rs2_ready_in(i) := busyTable.io.readPorts(i)(1).ready

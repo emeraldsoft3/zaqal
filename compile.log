@@ -1,0 +1,2368 @@
+[info] compiling 1 Scala source to /home/emerald/zaqal/out/backend/compile.dest/classes ...
+[warn] 281 feature warnings; re-run with -feature for details
+[warn] one warning found
+[info] done compiling
+[ICache] FPU TEST MODE: Using hardcoded FP program.
+[ICache] Warning: Using basic ADDI test program for Pipelined Dispatch verification.
+[warn] backend/src/zaqal/backend/FreeList.scala 64:37: [W004] Dynamic index with width 9 is too wide for Vec of size 160 (expected index width 8).
+[warn]     io.allocatePhyReg(i) := freeList(wrapAdd(headPtr, offset))
+[warn]                                     ^
+[warn] backend/src/zaqal/backend/FreeList.scala 72:15: [W004] Dynamic index with width 9 is too wide for Vec of size 160 (expected index width 8).
+[warn]       freeList(wrapAdd(tailPtr, offset)) := io.freePhyReg(i)
+[warn]               ^
+[warn] There were 2 warning(s) during hardware elaboration.
+clang: warning: argument unused during compilation: '-dynamiclib' [-Wunused-command-line-argument]
+--- Starting ZAQAL Agile V1.0 Simulation ---
+[TESTBENCH] Cycle 0
+[TESTBENCH] Cycle 1
+[TESTBENCH] Cycle 2
+[TESTBENCH] Cycle 3
+[TESTBENCH] Cycle 4
+[TESTBENCH] Cycle 5
+  [IQ STATE] is_empty_mask=65535 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=1
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 6
+  [IQ STATE] is_empty_mask=65535 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=1
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 7
+  [IQ STATE] is_empty_mask=65535 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=1
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 8
+  [IQ STATE] is_empty_mask=65535 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=1
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 9
+  [IQ STATE] is_empty_mask=65535 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=1
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 10  [IQ STATE] is_empty_mask=65535 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=1
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+CORE RENAME [Cycle                    6] [Port 0]: pc=0000000080000000 inst=00500293 lrs1= 0->prs1=  0 lrs2= 5->prs2=  5 lrd= 5->pdest= 32 (old=  5)
+CORE RENAME [Cycle                    6] [Port 1]: pc=0000000080000002 inst=83130050 lrs1= 2->prs1=  2 lrs2= 4->prs2=  4 
+CORE RENAME [Cycle                    6] [Port 2]: pc=0000000080000004 inst=00628313 lrs1= 5->prs1= 32 lrs2= 6->prs2=  6 lrd= 6->pdest= 33 (old=  6)
+CORE RENAME [Cycle                    6] [Port 3]: pc=0000000080000006 inst=03930062 lrs1= 0->prs1=  0 lrs2=24->prs2= 24 
+CORE RENAME [Cycle                    6] [Port 4]: pc=0000000080000008 inst=00730393 lrs1= 6->prs1= 33 lrs2= 7->prs2=  7 lrd= 7->pdest= 34 (old=  7)
+CORE RENAME [Cycle                    6] [Port 5]: pc=000000008000000a inst=006f0073 lrs1=30->prs1= 30 lrs2= 6->prs2= 33 
+  [IQ STATE] is_empty_mask=65535 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=1
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+CORE RENAME [Cycle                    7] [Port 0]: pc=000000008000000c inst=0000006f lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                    7] [Port 1]: pc=000000008000000e inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                    7] [Port 2]: pc=0000000080000010 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                    7] [Port 3]: pc=0000000080000012 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                    7] [Port 4]: pc=0000000080000014 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                    7] [Port 5]: pc=0000000080000016 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+  [IQ STATE] is_empty_mask=65535 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=1
+    Enq 0: pc=0000000080000000 alloc_idx= 0
+    Enq 1: pc=0000000080000002 alloc_idx= 1
+    Enq 2: pc=0000000080000004 alloc_idx= 2
+    Enq 3: pc=0000000080000006 alloc_idx= 3
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+
+[TESTBENCH] Cycle 11
+[TESTBENCH] Cycle 12
+[TESTBENCH] Cycle 13
+CORE RENAME [Cycle                    8] [Port 0]: pc=0000000080000018 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                    8] [Port 1]: pc=000000008000001a inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                    8] [Port 2]: pc=000000008000001c inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                    8] [Port 3]: pc=000000008000001e inst=00000000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                    8] [Port 4]: pc=0000000080000020 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                    8] [Port 5]: pc=0000000080000022 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+    [IQ ISSUE Port 0]: pc=0000000080000000 entry_idx= 0
+    [IQ ISSUE Port 1]: pc=0000000080000002 entry_idx= 1
+  [IQ Entry 0]: pc=0000000080000000 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  5 pdest= 32 snapIdx=0
+  [IQ Entry 1]: pc=0000000080000002 rs1_ready=1 rs2_ready=1 psrs1=  2 psrs2=  4 pdest=  0 snapIdx=0
+  [IQ Entry 2]: pc=0000000080000004 rs1_ready=0 rs2_ready=1 psrs1= 32 psrs2=  6 pdest= 33 snapIdx=0
+  [IQ Entry 3]: pc=0000000080000006 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2= 24 pdest=  0 snapIdx=0
+[TESTBENCH] Cycle 14
+  [IQ STATE] is_empty_mask=65523 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+    Enq 0: pc=000000008000000c alloc_idx= 0
+    Enq 1: pc=000000008000000e alloc_idx= 1
+    Enq 2: pc=0000000080000010 alloc_idx= 4
+    Enq 3: pc=0000000080000012 alloc_idx= 5
+    Enq 4: pc=0000000080000008 alloc_idx= 6
+    Enq 5: pc=000000008000000a alloc_idx= 7
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+CORE RENAME [Cycle                    9] [Port 0]: pc=0000000080000024 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                    9] [Port 1]: pc=0000000080000026 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                    9] [Port 2]: pc=0000000080000028 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                    9] [Port 3]: pc=000000008000002a inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                    9] [Port 4]: pc=0000000080000020 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                    9] [Port 5]: pc=0000000080000022 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+    [IQ ISSUE Port 0]: pc=0000000080000004 entry_idx= 2
+    [IQ ISSUE Port 1]: pc=0000000080000006 entry_idx= 3
+  [IQ Entry 0]: pc=000000008000000c rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=0
+  [IQ Entry 1]: pc=000000008000000e rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ Entry 2]: pc=0000000080000004 rs1_ready=0 rs2_ready=1 psrs1= 32 psrs2=  6 pdest= 33 snapIdx=0
+  [IQ Entry 3]: pc=0000000080000006 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2= 24 pdest=  0 snapIdx=0
+  [IQ Entry 4]: pc=0000000080000010 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ Entry 5]: pc=0000000080000012 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ Entry 6]: pc=0000000080000008 rs1_ready=0 rs2_ready=1 psrs1= 33 psrs2=  7 pdest= 34 snapIdx=0
+  [IQ Entry 7]: pc=000000008000000a rs1_ready=1 rs2_ready=0 psrs1= 30 psrs2= 33 pdest=  0 snapIdx=0
+  [IQ STATE] is_empty_mask=65292 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+    Enq 0: pc=0000000080000018 alloc_idx= 2
+    Enq 1: pc=000000008000001a alloc_idx= 3
+    Enq 2: pc=000000008000001c alloc_idx= 8
+    Enq 3: pc=000000008000001e alloc_idx= 9
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 15
+CORE RENAME [Cycle                   10] [Port 0]: pc=0000000080000030 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   10] [Port 1]: pc=0000000080000032 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   10] [Port 2]: pc=0000000080000034 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   10] [Port 3]: pc=0000000080000036 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   10] [Port 4]: pc=000000008000002c inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   10] [Port 5]: pc=000000008000002e inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+[BRU REDIRECT] pc=000000008000000c target=000000008000000c actual_taken=1 is_rvc=0
+    [IQ ISSUE Port 0]: pc=000000008000000c entry_idx= 0
+    [IQ ISSUE Port 1]: pc=000000008000000e entry_idx= 1
+  [IQ REDIRECT] restore_idx=0 enq_ptr=1
+    Entry 0: pc=000000008000000c snapIdx=0 is_younger=0
+    Entry 1: pc=000000008000000e snapIdx=1 is_younger=0
+    Entry 2: pc=0000000080000018 snapIdx=1 is_younger=0
+    Entry 3: pc=000000008000001a snapIdx=1 is_younger=0
+    Entry 4: pc=0000000080000010 snapIdx=1 is_younger=0
+    Entry 5: pc=0000000080000012 snapIdx=1 is_younger=0
+    Entry 6: pc=0000000080000008 snapIdx=0 is_younger=0
+    Entry 7: pc=000000008000000a snapIdx=0 is_younger=0
+    Entry 8: pc=000000008000001c snapIdx=1 is_younger=0
+    Entry 9: pc=000000008000001e snapIdx=1 is_younger=0
+  [IQ Entry 0]: pc=000000008000000c rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=0
+  [IQ Entry 1]: pc=000000008000000e rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ Entry 2]: pc=0000000080000018 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ Entry 3]: pc=000000008000001a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ Entry 4]: pc=0000000080000010 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ Entry 5]: pc=0000000080000012 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ Entry 6]: pc=0000000080000008 rs1_ready=0 rs2_ready=1 psrs1= 33 psrs2=  7 pdest= 34 snapIdx=0
+  [IQ Entry 7]: pc=000000008000000a rs1_ready=1 rs2_ready=0 psrs1= 30 psrs2= 33 pdest=  0 snapIdx=0
+  [IQ Entry 8]: pc=000000008000001c rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ Entry 9]: pc=000000008000001e rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ STATE] is_empty_mask=64515 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+    Enq 0: pc=0000000080000024 alloc_idx= 0
+    Enq 1: pc=0000000080000026 alloc_idx= 1
+    Enq 2: pc=0000000080000028 alloc_idx=10
+    Enq 3: pc=000000008000002a alloc_idx=11
+  [IQ REDIRECT] restore_idx=0 enq_ptr=1
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ REDIRECT] restore_idx=0 enq_ptr=1
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+CORE RENAME [Cycle                   11] [Port 0]: pc=0000000080000038 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   11] [Port 1]: pc=000000008000003a inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   11] [Port 2]: pc=000000008000003c inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   11] [Port 3]: pc=000000008000003e inst=00000000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   11] [Port 4]: pc=000000008000002c inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   11] [Port 5]: pc=000000008000002e inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+    [IQ ISSUE Port 0]: pc=0000000080000010 entry_idx= 4
+    [IQ ISSUE Port 1]: pc=0000000080000012 entry_idx= 5
+  [IQ Entry 0]: pc=0000000080000024 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ Entry 1]: pc=0000000080000026 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ Entry 2]: pc=0000000080000018 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ Entry 3]: pc=000000008000001a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ Entry 4]: pc=0000000080000010 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ Entry 5]: pc=0000000080000012 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ Entry 6]: pc=0000000080000008 rs1_ready=1 rs2_ready=1 psrs1= 33 psrs2=  7 pdest= 34 snapIdx=0
+  [IQ Entry 7]: pc=000000008000000a rs1_ready=1 rs2_ready=1 psrs1= 30 psrs2= 33 pdest=  0 snapIdx=0
+  [IQ Entry 8]: pc=000000008000001c rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ Entry 9]: pc=000000008000001e rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ Entry 10]: pc=0000000080000028 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ Entry 11]: pc=000000008000002a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ STATE] is_empty_mask=61488 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+BPU REDIRECT ACCEPTED: target=000000008000000c epoch=0
+FRONTEND FLUSH: epoch=0 io.redirect.target=000000008000000c
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 16
+[Cycle 16] FTQ Flushed! Shadow copy cleared.
+[TESTBENCH] Cycle 17
+    [IQ ISSUE Port 0]: pc=0000000080000008 entry_idx= 6
+    [IQ ISSUE Port 1]: pc=000000008000000a entry_idx= 7
+  [IQ Entry 0]: pc=0000000080000024 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ Entry 1]: pc=0000000080000026 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ Entry 2]: pc=0000000080000018 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ Entry 3]: pc=000000008000001a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ Entry 6]: pc=0000000080000008 rs1_ready=1 rs2_ready=1 psrs1= 33 psrs2=  7 pdest= 34 snapIdx=0
+  [IQ Entry 7]: pc=000000008000000a rs1_ready=1 rs2_ready=1 psrs1= 30 psrs2= 33 pdest=  0 snapIdx=0
+  [IQ Entry 8]: pc=000000008000001c rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ Entry 9]: pc=000000008000001e rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ Entry 10]: pc=0000000080000028 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ Entry 11]: pc=000000008000002a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ STATE] is_empty_mask=61680 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+    Enq 0: pc=0000000080000038 alloc_idx= 4
+    Enq 1: pc=000000008000003a alloc_idx= 5
+    Enq 2: pc=000000008000003c alloc_idx= 6
+    Enq 3: pc=000000008000003e alloc_idx= 7
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 18
+    [IQ ISSUE Port 0]: pc=0000000080000018 entry_idx= 2
+    [IQ ISSUE Port 1]: pc=000000008000001a entry_idx= 3
+  [IQ Entry 0]: pc=0000000080000024 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ Entry 1]: pc=0000000080000026 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ Entry 2]: pc=0000000080000018 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ Entry 3]: pc=000000008000001a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ Entry 4]: pc=0000000080000038 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ Entry 5]: pc=000000008000003a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ Entry 6]: pc=000000008000003c rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ Entry 7]: pc=000000008000003e rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ Entry 8]: pc=000000008000001c rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ Entry 9]: pc=000000008000001e rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ Entry 10]: pc=0000000080000028 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ Entry 11]: pc=000000008000002a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ STATE] is_empty_mask=61452 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+    Enq 4: pc=000000008000002c alloc_idx=14
+    Enq 5: pc=000000008000002e alloc_idx=15
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 19
+    [IQ ISSUE Port 0]: pc=000000008000001c entry_idx= 8
+    [IQ ISSUE Port 1]: pc=000000008000001e entry_idx= 9
+  [IQ Entry 0]: pc=0000000080000024 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ Entry 1]: pc=0000000080000026 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ Entry 4]: pc=0000000080000038 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ Entry 5]: pc=000000008000003a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ Entry 6]: pc=000000008000003c rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ Entry 7]: pc=000000008000003e rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ Entry 8]: pc=000000008000001c rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ Entry 9]: pc=000000008000001e rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ Entry 10]: pc=0000000080000028 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ Entry 11]: pc=000000008000002a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ Entry 14]: pc=000000008000002c rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ Entry 15]: pc=000000008000002e rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ STATE] is_empty_mask=13068 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 20
+[TESTBENCH] Cycle 21
+[TESTBENCH] Cycle 22
+[TESTBENCH] Cycle 23
+[TESTBENCH] Cycle 24
+    [IQ ISSUE Port 0]: pc=0000000080000024 entry_idx= 0
+    [IQ ISSUE Port 1]: pc=0000000080000026 entry_idx= 1
+  [IQ Entry 0]: pc=0000000080000024 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ Entry 1]: pc=0000000080000026 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ Entry 4]: pc=0000000080000038 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ Entry 5]: pc=000000008000003a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ Entry 6]: pc=000000008000003c rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ Entry 7]: pc=000000008000003e rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ Entry 10]: pc=0000000080000028 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ Entry 11]: pc=000000008000002a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ Entry 14]: pc=000000008000002c rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ Entry 15]: pc=000000008000002e rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ STATE] is_empty_mask=13071 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+    [IQ ISSUE Port 0]: pc=0000000080000028 entry_idx=10
+    [IQ ISSUE Port 1]: pc=000000008000002a entry_idx=11
+  [IQ Entry 4]: pc=0000000080000038 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ Entry 5]: pc=000000008000003a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ Entry 6]: pc=000000008000003c rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ Entry 7]: pc=000000008000003e rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ Entry 10]: pc=0000000080000028 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ Entry 11]: pc=000000008000002a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ Entry 14]: pc=000000008000002c rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ Entry 15]: pc=000000008000002e rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ STATE] is_empty_mask=16143 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+    [IQ ISSUE Port 0]: pc=0000000080000038 entry_idx= 4
+    [IQ ISSUE Port 1]: pc=000000008000003a entry_idx= 5
+  [IQ Entry 4]: pc=0000000080000038 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ Entry 5]: pc=000000008000003a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ Entry 6]: pc=000000008000003c rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ Entry 7]: pc=000000008000003e rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ Entry 14]: pc=000000008000002c rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ Entry 15]: pc=000000008000002e rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ STATE] is_empty_mask=16191 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+CORE RENAME [Cycle                   18] [Port 0]: pc=000000008000000c inst=0000006f lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   18] [Port 1]: pc=000000008000000e inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   18] [Port 2]: pc=0000000080000010 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   18] [Port 3]: pc=0000000080000012 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   18] [Port 4]: pc=0000000080000014 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   18] [Port 5]: pc=0000000080000016 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+    [IQ ISSUE Port 0]: pc=000000008000003c entry_idx= 6
+    [IQ ISSUE Port 1]: pc=000000008000003e entry_idx= 7
+  [IQ Entry 6]: pc=000000008000003c rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ Entry 7]: pc=000000008000003e rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ Entry 14]: pc=000000008000002c rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ Entry 15]: pc=000000008000002e rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ STATE] is_empty_mask=16383 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+CORE RENAME [Cycle                   19] [Port 0]: pc=0000000080000018 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   19] [Port 1]: pc=000000008000001a inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   19] [Port 2]: pc=000000008000001c inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   19] [Port 3]: pc=000000008000001e inst=00000000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   19] [Port 4]: pc=0000000080000020 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   19] [Port 5]: pc=0000000080000022 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+    [IQ ISSUE Port 0]: pc=000000008000002c entry_idx=14
+    [IQ ISSUE Port 1]: pc=000000008000002e entry_idx=15
+  [IQ Entry 14]: pc=000000008000002c rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ Entry 15]: pc=000000008000002e rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ STATE] is_empty_mask=65535 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+    Enq 0: pc=000000008000000c alloc_idx= 0
+    Enq 1: pc=000000008000000e alloc_idx= 1
+    Enq 2: pc=0000000080000010 alloc_idx= 2
+    Enq 3: pc=0000000080000012 alloc_idx= 3
+    Enq 4: pc=0000000080000014 alloc_idx= 4
+    Enq 5: pc=0000000080000016 alloc_idx= 5
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 25
+CORE RENAME [Cycle                   20] [Port 0]: pc=0000000080000024 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   20] [Port 1]: pc=0000000080000026 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   20] [Port 2]: pc=0000000080000028 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   20] [Port 3]: pc=000000008000002a inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   20] [Port 4]: pc=000000008000002c inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   20] [Port 5]: pc=000000008000002e inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+[BRU REDIRECT] pc=000000008000000c target=000000008000000c actual_taken=1 is_rvc=0
+    [IQ ISSUE Port 0]: pc=000000008000000c entry_idx= 0
+    [IQ ISSUE Port 1]: pc=000000008000000e entry_idx= 1
+  [IQ REDIRECT] restore_idx=1 enq_ptr=2
+    Entry 0: pc=000000008000000c snapIdx=1 is_younger=0
+    Entry 1: pc=000000008000000e snapIdx=2 is_younger=0
+    Entry 2: pc=0000000080000010 snapIdx=2 is_younger=0
+    Entry 3: pc=0000000080000012 snapIdx=2 is_younger=0
+    Entry 4: pc=0000000080000014 snapIdx=2 is_younger=0
+    Entry 5: pc=0000000080000016 snapIdx=2 is_younger=0
+  [IQ Entry 0]: pc=000000008000000c rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ Entry 1]: pc=000000008000000e rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ Entry 2]: pc=0000000080000010 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ Entry 3]: pc=0000000080000012 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ Entry 4]: pc=0000000080000014 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ Entry 5]: pc=0000000080000016 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ STATE] is_empty_mask=65475 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+    Enq 0: pc=0000000080000018 alloc_idx= 0
+    Enq 1: pc=000000008000001a alloc_idx= 1
+    Enq 2: pc=000000008000001c alloc_idx= 6
+    Enq 3: pc=000000008000001e alloc_idx= 7
+  [IQ REDIRECT] restore_idx=1 enq_ptr=2
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ REDIRECT] restore_idx=1 enq_ptr=2
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 26
+[Cycle 26] FTQ Flushed! Shadow copy cleared.
+CORE RENAME [Cycle                   21] [Port 0]: pc=0000000080000030 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   21] [Port 1]: pc=0000000080000032 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   21] [Port 2]: pc=0000000080000034 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   21] [Port 3]: pc=0000000080000036 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   21] [Port 4]: pc=0000000080000038 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   21] [Port 5]: pc=000000008000003a inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+    [IQ ISSUE Port 0]: pc=0000000080000010 entry_idx= 2
+    [IQ ISSUE Port 1]: pc=0000000080000012 entry_idx= 3
+  [IQ Entry 0]: pc=0000000080000018 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ Entry 1]: pc=000000008000001a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ Entry 2]: pc=0000000080000010 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ Entry 3]: pc=0000000080000012 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ Entry 4]: pc=0000000080000014 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ Entry 5]: pc=0000000080000016 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ Entry 6]: pc=000000008000001c rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ Entry 7]: pc=000000008000001e rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ STATE] is_empty_mask=65292 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+BPU REDIRECT ACCEPTED: target=000000008000000c epoch=1
+FRONTEND FLUSH: epoch=1 io.redirect.target=000000008000000c
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 27
+    [IQ ISSUE Port 0]: pc=0000000080000014 entry_idx= 4
+    [IQ ISSUE Port 1]: pc=0000000080000016 entry_idx= 5
+  [IQ Entry 0]: pc=0000000080000018 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ Entry 1]: pc=000000008000001a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ Entry 4]: pc=0000000080000014 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ Entry 5]: pc=0000000080000016 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ Entry 6]: pc=000000008000001c rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ Entry 7]: pc=000000008000001e rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ STATE] is_empty_mask=65340 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+    Enq 0: pc=0000000080000030 alloc_idx= 2
+    Enq 1: pc=0000000080000032 alloc_idx= 3
+    Enq 2: pc=0000000080000034 alloc_idx= 4
+    Enq 3: pc=0000000080000036 alloc_idx= 5
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+    [IQ ISSUE Port 0]: pc=0000000080000018 entry_idx= 0
+    [IQ ISSUE Port 1]: pc=000000008000001a entry_idx= 1
+  [IQ Entry 0]: pc=0000000080000018 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ Entry 1]: pc=000000008000001a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ Entry 2]: pc=0000000080000030 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ Entry 3]: pc=0000000080000032 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ Entry 4]: pc=0000000080000034 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ Entry 5]: pc=0000000080000036 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ Entry 6]: pc=000000008000001c rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ Entry 7]: pc=000000008000001e rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ STATE] is_empty_mask=65283 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+    Enq 4: pc=0000000080000038 alloc_idx=10
+    Enq 5: pc=000000008000003a alloc_idx=11
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+    [IQ ISSUE Port 0]: pc=000000008000001c entry_idx= 6
+    [IQ ISSUE Port 1]: pc=000000008000001e entry_idx= 7
+  [IQ Entry 2]: pc=0000000080000030 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ Entry 3]: pc=0000000080000032 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ Entry 4]: pc=0000000080000034 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ Entry 5]: pc=0000000080000036 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ Entry 6]: pc=000000008000001c rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ Entry 7]: pc=000000008000001e rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ Entry 10]: pc=0000000080000038 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ Entry 11]: pc=000000008000003a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ STATE] is_empty_mask=62403 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 28
+[TESTBENCH] Cycle 29
+[TESTBENCH] Cycle 30
+[TESTBENCH] Cycle 31
+    [IQ ISSUE Port 0]: pc=0000000080000030 entry_idx= 2
+    [IQ ISSUE Port 1]: pc=0000000080000032 entry_idx= 3
+  [IQ Entry 2]: pc=0000000080000030 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ Entry 3]: pc=0000000080000032 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ Entry 4]: pc=0000000080000034 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ Entry 5]: pc=0000000080000036 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ Entry 10]: pc=0000000080000038 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ Entry 11]: pc=000000008000003a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ STATE] is_empty_mask=62415 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+    [IQ ISSUE Port 0]: pc=0000000080000034 entry_idx= 4
+    [IQ ISSUE Port 1]: pc=0000000080000036 entry_idx= 5
+  [IQ Entry 4]: pc=0000000080000034 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ Entry 5]: pc=0000000080000036 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ Entry 10]: pc=0000000080000038 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ Entry 11]: pc=000000008000003a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ STATE] is_empty_mask=62463 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 32
+    [IQ ISSUE Port 0]: pc=0000000080000038 entry_idx=10
+    [IQ ISSUE Port 1]: pc=000000008000003a entry_idx=11
+  [IQ Entry 10]: pc=0000000080000038 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ Entry 11]: pc=000000008000003a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ STATE] is_empty_mask=65535 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 33
+CORE RENAME [Cycle                   28] [Port 0]: pc=000000008000000c inst=0000006f lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   28] [Port 1]: pc=000000008000000e inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   28] [Port 2]: pc=0000000080000010 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   28] [Port 3]: pc=0000000080000012 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   28] [Port 4]: pc=0000000080000014 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   28] [Port 5]: pc=0000000080000016 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+  [IQ STATE] is_empty_mask=65535 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=1
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 34
+CORE RENAME [Cycle                   29] [Port 0]: pc=0000000080000018 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   29] [Port 1]: pc=000000008000001a inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   29] [Port 2]: pc=000000008000001c inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   29] [Port 3]: pc=000000008000001e inst=00000000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   29] [Port 4]: pc=0000000080000020 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   29] [Port 5]: pc=0000000080000022 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+  [IQ STATE] is_empty_mask=65535 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=1
+    Enq 0: pc=000000008000000c alloc_idx= 0
+    Enq 1: pc=000000008000000e alloc_idx= 1
+    Enq 2: pc=0000000080000010 alloc_idx= 2
+    Enq 3: pc=0000000080000012 alloc_idx= 3
+    Enq 4: pc=0000000080000014 alloc_idx= 4
+    Enq 5: pc=0000000080000016 alloc_idx= 5
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 35
+CORE RENAME [Cycle                   30] [Port 0]: pc=0000000080000024 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   30] [Port 1]: pc=0000000080000026 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   30] [Port 2]: pc=0000000080000028 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   30] [Port 3]: pc=000000008000002a inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   30] [Port 4]: pc=000000008000002c inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   30] [Port 5]: pc=000000008000002e inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+[BRU REDIRECT] pc=000000008000000c target=000000008000000c actual_taken=1 is_rvc=0
+    [IQ ISSUE Port 0]: pc=000000008000000c entry_idx= 0
+    [IQ ISSUE Port 1]: pc=000000008000000e entry_idx= 1
+  [IQ REDIRECT] restore_idx=2 enq_ptr=3
+    Entry 0: pc=000000008000000c snapIdx=2 is_younger=0
+    Entry 1: pc=000000008000000e snapIdx=3 is_younger=0
+    Entry 2: pc=0000000080000010 snapIdx=3 is_younger=0
+    Entry 3: pc=0000000080000012 snapIdx=3 is_younger=0
+    Entry 4: pc=0000000080000014 snapIdx=3 is_younger=0
+    Entry 5: pc=0000000080000016 snapIdx=3 is_younger=0
+  [IQ Entry 0]: pc=000000008000000c rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ Entry 1]: pc=000000008000000e rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ Entry 2]: pc=0000000080000010 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ Entry 3]: pc=0000000080000012 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ Entry 4]: pc=0000000080000014 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ Entry 5]: pc=0000000080000016 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ STATE] is_empty_mask=65475 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+    Enq 0: pc=0000000080000018 alloc_idx= 0
+    Enq 1: pc=000000008000001a alloc_idx= 1
+[TESTBENCH] Cycle 36
+    Enq 2: pc=000000008000001c alloc_idx= 6
+    Enq 3: pc=000000008000001e alloc_idx= 7
+  [IQ REDIRECT] restore_idx=2 enq_ptr=3
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ REDIRECT] restore_idx=2 enq_ptr=3
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[Cycle 36] FTQ Flushed! Shadow copy cleared.
+CORE RENAME [Cycle                   31] [Port 0]: pc=0000000080000030 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   31] [Port 1]: pc=0000000080000032 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   31] [Port 2]: pc=0000000080000034 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   31] [Port 3]: pc=0000000080000036 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   31] [Port 4]: pc=0000000080000038 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   31] [Port 5]: pc=000000008000003a inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+    [IQ ISSUE Port 0]: pc=0000000080000010 entry_idx= 2
+    [IQ ISSUE Port 1]: pc=0000000080000012 entry_idx= 3
+  [IQ Entry 0]: pc=0000000080000018 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ Entry 1]: pc=000000008000001a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ Entry 2]: pc=0000000080000010 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ Entry 3]: pc=0000000080000012 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ Entry 4]: pc=0000000080000014 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ Entry 5]: pc=0000000080000016 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ Entry 6]: pc=000000008000001c rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ Entry 7]: pc=000000008000001e rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ STATE] is_empty_mask=65292 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+BPU REDIRECT ACCEPTED: target=000000008000000c epoch=0
+FRONTEND FLUSH: epoch=0 io.redirect.target=000000008000000c
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 37
+    [IQ ISSUE Port 0]: pc=0000000080000014 entry_idx= 4
+    [IQ ISSUE Port 1]: pc=0000000080000016 entry_idx= 5
+  [IQ Entry 0]: pc=0000000080000018 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ Entry 1]: pc=000000008000001a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ Entry 4]: pc=0000000080000014 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ Entry 5]: pc=0000000080000016 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ Entry 6]: pc=000000008000001c rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ Entry 7]: pc=000000008000001e rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ STATE] is_empty_mask=65340 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+    Enq 0: pc=0000000080000030 alloc_idx= 2
+    Enq 1: pc=0000000080000032 alloc_idx= 3
+    Enq 2: pc=0000000080000034 alloc_idx= 4
+    Enq 3: pc=0000000080000036 alloc_idx= 5
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 38
+    [IQ ISSUE Port 0]: pc=0000000080000018 entry_idx= 0
+    [IQ ISSUE Port 1]: pc=000000008000001a entry_idx= 1
+  [IQ Entry 0]: pc=0000000080000018 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ Entry 1]: pc=000000008000001a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ Entry 2]: pc=0000000080000030 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ Entry 3]: pc=0000000080000032 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ Entry 4]: pc=0000000080000034 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ Entry 5]: pc=0000000080000036 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ Entry 6]: pc=000000008000001c rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ Entry 7]: pc=000000008000001e rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ STATE] is_empty_mask=65283 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+    Enq 4: pc=0000000080000038 alloc_idx=10
+    Enq 5: pc=000000008000003a alloc_idx=11
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 39
+    [IQ ISSUE Port 0]: pc=000000008000001c entry_idx= 6
+    [IQ ISSUE Port 1]: pc=000000008000001e entry_idx= 7
+  [IQ Entry 2]: pc=0000000080000030 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ Entry 3]: pc=0000000080000032 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ Entry 4]: pc=0000000080000034 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ Entry 5]: pc=0000000080000036 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ Entry 6]: pc=000000008000001c rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ Entry 7]: pc=000000008000001e rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ Entry 10]: pc=0000000080000038 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ Entry 11]: pc=000000008000003a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ STATE] is_empty_mask=62403 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 40
+    [IQ ISSUE Port 0]: pc=0000000080000030 entry_idx= 2
+    [IQ ISSUE Port 1]: pc=0000000080000032 entry_idx= 3
+  [IQ Entry 2]: pc=0000000080000030 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ Entry 3]: pc=0000000080000032 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ Entry 4]: pc=0000000080000034 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ Entry 5]: pc=0000000080000036 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ Entry 10]: pc=0000000080000038 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ Entry 11]: pc=000000008000003a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ STATE] is_empty_mask=62415 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 41
+    [IQ ISSUE Port 0]: pc=0000000080000034 entry_idx= 4
+    [IQ ISSUE Port 1]: pc=0000000080000036 entry_idx= 5
+  [IQ Entry 4]: pc=0000000080000034 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ Entry 5]: pc=0000000080000036 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ Entry 10]: pc=0000000080000038 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ Entry 11]: pc=000000008000003a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ STATE] is_empty_mask=62463 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 42
+    [IQ ISSUE Port 0]: pc=0000000080000038 entry_idx=10
+    [IQ ISSUE Port 1]: pc=000000008000003a entry_idx=11
+  [IQ Entry 10]: pc=0000000080000038 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ Entry 11]: pc=000000008000003a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ STATE] is_empty_mask=65535 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 43
+CORE RENAME [Cycle                   38] [Port 0]: pc=000000008000000c inst=0000006f lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   38] [Port 1]: pc=000000008000000e inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   38] [Port 2]: pc=0000000080000010 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   38] [Port 3]: pc=0000000080000012 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   38] [Port 4]: pc=0000000080000014 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   38] [Port 5]: pc=0000000080000016 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+  [IQ STATE] is_empty_mask=65535 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=1
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 44
+CORE RENAME [Cycle                   39] [Port 0]: pc=0000000080000018 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   39] [Port 1]: pc=000000008000001a inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   39] [Port 2]: pc=000000008000001c inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   39] [Port 3]: pc=000000008000001e inst=00000000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   39] [Port 4]: pc=0000000080000020 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   39] [Port 5]: pc=0000000080000022 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+  [IQ STATE] is_empty_mask=65535 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=1
+    Enq 0: pc=000000008000000c alloc_idx= 0
+    Enq 1: pc=000000008000000e alloc_idx= 1
+    Enq 2: pc=0000000080000010 alloc_idx= 2
+    Enq 3: pc=0000000080000012 alloc_idx= 3
+    Enq 4: pc=0000000080000014 alloc_idx= 4
+    Enq 5: pc=0000000080000016 alloc_idx= 5
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 45
+CORE RENAME [Cycle                   40] [Port 0]: pc=0000000080000024 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   40] [Port 1]: pc=0000000080000026 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   40] [Port 2]: pc=0000000080000028 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   40] [Port 3]: pc=000000008000002a inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   40] [Port 4]: pc=000000008000002c inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   40] [Port 5]: pc=000000008000002e inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+[BRU REDIRECT] pc=000000008000000c target=000000008000000c actual_taken=1 is_rvc=0
+    [IQ ISSUE Port 0]: pc=000000008000000c entry_idx= 0
+    [IQ ISSUE Port 1]: pc=000000008000000e entry_idx= 1
+  [IQ REDIRECT] restore_idx=3 enq_ptr=4
+    Entry 0: pc=000000008000000c snapIdx=3 is_younger=0
+    Entry 1: pc=000000008000000e snapIdx=4 is_younger=0
+    Entry 2: pc=0000000080000010 snapIdx=4 is_younger=0
+    Entry 3: pc=0000000080000012 snapIdx=4 is_younger=0
+    Entry 4: pc=0000000080000014 snapIdx=4 is_younger=0
+[TESTBENCH] Cycle 46    Entry 5: pc=0000000080000016 snapIdx=4 is_younger=0
+
+  [IQ Entry 0]: pc=000000008000000c rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ Entry 1]: pc=000000008000000e rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ Entry 2]: pc=0000000080000010 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ Entry 3]: pc=0000000080000012 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ Entry 4]: pc=0000000080000014 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+[Cycle 46] FTQ Flushed! Shadow copy cleared.
+  [IQ Entry 5]: pc=0000000080000016 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ STATE] is_empty_mask=65475 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+    Enq 0: pc=0000000080000018 alloc_idx= 0
+    Enq 1: pc=000000008000001a alloc_idx= 1
+    Enq 2: pc=000000008000001c alloc_idx= 6
+    Enq 3: pc=000000008000001e alloc_idx= 7
+  [IQ REDIRECT] restore_idx=3 enq_ptr=4
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ REDIRECT] restore_idx=3 enq_ptr=4
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+CORE RENAME [Cycle                   41] [Port 0]: pc=0000000080000030 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   41] [Port 1]: pc=0000000080000032 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   41] [Port 2]: pc=0000000080000034 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   41] [Port 3]: pc=0000000080000036 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   41] [Port 4]: pc=0000000080000038 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   41] [Port 5]: pc=000000008000003a inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+    [IQ ISSUE Port 0]: pc=0000000080000010 entry_idx= 2
+    [IQ ISSUE Port 1]: pc=0000000080000012 entry_idx= 3
+  [IQ Entry 0]: pc=0000000080000018 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ Entry 1]: pc=000000008000001a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ Entry 2]: pc=0000000080000010 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ Entry 3]: pc=0000000080000012 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ Entry 4]: pc=0000000080000014 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ Entry 5]: pc=0000000080000016 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ Entry 6]: pc=000000008000001c rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ Entry 7]: pc=000000008000001e rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ STATE] is_empty_mask=65292 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+BPU REDIRECT ACCEPTED: target=000000008000000c epoch=1
+[TESTBENCH] Cycle 47FRONTEND FLUSH: epoch=1 io.redirect.target=000000008000000c
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+    [IQ ISSUE Port 0]: pc=0000000080000014 entry_idx= 4
+    [IQ ISSUE Port 1]: pc=0000000080000016 entry_idx= 5
+  [IQ Entry 0]: pc=0000000080000018 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ Entry 1]: pc=000000008000001a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ Entry 4]: pc=0000000080000014 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ Entry 5]: pc=0000000080000016 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ Entry 6]: pc=000000008000001c rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ Entry 7]: pc=000000008000001e rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ STATE] is_empty_mask=65340 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+    Enq 0: pc=0000000080000030 alloc_idx= 2
+    Enq 1: pc=0000000080000032 alloc_idx= 3
+    Enq 2: pc=0000000080000034 alloc_idx= 4
+    Enq 3: pc=0000000080000036 alloc_idx= 5
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 48
+    [IQ ISSUE Port 0]: pc=0000000080000018 entry_idx= 0
+    [IQ ISSUE Port 1]: pc=000000008000001a entry_idx= 1
+  [IQ Entry 0]: pc=0000000080000018 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ Entry 1]: pc=000000008000001a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ Entry 2]: pc=0000000080000030 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ Entry 3]: pc=0000000080000032 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ Entry 4]: pc=0000000080000034 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ Entry 5]: pc=0000000080000036 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ Entry 6]: pc=000000008000001c rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ Entry 7]: pc=000000008000001e rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ STATE] is_empty_mask=65283 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+    Enq 4: pc=0000000080000038 alloc_idx=10
+    Enq 5: pc=000000008000003a alloc_idx=11
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 49
+    [IQ ISSUE Port 0]: pc=000000008000001c entry_idx= 6
+    [IQ ISSUE Port 1]: pc=000000008000001e entry_idx= 7
+  [IQ Entry 2]: pc=0000000080000030 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ Entry 3]: pc=0000000080000032 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ Entry 4]: pc=0000000080000034 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ Entry 5]: pc=0000000080000036 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ Entry 6]: pc=000000008000001c rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ Entry 7]: pc=000000008000001e rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ Entry 10]: pc=0000000080000038 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ Entry 11]: pc=000000008000003a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ STATE] is_empty_mask=62403 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 50
+    [IQ ISSUE Port 0]: pc=0000000080000030 entry_idx= 2
+    [IQ ISSUE Port 1]: pc=0000000080000032 entry_idx= 3
+  [IQ Entry 2]: pc=0000000080000030 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ Entry 3]: pc=0000000080000032 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ Entry 4]: pc=0000000080000034 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ Entry 5]: pc=0000000080000036 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ Entry 10]: pc=0000000080000038 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ Entry 11]: pc=000000008000003a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ STATE] is_empty_mask=62415 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 51
+    [IQ ISSUE Port 0]: pc=0000000080000034 entry_idx= 4
+    [IQ ISSUE Port 1]: pc=0000000080000036 entry_idx= 5
+  [IQ Entry 4]: pc=0000000080000034 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ Entry 5]: pc=0000000080000036 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ Entry 10]: pc=0000000080000038 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ Entry 11]: pc=000000008000003a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ STATE] is_empty_mask=62463 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+[TESTBENCH] Cycle 52
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+    [IQ ISSUE Port 0]: pc=0000000080000038 entry_idx=10
+    [IQ ISSUE Port 1]: pc=000000008000003a entry_idx=11
+  [IQ Entry 10]: pc=0000000080000038 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ Entry 11]: pc=000000008000003a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ STATE] is_empty_mask=65535 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 53
+CORE RENAME [Cycle                   48] [Port 0]: pc=000000008000000c inst=0000006f lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   48] [Port 1]: pc=000000008000000e inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   48] [Port 2]: pc=0000000080000010 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   48] [Port 3]: pc=0000000080000012 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   48] [Port 4]: pc=0000000080000014 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   48] [Port 5]: pc=0000000080000016 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+  [IQ STATE] is_empty_mask=65535 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=1
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 54
+CORE RENAME [Cycle                   49] [Port 0]: pc=0000000080000018 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   49] [Port 1]: pc=000000008000001a inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   49] [Port 2]: pc=000000008000001c inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   49] [Port 3]: pc=000000008000001e inst=00000000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   49] [Port 4]: pc=0000000080000020 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   49] [Port 5]: pc=0000000080000022 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+  [IQ STATE] is_empty_mask=65535 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=1
+    Enq 0: pc=000000008000000c alloc_idx= 0
+    Enq 1: pc=000000008000000e alloc_idx= 1
+    Enq 2: pc=0000000080000010 alloc_idx= 2
+    Enq 3: pc=0000000080000012 alloc_idx= 3
+    Enq 4: pc=0000000080000014 alloc_idx= 4
+    Enq 5: pc=0000000080000016 alloc_idx= 5
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 55
+CORE RENAME [Cycle                   50] [Port 0]: pc=0000000080000024 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   50] [Port 1]: pc=0000000080000026 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   50] [Port 2]: pc=0000000080000028 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   50] [Port 3]: pc=000000008000002a inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   50] [Port 4]: pc=000000008000002c inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   50] [Port 5]: pc=000000008000002e inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+[BRU REDIRECT] pc=000000008000000c target=000000008000000c actual_taken=1 is_rvc=0
+    [IQ ISSUE Port 0]: pc=000000008000000c entry_idx= 0
+    [IQ ISSUE Port 1]: pc=000000008000000e entry_idx= 1
+  [IQ REDIRECT] restore_idx=4 enq_ptr=5
+    Entry 0: pc=000000008000000c snapIdx=4 is_younger=0
+    Entry 1: pc=000000008000000e snapIdx=5 is_younger=0
+    Entry 2: pc=0000000080000010 snapIdx=5 is_younger=0
+    Entry 3: pc=0000000080000012 snapIdx=5 is_younger=0
+    Entry 4: pc=0000000080000014 snapIdx=5 is_younger=0
+    Entry 5: pc=0000000080000016 snapIdx=5 is_younger=0
+  [IQ Entry 0]: pc=000000008000000c rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ Entry 1]: pc=000000008000000e rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ Entry 2]: pc=0000000080000010 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ Entry 3]: pc=0000000080000012 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ Entry 4]: pc=0000000080000014 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ Entry 5]: pc=0000000080000016 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ STATE] is_empty_mask=65475 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+    Enq 0: pc=0000000080000018 alloc_idx= 0
+    Enq 1: pc=000000008000001a alloc_idx= 1
+    Enq 2: pc=000000008000001c alloc_idx= 6
+    Enq 3: pc=000000008000001e alloc_idx= 7
+  [IQ REDIRECT] restore_idx=4 enq_ptr=5
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ REDIRECT] restore_idx=4 enq_ptr=5
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 56
+[Cycle 56] FTQ Flushed! Shadow copy cleared.
+CORE RENAME [Cycle                   51] [Port 0]: pc=0000000080000030 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   51] [Port 1]: pc=0000000080000032 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   51] [Port 2]: pc=0000000080000034 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   51] [Port 3]: pc=0000000080000036 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   51] [Port 4]: pc=0000000080000038 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   51] [Port 5]: pc=000000008000003a inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+    [IQ ISSUE Port 0]: pc=0000000080000010 entry_idx= 2
+    [IQ ISSUE Port 1]: pc=0000000080000012 entry_idx= 3
+  [IQ Entry 0]: pc=0000000080000018 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ Entry 1]: pc=000000008000001a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ Entry 2]: pc=0000000080000010 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ Entry 3]: pc=0000000080000012 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ Entry 4]: pc=0000000080000014 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ Entry 5]: pc=0000000080000016 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ Entry 6]: pc=000000008000001c rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ Entry 7]: pc=000000008000001e rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ STATE] is_empty_mask=65292 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+BPU REDIRECT ACCEPTED: target=000000008000000c epoch=0
+FRONTEND FLUSH: epoch=0 io.redirect.target=000000008000000c
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 57
+    [IQ ISSUE Port 0]: pc=0000000080000014 entry_idx= 4
+    [IQ ISSUE Port 1]: pc=0000000080000016 entry_idx= 5
+  [IQ Entry 0]: pc=0000000080000018 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ Entry 1]: pc=000000008000001a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ Entry 4]: pc=0000000080000014 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ Entry 5]: pc=0000000080000016 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ Entry 6]: pc=000000008000001c rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ Entry 7]: pc=000000008000001e rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ STATE] is_empty_mask=65340 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+    Enq 0: pc=0000000080000030 alloc_idx= 2
+    Enq 1: pc=0000000080000032 alloc_idx= 3
+    Enq 2: pc=0000000080000034 alloc_idx= 4
+    Enq 3: pc=0000000080000036 alloc_idx= 5
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 58
+    [IQ ISSUE Port 0]: pc=0000000080000018 entry_idx= 0
+    [IQ ISSUE Port 1]: pc=000000008000001a entry_idx= 1
+  [IQ Entry 0]: pc=0000000080000018 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ Entry 1]: pc=000000008000001a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ Entry 2]: pc=0000000080000030 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ Entry 3]: pc=0000000080000032 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ Entry 4]: pc=0000000080000034 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ Entry 5]: pc=0000000080000036 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ Entry 6]: pc=000000008000001c rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ Entry 7]: pc=000000008000001e rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ STATE] is_empty_mask=65283 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+    Enq 4: pc=0000000080000038 alloc_idx=10
+    Enq 5: pc=000000008000003a alloc_idx=11
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 59
+    [IQ ISSUE Port 0]: pc=000000008000001c entry_idx= 6
+    [IQ ISSUE Port 1]: pc=000000008000001e entry_idx= 7
+  [IQ Entry 2]: pc=0000000080000030 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ Entry 3]: pc=0000000080000032 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ Entry 4]: pc=0000000080000034 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ Entry 5]: pc=0000000080000036 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ Entry 6]: pc=000000008000001c rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ Entry 7]: pc=000000008000001e rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ Entry 10]: pc=0000000080000038 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ Entry 11]: pc=000000008000003a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ STATE] is_empty_mask=62403 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 60
+    [IQ ISSUE Port 0]: pc=0000000080000030 entry_idx= 2
+    [IQ ISSUE Port 1]: pc=0000000080000032 entry_idx= 3
+  [IQ Entry 2]: pc=0000000080000030 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ Entry 3]: pc=0000000080000032 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ Entry 4]: pc=0000000080000034 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ Entry 5]: pc=0000000080000036 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ Entry 10]: pc=0000000080000038 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ Entry 11]: pc=000000008000003a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ STATE] is_empty_mask=62415 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 61
+    [IQ ISSUE Port 0]: pc=0000000080000034 entry_idx= 4
+    [IQ ISSUE Port 1]: pc=0000000080000036 entry_idx= 5
+  [IQ Entry 4]: pc=0000000080000034 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ Entry 5]: pc=0000000080000036 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ Entry 10]: pc=0000000080000038 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ Entry 11]: pc=000000008000003a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ STATE] is_empty_mask=62463 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 62
+    [IQ ISSUE Port 0]: pc=0000000080000038 entry_idx=10
+    [IQ ISSUE Port 1]: pc=000000008000003a entry_idx=11
+  [IQ Entry 10]: pc=0000000080000038 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ Entry 11]: pc=000000008000003a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ STATE] is_empty_mask=65535 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 63
+CORE RENAME [Cycle                   58] [Port 0]: pc=000000008000000c inst=0000006f lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   58] [Port 1]: pc=000000008000000e inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   58] [Port 2]: pc=0000000080000010 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   58] [Port 3]: pc=0000000080000012 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   58] [Port 4]: pc=0000000080000014 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   58] [Port 5]: pc=0000000080000016 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+  [IQ STATE] is_empty_mask=65535 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=1
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 64
+CORE RENAME [Cycle                   59] [Port 0]: pc=0000000080000018 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   59] [Port 1]: pc=000000008000001a inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   59] [Port 2]: pc=000000008000001c inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   59] [Port 3]: pc=000000008000001e inst=00000000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   59] [Port 4]: pc=0000000080000020 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   59] [Port 5]: pc=0000000080000022 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+  [IQ STATE] is_empty_mask=65535 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=1
+    Enq 0: pc=000000008000000c alloc_idx= 0
+    Enq 1: pc=000000008000000e alloc_idx= 1
+    Enq 2: pc=0000000080000010 alloc_idx= 2
+    Enq 3: pc=0000000080000012 alloc_idx= 3
+    Enq 4: pc=0000000080000014 alloc_idx= 4
+    Enq 5: pc=0000000080000016 alloc_idx= 5
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 65
+CORE RENAME [Cycle                   60] [Port 0]: pc=0000000080000024 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   60] [Port 1]: pc=0000000080000026 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   60] [Port 2]: pc=0000000080000028 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   60] [Port 3]: pc=000000008000002a inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   60] [Port 4]: pc=000000008000002c inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   60] [Port 5]: pc=000000008000002e inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+[BRU REDIRECT] pc=000000008000000c target=000000008000000c actual_taken=1 is_rvc=0
+    [IQ ISSUE Port 0]: pc=000000008000000c entry_idx= 0
+    [IQ ISSUE Port 1]: pc=000000008000000e entry_idx= 1
+  [IQ REDIRECT] restore_idx=5 enq_ptr=6
+    Entry 0: pc=000000008000000c snapIdx=5 is_younger=0
+    Entry 1: pc=000000008000000e snapIdx=6 is_younger=0
+    Entry 2: pc=0000000080000010 snapIdx=6 is_younger=0
+    Entry 3: pc=0000000080000012 snapIdx=6 is_younger=0
+    Entry 4: pc=0000000080000014 snapIdx=6 is_younger=0
+    Entry 5: pc=0000000080000016 snapIdx=6 is_younger=0
+  [IQ Entry 0]: pc=000000008000000c rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ Entry 1]: pc=000000008000000e rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=6
+  [IQ Entry 2]: pc=0000000080000010 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=6
+  [IQ Entry 3]: pc=0000000080000012 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=6
+  [IQ Entry 4]: pc=0000000080000014 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=6
+  [IQ Entry 5]: pc=0000000080000016 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=6
+[TESTBENCH] Cycle 66
+  [IQ STATE] is_empty_mask=65475 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+    Enq 0: pc=0000000080000018 alloc_idx= 0
+    Enq 1: pc=000000008000001a alloc_idx= 1
+    Enq 2: pc=000000008000001c alloc_idx= 6
+    Enq 3: pc=000000008000001e alloc_idx= 7
+  [IQ REDIRECT] restore_idx=5 enq_ptr=6
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ REDIRECT] restore_idx=5 enq_ptr=6
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[Cycle 66] FTQ Flushed! Shadow copy cleared.
+CORE RENAME [Cycle                   61] [Port 0]: pc=0000000080000030 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   61] [Port 1]: pc=0000000080000032 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   61] [Port 2]: pc=0000000080000034 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   61] [Port 3]: pc=0000000080000036 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   61] [Port 4]: pc=0000000080000038 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   61] [Port 5]: pc=000000008000003a inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+    [IQ ISSUE Port 0]: pc=0000000080000010 entry_idx= 2
+    [IQ ISSUE Port 1]: pc=0000000080000012 entry_idx= 3
+  [IQ Entry 0]: pc=0000000080000018 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=6
+  [IQ Entry 1]: pc=000000008000001a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=6
+  [IQ Entry 2]: pc=0000000080000010 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=6
+  [IQ Entry 3]: pc=0000000080000012 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=6
+  [IQ Entry 4]: pc=0000000080000014 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=6
+  [IQ Entry 5]: pc=0000000080000016 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=6
+  [IQ Entry 6]: pc=000000008000001c rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=6
+  [IQ Entry 7]: pc=000000008000001e rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=6
+  [IQ STATE] is_empty_mask=65292 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+BPU REDIRECT ACCEPTED: target=000000008000000c epoch=1
+FRONTEND FLUSH: epoch=1 io.redirect.target=000000008000000c
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 67
+    [IQ ISSUE Port 0]: pc=0000000080000014 entry_idx= 4
+    [IQ ISSUE Port 1]: pc=0000000080000016 entry_idx= 5
+  [IQ Entry 0]: pc=0000000080000018 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=6
+  [IQ Entry 1]: pc=000000008000001a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=6
+  [IQ Entry 4]: pc=0000000080000014 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=6
+  [IQ Entry 5]: pc=0000000080000016 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=6
+  [IQ Entry 6]: pc=000000008000001c rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=6
+  [IQ Entry 7]: pc=000000008000001e rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=6
+  [IQ STATE] is_empty_mask=65340 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+    Enq 0: pc=0000000080000030 alloc_idx= 2
+    Enq 1: pc=0000000080000032 alloc_idx= 3
+    Enq 2: pc=0000000080000034 alloc_idx= 4
+    Enq 3: pc=0000000080000036 alloc_idx= 5
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 68
+    [IQ ISSUE Port 0]: pc=0000000080000018 entry_idx= 0
+    [IQ ISSUE Port 1]: pc=000000008000001a entry_idx= 1
+  [IQ Entry 0]: pc=0000000080000018 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=6
+  [IQ Entry 1]: pc=000000008000001a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=6
+  [IQ Entry 2]: pc=0000000080000030 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=6
+  [IQ Entry 3]: pc=0000000080000032 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=6
+  [IQ Entry 4]: pc=0000000080000034 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=6
+  [IQ Entry 5]: pc=0000000080000036 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=6
+  [IQ Entry 6]: pc=000000008000001c rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=6
+  [IQ Entry 7]: pc=000000008000001e rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=6
+  [IQ STATE] is_empty_mask=65283 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+    Enq 4: pc=0000000080000038 alloc_idx=10
+    Enq 5: pc=000000008000003a alloc_idx=11
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 69
+    [IQ ISSUE Port 0]: pc=000000008000001c entry_idx= 6
+    [IQ ISSUE Port 1]: pc=000000008000001e entry_idx= 7
+  [IQ Entry 2]: pc=0000000080000030 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=6
+  [IQ Entry 3]: pc=0000000080000032 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=6
+  [IQ Entry 4]: pc=0000000080000034 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=6
+  [IQ Entry 5]: pc=0000000080000036 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=6
+  [IQ Entry 6]: pc=000000008000001c rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=6
+  [IQ Entry 7]: pc=000000008000001e rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=6
+  [IQ Entry 10]: pc=0000000080000038 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=6
+  [IQ Entry 11]: pc=000000008000003a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=6
+  [IQ STATE] is_empty_mask=62403 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 70
+    [IQ ISSUE Port 0]: pc=0000000080000030 entry_idx= 2
+    [IQ ISSUE Port 1]: pc=0000000080000032 entry_idx= 3
+  [IQ Entry 2]: pc=0000000080000030 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=6
+  [IQ Entry 3]: pc=0000000080000032 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=6
+  [IQ Entry 4]: pc=0000000080000034 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=6
+  [IQ Entry 5]: pc=0000000080000036 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=6
+  [IQ Entry 10]: pc=0000000080000038 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=6
+  [IQ Entry 11]: pc=000000008000003a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=6
+  [IQ STATE] is_empty_mask=62415 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 71
+    [IQ ISSUE Port 0]: pc=0000000080000034 entry_idx= 4
+    [IQ ISSUE Port 1]: pc=0000000080000036 entry_idx= 5
+  [IQ Entry 4]: pc=0000000080000034 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=6
+  [IQ Entry 5]: pc=0000000080000036 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=6
+  [IQ Entry 10]: pc=0000000080000038 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=6
+  [IQ Entry 11]: pc=000000008000003a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=6
+  [IQ STATE] is_empty_mask=62463 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 72
+    [IQ ISSUE Port 0]: pc=0000000080000038 entry_idx=10
+    [IQ ISSUE Port 1]: pc=000000008000003a entry_idx=11
+  [IQ Entry 10]: pc=0000000080000038 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=6
+  [IQ Entry 11]: pc=000000008000003a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=6
+  [IQ STATE] is_empty_mask=65535 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 73
+CORE RENAME [Cycle                   68] [Port 0]: pc=000000008000000c inst=0000006f lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   68] [Port 1]: pc=000000008000000e inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   68] [Port 2]: pc=0000000080000010 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   68] [Port 3]: pc=0000000080000012 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   68] [Port 4]: pc=0000000080000014 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   68] [Port 5]: pc=0000000080000016 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+  [IQ STATE] is_empty_mask=65535 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=1
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 74
+CORE RENAME [Cycle                   69] [Port 0]: pc=0000000080000018 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   69] [Port 1]: pc=000000008000001a inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   69] [Port 2]: pc=000000008000001c inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   69] [Port 3]: pc=000000008000001e inst=00000000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   69] [Port 4]: pc=0000000080000020 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   69] [Port 5]: pc=0000000080000022 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+  [IQ STATE] is_empty_mask=65535 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=1
+    Enq 0: pc=000000008000000c alloc_idx= 0
+    Enq 1: pc=000000008000000e alloc_idx= 1
+    Enq 2: pc=0000000080000010 alloc_idx= 2
+    Enq 3: pc=0000000080000012 alloc_idx= 3
+    Enq 4: pc=0000000080000014 alloc_idx= 4
+    Enq 5: pc=0000000080000016 alloc_idx= 5
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 75
+CORE RENAME [Cycle                   70] [Port 0]: pc=0000000080000024 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   70] [Port 1]: pc=0000000080000026 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   70] [Port 2]: pc=0000000080000028 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   70] [Port 3]: pc=000000008000002a inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   70] [Port 4]: pc=000000008000002c inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   70] [Port 5]: pc=000000008000002e inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+[BRU REDIRECT] pc=000000008000000c target=000000008000000c actual_taken=1 is_rvc=0
+    [IQ ISSUE Port 0]: pc=000000008000000c entry_idx= 0
+    [IQ ISSUE Port 1]: pc=000000008000000e entry_idx= 1
+  [IQ REDIRECT] restore_idx=6 enq_ptr=7
+    Entry 0: pc=000000008000000c snapIdx=6 is_younger=0
+    Entry 1: pc=000000008000000e snapIdx=7 is_younger=0
+    Entry 2: pc=0000000080000010 snapIdx=7 is_younger=0
+    Entry 3: pc=0000000080000012 snapIdx=7 is_younger=0
+    Entry 4: pc=0000000080000014 snapIdx=7 is_younger=0
+    Entry 5: pc=0000000080000016 snapIdx=7 is_younger=0
+  [IQ Entry 0]: pc=000000008000000c rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=6
+  [IQ Entry 1]: pc=000000008000000e rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=7
+  [IQ Entry 2]: pc=0000000080000010 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=7
+  [IQ Entry 3]: pc=0000000080000012 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=7
+  [IQ Entry 4]: pc=0000000080000014 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=7
+  [IQ Entry 5]: pc=0000000080000016 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=7
+  [IQ STATE] is_empty_mask=65475 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+    Enq 0: pc=0000000080000018 alloc_idx= 0
+    Enq 1: pc=000000008000001a alloc_idx= 1
+    Enq 2: pc=000000008000001c alloc_idx= 6
+    Enq 3: pc=000000008000001e alloc_idx= 7
+  [IQ REDIRECT] restore_idx=6 enq_ptr=7
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ REDIRECT] restore_idx=6 enq_ptr=7
+[TESTBENCH] Cycle 76  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+
+[Cycle 76] FTQ Flushed! Shadow copy cleared.
+CORE RENAME [Cycle                   71] [Port 0]: pc=0000000080000030 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   71] [Port 1]: pc=0000000080000032 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   71] [Port 2]: pc=0000000080000034 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   71] [Port 3]: pc=0000000080000036 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   71] [Port 4]: pc=0000000080000038 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   71] [Port 5]: pc=000000008000003a inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+    [IQ ISSUE Port 0]: pc=0000000080000010 entry_idx= 2
+    [IQ ISSUE Port 1]: pc=0000000080000012 entry_idx= 3
+  [IQ Entry 0]: pc=0000000080000018 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=7
+  [IQ Entry 1]: pc=000000008000001a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=7
+  [IQ Entry 2]: pc=0000000080000010 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=7
+  [IQ Entry 3]: pc=0000000080000012 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=7
+  [IQ Entry 4]: pc=0000000080000014 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=7
+  [IQ Entry 5]: pc=0000000080000016 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=7
+  [IQ Entry 6]: pc=000000008000001c rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=7
+  [IQ Entry 7]: pc=000000008000001e rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=7
+  [IQ STATE] is_empty_mask=65292 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+BPU REDIRECT ACCEPTED: target=000000008000000c epoch=0
+FRONTEND FLUSH: epoch=0 io.redirect.target=000000008000000c
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 77
+    [IQ ISSUE Port 0]: pc=0000000080000014 entry_idx= 4
+    [IQ ISSUE Port 1]: pc=0000000080000016 entry_idx= 5
+  [IQ Entry 0]: pc=0000000080000018 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=7
+  [IQ Entry 1]: pc=000000008000001a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=7
+  [IQ Entry 4]: pc=0000000080000014 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=7
+  [IQ Entry 5]: pc=0000000080000016 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=7
+  [IQ Entry 6]: pc=000000008000001c rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=7
+  [IQ Entry 7]: pc=000000008000001e rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=7
+  [IQ STATE] is_empty_mask=65340 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+    Enq 0: pc=0000000080000030 alloc_idx= 2
+    Enq 1: pc=0000000080000032 alloc_idx= 3
+    Enq 2: pc=0000000080000034 alloc_idx= 4
+    Enq 3: pc=0000000080000036 alloc_idx= 5
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 78
+    [IQ ISSUE Port 0]: pc=0000000080000018 entry_idx= 0
+    [IQ ISSUE Port 1]: pc=000000008000001a entry_idx= 1
+  [IQ Entry 0]: pc=0000000080000018 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=7
+  [IQ Entry 1]: pc=000000008000001a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=7
+  [IQ Entry 2]: pc=0000000080000030 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=7
+  [IQ Entry 3]: pc=0000000080000032 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=7
+  [IQ Entry 4]: pc=0000000080000034 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=7
+  [IQ Entry 5]: pc=0000000080000036 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=7
+  [IQ Entry 6]: pc=000000008000001c rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=7
+  [IQ Entry 7]: pc=000000008000001e rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=7
+  [IQ STATE] is_empty_mask=65283 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+    Enq 4: pc=0000000080000038 alloc_idx=10
+    Enq 5: pc=000000008000003a alloc_idx=11
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 79
+    [IQ ISSUE Port 0]: pc=000000008000001c entry_idx= 6
+    [IQ ISSUE Port 1]: pc=000000008000001e entry_idx= 7
+  [IQ Entry 2]: pc=0000000080000030 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=7
+  [IQ Entry 3]: pc=0000000080000032 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=7
+  [IQ Entry 4]: pc=0000000080000034 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=7
+  [IQ Entry 5]: pc=0000000080000036 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=7
+  [IQ Entry 6]: pc=000000008000001c rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=7
+  [IQ Entry 7]: pc=000000008000001e rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=7
+  [IQ Entry 10]: pc=0000000080000038 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=7
+  [IQ Entry 11]: pc=000000008000003a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=7
+  [IQ STATE] is_empty_mask=62403 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 80
+    [IQ ISSUE Port 0]: pc=0000000080000030 entry_idx= 2
+    [IQ ISSUE Port 1]: pc=0000000080000032 entry_idx= 3
+  [IQ Entry 2]: pc=0000000080000030 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=7
+  [IQ Entry 3]: pc=0000000080000032 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=7
+  [IQ Entry 4]: pc=0000000080000034 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=7
+  [IQ Entry 5]: pc=0000000080000036 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=7
+  [IQ Entry 10]: pc=0000000080000038 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=7
+  [IQ Entry 11]: pc=000000008000003a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=7
+  [IQ STATE] is_empty_mask=62415 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 81
+    [IQ ISSUE Port 0]: pc=0000000080000034 entry_idx= 4
+    [IQ ISSUE Port 1]: pc=0000000080000036 entry_idx= 5
+  [IQ Entry 4]: pc=0000000080000034 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=7
+  [IQ Entry 5]: pc=0000000080000036 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=7
+  [IQ Entry 10]: pc=0000000080000038 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=7
+  [IQ Entry 11]: pc=000000008000003a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=7
+  [IQ STATE] is_empty_mask=62463 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 82
+    [IQ ISSUE Port 0]: pc=0000000080000038 entry_idx=10
+    [IQ ISSUE Port 1]: pc=000000008000003a entry_idx=11
+  [IQ Entry 10]: pc=0000000080000038 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=7
+  [IQ Entry 11]: pc=000000008000003a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=7
+  [IQ STATE] is_empty_mask=65535 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 83
+CORE RENAME [Cycle                   78] [Port 0]: pc=000000008000000c inst=0000006f lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   78] [Port 1]: pc=000000008000000e inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   78] [Port 2]: pc=0000000080000010 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   78] [Port 3]: pc=0000000080000012 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   78] [Port 4]: pc=0000000080000014 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   78] [Port 5]: pc=0000000080000016 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+  [IQ STATE] is_empty_mask=65535 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=1
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 84
+CORE RENAME [Cycle                   79] [Port 0]: pc=0000000080000018 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   79] [Port 1]: pc=000000008000001a inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   79] [Port 2]: pc=000000008000001c inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   79] [Port 3]: pc=000000008000001e inst=00000000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   79] [Port 4]: pc=0000000080000020 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   79] [Port 5]: pc=0000000080000022 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+  [IQ STATE] is_empty_mask=65535 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=1
+    Enq 0: pc=000000008000000c alloc_idx= 0
+    Enq 1: pc=000000008000000e alloc_idx= 1
+    Enq 2: pc=0000000080000010 alloc_idx= 2
+    Enq 3: pc=0000000080000012 alloc_idx= 3
+    Enq 4: pc=0000000080000014 alloc_idx= 4
+    Enq 5: pc=0000000080000016 alloc_idx= 5
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 85
+[TESTBENCH] Cycle 86
+[Cycle 86] FTQ Flushed! Shadow copy cleared.
+CORE RENAME [Cycle                   80] [Port 0]: pc=0000000080000024 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   80] [Port 1]: pc=0000000080000026 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   80] [Port 2]: pc=0000000080000028 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   80] [Port 3]: pc=000000008000002a inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   80] [Port 4]: pc=000000008000002c inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   80] [Port 5]: pc=000000008000002e inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+[BRU REDIRECT] pc=000000008000000c target=000000008000000c actual_taken=1 is_rvc=0
+    [IQ ISSUE Port 0]: pc=000000008000000c entry_idx= 0
+    [IQ ISSUE Port 1]: pc=000000008000000e entry_idx= 1
+  [IQ REDIRECT] restore_idx=7 enq_ptr=0
+    Entry 0: pc=000000008000000c snapIdx=7 is_younger=0
+    Entry 1: pc=000000008000000e snapIdx=0 is_younger=0
+    Entry 2: pc=0000000080000010 snapIdx=0 is_younger=0
+    Entry 3: pc=0000000080000012 snapIdx=0 is_younger=0
+    Entry 4: pc=0000000080000014 snapIdx=0 is_younger=0
+    Entry 5: pc=0000000080000016 snapIdx=0 is_younger=0
+  [IQ Entry 0]: pc=000000008000000c rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=7
+  [IQ Entry 1]: pc=000000008000000e rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=0
+  [IQ Entry 2]: pc=0000000080000010 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=0
+  [IQ Entry 3]: pc=0000000080000012 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=0
+  [IQ Entry 4]: pc=0000000080000014 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=0
+  [IQ Entry 5]: pc=0000000080000016 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=0
+  [IQ STATE] is_empty_mask=65475 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+    Enq 0: pc=0000000080000018 alloc_idx= 0
+    Enq 1: pc=000000008000001a alloc_idx= 1
+    Enq 2: pc=000000008000001c alloc_idx= 6
+    Enq 3: pc=000000008000001e alloc_idx= 7
+  [IQ REDIRECT] restore_idx=7 enq_ptr=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ REDIRECT] restore_idx=7 enq_ptr=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+CORE RENAME [Cycle                   81] [Port 0]: pc=0000000080000030 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   81] [Port 1]: pc=0000000080000032 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   81] [Port 2]: pc=0000000080000034 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   81] [Port 3]: pc=0000000080000036 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   81] [Port 4]: pc=0000000080000038 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   81] [Port 5]: pc=000000008000003a inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+    [IQ ISSUE Port 0]: pc=0000000080000010 entry_idx= 2
+    [IQ ISSUE Port 1]: pc=0000000080000012 entry_idx= 3
+  [IQ Entry 0]: pc=0000000080000018 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=0
+  [IQ Entry 1]: pc=000000008000001a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=0
+  [IQ Entry 2]: pc=0000000080000010 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=0
+  [IQ Entry 3]: pc=0000000080000012 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=0
+  [IQ Entry 4]: pc=0000000080000014 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=0
+  [IQ Entry 5]: pc=0000000080000016 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=0
+  [IQ Entry 6]: pc=000000008000001c rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=0
+  [IQ Entry 7]: pc=000000008000001e rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=0
+[TESTBENCH] Cycle 87
+  [IQ STATE] is_empty_mask=65292 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+BPU REDIRECT ACCEPTED: target=000000008000000c epoch=1
+FRONTEND FLUSH: epoch=1 io.redirect.target=000000008000000c
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+    [IQ ISSUE Port 0]: pc=0000000080000014 entry_idx= 4
+    [IQ ISSUE Port 1]: pc=0000000080000016 entry_idx= 5
+  [IQ Entry 0]: pc=0000000080000018 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=0
+  [IQ Entry 1]: pc=000000008000001a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=0
+  [IQ Entry 4]: pc=0000000080000014 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=0
+  [IQ Entry 5]: pc=0000000080000016 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=0
+  [IQ Entry 6]: pc=000000008000001c rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=0
+  [IQ Entry 7]: pc=000000008000001e rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=0
+  [IQ STATE] is_empty_mask=65340 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+    Enq 0: pc=0000000080000030 alloc_idx= 2
+    Enq 1: pc=0000000080000032 alloc_idx= 3
+    Enq 2: pc=0000000080000034 alloc_idx= 4
+    Enq 3: pc=0000000080000036 alloc_idx= 5
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 88
+    [IQ ISSUE Port 0]: pc=0000000080000018 entry_idx= 0
+    [IQ ISSUE Port 1]: pc=000000008000001a entry_idx= 1
+  [IQ Entry 0]: pc=0000000080000018 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=0
+  [IQ Entry 1]: pc=000000008000001a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=0
+  [IQ Entry 2]: pc=0000000080000030 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=0
+  [IQ Entry 3]: pc=0000000080000032 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=0
+  [IQ Entry 4]: pc=0000000080000034 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=0
+  [IQ Entry 5]: pc=0000000080000036 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=0
+  [IQ Entry 6]: pc=000000008000001c rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=0
+  [IQ Entry 7]: pc=000000008000001e rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=0
+  [IQ STATE] is_empty_mask=65283 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+    Enq 4: pc=0000000080000038 alloc_idx=10
+    Enq 5: pc=000000008000003a alloc_idx=11
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 89
+    [IQ ISSUE Port 0]: pc=000000008000001c entry_idx= 6
+    [IQ ISSUE Port 1]: pc=000000008000001e entry_idx= 7
+  [IQ Entry 2]: pc=0000000080000030 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=0
+  [IQ Entry 3]: pc=0000000080000032 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=0
+  [IQ Entry 4]: pc=0000000080000034 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=0
+  [IQ Entry 5]: pc=0000000080000036 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=0
+  [IQ Entry 6]: pc=000000008000001c rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=0
+  [IQ Entry 7]: pc=000000008000001e rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=0
+  [IQ Entry 10]: pc=0000000080000038 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=0
+  [IQ Entry 11]: pc=000000008000003a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=0
+  [IQ STATE] is_empty_mask=62403 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 90
+    [IQ ISSUE Port 0]: pc=0000000080000030 entry_idx= 2
+    [IQ ISSUE Port 1]: pc=0000000080000032 entry_idx= 3
+  [IQ Entry 2]: pc=0000000080000030 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=0
+  [IQ Entry 3]: pc=0000000080000032 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=0
+  [IQ Entry 4]: pc=0000000080000034 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=0
+  [IQ Entry 5]: pc=0000000080000036 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=0
+  [IQ Entry 10]: pc=0000000080000038 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=0
+  [IQ Entry 11]: pc=000000008000003a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=0
+  [IQ STATE] is_empty_mask=62415 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 91
+    [IQ ISSUE Port 0]: pc=0000000080000034 entry_idx= 4
+    [IQ ISSUE Port 1]: pc=0000000080000036 entry_idx= 5
+  [IQ Entry 4]: pc=0000000080000034 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=0
+  [IQ Entry 5]: pc=0000000080000036 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=0
+  [IQ Entry 10]: pc=0000000080000038 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=0
+  [IQ Entry 11]: pc=000000008000003a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=0
+  [IQ STATE] is_empty_mask=62463 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 92
+    [IQ ISSUE Port 0]: pc=0000000080000038 entry_idx=10
+    [IQ ISSUE Port 1]: pc=000000008000003a entry_idx=11
+  [IQ Entry 10]: pc=0000000080000038 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=0
+  [IQ Entry 11]: pc=000000008000003a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=0
+  [IQ STATE] is_empty_mask=65535 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 93
+CORE RENAME [Cycle                   88] [Port 0]: pc=000000008000000c inst=0000006f lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   88] [Port 1]: pc=000000008000000e inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   88] [Port 2]: pc=0000000080000010 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   88] [Port 3]: pc=0000000080000012 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   88] [Port 4]: pc=0000000080000014 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   88] [Port 5]: pc=0000000080000016 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+  [IQ STATE] is_empty_mask=65535 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=1
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 94
+CORE RENAME [Cycle                   89] [Port 0]: pc=0000000080000018 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   89] [Port 1]: pc=000000008000001a inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   89] [Port 2]: pc=000000008000001c inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   89] [Port 3]: pc=000000008000001e inst=00000000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   89] [Port 4]: pc=0000000080000020 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   89] [Port 5]: pc=0000000080000022 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+  [IQ STATE] is_empty_mask=65535 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=1
+    Enq 0: pc=000000008000000c alloc_idx= 0
+    Enq 1: pc=000000008000000e alloc_idx= 1
+    Enq 2: pc=0000000080000010 alloc_idx= 2
+    Enq 3: pc=0000000080000012 alloc_idx= 3
+    Enq 4: pc=0000000080000014 alloc_idx= 4
+    Enq 5: pc=0000000080000016 alloc_idx= 5
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 95
+CORE RENAME [Cycle                   90] [Port 0]: pc=0000000080000024 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   90] [Port 1]: pc=0000000080000026 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   90] [Port 2]: pc=0000000080000028 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   90] [Port 3]: pc=000000008000002a inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   90] [Port 4]: pc=000000008000002c inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   90] [Port 5]: pc=000000008000002e inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+[BRU REDIRECT] pc=000000008000000c target=000000008000000c actual_taken=1 is_rvc=0
+    [IQ ISSUE Port 0]: pc=000000008000000c entry_idx= 0
+    [IQ ISSUE Port 1]: pc=000000008000000e entry_idx= 1
+  [IQ REDIRECT] restore_idx=0 enq_ptr=0
+    Entry 0: pc=000000008000000c snapIdx=0 is_younger=0
+    Entry 1: pc=000000008000000e snapIdx=1 is_younger=1
+    Entry 2: pc=0000000080000010 snapIdx=1 is_younger=1
+    Entry 3: pc=0000000080000012 snapIdx=1 is_younger=1
+    Entry 4: pc=0000000080000014 snapIdx=1 is_younger=1
+    Entry 5: pc=0000000080000016 snapIdx=1 is_younger=1
+  [IQ Entry 0]: pc=000000008000000c rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=0
+  [IQ Entry 1]: pc=000000008000000e rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ Entry 2]: pc=0000000080000010 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ Entry 3]: pc=0000000080000012 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ Entry 4]: pc=0000000080000014 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ Entry 5]: pc=0000000080000016 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ STATE] is_empty_mask=65475 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+    Enq 0: pc=0000000080000018 alloc_idx= 0
+    Enq 1: pc=000000008000001a alloc_idx= 1
+    Enq 2: pc=000000008000001c alloc_idx= 6
+    Enq 3: pc=000000008000001e alloc_idx= 7
+  [IQ REDIRECT] restore_idx=0 enq_ptr=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ REDIRECT] restore_idx=0 enq_ptr=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 96
+[Cycle 96] FTQ Flushed! Shadow copy cleared.
+CORE RENAME [Cycle                   91] [Port 0]: pc=0000000080000030 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   91] [Port 1]: pc=0000000080000032 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   91] [Port 2]: pc=0000000080000034 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   91] [Port 3]: pc=0000000080000036 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   91] [Port 4]: pc=0000000080000038 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   91] [Port 5]: pc=000000008000003a inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+    [IQ ISSUE Port 0]: pc=0000000080000018 entry_idx= 0
+    [IQ ISSUE Port 1]: pc=000000008000001c entry_idx= 6
+  [IQ Entry 0]: pc=0000000080000018 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=0
+  [IQ Entry 6]: pc=000000008000001c rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=0
+  [IQ Entry 7]: pc=000000008000001e rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=0
+  [IQ STATE] is_empty_mask=65407 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+BPU REDIRECT ACCEPTED: target=000000008000000c epoch=0
+FRONTEND FLUSH: epoch=0 io.redirect.target=000000008000000c
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 97
+    [IQ ISSUE Port 0]: pc=000000008000001e entry_idx= 7
+  [IQ Entry 7]: pc=000000008000001e rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=0
+  [IQ STATE] is_empty_mask=65535 deq_val0=1 deq_rdy0=1 deq_val1=0 deq_rdy1=1
+    Enq 0: pc=0000000080000030 alloc_idx= 0
+    Enq 1: pc=0000000080000032 alloc_idx= 1
+    Enq 2: pc=0000000080000034 alloc_idx= 2
+    Enq 3: pc=0000000080000036 alloc_idx= 3
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 98
+    [IQ ISSUE Port 0]: pc=0000000080000030 entry_idx= 0
+    [IQ ISSUE Port 1]: pc=0000000080000032 entry_idx= 1
+  [IQ Entry 0]: pc=0000000080000030 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ Entry 1]: pc=0000000080000032 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ Entry 2]: pc=0000000080000034 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ Entry 3]: pc=0000000080000036 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ STATE] is_empty_mask=65523 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+    Enq 4: pc=0000000080000038 alloc_idx= 6
+    Enq 5: pc=000000008000003a alloc_idx= 7
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 99
+    [IQ ISSUE Port 0]: pc=0000000080000034 entry_idx= 2
+    [IQ ISSUE Port 1]: pc=0000000080000036 entry_idx= 3
+  [IQ Entry 2]: pc=0000000080000034 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ Entry 3]: pc=0000000080000036 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ Entry 6]: pc=0000000080000038 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ Entry 7]: pc=000000008000003a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ STATE] is_empty_mask=65343 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 100
+    [IQ ISSUE Port 0]: pc=0000000080000038 entry_idx= 6
+    [IQ ISSUE Port 1]: pc=000000008000003a entry_idx= 7
+  [IQ Entry 6]: pc=0000000080000038 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ Entry 7]: pc=000000008000003a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ STATE] is_empty_mask=65535 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 101
+  [IQ STATE] is_empty_mask=65535 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=1
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 102
+  [IQ STATE] is_empty_mask=65535 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=1
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 103
+CORE RENAME [Cycle                   98] [Port 0]: pc=000000008000000c inst=0000006f lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   98] [Port 1]: pc=000000008000000e inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   98] [Port 2]: pc=0000000080000010 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   98] [Port 3]: pc=0000000080000012 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   98] [Port 4]: pc=0000000080000014 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   98] [Port 5]: pc=0000000080000016 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+  [IQ STATE] is_empty_mask=65535 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=1
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 104
+CORE RENAME [Cycle                   99] [Port 0]: pc=0000000080000018 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   99] [Port 1]: pc=000000008000001a inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   99] [Port 2]: pc=000000008000001c inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   99] [Port 3]: pc=000000008000001e inst=00000000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   99] [Port 4]: pc=0000000080000020 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                   99] [Port 5]: pc=0000000080000022 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+  [IQ STATE] is_empty_mask=65535 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=1
+    Enq 0: pc=000000008000000c alloc_idx= 0
+    Enq 1: pc=000000008000000e alloc_idx= 1
+    Enq 2: pc=0000000080000010 alloc_idx= 2
+    Enq 3: pc=0000000080000012 alloc_idx= 3
+    Enq 4: pc=0000000080000014 alloc_idx= 4
+    Enq 5: pc=0000000080000016 alloc_idx= 5
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 105
+CORE RENAME [Cycle                  100] [Port 0]: pc=0000000080000024 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  100] [Port 1]: pc=0000000080000026 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  100] [Port 2]: pc=0000000080000028 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  100] [Port 3]: pc=000000008000002a inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  100] [Port 4]: pc=000000008000002c inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  100] [Port 5]: pc=000000008000002e inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+[BRU REDIRECT] pc=000000008000000c target=000000008000000c actual_taken=1 is_rvc=0
+    [IQ ISSUE Port 0]: pc=000000008000000c entry_idx= 0
+    [IQ ISSUE Port 1]: pc=000000008000000e entry_idx= 1
+  [IQ REDIRECT] restore_idx=1 enq_ptr=2
+    Entry 0: pc=000000008000000c snapIdx=1 is_younger=0
+    Entry 1: pc=000000008000000e snapIdx=2 is_younger=0
+    Entry 2: pc=0000000080000010 snapIdx=2 is_younger=0
+    Entry 3: pc=0000000080000012 snapIdx=2 is_younger=0
+    Entry 4: pc=0000000080000014 snapIdx=2 is_younger=0
+    Entry 5: pc=0000000080000016 snapIdx=2 is_younger=0
+  [IQ Entry 0]: pc=000000008000000c rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=1
+  [IQ Entry 1]: pc=000000008000000e rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ Entry 2]: pc=0000000080000010 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ Entry 3]: pc=0000000080000012 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ Entry 4]: pc=0000000080000014 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ Entry 5]: pc=0000000080000016 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ STATE] is_empty_mask=65475 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+    Enq 0: pc=0000000080000018 alloc_idx= 0
+    Enq 1: pc=000000008000001a alloc_idx= 1
+    Enq 2: pc=000000008000001c alloc_idx= 6
+    Enq 3: pc=000000008000001e alloc_idx= 7
+  [IQ REDIRECT] restore_idx=1 enq_ptr=2
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ REDIRECT] restore_idx=1 enq_ptr=2
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 106
+[Cycle 106] FTQ Flushed! Shadow copy cleared.
+CORE RENAME [Cycle                  101] [Port 0]: pc=0000000080000030 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  101] [Port 1]: pc=0000000080000032 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  101] [Port 2]: pc=0000000080000034 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  101] [Port 3]: pc=0000000080000036 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  101] [Port 4]: pc=0000000080000038 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  101] [Port 5]: pc=000000008000003a inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+    [IQ ISSUE Port 0]: pc=0000000080000010 entry_idx= 2
+    [IQ ISSUE Port 1]: pc=0000000080000012 entry_idx= 3
+  [IQ Entry 0]: pc=0000000080000018 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ Entry 1]: pc=000000008000001a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ Entry 2]: pc=0000000080000010 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ Entry 3]: pc=0000000080000012 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ Entry 4]: pc=0000000080000014 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ Entry 5]: pc=0000000080000016 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ Entry 6]: pc=000000008000001c rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ Entry 7]: pc=000000008000001e rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ STATE] is_empty_mask=65292 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+BPU REDIRECT ACCEPTED: target=000000008000000c epoch=1
+FRONTEND FLUSH: epoch=1 io.redirect.target=000000008000000c
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 107
+    [IQ ISSUE Port 0]: pc=0000000080000014 entry_idx= 4
+    [IQ ISSUE Port 1]: pc=0000000080000016 entry_idx= 5
+  [IQ Entry 0]: pc=0000000080000018 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ Entry 1]: pc=000000008000001a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ Entry 4]: pc=0000000080000014 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ Entry 5]: pc=0000000080000016 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ Entry 6]: pc=000000008000001c rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ Entry 7]: pc=000000008000001e rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ STATE] is_empty_mask=65340 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+    Enq 0: pc=0000000080000030 alloc_idx= 2
+    Enq 1: pc=0000000080000032 alloc_idx= 3
+    Enq 2: pc=0000000080000034 alloc_idx= 4
+    Enq 3: pc=0000000080000036 alloc_idx= 5
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 108
+    [IQ ISSUE Port 0]: pc=0000000080000018 entry_idx= 0
+    [IQ ISSUE Port 1]: pc=000000008000001a entry_idx= 1
+  [IQ Entry 0]: pc=0000000080000018 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ Entry 1]: pc=000000008000001a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ Entry 2]: pc=0000000080000030 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ Entry 3]: pc=0000000080000032 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ Entry 4]: pc=0000000080000034 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ Entry 5]: pc=0000000080000036 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ Entry 6]: pc=000000008000001c rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ Entry 7]: pc=000000008000001e rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ STATE] is_empty_mask=65283 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+    Enq 4: pc=0000000080000038 alloc_idx=10
+    Enq 5: pc=000000008000003a alloc_idx=11
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 109
+    [IQ ISSUE Port 0]: pc=000000008000001c entry_idx= 6
+    [IQ ISSUE Port 1]: pc=000000008000001e entry_idx= 7
+  [IQ Entry 2]: pc=0000000080000030 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ Entry 3]: pc=0000000080000032 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ Entry 4]: pc=0000000080000034 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ Entry 5]: pc=0000000080000036 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ Entry 6]: pc=000000008000001c rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ Entry 7]: pc=000000008000001e rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ Entry 10]: pc=0000000080000038 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ Entry 11]: pc=000000008000003a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ STATE] is_empty_mask=62403 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 110
+    [IQ ISSUE Port 0]: pc=0000000080000030 entry_idx= 2
+    [IQ ISSUE Port 1]: pc=0000000080000032 entry_idx= 3
+  [IQ Entry 2]: pc=0000000080000030 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ Entry 3]: pc=0000000080000032 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ Entry 4]: pc=0000000080000034 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ Entry 5]: pc=0000000080000036 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ Entry 10]: pc=0000000080000038 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ Entry 11]: pc=000000008000003a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ STATE] is_empty_mask=62415 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 111
+    [IQ ISSUE Port 0]: pc=0000000080000034 entry_idx= 4
+    [IQ ISSUE Port 1]: pc=0000000080000036 entry_idx= 5
+  [IQ Entry 4]: pc=0000000080000034 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ Entry 5]: pc=0000000080000036 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ Entry 10]: pc=0000000080000038 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ Entry 11]: pc=000000008000003a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ STATE] is_empty_mask=62463 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 112
+    [IQ ISSUE Port 0]: pc=0000000080000038 entry_idx=10
+    [IQ ISSUE Port 1]: pc=000000008000003a entry_idx=11
+  [IQ Entry 10]: pc=0000000080000038 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ Entry 11]: pc=000000008000003a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ STATE] is_empty_mask=65535 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 113
+CORE RENAME [Cycle                  108] [Port 0]: pc=000000008000000c inst=0000006f lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  108] [Port 1]: pc=000000008000000e inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  108] [Port 2]: pc=0000000080000010 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  108] [Port 3]: pc=0000000080000012 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  108] [Port 4]: pc=0000000080000014 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  108] [Port 5]: pc=0000000080000016 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+  [IQ STATE] is_empty_mask=65535 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=1
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 114
+CORE RENAME [Cycle                  109] [Port 0]: pc=0000000080000018 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  109] [Port 1]: pc=000000008000001a inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  109] [Port 2]: pc=000000008000001c inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  109] [Port 3]: pc=000000008000001e inst=00000000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  109] [Port 4]: pc=0000000080000020 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  109] [Port 5]: pc=0000000080000022 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+  [IQ STATE] is_empty_mask=65535 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=1
+    Enq 0: pc=000000008000000c alloc_idx= 0
+    Enq 1: pc=000000008000000e alloc_idx= 1
+    Enq 2: pc=0000000080000010 alloc_idx= 2
+    Enq 3: pc=0000000080000012 alloc_idx= 3
+    Enq 4: pc=0000000080000014 alloc_idx= 4
+    Enq 5: pc=0000000080000016 alloc_idx= 5
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 115
+CORE RENAME [Cycle                  110] [Port 0]: pc=0000000080000024 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  110] [Port 1]: pc=0000000080000026 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  110] [Port 2]: pc=0000000080000028 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  110] [Port 3]: pc=000000008000002a inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  110] [Port 4]: pc=000000008000002c inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  110] [Port 5]: pc=000000008000002e inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+[BRU REDIRECT] pc=000000008000000c target=000000008000000c actual_taken=1 is_rvc=0
+    [IQ ISSUE Port 0]: pc=000000008000000c entry_idx= 0
+    [IQ ISSUE Port 1]: pc=000000008000000e entry_idx= 1
+  [IQ REDIRECT] restore_idx=2 enq_ptr=3
+    Entry 0: pc=000000008000000c snapIdx=2 is_younger=0
+    Entry 1: pc=000000008000000e snapIdx=3 is_younger=0
+    Entry 2: pc=0000000080000010 snapIdx=3 is_younger=0
+    Entry 3: pc=0000000080000012 snapIdx=3 is_younger=0
+    Entry 4: pc=0000000080000014 snapIdx=3 is_younger=0
+    Entry 5: pc=0000000080000016 snapIdx=3 is_younger=0
+  [IQ Entry 0]: pc=000000008000000c rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=2
+  [IQ Entry 1]: pc=000000008000000e rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ Entry 2]: pc=0000000080000010 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ Entry 3]: pc=0000000080000012 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ Entry 4]: pc=0000000080000014 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ Entry 5]: pc=0000000080000016 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ STATE] is_empty_mask=65475 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+    Enq 0: pc=0000000080000018 alloc_idx= 0
+    Enq 1: pc=000000008000001a alloc_idx= 1
+    Enq 2: pc=000000008000001c alloc_idx= 6
+    Enq 3: pc=000000008000001e alloc_idx= 7
+  [IQ REDIRECT] restore_idx=2 enq_ptr=3
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ REDIRECT] restore_idx=2 enq_ptr=3
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 116
+[Cycle 116] FTQ Flushed! Shadow copy cleared.
+CORE RENAME [Cycle                  111] [Port 0]: pc=0000000080000030 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  111] [Port 1]: pc=0000000080000032 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  111] [Port 2]: pc=0000000080000034 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  111] [Port 3]: pc=0000000080000036 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  111] [Port 4]: pc=0000000080000038 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  111] [Port 5]: pc=000000008000003a inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+    [IQ ISSUE Port 0]: pc=0000000080000010 entry_idx= 2
+    [IQ ISSUE Port 1]: pc=0000000080000012 entry_idx= 3
+  [IQ Entry 0]: pc=0000000080000018 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ Entry 1]: pc=000000008000001a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ Entry 2]: pc=0000000080000010 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ Entry 3]: pc=0000000080000012 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ Entry 4]: pc=0000000080000014 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ Entry 5]: pc=0000000080000016 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ Entry 6]: pc=000000008000001c rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ Entry 7]: pc=000000008000001e rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ STATE] is_empty_mask=65292 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+BPU REDIRECT ACCEPTED: target=000000008000000c epoch=0
+FRONTEND FLUSH: epoch=0 io.redirect.target=000000008000000c
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 117
+    [IQ ISSUE Port 0]: pc=0000000080000014 entry_idx= 4
+    [IQ ISSUE Port 1]: pc=0000000080000016 entry_idx= 5
+  [IQ Entry 0]: pc=0000000080000018 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ Entry 1]: pc=000000008000001a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ Entry 4]: pc=0000000080000014 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ Entry 5]: pc=0000000080000016 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ Entry 6]: pc=000000008000001c rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ Entry 7]: pc=000000008000001e rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ STATE] is_empty_mask=65340 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+    Enq 0: pc=0000000080000030 alloc_idx= 2
+    Enq 1: pc=0000000080000032 alloc_idx= 3
+    Enq 2: pc=0000000080000034 alloc_idx= 4
+    Enq 3: pc=0000000080000036 alloc_idx= 5
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 118
+    [IQ ISSUE Port 0]: pc=0000000080000018 entry_idx= 0
+    [IQ ISSUE Port 1]: pc=000000008000001a entry_idx= 1
+  [IQ Entry 0]: pc=0000000080000018 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ Entry 1]: pc=000000008000001a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ Entry 2]: pc=0000000080000030 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ Entry 3]: pc=0000000080000032 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ Entry 4]: pc=0000000080000034 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ Entry 5]: pc=0000000080000036 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ Entry 6]: pc=000000008000001c rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ Entry 7]: pc=000000008000001e rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ STATE] is_empty_mask=65283 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+    Enq 4: pc=0000000080000038 alloc_idx=10
+    Enq 5: pc=000000008000003a alloc_idx=11
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 119
+    [IQ ISSUE Port 0]: pc=000000008000001c entry_idx= 6
+    [IQ ISSUE Port 1]: pc=000000008000001e entry_idx= 7
+  [IQ Entry 2]: pc=0000000080000030 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ Entry 3]: pc=0000000080000032 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ Entry 4]: pc=0000000080000034 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ Entry 5]: pc=0000000080000036 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ Entry 6]: pc=000000008000001c rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ Entry 7]: pc=000000008000001e rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ Entry 10]: pc=0000000080000038 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ Entry 11]: pc=000000008000003a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ STATE] is_empty_mask=62403 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 120
+    [IQ ISSUE Port 0]: pc=0000000080000030 entry_idx= 2
+    [IQ ISSUE Port 1]: pc=0000000080000032 entry_idx= 3
+  [IQ Entry 2]: pc=0000000080000030 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ Entry 3]: pc=0000000080000032 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ Entry 4]: pc=0000000080000034 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ Entry 5]: pc=0000000080000036 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ Entry 10]: pc=0000000080000038 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ Entry 11]: pc=000000008000003a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ STATE] is_empty_mask=62415 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 121
+    [IQ ISSUE Port 0]: pc=0000000080000034 entry_idx= 4
+    [IQ ISSUE Port 1]: pc=0000000080000036 entry_idx= 5
+  [IQ Entry 4]: pc=0000000080000034 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ Entry 5]: pc=0000000080000036 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ Entry 10]: pc=0000000080000038 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ Entry 11]: pc=000000008000003a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ STATE] is_empty_mask=62463 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 122
+    [IQ ISSUE Port 0]: pc=0000000080000038 entry_idx=10
+    [IQ ISSUE Port 1]: pc=000000008000003a entry_idx=11
+  [IQ Entry 10]: pc=0000000080000038 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ Entry 11]: pc=000000008000003a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ STATE] is_empty_mask=65535 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 123
+CORE RENAME [Cycle                  118] [Port 0]: pc=000000008000000c inst=0000006f lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  118] [Port 1]: pc=000000008000000e inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  118] [Port 2]: pc=0000000080000010 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  118] [Port 3]: pc=0000000080000012 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  118] [Port 4]: pc=0000000080000014 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  118] [Port 5]: pc=0000000080000016 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+  [IQ STATE] is_empty_mask=65535 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=1
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 124
+CORE RENAME [Cycle                  119] [Port 0]: pc=0000000080000018 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  119] [Port 1]: pc=000000008000001a inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  119] [Port 2]: pc=000000008000001c inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  119] [Port 3]: pc=000000008000001e inst=00000000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  119] [Port 4]: pc=0000000080000020 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  119] [Port 5]: pc=0000000080000022 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+  [IQ STATE] is_empty_mask=65535 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=1
+    Enq 0: pc=000000008000000c alloc_idx= 0
+    Enq 1: pc=000000008000000e alloc_idx= 1
+    Enq 2: pc=0000000080000010 alloc_idx= 2
+    Enq 3: pc=0000000080000012 alloc_idx= 3
+    Enq 4: pc=0000000080000014 alloc_idx= 4
+    Enq 5: pc=0000000080000016 alloc_idx= 5
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 125
+CORE RENAME [Cycle                  120] [Port 0]: pc=0000000080000024 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  120] [Port 1]: pc=0000000080000026 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  120] [Port 2]: pc=0000000080000028 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  120] [Port 3]: pc=000000008000002a inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  120] [Port 4]: pc=000000008000002c inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  120] [Port 5]: pc=000000008000002e inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+[BRU REDIRECT] pc=000000008000000c target=000000008000000c actual_taken=1 is_rvc=0
+    [IQ ISSUE Port 0]: pc=000000008000000c entry_idx= 0
+    [IQ ISSUE Port 1]: pc=000000008000000e entry_idx= 1
+  [IQ REDIRECT] restore_idx=3 enq_ptr=4
+    Entry 0: pc=000000008000000c snapIdx=3 is_younger=0
+    Entry 1: pc=000000008000000e snapIdx=4 is_younger=0
+    Entry 2: pc=0000000080000010 snapIdx=4 is_younger=0
+    Entry 3: pc=0000000080000012 snapIdx=4 is_younger=0
+    Entry 4: pc=0000000080000014 snapIdx=4 is_younger=0
+    Entry 5: pc=0000000080000016 snapIdx=4 is_younger=0
+  [IQ Entry 0]: pc=000000008000000c rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=3
+  [IQ Entry 1]: pc=000000008000000e rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ Entry 2]: pc=0000000080000010 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ Entry 3]: pc=0000000080000012 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ Entry 4]: pc=0000000080000014 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ Entry 5]: pc=0000000080000016 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ STATE] is_empty_mask=65475 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+    Enq 0: pc=0000000080000018 alloc_idx= 0
+    Enq 1: pc=000000008000001a alloc_idx= 1
+    Enq 2: pc=000000008000001c alloc_idx= 6
+    Enq 3: pc=000000008000001e alloc_idx= 7
+  [IQ REDIRECT] restore_idx=3 enq_ptr=4
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ REDIRECT] restore_idx=3 enq_ptr=4
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 126
+[Cycle 126] FTQ Flushed! Shadow copy cleared.
+CORE RENAME [Cycle                  121] [Port 0]: pc=0000000080000030 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  121] [Port 1]: pc=0000000080000032 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  121] [Port 2]: pc=0000000080000034 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  121] [Port 3]: pc=0000000080000036 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  121] [Port 4]: pc=0000000080000038 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  121] [Port 5]: pc=000000008000003a inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+    [IQ ISSUE Port 0]: pc=0000000080000010 entry_idx= 2
+    [IQ ISSUE Port 1]: pc=0000000080000012 entry_idx= 3
+  [IQ Entry 0]: pc=0000000080000018 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ Entry 1]: pc=000000008000001a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ Entry 2]: pc=0000000080000010 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ Entry 3]: pc=0000000080000012 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ Entry 4]: pc=0000000080000014 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ Entry 5]: pc=0000000080000016 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ Entry 6]: pc=000000008000001c rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ Entry 7]: pc=000000008000001e rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ STATE] is_empty_mask=65292 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+BPU REDIRECT ACCEPTED: target=000000008000000c epoch=1
+FRONTEND FLUSH: epoch=1 io.redirect.target=000000008000000c
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 127
+    [IQ ISSUE Port 0]: pc=0000000080000014 entry_idx= 4
+    [IQ ISSUE Port 1]: pc=0000000080000016 entry_idx= 5
+  [IQ Entry 0]: pc=0000000080000018 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ Entry 1]: pc=000000008000001a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ Entry 4]: pc=0000000080000014 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ Entry 5]: pc=0000000080000016 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ Entry 6]: pc=000000008000001c rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ Entry 7]: pc=000000008000001e rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ STATE] is_empty_mask=65340 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+    Enq 0: pc=0000000080000030 alloc_idx= 2
+    Enq 1: pc=0000000080000032 alloc_idx= 3
+    Enq 2: pc=0000000080000034 alloc_idx= 4
+    Enq 3: pc=0000000080000036 alloc_idx= 5
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 128
+    [IQ ISSUE Port 0]: pc=0000000080000018 entry_idx= 0
+    [IQ ISSUE Port 1]: pc=000000008000001a entry_idx= 1
+  [IQ Entry 0]: pc=0000000080000018 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ Entry 1]: pc=000000008000001a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ Entry 2]: pc=0000000080000030 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ Entry 3]: pc=0000000080000032 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ Entry 4]: pc=0000000080000034 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ Entry 5]: pc=0000000080000036 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ Entry 6]: pc=000000008000001c rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ Entry 7]: pc=000000008000001e rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ STATE] is_empty_mask=65283 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+    Enq 4: pc=0000000080000038 alloc_idx=10
+    Enq 5: pc=000000008000003a alloc_idx=11
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 129
+    [IQ ISSUE Port 0]: pc=000000008000001c entry_idx= 6
+    [IQ ISSUE Port 1]: pc=000000008000001e entry_idx= 7
+  [IQ Entry 2]: pc=0000000080000030 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ Entry 3]: pc=0000000080000032 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ Entry 4]: pc=0000000080000034 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ Entry 5]: pc=0000000080000036 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ Entry 6]: pc=000000008000001c rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ Entry 7]: pc=000000008000001e rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ Entry 10]: pc=0000000080000038 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ Entry 11]: pc=000000008000003a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ STATE] is_empty_mask=62403 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 130
+    [IQ ISSUE Port 0]: pc=0000000080000030 entry_idx= 2
+    [IQ ISSUE Port 1]: pc=0000000080000032 entry_idx= 3
+  [IQ Entry 2]: pc=0000000080000030 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ Entry 3]: pc=0000000080000032 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ Entry 4]: pc=0000000080000034 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ Entry 5]: pc=0000000080000036 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ Entry 10]: pc=0000000080000038 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ Entry 11]: pc=000000008000003a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ STATE] is_empty_mask=62415 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 131
+    [IQ ISSUE Port 0]: pc=0000000080000034 entry_idx= 4
+    [IQ ISSUE Port 1]: pc=0000000080000036 entry_idx= 5
+  [IQ Entry 4]: pc=0000000080000034 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ Entry 5]: pc=0000000080000036 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ Entry 10]: pc=0000000080000038 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ Entry 11]: pc=000000008000003a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ STATE] is_empty_mask=62463 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 132
+    [IQ ISSUE Port 0]: pc=0000000080000038 entry_idx=10
+    [IQ ISSUE Port 1]: pc=000000008000003a entry_idx=11
+  [IQ Entry 10]: pc=0000000080000038 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ Entry 11]: pc=000000008000003a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ STATE] is_empty_mask=65535 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 133
+CORE RENAME [Cycle                  128] [Port 0]: pc=000000008000000c inst=0000006f lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  128] [Port 1]: pc=000000008000000e inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  128] [Port 2]: pc=0000000080000010 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  128] [Port 3]: pc=0000000080000012 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  128] [Port 4]: pc=0000000080000014 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  128] [Port 5]: pc=0000000080000016 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+  [IQ STATE] is_empty_mask=65535 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=1
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 134
+CORE RENAME [Cycle                  129] [Port 0]: pc=0000000080000018 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  129] [Port 1]: pc=000000008000001a inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  129] [Port 2]: pc=000000008000001c inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  129] [Port 3]: pc=000000008000001e inst=00000000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  129] [Port 4]: pc=0000000080000020 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  129] [Port 5]: pc=0000000080000022 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+  [IQ STATE] is_empty_mask=65535 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=1
+    Enq 0: pc=000000008000000c alloc_idx= 0
+    Enq 1: pc=000000008000000e alloc_idx= 1
+    Enq 2: pc=0000000080000010 alloc_idx= 2
+    Enq 3: pc=0000000080000012 alloc_idx= 3
+    Enq 4: pc=0000000080000014 alloc_idx= 4
+    Enq 5: pc=0000000080000016 alloc_idx= 5
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 135
+CORE RENAME [Cycle                  130] [Port 0]: pc=0000000080000024 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  130] [Port 1]: pc=0000000080000026 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  130] [Port 2]: pc=0000000080000028 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  130] [Port 3]: pc=000000008000002a inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  130] [Port 4]: pc=000000008000002c inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  130] [Port 5]: pc=000000008000002e inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+[BRU REDIRECT] pc=000000008000000c target=000000008000000c actual_taken=1 is_rvc=0
+    [IQ ISSUE Port 0]: pc=000000008000000c entry_idx= 0
+    [IQ ISSUE Port 1]: pc=000000008000000e entry_idx= 1
+  [IQ REDIRECT] restore_idx=4 enq_ptr=5
+    Entry 0: pc=000000008000000c snapIdx=4 is_younger=0
+    Entry 1: pc=000000008000000e snapIdx=5 is_younger=0
+    Entry 2: pc=0000000080000010 snapIdx=5 is_younger=0
+    Entry 3: pc=0000000080000012 snapIdx=5 is_younger=0
+    Entry 4: pc=0000000080000014 snapIdx=5 is_younger=0
+    Entry 5: pc=0000000080000016 snapIdx=5 is_younger=0
+  [IQ Entry 0]: pc=000000008000000c rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=4
+  [IQ Entry 1]: pc=000000008000000e rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ Entry 2]: pc=0000000080000010 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ Entry 3]: pc=0000000080000012 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ Entry 4]: pc=0000000080000014 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ Entry 5]: pc=0000000080000016 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ STATE] is_empty_mask=65475 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+    Enq 0: pc=0000000080000018 alloc_idx= 0
+    Enq 1: pc=000000008000001a alloc_idx= 1
+    Enq 2: pc=000000008000001c alloc_idx= 6
+    Enq 3: pc=000000008000001e alloc_idx= 7
+  [IQ REDIRECT] restore_idx=4 enq_ptr=5
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ REDIRECT] restore_idx=4 enq_ptr=5
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 136
+[Cycle 136] FTQ Flushed! Shadow copy cleared.
+CORE RENAME [Cycle                  131] [Port 0]: pc=0000000080000030 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  131] [Port 1]: pc=0000000080000032 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  131] [Port 2]: pc=0000000080000034 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  131] [Port 3]: pc=0000000080000036 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  131] [Port 4]: pc=0000000080000038 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  131] [Port 5]: pc=000000008000003a inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+    [IQ ISSUE Port 0]: pc=0000000080000010 entry_idx= 2
+    [IQ ISSUE Port 1]: pc=0000000080000012 entry_idx= 3
+  [IQ Entry 0]: pc=0000000080000018 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ Entry 1]: pc=000000008000001a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ Entry 2]: pc=0000000080000010 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ Entry 3]: pc=0000000080000012 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ Entry 4]: pc=0000000080000014 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ Entry 5]: pc=0000000080000016 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ Entry 6]: pc=000000008000001c rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ Entry 7]: pc=000000008000001e rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ STATE] is_empty_mask=65292 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+BPU REDIRECT ACCEPTED: target=000000008000000c epoch=0
+FRONTEND FLUSH: epoch=0 io.redirect.target=000000008000000c
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 137
+    [IQ ISSUE Port 0]: pc=0000000080000014 entry_idx= 4
+    [IQ ISSUE Port 1]: pc=0000000080000016 entry_idx= 5
+  [IQ Entry 0]: pc=0000000080000018 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ Entry 1]: pc=000000008000001a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ Entry 4]: pc=0000000080000014 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ Entry 5]: pc=0000000080000016 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ Entry 6]: pc=000000008000001c rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ Entry 7]: pc=000000008000001e rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ STATE] is_empty_mask=65340 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+    Enq 0: pc=0000000080000030 alloc_idx= 2
+    Enq 1: pc=0000000080000032 alloc_idx= 3
+    Enq 2: pc=0000000080000034 alloc_idx= 4
+    Enq 3: pc=0000000080000036 alloc_idx= 5
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 138
+    [IQ ISSUE Port 0]: pc=0000000080000018 entry_idx= 0
+    [IQ ISSUE Port 1]: pc=000000008000001a entry_idx= 1
+  [IQ Entry 0]: pc=0000000080000018 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ Entry 1]: pc=000000008000001a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ Entry 2]: pc=0000000080000030 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ Entry 3]: pc=0000000080000032 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ Entry 4]: pc=0000000080000034 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ Entry 5]: pc=0000000080000036 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ Entry 6]: pc=000000008000001c rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ Entry 7]: pc=000000008000001e rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ STATE] is_empty_mask=65283 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+    Enq 4: pc=0000000080000038 alloc_idx=10
+    Enq 5: pc=000000008000003a alloc_idx=11
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 139
+    [IQ ISSUE Port 0]: pc=000000008000001c entry_idx= 6
+    [IQ ISSUE Port 1]: pc=000000008000001e entry_idx= 7
+  [IQ Entry 2]: pc=0000000080000030 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ Entry 3]: pc=0000000080000032 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ Entry 4]: pc=0000000080000034 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ Entry 5]: pc=0000000080000036 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ Entry 6]: pc=000000008000001c rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ Entry 7]: pc=000000008000001e rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ Entry 10]: pc=0000000080000038 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ Entry 11]: pc=000000008000003a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ STATE] is_empty_mask=62403 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 140
+    [IQ ISSUE Port 0]: pc=0000000080000030 entry_idx= 2
+    [IQ ISSUE Port 1]: pc=0000000080000032 entry_idx= 3
+  [IQ Entry 2]: pc=0000000080000030 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ Entry 3]: pc=0000000080000032 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ Entry 4]: pc=0000000080000034 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ Entry 5]: pc=0000000080000036 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ Entry 10]: pc=0000000080000038 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ Entry 11]: pc=000000008000003a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ STATE] is_empty_mask=62415 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 141
+    [IQ ISSUE Port 0]: pc=0000000080000034 entry_idx= 4
+    [IQ ISSUE Port 1]: pc=0000000080000036 entry_idx= 5
+  [IQ Entry 4]: pc=0000000080000034 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ Entry 5]: pc=0000000080000036 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ Entry 10]: pc=0000000080000038 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ Entry 11]: pc=000000008000003a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ STATE] is_empty_mask=62463 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 142
+    [IQ ISSUE Port 0]: pc=0000000080000038 entry_idx=10
+    [IQ ISSUE Port 1]: pc=000000008000003a entry_idx=11
+  [IQ Entry 10]: pc=0000000080000038 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ Entry 11]: pc=000000008000003a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ STATE] is_empty_mask=65535 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 143
+CORE RENAME [Cycle                  138] [Port 0]: pc=000000008000000c inst=0000006f lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  138] [Port 1]: pc=000000008000000e inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  138] [Port 2]: pc=0000000080000010 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  138] [Port 3]: pc=0000000080000012 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  138] [Port 4]: pc=0000000080000014 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  138] [Port 5]: pc=0000000080000016 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+  [IQ STATE] is_empty_mask=65535 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=1
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 144
+CORE RENAME [Cycle                  139] [Port 0]: pc=0000000080000018 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  139] [Port 1]: pc=000000008000001a inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  139] [Port 2]: pc=000000008000001c inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  139] [Port 3]: pc=000000008000001e inst=00000000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  139] [Port 4]: pc=0000000080000020 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  139] [Port 5]: pc=0000000080000022 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+  [IQ STATE] is_empty_mask=65535 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=1
+    Enq 0: pc=000000008000000c alloc_idx= 0
+    Enq 1: pc=000000008000000e alloc_idx= 1
+    Enq 2: pc=0000000080000010 alloc_idx= 2
+    Enq 3: pc=0000000080000012 alloc_idx= 3
+    Enq 4: pc=0000000080000014 alloc_idx= 4
+    Enq 5: pc=0000000080000016 alloc_idx= 5
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 145
+CORE RENAME [Cycle                  140] [Port 0]: pc=0000000080000024 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  140] [Port 1]: pc=0000000080000026 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  140] [Port 2]: pc=0000000080000028 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  140] [Port 3]: pc=000000008000002a inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  140] [Port 4]: pc=000000008000002c inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  140] [Port 5]: pc=000000008000002e inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+[BRU REDIRECT] pc=000000008000000c target=000000008000000c actual_taken=1 is_rvc=0
+    [IQ ISSUE Port 0]: pc=000000008000000c entry_idx= 0
+    [IQ ISSUE Port 1]: pc=000000008000000e entry_idx= 1
+  [IQ REDIRECT] restore_idx=5 enq_ptr=6
+    Entry 0: pc=000000008000000c snapIdx=5 is_younger=0
+    Entry 1: pc=000000008000000e snapIdx=6 is_younger=0
+    Entry 2: pc=0000000080000010 snapIdx=6 is_younger=0
+    Entry 3: pc=0000000080000012 snapIdx=6 is_younger=0
+    Entry 4: pc=0000000080000014 snapIdx=6 is_younger=0
+    Entry 5: pc=0000000080000016 snapIdx=6 is_younger=0
+  [IQ Entry 0]: pc=000000008000000c rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=5
+  [IQ Entry 1]: pc=000000008000000e rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=6
+  [IQ Entry 2]: pc=0000000080000010 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=6
+  [IQ Entry 3]: pc=0000000080000012 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=6
+  [IQ Entry 4]: pc=0000000080000014 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=6
+  [IQ Entry 5]: pc=0000000080000016 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=6
+  [IQ STATE] is_empty_mask=65475 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+    Enq 0: pc=0000000080000018 alloc_idx= 0
+    Enq 1: pc=000000008000001a alloc_idx= 1
+    Enq 2: pc=000000008000001c alloc_idx= 6
+    Enq 3: pc=000000008000001e alloc_idx= 7
+  [IQ REDIRECT] restore_idx=5 enq_ptr=6
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ REDIRECT] restore_idx=5 enq_ptr=6
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 146
+[Cycle 146] FTQ Flushed! Shadow copy cleared.
+CORE RENAME [Cycle                  141] [Port 0]: pc=0000000080000030 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  141] [Port 1]: pc=0000000080000032 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  141] [Port 2]: pc=0000000080000034 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  141] [Port 3]: pc=0000000080000036 inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  141] [Port 4]: pc=0000000080000038 inst=00000013 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+CORE RENAME [Cycle                  141] [Port 5]: pc=000000008000003a inst=00130000 lrs1= 0->prs1=  0 lrs2= 0->prs2=  0 
+    [IQ ISSUE Port 0]: pc=0000000080000010 entry_idx= 2
+    [IQ ISSUE Port 1]: pc=0000000080000012 entry_idx= 3
+  [IQ Entry 0]: pc=0000000080000018 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=6
+  [IQ Entry 1]: pc=000000008000001a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=6
+  [IQ Entry 2]: pc=0000000080000010 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=6
+  [IQ Entry 3]: pc=0000000080000012 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=6
+  [IQ Entry 4]: pc=0000000080000014 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=6
+  [IQ Entry 5]: pc=0000000080000016 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=6
+  [IQ Entry 6]: pc=000000008000001c rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=6
+  [IQ Entry 7]: pc=000000008000001e rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=6
+  [IQ STATE] is_empty_mask=65292 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+BPU REDIRECT ACCEPTED: target=000000008000000c epoch=1
+FRONTEND FLUSH: epoch=1 io.redirect.target=000000008000000c
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 147
+    [IQ ISSUE Port 0]: pc=0000000080000014 entry_idx= 4
+    [IQ ISSUE Port 1]: pc=0000000080000016 entry_idx= 5
+  [IQ Entry 0]: pc=0000000080000018 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=6
+  [IQ Entry 1]: pc=000000008000001a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=6
+  [IQ Entry 4]: pc=0000000080000014 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=6
+  [IQ Entry 5]: pc=0000000080000016 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=6
+  [IQ Entry 6]: pc=000000008000001c rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=6
+  [IQ Entry 7]: pc=000000008000001e rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=6
+  [IQ STATE] is_empty_mask=65340 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+    Enq 0: pc=0000000080000030 alloc_idx= 2
+    Enq 1: pc=0000000080000032 alloc_idx= 3
+    Enq 2: pc=0000000080000034 alloc_idx= 4
+    Enq 3: pc=0000000080000036 alloc_idx= 5
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 148
+    [IQ ISSUE Port 0]: pc=0000000080000018 entry_idx= 0
+    [IQ ISSUE Port 1]: pc=000000008000001a entry_idx= 1
+  [IQ Entry 0]: pc=0000000080000018 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=6
+  [IQ Entry 1]: pc=000000008000001a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=6
+  [IQ Entry 2]: pc=0000000080000030 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=6
+  [IQ Entry 3]: pc=0000000080000032 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=6
+  [IQ Entry 4]: pc=0000000080000034 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=6
+  [IQ Entry 5]: pc=0000000080000036 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=6
+  [IQ Entry 6]: pc=000000008000001c rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=6
+  [IQ Entry 7]: pc=000000008000001e rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=6
+  [IQ STATE] is_empty_mask=65283 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+    Enq 4: pc=0000000080000038 alloc_idx=10
+    Enq 5: pc=000000008000003a alloc_idx=11
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+[TESTBENCH] Cycle 149
+    [IQ ISSUE Port 0]: pc=000000008000001c entry_idx= 6
+    [IQ ISSUE Port 1]: pc=000000008000001e entry_idx= 7
+  [IQ Entry 2]: pc=0000000080000030 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=6
+  [IQ Entry 3]: pc=0000000080000032 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=6
+  [IQ Entry 4]: pc=0000000080000034 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=6
+  [IQ Entry 5]: pc=0000000080000036 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=6
+  [IQ Entry 6]: pc=000000008000001c rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=6
+  [IQ Entry 7]: pc=000000008000001e rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=6
+  [IQ Entry 10]: pc=0000000080000038 rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=6
+  [IQ Entry 11]: pc=000000008000003a rs1_ready=1 rs2_ready=1 psrs1=  0 psrs2=  0 pdest=  0 snapIdx=6
+  [IQ STATE] is_empty_mask=62403 deq_val0=1 deq_rdy0=1 deq_val1=1 deq_rdy1=1
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+  [IQ STATE] is_empty_mask=255 deq_val0=0 deq_rdy0=1 deq_val1=0 deq_rdy1=0
+--- Simulation Finished. CSV generated: ftq_dump.csv ---
+--- Final Register State ---
+p00: 0x0000000000000000
+p01: 0x0000000000000000
+p02: 0x0000000000000000
+p03: 0x0000000000000000
+p04: 0x0000000000000000
+p05: 0x0000000000000000
+p06: 0x0000000000000000
+p07: 0x0000000000000000
+p08: 0x0000000000000000
+p09: 0x0000000000000000
+p10: 0x0000000000000000
+p11: 0x0000000000000000
+p12: 0x0000000000000000
+p13: 0x0000000000000000
+p14: 0x0000000000000000
+p15: 0x0000000000000000
+p16: 0x0000000000000000
+p17: 0x0000000000000000
+p18: 0x0000000000000000
+p19: 0x0000000000000000
+p20: 0x0000000000000000
+p21: 0x0000000000000000
+p22: 0x0000000000000000
+p23: 0x0000000000000000
+p24: 0x0000000000000000
+p25: 0x0000000000000000
+p26: 0x0000000000000000
+p27: 0x0000000000000000
+p28: 0x0000000000000000
+p29: 0x0000000000000000
+p30: 0x0000000000000000
+p31: 0x0000000000000000
+p32: 0x0000000000000005
+p33: 0x000000000000000b
+p34: 0x0000000000000012
+p35: 0x0000000000000000
+p36: 0x0000000000000000
+p37: 0x0000000000000000
+p38: 0x0000000000000000
+p39: 0x0000000000000000
+p40: 0x0000000000000000
+p41: 0x0000000000000000
+p42: 0x0000000000000000
+p43: 0x0000000000000000
+p44: 0x0000000000000000
+p45: 0x0000000000000000
+p46: 0x0000000000000000
+p47: 0x0000000000000000
+p48: 0x0000000000000000
+p49: 0x0000000000000000
+p50: 0x0000000000000000
+p51: 0x0000000000000000
+p52: 0x0000000000000000
+p53: 0x0000000000000000
+p54: 0x0000000000000000
+p55: 0x0000000000000000
+p56: 0x0000000000000000
+p57: 0x0000000000000000
+p58: 0x0000000000000000
+p59: 0x0000000000000000
+p60: 0x0000000000000000
+p61: 0x0000000000000000
+p62: 0x0000000000000000
+p63: 0x0000000000000000
+--- Final FP Register State ---
+f00: 0x0000000000000000
+f01: 0x0000000000000000
+f02: 0x0000000000000000
+f03: 0x0000000000000000
+f04: 0x0000000000000000
+f05: 0x0000000000000000
+f06: 0x0000000000000000
+f07: 0x0000000000000000
+f08: 0x0000000000000000
+f09: 0x0000000000000000
+f10: 0x0000000000000000
+f11: 0x0000000000000000
+f12: 0x0000000000000000
+f13: 0x0000000000000000
+f14: 0x0000000000000000
+f15: 0x0000000000000000
+f16: 0x0000000000000000
+f17: 0x0000000000000000
+f18: 0x0000000000000000
+f19: 0x0000000000000000
+f20: 0x0000000000000000
+f21: 0x0000000000000000
+f22: 0x0000000000000000
+f23: 0x0000000000000000
+f24: 0x0000000000000000
+f25: 0x0000000000000000
+f26: 0x0000000000000000
+f27: 0x0000000000000000
+f28: 0x0000000000000000
+f29: 0x0000000000000000
+f30: 0x0000000000000000
+f31: 0x0000000000000000

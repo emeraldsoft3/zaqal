@@ -29,11 +29,9 @@ class ICache(implicit val p: Parameters) extends Module with HasZaqalParameter {
       println(s"[ICache] Warning: Using basic ADDI test program for Pipelined Dispatch verification.")
       Seq(
         "h00500293".U, // 0x00: addi x5, x0, 5      (x5 = 5)
-        "h00a00313".U, // 0x04: addi x6, x0, 10     (x6 = 10)
-        "h00628393".U, // 0x08: addi x7, x5, 6      (x7 = 5 + 6 = 11)
-        "h00730413".U, // 0x0c: addi x8, x6, 7      (x8 = 10 + 7 = 17)
-        "h00828493".U, // 0x10: addi x9, x5, 8      (x9 = 5 + 8 = 13)
-        "h0000006f".U  // 0x14: jal x0, 0           (Halt loop)
+        "h00628313".U, // 0x04: addi x6, x5, 6      (x6 = 5 + 6 = 11, back-to-back dependent on x5)
+        "h00730393".U, // 0x08: addi x7, x6, 7      (x7 = 11 + 7 = 18, back-to-back dependent on x6)
+        "h0000006f".U  // 0x0c: jal x0, 0           (Halt loop)
       )
     }
   }

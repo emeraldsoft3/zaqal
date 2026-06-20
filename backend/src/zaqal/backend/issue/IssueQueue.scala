@@ -69,6 +69,9 @@ class IssueQueue(val numEntries: Int, val numEnq: Int, val numDeq: Int, val numW
     io.deq(k).bits := entries(issue_idx).uop
     
     val deq_fire = io.deq(k).valid && io.deq(k).ready
+    when (deq_fire) {
+      printf(p"    [IQ ISSUE Port $k]: pc=${Hexadecimal(io.deq(k).bits.uop.pc)} entry_idx=${OHToUInt(issue_onehot(k))}\n")
+    }
     current_can_issue = current_can_issue & ~Mux(deq_fire, issue_onehot(k), 0.U)
   }
 
@@ -127,13 +130,32 @@ class IssueQueue(val numEntries: Int, val numEnq: Int, val numDeq: Int, val numW
   }
 
   when (io.redirect_valid) {
+    printf(p"  [IQ REDIRECT] restore_idx=${io.redirect_restore_idx} enq_ptr=${io.redirect_enq_ptr}\n")
     for (i <- 0 until numEntries) {
       val entry_is_younger = Mux(io.redirect_restore_idx < io.redirect_enq_ptr,
                                  entries(i).uop.snapshotIdx > io.redirect_restore_idx && entries(i).uop.snapshotIdx < io.redirect_enq_ptr,
                                  entries(i).uop.snapshotIdx > io.redirect_restore_idx || entries(i).uop.snapshotIdx < io.redirect_enq_ptr)
+      when (entries(i).valid) {
+        printf(p"    Entry $i: pc=${Hexadecimal(entries(i).uop.uop.pc)} snapIdx=${entries(i).uop.snapshotIdx} is_younger=${entry_is_younger}\n")
+      }
       when (entry_is_younger) {
         entries(i).valid := false.B
       }
+    }
+  }
+
+  for (i <- 0 until numEntries) {
+    when (entries(i).valid) {
+      printf(p"  [IQ Entry $i]: pc=${Hexadecimal(entries(i).uop.uop.pc)} rs1_ready=${entries(i).rs1_ready} rs2_ready=${entries(i).rs2_ready} psrs1=${entries(i).uop.psrs1} psrs2=${entries(i).uop.psrs2} pdest=${entries(i).uop.pdest} snapIdx=${entries(i).uop.snapshotIdx}\n")
+    }
+  }
+
+  val deq1_valid = if (numDeq > 1) io.deq(1).valid else false.B
+  val deq1_ready = if (numDeq > 1) io.deq(1).ready else false.B
+  printf(p"  [IQ STATE] is_empty_mask=${is_empty.asUInt} deq_val0=${io.deq(0).valid} deq_rdy0=${io.deq(0).ready} deq_val1=${deq1_valid} deq_rdy1=${deq1_ready}\n")
+  for (e <- 0 until numEnq) {
+    when (io.enq(e).valid && io.enq(e).ready) {
+      printf(p"    Enq $e: pc=${Hexadecimal(io.enq(e).bits.uop.pc)} alloc_idx=${alloc_idx(e)}\n")
     }
   }
 }

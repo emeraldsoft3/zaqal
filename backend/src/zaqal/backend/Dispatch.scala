@@ -40,11 +40,11 @@ class Dispatch(implicit val p: Parameters) extends Module with HasZaqalParameter
   }
 
   // Capacity parameters for the current execution cluster
-  val max_alu_units   = 1.U
+  val max_alu_units   = 2.U
   val max_mem_units   = 1.U
-  val max_bru_units   = 1.U
+  val max_bru_units   = 2.U
   val max_fpu_units   = 1.U
-  val max_total_ports = 1.U  // Current execution core has exactly 1 issue port
+  val max_total_ports = 6.U  // Support up to 6-wide dispatch per cycle
 
   // Track resource requests per slot
   val req_alu = Wire(Vec(decodeWidth, Bool()))

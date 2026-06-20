@@ -54,18 +54,95 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   fcsr.io.set_flags := false.B
   fcsr.io.flags_to_set := 0.U
 
-  // ---------------- INT 0 ----------------
-  regFile.io.raddr(0) := io.int_in(0).bits.psrs1
-  regFile.io.raddr(1) := io.int_in(0).bits.psrs2
-  val src0_1 = regFile.io.rdata(0)
-  val src0_2 = regFile.io.rdata(1)
+  // ---------------- BYPASS NETWORK DEFINITIONS ----------------
   val dec0 = io.int_in(0).bits.decode
   val uop0 = io.int_in(0).bits.uop
-
-  // Define division and multiplication operations checks
   val is_div_op0 = dec0.is_div || dec0.is_divu || dec0.is_rem || dec0.is_remu ||
                    dec0.is_divw || dec0.is_divuw || dec0.is_remw || dec0.is_remuw
   val is_mul_op0 = dec0.is_mul || dec0.is_mulh || dec0.is_mulhsu || dec0.is_mulhu || dec0.is_mulw
+  val is_link0 = dec0.is_jal || dec0.is_jalr
+  val link_addr0 = uop0.pc + Mux(uop0.pre.is_rvc, 2.U, 4.U)
+  val result0 = Mux(dec0.is_fused_lui_addi, alu(0).io.result, Mux(is_mul_op0, mul.io.result, alu(0).io.result))
+
+  val dec1 = io.int_in(1).bits.decode
+  val uop1 = io.int_in(1).bits.uop
+  val is_div_op1 = dec1.is_div || dec1.is_divu || dec1.is_rem || dec1.is_remu ||
+                   dec1.is_divw || dec1.is_divuw || dec1.is_remw || dec1.is_remuw
+  val is_mul_op1 = dec1.is_mul || dec1.is_mulh || dec1.is_mulhsu || dec1.is_mulhu || dec1.is_mulw
+  val is_link1 = dec1.is_jal || dec1.is_jalr
+  val link_addr1 = uop1.pc + Mux(uop1.pre.is_rvc, 2.U, 4.U)
+  val result1 = Mux(is_mul_op1, mul.io.result, alu(1).io.result)
+
+  val decMem = io.mem_in.bits.decode
+  val decFp = io.fp_in.bits.decode
+  val uopFp = io.fp_in.bits.uop
+  val is_fp_wb_to_int_top = decFp.is_fmv_x_w || decFp.is_fcvt_f2i || decFp.is_feq || decFp.is_flt || decFp.is_fle || decFp.is_fclass
+
+  // Raw bypass signals (combinational outputs from current execution cycle)
+  val wb0_valid = io.int_in(0).fire && io.int_in(0).bits.pdest =/= 0.U && !is_div_op0 && ((!dec0.is_branch) || is_link0)
+  val wb0_pdest = io.int_in(0).bits.pdest
+  val wb0_data  = Mux(is_link0, link_addr0, result0)
+
+  val wb1_valid = io.int_in(1).fire && io.int_in(1).bits.pdest =/= 0.U && !is_div_op1 && ((!dec1.is_branch) || is_link1)
+  val wb1_pdest = io.int_in(1).bits.pdest
+  val wb1_data  = Mux(is_link1, link_addr1, result1)
+
+  val wb2_valid = div.io.done && div_rd_latch =/= 0.U
+  val wb2_pdest = div_rd_latch
+  val wb2_data  = div.io.result
+
+  val wb3_valid = io.mem_in.fire && io.mem_in.bits.pdest =/= 0.U && !decMem.is_fload && (decMem.is_load || decMem.is_atomic)
+  val wb3_pdest = io.mem_in.bits.pdest
+  val wb3_data  = lsu.io.result
+
+  val wb4_valid = io.fp_in.fire && io.fp_in.bits.pdest =/= 0.U && is_fp_wb_to_int_top
+  val wb4_pdest = io.fp_in.bits.pdest
+  val wb4_data  = fpmisc.io.result_int
+
+  // Registered bypass signals (representing values that finished executing last cycle)
+  val r_wb0_valid = RegNext(wb0_valid, false.B)
+  val r_wb0_pdest = RegNext(wb0_pdest, 0.U)
+  val r_wb0_data  = RegNext(wb0_data, 0.U)
+
+  val r_wb1_valid = RegNext(wb1_valid, false.B)
+  val r_wb1_pdest = RegNext(wb1_pdest, 0.U)
+  val r_wb1_data  = RegNext(wb1_data, 0.U)
+
+  val r_wb2_valid = RegNext(wb2_valid, false.B)
+  val r_wb2_pdest = RegNext(wb2_pdest, 0.U)
+  val r_wb2_data  = RegNext(wb2_data, 0.U)
+
+  val r_wb3_valid = RegNext(wb3_valid, false.B)
+  val r_wb3_pdest = RegNext(wb3_pdest, 0.U)
+  val r_wb3_data  = RegNext(wb3_data, 0.U)
+
+  val r_wb4_valid = RegNext(wb4_valid, false.B)
+  val r_wb4_pdest = RegNext(wb4_pdest, 0.U)
+  val r_wb4_data  = RegNext(wb4_data, 0.U)
+
+  case class BypassChannel(valid: Bool, pdest: UInt, data: UInt)
+
+  val bypassChannels = Seq(
+    BypassChannel(r_wb0_valid, r_wb0_pdest, r_wb0_data),
+    BypassChannel(r_wb1_valid, r_wb1_pdest, r_wb1_data),
+    BypassChannel(r_wb2_valid, r_wb2_pdest, r_wb2_data),
+    BypassChannel(r_wb3_valid, r_wb3_pdest, r_wb3_data),
+    BypassChannel(r_wb4_valid, r_wb4_pdest, r_wb4_data)
+  )
+
+  // Bypass function: selects the latest available value (checking registered staging outputs first)
+  def bypass(raddr: UInt, rdata: UInt): UInt = {
+    val matches = bypassChannels.map(ch => ch.valid && (ch.pdest === raddr) && (raddr =/= 0.U))
+    val datas   = bypassChannels.map(_.data)
+    MuxCase(rdata, matches.zip(datas))
+  }
+
+
+  // ---------------- INT 0 ----------------
+  regFile.io.raddr(0) := io.int_in(0).bits.psrs1
+  regFile.io.raddr(1) := io.int_in(0).bits.psrs2
+  val src0_1 = bypass(io.int_in(0).bits.psrs1, regFile.io.rdata(0))
+  val src0_2 = bypass(io.int_in(0).bits.psrs2, regFile.io.rdata(1))
 
   alu(0).io.src1 := src0_1
   alu(0).io.src2 := Mux(dec0.is_fused_lui_addi, (dec0.imm + uop0.pc.asSInt).asUInt,
@@ -83,14 +160,8 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   // ---------------- INT 1 ----------------
   regFile.io.raddr(2) := io.int_in(1).bits.psrs1
   regFile.io.raddr(3) := io.int_in(1).bits.psrs2
-  val src1_1 = regFile.io.rdata(2)
-  val src1_2 = regFile.io.rdata(3)
-  val dec1 = io.int_in(1).bits.decode
-  val uop1 = io.int_in(1).bits.uop
-
-  val is_div_op1 = dec1.is_div || dec1.is_divu || dec1.is_rem || dec1.is_remu ||
-                   dec1.is_divw || dec1.is_divuw || dec1.is_remw || dec1.is_remuw
-  val is_mul_op1 = dec1.is_mul || dec1.is_mulh || dec1.is_mulhsu || dec1.is_mulhu || dec1.is_mulw
+  val src1_1 = bypass(io.int_in(1).bits.psrs1, regFile.io.rdata(2))
+  val src1_2 = bypass(io.int_in(1).bits.psrs2, regFile.io.rdata(3))
 
   alu(1).io.src1 := src1_1
   alu(1).io.src2 := Mux(dec1.is_fused_lui_addi, (dec1.imm + uop1.pc.asSInt).asUInt,
@@ -155,14 +226,10 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
 
   // Writebacks and latch registers
   when(io.int_in(0).fire) {
-    val is_link = dec0.is_jal || dec0.is_jalr
-    val link_addr = uop0.pc + Mux(uop0.pre.is_rvc, 2.U, 4.U)
-    val result = Mux(dec0.is_fused_lui_addi, alu(0).io.result, Mux(is_mul_op0, mul.io.result, alu(0).io.result))
-
     when(io.int_in(0).bits.pdest =/= 0.U && !is_div_op0) {
-      regFile.io.wen(0) := (!dec0.is_branch) || is_link
+      regFile.io.wen(0) := (!dec0.is_branch) || is_link0
       regFile.io.waddr(0) := io.int_in(0).bits.pdest
-      regFile.io.wdata(0) := Mux(is_link, link_addr, result)
+      regFile.io.wdata(0) := Mux(is_link0, link_addr0, result0)
     }
     when(is_div_op0) { div_rd_latch := io.int_in(0).bits.pdest }
   }
@@ -174,13 +241,10 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   io.wakeup(0).pdest := r_wu0_pdest
 
   when(io.int_in(1).fire) {
-    val is_link = dec1.is_jal || dec1.is_jalr
-    val link_addr = uop1.pc + Mux(uop1.pre.is_rvc, 2.U, 4.U)
-    val result = Mux(is_mul_op1, mul.io.result, alu(1).io.result)
     when(io.int_in(1).bits.pdest =/= 0.U && !is_div_op1) {
-      regFile.io.wen(1) := (!dec1.is_branch) || is_link
+      regFile.io.wen(1) := (!dec1.is_branch) || is_link1
       regFile.io.waddr(1) := io.int_in(1).bits.pdest
-      regFile.io.wdata(1) := Mux(is_link, link_addr, result)
+      regFile.io.wdata(1) := Mux(is_link1, link_addr1, result1)
     }
     when(is_div_op1) { div_rd_latch := io.int_in(1).bits.pdest }
   }
@@ -208,10 +272,9 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   regFile.io.raddr(5) := io.mem_in.bits.psrs2
   fpRegFile.io.raddr(3) := io.mem_in.bits.psrs2
   
-  val srcMem_1 = regFile.io.rdata(4)
-  val srcMem_2 = regFile.io.rdata(5)
+  val srcMem_1 = bypass(io.mem_in.bits.psrs1, regFile.io.rdata(4))
+  val srcMem_2 = bypass(io.mem_in.bits.psrs2, regFile.io.rdata(5))
   val fsrcMem_2 = fpRegFile.io.rdata(3)
-  val decMem = io.mem_in.bits.decode
 
   lsu.io.src1 := srcMem_1
   lsu.io.src2 := Mux(decMem.is_fstore, fsrcMem_2, srcMem_2)
@@ -254,10 +317,7 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   val fsrc1 = fpRegFile.io.rdata(0)
   val fsrc2 = fpRegFile.io.rdata(1)
   val fsrc3 = fpRegFile.io.rdata(2)
-  val srcFp_1 = regFile.io.rdata(6)
-  
-  val decFp = io.fp_in.bits.decode
-  val uopFp = io.fp_in.bits.uop
+  val srcFp_1 = bypass(io.fp_in.bits.psrs1, regFile.io.rdata(6))
 
   fpu.io.src1 := fsrc1
   fpu.io.src2 := fsrc2

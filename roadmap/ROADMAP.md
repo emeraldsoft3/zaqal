@@ -49,6 +49,8 @@ To achieve world-class performance, Zaqal must eventually implement these critic
     - **2 BRUs** (Branch Resolution Units)
     - **3 LSUs** (Load/Store Units: 2 Load, 1 Store)
     - **4 FPUs** (Floating Point Units: 2 FP Add/Misc, 2 FP FMAC)
+  - [ ] **Bypass Network Expansion**: Register all new execution unit writeback/staging outputs in the `bypassChannels` list in `Execute.scala` to dynamically scale up result forwarding.
+
 
 ### Memory & System
 - [ ] **Advanced Load/Store Unit** (Memory Disambiguation, Speculative Loads).

@@ -17,9 +17,13 @@ Our primary goal is to target a **14nm process node** (using predictive standard
 - **XiangShan Study**: [Dispatch.scala](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/backend/decode/Dispatch.scala) - *Look for staging registers.*
 
 ## Day 3: Result Forwarding (Bypass Network)
-- [ ] Implement a full bypass network to allow back-to-back execution.
+- [x] Implement a full bypass network to allow back-to-back execution.
+- [x] **Clustered / Segmented Bypassing (Timing Optimization)**: Implement XiangShan-style segmented bypass logic to eliminate long-wire timing bottlenecks across execution clusters:
+  - **Intra-Cluster Express Lanes**: 0-cycle (immediate) result forwarding between execution units inside the same local cluster (e.g. ALU 0 to ALU 1).
+  - **Cross-Cluster Interconnects**: 1-cycle delayed bypass paths for distant cross-cluster communications (e.g., LSU to Integer ALU) to prevent degradation of $F_{max}$.
 - **Detailed Plan**: When an instruction executes, its result is often immediately needed by the next instruction. Writing to the Physical Register File (PRF) and reading it back takes too long. We will build a Bypass Network that forwards the computed output directly from the ALU outputs to the inputs of the dependent Execution Units. We will need to heavily optimize the multiplexers in this network, as forwarding across multiple clusters can create severe timing bottlenecks.
 - **XiangShan Study**: [BypassNetwork.scala](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/backend/issue/BypassNetwork.scala) - *Study how they handle data forwarding.*
+
 
 ## Day 4: Register File Pipelining (Read Stage)
 - [ ] Implement 2-cycle Register File access (Read in Cycle 1, Execute in Cycle 2).

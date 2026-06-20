@@ -41,7 +41,9 @@ To match the high-IPC processing power of XiangShan's Kunminghu core, Zaqal's ex
 - **2 BRUs**: Branch Resolution Units to calculate branch targets and evaluate predictions.
 - **3 LSUs (Load/Store Units)**: High-bandwidth memory pipeline consisting of **2 Load pipelines** and **1 Store pipeline** (or 3 flexible Load/Store pipes) to sustain the L1-D cache throughput.
 - **4 FPUs**: Pipelined Floating-Point Units, structured as **2 FP Add/Misc units** and **2 FP FMAC (Fused Multiply-Accumulate)** units.
+- **Bypass Network Update**: Expand the list-based registered bypass network (`bypassChannels` in `Execute.scala`) by adding the new execution pipelines (ALUs 2-3, MDU 1, BRU 1, LSU 1-2, FPU 1-3) to ensure automatic result forwarding and back-to-back scheduling across all added functional units.
 - **XiangShan Study**: [IssueQueue.scala](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/backend/issue/IssueQueue.scala)
+
 
 ## Day 26-35: Intelligent Memory Prefetching (L1-D Hidden Power)
 - [ ] **Day 26-28**: **Stride & Stream Prefetchers**: Detect constant patterns in memory.
