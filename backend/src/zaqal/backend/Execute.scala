@@ -38,7 +38,25 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   val regFile = Module(new RegFile(7, 5))
   val fpRegFile = Module(new FPRegFile(4, 3))
 
-  for (i <- 0 until 5) { regFile.io.wen(i) := false.B; regFile.io.waddr(i) := 0.U; regFile.io.wdata(i) := 0.U }
+  // Write-back Staging Registers (Cycle 3)
+  val r_regFile_wen   = RegInit(VecInit(Seq.fill(5)(false.B)))
+  val r_regFile_waddr = RegInit(VecInit(Seq.fill(5)(0.U(phyRegIdxWidth.W))))
+  val r_regFile_wdata = RegInit(VecInit(Seq.fill(5)(0.U(xLen.W))))
+
+  val next_regFile_wen   = WireDefault(VecInit(Seq.fill(5)(false.B)))
+  val next_regFile_waddr = WireDefault(VecInit(Seq.fill(5)(0.U(phyRegIdxWidth.W))))
+  val next_regFile_wdata = WireDefault(VecInit(Seq.fill(5)(0.U(xLen.W))))
+
+  for (i <- 0 until 5) {
+    r_regFile_wen(i)   := next_regFile_wen(i)
+    r_regFile_waddr(i) := next_regFile_waddr(i)
+    r_regFile_wdata(i) := next_regFile_wdata(i)
+
+    regFile.io.wen(i)   := r_regFile_wen(i)
+    regFile.io.waddr(i) := r_regFile_waddr(i)
+    regFile.io.wdata(i) := r_regFile_wdata(i)
+  }
+
   for (i <- 0 until 3) { fpRegFile.io.wen(i) := false.B; fpRegFile.io.waddr(i) := 0.U; fpRegFile.io.wdata(i) := 0.U }
   for (i <- 0 until 5) { io.wakeup(i).valid := false.B; io.wakeup(i).pdest := 0.U }
   io.redirect.valid := false.B
@@ -228,6 +246,27 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   val r_wb4_pdest = RegNext(wb4_pdest, 0.U)
   val r_wb4_data  = RegNext(wb4_data, 0.U)
 
+  // Level 2 Registered bypass signals (representing values in the write-back staging buffer)
+  val r2_wb0_valid = RegNext(r_wb0_valid, false.B)
+  val r2_wb0_pdest = RegNext(r_wb0_pdest, 0.U)
+  val r2_wb0_data  = RegNext(r_wb0_data, 0.U)
+
+  val r2_wb1_valid = RegNext(r_wb1_valid, false.B)
+  val r2_wb1_pdest = RegNext(r_wb1_pdest, 0.U)
+  val r2_wb1_data  = RegNext(r_wb1_data, 0.U)
+
+  val r2_wb2_valid = RegNext(r_wb2_valid, false.B)
+  val r2_wb2_pdest = RegNext(r_wb2_pdest, 0.U)
+  val r2_wb2_data  = RegNext(r_wb2_data, 0.U)
+
+  val r2_wb3_valid = RegNext(r_wb3_valid, false.B)
+  val r2_wb3_pdest = RegNext(r_wb3_pdest, 0.U)
+  val r2_wb3_data  = RegNext(r_wb3_data, 0.U)
+
+  val r2_wb4_valid = RegNext(r_wb4_valid, false.B)
+  val r2_wb4_pdest = RegNext(r_wb4_pdest, 0.U)
+  val r2_wb4_data  = RegNext(r_wb4_data, 0.U)
+
   case class BypassChannel(valid: Bool, pdest: UInt, data: UInt)
 
   val bypassChannels = Seq(
@@ -235,7 +274,12 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
     BypassChannel(r_wb1_valid, r_wb1_pdest, r_wb1_data),
     BypassChannel(r_wb2_valid, r_wb2_pdest, r_wb2_data),
     BypassChannel(r_wb3_valid, r_wb3_pdest, r_wb3_data),
-    BypassChannel(r_wb4_valid, r_wb4_pdest, r_wb4_data)
+    BypassChannel(r_wb4_valid, r_wb4_pdest, r_wb4_data),
+    BypassChannel(r2_wb0_valid, r2_wb0_pdest, r2_wb0_data),
+    BypassChannel(r2_wb1_valid, r2_wb1_pdest, r2_wb1_data),
+    BypassChannel(r2_wb2_valid, r2_wb2_pdest, r2_wb2_data),
+    BypassChannel(r2_wb3_valid, r2_wb3_pdest, r2_wb3_data),
+    BypassChannel(r2_wb4_valid, r2_wb4_pdest, r2_wb4_data)
   )
 
   // Bypass function: selects the latest available value (checking registered staging outputs first)
@@ -328,9 +372,9 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   // Writebacks and latch registers
   when(exe_val0) {
     when(exe_uop0.pdest =/= 0.U && !exe_is_div_op0) {
-      regFile.io.wen(0) := (!exe_dec0.is_branch) || exe_is_link0
-      regFile.io.waddr(0) := exe_uop0.pdest
-      regFile.io.wdata(0) := Mux(exe_is_link0, exe_link_addr0, exe_result0)
+      next_regFile_wen(0) := (!exe_dec0.is_branch) || exe_is_link0
+      next_regFile_waddr(0) := exe_uop0.pdest
+      next_regFile_wdata(0) := Mux(exe_is_link0, exe_link_addr0, exe_result0)
     }
     when(exe_is_div_op0) { div_rd_latch := exe_uop0.pdest }
   }
@@ -343,9 +387,9 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
 
   when(exe_val1) {
     when(exe_uop1.pdest =/= 0.U && !exe_is_div_op1) {
-      regFile.io.wen(1) := (!exe_dec1.is_branch) || exe_is_link1
-      regFile.io.waddr(1) := exe_uop1.pdest
-      regFile.io.wdata(1) := Mux(exe_is_link1, exe_link_addr1, exe_result1)
+      next_regFile_wen(1) := (!exe_dec1.is_branch) || exe_is_link1
+      next_regFile_waddr(1) := exe_uop1.pdest
+      next_regFile_wdata(1) := Mux(exe_is_link1, exe_link_addr1, exe_result1)
     }
     when(exe_is_div_op1) { div_rd_latch := exe_uop1.pdest }
   }
@@ -357,9 +401,9 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   io.wakeup(1).pdest := r_wu1_pdest
 
   when(div.io.done) {
-    regFile.io.wen(2) := true.B
-    regFile.io.waddr(2) := div_rd_latch
-    regFile.io.wdata(2) := div.io.result
+    next_regFile_wen(2) := true.B
+    next_regFile_waddr(2) := div_rd_latch
+    next_regFile_wdata(2) := div.io.result
   }
 
   val wuDiv_valid = div.io.done && div_rd_latch =/= 0.U
@@ -391,9 +435,9 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
         fpRegFile.io.waddr(2) := exe_uopMem.pdest
         fpRegFile.io.wdata(2) := lsu.io.result
       }.otherwise {
-        regFile.io.wen(3) := exe_decMem.is_load || exe_decMem.is_atomic
-        regFile.io.waddr(3) := exe_uopMem.pdest
-        regFile.io.wdata(3) := lsu.io.result
+        next_regFile_wen(3) := exe_decMem.is_load || exe_decMem.is_atomic
+        next_regFile_waddr(3) := exe_uopMem.pdest
+        next_regFile_wdata(3) := lsu.io.result
       }
     }
   }
@@ -438,9 +482,9 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
         fpRegFile.io.wdata(0) := fpmisc.io.result_fp
       }
       when(exe_is_fp_wb_to_int) {
-        regFile.io.wen(4) := true.B
-        regFile.io.waddr(4) := exe_uopFp.pdest
-        regFile.io.wdata(4) := fpmisc.io.result_int
+        next_regFile_wen(4) := true.B
+        next_regFile_waddr(4) := exe_uopFp.pdest
+        next_regFile_wdata(4) := fpmisc.io.result_int
       }
     }
     when(exe_decFp.is_fdiv || exe_decFp.is_fsqrt) { fpdiv_rd_latch := exe_uopFp.pdest }

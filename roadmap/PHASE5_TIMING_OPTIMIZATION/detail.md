@@ -30,7 +30,7 @@ Our primary goal is to target a **14nm process node** (using predictive standard
 - **Detailed Plan**: A high-capacity, multi-ported Physical Register File is incredibly slow to read due to immense wire capacitance. To mitigate this, we will pipeline the Register File access. Instructions issued from the Issue Queues will spend Cycle 1 asserting read addresses and propagating signals through the SRAM/Latch arrays, and the actual execution (ALU/MEM) will take place in Cycle 2. This is a crucial step for achieving 500MHz+ in silicon.
 
 ## Day 5: Register File Pipelining (Write Stage)
-- [ ] Split the write-back into multiple cycles if necessary.
+- [x] Split the write-back into multiple cycles if necessary.
 - **Detailed Plan**: Just like reading, writing multiple 64-bit values back into a massive Register File can strain the clock cycle. We will implement write-back staging registers. When an execution unit finishes, it will first latch its result and write-enable signals into a buffer. The actual physical write to the SRAM array will complete in the following cycle. We must ensure the Bypass Network covers this extra cycle so dependent instructions don't stall.
 
 ## Day 6: ALU Critical Path Optimization
