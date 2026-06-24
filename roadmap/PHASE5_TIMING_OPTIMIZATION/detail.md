@@ -34,8 +34,8 @@ Our primary goal is to target a **14nm process node** (using predictive standard
 - **Detailed Plan**: Just like reading, writing multiple 64-bit values back into a massive Register File can strain the clock cycle. We will implement write-back staging registers. When an execution unit finishes, it will first latch its result and write-enable signals into a buffer. The actual physical write to the SRAM array will complete in the following cycle. We must ensure the Bypass Network covers this extra cycle so dependent instructions don't stall.
 
 ## Day 6: ALU Critical Path Optimization
-- [ ] Break down the ALU logic (especially multipliers and adders) into smaller chunks.
-- [ ] **Zba Adder Reuse**: Refactor SH1ADD/SH2ADD/SH3ADD (and .UW variants) to pre-shift `src1` and feed it into the **single shared Adder** instead of creating 6 independent adders. Match XiangShan's `Alu.scala` lines 270-291 pattern: `shaddSource` → mux → existing `addModule`.
+- [x] Break down the ALU logic (especially multipliers and adders) into smaller chunks.
+- [x] **Zba Adder Reuse**: Refactor SH1ADD/SH2ADD/SH3ADD (and .UW variants) to pre-shift `src1` and feed it into the **single shared Adder** instead of creating 6 independent adders. Match XiangShan's `Alu.scala` lines 270-291 pattern: `shaddSource` → mux → existing `addModule`.
 - **Detailed Plan**: The Arithmetic Logic Unit is the heart of the processor, and complex operations like multiplication or bit-manipulation can create long combinatorial chains. We will pipeline the Multiplier (e.g., creating a 2-stage or 3-stage Wallace Tree pipeline) and heavily reuse fast adders by pre-shifting operands for Zba instructions. This reduces gate depth and saves silicon area.
 - **XiangShan Study**: [Alu.scala](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/backend/fu/Alu.scala) - *See how they reuse AddModule for SHxADD via operand pre-shifting.*
 - **XiangShan Study**: [Multiplier.scala](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/backend/fu/Multiplier.scala) - *See how they pipeline the multiplication operation.*
