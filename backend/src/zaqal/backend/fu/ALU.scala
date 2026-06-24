@@ -22,8 +22,22 @@ class ALU(implicit val p: Parameters) extends Module with HasZaqalParameter {
   val comparator = Module(new Comparator)
   val bitmanip   = Module(new Bitmanip)
 
+  // Zba — Address Generation combinational logic (reusing main adder)
+  val is_zba = io.dec.is_sh1add || io.dec.is_sh2add || io.dec.is_sh3add ||
+               io.dec.is_sh1add_uw || io.dec.is_sh2add_uw || io.dec.is_sh3add_uw
+
+  val zba_src1_base = Mux(io.dec.is_sh1add_uw || io.dec.is_sh2add_uw || io.dec.is_sh3add_uw,
+                          Cat(0.U(32.W), io.src1(31, 0)),
+                          io.src1)
+
+  val zba_src1_shifted = MuxCase(zba_src1_base, Seq(
+    (io.dec.is_sh1add || io.dec.is_sh1add_uw) -> (zba_src1_base << 1),
+    (io.dec.is_sh2add || io.dec.is_sh2add_uw) -> (zba_src1_base << 2),
+    (io.dec.is_sh3add || io.dec.is_sh3add_uw) -> (zba_src1_base << 3)
+  ))
+
   // 2. Wiring
-  adder.io.src1    := io.src1
+  adder.io.src1    := Mux(is_zba, zba_src1_shifted, io.src1)
   adder.io.src2    := io.src2
   adder.io.is_sub  := io.dec.is_sub || io.dec.is_subw
   adder.io.is_word := io.dec.is_addw || io.dec.is_subw || io.dec.is_addiw
@@ -81,14 +95,7 @@ class ALU(implicit val p: Parameters) extends Module with HasZaqalParameter {
   bitmanip.io.is_bext   := io.dec.is_bext
   bitmanip.io.is_bexti  := io.dec.is_bexti
 
-  // Zba — Address Generation combinational logic
-  val zba_src1_zext = Cat(0.U(32.W), io.src1(31, 0))   // zero-extend lower 32 bits for .UW
-  val sh1add_res    = io.src2 + (io.src1 << 1)
-  val sh2add_res    = io.src2 + (io.src1 << 2)
-  val sh3add_res    = io.src2 + (io.src1 << 3)
-  val sh1add_uw_res = io.src2 + (zba_src1_zext << 1)
-  val sh2add_uw_res = io.src2 + (zba_src1_zext << 2)
-  val sh3add_uw_res = io.src2 + (zba_src1_zext << 3)
+
 
   // 3. Result Selection
   io.result := MuxCase(0.U, Seq(
@@ -108,13 +115,8 @@ class ALU(implicit val p: Parameters) extends Module with HasZaqalParameter {
      io.dec.is_rolw || io.dec.is_rorw || io.dec.is_roriw) -> shifter.io.result,
     (io.dec.is_slt || io.dec.is_slti)   -> comparator.io.lt.asUInt,
     (io.dec.is_sltu || io.dec.is_sltiu) -> comparator.io.ltu.asUInt,
-    // Zba address generation
-    (io.dec.is_sh1add)    -> sh1add_res,
-    (io.dec.is_sh2add)    -> sh2add_res,
-    (io.dec.is_sh3add)    -> sh3add_res,
-    (io.dec.is_sh1add_uw) -> sh1add_uw_res,
-    (io.dec.is_sh2add_uw) -> sh2add_uw_res,
-    (io.dec.is_sh3add_uw) -> sh3add_uw_res,
+    // Zba address generation (reusing main adder result)
+    (is_zba) -> adder.io.result,
     (io.dec.is_clz || io.dec.is_ctz || io.dec.is_cpop ||
      io.dec.is_clzw || io.dec.is_ctzw || io.dec.is_cpopw ||
      io.dec.is_rev8 || io.dec.is_orc_b || io.dec.is_sextb || io.dec.is_sexth ||

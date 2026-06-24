@@ -35,19 +35,19 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   val div_rd_latch = RegInit(0.U(phyRegIdxWidth.W))
   val fpdiv_rd_latch = RegInit(0.U(phyRegIdxWidth.W))
 
-  val regFile = Module(new RegFile(7, 5))
+  val regFile = Module(new RegFile(7, 6))
   val fpRegFile = Module(new FPRegFile(4, 3))
 
   // Write-back Staging Registers (Cycle 3)
-  val r_regFile_wen   = RegInit(VecInit(Seq.fill(5)(false.B)))
-  val r_regFile_waddr = RegInit(VecInit(Seq.fill(5)(0.U(phyRegIdxWidth.W))))
-  val r_regFile_wdata = RegInit(VecInit(Seq.fill(5)(0.U(xLen.W))))
+  val r_regFile_wen   = RegInit(VecInit(Seq.fill(6)(false.B)))
+  val r_regFile_waddr = RegInit(VecInit(Seq.fill(6)(0.U(phyRegIdxWidth.W))))
+  val r_regFile_wdata = RegInit(VecInit(Seq.fill(6)(0.U(xLen.W))))
 
-  val next_regFile_wen   = WireDefault(VecInit(Seq.fill(5)(false.B)))
-  val next_regFile_waddr = WireDefault(VecInit(Seq.fill(5)(0.U(phyRegIdxWidth.W))))
-  val next_regFile_wdata = WireDefault(VecInit(Seq.fill(5)(0.U(xLen.W))))
+  val next_regFile_wen   = WireDefault(VecInit(Seq.fill(6)(false.B)))
+  val next_regFile_waddr = WireDefault(VecInit(Seq.fill(6)(0.U(phyRegIdxWidth.W))))
+  val next_regFile_wdata = WireDefault(VecInit(Seq.fill(6)(0.U(xLen.W))))
 
-  for (i <- 0 until 5) {
+  for (i <- 0 until 6) {
     r_regFile_wen(i)   := next_regFile_wen(i)
     r_regFile_waddr(i) := next_regFile_waddr(i)
     r_regFile_wdata(i) := next_regFile_wdata(i)
@@ -77,11 +77,13 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   val uop0 = io.int_in(0).bits.uop
   val is_div_op0 = dec0.is_div || dec0.is_divu || dec0.is_rem || dec0.is_remu ||
                    dec0.is_divw || dec0.is_divuw || dec0.is_remw || dec0.is_remuw
+  val is_mul_op0 = dec0.is_mul || dec0.is_mulh || dec0.is_mulhsu || dec0.is_mulhu || dec0.is_mulw
 
   val dec1 = io.int_in(1).bits.decode
   val uop1 = io.int_in(1).bits.uop
   val is_div_op1 = dec1.is_div || dec1.is_divu || dec1.is_rem || dec1.is_remu ||
                    dec1.is_divw || dec1.is_divuw || dec1.is_remw || dec1.is_remuw
+  val is_mul_op1 = dec1.is_mul || dec1.is_mulh || dec1.is_mulhsu || dec1.is_mulhu || dec1.is_mulw
 
   val decMem = io.mem_in.bits.decode
   val decFp = io.fp_in.bits.decode
@@ -188,7 +190,7 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   val exe_is_mul_op0 = exe_dec0.is_mul || exe_dec0.is_mulh || exe_dec0.is_mulhsu || exe_dec0.is_mulhu || exe_dec0.is_mulw
   val exe_is_link0 = exe_dec0.is_jal || exe_dec0.is_jalr
   val exe_link_addr0 = exe_uop_raw0.pc + Mux(exe_uop_raw0.pre.is_rvc, 2.U, 4.U)
-  val exe_result0 = Mux(exe_dec0.is_fused_lui_addi, alu(0).io.result, Mux(exe_is_mul_op0, mul.io.result, alu(0).io.result))
+  val exe_result0 = alu(0).io.result
 
   val exe_dec1 = exe_uop1.decode
   val exe_uop_raw1 = exe_uop1.uop
@@ -197,7 +199,7 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   val exe_is_mul_op1 = exe_dec1.is_mul || exe_dec1.is_mulh || exe_dec1.is_mulhsu || exe_dec1.is_mulhu || exe_dec1.is_mulw
   val exe_is_link1 = exe_dec1.is_jal || exe_dec1.is_jalr
   val exe_link_addr1 = exe_uop_raw1.pc + Mux(exe_uop_raw1.pre.is_rvc, 2.U, 4.U)
-  val exe_result1 = Mux(exe_is_mul_op1, mul.io.result, alu(1).io.result)
+  val exe_result1 = alu(1).io.result
 
   val exe_decMem = exe_uopMem.decode
   val exe_decFp = exe_uopFp.decode
@@ -225,6 +227,16 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   val wb4_pdest = exe_uopFp.pdest
   val wb4_data  = fpmisc.io.result_int
 
+  // 2-Cycle Multiplier Staging registers
+  val r_mul_val = RegNext(exe_val0 && exe_is_mul_op0 || exe_val1 && exe_is_mul_op1, false.B)
+  val r_mul_pdest = RegNext(Mux(exe_is_mul_op0, exe_uop0.pdest, exe_uop1.pdest), 0.U)
+  val r2_mul_val = RegNext(r_mul_val, false.B)
+  val r2_mul_pdest = RegNext(r_mul_pdest, 0.U)
+
+  val wb5_valid = r2_mul_val && r2_mul_pdest =/= 0.U
+  val wb5_pdest = r2_mul_pdest
+  val wb5_data  = mul.io.result
+
   // Registered bypass signals (representing values that finished executing last cycle)
   val r_wb0_valid = RegNext(wb0_valid, false.B)
   val r_wb0_pdest = RegNext(wb0_pdest, 0.U)
@@ -245,6 +257,10 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   val r_wb4_valid = RegNext(wb4_valid, false.B)
   val r_wb4_pdest = RegNext(wb4_pdest, 0.U)
   val r_wb4_data  = RegNext(wb4_data, 0.U)
+
+  val r_wb5_valid = RegNext(wb5_valid, false.B)
+  val r_wb5_pdest = RegNext(wb5_pdest, 0.U)
+  val r_wb5_data  = RegNext(wb5_data, 0.U)
 
   // Level 2 Registered bypass signals (representing values in the write-back staging buffer)
   val r2_wb0_valid = RegNext(r_wb0_valid, false.B)
@@ -267,6 +283,10 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   val r2_wb4_pdest = RegNext(r_wb4_pdest, 0.U)
   val r2_wb4_data  = RegNext(r_wb4_data, 0.U)
 
+  val r2_wb5_valid = RegNext(r_wb5_valid, false.B)
+  val r2_wb5_pdest = RegNext(r_wb5_pdest, 0.U)
+  val r2_wb5_data  = RegNext(r_wb5_data, 0.U)
+
   case class BypassChannel(valid: Bool, pdest: UInt, data: UInt)
 
   val bypassChannels = Seq(
@@ -275,11 +295,13 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
     BypassChannel(r_wb2_valid, r_wb2_pdest, r_wb2_data),
     BypassChannel(r_wb3_valid, r_wb3_pdest, r_wb3_data),
     BypassChannel(r_wb4_valid, r_wb4_pdest, r_wb4_data),
+    BypassChannel(r_wb5_valid, r_wb5_pdest, r_wb5_data),
     BypassChannel(r2_wb0_valid, r2_wb0_pdest, r2_wb0_data),
     BypassChannel(r2_wb1_valid, r2_wb1_pdest, r2_wb1_data),
     BypassChannel(r2_wb2_valid, r2_wb2_pdest, r2_wb2_data),
     BypassChannel(r2_wb3_valid, r2_wb3_pdest, r2_wb3_data),
-    BypassChannel(r2_wb4_valid, r2_wb4_pdest, r2_wb4_data)
+    BypassChannel(r2_wb4_valid, r2_wb4_pdest, r2_wb4_data),
+    BypassChannel(r2_wb5_valid, r2_wb5_pdest, r2_wb5_data)
   )
 
   // Bypass function: selects the latest available value (checking registered staging outputs first)
@@ -371,7 +393,7 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
 
   // Writebacks and latch registers
   when(exe_val0) {
-    when(exe_uop0.pdest =/= 0.U && !exe_is_div_op0) {
+    when(exe_uop0.pdest =/= 0.U && !exe_is_div_op0 && !exe_is_mul_op0) {
       next_regFile_wen(0) := (!exe_dec0.is_branch) || exe_is_link0
       next_regFile_waddr(0) := exe_uop0.pdest
       next_regFile_wdata(0) := Mux(exe_is_link0, exe_link_addr0, exe_result0)
@@ -379,14 +401,21 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
     when(exe_is_div_op0) { div_rd_latch := exe_uop0.pdest }
   }
 
-  val wu0_valid = io.int_in(0).fire && io.int_in(0).bits.pdest =/= 0.U && !is_div_op0
-  val r_wu0_valid = RegNext(wu0_valid, false.B)
+  // Pipelined wakeup logic for Lane 0 (non-MUL wakes up 1 cycle after fire; MUL wakes up 2 cycles after fire)
+  val wu0_valid_raw = io.int_in(0).fire && io.int_in(0).bits.pdest =/= 0.U && !is_div_op0 && !is_mul_op0
+  val r_wu0_valid = RegNext(wu0_valid_raw, false.B)
   val r_wu0_pdest = RegNext(io.int_in(0).bits.pdest, 0.U)
-  io.wakeup(0).valid := r_wu0_valid
-  io.wakeup(0).pdest := r_wu0_pdest
+
+  val r_mul_wu0_valid_raw = RegNext(io.int_in(0).fire && io.int_in(0).bits.pdest =/= 0.U && is_mul_op0, false.B)
+  val r_mul_wu0_pdest_raw = RegNext(io.int_in(0).bits.pdest, 0.U)
+  val r_mul_wu0_valid = RegNext(r_mul_wu0_valid_raw, false.B)
+  val r_mul_wu0_pdest = RegNext(r_mul_wu0_pdest_raw, 0.U)
+
+  io.wakeup(0).valid := r_wu0_valid || r_mul_wu0_valid
+  io.wakeup(0).pdest := Mux(r_wu0_valid, r_wu0_pdest, r_mul_wu0_pdest)
 
   when(exe_val1) {
-    when(exe_uop1.pdest =/= 0.U && !exe_is_div_op1) {
+    when(exe_uop1.pdest =/= 0.U && !exe_is_div_op1 && !exe_is_mul_op1) {
       next_regFile_wen(1) := (!exe_dec1.is_branch) || exe_is_link1
       next_regFile_waddr(1) := exe_uop1.pdest
       next_regFile_wdata(1) := Mux(exe_is_link1, exe_link_addr1, exe_result1)
@@ -394,11 +423,25 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
     when(exe_is_div_op1) { div_rd_latch := exe_uop1.pdest }
   }
 
-  val wu1_valid = io.int_in(1).fire && io.int_in(1).bits.pdest =/= 0.U && !is_div_op1
-  val r_wu1_valid = RegNext(wu1_valid, false.B)
+  // Pipelined wakeup logic for Lane 1 (non-MUL wakes up 1 cycle after fire; MUL wakes up 2 cycles after fire)
+  val wu1_valid_raw = io.int_in(1).fire && io.int_in(1).bits.pdest =/= 0.U && !is_div_op1 && !is_mul_op1
+  val r_wu1_valid = RegNext(wu1_valid_raw, false.B)
   val r_wu1_pdest = RegNext(io.int_in(1).bits.pdest, 0.U)
-  io.wakeup(1).valid := r_wu1_valid
-  io.wakeup(1).pdest := r_wu1_pdest
+
+  val r_mul_wu1_valid_raw = RegNext(io.int_in(1).fire && io.int_in(1).bits.pdest =/= 0.U && is_mul_op1, false.B)
+  val r_mul_wu1_pdest_raw = RegNext(io.int_in(1).bits.pdest, 0.U)
+  val r_mul_wu1_valid = RegNext(r_mul_wu1_valid_raw, false.B)
+  val r_mul_wu1_pdest = RegNext(r_mul_wu1_pdest_raw, 0.U)
+
+  io.wakeup(1).valid := r_wu1_valid || r_mul_wu1_valid
+  io.wakeup(1).pdest := Mux(r_wu1_valid, r_wu1_pdest, r_mul_wu1_pdest)
+
+  // Writeback for pipelined MUL result (Port 5)
+  when(r2_mul_val) {
+    next_regFile_wen(5) := true.B
+    next_regFile_waddr(5) := r2_mul_pdest
+    next_regFile_wdata(5) := mul.io.result
+  }
 
   when(div.io.done) {
     next_regFile_wen(2) := true.B
@@ -509,7 +552,7 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
     // For now we don't wake up FP registers explicitly if they are always ready or handled in IQ.
   }
 
-  for (i <- 0 until 5) {
+  for (i <- 0 until 6) {
     when(regFile.io.wen(i) && regFile.io.waddr(i) =/= 0.U) {
       printf(p"  [REGFILE WRITE Port $i]: addr=${regFile.io.waddr(i)} data=${Hexadecimal(regFile.io.wdata(i))} at cycle=${io.debug_cycle}\n")
     }

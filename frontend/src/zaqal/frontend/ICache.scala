@@ -28,15 +28,18 @@ class ICache(implicit val p: Parameters) extends Module with HasZaqalParameter {
     } else {
       println(s"[ICache] Warning: Using basic ADDI test program for Pipelined Dispatch verification.")
       Seq(
-        "h00a00513".U, // 0x00: addi x10, x0, 10      (x10 = 10)
-        "h00200593".U, // 0x04: addi x11, x0, 2       (x11 = 2)
-        "h02b54633".U, // 0x08: div x12, x10, x11     (x12 = 10 / 2 = 5)
-        "h00460693".U, // 0x0c: addi x13, x12, 4      (x13 = 5 + 4 = 9, dependent on div)
-        "h00d02823".U, // 0x10: sw x13, 16(x0)        (Store x13 to addr 16)
-        "h01002703".U, // 0x14: lw x14, 16(x0)        (Load addr 16 into x14)
-        "h00170793".U  // 0x18: addi x15, x14, 1      (x15 = 9 + 1 = 10, dependent on load)
+        "h00500513".U, // 0x00: addi x10, x0, 5        (x10 = 5)
+        "h00c00593".U, // 0x04: addi x11, x0, 12       (x11 = 12)
+        "h20b52633".U, // 0x08: sh1add x12, x10, x11   (x12 = (5 << 1) + 12 = 22)
+        "h20b546b3".U, // 0x0c: sh2add x13, x10, x11   (x13 = (5 << 2) + 12 = 32)
+        "h20b56733".U, // 0x10: sh3add x14, x10, x11   (x14 = (5 << 3) + 12 = 52)
+        "h20b527bb".U, // 0x14: sh1add.uw x15, x10, x11 (x15 = (5 << 1) + 12 = 22)
+        "h20b5483b".U, // 0x18: sh2add.uw x16, x10, x11 (x16 = (5 << 2) + 12 = 32)
+        "h20b568bb".U, // 0x1c: sh3add.uw x17, x10, x11 (x17 = (5 << 3) + 12 = 52)
+        "h02b50933".U, // 0x20: mul x18, x10, x11      (x18 = 5 * 12 = 60)
+        "h02b509bb".U  // 0x24: mulw x19, x10, x11     (x19 = 5 * 12 = 60)
       ) ++ Seq.fill(80)("h00000013".U) ++ Seq(
-        "h0000006f".U  // 0x1c + 80*4: jal x0, 0       (Halt loop)
+        "h0000006f".U  // Halt loop
       )
     }
   }

@@ -245,8 +245,10 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
   val rename_out = Wire(Vec(decodeWidth, Decoupled(new DecodedMicroOp)))
   val dispatch_in_buffered = Wire(Vec(decodeWidth, Decoupled(new DecodedMicroOp)))
 
+  val all_skids_ready = rename_out.map(_.ready).reduce(_ && _)
+
   for (i <- 0 until decodeWidth) {
-    rename_out(i).valid := io.dispatch(i).valid && can_allocate_all
+    rename_out(i).valid := io.dispatch(i).valid && all_skids_ready && can_allocate_all
     rename_out(i).bits  := decoded_uops(i)
     
     dispatch_in_buffered(i) <> SkidBuffer(rename_out(i), exec.io.redirect.valid)
@@ -353,9 +355,9 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
   exec.io.snptValids := rat.io.snptValids
   exec.io.snptDeqPtr := rat.io.snptDeqPtr
 
-  // Dispatch Ready Logic (Dynamic Backpressure)
+  // Dispatch Ready Logic (Dynamic Backpressure) - Enforce lock-step dispatch
   for (i <- 0 until decodeWidth) {
-    io.dispatch(i).ready := rename_out(i).ready && can_allocate_all
+    io.dispatch(i).ready := all_skids_ready && can_allocate_all
   }
 
   // Route redirection from Execute to Frontend

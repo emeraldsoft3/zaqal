@@ -26,7 +26,7 @@ Our primary goal is to target a **14nm process node** (using predictive standard
 
 
 ## Day 4: Register File Pipelining (Read Stage)
-- [ ] Implement 2-cycle Register File access (Read in Cycle 1, Execute in Cycle 2).
+- [x] Implement 2-cycle Register File access (Read in Cycle 1, Execute in Cycle 2).
 - **Detailed Plan**: A high-capacity, multi-ported Physical Register File is incredibly slow to read due to immense wire capacitance. To mitigate this, we will pipeline the Register File access. Instructions issued from the Issue Queues will spend Cycle 1 asserting read addresses and propagating signals through the SRAM/Latch arrays, and the actual execution (ALU/MEM) will take place in Cycle 2. This is a crucial step for achieving 500MHz+ in silicon.
 
 ## Day 5: Register File Pipelining (Write Stage)

@@ -75,8 +75,21 @@ class Frontend(implicit val p: Parameters) extends Module with HasZaqalParameter
   ibuf.io.inst_data <> SkidBuffer(ifu.io.toIbuffer, is_valid_redirect)
 
   // 5. IBUF -> Backend (Dispatch Path - Pipelined Staging Boundary!)
+  // We instantiate the SkidBuffers manually to enforce contiguous dequeue from IBUF.
+  val ibuf_skids = Seq.fill(decodeWidth)(Module(new SkidBuffer(new MicroOp)))
+  val ibuf_out_ready = Wire(Vec(decodeWidth, Bool()))
+
+  ibuf_out_ready(0) := ibuf_skids(0).io.enq.ready
+  for (i <- 1 until decodeWidth) {
+    ibuf_out_ready(i) := ibuf_out_ready(i - 1) && ibuf_skids(i).io.enq.ready
+  }
+
   for (i <- 0 until decodeWidth) {
-    io.dispatch(i) <> SkidBuffer(ibuf.io.out(i), is_valid_redirect)
+    ibuf.io.out(i).ready := ibuf_out_ready(i)
+    ibuf_skids(i).io.enq.valid := ibuf.io.out(i).valid && ibuf_out_ready(i)
+    ibuf_skids(i).io.enq.bits  := ibuf.io.out(i).bits
+    ibuf_skids(i).io.flush     := is_valid_redirect
+    io.dispatch(i) <> ibuf_skids(i).io.deq
   }
 
   // 5. Backend -> FTQ (Metadata Read)
