@@ -55,5 +55,10 @@ To match the high-IPC processing power of XiangShan's Kunminghu core, Zaqal's ex
 
 ---
 
-## Future Scope: Multi-Bit Branch Tagging (BRT)
-- Replace the 1-bit `epoch` system with XiangShan's multi-bit `BranchTag` (BRT) arrays and redirection masks, allowing the core to track dozens of in-flight branches simultaneously and selectively flush independent execution paths with surgical precision.
+## Future Scope: Multi-Bit Branch Tagging (BRT) & Post-Parity Execution Optimizations
+- **Multi-Bit Branch Tagging (BRT)**: Replace the 1-bit `epoch` system with XiangShan's multi-bit `BranchTag` (BRT) arrays and redirection masks, allowing the core to track dozens of in-flight branches simultaneously and selectively flush independent execution paths with surgical precision.
+- **ALU/MDU Post-Parity Optimization**: Once functional parity with baseline XiangShan structures is verified, apply advanced microarchitectural updates for physical synthesis timing improvements:
+  1. Consolidate separate Adder & Subtractor modules into a single shared Adder-Subtractor using conditional input inversion and carry-in control to reduce physical area.
+  2. Implement a 3-stage pipelined multiplier to isolate the slow 128-bit Carry-Propagate Addition (CPA) into its own dedicated clock cycle.
+  3. Adopt Radix-8 Booth encoding to reduce Wallace Tree product rows from 33 down to 22.
+  4. Flatten serially nested result selection multiplexers into fast, parallel One-Hot `Mux1H` selection trees.

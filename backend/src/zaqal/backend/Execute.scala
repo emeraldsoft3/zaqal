@@ -30,7 +30,16 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   val fpdiv = Module(new FPDivider)
   val fpmisc = Module(new FPMisc)
   val dmem = Module(new DataMem)
+  val tlb  = Module(new FastTLB)
   val fcsr = Module(new FCSR)
+
+  // ---------------- AGU-TO-CACHE PIPELINE REGISTERS (MEM STAGE 2) ----------------
+  val r_agu_val   = RegInit(false.B)
+  val r_agu_uop   = Reg(new DecodedMicroOp)
+  val r_agu_vaddr = Reg(UInt(xLen.W))
+  val r_agu_paddr = Reg(UInt(xLen.W))
+  val r_agu_src2  = Reg(UInt(xLen.W))
+  val r_agu_fsrc2 = Reg(UInt(fLen.W))
 
   val div_rd_latch = RegInit(0.U(phyRegIdxWidth.W))
   val fpdiv_rd_latch = RegInit(0.U(phyRegIdxWidth.W))
@@ -219,8 +228,8 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   val wb2_pdest = div_rd_latch
   val wb2_data  = div.io.result
 
-  val wb3_valid = exe_valMem && exe_uopMem.pdest =/= 0.U && !exe_decMem.is_fload && (exe_decMem.is_load || exe_decMem.is_atomic)
-  val wb3_pdest = exe_uopMem.pdest
+  val wb3_valid = r_agu_val && r_agu_uop.pdest =/= 0.U && !r_agu_uop.decode.is_fload && (r_agu_uop.decode.is_load || r_agu_uop.decode.is_atomic)
+  val wb3_pdest = r_agu_uop.pdest
   val wb3_data  = lsu.io.result
 
   val wb4_valid = exe_valFp && exe_uopFp.pdest =/= 0.U && exe_is_fp_wb_to_int_top
@@ -290,6 +299,7 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   case class BypassChannel(valid: Bool, pdest: UInt, data: UInt)
 
   val bypassChannels = Seq(
+    BypassChannel(wb3_valid, wb3_pdest, wb3_data),
     BypassChannel(r_wb0_valid, r_wb0_pdest, r_wb0_data),
     BypassChannel(r_wb1_valid, r_wb1_pdest, r_wb1_data),
     BypassChannel(r_wb2_valid, r_wb2_pdest, r_wb2_data),
@@ -455,39 +465,62 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   io.wakeup(2).valid := r_wuDiv_valid
   io.wakeup(2).pdest := r_wuDiv_pdest
 
-  // ---------------- MEM ----------------
+  // ---------------- MEM (AGU STAGE - CYCLE 2) ----------------
   val srcMem_1 = bypass(exe_uopMem.psrs1, r_regFile_rdata4)
   val srcMem_2 = bypass(exe_uopMem.psrs2, r_regFile_rdata5)
   val fsrcMem_2 = r_fpRegFile_rdata3
 
-  lsu.io.src1 := srcMem_1
-  lsu.io.src2 := Mux(exe_decMem.is_fstore, fsrcMem_2, srcMem_2)
-  lsu.io.imm  := exe_decMem.imm
-  lsu.io.dec  := exe_decMem
+  val agu_vaddr = Mux(exe_uopMem.decode.is_atomic, srcMem_1, (srcMem_1.asSInt + exe_uopMem.decode.imm).asUInt)
+
+  tlb.io.vaddr := agu_vaddr
+
+  // Latch inputs at the end of Cycle 2 into AGU-to-Cache pipeline registers
+  when(io.redirect.valid) {
+    r_agu_val := false.B
+  } .otherwise {
+    r_agu_val := exe_valMem
+  }
+
+  when(!io.redirect.valid) {
+    r_agu_uop   := exe_uopMem
+    r_agu_vaddr := agu_vaddr
+    r_agu_paddr := tlb.io.paddr
+    r_agu_src2  := srcMem_2
+    r_agu_fsrc2 := fsrcMem_2
+  }
+
+  // ---------------- MEM (CACHE ACCESS STAGE - CYCLE 3) ----------------
+  lsu.io.src1 := r_agu_paddr
+  lsu.io.src2 := Mux(r_agu_uop.decode.is_fstore, r_agu_fsrc2, r_agu_src2)
+  lsu.io.imm  := 0.S
+  lsu.io.dec  := r_agu_uop.decode
 
   dmem.io.addr  := lsu.io.mem_addr
-  dmem.io.wen   := lsu.io.mem_wen && exe_valMem
+  dmem.io.wen   := lsu.io.mem_wen && r_agu_val
   dmem.io.wmask := lsu.io.mem_wmask
   dmem.io.wdata := lsu.io.mem_wdata
   lsu.io.mem_data := dmem.io.data
 
-  when(exe_valMem) {
-    when(exe_uopMem.pdest =/= 0.U) {
-      when(exe_decMem.is_fload) {
+  when(r_agu_val) {
+    when(r_agu_uop.pdest =/= 0.U) {
+      when(r_agu_uop.decode.is_fload) {
         fpRegFile.io.wen(2) := true.B
-        fpRegFile.io.waddr(2) := exe_uopMem.pdest
+        fpRegFile.io.waddr(2) := r_agu_uop.pdest
         fpRegFile.io.wdata(2) := lsu.io.result
       }.otherwise {
-        next_regFile_wen(3) := exe_decMem.is_load || exe_decMem.is_atomic
-        next_regFile_waddr(3) := exe_uopMem.pdest
+        next_regFile_wen(3) := r_agu_uop.decode.is_load || r_agu_uop.decode.is_atomic
+        next_regFile_waddr(3) := r_agu_uop.pdest
         next_regFile_wdata(3) := lsu.io.result
       }
     }
   }
 
+  // Wakeup delayed by 1 cycle
   val wuMem_valid = io.mem_in.fire && io.mem_in.bits.pdest =/= 0.U && !decMem.is_fload
-  io.wakeup(3).valid := wuMem_valid
-  io.wakeup(3).pdest := io.mem_in.bits.pdest
+  val r_wuMem_valid = RegNext(wuMem_valid, false.B)
+  val r_wuMem_pdest = RegNext(io.mem_in.bits.pdest, 0.U)
+  io.wakeup(3).valid := r_wuMem_valid
+  io.wakeup(3).pdest := r_wuMem_pdest
 
   // ---------------- FP ----------------
   val fsrc1 = r_fpRegFile_rdata0

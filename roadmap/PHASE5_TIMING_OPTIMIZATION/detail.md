@@ -40,8 +40,8 @@ Our primary goal is to target a **14nm process node** (using predictive standard
 - **XiangShan Study**: [Alu.scala](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/backend/fu/Alu.scala) - *See how they reuse AddModule for SHxADD via operand pre-shifting.*
 - **XiangShan Study**: [Multiplier.scala](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/backend/fu/Multiplier.scala) - *See how they pipeline the multiplication operation.*
 
-## Day 7: Load/Store Queue Timing
-- [ ] Optimize the address calculation and memory request path.
+## Day 7: Load/Store Unit Pipeline Timing
+- [x] Optimize the address calculation and memory request path.
 - **Detailed Plan**: Memory operations require calculating an address (Base + Offset), translating it (TLB), and accessing the D-Cache, all within tight timing margins. We will optimize this by splitting address generation (AGU) and cache access into separate pipeline stages. We will also implement fast-path TLB lookups to ensure the address translation doesn't delay the cache hit/miss determination.
 - **XiangShan Study**: [LoadUnit.scala](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/mem/pipeline/LoadUnit.scala) - *Study the load request pipeline.*
 

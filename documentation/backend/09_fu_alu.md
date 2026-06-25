@@ -48,3 +48,10 @@ graph TD
 - `TOP.Core.backend.execute.alu_0.io_src2`
 - `TOP.Core.backend.execute.alu_0.io_result`
 - `TOP.Core.backend.execute.alu_0.adder.io_result`
+
+## 6. Optimization Decisions & Timing Improvements
+To target 1.5 GHz+ operating frequencies on 14nm/7nm PDK nodes, the following ALU and Multiplier optimizations are planned:
+1. **Adder-Subtractor Consolidation**: Eliminate separate adder and subtractor units by using a shared adder module with conditional input inversion (`src2 ^ is_sub`) and a `carry-in` bit to minimize silicon footprint and routing density.
+2. **Multiplier 3-Stage Pipelining**: Separate the Wallace Tree compression from the final 128-bit Carry-Propagate Addition (CPA) by adding a pipeline register boundary. This ensures the CPA does not form the overall timing bottleneck of the execution core.
+3. **Radix-8 Booth Encoding**: Reduce Wallace Tree logic depth and congestion by using Radix-8 Booth encoding (reducing partial product lines from 33 to 22) to lower overall cell delay.
+4. **Flat result selection Muxes**: Convert serial nested priority multiplexers to flat, One-Hot decoded multiplexers (`Mux1H`) to enable parallel logic gate mapping.
