@@ -75,102 +75,111 @@ module Divider(	// backend/src/zaqal/backend/fu/Divider.scala:9:7
                 io_dec_is_remw,	// backend/src/zaqal/backend/fu/Divider.scala:10:14
                 io_dec_is_remuw,	// backend/src/zaqal/backend/fu/Divider.scala:10:14
                 io_fire,	// backend/src/zaqal/backend/fu/Divider.scala:10:14
+                io_flush,	// backend/src/zaqal/backend/fu/Divider.scala:10:14
   output        io_ready,	// backend/src/zaqal/backend/fu/Divider.scala:10:14
   output [63:0] io_result,	// backend/src/zaqal/backend/fu/Divider.scala:10:14
   output        io_done	// backend/src/zaqal/backend/fu/Divider.scala:10:14
 );
 
-  reg [1:0]   state;	// backend/src/zaqal/backend/fu/Divider.scala:22:22
-  reg [6:0]   count;	// backend/src/zaqal/backend/fu/Divider.scala:24:25
-  reg [63:0]  divisor;	// backend/src/zaqal/backend/fu/Divider.scala:25:25
-  reg [128:0] div_reg;	// backend/src/zaqal/backend/fu/Divider.scala:26:25
-  reg         is_w_lat;	// backend/src/zaqal/backend/fu/Divider.scala:28:30
-  reg         is_rem_op_lat;	// backend/src/zaqal/backend/fu/Divider.scala:30:30
-  reg         div_by_zero;	// backend/src/zaqal/backend/fu/Divider.scala:31:30
-  reg         overflow;	// backend/src/zaqal/backend/fu/Divider.scala:32:30
-  reg         dividend_sign;	// backend/src/zaqal/backend/fu/Divider.scala:33:30
-  reg         divisor_sign;	// backend/src/zaqal/backend/fu/Divider.scala:34:30
-  reg [63:0]  dividend_orig;	// backend/src/zaqal/backend/fu/Divider.scala:35:30
-  reg [63:0]  res_reg;	// backend/src/zaqal/backend/fu/Divider.scala:37:24
+  reg [1:0]   state;	// backend/src/zaqal/backend/fu/Divider.scala:23:22
+  reg [6:0]   count;	// backend/src/zaqal/backend/fu/Divider.scala:25:25
+  reg [63:0]  divisor;	// backend/src/zaqal/backend/fu/Divider.scala:26:25
+  reg [128:0] div_reg;	// backend/src/zaqal/backend/fu/Divider.scala:27:25
+  reg         is_w_lat;	// backend/src/zaqal/backend/fu/Divider.scala:29:30
+  reg         is_rem_op_lat;	// backend/src/zaqal/backend/fu/Divider.scala:31:30
+  reg         div_by_zero;	// backend/src/zaqal/backend/fu/Divider.scala:32:30
+  reg         overflow;	// backend/src/zaqal/backend/fu/Divider.scala:33:30
+  reg         dividend_sign;	// backend/src/zaqal/backend/fu/Divider.scala:34:30
+  reg         divisor_sign;	// backend/src/zaqal/backend/fu/Divider.scala:35:30
+  reg [63:0]  dividend_orig;	// backend/src/zaqal/backend/fu/Divider.scala:36:30
+  reg [63:0]  res_reg;	// backend/src/zaqal/backend/fu/Divider.scala:38:24
   always @(posedge clock) begin	// backend/src/zaqal/backend/fu/Divider.scala:9:7
     if (reset) begin	// backend/src/zaqal/backend/fu/Divider.scala:9:7
-      state <= 2'h0;	// backend/src/zaqal/backend/fu/Divider.scala:22:22
-      count <= 7'h0;	// backend/src/zaqal/backend/fu/Divider.scala:24:25
-      divisor <= 64'h0;	// backend/src/zaqal/backend/fu/Divider.scala:25:25
-      div_reg <= 129'h0;	// backend/src/zaqal/backend/fu/Divider.scala:26:25
-      is_w_lat <= 1'h0;	// backend/src/zaqal/backend/fu/Divider.scala:28:30
-      is_rem_op_lat <= 1'h0;	// backend/src/zaqal/backend/fu/Divider.scala:28:30, :30:30
-      div_by_zero <= 1'h0;	// backend/src/zaqal/backend/fu/Divider.scala:28:30, :31:30
-      overflow <= 1'h0;	// backend/src/zaqal/backend/fu/Divider.scala:28:30, :32:30
-      dividend_sign <= 1'h0;	// backend/src/zaqal/backend/fu/Divider.scala:28:30, :33:30
-      divisor_sign <= 1'h0;	// backend/src/zaqal/backend/fu/Divider.scala:28:30, :34:30
-      dividend_orig <= 64'h0;	// backend/src/zaqal/backend/fu/Divider.scala:25:25, :35:30
-      res_reg <= 64'h0;	// backend/src/zaqal/backend/fu/Divider.scala:25:25, :37:24
+      state <= 2'h0;	// backend/src/zaqal/backend/fu/Divider.scala:23:22
+      count <= 7'h0;	// backend/src/zaqal/backend/fu/Divider.scala:25:25
+      divisor <= 64'h0;	// backend/src/zaqal/backend/fu/Divider.scala:26:25
+      div_reg <= 129'h0;	// backend/src/zaqal/backend/fu/Divider.scala:27:25
+      is_w_lat <= 1'h0;	// backend/src/zaqal/backend/fu/Divider.scala:29:30
+      is_rem_op_lat <= 1'h0;	// backend/src/zaqal/backend/fu/Divider.scala:29:30, :31:30
+      div_by_zero <= 1'h0;	// backend/src/zaqal/backend/fu/Divider.scala:29:30, :32:30
+      overflow <= 1'h0;	// backend/src/zaqal/backend/fu/Divider.scala:29:30, :33:30
+      dividend_sign <= 1'h0;	// backend/src/zaqal/backend/fu/Divider.scala:29:30, :34:30
+      divisor_sign <= 1'h0;	// backend/src/zaqal/backend/fu/Divider.scala:29:30, :35:30
+      dividend_orig <= 64'h0;	// backend/src/zaqal/backend/fu/Divider.scala:26:25, :36:30
+      res_reg <= 64'h0;	// backend/src/zaqal/backend/fu/Divider.scala:26:25, :38:24
     end
     else begin	// backend/src/zaqal/backend/fu/Divider.scala:9:7
-      automatic logic        _GEN;	// backend/src/zaqal/backend/fu/Divider.scala:47:20
-      automatic logic        is_w;	// backend/src/zaqal/backend/fu/Divider.scala:48:72
-      automatic logic        is_signed;	// backend/src/zaqal/backend/fu/Divider.scala:49:74
-      automatic logic        sign1;	// backend/src/zaqal/backend/fu/Divider.scala:50:61
-      automatic logic        _GEN_0;	// backend/src/zaqal/backend/fu/Divider.scala:43:17
-      automatic logic [64:0] _GEN_1;	// backend/src/zaqal/backend/fu/Divider.scala:77:16
-      automatic logic        _res_quo_T;	// backend/src/zaqal/backend/fu/Divider.scala:77:16
-      automatic logic        _GEN_2;	// backend/src/zaqal/backend/fu/Divider.scala:84:18
+      automatic logic        _GEN;	// backend/src/zaqal/backend/fu/Divider.scala:48:34
+      automatic logic        is_w;	// backend/src/zaqal/backend/fu/Divider.scala:49:72
+      automatic logic        is_signed;	// backend/src/zaqal/backend/fu/Divider.scala:50:74
+      automatic logic        sign1;	// backend/src/zaqal/backend/fu/Divider.scala:51:61
+      automatic logic        _GEN_0;	// backend/src/zaqal/backend/fu/Divider.scala:44:17
+      automatic logic [64:0] _GEN_1;	// backend/src/zaqal/backend/fu/Divider.scala:78:16
+      automatic logic        _res_quo_T;	// backend/src/zaqal/backend/fu/Divider.scala:78:16
+      automatic logic        _GEN_2;	// backend/src/zaqal/backend/fu/Divider.scala:85:18
       _GEN =
         io_fire
         & (io_dec_is_div | io_dec_is_divu | io_dec_is_rem | io_dec_is_remu
-           | io_dec_is_divw | io_dec_is_divuw | io_dec_is_remw | io_dec_is_remuw);	// backend/src/zaqal/backend/fu/Divider.scala:46:76, :47:20
-      is_w = io_dec_is_divw | io_dec_is_divuw | io_dec_is_remw | io_dec_is_remuw;	// backend/src/zaqal/backend/fu/Divider.scala:48:72
-      is_signed = io_dec_is_div | io_dec_is_rem | io_dec_is_divw | io_dec_is_remw;	// backend/src/zaqal/backend/fu/Divider.scala:49:74
-      sign1 = (is_w ? io_src1[31] : io_src1[63]) & is_signed;	// backend/src/zaqal/backend/fu/Divider.scala:48:72, :49:74, :50:{24,38,51,61}
-      _GEN_0 = state == 2'h1;	// backend/src/zaqal/backend/fu/Divider.scala:22:22, :43:17, :69:18
-      _GEN_1 = {1'h0, divisor};	// backend/src/zaqal/backend/fu/Divider.scala:25:25, :28:30, :77:16
-      _res_quo_T = div_reg[127:63] >= _GEN_1;	// backend/src/zaqal/backend/fu/Divider.scala:26:25, :74:29, :77:16
-      _GEN_2 = count == 7'h1;	// backend/src/zaqal/backend/fu/Divider.scala:24:25, :84:18
-      if (|state) begin	// backend/src/zaqal/backend/fu/Divider.scala:22:22, :39:22
-        if (_GEN_0) begin	// backend/src/zaqal/backend/fu/Divider.scala:43:17
-          if (_GEN_2)	// backend/src/zaqal/backend/fu/Divider.scala:84:18
-            state <= 2'h2;	// backend/src/zaqal/backend/fu/Divider.scala:22:22, :40:22
-          count <= count - 7'h1;	// backend/src/zaqal/backend/fu/Divider.scala:24:25, :83:22
-          if (_res_quo_T)	// backend/src/zaqal/backend/fu/Divider.scala:77:16
-            div_reg <= {div_reg[127:63] - _GEN_1, div_reg[62:0], 1'h1};	// backend/src/zaqal/backend/fu/Divider.scala:26:25, :64:66, :74:29, :75:29, :77:16, :78:{23,28}
-          else	// backend/src/zaqal/backend/fu/Divider.scala:77:16
-            div_reg <= {div_reg[127:0], 1'h0};	// backend/src/zaqal/backend/fu/Divider.scala:26:25, :28:30, :73:{29,37}
+           | io_dec_is_divw | io_dec_is_divuw | io_dec_is_remw | io_dec_is_remuw)
+        & ~io_flush;	// backend/src/zaqal/backend/fu/Divider.scala:47:76, :48:{34,37}
+      is_w = io_dec_is_divw | io_dec_is_divuw | io_dec_is_remw | io_dec_is_remuw;	// backend/src/zaqal/backend/fu/Divider.scala:49:72
+      is_signed = io_dec_is_div | io_dec_is_rem | io_dec_is_divw | io_dec_is_remw;	// backend/src/zaqal/backend/fu/Divider.scala:50:74
+      sign1 = (is_w ? io_src1[31] : io_src1[63]) & is_signed;	// backend/src/zaqal/backend/fu/Divider.scala:49:72, :50:74, :51:{24,38,51,61}
+      _GEN_0 = state == 2'h1;	// backend/src/zaqal/backend/fu/Divider.scala:23:22, :44:17, :70:18
+      _GEN_1 = {1'h0, divisor};	// backend/src/zaqal/backend/fu/Divider.scala:26:25, :29:30, :78:16
+      _res_quo_T = div_reg[127:63] >= _GEN_1;	// backend/src/zaqal/backend/fu/Divider.scala:27:25, :75:29, :78:16
+      _GEN_2 = count == 7'h1;	// backend/src/zaqal/backend/fu/Divider.scala:25:25, :85:18
+      if (io_flush)	// backend/src/zaqal/backend/fu/Divider.scala:10:14
+        state <= 2'h0;	// backend/src/zaqal/backend/fu/Divider.scala:23:22
+      else if (|state) begin	// backend/src/zaqal/backend/fu/Divider.scala:23:22, :40:22
+        if (_GEN_0) begin	// backend/src/zaqal/backend/fu/Divider.scala:44:17
+          if (_GEN_2)	// backend/src/zaqal/backend/fu/Divider.scala:85:18
+            state <= 2'h2;	// backend/src/zaqal/backend/fu/Divider.scala:23:22, :41:22
         end
-        else if (state == 2'h2)	// backend/src/zaqal/backend/fu/Divider.scala:22:22, :40:22, :43:17
-          state <= 2'h0;	// backend/src/zaqal/backend/fu/Divider.scala:22:22
+        else if (state == 2'h2)	// backend/src/zaqal/backend/fu/Divider.scala:23:22, :41:22, :44:17
+          state <= 2'h0;	// backend/src/zaqal/backend/fu/Divider.scala:23:22
       end
-      else if (_GEN) begin	// backend/src/zaqal/backend/fu/Divider.scala:47:20
-        automatic logic [63:0] d1_abs;	// backend/src/zaqal/backend/fu/Divider.scala:52:25
-        d1_abs = sign1 ? 64'h0 - io_src1 : io_src1;	// backend/src/zaqal/backend/fu/Divider.scala:25:25, :28:30, :50:61, :52:{25,34}
-        state <= 2'h1;	// backend/src/zaqal/backend/fu/Divider.scala:22:22, :69:18
-        count <= is_w ? 7'h20 : 7'h40;	// backend/src/zaqal/backend/fu/Divider.scala:24:25, :48:72, :68:24
-        div_reg <= {65'h0, is_w ? {32'h0, d1_abs[31:0]} : d1_abs};	// backend/src/zaqal/backend/fu/Divider.scala:26:25, :28:30, :48:72, :52:{25,34}, :54:{22,35}, :67:18, :93:45
+      else if (_GEN)	// backend/src/zaqal/backend/fu/Divider.scala:48:34
+        state <= 2'h1;	// backend/src/zaqal/backend/fu/Divider.scala:23:22, :70:18
+      if (|state) begin	// backend/src/zaqal/backend/fu/Divider.scala:23:22, :40:22
+        if (_GEN_0) begin	// backend/src/zaqal/backend/fu/Divider.scala:44:17
+          count <= count - 7'h1;	// backend/src/zaqal/backend/fu/Divider.scala:25:25, :84:22
+          if (_res_quo_T)	// backend/src/zaqal/backend/fu/Divider.scala:78:16
+            div_reg <= {div_reg[127:63] - _GEN_1, div_reg[62:0], 1'h1};	// backend/src/zaqal/backend/fu/Divider.scala:27:25, :65:66, :75:29, :76:29, :78:16, :79:{23,28}
+          else	// backend/src/zaqal/backend/fu/Divider.scala:78:16
+            div_reg <= {div_reg[127:0], 1'h0};	// backend/src/zaqal/backend/fu/Divider.scala:27:25, :29:30, :74:{29,37}
+        end
       end
-      if (~(|state) & _GEN) begin	// backend/src/zaqal/backend/fu/Divider.scala:22:22, :35:30, :39:22, :43:17, :47:{20,35}, :57:23
-        automatic logic        sign2;	// backend/src/zaqal/backend/fu/Divider.scala:51:61
-        automatic logic [63:0] d2_abs;	// backend/src/zaqal/backend/fu/Divider.scala:53:25
-        sign2 = (is_w ? io_src2[31] : io_src2[63]) & is_signed;	// backend/src/zaqal/backend/fu/Divider.scala:48:72, :49:74, :51:{24,38,51,61}
-        d2_abs = sign2 ? 64'h0 - io_src2 : io_src2;	// backend/src/zaqal/backend/fu/Divider.scala:25:25, :28:30, :51:61, :53:{25,34}
-        divisor <= is_w ? {32'h0, d2_abs[31:0]} : d2_abs;	// backend/src/zaqal/backend/fu/Divider.scala:25:25, :48:72, :53:25, :55:{22,35}, :93:45
-        is_w_lat <= is_w;	// backend/src/zaqal/backend/fu/Divider.scala:28:30, :48:72
+      else if (_GEN) begin	// backend/src/zaqal/backend/fu/Divider.scala:48:34
+        automatic logic [63:0] d1_abs;	// backend/src/zaqal/backend/fu/Divider.scala:53:25
+        d1_abs = sign1 ? 64'h0 - io_src1 : io_src1;	// backend/src/zaqal/backend/fu/Divider.scala:26:25, :29:30, :51:61, :53:{25,34}
+        count <= is_w ? 7'h20 : 7'h40;	// backend/src/zaqal/backend/fu/Divider.scala:25:25, :49:72, :69:24
+        div_reg <= {65'h0, is_w ? {32'h0, d1_abs[31:0]} : d1_abs};	// backend/src/zaqal/backend/fu/Divider.scala:27:25, :29:30, :49:72, :53:{25,34}, :55:{22,35}, :68:18, :94:45
+      end
+      if (~(|state) & _GEN) begin	// backend/src/zaqal/backend/fu/Divider.scala:23:22, :36:30, :40:22, :44:17, :48:{34,48}, :58:23
+        automatic logic        sign2;	// backend/src/zaqal/backend/fu/Divider.scala:52:61
+        automatic logic [63:0] d2_abs;	// backend/src/zaqal/backend/fu/Divider.scala:54:25
+        sign2 = (is_w ? io_src2[31] : io_src2[63]) & is_signed;	// backend/src/zaqal/backend/fu/Divider.scala:49:72, :50:74, :52:{24,38,51,61}
+        d2_abs = sign2 ? 64'h0 - io_src2 : io_src2;	// backend/src/zaqal/backend/fu/Divider.scala:26:25, :29:30, :52:61, :54:{25,34}
+        divisor <= is_w ? {32'h0, d2_abs[31:0]} : d2_abs;	// backend/src/zaqal/backend/fu/Divider.scala:26:25, :49:72, :54:25, :56:{22,35}, :94:45
+        is_w_lat <= is_w;	// backend/src/zaqal/backend/fu/Divider.scala:29:30, :49:72
         is_rem_op_lat <=
-          io_dec_is_rem | io_dec_is_remu | io_dec_is_remw | io_dec_is_remuw;	// backend/src/zaqal/backend/fu/Divider.scala:30:30, :62:76
-        div_by_zero <= io_src2 == 64'h0;	// backend/src/zaqal/backend/fu/Divider.scala:25:25, :31:30, :63:34
-        overflow <= is_signed & ~is_w & io_src1 == 64'h8000000000000000 & (&io_src2);	// backend/src/zaqal/backend/fu/Divider.scala:32:30, :48:72, :49:74, :64:{39,57,66,87,99}
-        dividend_sign <= sign1;	// backend/src/zaqal/backend/fu/Divider.scala:33:30, :50:61
-        divisor_sign <= sign2;	// backend/src/zaqal/backend/fu/Divider.scala:34:30, :51:61
-        dividend_orig <= io_src1;	// backend/src/zaqal/backend/fu/Divider.scala:35:30
+          io_dec_is_rem | io_dec_is_remu | io_dec_is_remw | io_dec_is_remuw;	// backend/src/zaqal/backend/fu/Divider.scala:31:30, :63:76
+        div_by_zero <= io_src2 == 64'h0;	// backend/src/zaqal/backend/fu/Divider.scala:26:25, :32:30, :64:34
+        overflow <= is_signed & ~is_w & io_src1 == 64'h8000000000000000 & (&io_src2);	// backend/src/zaqal/backend/fu/Divider.scala:33:30, :49:72, :50:74, :65:{39,57,66,87,99}
+        dividend_sign <= sign1;	// backend/src/zaqal/backend/fu/Divider.scala:34:30, :51:61
+        divisor_sign <= sign2;	// backend/src/zaqal/backend/fu/Divider.scala:35:30, :52:61
+        dividend_orig <= io_src1;	// backend/src/zaqal/backend/fu/Divider.scala:36:30
       end
-      if ((|state) & _GEN_0 & _GEN_2) begin	// backend/src/zaqal/backend/fu/Divider.scala:22:22, :37:24, :39:22, :43:17, :84:18
-        automatic logic [63:0] res_rem;	// backend/src/zaqal/backend/fu/Divider.scala:87:26
-        automatic logic [63:0] res_quo;	// backend/src/zaqal/backend/fu/Divider.scala:88:26
-        automatic logic [63:0] q_signed;	// backend/src/zaqal/backend/fu/Divider.scala:90:27
-        automatic logic [63:0] r_signed;	// backend/src/zaqal/backend/fu/Divider.scala:91:27
-        res_rem = _res_quo_T ? div_reg[126:63] - divisor : div_reg[126:63];	// backend/src/zaqal/backend/fu/Divider.scala:25:25, :26:25, :74:29, :77:16, :87:{26,47}
-        res_quo = {div_reg[62:0], _res_quo_T};	// backend/src/zaqal/backend/fu/Divider.scala:26:25, :75:29, :77:16, :88:26
-        q_signed = dividend_sign ^ divisor_sign ? 64'h0 - res_quo : res_quo;	// backend/src/zaqal/backend/fu/Divider.scala:25:25, :28:30, :33:30, :34:30, :88:26, :90:{27,42,59}
-        r_signed = dividend_sign ? 64'h0 - res_rem : res_rem;	// backend/src/zaqal/backend/fu/Divider.scala:25:25, :28:30, :33:30, :87:26, :91:{27,44}
+      if ((|state) & _GEN_0 & _GEN_2) begin	// backend/src/zaqal/backend/fu/Divider.scala:23:22, :38:24, :40:22, :44:17, :85:18
+        automatic logic [63:0] res_rem;	// backend/src/zaqal/backend/fu/Divider.scala:88:26
+        automatic logic [63:0] res_quo;	// backend/src/zaqal/backend/fu/Divider.scala:89:26
+        automatic logic [63:0] q_signed;	// backend/src/zaqal/backend/fu/Divider.scala:91:27
+        automatic logic [63:0] r_signed;	// backend/src/zaqal/backend/fu/Divider.scala:92:27
+        res_rem = _res_quo_T ? div_reg[126:63] - divisor : div_reg[126:63];	// backend/src/zaqal/backend/fu/Divider.scala:26:25, :27:25, :75:29, :78:16, :88:{26,47}
+        res_quo = {div_reg[62:0], _res_quo_T};	// backend/src/zaqal/backend/fu/Divider.scala:27:25, :76:29, :78:16, :89:26
+        q_signed = dividend_sign ^ divisor_sign ? 64'h0 - res_quo : res_quo;	// backend/src/zaqal/backend/fu/Divider.scala:26:25, :29:30, :34:30, :35:30, :89:26, :91:{27,42,59}
+        r_signed = dividend_sign ? 64'h0 - res_rem : res_rem;	// backend/src/zaqal/backend/fu/Divider.scala:26:25, :29:30, :34:30, :88:26, :92:{27,44}
         res_reg <=
           div_by_zero
             ? (is_rem_op_lat ? dividend_orig : 64'hFFFFFFFFFFFFFFFF)
@@ -178,7 +187,7 @@ module Divider(	// backend/src/zaqal/backend/fu/Divider.scala:9:7
                 ? {~is_rem_op_lat, 63'h0}
                 : is_rem_op_lat
                     ? (is_w_lat ? {{32{r_signed[31]}}, r_signed[31:0]} : r_signed)
-                    : is_w_lat ? {{32{q_signed[31]}}, q_signed[31:0]} : q_signed;	// backend/src/zaqal/backend/fu/Divider.scala:28:30, :30:30, :31:30, :32:30, :35:30, :37:24, :64:99, :90:27, :91:27, :93:{26,40,45,58,73}, :94:{26,45,58,73}, :96:{23,42}, :97:{23,42}, :98:23
+                    : is_w_lat ? {{32{q_signed[31]}}, q_signed[31:0]} : q_signed;	// backend/src/zaqal/backend/fu/Divider.scala:29:30, :31:30, :32:30, :33:30, :36:30, :38:24, :65:99, :91:27, :92:27, :94:{26,40,45,58,73}, :95:{26,45,58,73}, :97:{23,42}, :98:{23,42}, :99:23
       end
     end
   end // always @(posedge)
@@ -195,31 +204,31 @@ module Divider(	// backend/src/zaqal/backend/fu/Divider.scala:9:7
         for (logic [3:0] i = 4'h0; i < 4'hB; i += 4'h1) begin
           _RANDOM[i] = `RANDOM;	// backend/src/zaqal/backend/fu/Divider.scala:9:7
         end	// backend/src/zaqal/backend/fu/Divider.scala:9:7
-        state = _RANDOM[4'h0][1:0];	// backend/src/zaqal/backend/fu/Divider.scala:9:7, :22:22
-        count = _RANDOM[4'h0][8:2];	// backend/src/zaqal/backend/fu/Divider.scala:9:7, :22:22, :24:25
-        divisor = {_RANDOM[4'h0][31:9], _RANDOM[4'h1], _RANDOM[4'h2][8:0]};	// backend/src/zaqal/backend/fu/Divider.scala:9:7, :22:22, :25:25
+        state = _RANDOM[4'h0][1:0];	// backend/src/zaqal/backend/fu/Divider.scala:9:7, :23:22
+        count = _RANDOM[4'h0][8:2];	// backend/src/zaqal/backend/fu/Divider.scala:9:7, :23:22, :25:25
+        divisor = {_RANDOM[4'h0][31:9], _RANDOM[4'h1], _RANDOM[4'h2][8:0]};	// backend/src/zaqal/backend/fu/Divider.scala:9:7, :23:22, :26:25
         div_reg =
           {_RANDOM[4'h2][31:9],
            _RANDOM[4'h3],
            _RANDOM[4'h4],
            _RANDOM[4'h5],
-           _RANDOM[4'h6][9:0]};	// backend/src/zaqal/backend/fu/Divider.scala:9:7, :25:25, :26:25
-        is_w_lat = _RANDOM[4'h6][10];	// backend/src/zaqal/backend/fu/Divider.scala:9:7, :26:25, :28:30
-        is_rem_op_lat = _RANDOM[4'h6][12];	// backend/src/zaqal/backend/fu/Divider.scala:9:7, :26:25, :30:30
-        div_by_zero = _RANDOM[4'h6][13];	// backend/src/zaqal/backend/fu/Divider.scala:9:7, :26:25, :31:30
-        overflow = _RANDOM[4'h6][14];	// backend/src/zaqal/backend/fu/Divider.scala:9:7, :26:25, :32:30
-        dividend_sign = _RANDOM[4'h6][15];	// backend/src/zaqal/backend/fu/Divider.scala:9:7, :26:25, :33:30
-        divisor_sign = _RANDOM[4'h6][16];	// backend/src/zaqal/backend/fu/Divider.scala:9:7, :26:25, :34:30
-        dividend_orig = {_RANDOM[4'h6][31:17], _RANDOM[4'h7], _RANDOM[4'h8][16:0]};	// backend/src/zaqal/backend/fu/Divider.scala:9:7, :26:25, :35:30
-        res_reg = {_RANDOM[4'h8][31:17], _RANDOM[4'h9], _RANDOM[4'hA][16:0]};	// backend/src/zaqal/backend/fu/Divider.scala:9:7, :35:30, :37:24
+           _RANDOM[4'h6][9:0]};	// backend/src/zaqal/backend/fu/Divider.scala:9:7, :26:25, :27:25
+        is_w_lat = _RANDOM[4'h6][10];	// backend/src/zaqal/backend/fu/Divider.scala:9:7, :27:25, :29:30
+        is_rem_op_lat = _RANDOM[4'h6][12];	// backend/src/zaqal/backend/fu/Divider.scala:9:7, :27:25, :31:30
+        div_by_zero = _RANDOM[4'h6][13];	// backend/src/zaqal/backend/fu/Divider.scala:9:7, :27:25, :32:30
+        overflow = _RANDOM[4'h6][14];	// backend/src/zaqal/backend/fu/Divider.scala:9:7, :27:25, :33:30
+        dividend_sign = _RANDOM[4'h6][15];	// backend/src/zaqal/backend/fu/Divider.scala:9:7, :27:25, :34:30
+        divisor_sign = _RANDOM[4'h6][16];	// backend/src/zaqal/backend/fu/Divider.scala:9:7, :27:25, :35:30
+        dividend_orig = {_RANDOM[4'h6][31:17], _RANDOM[4'h7], _RANDOM[4'h8][16:0]};	// backend/src/zaqal/backend/fu/Divider.scala:9:7, :27:25, :36:30
+        res_reg = {_RANDOM[4'h8][31:17], _RANDOM[4'h9], _RANDOM[4'hA][16:0]};	// backend/src/zaqal/backend/fu/Divider.scala:9:7, :36:30, :38:24
       `endif // RANDOMIZE_REG_INIT
     end // initial
     `ifdef FIRRTL_AFTER_INITIAL	// backend/src/zaqal/backend/fu/Divider.scala:9:7
       `FIRRTL_AFTER_INITIAL	// backend/src/zaqal/backend/fu/Divider.scala:9:7
     `endif // FIRRTL_AFTER_INITIAL
   `endif // ENABLE_INITIAL_REG_
-  assign io_ready = ~(|state);	// backend/src/zaqal/backend/fu/Divider.scala:9:7, :22:22, :39:22
-  assign io_result = res_reg;	// backend/src/zaqal/backend/fu/Divider.scala:9:7, :37:24
-  assign io_done = state == 2'h2;	// backend/src/zaqal/backend/fu/Divider.scala:9:7, :22:22, :40:22
+  assign io_ready = ~(|state);	// backend/src/zaqal/backend/fu/Divider.scala:9:7, :23:22, :40:22
+  assign io_result = res_reg;	// backend/src/zaqal/backend/fu/Divider.scala:9:7, :38:24
+  assign io_done = state == 2'h2;	// backend/src/zaqal/backend/fu/Divider.scala:9:7, :23:22, :41:22
 endmodule
 

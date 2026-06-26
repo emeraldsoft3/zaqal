@@ -61,34 +61,113 @@
   `endif // PRINTF_COND
 `endif // not def PRINTF_COND_
 
-module Multiplier(	// backend/src/zaqal/backend/fu/Multiplier.scala:9:7
-  input  [63:0] io_src1,	// backend/src/zaqal/backend/fu/Multiplier.scala:10:14
-                io_src2,	// backend/src/zaqal/backend/fu/Multiplier.scala:10:14
-  input         io_dec_is_mul,	// backend/src/zaqal/backend/fu/Multiplier.scala:10:14
-                io_dec_is_mulh,	// backend/src/zaqal/backend/fu/Multiplier.scala:10:14
-                io_dec_is_mulhsu,	// backend/src/zaqal/backend/fu/Multiplier.scala:10:14
-                io_dec_is_mulhu,	// backend/src/zaqal/backend/fu/Multiplier.scala:10:14
-                io_dec_is_mulw,	// backend/src/zaqal/backend/fu/Multiplier.scala:10:14
-  output [63:0] io_result	// backend/src/zaqal/backend/fu/Multiplier.scala:10:14
+module Multiplier(	// backend/src/zaqal/backend/fu/Multiplier.scala:8:7
+  input         clock,	// backend/src/zaqal/backend/fu/Multiplier.scala:8:7
+  input  [63:0] io_src1,	// backend/src/zaqal/backend/fu/Multiplier.scala:9:14
+                io_src2,	// backend/src/zaqal/backend/fu/Multiplier.scala:9:14
+  input         io_dec_is_mul,	// backend/src/zaqal/backend/fu/Multiplier.scala:9:14
+                io_dec_is_mulh,	// backend/src/zaqal/backend/fu/Multiplier.scala:9:14
+                io_dec_is_mulhsu,	// backend/src/zaqal/backend/fu/Multiplier.scala:9:14
+                io_dec_is_mulhu,	// backend/src/zaqal/backend/fu/Multiplier.scala:9:14
+                io_dec_is_mulw,	// backend/src/zaqal/backend/fu/Multiplier.scala:9:14
+  output [63:0] io_result	// backend/src/zaqal/backend/fu/Multiplier.scala:9:14
 );
 
-  wire [127:0] _GEN = {{64{io_src1[63]}}, io_src1};	// backend/src/zaqal/backend/fu/Multiplier.scala:22:36
-  wire [127:0] full_mul_ss = _GEN * {{64{io_src2[63]}}, io_src2};	// backend/src/zaqal/backend/fu/Multiplier.scala:22:36
-  wire [127:0] _GEN_0 = {64'h0, io_src2};	// backend/src/zaqal/backend/fu/Multiplier.scala:23:29
-  wire [127:0] full_mul_uu = {64'h0, io_src1} * _GEN_0;	// backend/src/zaqal/backend/fu/Multiplier.scala:23:29
-  wire [127:0] full_mul_hsu = _GEN * _GEN_0;	// backend/src/zaqal/backend/fu/Multiplier.scala:22:36, :23:29, :31:29
-  wire [31:0]  _mulw_res_T_4 = io_src1[31:0] * io_src2[31:0];	// backend/src/zaqal/backend/fu/Multiplier.scala:34:{26,41,50}
+  reg [63:0]  r_src1;	// backend/src/zaqal/backend/fu/Multiplier.scala:17:23
+  reg [63:0]  r_src2;	// backend/src/zaqal/backend/fu/Multiplier.scala:18:23
+  reg         r_dec_is_mul;	// backend/src/zaqal/backend/fu/Multiplier.scala:19:19
+  reg         r_dec_is_mulh;	// backend/src/zaqal/backend/fu/Multiplier.scala:19:19
+  reg         r_dec_is_mulhsu;	// backend/src/zaqal/backend/fu/Multiplier.scala:19:19
+  reg         r_dec_is_mulhu;	// backend/src/zaqal/backend/fu/Multiplier.scala:19:19
+  reg         r_dec_is_mulw;	// backend/src/zaqal/backend/fu/Multiplier.scala:19:19
+  reg [127:0] r_full_mul_ss;	// backend/src/zaqal/backend/fu/Multiplier.scala:33:30
+  reg [127:0] r_full_mul_uu;	// backend/src/zaqal/backend/fu/Multiplier.scala:34:30
+  reg [128:0] r_full_mul_hsu;	// backend/src/zaqal/backend/fu/Multiplier.scala:35:31
+  reg [31:0]  r_mulw_res;	// backend/src/zaqal/backend/fu/Multiplier.scala:36:27
+  reg         r_dec_stage2_is_mul;	// backend/src/zaqal/backend/fu/Multiplier.scala:37:29
+  reg         r_dec_stage2_is_mulh;	// backend/src/zaqal/backend/fu/Multiplier.scala:37:29
+  reg         r_dec_stage2_is_mulhsu;	// backend/src/zaqal/backend/fu/Multiplier.scala:37:29
+  reg         r_dec_stage2_is_mulhu;	// backend/src/zaqal/backend/fu/Multiplier.scala:37:29
+  reg         r_dec_stage2_is_mulw;	// backend/src/zaqal/backend/fu/Multiplier.scala:37:29
+  always @(posedge clock) begin	// backend/src/zaqal/backend/fu/Multiplier.scala:8:7
+    r_src1 <= io_src1;	// backend/src/zaqal/backend/fu/Multiplier.scala:17:23
+    r_src2 <= io_src2;	// backend/src/zaqal/backend/fu/Multiplier.scala:18:23
+    r_dec_is_mul <= io_dec_is_mul;	// backend/src/zaqal/backend/fu/Multiplier.scala:19:19
+    r_dec_is_mulh <= io_dec_is_mulh;	// backend/src/zaqal/backend/fu/Multiplier.scala:19:19
+    r_dec_is_mulhsu <= io_dec_is_mulhsu;	// backend/src/zaqal/backend/fu/Multiplier.scala:19:19
+    r_dec_is_mulhu <= io_dec_is_mulhu;	// backend/src/zaqal/backend/fu/Multiplier.scala:19:19
+    r_dec_is_mulw <= io_dec_is_mulw;	// backend/src/zaqal/backend/fu/Multiplier.scala:19:19
+    r_full_mul_ss <= {{64{r_src1[63]}}, r_src1} * {{64{r_src2[63]}}, r_src2};	// backend/src/zaqal/backend/fu/Multiplier.scala:17:23, :18:23, :23:35, :33:30
+    r_full_mul_uu <= {64'h0, r_src1} * {64'h0, r_src2};	// backend/src/zaqal/backend/fu/Multiplier.scala:17:23, :18:23, :24:28, :34:30
+    r_full_mul_hsu <= {{65{r_src1[63]}}, r_src1} * {65'h0, r_src2};	// backend/src/zaqal/backend/fu/Multiplier.scala:17:23, :18:23, :23:35, :28:29, :35:31
+    r_mulw_res <= r_src1[31:0] * r_src2[31:0];	// backend/src/zaqal/backend/fu/Multiplier.scala:17:23, :18:23, :30:{25,40,48}, :36:27
+    r_dec_stage2_is_mul <= r_dec_is_mul;	// backend/src/zaqal/backend/fu/Multiplier.scala:19:19, :37:29
+    r_dec_stage2_is_mulh <= r_dec_is_mulh;	// backend/src/zaqal/backend/fu/Multiplier.scala:19:19, :37:29
+    r_dec_stage2_is_mulhsu <= r_dec_is_mulhsu;	// backend/src/zaqal/backend/fu/Multiplier.scala:19:19, :37:29
+    r_dec_stage2_is_mulhu <= r_dec_is_mulhu;	// backend/src/zaqal/backend/fu/Multiplier.scala:19:19, :37:29
+    r_dec_stage2_is_mulw <= r_dec_is_mulw;	// backend/src/zaqal/backend/fu/Multiplier.scala:19:19, :37:29
+  end // always @(posedge)
+  `ifdef ENABLE_INITIAL_REG_	// backend/src/zaqal/backend/fu/Multiplier.scala:8:7
+    `ifdef FIRRTL_BEFORE_INITIAL	// backend/src/zaqal/backend/fu/Multiplier.scala:8:7
+      `FIRRTL_BEFORE_INITIAL	// backend/src/zaqal/backend/fu/Multiplier.scala:8:7
+    `endif // FIRRTL_BEFORE_INITIAL
+    initial begin	// backend/src/zaqal/backend/fu/Multiplier.scala:8:7
+      automatic logic [31:0] _RANDOM[0:26];	// backend/src/zaqal/backend/fu/Multiplier.scala:8:7
+      `ifdef INIT_RANDOM_PROLOG_	// backend/src/zaqal/backend/fu/Multiplier.scala:8:7
+        `INIT_RANDOM_PROLOG_	// backend/src/zaqal/backend/fu/Multiplier.scala:8:7
+      `endif // INIT_RANDOM_PROLOG_
+      `ifdef RANDOMIZE_REG_INIT	// backend/src/zaqal/backend/fu/Multiplier.scala:8:7
+        for (logic [4:0] i = 5'h0; i < 5'h1B; i += 5'h1) begin
+          _RANDOM[i] = `RANDOM;	// backend/src/zaqal/backend/fu/Multiplier.scala:8:7
+        end	// backend/src/zaqal/backend/fu/Multiplier.scala:8:7
+        r_src1 = {_RANDOM[5'h0], _RANDOM[5'h1]};	// backend/src/zaqal/backend/fu/Multiplier.scala:8:7, :17:23
+        r_src2 = {_RANDOM[5'h2], _RANDOM[5'h3]};	// backend/src/zaqal/backend/fu/Multiplier.scala:8:7, :18:23
+        r_dec_is_mul = _RANDOM[5'h4][3];	// backend/src/zaqal/backend/fu/Multiplier.scala:8:7, :19:19
+        r_dec_is_mulh = _RANDOM[5'h4][4];	// backend/src/zaqal/backend/fu/Multiplier.scala:8:7, :19:19
+        r_dec_is_mulhsu = _RANDOM[5'h4][5];	// backend/src/zaqal/backend/fu/Multiplier.scala:8:7, :19:19
+        r_dec_is_mulhu = _RANDOM[5'h4][6];	// backend/src/zaqal/backend/fu/Multiplier.scala:8:7, :19:19
+        r_dec_is_mulw = _RANDOM[5'h4][7];	// backend/src/zaqal/backend/fu/Multiplier.scala:8:7, :19:19
+        r_full_mul_ss =
+          {_RANDOM[5'hD][31:17],
+           _RANDOM[5'hE],
+           _RANDOM[5'hF],
+           _RANDOM[5'h10],
+           _RANDOM[5'h11][16:0]};	// backend/src/zaqal/backend/fu/Multiplier.scala:8:7, :33:30
+        r_full_mul_uu =
+          {_RANDOM[5'h11][31:17],
+           _RANDOM[5'h12],
+           _RANDOM[5'h13],
+           _RANDOM[5'h14],
+           _RANDOM[5'h15][16:0]};	// backend/src/zaqal/backend/fu/Multiplier.scala:8:7, :33:30, :34:30
+        r_full_mul_hsu =
+          {_RANDOM[5'h15][31:17],
+           _RANDOM[5'h16],
+           _RANDOM[5'h17],
+           _RANDOM[5'h18],
+           _RANDOM[5'h19][17:0]};	// backend/src/zaqal/backend/fu/Multiplier.scala:8:7, :34:30, :35:31
+        r_mulw_res = {_RANDOM[5'h19][31:18], _RANDOM[5'h1A][17:0]};	// backend/src/zaqal/backend/fu/Multiplier.scala:8:7, :35:31, :36:27
+        r_dec_stage2_is_mul = _RANDOM[5'h1A][21];	// backend/src/zaqal/backend/fu/Multiplier.scala:8:7, :36:27, :37:29
+        r_dec_stage2_is_mulh = _RANDOM[5'h1A][22];	// backend/src/zaqal/backend/fu/Multiplier.scala:8:7, :36:27, :37:29
+        r_dec_stage2_is_mulhsu = _RANDOM[5'h1A][23];	// backend/src/zaqal/backend/fu/Multiplier.scala:8:7, :36:27, :37:29
+        r_dec_stage2_is_mulhu = _RANDOM[5'h1A][24];	// backend/src/zaqal/backend/fu/Multiplier.scala:8:7, :36:27, :37:29
+        r_dec_stage2_is_mulw = _RANDOM[5'h1A][25];	// backend/src/zaqal/backend/fu/Multiplier.scala:8:7, :36:27, :37:29
+      `endif // RANDOMIZE_REG_INIT
+    end // initial
+    `ifdef FIRRTL_AFTER_INITIAL	// backend/src/zaqal/backend/fu/Multiplier.scala:8:7
+      `FIRRTL_AFTER_INITIAL	// backend/src/zaqal/backend/fu/Multiplier.scala:8:7
+    `endif // FIRRTL_AFTER_INITIAL
+  `endif // ENABLE_INITIAL_REG_
   assign io_result =
-    io_dec_is_mul
-      ? full_mul_ss[63:0]
-      : io_dec_is_mulh
-          ? full_mul_ss[127:64]
-          : io_dec_is_mulhsu
-              ? full_mul_hsu[127:64]
-              : io_dec_is_mulhu
-                  ? full_mul_uu[127:64]
-                  : io_dec_is_mulw
-                      ? {{32{_mulw_res_T_4[31]}}, _mulw_res_T_4}
-                      : full_mul_ss[63:0];	// backend/src/zaqal/backend/fu/Multiplier.scala:9:7, :22:36, :23:29, :31:29, :34:{41,65}, :36:35, :38:36, :39:37, :40:36, :41:{28,33,46}, src/main/scala/chisel3/util/Mux.scala:126:16
+    r_dec_stage2_is_mul
+      ? r_full_mul_ss[63:0]
+      : r_dec_stage2_is_mulh
+          ? r_full_mul_ss[127:64]
+          : r_dec_stage2_is_mulhsu
+              ? r_full_mul_hsu[127:64]
+              : r_dec_stage2_is_mulhu
+                  ? r_full_mul_uu[127:64]
+                  : r_dec_stage2_is_mulw
+                      ? {{32{r_mulw_res[31]}}, r_mulw_res}
+                      : r_full_mul_ss[63:0];	// backend/src/zaqal/backend/fu/Multiplier.scala:8:7, :33:30, :34:30, :35:31, :36:27, :37:29, :40:37, :42:44, :43:45, :44:44, :45:{34,39,54}, src/main/scala/chisel3/util/Mux.scala:126:16
 endmodule
 

@@ -66,7 +66,6 @@ module LSU(	// backend/src/zaqal/backend/fu/LSU.scala:8:7
                  reset,	// backend/src/zaqal/backend/fu/LSU.scala:8:7
   input  [63:0]  io_src1,	// backend/src/zaqal/backend/fu/LSU.scala:9:14
                  io_src2,	// backend/src/zaqal/backend/fu/LSU.scala:9:14
-                 io_imm,	// backend/src/zaqal/backend/fu/LSU.scala:9:14
   input          io_dec_is_lb,	// backend/src/zaqal/backend/fu/LSU.scala:9:14
                  io_dec_is_lh,	// backend/src/zaqal/backend/fu/LSU.scala:9:14
                  io_dec_is_lw,	// backend/src/zaqal/backend/fu/LSU.scala:9:14
@@ -96,7 +95,6 @@ module LSU(	// backend/src/zaqal/backend/fu/LSU.scala:8:7
                  io_dec_is_amomaxu,	// backend/src/zaqal/backend/fu/LSU.scala:9:14
                  io_dec_is_amo_w,	// backend/src/zaqal/backend/fu/LSU.scala:9:14
                  io_dec_is_amo_d,	// backend/src/zaqal/backend/fu/LSU.scala:9:14
-                 io_dec_is_atomic,	// backend/src/zaqal/backend/fu/LSU.scala:9:14
                  io_dec_is_flw,	// backend/src/zaqal/backend/fu/LSU.scala:9:14
                  io_dec_is_fld,	// backend/src/zaqal/backend/fu/LSU.scala:9:14
                  io_dec_is_fstore,	// backend/src/zaqal/backend/fu/LSU.scala:9:14
@@ -112,12 +110,11 @@ module LSU(	// backend/src/zaqal/backend/fu/LSU.scala:8:7
 
   reg          reserve_valid;	// backend/src/zaqal/backend/fu/LSU.scala:26:30
   reg  [63:0]  reserve_addr;	// backend/src/zaqal/backend/fu/LSU.scala:27:30
-  wire [63:0]  addr = io_dec_is_atomic ? io_src1 : io_src1 + io_imm;	// backend/src/zaqal/backend/fu/LSU.scala:30:34, :31:17
-  wire [127:0] shifted_data = io_mem_data >> {122'h0, addr[2:0], 3'h0};	// backend/src/zaqal/backend/fu/LSU.scala:31:17, :35:20, :38:{34,45}
+  wire [127:0] shifted_data = io_mem_data >> {122'h0, io_src1[2:0], 3'h0};	// backend/src/zaqal/backend/fu/LSU.scala:35:20, :38:{34,45}
   wire [31:0]  _GEN = {32{shifted_data[31]}};	// backend/src/zaqal/backend/fu/LSU.scala:38:34, :51:42
-  wire [22:0]  _GEN_0 = {20'h0, addr[2:0]};	// backend/src/zaqal/backend/fu/LSU.scala:31:17, :35:20, :85:30
+  wire [22:0]  _GEN_0 = {20'h0, io_src1[2:0]};	// backend/src/zaqal/backend/fu/LSU.scala:35:20, :85:30
   wire [22:0]  _wmask_T = 23'h1 << _GEN_0;	// backend/src/zaqal/backend/fu/LSU.scala:85:30
-  wire [190:0] _GEN_1 = {185'h0, addr[2:0], 3'h0};	// backend/src/zaqal/backend/fu/LSU.scala:31:17, :35:20, :38:45, :86:42
+  wire [190:0] _GEN_1 = {185'h0, io_src1[2:0], 3'h0};	// backend/src/zaqal/backend/fu/LSU.scala:35:20, :38:45, :86:42
   wire [190:0] _wdata_T_3 = {183'h0, io_src2[7:0]} << _GEN_1;	// backend/src/zaqal/backend/fu/LSU.scala:86:{21,42}
   wire [22:0]  _wmask_T_1 = 23'h3 << _GEN_0;	// backend/src/zaqal/backend/fu/LSU.scala:85:30, :88:30
   wire [190:0] _wdata_T_7 = {175'h0, io_src2[15:0]} << _GEN_1;	// backend/src/zaqal/backend/fu/LSU.scala:86:42, :89:{21,43}
@@ -186,16 +183,16 @@ module LSU(	// backend/src/zaqal/backend/fu/LSU.scala:8:7
                                        ? (shifted_data[63:0] > io_src2
                                             ? shifted_data[63:0]
                                             : io_src2)
-                                       : 64'h0} << _GEN_1;	// backend/src/zaqal/backend/fu/LSU.scala:38:34, :86:42, :95:43, :100:{32,40}, :104:28, :127:33, :129:33, :130:33, :131:33, :132:{31,36}, :133:{31,36}, :134:{31,43}, :135:{31,43}, :140:42, src/main/scala/chisel3/util/Mux.scala:126:16
+                                       : 64'h0} << _GEN_1;	// backend/src/zaqal/backend/fu/LSU.scala:9:14, :38:34, :86:42, :95:43, :100:{32,40}, :127:33, :129:33, :130:33, :131:33, :132:{31,36}, :133:{31,36}, :134:{31,43}, :135:{31,43}, :140:42, src/main/scala/chisel3/util/Mux.scala:126:16
   always @(posedge clock) begin	// backend/src/zaqal/backend/fu/LSU.scala:8:7
     if (reset) begin	// backend/src/zaqal/backend/fu/LSU.scala:8:7
       reserve_valid <= 1'h0;	// backend/src/zaqal/backend/fu/LSU.scala:26:30
-      reserve_addr <= 64'h0;	// backend/src/zaqal/backend/fu/LSU.scala:27:30, :104:28
+      reserve_addr <= 64'h0;	// backend/src/zaqal/backend/fu/LSU.scala:9:14, :27:30
     end
     else begin	// backend/src/zaqal/backend/fu/LSU.scala:8:7
       reserve_valid <= io_dec_is_lr | ~(io_dec_is_sc | io_dec_is_store) & reserve_valid;	// backend/src/zaqal/backend/fu/LSU.scala:26:30, :69:22, :70:19, :72:{28,48}, :75:19
       if (io_dec_is_lr)	// backend/src/zaqal/backend/fu/LSU.scala:9:14
-        reserve_addr <= addr;	// backend/src/zaqal/backend/fu/LSU.scala:27:30, :31:17
+        reserve_addr <= io_src1;	// backend/src/zaqal/backend/fu/LSU.scala:27:30
     end
   end // always @(posedge)
   `ifdef ENABLE_INITIAL_REG_	// backend/src/zaqal/backend/fu/LSU.scala:8:7
@@ -219,10 +216,10 @@ module LSU(	// backend/src/zaqal/backend/fu/LSU.scala:8:7
       `FIRRTL_AFTER_INITIAL	// backend/src/zaqal/backend/fu/LSU.scala:8:7
     `endif // FIRRTL_AFTER_INITIAL
   `endif // ENABLE_INITIAL_REG_
-  assign io_mem_addr = addr;	// backend/src/zaqal/backend/fu/LSU.scala:8:7, :31:17
+  assign io_mem_addr = io_src1;	// backend/src/zaqal/backend/fu/LSU.scala:8:7
   assign io_mem_wen =
     io_dec_is_store | io_dec_is_fstore | io_dec_is_sc & reserve_valid
-    & reserve_addr == addr | io_dec_is_amo_w | io_dec_is_amo_d;	// backend/src/zaqal/backend/fu/LSU.scala:8:7, :26:30, :27:30, :31:17, :82:{53,70}, :143:91
+    & reserve_addr == io_src1 | io_dec_is_amo_w | io_dec_is_amo_d;	// backend/src/zaqal/backend/fu/LSU.scala:8:7, :26:30, :27:30, :82:{53,70}, :143:91
   assign io_mem_wmask =
     io_dec_is_amo_w
       ? _wmask_T_4[15:0]
@@ -259,9 +256,9 @@ module LSU(	// backend/src/zaqal/backend/fu/LSU.scala:8:7
                           : io_dec_is_ld | io_dec_is_lr_d | io_dec_is_fld | io_dec_is_fsd
                               ? shifted_data[63:0]
                               : io_dec_is_sc
-                                  ? {63'h0, ~(reserve_valid & reserve_addr == addr)}
+                                  ? {63'h0, ~(reserve_valid & reserve_addr == io_src1)}
                                   : io_dec_is_amo_w
                                       ? {_GEN, shifted_data[31:0]}
-                                      : io_dec_is_amo_d ? shifted_data[63:0] : 64'h0;	// backend/src/zaqal/backend/fu/LSU.scala:8:7, :26:30, :27:30, :31:17, :38:34, :40:24, :42:22, :43:{9,24,41}, :44:30, :45:{9,24,34}, :46:29, :47:{9,24,42}, :48:30, :49:{9,24,35}, :50:{63,81}, :51:{9,24,42}, :52:30, :53:{9,24,35}, :54:{63,81}, :55:{9,24}, :56:29, :58:{33,50}, :59:{9,12}, :60:32, :61:{9,24,42}, :62:32, :63:{9,24}, :104:28, src/main/scala/chisel3/util/Mux.scala:126:16
+                                      : io_dec_is_amo_d ? shifted_data[63:0] : 64'h0;	// backend/src/zaqal/backend/fu/LSU.scala:8:7, :9:14, :26:30, :27:30, :38:34, :40:24, :42:22, :43:{9,24,41}, :44:30, :45:{9,24,34}, :46:29, :47:{9,24,42}, :48:30, :49:{9,24,35}, :50:{63,81}, :51:{9,24,42}, :52:30, :53:{9,24,35}, :54:{63,81}, :55:{9,24}, :56:29, :58:{33,50}, :59:{9,12}, :60:32, :61:{9,24,42}, :62:32, :63:{9,24}, src/main/scala/chisel3/util/Mux.scala:126:16
 endmodule
 

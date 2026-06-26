@@ -61,20 +61,19 @@
   `endif // PRINTF_COND
 `endif // not def PRINTF_COND_
 
-module Predecoder(	// frontend/src/zaqal/frontend/Predecoder.scala:9:7
-  input  [31:0] io_inst,	// frontend/src/zaqal/frontend/Predecoder.scala:10:14
-  output        io_out_is_rvc,	// frontend/src/zaqal/frontend/Predecoder.scala:10:14
-  output [31:0] io_out_expanded_inst	// frontend/src/zaqal/frontend/Predecoder.scala:10:14
+module FastTLB(	// backend/src/zaqal/backend/fu/FastTLB.scala:8:7
+  input  [63:0] io_vaddr,	// backend/src/zaqal/backend/fu/FastTLB.scala:9:14
+  output [63:0] io_paddr	// backend/src/zaqal/backend/fu/FastTLB.scala:9:14
 );
 
-  wire [31:0] _rvc_expander_io_out;	// frontend/src/zaqal/frontend/Predecoder.scala:16:28
-  wire        _rvc_expander_io_is_rvc;	// frontend/src/zaqal/frontend/Predecoder.scala:16:28
-  RVCExpander rvc_expander (	// frontend/src/zaqal/frontend/Predecoder.scala:16:28
-    .io_inst   (io_inst[15:0]),	// frontend/src/zaqal/frontend/Predecoder.scala:17:34
-    .io_out    (_rvc_expander_io_out),
-    .io_is_rvc (_rvc_expander_io_is_rvc)
-  );
-  assign io_out_is_rvc = _rvc_expander_io_is_rvc;	// frontend/src/zaqal/frontend/Predecoder.scala:9:7, :16:28
-  assign io_out_expanded_inst = _rvc_expander_io_is_rvc ? _rvc_expander_io_out : io_inst;	// frontend/src/zaqal/frontend/Predecoder.scala:9:7, :16:28, :22:21
+  wire [3:0][51:0] _GEN = '{52'h3000, 52'h2000, 52'h1000, 52'h80000};	// backend/src/zaqal/backend/fu/FastTLB.scala:40:27
+  wire             _hits_T_1 = io_vaddr[63:12] == 52'h1000;	// backend/src/zaqal/backend/fu/FastTLB.scala:25:22, :31:21, :35:44
+  wire             _hits_T_2 = io_vaddr[63:12] == 52'h2000;	// backend/src/zaqal/backend/fu/FastTLB.scala:25:22, :31:21, :35:44
+  wire             _hits_T_3 = io_vaddr[63:12] == 52'h3000;	// backend/src/zaqal/backend/fu/FastTLB.scala:25:22, :31:21, :35:44
+  assign io_paddr =
+    {io_vaddr[63:12] == 52'h80000 | _hits_T_1 | _hits_T_2 | _hits_T_3
+       ? _GEN[{|{_hits_T_3, _hits_T_2}, _hits_T_3 | _hits_T_1}]
+       : io_vaddr[63:12],
+     io_vaddr[11:0]};	// backend/src/zaqal/backend/fu/FastTLB.scala:8:7, :25:22, :31:21, :32:29, :35:44, :37:27, :40:27, :41:18, src/main/scala/chisel3/util/OneHot.scala:30:18, :32:{10,14,28}
 endmodule
 

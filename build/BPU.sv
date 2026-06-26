@@ -66,26 +66,23 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:9:7
                 reset,	// frontend/src/zaqal/frontend/BPU.scala:9:7
                 io_redirect_valid,	// frontend/src/zaqal/frontend/BPU.scala:10:14
   input  [63:0] io_redirect_target,	// frontend/src/zaqal/frontend/BPU.scala:10:14
-  input         io_redirect_epoch,	// frontend/src/zaqal/frontend/BPU.scala:10:14
-                io_out_ready,	// frontend/src/zaqal/frontend/BPU.scala:10:14
+  input         io_out_ready,	// frontend/src/zaqal/frontend/BPU.scala:10:14
   output        io_out_valid,	// frontend/src/zaqal/frontend/BPU.scala:10:14
   output [63:0] io_out_bits_pc,	// frontend/src/zaqal/frontend/BPU.scala:10:14
   output [15:0] io_out_bits_mask,	// frontend/src/zaqal/frontend/BPU.scala:10:14
-  output [63:0] io_out_bits_prediction_target,	// frontend/src/zaqal/frontend/BPU.scala:10:14
-  output        io_out_bits_epoch	// frontend/src/zaqal/frontend/BPU.scala:10:14
+  output [63:0] io_out_bits_prediction_target	// frontend/src/zaqal/frontend/BPU.scala:10:14
 );
 
   reg  [63:0] s0_pc;	// frontend/src/zaqal/frontend/BPU.scala:15:25
   reg  [15:0] mask_reg;	// frontend/src/zaqal/frontend/BPU.scala:16:25
   reg         epoch;	// frontend/src/zaqal/frontend/BPU.scala:17:25
   wire [63:0] _s0_pc_T_4 = s0_pc + 64'h20;	// frontend/src/zaqal/frontend/BPU.scala:15:25, :22:24
-  wire        is_new_redirect = io_redirect_valid & io_redirect_epoch == epoch;	// frontend/src/zaqal/frontend/BPU.scala:17:25, :29:{43,65}
   wire [30:0] _redirect_mask_T_2 = 31'hFFFF << io_redirect_target[4:1];	// frontend/src/zaqal/frontend/BPU.scala:33:{55,76}
   `ifndef SYNTHESIS	// frontend/src/zaqal/frontend/BPU.scala:37:11
     always @(posedge clock) begin	// frontend/src/zaqal/frontend/BPU.scala:37:11
-      if ((`PRINTF_COND_) & is_new_redirect & ~reset)	// frontend/src/zaqal/frontend/BPU.scala:29:43, :37:11
-        $fwrite(32'h80000002, "BPU REDIRECT ACCEPTED: target=%x epoch=%d\n", s0_pc,
-                epoch);	// frontend/src/zaqal/frontend/BPU.scala:15:25, :17:25, :37:11
+      if ((`PRINTF_COND_) & io_redirect_valid & ~reset)	// frontend/src/zaqal/frontend/BPU.scala:37:11
+        $fwrite(32'h80000002, "BPU REDIRECT ACCEPTED: target=%x epoch=%d\n",
+                io_redirect_target, epoch);	// frontend/src/zaqal/frontend/BPU.scala:17:25, :37:11
     end // always @(posedge)
   `endif // not def SYNTHESIS
   always @(posedge clock) begin	// frontend/src/zaqal/frontend/BPU.scala:9:7
@@ -95,7 +92,7 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:9:7
       epoch <= 1'h0;	// frontend/src/zaqal/frontend/BPU.scala:17:25
     end
     else begin	// frontend/src/zaqal/frontend/BPU.scala:9:7
-      if (is_new_redirect) begin	// frontend/src/zaqal/frontend/BPU.scala:29:43
+      if (io_redirect_valid) begin	// frontend/src/zaqal/frontend/BPU.scala:10:14
         s0_pc <= io_redirect_target & 64'hFFFFFFFFFFFFFFE0;	// frontend/src/zaqal/frontend/BPU.scala:15:25, :19:{32,35}
         mask_reg <= _redirect_mask_T_2[15:0];	// frontend/src/zaqal/frontend/BPU.scala:16:25, :33:{55,108}
       end
@@ -103,7 +100,7 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:9:7
         s0_pc <= _s0_pc_T_4;	// frontend/src/zaqal/frontend/BPU.scala:15:25, :22:24
         mask_reg <= 16'hFFFF;	// frontend/src/zaqal/frontend/BPU.scala:16:{25,30}
       end
-      epoch <= is_new_redirect ^ epoch;	// frontend/src/zaqal/frontend/BPU.scala:17:25, :29:43, :31:25, :36:18
+      epoch <= io_redirect_valid ^ epoch;	// frontend/src/zaqal/frontend/BPU.scala:17:25, :31:25, :36:18
     end
   end // always @(posedge)
   `ifdef ENABLE_INITIAL_REG_	// frontend/src/zaqal/frontend/BPU.scala:9:7
@@ -130,8 +127,7 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:9:7
   `endif // ENABLE_INITIAL_REG_
   assign io_out_valid = ~reset;	// frontend/src/zaqal/frontend/BPU.scala:9:7, :51:19
   assign io_out_bits_pc = s0_pc;	// frontend/src/zaqal/frontend/BPU.scala:9:7, :15:25
-  assign io_out_bits_mask = is_new_redirect ? _redirect_mask_T_2[15:0] : mask_reg;	// frontend/src/zaqal/frontend/BPU.scala:9:7, :16:25, :29:43, :31:25, :33:{55,108}, :35:18, :38:28
+  assign io_out_bits_mask = io_redirect_valid ? _redirect_mask_T_2[15:0] : mask_reg;	// frontend/src/zaqal/frontend/BPU.scala:9:7, :16:25, :31:25, :33:{55,108}, :35:18, :38:28
   assign io_out_bits_prediction_target = _s0_pc_T_4;	// frontend/src/zaqal/frontend/BPU.scala:9:7, :22:24
-  assign io_out_bits_epoch = epoch;	// frontend/src/zaqal/frontend/BPU.scala:9:7, :17:25
 endmodule
 

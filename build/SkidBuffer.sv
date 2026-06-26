@@ -71,15 +71,13 @@ module SkidBuffer(	// utility/src/zaqal/utility/Utility.scala:13:7
   input  [63:0] io_enq_bits_prediction_target,	// utility/src/zaqal/utility/Utility.scala:14:14
   input         io_enq_bits_prediction_taken,	// utility/src/zaqal/utility/Utility.scala:14:14
   input  [3:0]  io_enq_bits_prediction_slot,	// utility/src/zaqal/utility/Utility.scala:14:14
-  input         io_enq_bits_epoch,	// utility/src/zaqal/utility/Utility.scala:14:14
-                io_deq_ready,	// utility/src/zaqal/utility/Utility.scala:14:14
+  input         io_deq_ready,	// utility/src/zaqal/utility/Utility.scala:14:14
   output        io_deq_valid,	// utility/src/zaqal/utility/Utility.scala:14:14
   output [63:0] io_deq_bits_pc,	// utility/src/zaqal/utility/Utility.scala:14:14
   output [15:0] io_deq_bits_mask,	// utility/src/zaqal/utility/Utility.scala:14:14
   output [63:0] io_deq_bits_prediction_target,	// utility/src/zaqal/utility/Utility.scala:14:14
   output        io_deq_bits_prediction_taken,	// utility/src/zaqal/utility/Utility.scala:14:14
   output [3:0]  io_deq_bits_prediction_slot,	// utility/src/zaqal/utility/Utility.scala:14:14
-  output        io_deq_bits_epoch,	// utility/src/zaqal/utility/Utility.scala:14:14
   input         io_flush	// utility/src/zaqal/utility/Utility.scala:14:14
 );
 
@@ -88,14 +86,12 @@ module SkidBuffer(	// utility/src/zaqal/utility/Utility.scala:13:7
   reg [63:0] slot0_data_prediction_target;	// utility/src/zaqal/utility/Utility.scala:21:24
   reg        slot0_data_prediction_taken;	// utility/src/zaqal/utility/Utility.scala:21:24
   reg [3:0]  slot0_data_prediction_slot;	// utility/src/zaqal/utility/Utility.scala:21:24
-  reg        slot0_data_epoch;	// utility/src/zaqal/utility/Utility.scala:21:24
   reg        slot0_valid;	// utility/src/zaqal/utility/Utility.scala:22:28
   reg [63:0] slot1_data_pc;	// utility/src/zaqal/utility/Utility.scala:23:24
   reg [15:0] slot1_data_mask;	// utility/src/zaqal/utility/Utility.scala:23:24
   reg [63:0] slot1_data_prediction_target;	// utility/src/zaqal/utility/Utility.scala:23:24
   reg        slot1_data_prediction_taken;	// utility/src/zaqal/utility/Utility.scala:23:24
   reg [3:0]  slot1_data_prediction_slot;	// utility/src/zaqal/utility/Utility.scala:23:24
-  reg        slot1_data_epoch;	// utility/src/zaqal/utility/Utility.scala:23:24
   reg        slot1_valid;	// utility/src/zaqal/utility/Utility.scala:24:28
   always @(posedge clock) begin	// utility/src/zaqal/utility/Utility.scala:13:7
     automatic logic _GEN;	// src/main/scala/chisel3/util/Decoupled.scala:51:35
@@ -111,7 +107,6 @@ module SkidBuffer(	// utility/src/zaqal/utility/Utility.scala:13:7
         slot0_data_prediction_target <= io_enq_bits_prediction_target;	// utility/src/zaqal/utility/Utility.scala:21:24
         slot0_data_prediction_taken <= io_enq_bits_prediction_taken;	// utility/src/zaqal/utility/Utility.scala:21:24
         slot0_data_prediction_slot <= io_enq_bits_prediction_slot;	// utility/src/zaqal/utility/Utility.scala:21:24
-        slot0_data_epoch <= io_enq_bits_epoch;	// utility/src/zaqal/utility/Utility.scala:21:24
       end
     end
     else if (io_deq_ready) begin	// utility/src/zaqal/utility/Utility.scala:14:14
@@ -120,7 +115,6 @@ module SkidBuffer(	// utility/src/zaqal/utility/Utility.scala:13:7
       slot0_data_prediction_target <= slot1_data_prediction_target;	// utility/src/zaqal/utility/Utility.scala:21:24, :23:24
       slot0_data_prediction_taken <= slot1_data_prediction_taken;	// utility/src/zaqal/utility/Utility.scala:21:24, :23:24
       slot0_data_prediction_slot <= slot1_data_prediction_slot;	// utility/src/zaqal/utility/Utility.scala:21:24, :23:24
-      slot0_data_epoch <= slot1_data_epoch;	// utility/src/zaqal/utility/Utility.scala:21:24, :23:24
     end
     if (io_flush | ~_GEN | _GEN_0) begin	// src/main/scala/chisel3/util/Decoupled.scala:51:35, utility/src/zaqal/utility/Utility.scala:23:24, :30:19, :34:24, :35:{26,61}
     end
@@ -130,7 +124,6 @@ module SkidBuffer(	// utility/src/zaqal/utility/Utility.scala:13:7
       slot1_data_prediction_target <= io_enq_bits_prediction_target;	// utility/src/zaqal/utility/Utility.scala:23:24
       slot1_data_prediction_taken <= io_enq_bits_prediction_taken;	// utility/src/zaqal/utility/Utility.scala:23:24
       slot1_data_prediction_slot <= io_enq_bits_prediction_slot;	// utility/src/zaqal/utility/Utility.scala:23:24
-      slot1_data_epoch <= io_enq_bits_epoch;	// utility/src/zaqal/utility/Utility.scala:23:24
     end
     if (reset) begin	// utility/src/zaqal/utility/Utility.scala:13:7
       slot0_valid <= 1'h0;	// utility/src/zaqal/utility/Utility.scala:22:28
@@ -163,7 +156,6 @@ module SkidBuffer(	// utility/src/zaqal/utility/Utility.scala:13:7
           {_RANDOM[4'h2][31:16], _RANDOM[4'h3], _RANDOM[4'h4][15:0]};	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
         slot0_data_prediction_taken = _RANDOM[4'h4][16];	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
         slot0_data_prediction_slot = _RANDOM[4'h4][20:17];	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-        slot0_data_epoch = _RANDOM[4'h4][27];	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
         slot0_valid = _RANDOM[4'h4][28];	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24, :22:28
         slot1_data_pc = {_RANDOM[4'h4][31:29], _RANDOM[4'h5], _RANDOM[4'h6][28:0]};	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24, :23:24
         slot1_data_mask = {_RANDOM[4'h6][31:29], _RANDOM[4'h7][12:0]};	// utility/src/zaqal/utility/Utility.scala:13:7, :23:24
@@ -171,7 +163,6 @@ module SkidBuffer(	// utility/src/zaqal/utility/Utility.scala:13:7
           {_RANDOM[4'h7][31:13], _RANDOM[4'h8], _RANDOM[4'h9][12:0]};	// utility/src/zaqal/utility/Utility.scala:13:7, :23:24
         slot1_data_prediction_taken = _RANDOM[4'h9][13];	// utility/src/zaqal/utility/Utility.scala:13:7, :23:24
         slot1_data_prediction_slot = _RANDOM[4'h9][17:14];	// utility/src/zaqal/utility/Utility.scala:13:7, :23:24
-        slot1_data_epoch = _RANDOM[4'h9][24];	// utility/src/zaqal/utility/Utility.scala:13:7, :23:24
         slot1_valid = _RANDOM[4'h9][25];	// utility/src/zaqal/utility/Utility.scala:13:7, :23:24, :24:28
       `endif // RANDOMIZE_REG_INIT
     end // initial
@@ -186,6 +177,5 @@ module SkidBuffer(	// utility/src/zaqal/utility/Utility.scala:13:7
   assign io_deq_bits_prediction_target = slot0_data_prediction_target;	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
   assign io_deq_bits_prediction_taken = slot0_data_prediction_taken;	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
   assign io_deq_bits_prediction_slot = slot0_data_prediction_slot;	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-  assign io_deq_bits_epoch = slot0_data_epoch;	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
 endmodule
 
