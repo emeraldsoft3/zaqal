@@ -71,138 +71,339 @@ module DataMem(	// backend/src/zaqal/backend/fu/DataMem.scala:8:7
   input  [127:0] io_wdata	// backend/src/zaqal/backend/fu/DataMem.scala:9:14
 );
 
-  reg  [63:0]       mem_0;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
-  reg  [63:0]       mem_1;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
-  reg  [63:0]       mem_2;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
-  reg  [63:0]       mem_3;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
-  reg  [63:0]       mem_4;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
-  reg  [63:0]       mem_5;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
-  reg  [63:0]       mem_6;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
-  reg  [63:0]       mem_7;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
-  reg  [63:0]       mem_8;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
-  reg  [63:0]       mem_9;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
-  reg  [63:0]       mem_10;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
-  reg  [63:0]       mem_11;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
-  reg  [63:0]       mem_12;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
-  reg  [63:0]       mem_13;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
-  reg  [63:0]       mem_14;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
-  reg  [63:0]       mem_15;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
-  reg  [63:0]       mem_16;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
-  reg  [63:0]       mem_17;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
-  reg  [63:0]       mem_18;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
-  reg  [63:0]       mem_19;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
-  reg  [63:0]       mem_20;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
-  reg  [63:0]       mem_21;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
-  reg  [63:0]       mem_22;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
-  reg  [63:0]       mem_23;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
-  reg  [63:0]       mem_24;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
-  reg  [63:0]       mem_25;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
-  reg  [63:0]       mem_26;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
-  reg  [63:0]       mem_27;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
-  reg  [63:0]       mem_28;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
-  reg  [63:0]       mem_29;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
-  reg  [63:0]       mem_30;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
-  reg  [63:0]       mem_31;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
-  reg  [63:0]       mem_32;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
-  reg  [63:0]       mem_33;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
-  reg  [63:0]       mem_34;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
-  reg  [63:0]       mem_35;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
-  reg  [63:0]       mem_36;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
-  reg  [63:0]       mem_37;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
-  reg  [63:0]       mem_38;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
-  reg  [63:0]       mem_39;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
-  reg  [63:0]       mem_40;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
-  reg  [63:0]       mem_41;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
-  reg  [63:0]       mem_42;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
-  reg  [63:0]       mem_43;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
-  reg  [63:0]       mem_44;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
-  reg  [63:0]       mem_45;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
-  reg  [63:0]       mem_46;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
-  reg  [63:0]       mem_47;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
-  reg  [63:0]       mem_48;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
-  reg  [63:0]       mem_49;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
-  reg  [63:0]       mem_50;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
-  reg  [63:0]       mem_51;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
-  reg  [63:0]       mem_52;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
-  reg  [63:0]       mem_53;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
-  reg  [63:0]       mem_54;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
-  reg  [63:0]       mem_55;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
-  reg  [63:0]       mem_56;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
-  reg  [63:0]       mem_57;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
-  reg  [63:0]       mem_58;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
-  reg  [63:0]       mem_59;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
-  reg  [63:0]       mem_60;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
-  reg  [63:0]       mem_61;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
-  reg  [63:0]       mem_62;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
-  reg  [63:0]       mem_63;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
-  wire [5:0]        _index_next_T = io_addr[8:3] + 6'h1;	// backend/src/zaqal/backend/fu/DataMem.scala:28:22, :33:26, :41:21
-  wire [63:0][63:0] _GEN =
-    {{mem_63},
-     {mem_62},
-     {mem_61},
-     {mem_60},
-     {mem_59},
-     {mem_58},
-     {mem_57},
-     {mem_56},
-     {mem_55},
-     {mem_54},
-     {mem_53},
-     {mem_52},
-     {mem_51},
-     {mem_50},
-     {mem_49},
-     {mem_48},
-     {mem_47},
-     {mem_46},
-     {mem_45},
-     {mem_44},
-     {mem_43},
-     {mem_42},
-     {mem_41},
-     {mem_40},
-     {mem_39},
-     {mem_38},
-     {mem_37},
-     {mem_36},
-     {mem_35},
-     {mem_34},
-     {mem_33},
-     {mem_32},
-     {mem_31},
-     {mem_30},
-     {mem_29},
-     {mem_28},
-     {mem_27},
-     {mem_26},
-     {mem_25},
-     {mem_24},
-     {mem_23},
-     {mem_22},
-     {mem_21},
-     {mem_20},
-     {mem_19},
-     {mem_18},
-     {mem_17},
-     {mem_16},
-     {mem_15},
-     {mem_14},
-     {mem_13},
-     {mem_12},
-     {mem_11},
-     {mem_10},
-     {mem_9},
-     {mem_8},
-     {mem_7},
-     {mem_6},
-     {mem_5},
-     {mem_4},
-     {mem_3},
-     {mem_2},
-     {mem_1},
-     {mem_0}};	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
-  wire [127:0]      io_data_0 = {_GEN[_index_next_T], _GEN[io_addr[8:3]]};	// backend/src/zaqal/backend/fu/DataMem.scala:28:22, :33:26, :34:17
-  wire [127:0]      bitMask =
+  reg  [63:0]  mem_0;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
+  reg  [63:0]  mem_1;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
+  reg  [63:0]  mem_2;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
+  reg  [63:0]  mem_3;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
+  reg  [63:0]  mem_4;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
+  reg  [63:0]  mem_5;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
+  reg  [63:0]  mem_6;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
+  reg  [63:0]  mem_7;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
+  reg  [63:0]  mem_8;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
+  reg  [63:0]  mem_9;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
+  reg  [63:0]  mem_10;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
+  reg  [63:0]  mem_11;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
+  reg  [63:0]  mem_12;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
+  reg  [63:0]  mem_13;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
+  reg  [63:0]  mem_14;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
+  reg  [63:0]  mem_15;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
+  reg  [63:0]  mem_16;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
+  reg  [63:0]  mem_17;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
+  reg  [63:0]  mem_18;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
+  reg  [63:0]  mem_19;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
+  reg  [63:0]  mem_20;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
+  reg  [63:0]  mem_21;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
+  reg  [63:0]  mem_22;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
+  reg  [63:0]  mem_23;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
+  reg  [63:0]  mem_24;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
+  reg  [63:0]  mem_25;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
+  reg  [63:0]  mem_26;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
+  reg  [63:0]  mem_27;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
+  reg  [63:0]  mem_28;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
+  reg  [63:0]  mem_29;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
+  reg  [63:0]  mem_30;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
+  reg  [63:0]  mem_31;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
+  reg  [63:0]  mem_32;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
+  reg  [63:0]  mem_33;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
+  reg  [63:0]  mem_34;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
+  reg  [63:0]  mem_35;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
+  reg  [63:0]  mem_36;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
+  reg  [63:0]  mem_37;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
+  reg  [63:0]  mem_38;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
+  reg  [63:0]  mem_39;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
+  reg  [63:0]  mem_40;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
+  reg  [63:0]  mem_41;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
+  reg  [63:0]  mem_42;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
+  reg  [63:0]  mem_43;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
+  reg  [63:0]  mem_44;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
+  reg  [63:0]  mem_45;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
+  reg  [63:0]  mem_46;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
+  reg  [63:0]  mem_47;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
+  reg  [63:0]  mem_48;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
+  reg  [63:0]  mem_49;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
+  reg  [63:0]  mem_50;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
+  reg  [63:0]  mem_51;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
+  reg  [63:0]  mem_52;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
+  reg  [63:0]  mem_53;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
+  reg  [63:0]  mem_54;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
+  reg  [63:0]  mem_55;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
+  reg  [63:0]  mem_56;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
+  reg  [63:0]  mem_57;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
+  reg  [63:0]  mem_58;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
+  reg  [63:0]  mem_59;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
+  reg  [63:0]  mem_60;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
+  reg  [63:0]  mem_61;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
+  reg  [63:0]  mem_62;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
+  reg  [63:0]  mem_63;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20
+  wire [5:0]   _index_next_T = io_addr[8:3] + 6'h1;	// backend/src/zaqal/backend/fu/DataMem.scala:28:22, :33:26, :41:21
+  reg  [63:0]  casez_tmp;	// backend/src/zaqal/backend/fu/DataMem.scala:34:17
+  always_comb begin	// backend/src/zaqal/backend/fu/DataMem.scala:34:17
+    casez (_index_next_T)	// backend/src/zaqal/backend/fu/DataMem.scala:33:26, :34:17
+      6'b000000:
+        casez_tmp = mem_0;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b000001:
+        casez_tmp = mem_1;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b000010:
+        casez_tmp = mem_2;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b000011:
+        casez_tmp = mem_3;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b000100:
+        casez_tmp = mem_4;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b000101:
+        casez_tmp = mem_5;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b000110:
+        casez_tmp = mem_6;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b000111:
+        casez_tmp = mem_7;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b001000:
+        casez_tmp = mem_8;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b001001:
+        casez_tmp = mem_9;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b001010:
+        casez_tmp = mem_10;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b001011:
+        casez_tmp = mem_11;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b001100:
+        casez_tmp = mem_12;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b001101:
+        casez_tmp = mem_13;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b001110:
+        casez_tmp = mem_14;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b001111:
+        casez_tmp = mem_15;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b010000:
+        casez_tmp = mem_16;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b010001:
+        casez_tmp = mem_17;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b010010:
+        casez_tmp = mem_18;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b010011:
+        casez_tmp = mem_19;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b010100:
+        casez_tmp = mem_20;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b010101:
+        casez_tmp = mem_21;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b010110:
+        casez_tmp = mem_22;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b010111:
+        casez_tmp = mem_23;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b011000:
+        casez_tmp = mem_24;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b011001:
+        casez_tmp = mem_25;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b011010:
+        casez_tmp = mem_26;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b011011:
+        casez_tmp = mem_27;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b011100:
+        casez_tmp = mem_28;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b011101:
+        casez_tmp = mem_29;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b011110:
+        casez_tmp = mem_30;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b011111:
+        casez_tmp = mem_31;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b100000:
+        casez_tmp = mem_32;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b100001:
+        casez_tmp = mem_33;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b100010:
+        casez_tmp = mem_34;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b100011:
+        casez_tmp = mem_35;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b100100:
+        casez_tmp = mem_36;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b100101:
+        casez_tmp = mem_37;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b100110:
+        casez_tmp = mem_38;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b100111:
+        casez_tmp = mem_39;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b101000:
+        casez_tmp = mem_40;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b101001:
+        casez_tmp = mem_41;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b101010:
+        casez_tmp = mem_42;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b101011:
+        casez_tmp = mem_43;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b101100:
+        casez_tmp = mem_44;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b101101:
+        casez_tmp = mem_45;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b101110:
+        casez_tmp = mem_46;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b101111:
+        casez_tmp = mem_47;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b110000:
+        casez_tmp = mem_48;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b110001:
+        casez_tmp = mem_49;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b110010:
+        casez_tmp = mem_50;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b110011:
+        casez_tmp = mem_51;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b110100:
+        casez_tmp = mem_52;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b110101:
+        casez_tmp = mem_53;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b110110:
+        casez_tmp = mem_54;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b110111:
+        casez_tmp = mem_55;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b111000:
+        casez_tmp = mem_56;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b111001:
+        casez_tmp = mem_57;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b111010:
+        casez_tmp = mem_58;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b111011:
+        casez_tmp = mem_59;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b111100:
+        casez_tmp = mem_60;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b111101:
+        casez_tmp = mem_61;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b111110:
+        casez_tmp = mem_62;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      default:
+        casez_tmp = mem_63;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+    endcase	// backend/src/zaqal/backend/fu/DataMem.scala:33:26, :34:17
+  end // always_comb
+  reg  [63:0]  casez_tmp_0;	// backend/src/zaqal/backend/fu/DataMem.scala:34:17
+  always_comb begin	// backend/src/zaqal/backend/fu/DataMem.scala:34:17
+    casez (io_addr[8:3])	// backend/src/zaqal/backend/fu/DataMem.scala:28:22, :34:17
+      6'b000000:
+        casez_tmp_0 = mem_0;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b000001:
+        casez_tmp_0 = mem_1;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b000010:
+        casez_tmp_0 = mem_2;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b000011:
+        casez_tmp_0 = mem_3;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b000100:
+        casez_tmp_0 = mem_4;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b000101:
+        casez_tmp_0 = mem_5;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b000110:
+        casez_tmp_0 = mem_6;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b000111:
+        casez_tmp_0 = mem_7;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b001000:
+        casez_tmp_0 = mem_8;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b001001:
+        casez_tmp_0 = mem_9;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b001010:
+        casez_tmp_0 = mem_10;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b001011:
+        casez_tmp_0 = mem_11;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b001100:
+        casez_tmp_0 = mem_12;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b001101:
+        casez_tmp_0 = mem_13;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b001110:
+        casez_tmp_0 = mem_14;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b001111:
+        casez_tmp_0 = mem_15;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b010000:
+        casez_tmp_0 = mem_16;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b010001:
+        casez_tmp_0 = mem_17;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b010010:
+        casez_tmp_0 = mem_18;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b010011:
+        casez_tmp_0 = mem_19;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b010100:
+        casez_tmp_0 = mem_20;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b010101:
+        casez_tmp_0 = mem_21;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b010110:
+        casez_tmp_0 = mem_22;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b010111:
+        casez_tmp_0 = mem_23;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b011000:
+        casez_tmp_0 = mem_24;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b011001:
+        casez_tmp_0 = mem_25;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b011010:
+        casez_tmp_0 = mem_26;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b011011:
+        casez_tmp_0 = mem_27;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b011100:
+        casez_tmp_0 = mem_28;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b011101:
+        casez_tmp_0 = mem_29;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b011110:
+        casez_tmp_0 = mem_30;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b011111:
+        casez_tmp_0 = mem_31;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b100000:
+        casez_tmp_0 = mem_32;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b100001:
+        casez_tmp_0 = mem_33;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b100010:
+        casez_tmp_0 = mem_34;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b100011:
+        casez_tmp_0 = mem_35;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b100100:
+        casez_tmp_0 = mem_36;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b100101:
+        casez_tmp_0 = mem_37;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b100110:
+        casez_tmp_0 = mem_38;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b100111:
+        casez_tmp_0 = mem_39;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b101000:
+        casez_tmp_0 = mem_40;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b101001:
+        casez_tmp_0 = mem_41;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b101010:
+        casez_tmp_0 = mem_42;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b101011:
+        casez_tmp_0 = mem_43;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b101100:
+        casez_tmp_0 = mem_44;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b101101:
+        casez_tmp_0 = mem_45;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b101110:
+        casez_tmp_0 = mem_46;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b101111:
+        casez_tmp_0 = mem_47;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b110000:
+        casez_tmp_0 = mem_48;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b110001:
+        casez_tmp_0 = mem_49;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b110010:
+        casez_tmp_0 = mem_50;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b110011:
+        casez_tmp_0 = mem_51;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b110100:
+        casez_tmp_0 = mem_52;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b110101:
+        casez_tmp_0 = mem_53;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b110110:
+        casez_tmp_0 = mem_54;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b110111:
+        casez_tmp_0 = mem_55;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b111000:
+        casez_tmp_0 = mem_56;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b111001:
+        casez_tmp_0 = mem_57;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b111010:
+        casez_tmp_0 = mem_58;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b111011:
+        casez_tmp_0 = mem_59;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b111100:
+        casez_tmp_0 = mem_60;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b111101:
+        casez_tmp_0 = mem_61;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      6'b111110:
+        casez_tmp_0 = mem_62;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+      default:
+        casez_tmp_0 = mem_63;	// backend/src/zaqal/backend/fu/DataMem.scala:19:20, :34:17
+    endcase	// backend/src/zaqal/backend/fu/DataMem.scala:28:22, :34:17
+  end // always_comb
+  wire [127:0] io_data_0 = {casez_tmp, casez_tmp_0};	// backend/src/zaqal/backend/fu/DataMem.scala:34:17
+  wire [127:0] bitMask =
     {{8{io_wmask[15]}},
      {8{io_wmask[14]}},
      {8{io_wmask[13]}},
@@ -219,7 +420,7 @@ module DataMem(	// backend/src/zaqal/backend/fu/DataMem.scala:8:7
      {8{io_wmask[2]}},
      {8{io_wmask[1]}},
      {8{io_wmask[0]}}};	// backend/src/zaqal/backend/fu/DataMem.scala:37:{20,47,59}
-  wire [127:0]      fullData = io_data_0 & ~bitMask | io_wdata & bitMask;	// backend/src/zaqal/backend/fu/DataMem.scala:34:17, :37:20, :40:{29,31,41,53}
+  wire [127:0] fullData = io_data_0 & ~bitMask | io_wdata & bitMask;	// backend/src/zaqal/backend/fu/DataMem.scala:34:17, :37:20, :40:{29,31,41,53}
   `ifndef SYNTHESIS	// backend/src/zaqal/backend/fu/DataMem.scala:44:11
     always @(posedge clock) begin	// backend/src/zaqal/backend/fu/DataMem.scala:44:11
       if ((`PRINTF_COND_) & io_wen & ~reset) begin	// backend/src/zaqal/backend/fu/DataMem.scala:44:11, :46:11
@@ -562,8 +763,8 @@ module DataMem(	// backend/src/zaqal/backend/fu/DataMem.scala:8:7
     `ifdef FIRRTL_BEFORE_INITIAL	// backend/src/zaqal/backend/fu/DataMem.scala:8:7
       `FIRRTL_BEFORE_INITIAL	// backend/src/zaqal/backend/fu/DataMem.scala:8:7
     `endif // FIRRTL_BEFORE_INITIAL
+    logic [31:0] _RANDOM[0:127];	// backend/src/zaqal/backend/fu/DataMem.scala:8:7
     initial begin	// backend/src/zaqal/backend/fu/DataMem.scala:8:7
-      automatic logic [31:0] _RANDOM[0:127];	// backend/src/zaqal/backend/fu/DataMem.scala:8:7
       `ifdef INIT_RANDOM_PROLOG_	// backend/src/zaqal/backend/fu/DataMem.scala:8:7
         `INIT_RANDOM_PROLOG_	// backend/src/zaqal/backend/fu/DataMem.scala:8:7
       `endif // INIT_RANDOM_PROLOG_

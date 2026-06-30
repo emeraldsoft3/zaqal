@@ -706,6 +706,52 @@ module AgeDetector(	// backend/src/zaqal/backend/issue/AgeDetector.scala:7:7
      ~age_2_14,
      ~age_1_14,
      ~age_0_14} | _io_out_1_T_211;	// backend/src/zaqal/backend/issue/AgeDetector.scala:15:62, :21:10, :36:14, :60:{58,65,67}
+  wire [5:0]  _GEN_1 =
+    {io_enq_5[0], io_enq_4[0], io_enq_3[0], io_enq_2[0], io_enq_1[0], io_enq_0[0]};	// backend/src/zaqal/backend/issue/AgeDetector.scala:25:{25,31}
+  wire [5:0]  _GEN_2 =
+    {io_enq_5[1], io_enq_4[1], io_enq_3[1], io_enq_2[1], io_enq_1[1], io_enq_0[1]};	// backend/src/zaqal/backend/issue/AgeDetector.scala:25:{25,31}
+  wire        _GEN_3 = _GEN_1 == 6'h0;	// backend/src/zaqal/backend/issue/AgeDetector.scala:25:{31,38}
+  wire [5:0]  _GEN_4 =
+    {io_enq_5[2], io_enq_4[2], io_enq_3[2], io_enq_2[2], io_enq_1[2], io_enq_0[2]};	// backend/src/zaqal/backend/issue/AgeDetector.scala:25:{25,31}
+  wire [5:0]  _GEN_5 =
+    {io_enq_5[3], io_enq_4[3], io_enq_3[3], io_enq_2[3], io_enq_1[3], io_enq_0[3]};	// backend/src/zaqal/backend/issue/AgeDetector.scala:25:{25,31}
+  wire [5:0]  _GEN_6 =
+    {io_enq_5[4], io_enq_4[4], io_enq_3[4], io_enq_2[4], io_enq_1[4], io_enq_0[4]};	// backend/src/zaqal/backend/issue/AgeDetector.scala:25:{25,31}
+  wire [5:0]  _GEN_7 =
+    {io_enq_5[5], io_enq_4[5], io_enq_3[5], io_enq_2[5], io_enq_1[5], io_enq_0[5]};	// backend/src/zaqal/backend/issue/AgeDetector.scala:25:{25,31}
+  wire [5:0]  _GEN_8 =
+    {io_enq_5[6], io_enq_4[6], io_enq_3[6], io_enq_2[6], io_enq_1[6], io_enq_0[6]};	// backend/src/zaqal/backend/issue/AgeDetector.scala:25:{25,31}
+  wire [5:0]  _GEN_9 =
+    {io_enq_5[7], io_enq_4[7], io_enq_3[7], io_enq_2[7], io_enq_1[7], io_enq_0[7]};	// backend/src/zaqal/backend/issue/AgeDetector.scala:25:{25,31}
+  wire [5:0]  _GEN_10 =
+    {io_enq_5[8], io_enq_4[8], io_enq_3[8], io_enq_2[8], io_enq_1[8], io_enq_0[8]};	// backend/src/zaqal/backend/issue/AgeDetector.scala:25:{25,31}
+  wire [5:0]  _GEN_11 =
+    {io_enq_5[9], io_enq_4[9], io_enq_3[9], io_enq_2[9], io_enq_1[9], io_enq_0[9]};	// backend/src/zaqal/backend/issue/AgeDetector.scala:25:{25,31}
+  wire [5:0]  _GEN_12 =
+    {io_enq_5[10], io_enq_4[10], io_enq_3[10], io_enq_2[10], io_enq_1[10], io_enq_0[10]};	// backend/src/zaqal/backend/issue/AgeDetector.scala:25:{25,31}
+  wire [5:0]  _GEN_13 =
+    {io_enq_5[11], io_enq_4[11], io_enq_3[11], io_enq_2[11], io_enq_1[11], io_enq_0[11]};	// backend/src/zaqal/backend/issue/AgeDetector.scala:25:{25,31}
+  wire [5:0]  _GEN_14 =
+    {io_enq_5[12], io_enq_4[12], io_enq_3[12], io_enq_2[12], io_enq_1[12], io_enq_0[12]};	// backend/src/zaqal/backend/issue/AgeDetector.scala:25:{25,31}
+  wire [5:0]  _GEN_15 =
+    {io_enq_5[13], io_enq_4[13], io_enq_3[13], io_enq_2[13], io_enq_1[13], io_enq_0[13]};	// backend/src/zaqal/backend/issue/AgeDetector.scala:25:{25,31}
+  wire [5:0]  _GEN_16 =
+    {io_enq_5[14], io_enq_4[14], io_enq_3[14], io_enq_2[14], io_enq_1[14], io_enq_0[14]};	// backend/src/zaqal/backend/issue/AgeDetector.scala:25:{25,31}
+  wire [5:0]  _GEN_17 =
+    {io_enq_5[15], io_enq_4[15], io_enq_3[15], io_enq_2[15], io_enq_1[15], io_enq_0[15]};	// backend/src/zaqal/backend/issue/AgeDetector.scala:25:{25,31}
+  wire        _GEN_18 = _GEN_2 == 6'h0;	// backend/src/zaqal/backend/issue/AgeDetector.scala:25:{31,38}
+  wire        _GEN_19 = _GEN_4 == 6'h0;	// backend/src/zaqal/backend/issue/AgeDetector.scala:25:{31,38}
+  wire        _GEN_20 = _GEN_5 == 6'h0;	// backend/src/zaqal/backend/issue/AgeDetector.scala:25:{31,38}
+  wire        _GEN_21 = _GEN_6 == 6'h0;	// backend/src/zaqal/backend/issue/AgeDetector.scala:25:{31,38}
+  wire        _GEN_22 = _GEN_7 == 6'h0;	// backend/src/zaqal/backend/issue/AgeDetector.scala:25:{31,38}
+  wire        _GEN_23 = _GEN_8 == 6'h0;	// backend/src/zaqal/backend/issue/AgeDetector.scala:25:{31,38}
+  wire        _GEN_24 = _GEN_9 == 6'h0;	// backend/src/zaqal/backend/issue/AgeDetector.scala:25:{31,38}
+  wire        _GEN_25 = _GEN_10 == 6'h0;	// backend/src/zaqal/backend/issue/AgeDetector.scala:25:{31,38}
+  wire        _GEN_26 = _GEN_11 == 6'h0;	// backend/src/zaqal/backend/issue/AgeDetector.scala:25:{31,38}
+  wire        _GEN_27 = _GEN_12 == 6'h0;	// backend/src/zaqal/backend/issue/AgeDetector.scala:25:{31,38}
+  wire        _GEN_28 = _GEN_13 == 6'h0;	// backend/src/zaqal/backend/issue/AgeDetector.scala:25:{31,38}
+  wire        _GEN_29 = _GEN_14 == 6'h0;	// backend/src/zaqal/backend/issue/AgeDetector.scala:25:{31,38}
+  wire        _GEN_30 = _GEN_15 == 6'h0;	// backend/src/zaqal/backend/issue/AgeDetector.scala:25:{31,38}
   always @(posedge clock) begin	// backend/src/zaqal/backend/issue/AgeDetector.scala:7:7
     if (reset) begin	// backend/src/zaqal/backend/issue/AgeDetector.scala:7:7
       age_0_1 <= 1'h0;	// backend/src/zaqal/backend/issue/AgeDetector.scala:15:62
@@ -830,112 +876,6 @@ module AgeDetector(	// backend/src/zaqal/backend/issue/AgeDetector.scala:7:7
       age_14_15 <= 1'h0;	// backend/src/zaqal/backend/issue/AgeDetector.scala:15:62
     end
     else begin	// backend/src/zaqal/backend/issue/AgeDetector.scala:7:7
-      automatic logic [5:0] _GEN_1;	// backend/src/zaqal/backend/issue/AgeDetector.scala:25:31
-      automatic logic [5:0] _GEN_2;	// backend/src/zaqal/backend/issue/AgeDetector.scala:25:31
-      automatic logic       _GEN_3;	// backend/src/zaqal/backend/issue/AgeDetector.scala:25:38
-      automatic logic [5:0] _GEN_4;	// backend/src/zaqal/backend/issue/AgeDetector.scala:25:31
-      automatic logic [5:0] _GEN_5;	// backend/src/zaqal/backend/issue/AgeDetector.scala:25:31
-      automatic logic [5:0] _GEN_6;	// backend/src/zaqal/backend/issue/AgeDetector.scala:25:31
-      automatic logic [5:0] _GEN_7;	// backend/src/zaqal/backend/issue/AgeDetector.scala:25:31
-      automatic logic [5:0] _GEN_8;	// backend/src/zaqal/backend/issue/AgeDetector.scala:25:31
-      automatic logic [5:0] _GEN_9;	// backend/src/zaqal/backend/issue/AgeDetector.scala:25:31
-      automatic logic [5:0] _GEN_10;	// backend/src/zaqal/backend/issue/AgeDetector.scala:25:31
-      automatic logic [5:0] _GEN_11;	// backend/src/zaqal/backend/issue/AgeDetector.scala:25:31
-      automatic logic [5:0] _GEN_12;	// backend/src/zaqal/backend/issue/AgeDetector.scala:25:31
-      automatic logic [5:0] _GEN_13;	// backend/src/zaqal/backend/issue/AgeDetector.scala:25:31
-      automatic logic [5:0] _GEN_14;	// backend/src/zaqal/backend/issue/AgeDetector.scala:25:31
-      automatic logic [5:0] _GEN_15;	// backend/src/zaqal/backend/issue/AgeDetector.scala:25:31
-      automatic logic [5:0] _GEN_16;	// backend/src/zaqal/backend/issue/AgeDetector.scala:25:31
-      automatic logic [5:0] _GEN_17;	// backend/src/zaqal/backend/issue/AgeDetector.scala:25:31
-      automatic logic       _GEN_18;	// backend/src/zaqal/backend/issue/AgeDetector.scala:25:38
-      automatic logic       _GEN_19;	// backend/src/zaqal/backend/issue/AgeDetector.scala:25:38
-      automatic logic       _GEN_20;	// backend/src/zaqal/backend/issue/AgeDetector.scala:25:38
-      automatic logic       _GEN_21;	// backend/src/zaqal/backend/issue/AgeDetector.scala:25:38
-      automatic logic       _GEN_22;	// backend/src/zaqal/backend/issue/AgeDetector.scala:25:38
-      automatic logic       _GEN_23;	// backend/src/zaqal/backend/issue/AgeDetector.scala:25:38
-      automatic logic       _GEN_24;	// backend/src/zaqal/backend/issue/AgeDetector.scala:25:38
-      automatic logic       _GEN_25;	// backend/src/zaqal/backend/issue/AgeDetector.scala:25:38
-      automatic logic       _GEN_26;	// backend/src/zaqal/backend/issue/AgeDetector.scala:25:38
-      automatic logic       _GEN_27;	// backend/src/zaqal/backend/issue/AgeDetector.scala:25:38
-      automatic logic       _GEN_28;	// backend/src/zaqal/backend/issue/AgeDetector.scala:25:38
-      automatic logic       _GEN_29;	// backend/src/zaqal/backend/issue/AgeDetector.scala:25:38
-      automatic logic       _GEN_30;	// backend/src/zaqal/backend/issue/AgeDetector.scala:25:38
-      _GEN_1 =
-        {io_enq_5[0], io_enq_4[0], io_enq_3[0], io_enq_2[0], io_enq_1[0], io_enq_0[0]};	// backend/src/zaqal/backend/issue/AgeDetector.scala:25:{25,31}
-      _GEN_2 =
-        {io_enq_5[1], io_enq_4[1], io_enq_3[1], io_enq_2[1], io_enq_1[1], io_enq_0[1]};	// backend/src/zaqal/backend/issue/AgeDetector.scala:25:{25,31}
-      _GEN_3 = _GEN_1 == 6'h0;	// backend/src/zaqal/backend/issue/AgeDetector.scala:25:{31,38}
-      _GEN_4 =
-        {io_enq_5[2], io_enq_4[2], io_enq_3[2], io_enq_2[2], io_enq_1[2], io_enq_0[2]};	// backend/src/zaqal/backend/issue/AgeDetector.scala:25:{25,31}
-      _GEN_5 =
-        {io_enq_5[3], io_enq_4[3], io_enq_3[3], io_enq_2[3], io_enq_1[3], io_enq_0[3]};	// backend/src/zaqal/backend/issue/AgeDetector.scala:25:{25,31}
-      _GEN_6 =
-        {io_enq_5[4], io_enq_4[4], io_enq_3[4], io_enq_2[4], io_enq_1[4], io_enq_0[4]};	// backend/src/zaqal/backend/issue/AgeDetector.scala:25:{25,31}
-      _GEN_7 =
-        {io_enq_5[5], io_enq_4[5], io_enq_3[5], io_enq_2[5], io_enq_1[5], io_enq_0[5]};	// backend/src/zaqal/backend/issue/AgeDetector.scala:25:{25,31}
-      _GEN_8 =
-        {io_enq_5[6], io_enq_4[6], io_enq_3[6], io_enq_2[6], io_enq_1[6], io_enq_0[6]};	// backend/src/zaqal/backend/issue/AgeDetector.scala:25:{25,31}
-      _GEN_9 =
-        {io_enq_5[7], io_enq_4[7], io_enq_3[7], io_enq_2[7], io_enq_1[7], io_enq_0[7]};	// backend/src/zaqal/backend/issue/AgeDetector.scala:25:{25,31}
-      _GEN_10 =
-        {io_enq_5[8], io_enq_4[8], io_enq_3[8], io_enq_2[8], io_enq_1[8], io_enq_0[8]};	// backend/src/zaqal/backend/issue/AgeDetector.scala:25:{25,31}
-      _GEN_11 =
-        {io_enq_5[9], io_enq_4[9], io_enq_3[9], io_enq_2[9], io_enq_1[9], io_enq_0[9]};	// backend/src/zaqal/backend/issue/AgeDetector.scala:25:{25,31}
-      _GEN_12 =
-        {io_enq_5[10],
-         io_enq_4[10],
-         io_enq_3[10],
-         io_enq_2[10],
-         io_enq_1[10],
-         io_enq_0[10]};	// backend/src/zaqal/backend/issue/AgeDetector.scala:25:{25,31}
-      _GEN_13 =
-        {io_enq_5[11],
-         io_enq_4[11],
-         io_enq_3[11],
-         io_enq_2[11],
-         io_enq_1[11],
-         io_enq_0[11]};	// backend/src/zaqal/backend/issue/AgeDetector.scala:25:{25,31}
-      _GEN_14 =
-        {io_enq_5[12],
-         io_enq_4[12],
-         io_enq_3[12],
-         io_enq_2[12],
-         io_enq_1[12],
-         io_enq_0[12]};	// backend/src/zaqal/backend/issue/AgeDetector.scala:25:{25,31}
-      _GEN_15 =
-        {io_enq_5[13],
-         io_enq_4[13],
-         io_enq_3[13],
-         io_enq_2[13],
-         io_enq_1[13],
-         io_enq_0[13]};	// backend/src/zaqal/backend/issue/AgeDetector.scala:25:{25,31}
-      _GEN_16 =
-        {io_enq_5[14],
-         io_enq_4[14],
-         io_enq_3[14],
-         io_enq_2[14],
-         io_enq_1[14],
-         io_enq_0[14]};	// backend/src/zaqal/backend/issue/AgeDetector.scala:25:{25,31}
-      _GEN_17 =
-        {io_enq_5[15],
-         io_enq_4[15],
-         io_enq_3[15],
-         io_enq_2[15],
-         io_enq_1[15],
-         io_enq_0[15]};	// backend/src/zaqal/backend/issue/AgeDetector.scala:25:{25,31}
-      _GEN_18 = _GEN_2 == 6'h0;	// backend/src/zaqal/backend/issue/AgeDetector.scala:25:{31,38}
-      _GEN_19 = _GEN_4 == 6'h0;	// backend/src/zaqal/backend/issue/AgeDetector.scala:25:{31,38}
-      _GEN_20 = _GEN_5 == 6'h0;	// backend/src/zaqal/backend/issue/AgeDetector.scala:25:{31,38}
-      _GEN_21 = _GEN_6 == 6'h0;	// backend/src/zaqal/backend/issue/AgeDetector.scala:25:{31,38}
-      _GEN_22 = _GEN_7 == 6'h0;	// backend/src/zaqal/backend/issue/AgeDetector.scala:25:{31,38}
-      _GEN_23 = _GEN_8 == 6'h0;	// backend/src/zaqal/backend/issue/AgeDetector.scala:25:{31,38}
-      _GEN_24 = _GEN_9 == 6'h0;	// backend/src/zaqal/backend/issue/AgeDetector.scala:25:{31,38}
-      _GEN_25 = _GEN_10 == 6'h0;	// backend/src/zaqal/backend/issue/AgeDetector.scala:25:{31,38}
-      _GEN_26 = _GEN_11 == 6'h0;	// backend/src/zaqal/backend/issue/AgeDetector.scala:25:{31,38}
-      _GEN_27 = _GEN_12 == 6'h0;	// backend/src/zaqal/backend/issue/AgeDetector.scala:25:{31,38}
-      _GEN_28 = _GEN_13 == 6'h0;	// backend/src/zaqal/backend/issue/AgeDetector.scala:25:{31,38}
-      _GEN_29 = _GEN_14 == 6'h0;	// backend/src/zaqal/backend/issue/AgeDetector.scala:25:{31,38}
-      _GEN_30 = _GEN_15 == 6'h0;	// backend/src/zaqal/backend/issue/AgeDetector.scala:25:{31,38}
       if ((|{io_enq_5[0],
              io_enq_4[0],
              io_enq_3[0],
@@ -3777,8 +3717,8 @@ module AgeDetector(	// backend/src/zaqal/backend/issue/AgeDetector.scala:7:7
     `ifdef FIRRTL_BEFORE_INITIAL	// backend/src/zaqal/backend/issue/AgeDetector.scala:7:7
       `FIRRTL_BEFORE_INITIAL	// backend/src/zaqal/backend/issue/AgeDetector.scala:7:7
     `endif // FIRRTL_BEFORE_INITIAL
+    logic [31:0] _RANDOM[0:7];	// backend/src/zaqal/backend/issue/AgeDetector.scala:7:7
     initial begin	// backend/src/zaqal/backend/issue/AgeDetector.scala:7:7
-      automatic logic [31:0] _RANDOM[0:7];	// backend/src/zaqal/backend/issue/AgeDetector.scala:7:7
       `ifdef INIT_RANDOM_PROLOG_	// backend/src/zaqal/backend/issue/AgeDetector.scala:7:7
         `INIT_RANDOM_PROLOG_	// backend/src/zaqal/backend/issue/AgeDetector.scala:7:7
       `endif // INIT_RANDOM_PROLOG_

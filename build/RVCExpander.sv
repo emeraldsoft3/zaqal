@@ -67,152 +67,278 @@ module RVCExpander(	// frontend/src/zaqal/frontend/RVCExpander.scala:8:7
   output        io_is_rvc	// frontend/src/zaqal/frontend/RVCExpander.scala:9:14
 );
 
-  wire [7:0][31:0] _GEN =
-    {{{4'h0,
-       io_inst[6:5],
-       io_inst[12],
-       2'h1,
-       io_inst[4:2],
-       2'h1,
-       io_inst[9:7],
-       3'h3,
-       io_inst[11:10],
-       10'h23}},
-     {{5'h0,
-       io_inst[5],
-       io_inst[12],
-       2'h1,
-       io_inst[4:2],
-       2'h1,
-       io_inst[9:7],
-       3'h2,
-       io_inst[11:10],
-       io_inst[6],
-       9'h23}},
-     {{4'h0,
-       io_inst[6:5],
-       io_inst[12],
-       2'h1,
-       io_inst[4:2],
-       2'h1,
-       io_inst[9:7],
-       3'h3,
-       io_inst[11:10],
-       10'h27}},
-     {32'h13},
-     {{4'h0, io_inst[6:5], io_inst[12:10], 5'h1, io_inst[9:7], 5'hD, io_inst[4:2], 7'h3}},
-     {{5'h0,
-       io_inst[5],
-       io_inst[12:10],
-       io_inst[6],
-       4'h1,
-       io_inst[9:7],
-       5'h9,
-       io_inst[4:2],
-       7'h3}},
-     {{4'h0, io_inst[6:5], io_inst[12:10], 5'h1, io_inst[9:7], 5'hD, io_inst[4:2], 7'h7}},
-     {(|{io_inst[10:7], io_inst[12:11], io_inst[5], io_inst[6]})
-        ? {2'h0,
-           io_inst[10:7],
-           io_inst[12:11],
-           io_inst[5],
-           io_inst[6],
-           12'h41,
+  reg  [31:0] casez_tmp;	// frontend/src/zaqal/frontend/RVCExpander.scala:40:22, :43:30
+  always_comb begin	// frontend/src/zaqal/frontend/RVCExpander.scala:36:12, :40:22, :43:30, :49:20, :53:20, :57:20, :61:20, :65:20, :69:20
+    casez (io_inst[15:13])	// frontend/src/zaqal/frontend/RVCExpander.scala:17:20, :36:12, :40:22, :43:30, :49:20, :53:20, :57:20, :61:20, :65:20, :69:20
+      3'b000:
+        casez_tmp =
+          (|{io_inst[10:7], io_inst[12:11], io_inst[5], io_inst[6]})
+            ? {2'h0,
+               io_inst[10:7],
+               io_inst[12:11],
+               io_inst[5],
+               io_inst[6],
+               12'h41,
+               io_inst[4:2],
+               7'h13}
+            : 32'h13;	// frontend/src/zaqal/frontend/RVCExpander.scala:27:37, :36:12, :40:22, :42:{25,30,43,57,66}, :43:{21,30}, :44:{22,28}, :49:20, :53:20, :57:20, :61:20, :65:20, :69:20
+      3'b001:
+        casez_tmp =
+          {4'h0,
+           io_inst[6:5],
+           io_inst[12:10],
+           5'h1,
+           io_inst[9:7],
+           5'hD,
            io_inst[4:2],
-           7'h13}
-        : 32'h13}};	// frontend/src/zaqal/frontend/RVCExpander.scala:25:37, :27:{18,37}, :36:12, :40:22, :42:{25,30,43,57,66}, :43:{21,30}, :44:{22,28}, :48:{30,42}, :49:{20,26}, :52:{30,39,53}, :53:{20,26}, :56:{30,42}, :57:{20,26}, :60:30, :61:{20,26,39,88}, :64:{30,53}, :65:{20,26}, :68:30, :69:{20,26}, :87:26, :91:26, :165:43
-  wire [3:0][31:0] _GEN_0 =
-    {{{9'h1, io_inst[4:2], 2'h1, io_inst[9:7], 5'h1D, io_inst[9:7], 7'h33}},
-     {{9'h1, io_inst[4:2], 2'h1, io_inst[9:7], 5'h19, io_inst[9:7], 7'h33}},
-     {{9'h1, io_inst[4:2], 2'h1, io_inst[9:7], 5'h11, io_inst[9:7], 7'h33}},
-     {{9'h81,
-       io_inst[4:2],
-       2'h1,
-       io_inst[9:7],
-       5'h1,
-       io_inst[9:7],
-       3'h3,
-       io_inst[12],
-       3'h3}}};	// frontend/src/zaqal/frontend/RVCExpander.scala:25:{18,37}, :27:{18,37}, :49:26, :100:29, :104:42, :110:33, :112:{25,44}, :113:{25,44}, :114:{25,44}, :115:{25,44}, :165:43, src/main/scala/chisel3/util/Mux.scala:126:16
-  wire [3:0][31:0] _GEN_1 =
-    {{io_inst[12] & io_inst[6:5] == 2'h1
-        ? {9'h1, io_inst[4:2], 2'h1, io_inst[9:7], 5'h1, io_inst[9:7], 7'h3B}
-        : _GEN_0[io_inst[6:5]]},
-     {{2'h0,
-       {7{io_inst[12]}},
-       io_inst[6:2],
-       2'h1,
-       io_inst[9:7],
-       5'h1D,
-       io_inst[9:7],
-       5'h13}},
-     {{8'h10, io_inst[12], io_inst[6:2], 2'h1, io_inst[9:7], 5'h15, io_inst[9:7], 5'h13}},
-     {{8'h0, io_inst[12], io_inst[6:2], 2'h1, io_inst[9:7], 5'h15, io_inst[9:7], 5'h13}}};	// frontend/src/zaqal/frontend/RVCExpander.scala:25:{18,37}, :27:{18,37}, :33:20, :36:12, :42:25, :43:21, :100:29, :101:26, :102:{36,42}, :103:36, :104:{36,42}, :107:32, :110:33, :111:24, :112:25, :113:{25,44}, :114:25, :115:25, :118:{25,48,59,65}, :165:43, src/main/scala/chisel3/util/Mux.scala:126:16
-  wire [7:0][31:0] _GEN_2 =
-    {{{2'h0,
-       {4{io_inst[12]}},
-       io_inst[6:5],
-       io_inst[2],
-       7'h1,
-       io_inst[9:7],
-       1'h1,
-       io_inst[11:10],
-       io_inst[4:3],
-       io_inst[12],
-       7'h63}},
-     {{2'h0,
-       {4{io_inst[12]}},
-       io_inst[6:5],
-       io_inst[2],
-       7'h1,
-       io_inst[9:7],
-       1'h0,
-       io_inst[11:10],
-       io_inst[4:3],
-       io_inst[12],
-       7'h63}},
-     {{io_inst[12],
-       io_inst[8],
-       io_inst[10:9],
-       io_inst[6],
-       io_inst[7],
-       io_inst[2],
-       io_inst[11],
-       io_inst[5:3],
-       {9{io_inst[12]}},
-       12'h6F}},
-     {_GEN_1[io_inst[11:10]]},
-     {io_inst[11:7] == 5'h2
-        ? {{3{io_inst[12]}}, io_inst[4:3], io_inst[5], io_inst[2], io_inst[6], 24'h10113}
-        : {{15{io_inst[12]}}, io_inst[6:2], io_inst[11:7], 7'h37}},
-     {{{7{io_inst[12]}}, io_inst[6:2], 8'h0, io_inst[11:7], 7'h13}},
-     {{{7{io_inst[12]}}, io_inst[6:2], io_inst[11:7], 3'h0, io_inst[11:7], 7'h1B}},
-     {(|(io_inst[11:7]))
-        ? {{7{io_inst[12]}}, io_inst[6:2], io_inst[11:7], 3'h0, io_inst[11:7], 7'h13}
-        : 32'h13}};	// frontend/src/zaqal/frontend/RVCExpander.scala:25:{18,37}, :32:20, :33:20, :36:12, :38:14, :40:22, :42:25, :43:21, :44:28, :74:22, :76:38, :77:{29,38}, :78:{22,28,32}, :82:38, :83:{20,26,30}, :86:38, :87:{20,26,30}, :90:{23,32}, :91:{40,61,73,82,91}, :92:{22,28,32}, :94:40, :95:{22,28,32}, :99:28, :101:26, :102:36, :103:36, :104:36, :118:48, :123:{38,59,68,81,90,99,108,118}, :124:{20,26}, :127:{38,59,71,80,94}, :128:{20,26}, :131:{38,59,71,80,94}, :132:{20,26}
-  wire             _GEN_3 = io_inst[6:2] == 5'h0;	// frontend/src/zaqal/frontend/RVCExpander.scala:33:20, :87:26, :157:22
-  wire [7:0][31:0] _GEN_4 =
-    {{32'h13},
-     {{4'h0, io_inst[8:7], io_inst[12], io_inst[6:2], 8'h12, io_inst[11:9], 9'h23}},
-     {{3'h0, io_inst[8:7], io_inst[12:11], io_inst[6:2], 8'h13, io_inst[10:9], 10'h27}},
-     {io_inst[12]
-        ? (_GEN_3
-             ? ((|(io_inst[11:7])) ? {12'h0, io_inst[11:7], 15'hE7} : 32'h100073)
-             : {7'h0, io_inst[6:2], io_inst[11:7], 3'h0, io_inst[11:7], 7'h33})
-        : {12'h0,
-           _GEN_3
-             ? {io_inst[11:7], 15'h67}
-             : {io_inst[6:2], 3'h0, io_inst[11:7], 7'h13}}},
-     {{3'h0, io_inst[4:2], io_inst[12], io_inst[6:5], 11'h13, io_inst[11:7], 7'h3}},
-     {{4'h0, io_inst[3:2], io_inst[12], io_inst[6:4], 10'h12, io_inst[11:7], 7'h3}},
-     {{3'h0, io_inst[4:2], io_inst[12], io_inst[6:5], 11'h13, io_inst[11:7], 7'h7}},
-     {{7'h0, io_inst[6:2], io_inst[11:7], 3'h1, io_inst[11:7], 7'h13}}};	// frontend/src/zaqal/frontend/RVCExpander.scala:32:20, :33:20, :36:12, :40:22, :44:28, :49:26, :53:26, :61:{26,39}, :65:26, :74:22, :77:29, :91:26, :94:26, :110:33, :113:44, :137:22, :140:{20,26}, :143:{30,42,52}, :144:{20,26}, :147:{30,42,52}, :148:{20,26}, :151:{30,42,52}, :152:{20,26}, :155:27, :156:31, :157:{22,31}, :158:{24,30}, :160:{24,30}, :163:31, :164:{36,47}, :165:{37,43}, :167:{24,30}, :172:30, :173:{20,26,83}, :176:30, :177:{20,26,39,83}
-  wire [3:0][31:0] _GEN_5 =
-    {{32'h13},
-     {_GEN_4[io_inst[15:13]]},
-     {_GEN_2[io_inst[15:13]]},
-     {_GEN[io_inst[15:13]]}};	// frontend/src/zaqal/frontend/RVCExpander.scala:17:20, :36:12, :38:14, :40:22, :43:30, :49:20, :53:20, :57:20, :61:20, :65:20, :69:20, :74:22, :77:38, :83:20, :87:20, :90:32, :101:26, :124:20, :128:20, :132:20, :137:22, :140:20, :144:20, :148:20, :152:20, :156:31, :173:20, :177:20
-  assign io_out = _GEN_5[io_inst[1:0]];	// frontend/src/zaqal/frontend/RVCExpander.scala:8:7, :16:16, :36:12, :38:14, :40:22, :74:22, :137:22
+           7'h7};	// frontend/src/zaqal/frontend/RVCExpander.scala:25:37, :27:37, :36:12, :40:22, :43:30, :48:{30,42}, :49:{20,26}, :53:20, :57:20, :61:20, :65:20, :69:20, :91:26, :165:43
+      3'b010:
+        casez_tmp =
+          {5'h0,
+           io_inst[5],
+           io_inst[12:10],
+           io_inst[6],
+           4'h1,
+           io_inst[9:7],
+           5'h9,
+           io_inst[4:2],
+           7'h3};	// frontend/src/zaqal/frontend/RVCExpander.scala:25:37, :27:37, :36:12, :40:22, :43:30, :49:20, :52:{30,39,53}, :53:{20,26}, :57:20, :61:20, :65:20, :69:20, :87:26
+      3'b011:
+        casez_tmp =
+          {4'h0,
+           io_inst[6:5],
+           io_inst[12:10],
+           5'h1,
+           io_inst[9:7],
+           5'hD,
+           io_inst[4:2],
+           7'h3};	// frontend/src/zaqal/frontend/RVCExpander.scala:25:37, :27:37, :36:12, :40:22, :43:30, :49:{20,26}, :53:{20,26}, :56:{30,42}, :57:{20,26}, :61:20, :65:20, :69:20, :91:26, :165:43
+      3'b100:
+        casez_tmp = 32'h13;	// frontend/src/zaqal/frontend/RVCExpander.scala:36:12, :40:22, :43:30, :49:20, :53:20, :57:20, :61:20, :65:20, :69:20
+      3'b101:
+        casez_tmp =
+          {4'h0,
+           io_inst[6:5],
+           io_inst[12],
+           2'h1,
+           io_inst[4:2],
+           2'h1,
+           io_inst[9:7],
+           3'h3,
+           io_inst[11:10],
+           10'h27};	// frontend/src/zaqal/frontend/RVCExpander.scala:25:37, :27:{18,37}, :36:12, :40:22, :43:30, :49:{20,26}, :53:20, :57:20, :60:30, :61:{20,26,39,88}, :65:20, :69:20, :91:26
+      3'b110:
+        casez_tmp =
+          {5'h0,
+           io_inst[5],
+           io_inst[12],
+           2'h1,
+           io_inst[4:2],
+           2'h1,
+           io_inst[9:7],
+           3'h2,
+           io_inst[11:10],
+           io_inst[6],
+           9'h23};	// frontend/src/zaqal/frontend/RVCExpander.scala:25:37, :27:{18,37}, :36:12, :40:22, :43:30, :49:20, :53:{20,26}, :57:20, :61:{20,39,88}, :64:{30,53}, :65:{20,26}, :69:20, :87:26
+      default:
+        casez_tmp =
+          {4'h0,
+           io_inst[6:5],
+           io_inst[12],
+           2'h1,
+           io_inst[4:2],
+           2'h1,
+           io_inst[9:7],
+           3'h3,
+           io_inst[11:10],
+           10'h23};	// frontend/src/zaqal/frontend/RVCExpander.scala:25:37, :27:{18,37}, :36:12, :40:22, :43:30, :49:{20,26}, :53:20, :57:20, :61:{20,39,88}, :65:20, :68:30, :69:{20,26}, :91:26
+    endcase	// frontend/src/zaqal/frontend/RVCExpander.scala:17:20, :36:12, :40:22, :43:30, :49:20, :53:20, :57:20, :61:20, :65:20, :69:20
+  end // always_comb
+  reg  [31:0] casez_tmp_0;	// src/main/scala/chisel3/util/Mux.scala:126:16
+  always_comb begin	// frontend/src/zaqal/frontend/RVCExpander.scala:112:25, :113:25, :114:25, :115:25, src/main/scala/chisel3/util/Mux.scala:126:16
+    casez (io_inst[6:5])	// frontend/src/zaqal/frontend/RVCExpander.scala:107:32, :112:25, :113:25, :114:25, :115:25, src/main/scala/chisel3/util/Mux.scala:126:16
+      2'b00:
+        casez_tmp_0 =
+          {9'h81,
+           io_inst[4:2],
+           2'h1,
+           io_inst[9:7],
+           5'h1,
+           io_inst[9:7],
+           3'h3,
+           io_inst[12],
+           3'h3};	// frontend/src/zaqal/frontend/RVCExpander.scala:25:37, :27:{18,37}, :49:26, :100:29, :112:{25,44}, :113:25, :114:25, :115:25, :165:43, src/main/scala/chisel3/util/Mux.scala:126:16
+      2'b01:
+        casez_tmp_0 =
+          {9'h1, io_inst[4:2], 2'h1, io_inst[9:7], 5'h11, io_inst[9:7], 7'h33};	// frontend/src/zaqal/frontend/RVCExpander.scala:25:{18,37}, :27:{18,37}, :110:33, :112:25, :113:{25,44}, :114:25, :115:25, src/main/scala/chisel3/util/Mux.scala:126:16
+      2'b10:
+        casez_tmp_0 =
+          {9'h1, io_inst[4:2], 2'h1, io_inst[9:7], 5'h19, io_inst[9:7], 7'h33};	// frontend/src/zaqal/frontend/RVCExpander.scala:25:{18,37}, :27:{18,37}, :110:33, :112:25, :113:{25,44}, :114:{25,44}, :115:25, src/main/scala/chisel3/util/Mux.scala:126:16
+      default:
+        casez_tmp_0 =
+          {9'h1, io_inst[4:2], 2'h1, io_inst[9:7], 5'h1D, io_inst[9:7], 7'h33};	// frontend/src/zaqal/frontend/RVCExpander.scala:25:{18,37}, :27:{18,37}, :104:42, :110:33, :112:25, :113:{25,44}, :114:25, :115:{25,44}, src/main/scala/chisel3/util/Mux.scala:126:16
+    endcase	// frontend/src/zaqal/frontend/RVCExpander.scala:107:32, :112:25, :113:25, :114:25, :115:25, src/main/scala/chisel3/util/Mux.scala:126:16
+  end // always_comb
+  reg  [31:0] casez_tmp_1;	// frontend/src/zaqal/frontend/RVCExpander.scala:101:26, :102:36
+  always_comb begin	// frontend/src/zaqal/frontend/RVCExpander.scala:36:12, :101:26, :102:36, :103:36, :104:36, :118:48
+    casez (io_inst[11:10])	// frontend/src/zaqal/frontend/RVCExpander.scala:36:12, :99:28, :101:26, :102:36, :103:36, :104:36, :118:48
+      2'b00:
+        casez_tmp_1 =
+          {8'h0,
+           io_inst[12],
+           io_inst[6:2],
+           2'h1,
+           io_inst[9:7],
+           5'h15,
+           io_inst[9:7],
+           5'h13};	// frontend/src/zaqal/frontend/RVCExpander.scala:25:{18,37}, :27:18, :33:20, :36:12, :43:21, :100:29, :101:26, :102:{36,42}, :103:36, :104:36, :118:48
+      2'b01:
+        casez_tmp_1 =
+          {8'h10,
+           io_inst[12],
+           io_inst[6:2],
+           2'h1,
+           io_inst[9:7],
+           5'h15,
+           io_inst[9:7],
+           5'h13};	// frontend/src/zaqal/frontend/RVCExpander.scala:25:{18,37}, :27:18, :33:20, :36:12, :100:29, :101:26, :102:{36,42}, :103:36, :104:36, :118:48
+      2'b10:
+        casez_tmp_1 =
+          {2'h0,
+           {7{io_inst[12]}},
+           io_inst[6:2],
+           2'h1,
+           io_inst[9:7],
+           5'h1D,
+           io_inst[9:7],
+           5'h13};	// frontend/src/zaqal/frontend/RVCExpander.scala:25:{18,37}, :27:18, :33:20, :36:12, :42:25, :100:29, :101:26, :102:36, :103:36, :104:{36,42}, :118:48
+      default:
+        casez_tmp_1 =
+          io_inst[12] & io_inst[6:5] == 2'h1
+            ? {9'h1, io_inst[4:2], 2'h1, io_inst[9:7], 5'h1, io_inst[9:7], 7'h3B}
+            : casez_tmp_0;	// frontend/src/zaqal/frontend/RVCExpander.scala:25:37, :27:{18,37}, :36:12, :100:29, :101:26, :102:36, :103:36, :104:36, :107:32, :110:33, :111:24, :113:{25,44}, :118:{25,48,59,65}, :165:43, src/main/scala/chisel3/util/Mux.scala:126:16
+    endcase	// frontend/src/zaqal/frontend/RVCExpander.scala:36:12, :99:28, :101:26, :102:36, :103:36, :104:36, :118:48
+  end // always_comb
+  reg  [31:0] casez_tmp_2;	// frontend/src/zaqal/frontend/RVCExpander.scala:74:22, :77:38
+  always_comb begin	// frontend/src/zaqal/frontend/RVCExpander.scala:36:12, :40:22, :74:22, :77:38, :83:20, :87:20, :90:32, :101:26, :124:20, :128:20, :132:20
+    casez (io_inst[15:13])	// frontend/src/zaqal/frontend/RVCExpander.scala:17:20, :36:12, :40:22, :74:22, :77:38, :83:20, :87:20, :90:32, :101:26, :124:20, :128:20, :132:20
+      3'b000:
+        casez_tmp_2 =
+          (|(io_inst[11:7]))
+            ? {{7{io_inst[12]}}, io_inst[6:2], io_inst[11:7], 3'h0, io_inst[11:7], 7'h13}
+            : 32'h13;	// frontend/src/zaqal/frontend/RVCExpander.scala:32:20, :33:20, :36:12, :40:22, :44:28, :74:22, :76:38, :77:{29,38}, :78:{22,28,32}, :83:20, :87:20, :90:32, :101:26, :124:20, :128:20, :132:20
+      3'b001:
+        casez_tmp_2 =
+          {{7{io_inst[12]}}, io_inst[6:2], io_inst[11:7], 3'h0, io_inst[11:7], 7'h1B};	// frontend/src/zaqal/frontend/RVCExpander.scala:32:20, :33:20, :36:12, :40:22, :44:28, :74:22, :77:38, :82:38, :83:{20,26,30}, :87:20, :90:32, :101:26, :124:20, :128:20, :132:20
+      3'b010:
+        casez_tmp_2 = {{7{io_inst[12]}}, io_inst[6:2], 8'h0, io_inst[11:7], 7'h13};	// frontend/src/zaqal/frontend/RVCExpander.scala:32:20, :33:20, :36:12, :40:22, :43:21, :44:28, :74:22, :77:38, :83:20, :86:38, :87:{20,26,30}, :90:32, :101:26, :124:20, :128:20, :132:20
+      3'b011:
+        casez_tmp_2 =
+          io_inst[11:7] == 5'h2
+            ? {{3{io_inst[12]}},
+               io_inst[4:3],
+               io_inst[5],
+               io_inst[2],
+               io_inst[6],
+               24'h10113}
+            : {{15{io_inst[12]}}, io_inst[6:2], io_inst[11:7], 7'h37};	// frontend/src/zaqal/frontend/RVCExpander.scala:32:20, :33:20, :36:12, :40:22, :44:28, :74:22, :77:38, :83:20, :87:20, :90:{23,32}, :91:{40,61,73,82,91}, :92:{22,28,32}, :94:40, :95:{22,28,32}, :101:26, :124:20, :128:20, :132:20
+      3'b100:
+        casez_tmp_2 = casez_tmp_1;	// frontend/src/zaqal/frontend/RVCExpander.scala:36:12, :40:22, :74:22, :77:38, :83:20, :87:20, :90:32, :101:26, :102:36, :124:20, :128:20, :132:20
+      3'b101:
+        casez_tmp_2 =
+          {io_inst[12],
+           io_inst[8],
+           io_inst[10:9],
+           io_inst[6],
+           io_inst[7],
+           io_inst[2],
+           io_inst[11],
+           io_inst[5:3],
+           {9{io_inst[12]}},
+           12'h6F};	// frontend/src/zaqal/frontend/RVCExpander.scala:36:12, :40:22, :74:22, :77:38, :83:20, :87:20, :90:32, :101:26, :123:{38,59,68,81,90,99,108,118}, :124:{20,26}, :128:20, :132:20
+      3'b110:
+        casez_tmp_2 =
+          {2'h0,
+           {4{io_inst[12]}},
+           io_inst[6:5],
+           io_inst[2],
+           7'h1,
+           io_inst[9:7],
+           1'h0,
+           io_inst[11:10],
+           io_inst[4:3],
+           io_inst[12],
+           7'h63};	// frontend/src/zaqal/frontend/RVCExpander.scala:25:{18,37}, :36:12, :38:14, :40:22, :42:25, :74:22, :77:38, :83:20, :87:20, :90:32, :101:26, :124:20, :127:{38,59,71,80,94}, :128:{20,26}, :132:20
+      default:
+        casez_tmp_2 =
+          {2'h0,
+           {4{io_inst[12]}},
+           io_inst[6:5],
+           io_inst[2],
+           7'h1,
+           io_inst[9:7],
+           1'h1,
+           io_inst[11:10],
+           io_inst[4:3],
+           io_inst[12],
+           7'h63};	// frontend/src/zaqal/frontend/RVCExpander.scala:25:{18,37}, :36:12, :40:22, :42:25, :74:22, :77:38, :83:20, :87:20, :90:32, :101:26, :124:20, :128:{20,26}, :131:{38,59,71,80,94}, :132:{20,26}
+    endcase	// frontend/src/zaqal/frontend/RVCExpander.scala:17:20, :36:12, :40:22, :74:22, :77:38, :83:20, :87:20, :90:32, :101:26, :124:20, :128:20, :132:20
+  end // always_comb
+  reg  [31:0] casez_tmp_3;	// frontend/src/zaqal/frontend/RVCExpander.scala:137:22, :140:20
+  wire        _GEN = io_inst[6:2] == 5'h0;	// frontend/src/zaqal/frontend/RVCExpander.scala:33:20, :87:26, :157:22
+  always_comb begin	// frontend/src/zaqal/frontend/RVCExpander.scala:36:12, :40:22, :74:22, :137:22, :140:20, :144:20, :148:20, :152:20, :156:31, :173:20, :177:20
+    casez (io_inst[15:13])	// frontend/src/zaqal/frontend/RVCExpander.scala:17:20, :36:12, :40:22, :74:22, :137:22, :140:20, :144:20, :148:20, :152:20, :156:31, :173:20, :177:20
+      3'b000:
+        casez_tmp_3 = {7'h0, io_inst[6:2], io_inst[11:7], 3'h1, io_inst[11:7], 7'h13};	// frontend/src/zaqal/frontend/RVCExpander.scala:32:20, :33:20, :36:12, :40:22, :44:28, :74:22, :113:44, :137:22, :140:{20,26}, :144:20, :148:20, :152:20, :156:31, :173:20, :177:20
+      3'b001:
+        casez_tmp_3 =
+          {3'h0, io_inst[4:2], io_inst[12], io_inst[6:5], 11'h13, io_inst[11:7], 7'h7};	// frontend/src/zaqal/frontend/RVCExpander.scala:32:20, :36:12, :40:22, :44:28, :49:26, :74:22, :137:22, :140:20, :144:20, :148:{20,26}, :151:{30,42,52}, :152:{20,26}, :156:31, :173:20, :177:20
+      3'b010:
+        casez_tmp_3 =
+          {4'h0, io_inst[3:2], io_inst[12], io_inst[6:4], 10'h12, io_inst[11:7], 7'h3};	// frontend/src/zaqal/frontend/RVCExpander.scala:32:20, :36:12, :40:22, :53:26, :74:22, :91:26, :137:22, :140:20, :143:{30,42,52}, :144:{20,26}, :148:20, :152:20, :156:31, :173:20, :177:20
+      3'b011:
+        casez_tmp_3 =
+          {3'h0, io_inst[4:2], io_inst[12], io_inst[6:5], 11'h13, io_inst[11:7], 7'h3};	// frontend/src/zaqal/frontend/RVCExpander.scala:32:20, :36:12, :40:22, :44:28, :53:26, :74:22, :137:22, :140:20, :144:20, :147:{30,42,52}, :148:{20,26}, :152:20, :156:31, :173:20, :177:20
+      3'b100:
+        casez_tmp_3 =
+          io_inst[12]
+            ? (_GEN
+                 ? ((|(io_inst[11:7])) ? {12'h0, io_inst[11:7], 15'hE7} : 32'h100073)
+                 : {7'h0, io_inst[6:2], io_inst[11:7], 3'h0, io_inst[11:7], 7'h33})
+            : {12'h0,
+               _GEN
+                 ? {io_inst[11:7], 15'h67}
+                 : {io_inst[6:2], 3'h0, io_inst[11:7], 7'h13}};	// frontend/src/zaqal/frontend/RVCExpander.scala:32:20, :33:20, :36:12, :40:22, :44:28, :74:22, :77:29, :94:26, :110:33, :113:44, :137:22, :140:20, :144:20, :148:20, :152:20, :155:27, :156:31, :157:{22,31}, :158:{24,30}, :160:{24,30}, :163:31, :164:{36,47}, :165:{37,43}, :167:{24,30}, :173:20, :177:20
+      3'b101:
+        casez_tmp_3 =
+          {3'h0,
+           io_inst[8:7],
+           io_inst[12:11],
+           io_inst[6:2],
+           8'h13,
+           io_inst[10:9],
+           10'h27};	// frontend/src/zaqal/frontend/RVCExpander.scala:33:20, :36:12, :40:22, :44:28, :61:26, :74:22, :137:22, :140:20, :144:20, :148:20, :152:20, :156:31, :173:20, :176:30, :177:{20,26,39,83}
+      3'b110:
+        casez_tmp_3 =
+          {4'h0, io_inst[8:7], io_inst[12], io_inst[6:2], 8'h12, io_inst[11:9], 9'h23};	// frontend/src/zaqal/frontend/RVCExpander.scala:33:20, :36:12, :40:22, :61:39, :65:26, :74:22, :91:26, :137:22, :140:20, :144:20, :148:20, :152:20, :156:31, :172:30, :173:{20,26,83}, :177:20
+      default:
+        casez_tmp_3 = 32'h13;	// frontend/src/zaqal/frontend/RVCExpander.scala:36:12, :40:22, :74:22, :137:22, :140:20, :144:20, :148:20, :152:20, :156:31, :173:20, :177:20
+    endcase	// frontend/src/zaqal/frontend/RVCExpander.scala:17:20, :36:12, :40:22, :74:22, :137:22, :140:20, :144:20, :148:20, :152:20, :156:31, :173:20, :177:20
+  end // always_comb
+  reg  [31:0] casez_tmp_4;	// frontend/src/zaqal/frontend/RVCExpander.scala:38:14, :40:22
+  always_comb begin	// frontend/src/zaqal/frontend/RVCExpander.scala:36:12, :38:14, :40:22, :74:22, :137:22
+    casez (io_inst[1:0])	// frontend/src/zaqal/frontend/RVCExpander.scala:16:16, :36:12, :38:14, :40:22, :74:22, :137:22
+      2'b00:
+        casez_tmp_4 = casez_tmp;	// frontend/src/zaqal/frontend/RVCExpander.scala:36:12, :38:14, :40:22, :43:30, :74:22, :137:22
+      2'b01:
+        casez_tmp_4 = casez_tmp_2;	// frontend/src/zaqal/frontend/RVCExpander.scala:36:12, :38:14, :40:22, :74:22, :77:38, :137:22
+      2'b10:
+        casez_tmp_4 = casez_tmp_3;	// frontend/src/zaqal/frontend/RVCExpander.scala:36:12, :38:14, :40:22, :74:22, :137:22, :140:20
+      default:
+        casez_tmp_4 = 32'h13;	// frontend/src/zaqal/frontend/RVCExpander.scala:36:12, :38:14, :40:22, :74:22, :137:22
+    endcase	// frontend/src/zaqal/frontend/RVCExpander.scala:16:16, :36:12, :38:14, :40:22, :74:22, :137:22
+  end // always_comb
+  assign io_out = casez_tmp_4;	// frontend/src/zaqal/frontend/RVCExpander.scala:8:7, :38:14, :40:22
   assign io_is_rvc = io_inst[1:0] != 2'h3;	// frontend/src/zaqal/frontend/RVCExpander.scala:8:7, :16:16, :20:19
 endmodule
 

@@ -534,8 +534,8 @@ module Core(	// zaqal/src/zaqal/Core.scala:13:7
     `ifdef FIRRTL_BEFORE_INITIAL	// zaqal/src/zaqal/Core.scala:13:7
       `FIRRTL_BEFORE_INITIAL	// zaqal/src/zaqal/Core.scala:13:7
     `endif // FIRRTL_BEFORE_INITIAL
+    logic [31:0] _RANDOM[0:4];	// zaqal/src/zaqal/Core.scala:13:7
     initial begin	// zaqal/src/zaqal/Core.scala:13:7
-      automatic logic [31:0] _RANDOM[0:4];	// zaqal/src/zaqal/Core.scala:13:7
       `ifdef INIT_RANDOM_PROLOG_	// zaqal/src/zaqal/Core.scala:13:7
         `INIT_RANDOM_PROLOG_	// zaqal/src/zaqal/Core.scala:13:7
       `endif // INIT_RANDOM_PROLOG_

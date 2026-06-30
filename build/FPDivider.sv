@@ -105,6 +105,13 @@ module FPDivider(	// backend/src/zaqal/backend/fu/FPDivider.scala:8:7
                 Q_reg[22:0]);	// backend/src/zaqal/backend/fu/FPDivider.scala:28:28, :38:28, :55:15, :105:25, :106:17
     end // always @(posedge)
   `endif // not def SYNTHESIS
+  wire [40:0] _GEN_2 = {9'h0, divisor};	// backend/src/zaqal/backend/fu/FPDivider.scala:33:28, :114:20
+  wire [47:0] _GEN_3 = {1'h0, Q_reg[47:1]};	// backend/src/zaqal/backend/fu/FPDivider.scala:38:28, :45:27, :55:15, :97:{29,37}
+  wire [47:0] _D_reg_T_3 = Q_reg + bit_reg;	// backend/src/zaqal/backend/fu/FPDivider.scala:36:28, :38:28, :95:31
+  wire        _GEN_4 = D_reg >= _D_reg_T_3;	// backend/src/zaqal/backend/fu/FPDivider.scala:37:28, :95:{22,31}
+  wire        _GEN_5 = ~_GEN_1 | is_sqrt_reg | ~(|count);	// backend/src/zaqal/backend/fu/FPDivider.scala:25:28, :26:28, :32:28, :49:17, :93:25, :109:{20,29}
+  wire        _GEN_6 = ~_GEN | io_dec_is_fsqrt;	// backend/src/zaqal/backend/fu/FPDivider.scala:32:28, :54:{43,57}, :67:23
+  wire [8:0]  _res_e_T_4 = {1'h0, io_src1[30:23]} - {1'h0, io_src2[30:23]};	// backend/src/zaqal/backend/fu/FPDivider.scala:45:27, :60:39, :64:39, :82:24
   always @(posedge clock) begin	// backend/src/zaqal/backend/fu/FPDivider.scala:8:7
     if (reset) begin	// backend/src/zaqal/backend/fu/FPDivider.scala:8:7
       state <= 2'h0;	// backend/src/zaqal/backend/fu/FPDivider.scala:22:22
@@ -139,13 +146,7 @@ module FPDivider(	// backend/src/zaqal/backend/fu/FPDivider.scala:8:7
         res_s <= ~io_dec_is_fsqrt & io_src2[31] ^ io_src1[31];	// backend/src/zaqal/backend/fu/FPDivider.scala:27:28, :59:25, :63:25, :67:23, :75:17, :81:17
       end
       if (|state) begin	// backend/src/zaqal/backend/fu/FPDivider.scala:22:22, :40:22
-        automatic logic [47:0] _D_reg_T_3;	// backend/src/zaqal/backend/fu/FPDivider.scala:95:31
-        automatic logic        _GEN_2;	// backend/src/zaqal/backend/fu/FPDivider.scala:95:22
-        automatic logic        _GEN_3;	// backend/src/zaqal/backend/fu/FPDivider.scala:32:28, :49:17, :93:25
-        _D_reg_T_3 = Q_reg + bit_reg;	// backend/src/zaqal/backend/fu/FPDivider.scala:36:28, :38:28, :95:31
-        _GEN_2 = D_reg >= _D_reg_T_3;	// backend/src/zaqal/backend/fu/FPDivider.scala:37:28, :95:{22,31}
-        _GEN_3 = ~_GEN_1 | is_sqrt_reg | ~(|count);	// backend/src/zaqal/backend/fu/FPDivider.scala:25:28, :26:28, :32:28, :49:17, :93:25, :109:{20,29}
-        if (_GEN_3) begin	// backend/src/zaqal/backend/fu/FPDivider.scala:26:28, :32:28, :49:17, :93:25
+        if (_GEN_5) begin	// backend/src/zaqal/backend/fu/FPDivider.scala:26:28, :32:28, :49:17, :93:25
         end
         else	// backend/src/zaqal/backend/fu/FPDivider.scala:26:28, :49:17, :93:25
           count <= count - 6'h1;	// backend/src/zaqal/backend/fu/FPDivider.scala:26:28, :119:26
@@ -153,42 +154,32 @@ module FPDivider(	// backend/src/zaqal/backend/fu/FPDivider.scala:8:7
         end
         else	// backend/src/zaqal/backend/fu/FPDivider.scala:28:28, :49:17, :93:25
           res_e <= res_e - 10'h1;	// backend/src/zaqal/backend/fu/FPDivider.scala:28:28, :132:28
-        if (_GEN_3) begin	// backend/src/zaqal/backend/fu/FPDivider.scala:32:28, :49:17, :93:25
+        if (_GEN_5) begin	// backend/src/zaqal/backend/fu/FPDivider.scala:32:28, :49:17, :93:25
         end
-        else begin	// backend/src/zaqal/backend/fu/FPDivider.scala:32:28, :49:17, :93:25
-          automatic logic [40:0] _GEN_4;	// backend/src/zaqal/backend/fu/FPDivider.scala:114:20
-          _GEN_4 = {9'h0, divisor};	// backend/src/zaqal/backend/fu/FPDivider.scala:33:28, :114:20
-          if (div_reg[63:23] >= _GEN_4)	// backend/src/zaqal/backend/fu/FPDivider.scala:32:28, :111:33, :114:20
-            div_reg <= {div_reg[63:23] - _GEN_4, div_reg[22:0], 1'h1};	// backend/src/zaqal/backend/fu/FPDivider.scala:32:28, :55:15, :111:33, :112:33, :114:20, :115:{27,32,47}
-          else	// backend/src/zaqal/backend/fu/FPDivider.scala:114:20
-            div_reg <= {div_reg[63:0], 1'h0};	// backend/src/zaqal/backend/fu/FPDivider.scala:32:28, :45:27, :110:{33,41}
-        end
+        else if (div_reg[63:23] >= _GEN_2)	// backend/src/zaqal/backend/fu/FPDivider.scala:32:28, :111:33, :114:20
+          div_reg <= {div_reg[63:23] - _GEN_2, div_reg[22:0], 1'h1};	// backend/src/zaqal/backend/fu/FPDivider.scala:32:28, :55:15, :111:33, :112:33, :114:20, :115:{27,32,47}
+        else	// backend/src/zaqal/backend/fu/FPDivider.scala:114:20
+          div_reg <= {div_reg[63:0], 1'h0};	// backend/src/zaqal/backend/fu/FPDivider.scala:32:28, :45:27, :110:{33,41}
         if (_GEN_1 & is_sqrt_reg & (|bit_reg)) begin	// backend/src/zaqal/backend/fu/FPDivider.scala:25:28, :36:28, :38:28, :49:17, :93:25, :94:{22,31}, :95:42
-          automatic logic [47:0] _GEN_5;	// backend/src/zaqal/backend/fu/FPDivider.scala:55:15, :97:{29,37}
-          _GEN_5 = {1'h0, Q_reg[47:1]};	// backend/src/zaqal/backend/fu/FPDivider.scala:38:28, :45:27, :55:15, :97:{29,37}
           bit_reg <= {2'h0, bit_reg[47:2]};	// backend/src/zaqal/backend/fu/FPDivider.scala:22:22, :36:28, :41:22, :101:30
-          if (_GEN_2)	// backend/src/zaqal/backend/fu/FPDivider.scala:95:22
-            Q_reg <= _GEN_5 + bit_reg;	// backend/src/zaqal/backend/fu/FPDivider.scala:36:28, :38:28, :55:15, :97:{29,37}
+          if (_GEN_4)	// backend/src/zaqal/backend/fu/FPDivider.scala:95:22
+            Q_reg <= _GEN_3 + bit_reg;	// backend/src/zaqal/backend/fu/FPDivider.scala:36:28, :38:28, :55:15, :97:{29,37}
           else	// backend/src/zaqal/backend/fu/FPDivider.scala:95:22
-            Q_reg <= _GEN_5;	// backend/src/zaqal/backend/fu/FPDivider.scala:38:28, :55:15, :97:{29,37}
+            Q_reg <= _GEN_3;	// backend/src/zaqal/backend/fu/FPDivider.scala:38:28, :55:15, :97:{29,37}
         end
-        if (_GEN_1 & is_sqrt_reg & (|bit_reg) & _GEN_2)	// backend/src/zaqal/backend/fu/FPDivider.scala:25:28, :36:28, :37:28, :49:17, :93:25, :94:{22,31}, :95:{22,42}, :96:19
+        if (_GEN_1 & is_sqrt_reg & (|bit_reg) & _GEN_4)	// backend/src/zaqal/backend/fu/FPDivider.scala:25:28, :36:28, :37:28, :49:17, :93:25, :94:{22,31}, :95:{22,42}, :96:19
           D_reg <= D_reg - _D_reg_T_3;	// backend/src/zaqal/backend/fu/FPDivider.scala:37:28, :95:31, :96:28
       end
       else begin	// backend/src/zaqal/backend/fu/FPDivider.scala:40:22
-        automatic logic _GEN_6 = ~_GEN | io_dec_is_fsqrt;	// backend/src/zaqal/backend/fu/FPDivider.scala:32:28, :54:{43,57}, :67:23
         if (_GEN_6) begin	// backend/src/zaqal/backend/fu/FPDivider.scala:26:28, :32:28, :54:57, :67:23
         end
         else	// backend/src/zaqal/backend/fu/FPDivider.scala:26:28, :54:57, :67:23
           count <= 6'h33;	// backend/src/zaqal/backend/fu/FPDivider.scala:26:28, :86:17
-        if (_GEN) begin	// backend/src/zaqal/backend/fu/FPDivider.scala:54:43
-          automatic logic [8:0] _res_e_T_4 =
-            {1'h0, io_src1[30:23]} - {1'h0, io_src2[30:23]};	// backend/src/zaqal/backend/fu/FPDivider.scala:45:27, :60:39, :64:39, :82:24
+        if (_GEN)	// backend/src/zaqal/backend/fu/FPDivider.scala:54:43
           res_e <=
             io_dec_is_fsqrt
               ? _eA_unbiased_T[10:1] + 10'h7F
               : {_res_e_T_4[8], _res_e_T_4} + 10'h7F;	// backend/src/zaqal/backend/fu/FPDivider.scala:28:28, :67:23, :68:33, :76:{17,46}, :82:{17,24,30}
-        end
         if (_GEN_6) begin	// backend/src/zaqal/backend/fu/FPDivider.scala:32:28, :54:57, :67:23
         end
         else	// backend/src/zaqal/backend/fu/FPDivider.scala:32:28, :54:57, :67:23
@@ -220,8 +211,8 @@ module FPDivider(	// backend/src/zaqal/backend/fu/FPDivider.scala:8:7
     `ifdef FIRRTL_BEFORE_INITIAL	// backend/src/zaqal/backend/fu/FPDivider.scala:8:7
       `FIRRTL_BEFORE_INITIAL	// backend/src/zaqal/backend/fu/FPDivider.scala:8:7
     `endif // FIRRTL_BEFORE_INITIAL
+    logic [31:0] _RANDOM[0:8];	// backend/src/zaqal/backend/fu/FPDivider.scala:8:7
     initial begin	// backend/src/zaqal/backend/fu/FPDivider.scala:8:7
-      automatic logic [31:0] _RANDOM[0:8];	// backend/src/zaqal/backend/fu/FPDivider.scala:8:7
       `ifdef INIT_RANDOM_PROLOG_	// backend/src/zaqal/backend/fu/FPDivider.scala:8:7
         `INIT_RANDOM_PROLOG_	// backend/src/zaqal/backend/fu/FPDivider.scala:8:7
       `endif // INIT_RANDOM_PROLOG_

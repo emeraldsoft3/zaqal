@@ -479,8 +479,8 @@ module Frontend(	// frontend/src/zaqal/frontend/Frontend.scala:10:7
     `ifdef FIRRTL_BEFORE_INITIAL	// frontend/src/zaqal/frontend/Frontend.scala:10:7
       `FIRRTL_BEFORE_INITIAL	// frontend/src/zaqal/frontend/Frontend.scala:10:7
     `endif // FIRRTL_BEFORE_INITIAL
+    logic [31:0] _RANDOM[0:0];	// frontend/src/zaqal/frontend/Frontend.scala:10:7
     initial begin	// frontend/src/zaqal/frontend/Frontend.scala:10:7
-      automatic logic [31:0] _RANDOM[0:0];	// frontend/src/zaqal/frontend/Frontend.scala:10:7
       `ifdef INIT_RANDOM_PROLOG_	// frontend/src/zaqal/frontend/Frontend.scala:10:7
         `INIT_RANDOM_PROLOG_	// frontend/src/zaqal/frontend/Frontend.scala:10:7
       `endif // INIT_RANDOM_PROLOG_

@@ -4937,19 +4937,18 @@ module Backend(	// backend/src/zaqal/backend/Backend.scala:14:7
       : _fpFreeList_io_allocateReq_5_T ? _fpFreeList_io_allocatePhyReg_5 : 8'h0;	// backend/src/zaqal/backend/Backend.scala:38:31, :98:27, :99:27, :190:45, :192:45, src/main/scala/chisel3/util/Mux.scala:126:16
   wire        _rat_io_renamePorts_5_wen_T_1 = rf_wen_5 | fp_wen_5;	// backend/src/zaqal/backend/Backend.scala:187:139, :188:120, :201:66
   `ifndef SYNTHESIS	// backend/src/zaqal/backend/Backend.scala:212:13
+    wire [31:0] u1_raw_uop_inst_raw =
+      _decoders_0_io_out_is_rvc
+        ? io_dispatch_1_bits_inst_raw
+        : io_dispatch_2_bits_inst_raw;	// backend/src/zaqal/backend/Backend.scala:29:46, :58:19
+    wire        _GEN = (`PRINTF_COND_) & io_dispatch_0_valid & ~reset;	// backend/src/zaqal/backend/Backend.scala:212:13
+    wire        _GEN_0 = (`PRINTF_COND_) & io_dispatch_1_valid & ~reset;	// backend/src/zaqal/backend/Backend.scala:212:13
+    wire        _GEN_1 = (`PRINTF_COND_) & 1'h0;	// backend/src/zaqal/backend/Backend.scala:14:7, :212:13, :218:15
+    wire        _GEN_2 = (`PRINTF_COND_) & io_dispatch_2_valid & ~reset;	// backend/src/zaqal/backend/Backend.scala:212:13
+    wire        _GEN_3 = (`PRINTF_COND_) & io_dispatch_3_valid & ~reset;	// backend/src/zaqal/backend/Backend.scala:212:13
+    wire        _GEN_4 = (`PRINTF_COND_) & io_dispatch_4_valid & ~reset;	// backend/src/zaqal/backend/Backend.scala:212:13
+    wire        _GEN_5 = (`PRINTF_COND_) & io_dispatch_5_valid & ~reset;	// backend/src/zaqal/backend/Backend.scala:212:13
     always @(posedge clock) begin	// backend/src/zaqal/backend/Backend.scala:212:13
-      automatic logic [31:0] u1_raw_uop_inst_raw;	// backend/src/zaqal/backend/Backend.scala:58:19
-      automatic logic        _GEN = (`PRINTF_COND_) & io_dispatch_0_valid & ~reset;	// backend/src/zaqal/backend/Backend.scala:212:13
-      automatic logic        _GEN_0 = (`PRINTF_COND_) & io_dispatch_1_valid & ~reset;	// backend/src/zaqal/backend/Backend.scala:212:13
-      automatic logic        _GEN_1 = (`PRINTF_COND_) & 1'h0;	// backend/src/zaqal/backend/Backend.scala:14:7, :212:13, :218:15
-      automatic logic        _GEN_2 = (`PRINTF_COND_) & io_dispatch_2_valid & ~reset;	// backend/src/zaqal/backend/Backend.scala:212:13
-      automatic logic        _GEN_3 = (`PRINTF_COND_) & io_dispatch_3_valid & ~reset;	// backend/src/zaqal/backend/Backend.scala:212:13
-      automatic logic        _GEN_4 = (`PRINTF_COND_) & io_dispatch_4_valid & ~reset;	// backend/src/zaqal/backend/Backend.scala:212:13
-      automatic logic        _GEN_5 = (`PRINTF_COND_) & io_dispatch_5_valid & ~reset;	// backend/src/zaqal/backend/Backend.scala:212:13
-      u1_raw_uop_inst_raw =
-        _decoders_0_io_out_is_rvc
-          ? io_dispatch_1_bits_inst_raw
-          : io_dispatch_2_bits_inst_raw;	// backend/src/zaqal/backend/Backend.scala:29:46, :58:19
       if (_GEN) begin	// backend/src/zaqal/backend/Backend.scala:212:13, :213:13
         $fwrite(32'h80000002, "CORE RENAME [Cycle %d] [Port 0]: pc=%x inst=%x ",
                 io_debug_cycle, io_dispatch_0_bits_pc, io_dispatch_0_bits_inst_raw);	// backend/src/zaqal/backend/Backend.scala:212:13
@@ -5067,8 +5066,8 @@ module Backend(	// backend/src/zaqal/backend/Backend.scala:14:7
     `ifdef FIRRTL_BEFORE_INITIAL	// backend/src/zaqal/backend/Backend.scala:14:7
       `FIRRTL_BEFORE_INITIAL	// backend/src/zaqal/backend/Backend.scala:14:7
     `endif // FIRRTL_BEFORE_INITIAL
+    logic [31:0] _RANDOM[0:0];	// backend/src/zaqal/backend/Backend.scala:14:7
     initial begin	// backend/src/zaqal/backend/Backend.scala:14:7
-      automatic logic [31:0] _RANDOM[0:0];	// backend/src/zaqal/backend/Backend.scala:14:7
       `ifdef INIT_RANDOM_PROLOG_	// backend/src/zaqal/backend/Backend.scala:14:7
         `INIT_RANDOM_PROLOG_	// backend/src/zaqal/backend/Backend.scala:14:7
       `endif // INIT_RANDOM_PROLOG_

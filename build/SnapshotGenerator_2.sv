@@ -84,67 +84,70 @@ module SnapshotGenerator_2(	// backend/src/zaqal/backend/SnapshotGenerator.scala
                io_snapshots_7	// backend/src/zaqal/backend/SnapshotGenerator.scala:21:14
 );
 
-  reg [7:0] snapshots_0;	// backend/src/zaqal/backend/SnapshotGenerator.scala:23:22
-  reg [7:0] snapshots_1;	// backend/src/zaqal/backend/SnapshotGenerator.scala:23:22
-  reg [7:0] snapshots_2;	// backend/src/zaqal/backend/SnapshotGenerator.scala:23:22
-  reg [7:0] snapshots_3;	// backend/src/zaqal/backend/SnapshotGenerator.scala:23:22
-  reg [7:0] snapshots_4;	// backend/src/zaqal/backend/SnapshotGenerator.scala:23:22
-  reg [7:0] snapshots_5;	// backend/src/zaqal/backend/SnapshotGenerator.scala:23:22
-  reg [7:0] snapshots_6;	// backend/src/zaqal/backend/SnapshotGenerator.scala:23:22
-  reg [7:0] snapshots_7;	// backend/src/zaqal/backend/SnapshotGenerator.scala:23:22
-  reg [2:0] snptEnqPtr;	// backend/src/zaqal/backend/SnapshotGenerator.scala:24:27
-  reg       snptValids_0;	// backend/src/zaqal/backend/SnapshotGenerator.scala:26:27
-  reg       snptValids_1;	// backend/src/zaqal/backend/SnapshotGenerator.scala:26:27
-  reg       snptValids_2;	// backend/src/zaqal/backend/SnapshotGenerator.scala:26:27
-  reg       snptValids_3;	// backend/src/zaqal/backend/SnapshotGenerator.scala:26:27
-  reg       snptValids_4;	// backend/src/zaqal/backend/SnapshotGenerator.scala:26:27
-  reg       snptValids_5;	// backend/src/zaqal/backend/SnapshotGenerator.scala:26:27
-  reg       snptValids_6;	// backend/src/zaqal/backend/SnapshotGenerator.scala:26:27
-  reg       snptValids_7;	// backend/src/zaqal/backend/SnapshotGenerator.scala:26:27
+  reg  [7:0] snapshots_0;	// backend/src/zaqal/backend/SnapshotGenerator.scala:23:22
+  reg  [7:0] snapshots_1;	// backend/src/zaqal/backend/SnapshotGenerator.scala:23:22
+  reg  [7:0] snapshots_2;	// backend/src/zaqal/backend/SnapshotGenerator.scala:23:22
+  reg  [7:0] snapshots_3;	// backend/src/zaqal/backend/SnapshotGenerator.scala:23:22
+  reg  [7:0] snapshots_4;	// backend/src/zaqal/backend/SnapshotGenerator.scala:23:22
+  reg  [7:0] snapshots_5;	// backend/src/zaqal/backend/SnapshotGenerator.scala:23:22
+  reg  [7:0] snapshots_6;	// backend/src/zaqal/backend/SnapshotGenerator.scala:23:22
+  reg  [7:0] snapshots_7;	// backend/src/zaqal/backend/SnapshotGenerator.scala:23:22
+  reg  [2:0] snptEnqPtr;	// backend/src/zaqal/backend/SnapshotGenerator.scala:24:27
+  reg        snptValids_0;	// backend/src/zaqal/backend/SnapshotGenerator.scala:26:27
+  reg        snptValids_1;	// backend/src/zaqal/backend/SnapshotGenerator.scala:26:27
+  reg        snptValids_2;	// backend/src/zaqal/backend/SnapshotGenerator.scala:26:27
+  reg        snptValids_3;	// backend/src/zaqal/backend/SnapshotGenerator.scala:26:27
+  reg        snptValids_4;	// backend/src/zaqal/backend/SnapshotGenerator.scala:26:27
+  reg        snptValids_5;	// backend/src/zaqal/backend/SnapshotGenerator.scala:26:27
+  reg        snptValids_6;	// backend/src/zaqal/backend/SnapshotGenerator.scala:26:27
+  reg        snptValids_7;	// backend/src/zaqal/backend/SnapshotGenerator.scala:26:27
+  reg        casez_tmp;	// backend/src/zaqal/backend/SnapshotGenerator.scala:40:39
+  always_comb begin	// backend/src/zaqal/backend/SnapshotGenerator.scala:40:39
+    casez (snptEnqPtr)	// backend/src/zaqal/backend/SnapshotGenerator.scala:24:27, :40:39
+      3'b000:
+        casez_tmp = snptValids_0;	// backend/src/zaqal/backend/SnapshotGenerator.scala:26:27, :40:39
+      3'b001:
+        casez_tmp = snptValids_1;	// backend/src/zaqal/backend/SnapshotGenerator.scala:26:27, :40:39
+      3'b010:
+        casez_tmp = snptValids_2;	// backend/src/zaqal/backend/SnapshotGenerator.scala:26:27, :40:39
+      3'b011:
+        casez_tmp = snptValids_3;	// backend/src/zaqal/backend/SnapshotGenerator.scala:26:27, :40:39
+      3'b100:
+        casez_tmp = snptValids_4;	// backend/src/zaqal/backend/SnapshotGenerator.scala:26:27, :40:39
+      3'b101:
+        casez_tmp = snptValids_5;	// backend/src/zaqal/backend/SnapshotGenerator.scala:26:27, :40:39
+      3'b110:
+        casez_tmp = snptValids_6;	// backend/src/zaqal/backend/SnapshotGenerator.scala:26:27, :40:39
+      default:
+        casez_tmp = snptValids_7;	// backend/src/zaqal/backend/SnapshotGenerator.scala:26:27, :40:39
+    endcase	// backend/src/zaqal/backend/SnapshotGenerator.scala:24:27, :40:39
+  end // always_comb
+  wire [3:0] snptEnqPtr_next = {1'h0, snptEnqPtr} + 4'h1;	// backend/src/zaqal/backend/SnapshotGenerator.scala:21:14, :24:27, :36:20, :43:27, :49:{21,32}, :50:28
+  wire       _GEN = ~(casez_tmp & snptEnqPtr == 3'h0) & io_enq;	// backend/src/zaqal/backend/SnapshotGenerator.scala:24:27, :40:{39,54}, :43:{8,16}, :63:26
+  wire       _GEN_0 = _GEN & ~(|snptEnqPtr);	// backend/src/zaqal/backend/SnapshotGenerator.scala:23:22, :24:27, :29:50, :43:{16,27}, :44:27
+  wire       _GEN_1 = _GEN & snptEnqPtr == 3'h1;	// backend/src/zaqal/backend/SnapshotGenerator.scala:23:22, :24:27, :43:{16,27}, :44:27, :63:26
+  wire       _GEN_2 = _GEN & snptEnqPtr == 3'h2;	// backend/src/zaqal/backend/SnapshotGenerator.scala:23:22, :24:27, :43:{16,27}, :44:27, :63:26
+  wire       _GEN_3 = _GEN & snptEnqPtr == 3'h3;	// backend/src/zaqal/backend/SnapshotGenerator.scala:23:22, :24:27, :43:{16,27}, :44:27, :63:26
+  wire       _GEN_4 = _GEN & snptEnqPtr == 3'h4;	// backend/src/zaqal/backend/SnapshotGenerator.scala:23:22, :24:27, :43:{16,27}, :44:27, :63:26
+  wire       _GEN_5 = _GEN & snptEnqPtr == 3'h5;	// backend/src/zaqal/backend/SnapshotGenerator.scala:23:22, :24:27, :43:{16,27}, :44:27, :63:26
+  wire       _GEN_6 = _GEN & snptEnqPtr == 3'h6;	// backend/src/zaqal/backend/SnapshotGenerator.scala:23:22, :24:27, :43:{16,27}, :44:27, :63:26
+  wire       _GEN_7 = _GEN & (&snptEnqPtr);	// backend/src/zaqal/backend/SnapshotGenerator.scala:23:22, :24:27, :43:{16,27}, :44:27
   always @(posedge clock) begin	// backend/src/zaqal/backend/SnapshotGenerator.scala:20:7
-    automatic logic [7:0] _GEN;	// backend/src/zaqal/backend/SnapshotGenerator.scala:40:39
-    automatic logic       _GEN_0;	// backend/src/zaqal/backend/SnapshotGenerator.scala:43:16
-    automatic logic       _GEN_1;	// backend/src/zaqal/backend/SnapshotGenerator.scala:23:22, :43:27, :44:27
-    automatic logic       _GEN_2;	// backend/src/zaqal/backend/SnapshotGenerator.scala:23:22, :43:27, :44:27
-    automatic logic       _GEN_3;	// backend/src/zaqal/backend/SnapshotGenerator.scala:23:22, :43:27, :44:27
-    automatic logic       _GEN_4;	// backend/src/zaqal/backend/SnapshotGenerator.scala:23:22, :43:27, :44:27
-    automatic logic       _GEN_5;	// backend/src/zaqal/backend/SnapshotGenerator.scala:23:22, :43:27, :44:27
-    automatic logic       _GEN_6;	// backend/src/zaqal/backend/SnapshotGenerator.scala:23:22, :43:27, :44:27
-    automatic logic       _GEN_7;	// backend/src/zaqal/backend/SnapshotGenerator.scala:23:22, :43:27, :44:27
-    automatic logic       _GEN_8;	// backend/src/zaqal/backend/SnapshotGenerator.scala:23:22, :43:27, :44:27
-    _GEN =
-      {{snptValids_7},
-       {snptValids_6},
-       {snptValids_5},
-       {snptValids_4},
-       {snptValids_3},
-       {snptValids_2},
-       {snptValids_1},
-       {snptValids_0}};	// backend/src/zaqal/backend/SnapshotGenerator.scala:26:27, :40:39
-    _GEN_0 = ~(_GEN[snptEnqPtr] & snptEnqPtr == 3'h0) & io_enq;	// backend/src/zaqal/backend/SnapshotGenerator.scala:24:27, :40:{39,54}, :43:{8,16}, :63:26
-    _GEN_1 = _GEN_0 & ~(|snptEnqPtr);	// backend/src/zaqal/backend/SnapshotGenerator.scala:23:22, :24:27, :29:50, :43:{16,27}, :44:27
-    _GEN_2 = _GEN_0 & snptEnqPtr == 3'h1;	// backend/src/zaqal/backend/SnapshotGenerator.scala:23:22, :24:27, :43:{16,27}, :44:27, :63:26
-    _GEN_3 = _GEN_0 & snptEnqPtr == 3'h2;	// backend/src/zaqal/backend/SnapshotGenerator.scala:23:22, :24:27, :43:{16,27}, :44:27, :63:26
-    _GEN_4 = _GEN_0 & snptEnqPtr == 3'h3;	// backend/src/zaqal/backend/SnapshotGenerator.scala:23:22, :24:27, :43:{16,27}, :44:27, :63:26
-    _GEN_5 = _GEN_0 & snptEnqPtr == 3'h4;	// backend/src/zaqal/backend/SnapshotGenerator.scala:23:22, :24:27, :43:{16,27}, :44:27, :63:26
-    _GEN_6 = _GEN_0 & snptEnqPtr == 3'h5;	// backend/src/zaqal/backend/SnapshotGenerator.scala:23:22, :24:27, :43:{16,27}, :44:27, :63:26
-    _GEN_7 = _GEN_0 & snptEnqPtr == 3'h6;	// backend/src/zaqal/backend/SnapshotGenerator.scala:23:22, :24:27, :43:{16,27}, :44:27, :63:26
-    _GEN_8 = _GEN_0 & (&snptEnqPtr);	// backend/src/zaqal/backend/SnapshotGenerator.scala:23:22, :24:27, :43:{16,27}, :44:27
-    if (_GEN_1)	// backend/src/zaqal/backend/SnapshotGenerator.scala:23:22, :43:27, :44:27
+    if (_GEN_0)	// backend/src/zaqal/backend/SnapshotGenerator.scala:23:22, :43:27, :44:27
       snapshots_0 <= io_enqData;	// backend/src/zaqal/backend/SnapshotGenerator.scala:23:22
-    if (_GEN_2)	// backend/src/zaqal/backend/SnapshotGenerator.scala:23:22, :43:27, :44:27
+    if (_GEN_1)	// backend/src/zaqal/backend/SnapshotGenerator.scala:23:22, :43:27, :44:27
       snapshots_1 <= io_enqData;	// backend/src/zaqal/backend/SnapshotGenerator.scala:23:22
-    if (_GEN_3)	// backend/src/zaqal/backend/SnapshotGenerator.scala:23:22, :43:27, :44:27
+    if (_GEN_2)	// backend/src/zaqal/backend/SnapshotGenerator.scala:23:22, :43:27, :44:27
       snapshots_2 <= io_enqData;	// backend/src/zaqal/backend/SnapshotGenerator.scala:23:22
-    if (_GEN_4)	// backend/src/zaqal/backend/SnapshotGenerator.scala:23:22, :43:27, :44:27
+    if (_GEN_3)	// backend/src/zaqal/backend/SnapshotGenerator.scala:23:22, :43:27, :44:27
       snapshots_3 <= io_enqData;	// backend/src/zaqal/backend/SnapshotGenerator.scala:23:22
-    if (_GEN_5)	// backend/src/zaqal/backend/SnapshotGenerator.scala:23:22, :43:27, :44:27
+    if (_GEN_4)	// backend/src/zaqal/backend/SnapshotGenerator.scala:23:22, :43:27, :44:27
       snapshots_4 <= io_enqData;	// backend/src/zaqal/backend/SnapshotGenerator.scala:23:22
-    if (_GEN_6)	// backend/src/zaqal/backend/SnapshotGenerator.scala:23:22, :43:27, :44:27
+    if (_GEN_5)	// backend/src/zaqal/backend/SnapshotGenerator.scala:23:22, :43:27, :44:27
       snapshots_5 <= io_enqData;	// backend/src/zaqal/backend/SnapshotGenerator.scala:23:22
-    if (_GEN_7)	// backend/src/zaqal/backend/SnapshotGenerator.scala:23:22, :43:27, :44:27
+    if (_GEN_6)	// backend/src/zaqal/backend/SnapshotGenerator.scala:23:22, :43:27, :44:27
       snapshots_6 <= io_enqData;	// backend/src/zaqal/backend/SnapshotGenerator.scala:23:22
-    if (_GEN_8)	// backend/src/zaqal/backend/SnapshotGenerator.scala:23:22, :43:27, :44:27
+    if (_GEN_7)	// backend/src/zaqal/backend/SnapshotGenerator.scala:23:22, :43:27, :44:27
       snapshots_7 <= io_enqData;	// backend/src/zaqal/backend/SnapshotGenerator.scala:23:22
     if (reset) begin	// backend/src/zaqal/backend/SnapshotGenerator.scala:20:7
       snptEnqPtr <= 3'h0;	// backend/src/zaqal/backend/SnapshotGenerator.scala:24:27, :63:26
@@ -189,27 +192,24 @@ module SnapshotGenerator_2(	// backend/src/zaqal/backend/SnapshotGenerator.scala
                                 ? 3'h5
                                 : {2'h3,
                                    ~(snptValids_5 & (~snptValids_6 | io_flushVec_6))};	// backend/src/zaqal/backend/SnapshotGenerator.scala:20:7, :24:27, :26:27, :63:26, :70:{21,48}, :74:{40,44,62}, src/main/scala/chisel3/util/Mux.scala:126:16
-      else if (_GEN_0) begin	// backend/src/zaqal/backend/SnapshotGenerator.scala:43:16
-        automatic logic [3:0] snptEnqPtr_next;	// backend/src/zaqal/backend/SnapshotGenerator.scala:36:20
-        snptEnqPtr_next = {1'h0, snptEnqPtr} + 4'h1;	// backend/src/zaqal/backend/SnapshotGenerator.scala:21:14, :24:27, :36:20, :43:27, :49:{21,32}, :50:28
+      else if (_GEN)	// backend/src/zaqal/backend/SnapshotGenerator.scala:43:16
         snptEnqPtr <= snptEnqPtr_next[3] ? snptEnqPtr + 3'h1 : snptEnqPtr_next[2:0];	// backend/src/zaqal/backend/SnapshotGenerator.scala:24:27, :36:20, :37:{8,14,43}, :63:26
-      end
-      snptValids_0 <= ~io_flushVec_0 & (_GEN_1 | snptValids_0);	// backend/src/zaqal/backend/SnapshotGenerator.scala:23:22, :26:27, :43:27, :44:27, :45:28, :49:32, :50:28, :56:26, :57:21
-      snptValids_1 <= ~io_flushVec_1 & (_GEN_2 | snptValids_1);	// backend/src/zaqal/backend/SnapshotGenerator.scala:23:22, :26:27, :43:27, :44:27, :45:28, :49:32, :50:28, :56:26, :57:21
-      snptValids_2 <= ~io_flushVec_2 & (_GEN_3 | snptValids_2);	// backend/src/zaqal/backend/SnapshotGenerator.scala:23:22, :26:27, :43:27, :44:27, :45:28, :49:32, :50:28, :56:26, :57:21
-      snptValids_3 <= ~io_flushVec_3 & (_GEN_4 | snptValids_3);	// backend/src/zaqal/backend/SnapshotGenerator.scala:23:22, :26:27, :43:27, :44:27, :45:28, :49:32, :50:28, :56:26, :57:21
-      snptValids_4 <= ~io_flushVec_4 & (_GEN_5 | snptValids_4);	// backend/src/zaqal/backend/SnapshotGenerator.scala:23:22, :26:27, :43:27, :44:27, :45:28, :49:32, :50:28, :56:26, :57:21
-      snptValids_5 <= ~io_flushVec_5 & (_GEN_6 | snptValids_5);	// backend/src/zaqal/backend/SnapshotGenerator.scala:23:22, :26:27, :43:27, :44:27, :45:28, :49:32, :50:28, :56:26, :57:21
-      snptValids_6 <= ~io_flushVec_6 & (_GEN_7 | snptValids_6);	// backend/src/zaqal/backend/SnapshotGenerator.scala:23:22, :26:27, :43:27, :44:27, :45:28, :49:32, :50:28, :56:26, :57:21
-      snptValids_7 <= ~io_flushVec_7 & (_GEN_8 | snptValids_7);	// backend/src/zaqal/backend/SnapshotGenerator.scala:23:22, :26:27, :43:27, :44:27, :45:28, :49:32, :50:28, :56:26, :57:21
+      snptValids_0 <= ~io_flushVec_0 & (_GEN_0 | snptValids_0);	// backend/src/zaqal/backend/SnapshotGenerator.scala:23:22, :26:27, :43:27, :44:27, :45:28, :49:32, :50:28, :56:26, :57:21
+      snptValids_1 <= ~io_flushVec_1 & (_GEN_1 | snptValids_1);	// backend/src/zaqal/backend/SnapshotGenerator.scala:23:22, :26:27, :43:27, :44:27, :45:28, :49:32, :50:28, :56:26, :57:21
+      snptValids_2 <= ~io_flushVec_2 & (_GEN_2 | snptValids_2);	// backend/src/zaqal/backend/SnapshotGenerator.scala:23:22, :26:27, :43:27, :44:27, :45:28, :49:32, :50:28, :56:26, :57:21
+      snptValids_3 <= ~io_flushVec_3 & (_GEN_3 | snptValids_3);	// backend/src/zaqal/backend/SnapshotGenerator.scala:23:22, :26:27, :43:27, :44:27, :45:28, :49:32, :50:28, :56:26, :57:21
+      snptValids_4 <= ~io_flushVec_4 & (_GEN_4 | snptValids_4);	// backend/src/zaqal/backend/SnapshotGenerator.scala:23:22, :26:27, :43:27, :44:27, :45:28, :49:32, :50:28, :56:26, :57:21
+      snptValids_5 <= ~io_flushVec_5 & (_GEN_5 | snptValids_5);	// backend/src/zaqal/backend/SnapshotGenerator.scala:23:22, :26:27, :43:27, :44:27, :45:28, :49:32, :50:28, :56:26, :57:21
+      snptValids_6 <= ~io_flushVec_6 & (_GEN_6 | snptValids_6);	// backend/src/zaqal/backend/SnapshotGenerator.scala:23:22, :26:27, :43:27, :44:27, :45:28, :49:32, :50:28, :56:26, :57:21
+      snptValids_7 <= ~io_flushVec_7 & (_GEN_7 | snptValids_7);	// backend/src/zaqal/backend/SnapshotGenerator.scala:23:22, :26:27, :43:27, :44:27, :45:28, :49:32, :50:28, :56:26, :57:21
     end
   end // always @(posedge)
   `ifdef ENABLE_INITIAL_REG_	// backend/src/zaqal/backend/SnapshotGenerator.scala:20:7
     `ifdef FIRRTL_BEFORE_INITIAL	// backend/src/zaqal/backend/SnapshotGenerator.scala:20:7
       `FIRRTL_BEFORE_INITIAL	// backend/src/zaqal/backend/SnapshotGenerator.scala:20:7
     `endif // FIRRTL_BEFORE_INITIAL
+    logic [31:0] _RANDOM[0:2];	// backend/src/zaqal/backend/SnapshotGenerator.scala:20:7
     initial begin	// backend/src/zaqal/backend/SnapshotGenerator.scala:20:7
-      automatic logic [31:0] _RANDOM[0:2];	// backend/src/zaqal/backend/SnapshotGenerator.scala:20:7
       `ifdef INIT_RANDOM_PROLOG_	// backend/src/zaqal/backend/SnapshotGenerator.scala:20:7
         `INIT_RANDOM_PROLOG_	// backend/src/zaqal/backend/SnapshotGenerator.scala:20:7
       `endif // INIT_RANDOM_PROLOG_

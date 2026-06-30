@@ -1318,21 +1318,54 @@ module Execute(	// backend/src/zaqal/backend/Execute.scala:10:7
                                                       ? r2_wb5_data
                                                       : r_regFile_rdata3;	// backend/src/zaqal/backend/Execute.scala:26:20, :38:24, :119:21, :168:29, :231:86, :250:28, :251:28, :252:28, :254:28, :255:28, :256:28, :258:28, :259:28, :260:28, :262:28, :263:28, :264:28, :266:28, :267:28, :268:28, :270:28, :271:28, :272:28, :275:29, :276:29, :277:29, :279:29, :280:29, :281:29, :283:29, :284:29, :285:29, :287:29, :288:29, :289:29, :291:29, :292:29, :293:29, :295:29, :296:29, :297:29, :319:{66,77,87}, src/main/scala/chisel3/util/Mux.scala:126:16
   wire         lane0_is_older = exe_uop0_snapshotIdx < exe_uop1_snapshotIdx;	// backend/src/zaqal/backend/Execute.scala:110:21, :119:21, :376:30
-  wire [7:0]   _GEN =
-    {{io_snptValids_7},
-     {io_snptValids_6},
-     {io_snptValids_5},
-     {io_snptValids_4},
-     {io_snptValids_3},
-     {io_snptValids_2},
-     {io_snptValids_1},
-     {io_snptValids_0}};	// backend/src/zaqal/backend/Execute.scala:378:76
+  reg          casez_tmp;	// backend/src/zaqal/backend/Execute.scala:378:76
+  always_comb begin	// backend/src/zaqal/backend/Execute.scala:378:76
+    casez (exe_uop0_snapshotIdx)	// backend/src/zaqal/backend/Execute.scala:110:21, :378:76
+      3'b000:
+        casez_tmp = io_snptValids_0;	// backend/src/zaqal/backend/Execute.scala:378:76
+      3'b001:
+        casez_tmp = io_snptValids_1;	// backend/src/zaqal/backend/Execute.scala:378:76
+      3'b010:
+        casez_tmp = io_snptValids_2;	// backend/src/zaqal/backend/Execute.scala:378:76
+      3'b011:
+        casez_tmp = io_snptValids_3;	// backend/src/zaqal/backend/Execute.scala:378:76
+      3'b100:
+        casez_tmp = io_snptValids_4;	// backend/src/zaqal/backend/Execute.scala:378:76
+      3'b101:
+        casez_tmp = io_snptValids_5;	// backend/src/zaqal/backend/Execute.scala:378:76
+      3'b110:
+        casez_tmp = io_snptValids_6;	// backend/src/zaqal/backend/Execute.scala:378:76
+      default:
+        casez_tmp = io_snptValids_7;	// backend/src/zaqal/backend/Execute.scala:378:76
+    endcase	// backend/src/zaqal/backend/Execute.scala:110:21, :378:76
+  end // always_comb
   wire         r0_valid =
-    exe_val0 & (_bru_0_io_exc_valid | _bru_0_io_mispredict) & _GEN[exe_uop0_snapshotIdx];	// backend/src/zaqal/backend/Execute.scala:25:32, :109:25, :110:21, :378:{51,76}
+    exe_val0 & (_bru_0_io_exc_valid | _bru_0_io_mispredict) & casez_tmp;	// backend/src/zaqal/backend/Execute.scala:25:32, :109:25, :378:{51,76}
+  reg          casez_tmp_0;	// backend/src/zaqal/backend/Execute.scala:379:76
+  always_comb begin	// backend/src/zaqal/backend/Execute.scala:378:76
+    casez (exe_uop1_snapshotIdx)	// backend/src/zaqal/backend/Execute.scala:119:21, :378:76
+      3'b000:
+        casez_tmp_0 = io_snptValids_0;	// backend/src/zaqal/backend/Execute.scala:378:76
+      3'b001:
+        casez_tmp_0 = io_snptValids_1;	// backend/src/zaqal/backend/Execute.scala:378:76
+      3'b010:
+        casez_tmp_0 = io_snptValids_2;	// backend/src/zaqal/backend/Execute.scala:378:76
+      3'b011:
+        casez_tmp_0 = io_snptValids_3;	// backend/src/zaqal/backend/Execute.scala:378:76
+      3'b100:
+        casez_tmp_0 = io_snptValids_4;	// backend/src/zaqal/backend/Execute.scala:378:76
+      3'b101:
+        casez_tmp_0 = io_snptValids_5;	// backend/src/zaqal/backend/Execute.scala:378:76
+      3'b110:
+        casez_tmp_0 = io_snptValids_6;	// backend/src/zaqal/backend/Execute.scala:378:76
+      default:
+        casez_tmp_0 = io_snptValids_7;	// backend/src/zaqal/backend/Execute.scala:378:76
+    endcase	// backend/src/zaqal/backend/Execute.scala:119:21, :378:76
+  end // always_comb
   wire         r1_valid =
-    exe_val1 & (_bru_1_io_exc_valid | _bru_1_io_mispredict) & _GEN[exe_uop1_snapshotIdx];	// backend/src/zaqal/backend/Execute.scala:25:32, :118:25, :119:21, :378:76, :379:{51,76}
-  wire         _GEN_0 = r0_valid & r1_valid;	// backend/src/zaqal/backend/Execute.scala:378:76, :379:76, :381:17
-  wire         io_redirect_valid_0 = _GEN_0 | r0_valid | r1_valid;	// backend/src/zaqal/backend/Execute.scala:378:76, :379:76, :381:{17,30}, :382:23, :388:25, :389:23, :395:25
+    exe_val1 & (_bru_1_io_exc_valid | _bru_1_io_mispredict) & casez_tmp_0;	// backend/src/zaqal/backend/Execute.scala:25:32, :118:25, :379:{51,76}
+  wire         _GEN = r0_valid & r1_valid;	// backend/src/zaqal/backend/Execute.scala:378:76, :379:76, :381:17
+  wire         io_redirect_valid_0 = _GEN | r0_valid | r1_valid;	// backend/src/zaqal/backend/Execute.scala:378:76, :379:76, :381:{17,30}, :382:23, :388:25, :389:23, :395:25
   reg          r_wu0_valid;	// backend/src/zaqal/backend/Execute.scala:416:28
   reg  [7:0]   r_wu0_pdest;	// backend/src/zaqal/backend/Execute.scala:417:28
   reg          r_mul_wu0_valid_raw;	// backend/src/zaqal/backend/Execute.scala:419:36
@@ -1386,8 +1419,8 @@ module Execute(	// backend/src/zaqal/backend/Execute.scala:10:7
                                                     & (|exe_uopMem_psrs1)
                                                       ? r2_wb5_data
                                                       : r_regFile_rdata4;	// backend/src/zaqal/backend/Execute.scala:26:20, :38:24, :128:23, :174:29, :231:86, :250:28, :251:28, :252:28, :254:28, :255:28, :256:28, :258:28, :259:28, :260:28, :262:28, :263:28, :264:28, :266:28, :267:28, :268:28, :270:28, :271:28, :272:28, :275:29, :276:29, :277:29, :279:29, :280:29, :281:29, :283:29, :284:29, :285:29, :287:29, :288:29, :289:29, :291:29, :292:29, :293:29, :295:29, :296:29, :297:29, :319:{66,77,87}, src/main/scala/chisel3/util/Mux.scala:126:16
-  wire         _GEN_1 = r_agu_val & (|r_agu_uop_pdest);	// backend/src/zaqal/backend/Execute.scala:37:28, :38:24, :69:46, :231:48, :504:19, :505:35, :506:39
-  wire         _GEN_2 = r_agu_val & (|r_agu_uop_pdest) & r_agu_uop_decode_is_fload;	// backend/src/zaqal/backend/Execute.scala:37:28, :38:24, :69:80, :231:48, :504:19, :505:35, :506:39, :508:31
+  wire         _GEN_0 = r_agu_val & (|r_agu_uop_pdest);	// backend/src/zaqal/backend/Execute.scala:37:28, :38:24, :69:46, :231:48, :504:19, :505:35, :506:39
+  wire         _GEN_1 = r_agu_val & (|r_agu_uop_pdest) & r_agu_uop_decode_is_fload;	// backend/src/zaqal/backend/Execute.scala:37:28, :38:24, :69:80, :231:48, :504:19, :505:35, :506:39, :508:31
   reg          r_wuMem_valid;	// backend/src/zaqal/backend/Execute.scala:520:30
   reg  [7:0]   r_wuMem_pdest;	// backend/src/zaqal/backend/Execute.scala:521:30
   wire         _fpdiv_io_fire_T = exe_uopFp_decode_is_fdiv | exe_uopFp_decode_is_fsqrt;	// backend/src/zaqal/backend/Execute.scala:137:22, :539:52
@@ -1396,8 +1429,8 @@ module Execute(	// backend/src/zaqal/backend/Execute.scala:10:7
     | exe_uopFp_decode_is_fmadd | exe_uopFp_decode_is_fmv_w_x
     | exe_uopFp_decode_is_fcvt_i2f | exe_uopFp_decode_is_fsgnj
     | exe_uopFp_decode_is_fminmax;	// backend/src/zaqal/backend/Execute.scala:137:22, :549:96
-  wire         _GEN_3 = exe_valFp & (|exe_uopFp_pdest);	// backend/src/zaqal/backend/Execute.scala:69:46, :136:26, :137:22, :235:48, :553:19, :554:35, :555:32
-  wire         _GEN_4 = exe_valFp & (|exe_uopFp_pdest) & exe_is_fp_wb_to_fp;	// backend/src/zaqal/backend/Execute.scala:69:80, :136:26, :137:22, :235:48, :549:96, :553:19, :554:35, :555:32, :557:31
+  wire         _GEN_2 = exe_valFp & (|exe_uopFp_pdest);	// backend/src/zaqal/backend/Execute.scala:69:46, :136:26, :137:22, :235:48, :553:19, :554:35, :555:32
+  wire         _GEN_3 = exe_valFp & (|exe_uopFp_pdest) & exe_is_fp_wb_to_fp;	// backend/src/zaqal/backend/Execute.scala:69:80, :136:26, :137:22, :235:48, :549:96, :553:19, :554:35, :555:32, :557:31
   reg          r_wuFp_valid;	// backend/src/zaqal/backend/Execute.scala:574:29
   reg  [7:0]   r_wuFp_pdest;	// backend/src/zaqal/backend/Execute.scala:575:29
   `ifndef SYNTHESIS	// backend/src/zaqal/backend/Execute.scala:590:13
@@ -1422,6 +1455,42 @@ module Execute(	// backend/src/zaqal/backend/Execute.scala:10:7
                 r_regFile_waddr_5, r_regFile_wdata_5, io_debug_cycle);	// backend/src/zaqal/backend/Execute.scala:52:32, :53:32, :590:13
     end // always @(posedge)
   `endif // not def SYNTHESIS
+  wire         is_mul_op0 =
+    io_int_in_0_bits_decode_is_mul | io_int_in_0_bits_decode_is_mulh
+    | io_int_in_0_bits_decode_is_mulhsu | io_int_in_0_bits_decode_is_mulhu
+    | io_int_in_0_bits_decode_is_mulw;	// backend/src/zaqal/backend/Execute.scala:89:83
+  wire         is_mul_op1 =
+    io_int_in_1_bits_decode_is_mul | io_int_in_1_bits_decode_is_mulh
+    | io_int_in_1_bits_decode_is_mulhsu | io_int_in_1_bits_decode_is_mulhu
+    | io_int_in_1_bits_decode_is_mulw;	// backend/src/zaqal/backend/Execute.scala:95:83
+  wire         exe_is_link0 = exe_uop0_decode_is_jal | exe_uop0_decode_is_jalr;	// backend/src/zaqal/backend/Execute.scala:110:21, :200:38
+  wire         exe_is_div_op1 =
+    exe_uop1_decode_is_div | exe_uop1_decode_is_divu | exe_uop1_decode_is_rem
+    | exe_uop1_decode_is_remu | exe_uop1_decode_is_divw | exe_uop1_decode_is_divuw
+    | exe_uop1_decode_is_remw | exe_uop1_decode_is_remuw;	// backend/src/zaqal/backend/Execute.scala:119:21, :207:82
+  wire         exe_is_mul_op1 =
+    exe_uop1_decode_is_mul | exe_uop1_decode_is_mulh | exe_uop1_decode_is_mulhsu
+    | exe_uop1_decode_is_mulhu | exe_uop1_decode_is_mulw;	// backend/src/zaqal/backend/Execute.scala:119:21, :208:103
+  wire         exe_is_link1 = exe_uop1_decode_is_jal | exe_uop1_decode_is_jalr;	// backend/src/zaqal/backend/Execute.scala:119:21, :209:38
+  wire         _exe_is_fp_wb_to_int_T =
+    exe_uopFp_decode_is_fmv_x_w | exe_uopFp_decode_is_fcvt_f2i;	// backend/src/zaqal/backend/Execute.scala:137:22, :216:54
+  wire [63:0]  wb0_data =
+    exe_is_link0
+      ? exe_uop0_uop_pc + {61'h0, exe_uop0_uop_pre_is_rvc ? 3'h2 : 3'h4}
+      : _alu_0_io_result;	// backend/src/zaqal/backend/Execute.scala:24:32, :110:21, :200:38, :201:{40,45}, :221:22
+  wire [63:0]  wb1_data =
+    exe_is_link1
+      ? exe_uop1_uop_pc + {61'h0, exe_uop1_uop_pre_is_rvc ? 3'h2 : 3'h4}
+      : _alu_1_io_result;	// backend/src/zaqal/backend/Execute.scala:24:32, :119:21, :201:{40,45}, :209:38, :210:{40,45}, :225:22
+  wire         _GEN_4 = exe_val0 & (|exe_uop0_pdest) & ~exe_is_div_op0 & ~exe_is_mul_op0;	// backend/src/zaqal/backend/Execute.scala:55:39, :109:25, :110:21, :198:82, :199:103, :219:{46,57}, :405:18, :406:{55,72}, :407:27
+  wire         _r_mul_wu0_valid_raw_T = io_int_in_0_ready_0 & io_int_in_0_valid;	// backend/src/zaqal/backend/Execute.scala:103:28, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire         _GEN_5 = exe_val1 & (|exe_uop1_pdest) & ~exe_is_div_op1 & ~exe_is_mul_op1;	// backend/src/zaqal/backend/Execute.scala:55:39, :118:25, :119:21, :207:82, :208:103, :223:{46,57}, :427:18, :428:{55,72}, :429:27
+  wire         _r_mul_wu1_valid_raw_T = io_int_in_1_ready_0 & io_int_in_1_valid;	// backend/src/zaqal/backend/Execute.scala:104:28, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire         _GEN_6 = ~_GEN_0 | r_agu_uop_decode_is_fload;	// backend/src/zaqal/backend/Execute.scala:38:24, :56:39, :69:46, :504:19, :505:35, :506:39
+  wire         exe_is_fp_wb_to_int =
+    _exe_is_fp_wb_to_int_T | exe_uopFp_decode_is_feq | exe_uopFp_decode_is_flt
+    | exe_uopFp_decode_is_fle | exe_uopFp_decode_is_fclass;	// backend/src/zaqal/backend/Execute.scala:137:22, :216:54, :550:135
+  wire         _GEN_7 = exe_valFp & (|exe_uopFp_pdest) & exe_is_fp_wb_to_int;	// backend/src/zaqal/backend/Execute.scala:56:39, :136:26, :137:22, :235:48, :550:135, :553:19, :554:35, :560:33, :562:31
   always @(posedge clock) begin	// backend/src/zaqal/backend/Execute.scala:10:7
     if (reset) begin	// backend/src/zaqal/backend/Execute.scala:10:7
       r_agu_val <= 1'h0;	// backend/src/zaqal/backend/Execute.scala:37:28
@@ -1509,55 +1578,6 @@ module Execute(	// backend/src/zaqal/backend/Execute.scala:10:7
       r_wuFp_pdest <= 8'h0;	// backend/src/zaqal/backend/Execute.scala:10:7, :575:29
     end
     else begin	// backend/src/zaqal/backend/Execute.scala:10:7
-      automatic logic        is_mul_op0 =
-        io_int_in_0_bits_decode_is_mul | io_int_in_0_bits_decode_is_mulh
-        | io_int_in_0_bits_decode_is_mulhsu | io_int_in_0_bits_decode_is_mulhu
-        | io_int_in_0_bits_decode_is_mulw;	// backend/src/zaqal/backend/Execute.scala:89:83
-      automatic logic        is_mul_op1 =
-        io_int_in_1_bits_decode_is_mul | io_int_in_1_bits_decode_is_mulh
-        | io_int_in_1_bits_decode_is_mulhsu | io_int_in_1_bits_decode_is_mulhu
-        | io_int_in_1_bits_decode_is_mulw;	// backend/src/zaqal/backend/Execute.scala:95:83
-      automatic logic        exe_is_link0;	// backend/src/zaqal/backend/Execute.scala:200:38
-      automatic logic        exe_is_div_op1;	// backend/src/zaqal/backend/Execute.scala:207:82
-      automatic logic        exe_is_mul_op1;	// backend/src/zaqal/backend/Execute.scala:208:103
-      automatic logic        exe_is_link1;	// backend/src/zaqal/backend/Execute.scala:209:38
-      automatic logic        _exe_is_fp_wb_to_int_T;	// backend/src/zaqal/backend/Execute.scala:216:54
-      automatic logic [63:0] wb0_data;	// backend/src/zaqal/backend/Execute.scala:221:22
-      automatic logic [63:0] wb1_data;	// backend/src/zaqal/backend/Execute.scala:225:22
-      automatic logic        _GEN_5;	// backend/src/zaqal/backend/Execute.scala:55:39, :405:18, :406:72, :407:27
-      automatic logic        _r_mul_wu0_valid_raw_T =
-        io_int_in_0_ready_0 & io_int_in_0_valid;	// backend/src/zaqal/backend/Execute.scala:103:28, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      automatic logic        _GEN_6;	// backend/src/zaqal/backend/Execute.scala:55:39, :427:18, :428:72, :429:27
-      automatic logic        _r_mul_wu1_valid_raw_T =
-        io_int_in_1_ready_0 & io_int_in_1_valid;	// backend/src/zaqal/backend/Execute.scala:104:28, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      automatic logic        _GEN_7;	// backend/src/zaqal/backend/Execute.scala:56:39, :504:19, :505:35, :506:39
-      automatic logic        exe_is_fp_wb_to_int;	// backend/src/zaqal/backend/Execute.scala:550:135
-      automatic logic        _GEN_8;	// backend/src/zaqal/backend/Execute.scala:56:39, :553:19, :554:35, :560:33, :562:31
-      exe_is_link0 = exe_uop0_decode_is_jal | exe_uop0_decode_is_jalr;	// backend/src/zaqal/backend/Execute.scala:110:21, :200:38
-      exe_is_div_op1 =
-        exe_uop1_decode_is_div | exe_uop1_decode_is_divu | exe_uop1_decode_is_rem
-        | exe_uop1_decode_is_remu | exe_uop1_decode_is_divw | exe_uop1_decode_is_divuw
-        | exe_uop1_decode_is_remw | exe_uop1_decode_is_remuw;	// backend/src/zaqal/backend/Execute.scala:119:21, :207:82
-      exe_is_mul_op1 =
-        exe_uop1_decode_is_mul | exe_uop1_decode_is_mulh | exe_uop1_decode_is_mulhsu
-        | exe_uop1_decode_is_mulhu | exe_uop1_decode_is_mulw;	// backend/src/zaqal/backend/Execute.scala:119:21, :208:103
-      exe_is_link1 = exe_uop1_decode_is_jal | exe_uop1_decode_is_jalr;	// backend/src/zaqal/backend/Execute.scala:119:21, :209:38
-      _exe_is_fp_wb_to_int_T = exe_uopFp_decode_is_fmv_x_w | exe_uopFp_decode_is_fcvt_f2i;	// backend/src/zaqal/backend/Execute.scala:137:22, :216:54
-      wb0_data =
-        exe_is_link0
-          ? exe_uop0_uop_pc + {61'h0, exe_uop0_uop_pre_is_rvc ? 3'h2 : 3'h4}
-          : _alu_0_io_result;	// backend/src/zaqal/backend/Execute.scala:24:32, :110:21, :200:38, :201:{40,45}, :221:22
-      wb1_data =
-        exe_is_link1
-          ? exe_uop1_uop_pc + {61'h0, exe_uop1_uop_pre_is_rvc ? 3'h2 : 3'h4}
-          : _alu_1_io_result;	// backend/src/zaqal/backend/Execute.scala:24:32, :119:21, :201:{40,45}, :209:38, :210:{40,45}, :225:22
-      _GEN_5 = exe_val0 & (|exe_uop0_pdest) & ~exe_is_div_op0 & ~exe_is_mul_op0;	// backend/src/zaqal/backend/Execute.scala:55:39, :109:25, :110:21, :198:82, :199:103, :219:{46,57}, :405:18, :406:{55,72}, :407:27
-      _GEN_6 = exe_val1 & (|exe_uop1_pdest) & ~exe_is_div_op1 & ~exe_is_mul_op1;	// backend/src/zaqal/backend/Execute.scala:55:39, :118:25, :119:21, :207:82, :208:103, :223:{46,57}, :427:18, :428:{55,72}, :429:27
-      _GEN_7 = ~_GEN_1 | r_agu_uop_decode_is_fload;	// backend/src/zaqal/backend/Execute.scala:38:24, :56:39, :69:46, :504:19, :505:35, :506:39
-      exe_is_fp_wb_to_int =
-        _exe_is_fp_wb_to_int_T | exe_uopFp_decode_is_feq | exe_uopFp_decode_is_flt
-        | exe_uopFp_decode_is_fle | exe_uopFp_decode_is_fclass;	// backend/src/zaqal/backend/Execute.scala:137:22, :216:54, :550:135
-      _GEN_8 = exe_valFp & (|exe_uopFp_pdest) & exe_is_fp_wb_to_int;	// backend/src/zaqal/backend/Execute.scala:56:39, :136:26, :137:22, :235:48, :550:135, :553:19, :554:35, :560:33, :562:31
       r_agu_val <= ~io_redirect_valid_0 & exe_valMem;	// backend/src/zaqal/backend/Execute.scala:37:28, :111:27, :112:14, :113:35, :127:27, :381:30, :382:23, :388:25, :389:23, :395:25, :478:27, :479:15, :481:15
       if (exe_val1 & exe_is_div_op1)	// backend/src/zaqal/backend/Execute.scala:118:25, :207:82, :405:18, :427:18, :433:{26,41}
         div_rd_latch <= exe_uop1_pdest;	// backend/src/zaqal/backend/Execute.scala:44:29, :119:21
@@ -1565,23 +1585,23 @@ module Execute(	// backend/src/zaqal/backend/Execute.scala:10:7
         div_rd_latch <= exe_uop0_pdest;	// backend/src/zaqal/backend/Execute.scala:44:29, :110:21
       if (exe_valFp & _fpdiv_io_fire_T)	// backend/src/zaqal/backend/Execute.scala:45:31, :136:26, :539:52, :553:19, :566:{51,68}
         fpdiv_rd_latch <= exe_uopFp_pdest;	// backend/src/zaqal/backend/Execute.scala:45:31, :137:22
-      r_regFile_wen_0 <= _GEN_5 & (~exe_uop0_decode_is_branch | exe_is_link0);	// backend/src/zaqal/backend/Execute.scala:51:32, :55:39, :110:21, :200:38, :219:78, :405:18, :406:72, :407:{27,52}
-      r_regFile_wen_1 <= _GEN_6 & (~exe_uop1_decode_is_branch | exe_is_link1);	// backend/src/zaqal/backend/Execute.scala:51:32, :55:39, :119:21, :209:38, :223:78, :427:18, :428:72, :429:{27,52}
+      r_regFile_wen_0 <= _GEN_4 & (~exe_uop0_decode_is_branch | exe_is_link0);	// backend/src/zaqal/backend/Execute.scala:51:32, :55:39, :110:21, :200:38, :219:78, :405:18, :406:72, :407:{27,52}
+      r_regFile_wen_1 <= _GEN_5 & (~exe_uop1_decode_is_branch | exe_is_link1);	// backend/src/zaqal/backend/Execute.scala:51:32, :55:39, :119:21, :209:38, :223:78, :427:18, :428:72, :429:{27,52}
       r_regFile_wen_2 <= _div_io_done;	// backend/src/zaqal/backend/Execute.scala:28:20, :51:32
-      r_regFile_wen_3 <= _GEN_1 & ~r_agu_uop_decode_is_fload & _next_regFile_wen_3_T;	// backend/src/zaqal/backend/Execute.scala:38:24, :51:32, :55:39, :69:46, :231:115, :504:19, :505:35, :506:39, :511:29
-      r_regFile_wen_4 <= _GEN_3 & exe_is_fp_wb_to_int;	// backend/src/zaqal/backend/Execute.scala:51:32, :55:39, :69:46, :550:135, :553:19, :554:35, :555:32, :560:33
+      r_regFile_wen_3 <= _GEN_0 & ~r_agu_uop_decode_is_fload & _next_regFile_wen_3_T;	// backend/src/zaqal/backend/Execute.scala:38:24, :51:32, :55:39, :69:46, :231:115, :504:19, :505:35, :506:39, :511:29
+      r_regFile_wen_4 <= _GEN_2 & exe_is_fp_wb_to_int;	// backend/src/zaqal/backend/Execute.scala:51:32, :55:39, :69:46, :550:135, :553:19, :554:35, :555:32, :560:33
       r_regFile_wen_5 <= r2_mul_val;	// backend/src/zaqal/backend/Execute.scala:51:32, :242:27
-      r_regFile_waddr_0 <= _GEN_5 ? exe_uop0_pdest : 8'h0;	// backend/src/zaqal/backend/Execute.scala:10:7, :52:32, :55:39, :56:39, :110:21, :405:18, :406:72, :407:27, :408:29
-      r_regFile_waddr_1 <= _GEN_6 ? exe_uop1_pdest : 8'h0;	// backend/src/zaqal/backend/Execute.scala:10:7, :52:32, :55:39, :56:39, :119:21, :427:18, :428:72, :429:27, :430:29
+      r_regFile_waddr_0 <= _GEN_4 ? exe_uop0_pdest : 8'h0;	// backend/src/zaqal/backend/Execute.scala:10:7, :52:32, :55:39, :56:39, :110:21, :405:18, :406:72, :407:27, :408:29
+      r_regFile_waddr_1 <= _GEN_5 ? exe_uop1_pdest : 8'h0;	// backend/src/zaqal/backend/Execute.scala:10:7, :52:32, :55:39, :56:39, :119:21, :427:18, :428:72, :429:27, :430:29
       r_regFile_waddr_2 <= _div_io_done ? div_rd_latch : 8'h0;	// backend/src/zaqal/backend/Execute.scala:10:7, :28:20, :44:29, :52:32, :56:39, :456:21, :458:27
-      r_regFile_waddr_3 <= _GEN_7 ? 8'h0 : r_agu_uop_pdest;	// backend/src/zaqal/backend/Execute.scala:10:7, :38:24, :52:32, :56:39, :504:19, :505:35, :506:39
-      r_regFile_waddr_4 <= _GEN_8 ? exe_uopFp_pdest : 8'h0;	// backend/src/zaqal/backend/Execute.scala:10:7, :52:32, :56:39, :137:22, :553:19, :554:35, :560:33, :562:31
+      r_regFile_waddr_3 <= _GEN_6 ? 8'h0 : r_agu_uop_pdest;	// backend/src/zaqal/backend/Execute.scala:10:7, :38:24, :52:32, :56:39, :504:19, :505:35, :506:39
+      r_regFile_waddr_4 <= _GEN_7 ? exe_uopFp_pdest : 8'h0;	// backend/src/zaqal/backend/Execute.scala:10:7, :52:32, :56:39, :137:22, :553:19, :554:35, :560:33, :562:31
       r_regFile_waddr_5 <= r2_mul_val ? r2_mul_pdest : 8'h0;	// backend/src/zaqal/backend/Execute.scala:10:7, :52:32, :56:39, :242:27, :243:29, :450:20, :452:27
-      r_regFile_wdata_0 <= _GEN_5 ? wb0_data : 64'h0;	// backend/src/zaqal/backend/Execute.scala:53:{32,40}, :55:39, :57:39, :221:22, :405:18, :406:72, :407:27, :409:29
-      r_regFile_wdata_1 <= _GEN_6 ? wb1_data : 64'h0;	// backend/src/zaqal/backend/Execute.scala:53:{32,40}, :55:39, :57:39, :225:22, :427:18, :428:72, :429:27, :431:29
+      r_regFile_wdata_0 <= _GEN_4 ? wb0_data : 64'h0;	// backend/src/zaqal/backend/Execute.scala:53:{32,40}, :55:39, :57:39, :221:22, :405:18, :406:72, :407:27, :409:29
+      r_regFile_wdata_1 <= _GEN_5 ? wb1_data : 64'h0;	// backend/src/zaqal/backend/Execute.scala:53:{32,40}, :55:39, :57:39, :225:22, :427:18, :428:72, :429:27, :431:29
       r_regFile_wdata_2 <= _div_io_done ? _div_io_result : 64'h0;	// backend/src/zaqal/backend/Execute.scala:28:20, :53:{32,40}, :57:39, :456:21, :459:27
-      r_regFile_wdata_3 <= _GEN_7 ? 64'h0 : _lsu_io_result;	// backend/src/zaqal/backend/Execute.scala:26:20, :53:{32,40}, :56:39, :57:39, :504:19, :505:35, :506:39
-      r_regFile_wdata_4 <= _GEN_8 ? _fpmisc_io_result_int : 64'h0;	// backend/src/zaqal/backend/Execute.scala:31:22, :53:{32,40}, :56:39, :57:39, :553:19, :554:35, :560:33, :562:31, :563:31
+      r_regFile_wdata_3 <= _GEN_6 ? 64'h0 : _lsu_io_result;	// backend/src/zaqal/backend/Execute.scala:26:20, :53:{32,40}, :56:39, :57:39, :504:19, :505:35, :506:39
+      r_regFile_wdata_4 <= _GEN_7 ? _fpmisc_io_result_int : 64'h0;	// backend/src/zaqal/backend/Execute.scala:31:22, :53:{32,40}, :56:39, :57:39, :553:19, :554:35, :560:33, :562:31, :563:31
       r_regFile_wdata_5 <= r2_mul_val ? _mul_io_result : 64'h0;	// backend/src/zaqal/backend/Execute.scala:27:20, :53:{32,40}, :57:39, :242:27, :450:20, :453:27
       exe_val0 <=
         ~io_redirect_valid_0
@@ -2044,8 +2064,8 @@ module Execute(	// backend/src/zaqal/backend/Execute.scala:10:7
     `ifdef FIRRTL_BEFORE_INITIAL	// backend/src/zaqal/backend/Execute.scala:10:7
       `FIRRTL_BEFORE_INITIAL	// backend/src/zaqal/backend/Execute.scala:10:7
     `endif // FIRRTL_BEFORE_INITIAL
+    logic [31:0] _RANDOM[0:150];	// backend/src/zaqal/backend/Execute.scala:10:7
     initial begin	// backend/src/zaqal/backend/Execute.scala:10:7
-      automatic logic [31:0] _RANDOM[0:150];	// backend/src/zaqal/backend/Execute.scala:10:7
       `ifdef INIT_RANDOM_PROLOG_	// backend/src/zaqal/backend/Execute.scala:10:7
         `INIT_RANDOM_PROLOG_	// backend/src/zaqal/backend/Execute.scala:10:7
       `endif // INIT_RANDOM_PROLOG_
@@ -3065,15 +3085,15 @@ module Execute(	// backend/src/zaqal/backend/Execute.scala:10:7
     .io_rdata_0        (_fpRegFile_io_rdata_0),
     .io_rdata_1        (_fpRegFile_io_rdata_1),
     .io_rdata_3        (_fpRegFile_io_rdata_3),
-    .io_wen_0          (_GEN_3 & exe_is_fp_wb_to_fp),	// backend/src/zaqal/backend/Execute.scala:69:46, :549:96, :553:19, :554:35, :555:32
+    .io_wen_0          (_GEN_2 & exe_is_fp_wb_to_fp),	// backend/src/zaqal/backend/Execute.scala:69:46, :549:96, :553:19, :554:35, :555:32
     .io_wen_1          (_fpdiv_io_done),	// backend/src/zaqal/backend/Execute.scala:30:21
-    .io_wen_2          (_GEN_1 & r_agu_uop_decode_is_fload),	// backend/src/zaqal/backend/Execute.scala:38:24, :69:46, :504:19, :505:35, :506:39
-    .io_waddr_0        (_GEN_4 ? exe_uopFp_pdest : 8'h0),	// backend/src/zaqal/backend/Execute.scala:10:7, :69:80, :137:22, :553:19, :554:35, :555:32, :557:31
+    .io_wen_2          (_GEN_0 & r_agu_uop_decode_is_fload),	// backend/src/zaqal/backend/Execute.scala:38:24, :69:46, :504:19, :505:35, :506:39
+    .io_waddr_0        (_GEN_3 ? exe_uopFp_pdest : 8'h0),	// backend/src/zaqal/backend/Execute.scala:10:7, :69:80, :137:22, :553:19, :554:35, :555:32, :557:31
     .io_waddr_1        (_fpdiv_io_done ? fpdiv_rd_latch : 8'h0),	// backend/src/zaqal/backend/Execute.scala:10:7, :30:21, :45:31, :69:80, :579:23, :581:27
-    .io_waddr_2        (_GEN_2 ? r_agu_uop_pdest : 8'h0),	// backend/src/zaqal/backend/Execute.scala:10:7, :38:24, :69:80, :504:19, :505:35, :506:39, :508:31
-    .io_wdata_0        (_GEN_4 ? _fpmisc_io_result_fp : 64'h0),	// backend/src/zaqal/backend/Execute.scala:31:22, :53:40, :69:{80,110}, :553:19, :554:35, :555:32, :557:31, :558:31
+    .io_waddr_2        (_GEN_1 ? r_agu_uop_pdest : 8'h0),	// backend/src/zaqal/backend/Execute.scala:10:7, :38:24, :69:80, :504:19, :505:35, :506:39, :508:31
+    .io_wdata_0        (_GEN_3 ? _fpmisc_io_result_fp : 64'h0),	// backend/src/zaqal/backend/Execute.scala:31:22, :53:40, :69:{80,110}, :553:19, :554:35, :555:32, :557:31, :558:31
     .io_wdata_1        (_fpdiv_io_done ? _fpdiv_io_result : 64'h0),	// backend/src/zaqal/backend/Execute.scala:30:21, :53:40, :69:110, :579:23, :582:27
-    .io_wdata_2        (_GEN_2 ? _lsu_io_result : 64'h0),	// backend/src/zaqal/backend/Execute.scala:26:20, :53:40, :69:{80,110}, :504:19, :505:35, :506:39, :508:31, :509:31
+    .io_wdata_2        (_GEN_1 ? _lsu_io_result : 64'h0),	// backend/src/zaqal/backend/Execute.scala:26:20, :53:40, :69:{80,110}, :504:19, :505:35, :506:39, :508:31, :509:31
     .io_debug_regs_0   (io_debug_fp_regs_0),
     .io_debug_regs_1   (io_debug_fp_regs_1),
     .io_debug_regs_2   (io_debug_fp_regs_2),
@@ -3272,11 +3292,11 @@ module Execute(	// backend/src/zaqal/backend/Execute.scala:10:7
   assign io_fp_in_ready = _fpdiv_io_ready;	// backend/src/zaqal/backend/Execute.scala:10:7, :30:21
   assign io_redirect_valid = io_redirect_valid_0;	// backend/src/zaqal/backend/Execute.scala:10:7, :381:30, :382:23, :388:25, :389:23, :395:25
   assign io_redirect_target =
-    _GEN_0
+    _GEN
       ? (lane0_is_older ? _bru_0_io_target : _bru_1_io_target)
       : r0_valid ? _bru_0_io_target : r1_valid ? _bru_1_io_target : 64'h0;	// backend/src/zaqal/backend/Execute.scala:10:7, :25:32, :53:40, :72:22, :376:30, :378:76, :379:76, :381:{17,30}, :383:{24,30}, :388:25, :390:24, :395:25, :397:24
   assign io_redirect_snapshotIdx =
-    _GEN_0
+    _GEN
       ? (lane0_is_older ? exe_uop0_snapshotIdx : exe_uop1_snapshotIdx)
       : r0_valid ? exe_uop0_snapshotIdx : r1_valid ? exe_uop1_snapshotIdx : 3'h0;	// backend/src/zaqal/backend/Execute.scala:10:7, :11:14, :76:27, :110:21, :119:21, :376:30, :378:76, :379:76, :381:{17,30}, :387:{30,36}, :388:25, :394:30, :395:25, :401:30
   assign io_wakeup_0_valid = r_wu0_valid | r_mul_wu0_valid;	// backend/src/zaqal/backend/Execute.scala:10:7, :416:28, :421:32, :424:37

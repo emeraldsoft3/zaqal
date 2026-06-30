@@ -8,6 +8,7 @@ object Elaborate extends App {
   implicit val p = (new ZaqalConfig)
   ChiselStage.emitSystemVerilogFile(
     new Core(),
-    Array("--target-dir", "build", "--split-verilog")
+    Array("--target-dir", "build", "--split-verilog"),
+    firtoolOpts = Array("--lowering-options=disallowLocalVariables,disallowPackedArrays")
   )
 }

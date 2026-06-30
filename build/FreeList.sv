@@ -98,296 +98,3151 @@ module FreeList(	// backend/src/zaqal/backend/FreeList.scala:12:7
   input  [2:0] io_snptRestoreIdx	// backend/src/zaqal/backend/FreeList.scala:13:14
 );
 
-  wire [7:0]        _snapshots_io_snapshots_0;	// backend/src/zaqal/backend/FreeList.scala:50:25
-  wire [7:0]        _snapshots_io_snapshots_1;	// backend/src/zaqal/backend/FreeList.scala:50:25
-  wire [7:0]        _snapshots_io_snapshots_2;	// backend/src/zaqal/backend/FreeList.scala:50:25
-  wire [7:0]        _snapshots_io_snapshots_3;	// backend/src/zaqal/backend/FreeList.scala:50:25
-  wire [7:0]        _snapshots_io_snapshots_4;	// backend/src/zaqal/backend/FreeList.scala:50:25
-  wire [7:0]        _snapshots_io_snapshots_5;	// backend/src/zaqal/backend/FreeList.scala:50:25
-  wire [7:0]        _snapshots_io_snapshots_6;	// backend/src/zaqal/backend/FreeList.scala:50:25
-  wire [7:0]        _snapshots_io_snapshots_7;	// backend/src/zaqal/backend/FreeList.scala:50:25
-  wire [255:0][7:0] _GEN =
-    '{8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'h20,
-      8'hBF,
-      8'hBE,
-      8'hBD,
-      8'hBC,
-      8'hBB,
-      8'hBA,
-      8'hB9,
-      8'hB8,
-      8'hB7,
-      8'hB6,
-      8'hB5,
-      8'hB4,
-      8'hB3,
-      8'hB2,
-      8'hB1,
-      8'hB0,
-      8'hAF,
-      8'hAE,
-      8'hAD,
-      8'hAC,
-      8'hAB,
-      8'hAA,
-      8'hA9,
-      8'hA8,
-      8'hA7,
-      8'hA6,
-      8'hA5,
-      8'hA4,
-      8'hA3,
-      8'hA2,
-      8'hA1,
-      8'hA0,
-      8'h9F,
-      8'h9E,
-      8'h9D,
-      8'h9C,
-      8'h9B,
-      8'h9A,
-      8'h99,
-      8'h98,
-      8'h97,
-      8'h96,
-      8'h95,
-      8'h94,
-      8'h93,
-      8'h92,
-      8'h91,
-      8'h90,
-      8'h8F,
-      8'h8E,
-      8'h8D,
-      8'h8C,
-      8'h8B,
-      8'h8A,
-      8'h89,
-      8'h88,
-      8'h87,
-      8'h86,
-      8'h85,
-      8'h84,
-      8'h83,
-      8'h82,
-      8'h81,
-      8'h80,
-      8'h7F,
-      8'h7E,
-      8'h7D,
-      8'h7C,
-      8'h7B,
-      8'h7A,
-      8'h79,
-      8'h78,
-      8'h77,
-      8'h76,
-      8'h75,
-      8'h74,
-      8'h73,
-      8'h72,
-      8'h71,
-      8'h70,
-      8'h6F,
-      8'h6E,
-      8'h6D,
-      8'h6C,
-      8'h6B,
-      8'h6A,
-      8'h69,
-      8'h68,
-      8'h67,
-      8'h66,
-      8'h65,
-      8'h64,
-      8'h63,
-      8'h62,
-      8'h61,
-      8'h60,
-      8'h5F,
-      8'h5E,
-      8'h5D,
-      8'h5C,
-      8'h5B,
-      8'h5A,
-      8'h59,
-      8'h58,
-      8'h57,
-      8'h56,
-      8'h55,
-      8'h54,
-      8'h53,
-      8'h52,
-      8'h51,
-      8'h50,
-      8'h4F,
-      8'h4E,
-      8'h4D,
-      8'h4C,
-      8'h4B,
-      8'h4A,
-      8'h49,
-      8'h48,
-      8'h47,
-      8'h46,
-      8'h45,
-      8'h44,
-      8'h43,
-      8'h42,
-      8'h41,
-      8'h40,
-      8'h3F,
-      8'h3E,
-      8'h3D,
-      8'h3C,
-      8'h3B,
-      8'h3A,
-      8'h39,
-      8'h38,
-      8'h37,
-      8'h36,
-      8'h35,
-      8'h34,
-      8'h33,
-      8'h32,
-      8'h31,
-      8'h30,
-      8'h2F,
-      8'h2E,
-      8'h2D,
-      8'h2C,
-      8'h2B,
-      8'h2A,
-      8'h29,
-      8'h28,
-      8'h27,
-      8'h26,
-      8'h25,
-      8'h24,
-      8'h23,
-      8'h22,
-      8'h21,
-      8'h20};	// backend/src/zaqal/backend/FreeList.scala:64:26
-  reg  [7:0]        headPtr;	// backend/src/zaqal/backend/FreeList.scala:44:24
-  reg  [7:0]        tailPtr;	// backend/src/zaqal/backend/FreeList.scala:45:24
-  reg  [7:0]        freeCount;	// backend/src/zaqal/backend/FreeList.scala:48:26
-  wire [1:0]        _GEN_0 = {1'h0, io_allocateReq_1};	// backend/src/zaqal/backend/FreeList.scala:58:29
-  wire [1:0]        _GEN_1 = {1'h0, io_allocateReq_2};	// backend/src/zaqal/backend/FreeList.scala:58:29
-  wire [1:0]        _offset_T_2 = _GEN_0 + _GEN_1;	// backend/src/zaqal/backend/FreeList.scala:58:29
-  wire [1:0]        _GEN_2 = {1'h0, io_allocateReq_0};	// backend/src/zaqal/backend/FreeList.scala:58:29
-  wire [1:0]        _GEN_3 = {1'h0, io_allocateReq_4};	// backend/src/zaqal/backend/FreeList.scala:58:29
-  wire [1:0]        _GEN_4 = {1'h0, io_allocateReq_3};	// backend/src/zaqal/backend/FreeList.scala:58:29
-  wire              io_canAllocate_0 =
+  wire [7:0]  _snapshots_io_snapshots_0;	// backend/src/zaqal/backend/FreeList.scala:50:25
+  wire [7:0]  _snapshots_io_snapshots_1;	// backend/src/zaqal/backend/FreeList.scala:50:25
+  wire [7:0]  _snapshots_io_snapshots_2;	// backend/src/zaqal/backend/FreeList.scala:50:25
+  wire [7:0]  _snapshots_io_snapshots_3;	// backend/src/zaqal/backend/FreeList.scala:50:25
+  wire [7:0]  _snapshots_io_snapshots_4;	// backend/src/zaqal/backend/FreeList.scala:50:25
+  wire [7:0]  _snapshots_io_snapshots_5;	// backend/src/zaqal/backend/FreeList.scala:50:25
+  wire [7:0]  _snapshots_io_snapshots_6;	// backend/src/zaqal/backend/FreeList.scala:50:25
+  wire [7:0]  _snapshots_io_snapshots_7;	// backend/src/zaqal/backend/FreeList.scala:50:25
+  reg  [7:0]  headPtr;	// backend/src/zaqal/backend/FreeList.scala:44:24
+  reg  [7:0]  tailPtr;	// backend/src/zaqal/backend/FreeList.scala:45:24
+  reg  [7:0]  freeCount;	// backend/src/zaqal/backend/FreeList.scala:48:26
+  wire [1:0]  _GEN = {1'h0, io_allocateReq_1};	// backend/src/zaqal/backend/FreeList.scala:58:29
+  wire [1:0]  _GEN_0 = {1'h0, io_allocateReq_2};	// backend/src/zaqal/backend/FreeList.scala:58:29
+  wire [1:0]  _offset_T_2 = _GEN + _GEN_0;	// backend/src/zaqal/backend/FreeList.scala:58:29
+  wire [1:0]  _GEN_1 = {1'h0, io_allocateReq_0};	// backend/src/zaqal/backend/FreeList.scala:58:29
+  wire [1:0]  _GEN_2 = {1'h0, io_allocateReq_4};	// backend/src/zaqal/backend/FreeList.scala:58:29
+  wire [1:0]  _GEN_3 = {1'h0, io_allocateReq_3};	// backend/src/zaqal/backend/FreeList.scala:58:29
+  wire        io_canAllocate_0 =
     freeCount >= {5'h0,
-                  {1'h0, _GEN_2 + _offset_T_2}
-                    + {1'h0, _GEN_4 + _GEN_3 + {1'h0, io_allocateReq_5}}};	// backend/src/zaqal/backend/FreeList.scala:48:26, :58:29, :59:31
-  wire [8:0]        _GEN_5 = {1'h0, headPtr};	// backend/src/zaqal/backend/FreeList.scala:44:24, :53:20, :58:29
-  wire [8:0]        io_allocatePhyReg_1_next = _GEN_5 + {8'h0, io_allocateReq_0};	// backend/src/zaqal/backend/FreeList.scala:13:14, :53:20
-  wire [1:0]        offset = _GEN_2 + _GEN_0;	// backend/src/zaqal/backend/FreeList.scala:58:29, :62:26
-  wire [8:0]        io_allocatePhyReg_2_next = _GEN_5 + {7'h0, offset};	// backend/src/zaqal/backend/FreeList.scala:53:20, :62:26
-  wire [8:0]        io_allocatePhyReg_3_next = _GEN_5 + {7'h0, _GEN_2 + _offset_T_2};	// backend/src/zaqal/backend/FreeList.scala:53:20, :58:29, :62:26
-  wire [2:0]        _GEN_6 = {1'h0, offset};	// backend/src/zaqal/backend/FreeList.scala:58:29, :62:26
-  wire [8:0]        io_allocatePhyReg_4_next =
-    _GEN_5 + {6'h0, _GEN_6 + {1'h0, _GEN_1 + _GEN_4}};	// backend/src/zaqal/backend/FreeList.scala:12:7, :53:20, :58:29, :62:26
-  wire [8:0]        io_allocatePhyReg_5_next =
-    _GEN_5 + {6'h0, _GEN_6 + {1'h0, _GEN_1 + _GEN_4 + _GEN_3}};	// backend/src/zaqal/backend/FreeList.scala:12:7, :53:20, :58:29, :62:26
-  wire [12:0]       _allocMask_T = 13'h1 << io_snptEnqIdx;	// backend/src/zaqal/backend/FreeList.scala:76:39
-  wire [5:0]        _GEN_7 =
+                  {1'h0, _GEN_1 + _offset_T_2}
+                    + {1'h0, _GEN_3 + _GEN_2 + {1'h0, io_allocateReq_5}}};	// backend/src/zaqal/backend/FreeList.scala:48:26, :58:29, :59:31
+  wire [8:0]  _GEN_4 = {1'h0, headPtr};	// backend/src/zaqal/backend/FreeList.scala:44:24, :53:20, :58:29
+  reg  [7:0]  casez_tmp;	// backend/src/zaqal/backend/FreeList.scala:64:26
+  always_comb begin	// backend/src/zaqal/backend/FreeList.scala:64:26
+    casez (_GEN_4 > 9'h9F ? headPtr + 8'h60 : headPtr)	// backend/src/zaqal/backend/FreeList.scala:44:24, :53:20, :54:{8,14,30}, :64:26
+      8'b00000000:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00000001:
+        casez_tmp = 8'h21;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00000010:
+        casez_tmp = 8'h22;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00000011:
+        casez_tmp = 8'h23;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00000100:
+        casez_tmp = 8'h24;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00000101:
+        casez_tmp = 8'h25;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00000110:
+        casez_tmp = 8'h26;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00000111:
+        casez_tmp = 8'h27;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00001000:
+        casez_tmp = 8'h28;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00001001:
+        casez_tmp = 8'h29;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00001010:
+        casez_tmp = 8'h2A;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00001011:
+        casez_tmp = 8'h2B;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00001100:
+        casez_tmp = 8'h2C;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00001101:
+        casez_tmp = 8'h2D;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00001110:
+        casez_tmp = 8'h2E;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00001111:
+        casez_tmp = 8'h2F;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00010000:
+        casez_tmp = 8'h30;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00010001:
+        casez_tmp = 8'h31;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00010010:
+        casez_tmp = 8'h32;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00010011:
+        casez_tmp = 8'h33;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00010100:
+        casez_tmp = 8'h34;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00010101:
+        casez_tmp = 8'h35;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00010110:
+        casez_tmp = 8'h36;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00010111:
+        casez_tmp = 8'h37;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00011000:
+        casez_tmp = 8'h38;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00011001:
+        casez_tmp = 8'h39;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00011010:
+        casez_tmp = 8'h3A;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00011011:
+        casez_tmp = 8'h3B;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00011100:
+        casez_tmp = 8'h3C;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00011101:
+        casez_tmp = 8'h3D;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00011110:
+        casez_tmp = 8'h3E;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00011111:
+        casez_tmp = 8'h3F;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00100000:
+        casez_tmp = 8'h40;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00100001:
+        casez_tmp = 8'h41;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00100010:
+        casez_tmp = 8'h42;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00100011:
+        casez_tmp = 8'h43;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00100100:
+        casez_tmp = 8'h44;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00100101:
+        casez_tmp = 8'h45;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00100110:
+        casez_tmp = 8'h46;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00100111:
+        casez_tmp = 8'h47;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00101000:
+        casez_tmp = 8'h48;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00101001:
+        casez_tmp = 8'h49;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00101010:
+        casez_tmp = 8'h4A;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00101011:
+        casez_tmp = 8'h4B;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00101100:
+        casez_tmp = 8'h4C;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00101101:
+        casez_tmp = 8'h4D;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00101110:
+        casez_tmp = 8'h4E;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00101111:
+        casez_tmp = 8'h4F;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00110000:
+        casez_tmp = 8'h50;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00110001:
+        casez_tmp = 8'h51;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00110010:
+        casez_tmp = 8'h52;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00110011:
+        casez_tmp = 8'h53;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00110100:
+        casez_tmp = 8'h54;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00110101:
+        casez_tmp = 8'h55;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00110110:
+        casez_tmp = 8'h56;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00110111:
+        casez_tmp = 8'h57;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00111000:
+        casez_tmp = 8'h58;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00111001:
+        casez_tmp = 8'h59;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00111010:
+        casez_tmp = 8'h5A;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00111011:
+        casez_tmp = 8'h5B;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00111100:
+        casez_tmp = 8'h5C;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00111101:
+        casez_tmp = 8'h5D;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00111110:
+        casez_tmp = 8'h5E;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00111111:
+        casez_tmp = 8'h5F;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01000000:
+        casez_tmp = 8'h60;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01000001:
+        casez_tmp = 8'h61;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01000010:
+        casez_tmp = 8'h62;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01000011:
+        casez_tmp = 8'h63;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01000100:
+        casez_tmp = 8'h64;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01000101:
+        casez_tmp = 8'h65;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01000110:
+        casez_tmp = 8'h66;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01000111:
+        casez_tmp = 8'h67;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01001000:
+        casez_tmp = 8'h68;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01001001:
+        casez_tmp = 8'h69;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01001010:
+        casez_tmp = 8'h6A;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01001011:
+        casez_tmp = 8'h6B;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01001100:
+        casez_tmp = 8'h6C;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01001101:
+        casez_tmp = 8'h6D;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01001110:
+        casez_tmp = 8'h6E;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01001111:
+        casez_tmp = 8'h6F;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01010000:
+        casez_tmp = 8'h70;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01010001:
+        casez_tmp = 8'h71;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01010010:
+        casez_tmp = 8'h72;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01010011:
+        casez_tmp = 8'h73;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01010100:
+        casez_tmp = 8'h74;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01010101:
+        casez_tmp = 8'h75;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01010110:
+        casez_tmp = 8'h76;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01010111:
+        casez_tmp = 8'h77;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01011000:
+        casez_tmp = 8'h78;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01011001:
+        casez_tmp = 8'h79;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01011010:
+        casez_tmp = 8'h7A;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01011011:
+        casez_tmp = 8'h7B;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01011100:
+        casez_tmp = 8'h7C;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01011101:
+        casez_tmp = 8'h7D;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01011110:
+        casez_tmp = 8'h7E;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01011111:
+        casez_tmp = 8'h7F;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01100000:
+        casez_tmp = 8'h80;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01100001:
+        casez_tmp = 8'h81;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01100010:
+        casez_tmp = 8'h82;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01100011:
+        casez_tmp = 8'h83;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01100100:
+        casez_tmp = 8'h84;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01100101:
+        casez_tmp = 8'h85;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01100110:
+        casez_tmp = 8'h86;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01100111:
+        casez_tmp = 8'h87;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01101000:
+        casez_tmp = 8'h88;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01101001:
+        casez_tmp = 8'h89;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01101010:
+        casez_tmp = 8'h8A;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01101011:
+        casez_tmp = 8'h8B;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01101100:
+        casez_tmp = 8'h8C;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01101101:
+        casez_tmp = 8'h8D;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01101110:
+        casez_tmp = 8'h8E;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01101111:
+        casez_tmp = 8'h8F;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01110000:
+        casez_tmp = 8'h90;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01110001:
+        casez_tmp = 8'h91;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01110010:
+        casez_tmp = 8'h92;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01110011:
+        casez_tmp = 8'h93;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01110100:
+        casez_tmp = 8'h94;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01110101:
+        casez_tmp = 8'h95;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01110110:
+        casez_tmp = 8'h96;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01110111:
+        casez_tmp = 8'h97;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01111000:
+        casez_tmp = 8'h98;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01111001:
+        casez_tmp = 8'h99;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01111010:
+        casez_tmp = 8'h9A;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01111011:
+        casez_tmp = 8'h9B;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01111100:
+        casez_tmp = 8'h9C;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01111101:
+        casez_tmp = 8'h9D;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01111110:
+        casez_tmp = 8'h9E;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01111111:
+        casez_tmp = 8'h9F;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10000000:
+        casez_tmp = 8'hA0;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10000001:
+        casez_tmp = 8'hA1;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10000010:
+        casez_tmp = 8'hA2;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10000011:
+        casez_tmp = 8'hA3;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10000100:
+        casez_tmp = 8'hA4;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10000101:
+        casez_tmp = 8'hA5;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10000110:
+        casez_tmp = 8'hA6;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10000111:
+        casez_tmp = 8'hA7;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10001000:
+        casez_tmp = 8'hA8;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10001001:
+        casez_tmp = 8'hA9;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10001010:
+        casez_tmp = 8'hAA;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10001011:
+        casez_tmp = 8'hAB;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10001100:
+        casez_tmp = 8'hAC;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10001101:
+        casez_tmp = 8'hAD;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10001110:
+        casez_tmp = 8'hAE;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10001111:
+        casez_tmp = 8'hAF;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10010000:
+        casez_tmp = 8'hB0;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10010001:
+        casez_tmp = 8'hB1;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10010010:
+        casez_tmp = 8'hB2;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10010011:
+        casez_tmp = 8'hB3;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10010100:
+        casez_tmp = 8'hB4;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10010101:
+        casez_tmp = 8'hB5;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10010110:
+        casez_tmp = 8'hB6;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10010111:
+        casez_tmp = 8'hB7;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10011000:
+        casez_tmp = 8'hB8;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10011001:
+        casez_tmp = 8'hB9;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10011010:
+        casez_tmp = 8'hBA;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10011011:
+        casez_tmp = 8'hBB;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10011100:
+        casez_tmp = 8'hBC;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10011101:
+        casez_tmp = 8'hBD;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10011110:
+        casez_tmp = 8'hBE;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10011111:
+        casez_tmp = 8'hBF;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10100000:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10100001:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10100010:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10100011:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10100100:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10100101:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10100110:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10100111:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10101000:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10101001:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10101010:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10101011:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10101100:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10101101:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10101110:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10101111:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10110000:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10110001:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10110010:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10110011:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10110100:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10110101:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10110110:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10110111:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10111000:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10111001:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10111010:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10111011:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10111100:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10111101:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10111110:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10111111:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11000000:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11000001:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11000010:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11000011:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11000100:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11000101:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11000110:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11000111:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11001000:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11001001:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11001010:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11001011:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11001100:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11001101:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11001110:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11001111:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11010000:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11010001:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11010010:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11010011:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11010100:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11010101:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11010110:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11010111:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11011000:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11011001:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11011010:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11011011:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11011100:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11011101:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11011110:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11011111:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11100000:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11100001:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11100010:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11100011:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11100100:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11100101:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11100110:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11100111:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11101000:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11101001:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11101010:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11101011:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11101100:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11101101:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11101110:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11101111:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11110000:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11110001:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11110010:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11110011:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11110100:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11110101:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11110110:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11110111:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11111000:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11111001:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11111010:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11111011:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11111100:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11111101:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11111110:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      default:
+        casez_tmp = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+    endcase	// backend/src/zaqal/backend/FreeList.scala:44:24, :53:20, :54:{8,14,30}, :64:26
+  end // always_comb
+  reg  [7:0]  casez_tmp_0;	// backend/src/zaqal/backend/FreeList.scala:64:26
+  wire [8:0]  io_allocatePhyReg_1_next = _GEN_4 + {8'h0, io_allocateReq_0};	// backend/src/zaqal/backend/FreeList.scala:13:14, :53:20
+  always_comb begin	// backend/src/zaqal/backend/FreeList.scala:64:26
+    casez (io_allocatePhyReg_1_next > 9'h9F
+             ? io_allocatePhyReg_1_next[7:0] + 8'h60
+             : io_allocatePhyReg_1_next[7:0])	// backend/src/zaqal/backend/FreeList.scala:53:20, :54:{8,14,30}, :64:26
+      8'b00000000:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00000001:
+        casez_tmp_0 = 8'h21;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00000010:
+        casez_tmp_0 = 8'h22;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00000011:
+        casez_tmp_0 = 8'h23;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00000100:
+        casez_tmp_0 = 8'h24;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00000101:
+        casez_tmp_0 = 8'h25;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00000110:
+        casez_tmp_0 = 8'h26;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00000111:
+        casez_tmp_0 = 8'h27;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00001000:
+        casez_tmp_0 = 8'h28;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00001001:
+        casez_tmp_0 = 8'h29;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00001010:
+        casez_tmp_0 = 8'h2A;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00001011:
+        casez_tmp_0 = 8'h2B;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00001100:
+        casez_tmp_0 = 8'h2C;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00001101:
+        casez_tmp_0 = 8'h2D;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00001110:
+        casez_tmp_0 = 8'h2E;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00001111:
+        casez_tmp_0 = 8'h2F;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00010000:
+        casez_tmp_0 = 8'h30;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00010001:
+        casez_tmp_0 = 8'h31;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00010010:
+        casez_tmp_0 = 8'h32;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00010011:
+        casez_tmp_0 = 8'h33;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00010100:
+        casez_tmp_0 = 8'h34;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00010101:
+        casez_tmp_0 = 8'h35;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00010110:
+        casez_tmp_0 = 8'h36;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00010111:
+        casez_tmp_0 = 8'h37;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00011000:
+        casez_tmp_0 = 8'h38;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00011001:
+        casez_tmp_0 = 8'h39;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00011010:
+        casez_tmp_0 = 8'h3A;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00011011:
+        casez_tmp_0 = 8'h3B;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00011100:
+        casez_tmp_0 = 8'h3C;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00011101:
+        casez_tmp_0 = 8'h3D;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00011110:
+        casez_tmp_0 = 8'h3E;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00011111:
+        casez_tmp_0 = 8'h3F;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00100000:
+        casez_tmp_0 = 8'h40;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00100001:
+        casez_tmp_0 = 8'h41;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00100010:
+        casez_tmp_0 = 8'h42;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00100011:
+        casez_tmp_0 = 8'h43;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00100100:
+        casez_tmp_0 = 8'h44;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00100101:
+        casez_tmp_0 = 8'h45;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00100110:
+        casez_tmp_0 = 8'h46;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00100111:
+        casez_tmp_0 = 8'h47;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00101000:
+        casez_tmp_0 = 8'h48;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00101001:
+        casez_tmp_0 = 8'h49;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00101010:
+        casez_tmp_0 = 8'h4A;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00101011:
+        casez_tmp_0 = 8'h4B;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00101100:
+        casez_tmp_0 = 8'h4C;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00101101:
+        casez_tmp_0 = 8'h4D;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00101110:
+        casez_tmp_0 = 8'h4E;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00101111:
+        casez_tmp_0 = 8'h4F;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00110000:
+        casez_tmp_0 = 8'h50;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00110001:
+        casez_tmp_0 = 8'h51;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00110010:
+        casez_tmp_0 = 8'h52;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00110011:
+        casez_tmp_0 = 8'h53;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00110100:
+        casez_tmp_0 = 8'h54;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00110101:
+        casez_tmp_0 = 8'h55;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00110110:
+        casez_tmp_0 = 8'h56;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00110111:
+        casez_tmp_0 = 8'h57;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00111000:
+        casez_tmp_0 = 8'h58;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00111001:
+        casez_tmp_0 = 8'h59;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00111010:
+        casez_tmp_0 = 8'h5A;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00111011:
+        casez_tmp_0 = 8'h5B;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00111100:
+        casez_tmp_0 = 8'h5C;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00111101:
+        casez_tmp_0 = 8'h5D;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00111110:
+        casez_tmp_0 = 8'h5E;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00111111:
+        casez_tmp_0 = 8'h5F;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01000000:
+        casez_tmp_0 = 8'h60;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01000001:
+        casez_tmp_0 = 8'h61;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01000010:
+        casez_tmp_0 = 8'h62;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01000011:
+        casez_tmp_0 = 8'h63;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01000100:
+        casez_tmp_0 = 8'h64;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01000101:
+        casez_tmp_0 = 8'h65;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01000110:
+        casez_tmp_0 = 8'h66;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01000111:
+        casez_tmp_0 = 8'h67;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01001000:
+        casez_tmp_0 = 8'h68;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01001001:
+        casez_tmp_0 = 8'h69;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01001010:
+        casez_tmp_0 = 8'h6A;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01001011:
+        casez_tmp_0 = 8'h6B;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01001100:
+        casez_tmp_0 = 8'h6C;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01001101:
+        casez_tmp_0 = 8'h6D;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01001110:
+        casez_tmp_0 = 8'h6E;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01001111:
+        casez_tmp_0 = 8'h6F;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01010000:
+        casez_tmp_0 = 8'h70;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01010001:
+        casez_tmp_0 = 8'h71;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01010010:
+        casez_tmp_0 = 8'h72;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01010011:
+        casez_tmp_0 = 8'h73;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01010100:
+        casez_tmp_0 = 8'h74;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01010101:
+        casez_tmp_0 = 8'h75;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01010110:
+        casez_tmp_0 = 8'h76;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01010111:
+        casez_tmp_0 = 8'h77;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01011000:
+        casez_tmp_0 = 8'h78;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01011001:
+        casez_tmp_0 = 8'h79;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01011010:
+        casez_tmp_0 = 8'h7A;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01011011:
+        casez_tmp_0 = 8'h7B;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01011100:
+        casez_tmp_0 = 8'h7C;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01011101:
+        casez_tmp_0 = 8'h7D;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01011110:
+        casez_tmp_0 = 8'h7E;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01011111:
+        casez_tmp_0 = 8'h7F;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01100000:
+        casez_tmp_0 = 8'h80;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01100001:
+        casez_tmp_0 = 8'h81;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01100010:
+        casez_tmp_0 = 8'h82;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01100011:
+        casez_tmp_0 = 8'h83;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01100100:
+        casez_tmp_0 = 8'h84;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01100101:
+        casez_tmp_0 = 8'h85;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01100110:
+        casez_tmp_0 = 8'h86;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01100111:
+        casez_tmp_0 = 8'h87;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01101000:
+        casez_tmp_0 = 8'h88;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01101001:
+        casez_tmp_0 = 8'h89;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01101010:
+        casez_tmp_0 = 8'h8A;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01101011:
+        casez_tmp_0 = 8'h8B;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01101100:
+        casez_tmp_0 = 8'h8C;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01101101:
+        casez_tmp_0 = 8'h8D;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01101110:
+        casez_tmp_0 = 8'h8E;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01101111:
+        casez_tmp_0 = 8'h8F;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01110000:
+        casez_tmp_0 = 8'h90;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01110001:
+        casez_tmp_0 = 8'h91;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01110010:
+        casez_tmp_0 = 8'h92;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01110011:
+        casez_tmp_0 = 8'h93;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01110100:
+        casez_tmp_0 = 8'h94;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01110101:
+        casez_tmp_0 = 8'h95;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01110110:
+        casez_tmp_0 = 8'h96;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01110111:
+        casez_tmp_0 = 8'h97;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01111000:
+        casez_tmp_0 = 8'h98;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01111001:
+        casez_tmp_0 = 8'h99;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01111010:
+        casez_tmp_0 = 8'h9A;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01111011:
+        casez_tmp_0 = 8'h9B;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01111100:
+        casez_tmp_0 = 8'h9C;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01111101:
+        casez_tmp_0 = 8'h9D;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01111110:
+        casez_tmp_0 = 8'h9E;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01111111:
+        casez_tmp_0 = 8'h9F;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10000000:
+        casez_tmp_0 = 8'hA0;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10000001:
+        casez_tmp_0 = 8'hA1;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10000010:
+        casez_tmp_0 = 8'hA2;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10000011:
+        casez_tmp_0 = 8'hA3;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10000100:
+        casez_tmp_0 = 8'hA4;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10000101:
+        casez_tmp_0 = 8'hA5;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10000110:
+        casez_tmp_0 = 8'hA6;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10000111:
+        casez_tmp_0 = 8'hA7;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10001000:
+        casez_tmp_0 = 8'hA8;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10001001:
+        casez_tmp_0 = 8'hA9;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10001010:
+        casez_tmp_0 = 8'hAA;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10001011:
+        casez_tmp_0 = 8'hAB;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10001100:
+        casez_tmp_0 = 8'hAC;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10001101:
+        casez_tmp_0 = 8'hAD;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10001110:
+        casez_tmp_0 = 8'hAE;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10001111:
+        casez_tmp_0 = 8'hAF;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10010000:
+        casez_tmp_0 = 8'hB0;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10010001:
+        casez_tmp_0 = 8'hB1;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10010010:
+        casez_tmp_0 = 8'hB2;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10010011:
+        casez_tmp_0 = 8'hB3;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10010100:
+        casez_tmp_0 = 8'hB4;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10010101:
+        casez_tmp_0 = 8'hB5;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10010110:
+        casez_tmp_0 = 8'hB6;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10010111:
+        casez_tmp_0 = 8'hB7;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10011000:
+        casez_tmp_0 = 8'hB8;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10011001:
+        casez_tmp_0 = 8'hB9;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10011010:
+        casez_tmp_0 = 8'hBA;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10011011:
+        casez_tmp_0 = 8'hBB;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10011100:
+        casez_tmp_0 = 8'hBC;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10011101:
+        casez_tmp_0 = 8'hBD;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10011110:
+        casez_tmp_0 = 8'hBE;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10011111:
+        casez_tmp_0 = 8'hBF;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10100000:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10100001:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10100010:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10100011:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10100100:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10100101:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10100110:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10100111:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10101000:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10101001:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10101010:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10101011:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10101100:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10101101:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10101110:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10101111:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10110000:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10110001:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10110010:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10110011:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10110100:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10110101:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10110110:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10110111:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10111000:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10111001:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10111010:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10111011:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10111100:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10111101:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10111110:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10111111:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11000000:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11000001:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11000010:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11000011:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11000100:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11000101:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11000110:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11000111:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11001000:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11001001:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11001010:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11001011:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11001100:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11001101:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11001110:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11001111:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11010000:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11010001:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11010010:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11010011:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11010100:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11010101:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11010110:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11010111:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11011000:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11011001:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11011010:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11011011:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11011100:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11011101:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11011110:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11011111:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11100000:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11100001:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11100010:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11100011:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11100100:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11100101:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11100110:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11100111:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11101000:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11101001:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11101010:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11101011:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11101100:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11101101:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11101110:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11101111:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11110000:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11110001:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11110010:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11110011:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11110100:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11110101:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11110110:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11110111:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11111000:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11111001:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11111010:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11111011:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11111100:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11111101:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11111110:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      default:
+        casez_tmp_0 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+    endcase	// backend/src/zaqal/backend/FreeList.scala:53:20, :54:{8,14,30}, :64:26
+  end // always_comb
+  wire [1:0]  offset = _GEN_1 + _GEN;	// backend/src/zaqal/backend/FreeList.scala:58:29, :62:26
+  reg  [7:0]  casez_tmp_1;	// backend/src/zaqal/backend/FreeList.scala:64:26
+  wire [8:0]  io_allocatePhyReg_2_next = _GEN_4 + {7'h0, offset};	// backend/src/zaqal/backend/FreeList.scala:53:20, :62:26
+  always_comb begin	// backend/src/zaqal/backend/FreeList.scala:64:26
+    casez (io_allocatePhyReg_2_next > 9'h9F
+             ? io_allocatePhyReg_2_next[7:0] + 8'h60
+             : io_allocatePhyReg_2_next[7:0])	// backend/src/zaqal/backend/FreeList.scala:53:20, :54:{8,14,30}, :64:26
+      8'b00000000:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00000001:
+        casez_tmp_1 = 8'h21;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00000010:
+        casez_tmp_1 = 8'h22;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00000011:
+        casez_tmp_1 = 8'h23;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00000100:
+        casez_tmp_1 = 8'h24;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00000101:
+        casez_tmp_1 = 8'h25;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00000110:
+        casez_tmp_1 = 8'h26;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00000111:
+        casez_tmp_1 = 8'h27;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00001000:
+        casez_tmp_1 = 8'h28;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00001001:
+        casez_tmp_1 = 8'h29;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00001010:
+        casez_tmp_1 = 8'h2A;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00001011:
+        casez_tmp_1 = 8'h2B;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00001100:
+        casez_tmp_1 = 8'h2C;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00001101:
+        casez_tmp_1 = 8'h2D;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00001110:
+        casez_tmp_1 = 8'h2E;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00001111:
+        casez_tmp_1 = 8'h2F;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00010000:
+        casez_tmp_1 = 8'h30;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00010001:
+        casez_tmp_1 = 8'h31;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00010010:
+        casez_tmp_1 = 8'h32;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00010011:
+        casez_tmp_1 = 8'h33;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00010100:
+        casez_tmp_1 = 8'h34;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00010101:
+        casez_tmp_1 = 8'h35;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00010110:
+        casez_tmp_1 = 8'h36;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00010111:
+        casez_tmp_1 = 8'h37;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00011000:
+        casez_tmp_1 = 8'h38;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00011001:
+        casez_tmp_1 = 8'h39;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00011010:
+        casez_tmp_1 = 8'h3A;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00011011:
+        casez_tmp_1 = 8'h3B;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00011100:
+        casez_tmp_1 = 8'h3C;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00011101:
+        casez_tmp_1 = 8'h3D;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00011110:
+        casez_tmp_1 = 8'h3E;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00011111:
+        casez_tmp_1 = 8'h3F;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00100000:
+        casez_tmp_1 = 8'h40;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00100001:
+        casez_tmp_1 = 8'h41;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00100010:
+        casez_tmp_1 = 8'h42;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00100011:
+        casez_tmp_1 = 8'h43;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00100100:
+        casez_tmp_1 = 8'h44;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00100101:
+        casez_tmp_1 = 8'h45;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00100110:
+        casez_tmp_1 = 8'h46;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00100111:
+        casez_tmp_1 = 8'h47;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00101000:
+        casez_tmp_1 = 8'h48;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00101001:
+        casez_tmp_1 = 8'h49;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00101010:
+        casez_tmp_1 = 8'h4A;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00101011:
+        casez_tmp_1 = 8'h4B;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00101100:
+        casez_tmp_1 = 8'h4C;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00101101:
+        casez_tmp_1 = 8'h4D;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00101110:
+        casez_tmp_1 = 8'h4E;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00101111:
+        casez_tmp_1 = 8'h4F;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00110000:
+        casez_tmp_1 = 8'h50;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00110001:
+        casez_tmp_1 = 8'h51;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00110010:
+        casez_tmp_1 = 8'h52;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00110011:
+        casez_tmp_1 = 8'h53;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00110100:
+        casez_tmp_1 = 8'h54;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00110101:
+        casez_tmp_1 = 8'h55;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00110110:
+        casez_tmp_1 = 8'h56;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00110111:
+        casez_tmp_1 = 8'h57;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00111000:
+        casez_tmp_1 = 8'h58;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00111001:
+        casez_tmp_1 = 8'h59;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00111010:
+        casez_tmp_1 = 8'h5A;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00111011:
+        casez_tmp_1 = 8'h5B;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00111100:
+        casez_tmp_1 = 8'h5C;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00111101:
+        casez_tmp_1 = 8'h5D;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00111110:
+        casez_tmp_1 = 8'h5E;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00111111:
+        casez_tmp_1 = 8'h5F;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01000000:
+        casez_tmp_1 = 8'h60;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01000001:
+        casez_tmp_1 = 8'h61;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01000010:
+        casez_tmp_1 = 8'h62;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01000011:
+        casez_tmp_1 = 8'h63;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01000100:
+        casez_tmp_1 = 8'h64;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01000101:
+        casez_tmp_1 = 8'h65;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01000110:
+        casez_tmp_1 = 8'h66;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01000111:
+        casez_tmp_1 = 8'h67;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01001000:
+        casez_tmp_1 = 8'h68;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01001001:
+        casez_tmp_1 = 8'h69;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01001010:
+        casez_tmp_1 = 8'h6A;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01001011:
+        casez_tmp_1 = 8'h6B;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01001100:
+        casez_tmp_1 = 8'h6C;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01001101:
+        casez_tmp_1 = 8'h6D;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01001110:
+        casez_tmp_1 = 8'h6E;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01001111:
+        casez_tmp_1 = 8'h6F;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01010000:
+        casez_tmp_1 = 8'h70;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01010001:
+        casez_tmp_1 = 8'h71;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01010010:
+        casez_tmp_1 = 8'h72;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01010011:
+        casez_tmp_1 = 8'h73;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01010100:
+        casez_tmp_1 = 8'h74;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01010101:
+        casez_tmp_1 = 8'h75;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01010110:
+        casez_tmp_1 = 8'h76;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01010111:
+        casez_tmp_1 = 8'h77;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01011000:
+        casez_tmp_1 = 8'h78;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01011001:
+        casez_tmp_1 = 8'h79;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01011010:
+        casez_tmp_1 = 8'h7A;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01011011:
+        casez_tmp_1 = 8'h7B;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01011100:
+        casez_tmp_1 = 8'h7C;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01011101:
+        casez_tmp_1 = 8'h7D;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01011110:
+        casez_tmp_1 = 8'h7E;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01011111:
+        casez_tmp_1 = 8'h7F;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01100000:
+        casez_tmp_1 = 8'h80;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01100001:
+        casez_tmp_1 = 8'h81;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01100010:
+        casez_tmp_1 = 8'h82;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01100011:
+        casez_tmp_1 = 8'h83;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01100100:
+        casez_tmp_1 = 8'h84;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01100101:
+        casez_tmp_1 = 8'h85;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01100110:
+        casez_tmp_1 = 8'h86;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01100111:
+        casez_tmp_1 = 8'h87;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01101000:
+        casez_tmp_1 = 8'h88;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01101001:
+        casez_tmp_1 = 8'h89;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01101010:
+        casez_tmp_1 = 8'h8A;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01101011:
+        casez_tmp_1 = 8'h8B;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01101100:
+        casez_tmp_1 = 8'h8C;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01101101:
+        casez_tmp_1 = 8'h8D;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01101110:
+        casez_tmp_1 = 8'h8E;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01101111:
+        casez_tmp_1 = 8'h8F;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01110000:
+        casez_tmp_1 = 8'h90;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01110001:
+        casez_tmp_1 = 8'h91;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01110010:
+        casez_tmp_1 = 8'h92;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01110011:
+        casez_tmp_1 = 8'h93;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01110100:
+        casez_tmp_1 = 8'h94;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01110101:
+        casez_tmp_1 = 8'h95;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01110110:
+        casez_tmp_1 = 8'h96;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01110111:
+        casez_tmp_1 = 8'h97;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01111000:
+        casez_tmp_1 = 8'h98;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01111001:
+        casez_tmp_1 = 8'h99;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01111010:
+        casez_tmp_1 = 8'h9A;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01111011:
+        casez_tmp_1 = 8'h9B;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01111100:
+        casez_tmp_1 = 8'h9C;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01111101:
+        casez_tmp_1 = 8'h9D;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01111110:
+        casez_tmp_1 = 8'h9E;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01111111:
+        casez_tmp_1 = 8'h9F;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10000000:
+        casez_tmp_1 = 8'hA0;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10000001:
+        casez_tmp_1 = 8'hA1;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10000010:
+        casez_tmp_1 = 8'hA2;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10000011:
+        casez_tmp_1 = 8'hA3;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10000100:
+        casez_tmp_1 = 8'hA4;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10000101:
+        casez_tmp_1 = 8'hA5;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10000110:
+        casez_tmp_1 = 8'hA6;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10000111:
+        casez_tmp_1 = 8'hA7;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10001000:
+        casez_tmp_1 = 8'hA8;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10001001:
+        casez_tmp_1 = 8'hA9;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10001010:
+        casez_tmp_1 = 8'hAA;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10001011:
+        casez_tmp_1 = 8'hAB;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10001100:
+        casez_tmp_1 = 8'hAC;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10001101:
+        casez_tmp_1 = 8'hAD;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10001110:
+        casez_tmp_1 = 8'hAE;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10001111:
+        casez_tmp_1 = 8'hAF;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10010000:
+        casez_tmp_1 = 8'hB0;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10010001:
+        casez_tmp_1 = 8'hB1;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10010010:
+        casez_tmp_1 = 8'hB2;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10010011:
+        casez_tmp_1 = 8'hB3;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10010100:
+        casez_tmp_1 = 8'hB4;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10010101:
+        casez_tmp_1 = 8'hB5;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10010110:
+        casez_tmp_1 = 8'hB6;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10010111:
+        casez_tmp_1 = 8'hB7;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10011000:
+        casez_tmp_1 = 8'hB8;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10011001:
+        casez_tmp_1 = 8'hB9;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10011010:
+        casez_tmp_1 = 8'hBA;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10011011:
+        casez_tmp_1 = 8'hBB;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10011100:
+        casez_tmp_1 = 8'hBC;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10011101:
+        casez_tmp_1 = 8'hBD;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10011110:
+        casez_tmp_1 = 8'hBE;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10011111:
+        casez_tmp_1 = 8'hBF;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10100000:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10100001:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10100010:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10100011:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10100100:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10100101:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10100110:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10100111:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10101000:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10101001:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10101010:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10101011:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10101100:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10101101:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10101110:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10101111:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10110000:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10110001:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10110010:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10110011:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10110100:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10110101:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10110110:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10110111:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10111000:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10111001:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10111010:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10111011:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10111100:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10111101:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10111110:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10111111:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11000000:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11000001:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11000010:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11000011:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11000100:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11000101:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11000110:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11000111:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11001000:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11001001:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11001010:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11001011:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11001100:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11001101:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11001110:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11001111:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11010000:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11010001:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11010010:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11010011:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11010100:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11010101:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11010110:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11010111:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11011000:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11011001:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11011010:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11011011:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11011100:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11011101:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11011110:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11011111:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11100000:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11100001:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11100010:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11100011:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11100100:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11100101:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11100110:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11100111:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11101000:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11101001:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11101010:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11101011:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11101100:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11101101:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11101110:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11101111:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11110000:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11110001:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11110010:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11110011:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11110100:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11110101:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11110110:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11110111:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11111000:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11111001:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11111010:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11111011:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11111100:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11111101:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11111110:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      default:
+        casez_tmp_1 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+    endcase	// backend/src/zaqal/backend/FreeList.scala:53:20, :54:{8,14,30}, :64:26
+  end // always_comb
+  reg  [7:0]  casez_tmp_2;	// backend/src/zaqal/backend/FreeList.scala:64:26
+  wire [8:0]  io_allocatePhyReg_3_next = _GEN_4 + {7'h0, _GEN_1 + _offset_T_2};	// backend/src/zaqal/backend/FreeList.scala:53:20, :58:29, :62:26
+  always_comb begin	// backend/src/zaqal/backend/FreeList.scala:64:26
+    casez (io_allocatePhyReg_3_next > 9'h9F
+             ? io_allocatePhyReg_3_next[7:0] + 8'h60
+             : io_allocatePhyReg_3_next[7:0])	// backend/src/zaqal/backend/FreeList.scala:53:20, :54:{8,14,30}, :64:26
+      8'b00000000:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00000001:
+        casez_tmp_2 = 8'h21;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00000010:
+        casez_tmp_2 = 8'h22;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00000011:
+        casez_tmp_2 = 8'h23;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00000100:
+        casez_tmp_2 = 8'h24;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00000101:
+        casez_tmp_2 = 8'h25;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00000110:
+        casez_tmp_2 = 8'h26;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00000111:
+        casez_tmp_2 = 8'h27;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00001000:
+        casez_tmp_2 = 8'h28;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00001001:
+        casez_tmp_2 = 8'h29;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00001010:
+        casez_tmp_2 = 8'h2A;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00001011:
+        casez_tmp_2 = 8'h2B;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00001100:
+        casez_tmp_2 = 8'h2C;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00001101:
+        casez_tmp_2 = 8'h2D;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00001110:
+        casez_tmp_2 = 8'h2E;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00001111:
+        casez_tmp_2 = 8'h2F;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00010000:
+        casez_tmp_2 = 8'h30;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00010001:
+        casez_tmp_2 = 8'h31;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00010010:
+        casez_tmp_2 = 8'h32;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00010011:
+        casez_tmp_2 = 8'h33;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00010100:
+        casez_tmp_2 = 8'h34;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00010101:
+        casez_tmp_2 = 8'h35;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00010110:
+        casez_tmp_2 = 8'h36;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00010111:
+        casez_tmp_2 = 8'h37;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00011000:
+        casez_tmp_2 = 8'h38;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00011001:
+        casez_tmp_2 = 8'h39;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00011010:
+        casez_tmp_2 = 8'h3A;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00011011:
+        casez_tmp_2 = 8'h3B;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00011100:
+        casez_tmp_2 = 8'h3C;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00011101:
+        casez_tmp_2 = 8'h3D;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00011110:
+        casez_tmp_2 = 8'h3E;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00011111:
+        casez_tmp_2 = 8'h3F;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00100000:
+        casez_tmp_2 = 8'h40;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00100001:
+        casez_tmp_2 = 8'h41;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00100010:
+        casez_tmp_2 = 8'h42;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00100011:
+        casez_tmp_2 = 8'h43;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00100100:
+        casez_tmp_2 = 8'h44;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00100101:
+        casez_tmp_2 = 8'h45;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00100110:
+        casez_tmp_2 = 8'h46;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00100111:
+        casez_tmp_2 = 8'h47;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00101000:
+        casez_tmp_2 = 8'h48;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00101001:
+        casez_tmp_2 = 8'h49;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00101010:
+        casez_tmp_2 = 8'h4A;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00101011:
+        casez_tmp_2 = 8'h4B;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00101100:
+        casez_tmp_2 = 8'h4C;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00101101:
+        casez_tmp_2 = 8'h4D;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00101110:
+        casez_tmp_2 = 8'h4E;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00101111:
+        casez_tmp_2 = 8'h4F;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00110000:
+        casez_tmp_2 = 8'h50;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00110001:
+        casez_tmp_2 = 8'h51;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00110010:
+        casez_tmp_2 = 8'h52;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00110011:
+        casez_tmp_2 = 8'h53;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00110100:
+        casez_tmp_2 = 8'h54;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00110101:
+        casez_tmp_2 = 8'h55;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00110110:
+        casez_tmp_2 = 8'h56;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00110111:
+        casez_tmp_2 = 8'h57;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00111000:
+        casez_tmp_2 = 8'h58;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00111001:
+        casez_tmp_2 = 8'h59;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00111010:
+        casez_tmp_2 = 8'h5A;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00111011:
+        casez_tmp_2 = 8'h5B;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00111100:
+        casez_tmp_2 = 8'h5C;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00111101:
+        casez_tmp_2 = 8'h5D;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00111110:
+        casez_tmp_2 = 8'h5E;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00111111:
+        casez_tmp_2 = 8'h5F;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01000000:
+        casez_tmp_2 = 8'h60;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01000001:
+        casez_tmp_2 = 8'h61;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01000010:
+        casez_tmp_2 = 8'h62;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01000011:
+        casez_tmp_2 = 8'h63;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01000100:
+        casez_tmp_2 = 8'h64;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01000101:
+        casez_tmp_2 = 8'h65;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01000110:
+        casez_tmp_2 = 8'h66;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01000111:
+        casez_tmp_2 = 8'h67;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01001000:
+        casez_tmp_2 = 8'h68;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01001001:
+        casez_tmp_2 = 8'h69;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01001010:
+        casez_tmp_2 = 8'h6A;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01001011:
+        casez_tmp_2 = 8'h6B;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01001100:
+        casez_tmp_2 = 8'h6C;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01001101:
+        casez_tmp_2 = 8'h6D;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01001110:
+        casez_tmp_2 = 8'h6E;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01001111:
+        casez_tmp_2 = 8'h6F;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01010000:
+        casez_tmp_2 = 8'h70;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01010001:
+        casez_tmp_2 = 8'h71;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01010010:
+        casez_tmp_2 = 8'h72;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01010011:
+        casez_tmp_2 = 8'h73;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01010100:
+        casez_tmp_2 = 8'h74;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01010101:
+        casez_tmp_2 = 8'h75;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01010110:
+        casez_tmp_2 = 8'h76;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01010111:
+        casez_tmp_2 = 8'h77;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01011000:
+        casez_tmp_2 = 8'h78;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01011001:
+        casez_tmp_2 = 8'h79;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01011010:
+        casez_tmp_2 = 8'h7A;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01011011:
+        casez_tmp_2 = 8'h7B;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01011100:
+        casez_tmp_2 = 8'h7C;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01011101:
+        casez_tmp_2 = 8'h7D;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01011110:
+        casez_tmp_2 = 8'h7E;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01011111:
+        casez_tmp_2 = 8'h7F;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01100000:
+        casez_tmp_2 = 8'h80;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01100001:
+        casez_tmp_2 = 8'h81;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01100010:
+        casez_tmp_2 = 8'h82;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01100011:
+        casez_tmp_2 = 8'h83;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01100100:
+        casez_tmp_2 = 8'h84;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01100101:
+        casez_tmp_2 = 8'h85;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01100110:
+        casez_tmp_2 = 8'h86;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01100111:
+        casez_tmp_2 = 8'h87;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01101000:
+        casez_tmp_2 = 8'h88;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01101001:
+        casez_tmp_2 = 8'h89;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01101010:
+        casez_tmp_2 = 8'h8A;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01101011:
+        casez_tmp_2 = 8'h8B;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01101100:
+        casez_tmp_2 = 8'h8C;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01101101:
+        casez_tmp_2 = 8'h8D;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01101110:
+        casez_tmp_2 = 8'h8E;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01101111:
+        casez_tmp_2 = 8'h8F;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01110000:
+        casez_tmp_2 = 8'h90;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01110001:
+        casez_tmp_2 = 8'h91;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01110010:
+        casez_tmp_2 = 8'h92;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01110011:
+        casez_tmp_2 = 8'h93;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01110100:
+        casez_tmp_2 = 8'h94;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01110101:
+        casez_tmp_2 = 8'h95;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01110110:
+        casez_tmp_2 = 8'h96;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01110111:
+        casez_tmp_2 = 8'h97;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01111000:
+        casez_tmp_2 = 8'h98;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01111001:
+        casez_tmp_2 = 8'h99;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01111010:
+        casez_tmp_2 = 8'h9A;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01111011:
+        casez_tmp_2 = 8'h9B;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01111100:
+        casez_tmp_2 = 8'h9C;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01111101:
+        casez_tmp_2 = 8'h9D;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01111110:
+        casez_tmp_2 = 8'h9E;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01111111:
+        casez_tmp_2 = 8'h9F;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10000000:
+        casez_tmp_2 = 8'hA0;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10000001:
+        casez_tmp_2 = 8'hA1;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10000010:
+        casez_tmp_2 = 8'hA2;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10000011:
+        casez_tmp_2 = 8'hA3;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10000100:
+        casez_tmp_2 = 8'hA4;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10000101:
+        casez_tmp_2 = 8'hA5;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10000110:
+        casez_tmp_2 = 8'hA6;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10000111:
+        casez_tmp_2 = 8'hA7;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10001000:
+        casez_tmp_2 = 8'hA8;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10001001:
+        casez_tmp_2 = 8'hA9;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10001010:
+        casez_tmp_2 = 8'hAA;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10001011:
+        casez_tmp_2 = 8'hAB;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10001100:
+        casez_tmp_2 = 8'hAC;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10001101:
+        casez_tmp_2 = 8'hAD;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10001110:
+        casez_tmp_2 = 8'hAE;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10001111:
+        casez_tmp_2 = 8'hAF;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10010000:
+        casez_tmp_2 = 8'hB0;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10010001:
+        casez_tmp_2 = 8'hB1;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10010010:
+        casez_tmp_2 = 8'hB2;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10010011:
+        casez_tmp_2 = 8'hB3;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10010100:
+        casez_tmp_2 = 8'hB4;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10010101:
+        casez_tmp_2 = 8'hB5;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10010110:
+        casez_tmp_2 = 8'hB6;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10010111:
+        casez_tmp_2 = 8'hB7;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10011000:
+        casez_tmp_2 = 8'hB8;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10011001:
+        casez_tmp_2 = 8'hB9;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10011010:
+        casez_tmp_2 = 8'hBA;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10011011:
+        casez_tmp_2 = 8'hBB;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10011100:
+        casez_tmp_2 = 8'hBC;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10011101:
+        casez_tmp_2 = 8'hBD;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10011110:
+        casez_tmp_2 = 8'hBE;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10011111:
+        casez_tmp_2 = 8'hBF;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10100000:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10100001:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10100010:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10100011:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10100100:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10100101:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10100110:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10100111:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10101000:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10101001:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10101010:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10101011:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10101100:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10101101:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10101110:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10101111:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10110000:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10110001:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10110010:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10110011:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10110100:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10110101:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10110110:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10110111:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10111000:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10111001:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10111010:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10111011:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10111100:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10111101:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10111110:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10111111:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11000000:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11000001:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11000010:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11000011:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11000100:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11000101:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11000110:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11000111:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11001000:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11001001:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11001010:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11001011:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11001100:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11001101:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11001110:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11001111:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11010000:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11010001:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11010010:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11010011:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11010100:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11010101:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11010110:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11010111:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11011000:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11011001:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11011010:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11011011:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11011100:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11011101:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11011110:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11011111:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11100000:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11100001:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11100010:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11100011:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11100100:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11100101:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11100110:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11100111:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11101000:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11101001:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11101010:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11101011:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11101100:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11101101:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11101110:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11101111:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11110000:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11110001:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11110010:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11110011:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11110100:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11110101:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11110110:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11110111:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11111000:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11111001:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11111010:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11111011:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11111100:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11111101:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11111110:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      default:
+        casez_tmp_2 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+    endcase	// backend/src/zaqal/backend/FreeList.scala:53:20, :54:{8,14,30}, :64:26
+  end // always_comb
+  wire [2:0]  _GEN_5 = {1'h0, offset};	// backend/src/zaqal/backend/FreeList.scala:58:29, :62:26
+  reg  [7:0]  casez_tmp_3;	// backend/src/zaqal/backend/FreeList.scala:64:26
+  wire [8:0]  io_allocatePhyReg_4_next =
+    _GEN_4 + {6'h0, _GEN_5 + {1'h0, _GEN_0 + _GEN_3}};	// backend/src/zaqal/backend/FreeList.scala:12:7, :53:20, :58:29, :62:26
+  always_comb begin	// backend/src/zaqal/backend/FreeList.scala:64:26
+    casez (io_allocatePhyReg_4_next > 9'h9F
+             ? io_allocatePhyReg_4_next[7:0] + 8'h60
+             : io_allocatePhyReg_4_next[7:0])	// backend/src/zaqal/backend/FreeList.scala:53:20, :54:{8,14,30}, :64:26
+      8'b00000000:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00000001:
+        casez_tmp_3 = 8'h21;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00000010:
+        casez_tmp_3 = 8'h22;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00000011:
+        casez_tmp_3 = 8'h23;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00000100:
+        casez_tmp_3 = 8'h24;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00000101:
+        casez_tmp_3 = 8'h25;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00000110:
+        casez_tmp_3 = 8'h26;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00000111:
+        casez_tmp_3 = 8'h27;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00001000:
+        casez_tmp_3 = 8'h28;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00001001:
+        casez_tmp_3 = 8'h29;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00001010:
+        casez_tmp_3 = 8'h2A;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00001011:
+        casez_tmp_3 = 8'h2B;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00001100:
+        casez_tmp_3 = 8'h2C;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00001101:
+        casez_tmp_3 = 8'h2D;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00001110:
+        casez_tmp_3 = 8'h2E;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00001111:
+        casez_tmp_3 = 8'h2F;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00010000:
+        casez_tmp_3 = 8'h30;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00010001:
+        casez_tmp_3 = 8'h31;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00010010:
+        casez_tmp_3 = 8'h32;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00010011:
+        casez_tmp_3 = 8'h33;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00010100:
+        casez_tmp_3 = 8'h34;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00010101:
+        casez_tmp_3 = 8'h35;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00010110:
+        casez_tmp_3 = 8'h36;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00010111:
+        casez_tmp_3 = 8'h37;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00011000:
+        casez_tmp_3 = 8'h38;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00011001:
+        casez_tmp_3 = 8'h39;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00011010:
+        casez_tmp_3 = 8'h3A;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00011011:
+        casez_tmp_3 = 8'h3B;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00011100:
+        casez_tmp_3 = 8'h3C;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00011101:
+        casez_tmp_3 = 8'h3D;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00011110:
+        casez_tmp_3 = 8'h3E;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00011111:
+        casez_tmp_3 = 8'h3F;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00100000:
+        casez_tmp_3 = 8'h40;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00100001:
+        casez_tmp_3 = 8'h41;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00100010:
+        casez_tmp_3 = 8'h42;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00100011:
+        casez_tmp_3 = 8'h43;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00100100:
+        casez_tmp_3 = 8'h44;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00100101:
+        casez_tmp_3 = 8'h45;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00100110:
+        casez_tmp_3 = 8'h46;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00100111:
+        casez_tmp_3 = 8'h47;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00101000:
+        casez_tmp_3 = 8'h48;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00101001:
+        casez_tmp_3 = 8'h49;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00101010:
+        casez_tmp_3 = 8'h4A;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00101011:
+        casez_tmp_3 = 8'h4B;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00101100:
+        casez_tmp_3 = 8'h4C;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00101101:
+        casez_tmp_3 = 8'h4D;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00101110:
+        casez_tmp_3 = 8'h4E;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00101111:
+        casez_tmp_3 = 8'h4F;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00110000:
+        casez_tmp_3 = 8'h50;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00110001:
+        casez_tmp_3 = 8'h51;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00110010:
+        casez_tmp_3 = 8'h52;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00110011:
+        casez_tmp_3 = 8'h53;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00110100:
+        casez_tmp_3 = 8'h54;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00110101:
+        casez_tmp_3 = 8'h55;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00110110:
+        casez_tmp_3 = 8'h56;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00110111:
+        casez_tmp_3 = 8'h57;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00111000:
+        casez_tmp_3 = 8'h58;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00111001:
+        casez_tmp_3 = 8'h59;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00111010:
+        casez_tmp_3 = 8'h5A;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00111011:
+        casez_tmp_3 = 8'h5B;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00111100:
+        casez_tmp_3 = 8'h5C;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00111101:
+        casez_tmp_3 = 8'h5D;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00111110:
+        casez_tmp_3 = 8'h5E;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00111111:
+        casez_tmp_3 = 8'h5F;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01000000:
+        casez_tmp_3 = 8'h60;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01000001:
+        casez_tmp_3 = 8'h61;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01000010:
+        casez_tmp_3 = 8'h62;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01000011:
+        casez_tmp_3 = 8'h63;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01000100:
+        casez_tmp_3 = 8'h64;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01000101:
+        casez_tmp_3 = 8'h65;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01000110:
+        casez_tmp_3 = 8'h66;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01000111:
+        casez_tmp_3 = 8'h67;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01001000:
+        casez_tmp_3 = 8'h68;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01001001:
+        casez_tmp_3 = 8'h69;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01001010:
+        casez_tmp_3 = 8'h6A;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01001011:
+        casez_tmp_3 = 8'h6B;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01001100:
+        casez_tmp_3 = 8'h6C;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01001101:
+        casez_tmp_3 = 8'h6D;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01001110:
+        casez_tmp_3 = 8'h6E;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01001111:
+        casez_tmp_3 = 8'h6F;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01010000:
+        casez_tmp_3 = 8'h70;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01010001:
+        casez_tmp_3 = 8'h71;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01010010:
+        casez_tmp_3 = 8'h72;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01010011:
+        casez_tmp_3 = 8'h73;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01010100:
+        casez_tmp_3 = 8'h74;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01010101:
+        casez_tmp_3 = 8'h75;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01010110:
+        casez_tmp_3 = 8'h76;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01010111:
+        casez_tmp_3 = 8'h77;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01011000:
+        casez_tmp_3 = 8'h78;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01011001:
+        casez_tmp_3 = 8'h79;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01011010:
+        casez_tmp_3 = 8'h7A;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01011011:
+        casez_tmp_3 = 8'h7B;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01011100:
+        casez_tmp_3 = 8'h7C;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01011101:
+        casez_tmp_3 = 8'h7D;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01011110:
+        casez_tmp_3 = 8'h7E;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01011111:
+        casez_tmp_3 = 8'h7F;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01100000:
+        casez_tmp_3 = 8'h80;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01100001:
+        casez_tmp_3 = 8'h81;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01100010:
+        casez_tmp_3 = 8'h82;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01100011:
+        casez_tmp_3 = 8'h83;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01100100:
+        casez_tmp_3 = 8'h84;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01100101:
+        casez_tmp_3 = 8'h85;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01100110:
+        casez_tmp_3 = 8'h86;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01100111:
+        casez_tmp_3 = 8'h87;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01101000:
+        casez_tmp_3 = 8'h88;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01101001:
+        casez_tmp_3 = 8'h89;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01101010:
+        casez_tmp_3 = 8'h8A;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01101011:
+        casez_tmp_3 = 8'h8B;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01101100:
+        casez_tmp_3 = 8'h8C;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01101101:
+        casez_tmp_3 = 8'h8D;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01101110:
+        casez_tmp_3 = 8'h8E;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01101111:
+        casez_tmp_3 = 8'h8F;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01110000:
+        casez_tmp_3 = 8'h90;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01110001:
+        casez_tmp_3 = 8'h91;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01110010:
+        casez_tmp_3 = 8'h92;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01110011:
+        casez_tmp_3 = 8'h93;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01110100:
+        casez_tmp_3 = 8'h94;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01110101:
+        casez_tmp_3 = 8'h95;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01110110:
+        casez_tmp_3 = 8'h96;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01110111:
+        casez_tmp_3 = 8'h97;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01111000:
+        casez_tmp_3 = 8'h98;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01111001:
+        casez_tmp_3 = 8'h99;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01111010:
+        casez_tmp_3 = 8'h9A;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01111011:
+        casez_tmp_3 = 8'h9B;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01111100:
+        casez_tmp_3 = 8'h9C;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01111101:
+        casez_tmp_3 = 8'h9D;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01111110:
+        casez_tmp_3 = 8'h9E;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01111111:
+        casez_tmp_3 = 8'h9F;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10000000:
+        casez_tmp_3 = 8'hA0;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10000001:
+        casez_tmp_3 = 8'hA1;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10000010:
+        casez_tmp_3 = 8'hA2;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10000011:
+        casez_tmp_3 = 8'hA3;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10000100:
+        casez_tmp_3 = 8'hA4;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10000101:
+        casez_tmp_3 = 8'hA5;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10000110:
+        casez_tmp_3 = 8'hA6;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10000111:
+        casez_tmp_3 = 8'hA7;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10001000:
+        casez_tmp_3 = 8'hA8;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10001001:
+        casez_tmp_3 = 8'hA9;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10001010:
+        casez_tmp_3 = 8'hAA;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10001011:
+        casez_tmp_3 = 8'hAB;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10001100:
+        casez_tmp_3 = 8'hAC;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10001101:
+        casez_tmp_3 = 8'hAD;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10001110:
+        casez_tmp_3 = 8'hAE;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10001111:
+        casez_tmp_3 = 8'hAF;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10010000:
+        casez_tmp_3 = 8'hB0;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10010001:
+        casez_tmp_3 = 8'hB1;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10010010:
+        casez_tmp_3 = 8'hB2;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10010011:
+        casez_tmp_3 = 8'hB3;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10010100:
+        casez_tmp_3 = 8'hB4;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10010101:
+        casez_tmp_3 = 8'hB5;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10010110:
+        casez_tmp_3 = 8'hB6;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10010111:
+        casez_tmp_3 = 8'hB7;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10011000:
+        casez_tmp_3 = 8'hB8;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10011001:
+        casez_tmp_3 = 8'hB9;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10011010:
+        casez_tmp_3 = 8'hBA;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10011011:
+        casez_tmp_3 = 8'hBB;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10011100:
+        casez_tmp_3 = 8'hBC;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10011101:
+        casez_tmp_3 = 8'hBD;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10011110:
+        casez_tmp_3 = 8'hBE;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10011111:
+        casez_tmp_3 = 8'hBF;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10100000:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10100001:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10100010:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10100011:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10100100:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10100101:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10100110:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10100111:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10101000:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10101001:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10101010:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10101011:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10101100:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10101101:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10101110:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10101111:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10110000:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10110001:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10110010:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10110011:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10110100:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10110101:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10110110:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10110111:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10111000:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10111001:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10111010:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10111011:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10111100:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10111101:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10111110:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10111111:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11000000:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11000001:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11000010:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11000011:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11000100:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11000101:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11000110:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11000111:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11001000:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11001001:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11001010:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11001011:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11001100:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11001101:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11001110:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11001111:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11010000:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11010001:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11010010:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11010011:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11010100:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11010101:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11010110:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11010111:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11011000:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11011001:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11011010:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11011011:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11011100:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11011101:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11011110:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11011111:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11100000:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11100001:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11100010:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11100011:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11100100:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11100101:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11100110:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11100111:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11101000:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11101001:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11101010:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11101011:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11101100:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11101101:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11101110:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11101111:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11110000:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11110001:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11110010:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11110011:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11110100:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11110101:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11110110:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11110111:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11111000:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11111001:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11111010:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11111011:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11111100:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11111101:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11111110:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      default:
+        casez_tmp_3 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+    endcase	// backend/src/zaqal/backend/FreeList.scala:53:20, :54:{8,14,30}, :64:26
+  end // always_comb
+  reg  [7:0]  casez_tmp_4;	// backend/src/zaqal/backend/FreeList.scala:64:26
+  wire [8:0]  io_allocatePhyReg_5_next =
+    _GEN_4 + {6'h0, _GEN_5 + {1'h0, _GEN_0 + _GEN_3 + _GEN_2}};	// backend/src/zaqal/backend/FreeList.scala:12:7, :53:20, :58:29, :62:26
+  always_comb begin	// backend/src/zaqal/backend/FreeList.scala:64:26
+    casez (io_allocatePhyReg_5_next > 9'h9F
+             ? io_allocatePhyReg_5_next[7:0] + 8'h60
+             : io_allocatePhyReg_5_next[7:0])	// backend/src/zaqal/backend/FreeList.scala:53:20, :54:{8,14,30}, :64:26
+      8'b00000000:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00000001:
+        casez_tmp_4 = 8'h21;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00000010:
+        casez_tmp_4 = 8'h22;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00000011:
+        casez_tmp_4 = 8'h23;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00000100:
+        casez_tmp_4 = 8'h24;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00000101:
+        casez_tmp_4 = 8'h25;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00000110:
+        casez_tmp_4 = 8'h26;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00000111:
+        casez_tmp_4 = 8'h27;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00001000:
+        casez_tmp_4 = 8'h28;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00001001:
+        casez_tmp_4 = 8'h29;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00001010:
+        casez_tmp_4 = 8'h2A;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00001011:
+        casez_tmp_4 = 8'h2B;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00001100:
+        casez_tmp_4 = 8'h2C;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00001101:
+        casez_tmp_4 = 8'h2D;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00001110:
+        casez_tmp_4 = 8'h2E;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00001111:
+        casez_tmp_4 = 8'h2F;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00010000:
+        casez_tmp_4 = 8'h30;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00010001:
+        casez_tmp_4 = 8'h31;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00010010:
+        casez_tmp_4 = 8'h32;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00010011:
+        casez_tmp_4 = 8'h33;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00010100:
+        casez_tmp_4 = 8'h34;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00010101:
+        casez_tmp_4 = 8'h35;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00010110:
+        casez_tmp_4 = 8'h36;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00010111:
+        casez_tmp_4 = 8'h37;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00011000:
+        casez_tmp_4 = 8'h38;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00011001:
+        casez_tmp_4 = 8'h39;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00011010:
+        casez_tmp_4 = 8'h3A;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00011011:
+        casez_tmp_4 = 8'h3B;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00011100:
+        casez_tmp_4 = 8'h3C;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00011101:
+        casez_tmp_4 = 8'h3D;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00011110:
+        casez_tmp_4 = 8'h3E;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00011111:
+        casez_tmp_4 = 8'h3F;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00100000:
+        casez_tmp_4 = 8'h40;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00100001:
+        casez_tmp_4 = 8'h41;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00100010:
+        casez_tmp_4 = 8'h42;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00100011:
+        casez_tmp_4 = 8'h43;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00100100:
+        casez_tmp_4 = 8'h44;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00100101:
+        casez_tmp_4 = 8'h45;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00100110:
+        casez_tmp_4 = 8'h46;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00100111:
+        casez_tmp_4 = 8'h47;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00101000:
+        casez_tmp_4 = 8'h48;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00101001:
+        casez_tmp_4 = 8'h49;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00101010:
+        casez_tmp_4 = 8'h4A;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00101011:
+        casez_tmp_4 = 8'h4B;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00101100:
+        casez_tmp_4 = 8'h4C;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00101101:
+        casez_tmp_4 = 8'h4D;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00101110:
+        casez_tmp_4 = 8'h4E;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00101111:
+        casez_tmp_4 = 8'h4F;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00110000:
+        casez_tmp_4 = 8'h50;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00110001:
+        casez_tmp_4 = 8'h51;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00110010:
+        casez_tmp_4 = 8'h52;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00110011:
+        casez_tmp_4 = 8'h53;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00110100:
+        casez_tmp_4 = 8'h54;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00110101:
+        casez_tmp_4 = 8'h55;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00110110:
+        casez_tmp_4 = 8'h56;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00110111:
+        casez_tmp_4 = 8'h57;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00111000:
+        casez_tmp_4 = 8'h58;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00111001:
+        casez_tmp_4 = 8'h59;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00111010:
+        casez_tmp_4 = 8'h5A;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00111011:
+        casez_tmp_4 = 8'h5B;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00111100:
+        casez_tmp_4 = 8'h5C;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00111101:
+        casez_tmp_4 = 8'h5D;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00111110:
+        casez_tmp_4 = 8'h5E;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b00111111:
+        casez_tmp_4 = 8'h5F;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01000000:
+        casez_tmp_4 = 8'h60;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01000001:
+        casez_tmp_4 = 8'h61;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01000010:
+        casez_tmp_4 = 8'h62;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01000011:
+        casez_tmp_4 = 8'h63;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01000100:
+        casez_tmp_4 = 8'h64;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01000101:
+        casez_tmp_4 = 8'h65;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01000110:
+        casez_tmp_4 = 8'h66;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01000111:
+        casez_tmp_4 = 8'h67;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01001000:
+        casez_tmp_4 = 8'h68;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01001001:
+        casez_tmp_4 = 8'h69;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01001010:
+        casez_tmp_4 = 8'h6A;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01001011:
+        casez_tmp_4 = 8'h6B;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01001100:
+        casez_tmp_4 = 8'h6C;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01001101:
+        casez_tmp_4 = 8'h6D;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01001110:
+        casez_tmp_4 = 8'h6E;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01001111:
+        casez_tmp_4 = 8'h6F;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01010000:
+        casez_tmp_4 = 8'h70;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01010001:
+        casez_tmp_4 = 8'h71;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01010010:
+        casez_tmp_4 = 8'h72;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01010011:
+        casez_tmp_4 = 8'h73;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01010100:
+        casez_tmp_4 = 8'h74;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01010101:
+        casez_tmp_4 = 8'h75;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01010110:
+        casez_tmp_4 = 8'h76;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01010111:
+        casez_tmp_4 = 8'h77;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01011000:
+        casez_tmp_4 = 8'h78;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01011001:
+        casez_tmp_4 = 8'h79;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01011010:
+        casez_tmp_4 = 8'h7A;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01011011:
+        casez_tmp_4 = 8'h7B;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01011100:
+        casez_tmp_4 = 8'h7C;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01011101:
+        casez_tmp_4 = 8'h7D;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01011110:
+        casez_tmp_4 = 8'h7E;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01011111:
+        casez_tmp_4 = 8'h7F;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01100000:
+        casez_tmp_4 = 8'h80;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01100001:
+        casez_tmp_4 = 8'h81;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01100010:
+        casez_tmp_4 = 8'h82;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01100011:
+        casez_tmp_4 = 8'h83;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01100100:
+        casez_tmp_4 = 8'h84;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01100101:
+        casez_tmp_4 = 8'h85;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01100110:
+        casez_tmp_4 = 8'h86;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01100111:
+        casez_tmp_4 = 8'h87;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01101000:
+        casez_tmp_4 = 8'h88;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01101001:
+        casez_tmp_4 = 8'h89;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01101010:
+        casez_tmp_4 = 8'h8A;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01101011:
+        casez_tmp_4 = 8'h8B;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01101100:
+        casez_tmp_4 = 8'h8C;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01101101:
+        casez_tmp_4 = 8'h8D;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01101110:
+        casez_tmp_4 = 8'h8E;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01101111:
+        casez_tmp_4 = 8'h8F;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01110000:
+        casez_tmp_4 = 8'h90;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01110001:
+        casez_tmp_4 = 8'h91;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01110010:
+        casez_tmp_4 = 8'h92;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01110011:
+        casez_tmp_4 = 8'h93;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01110100:
+        casez_tmp_4 = 8'h94;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01110101:
+        casez_tmp_4 = 8'h95;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01110110:
+        casez_tmp_4 = 8'h96;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01110111:
+        casez_tmp_4 = 8'h97;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01111000:
+        casez_tmp_4 = 8'h98;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01111001:
+        casez_tmp_4 = 8'h99;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01111010:
+        casez_tmp_4 = 8'h9A;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01111011:
+        casez_tmp_4 = 8'h9B;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01111100:
+        casez_tmp_4 = 8'h9C;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01111101:
+        casez_tmp_4 = 8'h9D;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01111110:
+        casez_tmp_4 = 8'h9E;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b01111111:
+        casez_tmp_4 = 8'h9F;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10000000:
+        casez_tmp_4 = 8'hA0;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10000001:
+        casez_tmp_4 = 8'hA1;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10000010:
+        casez_tmp_4 = 8'hA2;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10000011:
+        casez_tmp_4 = 8'hA3;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10000100:
+        casez_tmp_4 = 8'hA4;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10000101:
+        casez_tmp_4 = 8'hA5;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10000110:
+        casez_tmp_4 = 8'hA6;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10000111:
+        casez_tmp_4 = 8'hA7;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10001000:
+        casez_tmp_4 = 8'hA8;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10001001:
+        casez_tmp_4 = 8'hA9;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10001010:
+        casez_tmp_4 = 8'hAA;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10001011:
+        casez_tmp_4 = 8'hAB;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10001100:
+        casez_tmp_4 = 8'hAC;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10001101:
+        casez_tmp_4 = 8'hAD;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10001110:
+        casez_tmp_4 = 8'hAE;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10001111:
+        casez_tmp_4 = 8'hAF;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10010000:
+        casez_tmp_4 = 8'hB0;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10010001:
+        casez_tmp_4 = 8'hB1;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10010010:
+        casez_tmp_4 = 8'hB2;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10010011:
+        casez_tmp_4 = 8'hB3;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10010100:
+        casez_tmp_4 = 8'hB4;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10010101:
+        casez_tmp_4 = 8'hB5;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10010110:
+        casez_tmp_4 = 8'hB6;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10010111:
+        casez_tmp_4 = 8'hB7;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10011000:
+        casez_tmp_4 = 8'hB8;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10011001:
+        casez_tmp_4 = 8'hB9;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10011010:
+        casez_tmp_4 = 8'hBA;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10011011:
+        casez_tmp_4 = 8'hBB;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10011100:
+        casez_tmp_4 = 8'hBC;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10011101:
+        casez_tmp_4 = 8'hBD;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10011110:
+        casez_tmp_4 = 8'hBE;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10011111:
+        casez_tmp_4 = 8'hBF;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10100000:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10100001:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10100010:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10100011:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10100100:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10100101:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10100110:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10100111:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10101000:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10101001:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10101010:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10101011:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10101100:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10101101:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10101110:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10101111:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10110000:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10110001:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10110010:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10110011:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10110100:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10110101:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10110110:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10110111:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10111000:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10111001:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10111010:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10111011:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10111100:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10111101:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10111110:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b10111111:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11000000:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11000001:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11000010:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11000011:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11000100:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11000101:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11000110:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11000111:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11001000:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11001001:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11001010:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11001011:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11001100:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11001101:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11001110:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11001111:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11010000:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11010001:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11010010:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11010011:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11010100:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11010101:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11010110:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11010111:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11011000:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11011001:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11011010:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11011011:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11011100:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11011101:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11011110:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11011111:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11100000:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11100001:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11100010:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11100011:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11100100:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11100101:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11100110:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11100111:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11101000:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11101001:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11101010:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11101011:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11101100:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11101101:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11101110:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11101111:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11110000:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11110001:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11110010:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11110011:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11110100:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11110101:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11110110:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11110111:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11111000:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11111001:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11111010:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11111011:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11111100:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11111101:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      8'b11111110:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+      default:
+        casez_tmp_4 = 8'h20;	// backend/src/zaqal/backend/FreeList.scala:64:26
+    endcase	// backend/src/zaqal/backend/FreeList.scala:53:20, :54:{8,14,30}, :64:26
+  end // always_comb
+  wire [12:0] _allocMask_T = 13'h1 << io_snptEnqIdx;	// backend/src/zaqal/backend/FreeList.scala:76:39
+  wire [5:0]  _GEN_6 =
     _allocMask_T[5:0] - 6'h1
     & {io_allocateReq_5,
        io_allocateReq_4,
@@ -395,11 +3250,42 @@ module FreeList(	// backend/src/zaqal/backend/FreeList.scala:12:7
        io_allocateReq_2,
        io_allocateReq_1,
        io_allocateReq_0};	// backend/src/zaqal/backend/FreeList.scala:76:{39,57}, :77:{64,71}
-  wire [8:0]        snpt_head_ptr_next =
-    _GEN_5
+  wire [8:0]  snpt_head_ptr_next =
+    _GEN_4
     + {6'h0,
-       {1'h0, {1'h0, _GEN_7[0]} + {1'h0, _GEN_7[1]} + {1'h0, _GEN_7[2]}}
-         + {1'h0, {1'h0, _GEN_7[3]} + {1'h0, _GEN_7[4]} + {1'h0, _GEN_7[5]}}};	// backend/src/zaqal/backend/FreeList.scala:12:7, :53:20, :58:29, :77:{48,71}
+       {1'h0, {1'h0, _GEN_6[0]} + {1'h0, _GEN_6[1]} + {1'h0, _GEN_6[2]}}
+         + {1'h0, {1'h0, _GEN_6[3]} + {1'h0, _GEN_6[4]} + {1'h0, _GEN_6[5]}}};	// backend/src/zaqal/backend/FreeList.scala:12:7, :53:20, :58:29, :77:{48,71}
+  reg  [7:0]  casez_tmp_5;	// backend/src/zaqal/backend/FreeList.scala:87:28
+  always_comb begin	// backend/src/zaqal/backend/FreeList.scala:87:28
+    casez (io_snptRestoreIdx)	// backend/src/zaqal/backend/FreeList.scala:87:28
+      3'b000:
+        casez_tmp_5 = _snapshots_io_snapshots_0;	// backend/src/zaqal/backend/FreeList.scala:50:25, :87:28
+      3'b001:
+        casez_tmp_5 = _snapshots_io_snapshots_1;	// backend/src/zaqal/backend/FreeList.scala:50:25, :87:28
+      3'b010:
+        casez_tmp_5 = _snapshots_io_snapshots_2;	// backend/src/zaqal/backend/FreeList.scala:50:25, :87:28
+      3'b011:
+        casez_tmp_5 = _snapshots_io_snapshots_3;	// backend/src/zaqal/backend/FreeList.scala:50:25, :87:28
+      3'b100:
+        casez_tmp_5 = _snapshots_io_snapshots_4;	// backend/src/zaqal/backend/FreeList.scala:50:25, :87:28
+      3'b101:
+        casez_tmp_5 = _snapshots_io_snapshots_5;	// backend/src/zaqal/backend/FreeList.scala:50:25, :87:28
+      3'b110:
+        casez_tmp_5 = _snapshots_io_snapshots_6;	// backend/src/zaqal/backend/FreeList.scala:50:25, :87:28
+      default:
+        casez_tmp_5 = _snapshots_io_snapshots_7;	// backend/src/zaqal/backend/FreeList.scala:50:25, :87:28
+    endcase	// backend/src/zaqal/backend/FreeList.scala:87:28
+  end // always_comb
+  wire [2:0]  actualAlloc =
+    io_doAllocate & io_canAllocate_0
+      ? {1'h0,
+         {1'h0, io_allocateFire_0} + {1'h0, io_allocateFire_1}
+           + {1'h0, io_allocateFire_2}}
+        + {1'h0,
+           {1'h0, io_allocateFire_3} + {1'h0, io_allocateFire_4}
+             + {1'h0, io_allocateFire_5}}
+      : 3'h0;	// backend/src/zaqal/backend/FreeList.scala:58:29, :59:31, :68:25, :97:31, :98:{26,41}
+  wire [8:0]  headPtr_next = _GEN_4 + {6'h0, actualAlloc};	// backend/src/zaqal/backend/FreeList.scala:12:7, :53:20, :98:26
   always @(posedge clock) begin	// backend/src/zaqal/backend/FreeList.scala:12:7
     if (reset) begin	// backend/src/zaqal/backend/FreeList.scala:12:7
       headPtr <= 8'h0;	// backend/src/zaqal/backend/FreeList.scala:13:14, :44:24
@@ -408,34 +3294,15 @@ module FreeList(	// backend/src/zaqal/backend/FreeList.scala:12:7
     end
     else begin	// backend/src/zaqal/backend/FreeList.scala:12:7
       if (io_redirect) begin	// backend/src/zaqal/backend/FreeList.scala:13:14
-        automatic logic [7:0][7:0] _GEN_8 =
-          {{_snapshots_io_snapshots_7},
-           {_snapshots_io_snapshots_6},
-           {_snapshots_io_snapshots_5},
-           {_snapshots_io_snapshots_4},
-           {_snapshots_io_snapshots_3},
-           {_snapshots_io_snapshots_2},
-           {_snapshots_io_snapshots_1},
-           {_snapshots_io_snapshots_0}};	// backend/src/zaqal/backend/FreeList.scala:50:25, :87:28
-        headPtr <= _GEN_8[io_snptRestoreIdx];	// backend/src/zaqal/backend/FreeList.scala:44:24, :87:28
+        headPtr <= casez_tmp_5;	// backend/src/zaqal/backend/FreeList.scala:44:24, :87:28
         freeCount <=
-          tailPtr == _GEN_8[io_snptRestoreIdx]
+          tailPtr == casez_tmp_5
             ? 8'hA0
-            : tailPtr > _GEN_8[io_snptRestoreIdx]
-                ? tailPtr - _GEN_8[io_snptRestoreIdx]
-                : 8'hA0 - (_GEN_8[io_snptRestoreIdx] - tailPtr);	// backend/src/zaqal/backend/FreeList.scala:41:33, :45:24, :48:26, :87:28, :90:{19,28}, :92:{23,32}, :93:32, :94:{31,48}
+            : tailPtr > casez_tmp_5
+                ? tailPtr - casez_tmp_5
+                : 8'hA0 - (casez_tmp_5 - tailPtr);	// backend/src/zaqal/backend/FreeList.scala:41:33, :45:24, :48:26, :87:28, :90:{19,28}, :92:{23,32}, :93:32, :94:{31,48}
       end
       else begin	// backend/src/zaqal/backend/FreeList.scala:13:14
-        automatic logic [2:0] actualAlloc =
-          io_doAllocate & io_canAllocate_0
-            ? {1'h0,
-               {1'h0, io_allocateFire_0} + {1'h0, io_allocateFire_1}
-                 + {1'h0, io_allocateFire_2}}
-              + {1'h0,
-                 {1'h0, io_allocateFire_3} + {1'h0, io_allocateFire_4}
-                   + {1'h0, io_allocateFire_5}}
-            : 3'h0;	// backend/src/zaqal/backend/FreeList.scala:58:29, :59:31, :68:25, :97:31, :98:{26,41}
-        automatic logic [8:0] headPtr_next = _GEN_5 + {6'h0, actualAlloc};	// backend/src/zaqal/backend/FreeList.scala:12:7, :53:20, :98:26
         headPtr <= headPtr_next > 9'h9F ? headPtr_next[7:0] + 8'h60 : headPtr_next[7:0];	// backend/src/zaqal/backend/FreeList.scala:44:24, :53:20, :54:{8,14,30}
         freeCount <= freeCount - {5'h0, actualAlloc};	// backend/src/zaqal/backend/FreeList.scala:48:26, :53:20, :59:31, :98:26, :101:28
       end
@@ -449,8 +3316,8 @@ module FreeList(	// backend/src/zaqal/backend/FreeList.scala:12:7
     `ifdef FIRRTL_BEFORE_INITIAL	// backend/src/zaqal/backend/FreeList.scala:12:7
       `FIRRTL_BEFORE_INITIAL	// backend/src/zaqal/backend/FreeList.scala:12:7
     `endif // FIRRTL_BEFORE_INITIAL
+    logic [31:0] _RANDOM[0:40];	// backend/src/zaqal/backend/FreeList.scala:12:7
     initial begin	// backend/src/zaqal/backend/FreeList.scala:12:7
-      automatic logic [31:0] _RANDOM[0:40];	// backend/src/zaqal/backend/FreeList.scala:12:7
       `ifdef INIT_RANDOM_PROLOG_	// backend/src/zaqal/backend/FreeList.scala:12:7
         `INIT_RANDOM_PROLOG_	// backend/src/zaqal/backend/FreeList.scala:12:7
       `endif // INIT_RANDOM_PROLOG_
@@ -492,27 +3359,12 @@ module FreeList(	// backend/src/zaqal/backend/FreeList.scala:12:7
     .io_snapshots_6 (_snapshots_io_snapshots_6),
     .io_snapshots_7 (_snapshots_io_snapshots_7)
   );
-  assign io_allocatePhyReg_0 = _GEN[_GEN_5 > 9'h9F ? headPtr + 8'h60 : headPtr];	// backend/src/zaqal/backend/FreeList.scala:12:7, :44:24, :53:20, :54:{8,14,30}, :64:26
-  assign io_allocatePhyReg_1 =
-    _GEN[io_allocatePhyReg_1_next > 9'h9F
-           ? io_allocatePhyReg_1_next[7:0] + 8'h60
-           : io_allocatePhyReg_1_next[7:0]];	// backend/src/zaqal/backend/FreeList.scala:12:7, :53:20, :54:{8,14,30}, :64:26
-  assign io_allocatePhyReg_2 =
-    _GEN[io_allocatePhyReg_2_next > 9'h9F
-           ? io_allocatePhyReg_2_next[7:0] + 8'h60
-           : io_allocatePhyReg_2_next[7:0]];	// backend/src/zaqal/backend/FreeList.scala:12:7, :53:20, :54:{8,14,30}, :64:26
-  assign io_allocatePhyReg_3 =
-    _GEN[io_allocatePhyReg_3_next > 9'h9F
-           ? io_allocatePhyReg_3_next[7:0] + 8'h60
-           : io_allocatePhyReg_3_next[7:0]];	// backend/src/zaqal/backend/FreeList.scala:12:7, :53:20, :54:{8,14,30}, :64:26
-  assign io_allocatePhyReg_4 =
-    _GEN[io_allocatePhyReg_4_next > 9'h9F
-           ? io_allocatePhyReg_4_next[7:0] + 8'h60
-           : io_allocatePhyReg_4_next[7:0]];	// backend/src/zaqal/backend/FreeList.scala:12:7, :53:20, :54:{8,14,30}, :64:26
-  assign io_allocatePhyReg_5 =
-    _GEN[io_allocatePhyReg_5_next > 9'h9F
-           ? io_allocatePhyReg_5_next[7:0] + 8'h60
-           : io_allocatePhyReg_5_next[7:0]];	// backend/src/zaqal/backend/FreeList.scala:12:7, :53:20, :54:{8,14,30}, :64:26
+  assign io_allocatePhyReg_0 = casez_tmp;	// backend/src/zaqal/backend/FreeList.scala:12:7, :64:26
+  assign io_allocatePhyReg_1 = casez_tmp_0;	// backend/src/zaqal/backend/FreeList.scala:12:7, :64:26
+  assign io_allocatePhyReg_2 = casez_tmp_1;	// backend/src/zaqal/backend/FreeList.scala:12:7, :64:26
+  assign io_allocatePhyReg_3 = casez_tmp_2;	// backend/src/zaqal/backend/FreeList.scala:12:7, :64:26
+  assign io_allocatePhyReg_4 = casez_tmp_3;	// backend/src/zaqal/backend/FreeList.scala:12:7, :64:26
+  assign io_allocatePhyReg_5 = casez_tmp_4;	// backend/src/zaqal/backend/FreeList.scala:12:7, :64:26
   assign io_canAllocate = io_canAllocate_0;	// backend/src/zaqal/backend/FreeList.scala:12:7, :59:31
 endmodule
 

@@ -111,8 +111,8 @@ module Multiplier(	// backend/src/zaqal/backend/fu/Multiplier.scala:8:7
     `ifdef FIRRTL_BEFORE_INITIAL	// backend/src/zaqal/backend/fu/Multiplier.scala:8:7
       `FIRRTL_BEFORE_INITIAL	// backend/src/zaqal/backend/fu/Multiplier.scala:8:7
     `endif // FIRRTL_BEFORE_INITIAL
+    logic [31:0] _RANDOM[0:26];	// backend/src/zaqal/backend/fu/Multiplier.scala:8:7
     initial begin	// backend/src/zaqal/backend/fu/Multiplier.scala:8:7
-      automatic logic [31:0] _RANDOM[0:26];	// backend/src/zaqal/backend/fu/Multiplier.scala:8:7
       `ifdef INIT_RANDOM_PROLOG_	// backend/src/zaqal/backend/fu/Multiplier.scala:8:7
         `INIT_RANDOM_PROLOG_	// backend/src/zaqal/backend/fu/Multiplier.scala:8:7
       `endif // INIT_RANDOM_PROLOG_

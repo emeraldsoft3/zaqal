@@ -535,1425 +535,2141 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
                 io_rs3_ready_in_5	// backend/src/zaqal/backend/issue/IssueQueue.scala:9:14
 );
 
-  wire [7:0]       _ageDetector_io_out_0;	// backend/src/zaqal/backend/issue/IssueQueue.scala:55:27
-  reg              entries_0_valid;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg  [63:0]      entries_0_uop_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg  [31:0]      entries_0_uop_uop_inst_raw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_0_uop_decode_is_lb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_0_uop_decode_is_lh;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_0_uop_decode_is_lw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_0_uop_decode_is_ld;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_0_uop_decode_is_lbu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_0_uop_decode_is_lhu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_0_uop_decode_is_lwu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_0_uop_decode_is_load;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_0_uop_decode_is_sb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_0_uop_decode_is_sh;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_0_uop_decode_is_sw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_0_uop_decode_is_sd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_0_uop_decode_is_store;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_0_uop_decode_is_lr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_0_uop_decode_is_sc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_0_uop_decode_is_lr_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_0_uop_decode_is_lr_d;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_0_uop_decode_is_sc_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_0_uop_decode_is_sc_d;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_0_uop_decode_is_amoadd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_0_uop_decode_is_amoswap;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_0_uop_decode_is_amoxor;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_0_uop_decode_is_amoand;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_0_uop_decode_is_amoor;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_0_uop_decode_is_amomin;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_0_uop_decode_is_amomax;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_0_uop_decode_is_amominu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_0_uop_decode_is_amomaxu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_0_uop_decode_is_amo_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_0_uop_decode_is_amo_d;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_0_uop_decode_is_atomic;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_0_uop_decode_is_fload;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_0_uop_decode_is_flw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_0_uop_decode_is_fld;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_0_uop_decode_is_fstore;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_0_uop_decode_is_fsw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_0_uop_decode_is_fsd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_0_uop_decode_is_fmadd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_0_uop_decode_is_fadd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_0_uop_decode_is_fsub;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_0_uop_decode_is_fmul;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_0_uop_decode_is_fdiv;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_0_uop_decode_is_fsqrt;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_0_uop_decode_is_fsgnj;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_0_uop_decode_is_fminmax;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_0_uop_decode_is_fcvt_f2i;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_0_uop_decode_is_fcvt_i2f;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_0_uop_decode_is_fmv_w_x;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_0_uop_decode_is_fmv_x_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_0_uop_decode_is_feq;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_0_uop_decode_is_flt;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_0_uop_decode_is_fle;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_0_uop_decode_is_fclass;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg  [63:0]      entries_0_uop_decode_imm;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg  [7:0]       entries_0_uop_psrs1;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg  [7:0]       entries_0_uop_psrs2;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg  [7:0]       entries_0_uop_psrs3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg  [7:0]       entries_0_uop_pdest;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg  [2:0]       entries_0_uop_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_0_rs1_ready;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_0_rs2_ready;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_0_rs3_ready;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_1_valid;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg  [63:0]      entries_1_uop_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg  [31:0]      entries_1_uop_uop_inst_raw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_1_uop_decode_is_lb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_1_uop_decode_is_lh;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_1_uop_decode_is_lw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_1_uop_decode_is_ld;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_1_uop_decode_is_lbu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_1_uop_decode_is_lhu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_1_uop_decode_is_lwu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_1_uop_decode_is_load;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_1_uop_decode_is_sb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_1_uop_decode_is_sh;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_1_uop_decode_is_sw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_1_uop_decode_is_sd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_1_uop_decode_is_store;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_1_uop_decode_is_lr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_1_uop_decode_is_sc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_1_uop_decode_is_lr_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_1_uop_decode_is_lr_d;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_1_uop_decode_is_sc_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_1_uop_decode_is_sc_d;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_1_uop_decode_is_amoadd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_1_uop_decode_is_amoswap;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_1_uop_decode_is_amoxor;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_1_uop_decode_is_amoand;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_1_uop_decode_is_amoor;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_1_uop_decode_is_amomin;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_1_uop_decode_is_amomax;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_1_uop_decode_is_amominu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_1_uop_decode_is_amomaxu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_1_uop_decode_is_amo_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_1_uop_decode_is_amo_d;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_1_uop_decode_is_atomic;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_1_uop_decode_is_fload;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_1_uop_decode_is_flw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_1_uop_decode_is_fld;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_1_uop_decode_is_fstore;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_1_uop_decode_is_fsw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_1_uop_decode_is_fsd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_1_uop_decode_is_fmadd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_1_uop_decode_is_fadd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_1_uop_decode_is_fsub;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_1_uop_decode_is_fmul;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_1_uop_decode_is_fdiv;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_1_uop_decode_is_fsqrt;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_1_uop_decode_is_fsgnj;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_1_uop_decode_is_fminmax;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_1_uop_decode_is_fcvt_f2i;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_1_uop_decode_is_fcvt_i2f;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_1_uop_decode_is_fmv_w_x;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_1_uop_decode_is_fmv_x_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_1_uop_decode_is_feq;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_1_uop_decode_is_flt;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_1_uop_decode_is_fle;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_1_uop_decode_is_fclass;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg  [63:0]      entries_1_uop_decode_imm;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg  [7:0]       entries_1_uop_psrs1;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg  [7:0]       entries_1_uop_psrs2;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg  [7:0]       entries_1_uop_psrs3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg  [7:0]       entries_1_uop_pdest;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg  [2:0]       entries_1_uop_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_1_rs1_ready;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_1_rs2_ready;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_1_rs3_ready;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_2_valid;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg  [63:0]      entries_2_uop_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg  [31:0]      entries_2_uop_uop_inst_raw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_2_uop_decode_is_lb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_2_uop_decode_is_lh;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_2_uop_decode_is_lw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_2_uop_decode_is_ld;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_2_uop_decode_is_lbu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_2_uop_decode_is_lhu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_2_uop_decode_is_lwu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_2_uop_decode_is_load;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_2_uop_decode_is_sb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_2_uop_decode_is_sh;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_2_uop_decode_is_sw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_2_uop_decode_is_sd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_2_uop_decode_is_store;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_2_uop_decode_is_lr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_2_uop_decode_is_sc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_2_uop_decode_is_lr_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_2_uop_decode_is_lr_d;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_2_uop_decode_is_sc_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_2_uop_decode_is_sc_d;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_2_uop_decode_is_amoadd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_2_uop_decode_is_amoswap;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_2_uop_decode_is_amoxor;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_2_uop_decode_is_amoand;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_2_uop_decode_is_amoor;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_2_uop_decode_is_amomin;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_2_uop_decode_is_amomax;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_2_uop_decode_is_amominu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_2_uop_decode_is_amomaxu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_2_uop_decode_is_amo_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_2_uop_decode_is_amo_d;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_2_uop_decode_is_atomic;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_2_uop_decode_is_fload;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_2_uop_decode_is_flw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_2_uop_decode_is_fld;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_2_uop_decode_is_fstore;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_2_uop_decode_is_fsw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_2_uop_decode_is_fsd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_2_uop_decode_is_fmadd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_2_uop_decode_is_fadd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_2_uop_decode_is_fsub;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_2_uop_decode_is_fmul;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_2_uop_decode_is_fdiv;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_2_uop_decode_is_fsqrt;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_2_uop_decode_is_fsgnj;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_2_uop_decode_is_fminmax;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_2_uop_decode_is_fcvt_f2i;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_2_uop_decode_is_fcvt_i2f;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_2_uop_decode_is_fmv_w_x;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_2_uop_decode_is_fmv_x_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_2_uop_decode_is_feq;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_2_uop_decode_is_flt;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_2_uop_decode_is_fle;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_2_uop_decode_is_fclass;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg  [63:0]      entries_2_uop_decode_imm;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg  [7:0]       entries_2_uop_psrs1;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg  [7:0]       entries_2_uop_psrs2;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg  [7:0]       entries_2_uop_psrs3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg  [7:0]       entries_2_uop_pdest;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg  [2:0]       entries_2_uop_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_2_rs1_ready;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_2_rs2_ready;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_2_rs3_ready;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_3_valid;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg  [63:0]      entries_3_uop_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg  [31:0]      entries_3_uop_uop_inst_raw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_3_uop_decode_is_lb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_3_uop_decode_is_lh;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_3_uop_decode_is_lw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_3_uop_decode_is_ld;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_3_uop_decode_is_lbu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_3_uop_decode_is_lhu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_3_uop_decode_is_lwu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_3_uop_decode_is_load;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_3_uop_decode_is_sb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_3_uop_decode_is_sh;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_3_uop_decode_is_sw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_3_uop_decode_is_sd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_3_uop_decode_is_store;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_3_uop_decode_is_lr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_3_uop_decode_is_sc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_3_uop_decode_is_lr_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_3_uop_decode_is_lr_d;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_3_uop_decode_is_sc_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_3_uop_decode_is_sc_d;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_3_uop_decode_is_amoadd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_3_uop_decode_is_amoswap;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_3_uop_decode_is_amoxor;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_3_uop_decode_is_amoand;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_3_uop_decode_is_amoor;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_3_uop_decode_is_amomin;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_3_uop_decode_is_amomax;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_3_uop_decode_is_amominu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_3_uop_decode_is_amomaxu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_3_uop_decode_is_amo_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_3_uop_decode_is_amo_d;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_3_uop_decode_is_atomic;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_3_uop_decode_is_fload;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_3_uop_decode_is_flw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_3_uop_decode_is_fld;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_3_uop_decode_is_fstore;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_3_uop_decode_is_fsw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_3_uop_decode_is_fsd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_3_uop_decode_is_fmadd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_3_uop_decode_is_fadd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_3_uop_decode_is_fsub;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_3_uop_decode_is_fmul;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_3_uop_decode_is_fdiv;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_3_uop_decode_is_fsqrt;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_3_uop_decode_is_fsgnj;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_3_uop_decode_is_fminmax;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_3_uop_decode_is_fcvt_f2i;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_3_uop_decode_is_fcvt_i2f;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_3_uop_decode_is_fmv_w_x;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_3_uop_decode_is_fmv_x_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_3_uop_decode_is_feq;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_3_uop_decode_is_flt;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_3_uop_decode_is_fle;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_3_uop_decode_is_fclass;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg  [63:0]      entries_3_uop_decode_imm;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg  [7:0]       entries_3_uop_psrs1;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg  [7:0]       entries_3_uop_psrs2;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg  [7:0]       entries_3_uop_psrs3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg  [7:0]       entries_3_uop_pdest;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg  [2:0]       entries_3_uop_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_3_rs1_ready;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_3_rs2_ready;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_3_rs3_ready;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_4_valid;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg  [63:0]      entries_4_uop_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg  [31:0]      entries_4_uop_uop_inst_raw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_4_uop_decode_is_lb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_4_uop_decode_is_lh;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_4_uop_decode_is_lw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_4_uop_decode_is_ld;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_4_uop_decode_is_lbu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_4_uop_decode_is_lhu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_4_uop_decode_is_lwu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_4_uop_decode_is_load;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_4_uop_decode_is_sb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_4_uop_decode_is_sh;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_4_uop_decode_is_sw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_4_uop_decode_is_sd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_4_uop_decode_is_store;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_4_uop_decode_is_lr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_4_uop_decode_is_sc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_4_uop_decode_is_lr_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_4_uop_decode_is_lr_d;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_4_uop_decode_is_sc_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_4_uop_decode_is_sc_d;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_4_uop_decode_is_amoadd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_4_uop_decode_is_amoswap;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_4_uop_decode_is_amoxor;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_4_uop_decode_is_amoand;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_4_uop_decode_is_amoor;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_4_uop_decode_is_amomin;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_4_uop_decode_is_amomax;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_4_uop_decode_is_amominu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_4_uop_decode_is_amomaxu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_4_uop_decode_is_amo_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_4_uop_decode_is_amo_d;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_4_uop_decode_is_atomic;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_4_uop_decode_is_fload;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_4_uop_decode_is_flw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_4_uop_decode_is_fld;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_4_uop_decode_is_fstore;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_4_uop_decode_is_fsw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_4_uop_decode_is_fsd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_4_uop_decode_is_fmadd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_4_uop_decode_is_fadd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_4_uop_decode_is_fsub;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_4_uop_decode_is_fmul;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_4_uop_decode_is_fdiv;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_4_uop_decode_is_fsqrt;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_4_uop_decode_is_fsgnj;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_4_uop_decode_is_fminmax;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_4_uop_decode_is_fcvt_f2i;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_4_uop_decode_is_fcvt_i2f;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_4_uop_decode_is_fmv_w_x;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_4_uop_decode_is_fmv_x_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_4_uop_decode_is_feq;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_4_uop_decode_is_flt;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_4_uop_decode_is_fle;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_4_uop_decode_is_fclass;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg  [63:0]      entries_4_uop_decode_imm;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg  [7:0]       entries_4_uop_psrs1;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg  [7:0]       entries_4_uop_psrs2;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg  [7:0]       entries_4_uop_psrs3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg  [7:0]       entries_4_uop_pdest;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg  [2:0]       entries_4_uop_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_4_rs1_ready;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_4_rs2_ready;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_4_rs3_ready;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_5_valid;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg  [63:0]      entries_5_uop_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg  [31:0]      entries_5_uop_uop_inst_raw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_5_uop_decode_is_lb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_5_uop_decode_is_lh;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_5_uop_decode_is_lw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_5_uop_decode_is_ld;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_5_uop_decode_is_lbu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_5_uop_decode_is_lhu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_5_uop_decode_is_lwu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_5_uop_decode_is_load;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_5_uop_decode_is_sb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_5_uop_decode_is_sh;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_5_uop_decode_is_sw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_5_uop_decode_is_sd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_5_uop_decode_is_store;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_5_uop_decode_is_lr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_5_uop_decode_is_sc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_5_uop_decode_is_lr_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_5_uop_decode_is_lr_d;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_5_uop_decode_is_sc_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_5_uop_decode_is_sc_d;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_5_uop_decode_is_amoadd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_5_uop_decode_is_amoswap;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_5_uop_decode_is_amoxor;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_5_uop_decode_is_amoand;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_5_uop_decode_is_amoor;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_5_uop_decode_is_amomin;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_5_uop_decode_is_amomax;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_5_uop_decode_is_amominu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_5_uop_decode_is_amomaxu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_5_uop_decode_is_amo_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_5_uop_decode_is_amo_d;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_5_uop_decode_is_atomic;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_5_uop_decode_is_fload;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_5_uop_decode_is_flw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_5_uop_decode_is_fld;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_5_uop_decode_is_fstore;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_5_uop_decode_is_fsw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_5_uop_decode_is_fsd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_5_uop_decode_is_fmadd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_5_uop_decode_is_fadd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_5_uop_decode_is_fsub;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_5_uop_decode_is_fmul;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_5_uop_decode_is_fdiv;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_5_uop_decode_is_fsqrt;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_5_uop_decode_is_fsgnj;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_5_uop_decode_is_fminmax;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_5_uop_decode_is_fcvt_f2i;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_5_uop_decode_is_fcvt_i2f;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_5_uop_decode_is_fmv_w_x;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_5_uop_decode_is_fmv_x_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_5_uop_decode_is_feq;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_5_uop_decode_is_flt;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_5_uop_decode_is_fle;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_5_uop_decode_is_fclass;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg  [63:0]      entries_5_uop_decode_imm;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg  [7:0]       entries_5_uop_psrs1;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg  [7:0]       entries_5_uop_psrs2;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg  [7:0]       entries_5_uop_psrs3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg  [7:0]       entries_5_uop_pdest;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg  [2:0]       entries_5_uop_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_5_rs1_ready;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_5_rs2_ready;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_5_rs3_ready;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_6_valid;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg  [63:0]      entries_6_uop_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg  [31:0]      entries_6_uop_uop_inst_raw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_6_uop_decode_is_lb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_6_uop_decode_is_lh;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_6_uop_decode_is_lw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_6_uop_decode_is_ld;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_6_uop_decode_is_lbu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_6_uop_decode_is_lhu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_6_uop_decode_is_lwu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_6_uop_decode_is_load;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_6_uop_decode_is_sb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_6_uop_decode_is_sh;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_6_uop_decode_is_sw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_6_uop_decode_is_sd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_6_uop_decode_is_store;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_6_uop_decode_is_lr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_6_uop_decode_is_sc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_6_uop_decode_is_lr_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_6_uop_decode_is_lr_d;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_6_uop_decode_is_sc_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_6_uop_decode_is_sc_d;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_6_uop_decode_is_amoadd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_6_uop_decode_is_amoswap;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_6_uop_decode_is_amoxor;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_6_uop_decode_is_amoand;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_6_uop_decode_is_amoor;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_6_uop_decode_is_amomin;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_6_uop_decode_is_amomax;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_6_uop_decode_is_amominu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_6_uop_decode_is_amomaxu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_6_uop_decode_is_amo_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_6_uop_decode_is_amo_d;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_6_uop_decode_is_atomic;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_6_uop_decode_is_fload;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_6_uop_decode_is_flw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_6_uop_decode_is_fld;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_6_uop_decode_is_fstore;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_6_uop_decode_is_fsw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_6_uop_decode_is_fsd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_6_uop_decode_is_fmadd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_6_uop_decode_is_fadd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_6_uop_decode_is_fsub;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_6_uop_decode_is_fmul;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_6_uop_decode_is_fdiv;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_6_uop_decode_is_fsqrt;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_6_uop_decode_is_fsgnj;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_6_uop_decode_is_fminmax;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_6_uop_decode_is_fcvt_f2i;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_6_uop_decode_is_fcvt_i2f;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_6_uop_decode_is_fmv_w_x;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_6_uop_decode_is_fmv_x_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_6_uop_decode_is_feq;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_6_uop_decode_is_flt;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_6_uop_decode_is_fle;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_6_uop_decode_is_fclass;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg  [63:0]      entries_6_uop_decode_imm;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg  [7:0]       entries_6_uop_psrs1;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg  [7:0]       entries_6_uop_psrs2;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg  [7:0]       entries_6_uop_psrs3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg  [7:0]       entries_6_uop_pdest;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg  [2:0]       entries_6_uop_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_6_rs1_ready;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_6_rs2_ready;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_6_rs3_ready;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_7_valid;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg  [63:0]      entries_7_uop_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg  [31:0]      entries_7_uop_uop_inst_raw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_7_uop_decode_is_lb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_7_uop_decode_is_lh;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_7_uop_decode_is_lw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_7_uop_decode_is_ld;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_7_uop_decode_is_lbu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_7_uop_decode_is_lhu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_7_uop_decode_is_lwu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_7_uop_decode_is_load;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_7_uop_decode_is_sb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_7_uop_decode_is_sh;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_7_uop_decode_is_sw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_7_uop_decode_is_sd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_7_uop_decode_is_store;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_7_uop_decode_is_lr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_7_uop_decode_is_sc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_7_uop_decode_is_lr_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_7_uop_decode_is_lr_d;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_7_uop_decode_is_sc_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_7_uop_decode_is_sc_d;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_7_uop_decode_is_amoadd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_7_uop_decode_is_amoswap;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_7_uop_decode_is_amoxor;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_7_uop_decode_is_amoand;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_7_uop_decode_is_amoor;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_7_uop_decode_is_amomin;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_7_uop_decode_is_amomax;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_7_uop_decode_is_amominu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_7_uop_decode_is_amomaxu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_7_uop_decode_is_amo_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_7_uop_decode_is_amo_d;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_7_uop_decode_is_atomic;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_7_uop_decode_is_fload;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_7_uop_decode_is_flw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_7_uop_decode_is_fld;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_7_uop_decode_is_fstore;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_7_uop_decode_is_fsw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_7_uop_decode_is_fsd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_7_uop_decode_is_fmadd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_7_uop_decode_is_fadd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_7_uop_decode_is_fsub;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_7_uop_decode_is_fmul;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_7_uop_decode_is_fdiv;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_7_uop_decode_is_fsqrt;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_7_uop_decode_is_fsgnj;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_7_uop_decode_is_fminmax;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_7_uop_decode_is_fcvt_f2i;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_7_uop_decode_is_fcvt_i2f;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_7_uop_decode_is_fmv_w_x;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_7_uop_decode_is_fmv_x_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_7_uop_decode_is_feq;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_7_uop_decode_is_flt;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_7_uop_decode_is_fle;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_7_uop_decode_is_fclass;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg  [63:0]      entries_7_uop_decode_imm;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg  [7:0]       entries_7_uop_psrs1;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg  [7:0]       entries_7_uop_psrs2;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg  [7:0]       entries_7_uop_psrs3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg  [7:0]       entries_7_uop_pdest;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg  [2:0]       entries_7_uop_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_7_rs1_ready;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_7_rs2_ready;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  reg              entries_7_rs3_ready;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-  wire             _GEN =
+  wire [7:0]  _ageDetector_io_out_0;	// backend/src/zaqal/backend/issue/IssueQueue.scala:55:27
+  reg         entries_0_valid;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg  [63:0] entries_0_uop_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg  [31:0] entries_0_uop_uop_inst_raw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_0_uop_decode_is_lb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_0_uop_decode_is_lh;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_0_uop_decode_is_lw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_0_uop_decode_is_ld;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_0_uop_decode_is_lbu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_0_uop_decode_is_lhu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_0_uop_decode_is_lwu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_0_uop_decode_is_load;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_0_uop_decode_is_sb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_0_uop_decode_is_sh;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_0_uop_decode_is_sw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_0_uop_decode_is_sd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_0_uop_decode_is_store;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_0_uop_decode_is_lr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_0_uop_decode_is_sc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_0_uop_decode_is_lr_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_0_uop_decode_is_lr_d;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_0_uop_decode_is_sc_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_0_uop_decode_is_sc_d;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_0_uop_decode_is_amoadd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_0_uop_decode_is_amoswap;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_0_uop_decode_is_amoxor;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_0_uop_decode_is_amoand;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_0_uop_decode_is_amoor;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_0_uop_decode_is_amomin;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_0_uop_decode_is_amomax;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_0_uop_decode_is_amominu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_0_uop_decode_is_amomaxu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_0_uop_decode_is_amo_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_0_uop_decode_is_amo_d;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_0_uop_decode_is_atomic;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_0_uop_decode_is_fload;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_0_uop_decode_is_flw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_0_uop_decode_is_fld;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_0_uop_decode_is_fstore;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_0_uop_decode_is_fsw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_0_uop_decode_is_fsd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_0_uop_decode_is_fmadd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_0_uop_decode_is_fadd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_0_uop_decode_is_fsub;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_0_uop_decode_is_fmul;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_0_uop_decode_is_fdiv;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_0_uop_decode_is_fsqrt;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_0_uop_decode_is_fsgnj;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_0_uop_decode_is_fminmax;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_0_uop_decode_is_fcvt_f2i;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_0_uop_decode_is_fcvt_i2f;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_0_uop_decode_is_fmv_w_x;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_0_uop_decode_is_fmv_x_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_0_uop_decode_is_feq;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_0_uop_decode_is_flt;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_0_uop_decode_is_fle;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_0_uop_decode_is_fclass;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg  [63:0] entries_0_uop_decode_imm;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg  [7:0]  entries_0_uop_psrs1;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg  [7:0]  entries_0_uop_psrs2;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg  [7:0]  entries_0_uop_psrs3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg  [7:0]  entries_0_uop_pdest;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg  [2:0]  entries_0_uop_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_0_rs1_ready;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_0_rs2_ready;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_0_rs3_ready;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_1_valid;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg  [63:0] entries_1_uop_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg  [31:0] entries_1_uop_uop_inst_raw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_1_uop_decode_is_lb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_1_uop_decode_is_lh;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_1_uop_decode_is_lw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_1_uop_decode_is_ld;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_1_uop_decode_is_lbu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_1_uop_decode_is_lhu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_1_uop_decode_is_lwu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_1_uop_decode_is_load;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_1_uop_decode_is_sb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_1_uop_decode_is_sh;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_1_uop_decode_is_sw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_1_uop_decode_is_sd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_1_uop_decode_is_store;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_1_uop_decode_is_lr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_1_uop_decode_is_sc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_1_uop_decode_is_lr_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_1_uop_decode_is_lr_d;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_1_uop_decode_is_sc_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_1_uop_decode_is_sc_d;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_1_uop_decode_is_amoadd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_1_uop_decode_is_amoswap;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_1_uop_decode_is_amoxor;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_1_uop_decode_is_amoand;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_1_uop_decode_is_amoor;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_1_uop_decode_is_amomin;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_1_uop_decode_is_amomax;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_1_uop_decode_is_amominu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_1_uop_decode_is_amomaxu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_1_uop_decode_is_amo_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_1_uop_decode_is_amo_d;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_1_uop_decode_is_atomic;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_1_uop_decode_is_fload;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_1_uop_decode_is_flw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_1_uop_decode_is_fld;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_1_uop_decode_is_fstore;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_1_uop_decode_is_fsw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_1_uop_decode_is_fsd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_1_uop_decode_is_fmadd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_1_uop_decode_is_fadd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_1_uop_decode_is_fsub;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_1_uop_decode_is_fmul;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_1_uop_decode_is_fdiv;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_1_uop_decode_is_fsqrt;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_1_uop_decode_is_fsgnj;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_1_uop_decode_is_fminmax;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_1_uop_decode_is_fcvt_f2i;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_1_uop_decode_is_fcvt_i2f;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_1_uop_decode_is_fmv_w_x;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_1_uop_decode_is_fmv_x_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_1_uop_decode_is_feq;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_1_uop_decode_is_flt;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_1_uop_decode_is_fle;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_1_uop_decode_is_fclass;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg  [63:0] entries_1_uop_decode_imm;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg  [7:0]  entries_1_uop_psrs1;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg  [7:0]  entries_1_uop_psrs2;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg  [7:0]  entries_1_uop_psrs3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg  [7:0]  entries_1_uop_pdest;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg  [2:0]  entries_1_uop_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_1_rs1_ready;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_1_rs2_ready;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_1_rs3_ready;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_2_valid;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg  [63:0] entries_2_uop_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg  [31:0] entries_2_uop_uop_inst_raw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_2_uop_decode_is_lb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_2_uop_decode_is_lh;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_2_uop_decode_is_lw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_2_uop_decode_is_ld;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_2_uop_decode_is_lbu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_2_uop_decode_is_lhu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_2_uop_decode_is_lwu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_2_uop_decode_is_load;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_2_uop_decode_is_sb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_2_uop_decode_is_sh;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_2_uop_decode_is_sw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_2_uop_decode_is_sd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_2_uop_decode_is_store;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_2_uop_decode_is_lr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_2_uop_decode_is_sc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_2_uop_decode_is_lr_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_2_uop_decode_is_lr_d;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_2_uop_decode_is_sc_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_2_uop_decode_is_sc_d;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_2_uop_decode_is_amoadd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_2_uop_decode_is_amoswap;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_2_uop_decode_is_amoxor;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_2_uop_decode_is_amoand;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_2_uop_decode_is_amoor;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_2_uop_decode_is_amomin;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_2_uop_decode_is_amomax;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_2_uop_decode_is_amominu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_2_uop_decode_is_amomaxu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_2_uop_decode_is_amo_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_2_uop_decode_is_amo_d;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_2_uop_decode_is_atomic;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_2_uop_decode_is_fload;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_2_uop_decode_is_flw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_2_uop_decode_is_fld;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_2_uop_decode_is_fstore;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_2_uop_decode_is_fsw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_2_uop_decode_is_fsd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_2_uop_decode_is_fmadd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_2_uop_decode_is_fadd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_2_uop_decode_is_fsub;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_2_uop_decode_is_fmul;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_2_uop_decode_is_fdiv;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_2_uop_decode_is_fsqrt;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_2_uop_decode_is_fsgnj;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_2_uop_decode_is_fminmax;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_2_uop_decode_is_fcvt_f2i;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_2_uop_decode_is_fcvt_i2f;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_2_uop_decode_is_fmv_w_x;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_2_uop_decode_is_fmv_x_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_2_uop_decode_is_feq;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_2_uop_decode_is_flt;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_2_uop_decode_is_fle;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_2_uop_decode_is_fclass;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg  [63:0] entries_2_uop_decode_imm;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg  [7:0]  entries_2_uop_psrs1;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg  [7:0]  entries_2_uop_psrs2;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg  [7:0]  entries_2_uop_psrs3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg  [7:0]  entries_2_uop_pdest;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg  [2:0]  entries_2_uop_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_2_rs1_ready;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_2_rs2_ready;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_2_rs3_ready;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_3_valid;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg  [63:0] entries_3_uop_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg  [31:0] entries_3_uop_uop_inst_raw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_3_uop_decode_is_lb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_3_uop_decode_is_lh;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_3_uop_decode_is_lw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_3_uop_decode_is_ld;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_3_uop_decode_is_lbu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_3_uop_decode_is_lhu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_3_uop_decode_is_lwu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_3_uop_decode_is_load;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_3_uop_decode_is_sb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_3_uop_decode_is_sh;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_3_uop_decode_is_sw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_3_uop_decode_is_sd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_3_uop_decode_is_store;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_3_uop_decode_is_lr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_3_uop_decode_is_sc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_3_uop_decode_is_lr_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_3_uop_decode_is_lr_d;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_3_uop_decode_is_sc_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_3_uop_decode_is_sc_d;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_3_uop_decode_is_amoadd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_3_uop_decode_is_amoswap;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_3_uop_decode_is_amoxor;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_3_uop_decode_is_amoand;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_3_uop_decode_is_amoor;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_3_uop_decode_is_amomin;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_3_uop_decode_is_amomax;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_3_uop_decode_is_amominu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_3_uop_decode_is_amomaxu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_3_uop_decode_is_amo_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_3_uop_decode_is_amo_d;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_3_uop_decode_is_atomic;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_3_uop_decode_is_fload;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_3_uop_decode_is_flw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_3_uop_decode_is_fld;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_3_uop_decode_is_fstore;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_3_uop_decode_is_fsw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_3_uop_decode_is_fsd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_3_uop_decode_is_fmadd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_3_uop_decode_is_fadd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_3_uop_decode_is_fsub;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_3_uop_decode_is_fmul;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_3_uop_decode_is_fdiv;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_3_uop_decode_is_fsqrt;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_3_uop_decode_is_fsgnj;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_3_uop_decode_is_fminmax;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_3_uop_decode_is_fcvt_f2i;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_3_uop_decode_is_fcvt_i2f;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_3_uop_decode_is_fmv_w_x;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_3_uop_decode_is_fmv_x_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_3_uop_decode_is_feq;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_3_uop_decode_is_flt;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_3_uop_decode_is_fle;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_3_uop_decode_is_fclass;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg  [63:0] entries_3_uop_decode_imm;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg  [7:0]  entries_3_uop_psrs1;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg  [7:0]  entries_3_uop_psrs2;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg  [7:0]  entries_3_uop_psrs3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg  [7:0]  entries_3_uop_pdest;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg  [2:0]  entries_3_uop_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_3_rs1_ready;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_3_rs2_ready;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_3_rs3_ready;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_4_valid;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg  [63:0] entries_4_uop_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg  [31:0] entries_4_uop_uop_inst_raw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_4_uop_decode_is_lb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_4_uop_decode_is_lh;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_4_uop_decode_is_lw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_4_uop_decode_is_ld;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_4_uop_decode_is_lbu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_4_uop_decode_is_lhu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_4_uop_decode_is_lwu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_4_uop_decode_is_load;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_4_uop_decode_is_sb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_4_uop_decode_is_sh;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_4_uop_decode_is_sw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_4_uop_decode_is_sd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_4_uop_decode_is_store;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_4_uop_decode_is_lr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_4_uop_decode_is_sc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_4_uop_decode_is_lr_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_4_uop_decode_is_lr_d;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_4_uop_decode_is_sc_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_4_uop_decode_is_sc_d;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_4_uop_decode_is_amoadd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_4_uop_decode_is_amoswap;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_4_uop_decode_is_amoxor;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_4_uop_decode_is_amoand;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_4_uop_decode_is_amoor;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_4_uop_decode_is_amomin;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_4_uop_decode_is_amomax;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_4_uop_decode_is_amominu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_4_uop_decode_is_amomaxu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_4_uop_decode_is_amo_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_4_uop_decode_is_amo_d;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_4_uop_decode_is_atomic;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_4_uop_decode_is_fload;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_4_uop_decode_is_flw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_4_uop_decode_is_fld;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_4_uop_decode_is_fstore;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_4_uop_decode_is_fsw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_4_uop_decode_is_fsd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_4_uop_decode_is_fmadd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_4_uop_decode_is_fadd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_4_uop_decode_is_fsub;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_4_uop_decode_is_fmul;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_4_uop_decode_is_fdiv;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_4_uop_decode_is_fsqrt;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_4_uop_decode_is_fsgnj;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_4_uop_decode_is_fminmax;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_4_uop_decode_is_fcvt_f2i;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_4_uop_decode_is_fcvt_i2f;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_4_uop_decode_is_fmv_w_x;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_4_uop_decode_is_fmv_x_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_4_uop_decode_is_feq;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_4_uop_decode_is_flt;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_4_uop_decode_is_fle;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_4_uop_decode_is_fclass;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg  [63:0] entries_4_uop_decode_imm;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg  [7:0]  entries_4_uop_psrs1;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg  [7:0]  entries_4_uop_psrs2;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg  [7:0]  entries_4_uop_psrs3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg  [7:0]  entries_4_uop_pdest;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg  [2:0]  entries_4_uop_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_4_rs1_ready;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_4_rs2_ready;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_4_rs3_ready;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_5_valid;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg  [63:0] entries_5_uop_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg  [31:0] entries_5_uop_uop_inst_raw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_5_uop_decode_is_lb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_5_uop_decode_is_lh;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_5_uop_decode_is_lw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_5_uop_decode_is_ld;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_5_uop_decode_is_lbu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_5_uop_decode_is_lhu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_5_uop_decode_is_lwu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_5_uop_decode_is_load;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_5_uop_decode_is_sb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_5_uop_decode_is_sh;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_5_uop_decode_is_sw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_5_uop_decode_is_sd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_5_uop_decode_is_store;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_5_uop_decode_is_lr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_5_uop_decode_is_sc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_5_uop_decode_is_lr_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_5_uop_decode_is_lr_d;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_5_uop_decode_is_sc_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_5_uop_decode_is_sc_d;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_5_uop_decode_is_amoadd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_5_uop_decode_is_amoswap;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_5_uop_decode_is_amoxor;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_5_uop_decode_is_amoand;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_5_uop_decode_is_amoor;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_5_uop_decode_is_amomin;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_5_uop_decode_is_amomax;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_5_uop_decode_is_amominu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_5_uop_decode_is_amomaxu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_5_uop_decode_is_amo_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_5_uop_decode_is_amo_d;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_5_uop_decode_is_atomic;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_5_uop_decode_is_fload;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_5_uop_decode_is_flw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_5_uop_decode_is_fld;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_5_uop_decode_is_fstore;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_5_uop_decode_is_fsw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_5_uop_decode_is_fsd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_5_uop_decode_is_fmadd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_5_uop_decode_is_fadd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_5_uop_decode_is_fsub;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_5_uop_decode_is_fmul;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_5_uop_decode_is_fdiv;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_5_uop_decode_is_fsqrt;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_5_uop_decode_is_fsgnj;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_5_uop_decode_is_fminmax;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_5_uop_decode_is_fcvt_f2i;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_5_uop_decode_is_fcvt_i2f;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_5_uop_decode_is_fmv_w_x;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_5_uop_decode_is_fmv_x_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_5_uop_decode_is_feq;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_5_uop_decode_is_flt;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_5_uop_decode_is_fle;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_5_uop_decode_is_fclass;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg  [63:0] entries_5_uop_decode_imm;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg  [7:0]  entries_5_uop_psrs1;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg  [7:0]  entries_5_uop_psrs2;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg  [7:0]  entries_5_uop_psrs3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg  [7:0]  entries_5_uop_pdest;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg  [2:0]  entries_5_uop_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_5_rs1_ready;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_5_rs2_ready;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_5_rs3_ready;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_6_valid;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg  [63:0] entries_6_uop_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg  [31:0] entries_6_uop_uop_inst_raw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_6_uop_decode_is_lb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_6_uop_decode_is_lh;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_6_uop_decode_is_lw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_6_uop_decode_is_ld;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_6_uop_decode_is_lbu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_6_uop_decode_is_lhu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_6_uop_decode_is_lwu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_6_uop_decode_is_load;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_6_uop_decode_is_sb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_6_uop_decode_is_sh;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_6_uop_decode_is_sw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_6_uop_decode_is_sd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_6_uop_decode_is_store;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_6_uop_decode_is_lr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_6_uop_decode_is_sc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_6_uop_decode_is_lr_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_6_uop_decode_is_lr_d;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_6_uop_decode_is_sc_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_6_uop_decode_is_sc_d;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_6_uop_decode_is_amoadd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_6_uop_decode_is_amoswap;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_6_uop_decode_is_amoxor;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_6_uop_decode_is_amoand;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_6_uop_decode_is_amoor;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_6_uop_decode_is_amomin;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_6_uop_decode_is_amomax;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_6_uop_decode_is_amominu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_6_uop_decode_is_amomaxu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_6_uop_decode_is_amo_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_6_uop_decode_is_amo_d;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_6_uop_decode_is_atomic;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_6_uop_decode_is_fload;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_6_uop_decode_is_flw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_6_uop_decode_is_fld;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_6_uop_decode_is_fstore;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_6_uop_decode_is_fsw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_6_uop_decode_is_fsd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_6_uop_decode_is_fmadd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_6_uop_decode_is_fadd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_6_uop_decode_is_fsub;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_6_uop_decode_is_fmul;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_6_uop_decode_is_fdiv;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_6_uop_decode_is_fsqrt;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_6_uop_decode_is_fsgnj;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_6_uop_decode_is_fminmax;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_6_uop_decode_is_fcvt_f2i;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_6_uop_decode_is_fcvt_i2f;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_6_uop_decode_is_fmv_w_x;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_6_uop_decode_is_fmv_x_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_6_uop_decode_is_feq;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_6_uop_decode_is_flt;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_6_uop_decode_is_fle;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_6_uop_decode_is_fclass;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg  [63:0] entries_6_uop_decode_imm;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg  [7:0]  entries_6_uop_psrs1;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg  [7:0]  entries_6_uop_psrs2;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg  [7:0]  entries_6_uop_psrs3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg  [7:0]  entries_6_uop_pdest;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg  [2:0]  entries_6_uop_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_6_rs1_ready;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_6_rs2_ready;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_6_rs3_ready;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_7_valid;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg  [63:0] entries_7_uop_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg  [31:0] entries_7_uop_uop_inst_raw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_7_uop_decode_is_lb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_7_uop_decode_is_lh;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_7_uop_decode_is_lw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_7_uop_decode_is_ld;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_7_uop_decode_is_lbu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_7_uop_decode_is_lhu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_7_uop_decode_is_lwu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_7_uop_decode_is_load;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_7_uop_decode_is_sb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_7_uop_decode_is_sh;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_7_uop_decode_is_sw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_7_uop_decode_is_sd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_7_uop_decode_is_store;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_7_uop_decode_is_lr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_7_uop_decode_is_sc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_7_uop_decode_is_lr_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_7_uop_decode_is_lr_d;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_7_uop_decode_is_sc_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_7_uop_decode_is_sc_d;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_7_uop_decode_is_amoadd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_7_uop_decode_is_amoswap;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_7_uop_decode_is_amoxor;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_7_uop_decode_is_amoand;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_7_uop_decode_is_amoor;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_7_uop_decode_is_amomin;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_7_uop_decode_is_amomax;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_7_uop_decode_is_amominu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_7_uop_decode_is_amomaxu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_7_uop_decode_is_amo_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_7_uop_decode_is_amo_d;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_7_uop_decode_is_atomic;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_7_uop_decode_is_fload;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_7_uop_decode_is_flw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_7_uop_decode_is_fld;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_7_uop_decode_is_fstore;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_7_uop_decode_is_fsw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_7_uop_decode_is_fsd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_7_uop_decode_is_fmadd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_7_uop_decode_is_fadd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_7_uop_decode_is_fsub;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_7_uop_decode_is_fmul;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_7_uop_decode_is_fdiv;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_7_uop_decode_is_fsqrt;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_7_uop_decode_is_fsgnj;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_7_uop_decode_is_fminmax;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_7_uop_decode_is_fcvt_f2i;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_7_uop_decode_is_fcvt_i2f;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_7_uop_decode_is_fmv_w_x;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_7_uop_decode_is_fmv_x_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_7_uop_decode_is_feq;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_7_uop_decode_is_flt;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_7_uop_decode_is_fle;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_7_uop_decode_is_fclass;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg  [63:0] entries_7_uop_decode_imm;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg  [7:0]  entries_7_uop_psrs1;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg  [7:0]  entries_7_uop_psrs2;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg  [7:0]  entries_7_uop_psrs3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg  [7:0]  entries_7_uop_pdest;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg  [2:0]  entries_7_uop_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_7_rs1_ready;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_7_rs2_ready;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  reg         entries_7_rs3_ready;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
+  wire        _GEN =
     io_wakeup_0_valid & entries_0_uop_psrs1 == io_wakeup_0_pdest & (|entries_0_uop_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :37:18, :42:33, :43:{36,83,92,107}
-  wire             _GEN_0 =
+  wire        _GEN_0 =
     io_wakeup_0_valid & entries_0_uop_psrs2 == io_wakeup_0_pdest & (|entries_0_uop_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :38:18, :42:33, :44:{36,83,92,107}
-  wire             _GEN_1 =
+  wire        _GEN_1 =
     io_wakeup_0_valid & entries_0_uop_psrs3 == io_wakeup_0_pdest & (|entries_0_uop_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :39:18, :42:33, :45:{36,83,92,107}
-  wire             _GEN_2 =
+  wire        _GEN_2 =
     io_wakeup_1_valid
       ? entries_0_uop_psrs1 == io_wakeup_1_pdest & (|entries_0_uop_psrs1) | _GEN
         | entries_0_rs1_ready
       : _GEN | entries_0_rs1_ready;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :37:18, :42:33, :43:{36,59,83,92,107}
-  wire             _GEN_3 =
+  wire        _GEN_3 =
     io_wakeup_1_valid
       ? entries_0_uop_psrs2 == io_wakeup_1_pdest & (|entries_0_uop_psrs2) | _GEN_0
         | entries_0_rs2_ready
       : _GEN_0 | entries_0_rs2_ready;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :38:18, :42:33, :44:{36,59,83,92,107}
-  wire             _GEN_4 =
+  wire        _GEN_4 =
     io_wakeup_1_valid
       ? entries_0_uop_psrs3 == io_wakeup_1_pdest & (|entries_0_uop_psrs3) | _GEN_1
         | entries_0_rs3_ready
       : _GEN_1 | entries_0_rs3_ready;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :39:18, :42:33, :45:{36,59,83,92,107}
-  wire             _GEN_5 =
+  wire        _GEN_5 =
     io_wakeup_2_valid & entries_0_uop_psrs1 == io_wakeup_2_pdest & (|entries_0_uop_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :42:33, :43:{36,83,92,107}
-  wire             _GEN_6 =
+  wire        _GEN_6 =
     io_wakeup_2_valid & entries_0_uop_psrs2 == io_wakeup_2_pdest & (|entries_0_uop_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :42:33, :44:{36,83,92,107}
-  wire             _GEN_7 =
+  wire        _GEN_7 =
     io_wakeup_2_valid & entries_0_uop_psrs3 == io_wakeup_2_pdest & (|entries_0_uop_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :42:33, :45:{36,83,92,107}
-  wire             woken_rs1_0 =
+  wire        woken_rs1_0 =
     io_wakeup_4_valid & entries_0_uop_psrs1 == io_wakeup_4_pdest & (|entries_0_uop_psrs1)
     | (io_wakeup_3_valid
          ? entries_0_uop_psrs1 == io_wakeup_3_pdest & (|entries_0_uop_psrs1) | _GEN_5
            | _GEN_2
          : _GEN_5 | _GEN_2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :42:33, :43:{36,59,83,92,107}
-  wire             woken_rs2_0 =
+  wire        woken_rs2_0 =
     io_wakeup_4_valid & entries_0_uop_psrs2 == io_wakeup_4_pdest & (|entries_0_uop_psrs2)
     | (io_wakeup_3_valid
          ? entries_0_uop_psrs2 == io_wakeup_3_pdest & (|entries_0_uop_psrs2) | _GEN_6
            | _GEN_3
          : _GEN_6 | _GEN_3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :42:33, :44:{36,59,83,92,107}
-  wire             woken_rs3_0 =
+  wire        woken_rs3_0 =
     io_wakeup_4_valid & entries_0_uop_psrs3 == io_wakeup_4_pdest & (|entries_0_uop_psrs3)
     | (io_wakeup_3_valid
          ? entries_0_uop_psrs3 == io_wakeup_3_pdest & (|entries_0_uop_psrs3) | _GEN_7
            | _GEN_4
          : _GEN_7 | _GEN_4);	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :42:33, :45:{36,59,83,92,107}
-  wire             _GEN_8 =
+  wire        _GEN_8 =
     io_wakeup_0_valid & entries_1_uop_psrs1 == io_wakeup_0_pdest & (|entries_1_uop_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :37:18, :42:33, :43:{36,83,92,107}
-  wire             _GEN_9 =
+  wire        _GEN_9 =
     io_wakeup_0_valid & entries_1_uop_psrs2 == io_wakeup_0_pdest & (|entries_1_uop_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :38:18, :42:33, :44:{36,83,92,107}
-  wire             _GEN_10 =
+  wire        _GEN_10 =
     io_wakeup_0_valid & entries_1_uop_psrs3 == io_wakeup_0_pdest & (|entries_1_uop_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :39:18, :42:33, :45:{36,83,92,107}
-  wire             _GEN_11 =
+  wire        _GEN_11 =
     io_wakeup_1_valid
       ? entries_1_uop_psrs1 == io_wakeup_1_pdest & (|entries_1_uop_psrs1) | _GEN_8
         | entries_1_rs1_ready
       : _GEN_8 | entries_1_rs1_ready;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :37:18, :42:33, :43:{36,59,83,92,107}
-  wire             _GEN_12 =
+  wire        _GEN_12 =
     io_wakeup_1_valid
       ? entries_1_uop_psrs2 == io_wakeup_1_pdest & (|entries_1_uop_psrs2) | _GEN_9
         | entries_1_rs2_ready
       : _GEN_9 | entries_1_rs2_ready;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :38:18, :42:33, :44:{36,59,83,92,107}
-  wire             _GEN_13 =
+  wire        _GEN_13 =
     io_wakeup_1_valid
       ? entries_1_uop_psrs3 == io_wakeup_1_pdest & (|entries_1_uop_psrs3) | _GEN_10
         | entries_1_rs3_ready
       : _GEN_10 | entries_1_rs3_ready;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :39:18, :42:33, :45:{36,59,83,92,107}
-  wire             _GEN_14 =
+  wire        _GEN_14 =
     io_wakeup_2_valid & entries_1_uop_psrs1 == io_wakeup_2_pdest & (|entries_1_uop_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :42:33, :43:{36,83,92,107}
-  wire             _GEN_15 =
+  wire        _GEN_15 =
     io_wakeup_2_valid & entries_1_uop_psrs2 == io_wakeup_2_pdest & (|entries_1_uop_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :42:33, :44:{36,83,92,107}
-  wire             _GEN_16 =
+  wire        _GEN_16 =
     io_wakeup_2_valid & entries_1_uop_psrs3 == io_wakeup_2_pdest & (|entries_1_uop_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :42:33, :45:{36,83,92,107}
-  wire             woken_rs1_1 =
+  wire        woken_rs1_1 =
     io_wakeup_4_valid & entries_1_uop_psrs1 == io_wakeup_4_pdest & (|entries_1_uop_psrs1)
     | (io_wakeup_3_valid
          ? entries_1_uop_psrs1 == io_wakeup_3_pdest & (|entries_1_uop_psrs1) | _GEN_14
            | _GEN_11
          : _GEN_14 | _GEN_11);	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :42:33, :43:{36,59,83,92,107}
-  wire             woken_rs2_1 =
+  wire        woken_rs2_1 =
     io_wakeup_4_valid & entries_1_uop_psrs2 == io_wakeup_4_pdest & (|entries_1_uop_psrs2)
     | (io_wakeup_3_valid
          ? entries_1_uop_psrs2 == io_wakeup_3_pdest & (|entries_1_uop_psrs2) | _GEN_15
            | _GEN_12
          : _GEN_15 | _GEN_12);	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :42:33, :44:{36,59,83,92,107}
-  wire             woken_rs3_1 =
+  wire        woken_rs3_1 =
     io_wakeup_4_valid & entries_1_uop_psrs3 == io_wakeup_4_pdest & (|entries_1_uop_psrs3)
     | (io_wakeup_3_valid
          ? entries_1_uop_psrs3 == io_wakeup_3_pdest & (|entries_1_uop_psrs3) | _GEN_16
            | _GEN_13
          : _GEN_16 | _GEN_13);	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :42:33, :45:{36,59,83,92,107}
-  wire             _GEN_17 =
+  wire        _GEN_17 =
     io_wakeup_0_valid & entries_2_uop_psrs1 == io_wakeup_0_pdest & (|entries_2_uop_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :37:18, :42:33, :43:{36,83,92,107}
-  wire             _GEN_18 =
+  wire        _GEN_18 =
     io_wakeup_0_valid & entries_2_uop_psrs2 == io_wakeup_0_pdest & (|entries_2_uop_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :38:18, :42:33, :44:{36,83,92,107}
-  wire             _GEN_19 =
+  wire        _GEN_19 =
     io_wakeup_0_valid & entries_2_uop_psrs3 == io_wakeup_0_pdest & (|entries_2_uop_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :39:18, :42:33, :45:{36,83,92,107}
-  wire             _GEN_20 =
+  wire        _GEN_20 =
     io_wakeup_1_valid
       ? entries_2_uop_psrs1 == io_wakeup_1_pdest & (|entries_2_uop_psrs1) | _GEN_17
         | entries_2_rs1_ready
       : _GEN_17 | entries_2_rs1_ready;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :37:18, :42:33, :43:{36,59,83,92,107}
-  wire             _GEN_21 =
+  wire        _GEN_21 =
     io_wakeup_1_valid
       ? entries_2_uop_psrs2 == io_wakeup_1_pdest & (|entries_2_uop_psrs2) | _GEN_18
         | entries_2_rs2_ready
       : _GEN_18 | entries_2_rs2_ready;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :38:18, :42:33, :44:{36,59,83,92,107}
-  wire             _GEN_22 =
+  wire        _GEN_22 =
     io_wakeup_1_valid
       ? entries_2_uop_psrs3 == io_wakeup_1_pdest & (|entries_2_uop_psrs3) | _GEN_19
         | entries_2_rs3_ready
       : _GEN_19 | entries_2_rs3_ready;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :39:18, :42:33, :45:{36,59,83,92,107}
-  wire             _GEN_23 =
+  wire        _GEN_23 =
     io_wakeup_2_valid & entries_2_uop_psrs1 == io_wakeup_2_pdest & (|entries_2_uop_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :42:33, :43:{36,83,92,107}
-  wire             _GEN_24 =
+  wire        _GEN_24 =
     io_wakeup_2_valid & entries_2_uop_psrs2 == io_wakeup_2_pdest & (|entries_2_uop_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :42:33, :44:{36,83,92,107}
-  wire             _GEN_25 =
+  wire        _GEN_25 =
     io_wakeup_2_valid & entries_2_uop_psrs3 == io_wakeup_2_pdest & (|entries_2_uop_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :42:33, :45:{36,83,92,107}
-  wire             woken_rs1_2 =
+  wire        woken_rs1_2 =
     io_wakeup_4_valid & entries_2_uop_psrs1 == io_wakeup_4_pdest & (|entries_2_uop_psrs1)
     | (io_wakeup_3_valid
          ? entries_2_uop_psrs1 == io_wakeup_3_pdest & (|entries_2_uop_psrs1) | _GEN_23
            | _GEN_20
          : _GEN_23 | _GEN_20);	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :42:33, :43:{36,59,83,92,107}
-  wire             woken_rs2_2 =
+  wire        woken_rs2_2 =
     io_wakeup_4_valid & entries_2_uop_psrs2 == io_wakeup_4_pdest & (|entries_2_uop_psrs2)
     | (io_wakeup_3_valid
          ? entries_2_uop_psrs2 == io_wakeup_3_pdest & (|entries_2_uop_psrs2) | _GEN_24
            | _GEN_21
          : _GEN_24 | _GEN_21);	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :42:33, :44:{36,59,83,92,107}
-  wire             woken_rs3_2 =
+  wire        woken_rs3_2 =
     io_wakeup_4_valid & entries_2_uop_psrs3 == io_wakeup_4_pdest & (|entries_2_uop_psrs3)
     | (io_wakeup_3_valid
          ? entries_2_uop_psrs3 == io_wakeup_3_pdest & (|entries_2_uop_psrs3) | _GEN_25
            | _GEN_22
          : _GEN_25 | _GEN_22);	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :42:33, :45:{36,59,83,92,107}
-  wire             _GEN_26 =
+  wire        _GEN_26 =
     io_wakeup_0_valid & entries_3_uop_psrs1 == io_wakeup_0_pdest & (|entries_3_uop_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :37:18, :42:33, :43:{36,83,92,107}
-  wire             _GEN_27 =
+  wire        _GEN_27 =
     io_wakeup_0_valid & entries_3_uop_psrs2 == io_wakeup_0_pdest & (|entries_3_uop_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :38:18, :42:33, :44:{36,83,92,107}
-  wire             _GEN_28 =
+  wire        _GEN_28 =
     io_wakeup_0_valid & entries_3_uop_psrs3 == io_wakeup_0_pdest & (|entries_3_uop_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :39:18, :42:33, :45:{36,83,92,107}
-  wire             _GEN_29 =
+  wire        _GEN_29 =
     io_wakeup_1_valid
       ? entries_3_uop_psrs1 == io_wakeup_1_pdest & (|entries_3_uop_psrs1) | _GEN_26
         | entries_3_rs1_ready
       : _GEN_26 | entries_3_rs1_ready;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :37:18, :42:33, :43:{36,59,83,92,107}
-  wire             _GEN_30 =
+  wire        _GEN_30 =
     io_wakeup_1_valid
       ? entries_3_uop_psrs2 == io_wakeup_1_pdest & (|entries_3_uop_psrs2) | _GEN_27
         | entries_3_rs2_ready
       : _GEN_27 | entries_3_rs2_ready;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :38:18, :42:33, :44:{36,59,83,92,107}
-  wire             _GEN_31 =
+  wire        _GEN_31 =
     io_wakeup_1_valid
       ? entries_3_uop_psrs3 == io_wakeup_1_pdest & (|entries_3_uop_psrs3) | _GEN_28
         | entries_3_rs3_ready
       : _GEN_28 | entries_3_rs3_ready;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :39:18, :42:33, :45:{36,59,83,92,107}
-  wire             _GEN_32 =
+  wire        _GEN_32 =
     io_wakeup_2_valid & entries_3_uop_psrs1 == io_wakeup_2_pdest & (|entries_3_uop_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :42:33, :43:{36,83,92,107}
-  wire             _GEN_33 =
+  wire        _GEN_33 =
     io_wakeup_2_valid & entries_3_uop_psrs2 == io_wakeup_2_pdest & (|entries_3_uop_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :42:33, :44:{36,83,92,107}
-  wire             _GEN_34 =
+  wire        _GEN_34 =
     io_wakeup_2_valid & entries_3_uop_psrs3 == io_wakeup_2_pdest & (|entries_3_uop_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :42:33, :45:{36,83,92,107}
-  wire             woken_rs1_3 =
+  wire        woken_rs1_3 =
     io_wakeup_4_valid & entries_3_uop_psrs1 == io_wakeup_4_pdest & (|entries_3_uop_psrs1)
     | (io_wakeup_3_valid
          ? entries_3_uop_psrs1 == io_wakeup_3_pdest & (|entries_3_uop_psrs1) | _GEN_32
            | _GEN_29
          : _GEN_32 | _GEN_29);	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :42:33, :43:{36,59,83,92,107}
-  wire             woken_rs2_3 =
+  wire        woken_rs2_3 =
     io_wakeup_4_valid & entries_3_uop_psrs2 == io_wakeup_4_pdest & (|entries_3_uop_psrs2)
     | (io_wakeup_3_valid
          ? entries_3_uop_psrs2 == io_wakeup_3_pdest & (|entries_3_uop_psrs2) | _GEN_33
            | _GEN_30
          : _GEN_33 | _GEN_30);	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :42:33, :44:{36,59,83,92,107}
-  wire             woken_rs3_3 =
+  wire        woken_rs3_3 =
     io_wakeup_4_valid & entries_3_uop_psrs3 == io_wakeup_4_pdest & (|entries_3_uop_psrs3)
     | (io_wakeup_3_valid
          ? entries_3_uop_psrs3 == io_wakeup_3_pdest & (|entries_3_uop_psrs3) | _GEN_34
            | _GEN_31
          : _GEN_34 | _GEN_31);	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :42:33, :45:{36,59,83,92,107}
-  wire             _GEN_35 =
+  wire        _GEN_35 =
     io_wakeup_0_valid & entries_4_uop_psrs1 == io_wakeup_0_pdest & (|entries_4_uop_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :37:18, :42:33, :43:{36,83,92,107}
-  wire             _GEN_36 =
+  wire        _GEN_36 =
     io_wakeup_0_valid & entries_4_uop_psrs2 == io_wakeup_0_pdest & (|entries_4_uop_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :38:18, :42:33, :44:{36,83,92,107}
-  wire             _GEN_37 =
+  wire        _GEN_37 =
     io_wakeup_0_valid & entries_4_uop_psrs3 == io_wakeup_0_pdest & (|entries_4_uop_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :39:18, :42:33, :45:{36,83,92,107}
-  wire             _GEN_38 =
+  wire        _GEN_38 =
     io_wakeup_1_valid
       ? entries_4_uop_psrs1 == io_wakeup_1_pdest & (|entries_4_uop_psrs1) | _GEN_35
         | entries_4_rs1_ready
       : _GEN_35 | entries_4_rs1_ready;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :37:18, :42:33, :43:{36,59,83,92,107}
-  wire             _GEN_39 =
+  wire        _GEN_39 =
     io_wakeup_1_valid
       ? entries_4_uop_psrs2 == io_wakeup_1_pdest & (|entries_4_uop_psrs2) | _GEN_36
         | entries_4_rs2_ready
       : _GEN_36 | entries_4_rs2_ready;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :38:18, :42:33, :44:{36,59,83,92,107}
-  wire             _GEN_40 =
+  wire        _GEN_40 =
     io_wakeup_1_valid
       ? entries_4_uop_psrs3 == io_wakeup_1_pdest & (|entries_4_uop_psrs3) | _GEN_37
         | entries_4_rs3_ready
       : _GEN_37 | entries_4_rs3_ready;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :39:18, :42:33, :45:{36,59,83,92,107}
-  wire             _GEN_41 =
+  wire        _GEN_41 =
     io_wakeup_2_valid & entries_4_uop_psrs1 == io_wakeup_2_pdest & (|entries_4_uop_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :42:33, :43:{36,83,92,107}
-  wire             _GEN_42 =
+  wire        _GEN_42 =
     io_wakeup_2_valid & entries_4_uop_psrs2 == io_wakeup_2_pdest & (|entries_4_uop_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :42:33, :44:{36,83,92,107}
-  wire             _GEN_43 =
+  wire        _GEN_43 =
     io_wakeup_2_valid & entries_4_uop_psrs3 == io_wakeup_2_pdest & (|entries_4_uop_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :42:33, :45:{36,83,92,107}
-  wire             woken_rs1_4 =
+  wire        woken_rs1_4 =
     io_wakeup_4_valid & entries_4_uop_psrs1 == io_wakeup_4_pdest & (|entries_4_uop_psrs1)
     | (io_wakeup_3_valid
          ? entries_4_uop_psrs1 == io_wakeup_3_pdest & (|entries_4_uop_psrs1) | _GEN_41
            | _GEN_38
          : _GEN_41 | _GEN_38);	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :42:33, :43:{36,59,83,92,107}
-  wire             woken_rs2_4 =
+  wire        woken_rs2_4 =
     io_wakeup_4_valid & entries_4_uop_psrs2 == io_wakeup_4_pdest & (|entries_4_uop_psrs2)
     | (io_wakeup_3_valid
          ? entries_4_uop_psrs2 == io_wakeup_3_pdest & (|entries_4_uop_psrs2) | _GEN_42
            | _GEN_39
          : _GEN_42 | _GEN_39);	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :42:33, :44:{36,59,83,92,107}
-  wire             woken_rs3_4 =
+  wire        woken_rs3_4 =
     io_wakeup_4_valid & entries_4_uop_psrs3 == io_wakeup_4_pdest & (|entries_4_uop_psrs3)
     | (io_wakeup_3_valid
          ? entries_4_uop_psrs3 == io_wakeup_3_pdest & (|entries_4_uop_psrs3) | _GEN_43
            | _GEN_40
          : _GEN_43 | _GEN_40);	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :42:33, :45:{36,59,83,92,107}
-  wire             _GEN_44 =
+  wire        _GEN_44 =
     io_wakeup_0_valid & entries_5_uop_psrs1 == io_wakeup_0_pdest & (|entries_5_uop_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :37:18, :42:33, :43:{36,83,92,107}
-  wire             _GEN_45 =
+  wire        _GEN_45 =
     io_wakeup_0_valid & entries_5_uop_psrs2 == io_wakeup_0_pdest & (|entries_5_uop_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :38:18, :42:33, :44:{36,83,92,107}
-  wire             _GEN_46 =
+  wire        _GEN_46 =
     io_wakeup_0_valid & entries_5_uop_psrs3 == io_wakeup_0_pdest & (|entries_5_uop_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :39:18, :42:33, :45:{36,83,92,107}
-  wire             _GEN_47 =
+  wire        _GEN_47 =
     io_wakeup_1_valid
       ? entries_5_uop_psrs1 == io_wakeup_1_pdest & (|entries_5_uop_psrs1) | _GEN_44
         | entries_5_rs1_ready
       : _GEN_44 | entries_5_rs1_ready;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :37:18, :42:33, :43:{36,59,83,92,107}
-  wire             _GEN_48 =
+  wire        _GEN_48 =
     io_wakeup_1_valid
       ? entries_5_uop_psrs2 == io_wakeup_1_pdest & (|entries_5_uop_psrs2) | _GEN_45
         | entries_5_rs2_ready
       : _GEN_45 | entries_5_rs2_ready;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :38:18, :42:33, :44:{36,59,83,92,107}
-  wire             _GEN_49 =
+  wire        _GEN_49 =
     io_wakeup_1_valid
       ? entries_5_uop_psrs3 == io_wakeup_1_pdest & (|entries_5_uop_psrs3) | _GEN_46
         | entries_5_rs3_ready
       : _GEN_46 | entries_5_rs3_ready;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :39:18, :42:33, :45:{36,59,83,92,107}
-  wire             _GEN_50 =
+  wire        _GEN_50 =
     io_wakeup_2_valid & entries_5_uop_psrs1 == io_wakeup_2_pdest & (|entries_5_uop_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :42:33, :43:{36,83,92,107}
-  wire             _GEN_51 =
+  wire        _GEN_51 =
     io_wakeup_2_valid & entries_5_uop_psrs2 == io_wakeup_2_pdest & (|entries_5_uop_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :42:33, :44:{36,83,92,107}
-  wire             _GEN_52 =
+  wire        _GEN_52 =
     io_wakeup_2_valid & entries_5_uop_psrs3 == io_wakeup_2_pdest & (|entries_5_uop_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :42:33, :45:{36,83,92,107}
-  wire             woken_rs1_5 =
+  wire        woken_rs1_5 =
     io_wakeup_4_valid & entries_5_uop_psrs1 == io_wakeup_4_pdest & (|entries_5_uop_psrs1)
     | (io_wakeup_3_valid
          ? entries_5_uop_psrs1 == io_wakeup_3_pdest & (|entries_5_uop_psrs1) | _GEN_50
            | _GEN_47
          : _GEN_50 | _GEN_47);	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :42:33, :43:{36,59,83,92,107}
-  wire             woken_rs2_5 =
+  wire        woken_rs2_5 =
     io_wakeup_4_valid & entries_5_uop_psrs2 == io_wakeup_4_pdest & (|entries_5_uop_psrs2)
     | (io_wakeup_3_valid
          ? entries_5_uop_psrs2 == io_wakeup_3_pdest & (|entries_5_uop_psrs2) | _GEN_51
            | _GEN_48
          : _GEN_51 | _GEN_48);	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :42:33, :44:{36,59,83,92,107}
-  wire             woken_rs3_5 =
+  wire        woken_rs3_5 =
     io_wakeup_4_valid & entries_5_uop_psrs3 == io_wakeup_4_pdest & (|entries_5_uop_psrs3)
     | (io_wakeup_3_valid
          ? entries_5_uop_psrs3 == io_wakeup_3_pdest & (|entries_5_uop_psrs3) | _GEN_52
            | _GEN_49
          : _GEN_52 | _GEN_49);	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :42:33, :45:{36,59,83,92,107}
-  wire             _GEN_53 =
+  wire        _GEN_53 =
     io_wakeup_0_valid & entries_6_uop_psrs1 == io_wakeup_0_pdest & (|entries_6_uop_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :37:18, :42:33, :43:{36,83,92,107}
-  wire             _GEN_54 =
+  wire        _GEN_54 =
     io_wakeup_0_valid & entries_6_uop_psrs2 == io_wakeup_0_pdest & (|entries_6_uop_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :38:18, :42:33, :44:{36,83,92,107}
-  wire             _GEN_55 =
+  wire        _GEN_55 =
     io_wakeup_0_valid & entries_6_uop_psrs3 == io_wakeup_0_pdest & (|entries_6_uop_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :39:18, :42:33, :45:{36,83,92,107}
-  wire             _GEN_56 =
+  wire        _GEN_56 =
     io_wakeup_1_valid
       ? entries_6_uop_psrs1 == io_wakeup_1_pdest & (|entries_6_uop_psrs1) | _GEN_53
         | entries_6_rs1_ready
       : _GEN_53 | entries_6_rs1_ready;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :37:18, :42:33, :43:{36,59,83,92,107}
-  wire             _GEN_57 =
+  wire        _GEN_57 =
     io_wakeup_1_valid
       ? entries_6_uop_psrs2 == io_wakeup_1_pdest & (|entries_6_uop_psrs2) | _GEN_54
         | entries_6_rs2_ready
       : _GEN_54 | entries_6_rs2_ready;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :38:18, :42:33, :44:{36,59,83,92,107}
-  wire             _GEN_58 =
+  wire        _GEN_58 =
     io_wakeup_1_valid
       ? entries_6_uop_psrs3 == io_wakeup_1_pdest & (|entries_6_uop_psrs3) | _GEN_55
         | entries_6_rs3_ready
       : _GEN_55 | entries_6_rs3_ready;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :39:18, :42:33, :45:{36,59,83,92,107}
-  wire             _GEN_59 =
+  wire        _GEN_59 =
     io_wakeup_2_valid & entries_6_uop_psrs1 == io_wakeup_2_pdest & (|entries_6_uop_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :42:33, :43:{36,83,92,107}
-  wire             _GEN_60 =
+  wire        _GEN_60 =
     io_wakeup_2_valid & entries_6_uop_psrs2 == io_wakeup_2_pdest & (|entries_6_uop_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :42:33, :44:{36,83,92,107}
-  wire             _GEN_61 =
+  wire        _GEN_61 =
     io_wakeup_2_valid & entries_6_uop_psrs3 == io_wakeup_2_pdest & (|entries_6_uop_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :42:33, :45:{36,83,92,107}
-  wire             woken_rs1_6 =
+  wire        woken_rs1_6 =
     io_wakeup_4_valid & entries_6_uop_psrs1 == io_wakeup_4_pdest & (|entries_6_uop_psrs1)
     | (io_wakeup_3_valid
          ? entries_6_uop_psrs1 == io_wakeup_3_pdest & (|entries_6_uop_psrs1) | _GEN_59
            | _GEN_56
          : _GEN_59 | _GEN_56);	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :42:33, :43:{36,59,83,92,107}
-  wire             woken_rs2_6 =
+  wire        woken_rs2_6 =
     io_wakeup_4_valid & entries_6_uop_psrs2 == io_wakeup_4_pdest & (|entries_6_uop_psrs2)
     | (io_wakeup_3_valid
          ? entries_6_uop_psrs2 == io_wakeup_3_pdest & (|entries_6_uop_psrs2) | _GEN_60
            | _GEN_57
          : _GEN_60 | _GEN_57);	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :42:33, :44:{36,59,83,92,107}
-  wire             woken_rs3_6 =
+  wire        woken_rs3_6 =
     io_wakeup_4_valid & entries_6_uop_psrs3 == io_wakeup_4_pdest & (|entries_6_uop_psrs3)
     | (io_wakeup_3_valid
          ? entries_6_uop_psrs3 == io_wakeup_3_pdest & (|entries_6_uop_psrs3) | _GEN_61
            | _GEN_58
          : _GEN_61 | _GEN_58);	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :42:33, :45:{36,59,83,92,107}
-  wire             _GEN_62 =
+  wire        _GEN_62 =
     io_wakeup_0_valid & entries_7_uop_psrs1 == io_wakeup_0_pdest & (|entries_7_uop_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :37:18, :42:33, :43:{36,83,92,107}
-  wire             _GEN_63 =
+  wire        _GEN_63 =
     io_wakeup_0_valid & entries_7_uop_psrs2 == io_wakeup_0_pdest & (|entries_7_uop_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :38:18, :42:33, :44:{36,83,92,107}
-  wire             _GEN_64 =
+  wire        _GEN_64 =
     io_wakeup_0_valid & entries_7_uop_psrs3 == io_wakeup_0_pdest & (|entries_7_uop_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :39:18, :42:33, :45:{36,83,92,107}
-  wire             _GEN_65 =
+  wire        _GEN_65 =
     io_wakeup_1_valid
       ? entries_7_uop_psrs1 == io_wakeup_1_pdest & (|entries_7_uop_psrs1) | _GEN_62
         | entries_7_rs1_ready
       : _GEN_62 | entries_7_rs1_ready;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :37:18, :42:33, :43:{36,59,83,92,107}
-  wire             _GEN_66 =
+  wire        _GEN_66 =
     io_wakeup_1_valid
       ? entries_7_uop_psrs2 == io_wakeup_1_pdest & (|entries_7_uop_psrs2) | _GEN_63
         | entries_7_rs2_ready
       : _GEN_63 | entries_7_rs2_ready;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :38:18, :42:33, :44:{36,59,83,92,107}
-  wire             _GEN_67 =
+  wire        _GEN_67 =
     io_wakeup_1_valid
       ? entries_7_uop_psrs3 == io_wakeup_1_pdest & (|entries_7_uop_psrs3) | _GEN_64
         | entries_7_rs3_ready
       : _GEN_64 | entries_7_rs3_ready;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :39:18, :42:33, :45:{36,59,83,92,107}
-  wire             _GEN_68 =
+  wire        _GEN_68 =
     io_wakeup_2_valid & entries_7_uop_psrs1 == io_wakeup_2_pdest & (|entries_7_uop_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :42:33, :43:{36,83,92,107}
-  wire             _GEN_69 =
+  wire        _GEN_69 =
     io_wakeup_2_valid & entries_7_uop_psrs2 == io_wakeup_2_pdest & (|entries_7_uop_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :42:33, :44:{36,83,92,107}
-  wire             _GEN_70 =
+  wire        _GEN_70 =
     io_wakeup_2_valid & entries_7_uop_psrs3 == io_wakeup_2_pdest & (|entries_7_uop_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :42:33, :45:{36,83,92,107}
-  wire             woken_rs1_7 =
+  wire        woken_rs1_7 =
     io_wakeup_4_valid & entries_7_uop_psrs1 == io_wakeup_4_pdest & (|entries_7_uop_psrs1)
     | (io_wakeup_3_valid
          ? entries_7_uop_psrs1 == io_wakeup_3_pdest & (|entries_7_uop_psrs1) | _GEN_68
            | _GEN_65
          : _GEN_68 | _GEN_65);	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :42:33, :43:{36,59,83,92,107}
-  wire             woken_rs2_7 =
+  wire        woken_rs2_7 =
     io_wakeup_4_valid & entries_7_uop_psrs2 == io_wakeup_4_pdest & (|entries_7_uop_psrs2)
     | (io_wakeup_3_valid
          ? entries_7_uop_psrs2 == io_wakeup_3_pdest & (|entries_7_uop_psrs2) | _GEN_69
            | _GEN_66
          : _GEN_69 | _GEN_66);	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :42:33, :44:{36,59,83,92,107}
-  wire             woken_rs3_7 =
+  wire        woken_rs3_7 =
     io_wakeup_4_valid & entries_7_uop_psrs3 == io_wakeup_4_pdest & (|entries_7_uop_psrs3)
     | (io_wakeup_3_valid
          ? entries_7_uop_psrs3 == io_wakeup_3_pdest & (|entries_7_uop_psrs3) | _GEN_70
            | _GEN_67
          : _GEN_70 | _GEN_67);	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :42:33, :45:{36,59,83,92,107}
-  wire [2:0]       _issue_idx_T_1 =
-    _ageDetector_io_out_0[7:5] | _ageDetector_io_out_0[3:1];	// backend/src/zaqal/backend/issue/IssueQueue.scala:55:27, src/main/scala/chisel3/util/OneHot.scala:30:18, :31:18, :32:28
-  wire [2:0]       issue_idx =
+  wire [2:0]  _issue_idx_T_1 = _ageDetector_io_out_0[7:5] | _ageDetector_io_out_0[3:1];	// backend/src/zaqal/backend/issue/IssueQueue.scala:55:27, src/main/scala/chisel3/util/OneHot.scala:30:18, :31:18, :32:28
+  wire [2:0]  issue_idx =
     {|(_ageDetector_io_out_0[7:4]),
      |(_issue_idx_T_1[2:1]),
      _issue_idx_T_1[2] | _issue_idx_T_1[0]};	// backend/src/zaqal/backend/issue/IssueQueue.scala:55:27, src/main/scala/chisel3/util/OneHot.scala:30:18, :31:18, :32:{10,14,28}
-  wire [7:0][31:0] _GEN_71 =
-    {{entries_7_uop_uop_inst_raw},
-     {entries_6_uop_uop_inst_raw},
-     {entries_5_uop_uop_inst_raw},
-     {entries_4_uop_uop_inst_raw},
-     {entries_3_uop_uop_inst_raw},
-     {entries_2_uop_uop_inst_raw},
-     {entries_1_uop_uop_inst_raw},
-     {entries_0_uop_uop_inst_raw}};	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
-  wire [7:0]       _GEN_72 =
-    {{entries_7_uop_decode_is_lb},
-     {entries_6_uop_decode_is_lb},
-     {entries_5_uop_decode_is_lb},
-     {entries_4_uop_decode_is_lb},
-     {entries_3_uop_decode_is_lb},
-     {entries_2_uop_decode_is_lb},
-     {entries_1_uop_decode_is_lb},
-     {entries_0_uop_decode_is_lb}};	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
-  wire [7:0]       _GEN_73 =
-    {{entries_7_uop_decode_is_lh},
-     {entries_6_uop_decode_is_lh},
-     {entries_5_uop_decode_is_lh},
-     {entries_4_uop_decode_is_lh},
-     {entries_3_uop_decode_is_lh},
-     {entries_2_uop_decode_is_lh},
-     {entries_1_uop_decode_is_lh},
-     {entries_0_uop_decode_is_lh}};	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
-  wire [7:0]       _GEN_74 =
-    {{entries_7_uop_decode_is_lw},
-     {entries_6_uop_decode_is_lw},
-     {entries_5_uop_decode_is_lw},
-     {entries_4_uop_decode_is_lw},
-     {entries_3_uop_decode_is_lw},
-     {entries_2_uop_decode_is_lw},
-     {entries_1_uop_decode_is_lw},
-     {entries_0_uop_decode_is_lw}};	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
-  wire [7:0]       _GEN_75 =
-    {{entries_7_uop_decode_is_ld},
-     {entries_6_uop_decode_is_ld},
-     {entries_5_uop_decode_is_ld},
-     {entries_4_uop_decode_is_ld},
-     {entries_3_uop_decode_is_ld},
-     {entries_2_uop_decode_is_ld},
-     {entries_1_uop_decode_is_ld},
-     {entries_0_uop_decode_is_ld}};	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
-  wire [7:0]       _GEN_76 =
-    {{entries_7_uop_decode_is_lbu},
-     {entries_6_uop_decode_is_lbu},
-     {entries_5_uop_decode_is_lbu},
-     {entries_4_uop_decode_is_lbu},
-     {entries_3_uop_decode_is_lbu},
-     {entries_2_uop_decode_is_lbu},
-     {entries_1_uop_decode_is_lbu},
-     {entries_0_uop_decode_is_lbu}};	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
-  wire [7:0]       _GEN_77 =
-    {{entries_7_uop_decode_is_lhu},
-     {entries_6_uop_decode_is_lhu},
-     {entries_5_uop_decode_is_lhu},
-     {entries_4_uop_decode_is_lhu},
-     {entries_3_uop_decode_is_lhu},
-     {entries_2_uop_decode_is_lhu},
-     {entries_1_uop_decode_is_lhu},
-     {entries_0_uop_decode_is_lhu}};	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
-  wire [7:0]       _GEN_78 =
-    {{entries_7_uop_decode_is_lwu},
-     {entries_6_uop_decode_is_lwu},
-     {entries_5_uop_decode_is_lwu},
-     {entries_4_uop_decode_is_lwu},
-     {entries_3_uop_decode_is_lwu},
-     {entries_2_uop_decode_is_lwu},
-     {entries_1_uop_decode_is_lwu},
-     {entries_0_uop_decode_is_lwu}};	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
-  wire [7:0]       _GEN_79 =
-    {{entries_7_uop_decode_is_load},
-     {entries_6_uop_decode_is_load},
-     {entries_5_uop_decode_is_load},
-     {entries_4_uop_decode_is_load},
-     {entries_3_uop_decode_is_load},
-     {entries_2_uop_decode_is_load},
-     {entries_1_uop_decode_is_load},
-     {entries_0_uop_decode_is_load}};	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
-  wire [7:0]       _GEN_80 =
-    {{entries_7_uop_decode_is_sb},
-     {entries_6_uop_decode_is_sb},
-     {entries_5_uop_decode_is_sb},
-     {entries_4_uop_decode_is_sb},
-     {entries_3_uop_decode_is_sb},
-     {entries_2_uop_decode_is_sb},
-     {entries_1_uop_decode_is_sb},
-     {entries_0_uop_decode_is_sb}};	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
-  wire [7:0]       _GEN_81 =
-    {{entries_7_uop_decode_is_sh},
-     {entries_6_uop_decode_is_sh},
-     {entries_5_uop_decode_is_sh},
-     {entries_4_uop_decode_is_sh},
-     {entries_3_uop_decode_is_sh},
-     {entries_2_uop_decode_is_sh},
-     {entries_1_uop_decode_is_sh},
-     {entries_0_uop_decode_is_sh}};	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
-  wire [7:0]       _GEN_82 =
-    {{entries_7_uop_decode_is_sw},
-     {entries_6_uop_decode_is_sw},
-     {entries_5_uop_decode_is_sw},
-     {entries_4_uop_decode_is_sw},
-     {entries_3_uop_decode_is_sw},
-     {entries_2_uop_decode_is_sw},
-     {entries_1_uop_decode_is_sw},
-     {entries_0_uop_decode_is_sw}};	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
-  wire [7:0]       _GEN_83 =
-    {{entries_7_uop_decode_is_sd},
-     {entries_6_uop_decode_is_sd},
-     {entries_5_uop_decode_is_sd},
-     {entries_4_uop_decode_is_sd},
-     {entries_3_uop_decode_is_sd},
-     {entries_2_uop_decode_is_sd},
-     {entries_1_uop_decode_is_sd},
-     {entries_0_uop_decode_is_sd}};	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
-  wire [7:0]       _GEN_84 =
-    {{entries_7_uop_decode_is_store},
-     {entries_6_uop_decode_is_store},
-     {entries_5_uop_decode_is_store},
-     {entries_4_uop_decode_is_store},
-     {entries_3_uop_decode_is_store},
-     {entries_2_uop_decode_is_store},
-     {entries_1_uop_decode_is_store},
-     {entries_0_uop_decode_is_store}};	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
-  wire [7:0]       _GEN_85 =
-    {{entries_7_uop_decode_is_lr},
-     {entries_6_uop_decode_is_lr},
-     {entries_5_uop_decode_is_lr},
-     {entries_4_uop_decode_is_lr},
-     {entries_3_uop_decode_is_lr},
-     {entries_2_uop_decode_is_lr},
-     {entries_1_uop_decode_is_lr},
-     {entries_0_uop_decode_is_lr}};	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
-  wire [7:0]       _GEN_86 =
-    {{entries_7_uop_decode_is_sc},
-     {entries_6_uop_decode_is_sc},
-     {entries_5_uop_decode_is_sc},
-     {entries_4_uop_decode_is_sc},
-     {entries_3_uop_decode_is_sc},
-     {entries_2_uop_decode_is_sc},
-     {entries_1_uop_decode_is_sc},
-     {entries_0_uop_decode_is_sc}};	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
-  wire [7:0]       _GEN_87 =
-    {{entries_7_uop_decode_is_lr_w},
-     {entries_6_uop_decode_is_lr_w},
-     {entries_5_uop_decode_is_lr_w},
-     {entries_4_uop_decode_is_lr_w},
-     {entries_3_uop_decode_is_lr_w},
-     {entries_2_uop_decode_is_lr_w},
-     {entries_1_uop_decode_is_lr_w},
-     {entries_0_uop_decode_is_lr_w}};	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
-  wire [7:0]       _GEN_88 =
-    {{entries_7_uop_decode_is_lr_d},
-     {entries_6_uop_decode_is_lr_d},
-     {entries_5_uop_decode_is_lr_d},
-     {entries_4_uop_decode_is_lr_d},
-     {entries_3_uop_decode_is_lr_d},
-     {entries_2_uop_decode_is_lr_d},
-     {entries_1_uop_decode_is_lr_d},
-     {entries_0_uop_decode_is_lr_d}};	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
-  wire [7:0]       _GEN_89 =
-    {{entries_7_uop_decode_is_sc_w},
-     {entries_6_uop_decode_is_sc_w},
-     {entries_5_uop_decode_is_sc_w},
-     {entries_4_uop_decode_is_sc_w},
-     {entries_3_uop_decode_is_sc_w},
-     {entries_2_uop_decode_is_sc_w},
-     {entries_1_uop_decode_is_sc_w},
-     {entries_0_uop_decode_is_sc_w}};	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
-  wire [7:0]       _GEN_90 =
-    {{entries_7_uop_decode_is_sc_d},
-     {entries_6_uop_decode_is_sc_d},
-     {entries_5_uop_decode_is_sc_d},
-     {entries_4_uop_decode_is_sc_d},
-     {entries_3_uop_decode_is_sc_d},
-     {entries_2_uop_decode_is_sc_d},
-     {entries_1_uop_decode_is_sc_d},
-     {entries_0_uop_decode_is_sc_d}};	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
-  wire [7:0]       _GEN_91 =
-    {{entries_7_uop_decode_is_amoadd},
-     {entries_6_uop_decode_is_amoadd},
-     {entries_5_uop_decode_is_amoadd},
-     {entries_4_uop_decode_is_amoadd},
-     {entries_3_uop_decode_is_amoadd},
-     {entries_2_uop_decode_is_amoadd},
-     {entries_1_uop_decode_is_amoadd},
-     {entries_0_uop_decode_is_amoadd}};	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
-  wire [7:0]       _GEN_92 =
-    {{entries_7_uop_decode_is_amoswap},
-     {entries_6_uop_decode_is_amoswap},
-     {entries_5_uop_decode_is_amoswap},
-     {entries_4_uop_decode_is_amoswap},
-     {entries_3_uop_decode_is_amoswap},
-     {entries_2_uop_decode_is_amoswap},
-     {entries_1_uop_decode_is_amoswap},
-     {entries_0_uop_decode_is_amoswap}};	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
-  wire [7:0]       _GEN_93 =
-    {{entries_7_uop_decode_is_amoxor},
-     {entries_6_uop_decode_is_amoxor},
-     {entries_5_uop_decode_is_amoxor},
-     {entries_4_uop_decode_is_amoxor},
-     {entries_3_uop_decode_is_amoxor},
-     {entries_2_uop_decode_is_amoxor},
-     {entries_1_uop_decode_is_amoxor},
-     {entries_0_uop_decode_is_amoxor}};	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
-  wire [7:0]       _GEN_94 =
-    {{entries_7_uop_decode_is_amoand},
-     {entries_6_uop_decode_is_amoand},
-     {entries_5_uop_decode_is_amoand},
-     {entries_4_uop_decode_is_amoand},
-     {entries_3_uop_decode_is_amoand},
-     {entries_2_uop_decode_is_amoand},
-     {entries_1_uop_decode_is_amoand},
-     {entries_0_uop_decode_is_amoand}};	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
-  wire [7:0]       _GEN_95 =
-    {{entries_7_uop_decode_is_amoor},
-     {entries_6_uop_decode_is_amoor},
-     {entries_5_uop_decode_is_amoor},
-     {entries_4_uop_decode_is_amoor},
-     {entries_3_uop_decode_is_amoor},
-     {entries_2_uop_decode_is_amoor},
-     {entries_1_uop_decode_is_amoor},
-     {entries_0_uop_decode_is_amoor}};	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
-  wire [7:0]       _GEN_96 =
-    {{entries_7_uop_decode_is_amomin},
-     {entries_6_uop_decode_is_amomin},
-     {entries_5_uop_decode_is_amomin},
-     {entries_4_uop_decode_is_amomin},
-     {entries_3_uop_decode_is_amomin},
-     {entries_2_uop_decode_is_amomin},
-     {entries_1_uop_decode_is_amomin},
-     {entries_0_uop_decode_is_amomin}};	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
-  wire [7:0]       _GEN_97 =
-    {{entries_7_uop_decode_is_amomax},
-     {entries_6_uop_decode_is_amomax},
-     {entries_5_uop_decode_is_amomax},
-     {entries_4_uop_decode_is_amomax},
-     {entries_3_uop_decode_is_amomax},
-     {entries_2_uop_decode_is_amomax},
-     {entries_1_uop_decode_is_amomax},
-     {entries_0_uop_decode_is_amomax}};	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
-  wire [7:0]       _GEN_98 =
-    {{entries_7_uop_decode_is_amominu},
-     {entries_6_uop_decode_is_amominu},
-     {entries_5_uop_decode_is_amominu},
-     {entries_4_uop_decode_is_amominu},
-     {entries_3_uop_decode_is_amominu},
-     {entries_2_uop_decode_is_amominu},
-     {entries_1_uop_decode_is_amominu},
-     {entries_0_uop_decode_is_amominu}};	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
-  wire [7:0]       _GEN_99 =
-    {{entries_7_uop_decode_is_amomaxu},
-     {entries_6_uop_decode_is_amomaxu},
-     {entries_5_uop_decode_is_amomaxu},
-     {entries_4_uop_decode_is_amomaxu},
-     {entries_3_uop_decode_is_amomaxu},
-     {entries_2_uop_decode_is_amomaxu},
-     {entries_1_uop_decode_is_amomaxu},
-     {entries_0_uop_decode_is_amomaxu}};	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
-  wire [7:0]       _GEN_100 =
-    {{entries_7_uop_decode_is_amo_w},
-     {entries_6_uop_decode_is_amo_w},
-     {entries_5_uop_decode_is_amo_w},
-     {entries_4_uop_decode_is_amo_w},
-     {entries_3_uop_decode_is_amo_w},
-     {entries_2_uop_decode_is_amo_w},
-     {entries_1_uop_decode_is_amo_w},
-     {entries_0_uop_decode_is_amo_w}};	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
-  wire [7:0]       _GEN_101 =
-    {{entries_7_uop_decode_is_amo_d},
-     {entries_6_uop_decode_is_amo_d},
-     {entries_5_uop_decode_is_amo_d},
-     {entries_4_uop_decode_is_amo_d},
-     {entries_3_uop_decode_is_amo_d},
-     {entries_2_uop_decode_is_amo_d},
-     {entries_1_uop_decode_is_amo_d},
-     {entries_0_uop_decode_is_amo_d}};	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
-  wire [7:0]       _GEN_102 =
-    {{entries_7_uop_decode_is_atomic},
-     {entries_6_uop_decode_is_atomic},
-     {entries_5_uop_decode_is_atomic},
-     {entries_4_uop_decode_is_atomic},
-     {entries_3_uop_decode_is_atomic},
-     {entries_2_uop_decode_is_atomic},
-     {entries_1_uop_decode_is_atomic},
-     {entries_0_uop_decode_is_atomic}};	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
-  wire [7:0]       _GEN_103 =
-    {{entries_7_uop_decode_is_fload},
-     {entries_6_uop_decode_is_fload},
-     {entries_5_uop_decode_is_fload},
-     {entries_4_uop_decode_is_fload},
-     {entries_3_uop_decode_is_fload},
-     {entries_2_uop_decode_is_fload},
-     {entries_1_uop_decode_is_fload},
-     {entries_0_uop_decode_is_fload}};	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
-  wire [7:0]       _GEN_104 =
-    {{entries_7_uop_decode_is_flw},
-     {entries_6_uop_decode_is_flw},
-     {entries_5_uop_decode_is_flw},
-     {entries_4_uop_decode_is_flw},
-     {entries_3_uop_decode_is_flw},
-     {entries_2_uop_decode_is_flw},
-     {entries_1_uop_decode_is_flw},
-     {entries_0_uop_decode_is_flw}};	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
-  wire [7:0]       _GEN_105 =
-    {{entries_7_uop_decode_is_fld},
-     {entries_6_uop_decode_is_fld},
-     {entries_5_uop_decode_is_fld},
-     {entries_4_uop_decode_is_fld},
-     {entries_3_uop_decode_is_fld},
-     {entries_2_uop_decode_is_fld},
-     {entries_1_uop_decode_is_fld},
-     {entries_0_uop_decode_is_fld}};	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
-  wire [7:0]       _GEN_106 =
-    {{entries_7_uop_decode_is_fstore},
-     {entries_6_uop_decode_is_fstore},
-     {entries_5_uop_decode_is_fstore},
-     {entries_4_uop_decode_is_fstore},
-     {entries_3_uop_decode_is_fstore},
-     {entries_2_uop_decode_is_fstore},
-     {entries_1_uop_decode_is_fstore},
-     {entries_0_uop_decode_is_fstore}};	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
-  wire [7:0]       _GEN_107 =
-    {{entries_7_uop_decode_is_fsw},
-     {entries_6_uop_decode_is_fsw},
-     {entries_5_uop_decode_is_fsw},
-     {entries_4_uop_decode_is_fsw},
-     {entries_3_uop_decode_is_fsw},
-     {entries_2_uop_decode_is_fsw},
-     {entries_1_uop_decode_is_fsw},
-     {entries_0_uop_decode_is_fsw}};	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
-  wire [7:0]       _GEN_108 =
-    {{entries_7_uop_decode_is_fsd},
-     {entries_6_uop_decode_is_fsd},
-     {entries_5_uop_decode_is_fsd},
-     {entries_4_uop_decode_is_fsd},
-     {entries_3_uop_decode_is_fsd},
-     {entries_2_uop_decode_is_fsd},
-     {entries_1_uop_decode_is_fsd},
-     {entries_0_uop_decode_is_fsd}};	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
-  wire [7:0]       _GEN_109 =
-    {{entries_7_uop_decode_is_fmadd},
-     {entries_6_uop_decode_is_fmadd},
-     {entries_5_uop_decode_is_fmadd},
-     {entries_4_uop_decode_is_fmadd},
-     {entries_3_uop_decode_is_fmadd},
-     {entries_2_uop_decode_is_fmadd},
-     {entries_1_uop_decode_is_fmadd},
-     {entries_0_uop_decode_is_fmadd}};	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
-  wire [7:0]       _GEN_110 =
-    {{entries_7_uop_decode_is_fadd},
-     {entries_6_uop_decode_is_fadd},
-     {entries_5_uop_decode_is_fadd},
-     {entries_4_uop_decode_is_fadd},
-     {entries_3_uop_decode_is_fadd},
-     {entries_2_uop_decode_is_fadd},
-     {entries_1_uop_decode_is_fadd},
-     {entries_0_uop_decode_is_fadd}};	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
-  wire [7:0]       _GEN_111 =
-    {{entries_7_uop_decode_is_fsub},
-     {entries_6_uop_decode_is_fsub},
-     {entries_5_uop_decode_is_fsub},
-     {entries_4_uop_decode_is_fsub},
-     {entries_3_uop_decode_is_fsub},
-     {entries_2_uop_decode_is_fsub},
-     {entries_1_uop_decode_is_fsub},
-     {entries_0_uop_decode_is_fsub}};	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
-  wire [7:0]       _GEN_112 =
-    {{entries_7_uop_decode_is_fmul},
-     {entries_6_uop_decode_is_fmul},
-     {entries_5_uop_decode_is_fmul},
-     {entries_4_uop_decode_is_fmul},
-     {entries_3_uop_decode_is_fmul},
-     {entries_2_uop_decode_is_fmul},
-     {entries_1_uop_decode_is_fmul},
-     {entries_0_uop_decode_is_fmul}};	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
-  wire [7:0]       _GEN_113 =
-    {{entries_7_uop_decode_is_fdiv},
-     {entries_6_uop_decode_is_fdiv},
-     {entries_5_uop_decode_is_fdiv},
-     {entries_4_uop_decode_is_fdiv},
-     {entries_3_uop_decode_is_fdiv},
-     {entries_2_uop_decode_is_fdiv},
-     {entries_1_uop_decode_is_fdiv},
-     {entries_0_uop_decode_is_fdiv}};	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
-  wire [7:0]       _GEN_114 =
-    {{entries_7_uop_decode_is_fsqrt},
-     {entries_6_uop_decode_is_fsqrt},
-     {entries_5_uop_decode_is_fsqrt},
-     {entries_4_uop_decode_is_fsqrt},
-     {entries_3_uop_decode_is_fsqrt},
-     {entries_2_uop_decode_is_fsqrt},
-     {entries_1_uop_decode_is_fsqrt},
-     {entries_0_uop_decode_is_fsqrt}};	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
-  wire [7:0]       _GEN_115 =
-    {{entries_7_uop_decode_is_fsgnj},
-     {entries_6_uop_decode_is_fsgnj},
-     {entries_5_uop_decode_is_fsgnj},
-     {entries_4_uop_decode_is_fsgnj},
-     {entries_3_uop_decode_is_fsgnj},
-     {entries_2_uop_decode_is_fsgnj},
-     {entries_1_uop_decode_is_fsgnj},
-     {entries_0_uop_decode_is_fsgnj}};	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
-  wire [7:0]       _GEN_116 =
-    {{entries_7_uop_decode_is_fminmax},
-     {entries_6_uop_decode_is_fminmax},
-     {entries_5_uop_decode_is_fminmax},
-     {entries_4_uop_decode_is_fminmax},
-     {entries_3_uop_decode_is_fminmax},
-     {entries_2_uop_decode_is_fminmax},
-     {entries_1_uop_decode_is_fminmax},
-     {entries_0_uop_decode_is_fminmax}};	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
-  wire [7:0]       _GEN_117 =
-    {{entries_7_uop_decode_is_fcvt_f2i},
-     {entries_6_uop_decode_is_fcvt_f2i},
-     {entries_5_uop_decode_is_fcvt_f2i},
-     {entries_4_uop_decode_is_fcvt_f2i},
-     {entries_3_uop_decode_is_fcvt_f2i},
-     {entries_2_uop_decode_is_fcvt_f2i},
-     {entries_1_uop_decode_is_fcvt_f2i},
-     {entries_0_uop_decode_is_fcvt_f2i}};	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
-  wire [7:0]       _GEN_118 =
-    {{entries_7_uop_decode_is_fcvt_i2f},
-     {entries_6_uop_decode_is_fcvt_i2f},
-     {entries_5_uop_decode_is_fcvt_i2f},
-     {entries_4_uop_decode_is_fcvt_i2f},
-     {entries_3_uop_decode_is_fcvt_i2f},
-     {entries_2_uop_decode_is_fcvt_i2f},
-     {entries_1_uop_decode_is_fcvt_i2f},
-     {entries_0_uop_decode_is_fcvt_i2f}};	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
-  wire [7:0]       _GEN_119 =
-    {{entries_7_uop_decode_is_fmv_w_x},
-     {entries_6_uop_decode_is_fmv_w_x},
-     {entries_5_uop_decode_is_fmv_w_x},
-     {entries_4_uop_decode_is_fmv_w_x},
-     {entries_3_uop_decode_is_fmv_w_x},
-     {entries_2_uop_decode_is_fmv_w_x},
-     {entries_1_uop_decode_is_fmv_w_x},
-     {entries_0_uop_decode_is_fmv_w_x}};	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
-  wire [7:0]       _GEN_120 =
-    {{entries_7_uop_decode_is_fmv_x_w},
-     {entries_6_uop_decode_is_fmv_x_w},
-     {entries_5_uop_decode_is_fmv_x_w},
-     {entries_4_uop_decode_is_fmv_x_w},
-     {entries_3_uop_decode_is_fmv_x_w},
-     {entries_2_uop_decode_is_fmv_x_w},
-     {entries_1_uop_decode_is_fmv_x_w},
-     {entries_0_uop_decode_is_fmv_x_w}};	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
-  wire [7:0]       _GEN_121 =
-    {{entries_7_uop_decode_is_feq},
-     {entries_6_uop_decode_is_feq},
-     {entries_5_uop_decode_is_feq},
-     {entries_4_uop_decode_is_feq},
-     {entries_3_uop_decode_is_feq},
-     {entries_2_uop_decode_is_feq},
-     {entries_1_uop_decode_is_feq},
-     {entries_0_uop_decode_is_feq}};	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
-  wire [7:0]       _GEN_122 =
-    {{entries_7_uop_decode_is_flt},
-     {entries_6_uop_decode_is_flt},
-     {entries_5_uop_decode_is_flt},
-     {entries_4_uop_decode_is_flt},
-     {entries_3_uop_decode_is_flt},
-     {entries_2_uop_decode_is_flt},
-     {entries_1_uop_decode_is_flt},
-     {entries_0_uop_decode_is_flt}};	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
-  wire [7:0]       _GEN_123 =
-    {{entries_7_uop_decode_is_fle},
-     {entries_6_uop_decode_is_fle},
-     {entries_5_uop_decode_is_fle},
-     {entries_4_uop_decode_is_fle},
-     {entries_3_uop_decode_is_fle},
-     {entries_2_uop_decode_is_fle},
-     {entries_1_uop_decode_is_fle},
-     {entries_0_uop_decode_is_fle}};	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
-  wire [7:0]       _GEN_124 =
-    {{entries_7_uop_decode_is_fclass},
-     {entries_6_uop_decode_is_fclass},
-     {entries_5_uop_decode_is_fclass},
-     {entries_4_uop_decode_is_fclass},
-     {entries_3_uop_decode_is_fclass},
-     {entries_2_uop_decode_is_fclass},
-     {entries_1_uop_decode_is_fclass},
-     {entries_0_uop_decode_is_fclass}};	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
-  wire [7:0][63:0] _GEN_125 =
-    {{entries_7_uop_decode_imm},
-     {entries_6_uop_decode_imm},
-     {entries_5_uop_decode_imm},
-     {entries_4_uop_decode_imm},
-     {entries_3_uop_decode_imm},
-     {entries_2_uop_decode_imm},
-     {entries_1_uop_decode_imm},
-     {entries_0_uop_decode_imm}};	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
-  wire [7:0][7:0]  _GEN_126 =
-    {{entries_7_uop_psrs1},
-     {entries_6_uop_psrs1},
-     {entries_5_uop_psrs1},
-     {entries_4_uop_psrs1},
-     {entries_3_uop_psrs1},
-     {entries_2_uop_psrs1},
-     {entries_1_uop_psrs1},
-     {entries_0_uop_psrs1}};	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
-  wire [7:0][7:0]  _GEN_127 =
-    {{entries_7_uop_psrs2},
-     {entries_6_uop_psrs2},
-     {entries_5_uop_psrs2},
-     {entries_4_uop_psrs2},
-     {entries_3_uop_psrs2},
-     {entries_2_uop_psrs2},
-     {entries_1_uop_psrs2},
-     {entries_0_uop_psrs2}};	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
-  wire [7:0][7:0]  _GEN_128 =
-    {{entries_7_uop_pdest},
-     {entries_6_uop_pdest},
-     {entries_5_uop_pdest},
-     {entries_4_uop_pdest},
-     {entries_3_uop_pdest},
-     {entries_2_uop_pdest},
-     {entries_1_uop_pdest},
-     {entries_0_uop_pdest}};	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
-  wire             deq_fire = (|_ageDetector_io_out_0) & io_deq_0_ready;	// backend/src/zaqal/backend/issue/IssueQueue.scala:55:27, :66:39, :71:36
-  wire             is_empty_0 = ~entries_0_valid | deq_fire & _ageDetector_io_out_0[0];	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :55:27, :71:36, :80:{90,108}, :81:{20,38}
-  wire             is_empty_1 = ~entries_1_valid | deq_fire & _ageDetector_io_out_0[1];	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :55:27, :71:36, :80:{90,108}, :81:{20,38}
-  wire             is_empty_2 = ~entries_2_valid | deq_fire & _ageDetector_io_out_0[2];	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :55:27, :71:36, :80:{90,108}, :81:{20,38}
-  wire             is_empty_3 = ~entries_3_valid | deq_fire & _ageDetector_io_out_0[3];	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :55:27, :71:36, :80:{90,108}, :81:{20,38}
-  wire             is_empty_4 = ~entries_4_valid | deq_fire & _ageDetector_io_out_0[4];	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :55:27, :71:36, :80:{90,108}, :81:{20,38}
-  wire             is_empty_5 = ~entries_5_valid | deq_fire & _ageDetector_io_out_0[5];	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :55:27, :71:36, :80:{90,108}, :81:{20,38}
-  wire             is_empty_6 = ~entries_6_valid | deq_fire & _ageDetector_io_out_0[6];	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :55:27, :71:36, :80:{90,108}, :81:{20,38}
-  wire             is_empty_7 = ~entries_7_valid | deq_fire & _ageDetector_io_out_0[7];	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :55:27, :71:36, :80:{90,108}, :81:{20,38}
-  wire [7:0]       current_empty_mask =
+  reg  [63:0] casez_tmp;	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+  always_comb begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+    casez (issue_idx)	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+      3'b000:
+        casez_tmp = entries_0_uop_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b001:
+        casez_tmp = entries_1_uop_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b010:
+        casez_tmp = entries_2_uop_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b011:
+        casez_tmp = entries_3_uop_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b100:
+        casez_tmp = entries_4_uop_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b101:
+        casez_tmp = entries_5_uop_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b110:
+        casez_tmp = entries_6_uop_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      default:
+        casez_tmp = entries_7_uop_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+    endcase	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+  end // always_comb
+  reg  [31:0] casez_tmp_0;	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+  always_comb begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+    casez (issue_idx)	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+      3'b000:
+        casez_tmp_0 = entries_0_uop_uop_inst_raw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b001:
+        casez_tmp_0 = entries_1_uop_uop_inst_raw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b010:
+        casez_tmp_0 = entries_2_uop_uop_inst_raw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b011:
+        casez_tmp_0 = entries_3_uop_uop_inst_raw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b100:
+        casez_tmp_0 = entries_4_uop_uop_inst_raw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b101:
+        casez_tmp_0 = entries_5_uop_uop_inst_raw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b110:
+        casez_tmp_0 = entries_6_uop_uop_inst_raw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      default:
+        casez_tmp_0 = entries_7_uop_uop_inst_raw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+    endcase	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+  end // always_comb
+  reg         casez_tmp_1;	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+  always_comb begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+    casez (issue_idx)	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+      3'b000:
+        casez_tmp_1 = entries_0_uop_decode_is_lb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b001:
+        casez_tmp_1 = entries_1_uop_decode_is_lb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b010:
+        casez_tmp_1 = entries_2_uop_decode_is_lb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b011:
+        casez_tmp_1 = entries_3_uop_decode_is_lb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b100:
+        casez_tmp_1 = entries_4_uop_decode_is_lb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b101:
+        casez_tmp_1 = entries_5_uop_decode_is_lb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b110:
+        casez_tmp_1 = entries_6_uop_decode_is_lb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      default:
+        casez_tmp_1 = entries_7_uop_decode_is_lb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+    endcase	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+  end // always_comb
+  reg         casez_tmp_2;	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+  always_comb begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+    casez (issue_idx)	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+      3'b000:
+        casez_tmp_2 = entries_0_uop_decode_is_lh;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b001:
+        casez_tmp_2 = entries_1_uop_decode_is_lh;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b010:
+        casez_tmp_2 = entries_2_uop_decode_is_lh;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b011:
+        casez_tmp_2 = entries_3_uop_decode_is_lh;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b100:
+        casez_tmp_2 = entries_4_uop_decode_is_lh;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b101:
+        casez_tmp_2 = entries_5_uop_decode_is_lh;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b110:
+        casez_tmp_2 = entries_6_uop_decode_is_lh;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      default:
+        casez_tmp_2 = entries_7_uop_decode_is_lh;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+    endcase	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+  end // always_comb
+  reg         casez_tmp_3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+  always_comb begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+    casez (issue_idx)	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+      3'b000:
+        casez_tmp_3 = entries_0_uop_decode_is_lw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b001:
+        casez_tmp_3 = entries_1_uop_decode_is_lw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b010:
+        casez_tmp_3 = entries_2_uop_decode_is_lw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b011:
+        casez_tmp_3 = entries_3_uop_decode_is_lw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b100:
+        casez_tmp_3 = entries_4_uop_decode_is_lw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b101:
+        casez_tmp_3 = entries_5_uop_decode_is_lw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b110:
+        casez_tmp_3 = entries_6_uop_decode_is_lw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      default:
+        casez_tmp_3 = entries_7_uop_decode_is_lw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+    endcase	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+  end // always_comb
+  reg         casez_tmp_4;	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+  always_comb begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+    casez (issue_idx)	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+      3'b000:
+        casez_tmp_4 = entries_0_uop_decode_is_ld;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b001:
+        casez_tmp_4 = entries_1_uop_decode_is_ld;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b010:
+        casez_tmp_4 = entries_2_uop_decode_is_ld;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b011:
+        casez_tmp_4 = entries_3_uop_decode_is_ld;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b100:
+        casez_tmp_4 = entries_4_uop_decode_is_ld;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b101:
+        casez_tmp_4 = entries_5_uop_decode_is_ld;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b110:
+        casez_tmp_4 = entries_6_uop_decode_is_ld;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      default:
+        casez_tmp_4 = entries_7_uop_decode_is_ld;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+    endcase	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+  end // always_comb
+  reg         casez_tmp_5;	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+  always_comb begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+    casez (issue_idx)	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+      3'b000:
+        casez_tmp_5 = entries_0_uop_decode_is_lbu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b001:
+        casez_tmp_5 = entries_1_uop_decode_is_lbu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b010:
+        casez_tmp_5 = entries_2_uop_decode_is_lbu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b011:
+        casez_tmp_5 = entries_3_uop_decode_is_lbu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b100:
+        casez_tmp_5 = entries_4_uop_decode_is_lbu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b101:
+        casez_tmp_5 = entries_5_uop_decode_is_lbu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b110:
+        casez_tmp_5 = entries_6_uop_decode_is_lbu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      default:
+        casez_tmp_5 = entries_7_uop_decode_is_lbu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+    endcase	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+  end // always_comb
+  reg         casez_tmp_6;	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+  always_comb begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+    casez (issue_idx)	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+      3'b000:
+        casez_tmp_6 = entries_0_uop_decode_is_lhu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b001:
+        casez_tmp_6 = entries_1_uop_decode_is_lhu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b010:
+        casez_tmp_6 = entries_2_uop_decode_is_lhu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b011:
+        casez_tmp_6 = entries_3_uop_decode_is_lhu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b100:
+        casez_tmp_6 = entries_4_uop_decode_is_lhu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b101:
+        casez_tmp_6 = entries_5_uop_decode_is_lhu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b110:
+        casez_tmp_6 = entries_6_uop_decode_is_lhu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      default:
+        casez_tmp_6 = entries_7_uop_decode_is_lhu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+    endcase	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+  end // always_comb
+  reg         casez_tmp_7;	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+  always_comb begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+    casez (issue_idx)	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+      3'b000:
+        casez_tmp_7 = entries_0_uop_decode_is_lwu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b001:
+        casez_tmp_7 = entries_1_uop_decode_is_lwu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b010:
+        casez_tmp_7 = entries_2_uop_decode_is_lwu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b011:
+        casez_tmp_7 = entries_3_uop_decode_is_lwu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b100:
+        casez_tmp_7 = entries_4_uop_decode_is_lwu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b101:
+        casez_tmp_7 = entries_5_uop_decode_is_lwu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b110:
+        casez_tmp_7 = entries_6_uop_decode_is_lwu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      default:
+        casez_tmp_7 = entries_7_uop_decode_is_lwu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+    endcase	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+  end // always_comb
+  reg         casez_tmp_8;	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+  always_comb begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+    casez (issue_idx)	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+      3'b000:
+        casez_tmp_8 = entries_0_uop_decode_is_load;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b001:
+        casez_tmp_8 = entries_1_uop_decode_is_load;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b010:
+        casez_tmp_8 = entries_2_uop_decode_is_load;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b011:
+        casez_tmp_8 = entries_3_uop_decode_is_load;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b100:
+        casez_tmp_8 = entries_4_uop_decode_is_load;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b101:
+        casez_tmp_8 = entries_5_uop_decode_is_load;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b110:
+        casez_tmp_8 = entries_6_uop_decode_is_load;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      default:
+        casez_tmp_8 = entries_7_uop_decode_is_load;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+    endcase	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+  end // always_comb
+  reg         casez_tmp_9;	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+  always_comb begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+    casez (issue_idx)	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+      3'b000:
+        casez_tmp_9 = entries_0_uop_decode_is_sb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b001:
+        casez_tmp_9 = entries_1_uop_decode_is_sb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b010:
+        casez_tmp_9 = entries_2_uop_decode_is_sb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b011:
+        casez_tmp_9 = entries_3_uop_decode_is_sb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b100:
+        casez_tmp_9 = entries_4_uop_decode_is_sb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b101:
+        casez_tmp_9 = entries_5_uop_decode_is_sb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b110:
+        casez_tmp_9 = entries_6_uop_decode_is_sb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      default:
+        casez_tmp_9 = entries_7_uop_decode_is_sb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+    endcase	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+  end // always_comb
+  reg         casez_tmp_10;	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+  always_comb begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+    casez (issue_idx)	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+      3'b000:
+        casez_tmp_10 = entries_0_uop_decode_is_sh;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b001:
+        casez_tmp_10 = entries_1_uop_decode_is_sh;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b010:
+        casez_tmp_10 = entries_2_uop_decode_is_sh;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b011:
+        casez_tmp_10 = entries_3_uop_decode_is_sh;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b100:
+        casez_tmp_10 = entries_4_uop_decode_is_sh;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b101:
+        casez_tmp_10 = entries_5_uop_decode_is_sh;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b110:
+        casez_tmp_10 = entries_6_uop_decode_is_sh;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      default:
+        casez_tmp_10 = entries_7_uop_decode_is_sh;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+    endcase	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+  end // always_comb
+  reg         casez_tmp_11;	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+  always_comb begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+    casez (issue_idx)	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+      3'b000:
+        casez_tmp_11 = entries_0_uop_decode_is_sw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b001:
+        casez_tmp_11 = entries_1_uop_decode_is_sw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b010:
+        casez_tmp_11 = entries_2_uop_decode_is_sw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b011:
+        casez_tmp_11 = entries_3_uop_decode_is_sw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b100:
+        casez_tmp_11 = entries_4_uop_decode_is_sw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b101:
+        casez_tmp_11 = entries_5_uop_decode_is_sw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b110:
+        casez_tmp_11 = entries_6_uop_decode_is_sw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      default:
+        casez_tmp_11 = entries_7_uop_decode_is_sw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+    endcase	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+  end // always_comb
+  reg         casez_tmp_12;	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+  always_comb begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+    casez (issue_idx)	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+      3'b000:
+        casez_tmp_12 = entries_0_uop_decode_is_sd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b001:
+        casez_tmp_12 = entries_1_uop_decode_is_sd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b010:
+        casez_tmp_12 = entries_2_uop_decode_is_sd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b011:
+        casez_tmp_12 = entries_3_uop_decode_is_sd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b100:
+        casez_tmp_12 = entries_4_uop_decode_is_sd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b101:
+        casez_tmp_12 = entries_5_uop_decode_is_sd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b110:
+        casez_tmp_12 = entries_6_uop_decode_is_sd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      default:
+        casez_tmp_12 = entries_7_uop_decode_is_sd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+    endcase	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+  end // always_comb
+  reg         casez_tmp_13;	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+  always_comb begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+    casez (issue_idx)	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+      3'b000:
+        casez_tmp_13 = entries_0_uop_decode_is_store;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b001:
+        casez_tmp_13 = entries_1_uop_decode_is_store;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b010:
+        casez_tmp_13 = entries_2_uop_decode_is_store;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b011:
+        casez_tmp_13 = entries_3_uop_decode_is_store;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b100:
+        casez_tmp_13 = entries_4_uop_decode_is_store;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b101:
+        casez_tmp_13 = entries_5_uop_decode_is_store;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b110:
+        casez_tmp_13 = entries_6_uop_decode_is_store;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      default:
+        casez_tmp_13 = entries_7_uop_decode_is_store;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+    endcase	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+  end // always_comb
+  reg         casez_tmp_14;	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+  always_comb begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+    casez (issue_idx)	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+      3'b000:
+        casez_tmp_14 = entries_0_uop_decode_is_lr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b001:
+        casez_tmp_14 = entries_1_uop_decode_is_lr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b010:
+        casez_tmp_14 = entries_2_uop_decode_is_lr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b011:
+        casez_tmp_14 = entries_3_uop_decode_is_lr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b100:
+        casez_tmp_14 = entries_4_uop_decode_is_lr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b101:
+        casez_tmp_14 = entries_5_uop_decode_is_lr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b110:
+        casez_tmp_14 = entries_6_uop_decode_is_lr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      default:
+        casez_tmp_14 = entries_7_uop_decode_is_lr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+    endcase	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+  end // always_comb
+  reg         casez_tmp_15;	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+  always_comb begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+    casez (issue_idx)	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+      3'b000:
+        casez_tmp_15 = entries_0_uop_decode_is_sc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b001:
+        casez_tmp_15 = entries_1_uop_decode_is_sc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b010:
+        casez_tmp_15 = entries_2_uop_decode_is_sc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b011:
+        casez_tmp_15 = entries_3_uop_decode_is_sc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b100:
+        casez_tmp_15 = entries_4_uop_decode_is_sc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b101:
+        casez_tmp_15 = entries_5_uop_decode_is_sc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b110:
+        casez_tmp_15 = entries_6_uop_decode_is_sc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      default:
+        casez_tmp_15 = entries_7_uop_decode_is_sc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+    endcase	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+  end // always_comb
+  reg         casez_tmp_16;	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+  always_comb begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+    casez (issue_idx)	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+      3'b000:
+        casez_tmp_16 = entries_0_uop_decode_is_lr_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b001:
+        casez_tmp_16 = entries_1_uop_decode_is_lr_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b010:
+        casez_tmp_16 = entries_2_uop_decode_is_lr_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b011:
+        casez_tmp_16 = entries_3_uop_decode_is_lr_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b100:
+        casez_tmp_16 = entries_4_uop_decode_is_lr_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b101:
+        casez_tmp_16 = entries_5_uop_decode_is_lr_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b110:
+        casez_tmp_16 = entries_6_uop_decode_is_lr_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      default:
+        casez_tmp_16 = entries_7_uop_decode_is_lr_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+    endcase	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+  end // always_comb
+  reg         casez_tmp_17;	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+  always_comb begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+    casez (issue_idx)	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+      3'b000:
+        casez_tmp_17 = entries_0_uop_decode_is_lr_d;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b001:
+        casez_tmp_17 = entries_1_uop_decode_is_lr_d;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b010:
+        casez_tmp_17 = entries_2_uop_decode_is_lr_d;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b011:
+        casez_tmp_17 = entries_3_uop_decode_is_lr_d;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b100:
+        casez_tmp_17 = entries_4_uop_decode_is_lr_d;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b101:
+        casez_tmp_17 = entries_5_uop_decode_is_lr_d;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b110:
+        casez_tmp_17 = entries_6_uop_decode_is_lr_d;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      default:
+        casez_tmp_17 = entries_7_uop_decode_is_lr_d;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+    endcase	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+  end // always_comb
+  reg         casez_tmp_18;	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+  always_comb begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+    casez (issue_idx)	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+      3'b000:
+        casez_tmp_18 = entries_0_uop_decode_is_sc_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b001:
+        casez_tmp_18 = entries_1_uop_decode_is_sc_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b010:
+        casez_tmp_18 = entries_2_uop_decode_is_sc_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b011:
+        casez_tmp_18 = entries_3_uop_decode_is_sc_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b100:
+        casez_tmp_18 = entries_4_uop_decode_is_sc_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b101:
+        casez_tmp_18 = entries_5_uop_decode_is_sc_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b110:
+        casez_tmp_18 = entries_6_uop_decode_is_sc_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      default:
+        casez_tmp_18 = entries_7_uop_decode_is_sc_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+    endcase	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+  end // always_comb
+  reg         casez_tmp_19;	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+  always_comb begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+    casez (issue_idx)	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+      3'b000:
+        casez_tmp_19 = entries_0_uop_decode_is_sc_d;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b001:
+        casez_tmp_19 = entries_1_uop_decode_is_sc_d;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b010:
+        casez_tmp_19 = entries_2_uop_decode_is_sc_d;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b011:
+        casez_tmp_19 = entries_3_uop_decode_is_sc_d;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b100:
+        casez_tmp_19 = entries_4_uop_decode_is_sc_d;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b101:
+        casez_tmp_19 = entries_5_uop_decode_is_sc_d;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b110:
+        casez_tmp_19 = entries_6_uop_decode_is_sc_d;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      default:
+        casez_tmp_19 = entries_7_uop_decode_is_sc_d;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+    endcase	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+  end // always_comb
+  reg         casez_tmp_20;	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+  always_comb begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+    casez (issue_idx)	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+      3'b000:
+        casez_tmp_20 = entries_0_uop_decode_is_amoadd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b001:
+        casez_tmp_20 = entries_1_uop_decode_is_amoadd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b010:
+        casez_tmp_20 = entries_2_uop_decode_is_amoadd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b011:
+        casez_tmp_20 = entries_3_uop_decode_is_amoadd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b100:
+        casez_tmp_20 = entries_4_uop_decode_is_amoadd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b101:
+        casez_tmp_20 = entries_5_uop_decode_is_amoadd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b110:
+        casez_tmp_20 = entries_6_uop_decode_is_amoadd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      default:
+        casez_tmp_20 = entries_7_uop_decode_is_amoadd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+    endcase	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+  end // always_comb
+  reg         casez_tmp_21;	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+  always_comb begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+    casez (issue_idx)	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+      3'b000:
+        casez_tmp_21 = entries_0_uop_decode_is_amoswap;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b001:
+        casez_tmp_21 = entries_1_uop_decode_is_amoswap;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b010:
+        casez_tmp_21 = entries_2_uop_decode_is_amoswap;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b011:
+        casez_tmp_21 = entries_3_uop_decode_is_amoswap;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b100:
+        casez_tmp_21 = entries_4_uop_decode_is_amoswap;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b101:
+        casez_tmp_21 = entries_5_uop_decode_is_amoswap;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b110:
+        casez_tmp_21 = entries_6_uop_decode_is_amoswap;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      default:
+        casez_tmp_21 = entries_7_uop_decode_is_amoswap;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+    endcase	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+  end // always_comb
+  reg         casez_tmp_22;	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+  always_comb begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+    casez (issue_idx)	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+      3'b000:
+        casez_tmp_22 = entries_0_uop_decode_is_amoxor;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b001:
+        casez_tmp_22 = entries_1_uop_decode_is_amoxor;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b010:
+        casez_tmp_22 = entries_2_uop_decode_is_amoxor;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b011:
+        casez_tmp_22 = entries_3_uop_decode_is_amoxor;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b100:
+        casez_tmp_22 = entries_4_uop_decode_is_amoxor;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b101:
+        casez_tmp_22 = entries_5_uop_decode_is_amoxor;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b110:
+        casez_tmp_22 = entries_6_uop_decode_is_amoxor;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      default:
+        casez_tmp_22 = entries_7_uop_decode_is_amoxor;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+    endcase	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+  end // always_comb
+  reg         casez_tmp_23;	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+  always_comb begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+    casez (issue_idx)	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+      3'b000:
+        casez_tmp_23 = entries_0_uop_decode_is_amoand;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b001:
+        casez_tmp_23 = entries_1_uop_decode_is_amoand;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b010:
+        casez_tmp_23 = entries_2_uop_decode_is_amoand;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b011:
+        casez_tmp_23 = entries_3_uop_decode_is_amoand;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b100:
+        casez_tmp_23 = entries_4_uop_decode_is_amoand;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b101:
+        casez_tmp_23 = entries_5_uop_decode_is_amoand;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b110:
+        casez_tmp_23 = entries_6_uop_decode_is_amoand;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      default:
+        casez_tmp_23 = entries_7_uop_decode_is_amoand;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+    endcase	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+  end // always_comb
+  reg         casez_tmp_24;	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+  always_comb begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+    casez (issue_idx)	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+      3'b000:
+        casez_tmp_24 = entries_0_uop_decode_is_amoor;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b001:
+        casez_tmp_24 = entries_1_uop_decode_is_amoor;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b010:
+        casez_tmp_24 = entries_2_uop_decode_is_amoor;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b011:
+        casez_tmp_24 = entries_3_uop_decode_is_amoor;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b100:
+        casez_tmp_24 = entries_4_uop_decode_is_amoor;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b101:
+        casez_tmp_24 = entries_5_uop_decode_is_amoor;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b110:
+        casez_tmp_24 = entries_6_uop_decode_is_amoor;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      default:
+        casez_tmp_24 = entries_7_uop_decode_is_amoor;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+    endcase	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+  end // always_comb
+  reg         casez_tmp_25;	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+  always_comb begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+    casez (issue_idx)	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+      3'b000:
+        casez_tmp_25 = entries_0_uop_decode_is_amomin;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b001:
+        casez_tmp_25 = entries_1_uop_decode_is_amomin;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b010:
+        casez_tmp_25 = entries_2_uop_decode_is_amomin;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b011:
+        casez_tmp_25 = entries_3_uop_decode_is_amomin;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b100:
+        casez_tmp_25 = entries_4_uop_decode_is_amomin;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b101:
+        casez_tmp_25 = entries_5_uop_decode_is_amomin;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b110:
+        casez_tmp_25 = entries_6_uop_decode_is_amomin;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      default:
+        casez_tmp_25 = entries_7_uop_decode_is_amomin;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+    endcase	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+  end // always_comb
+  reg         casez_tmp_26;	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+  always_comb begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+    casez (issue_idx)	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+      3'b000:
+        casez_tmp_26 = entries_0_uop_decode_is_amomax;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b001:
+        casez_tmp_26 = entries_1_uop_decode_is_amomax;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b010:
+        casez_tmp_26 = entries_2_uop_decode_is_amomax;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b011:
+        casez_tmp_26 = entries_3_uop_decode_is_amomax;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b100:
+        casez_tmp_26 = entries_4_uop_decode_is_amomax;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b101:
+        casez_tmp_26 = entries_5_uop_decode_is_amomax;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b110:
+        casez_tmp_26 = entries_6_uop_decode_is_amomax;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      default:
+        casez_tmp_26 = entries_7_uop_decode_is_amomax;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+    endcase	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+  end // always_comb
+  reg         casez_tmp_27;	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+  always_comb begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+    casez (issue_idx)	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+      3'b000:
+        casez_tmp_27 = entries_0_uop_decode_is_amominu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b001:
+        casez_tmp_27 = entries_1_uop_decode_is_amominu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b010:
+        casez_tmp_27 = entries_2_uop_decode_is_amominu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b011:
+        casez_tmp_27 = entries_3_uop_decode_is_amominu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b100:
+        casez_tmp_27 = entries_4_uop_decode_is_amominu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b101:
+        casez_tmp_27 = entries_5_uop_decode_is_amominu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b110:
+        casez_tmp_27 = entries_6_uop_decode_is_amominu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      default:
+        casez_tmp_27 = entries_7_uop_decode_is_amominu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+    endcase	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+  end // always_comb
+  reg         casez_tmp_28;	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+  always_comb begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+    casez (issue_idx)	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+      3'b000:
+        casez_tmp_28 = entries_0_uop_decode_is_amomaxu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b001:
+        casez_tmp_28 = entries_1_uop_decode_is_amomaxu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b010:
+        casez_tmp_28 = entries_2_uop_decode_is_amomaxu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b011:
+        casez_tmp_28 = entries_3_uop_decode_is_amomaxu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b100:
+        casez_tmp_28 = entries_4_uop_decode_is_amomaxu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b101:
+        casez_tmp_28 = entries_5_uop_decode_is_amomaxu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b110:
+        casez_tmp_28 = entries_6_uop_decode_is_amomaxu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      default:
+        casez_tmp_28 = entries_7_uop_decode_is_amomaxu;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+    endcase	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+  end // always_comb
+  reg         casez_tmp_29;	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+  always_comb begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+    casez (issue_idx)	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+      3'b000:
+        casez_tmp_29 = entries_0_uop_decode_is_amo_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b001:
+        casez_tmp_29 = entries_1_uop_decode_is_amo_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b010:
+        casez_tmp_29 = entries_2_uop_decode_is_amo_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b011:
+        casez_tmp_29 = entries_3_uop_decode_is_amo_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b100:
+        casez_tmp_29 = entries_4_uop_decode_is_amo_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b101:
+        casez_tmp_29 = entries_5_uop_decode_is_amo_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b110:
+        casez_tmp_29 = entries_6_uop_decode_is_amo_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      default:
+        casez_tmp_29 = entries_7_uop_decode_is_amo_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+    endcase	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+  end // always_comb
+  reg         casez_tmp_30;	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+  always_comb begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+    casez (issue_idx)	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+      3'b000:
+        casez_tmp_30 = entries_0_uop_decode_is_amo_d;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b001:
+        casez_tmp_30 = entries_1_uop_decode_is_amo_d;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b010:
+        casez_tmp_30 = entries_2_uop_decode_is_amo_d;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b011:
+        casez_tmp_30 = entries_3_uop_decode_is_amo_d;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b100:
+        casez_tmp_30 = entries_4_uop_decode_is_amo_d;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b101:
+        casez_tmp_30 = entries_5_uop_decode_is_amo_d;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b110:
+        casez_tmp_30 = entries_6_uop_decode_is_amo_d;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      default:
+        casez_tmp_30 = entries_7_uop_decode_is_amo_d;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+    endcase	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+  end // always_comb
+  reg         casez_tmp_31;	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+  always_comb begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+    casez (issue_idx)	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+      3'b000:
+        casez_tmp_31 = entries_0_uop_decode_is_atomic;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b001:
+        casez_tmp_31 = entries_1_uop_decode_is_atomic;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b010:
+        casez_tmp_31 = entries_2_uop_decode_is_atomic;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b011:
+        casez_tmp_31 = entries_3_uop_decode_is_atomic;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b100:
+        casez_tmp_31 = entries_4_uop_decode_is_atomic;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b101:
+        casez_tmp_31 = entries_5_uop_decode_is_atomic;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b110:
+        casez_tmp_31 = entries_6_uop_decode_is_atomic;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      default:
+        casez_tmp_31 = entries_7_uop_decode_is_atomic;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+    endcase	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+  end // always_comb
+  reg         casez_tmp_32;	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+  always_comb begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+    casez (issue_idx)	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+      3'b000:
+        casez_tmp_32 = entries_0_uop_decode_is_fload;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b001:
+        casez_tmp_32 = entries_1_uop_decode_is_fload;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b010:
+        casez_tmp_32 = entries_2_uop_decode_is_fload;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b011:
+        casez_tmp_32 = entries_3_uop_decode_is_fload;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b100:
+        casez_tmp_32 = entries_4_uop_decode_is_fload;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b101:
+        casez_tmp_32 = entries_5_uop_decode_is_fload;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b110:
+        casez_tmp_32 = entries_6_uop_decode_is_fload;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      default:
+        casez_tmp_32 = entries_7_uop_decode_is_fload;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+    endcase	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+  end // always_comb
+  reg         casez_tmp_33;	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+  always_comb begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+    casez (issue_idx)	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+      3'b000:
+        casez_tmp_33 = entries_0_uop_decode_is_flw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b001:
+        casez_tmp_33 = entries_1_uop_decode_is_flw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b010:
+        casez_tmp_33 = entries_2_uop_decode_is_flw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b011:
+        casez_tmp_33 = entries_3_uop_decode_is_flw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b100:
+        casez_tmp_33 = entries_4_uop_decode_is_flw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b101:
+        casez_tmp_33 = entries_5_uop_decode_is_flw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b110:
+        casez_tmp_33 = entries_6_uop_decode_is_flw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      default:
+        casez_tmp_33 = entries_7_uop_decode_is_flw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+    endcase	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+  end // always_comb
+  reg         casez_tmp_34;	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+  always_comb begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+    casez (issue_idx)	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+      3'b000:
+        casez_tmp_34 = entries_0_uop_decode_is_fld;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b001:
+        casez_tmp_34 = entries_1_uop_decode_is_fld;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b010:
+        casez_tmp_34 = entries_2_uop_decode_is_fld;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b011:
+        casez_tmp_34 = entries_3_uop_decode_is_fld;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b100:
+        casez_tmp_34 = entries_4_uop_decode_is_fld;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b101:
+        casez_tmp_34 = entries_5_uop_decode_is_fld;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b110:
+        casez_tmp_34 = entries_6_uop_decode_is_fld;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      default:
+        casez_tmp_34 = entries_7_uop_decode_is_fld;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+    endcase	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+  end // always_comb
+  reg         casez_tmp_35;	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+  always_comb begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+    casez (issue_idx)	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+      3'b000:
+        casez_tmp_35 = entries_0_uop_decode_is_fstore;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b001:
+        casez_tmp_35 = entries_1_uop_decode_is_fstore;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b010:
+        casez_tmp_35 = entries_2_uop_decode_is_fstore;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b011:
+        casez_tmp_35 = entries_3_uop_decode_is_fstore;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b100:
+        casez_tmp_35 = entries_4_uop_decode_is_fstore;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b101:
+        casez_tmp_35 = entries_5_uop_decode_is_fstore;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b110:
+        casez_tmp_35 = entries_6_uop_decode_is_fstore;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      default:
+        casez_tmp_35 = entries_7_uop_decode_is_fstore;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+    endcase	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+  end // always_comb
+  reg         casez_tmp_36;	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+  always_comb begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+    casez (issue_idx)	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+      3'b000:
+        casez_tmp_36 = entries_0_uop_decode_is_fsw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b001:
+        casez_tmp_36 = entries_1_uop_decode_is_fsw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b010:
+        casez_tmp_36 = entries_2_uop_decode_is_fsw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b011:
+        casez_tmp_36 = entries_3_uop_decode_is_fsw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b100:
+        casez_tmp_36 = entries_4_uop_decode_is_fsw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b101:
+        casez_tmp_36 = entries_5_uop_decode_is_fsw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b110:
+        casez_tmp_36 = entries_6_uop_decode_is_fsw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      default:
+        casez_tmp_36 = entries_7_uop_decode_is_fsw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+    endcase	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+  end // always_comb
+  reg         casez_tmp_37;	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+  always_comb begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+    casez (issue_idx)	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+      3'b000:
+        casez_tmp_37 = entries_0_uop_decode_is_fsd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b001:
+        casez_tmp_37 = entries_1_uop_decode_is_fsd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b010:
+        casez_tmp_37 = entries_2_uop_decode_is_fsd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b011:
+        casez_tmp_37 = entries_3_uop_decode_is_fsd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b100:
+        casez_tmp_37 = entries_4_uop_decode_is_fsd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b101:
+        casez_tmp_37 = entries_5_uop_decode_is_fsd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b110:
+        casez_tmp_37 = entries_6_uop_decode_is_fsd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      default:
+        casez_tmp_37 = entries_7_uop_decode_is_fsd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+    endcase	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+  end // always_comb
+  reg         casez_tmp_38;	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+  always_comb begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+    casez (issue_idx)	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+      3'b000:
+        casez_tmp_38 = entries_0_uop_decode_is_fmadd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b001:
+        casez_tmp_38 = entries_1_uop_decode_is_fmadd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b010:
+        casez_tmp_38 = entries_2_uop_decode_is_fmadd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b011:
+        casez_tmp_38 = entries_3_uop_decode_is_fmadd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b100:
+        casez_tmp_38 = entries_4_uop_decode_is_fmadd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b101:
+        casez_tmp_38 = entries_5_uop_decode_is_fmadd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b110:
+        casez_tmp_38 = entries_6_uop_decode_is_fmadd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      default:
+        casez_tmp_38 = entries_7_uop_decode_is_fmadd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+    endcase	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+  end // always_comb
+  reg         casez_tmp_39;	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+  always_comb begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+    casez (issue_idx)	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+      3'b000:
+        casez_tmp_39 = entries_0_uop_decode_is_fadd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b001:
+        casez_tmp_39 = entries_1_uop_decode_is_fadd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b010:
+        casez_tmp_39 = entries_2_uop_decode_is_fadd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b011:
+        casez_tmp_39 = entries_3_uop_decode_is_fadd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b100:
+        casez_tmp_39 = entries_4_uop_decode_is_fadd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b101:
+        casez_tmp_39 = entries_5_uop_decode_is_fadd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b110:
+        casez_tmp_39 = entries_6_uop_decode_is_fadd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      default:
+        casez_tmp_39 = entries_7_uop_decode_is_fadd;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+    endcase	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+  end // always_comb
+  reg         casez_tmp_40;	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+  always_comb begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+    casez (issue_idx)	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+      3'b000:
+        casez_tmp_40 = entries_0_uop_decode_is_fsub;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b001:
+        casez_tmp_40 = entries_1_uop_decode_is_fsub;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b010:
+        casez_tmp_40 = entries_2_uop_decode_is_fsub;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b011:
+        casez_tmp_40 = entries_3_uop_decode_is_fsub;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b100:
+        casez_tmp_40 = entries_4_uop_decode_is_fsub;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b101:
+        casez_tmp_40 = entries_5_uop_decode_is_fsub;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b110:
+        casez_tmp_40 = entries_6_uop_decode_is_fsub;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      default:
+        casez_tmp_40 = entries_7_uop_decode_is_fsub;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+    endcase	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+  end // always_comb
+  reg         casez_tmp_41;	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+  always_comb begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+    casez (issue_idx)	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+      3'b000:
+        casez_tmp_41 = entries_0_uop_decode_is_fmul;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b001:
+        casez_tmp_41 = entries_1_uop_decode_is_fmul;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b010:
+        casez_tmp_41 = entries_2_uop_decode_is_fmul;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b011:
+        casez_tmp_41 = entries_3_uop_decode_is_fmul;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b100:
+        casez_tmp_41 = entries_4_uop_decode_is_fmul;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b101:
+        casez_tmp_41 = entries_5_uop_decode_is_fmul;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b110:
+        casez_tmp_41 = entries_6_uop_decode_is_fmul;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      default:
+        casez_tmp_41 = entries_7_uop_decode_is_fmul;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+    endcase	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+  end // always_comb
+  reg         casez_tmp_42;	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+  always_comb begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+    casez (issue_idx)	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+      3'b000:
+        casez_tmp_42 = entries_0_uop_decode_is_fdiv;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b001:
+        casez_tmp_42 = entries_1_uop_decode_is_fdiv;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b010:
+        casez_tmp_42 = entries_2_uop_decode_is_fdiv;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b011:
+        casez_tmp_42 = entries_3_uop_decode_is_fdiv;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b100:
+        casez_tmp_42 = entries_4_uop_decode_is_fdiv;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b101:
+        casez_tmp_42 = entries_5_uop_decode_is_fdiv;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b110:
+        casez_tmp_42 = entries_6_uop_decode_is_fdiv;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      default:
+        casez_tmp_42 = entries_7_uop_decode_is_fdiv;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+    endcase	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+  end // always_comb
+  reg         casez_tmp_43;	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+  always_comb begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+    casez (issue_idx)	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+      3'b000:
+        casez_tmp_43 = entries_0_uop_decode_is_fsqrt;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b001:
+        casez_tmp_43 = entries_1_uop_decode_is_fsqrt;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b010:
+        casez_tmp_43 = entries_2_uop_decode_is_fsqrt;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b011:
+        casez_tmp_43 = entries_3_uop_decode_is_fsqrt;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b100:
+        casez_tmp_43 = entries_4_uop_decode_is_fsqrt;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b101:
+        casez_tmp_43 = entries_5_uop_decode_is_fsqrt;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b110:
+        casez_tmp_43 = entries_6_uop_decode_is_fsqrt;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      default:
+        casez_tmp_43 = entries_7_uop_decode_is_fsqrt;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+    endcase	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+  end // always_comb
+  reg         casez_tmp_44;	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+  always_comb begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+    casez (issue_idx)	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+      3'b000:
+        casez_tmp_44 = entries_0_uop_decode_is_fsgnj;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b001:
+        casez_tmp_44 = entries_1_uop_decode_is_fsgnj;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b010:
+        casez_tmp_44 = entries_2_uop_decode_is_fsgnj;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b011:
+        casez_tmp_44 = entries_3_uop_decode_is_fsgnj;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b100:
+        casez_tmp_44 = entries_4_uop_decode_is_fsgnj;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b101:
+        casez_tmp_44 = entries_5_uop_decode_is_fsgnj;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b110:
+        casez_tmp_44 = entries_6_uop_decode_is_fsgnj;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      default:
+        casez_tmp_44 = entries_7_uop_decode_is_fsgnj;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+    endcase	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+  end // always_comb
+  reg         casez_tmp_45;	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+  always_comb begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+    casez (issue_idx)	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+      3'b000:
+        casez_tmp_45 = entries_0_uop_decode_is_fminmax;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b001:
+        casez_tmp_45 = entries_1_uop_decode_is_fminmax;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b010:
+        casez_tmp_45 = entries_2_uop_decode_is_fminmax;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b011:
+        casez_tmp_45 = entries_3_uop_decode_is_fminmax;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b100:
+        casez_tmp_45 = entries_4_uop_decode_is_fminmax;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b101:
+        casez_tmp_45 = entries_5_uop_decode_is_fminmax;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b110:
+        casez_tmp_45 = entries_6_uop_decode_is_fminmax;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      default:
+        casez_tmp_45 = entries_7_uop_decode_is_fminmax;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+    endcase	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+  end // always_comb
+  reg         casez_tmp_46;	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+  always_comb begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+    casez (issue_idx)	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+      3'b000:
+        casez_tmp_46 = entries_0_uop_decode_is_fcvt_f2i;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b001:
+        casez_tmp_46 = entries_1_uop_decode_is_fcvt_f2i;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b010:
+        casez_tmp_46 = entries_2_uop_decode_is_fcvt_f2i;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b011:
+        casez_tmp_46 = entries_3_uop_decode_is_fcvt_f2i;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b100:
+        casez_tmp_46 = entries_4_uop_decode_is_fcvt_f2i;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b101:
+        casez_tmp_46 = entries_5_uop_decode_is_fcvt_f2i;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b110:
+        casez_tmp_46 = entries_6_uop_decode_is_fcvt_f2i;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      default:
+        casez_tmp_46 = entries_7_uop_decode_is_fcvt_f2i;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+    endcase	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+  end // always_comb
+  reg         casez_tmp_47;	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+  always_comb begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+    casez (issue_idx)	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+      3'b000:
+        casez_tmp_47 = entries_0_uop_decode_is_fcvt_i2f;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b001:
+        casez_tmp_47 = entries_1_uop_decode_is_fcvt_i2f;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b010:
+        casez_tmp_47 = entries_2_uop_decode_is_fcvt_i2f;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b011:
+        casez_tmp_47 = entries_3_uop_decode_is_fcvt_i2f;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b100:
+        casez_tmp_47 = entries_4_uop_decode_is_fcvt_i2f;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b101:
+        casez_tmp_47 = entries_5_uop_decode_is_fcvt_i2f;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b110:
+        casez_tmp_47 = entries_6_uop_decode_is_fcvt_i2f;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      default:
+        casez_tmp_47 = entries_7_uop_decode_is_fcvt_i2f;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+    endcase	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+  end // always_comb
+  reg         casez_tmp_48;	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+  always_comb begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+    casez (issue_idx)	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+      3'b000:
+        casez_tmp_48 = entries_0_uop_decode_is_fmv_w_x;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b001:
+        casez_tmp_48 = entries_1_uop_decode_is_fmv_w_x;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b010:
+        casez_tmp_48 = entries_2_uop_decode_is_fmv_w_x;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b011:
+        casez_tmp_48 = entries_3_uop_decode_is_fmv_w_x;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b100:
+        casez_tmp_48 = entries_4_uop_decode_is_fmv_w_x;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b101:
+        casez_tmp_48 = entries_5_uop_decode_is_fmv_w_x;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b110:
+        casez_tmp_48 = entries_6_uop_decode_is_fmv_w_x;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      default:
+        casez_tmp_48 = entries_7_uop_decode_is_fmv_w_x;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+    endcase	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+  end // always_comb
+  reg         casez_tmp_49;	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+  always_comb begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+    casez (issue_idx)	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+      3'b000:
+        casez_tmp_49 = entries_0_uop_decode_is_fmv_x_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b001:
+        casez_tmp_49 = entries_1_uop_decode_is_fmv_x_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b010:
+        casez_tmp_49 = entries_2_uop_decode_is_fmv_x_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b011:
+        casez_tmp_49 = entries_3_uop_decode_is_fmv_x_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b100:
+        casez_tmp_49 = entries_4_uop_decode_is_fmv_x_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b101:
+        casez_tmp_49 = entries_5_uop_decode_is_fmv_x_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b110:
+        casez_tmp_49 = entries_6_uop_decode_is_fmv_x_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      default:
+        casez_tmp_49 = entries_7_uop_decode_is_fmv_x_w;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+    endcase	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+  end // always_comb
+  reg         casez_tmp_50;	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+  always_comb begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+    casez (issue_idx)	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+      3'b000:
+        casez_tmp_50 = entries_0_uop_decode_is_feq;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b001:
+        casez_tmp_50 = entries_1_uop_decode_is_feq;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b010:
+        casez_tmp_50 = entries_2_uop_decode_is_feq;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b011:
+        casez_tmp_50 = entries_3_uop_decode_is_feq;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b100:
+        casez_tmp_50 = entries_4_uop_decode_is_feq;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b101:
+        casez_tmp_50 = entries_5_uop_decode_is_feq;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b110:
+        casez_tmp_50 = entries_6_uop_decode_is_feq;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      default:
+        casez_tmp_50 = entries_7_uop_decode_is_feq;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+    endcase	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+  end // always_comb
+  reg         casez_tmp_51;	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+  always_comb begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+    casez (issue_idx)	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+      3'b000:
+        casez_tmp_51 = entries_0_uop_decode_is_flt;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b001:
+        casez_tmp_51 = entries_1_uop_decode_is_flt;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b010:
+        casez_tmp_51 = entries_2_uop_decode_is_flt;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b011:
+        casez_tmp_51 = entries_3_uop_decode_is_flt;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b100:
+        casez_tmp_51 = entries_4_uop_decode_is_flt;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b101:
+        casez_tmp_51 = entries_5_uop_decode_is_flt;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b110:
+        casez_tmp_51 = entries_6_uop_decode_is_flt;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      default:
+        casez_tmp_51 = entries_7_uop_decode_is_flt;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+    endcase	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+  end // always_comb
+  reg         casez_tmp_52;	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+  always_comb begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+    casez (issue_idx)	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+      3'b000:
+        casez_tmp_52 = entries_0_uop_decode_is_fle;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b001:
+        casez_tmp_52 = entries_1_uop_decode_is_fle;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b010:
+        casez_tmp_52 = entries_2_uop_decode_is_fle;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b011:
+        casez_tmp_52 = entries_3_uop_decode_is_fle;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b100:
+        casez_tmp_52 = entries_4_uop_decode_is_fle;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b101:
+        casez_tmp_52 = entries_5_uop_decode_is_fle;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b110:
+        casez_tmp_52 = entries_6_uop_decode_is_fle;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      default:
+        casez_tmp_52 = entries_7_uop_decode_is_fle;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+    endcase	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+  end // always_comb
+  reg         casez_tmp_53;	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+  always_comb begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+    casez (issue_idx)	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+      3'b000:
+        casez_tmp_53 = entries_0_uop_decode_is_fclass;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b001:
+        casez_tmp_53 = entries_1_uop_decode_is_fclass;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b010:
+        casez_tmp_53 = entries_2_uop_decode_is_fclass;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b011:
+        casez_tmp_53 = entries_3_uop_decode_is_fclass;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b100:
+        casez_tmp_53 = entries_4_uop_decode_is_fclass;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b101:
+        casez_tmp_53 = entries_5_uop_decode_is_fclass;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b110:
+        casez_tmp_53 = entries_6_uop_decode_is_fclass;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      default:
+        casez_tmp_53 = entries_7_uop_decode_is_fclass;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+    endcase	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+  end // always_comb
+  reg  [63:0] casez_tmp_54;	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+  always_comb begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+    casez (issue_idx)	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+      3'b000:
+        casez_tmp_54 = entries_0_uop_decode_imm;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b001:
+        casez_tmp_54 = entries_1_uop_decode_imm;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b010:
+        casez_tmp_54 = entries_2_uop_decode_imm;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b011:
+        casez_tmp_54 = entries_3_uop_decode_imm;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b100:
+        casez_tmp_54 = entries_4_uop_decode_imm;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b101:
+        casez_tmp_54 = entries_5_uop_decode_imm;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b110:
+        casez_tmp_54 = entries_6_uop_decode_imm;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      default:
+        casez_tmp_54 = entries_7_uop_decode_imm;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+    endcase	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+  end // always_comb
+  reg  [7:0]  casez_tmp_55;	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+  always_comb begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+    casez (issue_idx)	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+      3'b000:
+        casez_tmp_55 = entries_0_uop_psrs1;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b001:
+        casez_tmp_55 = entries_1_uop_psrs1;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b010:
+        casez_tmp_55 = entries_2_uop_psrs1;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b011:
+        casez_tmp_55 = entries_3_uop_psrs1;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b100:
+        casez_tmp_55 = entries_4_uop_psrs1;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b101:
+        casez_tmp_55 = entries_5_uop_psrs1;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b110:
+        casez_tmp_55 = entries_6_uop_psrs1;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      default:
+        casez_tmp_55 = entries_7_uop_psrs1;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+    endcase	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+  end // always_comb
+  reg  [7:0]  casez_tmp_56;	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+  always_comb begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+    casez (issue_idx)	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+      3'b000:
+        casez_tmp_56 = entries_0_uop_psrs2;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b001:
+        casez_tmp_56 = entries_1_uop_psrs2;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b010:
+        casez_tmp_56 = entries_2_uop_psrs2;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b011:
+        casez_tmp_56 = entries_3_uop_psrs2;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b100:
+        casez_tmp_56 = entries_4_uop_psrs2;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b101:
+        casez_tmp_56 = entries_5_uop_psrs2;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b110:
+        casez_tmp_56 = entries_6_uop_psrs2;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      default:
+        casez_tmp_56 = entries_7_uop_psrs2;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+    endcase	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+  end // always_comb
+  reg  [7:0]  casez_tmp_57;	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+  always_comb begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
+    casez (issue_idx)	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+      3'b000:
+        casez_tmp_57 = entries_0_uop_pdest;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b001:
+        casez_tmp_57 = entries_1_uop_pdest;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b010:
+        casez_tmp_57 = entries_2_uop_pdest;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b011:
+        casez_tmp_57 = entries_3_uop_pdest;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b100:
+        casez_tmp_57 = entries_4_uop_pdest;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b101:
+        casez_tmp_57 = entries_5_uop_pdest;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      3'b110:
+        casez_tmp_57 = entries_6_uop_pdest;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+      default:
+        casez_tmp_57 = entries_7_uop_pdest;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
+    endcase	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+  end // always_comb
+  wire        deq_fire = (|_ageDetector_io_out_0) & io_deq_0_ready;	// backend/src/zaqal/backend/issue/IssueQueue.scala:55:27, :66:39, :71:36
+  wire        is_empty_0 = ~entries_0_valid | deq_fire & _ageDetector_io_out_0[0];	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :55:27, :71:36, :80:{90,108}, :81:{20,38}
+  wire        is_empty_1 = ~entries_1_valid | deq_fire & _ageDetector_io_out_0[1];	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :55:27, :71:36, :80:{90,108}, :81:{20,38}
+  wire        is_empty_2 = ~entries_2_valid | deq_fire & _ageDetector_io_out_0[2];	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :55:27, :71:36, :80:{90,108}, :81:{20,38}
+  wire        is_empty_3 = ~entries_3_valid | deq_fire & _ageDetector_io_out_0[3];	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :55:27, :71:36, :80:{90,108}, :81:{20,38}
+  wire        is_empty_4 = ~entries_4_valid | deq_fire & _ageDetector_io_out_0[4];	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :55:27, :71:36, :80:{90,108}, :81:{20,38}
+  wire        is_empty_5 = ~entries_5_valid | deq_fire & _ageDetector_io_out_0[5];	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :55:27, :71:36, :80:{90,108}, :81:{20,38}
+  wire        is_empty_6 = ~entries_6_valid | deq_fire & _ageDetector_io_out_0[6];	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :55:27, :71:36, :80:{90,108}, :81:{20,38}
+  wire        is_empty_7 = ~entries_7_valid | deq_fire & _ageDetector_io_out_0[7];	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :55:27, :71:36, :80:{90,108}, :81:{20,38}
+  wire [7:0]  current_empty_mask =
     {is_empty_7,
      is_empty_6,
      is_empty_5,
@@ -1962,7 +2678,7 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
      is_empty_2,
      is_empty_1,
      is_empty_0};	// backend/src/zaqal/backend/issue/IssueQueue.scala:81:38, :87:37
-  wire [2:0]       alloc_idx_0 =
+  wire [2:0]  alloc_idx_0 =
     is_empty_0
       ? 3'h0
       : is_empty_1
@@ -1972,198 +2688,176 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
               : is_empty_3
                   ? 3'h3
                   : is_empty_4 ? 3'h4 : is_empty_5 ? 3'h5 : {2'h3, ~is_empty_6};	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:66, :81:38, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire             _GEN_129 = io_enq_0_valid & (|current_empty_mask);	// backend/src/zaqal/backend/issue/IssueQueue.scala:87:37, :89:42, :93:27
-  wire [7:0]       _GEN_130 = {5'h0, alloc_idx_0};	// src/main/scala/chisel3/util/Mux.scala:50:70, src/main/scala/chisel3/util/OneHot.scala:58:35
-  wire [7:0]       _GEN_131 = ~(8'h1 << _GEN_130);	// backend/src/zaqal/backend/issue/IssueQueue.scala:97:47, src/main/scala/chisel3/util/OneHot.scala:58:35
-  wire [7:0]       _GEN_132 = current_empty_mask & _GEN_131;	// backend/src/zaqal/backend/issue/IssueQueue.scala:87:37, :97:{45,47}
-  wire [2:0]       alloc_idx_1 =
-    is_empty_0 & _GEN_131[0]
+  wire        _GEN_71 = io_enq_0_valid & (|current_empty_mask);	// backend/src/zaqal/backend/issue/IssueQueue.scala:87:37, :89:42, :93:27
+  wire [7:0]  _GEN_72 = {5'h0, alloc_idx_0};	// src/main/scala/chisel3/util/Mux.scala:50:70, src/main/scala/chisel3/util/OneHot.scala:58:35
+  wire [7:0]  _GEN_73 = ~(8'h1 << _GEN_72);	// backend/src/zaqal/backend/issue/IssueQueue.scala:97:47, src/main/scala/chisel3/util/OneHot.scala:58:35
+  wire [7:0]  _GEN_74 = current_empty_mask & _GEN_73;	// backend/src/zaqal/backend/issue/IssueQueue.scala:87:37, :97:{45,47}
+  wire [2:0]  alloc_idx_1 =
+    is_empty_0 & _GEN_73[0]
       ? 3'h0
-      : is_empty_1 & _GEN_131[1]
+      : is_empty_1 & _GEN_73[1]
           ? 3'h1
-          : is_empty_2 & _GEN_131[2]
+          : is_empty_2 & _GEN_73[2]
               ? 3'h2
-              : is_empty_3 & _GEN_131[3]
+              : is_empty_3 & _GEN_73[3]
                   ? 3'h3
-                  : is_empty_4 & _GEN_131[4]
+                  : is_empty_4 & _GEN_73[4]
                       ? 3'h4
-                      : is_empty_5 & _GEN_131[5]
+                      : is_empty_5 & _GEN_73[5]
                           ? 3'h5
-                          : {2'h3, ~(is_empty_6 & _GEN_131[6])};	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:66, :81:38, :97:{45,47}, src/main/scala/chisel3/util/Mux.scala:50:70, src/main/scala/chisel3/util/OneHot.scala:48:45
-  wire             _GEN_133 = io_enq_1_valid & (|_GEN_132);	// backend/src/zaqal/backend/issue/IssueQueue.scala:89:42, :93:27, :97:45
-  wire [7:0]       _GEN_134 = {5'h0, alloc_idx_1};	// src/main/scala/chisel3/util/Mux.scala:50:70, src/main/scala/chisel3/util/OneHot.scala:58:35
-  wire [7:0]       _GEN_135 = ~(8'h1 << _GEN_134);	// backend/src/zaqal/backend/issue/IssueQueue.scala:97:47, src/main/scala/chisel3/util/OneHot.scala:58:35
-  wire [7:0]       _GEN_136 = _GEN_132 & _GEN_135;	// backend/src/zaqal/backend/issue/IssueQueue.scala:97:{45,47}
-  wire             _GEN_137 = is_empty_0 & _GEN_131[0];	// backend/src/zaqal/backend/issue/IssueQueue.scala:81:38, :97:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
-  wire             _GEN_138 = is_empty_1 & _GEN_131[1];	// backend/src/zaqal/backend/issue/IssueQueue.scala:81:38, :97:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
-  wire             _GEN_139 = is_empty_2 & _GEN_131[2];	// backend/src/zaqal/backend/issue/IssueQueue.scala:81:38, :97:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
-  wire             _GEN_140 = is_empty_3 & _GEN_131[3];	// backend/src/zaqal/backend/issue/IssueQueue.scala:81:38, :97:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
-  wire             _GEN_141 = is_empty_4 & _GEN_131[4];	// backend/src/zaqal/backend/issue/IssueQueue.scala:81:38, :97:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
-  wire             _GEN_142 = is_empty_5 & _GEN_131[5];	// backend/src/zaqal/backend/issue/IssueQueue.scala:81:38, :97:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
-  wire             _GEN_143 = is_empty_6 & _GEN_131[6];	// backend/src/zaqal/backend/issue/IssueQueue.scala:81:38, :97:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
-  wire [2:0]       alloc_idx_2 =
-    _GEN_137 & _GEN_135[0]
+                          : {2'h3, ~(is_empty_6 & _GEN_73[6])};	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:66, :81:38, :97:{45,47}, src/main/scala/chisel3/util/Mux.scala:50:70, src/main/scala/chisel3/util/OneHot.scala:48:45
+  wire        _GEN_75 = io_enq_1_valid & (|_GEN_74);	// backend/src/zaqal/backend/issue/IssueQueue.scala:89:42, :93:27, :97:45
+  wire [7:0]  _GEN_76 = {5'h0, alloc_idx_1};	// src/main/scala/chisel3/util/Mux.scala:50:70, src/main/scala/chisel3/util/OneHot.scala:58:35
+  wire [7:0]  _GEN_77 = ~(8'h1 << _GEN_76);	// backend/src/zaqal/backend/issue/IssueQueue.scala:97:47, src/main/scala/chisel3/util/OneHot.scala:58:35
+  wire [7:0]  _GEN_78 = _GEN_74 & _GEN_77;	// backend/src/zaqal/backend/issue/IssueQueue.scala:97:{45,47}
+  wire        _GEN_79 = is_empty_0 & _GEN_73[0];	// backend/src/zaqal/backend/issue/IssueQueue.scala:81:38, :97:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
+  wire        _GEN_80 = is_empty_1 & _GEN_73[1];	// backend/src/zaqal/backend/issue/IssueQueue.scala:81:38, :97:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
+  wire        _GEN_81 = is_empty_2 & _GEN_73[2];	// backend/src/zaqal/backend/issue/IssueQueue.scala:81:38, :97:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
+  wire        _GEN_82 = is_empty_3 & _GEN_73[3];	// backend/src/zaqal/backend/issue/IssueQueue.scala:81:38, :97:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
+  wire        _GEN_83 = is_empty_4 & _GEN_73[4];	// backend/src/zaqal/backend/issue/IssueQueue.scala:81:38, :97:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
+  wire        _GEN_84 = is_empty_5 & _GEN_73[5];	// backend/src/zaqal/backend/issue/IssueQueue.scala:81:38, :97:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
+  wire        _GEN_85 = is_empty_6 & _GEN_73[6];	// backend/src/zaqal/backend/issue/IssueQueue.scala:81:38, :97:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
+  wire [2:0]  alloc_idx_2 =
+    _GEN_79 & _GEN_77[0]
       ? 3'h0
-      : _GEN_138 & _GEN_135[1]
+      : _GEN_80 & _GEN_77[1]
           ? 3'h1
-          : _GEN_139 & _GEN_135[2]
+          : _GEN_81 & _GEN_77[2]
               ? 3'h2
-              : _GEN_140 & _GEN_135[3]
+              : _GEN_82 & _GEN_77[3]
                   ? 3'h3
-                  : _GEN_141 & _GEN_135[4]
+                  : _GEN_83 & _GEN_77[4]
                       ? 3'h4
-                      : _GEN_142 & _GEN_135[5] ? 3'h5 : {2'h3, ~(_GEN_143 & _GEN_135[6])};	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:66, :97:{45,47}, src/main/scala/chisel3/util/Mux.scala:50:70, src/main/scala/chisel3/util/OneHot.scala:48:45
-  wire             _GEN_144 = io_enq_2_valid & (|_GEN_136);	// backend/src/zaqal/backend/issue/IssueQueue.scala:89:42, :93:27, :97:45
-  wire [7:0]       _GEN_145 = {5'h0, alloc_idx_2};	// src/main/scala/chisel3/util/Mux.scala:50:70, src/main/scala/chisel3/util/OneHot.scala:58:35
-  wire [7:0]       _GEN_146 = ~(8'h1 << _GEN_145);	// backend/src/zaqal/backend/issue/IssueQueue.scala:97:47, src/main/scala/chisel3/util/OneHot.scala:58:35
-  wire [7:0]       _GEN_147 = _GEN_136 & _GEN_146;	// backend/src/zaqal/backend/issue/IssueQueue.scala:97:{45,47}
-  wire             _GEN_148 = _GEN_137 & _GEN_135[0];	// backend/src/zaqal/backend/issue/IssueQueue.scala:97:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
-  wire             _GEN_149 = _GEN_138 & _GEN_135[1];	// backend/src/zaqal/backend/issue/IssueQueue.scala:97:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
-  wire             _GEN_150 = _GEN_139 & _GEN_135[2];	// backend/src/zaqal/backend/issue/IssueQueue.scala:97:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
-  wire             _GEN_151 = _GEN_140 & _GEN_135[3];	// backend/src/zaqal/backend/issue/IssueQueue.scala:97:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
-  wire             _GEN_152 = _GEN_141 & _GEN_135[4];	// backend/src/zaqal/backend/issue/IssueQueue.scala:97:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
-  wire             _GEN_153 = _GEN_142 & _GEN_135[5];	// backend/src/zaqal/backend/issue/IssueQueue.scala:97:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
-  wire             _GEN_154 = _GEN_143 & _GEN_135[6];	// backend/src/zaqal/backend/issue/IssueQueue.scala:97:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
-  wire [2:0]       alloc_idx_3 =
-    _GEN_148 & _GEN_146[0]
+                      : _GEN_84 & _GEN_77[5] ? 3'h5 : {2'h3, ~(_GEN_85 & _GEN_77[6])};	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:66, :97:{45,47}, src/main/scala/chisel3/util/Mux.scala:50:70, src/main/scala/chisel3/util/OneHot.scala:48:45
+  wire        _GEN_86 = io_enq_2_valid & (|_GEN_78);	// backend/src/zaqal/backend/issue/IssueQueue.scala:89:42, :93:27, :97:45
+  wire [7:0]  _GEN_87 = {5'h0, alloc_idx_2};	// src/main/scala/chisel3/util/Mux.scala:50:70, src/main/scala/chisel3/util/OneHot.scala:58:35
+  wire [7:0]  _GEN_88 = ~(8'h1 << _GEN_87);	// backend/src/zaqal/backend/issue/IssueQueue.scala:97:47, src/main/scala/chisel3/util/OneHot.scala:58:35
+  wire [7:0]  _GEN_89 = _GEN_78 & _GEN_88;	// backend/src/zaqal/backend/issue/IssueQueue.scala:97:{45,47}
+  wire        _GEN_90 = _GEN_79 & _GEN_77[0];	// backend/src/zaqal/backend/issue/IssueQueue.scala:97:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
+  wire        _GEN_91 = _GEN_80 & _GEN_77[1];	// backend/src/zaqal/backend/issue/IssueQueue.scala:97:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
+  wire        _GEN_92 = _GEN_81 & _GEN_77[2];	// backend/src/zaqal/backend/issue/IssueQueue.scala:97:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
+  wire        _GEN_93 = _GEN_82 & _GEN_77[3];	// backend/src/zaqal/backend/issue/IssueQueue.scala:97:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
+  wire        _GEN_94 = _GEN_83 & _GEN_77[4];	// backend/src/zaqal/backend/issue/IssueQueue.scala:97:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
+  wire        _GEN_95 = _GEN_84 & _GEN_77[5];	// backend/src/zaqal/backend/issue/IssueQueue.scala:97:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
+  wire        _GEN_96 = _GEN_85 & _GEN_77[6];	// backend/src/zaqal/backend/issue/IssueQueue.scala:97:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
+  wire [2:0]  alloc_idx_3 =
+    _GEN_90 & _GEN_88[0]
       ? 3'h0
-      : _GEN_149 & _GEN_146[1]
+      : _GEN_91 & _GEN_88[1]
           ? 3'h1
-          : _GEN_150 & _GEN_146[2]
+          : _GEN_92 & _GEN_88[2]
               ? 3'h2
-              : _GEN_151 & _GEN_146[3]
+              : _GEN_93 & _GEN_88[3]
                   ? 3'h3
-                  : _GEN_152 & _GEN_146[4]
+                  : _GEN_94 & _GEN_88[4]
                       ? 3'h4
-                      : _GEN_153 & _GEN_146[5] ? 3'h5 : {2'h3, ~(_GEN_154 & _GEN_146[6])};	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:66, :97:{45,47}, src/main/scala/chisel3/util/Mux.scala:50:70, src/main/scala/chisel3/util/OneHot.scala:48:45
-  wire             _GEN_155 = io_enq_3_valid & (|_GEN_147);	// backend/src/zaqal/backend/issue/IssueQueue.scala:89:42, :93:27, :97:45
-  wire [7:0]       _GEN_156 = {5'h0, alloc_idx_3};	// src/main/scala/chisel3/util/Mux.scala:50:70, src/main/scala/chisel3/util/OneHot.scala:58:35
-  wire [7:0]       _GEN_157 = ~(8'h1 << _GEN_156);	// backend/src/zaqal/backend/issue/IssueQueue.scala:97:47, src/main/scala/chisel3/util/OneHot.scala:58:35
-  wire [7:0]       _GEN_158 = _GEN_147 & _GEN_157;	// backend/src/zaqal/backend/issue/IssueQueue.scala:97:{45,47}
-  wire             _GEN_159 = _GEN_148 & _GEN_146[0];	// backend/src/zaqal/backend/issue/IssueQueue.scala:97:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
-  wire             _GEN_160 = _GEN_149 & _GEN_146[1];	// backend/src/zaqal/backend/issue/IssueQueue.scala:97:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
-  wire             _GEN_161 = _GEN_150 & _GEN_146[2];	// backend/src/zaqal/backend/issue/IssueQueue.scala:97:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
-  wire             _GEN_162 = _GEN_151 & _GEN_146[3];	// backend/src/zaqal/backend/issue/IssueQueue.scala:97:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
-  wire             _GEN_163 = _GEN_152 & _GEN_146[4];	// backend/src/zaqal/backend/issue/IssueQueue.scala:97:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
-  wire             _GEN_164 = _GEN_153 & _GEN_146[5];	// backend/src/zaqal/backend/issue/IssueQueue.scala:97:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
-  wire             _GEN_165 = _GEN_154 & _GEN_146[6];	// backend/src/zaqal/backend/issue/IssueQueue.scala:97:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
-  wire [2:0]       alloc_idx_4 =
-    _GEN_159 & _GEN_157[0]
+                      : _GEN_95 & _GEN_88[5] ? 3'h5 : {2'h3, ~(_GEN_96 & _GEN_88[6])};	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:66, :97:{45,47}, src/main/scala/chisel3/util/Mux.scala:50:70, src/main/scala/chisel3/util/OneHot.scala:48:45
+  wire        _GEN_97 = io_enq_3_valid & (|_GEN_89);	// backend/src/zaqal/backend/issue/IssueQueue.scala:89:42, :93:27, :97:45
+  wire [7:0]  _GEN_98 = {5'h0, alloc_idx_3};	// src/main/scala/chisel3/util/Mux.scala:50:70, src/main/scala/chisel3/util/OneHot.scala:58:35
+  wire [7:0]  _GEN_99 = ~(8'h1 << _GEN_98);	// backend/src/zaqal/backend/issue/IssueQueue.scala:97:47, src/main/scala/chisel3/util/OneHot.scala:58:35
+  wire [7:0]  _GEN_100 = _GEN_89 & _GEN_99;	// backend/src/zaqal/backend/issue/IssueQueue.scala:97:{45,47}
+  wire        _GEN_101 = _GEN_90 & _GEN_88[0];	// backend/src/zaqal/backend/issue/IssueQueue.scala:97:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
+  wire        _GEN_102 = _GEN_91 & _GEN_88[1];	// backend/src/zaqal/backend/issue/IssueQueue.scala:97:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
+  wire        _GEN_103 = _GEN_92 & _GEN_88[2];	// backend/src/zaqal/backend/issue/IssueQueue.scala:97:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
+  wire        _GEN_104 = _GEN_93 & _GEN_88[3];	// backend/src/zaqal/backend/issue/IssueQueue.scala:97:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
+  wire        _GEN_105 = _GEN_94 & _GEN_88[4];	// backend/src/zaqal/backend/issue/IssueQueue.scala:97:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
+  wire        _GEN_106 = _GEN_95 & _GEN_88[5];	// backend/src/zaqal/backend/issue/IssueQueue.scala:97:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
+  wire        _GEN_107 = _GEN_96 & _GEN_88[6];	// backend/src/zaqal/backend/issue/IssueQueue.scala:97:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
+  wire [2:0]  alloc_idx_4 =
+    _GEN_101 & _GEN_99[0]
       ? 3'h0
-      : _GEN_160 & _GEN_157[1]
+      : _GEN_102 & _GEN_99[1]
           ? 3'h1
-          : _GEN_161 & _GEN_157[2]
+          : _GEN_103 & _GEN_99[2]
               ? 3'h2
-              : _GEN_162 & _GEN_157[3]
+              : _GEN_104 & _GEN_99[3]
                   ? 3'h3
-                  : _GEN_163 & _GEN_157[4]
+                  : _GEN_105 & _GEN_99[4]
                       ? 3'h4
-                      : _GEN_164 & _GEN_157[5] ? 3'h5 : {2'h3, ~(_GEN_165 & _GEN_157[6])};	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:66, :97:{45,47}, src/main/scala/chisel3/util/Mux.scala:50:70, src/main/scala/chisel3/util/OneHot.scala:48:45
-  wire             _GEN_166 = io_enq_4_valid & (|_GEN_158);	// backend/src/zaqal/backend/issue/IssueQueue.scala:89:42, :93:27, :97:45
-  wire [7:0]       _GEN_167 = {5'h0, alloc_idx_4};	// src/main/scala/chisel3/util/Mux.scala:50:70, src/main/scala/chisel3/util/OneHot.scala:58:35
-  wire [7:0]       _GEN_168 = ~(8'h1 << _GEN_167);	// backend/src/zaqal/backend/issue/IssueQueue.scala:97:47, src/main/scala/chisel3/util/OneHot.scala:58:35
-  wire [7:0]       _GEN_169 = _GEN_158 & _GEN_168;	// backend/src/zaqal/backend/issue/IssueQueue.scala:97:{45,47}
-  wire [2:0]       alloc_idx_5 =
-    _GEN_159 & _GEN_157[0] & _GEN_168[0]
+                      : _GEN_106 & _GEN_99[5] ? 3'h5 : {2'h3, ~(_GEN_107 & _GEN_99[6])};	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:66, :97:{45,47}, src/main/scala/chisel3/util/Mux.scala:50:70, src/main/scala/chisel3/util/OneHot.scala:48:45
+  wire        _GEN_108 = io_enq_4_valid & (|_GEN_100);	// backend/src/zaqal/backend/issue/IssueQueue.scala:89:42, :93:27, :97:45
+  wire [7:0]  _GEN_109 = {5'h0, alloc_idx_4};	// src/main/scala/chisel3/util/Mux.scala:50:70, src/main/scala/chisel3/util/OneHot.scala:58:35
+  wire [7:0]  _GEN_110 = ~(8'h1 << _GEN_109);	// backend/src/zaqal/backend/issue/IssueQueue.scala:97:47, src/main/scala/chisel3/util/OneHot.scala:58:35
+  wire [7:0]  _GEN_111 = _GEN_100 & _GEN_110;	// backend/src/zaqal/backend/issue/IssueQueue.scala:97:{45,47}
+  wire [2:0]  alloc_idx_5 =
+    _GEN_101 & _GEN_99[0] & _GEN_110[0]
       ? 3'h0
-      : _GEN_160 & _GEN_157[1] & _GEN_168[1]
+      : _GEN_102 & _GEN_99[1] & _GEN_110[1]
           ? 3'h1
-          : _GEN_161 & _GEN_157[2] & _GEN_168[2]
+          : _GEN_103 & _GEN_99[2] & _GEN_110[2]
               ? 3'h2
-              : _GEN_162 & _GEN_157[3] & _GEN_168[3]
+              : _GEN_104 & _GEN_99[3] & _GEN_110[3]
                   ? 3'h3
-                  : _GEN_163 & _GEN_157[4] & _GEN_168[4]
+                  : _GEN_105 & _GEN_99[4] & _GEN_110[4]
                       ? 3'h4
-                      : _GEN_164 & _GEN_157[5] & _GEN_168[5]
+                      : _GEN_106 & _GEN_99[5] & _GEN_110[5]
                           ? 3'h5
-                          : {2'h3, ~(_GEN_165 & _GEN_157[6] & _GEN_168[6])};	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:66, :97:{45,47}, src/main/scala/chisel3/util/Mux.scala:50:70, src/main/scala/chisel3/util/OneHot.scala:48:45
-  wire             _GEN_170 = io_enq_5_valid & (|_GEN_169);	// backend/src/zaqal/backend/issue/IssueQueue.scala:89:42, :93:27, :97:45
-  wire             _entry_is_younger_T_49 = io_redirect_restore_idx < io_redirect_enq_ptr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:135:58
-  wire             _entry_is_younger_T_4 =
-    entries_0_uop_snapshotIdx > io_redirect_restore_idx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :136:61
-  wire             _entry_is_younger_T_5 =
-    entries_0_uop_snapshotIdx < io_redirect_enq_ptr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :136:117
-  wire             entry_is_younger =
+                          : {2'h3, ~(_GEN_107 & _GEN_99[6] & _GEN_110[6])};	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:66, :97:{45,47}, src/main/scala/chisel3/util/Mux.scala:50:70, src/main/scala/chisel3/util/OneHot.scala:48:45
+  wire        _GEN_112 = io_enq_5_valid & (|_GEN_111);	// backend/src/zaqal/backend/issue/IssueQueue.scala:89:42, :93:27, :97:45
+  wire        _entry_is_younger_T_49 = io_redirect_restore_idx < io_redirect_enq_ptr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:135:58
+  wire        _entry_is_younger_T_4 = entries_0_uop_snapshotIdx > io_redirect_restore_idx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :136:61
+  wire        _entry_is_younger_T_5 = entries_0_uop_snapshotIdx < io_redirect_enq_ptr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :136:117
+  wire        entry_is_younger =
     _entry_is_younger_T_49
       ? _entry_is_younger_T_4 & _entry_is_younger_T_5
       : _entry_is_younger_T_4 | _entry_is_younger_T_5;	// backend/src/zaqal/backend/issue/IssueQueue.scala:135:{33,58}, :136:{61,87,117}, :137:87
-  wire             _entry_is_younger_T_11 =
+  wire        _entry_is_younger_T_11 =
     entries_1_uop_snapshotIdx > io_redirect_restore_idx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :136:61
-  wire             _entry_is_younger_T_12 =
-    entries_1_uop_snapshotIdx < io_redirect_enq_ptr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :136:117
-  wire             entry_is_younger_1 =
+  wire        _entry_is_younger_T_12 = entries_1_uop_snapshotIdx < io_redirect_enq_ptr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :136:117
+  wire        entry_is_younger_1 =
     _entry_is_younger_T_49
       ? _entry_is_younger_T_11 & _entry_is_younger_T_12
       : _entry_is_younger_T_11 | _entry_is_younger_T_12;	// backend/src/zaqal/backend/issue/IssueQueue.scala:135:{33,58}, :136:{61,87,117}, :137:87
-  wire             _entry_is_younger_T_18 =
+  wire        _entry_is_younger_T_18 =
     entries_2_uop_snapshotIdx > io_redirect_restore_idx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :136:61
-  wire             _entry_is_younger_T_19 =
-    entries_2_uop_snapshotIdx < io_redirect_enq_ptr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :136:117
-  wire             entry_is_younger_2 =
+  wire        _entry_is_younger_T_19 = entries_2_uop_snapshotIdx < io_redirect_enq_ptr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :136:117
+  wire        entry_is_younger_2 =
     _entry_is_younger_T_49
       ? _entry_is_younger_T_18 & _entry_is_younger_T_19
       : _entry_is_younger_T_18 | _entry_is_younger_T_19;	// backend/src/zaqal/backend/issue/IssueQueue.scala:135:{33,58}, :136:{61,87,117}, :137:87
-  wire             _entry_is_younger_T_25 =
+  wire        _entry_is_younger_T_25 =
     entries_3_uop_snapshotIdx > io_redirect_restore_idx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :136:61
-  wire             _entry_is_younger_T_26 =
-    entries_3_uop_snapshotIdx < io_redirect_enq_ptr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :136:117
-  wire             entry_is_younger_3 =
+  wire        _entry_is_younger_T_26 = entries_3_uop_snapshotIdx < io_redirect_enq_ptr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :136:117
+  wire        entry_is_younger_3 =
     _entry_is_younger_T_49
       ? _entry_is_younger_T_25 & _entry_is_younger_T_26
       : _entry_is_younger_T_25 | _entry_is_younger_T_26;	// backend/src/zaqal/backend/issue/IssueQueue.scala:135:{33,58}, :136:{61,87,117}, :137:87
-  wire             _entry_is_younger_T_32 =
+  wire        _entry_is_younger_T_32 =
     entries_4_uop_snapshotIdx > io_redirect_restore_idx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :136:61
-  wire             _entry_is_younger_T_33 =
-    entries_4_uop_snapshotIdx < io_redirect_enq_ptr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :136:117
-  wire             entry_is_younger_4 =
+  wire        _entry_is_younger_T_33 = entries_4_uop_snapshotIdx < io_redirect_enq_ptr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :136:117
+  wire        entry_is_younger_4 =
     _entry_is_younger_T_49
       ? _entry_is_younger_T_32 & _entry_is_younger_T_33
       : _entry_is_younger_T_32 | _entry_is_younger_T_33;	// backend/src/zaqal/backend/issue/IssueQueue.scala:135:{33,58}, :136:{61,87,117}, :137:87
-  wire             _entry_is_younger_T_39 =
+  wire        _entry_is_younger_T_39 =
     entries_5_uop_snapshotIdx > io_redirect_restore_idx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :136:61
-  wire             _entry_is_younger_T_40 =
-    entries_5_uop_snapshotIdx < io_redirect_enq_ptr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :136:117
-  wire             entry_is_younger_5 =
+  wire        _entry_is_younger_T_40 = entries_5_uop_snapshotIdx < io_redirect_enq_ptr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :136:117
+  wire        entry_is_younger_5 =
     _entry_is_younger_T_49
       ? _entry_is_younger_T_39 & _entry_is_younger_T_40
       : _entry_is_younger_T_39 | _entry_is_younger_T_40;	// backend/src/zaqal/backend/issue/IssueQueue.scala:135:{33,58}, :136:{61,87,117}, :137:87
-  wire             _entry_is_younger_T_46 =
+  wire        _entry_is_younger_T_46 =
     entries_6_uop_snapshotIdx > io_redirect_restore_idx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :136:61
-  wire             _entry_is_younger_T_47 =
-    entries_6_uop_snapshotIdx < io_redirect_enq_ptr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :136:117
-  wire             entry_is_younger_6 =
+  wire        _entry_is_younger_T_47 = entries_6_uop_snapshotIdx < io_redirect_enq_ptr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :136:117
+  wire        entry_is_younger_6 =
     _entry_is_younger_T_49
       ? _entry_is_younger_T_46 & _entry_is_younger_T_47
       : _entry_is_younger_T_46 | _entry_is_younger_T_47;	// backend/src/zaqal/backend/issue/IssueQueue.scala:135:{33,58}, :136:{61,87,117}, :137:87
-  wire             _entry_is_younger_T_53 =
+  wire        _entry_is_younger_T_53 =
     entries_7_uop_snapshotIdx > io_redirect_restore_idx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :136:61
-  wire             _entry_is_younger_T_54 =
-    entries_7_uop_snapshotIdx < io_redirect_enq_ptr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :136:117
-  wire             entry_is_younger_7 =
+  wire        _entry_is_younger_T_54 = entries_7_uop_snapshotIdx < io_redirect_enq_ptr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :136:117
+  wire        entry_is_younger_7 =
     _entry_is_younger_T_49
       ? _entry_is_younger_T_53 & _entry_is_younger_T_54
       : _entry_is_younger_T_53 | _entry_is_younger_T_54;	// backend/src/zaqal/backend/issue/IssueQueue.scala:135:{33,58}, :136:{61,87,117}, :137:87
   `ifndef SYNTHESIS	// backend/src/zaqal/backend/issue/IssueQueue.scala:73:13
+    wire [2:0] _GEN_113 = _ageDetector_io_out_0[7:5] | _ageDetector_io_out_0[3:1];	// backend/src/zaqal/backend/issue/IssueQueue.scala:55:27, src/main/scala/chisel3/util/OneHot.scala:30:18, :31:18, :32:28
     always @(posedge clock) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:73:13
-      if ((`PRINTF_COND_) & deq_fire & ~reset) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:71:36, :73:13
-        automatic logic [2:0]       _GEN_171 =
-          _ageDetector_io_out_0[7:5] | _ageDetector_io_out_0[3:1];	// backend/src/zaqal/backend/issue/IssueQueue.scala:55:27, src/main/scala/chisel3/util/OneHot.scala:30:18, :31:18, :32:28
-        automatic logic [7:0][63:0] _GEN_172;	// backend/src/zaqal/backend/issue/IssueQueue.scala:69:20
-        _GEN_172 =
-          {{entries_7_uop_uop_pc},
-           {entries_6_uop_uop_pc},
-           {entries_5_uop_uop_pc},
-           {entries_4_uop_uop_pc},
-           {entries_3_uop_uop_pc},
-           {entries_2_uop_uop_pc},
-           {entries_1_uop_uop_pc},
-           {entries_0_uop_uop_pc}};	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :69:20
-        $fwrite(32'h80000002, "    [IQ ISSUE Port 0]: pc=%x entry_idx=%d\n",
-                _GEN_172[issue_idx],
+      if ((`PRINTF_COND_) & deq_fire & ~reset)	// backend/src/zaqal/backend/issue/IssueQueue.scala:71:36, :73:13
+        $fwrite(32'h80000002, "    [IQ ISSUE Port 0]: pc=%x entry_idx=%d\n", casez_tmp,
                 {|(_ageDetector_io_out_0[7:4]),
-                 |(_GEN_171[2:1]),
-                 _GEN_171[2] | _GEN_171[0]});	// backend/src/zaqal/backend/issue/IssueQueue.scala:55:27, :69:20, :73:13, src/main/scala/chisel3/util/OneHot.scala:30:18, :31:18, :32:{10,14,28}
-      end
+                 |(_GEN_113[2:1]),
+                 _GEN_113[2] | _GEN_113[0]});	// backend/src/zaqal/backend/issue/IssueQueue.scala:55:27, :69:20, :73:13, src/main/scala/chisel3/util/OneHot.scala:30:18, :31:18, :32:{10,14,28}
       if ((`PRINTF_COND_) & io_redirect_valid & ~reset)	// backend/src/zaqal/backend/issue/IssueQueue.scala:73:13, :133:11
         $fwrite(32'h80000002, "  [IQ REDIRECT] restore_idx=%d enq_ptr=%d\n",
                 io_redirect_restore_idx, io_redirect_enq_ptr);	// backend/src/zaqal/backend/issue/IssueQueue.scala:73:13, :133:11
@@ -2250,26 +2944,344 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
                  is_empty_2,
                  is_empty_1,
                  is_empty_0}, |_ageDetector_io_out_0, io_deq_0_ready, 1'h0, 1'h0);	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:66, :55:27, :66:39, :73:13, :81:38, :155:{9,50}
-      if ((`PRINTF_COND_) & _GEN_129 & ~reset)	// backend/src/zaqal/backend/issue/IssueQueue.scala:73:13, :93:27, :158:13
+      if ((`PRINTF_COND_) & _GEN_71 & ~reset)	// backend/src/zaqal/backend/issue/IssueQueue.scala:73:13, :93:27, :158:13
         $fwrite(32'h80000002, "    Enq 0: pc=%x alloc_idx=%d\n", io_enq_0_bits_uop_pc,
                 alloc_idx_0);	// backend/src/zaqal/backend/issue/IssueQueue.scala:73:13, :158:13, src/main/scala/chisel3/util/Mux.scala:50:70
-      if ((`PRINTF_COND_) & _GEN_133 & ~reset)	// backend/src/zaqal/backend/issue/IssueQueue.scala:73:13, :93:27, :158:13
+      if ((`PRINTF_COND_) & _GEN_75 & ~reset)	// backend/src/zaqal/backend/issue/IssueQueue.scala:73:13, :93:27, :158:13
         $fwrite(32'h80000002, "    Enq 1: pc=%x alloc_idx=%d\n", io_enq_1_bits_uop_pc,
                 alloc_idx_1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:73:13, :158:13, src/main/scala/chisel3/util/Mux.scala:50:70
-      if ((`PRINTF_COND_) & _GEN_144 & ~reset)	// backend/src/zaqal/backend/issue/IssueQueue.scala:73:13, :93:27, :158:13
+      if ((`PRINTF_COND_) & _GEN_86 & ~reset)	// backend/src/zaqal/backend/issue/IssueQueue.scala:73:13, :93:27, :158:13
         $fwrite(32'h80000002, "    Enq 2: pc=%x alloc_idx=%d\n", io_enq_2_bits_uop_pc,
                 alloc_idx_2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:73:13, :158:13, src/main/scala/chisel3/util/Mux.scala:50:70
-      if ((`PRINTF_COND_) & _GEN_155 & ~reset)	// backend/src/zaqal/backend/issue/IssueQueue.scala:73:13, :93:27, :158:13
+      if ((`PRINTF_COND_) & _GEN_97 & ~reset)	// backend/src/zaqal/backend/issue/IssueQueue.scala:73:13, :93:27, :158:13
         $fwrite(32'h80000002, "    Enq 3: pc=%x alloc_idx=%d\n", io_enq_3_bits_uop_pc,
                 alloc_idx_3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:73:13, :158:13, src/main/scala/chisel3/util/Mux.scala:50:70
-      if ((`PRINTF_COND_) & _GEN_166 & ~reset)	// backend/src/zaqal/backend/issue/IssueQueue.scala:73:13, :93:27, :158:13
+      if ((`PRINTF_COND_) & _GEN_108 & ~reset)	// backend/src/zaqal/backend/issue/IssueQueue.scala:73:13, :93:27, :158:13
         $fwrite(32'h80000002, "    Enq 4: pc=%x alloc_idx=%d\n", io_enq_4_bits_uop_pc,
                 alloc_idx_4);	// backend/src/zaqal/backend/issue/IssueQueue.scala:73:13, :158:13, src/main/scala/chisel3/util/Mux.scala:50:70
-      if ((`PRINTF_COND_) & _GEN_170 & ~reset)	// backend/src/zaqal/backend/issue/IssueQueue.scala:73:13, :93:27, :158:13
+      if ((`PRINTF_COND_) & _GEN_112 & ~reset)	// backend/src/zaqal/backend/issue/IssueQueue.scala:73:13, :93:27, :158:13
         $fwrite(32'h80000002, "    Enq 5: pc=%x alloc_idx=%d\n", io_enq_5_bits_uop_pc,
                 alloc_idx_5);	// backend/src/zaqal/backend/issue/IssueQueue.scala:73:13, :158:13, src/main/scala/chisel3/util/Mux.scala:50:70
     end // always @(posedge)
   `endif // not def SYNTHESIS
+  wire        _GEN_114 = _GEN_71 & alloc_idx_0 == 3'h0;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:66, :93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_115 =
+    io_wakeup_0_valid & io_enq_0_bits_psrs1 == io_wakeup_0_pdest & (|io_enq_0_bits_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:117:30, :122:37, :123:{40,87,96,119}
+  wire        _GEN_116 =
+    io_wakeup_0_valid & io_enq_0_bits_psrs2 == io_wakeup_0_pdest & (|io_enq_0_bits_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:118:30, :122:37, :124:{40,87,96,119}
+  wire        _GEN_117 =
+    io_wakeup_0_valid & io_enq_0_bits_psrs3 == io_wakeup_0_pdest & (|io_enq_0_bits_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:119:30, :122:37, :125:{40,87,96,119}
+  wire        _GEN_118 =
+    io_wakeup_1_valid
+      ? io_enq_0_bits_psrs1 == io_wakeup_1_pdest & (|io_enq_0_bits_psrs1) | _GEN_115
+        | io_rs1_ready_in_0
+      : _GEN_115 | io_rs1_ready_in_0;	// backend/src/zaqal/backend/issue/IssueQueue.scala:117:30, :122:37, :123:{40,63,87,96,119}
+  wire        _GEN_119 =
+    io_wakeup_1_valid
+      ? io_enq_0_bits_psrs2 == io_wakeup_1_pdest & (|io_enq_0_bits_psrs2) | _GEN_116
+        | io_rs2_ready_in_0
+      : _GEN_116 | io_rs2_ready_in_0;	// backend/src/zaqal/backend/issue/IssueQueue.scala:118:30, :122:37, :124:{40,63,87,96,119}
+  wire        _GEN_120 =
+    io_wakeup_1_valid
+      ? io_enq_0_bits_psrs3 == io_wakeup_1_pdest & (|io_enq_0_bits_psrs3) | _GEN_117
+        | io_rs3_ready_in_0
+      : _GEN_117 | io_rs3_ready_in_0;	// backend/src/zaqal/backend/issue/IssueQueue.scala:119:30, :122:37, :125:{40,63,87,96,119}
+  wire        _GEN_121 =
+    io_wakeup_2_valid & io_enq_0_bits_psrs1 == io_wakeup_2_pdest & (|io_enq_0_bits_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:122:37, :123:{40,87,96,119}
+  wire        _GEN_122 =
+    io_wakeup_2_valid & io_enq_0_bits_psrs2 == io_wakeup_2_pdest & (|io_enq_0_bits_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:122:37, :124:{40,87,96,119}
+  wire        _GEN_123 =
+    io_wakeup_2_valid & io_enq_0_bits_psrs3 == io_wakeup_2_pdest & (|io_enq_0_bits_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:122:37, :125:{40,87,96,119}
+  wire        _GEN_124 =
+    io_wakeup_4_valid & io_enq_0_bits_psrs1 == io_wakeup_4_pdest & (|io_enq_0_bits_psrs1)
+    | (io_wakeup_3_valid
+         ? io_enq_0_bits_psrs1 == io_wakeup_3_pdest & (|io_enq_0_bits_psrs1) | _GEN_121
+           | _GEN_118
+         : _GEN_121 | _GEN_118);	// backend/src/zaqal/backend/issue/IssueQueue.scala:122:37, :123:{40,63,87,96,119}
+  wire        _GEN_125 =
+    io_wakeup_4_valid & io_enq_0_bits_psrs2 == io_wakeup_4_pdest & (|io_enq_0_bits_psrs2)
+    | (io_wakeup_3_valid
+         ? io_enq_0_bits_psrs2 == io_wakeup_3_pdest & (|io_enq_0_bits_psrs2) | _GEN_122
+           | _GEN_119
+         : _GEN_122 | _GEN_119);	// backend/src/zaqal/backend/issue/IssueQueue.scala:122:37, :124:{40,63,87,96,119}
+  wire        _GEN_126 =
+    io_wakeup_4_valid & io_enq_0_bits_psrs3 == io_wakeup_4_pdest & (|io_enq_0_bits_psrs3)
+    | (io_wakeup_3_valid
+         ? io_enq_0_bits_psrs3 == io_wakeup_3_pdest & (|io_enq_0_bits_psrs3) | _GEN_123
+           | _GEN_120
+         : _GEN_123 | _GEN_120);	// backend/src/zaqal/backend/issue/IssueQueue.scala:122:37, :125:{40,63,87,96,119}
+  wire        _GEN_127 = _GEN_75 & alloc_idx_1 == 3'h0;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:66, :93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_128 =
+    io_wakeup_0_valid & io_enq_1_bits_psrs1 == io_wakeup_0_pdest & (|io_enq_1_bits_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:117:30, :122:37, :123:{40,87,96,119}
+  wire        _GEN_129 =
+    io_wakeup_0_valid & io_enq_1_bits_psrs2 == io_wakeup_0_pdest & (|io_enq_1_bits_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:118:30, :122:37, :124:{40,87,96,119}
+  wire        _GEN_130 =
+    io_wakeup_0_valid & io_enq_1_bits_psrs3 == io_wakeup_0_pdest & (|io_enq_1_bits_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:119:30, :122:37, :125:{40,87,96,119}
+  wire        _GEN_131 =
+    io_wakeup_1_valid
+      ? io_enq_1_bits_psrs1 == io_wakeup_1_pdest & (|io_enq_1_bits_psrs1) | _GEN_128
+        | io_rs1_ready_in_1
+      : _GEN_128 | io_rs1_ready_in_1;	// backend/src/zaqal/backend/issue/IssueQueue.scala:117:30, :122:37, :123:{40,63,87,96,119}
+  wire        _GEN_132 =
+    io_wakeup_1_valid
+      ? io_enq_1_bits_psrs2 == io_wakeup_1_pdest & (|io_enq_1_bits_psrs2) | _GEN_129
+        | io_rs2_ready_in_1
+      : _GEN_129 | io_rs2_ready_in_1;	// backend/src/zaqal/backend/issue/IssueQueue.scala:118:30, :122:37, :124:{40,63,87,96,119}
+  wire        _GEN_133 =
+    io_wakeup_1_valid
+      ? io_enq_1_bits_psrs3 == io_wakeup_1_pdest & (|io_enq_1_bits_psrs3) | _GEN_130
+        | io_rs3_ready_in_1
+      : _GEN_130 | io_rs3_ready_in_1;	// backend/src/zaqal/backend/issue/IssueQueue.scala:119:30, :122:37, :125:{40,63,87,96,119}
+  wire        _GEN_134 =
+    io_wakeup_2_valid & io_enq_1_bits_psrs1 == io_wakeup_2_pdest & (|io_enq_1_bits_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:122:37, :123:{40,87,96,119}
+  wire        _GEN_135 =
+    io_wakeup_2_valid & io_enq_1_bits_psrs2 == io_wakeup_2_pdest & (|io_enq_1_bits_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:122:37, :124:{40,87,96,119}
+  wire        _GEN_136 =
+    io_wakeup_2_valid & io_enq_1_bits_psrs3 == io_wakeup_2_pdest & (|io_enq_1_bits_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:122:37, :125:{40,87,96,119}
+  wire        _GEN_137 =
+    io_wakeup_4_valid & io_enq_1_bits_psrs1 == io_wakeup_4_pdest & (|io_enq_1_bits_psrs1)
+    | (io_wakeup_3_valid
+         ? io_enq_1_bits_psrs1 == io_wakeup_3_pdest & (|io_enq_1_bits_psrs1) | _GEN_134
+           | _GEN_131
+         : _GEN_134 | _GEN_131);	// backend/src/zaqal/backend/issue/IssueQueue.scala:122:37, :123:{40,63,87,96,119}
+  wire        _GEN_138 =
+    io_wakeup_4_valid & io_enq_1_bits_psrs2 == io_wakeup_4_pdest & (|io_enq_1_bits_psrs2)
+    | (io_wakeup_3_valid
+         ? io_enq_1_bits_psrs2 == io_wakeup_3_pdest & (|io_enq_1_bits_psrs2) | _GEN_135
+           | _GEN_132
+         : _GEN_135 | _GEN_132);	// backend/src/zaqal/backend/issue/IssueQueue.scala:122:37, :124:{40,63,87,96,119}
+  wire        _GEN_139 =
+    io_wakeup_4_valid & io_enq_1_bits_psrs3 == io_wakeup_4_pdest & (|io_enq_1_bits_psrs3)
+    | (io_wakeup_3_valid
+         ? io_enq_1_bits_psrs3 == io_wakeup_3_pdest & (|io_enq_1_bits_psrs3) | _GEN_136
+           | _GEN_133
+         : _GEN_136 | _GEN_133);	// backend/src/zaqal/backend/issue/IssueQueue.scala:122:37, :125:{40,63,87,96,119}
+  wire        _GEN_140 = _GEN_86 & alloc_idx_2 == 3'h0;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:66, :93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_141 =
+    io_wakeup_0_valid & io_enq_2_bits_psrs1 == io_wakeup_0_pdest & (|io_enq_2_bits_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:117:30, :122:37, :123:{40,87,96,119}
+  wire        _GEN_142 =
+    io_wakeup_0_valid & io_enq_2_bits_psrs2 == io_wakeup_0_pdest & (|io_enq_2_bits_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:118:30, :122:37, :124:{40,87,96,119}
+  wire        _GEN_143 =
+    io_wakeup_0_valid & io_enq_2_bits_psrs3 == io_wakeup_0_pdest & (|io_enq_2_bits_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:119:30, :122:37, :125:{40,87,96,119}
+  wire        _GEN_144 =
+    io_wakeup_1_valid
+      ? io_enq_2_bits_psrs1 == io_wakeup_1_pdest & (|io_enq_2_bits_psrs1) | _GEN_141
+        | io_rs1_ready_in_2
+      : _GEN_141 | io_rs1_ready_in_2;	// backend/src/zaqal/backend/issue/IssueQueue.scala:117:30, :122:37, :123:{40,63,87,96,119}
+  wire        _GEN_145 =
+    io_wakeup_1_valid
+      ? io_enq_2_bits_psrs2 == io_wakeup_1_pdest & (|io_enq_2_bits_psrs2) | _GEN_142
+        | io_rs2_ready_in_2
+      : _GEN_142 | io_rs2_ready_in_2;	// backend/src/zaqal/backend/issue/IssueQueue.scala:118:30, :122:37, :124:{40,63,87,96,119}
+  wire        _GEN_146 =
+    io_wakeup_1_valid
+      ? io_enq_2_bits_psrs3 == io_wakeup_1_pdest & (|io_enq_2_bits_psrs3) | _GEN_143
+        | io_rs3_ready_in_2
+      : _GEN_143 | io_rs3_ready_in_2;	// backend/src/zaqal/backend/issue/IssueQueue.scala:119:30, :122:37, :125:{40,63,87,96,119}
+  wire        _GEN_147 =
+    io_wakeup_2_valid & io_enq_2_bits_psrs1 == io_wakeup_2_pdest & (|io_enq_2_bits_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:122:37, :123:{40,87,96,119}
+  wire        _GEN_148 =
+    io_wakeup_2_valid & io_enq_2_bits_psrs2 == io_wakeup_2_pdest & (|io_enq_2_bits_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:122:37, :124:{40,87,96,119}
+  wire        _GEN_149 =
+    io_wakeup_2_valid & io_enq_2_bits_psrs3 == io_wakeup_2_pdest & (|io_enq_2_bits_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:122:37, :125:{40,87,96,119}
+  wire        _GEN_150 =
+    io_wakeup_4_valid & io_enq_2_bits_psrs1 == io_wakeup_4_pdest & (|io_enq_2_bits_psrs1)
+    | (io_wakeup_3_valid
+         ? io_enq_2_bits_psrs1 == io_wakeup_3_pdest & (|io_enq_2_bits_psrs1) | _GEN_147
+           | _GEN_144
+         : _GEN_147 | _GEN_144);	// backend/src/zaqal/backend/issue/IssueQueue.scala:122:37, :123:{40,63,87,96,119}
+  wire        _GEN_151 =
+    io_wakeup_4_valid & io_enq_2_bits_psrs2 == io_wakeup_4_pdest & (|io_enq_2_bits_psrs2)
+    | (io_wakeup_3_valid
+         ? io_enq_2_bits_psrs2 == io_wakeup_3_pdest & (|io_enq_2_bits_psrs2) | _GEN_148
+           | _GEN_145
+         : _GEN_148 | _GEN_145);	// backend/src/zaqal/backend/issue/IssueQueue.scala:122:37, :124:{40,63,87,96,119}
+  wire        _GEN_152 =
+    io_wakeup_4_valid & io_enq_2_bits_psrs3 == io_wakeup_4_pdest & (|io_enq_2_bits_psrs3)
+    | (io_wakeup_3_valid
+         ? io_enq_2_bits_psrs3 == io_wakeup_3_pdest & (|io_enq_2_bits_psrs3) | _GEN_149
+           | _GEN_146
+         : _GEN_149 | _GEN_146);	// backend/src/zaqal/backend/issue/IssueQueue.scala:122:37, :125:{40,63,87,96,119}
+  wire        _GEN_153 = _GEN_97 & alloc_idx_3 == 3'h0;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:66, :93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_154 =
+    io_wakeup_0_valid & io_enq_3_bits_psrs1 == io_wakeup_0_pdest & (|io_enq_3_bits_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:117:30, :122:37, :123:{40,87,96,119}
+  wire        _GEN_155 =
+    io_wakeup_0_valid & io_enq_3_bits_psrs2 == io_wakeup_0_pdest & (|io_enq_3_bits_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:118:30, :122:37, :124:{40,87,96,119}
+  wire        _GEN_156 =
+    io_wakeup_0_valid & io_enq_3_bits_psrs3 == io_wakeup_0_pdest & (|io_enq_3_bits_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:119:30, :122:37, :125:{40,87,96,119}
+  wire        _GEN_157 =
+    io_wakeup_1_valid
+      ? io_enq_3_bits_psrs1 == io_wakeup_1_pdest & (|io_enq_3_bits_psrs1) | _GEN_154
+        | io_rs1_ready_in_3
+      : _GEN_154 | io_rs1_ready_in_3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:117:30, :122:37, :123:{40,63,87,96,119}
+  wire        _GEN_158 =
+    io_wakeup_1_valid
+      ? io_enq_3_bits_psrs2 == io_wakeup_1_pdest & (|io_enq_3_bits_psrs2) | _GEN_155
+        | io_rs2_ready_in_3
+      : _GEN_155 | io_rs2_ready_in_3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:118:30, :122:37, :124:{40,63,87,96,119}
+  wire        _GEN_159 =
+    io_wakeup_1_valid
+      ? io_enq_3_bits_psrs3 == io_wakeup_1_pdest & (|io_enq_3_bits_psrs3) | _GEN_156
+        | io_rs3_ready_in_3
+      : _GEN_156 | io_rs3_ready_in_3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:119:30, :122:37, :125:{40,63,87,96,119}
+  wire        _GEN_160 =
+    io_wakeup_2_valid & io_enq_3_bits_psrs1 == io_wakeup_2_pdest & (|io_enq_3_bits_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:122:37, :123:{40,87,96,119}
+  wire        _GEN_161 =
+    io_wakeup_2_valid & io_enq_3_bits_psrs2 == io_wakeup_2_pdest & (|io_enq_3_bits_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:122:37, :124:{40,87,96,119}
+  wire        _GEN_162 =
+    io_wakeup_2_valid & io_enq_3_bits_psrs3 == io_wakeup_2_pdest & (|io_enq_3_bits_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:122:37, :125:{40,87,96,119}
+  wire        _GEN_163 =
+    io_wakeup_4_valid & io_enq_3_bits_psrs1 == io_wakeup_4_pdest & (|io_enq_3_bits_psrs1)
+    | (io_wakeup_3_valid
+         ? io_enq_3_bits_psrs1 == io_wakeup_3_pdest & (|io_enq_3_bits_psrs1) | _GEN_160
+           | _GEN_157
+         : _GEN_160 | _GEN_157);	// backend/src/zaqal/backend/issue/IssueQueue.scala:122:37, :123:{40,63,87,96,119}
+  wire        _GEN_164 =
+    io_wakeup_4_valid & io_enq_3_bits_psrs2 == io_wakeup_4_pdest & (|io_enq_3_bits_psrs2)
+    | (io_wakeup_3_valid
+         ? io_enq_3_bits_psrs2 == io_wakeup_3_pdest & (|io_enq_3_bits_psrs2) | _GEN_161
+           | _GEN_158
+         : _GEN_161 | _GEN_158);	// backend/src/zaqal/backend/issue/IssueQueue.scala:122:37, :124:{40,63,87,96,119}
+  wire        _GEN_165 =
+    io_wakeup_4_valid & io_enq_3_bits_psrs3 == io_wakeup_4_pdest & (|io_enq_3_bits_psrs3)
+    | (io_wakeup_3_valid
+         ? io_enq_3_bits_psrs3 == io_wakeup_3_pdest & (|io_enq_3_bits_psrs3) | _GEN_162
+           | _GEN_159
+         : _GEN_162 | _GEN_159);	// backend/src/zaqal/backend/issue/IssueQueue.scala:122:37, :125:{40,63,87,96,119}
+  wire        _GEN_166 = _GEN_108 & alloc_idx_4 == 3'h0;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:66, :93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_167 =
+    io_wakeup_0_valid & io_enq_4_bits_psrs1 == io_wakeup_0_pdest & (|io_enq_4_bits_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:117:30, :122:37, :123:{40,87,96,119}
+  wire        _GEN_168 =
+    io_wakeup_0_valid & io_enq_4_bits_psrs2 == io_wakeup_0_pdest & (|io_enq_4_bits_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:118:30, :122:37, :124:{40,87,96,119}
+  wire        _GEN_169 =
+    io_wakeup_0_valid & io_enq_4_bits_psrs3 == io_wakeup_0_pdest & (|io_enq_4_bits_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:119:30, :122:37, :125:{40,87,96,119}
+  wire        _GEN_170 =
+    io_wakeup_1_valid
+      ? io_enq_4_bits_psrs1 == io_wakeup_1_pdest & (|io_enq_4_bits_psrs1) | _GEN_167
+        | io_rs1_ready_in_4
+      : _GEN_167 | io_rs1_ready_in_4;	// backend/src/zaqal/backend/issue/IssueQueue.scala:117:30, :122:37, :123:{40,63,87,96,119}
+  wire        _GEN_171 =
+    io_wakeup_1_valid
+      ? io_enq_4_bits_psrs2 == io_wakeup_1_pdest & (|io_enq_4_bits_psrs2) | _GEN_168
+        | io_rs2_ready_in_4
+      : _GEN_168 | io_rs2_ready_in_4;	// backend/src/zaqal/backend/issue/IssueQueue.scala:118:30, :122:37, :124:{40,63,87,96,119}
+  wire        _GEN_172 =
+    io_wakeup_1_valid
+      ? io_enq_4_bits_psrs3 == io_wakeup_1_pdest & (|io_enq_4_bits_psrs3) | _GEN_169
+        | io_rs3_ready_in_4
+      : _GEN_169 | io_rs3_ready_in_4;	// backend/src/zaqal/backend/issue/IssueQueue.scala:119:30, :122:37, :125:{40,63,87,96,119}
+  wire        _GEN_173 =
+    io_wakeup_2_valid & io_enq_4_bits_psrs1 == io_wakeup_2_pdest & (|io_enq_4_bits_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:122:37, :123:{40,87,96,119}
+  wire        _GEN_174 =
+    io_wakeup_2_valid & io_enq_4_bits_psrs2 == io_wakeup_2_pdest & (|io_enq_4_bits_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:122:37, :124:{40,87,96,119}
+  wire        _GEN_175 =
+    io_wakeup_2_valid & io_enq_4_bits_psrs3 == io_wakeup_2_pdest & (|io_enq_4_bits_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:122:37, :125:{40,87,96,119}
+  wire        _GEN_176 =
+    io_wakeup_4_valid & io_enq_4_bits_psrs1 == io_wakeup_4_pdest & (|io_enq_4_bits_psrs1)
+    | (io_wakeup_3_valid
+         ? io_enq_4_bits_psrs1 == io_wakeup_3_pdest & (|io_enq_4_bits_psrs1) | _GEN_173
+           | _GEN_170
+         : _GEN_173 | _GEN_170);	// backend/src/zaqal/backend/issue/IssueQueue.scala:122:37, :123:{40,63,87,96,119}
+  wire        _GEN_177 =
+    io_wakeup_4_valid & io_enq_4_bits_psrs2 == io_wakeup_4_pdest & (|io_enq_4_bits_psrs2)
+    | (io_wakeup_3_valid
+         ? io_enq_4_bits_psrs2 == io_wakeup_3_pdest & (|io_enq_4_bits_psrs2) | _GEN_174
+           | _GEN_171
+         : _GEN_174 | _GEN_171);	// backend/src/zaqal/backend/issue/IssueQueue.scala:122:37, :124:{40,63,87,96,119}
+  wire        _GEN_178 =
+    io_wakeup_4_valid & io_enq_4_bits_psrs3 == io_wakeup_4_pdest & (|io_enq_4_bits_psrs3)
+    | (io_wakeup_3_valid
+         ? io_enq_4_bits_psrs3 == io_wakeup_3_pdest & (|io_enq_4_bits_psrs3) | _GEN_175
+           | _GEN_172
+         : _GEN_175 | _GEN_172);	// backend/src/zaqal/backend/issue/IssueQueue.scala:122:37, :125:{40,63,87,96,119}
+  wire        _GEN_179 = _GEN_112 & alloc_idx_5 == 3'h0;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:66, :93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_180 =
+    io_wakeup_0_valid & io_enq_5_bits_psrs1 == io_wakeup_0_pdest & (|io_enq_5_bits_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:117:30, :122:37, :123:{40,87,96,119}
+  wire        _GEN_181 =
+    io_wakeup_0_valid & io_enq_5_bits_psrs2 == io_wakeup_0_pdest & (|io_enq_5_bits_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:118:30, :122:37, :124:{40,87,96,119}
+  wire        _GEN_182 =
+    io_wakeup_0_valid & io_enq_5_bits_psrs3 == io_wakeup_0_pdest & (|io_enq_5_bits_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:119:30, :122:37, :125:{40,87,96,119}
+  wire        _GEN_183 =
+    io_wakeup_1_valid
+      ? io_enq_5_bits_psrs1 == io_wakeup_1_pdest & (|io_enq_5_bits_psrs1) | _GEN_180
+        | io_rs1_ready_in_5
+      : _GEN_180 | io_rs1_ready_in_5;	// backend/src/zaqal/backend/issue/IssueQueue.scala:117:30, :122:37, :123:{40,63,87,96,119}
+  wire        _GEN_184 =
+    io_wakeup_1_valid
+      ? io_enq_5_bits_psrs2 == io_wakeup_1_pdest & (|io_enq_5_bits_psrs2) | _GEN_181
+        | io_rs2_ready_in_5
+      : _GEN_181 | io_rs2_ready_in_5;	// backend/src/zaqal/backend/issue/IssueQueue.scala:118:30, :122:37, :124:{40,63,87,96,119}
+  wire        _GEN_185 =
+    io_wakeup_1_valid
+      ? io_enq_5_bits_psrs3 == io_wakeup_1_pdest & (|io_enq_5_bits_psrs3) | _GEN_182
+        | io_rs3_ready_in_5
+      : _GEN_182 | io_rs3_ready_in_5;	// backend/src/zaqal/backend/issue/IssueQueue.scala:119:30, :122:37, :125:{40,63,87,96,119}
+  wire        _GEN_186 =
+    io_wakeup_2_valid & io_enq_5_bits_psrs1 == io_wakeup_2_pdest & (|io_enq_5_bits_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:122:37, :123:{40,87,96,119}
+  wire        _GEN_187 =
+    io_wakeup_2_valid & io_enq_5_bits_psrs2 == io_wakeup_2_pdest & (|io_enq_5_bits_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:122:37, :124:{40,87,96,119}
+  wire        _GEN_188 =
+    io_wakeup_2_valid & io_enq_5_bits_psrs3 == io_wakeup_2_pdest & (|io_enq_5_bits_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:122:37, :125:{40,87,96,119}
+  wire        _GEN_189 =
+    io_wakeup_4_valid & io_enq_5_bits_psrs1 == io_wakeup_4_pdest & (|io_enq_5_bits_psrs1)
+    | (io_wakeup_3_valid
+         ? io_enq_5_bits_psrs1 == io_wakeup_3_pdest & (|io_enq_5_bits_psrs1) | _GEN_186
+           | _GEN_183
+         : _GEN_186 | _GEN_183);	// backend/src/zaqal/backend/issue/IssueQueue.scala:122:37, :123:{40,63,87,96,119}
+  wire        _GEN_190 =
+    io_wakeup_4_valid & io_enq_5_bits_psrs2 == io_wakeup_4_pdest & (|io_enq_5_bits_psrs2)
+    | (io_wakeup_3_valid
+         ? io_enq_5_bits_psrs2 == io_wakeup_3_pdest & (|io_enq_5_bits_psrs2) | _GEN_187
+           | _GEN_184
+         : _GEN_187 | _GEN_184);	// backend/src/zaqal/backend/issue/IssueQueue.scala:122:37, :124:{40,63,87,96,119}
+  wire        _GEN_191 =
+    io_wakeup_4_valid & io_enq_5_bits_psrs3 == io_wakeup_4_pdest & (|io_enq_5_bits_psrs3)
+    | (io_wakeup_3_valid
+         ? io_enq_5_bits_psrs3 == io_wakeup_3_pdest & (|io_enq_5_bits_psrs3) | _GEN_188
+           | _GEN_185
+         : _GEN_188 | _GEN_185);	// backend/src/zaqal/backend/issue/IssueQueue.scala:122:37, :125:{40,63,87,96,119}
+  wire        _GEN_192 = _GEN_71 & alloc_idx_0 == 3'h1;	// backend/src/zaqal/backend/issue/IssueQueue.scala:93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_193 = _GEN_75 & alloc_idx_1 == 3'h1;	// backend/src/zaqal/backend/issue/IssueQueue.scala:93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_194 = _GEN_86 & alloc_idx_2 == 3'h1;	// backend/src/zaqal/backend/issue/IssueQueue.scala:93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_195 = _GEN_97 & alloc_idx_3 == 3'h1;	// backend/src/zaqal/backend/issue/IssueQueue.scala:93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_196 = _GEN_108 & alloc_idx_4 == 3'h1;	// backend/src/zaqal/backend/issue/IssueQueue.scala:93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_197 = _GEN_112 & alloc_idx_5 == 3'h1;	// backend/src/zaqal/backend/issue/IssueQueue.scala:93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_198 = _GEN_71 & alloc_idx_0 == 3'h2;	// backend/src/zaqal/backend/issue/IssueQueue.scala:93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_199 = _GEN_75 & alloc_idx_1 == 3'h2;	// backend/src/zaqal/backend/issue/IssueQueue.scala:93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_200 = _GEN_86 & alloc_idx_2 == 3'h2;	// backend/src/zaqal/backend/issue/IssueQueue.scala:93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_201 = _GEN_97 & alloc_idx_3 == 3'h2;	// backend/src/zaqal/backend/issue/IssueQueue.scala:93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_202 = _GEN_108 & alloc_idx_4 == 3'h2;	// backend/src/zaqal/backend/issue/IssueQueue.scala:93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_203 = _GEN_112 & alloc_idx_5 == 3'h2;	// backend/src/zaqal/backend/issue/IssueQueue.scala:93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_204 = _GEN_71 & alloc_idx_0 == 3'h3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_205 = _GEN_75 & alloc_idx_1 == 3'h3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_206 = _GEN_86 & alloc_idx_2 == 3'h3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_207 = _GEN_97 & alloc_idx_3 == 3'h3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_208 = _GEN_108 & alloc_idx_4 == 3'h3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_209 = _GEN_112 & alloc_idx_5 == 3'h3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_210 = _GEN_71 & alloc_idx_0 == 3'h4;	// backend/src/zaqal/backend/issue/IssueQueue.scala:93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_211 = _GEN_75 & alloc_idx_1 == 3'h4;	// backend/src/zaqal/backend/issue/IssueQueue.scala:93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_212 = _GEN_86 & alloc_idx_2 == 3'h4;	// backend/src/zaqal/backend/issue/IssueQueue.scala:93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_213 = _GEN_97 & alloc_idx_3 == 3'h4;	// backend/src/zaqal/backend/issue/IssueQueue.scala:93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_214 = _GEN_108 & alloc_idx_4 == 3'h4;	// backend/src/zaqal/backend/issue/IssueQueue.scala:93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_215 = _GEN_112 & alloc_idx_5 == 3'h4;	// backend/src/zaqal/backend/issue/IssueQueue.scala:93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_216 = _GEN_71 & alloc_idx_0 == 3'h5;	// backend/src/zaqal/backend/issue/IssueQueue.scala:93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_217 = _GEN_75 & alloc_idx_1 == 3'h5;	// backend/src/zaqal/backend/issue/IssueQueue.scala:93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_218 = _GEN_86 & alloc_idx_2 == 3'h5;	// backend/src/zaqal/backend/issue/IssueQueue.scala:93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_219 = _GEN_97 & alloc_idx_3 == 3'h5;	// backend/src/zaqal/backend/issue/IssueQueue.scala:93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_220 = _GEN_108 & alloc_idx_4 == 3'h5;	// backend/src/zaqal/backend/issue/IssueQueue.scala:93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_221 = _GEN_112 & alloc_idx_5 == 3'h5;	// backend/src/zaqal/backend/issue/IssueQueue.scala:93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_222 = _GEN_71 & alloc_idx_0 == 3'h6;	// backend/src/zaqal/backend/issue/IssueQueue.scala:93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_223 = _GEN_75 & alloc_idx_1 == 3'h6;	// backend/src/zaqal/backend/issue/IssueQueue.scala:93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_224 = _GEN_86 & alloc_idx_2 == 3'h6;	// backend/src/zaqal/backend/issue/IssueQueue.scala:93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_225 = _GEN_97 & alloc_idx_3 == 3'h6;	// backend/src/zaqal/backend/issue/IssueQueue.scala:93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_226 = _GEN_108 & alloc_idx_4 == 3'h6;	// backend/src/zaqal/backend/issue/IssueQueue.scala:93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_227 = _GEN_112 & alloc_idx_5 == 3'h6;	// backend/src/zaqal/backend/issue/IssueQueue.scala:93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_228 = _GEN_71 & (&alloc_idx_0);	// backend/src/zaqal/backend/issue/IssueQueue.scala:93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_229 = _GEN_75 & (&alloc_idx_1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_230 = _GEN_86 & (&alloc_idx_2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_231 = _GEN_97 & (&alloc_idx_3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_232 = _GEN_108 & (&alloc_idx_4);	// backend/src/zaqal/backend/issue/IssueQueue.scala:93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_233 = _GEN_112 & (&alloc_idx_5);	// backend/src/zaqal/backend/issue/IssueQueue.scala:93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
   always @(posedge clock) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
     if (reset) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
       entries_0_valid <= 1'h0;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:{24,66}
@@ -2794,441 +3806,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
       entries_7_rs3_ready <= 1'h0;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:{24,66}
     end
     else begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
-      automatic logic _GEN_173;	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
-      automatic logic _GEN_174 =
-        io_wakeup_0_valid & io_enq_0_bits_psrs1 == io_wakeup_0_pdest
-        & (|io_enq_0_bits_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:117:30, :122:37, :123:{40,87,96,119}
-      automatic logic _GEN_175 =
-        io_wakeup_0_valid & io_enq_0_bits_psrs2 == io_wakeup_0_pdest
-        & (|io_enq_0_bits_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:118:30, :122:37, :124:{40,87,96,119}
-      automatic logic _GEN_176 =
-        io_wakeup_0_valid & io_enq_0_bits_psrs3 == io_wakeup_0_pdest
-        & (|io_enq_0_bits_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:119:30, :122:37, :125:{40,87,96,119}
-      automatic logic _GEN_177 =
-        io_wakeup_1_valid
-          ? io_enq_0_bits_psrs1 == io_wakeup_1_pdest & (|io_enq_0_bits_psrs1) | _GEN_174
-            | io_rs1_ready_in_0
-          : _GEN_174 | io_rs1_ready_in_0;	// backend/src/zaqal/backend/issue/IssueQueue.scala:117:30, :122:37, :123:{40,63,87,96,119}
-      automatic logic _GEN_178 =
-        io_wakeup_1_valid
-          ? io_enq_0_bits_psrs2 == io_wakeup_1_pdest & (|io_enq_0_bits_psrs2) | _GEN_175
-            | io_rs2_ready_in_0
-          : _GEN_175 | io_rs2_ready_in_0;	// backend/src/zaqal/backend/issue/IssueQueue.scala:118:30, :122:37, :124:{40,63,87,96,119}
-      automatic logic _GEN_179 =
-        io_wakeup_1_valid
-          ? io_enq_0_bits_psrs3 == io_wakeup_1_pdest & (|io_enq_0_bits_psrs3) | _GEN_176
-            | io_rs3_ready_in_0
-          : _GEN_176 | io_rs3_ready_in_0;	// backend/src/zaqal/backend/issue/IssueQueue.scala:119:30, :122:37, :125:{40,63,87,96,119}
-      automatic logic _GEN_180 =
-        io_wakeup_2_valid & io_enq_0_bits_psrs1 == io_wakeup_2_pdest
-        & (|io_enq_0_bits_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:122:37, :123:{40,87,96,119}
-      automatic logic _GEN_181 =
-        io_wakeup_2_valid & io_enq_0_bits_psrs2 == io_wakeup_2_pdest
-        & (|io_enq_0_bits_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:122:37, :124:{40,87,96,119}
-      automatic logic _GEN_182 =
-        io_wakeup_2_valid & io_enq_0_bits_psrs3 == io_wakeup_2_pdest
-        & (|io_enq_0_bits_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:122:37, :125:{40,87,96,119}
-      automatic logic _GEN_183;	// backend/src/zaqal/backend/issue/IssueQueue.scala:122:37, :123:{96,119}
-      automatic logic _GEN_184;	// backend/src/zaqal/backend/issue/IssueQueue.scala:122:37, :124:{96,119}
-      automatic logic _GEN_185;	// backend/src/zaqal/backend/issue/IssueQueue.scala:122:37, :125:{96,119}
-      automatic logic _GEN_186;	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
-      automatic logic _GEN_187 =
-        io_wakeup_0_valid & io_enq_1_bits_psrs1 == io_wakeup_0_pdest
-        & (|io_enq_1_bits_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:117:30, :122:37, :123:{40,87,96,119}
-      automatic logic _GEN_188 =
-        io_wakeup_0_valid & io_enq_1_bits_psrs2 == io_wakeup_0_pdest
-        & (|io_enq_1_bits_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:118:30, :122:37, :124:{40,87,96,119}
-      automatic logic _GEN_189 =
-        io_wakeup_0_valid & io_enq_1_bits_psrs3 == io_wakeup_0_pdest
-        & (|io_enq_1_bits_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:119:30, :122:37, :125:{40,87,96,119}
-      automatic logic _GEN_190 =
-        io_wakeup_1_valid
-          ? io_enq_1_bits_psrs1 == io_wakeup_1_pdest & (|io_enq_1_bits_psrs1) | _GEN_187
-            | io_rs1_ready_in_1
-          : _GEN_187 | io_rs1_ready_in_1;	// backend/src/zaqal/backend/issue/IssueQueue.scala:117:30, :122:37, :123:{40,63,87,96,119}
-      automatic logic _GEN_191 =
-        io_wakeup_1_valid
-          ? io_enq_1_bits_psrs2 == io_wakeup_1_pdest & (|io_enq_1_bits_psrs2) | _GEN_188
-            | io_rs2_ready_in_1
-          : _GEN_188 | io_rs2_ready_in_1;	// backend/src/zaqal/backend/issue/IssueQueue.scala:118:30, :122:37, :124:{40,63,87,96,119}
-      automatic logic _GEN_192 =
-        io_wakeup_1_valid
-          ? io_enq_1_bits_psrs3 == io_wakeup_1_pdest & (|io_enq_1_bits_psrs3) | _GEN_189
-            | io_rs3_ready_in_1
-          : _GEN_189 | io_rs3_ready_in_1;	// backend/src/zaqal/backend/issue/IssueQueue.scala:119:30, :122:37, :125:{40,63,87,96,119}
-      automatic logic _GEN_193 =
-        io_wakeup_2_valid & io_enq_1_bits_psrs1 == io_wakeup_2_pdest
-        & (|io_enq_1_bits_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:122:37, :123:{40,87,96,119}
-      automatic logic _GEN_194 =
-        io_wakeup_2_valid & io_enq_1_bits_psrs2 == io_wakeup_2_pdest
-        & (|io_enq_1_bits_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:122:37, :124:{40,87,96,119}
-      automatic logic _GEN_195 =
-        io_wakeup_2_valid & io_enq_1_bits_psrs3 == io_wakeup_2_pdest
-        & (|io_enq_1_bits_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:122:37, :125:{40,87,96,119}
-      automatic logic _GEN_196;	// backend/src/zaqal/backend/issue/IssueQueue.scala:122:37, :123:{96,119}
-      automatic logic _GEN_197;	// backend/src/zaqal/backend/issue/IssueQueue.scala:122:37, :124:{96,119}
-      automatic logic _GEN_198;	// backend/src/zaqal/backend/issue/IssueQueue.scala:122:37, :125:{96,119}
-      automatic logic _GEN_199;	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
-      automatic logic _GEN_200 =
-        io_wakeup_0_valid & io_enq_2_bits_psrs1 == io_wakeup_0_pdest
-        & (|io_enq_2_bits_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:117:30, :122:37, :123:{40,87,96,119}
-      automatic logic _GEN_201 =
-        io_wakeup_0_valid & io_enq_2_bits_psrs2 == io_wakeup_0_pdest
-        & (|io_enq_2_bits_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:118:30, :122:37, :124:{40,87,96,119}
-      automatic logic _GEN_202 =
-        io_wakeup_0_valid & io_enq_2_bits_psrs3 == io_wakeup_0_pdest
-        & (|io_enq_2_bits_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:119:30, :122:37, :125:{40,87,96,119}
-      automatic logic _GEN_203 =
-        io_wakeup_1_valid
-          ? io_enq_2_bits_psrs1 == io_wakeup_1_pdest & (|io_enq_2_bits_psrs1) | _GEN_200
-            | io_rs1_ready_in_2
-          : _GEN_200 | io_rs1_ready_in_2;	// backend/src/zaqal/backend/issue/IssueQueue.scala:117:30, :122:37, :123:{40,63,87,96,119}
-      automatic logic _GEN_204 =
-        io_wakeup_1_valid
-          ? io_enq_2_bits_psrs2 == io_wakeup_1_pdest & (|io_enq_2_bits_psrs2) | _GEN_201
-            | io_rs2_ready_in_2
-          : _GEN_201 | io_rs2_ready_in_2;	// backend/src/zaqal/backend/issue/IssueQueue.scala:118:30, :122:37, :124:{40,63,87,96,119}
-      automatic logic _GEN_205 =
-        io_wakeup_1_valid
-          ? io_enq_2_bits_psrs3 == io_wakeup_1_pdest & (|io_enq_2_bits_psrs3) | _GEN_202
-            | io_rs3_ready_in_2
-          : _GEN_202 | io_rs3_ready_in_2;	// backend/src/zaqal/backend/issue/IssueQueue.scala:119:30, :122:37, :125:{40,63,87,96,119}
-      automatic logic _GEN_206 =
-        io_wakeup_2_valid & io_enq_2_bits_psrs1 == io_wakeup_2_pdest
-        & (|io_enq_2_bits_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:122:37, :123:{40,87,96,119}
-      automatic logic _GEN_207 =
-        io_wakeup_2_valid & io_enq_2_bits_psrs2 == io_wakeup_2_pdest
-        & (|io_enq_2_bits_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:122:37, :124:{40,87,96,119}
-      automatic logic _GEN_208 =
-        io_wakeup_2_valid & io_enq_2_bits_psrs3 == io_wakeup_2_pdest
-        & (|io_enq_2_bits_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:122:37, :125:{40,87,96,119}
-      automatic logic _GEN_209;	// backend/src/zaqal/backend/issue/IssueQueue.scala:122:37, :123:{96,119}
-      automatic logic _GEN_210;	// backend/src/zaqal/backend/issue/IssueQueue.scala:122:37, :124:{96,119}
-      automatic logic _GEN_211;	// backend/src/zaqal/backend/issue/IssueQueue.scala:122:37, :125:{96,119}
-      automatic logic _GEN_212;	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
-      automatic logic _GEN_213 =
-        io_wakeup_0_valid & io_enq_3_bits_psrs1 == io_wakeup_0_pdest
-        & (|io_enq_3_bits_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:117:30, :122:37, :123:{40,87,96,119}
-      automatic logic _GEN_214 =
-        io_wakeup_0_valid & io_enq_3_bits_psrs2 == io_wakeup_0_pdest
-        & (|io_enq_3_bits_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:118:30, :122:37, :124:{40,87,96,119}
-      automatic logic _GEN_215 =
-        io_wakeup_0_valid & io_enq_3_bits_psrs3 == io_wakeup_0_pdest
-        & (|io_enq_3_bits_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:119:30, :122:37, :125:{40,87,96,119}
-      automatic logic _GEN_216 =
-        io_wakeup_1_valid
-          ? io_enq_3_bits_psrs1 == io_wakeup_1_pdest & (|io_enq_3_bits_psrs1) | _GEN_213
-            | io_rs1_ready_in_3
-          : _GEN_213 | io_rs1_ready_in_3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:117:30, :122:37, :123:{40,63,87,96,119}
-      automatic logic _GEN_217 =
-        io_wakeup_1_valid
-          ? io_enq_3_bits_psrs2 == io_wakeup_1_pdest & (|io_enq_3_bits_psrs2) | _GEN_214
-            | io_rs2_ready_in_3
-          : _GEN_214 | io_rs2_ready_in_3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:118:30, :122:37, :124:{40,63,87,96,119}
-      automatic logic _GEN_218 =
-        io_wakeup_1_valid
-          ? io_enq_3_bits_psrs3 == io_wakeup_1_pdest & (|io_enq_3_bits_psrs3) | _GEN_215
-            | io_rs3_ready_in_3
-          : _GEN_215 | io_rs3_ready_in_3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:119:30, :122:37, :125:{40,63,87,96,119}
-      automatic logic _GEN_219 =
-        io_wakeup_2_valid & io_enq_3_bits_psrs1 == io_wakeup_2_pdest
-        & (|io_enq_3_bits_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:122:37, :123:{40,87,96,119}
-      automatic logic _GEN_220 =
-        io_wakeup_2_valid & io_enq_3_bits_psrs2 == io_wakeup_2_pdest
-        & (|io_enq_3_bits_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:122:37, :124:{40,87,96,119}
-      automatic logic _GEN_221 =
-        io_wakeup_2_valid & io_enq_3_bits_psrs3 == io_wakeup_2_pdest
-        & (|io_enq_3_bits_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:122:37, :125:{40,87,96,119}
-      automatic logic _GEN_222;	// backend/src/zaqal/backend/issue/IssueQueue.scala:122:37, :123:{96,119}
-      automatic logic _GEN_223;	// backend/src/zaqal/backend/issue/IssueQueue.scala:122:37, :124:{96,119}
-      automatic logic _GEN_224;	// backend/src/zaqal/backend/issue/IssueQueue.scala:122:37, :125:{96,119}
-      automatic logic _GEN_225;	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
-      automatic logic _GEN_226 =
-        io_wakeup_0_valid & io_enq_4_bits_psrs1 == io_wakeup_0_pdest
-        & (|io_enq_4_bits_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:117:30, :122:37, :123:{40,87,96,119}
-      automatic logic _GEN_227 =
-        io_wakeup_0_valid & io_enq_4_bits_psrs2 == io_wakeup_0_pdest
-        & (|io_enq_4_bits_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:118:30, :122:37, :124:{40,87,96,119}
-      automatic logic _GEN_228 =
-        io_wakeup_0_valid & io_enq_4_bits_psrs3 == io_wakeup_0_pdest
-        & (|io_enq_4_bits_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:119:30, :122:37, :125:{40,87,96,119}
-      automatic logic _GEN_229 =
-        io_wakeup_1_valid
-          ? io_enq_4_bits_psrs1 == io_wakeup_1_pdest & (|io_enq_4_bits_psrs1) | _GEN_226
-            | io_rs1_ready_in_4
-          : _GEN_226 | io_rs1_ready_in_4;	// backend/src/zaqal/backend/issue/IssueQueue.scala:117:30, :122:37, :123:{40,63,87,96,119}
-      automatic logic _GEN_230 =
-        io_wakeup_1_valid
-          ? io_enq_4_bits_psrs2 == io_wakeup_1_pdest & (|io_enq_4_bits_psrs2) | _GEN_227
-            | io_rs2_ready_in_4
-          : _GEN_227 | io_rs2_ready_in_4;	// backend/src/zaqal/backend/issue/IssueQueue.scala:118:30, :122:37, :124:{40,63,87,96,119}
-      automatic logic _GEN_231 =
-        io_wakeup_1_valid
-          ? io_enq_4_bits_psrs3 == io_wakeup_1_pdest & (|io_enq_4_bits_psrs3) | _GEN_228
-            | io_rs3_ready_in_4
-          : _GEN_228 | io_rs3_ready_in_4;	// backend/src/zaqal/backend/issue/IssueQueue.scala:119:30, :122:37, :125:{40,63,87,96,119}
-      automatic logic _GEN_232 =
-        io_wakeup_2_valid & io_enq_4_bits_psrs1 == io_wakeup_2_pdest
-        & (|io_enq_4_bits_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:122:37, :123:{40,87,96,119}
-      automatic logic _GEN_233 =
-        io_wakeup_2_valid & io_enq_4_bits_psrs2 == io_wakeup_2_pdest
-        & (|io_enq_4_bits_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:122:37, :124:{40,87,96,119}
-      automatic logic _GEN_234 =
-        io_wakeup_2_valid & io_enq_4_bits_psrs3 == io_wakeup_2_pdest
-        & (|io_enq_4_bits_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:122:37, :125:{40,87,96,119}
-      automatic logic _GEN_235;	// backend/src/zaqal/backend/issue/IssueQueue.scala:122:37, :123:{96,119}
-      automatic logic _GEN_236;	// backend/src/zaqal/backend/issue/IssueQueue.scala:122:37, :124:{96,119}
-      automatic logic _GEN_237;	// backend/src/zaqal/backend/issue/IssueQueue.scala:122:37, :125:{96,119}
-      automatic logic _GEN_238 = _GEN_170 & alloc_idx_5 == 3'h0;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:66, :93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-      automatic logic _GEN_239 =
-        io_wakeup_0_valid & io_enq_5_bits_psrs1 == io_wakeup_0_pdest
-        & (|io_enq_5_bits_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:117:30, :122:37, :123:{40,87,96,119}
-      automatic logic _GEN_240 =
-        io_wakeup_0_valid & io_enq_5_bits_psrs2 == io_wakeup_0_pdest
-        & (|io_enq_5_bits_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:118:30, :122:37, :124:{40,87,96,119}
-      automatic logic _GEN_241 =
-        io_wakeup_0_valid & io_enq_5_bits_psrs3 == io_wakeup_0_pdest
-        & (|io_enq_5_bits_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:119:30, :122:37, :125:{40,87,96,119}
-      automatic logic _GEN_242 =
-        io_wakeup_1_valid
-          ? io_enq_5_bits_psrs1 == io_wakeup_1_pdest & (|io_enq_5_bits_psrs1) | _GEN_239
-            | io_rs1_ready_in_5
-          : _GEN_239 | io_rs1_ready_in_5;	// backend/src/zaqal/backend/issue/IssueQueue.scala:117:30, :122:37, :123:{40,63,87,96,119}
-      automatic logic _GEN_243 =
-        io_wakeup_1_valid
-          ? io_enq_5_bits_psrs2 == io_wakeup_1_pdest & (|io_enq_5_bits_psrs2) | _GEN_240
-            | io_rs2_ready_in_5
-          : _GEN_240 | io_rs2_ready_in_5;	// backend/src/zaqal/backend/issue/IssueQueue.scala:118:30, :122:37, :124:{40,63,87,96,119}
-      automatic logic _GEN_244 =
-        io_wakeup_1_valid
-          ? io_enq_5_bits_psrs3 == io_wakeup_1_pdest & (|io_enq_5_bits_psrs3) | _GEN_241
-            | io_rs3_ready_in_5
-          : _GEN_241 | io_rs3_ready_in_5;	// backend/src/zaqal/backend/issue/IssueQueue.scala:119:30, :122:37, :125:{40,63,87,96,119}
-      automatic logic _GEN_245 =
-        io_wakeup_2_valid & io_enq_5_bits_psrs1 == io_wakeup_2_pdest
-        & (|io_enq_5_bits_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:122:37, :123:{40,87,96,119}
-      automatic logic _GEN_246 =
-        io_wakeup_2_valid & io_enq_5_bits_psrs2 == io_wakeup_2_pdest
-        & (|io_enq_5_bits_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:122:37, :124:{40,87,96,119}
-      automatic logic _GEN_247 =
-        io_wakeup_2_valid & io_enq_5_bits_psrs3 == io_wakeup_2_pdest
-        & (|io_enq_5_bits_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:122:37, :125:{40,87,96,119}
-      automatic logic _GEN_248;	// backend/src/zaqal/backend/issue/IssueQueue.scala:122:37, :123:{96,119}
-      automatic logic _GEN_249;	// backend/src/zaqal/backend/issue/IssueQueue.scala:122:37, :124:{96,119}
-      automatic logic _GEN_250;	// backend/src/zaqal/backend/issue/IssueQueue.scala:122:37, :125:{96,119}
-      automatic logic _GEN_251;	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
-      automatic logic _GEN_252;	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
-      automatic logic _GEN_253;	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
-      automatic logic _GEN_254;	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
-      automatic logic _GEN_255;	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
-      automatic logic _GEN_256 = _GEN_170 & alloc_idx_5 == 3'h1;	// backend/src/zaqal/backend/issue/IssueQueue.scala:93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-      automatic logic _GEN_257;	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
-      automatic logic _GEN_258;	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
-      automatic logic _GEN_259;	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
-      automatic logic _GEN_260;	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
-      automatic logic _GEN_261;	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
-      automatic logic _GEN_262 = _GEN_170 & alloc_idx_5 == 3'h2;	// backend/src/zaqal/backend/issue/IssueQueue.scala:93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-      automatic logic _GEN_263;	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
-      automatic logic _GEN_264;	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
-      automatic logic _GEN_265;	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
-      automatic logic _GEN_266;	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
-      automatic logic _GEN_267;	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
-      automatic logic _GEN_268 = _GEN_170 & alloc_idx_5 == 3'h3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-      automatic logic _GEN_269;	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
-      automatic logic _GEN_270;	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
-      automatic logic _GEN_271;	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
-      automatic logic _GEN_272;	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
-      automatic logic _GEN_273;	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
-      automatic logic _GEN_274 = _GEN_170 & alloc_idx_5 == 3'h4;	// backend/src/zaqal/backend/issue/IssueQueue.scala:93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-      automatic logic _GEN_275;	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
-      automatic logic _GEN_276;	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
-      automatic logic _GEN_277;	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
-      automatic logic _GEN_278;	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
-      automatic logic _GEN_279;	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
-      automatic logic _GEN_280 = _GEN_170 & alloc_idx_5 == 3'h5;	// backend/src/zaqal/backend/issue/IssueQueue.scala:93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-      automatic logic _GEN_281;	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
-      automatic logic _GEN_282;	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
-      automatic logic _GEN_283;	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
-      automatic logic _GEN_284;	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
-      automatic logic _GEN_285;	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
-      automatic logic _GEN_286 = _GEN_170 & alloc_idx_5 == 3'h6;	// backend/src/zaqal/backend/issue/IssueQueue.scala:93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-      automatic logic _GEN_287;	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
-      automatic logic _GEN_288;	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
-      automatic logic _GEN_289;	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
-      automatic logic _GEN_290;	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
-      automatic logic _GEN_291;	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
-      automatic logic _GEN_292 = _GEN_170 & (&alloc_idx_5);	// backend/src/zaqal/backend/issue/IssueQueue.scala:93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-      _GEN_173 = _GEN_129 & alloc_idx_0 == 3'h0;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:66, :93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-      _GEN_183 =
-        io_wakeup_4_valid & io_enq_0_bits_psrs1 == io_wakeup_4_pdest
-        & (|io_enq_0_bits_psrs1)
-        | (io_wakeup_3_valid
-             ? io_enq_0_bits_psrs1 == io_wakeup_3_pdest & (|io_enq_0_bits_psrs1)
-               | _GEN_180 | _GEN_177
-             : _GEN_180 | _GEN_177);	// backend/src/zaqal/backend/issue/IssueQueue.scala:122:37, :123:{40,63,87,96,119}
-      _GEN_184 =
-        io_wakeup_4_valid & io_enq_0_bits_psrs2 == io_wakeup_4_pdest
-        & (|io_enq_0_bits_psrs2)
-        | (io_wakeup_3_valid
-             ? io_enq_0_bits_psrs2 == io_wakeup_3_pdest & (|io_enq_0_bits_psrs2)
-               | _GEN_181 | _GEN_178
-             : _GEN_181 | _GEN_178);	// backend/src/zaqal/backend/issue/IssueQueue.scala:122:37, :124:{40,63,87,96,119}
-      _GEN_185 =
-        io_wakeup_4_valid & io_enq_0_bits_psrs3 == io_wakeup_4_pdest
-        & (|io_enq_0_bits_psrs3)
-        | (io_wakeup_3_valid
-             ? io_enq_0_bits_psrs3 == io_wakeup_3_pdest & (|io_enq_0_bits_psrs3)
-               | _GEN_182 | _GEN_179
-             : _GEN_182 | _GEN_179);	// backend/src/zaqal/backend/issue/IssueQueue.scala:122:37, :125:{40,63,87,96,119}
-      _GEN_186 = _GEN_133 & alloc_idx_1 == 3'h0;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:66, :93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-      _GEN_196 =
-        io_wakeup_4_valid & io_enq_1_bits_psrs1 == io_wakeup_4_pdest
-        & (|io_enq_1_bits_psrs1)
-        | (io_wakeup_3_valid
-             ? io_enq_1_bits_psrs1 == io_wakeup_3_pdest & (|io_enq_1_bits_psrs1)
-               | _GEN_193 | _GEN_190
-             : _GEN_193 | _GEN_190);	// backend/src/zaqal/backend/issue/IssueQueue.scala:122:37, :123:{40,63,87,96,119}
-      _GEN_197 =
-        io_wakeup_4_valid & io_enq_1_bits_psrs2 == io_wakeup_4_pdest
-        & (|io_enq_1_bits_psrs2)
-        | (io_wakeup_3_valid
-             ? io_enq_1_bits_psrs2 == io_wakeup_3_pdest & (|io_enq_1_bits_psrs2)
-               | _GEN_194 | _GEN_191
-             : _GEN_194 | _GEN_191);	// backend/src/zaqal/backend/issue/IssueQueue.scala:122:37, :124:{40,63,87,96,119}
-      _GEN_198 =
-        io_wakeup_4_valid & io_enq_1_bits_psrs3 == io_wakeup_4_pdest
-        & (|io_enq_1_bits_psrs3)
-        | (io_wakeup_3_valid
-             ? io_enq_1_bits_psrs3 == io_wakeup_3_pdest & (|io_enq_1_bits_psrs3)
-               | _GEN_195 | _GEN_192
-             : _GEN_195 | _GEN_192);	// backend/src/zaqal/backend/issue/IssueQueue.scala:122:37, :125:{40,63,87,96,119}
-      _GEN_199 = _GEN_144 & alloc_idx_2 == 3'h0;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:66, :93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-      _GEN_209 =
-        io_wakeup_4_valid & io_enq_2_bits_psrs1 == io_wakeup_4_pdest
-        & (|io_enq_2_bits_psrs1)
-        | (io_wakeup_3_valid
-             ? io_enq_2_bits_psrs1 == io_wakeup_3_pdest & (|io_enq_2_bits_psrs1)
-               | _GEN_206 | _GEN_203
-             : _GEN_206 | _GEN_203);	// backend/src/zaqal/backend/issue/IssueQueue.scala:122:37, :123:{40,63,87,96,119}
-      _GEN_210 =
-        io_wakeup_4_valid & io_enq_2_bits_psrs2 == io_wakeup_4_pdest
-        & (|io_enq_2_bits_psrs2)
-        | (io_wakeup_3_valid
-             ? io_enq_2_bits_psrs2 == io_wakeup_3_pdest & (|io_enq_2_bits_psrs2)
-               | _GEN_207 | _GEN_204
-             : _GEN_207 | _GEN_204);	// backend/src/zaqal/backend/issue/IssueQueue.scala:122:37, :124:{40,63,87,96,119}
-      _GEN_211 =
-        io_wakeup_4_valid & io_enq_2_bits_psrs3 == io_wakeup_4_pdest
-        & (|io_enq_2_bits_psrs3)
-        | (io_wakeup_3_valid
-             ? io_enq_2_bits_psrs3 == io_wakeup_3_pdest & (|io_enq_2_bits_psrs3)
-               | _GEN_208 | _GEN_205
-             : _GEN_208 | _GEN_205);	// backend/src/zaqal/backend/issue/IssueQueue.scala:122:37, :125:{40,63,87,96,119}
-      _GEN_212 = _GEN_155 & alloc_idx_3 == 3'h0;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:66, :93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-      _GEN_222 =
-        io_wakeup_4_valid & io_enq_3_bits_psrs1 == io_wakeup_4_pdest
-        & (|io_enq_3_bits_psrs1)
-        | (io_wakeup_3_valid
-             ? io_enq_3_bits_psrs1 == io_wakeup_3_pdest & (|io_enq_3_bits_psrs1)
-               | _GEN_219 | _GEN_216
-             : _GEN_219 | _GEN_216);	// backend/src/zaqal/backend/issue/IssueQueue.scala:122:37, :123:{40,63,87,96,119}
-      _GEN_223 =
-        io_wakeup_4_valid & io_enq_3_bits_psrs2 == io_wakeup_4_pdest
-        & (|io_enq_3_bits_psrs2)
-        | (io_wakeup_3_valid
-             ? io_enq_3_bits_psrs2 == io_wakeup_3_pdest & (|io_enq_3_bits_psrs2)
-               | _GEN_220 | _GEN_217
-             : _GEN_220 | _GEN_217);	// backend/src/zaqal/backend/issue/IssueQueue.scala:122:37, :124:{40,63,87,96,119}
-      _GEN_224 =
-        io_wakeup_4_valid & io_enq_3_bits_psrs3 == io_wakeup_4_pdest
-        & (|io_enq_3_bits_psrs3)
-        | (io_wakeup_3_valid
-             ? io_enq_3_bits_psrs3 == io_wakeup_3_pdest & (|io_enq_3_bits_psrs3)
-               | _GEN_221 | _GEN_218
-             : _GEN_221 | _GEN_218);	// backend/src/zaqal/backend/issue/IssueQueue.scala:122:37, :125:{40,63,87,96,119}
-      _GEN_225 = _GEN_166 & alloc_idx_4 == 3'h0;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:66, :93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-      _GEN_235 =
-        io_wakeup_4_valid & io_enq_4_bits_psrs1 == io_wakeup_4_pdest
-        & (|io_enq_4_bits_psrs1)
-        | (io_wakeup_3_valid
-             ? io_enq_4_bits_psrs1 == io_wakeup_3_pdest & (|io_enq_4_bits_psrs1)
-               | _GEN_232 | _GEN_229
-             : _GEN_232 | _GEN_229);	// backend/src/zaqal/backend/issue/IssueQueue.scala:122:37, :123:{40,63,87,96,119}
-      _GEN_236 =
-        io_wakeup_4_valid & io_enq_4_bits_psrs2 == io_wakeup_4_pdest
-        & (|io_enq_4_bits_psrs2)
-        | (io_wakeup_3_valid
-             ? io_enq_4_bits_psrs2 == io_wakeup_3_pdest & (|io_enq_4_bits_psrs2)
-               | _GEN_233 | _GEN_230
-             : _GEN_233 | _GEN_230);	// backend/src/zaqal/backend/issue/IssueQueue.scala:122:37, :124:{40,63,87,96,119}
-      _GEN_237 =
-        io_wakeup_4_valid & io_enq_4_bits_psrs3 == io_wakeup_4_pdest
-        & (|io_enq_4_bits_psrs3)
-        | (io_wakeup_3_valid
-             ? io_enq_4_bits_psrs3 == io_wakeup_3_pdest & (|io_enq_4_bits_psrs3)
-               | _GEN_234 | _GEN_231
-             : _GEN_234 | _GEN_231);	// backend/src/zaqal/backend/issue/IssueQueue.scala:122:37, :125:{40,63,87,96,119}
-      _GEN_248 =
-        io_wakeup_4_valid & io_enq_5_bits_psrs1 == io_wakeup_4_pdest
-        & (|io_enq_5_bits_psrs1)
-        | (io_wakeup_3_valid
-             ? io_enq_5_bits_psrs1 == io_wakeup_3_pdest & (|io_enq_5_bits_psrs1)
-               | _GEN_245 | _GEN_242
-             : _GEN_245 | _GEN_242);	// backend/src/zaqal/backend/issue/IssueQueue.scala:122:37, :123:{40,63,87,96,119}
-      _GEN_249 =
-        io_wakeup_4_valid & io_enq_5_bits_psrs2 == io_wakeup_4_pdest
-        & (|io_enq_5_bits_psrs2)
-        | (io_wakeup_3_valid
-             ? io_enq_5_bits_psrs2 == io_wakeup_3_pdest & (|io_enq_5_bits_psrs2)
-               | _GEN_246 | _GEN_243
-             : _GEN_246 | _GEN_243);	// backend/src/zaqal/backend/issue/IssueQueue.scala:122:37, :124:{40,63,87,96,119}
-      _GEN_250 =
-        io_wakeup_4_valid & io_enq_5_bits_psrs3 == io_wakeup_4_pdest
-        & (|io_enq_5_bits_psrs3)
-        | (io_wakeup_3_valid
-             ? io_enq_5_bits_psrs3 == io_wakeup_3_pdest & (|io_enq_5_bits_psrs3)
-               | _GEN_247 | _GEN_244
-             : _GEN_247 | _GEN_244);	// backend/src/zaqal/backend/issue/IssueQueue.scala:122:37, :125:{40,63,87,96,119}
-      _GEN_251 = _GEN_129 & alloc_idx_0 == 3'h1;	// backend/src/zaqal/backend/issue/IssueQueue.scala:93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-      _GEN_252 = _GEN_133 & alloc_idx_1 == 3'h1;	// backend/src/zaqal/backend/issue/IssueQueue.scala:93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-      _GEN_253 = _GEN_144 & alloc_idx_2 == 3'h1;	// backend/src/zaqal/backend/issue/IssueQueue.scala:93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-      _GEN_254 = _GEN_155 & alloc_idx_3 == 3'h1;	// backend/src/zaqal/backend/issue/IssueQueue.scala:93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-      _GEN_255 = _GEN_166 & alloc_idx_4 == 3'h1;	// backend/src/zaqal/backend/issue/IssueQueue.scala:93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-      _GEN_257 = _GEN_129 & alloc_idx_0 == 3'h2;	// backend/src/zaqal/backend/issue/IssueQueue.scala:93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-      _GEN_258 = _GEN_133 & alloc_idx_1 == 3'h2;	// backend/src/zaqal/backend/issue/IssueQueue.scala:93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-      _GEN_259 = _GEN_144 & alloc_idx_2 == 3'h2;	// backend/src/zaqal/backend/issue/IssueQueue.scala:93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-      _GEN_260 = _GEN_155 & alloc_idx_3 == 3'h2;	// backend/src/zaqal/backend/issue/IssueQueue.scala:93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-      _GEN_261 = _GEN_166 & alloc_idx_4 == 3'h2;	// backend/src/zaqal/backend/issue/IssueQueue.scala:93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-      _GEN_263 = _GEN_129 & alloc_idx_0 == 3'h3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-      _GEN_264 = _GEN_133 & alloc_idx_1 == 3'h3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-      _GEN_265 = _GEN_144 & alloc_idx_2 == 3'h3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-      _GEN_266 = _GEN_155 & alloc_idx_3 == 3'h3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-      _GEN_267 = _GEN_166 & alloc_idx_4 == 3'h3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-      _GEN_269 = _GEN_129 & alloc_idx_0 == 3'h4;	// backend/src/zaqal/backend/issue/IssueQueue.scala:93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-      _GEN_270 = _GEN_133 & alloc_idx_1 == 3'h4;	// backend/src/zaqal/backend/issue/IssueQueue.scala:93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-      _GEN_271 = _GEN_144 & alloc_idx_2 == 3'h4;	// backend/src/zaqal/backend/issue/IssueQueue.scala:93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-      _GEN_272 = _GEN_155 & alloc_idx_3 == 3'h4;	// backend/src/zaqal/backend/issue/IssueQueue.scala:93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-      _GEN_273 = _GEN_166 & alloc_idx_4 == 3'h4;	// backend/src/zaqal/backend/issue/IssueQueue.scala:93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-      _GEN_275 = _GEN_129 & alloc_idx_0 == 3'h5;	// backend/src/zaqal/backend/issue/IssueQueue.scala:93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-      _GEN_276 = _GEN_133 & alloc_idx_1 == 3'h5;	// backend/src/zaqal/backend/issue/IssueQueue.scala:93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-      _GEN_277 = _GEN_144 & alloc_idx_2 == 3'h5;	// backend/src/zaqal/backend/issue/IssueQueue.scala:93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-      _GEN_278 = _GEN_155 & alloc_idx_3 == 3'h5;	// backend/src/zaqal/backend/issue/IssueQueue.scala:93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-      _GEN_279 = _GEN_166 & alloc_idx_4 == 3'h5;	// backend/src/zaqal/backend/issue/IssueQueue.scala:93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-      _GEN_281 = _GEN_129 & alloc_idx_0 == 3'h6;	// backend/src/zaqal/backend/issue/IssueQueue.scala:93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-      _GEN_282 = _GEN_133 & alloc_idx_1 == 3'h6;	// backend/src/zaqal/backend/issue/IssueQueue.scala:93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-      _GEN_283 = _GEN_144 & alloc_idx_2 == 3'h6;	// backend/src/zaqal/backend/issue/IssueQueue.scala:93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-      _GEN_284 = _GEN_155 & alloc_idx_3 == 3'h6;	// backend/src/zaqal/backend/issue/IssueQueue.scala:93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-      _GEN_285 = _GEN_166 & alloc_idx_4 == 3'h6;	// backend/src/zaqal/backend/issue/IssueQueue.scala:93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-      _GEN_287 = _GEN_129 & (&alloc_idx_0);	// backend/src/zaqal/backend/issue/IssueQueue.scala:93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-      _GEN_288 = _GEN_133 & (&alloc_idx_1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-      _GEN_289 = _GEN_144 & (&alloc_idx_2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-      _GEN_290 = _GEN_155 & (&alloc_idx_3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-      _GEN_291 = _GEN_166 & (&alloc_idx_4);	// backend/src/zaqal/backend/issue/IssueQueue.scala:93:27, :113:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
       entries_0_valid <=
         ~(io_redirect_valid & entry_is_younger)
-        & (_GEN_238 | _GEN_225 | _GEN_212 | _GEN_199 | _GEN_186 | _GEN_173
+        & (_GEN_179 | _GEN_166 | _GEN_153 | _GEN_140 | _GEN_127 | _GEN_114
            | ~(deq_fire & _ageDetector_io_out_0[0]) & entries_0_valid);	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :55:27, :71:36, :80:108, :107:90, :108:30, :109:24, :113:{48,73}, :114:26, :132:28, :135:33, :141:31, :142:26
-      if (_GEN_238) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
+      if (_GEN_179) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
         entries_0_uop_uop_pc <= io_enq_5_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_0_uop_uop_inst_raw <= io_enq_5_bits_uop_inst_raw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_0_uop_decode_is_lb <= io_enq_5_bits_decode_is_lb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
@@ -3290,11 +3872,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_0_uop_psrs3 <= io_enq_5_bits_psrs3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_0_uop_pdest <= io_enq_5_bits_pdest;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_0_uop_snapshotIdx <= io_enq_5_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-        entries_0_rs1_ready <= _GEN_248;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
-        entries_0_rs2_ready <= _GEN_249;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
-        entries_0_rs3_ready <= _GEN_250;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
+        entries_0_rs1_ready <= _GEN_189;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
+        entries_0_rs2_ready <= _GEN_190;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
+        entries_0_rs3_ready <= _GEN_191;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
       end
-      else if (_GEN_225) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
+      else if (_GEN_166) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
         entries_0_uop_uop_pc <= io_enq_4_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_0_uop_uop_inst_raw <= io_enq_4_bits_uop_inst_raw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_0_uop_decode_is_lb <= io_enq_4_bits_decode_is_lb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
@@ -3356,11 +3938,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_0_uop_psrs3 <= io_enq_4_bits_psrs3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_0_uop_pdest <= io_enq_4_bits_pdest;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_0_uop_snapshotIdx <= io_enq_4_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-        entries_0_rs1_ready <= _GEN_235;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
-        entries_0_rs2_ready <= _GEN_236;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
-        entries_0_rs3_ready <= _GEN_237;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
+        entries_0_rs1_ready <= _GEN_176;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
+        entries_0_rs2_ready <= _GEN_177;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
+        entries_0_rs3_ready <= _GEN_178;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
       end
-      else if (_GEN_212) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
+      else if (_GEN_153) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
         entries_0_uop_uop_pc <= io_enq_3_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_0_uop_uop_inst_raw <= io_enq_3_bits_uop_inst_raw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_0_uop_decode_is_lb <= io_enq_3_bits_decode_is_lb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
@@ -3422,11 +4004,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_0_uop_psrs3 <= io_enq_3_bits_psrs3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_0_uop_pdest <= io_enq_3_bits_pdest;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_0_uop_snapshotIdx <= io_enq_3_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-        entries_0_rs1_ready <= _GEN_222;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
-        entries_0_rs2_ready <= _GEN_223;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
-        entries_0_rs3_ready <= _GEN_224;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
+        entries_0_rs1_ready <= _GEN_163;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
+        entries_0_rs2_ready <= _GEN_164;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
+        entries_0_rs3_ready <= _GEN_165;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
       end
-      else if (_GEN_199) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
+      else if (_GEN_140) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
         entries_0_uop_uop_pc <= io_enq_2_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_0_uop_uop_inst_raw <= io_enq_2_bits_uop_inst_raw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_0_uop_decode_is_lb <= io_enq_2_bits_decode_is_lb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
@@ -3488,11 +4070,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_0_uop_psrs3 <= io_enq_2_bits_psrs3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_0_uop_pdest <= io_enq_2_bits_pdest;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_0_uop_snapshotIdx <= io_enq_2_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-        entries_0_rs1_ready <= _GEN_209;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
-        entries_0_rs2_ready <= _GEN_210;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
-        entries_0_rs3_ready <= _GEN_211;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
+        entries_0_rs1_ready <= _GEN_150;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
+        entries_0_rs2_ready <= _GEN_151;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
+        entries_0_rs3_ready <= _GEN_152;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
       end
-      else if (_GEN_186) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
+      else if (_GEN_127) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
         entries_0_uop_uop_pc <= io_enq_1_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_0_uop_uop_inst_raw <= io_enq_1_bits_uop_inst_raw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_0_uop_decode_is_lb <= io_enq_1_bits_decode_is_lb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
@@ -3554,11 +4136,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_0_uop_psrs3 <= io_enq_1_bits_psrs3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_0_uop_pdest <= io_enq_1_bits_pdest;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_0_uop_snapshotIdx <= io_enq_1_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-        entries_0_rs1_ready <= _GEN_196;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
-        entries_0_rs2_ready <= _GEN_197;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
-        entries_0_rs3_ready <= _GEN_198;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
+        entries_0_rs1_ready <= _GEN_137;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
+        entries_0_rs2_ready <= _GEN_138;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
+        entries_0_rs3_ready <= _GEN_139;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
       end
-      else if (_GEN_173) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
+      else if (_GEN_114) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
         entries_0_uop_uop_pc <= io_enq_0_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_0_uop_uop_inst_raw <= io_enq_0_bits_uop_inst_raw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_0_uop_decode_is_lb <= io_enq_0_bits_decode_is_lb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
@@ -3620,9 +4202,9 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_0_uop_psrs3 <= io_enq_0_bits_psrs3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_0_uop_pdest <= io_enq_0_bits_pdest;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_0_uop_snapshotIdx <= io_enq_0_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-        entries_0_rs1_ready <= _GEN_183;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
-        entries_0_rs2_ready <= _GEN_184;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
-        entries_0_rs3_ready <= _GEN_185;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
+        entries_0_rs1_ready <= _GEN_124;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
+        entries_0_rs2_ready <= _GEN_125;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
+        entries_0_rs3_ready <= _GEN_126;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
       end
       else if (entries_0_valid) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_0_rs1_ready <= woken_rs1_0;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :42:33, :43:{92,107}
@@ -3631,9 +4213,9 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
       end
       entries_1_valid <=
         ~(io_redirect_valid & entry_is_younger_1)
-        & (_GEN_256 | _GEN_255 | _GEN_254 | _GEN_253 | _GEN_252 | _GEN_251
+        & (_GEN_197 | _GEN_196 | _GEN_195 | _GEN_194 | _GEN_193 | _GEN_192
            | ~(deq_fire & _ageDetector_io_out_0[1]) & entries_1_valid);	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :55:27, :71:36, :80:108, :107:90, :108:30, :109:24, :113:{48,73}, :114:26, :132:28, :135:33, :141:31, :142:26
-      if (_GEN_256) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
+      if (_GEN_197) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
         entries_1_uop_uop_pc <= io_enq_5_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_1_uop_uop_inst_raw <= io_enq_5_bits_uop_inst_raw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_1_uop_decode_is_lb <= io_enq_5_bits_decode_is_lb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
@@ -3695,11 +4277,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_1_uop_psrs3 <= io_enq_5_bits_psrs3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_1_uop_pdest <= io_enq_5_bits_pdest;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_1_uop_snapshotIdx <= io_enq_5_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-        entries_1_rs1_ready <= _GEN_248;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
-        entries_1_rs2_ready <= _GEN_249;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
-        entries_1_rs3_ready <= _GEN_250;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
+        entries_1_rs1_ready <= _GEN_189;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
+        entries_1_rs2_ready <= _GEN_190;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
+        entries_1_rs3_ready <= _GEN_191;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
       end
-      else if (_GEN_255) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
+      else if (_GEN_196) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
         entries_1_uop_uop_pc <= io_enq_4_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_1_uop_uop_inst_raw <= io_enq_4_bits_uop_inst_raw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_1_uop_decode_is_lb <= io_enq_4_bits_decode_is_lb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
@@ -3761,11 +4343,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_1_uop_psrs3 <= io_enq_4_bits_psrs3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_1_uop_pdest <= io_enq_4_bits_pdest;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_1_uop_snapshotIdx <= io_enq_4_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-        entries_1_rs1_ready <= _GEN_235;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
-        entries_1_rs2_ready <= _GEN_236;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
-        entries_1_rs3_ready <= _GEN_237;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
+        entries_1_rs1_ready <= _GEN_176;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
+        entries_1_rs2_ready <= _GEN_177;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
+        entries_1_rs3_ready <= _GEN_178;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
       end
-      else if (_GEN_254) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
+      else if (_GEN_195) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
         entries_1_uop_uop_pc <= io_enq_3_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_1_uop_uop_inst_raw <= io_enq_3_bits_uop_inst_raw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_1_uop_decode_is_lb <= io_enq_3_bits_decode_is_lb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
@@ -3827,11 +4409,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_1_uop_psrs3 <= io_enq_3_bits_psrs3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_1_uop_pdest <= io_enq_3_bits_pdest;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_1_uop_snapshotIdx <= io_enq_3_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-        entries_1_rs1_ready <= _GEN_222;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
-        entries_1_rs2_ready <= _GEN_223;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
-        entries_1_rs3_ready <= _GEN_224;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
+        entries_1_rs1_ready <= _GEN_163;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
+        entries_1_rs2_ready <= _GEN_164;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
+        entries_1_rs3_ready <= _GEN_165;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
       end
-      else if (_GEN_253) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
+      else if (_GEN_194) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
         entries_1_uop_uop_pc <= io_enq_2_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_1_uop_uop_inst_raw <= io_enq_2_bits_uop_inst_raw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_1_uop_decode_is_lb <= io_enq_2_bits_decode_is_lb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
@@ -3893,11 +4475,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_1_uop_psrs3 <= io_enq_2_bits_psrs3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_1_uop_pdest <= io_enq_2_bits_pdest;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_1_uop_snapshotIdx <= io_enq_2_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-        entries_1_rs1_ready <= _GEN_209;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
-        entries_1_rs2_ready <= _GEN_210;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
-        entries_1_rs3_ready <= _GEN_211;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
+        entries_1_rs1_ready <= _GEN_150;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
+        entries_1_rs2_ready <= _GEN_151;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
+        entries_1_rs3_ready <= _GEN_152;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
       end
-      else if (_GEN_252) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
+      else if (_GEN_193) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
         entries_1_uop_uop_pc <= io_enq_1_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_1_uop_uop_inst_raw <= io_enq_1_bits_uop_inst_raw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_1_uop_decode_is_lb <= io_enq_1_bits_decode_is_lb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
@@ -3959,11 +4541,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_1_uop_psrs3 <= io_enq_1_bits_psrs3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_1_uop_pdest <= io_enq_1_bits_pdest;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_1_uop_snapshotIdx <= io_enq_1_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-        entries_1_rs1_ready <= _GEN_196;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
-        entries_1_rs2_ready <= _GEN_197;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
-        entries_1_rs3_ready <= _GEN_198;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
+        entries_1_rs1_ready <= _GEN_137;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
+        entries_1_rs2_ready <= _GEN_138;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
+        entries_1_rs3_ready <= _GEN_139;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
       end
-      else if (_GEN_251) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
+      else if (_GEN_192) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
         entries_1_uop_uop_pc <= io_enq_0_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_1_uop_uop_inst_raw <= io_enq_0_bits_uop_inst_raw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_1_uop_decode_is_lb <= io_enq_0_bits_decode_is_lb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
@@ -4025,9 +4607,9 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_1_uop_psrs3 <= io_enq_0_bits_psrs3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_1_uop_pdest <= io_enq_0_bits_pdest;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_1_uop_snapshotIdx <= io_enq_0_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-        entries_1_rs1_ready <= _GEN_183;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
-        entries_1_rs2_ready <= _GEN_184;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
-        entries_1_rs3_ready <= _GEN_185;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
+        entries_1_rs1_ready <= _GEN_124;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
+        entries_1_rs2_ready <= _GEN_125;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
+        entries_1_rs3_ready <= _GEN_126;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
       end
       else if (entries_1_valid) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_1_rs1_ready <= woken_rs1_1;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :42:33, :43:{92,107}
@@ -4036,9 +4618,9 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
       end
       entries_2_valid <=
         ~(io_redirect_valid & entry_is_younger_2)
-        & (_GEN_262 | _GEN_261 | _GEN_260 | _GEN_259 | _GEN_258 | _GEN_257
+        & (_GEN_203 | _GEN_202 | _GEN_201 | _GEN_200 | _GEN_199 | _GEN_198
            | ~(deq_fire & _ageDetector_io_out_0[2]) & entries_2_valid);	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :55:27, :71:36, :80:108, :107:90, :108:30, :109:24, :113:{48,73}, :114:26, :132:28, :135:33, :141:31, :142:26
-      if (_GEN_262) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
+      if (_GEN_203) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
         entries_2_uop_uop_pc <= io_enq_5_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_2_uop_uop_inst_raw <= io_enq_5_bits_uop_inst_raw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_2_uop_decode_is_lb <= io_enq_5_bits_decode_is_lb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
@@ -4100,11 +4682,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_2_uop_psrs3 <= io_enq_5_bits_psrs3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_2_uop_pdest <= io_enq_5_bits_pdest;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_2_uop_snapshotIdx <= io_enq_5_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-        entries_2_rs1_ready <= _GEN_248;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
-        entries_2_rs2_ready <= _GEN_249;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
-        entries_2_rs3_ready <= _GEN_250;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
+        entries_2_rs1_ready <= _GEN_189;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
+        entries_2_rs2_ready <= _GEN_190;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
+        entries_2_rs3_ready <= _GEN_191;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
       end
-      else if (_GEN_261) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
+      else if (_GEN_202) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
         entries_2_uop_uop_pc <= io_enq_4_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_2_uop_uop_inst_raw <= io_enq_4_bits_uop_inst_raw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_2_uop_decode_is_lb <= io_enq_4_bits_decode_is_lb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
@@ -4166,11 +4748,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_2_uop_psrs3 <= io_enq_4_bits_psrs3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_2_uop_pdest <= io_enq_4_bits_pdest;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_2_uop_snapshotIdx <= io_enq_4_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-        entries_2_rs1_ready <= _GEN_235;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
-        entries_2_rs2_ready <= _GEN_236;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
-        entries_2_rs3_ready <= _GEN_237;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
+        entries_2_rs1_ready <= _GEN_176;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
+        entries_2_rs2_ready <= _GEN_177;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
+        entries_2_rs3_ready <= _GEN_178;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
       end
-      else if (_GEN_260) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
+      else if (_GEN_201) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
         entries_2_uop_uop_pc <= io_enq_3_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_2_uop_uop_inst_raw <= io_enq_3_bits_uop_inst_raw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_2_uop_decode_is_lb <= io_enq_3_bits_decode_is_lb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
@@ -4232,11 +4814,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_2_uop_psrs3 <= io_enq_3_bits_psrs3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_2_uop_pdest <= io_enq_3_bits_pdest;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_2_uop_snapshotIdx <= io_enq_3_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-        entries_2_rs1_ready <= _GEN_222;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
-        entries_2_rs2_ready <= _GEN_223;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
-        entries_2_rs3_ready <= _GEN_224;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
+        entries_2_rs1_ready <= _GEN_163;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
+        entries_2_rs2_ready <= _GEN_164;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
+        entries_2_rs3_ready <= _GEN_165;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
       end
-      else if (_GEN_259) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
+      else if (_GEN_200) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
         entries_2_uop_uop_pc <= io_enq_2_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_2_uop_uop_inst_raw <= io_enq_2_bits_uop_inst_raw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_2_uop_decode_is_lb <= io_enq_2_bits_decode_is_lb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
@@ -4298,11 +4880,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_2_uop_psrs3 <= io_enq_2_bits_psrs3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_2_uop_pdest <= io_enq_2_bits_pdest;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_2_uop_snapshotIdx <= io_enq_2_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-        entries_2_rs1_ready <= _GEN_209;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
-        entries_2_rs2_ready <= _GEN_210;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
-        entries_2_rs3_ready <= _GEN_211;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
+        entries_2_rs1_ready <= _GEN_150;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
+        entries_2_rs2_ready <= _GEN_151;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
+        entries_2_rs3_ready <= _GEN_152;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
       end
-      else if (_GEN_258) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
+      else if (_GEN_199) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
         entries_2_uop_uop_pc <= io_enq_1_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_2_uop_uop_inst_raw <= io_enq_1_bits_uop_inst_raw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_2_uop_decode_is_lb <= io_enq_1_bits_decode_is_lb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
@@ -4364,11 +4946,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_2_uop_psrs3 <= io_enq_1_bits_psrs3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_2_uop_pdest <= io_enq_1_bits_pdest;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_2_uop_snapshotIdx <= io_enq_1_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-        entries_2_rs1_ready <= _GEN_196;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
-        entries_2_rs2_ready <= _GEN_197;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
-        entries_2_rs3_ready <= _GEN_198;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
+        entries_2_rs1_ready <= _GEN_137;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
+        entries_2_rs2_ready <= _GEN_138;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
+        entries_2_rs3_ready <= _GEN_139;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
       end
-      else if (_GEN_257) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
+      else if (_GEN_198) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
         entries_2_uop_uop_pc <= io_enq_0_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_2_uop_uop_inst_raw <= io_enq_0_bits_uop_inst_raw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_2_uop_decode_is_lb <= io_enq_0_bits_decode_is_lb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
@@ -4430,9 +5012,9 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_2_uop_psrs3 <= io_enq_0_bits_psrs3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_2_uop_pdest <= io_enq_0_bits_pdest;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_2_uop_snapshotIdx <= io_enq_0_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-        entries_2_rs1_ready <= _GEN_183;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
-        entries_2_rs2_ready <= _GEN_184;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
-        entries_2_rs3_ready <= _GEN_185;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
+        entries_2_rs1_ready <= _GEN_124;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
+        entries_2_rs2_ready <= _GEN_125;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
+        entries_2_rs3_ready <= _GEN_126;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
       end
       else if (entries_2_valid) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_2_rs1_ready <= woken_rs1_2;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :42:33, :43:{92,107}
@@ -4441,9 +5023,9 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
       end
       entries_3_valid <=
         ~(io_redirect_valid & entry_is_younger_3)
-        & (_GEN_268 | _GEN_267 | _GEN_266 | _GEN_265 | _GEN_264 | _GEN_263
+        & (_GEN_209 | _GEN_208 | _GEN_207 | _GEN_206 | _GEN_205 | _GEN_204
            | ~(deq_fire & _ageDetector_io_out_0[3]) & entries_3_valid);	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :55:27, :71:36, :80:108, :107:90, :108:30, :109:24, :113:{48,73}, :114:26, :132:28, :135:33, :141:31, :142:26
-      if (_GEN_268) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
+      if (_GEN_209) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
         entries_3_uop_uop_pc <= io_enq_5_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_3_uop_uop_inst_raw <= io_enq_5_bits_uop_inst_raw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_3_uop_decode_is_lb <= io_enq_5_bits_decode_is_lb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
@@ -4505,11 +5087,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_3_uop_psrs3 <= io_enq_5_bits_psrs3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_3_uop_pdest <= io_enq_5_bits_pdest;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_3_uop_snapshotIdx <= io_enq_5_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-        entries_3_rs1_ready <= _GEN_248;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
-        entries_3_rs2_ready <= _GEN_249;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
-        entries_3_rs3_ready <= _GEN_250;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
+        entries_3_rs1_ready <= _GEN_189;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
+        entries_3_rs2_ready <= _GEN_190;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
+        entries_3_rs3_ready <= _GEN_191;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
       end
-      else if (_GEN_267) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
+      else if (_GEN_208) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
         entries_3_uop_uop_pc <= io_enq_4_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_3_uop_uop_inst_raw <= io_enq_4_bits_uop_inst_raw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_3_uop_decode_is_lb <= io_enq_4_bits_decode_is_lb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
@@ -4571,11 +5153,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_3_uop_psrs3 <= io_enq_4_bits_psrs3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_3_uop_pdest <= io_enq_4_bits_pdest;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_3_uop_snapshotIdx <= io_enq_4_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-        entries_3_rs1_ready <= _GEN_235;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
-        entries_3_rs2_ready <= _GEN_236;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
-        entries_3_rs3_ready <= _GEN_237;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
+        entries_3_rs1_ready <= _GEN_176;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
+        entries_3_rs2_ready <= _GEN_177;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
+        entries_3_rs3_ready <= _GEN_178;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
       end
-      else if (_GEN_266) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
+      else if (_GEN_207) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
         entries_3_uop_uop_pc <= io_enq_3_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_3_uop_uop_inst_raw <= io_enq_3_bits_uop_inst_raw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_3_uop_decode_is_lb <= io_enq_3_bits_decode_is_lb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
@@ -4637,11 +5219,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_3_uop_psrs3 <= io_enq_3_bits_psrs3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_3_uop_pdest <= io_enq_3_bits_pdest;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_3_uop_snapshotIdx <= io_enq_3_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-        entries_3_rs1_ready <= _GEN_222;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
-        entries_3_rs2_ready <= _GEN_223;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
-        entries_3_rs3_ready <= _GEN_224;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
+        entries_3_rs1_ready <= _GEN_163;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
+        entries_3_rs2_ready <= _GEN_164;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
+        entries_3_rs3_ready <= _GEN_165;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
       end
-      else if (_GEN_265) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
+      else if (_GEN_206) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
         entries_3_uop_uop_pc <= io_enq_2_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_3_uop_uop_inst_raw <= io_enq_2_bits_uop_inst_raw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_3_uop_decode_is_lb <= io_enq_2_bits_decode_is_lb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
@@ -4703,11 +5285,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_3_uop_psrs3 <= io_enq_2_bits_psrs3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_3_uop_pdest <= io_enq_2_bits_pdest;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_3_uop_snapshotIdx <= io_enq_2_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-        entries_3_rs1_ready <= _GEN_209;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
-        entries_3_rs2_ready <= _GEN_210;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
-        entries_3_rs3_ready <= _GEN_211;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
+        entries_3_rs1_ready <= _GEN_150;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
+        entries_3_rs2_ready <= _GEN_151;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
+        entries_3_rs3_ready <= _GEN_152;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
       end
-      else if (_GEN_264) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
+      else if (_GEN_205) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
         entries_3_uop_uop_pc <= io_enq_1_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_3_uop_uop_inst_raw <= io_enq_1_bits_uop_inst_raw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_3_uop_decode_is_lb <= io_enq_1_bits_decode_is_lb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
@@ -4769,11 +5351,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_3_uop_psrs3 <= io_enq_1_bits_psrs3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_3_uop_pdest <= io_enq_1_bits_pdest;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_3_uop_snapshotIdx <= io_enq_1_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-        entries_3_rs1_ready <= _GEN_196;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
-        entries_3_rs2_ready <= _GEN_197;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
-        entries_3_rs3_ready <= _GEN_198;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
+        entries_3_rs1_ready <= _GEN_137;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
+        entries_3_rs2_ready <= _GEN_138;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
+        entries_3_rs3_ready <= _GEN_139;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
       end
-      else if (_GEN_263) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
+      else if (_GEN_204) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
         entries_3_uop_uop_pc <= io_enq_0_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_3_uop_uop_inst_raw <= io_enq_0_bits_uop_inst_raw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_3_uop_decode_is_lb <= io_enq_0_bits_decode_is_lb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
@@ -4835,9 +5417,9 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_3_uop_psrs3 <= io_enq_0_bits_psrs3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_3_uop_pdest <= io_enq_0_bits_pdest;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_3_uop_snapshotIdx <= io_enq_0_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-        entries_3_rs1_ready <= _GEN_183;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
-        entries_3_rs2_ready <= _GEN_184;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
-        entries_3_rs3_ready <= _GEN_185;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
+        entries_3_rs1_ready <= _GEN_124;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
+        entries_3_rs2_ready <= _GEN_125;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
+        entries_3_rs3_ready <= _GEN_126;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
       end
       else if (entries_3_valid) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_3_rs1_ready <= woken_rs1_3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :42:33, :43:{92,107}
@@ -4846,9 +5428,9 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
       end
       entries_4_valid <=
         ~(io_redirect_valid & entry_is_younger_4)
-        & (_GEN_274 | _GEN_273 | _GEN_272 | _GEN_271 | _GEN_270 | _GEN_269
+        & (_GEN_215 | _GEN_214 | _GEN_213 | _GEN_212 | _GEN_211 | _GEN_210
            | ~(deq_fire & _ageDetector_io_out_0[4]) & entries_4_valid);	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :55:27, :71:36, :80:108, :107:90, :108:30, :109:24, :113:{48,73}, :114:26, :132:28, :135:33, :141:31, :142:26
-      if (_GEN_274) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
+      if (_GEN_215) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
         entries_4_uop_uop_pc <= io_enq_5_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_4_uop_uop_inst_raw <= io_enq_5_bits_uop_inst_raw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_4_uop_decode_is_lb <= io_enq_5_bits_decode_is_lb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
@@ -4910,11 +5492,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_4_uop_psrs3 <= io_enq_5_bits_psrs3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_4_uop_pdest <= io_enq_5_bits_pdest;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_4_uop_snapshotIdx <= io_enq_5_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-        entries_4_rs1_ready <= _GEN_248;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
-        entries_4_rs2_ready <= _GEN_249;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
-        entries_4_rs3_ready <= _GEN_250;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
+        entries_4_rs1_ready <= _GEN_189;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
+        entries_4_rs2_ready <= _GEN_190;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
+        entries_4_rs3_ready <= _GEN_191;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
       end
-      else if (_GEN_273) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
+      else if (_GEN_214) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
         entries_4_uop_uop_pc <= io_enq_4_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_4_uop_uop_inst_raw <= io_enq_4_bits_uop_inst_raw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_4_uop_decode_is_lb <= io_enq_4_bits_decode_is_lb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
@@ -4976,11 +5558,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_4_uop_psrs3 <= io_enq_4_bits_psrs3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_4_uop_pdest <= io_enq_4_bits_pdest;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_4_uop_snapshotIdx <= io_enq_4_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-        entries_4_rs1_ready <= _GEN_235;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
-        entries_4_rs2_ready <= _GEN_236;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
-        entries_4_rs3_ready <= _GEN_237;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
+        entries_4_rs1_ready <= _GEN_176;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
+        entries_4_rs2_ready <= _GEN_177;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
+        entries_4_rs3_ready <= _GEN_178;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
       end
-      else if (_GEN_272) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
+      else if (_GEN_213) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
         entries_4_uop_uop_pc <= io_enq_3_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_4_uop_uop_inst_raw <= io_enq_3_bits_uop_inst_raw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_4_uop_decode_is_lb <= io_enq_3_bits_decode_is_lb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
@@ -5042,11 +5624,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_4_uop_psrs3 <= io_enq_3_bits_psrs3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_4_uop_pdest <= io_enq_3_bits_pdest;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_4_uop_snapshotIdx <= io_enq_3_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-        entries_4_rs1_ready <= _GEN_222;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
-        entries_4_rs2_ready <= _GEN_223;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
-        entries_4_rs3_ready <= _GEN_224;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
+        entries_4_rs1_ready <= _GEN_163;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
+        entries_4_rs2_ready <= _GEN_164;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
+        entries_4_rs3_ready <= _GEN_165;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
       end
-      else if (_GEN_271) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
+      else if (_GEN_212) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
         entries_4_uop_uop_pc <= io_enq_2_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_4_uop_uop_inst_raw <= io_enq_2_bits_uop_inst_raw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_4_uop_decode_is_lb <= io_enq_2_bits_decode_is_lb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
@@ -5108,11 +5690,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_4_uop_psrs3 <= io_enq_2_bits_psrs3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_4_uop_pdest <= io_enq_2_bits_pdest;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_4_uop_snapshotIdx <= io_enq_2_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-        entries_4_rs1_ready <= _GEN_209;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
-        entries_4_rs2_ready <= _GEN_210;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
-        entries_4_rs3_ready <= _GEN_211;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
+        entries_4_rs1_ready <= _GEN_150;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
+        entries_4_rs2_ready <= _GEN_151;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
+        entries_4_rs3_ready <= _GEN_152;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
       end
-      else if (_GEN_270) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
+      else if (_GEN_211) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
         entries_4_uop_uop_pc <= io_enq_1_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_4_uop_uop_inst_raw <= io_enq_1_bits_uop_inst_raw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_4_uop_decode_is_lb <= io_enq_1_bits_decode_is_lb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
@@ -5174,11 +5756,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_4_uop_psrs3 <= io_enq_1_bits_psrs3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_4_uop_pdest <= io_enq_1_bits_pdest;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_4_uop_snapshotIdx <= io_enq_1_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-        entries_4_rs1_ready <= _GEN_196;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
-        entries_4_rs2_ready <= _GEN_197;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
-        entries_4_rs3_ready <= _GEN_198;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
+        entries_4_rs1_ready <= _GEN_137;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
+        entries_4_rs2_ready <= _GEN_138;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
+        entries_4_rs3_ready <= _GEN_139;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
       end
-      else if (_GEN_269) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
+      else if (_GEN_210) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
         entries_4_uop_uop_pc <= io_enq_0_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_4_uop_uop_inst_raw <= io_enq_0_bits_uop_inst_raw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_4_uop_decode_is_lb <= io_enq_0_bits_decode_is_lb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
@@ -5240,9 +5822,9 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_4_uop_psrs3 <= io_enq_0_bits_psrs3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_4_uop_pdest <= io_enq_0_bits_pdest;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_4_uop_snapshotIdx <= io_enq_0_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-        entries_4_rs1_ready <= _GEN_183;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
-        entries_4_rs2_ready <= _GEN_184;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
-        entries_4_rs3_ready <= _GEN_185;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
+        entries_4_rs1_ready <= _GEN_124;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
+        entries_4_rs2_ready <= _GEN_125;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
+        entries_4_rs3_ready <= _GEN_126;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
       end
       else if (entries_4_valid) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_4_rs1_ready <= woken_rs1_4;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :42:33, :43:{92,107}
@@ -5251,9 +5833,9 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
       end
       entries_5_valid <=
         ~(io_redirect_valid & entry_is_younger_5)
-        & (_GEN_280 | _GEN_279 | _GEN_278 | _GEN_277 | _GEN_276 | _GEN_275
+        & (_GEN_221 | _GEN_220 | _GEN_219 | _GEN_218 | _GEN_217 | _GEN_216
            | ~(deq_fire & _ageDetector_io_out_0[5]) & entries_5_valid);	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :55:27, :71:36, :80:108, :107:90, :108:30, :109:24, :113:{48,73}, :114:26, :132:28, :135:33, :141:31, :142:26
-      if (_GEN_280) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
+      if (_GEN_221) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
         entries_5_uop_uop_pc <= io_enq_5_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_5_uop_uop_inst_raw <= io_enq_5_bits_uop_inst_raw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_5_uop_decode_is_lb <= io_enq_5_bits_decode_is_lb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
@@ -5315,11 +5897,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_5_uop_psrs3 <= io_enq_5_bits_psrs3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_5_uop_pdest <= io_enq_5_bits_pdest;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_5_uop_snapshotIdx <= io_enq_5_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-        entries_5_rs1_ready <= _GEN_248;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
-        entries_5_rs2_ready <= _GEN_249;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
-        entries_5_rs3_ready <= _GEN_250;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
+        entries_5_rs1_ready <= _GEN_189;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
+        entries_5_rs2_ready <= _GEN_190;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
+        entries_5_rs3_ready <= _GEN_191;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
       end
-      else if (_GEN_279) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
+      else if (_GEN_220) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
         entries_5_uop_uop_pc <= io_enq_4_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_5_uop_uop_inst_raw <= io_enq_4_bits_uop_inst_raw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_5_uop_decode_is_lb <= io_enq_4_bits_decode_is_lb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
@@ -5381,11 +5963,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_5_uop_psrs3 <= io_enq_4_bits_psrs3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_5_uop_pdest <= io_enq_4_bits_pdest;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_5_uop_snapshotIdx <= io_enq_4_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-        entries_5_rs1_ready <= _GEN_235;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
-        entries_5_rs2_ready <= _GEN_236;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
-        entries_5_rs3_ready <= _GEN_237;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
+        entries_5_rs1_ready <= _GEN_176;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
+        entries_5_rs2_ready <= _GEN_177;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
+        entries_5_rs3_ready <= _GEN_178;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
       end
-      else if (_GEN_278) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
+      else if (_GEN_219) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
         entries_5_uop_uop_pc <= io_enq_3_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_5_uop_uop_inst_raw <= io_enq_3_bits_uop_inst_raw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_5_uop_decode_is_lb <= io_enq_3_bits_decode_is_lb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
@@ -5447,11 +6029,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_5_uop_psrs3 <= io_enq_3_bits_psrs3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_5_uop_pdest <= io_enq_3_bits_pdest;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_5_uop_snapshotIdx <= io_enq_3_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-        entries_5_rs1_ready <= _GEN_222;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
-        entries_5_rs2_ready <= _GEN_223;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
-        entries_5_rs3_ready <= _GEN_224;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
+        entries_5_rs1_ready <= _GEN_163;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
+        entries_5_rs2_ready <= _GEN_164;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
+        entries_5_rs3_ready <= _GEN_165;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
       end
-      else if (_GEN_277) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
+      else if (_GEN_218) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
         entries_5_uop_uop_pc <= io_enq_2_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_5_uop_uop_inst_raw <= io_enq_2_bits_uop_inst_raw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_5_uop_decode_is_lb <= io_enq_2_bits_decode_is_lb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
@@ -5513,11 +6095,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_5_uop_psrs3 <= io_enq_2_bits_psrs3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_5_uop_pdest <= io_enq_2_bits_pdest;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_5_uop_snapshotIdx <= io_enq_2_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-        entries_5_rs1_ready <= _GEN_209;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
-        entries_5_rs2_ready <= _GEN_210;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
-        entries_5_rs3_ready <= _GEN_211;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
+        entries_5_rs1_ready <= _GEN_150;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
+        entries_5_rs2_ready <= _GEN_151;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
+        entries_5_rs3_ready <= _GEN_152;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
       end
-      else if (_GEN_276) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
+      else if (_GEN_217) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
         entries_5_uop_uop_pc <= io_enq_1_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_5_uop_uop_inst_raw <= io_enq_1_bits_uop_inst_raw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_5_uop_decode_is_lb <= io_enq_1_bits_decode_is_lb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
@@ -5579,11 +6161,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_5_uop_psrs3 <= io_enq_1_bits_psrs3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_5_uop_pdest <= io_enq_1_bits_pdest;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_5_uop_snapshotIdx <= io_enq_1_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-        entries_5_rs1_ready <= _GEN_196;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
-        entries_5_rs2_ready <= _GEN_197;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
-        entries_5_rs3_ready <= _GEN_198;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
+        entries_5_rs1_ready <= _GEN_137;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
+        entries_5_rs2_ready <= _GEN_138;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
+        entries_5_rs3_ready <= _GEN_139;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
       end
-      else if (_GEN_275) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
+      else if (_GEN_216) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
         entries_5_uop_uop_pc <= io_enq_0_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_5_uop_uop_inst_raw <= io_enq_0_bits_uop_inst_raw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_5_uop_decode_is_lb <= io_enq_0_bits_decode_is_lb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
@@ -5645,9 +6227,9 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_5_uop_psrs3 <= io_enq_0_bits_psrs3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_5_uop_pdest <= io_enq_0_bits_pdest;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_5_uop_snapshotIdx <= io_enq_0_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-        entries_5_rs1_ready <= _GEN_183;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
-        entries_5_rs2_ready <= _GEN_184;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
-        entries_5_rs3_ready <= _GEN_185;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
+        entries_5_rs1_ready <= _GEN_124;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
+        entries_5_rs2_ready <= _GEN_125;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
+        entries_5_rs3_ready <= _GEN_126;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
       end
       else if (entries_5_valid) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_5_rs1_ready <= woken_rs1_5;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :42:33, :43:{92,107}
@@ -5656,9 +6238,9 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
       end
       entries_6_valid <=
         ~(io_redirect_valid & entry_is_younger_6)
-        & (_GEN_286 | _GEN_285 | _GEN_284 | _GEN_283 | _GEN_282 | _GEN_281
+        & (_GEN_227 | _GEN_226 | _GEN_225 | _GEN_224 | _GEN_223 | _GEN_222
            | ~(deq_fire & _ageDetector_io_out_0[6]) & entries_6_valid);	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :55:27, :71:36, :80:108, :107:90, :108:30, :109:24, :113:{48,73}, :114:26, :132:28, :135:33, :141:31, :142:26
-      if (_GEN_286) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
+      if (_GEN_227) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
         entries_6_uop_uop_pc <= io_enq_5_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_6_uop_uop_inst_raw <= io_enq_5_bits_uop_inst_raw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_6_uop_decode_is_lb <= io_enq_5_bits_decode_is_lb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
@@ -5720,11 +6302,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_6_uop_psrs3 <= io_enq_5_bits_psrs3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_6_uop_pdest <= io_enq_5_bits_pdest;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_6_uop_snapshotIdx <= io_enq_5_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-        entries_6_rs1_ready <= _GEN_248;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
-        entries_6_rs2_ready <= _GEN_249;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
-        entries_6_rs3_ready <= _GEN_250;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
+        entries_6_rs1_ready <= _GEN_189;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
+        entries_6_rs2_ready <= _GEN_190;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
+        entries_6_rs3_ready <= _GEN_191;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
       end
-      else if (_GEN_285) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
+      else if (_GEN_226) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
         entries_6_uop_uop_pc <= io_enq_4_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_6_uop_uop_inst_raw <= io_enq_4_bits_uop_inst_raw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_6_uop_decode_is_lb <= io_enq_4_bits_decode_is_lb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
@@ -5786,11 +6368,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_6_uop_psrs3 <= io_enq_4_bits_psrs3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_6_uop_pdest <= io_enq_4_bits_pdest;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_6_uop_snapshotIdx <= io_enq_4_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-        entries_6_rs1_ready <= _GEN_235;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
-        entries_6_rs2_ready <= _GEN_236;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
-        entries_6_rs3_ready <= _GEN_237;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
+        entries_6_rs1_ready <= _GEN_176;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
+        entries_6_rs2_ready <= _GEN_177;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
+        entries_6_rs3_ready <= _GEN_178;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
       end
-      else if (_GEN_284) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
+      else if (_GEN_225) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
         entries_6_uop_uop_pc <= io_enq_3_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_6_uop_uop_inst_raw <= io_enq_3_bits_uop_inst_raw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_6_uop_decode_is_lb <= io_enq_3_bits_decode_is_lb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
@@ -5852,11 +6434,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_6_uop_psrs3 <= io_enq_3_bits_psrs3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_6_uop_pdest <= io_enq_3_bits_pdest;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_6_uop_snapshotIdx <= io_enq_3_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-        entries_6_rs1_ready <= _GEN_222;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
-        entries_6_rs2_ready <= _GEN_223;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
-        entries_6_rs3_ready <= _GEN_224;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
+        entries_6_rs1_ready <= _GEN_163;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
+        entries_6_rs2_ready <= _GEN_164;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
+        entries_6_rs3_ready <= _GEN_165;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
       end
-      else if (_GEN_283) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
+      else if (_GEN_224) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
         entries_6_uop_uop_pc <= io_enq_2_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_6_uop_uop_inst_raw <= io_enq_2_bits_uop_inst_raw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_6_uop_decode_is_lb <= io_enq_2_bits_decode_is_lb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
@@ -5918,11 +6500,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_6_uop_psrs3 <= io_enq_2_bits_psrs3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_6_uop_pdest <= io_enq_2_bits_pdest;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_6_uop_snapshotIdx <= io_enq_2_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-        entries_6_rs1_ready <= _GEN_209;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
-        entries_6_rs2_ready <= _GEN_210;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
-        entries_6_rs3_ready <= _GEN_211;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
+        entries_6_rs1_ready <= _GEN_150;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
+        entries_6_rs2_ready <= _GEN_151;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
+        entries_6_rs3_ready <= _GEN_152;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
       end
-      else if (_GEN_282) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
+      else if (_GEN_223) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
         entries_6_uop_uop_pc <= io_enq_1_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_6_uop_uop_inst_raw <= io_enq_1_bits_uop_inst_raw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_6_uop_decode_is_lb <= io_enq_1_bits_decode_is_lb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
@@ -5984,11 +6566,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_6_uop_psrs3 <= io_enq_1_bits_psrs3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_6_uop_pdest <= io_enq_1_bits_pdest;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_6_uop_snapshotIdx <= io_enq_1_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-        entries_6_rs1_ready <= _GEN_196;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
-        entries_6_rs2_ready <= _GEN_197;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
-        entries_6_rs3_ready <= _GEN_198;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
+        entries_6_rs1_ready <= _GEN_137;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
+        entries_6_rs2_ready <= _GEN_138;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
+        entries_6_rs3_ready <= _GEN_139;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
       end
-      else if (_GEN_281) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
+      else if (_GEN_222) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
         entries_6_uop_uop_pc <= io_enq_0_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_6_uop_uop_inst_raw <= io_enq_0_bits_uop_inst_raw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_6_uop_decode_is_lb <= io_enq_0_bits_decode_is_lb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
@@ -6050,9 +6632,9 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_6_uop_psrs3 <= io_enq_0_bits_psrs3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_6_uop_pdest <= io_enq_0_bits_pdest;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_6_uop_snapshotIdx <= io_enq_0_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-        entries_6_rs1_ready <= _GEN_183;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
-        entries_6_rs2_ready <= _GEN_184;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
-        entries_6_rs3_ready <= _GEN_185;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
+        entries_6_rs1_ready <= _GEN_124;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
+        entries_6_rs2_ready <= _GEN_125;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
+        entries_6_rs3_ready <= _GEN_126;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
       end
       else if (entries_6_valid) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_6_rs1_ready <= woken_rs1_6;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :42:33, :43:{92,107}
@@ -6061,9 +6643,9 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
       end
       entries_7_valid <=
         ~(io_redirect_valid & entry_is_younger_7)
-        & (_GEN_292 | _GEN_291 | _GEN_290 | _GEN_289 | _GEN_288 | _GEN_287
+        & (_GEN_233 | _GEN_232 | _GEN_231 | _GEN_230 | _GEN_229 | _GEN_228
            | ~(deq_fire & _ageDetector_io_out_0[7]) & entries_7_valid);	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :55:27, :71:36, :80:108, :107:90, :108:30, :109:24, :113:{48,73}, :114:26, :132:28, :135:33, :141:31, :142:26
-      if (_GEN_292) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
+      if (_GEN_233) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
         entries_7_uop_uop_pc <= io_enq_5_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_7_uop_uop_inst_raw <= io_enq_5_bits_uop_inst_raw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_7_uop_decode_is_lb <= io_enq_5_bits_decode_is_lb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
@@ -6125,11 +6707,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_7_uop_psrs3 <= io_enq_5_bits_psrs3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_7_uop_pdest <= io_enq_5_bits_pdest;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_7_uop_snapshotIdx <= io_enq_5_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-        entries_7_rs1_ready <= _GEN_248;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
-        entries_7_rs2_ready <= _GEN_249;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
-        entries_7_rs3_ready <= _GEN_250;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
+        entries_7_rs1_ready <= _GEN_189;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
+        entries_7_rs2_ready <= _GEN_190;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
+        entries_7_rs3_ready <= _GEN_191;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
       end
-      else if (_GEN_291) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
+      else if (_GEN_232) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
         entries_7_uop_uop_pc <= io_enq_4_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_7_uop_uop_inst_raw <= io_enq_4_bits_uop_inst_raw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_7_uop_decode_is_lb <= io_enq_4_bits_decode_is_lb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
@@ -6191,11 +6773,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_7_uop_psrs3 <= io_enq_4_bits_psrs3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_7_uop_pdest <= io_enq_4_bits_pdest;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_7_uop_snapshotIdx <= io_enq_4_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-        entries_7_rs1_ready <= _GEN_235;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
-        entries_7_rs2_ready <= _GEN_236;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
-        entries_7_rs3_ready <= _GEN_237;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
+        entries_7_rs1_ready <= _GEN_176;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
+        entries_7_rs2_ready <= _GEN_177;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
+        entries_7_rs3_ready <= _GEN_178;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
       end
-      else if (_GEN_290) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
+      else if (_GEN_231) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
         entries_7_uop_uop_pc <= io_enq_3_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_7_uop_uop_inst_raw <= io_enq_3_bits_uop_inst_raw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_7_uop_decode_is_lb <= io_enq_3_bits_decode_is_lb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
@@ -6257,11 +6839,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_7_uop_psrs3 <= io_enq_3_bits_psrs3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_7_uop_pdest <= io_enq_3_bits_pdest;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_7_uop_snapshotIdx <= io_enq_3_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-        entries_7_rs1_ready <= _GEN_222;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
-        entries_7_rs2_ready <= _GEN_223;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
-        entries_7_rs3_ready <= _GEN_224;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
+        entries_7_rs1_ready <= _GEN_163;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
+        entries_7_rs2_ready <= _GEN_164;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
+        entries_7_rs3_ready <= _GEN_165;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
       end
-      else if (_GEN_289) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
+      else if (_GEN_230) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
         entries_7_uop_uop_pc <= io_enq_2_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_7_uop_uop_inst_raw <= io_enq_2_bits_uop_inst_raw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_7_uop_decode_is_lb <= io_enq_2_bits_decode_is_lb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
@@ -6323,11 +6905,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_7_uop_psrs3 <= io_enq_2_bits_psrs3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_7_uop_pdest <= io_enq_2_bits_pdest;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_7_uop_snapshotIdx <= io_enq_2_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-        entries_7_rs1_ready <= _GEN_209;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
-        entries_7_rs2_ready <= _GEN_210;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
-        entries_7_rs3_ready <= _GEN_211;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
+        entries_7_rs1_ready <= _GEN_150;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
+        entries_7_rs2_ready <= _GEN_151;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
+        entries_7_rs3_ready <= _GEN_152;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
       end
-      else if (_GEN_288) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
+      else if (_GEN_229) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
         entries_7_uop_uop_pc <= io_enq_1_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_7_uop_uop_inst_raw <= io_enq_1_bits_uop_inst_raw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_7_uop_decode_is_lb <= io_enq_1_bits_decode_is_lb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
@@ -6389,11 +6971,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_7_uop_psrs3 <= io_enq_1_bits_psrs3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_7_uop_pdest <= io_enq_1_bits_pdest;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_7_uop_snapshotIdx <= io_enq_1_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-        entries_7_rs1_ready <= _GEN_196;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
-        entries_7_rs2_ready <= _GEN_197;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
-        entries_7_rs3_ready <= _GEN_198;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
+        entries_7_rs1_ready <= _GEN_137;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
+        entries_7_rs2_ready <= _GEN_138;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
+        entries_7_rs3_ready <= _GEN_139;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
       end
-      else if (_GEN_287) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
+      else if (_GEN_228) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:113:48
         entries_7_uop_uop_pc <= io_enq_0_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_7_uop_uop_inst_raw <= io_enq_0_bits_uop_inst_raw;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_7_uop_decode_is_lb <= io_enq_0_bits_decode_is_lb;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
@@ -6455,9 +7037,9 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_7_uop_psrs3 <= io_enq_0_bits_psrs3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_7_uop_pdest <= io_enq_0_bits_pdest;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_7_uop_snapshotIdx <= io_enq_0_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
-        entries_7_rs1_ready <= _GEN_183;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
-        entries_7_rs2_ready <= _GEN_184;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
-        entries_7_rs3_ready <= _GEN_185;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
+        entries_7_rs1_ready <= _GEN_124;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :123:{96,119}
+        entries_7_rs2_ready <= _GEN_125;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :124:{96,119}
+        entries_7_rs3_ready <= _GEN_126;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :122:37, :125:{96,119}
       end
       else if (entries_7_valid) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24
         entries_7_rs1_ready <= woken_rs1_7;	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:24, :42:33, :43:{92,107}
@@ -6470,8 +7052,8 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
     `ifdef FIRRTL_BEFORE_INITIAL	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
       `FIRRTL_BEFORE_INITIAL	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
     `endif // FIRRTL_BEFORE_INITIAL
+    logic [31:0] _RANDOM[0:122];	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
     initial begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
-      automatic logic [31:0] _RANDOM[0:122];	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
       `ifdef INIT_RANDOM_PROLOG_	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         `INIT_RANDOM_PROLOG_	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
       `endif // INIT_RANDOM_PROLOG_
@@ -7022,12 +7604,12 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
   AgeDetector_1 ageDetector (	// backend/src/zaqal/backend/issue/IssueQueue.scala:55:27
     .clock         (clock),
     .reset         (reset),
-    .io_enq_0      (_GEN_129 ? 8'h1 << _GEN_130 : 8'h0),	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:66, :57:43, :93:{27,47}, :94:21, src/main/scala/chisel3/util/OneHot.scala:58:35
-    .io_enq_1      (_GEN_133 ? 8'h1 << _GEN_134 : 8'h0),	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:66, :57:43, :93:{27,47}, :94:21, src/main/scala/chisel3/util/OneHot.scala:58:35
-    .io_enq_2      (_GEN_144 ? 8'h1 << _GEN_145 : 8'h0),	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:66, :57:43, :93:{27,47}, :94:21, src/main/scala/chisel3/util/OneHot.scala:58:35
-    .io_enq_3      (_GEN_155 ? 8'h1 << _GEN_156 : 8'h0),	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:66, :57:43, :93:{27,47}, :94:21, src/main/scala/chisel3/util/OneHot.scala:58:35
-    .io_enq_4      (_GEN_166 ? 8'h1 << _GEN_167 : 8'h0),	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:66, :57:43, :93:{27,47}, :94:21, src/main/scala/chisel3/util/OneHot.scala:58:35
-    .io_enq_5      (_GEN_170 ? 8'h1 << alloc_idx_5 : 8'h0),	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:66, :57:43, :93:{27,47}, :94:21, src/main/scala/chisel3/util/Mux.scala:50:70, src/main/scala/chisel3/util/OneHot.scala:58:35
+    .io_enq_0      (_GEN_71 ? 8'h1 << _GEN_72 : 8'h0),	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:66, :57:43, :93:{27,47}, :94:21, src/main/scala/chisel3/util/OneHot.scala:58:35
+    .io_enq_1      (_GEN_75 ? 8'h1 << _GEN_76 : 8'h0),	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:66, :57:43, :93:{27,47}, :94:21, src/main/scala/chisel3/util/OneHot.scala:58:35
+    .io_enq_2      (_GEN_86 ? 8'h1 << _GEN_87 : 8'h0),	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:66, :57:43, :93:{27,47}, :94:21, src/main/scala/chisel3/util/OneHot.scala:58:35
+    .io_enq_3      (_GEN_97 ? 8'h1 << _GEN_98 : 8'h0),	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:66, :57:43, :93:{27,47}, :94:21, src/main/scala/chisel3/util/OneHot.scala:58:35
+    .io_enq_4      (_GEN_108 ? 8'h1 << _GEN_109 : 8'h0),	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:66, :57:43, :93:{27,47}, :94:21, src/main/scala/chisel3/util/OneHot.scala:58:35
+    .io_enq_5      (_GEN_112 ? 8'h1 << alloc_idx_5 : 8'h0),	// backend/src/zaqal/backend/issue/IssueQueue.scala:30:66, :57:43, :93:{27,47}, :94:21, src/main/scala/chisel3/util/Mux.scala:50:70, src/main/scala/chisel3/util/OneHot.scala:58:35
     .io_canIssue_0
       ({entries_7_valid & woken_rs1_7 & woken_rs2_7 & woken_rs3_7,
         entries_6_valid & woken_rs1_6 & woken_rs2_6 & woken_rs3_6,
@@ -7040,69 +7622,69 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
     .io_out_0      (_ageDetector_io_out_0)
   );
   assign io_enq_0_ready = |current_empty_mask;	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :87:37, :89:42
-  assign io_enq_1_ready = |_GEN_132;	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :89:42, :97:45
-  assign io_enq_2_ready = |_GEN_136;	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :89:42, :97:45
-  assign io_enq_3_ready = |_GEN_147;	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :89:42, :97:45
-  assign io_enq_4_ready = |_GEN_158;	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :89:42, :97:45
-  assign io_enq_5_ready = |_GEN_169;	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :89:42, :97:45
+  assign io_enq_1_ready = |_GEN_74;	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :89:42, :97:45
+  assign io_enq_2_ready = |_GEN_78;	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :89:42, :97:45
+  assign io_enq_3_ready = |_GEN_89;	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :89:42, :97:45
+  assign io_enq_4_ready = |_GEN_100;	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :89:42, :97:45
+  assign io_enq_5_ready = |_GEN_111;	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :89:42, :97:45
   assign io_deq_0_valid = |_ageDetector_io_out_0;	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :55:27, :66:39
-  assign io_deq_0_bits_uop_inst_raw = _GEN_71[issue_idx];	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
-  assign io_deq_0_bits_decode_is_lb = _GEN_72[issue_idx];	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
-  assign io_deq_0_bits_decode_is_lh = _GEN_73[issue_idx];	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
-  assign io_deq_0_bits_decode_is_lw = _GEN_74[issue_idx];	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
-  assign io_deq_0_bits_decode_is_ld = _GEN_75[issue_idx];	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
-  assign io_deq_0_bits_decode_is_lbu = _GEN_76[issue_idx];	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
-  assign io_deq_0_bits_decode_is_lhu = _GEN_77[issue_idx];	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
-  assign io_deq_0_bits_decode_is_lwu = _GEN_78[issue_idx];	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
-  assign io_deq_0_bits_decode_is_load = _GEN_79[issue_idx];	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
-  assign io_deq_0_bits_decode_is_sb = _GEN_80[issue_idx];	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
-  assign io_deq_0_bits_decode_is_sh = _GEN_81[issue_idx];	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
-  assign io_deq_0_bits_decode_is_sw = _GEN_82[issue_idx];	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
-  assign io_deq_0_bits_decode_is_sd = _GEN_83[issue_idx];	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
-  assign io_deq_0_bits_decode_is_store = _GEN_84[issue_idx];	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
-  assign io_deq_0_bits_decode_is_lr = _GEN_85[issue_idx];	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
-  assign io_deq_0_bits_decode_is_sc = _GEN_86[issue_idx];	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
-  assign io_deq_0_bits_decode_is_lr_w = _GEN_87[issue_idx];	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
-  assign io_deq_0_bits_decode_is_lr_d = _GEN_88[issue_idx];	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
-  assign io_deq_0_bits_decode_is_sc_w = _GEN_89[issue_idx];	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
-  assign io_deq_0_bits_decode_is_sc_d = _GEN_90[issue_idx];	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
-  assign io_deq_0_bits_decode_is_amoadd = _GEN_91[issue_idx];	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
-  assign io_deq_0_bits_decode_is_amoswap = _GEN_92[issue_idx];	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
-  assign io_deq_0_bits_decode_is_amoxor = _GEN_93[issue_idx];	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
-  assign io_deq_0_bits_decode_is_amoand = _GEN_94[issue_idx];	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
-  assign io_deq_0_bits_decode_is_amoor = _GEN_95[issue_idx];	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
-  assign io_deq_0_bits_decode_is_amomin = _GEN_96[issue_idx];	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
-  assign io_deq_0_bits_decode_is_amomax = _GEN_97[issue_idx];	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
-  assign io_deq_0_bits_decode_is_amominu = _GEN_98[issue_idx];	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
-  assign io_deq_0_bits_decode_is_amomaxu = _GEN_99[issue_idx];	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
-  assign io_deq_0_bits_decode_is_amo_w = _GEN_100[issue_idx];	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
-  assign io_deq_0_bits_decode_is_amo_d = _GEN_101[issue_idx];	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
-  assign io_deq_0_bits_decode_is_atomic = _GEN_102[issue_idx];	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
-  assign io_deq_0_bits_decode_is_fload = _GEN_103[issue_idx];	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
-  assign io_deq_0_bits_decode_is_flw = _GEN_104[issue_idx];	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
-  assign io_deq_0_bits_decode_is_fld = _GEN_105[issue_idx];	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
-  assign io_deq_0_bits_decode_is_fstore = _GEN_106[issue_idx];	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
-  assign io_deq_0_bits_decode_is_fsw = _GEN_107[issue_idx];	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
-  assign io_deq_0_bits_decode_is_fsd = _GEN_108[issue_idx];	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
-  assign io_deq_0_bits_decode_is_fmadd = _GEN_109[issue_idx];	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
-  assign io_deq_0_bits_decode_is_fadd = _GEN_110[issue_idx];	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
-  assign io_deq_0_bits_decode_is_fsub = _GEN_111[issue_idx];	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
-  assign io_deq_0_bits_decode_is_fmul = _GEN_112[issue_idx];	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
-  assign io_deq_0_bits_decode_is_fdiv = _GEN_113[issue_idx];	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
-  assign io_deq_0_bits_decode_is_fsqrt = _GEN_114[issue_idx];	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
-  assign io_deq_0_bits_decode_is_fsgnj = _GEN_115[issue_idx];	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
-  assign io_deq_0_bits_decode_is_fminmax = _GEN_116[issue_idx];	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
-  assign io_deq_0_bits_decode_is_fcvt_f2i = _GEN_117[issue_idx];	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
-  assign io_deq_0_bits_decode_is_fcvt_i2f = _GEN_118[issue_idx];	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
-  assign io_deq_0_bits_decode_is_fmv_w_x = _GEN_119[issue_idx];	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
-  assign io_deq_0_bits_decode_is_fmv_x_w = _GEN_120[issue_idx];	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
-  assign io_deq_0_bits_decode_is_feq = _GEN_121[issue_idx];	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
-  assign io_deq_0_bits_decode_is_flt = _GEN_122[issue_idx];	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
-  assign io_deq_0_bits_decode_is_fle = _GEN_123[issue_idx];	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
-  assign io_deq_0_bits_decode_is_fclass = _GEN_124[issue_idx];	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
-  assign io_deq_0_bits_decode_imm = _GEN_125[issue_idx];	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
-  assign io_deq_0_bits_psrs1 = _GEN_126[issue_idx];	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
-  assign io_deq_0_bits_psrs2 = _GEN_127[issue_idx];	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
-  assign io_deq_0_bits_pdest = _GEN_128[issue_idx];	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20, src/main/scala/chisel3/util/OneHot.scala:32:10
+  assign io_deq_0_bits_uop_inst_raw = casez_tmp_0;	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20
+  assign io_deq_0_bits_decode_is_lb = casez_tmp_1;	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20
+  assign io_deq_0_bits_decode_is_lh = casez_tmp_2;	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20
+  assign io_deq_0_bits_decode_is_lw = casez_tmp_3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20
+  assign io_deq_0_bits_decode_is_ld = casez_tmp_4;	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20
+  assign io_deq_0_bits_decode_is_lbu = casez_tmp_5;	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20
+  assign io_deq_0_bits_decode_is_lhu = casez_tmp_6;	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20
+  assign io_deq_0_bits_decode_is_lwu = casez_tmp_7;	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20
+  assign io_deq_0_bits_decode_is_load = casez_tmp_8;	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20
+  assign io_deq_0_bits_decode_is_sb = casez_tmp_9;	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20
+  assign io_deq_0_bits_decode_is_sh = casez_tmp_10;	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20
+  assign io_deq_0_bits_decode_is_sw = casez_tmp_11;	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20
+  assign io_deq_0_bits_decode_is_sd = casez_tmp_12;	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20
+  assign io_deq_0_bits_decode_is_store = casez_tmp_13;	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20
+  assign io_deq_0_bits_decode_is_lr = casez_tmp_14;	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20
+  assign io_deq_0_bits_decode_is_sc = casez_tmp_15;	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20
+  assign io_deq_0_bits_decode_is_lr_w = casez_tmp_16;	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20
+  assign io_deq_0_bits_decode_is_lr_d = casez_tmp_17;	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20
+  assign io_deq_0_bits_decode_is_sc_w = casez_tmp_18;	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20
+  assign io_deq_0_bits_decode_is_sc_d = casez_tmp_19;	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20
+  assign io_deq_0_bits_decode_is_amoadd = casez_tmp_20;	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20
+  assign io_deq_0_bits_decode_is_amoswap = casez_tmp_21;	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20
+  assign io_deq_0_bits_decode_is_amoxor = casez_tmp_22;	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20
+  assign io_deq_0_bits_decode_is_amoand = casez_tmp_23;	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20
+  assign io_deq_0_bits_decode_is_amoor = casez_tmp_24;	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20
+  assign io_deq_0_bits_decode_is_amomin = casez_tmp_25;	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20
+  assign io_deq_0_bits_decode_is_amomax = casez_tmp_26;	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20
+  assign io_deq_0_bits_decode_is_amominu = casez_tmp_27;	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20
+  assign io_deq_0_bits_decode_is_amomaxu = casez_tmp_28;	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20
+  assign io_deq_0_bits_decode_is_amo_w = casez_tmp_29;	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20
+  assign io_deq_0_bits_decode_is_amo_d = casez_tmp_30;	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20
+  assign io_deq_0_bits_decode_is_atomic = casez_tmp_31;	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20
+  assign io_deq_0_bits_decode_is_fload = casez_tmp_32;	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20
+  assign io_deq_0_bits_decode_is_flw = casez_tmp_33;	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20
+  assign io_deq_0_bits_decode_is_fld = casez_tmp_34;	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20
+  assign io_deq_0_bits_decode_is_fstore = casez_tmp_35;	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20
+  assign io_deq_0_bits_decode_is_fsw = casez_tmp_36;	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20
+  assign io_deq_0_bits_decode_is_fsd = casez_tmp_37;	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20
+  assign io_deq_0_bits_decode_is_fmadd = casez_tmp_38;	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20
+  assign io_deq_0_bits_decode_is_fadd = casez_tmp_39;	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20
+  assign io_deq_0_bits_decode_is_fsub = casez_tmp_40;	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20
+  assign io_deq_0_bits_decode_is_fmul = casez_tmp_41;	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20
+  assign io_deq_0_bits_decode_is_fdiv = casez_tmp_42;	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20
+  assign io_deq_0_bits_decode_is_fsqrt = casez_tmp_43;	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20
+  assign io_deq_0_bits_decode_is_fsgnj = casez_tmp_44;	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20
+  assign io_deq_0_bits_decode_is_fminmax = casez_tmp_45;	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20
+  assign io_deq_0_bits_decode_is_fcvt_f2i = casez_tmp_46;	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20
+  assign io_deq_0_bits_decode_is_fcvt_i2f = casez_tmp_47;	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20
+  assign io_deq_0_bits_decode_is_fmv_w_x = casez_tmp_48;	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20
+  assign io_deq_0_bits_decode_is_fmv_x_w = casez_tmp_49;	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20
+  assign io_deq_0_bits_decode_is_feq = casez_tmp_50;	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20
+  assign io_deq_0_bits_decode_is_flt = casez_tmp_51;	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20
+  assign io_deq_0_bits_decode_is_fle = casez_tmp_52;	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20
+  assign io_deq_0_bits_decode_is_fclass = casez_tmp_53;	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20
+  assign io_deq_0_bits_decode_imm = casez_tmp_54;	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20
+  assign io_deq_0_bits_psrs1 = casez_tmp_55;	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20
+  assign io_deq_0_bits_psrs2 = casez_tmp_56;	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20
+  assign io_deq_0_bits_pdest = casez_tmp_57;	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :69:20
 endmodule
 

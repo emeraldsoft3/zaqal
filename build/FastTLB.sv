@@ -66,14 +66,26 @@ module FastTLB(	// backend/src/zaqal/backend/fu/FastTLB.scala:8:7
   output [63:0] io_paddr	// backend/src/zaqal/backend/fu/FastTLB.scala:9:14
 );
 
-  wire [3:0][51:0] _GEN = '{52'h3000, 52'h2000, 52'h1000, 52'h80000};	// backend/src/zaqal/backend/fu/FastTLB.scala:40:27
-  wire             _hits_T_1 = io_vaddr[63:12] == 52'h1000;	// backend/src/zaqal/backend/fu/FastTLB.scala:25:22, :31:21, :35:44
-  wire             _hits_T_2 = io_vaddr[63:12] == 52'h2000;	// backend/src/zaqal/backend/fu/FastTLB.scala:25:22, :31:21, :35:44
-  wire             _hits_T_3 = io_vaddr[63:12] == 52'h3000;	// backend/src/zaqal/backend/fu/FastTLB.scala:25:22, :31:21, :35:44
+  wire        _hits_T_1 = io_vaddr[63:12] == 52'h1000;	// backend/src/zaqal/backend/fu/FastTLB.scala:25:22, :31:21, :35:44
+  wire        _hits_T_2 = io_vaddr[63:12] == 52'h2000;	// backend/src/zaqal/backend/fu/FastTLB.scala:25:22, :31:21, :35:44
+  wire        _hits_T_3 = io_vaddr[63:12] == 52'h3000;	// backend/src/zaqal/backend/fu/FastTLB.scala:25:22, :31:21, :35:44
+  reg  [51:0] casez_tmp;	// backend/src/zaqal/backend/fu/FastTLB.scala:40:27
+  always_comb begin	// backend/src/zaqal/backend/fu/FastTLB.scala:40:27
+    casez ({|{_hits_T_3, _hits_T_2}, _hits_T_3 | _hits_T_1})	// backend/src/zaqal/backend/fu/FastTLB.scala:35:44, :40:27, src/main/scala/chisel3/util/OneHot.scala:30:18, :32:{10,14,28}
+      2'b00:
+        casez_tmp = 52'h80000;	// backend/src/zaqal/backend/fu/FastTLB.scala:40:27
+      2'b01:
+        casez_tmp = 52'h1000;	// backend/src/zaqal/backend/fu/FastTLB.scala:40:27
+      2'b10:
+        casez_tmp = 52'h2000;	// backend/src/zaqal/backend/fu/FastTLB.scala:40:27
+      default:
+        casez_tmp = 52'h3000;	// backend/src/zaqal/backend/fu/FastTLB.scala:40:27
+    endcase	// backend/src/zaqal/backend/fu/FastTLB.scala:35:44, :40:27, src/main/scala/chisel3/util/OneHot.scala:30:18, :32:{10,14,28}
+  end // always_comb
   assign io_paddr =
     {io_vaddr[63:12] == 52'h80000 | _hits_T_1 | _hits_T_2 | _hits_T_3
-       ? _GEN[{|{_hits_T_3, _hits_T_2}, _hits_T_3 | _hits_T_1}]
+       ? casez_tmp
        : io_vaddr[63:12],
-     io_vaddr[11:0]};	// backend/src/zaqal/backend/fu/FastTLB.scala:8:7, :25:22, :31:21, :32:29, :35:44, :37:27, :40:27, :41:18, src/main/scala/chisel3/util/OneHot.scala:30:18, :32:{10,14,28}
+     io_vaddr[11:0]};	// backend/src/zaqal/backend/fu/FastTLB.scala:8:7, :25:22, :31:21, :32:29, :35:44, :37:27, :40:27, :41:18
 endmodule
 
