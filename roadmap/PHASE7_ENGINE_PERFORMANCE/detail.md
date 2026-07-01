@@ -53,6 +53,14 @@ To match the high-IPC processing power of XiangShan's Kunminghu core, Zaqal's ex
 - **Detailed Plan**: Modern cores mask memory latency by predicting what data will be needed next. We will build hardware prefetchers that monitor the memory addresses requested by the LSQ. The Stride Prefetcher will detect sequential access patterns (like looping over an array) and fetch the data into the cache before the processor even asks for it. The Spatial Memory Streaming (SMS) prefetcher will learn irregular spatial footprints in memory blocks. A prefetch coordinator will manage these requests to ensure they don't saturate the memory bus and degrade actual demand-load performance.
 - **XiangShan Study**: [prefetch/](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/mem/prefetch/)
 
+## Day 36-40: Out-of-Order Engine Timing Closure & Waveform Validation
+- [ ] **Day 36-37**: **Physical Synthesis on Integrated Core**: Run the entire integrated backend (Rename + ROB + PRF + Schedulers + LSQ) through the Yosys/OpenLane toolchain established in Phase 5. Identify critical timing violations (WNS) and routing congestion in the bypass network and wakeup loops.
+- [ ] **Day 38-39**: **OoO Critical-Path Optimizations**:
+  - Restructure the **Rename Alias Table (RAT)** checkpoints to use fast one-hot multiplexers.
+  - Optimize the **wakeup-select broadcast buses** by introducing segmented pipeline slices.
+  - Implement tree-based comparison logic inside the **LSQ store-to-load forwarding matcher**.
+- [ ] **Day 40**: **Functional Waveform Profiling**: Run execution traces (like Dhrystone and memory stress-tests) with full cycle-accurate FTQ and simulation logs. Trace instructions inside GTKWave from Rename through Issue, Memory Access, and ROB Commitment to ensure zero unexpected stalls or architectural mismatches.
+
 ---
 
 ## Future Scope: Multi-Bit Branch Tagging (BRT) & Post-Parity Execution Optimizations

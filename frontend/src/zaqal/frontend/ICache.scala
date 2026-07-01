@@ -41,7 +41,19 @@ class ICache(implicit val p: Parameters) extends Module with HasZaqalParameter {
         "h01800913".U, // 0x28: addi x18, x0, 24      (x18 = 24)
         "h12300993".U, // 0x2c: addi x19, x0, 291     (x19 = 291)
         "h01391023".U, // 0x30: sh x19, 0(x18)        (store half-word to 24)
-        "h00091a03".U  // 0x34: lh x20, 0(x18)        (load signed half-word -> 291)
+        "h00091a03".U, // 0x34: lh x20, 0(x18)        (load signed half-word -> 291)
+        "h00500a93".U, // 0x38: addi x21, x0, 5       (x21 = 5)
+        "h00c00b13".U, // 0x3c: addi x22, x0, 12      (x22 = 12)
+        "h216aabb3".U, // 0x40: sh1add x23, x21, x22  (x23 = 10 + 12 = 22)
+        "h216acc33".U, // 0x44: sh2add x24, x21, x22  (x24 = 20 + 12 = 32)
+        "h216aecb3".U, // 0x48: sh3add x25, x21, x22  (x25 = 40 + 12 = 52)
+        "h03753023".U, // 0x4c: sd x23, 32(x10)       (store 22 to address 40)
+        "h00000013".U, "h00000013".U, "h00000013".U, "h00000013".U,
+        "h00000013".U, "h00000013".U, "h00000013".U, "h00000013".U,
+        "h00000013".U, "h00000013".U, "h00000013".U, "h00000013".U,
+        "h00000013".U, "h00000013".U, "h00000013".U,
+        "h02053d03".U, // ld x26, 32(x10)       (load 22 into x26)
+        "h064d0d93".U  // addi x27, x26, 100    (x27 = 22 + 100 = 122)
       ) ++ Seq.fill(80)("h00000013".U) ++ Seq(
         "h0000006f".U  // Halt loop
       )
