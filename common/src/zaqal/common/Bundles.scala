@@ -262,6 +262,10 @@ class BPURedirect(implicit val p: Parameters) extends Bundle with HasZaqalParame
   val is_exception = Bool()
   val exc_cause    = UInt(instBits.W)
   val snapshotIdx  = UInt(log2Up(renameSnapshotNum).W)
+  val pc           = UInt(xLen.W)
+  val taken        = Bool()
+  val is_cfi       = Bool()
+  val is_jalr      = Bool()
 }
 
 object Causes {

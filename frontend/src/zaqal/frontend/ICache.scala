@@ -28,32 +28,10 @@ class ICache(implicit val p: Parameters) extends Module with HasZaqalParameter {
     } else {
       println(s"[ICache] Warning: Using basic ADDI test program for Pipelined Dispatch verification.")
       Seq(
-        "h02a00593".U, // 0x00: addi x11, x0, 42      (x11 = 42)
-        "h00800513".U, // 0x04: addi x10, x0, 8       (x10 = 8)
-        "h00b53023".U, // 0x08: sd x11, 0(x10)        (store 42 to address 8)
-        "h00053603".U, // 0x0c: ld x12, 0(x10)        (load from address 8 to x12)
-        "h06460693".U, // 0x10: addi x13, x12, 100    (x13 = x12 + 100 = 142)
-        "h01000713".U, // 0x14: addi x14, x0, 16      (x14 = 16)
-        "h0ff00793".U, // 0x18: addi x15, x0, 255     (x15 = 255)
-        "h00f70023".U, // 0x1c: sb x15, 0(x14)        (store 0xFF byte to 16)
-        "h00074803".U, // 0x20: lbu x16, 0(x14)       (load unsigned byte -> 255)
-        "h00070883".U, // 0x24: lb x17, 0(x14)        (load signed byte -> -1)
-        "h01800913".U, // 0x28: addi x18, x0, 24      (x18 = 24)
-        "h12300993".U, // 0x2c: addi x19, x0, 291     (x19 = 291)
-        "h01391023".U, // 0x30: sh x19, 0(x18)        (store half-word to 24)
-        "h00091a03".U, // 0x34: lh x20, 0(x18)        (load signed half-word -> 291)
-        "h00500a93".U, // 0x38: addi x21, x0, 5       (x21 = 5)
-        "h00c00b13".U, // 0x3c: addi x22, x0, 12      (x22 = 12)
-        "h216aabb3".U, // 0x40: sh1add x23, x21, x22  (x23 = 10 + 12 = 22)
-        "h216acc33".U, // 0x44: sh2add x24, x21, x22  (x24 = 20 + 12 = 32)
-        "h216aecb3".U, // 0x48: sh3add x25, x21, x22  (x25 = 40 + 12 = 52)
-        "h03753023".U, // 0x4c: sd x23, 32(x10)       (store 22 to address 40)
-        "h00000013".U, "h00000013".U, "h00000013".U, "h00000013".U,
-        "h00000013".U, "h00000013".U, "h00000013".U, "h00000013".U,
-        "h00000013".U, "h00000013".U, "h00000013".U, "h00000013".U,
-        "h00000013".U, "h00000013".U, "h00000013".U,
-        "h02053d03".U, // ld x26, 32(x10)       (load 22 into x26)
-        "h064d0d93".U  // addi x27, x26, 100    (x27 = 22 + 100 = 122)
+        "h00500e13".U, // 0x00: addi x28, x0, 5       (x28 = 5)
+        "hfffe0e13".U, // 0x04: addi x28, x28, -1    (x28 = x28 - 1)
+        "hfe0e1ee3".U, // 0x08: bne x28, x0, -4       (if x28 != 0, goto 0x04)
+        "h06300e93".U  // 0x0c: addi x29, x0, 99      (x29 = 99, loop done marker)
       ) ++ Seq.fill(80)("h00000013".U) ++ Seq(
         "h0000006f".U  // Halt loop
       )

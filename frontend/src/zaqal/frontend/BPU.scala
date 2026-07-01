@@ -16,12 +16,24 @@ class BPU(implicit val p: Parameters) extends Module with HasZaqalParameter {
   val mask_reg = RegInit(Fill(predictWidth, 1.U(1.W)))
   val epoch    = RegInit(false.B) // Current Fetch Epoch
 
+  // Instantiate the Fetch Target Buffer (FTB)
+  val ftb = Module(new FTB)
+  ftb.io.req_pc := s0_pc
+
+  // FTB Update Path from resolved branches
+  ftb.io.update_valid  := io.redirect.valid && !io.redirect.is_exception
+  ftb.io.update_pc     := io.redirect.pc
+  ftb.io.update_target := io.redirect.target
+  ftb.io.update_taken  := io.redirect.taken
+  ftb.io.update_is_cfi := io.redirect.is_cfi
+  ftb.io.update_is_jalr:= io.redirect.is_jalr
+
   def align(addr: UInt) = addr & (~((fetchWidth * 4) - 1).U(xLen.W))
 
   val meta    = Wire(new PredictionMeta)
-  meta.target := s0_pc + (fetchWidth * 4).U
-  meta.taken  := false.B
-  meta.slot   := 0.U
+  meta.target := Mux(ftb.io.taken, ftb.io.target, s0_pc + (fetchWidth * 4).U)
+  meta.taken  := ftb.io.taken
+  meta.slot   := ftb.io.slot
 
   val current_mask = Wire(UInt(predictWidth.W))
   

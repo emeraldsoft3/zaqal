@@ -74,6 +74,10 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   io.redirect.is_exception := false.B
   io.redirect.exc_cause := 0.U
   io.redirect.snapshotIdx := 0.U
+  io.redirect.pc := 0.U
+  io.redirect.taken := false.B
+  io.redirect.is_cfi := false.B
+  io.redirect.is_jalr := false.B
   
   fcsr.io.csr_addr  := 0.U
   fcsr.io.csr_wen   := false.B
@@ -385,6 +389,10 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
     io.redirect.is_exception := Mux(lane0_is_older, bru(0).io.exc_valid, bru(1).io.exc_valid)
     io.redirect.exc_cause    := Mux(lane0_is_older, bru(0).io.exc_cause, bru(1).io.exc_cause)
     io.redirect.snapshotIdx  := Mux(lane0_is_older, r0_snap, r1_snap)
+    io.redirect.pc           := Mux(lane0_is_older, exe_uop_raw0.pc, exe_uop_raw1.pc)
+    io.redirect.taken        := Mux(lane0_is_older, bru(0).io.taken, bru(1).io.taken)
+    io.redirect.is_cfi       := Mux(lane0_is_older, exe_dec0.is_branch || exe_dec0.is_jal || exe_dec0.is_jalr, exe_dec1.is_branch || exe_dec1.is_jal || exe_dec1.is_jalr)
+    io.redirect.is_jalr      := Mux(lane0_is_older, exe_dec0.is_jalr, exe_dec1.is_jalr)
   } .elsewhen(r0_valid) {
     io.redirect.valid := true.B
     io.redirect.target := bru(0).io.target
@@ -392,6 +400,10 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
     io.redirect.is_exception := bru(0).io.exc_valid
     io.redirect.exc_cause    := bru(0).io.exc_cause
     io.redirect.snapshotIdx  := r0_snap
+    io.redirect.pc           := exe_uop_raw0.pc
+    io.redirect.taken        := bru(0).io.taken
+    io.redirect.is_cfi       := exe_dec0.is_branch || exe_dec0.is_jal || exe_dec0.is_jalr
+    io.redirect.is_jalr      := exe_dec0.is_jalr
   } .elsewhen(r1_valid) {
     io.redirect.valid := true.B
     io.redirect.target := bru(1).io.target
@@ -399,6 +411,10 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
     io.redirect.is_exception := bru(1).io.exc_valid
     io.redirect.exc_cause    := bru(1).io.exc_cause
     io.redirect.snapshotIdx  := r1_snap
+    io.redirect.pc           := exe_uop_raw1.pc
+    io.redirect.taken        := bru(1).io.taken
+    io.redirect.is_cfi       := exe_dec1.is_branch || exe_dec1.is_jal || exe_dec1.is_jalr
+    io.redirect.is_jalr      := exe_dec1.is_jalr
   }
 
   // Writebacks and latch registers
