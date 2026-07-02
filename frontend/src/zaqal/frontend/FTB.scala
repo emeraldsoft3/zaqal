@@ -10,7 +10,7 @@ class FTBEntry(implicit val p: Parameters) extends Bundle with HasZaqalParameter
   val tag              = UInt(53.W) // Tag size = 64 - indexWidth - offsetWidth = 64 - 6 - 5 = 53
   val target           = UInt(xLen.W)
   val br_type          = UInt(2.W)  // 0: cond, 1: jal, 2: jalr, 3: call
-  val offset           = UInt(3.W)  // Instruction offset within fetch packet (0-7)
+  val offset           = UInt(4.W)  // Instruction offset within fetch packet (0-15)
   val taken            = Bool()     // Direction prediction
 }
 
@@ -20,7 +20,7 @@ class FTB(implicit val p: Parameters) extends Module with HasZaqalParameter {
     val hit     = Output(Bool())
     val target  = Output(UInt(xLen.W))
     val taken   = Output(Bool())
-    val slot    = Output(UInt(3.W))
+    val slot    = Output(UInt(4.W))
     
     // Update interface from BRU
     val update_valid = Input(Bool())
@@ -31,7 +31,7 @@ class FTB(implicit val p: Parameters) extends Module with HasZaqalParameter {
     val update_is_jalr= Input(Bool())
   })
 
-  val numEntries = 64
+  val numEntries = ftbEntries
   val indexWidth = log2Up(numEntries)       // 6 bits
   val offsetWidth = log2Up(fetchWidth * 4)   // 5 bits (fetchWidth = 8 instructions * 4 bytes = 32-byte blocks)
   val tagWidth = xLen - indexWidth - offsetWidth // 53 bits
@@ -42,7 +42,7 @@ class FTB(implicit val p: Parameters) extends Module with HasZaqalParameter {
   // Index, Tag, Offset helpers
   def getIndex(pc: UInt): UInt = pc(indexWidth + offsetWidth - 1, offsetWidth)
   def getTag(pc: UInt): UInt = pc(xLen - 1, indexWidth + offsetWidth)
-  def getOffset(pc: UInt): UInt = pc(offsetWidth - 1, 2)
+  def getOffset(pc: UInt): UInt = pc(offsetWidth - 1, 1)
 
   // Lookup logic
   val index = getIndex(io.req_pc)

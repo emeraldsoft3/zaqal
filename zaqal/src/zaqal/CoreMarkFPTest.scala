@@ -32,7 +32,7 @@ object CoreMarkFPTest extends App {
       // Track retired instructions for IPC calculation
       // We assume an instruction is retired when it fires into the backend
       // and doesn't cause a redirect (simplified)
-      val fire = dut.io.debug_ftq_valid_out.peek().litToBoolean && dut.io.debug_ftq_ready_out.peek().litToBoolean
+      val fire = dut.debug.get.ftq_valid_out.peek().litToBoolean && dut.debug.get.ftq_ready_out.peek().litToBoolean
       if (fire && cycle >= resetCycles) {
           instructionsRetired += 1
       }
@@ -53,13 +53,13 @@ object CoreMarkFPTest extends App {
     
     println("--- Final Register State ---")
     for (i <- 0 until 32) {
-      val regVal = dut.io.debug_regs(i).peek().litValue
+      val regVal = dut.debug.get.regs(i).peek().litValue
       println(f"x$i%02d: 0x$regVal%016x")
     }
 
     println("--- Final FP Register State ---")
     for (i <- 0 until 32) {
-      val regVal = dut.io.debug_fp_regs(i).peek().litValue
+      val regVal = dut.debug.get.fp_regs(i).peek().litValue
       println(f"f$i%02d: 0x$regVal%016x")
     }
   }

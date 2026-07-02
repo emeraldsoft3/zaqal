@@ -79,7 +79,8 @@ module BRU(	// backend/src/zaqal/backend/fu/BRU.scala:9:7
                 io_pc,	// backend/src/zaqal/backend/fu/BRU.scala:10:14
   input         io_is_rvc,	// backend/src/zaqal/backend/fu/BRU.scala:10:14
                 io_pred_taken,	// backend/src/zaqal/backend/fu/BRU.scala:10:14
-  output        io_mispredict,	// backend/src/zaqal/backend/fu/BRU.scala:10:14
+  output        io_taken,	// backend/src/zaqal/backend/fu/BRU.scala:10:14
+                io_mispredict,	// backend/src/zaqal/backend/fu/BRU.scala:10:14
   output [63:0] io_target,	// backend/src/zaqal/backend/fu/BRU.scala:10:14
   output        io_exc_valid	// backend/src/zaqal/backend/fu/BRU.scala:10:14
 );
@@ -87,7 +88,7 @@ module BRU(	// backend/src/zaqal/backend/fu/BRU.scala:9:7
   wire        _comparator_io_eq;	// backend/src/zaqal/backend/fu/BRU.scala:25:26
   wire        _comparator_io_lt;	// backend/src/zaqal/backend/fu/BRU.scala:25:26
   wire        _comparator_io_ltu;	// backend/src/zaqal/backend/fu/BRU.scala:25:26
-  wire        actual_taken =
+  wire        io_taken_0 =
     io_dec_is_beq
       ? _comparator_io_eq
       : io_dec_is_bne
@@ -103,11 +104,11 @@ module BRU(	// backend/src/zaqal/backend/fu/BRU.scala:9:7
                           : io_dec_is_jal | io_dec_is_jalr;	// backend/src/zaqal/backend/fu/BRU.scala:25:26, :30:20, :32:20, :34:20, src/main/scala/chisel3/util/Mux.scala:126:16
   wire [63:0] _target_pc_T_1 = io_pc + io_dec_imm;	// backend/src/zaqal/backend/fu/BRU.scala:47:33
   wire        is_cfi = io_dec_is_branch | io_dec_is_jal | io_dec_is_jalr;	// backend/src/zaqal/backend/fu/BRU.scala:53:50
-  wire        is_misaligned = actual_taken & _target_pc_T_1[0];	// backend/src/zaqal/backend/fu/BRU.scala:47:33, :58:36, :59:50, src/main/scala/chisel3/util/Mux.scala:126:16
+  wire        is_misaligned = io_taken_0 & _target_pc_T_1[0];	// backend/src/zaqal/backend/fu/BRU.scala:47:33, :58:36, :59:50, src/main/scala/chisel3/util/Mux.scala:126:16
   wire        io_mispredict_0 =
-    actual_taken != io_pred_taken | io_pred_taken & ~is_cfi | is_misaligned;	// backend/src/zaqal/backend/fu/BRU.scala:53:50, :58:36, :63:{34,71,74,83}, src/main/scala/chisel3/util/Mux.scala:126:16
+    io_taken_0 != io_pred_taken | io_pred_taken & ~is_cfi | is_misaligned;	// backend/src/zaqal/backend/fu/BRU.scala:53:50, :58:36, :63:{34,71,74,83}, src/main/scala/chisel3/util/Mux.scala:126:16
   wire [63:0] io_target_0 =
-    actual_taken
+    io_taken_0
       ? (io_dec_is_jalr ? io_src1 + io_dec_imm & 64'hFFFFFFFFFFFFFFFE : _target_pc_T_1)
       : io_pc + {61'h0, io_is_rvc ? 3'h2 : 3'h4};	// backend/src/zaqal/backend/fu/BRU.scala:47:33, :48:{30,51,53}, :49:28, :51:{30,35}, :64:23, src/main/scala/chisel3/util/Mux.scala:126:16
   `ifndef SYNTHESIS	// backend/src/zaqal/backend/fu/BRU.scala:69:11
@@ -115,7 +116,7 @@ module BRU(	// backend/src/zaqal/backend/fu/BRU.scala:9:7
       if ((`PRINTF_COND_) & io_mispredict_0 & is_cfi & ~reset)	// backend/src/zaqal/backend/fu/BRU.scala:53:50, :63:83, :69:11
         $fwrite(32'h80000002,
                 "[BRU REDIRECT] pc=%x target=%x actual_taken=%d is_rvc=%d\n", io_pc,
-                io_target_0, actual_taken, io_is_rvc);	// backend/src/zaqal/backend/fu/BRU.scala:64:23, :69:11, src/main/scala/chisel3/util/Mux.scala:126:16
+                io_target_0, io_taken_0, io_is_rvc);	// backend/src/zaqal/backend/fu/BRU.scala:64:23, :69:11, src/main/scala/chisel3/util/Mux.scala:126:16
     end // always @(posedge)
   `endif // not def SYNTHESIS
   Comparator comparator (	// backend/src/zaqal/backend/fu/BRU.scala:25:26
@@ -125,6 +126,7 @@ module BRU(	// backend/src/zaqal/backend/fu/BRU.scala:9:7
     .io_lt   (_comparator_io_lt),
     .io_ltu  (_comparator_io_ltu)
   );
+  assign io_taken = io_taken_0;	// backend/src/zaqal/backend/fu/BRU.scala:9:7, src/main/scala/chisel3/util/Mux.scala:126:16
   assign io_mispredict = io_mispredict_0;	// backend/src/zaqal/backend/fu/BRU.scala:9:7, :63:83
   assign io_target = io_target_0;	// backend/src/zaqal/backend/fu/BRU.scala:9:7, :64:23
   assign io_exc_valid = is_misaligned;	// backend/src/zaqal/backend/fu/BRU.scala:9:7, :58:36

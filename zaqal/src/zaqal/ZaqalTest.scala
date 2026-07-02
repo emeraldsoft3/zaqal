@@ -51,7 +51,7 @@ object ZaqalTest extends App {
       // 1. Apply Reset
       dut.reset.poke((cycle < resetCycles).B)
       
-      val flush = dut.io.debug_ftq_flush.peek().litToBoolean
+      val flush = dut.debug.get.ftq_flush.peek().litToBoolean
 
       // 2. Handle Flush (Clear our software model)
       if (flush) {
@@ -62,16 +62,16 @@ object ZaqalTest extends App {
       }
 
       // 3. Capture ENQUEUE (Frontend -> FTQ)
-      val enqValid = dut.io.debug_ftq_valid.peek().litToBoolean
-      val enqReady = dut.io.debug_ftq_ready.peek().litToBoolean
+      val enqValid = dut.debug.get.ftq_valid.peek().litToBoolean
+      val enqReady = dut.debug.get.ftq_ready.peek().litToBoolean
 
       if (enqValid && enqReady && !flush && cycle >= resetCycles) {
-        val pc    = dut.io.debug_ftq_pc.peek().litValue
-        val mask  = dut.io.debug_ftq_mask.peek().litValue
-        val insts = (0 until params.fetchWidth).map(i => f"0x${dut.io.debug_ftq_insts(i).peek().litValue}%08x").mkString(",")
-        val pTarget = dut.io.debug_ftq_pred_target.peek().litValue
-        val pTaken  = dut.io.debug_ftq_pred_taken.peek().litToBoolean
-        val pSlot   = dut.io.debug_ftq_pred_slot.peek().litValue
+        val pc    = dut.debug.get.ftq_pc.peek().litValue
+        val mask  = dut.debug.get.ftq_mask.peek().litValue
+        val insts = (0 until params.fetchWidth).map(i => f"0x${dut.debug.get.ftq_insts(i).peek().litValue}%08x").mkString(",")
+        val pTarget = dut.debug.get.ftq_pred_target.peek().litValue
+        val pTaken  = dut.debug.get.ftq_pred_taken.peek().litToBoolean
+        val pSlot   = dut.debug.get.ftq_pred_slot.peek().litValue
         
         shadowFTQ(manualWritePtr) = f"0x$pc%08x,${mask.toString(2)},$insts,0x$pTarget%08x,$pTaken,$pSlot"
         manualWritePtr = (manualWritePtr + 1) % params.ftqEntries
@@ -79,8 +79,8 @@ object ZaqalTest extends App {
 
       // 4. Capture DEQUEUE (FTQ -> Backend)
       // This is the new logic to see the Backend "eating" instructions
-      val deqValid = dut.io.debug_ftq_valid_out.peek().litToBoolean // You may need to expose this in Core
-      val deqReady = dut.io.debug_ftq_ready_out.peek().litToBoolean 
+      val deqValid = dut.debug.get.ftq_valid_out.peek().litToBoolean // You may need to expose this in Core
+      val deqReady = dut.debug.get.ftq_ready_out.peek().litToBoolean 
 
       if (deqValid && deqReady && !flush && cycle >= resetCycles) {
         // Remove from shadow map to show "EMPTY" in CSV
@@ -101,13 +101,13 @@ object ZaqalTest extends App {
     
     println("--- Final Register State ---")
     for (i <- 0 until 64) {
-      val regVal = dut.io.debug_regs(i).peek().litValue
+      val regVal = dut.debug.get.regs(i).peek().litValue
       println(f"p$i%02d: 0x$regVal%016x")
     }
 
     println("--- Final FP Register State ---")
     for (i <- 0 until 32) {
-      val regVal = dut.io.debug_fp_regs(i).peek().litValue
+      val regVal = dut.debug.get.fp_regs(i).peek().litValue
       println(f"f$i%02d: 0x$regVal%016x")
     }
   }

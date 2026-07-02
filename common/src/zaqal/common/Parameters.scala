@@ -19,7 +19,9 @@ case class ZaqalParams(
   decodeWidth: Int = 6,
   programFile: String = "programs/hex/program.hex",
   renameSnapshotNum: Int = 8,
-  ibufSize: Int = 48
+  ibufSize: Int = 48,
+  enableDebugPorts: Boolean = true,
+  ftbEntries: Int = 64
 )
 
 // 2. Define the Field Key that CDE uses to locate ZaqalParams
@@ -45,6 +47,8 @@ trait HasZaqalParameter {
   def programFile = zP.programFile
   def renameSnapshotNum = zP.renameSnapshotNum
   def ibufSize = zP.ibufSize
+  def enableDebugPorts = zP.enableDebugPorts
+  def ftbEntries = zP.ftbEntries
   def phyRegIdxWidth = log2Up(phyRegs)
   def predictWidth = fetchWidth * (if (hasCExtension) 2 else 1)
 }

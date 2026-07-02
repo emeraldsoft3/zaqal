@@ -332,7 +332,11 @@ module Execute(	// backend/src/zaqal/backend/Execute.scala:10:7
                 io_fp_in_bits_pdest,	// backend/src/zaqal/backend/Execute.scala:11:14
   output        io_redirect_valid,	// backend/src/zaqal/backend/Execute.scala:11:14
   output [63:0] io_redirect_target,	// backend/src/zaqal/backend/Execute.scala:11:14
+  output        io_redirect_is_exception,	// backend/src/zaqal/backend/Execute.scala:11:14
   output [2:0]  io_redirect_snapshotIdx,	// backend/src/zaqal/backend/Execute.scala:11:14
+  output [63:0] io_redirect_pc,	// backend/src/zaqal/backend/Execute.scala:11:14
+  output        io_redirect_taken,	// backend/src/zaqal/backend/Execute.scala:11:14
+                io_redirect_is_cfi,	// backend/src/zaqal/backend/Execute.scala:11:14
   input  [63:0] io_debug_cycle,	// backend/src/zaqal/backend/Execute.scala:11:14
   output [63:0] io_debug_regs_0,	// backend/src/zaqal/backend/Execute.scala:11:14
                 io_debug_regs_1,	// backend/src/zaqal/backend/Execute.scala:11:14
@@ -764,9 +768,11 @@ module Execute(	// backend/src/zaqal/backend/Execute.scala:10:7
   wire [15:0]  _lsu_io_mem_wmask;	// backend/src/zaqal/backend/Execute.scala:26:20
   wire [127:0] _lsu_io_mem_wdata;	// backend/src/zaqal/backend/Execute.scala:26:20
   wire [63:0]  _lsu_io_result;	// backend/src/zaqal/backend/Execute.scala:26:20
+  wire         _bru_1_io_taken;	// backend/src/zaqal/backend/Execute.scala:25:32
   wire         _bru_1_io_mispredict;	// backend/src/zaqal/backend/Execute.scala:25:32
   wire [63:0]  _bru_1_io_target;	// backend/src/zaqal/backend/Execute.scala:25:32
   wire         _bru_1_io_exc_valid;	// backend/src/zaqal/backend/Execute.scala:25:32
+  wire         _bru_0_io_taken;	// backend/src/zaqal/backend/Execute.scala:25:32
   wire         _bru_0_io_mispredict;	// backend/src/zaqal/backend/Execute.scala:25:32
   wire [63:0]  _bru_0_io_target;	// backend/src/zaqal/backend/Execute.scala:25:32
   wire         _bru_0_io_exc_valid;	// backend/src/zaqal/backend/Execute.scala:25:32
@@ -838,337 +844,337 @@ module Execute(	// backend/src/zaqal/backend/Execute.scala:10:7
     io_int_in_0_bits_decode_is_div | io_int_in_0_bits_decode_is_divu
     | io_int_in_0_bits_decode_is_rem | io_int_in_0_bits_decode_is_remu
     | io_int_in_0_bits_decode_is_divw | io_int_in_0_bits_decode_is_divuw
-    | io_int_in_0_bits_decode_is_remw | io_int_in_0_bits_decode_is_remuw;	// backend/src/zaqal/backend/Execute.scala:88:66
+    | io_int_in_0_bits_decode_is_remw | io_int_in_0_bits_decode_is_remuw;	// backend/src/zaqal/backend/Execute.scala:92:66
   wire         is_div_op1 =
     io_int_in_1_bits_decode_is_div | io_int_in_1_bits_decode_is_divu
     | io_int_in_1_bits_decode_is_rem | io_int_in_1_bits_decode_is_remu
     | io_int_in_1_bits_decode_is_divw | io_int_in_1_bits_decode_is_divuw
-    | io_int_in_1_bits_decode_is_remw | io_int_in_1_bits_decode_is_remuw;	// backend/src/zaqal/backend/Execute.scala:94:66
-  wire         io_int_in_0_ready_0 = ~is_div_op0 | _div_io_ready;	// backend/src/zaqal/backend/Execute.scala:28:20, :88:66, :103:28
-  wire         io_int_in_1_ready_0 = ~is_div_op1 | _div_io_ready;	// backend/src/zaqal/backend/Execute.scala:28:20, :94:66, :104:28
-  reg          exe_val0;	// backend/src/zaqal/backend/Execute.scala:109:25
-  reg  [63:0]  exe_uop0_uop_pc;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_uop_pre_is_rvc;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_uop_is_predicted_taken;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_decode_is_addi;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_decode_is_add;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_decode_is_mul;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_decode_is_mulh;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_decode_is_mulhsu;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_decode_is_mulhu;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_decode_is_mulw;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_decode_is_div;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_decode_is_divu;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_decode_is_rem;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_decode_is_remu;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_decode_is_divw;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_decode_is_divuw;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_decode_is_remw;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_decode_is_remuw;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_decode_is_beq;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_decode_is_bne;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_decode_is_blt;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_decode_is_bge;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_decode_is_bltu;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_decode_is_bgeu;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_decode_is_and;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_decode_is_or;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_decode_is_xor;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_decode_is_andi;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_decode_is_ori;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_decode_is_xori;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_decode_is_sll;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_decode_is_srl;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_decode_is_sra;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_decode_is_sllw;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_decode_is_srlw;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_decode_is_sraw;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_decode_is_slli;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_decode_is_srli;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_decode_is_srai;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_decode_is_slliw;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_decode_is_srliw;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_decode_is_sraiw;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_decode_is_slt;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_decode_is_sltu;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_decode_is_slti;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_decode_is_sltiu;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_decode_is_sub;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_decode_is_addw;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_decode_is_subw;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_decode_is_addiw;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_decode_is_lui;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_decode_is_auipc;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_decode_is_branch;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_decode_is_jal;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_decode_is_jalr;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_decode_is_sh1add;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_decode_is_sh2add;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_decode_is_sh3add;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_decode_is_sh1add_uw;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_decode_is_sh2add_uw;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_decode_is_sh3add_uw;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_decode_is_andn;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_decode_is_orn;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_decode_is_xorn;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_decode_is_rol;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_decode_is_ror;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_decode_is_rori;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_decode_is_rolw;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_decode_is_rorw;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_decode_is_roriw;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_decode_is_clz;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_decode_is_ctz;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_decode_is_cpop;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_decode_is_clzw;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_decode_is_ctzw;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_decode_is_cpopw;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_decode_is_rev8;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_decode_is_orc_b;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_decode_is_sextb;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_decode_is_sexth;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_decode_is_zexth;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_decode_is_min;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_decode_is_max;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_decode_is_minu;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_decode_is_maxu;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_decode_is_bset;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_decode_is_bseti;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_decode_is_bclr;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_decode_is_bclri;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_decode_is_binv;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_decode_is_binvi;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_decode_is_bext;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_decode_is_bexti;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg  [63:0]  exe_uop0_decode_imm;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_uop0_decode_is_fused_lui_addi;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg  [7:0]   exe_uop0_psrs1;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg  [7:0]   exe_uop0_psrs2;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg  [7:0]   exe_uop0_pdest;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg  [2:0]   exe_uop0_snapshotIdx;	// backend/src/zaqal/backend/Execute.scala:110:21
-  reg          exe_val1;	// backend/src/zaqal/backend/Execute.scala:118:25
-  reg  [63:0]  exe_uop1_uop_pc;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_uop_pre_is_rvc;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_uop_is_predicted_taken;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_decode_is_addi;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_decode_is_add;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_decode_is_mul;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_decode_is_mulh;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_decode_is_mulhsu;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_decode_is_mulhu;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_decode_is_mulw;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_decode_is_div;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_decode_is_divu;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_decode_is_rem;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_decode_is_remu;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_decode_is_divw;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_decode_is_divuw;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_decode_is_remw;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_decode_is_remuw;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_decode_is_beq;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_decode_is_bne;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_decode_is_blt;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_decode_is_bge;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_decode_is_bltu;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_decode_is_bgeu;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_decode_is_and;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_decode_is_or;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_decode_is_xor;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_decode_is_andi;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_decode_is_ori;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_decode_is_xori;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_decode_is_sll;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_decode_is_srl;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_decode_is_sra;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_decode_is_sllw;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_decode_is_srlw;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_decode_is_sraw;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_decode_is_slli;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_decode_is_srli;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_decode_is_srai;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_decode_is_slliw;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_decode_is_srliw;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_decode_is_sraiw;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_decode_is_slt;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_decode_is_sltu;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_decode_is_slti;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_decode_is_sltiu;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_decode_is_sub;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_decode_is_addw;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_decode_is_subw;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_decode_is_addiw;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_decode_is_lui;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_decode_is_auipc;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_decode_is_branch;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_decode_is_jal;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_decode_is_jalr;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_decode_is_sh1add;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_decode_is_sh2add;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_decode_is_sh3add;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_decode_is_sh1add_uw;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_decode_is_sh2add_uw;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_decode_is_sh3add_uw;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_decode_is_andn;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_decode_is_orn;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_decode_is_xorn;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_decode_is_rol;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_decode_is_ror;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_decode_is_rori;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_decode_is_rolw;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_decode_is_rorw;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_decode_is_roriw;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_decode_is_clz;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_decode_is_ctz;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_decode_is_cpop;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_decode_is_clzw;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_decode_is_ctzw;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_decode_is_cpopw;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_decode_is_rev8;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_decode_is_orc_b;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_decode_is_sextb;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_decode_is_sexth;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_decode_is_zexth;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_decode_is_min;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_decode_is_max;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_decode_is_minu;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_decode_is_maxu;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_decode_is_bset;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_decode_is_bseti;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_decode_is_bclr;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_decode_is_bclri;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_decode_is_binv;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_decode_is_binvi;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_decode_is_bext;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_decode_is_bexti;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg  [63:0]  exe_uop1_decode_imm;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_uop1_decode_is_fused_lui_addi;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg  [7:0]   exe_uop1_psrs1;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg  [7:0]   exe_uop1_psrs2;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg  [7:0]   exe_uop1_pdest;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg  [2:0]   exe_uop1_snapshotIdx;	// backend/src/zaqal/backend/Execute.scala:119:21
-  reg          exe_valMem;	// backend/src/zaqal/backend/Execute.scala:127:27
-  reg          exe_uopMem_decode_is_lb;	// backend/src/zaqal/backend/Execute.scala:128:23
-  reg          exe_uopMem_decode_is_lh;	// backend/src/zaqal/backend/Execute.scala:128:23
-  reg          exe_uopMem_decode_is_lw;	// backend/src/zaqal/backend/Execute.scala:128:23
-  reg          exe_uopMem_decode_is_ld;	// backend/src/zaqal/backend/Execute.scala:128:23
-  reg          exe_uopMem_decode_is_lbu;	// backend/src/zaqal/backend/Execute.scala:128:23
-  reg          exe_uopMem_decode_is_lhu;	// backend/src/zaqal/backend/Execute.scala:128:23
-  reg          exe_uopMem_decode_is_lwu;	// backend/src/zaqal/backend/Execute.scala:128:23
-  reg          exe_uopMem_decode_is_load;	// backend/src/zaqal/backend/Execute.scala:128:23
-  reg          exe_uopMem_decode_is_sb;	// backend/src/zaqal/backend/Execute.scala:128:23
-  reg          exe_uopMem_decode_is_sh;	// backend/src/zaqal/backend/Execute.scala:128:23
-  reg          exe_uopMem_decode_is_sw;	// backend/src/zaqal/backend/Execute.scala:128:23
-  reg          exe_uopMem_decode_is_sd;	// backend/src/zaqal/backend/Execute.scala:128:23
-  reg          exe_uopMem_decode_is_store;	// backend/src/zaqal/backend/Execute.scala:128:23
-  reg          exe_uopMem_decode_is_lr;	// backend/src/zaqal/backend/Execute.scala:128:23
-  reg          exe_uopMem_decode_is_sc;	// backend/src/zaqal/backend/Execute.scala:128:23
-  reg          exe_uopMem_decode_is_lr_w;	// backend/src/zaqal/backend/Execute.scala:128:23
-  reg          exe_uopMem_decode_is_lr_d;	// backend/src/zaqal/backend/Execute.scala:128:23
-  reg          exe_uopMem_decode_is_sc_w;	// backend/src/zaqal/backend/Execute.scala:128:23
-  reg          exe_uopMem_decode_is_sc_d;	// backend/src/zaqal/backend/Execute.scala:128:23
-  reg          exe_uopMem_decode_is_amoadd;	// backend/src/zaqal/backend/Execute.scala:128:23
-  reg          exe_uopMem_decode_is_amoswap;	// backend/src/zaqal/backend/Execute.scala:128:23
-  reg          exe_uopMem_decode_is_amoxor;	// backend/src/zaqal/backend/Execute.scala:128:23
-  reg          exe_uopMem_decode_is_amoand;	// backend/src/zaqal/backend/Execute.scala:128:23
-  reg          exe_uopMem_decode_is_amoor;	// backend/src/zaqal/backend/Execute.scala:128:23
-  reg          exe_uopMem_decode_is_amomin;	// backend/src/zaqal/backend/Execute.scala:128:23
-  reg          exe_uopMem_decode_is_amomax;	// backend/src/zaqal/backend/Execute.scala:128:23
-  reg          exe_uopMem_decode_is_amominu;	// backend/src/zaqal/backend/Execute.scala:128:23
-  reg          exe_uopMem_decode_is_amomaxu;	// backend/src/zaqal/backend/Execute.scala:128:23
-  reg          exe_uopMem_decode_is_amo_w;	// backend/src/zaqal/backend/Execute.scala:128:23
-  reg          exe_uopMem_decode_is_amo_d;	// backend/src/zaqal/backend/Execute.scala:128:23
-  reg          exe_uopMem_decode_is_atomic;	// backend/src/zaqal/backend/Execute.scala:128:23
-  reg          exe_uopMem_decode_is_fload;	// backend/src/zaqal/backend/Execute.scala:128:23
-  reg          exe_uopMem_decode_is_flw;	// backend/src/zaqal/backend/Execute.scala:128:23
-  reg          exe_uopMem_decode_is_fld;	// backend/src/zaqal/backend/Execute.scala:128:23
-  reg          exe_uopMem_decode_is_fstore;	// backend/src/zaqal/backend/Execute.scala:128:23
-  reg          exe_uopMem_decode_is_fsw;	// backend/src/zaqal/backend/Execute.scala:128:23
-  reg          exe_uopMem_decode_is_fsd;	// backend/src/zaqal/backend/Execute.scala:128:23
-  reg  [63:0]  exe_uopMem_decode_imm;	// backend/src/zaqal/backend/Execute.scala:128:23
-  reg  [7:0]   exe_uopMem_psrs1;	// backend/src/zaqal/backend/Execute.scala:128:23
-  reg  [7:0]   exe_uopMem_psrs2;	// backend/src/zaqal/backend/Execute.scala:128:23
-  reg  [7:0]   exe_uopMem_pdest;	// backend/src/zaqal/backend/Execute.scala:128:23
-  reg          exe_valFp;	// backend/src/zaqal/backend/Execute.scala:136:26
-  reg  [31:0]  exe_uopFp_uop_inst_raw;	// backend/src/zaqal/backend/Execute.scala:137:22
-  reg          exe_uopFp_decode_is_fmadd;	// backend/src/zaqal/backend/Execute.scala:137:22
-  reg          exe_uopFp_decode_is_fadd;	// backend/src/zaqal/backend/Execute.scala:137:22
-  reg          exe_uopFp_decode_is_fsub;	// backend/src/zaqal/backend/Execute.scala:137:22
-  reg          exe_uopFp_decode_is_fmul;	// backend/src/zaqal/backend/Execute.scala:137:22
-  reg          exe_uopFp_decode_is_fdiv;	// backend/src/zaqal/backend/Execute.scala:137:22
-  reg          exe_uopFp_decode_is_fsqrt;	// backend/src/zaqal/backend/Execute.scala:137:22
-  reg          exe_uopFp_decode_is_fsgnj;	// backend/src/zaqal/backend/Execute.scala:137:22
-  reg          exe_uopFp_decode_is_fminmax;	// backend/src/zaqal/backend/Execute.scala:137:22
-  reg          exe_uopFp_decode_is_fcvt_f2i;	// backend/src/zaqal/backend/Execute.scala:137:22
-  reg          exe_uopFp_decode_is_fcvt_i2f;	// backend/src/zaqal/backend/Execute.scala:137:22
-  reg          exe_uopFp_decode_is_fmv_w_x;	// backend/src/zaqal/backend/Execute.scala:137:22
-  reg          exe_uopFp_decode_is_fmv_x_w;	// backend/src/zaqal/backend/Execute.scala:137:22
-  reg          exe_uopFp_decode_is_feq;	// backend/src/zaqal/backend/Execute.scala:137:22
-  reg          exe_uopFp_decode_is_flt;	// backend/src/zaqal/backend/Execute.scala:137:22
-  reg          exe_uopFp_decode_is_fle;	// backend/src/zaqal/backend/Execute.scala:137:22
-  reg          exe_uopFp_decode_is_fclass;	// backend/src/zaqal/backend/Execute.scala:137:22
-  reg  [7:0]   exe_uopFp_psrs1;	// backend/src/zaqal/backend/Execute.scala:137:22
-  reg  [7:0]   exe_uopFp_pdest;	// backend/src/zaqal/backend/Execute.scala:137:22
-  reg  [63:0]  r_regFile_rdata0;	// backend/src/zaqal/backend/Execute.scala:160:29
-  reg  [63:0]  r_regFile_rdata1;	// backend/src/zaqal/backend/Execute.scala:161:29
-  reg  [63:0]  r_regFile_rdata2;	// backend/src/zaqal/backend/Execute.scala:167:29
-  reg  [63:0]  r_regFile_rdata3;	// backend/src/zaqal/backend/Execute.scala:168:29
-  reg  [63:0]  r_regFile_rdata4;	// backend/src/zaqal/backend/Execute.scala:174:29
-  reg  [63:0]  r_regFile_rdata5;	// backend/src/zaqal/backend/Execute.scala:175:29
-  reg  [63:0]  r_fpRegFile_rdata3;	// backend/src/zaqal/backend/Execute.scala:176:31
-  reg  [63:0]  r_fpRegFile_rdata0;	// backend/src/zaqal/backend/Execute.scala:183:31
-  reg  [63:0]  r_fpRegFile_rdata1;	// backend/src/zaqal/backend/Execute.scala:184:31
-  reg  [63:0]  r_regFile_rdata6;	// backend/src/zaqal/backend/Execute.scala:186:29
+    | io_int_in_1_bits_decode_is_remw | io_int_in_1_bits_decode_is_remuw;	// backend/src/zaqal/backend/Execute.scala:98:66
+  wire         io_int_in_0_ready_0 = ~is_div_op0 | _div_io_ready;	// backend/src/zaqal/backend/Execute.scala:28:20, :92:66, :107:28
+  wire         io_int_in_1_ready_0 = ~is_div_op1 | _div_io_ready;	// backend/src/zaqal/backend/Execute.scala:28:20, :98:66, :108:28
+  reg          exe_val0;	// backend/src/zaqal/backend/Execute.scala:113:25
+  reg  [63:0]  exe_uop0_uop_pc;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_uop_pre_is_rvc;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_uop_is_predicted_taken;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_decode_is_addi;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_decode_is_add;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_decode_is_mul;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_decode_is_mulh;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_decode_is_mulhsu;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_decode_is_mulhu;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_decode_is_mulw;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_decode_is_div;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_decode_is_divu;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_decode_is_rem;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_decode_is_remu;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_decode_is_divw;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_decode_is_divuw;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_decode_is_remw;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_decode_is_remuw;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_decode_is_beq;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_decode_is_bne;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_decode_is_blt;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_decode_is_bge;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_decode_is_bltu;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_decode_is_bgeu;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_decode_is_and;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_decode_is_or;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_decode_is_xor;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_decode_is_andi;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_decode_is_ori;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_decode_is_xori;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_decode_is_sll;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_decode_is_srl;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_decode_is_sra;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_decode_is_sllw;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_decode_is_srlw;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_decode_is_sraw;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_decode_is_slli;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_decode_is_srli;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_decode_is_srai;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_decode_is_slliw;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_decode_is_srliw;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_decode_is_sraiw;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_decode_is_slt;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_decode_is_sltu;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_decode_is_slti;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_decode_is_sltiu;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_decode_is_sub;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_decode_is_addw;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_decode_is_subw;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_decode_is_addiw;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_decode_is_lui;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_decode_is_auipc;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_decode_is_branch;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_decode_is_jal;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_decode_is_jalr;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_decode_is_sh1add;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_decode_is_sh2add;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_decode_is_sh3add;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_decode_is_sh1add_uw;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_decode_is_sh2add_uw;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_decode_is_sh3add_uw;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_decode_is_andn;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_decode_is_orn;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_decode_is_xorn;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_decode_is_rol;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_decode_is_ror;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_decode_is_rori;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_decode_is_rolw;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_decode_is_rorw;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_decode_is_roriw;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_decode_is_clz;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_decode_is_ctz;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_decode_is_cpop;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_decode_is_clzw;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_decode_is_ctzw;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_decode_is_cpopw;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_decode_is_rev8;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_decode_is_orc_b;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_decode_is_sextb;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_decode_is_sexth;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_decode_is_zexth;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_decode_is_min;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_decode_is_max;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_decode_is_minu;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_decode_is_maxu;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_decode_is_bset;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_decode_is_bseti;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_decode_is_bclr;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_decode_is_bclri;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_decode_is_binv;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_decode_is_binvi;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_decode_is_bext;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_decode_is_bexti;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg  [63:0]  exe_uop0_decode_imm;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_uop0_decode_is_fused_lui_addi;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg  [7:0]   exe_uop0_psrs1;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg  [7:0]   exe_uop0_psrs2;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg  [7:0]   exe_uop0_pdest;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg  [2:0]   exe_uop0_snapshotIdx;	// backend/src/zaqal/backend/Execute.scala:114:21
+  reg          exe_val1;	// backend/src/zaqal/backend/Execute.scala:122:25
+  reg  [63:0]  exe_uop1_uop_pc;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_uop_pre_is_rvc;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_uop_is_predicted_taken;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_decode_is_addi;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_decode_is_add;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_decode_is_mul;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_decode_is_mulh;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_decode_is_mulhsu;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_decode_is_mulhu;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_decode_is_mulw;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_decode_is_div;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_decode_is_divu;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_decode_is_rem;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_decode_is_remu;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_decode_is_divw;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_decode_is_divuw;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_decode_is_remw;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_decode_is_remuw;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_decode_is_beq;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_decode_is_bne;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_decode_is_blt;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_decode_is_bge;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_decode_is_bltu;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_decode_is_bgeu;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_decode_is_and;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_decode_is_or;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_decode_is_xor;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_decode_is_andi;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_decode_is_ori;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_decode_is_xori;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_decode_is_sll;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_decode_is_srl;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_decode_is_sra;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_decode_is_sllw;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_decode_is_srlw;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_decode_is_sraw;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_decode_is_slli;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_decode_is_srli;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_decode_is_srai;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_decode_is_slliw;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_decode_is_srliw;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_decode_is_sraiw;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_decode_is_slt;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_decode_is_sltu;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_decode_is_slti;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_decode_is_sltiu;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_decode_is_sub;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_decode_is_addw;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_decode_is_subw;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_decode_is_addiw;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_decode_is_lui;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_decode_is_auipc;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_decode_is_branch;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_decode_is_jal;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_decode_is_jalr;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_decode_is_sh1add;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_decode_is_sh2add;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_decode_is_sh3add;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_decode_is_sh1add_uw;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_decode_is_sh2add_uw;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_decode_is_sh3add_uw;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_decode_is_andn;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_decode_is_orn;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_decode_is_xorn;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_decode_is_rol;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_decode_is_ror;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_decode_is_rori;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_decode_is_rolw;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_decode_is_rorw;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_decode_is_roriw;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_decode_is_clz;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_decode_is_ctz;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_decode_is_cpop;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_decode_is_clzw;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_decode_is_ctzw;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_decode_is_cpopw;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_decode_is_rev8;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_decode_is_orc_b;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_decode_is_sextb;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_decode_is_sexth;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_decode_is_zexth;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_decode_is_min;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_decode_is_max;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_decode_is_minu;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_decode_is_maxu;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_decode_is_bset;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_decode_is_bseti;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_decode_is_bclr;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_decode_is_bclri;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_decode_is_binv;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_decode_is_binvi;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_decode_is_bext;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_decode_is_bexti;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg  [63:0]  exe_uop1_decode_imm;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_uop1_decode_is_fused_lui_addi;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg  [7:0]   exe_uop1_psrs1;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg  [7:0]   exe_uop1_psrs2;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg  [7:0]   exe_uop1_pdest;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg  [2:0]   exe_uop1_snapshotIdx;	// backend/src/zaqal/backend/Execute.scala:123:21
+  reg          exe_valMem;	// backend/src/zaqal/backend/Execute.scala:131:27
+  reg          exe_uopMem_decode_is_lb;	// backend/src/zaqal/backend/Execute.scala:132:23
+  reg          exe_uopMem_decode_is_lh;	// backend/src/zaqal/backend/Execute.scala:132:23
+  reg          exe_uopMem_decode_is_lw;	// backend/src/zaqal/backend/Execute.scala:132:23
+  reg          exe_uopMem_decode_is_ld;	// backend/src/zaqal/backend/Execute.scala:132:23
+  reg          exe_uopMem_decode_is_lbu;	// backend/src/zaqal/backend/Execute.scala:132:23
+  reg          exe_uopMem_decode_is_lhu;	// backend/src/zaqal/backend/Execute.scala:132:23
+  reg          exe_uopMem_decode_is_lwu;	// backend/src/zaqal/backend/Execute.scala:132:23
+  reg          exe_uopMem_decode_is_load;	// backend/src/zaqal/backend/Execute.scala:132:23
+  reg          exe_uopMem_decode_is_sb;	// backend/src/zaqal/backend/Execute.scala:132:23
+  reg          exe_uopMem_decode_is_sh;	// backend/src/zaqal/backend/Execute.scala:132:23
+  reg          exe_uopMem_decode_is_sw;	// backend/src/zaqal/backend/Execute.scala:132:23
+  reg          exe_uopMem_decode_is_sd;	// backend/src/zaqal/backend/Execute.scala:132:23
+  reg          exe_uopMem_decode_is_store;	// backend/src/zaqal/backend/Execute.scala:132:23
+  reg          exe_uopMem_decode_is_lr;	// backend/src/zaqal/backend/Execute.scala:132:23
+  reg          exe_uopMem_decode_is_sc;	// backend/src/zaqal/backend/Execute.scala:132:23
+  reg          exe_uopMem_decode_is_lr_w;	// backend/src/zaqal/backend/Execute.scala:132:23
+  reg          exe_uopMem_decode_is_lr_d;	// backend/src/zaqal/backend/Execute.scala:132:23
+  reg          exe_uopMem_decode_is_sc_w;	// backend/src/zaqal/backend/Execute.scala:132:23
+  reg          exe_uopMem_decode_is_sc_d;	// backend/src/zaqal/backend/Execute.scala:132:23
+  reg          exe_uopMem_decode_is_amoadd;	// backend/src/zaqal/backend/Execute.scala:132:23
+  reg          exe_uopMem_decode_is_amoswap;	// backend/src/zaqal/backend/Execute.scala:132:23
+  reg          exe_uopMem_decode_is_amoxor;	// backend/src/zaqal/backend/Execute.scala:132:23
+  reg          exe_uopMem_decode_is_amoand;	// backend/src/zaqal/backend/Execute.scala:132:23
+  reg          exe_uopMem_decode_is_amoor;	// backend/src/zaqal/backend/Execute.scala:132:23
+  reg          exe_uopMem_decode_is_amomin;	// backend/src/zaqal/backend/Execute.scala:132:23
+  reg          exe_uopMem_decode_is_amomax;	// backend/src/zaqal/backend/Execute.scala:132:23
+  reg          exe_uopMem_decode_is_amominu;	// backend/src/zaqal/backend/Execute.scala:132:23
+  reg          exe_uopMem_decode_is_amomaxu;	// backend/src/zaqal/backend/Execute.scala:132:23
+  reg          exe_uopMem_decode_is_amo_w;	// backend/src/zaqal/backend/Execute.scala:132:23
+  reg          exe_uopMem_decode_is_amo_d;	// backend/src/zaqal/backend/Execute.scala:132:23
+  reg          exe_uopMem_decode_is_atomic;	// backend/src/zaqal/backend/Execute.scala:132:23
+  reg          exe_uopMem_decode_is_fload;	// backend/src/zaqal/backend/Execute.scala:132:23
+  reg          exe_uopMem_decode_is_flw;	// backend/src/zaqal/backend/Execute.scala:132:23
+  reg          exe_uopMem_decode_is_fld;	// backend/src/zaqal/backend/Execute.scala:132:23
+  reg          exe_uopMem_decode_is_fstore;	// backend/src/zaqal/backend/Execute.scala:132:23
+  reg          exe_uopMem_decode_is_fsw;	// backend/src/zaqal/backend/Execute.scala:132:23
+  reg          exe_uopMem_decode_is_fsd;	// backend/src/zaqal/backend/Execute.scala:132:23
+  reg  [63:0]  exe_uopMem_decode_imm;	// backend/src/zaqal/backend/Execute.scala:132:23
+  reg  [7:0]   exe_uopMem_psrs1;	// backend/src/zaqal/backend/Execute.scala:132:23
+  reg  [7:0]   exe_uopMem_psrs2;	// backend/src/zaqal/backend/Execute.scala:132:23
+  reg  [7:0]   exe_uopMem_pdest;	// backend/src/zaqal/backend/Execute.scala:132:23
+  reg          exe_valFp;	// backend/src/zaqal/backend/Execute.scala:140:26
+  reg  [31:0]  exe_uopFp_uop_inst_raw;	// backend/src/zaqal/backend/Execute.scala:141:22
+  reg          exe_uopFp_decode_is_fmadd;	// backend/src/zaqal/backend/Execute.scala:141:22
+  reg          exe_uopFp_decode_is_fadd;	// backend/src/zaqal/backend/Execute.scala:141:22
+  reg          exe_uopFp_decode_is_fsub;	// backend/src/zaqal/backend/Execute.scala:141:22
+  reg          exe_uopFp_decode_is_fmul;	// backend/src/zaqal/backend/Execute.scala:141:22
+  reg          exe_uopFp_decode_is_fdiv;	// backend/src/zaqal/backend/Execute.scala:141:22
+  reg          exe_uopFp_decode_is_fsqrt;	// backend/src/zaqal/backend/Execute.scala:141:22
+  reg          exe_uopFp_decode_is_fsgnj;	// backend/src/zaqal/backend/Execute.scala:141:22
+  reg          exe_uopFp_decode_is_fminmax;	// backend/src/zaqal/backend/Execute.scala:141:22
+  reg          exe_uopFp_decode_is_fcvt_f2i;	// backend/src/zaqal/backend/Execute.scala:141:22
+  reg          exe_uopFp_decode_is_fcvt_i2f;	// backend/src/zaqal/backend/Execute.scala:141:22
+  reg          exe_uopFp_decode_is_fmv_w_x;	// backend/src/zaqal/backend/Execute.scala:141:22
+  reg          exe_uopFp_decode_is_fmv_x_w;	// backend/src/zaqal/backend/Execute.scala:141:22
+  reg          exe_uopFp_decode_is_feq;	// backend/src/zaqal/backend/Execute.scala:141:22
+  reg          exe_uopFp_decode_is_flt;	// backend/src/zaqal/backend/Execute.scala:141:22
+  reg          exe_uopFp_decode_is_fle;	// backend/src/zaqal/backend/Execute.scala:141:22
+  reg          exe_uopFp_decode_is_fclass;	// backend/src/zaqal/backend/Execute.scala:141:22
+  reg  [7:0]   exe_uopFp_psrs1;	// backend/src/zaqal/backend/Execute.scala:141:22
+  reg  [7:0]   exe_uopFp_pdest;	// backend/src/zaqal/backend/Execute.scala:141:22
+  reg  [63:0]  r_regFile_rdata0;	// backend/src/zaqal/backend/Execute.scala:164:29
+  reg  [63:0]  r_regFile_rdata1;	// backend/src/zaqal/backend/Execute.scala:165:29
+  reg  [63:0]  r_regFile_rdata2;	// backend/src/zaqal/backend/Execute.scala:171:29
+  reg  [63:0]  r_regFile_rdata3;	// backend/src/zaqal/backend/Execute.scala:172:29
+  reg  [63:0]  r_regFile_rdata4;	// backend/src/zaqal/backend/Execute.scala:178:29
+  reg  [63:0]  r_regFile_rdata5;	// backend/src/zaqal/backend/Execute.scala:179:29
+  reg  [63:0]  r_fpRegFile_rdata3;	// backend/src/zaqal/backend/Execute.scala:180:31
+  reg  [63:0]  r_fpRegFile_rdata0;	// backend/src/zaqal/backend/Execute.scala:187:31
+  reg  [63:0]  r_fpRegFile_rdata1;	// backend/src/zaqal/backend/Execute.scala:188:31
+  reg  [63:0]  r_regFile_rdata6;	// backend/src/zaqal/backend/Execute.scala:190:29
   wire         exe_is_div_op0 =
     exe_uop0_decode_is_div | exe_uop0_decode_is_divu | exe_uop0_decode_is_rem
     | exe_uop0_decode_is_remu | exe_uop0_decode_is_divw | exe_uop0_decode_is_divuw
-    | exe_uop0_decode_is_remw | exe_uop0_decode_is_remuw;	// backend/src/zaqal/backend/Execute.scala:110:21, :198:82
+    | exe_uop0_decode_is_remw | exe_uop0_decode_is_remuw;	// backend/src/zaqal/backend/Execute.scala:114:21, :202:82
   wire         exe_is_mul_op0 =
     exe_uop0_decode_is_mul | exe_uop0_decode_is_mulh | exe_uop0_decode_is_mulhsu
-    | exe_uop0_decode_is_mulhu | exe_uop0_decode_is_mulw;	// backend/src/zaqal/backend/Execute.scala:110:21, :199:103
+    | exe_uop0_decode_is_mulhu | exe_uop0_decode_is_mulw;	// backend/src/zaqal/backend/Execute.scala:114:21, :203:103
   wire         _next_regFile_wen_3_T =
-    r_agu_uop_decode_is_load | r_agu_uop_decode_is_atomic;	// backend/src/zaqal/backend/Execute.scala:38:24, :231:115
+    r_agu_uop_decode_is_load | r_agu_uop_decode_is_atomic;	// backend/src/zaqal/backend/Execute.scala:38:24, :235:115
   wire         wb3_valid =
-    r_agu_val & (|r_agu_uop_pdest) & ~r_agu_uop_decode_is_fload & _next_regFile_wen_3_T;	// backend/src/zaqal/backend/Execute.scala:37:28, :38:24, :231:{48,59,86,115}
-  reg          r_mul_val;	// backend/src/zaqal/backend/Execute.scala:240:26
-  reg  [7:0]   r_mul_pdest;	// backend/src/zaqal/backend/Execute.scala:241:28
-  reg          r2_mul_val;	// backend/src/zaqal/backend/Execute.scala:242:27
-  reg  [7:0]   r2_mul_pdest;	// backend/src/zaqal/backend/Execute.scala:243:29
-  reg          r_wb0_valid;	// backend/src/zaqal/backend/Execute.scala:250:28
-  reg  [7:0]   r_wb0_pdest;	// backend/src/zaqal/backend/Execute.scala:251:28
-  reg  [63:0]  r_wb0_data;	// backend/src/zaqal/backend/Execute.scala:252:28
-  reg          r_wb1_valid;	// backend/src/zaqal/backend/Execute.scala:254:28
-  reg  [7:0]   r_wb1_pdest;	// backend/src/zaqal/backend/Execute.scala:255:28
-  reg  [63:0]  r_wb1_data;	// backend/src/zaqal/backend/Execute.scala:256:28
-  reg          r_wb2_valid;	// backend/src/zaqal/backend/Execute.scala:258:28
-  reg  [7:0]   r_wb2_pdest;	// backend/src/zaqal/backend/Execute.scala:259:28
-  reg  [63:0]  r_wb2_data;	// backend/src/zaqal/backend/Execute.scala:260:28
-  reg          r_wb3_valid;	// backend/src/zaqal/backend/Execute.scala:262:28
-  reg  [7:0]   r_wb3_pdest;	// backend/src/zaqal/backend/Execute.scala:263:28
-  reg  [63:0]  r_wb3_data;	// backend/src/zaqal/backend/Execute.scala:264:28
-  reg          r_wb4_valid;	// backend/src/zaqal/backend/Execute.scala:266:28
-  reg  [7:0]   r_wb4_pdest;	// backend/src/zaqal/backend/Execute.scala:267:28
-  reg  [63:0]  r_wb4_data;	// backend/src/zaqal/backend/Execute.scala:268:28
-  reg          r_wb5_valid;	// backend/src/zaqal/backend/Execute.scala:270:28
-  reg  [7:0]   r_wb5_pdest;	// backend/src/zaqal/backend/Execute.scala:271:28
-  reg  [63:0]  r_wb5_data;	// backend/src/zaqal/backend/Execute.scala:272:28
-  reg          r2_wb0_valid;	// backend/src/zaqal/backend/Execute.scala:275:29
-  reg  [7:0]   r2_wb0_pdest;	// backend/src/zaqal/backend/Execute.scala:276:29
-  reg  [63:0]  r2_wb0_data;	// backend/src/zaqal/backend/Execute.scala:277:29
-  reg          r2_wb1_valid;	// backend/src/zaqal/backend/Execute.scala:279:29
-  reg  [7:0]   r2_wb1_pdest;	// backend/src/zaqal/backend/Execute.scala:280:29
-  reg  [63:0]  r2_wb1_data;	// backend/src/zaqal/backend/Execute.scala:281:29
-  reg          r2_wb2_valid;	// backend/src/zaqal/backend/Execute.scala:283:29
-  reg  [7:0]   r2_wb2_pdest;	// backend/src/zaqal/backend/Execute.scala:284:29
-  reg  [63:0]  r2_wb2_data;	// backend/src/zaqal/backend/Execute.scala:285:29
-  reg          r2_wb3_valid;	// backend/src/zaqal/backend/Execute.scala:287:29
-  reg  [7:0]   r2_wb3_pdest;	// backend/src/zaqal/backend/Execute.scala:288:29
-  reg  [63:0]  r2_wb3_data;	// backend/src/zaqal/backend/Execute.scala:289:29
-  reg          r2_wb4_valid;	// backend/src/zaqal/backend/Execute.scala:291:29
-  reg  [7:0]   r2_wb4_pdest;	// backend/src/zaqal/backend/Execute.scala:292:29
-  reg  [63:0]  r2_wb4_data;	// backend/src/zaqal/backend/Execute.scala:293:29
-  reg          r2_wb5_valid;	// backend/src/zaqal/backend/Execute.scala:295:29
-  reg  [7:0]   r2_wb5_pdest;	// backend/src/zaqal/backend/Execute.scala:296:29
-  reg  [63:0]  r2_wb5_data;	// backend/src/zaqal/backend/Execute.scala:297:29
+    r_agu_val & (|r_agu_uop_pdest) & ~r_agu_uop_decode_is_fload & _next_regFile_wen_3_T;	// backend/src/zaqal/backend/Execute.scala:37:28, :38:24, :235:{48,59,86,115}
+  reg          r_mul_val;	// backend/src/zaqal/backend/Execute.scala:244:26
+  reg  [7:0]   r_mul_pdest;	// backend/src/zaqal/backend/Execute.scala:245:28
+  reg          r2_mul_val;	// backend/src/zaqal/backend/Execute.scala:246:27
+  reg  [7:0]   r2_mul_pdest;	// backend/src/zaqal/backend/Execute.scala:247:29
+  reg          r_wb0_valid;	// backend/src/zaqal/backend/Execute.scala:254:28
+  reg  [7:0]   r_wb0_pdest;	// backend/src/zaqal/backend/Execute.scala:255:28
+  reg  [63:0]  r_wb0_data;	// backend/src/zaqal/backend/Execute.scala:256:28
+  reg          r_wb1_valid;	// backend/src/zaqal/backend/Execute.scala:258:28
+  reg  [7:0]   r_wb1_pdest;	// backend/src/zaqal/backend/Execute.scala:259:28
+  reg  [63:0]  r_wb1_data;	// backend/src/zaqal/backend/Execute.scala:260:28
+  reg          r_wb2_valid;	// backend/src/zaqal/backend/Execute.scala:262:28
+  reg  [7:0]   r_wb2_pdest;	// backend/src/zaqal/backend/Execute.scala:263:28
+  reg  [63:0]  r_wb2_data;	// backend/src/zaqal/backend/Execute.scala:264:28
+  reg          r_wb3_valid;	// backend/src/zaqal/backend/Execute.scala:266:28
+  reg  [7:0]   r_wb3_pdest;	// backend/src/zaqal/backend/Execute.scala:267:28
+  reg  [63:0]  r_wb3_data;	// backend/src/zaqal/backend/Execute.scala:268:28
+  reg          r_wb4_valid;	// backend/src/zaqal/backend/Execute.scala:270:28
+  reg  [7:0]   r_wb4_pdest;	// backend/src/zaqal/backend/Execute.scala:271:28
+  reg  [63:0]  r_wb4_data;	// backend/src/zaqal/backend/Execute.scala:272:28
+  reg          r_wb5_valid;	// backend/src/zaqal/backend/Execute.scala:274:28
+  reg  [7:0]   r_wb5_pdest;	// backend/src/zaqal/backend/Execute.scala:275:28
+  reg  [63:0]  r_wb5_data;	// backend/src/zaqal/backend/Execute.scala:276:28
+  reg          r2_wb0_valid;	// backend/src/zaqal/backend/Execute.scala:279:29
+  reg  [7:0]   r2_wb0_pdest;	// backend/src/zaqal/backend/Execute.scala:280:29
+  reg  [63:0]  r2_wb0_data;	// backend/src/zaqal/backend/Execute.scala:281:29
+  reg          r2_wb1_valid;	// backend/src/zaqal/backend/Execute.scala:283:29
+  reg  [7:0]   r2_wb1_pdest;	// backend/src/zaqal/backend/Execute.scala:284:29
+  reg  [63:0]  r2_wb1_data;	// backend/src/zaqal/backend/Execute.scala:285:29
+  reg          r2_wb2_valid;	// backend/src/zaqal/backend/Execute.scala:287:29
+  reg  [7:0]   r2_wb2_pdest;	// backend/src/zaqal/backend/Execute.scala:288:29
+  reg  [63:0]  r2_wb2_data;	// backend/src/zaqal/backend/Execute.scala:289:29
+  reg          r2_wb3_valid;	// backend/src/zaqal/backend/Execute.scala:291:29
+  reg  [7:0]   r2_wb3_pdest;	// backend/src/zaqal/backend/Execute.scala:292:29
+  reg  [63:0]  r2_wb3_data;	// backend/src/zaqal/backend/Execute.scala:293:29
+  reg          r2_wb4_valid;	// backend/src/zaqal/backend/Execute.scala:295:29
+  reg  [7:0]   r2_wb4_pdest;	// backend/src/zaqal/backend/Execute.scala:296:29
+  reg  [63:0]  r2_wb4_data;	// backend/src/zaqal/backend/Execute.scala:297:29
+  reg          r2_wb5_valid;	// backend/src/zaqal/backend/Execute.scala:299:29
+  reg  [7:0]   r2_wb5_pdest;	// backend/src/zaqal/backend/Execute.scala:300:29
+  reg  [63:0]  r2_wb5_data;	// backend/src/zaqal/backend/Execute.scala:301:29
   wire [63:0]  src0_1 =
     wb3_valid & r_agu_uop_pdest == exe_uop0_psrs1 & (|exe_uop0_psrs1)
       ? _lsu_io_result
@@ -1205,7 +1211,7 @@ module Execute(	// backend/src/zaqal/backend/Execute.scala:10:7
                                                     & r2_wb5_pdest == exe_uop0_psrs1
                                                     & (|exe_uop0_psrs1)
                                                       ? r2_wb5_data
-                                                      : r_regFile_rdata0;	// backend/src/zaqal/backend/Execute.scala:26:20, :38:24, :110:21, :160:29, :231:86, :250:28, :251:28, :252:28, :254:28, :255:28, :256:28, :258:28, :259:28, :260:28, :262:28, :263:28, :264:28, :266:28, :267:28, :268:28, :270:28, :271:28, :272:28, :275:29, :276:29, :277:29, :279:29, :280:29, :281:29, :283:29, :284:29, :285:29, :287:29, :288:29, :289:29, :291:29, :292:29, :293:29, :295:29, :296:29, :297:29, :319:{66,77,87}, src/main/scala/chisel3/util/Mux.scala:126:16
+                                                      : r_regFile_rdata0;	// backend/src/zaqal/backend/Execute.scala:26:20, :38:24, :114:21, :164:29, :235:86, :254:28, :255:28, :256:28, :258:28, :259:28, :260:28, :262:28, :263:28, :264:28, :266:28, :267:28, :268:28, :270:28, :271:28, :272:28, :274:28, :275:28, :276:28, :279:29, :280:29, :281:29, :283:29, :284:29, :285:29, :287:29, :288:29, :289:29, :291:29, :292:29, :293:29, :295:29, :296:29, :297:29, :299:29, :300:29, :301:29, :323:{66,77,87}, src/main/scala/chisel3/util/Mux.scala:126:16
   wire [63:0]  src0_2 =
     wb3_valid & r_agu_uop_pdest == exe_uop0_psrs2 & (|exe_uop0_psrs2)
       ? _lsu_io_result
@@ -1242,7 +1248,7 @@ module Execute(	// backend/src/zaqal/backend/Execute.scala:10:7
                                                     & r2_wb5_pdest == exe_uop0_psrs2
                                                     & (|exe_uop0_psrs2)
                                                       ? r2_wb5_data
-                                                      : r_regFile_rdata1;	// backend/src/zaqal/backend/Execute.scala:26:20, :38:24, :110:21, :161:29, :231:86, :250:28, :251:28, :252:28, :254:28, :255:28, :256:28, :258:28, :259:28, :260:28, :262:28, :263:28, :264:28, :266:28, :267:28, :268:28, :270:28, :271:28, :272:28, :275:29, :276:29, :277:29, :279:29, :280:29, :281:29, :283:29, :284:29, :285:29, :287:29, :288:29, :289:29, :291:29, :292:29, :293:29, :295:29, :296:29, :297:29, :319:{66,77,87}, src/main/scala/chisel3/util/Mux.scala:126:16
+                                                      : r_regFile_rdata1;	// backend/src/zaqal/backend/Execute.scala:26:20, :38:24, :114:21, :165:29, :235:86, :254:28, :255:28, :256:28, :258:28, :259:28, :260:28, :262:28, :263:28, :264:28, :266:28, :267:28, :268:28, :270:28, :271:28, :272:28, :274:28, :275:28, :276:28, :279:29, :280:29, :281:29, :283:29, :284:29, :285:29, :287:29, :288:29, :289:29, :291:29, :292:29, :293:29, :295:29, :296:29, :297:29, :299:29, :300:29, :301:29, :323:{66,77,87}, src/main/scala/chisel3/util/Mux.scala:126:16
   wire [63:0]  src1_1 =
     wb3_valid & r_agu_uop_pdest == exe_uop1_psrs1 & (|exe_uop1_psrs1)
       ? _lsu_io_result
@@ -1279,7 +1285,7 @@ module Execute(	// backend/src/zaqal/backend/Execute.scala:10:7
                                                     & r2_wb5_pdest == exe_uop1_psrs1
                                                     & (|exe_uop1_psrs1)
                                                       ? r2_wb5_data
-                                                      : r_regFile_rdata2;	// backend/src/zaqal/backend/Execute.scala:26:20, :38:24, :119:21, :167:29, :231:86, :250:28, :251:28, :252:28, :254:28, :255:28, :256:28, :258:28, :259:28, :260:28, :262:28, :263:28, :264:28, :266:28, :267:28, :268:28, :270:28, :271:28, :272:28, :275:29, :276:29, :277:29, :279:29, :280:29, :281:29, :283:29, :284:29, :285:29, :287:29, :288:29, :289:29, :291:29, :292:29, :293:29, :295:29, :296:29, :297:29, :319:{66,77,87}, src/main/scala/chisel3/util/Mux.scala:126:16
+                                                      : r_regFile_rdata2;	// backend/src/zaqal/backend/Execute.scala:26:20, :38:24, :123:21, :171:29, :235:86, :254:28, :255:28, :256:28, :258:28, :259:28, :260:28, :262:28, :263:28, :264:28, :266:28, :267:28, :268:28, :270:28, :271:28, :272:28, :274:28, :275:28, :276:28, :279:29, :280:29, :281:29, :283:29, :284:29, :285:29, :287:29, :288:29, :289:29, :291:29, :292:29, :293:29, :295:29, :296:29, :297:29, :299:29, :300:29, :301:29, :323:{66,77,87}, src/main/scala/chisel3/util/Mux.scala:126:16
   wire [63:0]  src1_2 =
     wb3_valid & r_agu_uop_pdest == exe_uop1_psrs2 & (|exe_uop1_psrs2)
       ? _lsu_io_result
@@ -1316,70 +1322,70 @@ module Execute(	// backend/src/zaqal/backend/Execute.scala:10:7
                                                     & r2_wb5_pdest == exe_uop1_psrs2
                                                     & (|exe_uop1_psrs2)
                                                       ? r2_wb5_data
-                                                      : r_regFile_rdata3;	// backend/src/zaqal/backend/Execute.scala:26:20, :38:24, :119:21, :168:29, :231:86, :250:28, :251:28, :252:28, :254:28, :255:28, :256:28, :258:28, :259:28, :260:28, :262:28, :263:28, :264:28, :266:28, :267:28, :268:28, :270:28, :271:28, :272:28, :275:29, :276:29, :277:29, :279:29, :280:29, :281:29, :283:29, :284:29, :285:29, :287:29, :288:29, :289:29, :291:29, :292:29, :293:29, :295:29, :296:29, :297:29, :319:{66,77,87}, src/main/scala/chisel3/util/Mux.scala:126:16
-  wire         lane0_is_older = exe_uop0_snapshotIdx < exe_uop1_snapshotIdx;	// backend/src/zaqal/backend/Execute.scala:110:21, :119:21, :376:30
-  reg          casez_tmp;	// backend/src/zaqal/backend/Execute.scala:378:76
-  always_comb begin	// backend/src/zaqal/backend/Execute.scala:378:76
-    casez (exe_uop0_snapshotIdx)	// backend/src/zaqal/backend/Execute.scala:110:21, :378:76
+                                                      : r_regFile_rdata3;	// backend/src/zaqal/backend/Execute.scala:26:20, :38:24, :123:21, :172:29, :235:86, :254:28, :255:28, :256:28, :258:28, :259:28, :260:28, :262:28, :263:28, :264:28, :266:28, :267:28, :268:28, :270:28, :271:28, :272:28, :274:28, :275:28, :276:28, :279:29, :280:29, :281:29, :283:29, :284:29, :285:29, :287:29, :288:29, :289:29, :291:29, :292:29, :293:29, :295:29, :296:29, :297:29, :299:29, :300:29, :301:29, :323:{66,77,87}, src/main/scala/chisel3/util/Mux.scala:126:16
+  wire         lane0_is_older = exe_uop0_snapshotIdx < exe_uop1_snapshotIdx;	// backend/src/zaqal/backend/Execute.scala:114:21, :123:21, :380:30
+  reg          casez_tmp;	// backend/src/zaqal/backend/Execute.scala:382:76
+  always_comb begin	// backend/src/zaqal/backend/Execute.scala:382:76
+    casez (exe_uop0_snapshotIdx)	// backend/src/zaqal/backend/Execute.scala:114:21, :382:76
       3'b000:
-        casez_tmp = io_snptValids_0;	// backend/src/zaqal/backend/Execute.scala:378:76
+        casez_tmp = io_snptValids_0;	// backend/src/zaqal/backend/Execute.scala:382:76
       3'b001:
-        casez_tmp = io_snptValids_1;	// backend/src/zaqal/backend/Execute.scala:378:76
+        casez_tmp = io_snptValids_1;	// backend/src/zaqal/backend/Execute.scala:382:76
       3'b010:
-        casez_tmp = io_snptValids_2;	// backend/src/zaqal/backend/Execute.scala:378:76
+        casez_tmp = io_snptValids_2;	// backend/src/zaqal/backend/Execute.scala:382:76
       3'b011:
-        casez_tmp = io_snptValids_3;	// backend/src/zaqal/backend/Execute.scala:378:76
+        casez_tmp = io_snptValids_3;	// backend/src/zaqal/backend/Execute.scala:382:76
       3'b100:
-        casez_tmp = io_snptValids_4;	// backend/src/zaqal/backend/Execute.scala:378:76
+        casez_tmp = io_snptValids_4;	// backend/src/zaqal/backend/Execute.scala:382:76
       3'b101:
-        casez_tmp = io_snptValids_5;	// backend/src/zaqal/backend/Execute.scala:378:76
+        casez_tmp = io_snptValids_5;	// backend/src/zaqal/backend/Execute.scala:382:76
       3'b110:
-        casez_tmp = io_snptValids_6;	// backend/src/zaqal/backend/Execute.scala:378:76
+        casez_tmp = io_snptValids_6;	// backend/src/zaqal/backend/Execute.scala:382:76
       default:
-        casez_tmp = io_snptValids_7;	// backend/src/zaqal/backend/Execute.scala:378:76
-    endcase	// backend/src/zaqal/backend/Execute.scala:110:21, :378:76
+        casez_tmp = io_snptValids_7;	// backend/src/zaqal/backend/Execute.scala:382:76
+    endcase	// backend/src/zaqal/backend/Execute.scala:114:21, :382:76
   end // always_comb
   wire         r0_valid =
-    exe_val0 & (_bru_0_io_exc_valid | _bru_0_io_mispredict) & casez_tmp;	// backend/src/zaqal/backend/Execute.scala:25:32, :109:25, :378:{51,76}
-  reg          casez_tmp_0;	// backend/src/zaqal/backend/Execute.scala:379:76
-  always_comb begin	// backend/src/zaqal/backend/Execute.scala:378:76
-    casez (exe_uop1_snapshotIdx)	// backend/src/zaqal/backend/Execute.scala:119:21, :378:76
+    exe_val0 & (_bru_0_io_exc_valid | _bru_0_io_mispredict) & casez_tmp;	// backend/src/zaqal/backend/Execute.scala:25:32, :113:25, :382:{51,76}
+  reg          casez_tmp_0;	// backend/src/zaqal/backend/Execute.scala:383:76
+  always_comb begin	// backend/src/zaqal/backend/Execute.scala:382:76
+    casez (exe_uop1_snapshotIdx)	// backend/src/zaqal/backend/Execute.scala:123:21, :382:76
       3'b000:
-        casez_tmp_0 = io_snptValids_0;	// backend/src/zaqal/backend/Execute.scala:378:76
+        casez_tmp_0 = io_snptValids_0;	// backend/src/zaqal/backend/Execute.scala:382:76
       3'b001:
-        casez_tmp_0 = io_snptValids_1;	// backend/src/zaqal/backend/Execute.scala:378:76
+        casez_tmp_0 = io_snptValids_1;	// backend/src/zaqal/backend/Execute.scala:382:76
       3'b010:
-        casez_tmp_0 = io_snptValids_2;	// backend/src/zaqal/backend/Execute.scala:378:76
+        casez_tmp_0 = io_snptValids_2;	// backend/src/zaqal/backend/Execute.scala:382:76
       3'b011:
-        casez_tmp_0 = io_snptValids_3;	// backend/src/zaqal/backend/Execute.scala:378:76
+        casez_tmp_0 = io_snptValids_3;	// backend/src/zaqal/backend/Execute.scala:382:76
       3'b100:
-        casez_tmp_0 = io_snptValids_4;	// backend/src/zaqal/backend/Execute.scala:378:76
+        casez_tmp_0 = io_snptValids_4;	// backend/src/zaqal/backend/Execute.scala:382:76
       3'b101:
-        casez_tmp_0 = io_snptValids_5;	// backend/src/zaqal/backend/Execute.scala:378:76
+        casez_tmp_0 = io_snptValids_5;	// backend/src/zaqal/backend/Execute.scala:382:76
       3'b110:
-        casez_tmp_0 = io_snptValids_6;	// backend/src/zaqal/backend/Execute.scala:378:76
+        casez_tmp_0 = io_snptValids_6;	// backend/src/zaqal/backend/Execute.scala:382:76
       default:
-        casez_tmp_0 = io_snptValids_7;	// backend/src/zaqal/backend/Execute.scala:378:76
-    endcase	// backend/src/zaqal/backend/Execute.scala:119:21, :378:76
+        casez_tmp_0 = io_snptValids_7;	// backend/src/zaqal/backend/Execute.scala:382:76
+    endcase	// backend/src/zaqal/backend/Execute.scala:123:21, :382:76
   end // always_comb
   wire         r1_valid =
-    exe_val1 & (_bru_1_io_exc_valid | _bru_1_io_mispredict) & casez_tmp_0;	// backend/src/zaqal/backend/Execute.scala:25:32, :118:25, :379:{51,76}
-  wire         _GEN = r0_valid & r1_valid;	// backend/src/zaqal/backend/Execute.scala:378:76, :379:76, :381:17
-  wire         io_redirect_valid_0 = _GEN | r0_valid | r1_valid;	// backend/src/zaqal/backend/Execute.scala:378:76, :379:76, :381:{17,30}, :382:23, :388:25, :389:23, :395:25
-  reg          r_wu0_valid;	// backend/src/zaqal/backend/Execute.scala:416:28
-  reg  [7:0]   r_wu0_pdest;	// backend/src/zaqal/backend/Execute.scala:417:28
-  reg          r_mul_wu0_valid_raw;	// backend/src/zaqal/backend/Execute.scala:419:36
-  reg  [7:0]   r_mul_wu0_pdest_raw;	// backend/src/zaqal/backend/Execute.scala:420:36
-  reg          r_mul_wu0_valid;	// backend/src/zaqal/backend/Execute.scala:421:32
-  reg  [7:0]   r_mul_wu0_pdest;	// backend/src/zaqal/backend/Execute.scala:422:32
-  reg          r_wu1_valid;	// backend/src/zaqal/backend/Execute.scala:438:28
-  reg  [7:0]   r_wu1_pdest;	// backend/src/zaqal/backend/Execute.scala:439:28
-  reg          r_mul_wu1_valid_raw;	// backend/src/zaqal/backend/Execute.scala:441:36
-  reg  [7:0]   r_mul_wu1_pdest_raw;	// backend/src/zaqal/backend/Execute.scala:442:36
-  reg          r_mul_wu1_valid;	// backend/src/zaqal/backend/Execute.scala:443:32
-  reg  [7:0]   r_mul_wu1_pdest;	// backend/src/zaqal/backend/Execute.scala:444:32
-  reg          r_wuDiv_valid;	// backend/src/zaqal/backend/Execute.scala:463:30
-  reg  [7:0]   r_wuDiv_pdest;	// backend/src/zaqal/backend/Execute.scala:464:30
+    exe_val1 & (_bru_1_io_exc_valid | _bru_1_io_mispredict) & casez_tmp_0;	// backend/src/zaqal/backend/Execute.scala:25:32, :122:25, :383:{51,76}
+  wire         _GEN = r0_valid & r1_valid;	// backend/src/zaqal/backend/Execute.scala:382:76, :383:76, :385:17
+  wire         io_redirect_valid_0 = _GEN | r0_valid | r1_valid;	// backend/src/zaqal/backend/Execute.scala:382:76, :383:76, :385:{17,30}, :386:23, :396:25, :397:23, :407:25
+  reg          r_wu0_valid;	// backend/src/zaqal/backend/Execute.scala:432:28
+  reg  [7:0]   r_wu0_pdest;	// backend/src/zaqal/backend/Execute.scala:433:28
+  reg          r_mul_wu0_valid_raw;	// backend/src/zaqal/backend/Execute.scala:435:36
+  reg  [7:0]   r_mul_wu0_pdest_raw;	// backend/src/zaqal/backend/Execute.scala:436:36
+  reg          r_mul_wu0_valid;	// backend/src/zaqal/backend/Execute.scala:437:32
+  reg  [7:0]   r_mul_wu0_pdest;	// backend/src/zaqal/backend/Execute.scala:438:32
+  reg          r_wu1_valid;	// backend/src/zaqal/backend/Execute.scala:454:28
+  reg  [7:0]   r_wu1_pdest;	// backend/src/zaqal/backend/Execute.scala:455:28
+  reg          r_mul_wu1_valid_raw;	// backend/src/zaqal/backend/Execute.scala:457:36
+  reg  [7:0]   r_mul_wu1_pdest_raw;	// backend/src/zaqal/backend/Execute.scala:458:36
+  reg          r_mul_wu1_valid;	// backend/src/zaqal/backend/Execute.scala:459:32
+  reg  [7:0]   r_mul_wu1_pdest;	// backend/src/zaqal/backend/Execute.scala:460:32
+  reg          r_wuDiv_valid;	// backend/src/zaqal/backend/Execute.scala:479:30
+  reg  [7:0]   r_wuDiv_pdest;	// backend/src/zaqal/backend/Execute.scala:480:30
   wire [63:0]  srcMem_1 =
     wb3_valid & r_agu_uop_pdest == exe_uopMem_psrs1 & (|exe_uopMem_psrs1)
       ? _lsu_io_result
@@ -1418,79 +1424,79 @@ module Execute(	// backend/src/zaqal/backend/Execute.scala:10:7
                                                     & r2_wb5_pdest == exe_uopMem_psrs1
                                                     & (|exe_uopMem_psrs1)
                                                       ? r2_wb5_data
-                                                      : r_regFile_rdata4;	// backend/src/zaqal/backend/Execute.scala:26:20, :38:24, :128:23, :174:29, :231:86, :250:28, :251:28, :252:28, :254:28, :255:28, :256:28, :258:28, :259:28, :260:28, :262:28, :263:28, :264:28, :266:28, :267:28, :268:28, :270:28, :271:28, :272:28, :275:29, :276:29, :277:29, :279:29, :280:29, :281:29, :283:29, :284:29, :285:29, :287:29, :288:29, :289:29, :291:29, :292:29, :293:29, :295:29, :296:29, :297:29, :319:{66,77,87}, src/main/scala/chisel3/util/Mux.scala:126:16
-  wire         _GEN_0 = r_agu_val & (|r_agu_uop_pdest);	// backend/src/zaqal/backend/Execute.scala:37:28, :38:24, :69:46, :231:48, :504:19, :505:35, :506:39
-  wire         _GEN_1 = r_agu_val & (|r_agu_uop_pdest) & r_agu_uop_decode_is_fload;	// backend/src/zaqal/backend/Execute.scala:37:28, :38:24, :69:80, :231:48, :504:19, :505:35, :506:39, :508:31
-  reg          r_wuMem_valid;	// backend/src/zaqal/backend/Execute.scala:520:30
-  reg  [7:0]   r_wuMem_pdest;	// backend/src/zaqal/backend/Execute.scala:521:30
-  wire         _fpdiv_io_fire_T = exe_uopFp_decode_is_fdiv | exe_uopFp_decode_is_fsqrt;	// backend/src/zaqal/backend/Execute.scala:137:22, :539:52
+                                                      : r_regFile_rdata4;	// backend/src/zaqal/backend/Execute.scala:26:20, :38:24, :132:23, :178:29, :235:86, :254:28, :255:28, :256:28, :258:28, :259:28, :260:28, :262:28, :263:28, :264:28, :266:28, :267:28, :268:28, :270:28, :271:28, :272:28, :274:28, :275:28, :276:28, :279:29, :280:29, :281:29, :283:29, :284:29, :285:29, :287:29, :288:29, :289:29, :291:29, :292:29, :293:29, :295:29, :296:29, :297:29, :299:29, :300:29, :301:29, :323:{66,77,87}, src/main/scala/chisel3/util/Mux.scala:126:16
+  wire         _GEN_0 = r_agu_val & (|r_agu_uop_pdest);	// backend/src/zaqal/backend/Execute.scala:37:28, :38:24, :69:46, :235:48, :520:19, :521:35, :522:39
+  wire         _GEN_1 = r_agu_val & (|r_agu_uop_pdest) & r_agu_uop_decode_is_fload;	// backend/src/zaqal/backend/Execute.scala:37:28, :38:24, :69:80, :235:48, :520:19, :521:35, :522:39, :524:31
+  reg          r_wuMem_valid;	// backend/src/zaqal/backend/Execute.scala:536:30
+  reg  [7:0]   r_wuMem_pdest;	// backend/src/zaqal/backend/Execute.scala:537:30
+  wire         _fpdiv_io_fire_T = exe_uopFp_decode_is_fdiv | exe_uopFp_decode_is_fsqrt;	// backend/src/zaqal/backend/Execute.scala:141:22, :555:52
   wire         exe_is_fp_wb_to_fp =
     exe_uopFp_decode_is_fadd | exe_uopFp_decode_is_fsub | exe_uopFp_decode_is_fmul
     | exe_uopFp_decode_is_fmadd | exe_uopFp_decode_is_fmv_w_x
     | exe_uopFp_decode_is_fcvt_i2f | exe_uopFp_decode_is_fsgnj
-    | exe_uopFp_decode_is_fminmax;	// backend/src/zaqal/backend/Execute.scala:137:22, :549:96
-  wire         _GEN_2 = exe_valFp & (|exe_uopFp_pdest);	// backend/src/zaqal/backend/Execute.scala:69:46, :136:26, :137:22, :235:48, :553:19, :554:35, :555:32
-  wire         _GEN_3 = exe_valFp & (|exe_uopFp_pdest) & exe_is_fp_wb_to_fp;	// backend/src/zaqal/backend/Execute.scala:69:80, :136:26, :137:22, :235:48, :549:96, :553:19, :554:35, :555:32, :557:31
-  reg          r_wuFp_valid;	// backend/src/zaqal/backend/Execute.scala:574:29
-  reg  [7:0]   r_wuFp_pdest;	// backend/src/zaqal/backend/Execute.scala:575:29
-  `ifndef SYNTHESIS	// backend/src/zaqal/backend/Execute.scala:590:13
-    always @(posedge clock) begin	// backend/src/zaqal/backend/Execute.scala:590:13
-      if ((`PRINTF_COND_) & r_regFile_wen_0 & (|r_regFile_waddr_0) & ~reset)	// backend/src/zaqal/backend/Execute.scala:51:32, :52:32, :589:51, :590:13
+    | exe_uopFp_decode_is_fminmax;	// backend/src/zaqal/backend/Execute.scala:141:22, :565:96
+  wire         _GEN_2 = exe_valFp & (|exe_uopFp_pdest);	// backend/src/zaqal/backend/Execute.scala:69:46, :140:26, :141:22, :239:48, :569:19, :570:35, :571:32
+  wire         _GEN_3 = exe_valFp & (|exe_uopFp_pdest) & exe_is_fp_wb_to_fp;	// backend/src/zaqal/backend/Execute.scala:69:80, :140:26, :141:22, :239:48, :565:96, :569:19, :570:35, :571:32, :573:31
+  reg          r_wuFp_valid;	// backend/src/zaqal/backend/Execute.scala:590:29
+  reg  [7:0]   r_wuFp_pdest;	// backend/src/zaqal/backend/Execute.scala:591:29
+  `ifndef SYNTHESIS	// backend/src/zaqal/backend/Execute.scala:606:13
+    always @(posedge clock) begin	// backend/src/zaqal/backend/Execute.scala:606:13
+      if ((`PRINTF_COND_) & r_regFile_wen_0 & (|r_regFile_waddr_0) & ~reset)	// backend/src/zaqal/backend/Execute.scala:51:32, :52:32, :605:51, :606:13
         $fwrite(32'h80000002, "  [REGFILE WRITE Port 0]: addr=%d data=%x at cycle=%d\n",
-                r_regFile_waddr_0, r_regFile_wdata_0, io_debug_cycle);	// backend/src/zaqal/backend/Execute.scala:52:32, :53:32, :590:13
-      if ((`PRINTF_COND_) & r_regFile_wen_1 & (|r_regFile_waddr_1) & ~reset)	// backend/src/zaqal/backend/Execute.scala:51:32, :52:32, :589:51, :590:13
+                r_regFile_waddr_0, r_regFile_wdata_0, io_debug_cycle);	// backend/src/zaqal/backend/Execute.scala:52:32, :53:32, :606:13
+      if ((`PRINTF_COND_) & r_regFile_wen_1 & (|r_regFile_waddr_1) & ~reset)	// backend/src/zaqal/backend/Execute.scala:51:32, :52:32, :605:51, :606:13
         $fwrite(32'h80000002, "  [REGFILE WRITE Port 1]: addr=%d data=%x at cycle=%d\n",
-                r_regFile_waddr_1, r_regFile_wdata_1, io_debug_cycle);	// backend/src/zaqal/backend/Execute.scala:52:32, :53:32, :590:13
-      if ((`PRINTF_COND_) & r_regFile_wen_2 & (|r_regFile_waddr_2) & ~reset)	// backend/src/zaqal/backend/Execute.scala:51:32, :52:32, :589:51, :590:13
+                r_regFile_waddr_1, r_regFile_wdata_1, io_debug_cycle);	// backend/src/zaqal/backend/Execute.scala:52:32, :53:32, :606:13
+      if ((`PRINTF_COND_) & r_regFile_wen_2 & (|r_regFile_waddr_2) & ~reset)	// backend/src/zaqal/backend/Execute.scala:51:32, :52:32, :605:51, :606:13
         $fwrite(32'h80000002, "  [REGFILE WRITE Port 2]: addr=%d data=%x at cycle=%d\n",
-                r_regFile_waddr_2, r_regFile_wdata_2, io_debug_cycle);	// backend/src/zaqal/backend/Execute.scala:52:32, :53:32, :590:13
-      if ((`PRINTF_COND_) & r_regFile_wen_3 & (|r_regFile_waddr_3) & ~reset)	// backend/src/zaqal/backend/Execute.scala:51:32, :52:32, :589:51, :590:13
+                r_regFile_waddr_2, r_regFile_wdata_2, io_debug_cycle);	// backend/src/zaqal/backend/Execute.scala:52:32, :53:32, :606:13
+      if ((`PRINTF_COND_) & r_regFile_wen_3 & (|r_regFile_waddr_3) & ~reset)	// backend/src/zaqal/backend/Execute.scala:51:32, :52:32, :605:51, :606:13
         $fwrite(32'h80000002, "  [REGFILE WRITE Port 3]: addr=%d data=%x at cycle=%d\n",
-                r_regFile_waddr_3, r_regFile_wdata_3, io_debug_cycle);	// backend/src/zaqal/backend/Execute.scala:52:32, :53:32, :590:13
-      if ((`PRINTF_COND_) & r_regFile_wen_4 & (|r_regFile_waddr_4) & ~reset)	// backend/src/zaqal/backend/Execute.scala:51:32, :52:32, :589:51, :590:13
+                r_regFile_waddr_3, r_regFile_wdata_3, io_debug_cycle);	// backend/src/zaqal/backend/Execute.scala:52:32, :53:32, :606:13
+      if ((`PRINTF_COND_) & r_regFile_wen_4 & (|r_regFile_waddr_4) & ~reset)	// backend/src/zaqal/backend/Execute.scala:51:32, :52:32, :605:51, :606:13
         $fwrite(32'h80000002, "  [REGFILE WRITE Port 4]: addr=%d data=%x at cycle=%d\n",
-                r_regFile_waddr_4, r_regFile_wdata_4, io_debug_cycle);	// backend/src/zaqal/backend/Execute.scala:52:32, :53:32, :590:13
-      if ((`PRINTF_COND_) & r_regFile_wen_5 & (|r_regFile_waddr_5) & ~reset)	// backend/src/zaqal/backend/Execute.scala:51:32, :52:32, :589:51, :590:13
+                r_regFile_waddr_4, r_regFile_wdata_4, io_debug_cycle);	// backend/src/zaqal/backend/Execute.scala:52:32, :53:32, :606:13
+      if ((`PRINTF_COND_) & r_regFile_wen_5 & (|r_regFile_waddr_5) & ~reset)	// backend/src/zaqal/backend/Execute.scala:51:32, :52:32, :605:51, :606:13
         $fwrite(32'h80000002, "  [REGFILE WRITE Port 5]: addr=%d data=%x at cycle=%d\n",
-                r_regFile_waddr_5, r_regFile_wdata_5, io_debug_cycle);	// backend/src/zaqal/backend/Execute.scala:52:32, :53:32, :590:13
+                r_regFile_waddr_5, r_regFile_wdata_5, io_debug_cycle);	// backend/src/zaqal/backend/Execute.scala:52:32, :53:32, :606:13
     end // always @(posedge)
   `endif // not def SYNTHESIS
   wire         is_mul_op0 =
     io_int_in_0_bits_decode_is_mul | io_int_in_0_bits_decode_is_mulh
     | io_int_in_0_bits_decode_is_mulhsu | io_int_in_0_bits_decode_is_mulhu
-    | io_int_in_0_bits_decode_is_mulw;	// backend/src/zaqal/backend/Execute.scala:89:83
+    | io_int_in_0_bits_decode_is_mulw;	// backend/src/zaqal/backend/Execute.scala:93:83
   wire         is_mul_op1 =
     io_int_in_1_bits_decode_is_mul | io_int_in_1_bits_decode_is_mulh
     | io_int_in_1_bits_decode_is_mulhsu | io_int_in_1_bits_decode_is_mulhu
-    | io_int_in_1_bits_decode_is_mulw;	// backend/src/zaqal/backend/Execute.scala:95:83
-  wire         exe_is_link0 = exe_uop0_decode_is_jal | exe_uop0_decode_is_jalr;	// backend/src/zaqal/backend/Execute.scala:110:21, :200:38
+    | io_int_in_1_bits_decode_is_mulw;	// backend/src/zaqal/backend/Execute.scala:99:83
+  wire         exe_is_link0 = exe_uop0_decode_is_jal | exe_uop0_decode_is_jalr;	// backend/src/zaqal/backend/Execute.scala:114:21, :204:38
   wire         exe_is_div_op1 =
     exe_uop1_decode_is_div | exe_uop1_decode_is_divu | exe_uop1_decode_is_rem
     | exe_uop1_decode_is_remu | exe_uop1_decode_is_divw | exe_uop1_decode_is_divuw
-    | exe_uop1_decode_is_remw | exe_uop1_decode_is_remuw;	// backend/src/zaqal/backend/Execute.scala:119:21, :207:82
+    | exe_uop1_decode_is_remw | exe_uop1_decode_is_remuw;	// backend/src/zaqal/backend/Execute.scala:123:21, :211:82
   wire         exe_is_mul_op1 =
     exe_uop1_decode_is_mul | exe_uop1_decode_is_mulh | exe_uop1_decode_is_mulhsu
-    | exe_uop1_decode_is_mulhu | exe_uop1_decode_is_mulw;	// backend/src/zaqal/backend/Execute.scala:119:21, :208:103
-  wire         exe_is_link1 = exe_uop1_decode_is_jal | exe_uop1_decode_is_jalr;	// backend/src/zaqal/backend/Execute.scala:119:21, :209:38
+    | exe_uop1_decode_is_mulhu | exe_uop1_decode_is_mulw;	// backend/src/zaqal/backend/Execute.scala:123:21, :212:103
+  wire         exe_is_link1 = exe_uop1_decode_is_jal | exe_uop1_decode_is_jalr;	// backend/src/zaqal/backend/Execute.scala:123:21, :213:38
   wire         _exe_is_fp_wb_to_int_T =
-    exe_uopFp_decode_is_fmv_x_w | exe_uopFp_decode_is_fcvt_f2i;	// backend/src/zaqal/backend/Execute.scala:137:22, :216:54
+    exe_uopFp_decode_is_fmv_x_w | exe_uopFp_decode_is_fcvt_f2i;	// backend/src/zaqal/backend/Execute.scala:141:22, :220:54
   wire [63:0]  wb0_data =
     exe_is_link0
       ? exe_uop0_uop_pc + {61'h0, exe_uop0_uop_pre_is_rvc ? 3'h2 : 3'h4}
-      : _alu_0_io_result;	// backend/src/zaqal/backend/Execute.scala:24:32, :110:21, :200:38, :201:{40,45}, :221:22
+      : _alu_0_io_result;	// backend/src/zaqal/backend/Execute.scala:24:32, :114:21, :204:38, :205:{40,45}, :225:22
   wire [63:0]  wb1_data =
     exe_is_link1
       ? exe_uop1_uop_pc + {61'h0, exe_uop1_uop_pre_is_rvc ? 3'h2 : 3'h4}
-      : _alu_1_io_result;	// backend/src/zaqal/backend/Execute.scala:24:32, :119:21, :201:{40,45}, :209:38, :210:{40,45}, :225:22
-  wire         _GEN_4 = exe_val0 & (|exe_uop0_pdest) & ~exe_is_div_op0 & ~exe_is_mul_op0;	// backend/src/zaqal/backend/Execute.scala:55:39, :109:25, :110:21, :198:82, :199:103, :219:{46,57}, :405:18, :406:{55,72}, :407:27
-  wire         _r_mul_wu0_valid_raw_T = io_int_in_0_ready_0 & io_int_in_0_valid;	// backend/src/zaqal/backend/Execute.scala:103:28, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire         _GEN_5 = exe_val1 & (|exe_uop1_pdest) & ~exe_is_div_op1 & ~exe_is_mul_op1;	// backend/src/zaqal/backend/Execute.scala:55:39, :118:25, :119:21, :207:82, :208:103, :223:{46,57}, :427:18, :428:{55,72}, :429:27
-  wire         _r_mul_wu1_valid_raw_T = io_int_in_1_ready_0 & io_int_in_1_valid;	// backend/src/zaqal/backend/Execute.scala:104:28, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire         _GEN_6 = ~_GEN_0 | r_agu_uop_decode_is_fload;	// backend/src/zaqal/backend/Execute.scala:38:24, :56:39, :69:46, :504:19, :505:35, :506:39
+      : _alu_1_io_result;	// backend/src/zaqal/backend/Execute.scala:24:32, :123:21, :205:{40,45}, :213:38, :214:{40,45}, :229:22
+  wire         _GEN_4 = exe_val0 & (|exe_uop0_pdest) & ~exe_is_div_op0 & ~exe_is_mul_op0;	// backend/src/zaqal/backend/Execute.scala:55:39, :113:25, :114:21, :202:82, :203:103, :223:{46,57}, :421:18, :422:{55,72}, :423:27
+  wire         _r_mul_wu0_valid_raw_T = io_int_in_0_ready_0 & io_int_in_0_valid;	// backend/src/zaqal/backend/Execute.scala:107:28, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire         _GEN_5 = exe_val1 & (|exe_uop1_pdest) & ~exe_is_div_op1 & ~exe_is_mul_op1;	// backend/src/zaqal/backend/Execute.scala:55:39, :122:25, :123:21, :211:82, :212:103, :227:{46,57}, :443:18, :444:{55,72}, :445:27
+  wire         _r_mul_wu1_valid_raw_T = io_int_in_1_ready_0 & io_int_in_1_valid;	// backend/src/zaqal/backend/Execute.scala:108:28, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire         _GEN_6 = ~_GEN_0 | r_agu_uop_decode_is_fload;	// backend/src/zaqal/backend/Execute.scala:38:24, :56:39, :69:46, :520:19, :521:35, :522:39
   wire         exe_is_fp_wb_to_int =
     _exe_is_fp_wb_to_int_T | exe_uopFp_decode_is_feq | exe_uopFp_decode_is_flt
-    | exe_uopFp_decode_is_fle | exe_uopFp_decode_is_fclass;	// backend/src/zaqal/backend/Execute.scala:137:22, :216:54, :550:135
-  wire         _GEN_7 = exe_valFp & (|exe_uopFp_pdest) & exe_is_fp_wb_to_int;	// backend/src/zaqal/backend/Execute.scala:56:39, :136:26, :137:22, :235:48, :550:135, :553:19, :554:35, :560:33, :562:31
+    | exe_uopFp_decode_is_fle | exe_uopFp_decode_is_fclass;	// backend/src/zaqal/backend/Execute.scala:141:22, :220:54, :566:135
+  wire         _GEN_7 = exe_valFp & (|exe_uopFp_pdest) & exe_is_fp_wb_to_int;	// backend/src/zaqal/backend/Execute.scala:56:39, :140:26, :141:22, :239:48, :566:135, :569:19, :570:35, :576:33, :578:31
   always @(posedge clock) begin	// backend/src/zaqal/backend/Execute.scala:10:7
     if (reset) begin	// backend/src/zaqal/backend/Execute.scala:10:7
       r_agu_val <= 1'h0;	// backend/src/zaqal/backend/Execute.scala:37:28
@@ -1514,221 +1520,221 @@ module Execute(	// backend/src/zaqal/backend/Execute.scala:10:7
       r_regFile_wdata_3 <= 64'h0;	// backend/src/zaqal/backend/Execute.scala:53:{32,40}
       r_regFile_wdata_4 <= 64'h0;	// backend/src/zaqal/backend/Execute.scala:53:{32,40}
       r_regFile_wdata_5 <= 64'h0;	// backend/src/zaqal/backend/Execute.scala:53:{32,40}
-      exe_val0 <= 1'h0;	// backend/src/zaqal/backend/Execute.scala:37:28, :109:25
-      exe_val1 <= 1'h0;	// backend/src/zaqal/backend/Execute.scala:37:28, :118:25
-      exe_valMem <= 1'h0;	// backend/src/zaqal/backend/Execute.scala:37:28, :127:27
-      exe_valFp <= 1'h0;	// backend/src/zaqal/backend/Execute.scala:37:28, :136:26
-      r_mul_val <= 1'h0;	// backend/src/zaqal/backend/Execute.scala:37:28, :240:26
-      r_mul_pdest <= 8'h0;	// backend/src/zaqal/backend/Execute.scala:10:7, :241:28
-      r2_mul_val <= 1'h0;	// backend/src/zaqal/backend/Execute.scala:37:28, :242:27
-      r2_mul_pdest <= 8'h0;	// backend/src/zaqal/backend/Execute.scala:10:7, :243:29
-      r_wb0_valid <= 1'h0;	// backend/src/zaqal/backend/Execute.scala:37:28, :250:28
-      r_wb0_pdest <= 8'h0;	// backend/src/zaqal/backend/Execute.scala:10:7, :251:28
-      r_wb0_data <= 64'h0;	// backend/src/zaqal/backend/Execute.scala:53:40, :252:28
-      r_wb1_valid <= 1'h0;	// backend/src/zaqal/backend/Execute.scala:37:28, :254:28
-      r_wb1_pdest <= 8'h0;	// backend/src/zaqal/backend/Execute.scala:10:7, :255:28
-      r_wb1_data <= 64'h0;	// backend/src/zaqal/backend/Execute.scala:53:40, :256:28
-      r_wb2_valid <= 1'h0;	// backend/src/zaqal/backend/Execute.scala:37:28, :258:28
-      r_wb2_pdest <= 8'h0;	// backend/src/zaqal/backend/Execute.scala:10:7, :259:28
-      r_wb2_data <= 64'h0;	// backend/src/zaqal/backend/Execute.scala:53:40, :260:28
-      r_wb3_valid <= 1'h0;	// backend/src/zaqal/backend/Execute.scala:37:28, :262:28
-      r_wb3_pdest <= 8'h0;	// backend/src/zaqal/backend/Execute.scala:10:7, :263:28
-      r_wb3_data <= 64'h0;	// backend/src/zaqal/backend/Execute.scala:53:40, :264:28
-      r_wb4_valid <= 1'h0;	// backend/src/zaqal/backend/Execute.scala:37:28, :266:28
-      r_wb4_pdest <= 8'h0;	// backend/src/zaqal/backend/Execute.scala:10:7, :267:28
-      r_wb4_data <= 64'h0;	// backend/src/zaqal/backend/Execute.scala:53:40, :268:28
-      r_wb5_valid <= 1'h0;	// backend/src/zaqal/backend/Execute.scala:37:28, :270:28
-      r_wb5_pdest <= 8'h0;	// backend/src/zaqal/backend/Execute.scala:10:7, :271:28
-      r_wb5_data <= 64'h0;	// backend/src/zaqal/backend/Execute.scala:53:40, :272:28
-      r2_wb0_valid <= 1'h0;	// backend/src/zaqal/backend/Execute.scala:37:28, :275:29
-      r2_wb0_pdest <= 8'h0;	// backend/src/zaqal/backend/Execute.scala:10:7, :276:29
-      r2_wb0_data <= 64'h0;	// backend/src/zaqal/backend/Execute.scala:53:40, :277:29
-      r2_wb1_valid <= 1'h0;	// backend/src/zaqal/backend/Execute.scala:37:28, :279:29
-      r2_wb1_pdest <= 8'h0;	// backend/src/zaqal/backend/Execute.scala:10:7, :280:29
-      r2_wb1_data <= 64'h0;	// backend/src/zaqal/backend/Execute.scala:53:40, :281:29
-      r2_wb2_valid <= 1'h0;	// backend/src/zaqal/backend/Execute.scala:37:28, :283:29
-      r2_wb2_pdest <= 8'h0;	// backend/src/zaqal/backend/Execute.scala:10:7, :284:29
-      r2_wb2_data <= 64'h0;	// backend/src/zaqal/backend/Execute.scala:53:40, :285:29
-      r2_wb3_valid <= 1'h0;	// backend/src/zaqal/backend/Execute.scala:37:28, :287:29
-      r2_wb3_pdest <= 8'h0;	// backend/src/zaqal/backend/Execute.scala:10:7, :288:29
-      r2_wb3_data <= 64'h0;	// backend/src/zaqal/backend/Execute.scala:53:40, :289:29
-      r2_wb4_valid <= 1'h0;	// backend/src/zaqal/backend/Execute.scala:37:28, :291:29
-      r2_wb4_pdest <= 8'h0;	// backend/src/zaqal/backend/Execute.scala:10:7, :292:29
-      r2_wb4_data <= 64'h0;	// backend/src/zaqal/backend/Execute.scala:53:40, :293:29
-      r2_wb5_valid <= 1'h0;	// backend/src/zaqal/backend/Execute.scala:37:28, :295:29
-      r2_wb5_pdest <= 8'h0;	// backend/src/zaqal/backend/Execute.scala:10:7, :296:29
-      r2_wb5_data <= 64'h0;	// backend/src/zaqal/backend/Execute.scala:53:40, :297:29
-      r_wu0_valid <= 1'h0;	// backend/src/zaqal/backend/Execute.scala:37:28, :416:28
-      r_wu0_pdest <= 8'h0;	// backend/src/zaqal/backend/Execute.scala:10:7, :417:28
-      r_mul_wu0_valid_raw <= 1'h0;	// backend/src/zaqal/backend/Execute.scala:37:28, :419:36
-      r_mul_wu0_pdest_raw <= 8'h0;	// backend/src/zaqal/backend/Execute.scala:10:7, :420:36
-      r_mul_wu0_valid <= 1'h0;	// backend/src/zaqal/backend/Execute.scala:37:28, :421:32
-      r_mul_wu0_pdest <= 8'h0;	// backend/src/zaqal/backend/Execute.scala:10:7, :422:32
-      r_wu1_valid <= 1'h0;	// backend/src/zaqal/backend/Execute.scala:37:28, :438:28
-      r_wu1_pdest <= 8'h0;	// backend/src/zaqal/backend/Execute.scala:10:7, :439:28
-      r_mul_wu1_valid_raw <= 1'h0;	// backend/src/zaqal/backend/Execute.scala:37:28, :441:36
-      r_mul_wu1_pdest_raw <= 8'h0;	// backend/src/zaqal/backend/Execute.scala:10:7, :442:36
-      r_mul_wu1_valid <= 1'h0;	// backend/src/zaqal/backend/Execute.scala:37:28, :443:32
-      r_mul_wu1_pdest <= 8'h0;	// backend/src/zaqal/backend/Execute.scala:10:7, :444:32
-      r_wuDiv_valid <= 1'h0;	// backend/src/zaqal/backend/Execute.scala:37:28, :463:30
-      r_wuDiv_pdest <= 8'h0;	// backend/src/zaqal/backend/Execute.scala:10:7, :464:30
-      r_wuMem_valid <= 1'h0;	// backend/src/zaqal/backend/Execute.scala:37:28, :520:30
-      r_wuMem_pdest <= 8'h0;	// backend/src/zaqal/backend/Execute.scala:10:7, :521:30
-      r_wuFp_valid <= 1'h0;	// backend/src/zaqal/backend/Execute.scala:37:28, :574:29
-      r_wuFp_pdest <= 8'h0;	// backend/src/zaqal/backend/Execute.scala:10:7, :575:29
+      exe_val0 <= 1'h0;	// backend/src/zaqal/backend/Execute.scala:37:28, :113:25
+      exe_val1 <= 1'h0;	// backend/src/zaqal/backend/Execute.scala:37:28, :122:25
+      exe_valMem <= 1'h0;	// backend/src/zaqal/backend/Execute.scala:37:28, :131:27
+      exe_valFp <= 1'h0;	// backend/src/zaqal/backend/Execute.scala:37:28, :140:26
+      r_mul_val <= 1'h0;	// backend/src/zaqal/backend/Execute.scala:37:28, :244:26
+      r_mul_pdest <= 8'h0;	// backend/src/zaqal/backend/Execute.scala:10:7, :245:28
+      r2_mul_val <= 1'h0;	// backend/src/zaqal/backend/Execute.scala:37:28, :246:27
+      r2_mul_pdest <= 8'h0;	// backend/src/zaqal/backend/Execute.scala:10:7, :247:29
+      r_wb0_valid <= 1'h0;	// backend/src/zaqal/backend/Execute.scala:37:28, :254:28
+      r_wb0_pdest <= 8'h0;	// backend/src/zaqal/backend/Execute.scala:10:7, :255:28
+      r_wb0_data <= 64'h0;	// backend/src/zaqal/backend/Execute.scala:53:40, :256:28
+      r_wb1_valid <= 1'h0;	// backend/src/zaqal/backend/Execute.scala:37:28, :258:28
+      r_wb1_pdest <= 8'h0;	// backend/src/zaqal/backend/Execute.scala:10:7, :259:28
+      r_wb1_data <= 64'h0;	// backend/src/zaqal/backend/Execute.scala:53:40, :260:28
+      r_wb2_valid <= 1'h0;	// backend/src/zaqal/backend/Execute.scala:37:28, :262:28
+      r_wb2_pdest <= 8'h0;	// backend/src/zaqal/backend/Execute.scala:10:7, :263:28
+      r_wb2_data <= 64'h0;	// backend/src/zaqal/backend/Execute.scala:53:40, :264:28
+      r_wb3_valid <= 1'h0;	// backend/src/zaqal/backend/Execute.scala:37:28, :266:28
+      r_wb3_pdest <= 8'h0;	// backend/src/zaqal/backend/Execute.scala:10:7, :267:28
+      r_wb3_data <= 64'h0;	// backend/src/zaqal/backend/Execute.scala:53:40, :268:28
+      r_wb4_valid <= 1'h0;	// backend/src/zaqal/backend/Execute.scala:37:28, :270:28
+      r_wb4_pdest <= 8'h0;	// backend/src/zaqal/backend/Execute.scala:10:7, :271:28
+      r_wb4_data <= 64'h0;	// backend/src/zaqal/backend/Execute.scala:53:40, :272:28
+      r_wb5_valid <= 1'h0;	// backend/src/zaqal/backend/Execute.scala:37:28, :274:28
+      r_wb5_pdest <= 8'h0;	// backend/src/zaqal/backend/Execute.scala:10:7, :275:28
+      r_wb5_data <= 64'h0;	// backend/src/zaqal/backend/Execute.scala:53:40, :276:28
+      r2_wb0_valid <= 1'h0;	// backend/src/zaqal/backend/Execute.scala:37:28, :279:29
+      r2_wb0_pdest <= 8'h0;	// backend/src/zaqal/backend/Execute.scala:10:7, :280:29
+      r2_wb0_data <= 64'h0;	// backend/src/zaqal/backend/Execute.scala:53:40, :281:29
+      r2_wb1_valid <= 1'h0;	// backend/src/zaqal/backend/Execute.scala:37:28, :283:29
+      r2_wb1_pdest <= 8'h0;	// backend/src/zaqal/backend/Execute.scala:10:7, :284:29
+      r2_wb1_data <= 64'h0;	// backend/src/zaqal/backend/Execute.scala:53:40, :285:29
+      r2_wb2_valid <= 1'h0;	// backend/src/zaqal/backend/Execute.scala:37:28, :287:29
+      r2_wb2_pdest <= 8'h0;	// backend/src/zaqal/backend/Execute.scala:10:7, :288:29
+      r2_wb2_data <= 64'h0;	// backend/src/zaqal/backend/Execute.scala:53:40, :289:29
+      r2_wb3_valid <= 1'h0;	// backend/src/zaqal/backend/Execute.scala:37:28, :291:29
+      r2_wb3_pdest <= 8'h0;	// backend/src/zaqal/backend/Execute.scala:10:7, :292:29
+      r2_wb3_data <= 64'h0;	// backend/src/zaqal/backend/Execute.scala:53:40, :293:29
+      r2_wb4_valid <= 1'h0;	// backend/src/zaqal/backend/Execute.scala:37:28, :295:29
+      r2_wb4_pdest <= 8'h0;	// backend/src/zaqal/backend/Execute.scala:10:7, :296:29
+      r2_wb4_data <= 64'h0;	// backend/src/zaqal/backend/Execute.scala:53:40, :297:29
+      r2_wb5_valid <= 1'h0;	// backend/src/zaqal/backend/Execute.scala:37:28, :299:29
+      r2_wb5_pdest <= 8'h0;	// backend/src/zaqal/backend/Execute.scala:10:7, :300:29
+      r2_wb5_data <= 64'h0;	// backend/src/zaqal/backend/Execute.scala:53:40, :301:29
+      r_wu0_valid <= 1'h0;	// backend/src/zaqal/backend/Execute.scala:37:28, :432:28
+      r_wu0_pdest <= 8'h0;	// backend/src/zaqal/backend/Execute.scala:10:7, :433:28
+      r_mul_wu0_valid_raw <= 1'h0;	// backend/src/zaqal/backend/Execute.scala:37:28, :435:36
+      r_mul_wu0_pdest_raw <= 8'h0;	// backend/src/zaqal/backend/Execute.scala:10:7, :436:36
+      r_mul_wu0_valid <= 1'h0;	// backend/src/zaqal/backend/Execute.scala:37:28, :437:32
+      r_mul_wu0_pdest <= 8'h0;	// backend/src/zaqal/backend/Execute.scala:10:7, :438:32
+      r_wu1_valid <= 1'h0;	// backend/src/zaqal/backend/Execute.scala:37:28, :454:28
+      r_wu1_pdest <= 8'h0;	// backend/src/zaqal/backend/Execute.scala:10:7, :455:28
+      r_mul_wu1_valid_raw <= 1'h0;	// backend/src/zaqal/backend/Execute.scala:37:28, :457:36
+      r_mul_wu1_pdest_raw <= 8'h0;	// backend/src/zaqal/backend/Execute.scala:10:7, :458:36
+      r_mul_wu1_valid <= 1'h0;	// backend/src/zaqal/backend/Execute.scala:37:28, :459:32
+      r_mul_wu1_pdest <= 8'h0;	// backend/src/zaqal/backend/Execute.scala:10:7, :460:32
+      r_wuDiv_valid <= 1'h0;	// backend/src/zaqal/backend/Execute.scala:37:28, :479:30
+      r_wuDiv_pdest <= 8'h0;	// backend/src/zaqal/backend/Execute.scala:10:7, :480:30
+      r_wuMem_valid <= 1'h0;	// backend/src/zaqal/backend/Execute.scala:37:28, :536:30
+      r_wuMem_pdest <= 8'h0;	// backend/src/zaqal/backend/Execute.scala:10:7, :537:30
+      r_wuFp_valid <= 1'h0;	// backend/src/zaqal/backend/Execute.scala:37:28, :590:29
+      r_wuFp_pdest <= 8'h0;	// backend/src/zaqal/backend/Execute.scala:10:7, :591:29
     end
     else begin	// backend/src/zaqal/backend/Execute.scala:10:7
-      r_agu_val <= ~io_redirect_valid_0 & exe_valMem;	// backend/src/zaqal/backend/Execute.scala:37:28, :111:27, :112:14, :113:35, :127:27, :381:30, :382:23, :388:25, :389:23, :395:25, :478:27, :479:15, :481:15
-      if (exe_val1 & exe_is_div_op1)	// backend/src/zaqal/backend/Execute.scala:118:25, :207:82, :405:18, :427:18, :433:{26,41}
-        div_rd_latch <= exe_uop1_pdest;	// backend/src/zaqal/backend/Execute.scala:44:29, :119:21
-      else if (exe_val0 & exe_is_div_op0)	// backend/src/zaqal/backend/Execute.scala:44:29, :109:25, :198:82, :405:18, :411:{26,41}
-        div_rd_latch <= exe_uop0_pdest;	// backend/src/zaqal/backend/Execute.scala:44:29, :110:21
-      if (exe_valFp & _fpdiv_io_fire_T)	// backend/src/zaqal/backend/Execute.scala:45:31, :136:26, :539:52, :553:19, :566:{51,68}
-        fpdiv_rd_latch <= exe_uopFp_pdest;	// backend/src/zaqal/backend/Execute.scala:45:31, :137:22
-      r_regFile_wen_0 <= _GEN_4 & (~exe_uop0_decode_is_branch | exe_is_link0);	// backend/src/zaqal/backend/Execute.scala:51:32, :55:39, :110:21, :200:38, :219:78, :405:18, :406:72, :407:{27,52}
-      r_regFile_wen_1 <= _GEN_5 & (~exe_uop1_decode_is_branch | exe_is_link1);	// backend/src/zaqal/backend/Execute.scala:51:32, :55:39, :119:21, :209:38, :223:78, :427:18, :428:72, :429:{27,52}
+      r_agu_val <= ~io_redirect_valid_0 & exe_valMem;	// backend/src/zaqal/backend/Execute.scala:37:28, :115:27, :116:14, :117:35, :131:27, :385:30, :386:23, :396:25, :397:23, :407:25, :494:27, :495:15, :497:15
+      if (exe_val1 & exe_is_div_op1)	// backend/src/zaqal/backend/Execute.scala:122:25, :211:82, :421:18, :443:18, :449:{26,41}
+        div_rd_latch <= exe_uop1_pdest;	// backend/src/zaqal/backend/Execute.scala:44:29, :123:21
+      else if (exe_val0 & exe_is_div_op0)	// backend/src/zaqal/backend/Execute.scala:44:29, :113:25, :202:82, :421:18, :427:{26,41}
+        div_rd_latch <= exe_uop0_pdest;	// backend/src/zaqal/backend/Execute.scala:44:29, :114:21
+      if (exe_valFp & _fpdiv_io_fire_T)	// backend/src/zaqal/backend/Execute.scala:45:31, :140:26, :555:52, :569:19, :582:{51,68}
+        fpdiv_rd_latch <= exe_uopFp_pdest;	// backend/src/zaqal/backend/Execute.scala:45:31, :141:22
+      r_regFile_wen_0 <= _GEN_4 & (~exe_uop0_decode_is_branch | exe_is_link0);	// backend/src/zaqal/backend/Execute.scala:51:32, :55:39, :114:21, :204:38, :223:78, :421:18, :422:72, :423:{27,52}
+      r_regFile_wen_1 <= _GEN_5 & (~exe_uop1_decode_is_branch | exe_is_link1);	// backend/src/zaqal/backend/Execute.scala:51:32, :55:39, :123:21, :213:38, :227:78, :443:18, :444:72, :445:{27,52}
       r_regFile_wen_2 <= _div_io_done;	// backend/src/zaqal/backend/Execute.scala:28:20, :51:32
-      r_regFile_wen_3 <= _GEN_0 & ~r_agu_uop_decode_is_fload & _next_regFile_wen_3_T;	// backend/src/zaqal/backend/Execute.scala:38:24, :51:32, :55:39, :69:46, :231:115, :504:19, :505:35, :506:39, :511:29
-      r_regFile_wen_4 <= _GEN_2 & exe_is_fp_wb_to_int;	// backend/src/zaqal/backend/Execute.scala:51:32, :55:39, :69:46, :550:135, :553:19, :554:35, :555:32, :560:33
-      r_regFile_wen_5 <= r2_mul_val;	// backend/src/zaqal/backend/Execute.scala:51:32, :242:27
-      r_regFile_waddr_0 <= _GEN_4 ? exe_uop0_pdest : 8'h0;	// backend/src/zaqal/backend/Execute.scala:10:7, :52:32, :55:39, :56:39, :110:21, :405:18, :406:72, :407:27, :408:29
-      r_regFile_waddr_1 <= _GEN_5 ? exe_uop1_pdest : 8'h0;	// backend/src/zaqal/backend/Execute.scala:10:7, :52:32, :55:39, :56:39, :119:21, :427:18, :428:72, :429:27, :430:29
-      r_regFile_waddr_2 <= _div_io_done ? div_rd_latch : 8'h0;	// backend/src/zaqal/backend/Execute.scala:10:7, :28:20, :44:29, :52:32, :56:39, :456:21, :458:27
-      r_regFile_waddr_3 <= _GEN_6 ? 8'h0 : r_agu_uop_pdest;	// backend/src/zaqal/backend/Execute.scala:10:7, :38:24, :52:32, :56:39, :504:19, :505:35, :506:39
-      r_regFile_waddr_4 <= _GEN_7 ? exe_uopFp_pdest : 8'h0;	// backend/src/zaqal/backend/Execute.scala:10:7, :52:32, :56:39, :137:22, :553:19, :554:35, :560:33, :562:31
-      r_regFile_waddr_5 <= r2_mul_val ? r2_mul_pdest : 8'h0;	// backend/src/zaqal/backend/Execute.scala:10:7, :52:32, :56:39, :242:27, :243:29, :450:20, :452:27
-      r_regFile_wdata_0 <= _GEN_4 ? wb0_data : 64'h0;	// backend/src/zaqal/backend/Execute.scala:53:{32,40}, :55:39, :57:39, :221:22, :405:18, :406:72, :407:27, :409:29
-      r_regFile_wdata_1 <= _GEN_5 ? wb1_data : 64'h0;	// backend/src/zaqal/backend/Execute.scala:53:{32,40}, :55:39, :57:39, :225:22, :427:18, :428:72, :429:27, :431:29
-      r_regFile_wdata_2 <= _div_io_done ? _div_io_result : 64'h0;	// backend/src/zaqal/backend/Execute.scala:28:20, :53:{32,40}, :57:39, :456:21, :459:27
-      r_regFile_wdata_3 <= _GEN_6 ? 64'h0 : _lsu_io_result;	// backend/src/zaqal/backend/Execute.scala:26:20, :53:{32,40}, :56:39, :57:39, :504:19, :505:35, :506:39
-      r_regFile_wdata_4 <= _GEN_7 ? _fpmisc_io_result_int : 64'h0;	// backend/src/zaqal/backend/Execute.scala:31:22, :53:{32,40}, :56:39, :57:39, :553:19, :554:35, :560:33, :562:31, :563:31
-      r_regFile_wdata_5 <= r2_mul_val ? _mul_io_result : 64'h0;	// backend/src/zaqal/backend/Execute.scala:27:20, :53:{32,40}, :57:39, :242:27, :450:20, :453:27
+      r_regFile_wen_3 <= _GEN_0 & ~r_agu_uop_decode_is_fload & _next_regFile_wen_3_T;	// backend/src/zaqal/backend/Execute.scala:38:24, :51:32, :55:39, :69:46, :235:115, :520:19, :521:35, :522:39, :527:29
+      r_regFile_wen_4 <= _GEN_2 & exe_is_fp_wb_to_int;	// backend/src/zaqal/backend/Execute.scala:51:32, :55:39, :69:46, :566:135, :569:19, :570:35, :571:32, :576:33
+      r_regFile_wen_5 <= r2_mul_val;	// backend/src/zaqal/backend/Execute.scala:51:32, :246:27
+      r_regFile_waddr_0 <= _GEN_4 ? exe_uop0_pdest : 8'h0;	// backend/src/zaqal/backend/Execute.scala:10:7, :52:32, :55:39, :56:39, :114:21, :421:18, :422:72, :423:27, :424:29
+      r_regFile_waddr_1 <= _GEN_5 ? exe_uop1_pdest : 8'h0;	// backend/src/zaqal/backend/Execute.scala:10:7, :52:32, :55:39, :56:39, :123:21, :443:18, :444:72, :445:27, :446:29
+      r_regFile_waddr_2 <= _div_io_done ? div_rd_latch : 8'h0;	// backend/src/zaqal/backend/Execute.scala:10:7, :28:20, :44:29, :52:32, :56:39, :472:21, :474:27
+      r_regFile_waddr_3 <= _GEN_6 ? 8'h0 : r_agu_uop_pdest;	// backend/src/zaqal/backend/Execute.scala:10:7, :38:24, :52:32, :56:39, :520:19, :521:35, :522:39
+      r_regFile_waddr_4 <= _GEN_7 ? exe_uopFp_pdest : 8'h0;	// backend/src/zaqal/backend/Execute.scala:10:7, :52:32, :56:39, :141:22, :569:19, :570:35, :576:33, :578:31
+      r_regFile_waddr_5 <= r2_mul_val ? r2_mul_pdest : 8'h0;	// backend/src/zaqal/backend/Execute.scala:10:7, :52:32, :56:39, :246:27, :247:29, :466:20, :468:27
+      r_regFile_wdata_0 <= _GEN_4 ? wb0_data : 64'h0;	// backend/src/zaqal/backend/Execute.scala:53:{32,40}, :55:39, :57:39, :225:22, :421:18, :422:72, :423:27, :425:29
+      r_regFile_wdata_1 <= _GEN_5 ? wb1_data : 64'h0;	// backend/src/zaqal/backend/Execute.scala:53:{32,40}, :55:39, :57:39, :229:22, :443:18, :444:72, :445:27, :447:29
+      r_regFile_wdata_2 <= _div_io_done ? _div_io_result : 64'h0;	// backend/src/zaqal/backend/Execute.scala:28:20, :53:{32,40}, :57:39, :472:21, :475:27
+      r_regFile_wdata_3 <= _GEN_6 ? 64'h0 : _lsu_io_result;	// backend/src/zaqal/backend/Execute.scala:26:20, :53:{32,40}, :56:39, :57:39, :520:19, :521:35, :522:39
+      r_regFile_wdata_4 <= _GEN_7 ? _fpmisc_io_result_int : 64'h0;	// backend/src/zaqal/backend/Execute.scala:31:22, :53:{32,40}, :56:39, :57:39, :569:19, :570:35, :576:33, :578:31, :579:31
+      r_regFile_wdata_5 <= r2_mul_val ? _mul_io_result : 64'h0;	// backend/src/zaqal/backend/Execute.scala:27:20, :53:{32,40}, :57:39, :246:27, :466:20, :469:27
       exe_val0 <=
         ~io_redirect_valid_0
-        & (io_int_in_0_ready_0 ? io_int_in_0_ready_0 & io_int_in_0_valid : exe_val0);	// backend/src/zaqal/backend/Execute.scala:103:28, :109:25, :111:27, :112:14, :113:35, :114:14, :381:30, :382:23, :388:25, :389:23, :395:25, src/main/scala/chisel3/util/Decoupled.scala:51:35
+        & (io_int_in_0_ready_0 ? io_int_in_0_ready_0 & io_int_in_0_valid : exe_val0);	// backend/src/zaqal/backend/Execute.scala:107:28, :113:25, :115:27, :116:14, :117:35, :118:14, :385:30, :386:23, :396:25, :397:23, :407:25, src/main/scala/chisel3/util/Decoupled.scala:51:35
       exe_val1 <=
         ~io_redirect_valid_0
-        & (io_int_in_1_ready_0 ? io_int_in_1_ready_0 & io_int_in_1_valid : exe_val1);	// backend/src/zaqal/backend/Execute.scala:104:28, :111:27, :112:14, :113:35, :118:25, :120:27, :121:14, :122:35, :123:14, :381:30, :382:23, :388:25, :389:23, :395:25, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      exe_valMem <= ~io_redirect_valid_0 & io_mem_in_valid;	// backend/src/zaqal/backend/Execute.scala:111:27, :112:14, :113:35, :127:27, :129:27, :130:16, :131:32, :381:30, :382:23, :388:25, :389:23, :395:25
+        & (io_int_in_1_ready_0 ? io_int_in_1_ready_0 & io_int_in_1_valid : exe_val1);	// backend/src/zaqal/backend/Execute.scala:108:28, :115:27, :116:14, :117:35, :122:25, :124:27, :125:14, :126:35, :127:14, :385:30, :386:23, :396:25, :397:23, :407:25, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      exe_valMem <= ~io_redirect_valid_0 & io_mem_in_valid;	// backend/src/zaqal/backend/Execute.scala:115:27, :116:14, :117:35, :131:27, :133:27, :134:16, :135:32, :385:30, :386:23, :396:25, :397:23, :407:25
       exe_valFp <=
         ~io_redirect_valid_0
-        & (_fpdiv_io_ready ? _fpdiv_io_ready & io_fp_in_valid : exe_valFp);	// backend/src/zaqal/backend/Execute.scala:30:21, :111:27, :112:14, :113:35, :136:26, :138:27, :139:15, :140:31, :141:15, :381:30, :382:23, :388:25, :389:23, :395:25, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      r_mul_val <= exe_val0 & exe_is_mul_op0 | exe_val1 & exe_is_mul_op1;	// backend/src/zaqal/backend/Execute.scala:109:25, :118:25, :199:103, :208:103, :240:{26,36,54,66}
-      r_mul_pdest <= exe_is_mul_op0 ? exe_uop0_pdest : exe_uop1_pdest;	// backend/src/zaqal/backend/Execute.scala:110:21, :119:21, :199:103, :241:{28,32}
-      r2_mul_val <= r_mul_val;	// backend/src/zaqal/backend/Execute.scala:240:26, :242:27
-      r2_mul_pdest <= r_mul_pdest;	// backend/src/zaqal/backend/Execute.scala:241:28, :243:29
+        & (_fpdiv_io_ready ? _fpdiv_io_ready & io_fp_in_valid : exe_valFp);	// backend/src/zaqal/backend/Execute.scala:30:21, :115:27, :116:14, :117:35, :140:26, :142:27, :143:15, :144:31, :145:15, :385:30, :386:23, :396:25, :397:23, :407:25, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      r_mul_val <= exe_val0 & exe_is_mul_op0 | exe_val1 & exe_is_mul_op1;	// backend/src/zaqal/backend/Execute.scala:113:25, :122:25, :203:103, :212:103, :244:{26,36,54,66}
+      r_mul_pdest <= exe_is_mul_op0 ? exe_uop0_pdest : exe_uop1_pdest;	// backend/src/zaqal/backend/Execute.scala:114:21, :123:21, :203:103, :245:{28,32}
+      r2_mul_val <= r_mul_val;	// backend/src/zaqal/backend/Execute.scala:244:26, :246:27
+      r2_mul_pdest <= r_mul_pdest;	// backend/src/zaqal/backend/Execute.scala:245:28, :247:29
       r_wb0_valid <=
         exe_val0 & (|exe_uop0_pdest) & ~exe_is_div_op0
-        & (~exe_uop0_decode_is_branch | exe_is_link0);	// backend/src/zaqal/backend/Execute.scala:109:25, :110:21, :198:82, :200:38, :219:{46,57,73,78,99}, :250:28
-      r_wb0_pdest <= exe_uop0_pdest;	// backend/src/zaqal/backend/Execute.scala:110:21, :251:28
-      r_wb0_data <= wb0_data;	// backend/src/zaqal/backend/Execute.scala:221:22, :252:28
+        & (~exe_uop0_decode_is_branch | exe_is_link0);	// backend/src/zaqal/backend/Execute.scala:113:25, :114:21, :202:82, :204:38, :223:{46,57,73,78,99}, :254:28
+      r_wb0_pdest <= exe_uop0_pdest;	// backend/src/zaqal/backend/Execute.scala:114:21, :255:28
+      r_wb0_data <= wb0_data;	// backend/src/zaqal/backend/Execute.scala:225:22, :256:28
       r_wb1_valid <=
         exe_val1 & (|exe_uop1_pdest) & ~exe_is_div_op1
-        & (~exe_uop1_decode_is_branch | exe_is_link1);	// backend/src/zaqal/backend/Execute.scala:118:25, :119:21, :207:82, :209:38, :223:{46,57,73,78,99}, :254:28
-      r_wb1_pdest <= exe_uop1_pdest;	// backend/src/zaqal/backend/Execute.scala:119:21, :255:28
-      r_wb1_data <= wb1_data;	// backend/src/zaqal/backend/Execute.scala:225:22, :256:28
-      r_wb2_valid <= _div_io_done & (|div_rd_latch);	// backend/src/zaqal/backend/Execute.scala:28:20, :44:29, :227:{31,47}, :258:28
-      r_wb2_pdest <= div_rd_latch;	// backend/src/zaqal/backend/Execute.scala:44:29, :259:28
-      r_wb2_data <= _div_io_result;	// backend/src/zaqal/backend/Execute.scala:28:20, :260:28
-      r_wb3_valid <= wb3_valid;	// backend/src/zaqal/backend/Execute.scala:231:86, :262:28
-      r_wb3_pdest <= r_agu_uop_pdest;	// backend/src/zaqal/backend/Execute.scala:38:24, :263:28
-      r_wb3_data <= _lsu_io_result;	// backend/src/zaqal/backend/Execute.scala:26:20, :264:28
+        & (~exe_uop1_decode_is_branch | exe_is_link1);	// backend/src/zaqal/backend/Execute.scala:122:25, :123:21, :211:82, :213:38, :227:{46,57,73,78,99}, :258:28
+      r_wb1_pdest <= exe_uop1_pdest;	// backend/src/zaqal/backend/Execute.scala:123:21, :259:28
+      r_wb1_data <= wb1_data;	// backend/src/zaqal/backend/Execute.scala:229:22, :260:28
+      r_wb2_valid <= _div_io_done & (|div_rd_latch);	// backend/src/zaqal/backend/Execute.scala:28:20, :44:29, :231:{31,47}, :262:28
+      r_wb2_pdest <= div_rd_latch;	// backend/src/zaqal/backend/Execute.scala:44:29, :263:28
+      r_wb2_data <= _div_io_result;	// backend/src/zaqal/backend/Execute.scala:28:20, :264:28
+      r_wb3_valid <= wb3_valid;	// backend/src/zaqal/backend/Execute.scala:235:86, :266:28
+      r_wb3_pdest <= r_agu_uop_pdest;	// backend/src/zaqal/backend/Execute.scala:38:24, :267:28
+      r_wb3_data <= _lsu_io_result;	// backend/src/zaqal/backend/Execute.scala:26:20, :268:28
       r_wb4_valid <=
         exe_valFp & (|exe_uopFp_pdest)
         & (_exe_is_fp_wb_to_int_T | exe_uopFp_decode_is_feq | exe_uopFp_decode_is_flt
-           | exe_uopFp_decode_is_fle | exe_uopFp_decode_is_fclass);	// backend/src/zaqal/backend/Execute.scala:136:26, :137:22, :216:{54,139}, :235:{48,56}, :266:28
-      r_wb4_pdest <= exe_uopFp_pdest;	// backend/src/zaqal/backend/Execute.scala:137:22, :267:28
-      r_wb4_data <= _fpmisc_io_result_int;	// backend/src/zaqal/backend/Execute.scala:31:22, :268:28
-      r_wb5_valid <= r2_mul_val & (|r2_mul_pdest);	// backend/src/zaqal/backend/Execute.scala:242:27, :243:29, :245:{30,46}, :270:28
-      r_wb5_pdest <= r2_mul_pdest;	// backend/src/zaqal/backend/Execute.scala:243:29, :271:28
-      r_wb5_data <= _mul_io_result;	// backend/src/zaqal/backend/Execute.scala:27:20, :272:28
-      r2_wb0_valid <= r_wb0_valid;	// backend/src/zaqal/backend/Execute.scala:250:28, :275:29
-      r2_wb0_pdest <= r_wb0_pdest;	// backend/src/zaqal/backend/Execute.scala:251:28, :276:29
-      r2_wb0_data <= r_wb0_data;	// backend/src/zaqal/backend/Execute.scala:252:28, :277:29
-      r2_wb1_valid <= r_wb1_valid;	// backend/src/zaqal/backend/Execute.scala:254:28, :279:29
-      r2_wb1_pdest <= r_wb1_pdest;	// backend/src/zaqal/backend/Execute.scala:255:28, :280:29
-      r2_wb1_data <= r_wb1_data;	// backend/src/zaqal/backend/Execute.scala:256:28, :281:29
-      r2_wb2_valid <= r_wb2_valid;	// backend/src/zaqal/backend/Execute.scala:258:28, :283:29
-      r2_wb2_pdest <= r_wb2_pdest;	// backend/src/zaqal/backend/Execute.scala:259:28, :284:29
-      r2_wb2_data <= r_wb2_data;	// backend/src/zaqal/backend/Execute.scala:260:28, :285:29
-      r2_wb3_valid <= r_wb3_valid;	// backend/src/zaqal/backend/Execute.scala:262:28, :287:29
-      r2_wb3_pdest <= r_wb3_pdest;	// backend/src/zaqal/backend/Execute.scala:263:28, :288:29
-      r2_wb3_data <= r_wb3_data;	// backend/src/zaqal/backend/Execute.scala:264:28, :289:29
-      r2_wb4_valid <= r_wb4_valid;	// backend/src/zaqal/backend/Execute.scala:266:28, :291:29
-      r2_wb4_pdest <= r_wb4_pdest;	// backend/src/zaqal/backend/Execute.scala:267:28, :292:29
-      r2_wb4_data <= r_wb4_data;	// backend/src/zaqal/backend/Execute.scala:268:28, :293:29
-      r2_wb5_valid <= r_wb5_valid;	// backend/src/zaqal/backend/Execute.scala:270:28, :295:29
-      r2_wb5_pdest <= r_wb5_pdest;	// backend/src/zaqal/backend/Execute.scala:271:28, :296:29
-      r2_wb5_data <= r_wb5_data;	// backend/src/zaqal/backend/Execute.scala:272:28, :297:29
+           | exe_uopFp_decode_is_fle | exe_uopFp_decode_is_fclass);	// backend/src/zaqal/backend/Execute.scala:140:26, :141:22, :220:{54,139}, :239:{48,56}, :270:28
+      r_wb4_pdest <= exe_uopFp_pdest;	// backend/src/zaqal/backend/Execute.scala:141:22, :271:28
+      r_wb4_data <= _fpmisc_io_result_int;	// backend/src/zaqal/backend/Execute.scala:31:22, :272:28
+      r_wb5_valid <= r2_mul_val & (|r2_mul_pdest);	// backend/src/zaqal/backend/Execute.scala:246:27, :247:29, :249:{30,46}, :274:28
+      r_wb5_pdest <= r2_mul_pdest;	// backend/src/zaqal/backend/Execute.scala:247:29, :275:28
+      r_wb5_data <= _mul_io_result;	// backend/src/zaqal/backend/Execute.scala:27:20, :276:28
+      r2_wb0_valid <= r_wb0_valid;	// backend/src/zaqal/backend/Execute.scala:254:28, :279:29
+      r2_wb0_pdest <= r_wb0_pdest;	// backend/src/zaqal/backend/Execute.scala:255:28, :280:29
+      r2_wb0_data <= r_wb0_data;	// backend/src/zaqal/backend/Execute.scala:256:28, :281:29
+      r2_wb1_valid <= r_wb1_valid;	// backend/src/zaqal/backend/Execute.scala:258:28, :283:29
+      r2_wb1_pdest <= r_wb1_pdest;	// backend/src/zaqal/backend/Execute.scala:259:28, :284:29
+      r2_wb1_data <= r_wb1_data;	// backend/src/zaqal/backend/Execute.scala:260:28, :285:29
+      r2_wb2_valid <= r_wb2_valid;	// backend/src/zaqal/backend/Execute.scala:262:28, :287:29
+      r2_wb2_pdest <= r_wb2_pdest;	// backend/src/zaqal/backend/Execute.scala:263:28, :288:29
+      r2_wb2_data <= r_wb2_data;	// backend/src/zaqal/backend/Execute.scala:264:28, :289:29
+      r2_wb3_valid <= r_wb3_valid;	// backend/src/zaqal/backend/Execute.scala:266:28, :291:29
+      r2_wb3_pdest <= r_wb3_pdest;	// backend/src/zaqal/backend/Execute.scala:267:28, :292:29
+      r2_wb3_data <= r_wb3_data;	// backend/src/zaqal/backend/Execute.scala:268:28, :293:29
+      r2_wb4_valid <= r_wb4_valid;	// backend/src/zaqal/backend/Execute.scala:270:28, :295:29
+      r2_wb4_pdest <= r_wb4_pdest;	// backend/src/zaqal/backend/Execute.scala:271:28, :296:29
+      r2_wb4_data <= r_wb4_data;	// backend/src/zaqal/backend/Execute.scala:272:28, :297:29
+      r2_wb5_valid <= r_wb5_valid;	// backend/src/zaqal/backend/Execute.scala:274:28, :299:29
+      r2_wb5_pdest <= r_wb5_pdest;	// backend/src/zaqal/backend/Execute.scala:275:28, :300:29
+      r2_wb5_data <= r_wb5_data;	// backend/src/zaqal/backend/Execute.scala:276:28, :301:29
       r_wu0_valid <=
-        _r_mul_wu0_valid_raw_T & (|io_int_in_0_bits_pdest) & ~is_div_op0 & ~is_mul_op0;	// backend/src/zaqal/backend/Execute.scala:88:66, :89:83, :415:{68,79,91,94}, :416:28, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      r_wu0_pdest <= io_int_in_0_bits_pdest;	// backend/src/zaqal/backend/Execute.scala:417:28
+        _r_mul_wu0_valid_raw_T & (|io_int_in_0_bits_pdest) & ~is_div_op0 & ~is_mul_op0;	// backend/src/zaqal/backend/Execute.scala:92:66, :93:83, :431:{68,79,91,94}, :432:28, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      r_wu0_pdest <= io_int_in_0_bits_pdest;	// backend/src/zaqal/backend/Execute.scala:433:28
       r_mul_wu0_valid_raw <=
-        _r_mul_wu0_valid_raw_T & (|io_int_in_0_bits_pdest) & is_mul_op0;	// backend/src/zaqal/backend/Execute.scala:89:83, :415:68, :419:{36,90}, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      r_mul_wu0_pdest_raw <= io_int_in_0_bits_pdest;	// backend/src/zaqal/backend/Execute.scala:420:36
-      r_mul_wu0_valid <= r_mul_wu0_valid_raw;	// backend/src/zaqal/backend/Execute.scala:419:36, :421:32
-      r_mul_wu0_pdest <= r_mul_wu0_pdest_raw;	// backend/src/zaqal/backend/Execute.scala:420:36, :422:32
+        _r_mul_wu0_valid_raw_T & (|io_int_in_0_bits_pdest) & is_mul_op0;	// backend/src/zaqal/backend/Execute.scala:93:83, :431:68, :435:{36,90}, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      r_mul_wu0_pdest_raw <= io_int_in_0_bits_pdest;	// backend/src/zaqal/backend/Execute.scala:436:36
+      r_mul_wu0_valid <= r_mul_wu0_valid_raw;	// backend/src/zaqal/backend/Execute.scala:435:36, :437:32
+      r_mul_wu0_pdest <= r_mul_wu0_pdest_raw;	// backend/src/zaqal/backend/Execute.scala:436:36, :438:32
       r_wu1_valid <=
-        _r_mul_wu1_valid_raw_T & (|io_int_in_1_bits_pdest) & ~is_div_op1 & ~is_mul_op1;	// backend/src/zaqal/backend/Execute.scala:94:66, :95:83, :437:{68,79,91,94}, :438:28, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      r_wu1_pdest <= io_int_in_1_bits_pdest;	// backend/src/zaqal/backend/Execute.scala:439:28
+        _r_mul_wu1_valid_raw_T & (|io_int_in_1_bits_pdest) & ~is_div_op1 & ~is_mul_op1;	// backend/src/zaqal/backend/Execute.scala:98:66, :99:83, :453:{68,79,91,94}, :454:28, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      r_wu1_pdest <= io_int_in_1_bits_pdest;	// backend/src/zaqal/backend/Execute.scala:455:28
       r_mul_wu1_valid_raw <=
-        _r_mul_wu1_valid_raw_T & (|io_int_in_1_bits_pdest) & is_mul_op1;	// backend/src/zaqal/backend/Execute.scala:95:83, :437:68, :441:{36,90}, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      r_mul_wu1_pdest_raw <= io_int_in_1_bits_pdest;	// backend/src/zaqal/backend/Execute.scala:442:36
-      r_mul_wu1_valid <= r_mul_wu1_valid_raw;	// backend/src/zaqal/backend/Execute.scala:441:36, :443:32
-      r_mul_wu1_pdest <= r_mul_wu1_pdest_raw;	// backend/src/zaqal/backend/Execute.scala:442:36, :444:32
-      r_wuDiv_valid <= _div_io_done & (|div_rd_latch);	// backend/src/zaqal/backend/Execute.scala:28:20, :44:29, :227:47, :462:33, :463:30
-      r_wuDiv_pdest <= div_rd_latch;	// backend/src/zaqal/backend/Execute.scala:44:29, :464:30
+        _r_mul_wu1_valid_raw_T & (|io_int_in_1_bits_pdest) & is_mul_op1;	// backend/src/zaqal/backend/Execute.scala:99:83, :453:68, :457:{36,90}, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      r_mul_wu1_pdest_raw <= io_int_in_1_bits_pdest;	// backend/src/zaqal/backend/Execute.scala:458:36
+      r_mul_wu1_valid <= r_mul_wu1_valid_raw;	// backend/src/zaqal/backend/Execute.scala:457:36, :459:32
+      r_mul_wu1_pdest <= r_mul_wu1_pdest_raw;	// backend/src/zaqal/backend/Execute.scala:458:36, :460:32
+      r_wuDiv_valid <= _div_io_done & (|div_rd_latch);	// backend/src/zaqal/backend/Execute.scala:28:20, :44:29, :231:47, :478:33, :479:30
+      r_wuDiv_pdest <= div_rd_latch;	// backend/src/zaqal/backend/Execute.scala:44:29, :480:30
       r_wuMem_valid <=
-        io_mem_in_valid & (|io_mem_in_bits_pdest) & ~io_mem_in_bits_decode_is_fload;	// backend/src/zaqal/backend/Execute.scala:519:{60,68,71}, :520:30
-      r_wuMem_pdest <= io_mem_in_bits_pdest;	// backend/src/zaqal/backend/Execute.scala:521:30
+        io_mem_in_valid & (|io_mem_in_bits_pdest) & ~io_mem_in_bits_decode_is_fload;	// backend/src/zaqal/backend/Execute.scala:535:{60,68,71}, :536:30
+      r_wuMem_pdest <= io_mem_in_bits_pdest;	// backend/src/zaqal/backend/Execute.scala:537:30
       r_wuFp_valid <=
         _fpdiv_io_ready & io_fp_in_valid & (|io_fp_in_bits_pdest)
         & (io_fp_in_bits_decode_is_fmv_x_w | io_fp_in_bits_decode_is_fcvt_f2i
            | io_fp_in_bits_decode_is_feq | io_fp_in_bits_decode_is_flt
-           | io_fp_in_bits_decode_is_fle | io_fp_in_bits_decode_is_fclass);	// backend/src/zaqal/backend/Execute.scala:30:21, :551:111, :573:{57,65}, :574:29
-      r_wuFp_pdest <= io_fp_in_bits_pdest;	// backend/src/zaqal/backend/Execute.scala:575:29
+           | io_fp_in_bits_decode_is_fle | io_fp_in_bits_decode_is_fclass);	// backend/src/zaqal/backend/Execute.scala:30:21, :567:111, :589:{57,65}, :590:29
+      r_wuFp_pdest <= io_fp_in_bits_pdest;	// backend/src/zaqal/backend/Execute.scala:591:29
     end
-    if (io_redirect_valid_0) begin	// backend/src/zaqal/backend/Execute.scala:381:30, :382:23, :388:25, :389:23, :395:25
+    if (io_redirect_valid_0) begin	// backend/src/zaqal/backend/Execute.scala:385:30, :386:23, :396:25, :397:23, :407:25
     end
-    else begin	// backend/src/zaqal/backend/Execute.scala:381:30, :382:23, :388:25, :389:23, :395:25
-      r_agu_uop_decode_is_lb <= exe_uopMem_decode_is_lb;	// backend/src/zaqal/backend/Execute.scala:38:24, :128:23
-      r_agu_uop_decode_is_lh <= exe_uopMem_decode_is_lh;	// backend/src/zaqal/backend/Execute.scala:38:24, :128:23
-      r_agu_uop_decode_is_lw <= exe_uopMem_decode_is_lw;	// backend/src/zaqal/backend/Execute.scala:38:24, :128:23
-      r_agu_uop_decode_is_ld <= exe_uopMem_decode_is_ld;	// backend/src/zaqal/backend/Execute.scala:38:24, :128:23
-      r_agu_uop_decode_is_lbu <= exe_uopMem_decode_is_lbu;	// backend/src/zaqal/backend/Execute.scala:38:24, :128:23
-      r_agu_uop_decode_is_lhu <= exe_uopMem_decode_is_lhu;	// backend/src/zaqal/backend/Execute.scala:38:24, :128:23
-      r_agu_uop_decode_is_lwu <= exe_uopMem_decode_is_lwu;	// backend/src/zaqal/backend/Execute.scala:38:24, :128:23
-      r_agu_uop_decode_is_load <= exe_uopMem_decode_is_load;	// backend/src/zaqal/backend/Execute.scala:38:24, :128:23
-      r_agu_uop_decode_is_sb <= exe_uopMem_decode_is_sb;	// backend/src/zaqal/backend/Execute.scala:38:24, :128:23
-      r_agu_uop_decode_is_sh <= exe_uopMem_decode_is_sh;	// backend/src/zaqal/backend/Execute.scala:38:24, :128:23
-      r_agu_uop_decode_is_sw <= exe_uopMem_decode_is_sw;	// backend/src/zaqal/backend/Execute.scala:38:24, :128:23
-      r_agu_uop_decode_is_sd <= exe_uopMem_decode_is_sd;	// backend/src/zaqal/backend/Execute.scala:38:24, :128:23
-      r_agu_uop_decode_is_store <= exe_uopMem_decode_is_store;	// backend/src/zaqal/backend/Execute.scala:38:24, :128:23
-      r_agu_uop_decode_is_lr <= exe_uopMem_decode_is_lr;	// backend/src/zaqal/backend/Execute.scala:38:24, :128:23
-      r_agu_uop_decode_is_sc <= exe_uopMem_decode_is_sc;	// backend/src/zaqal/backend/Execute.scala:38:24, :128:23
-      r_agu_uop_decode_is_lr_w <= exe_uopMem_decode_is_lr_w;	// backend/src/zaqal/backend/Execute.scala:38:24, :128:23
-      r_agu_uop_decode_is_lr_d <= exe_uopMem_decode_is_lr_d;	// backend/src/zaqal/backend/Execute.scala:38:24, :128:23
-      r_agu_uop_decode_is_sc_w <= exe_uopMem_decode_is_sc_w;	// backend/src/zaqal/backend/Execute.scala:38:24, :128:23
-      r_agu_uop_decode_is_sc_d <= exe_uopMem_decode_is_sc_d;	// backend/src/zaqal/backend/Execute.scala:38:24, :128:23
-      r_agu_uop_decode_is_amoadd <= exe_uopMem_decode_is_amoadd;	// backend/src/zaqal/backend/Execute.scala:38:24, :128:23
-      r_agu_uop_decode_is_amoswap <= exe_uopMem_decode_is_amoswap;	// backend/src/zaqal/backend/Execute.scala:38:24, :128:23
-      r_agu_uop_decode_is_amoxor <= exe_uopMem_decode_is_amoxor;	// backend/src/zaqal/backend/Execute.scala:38:24, :128:23
-      r_agu_uop_decode_is_amoand <= exe_uopMem_decode_is_amoand;	// backend/src/zaqal/backend/Execute.scala:38:24, :128:23
-      r_agu_uop_decode_is_amoor <= exe_uopMem_decode_is_amoor;	// backend/src/zaqal/backend/Execute.scala:38:24, :128:23
-      r_agu_uop_decode_is_amomin <= exe_uopMem_decode_is_amomin;	// backend/src/zaqal/backend/Execute.scala:38:24, :128:23
-      r_agu_uop_decode_is_amomax <= exe_uopMem_decode_is_amomax;	// backend/src/zaqal/backend/Execute.scala:38:24, :128:23
-      r_agu_uop_decode_is_amominu <= exe_uopMem_decode_is_amominu;	// backend/src/zaqal/backend/Execute.scala:38:24, :128:23
-      r_agu_uop_decode_is_amomaxu <= exe_uopMem_decode_is_amomaxu;	// backend/src/zaqal/backend/Execute.scala:38:24, :128:23
-      r_agu_uop_decode_is_amo_w <= exe_uopMem_decode_is_amo_w;	// backend/src/zaqal/backend/Execute.scala:38:24, :128:23
-      r_agu_uop_decode_is_amo_d <= exe_uopMem_decode_is_amo_d;	// backend/src/zaqal/backend/Execute.scala:38:24, :128:23
-      r_agu_uop_decode_is_atomic <= exe_uopMem_decode_is_atomic;	// backend/src/zaqal/backend/Execute.scala:38:24, :128:23
-      r_agu_uop_decode_is_fload <= exe_uopMem_decode_is_fload;	// backend/src/zaqal/backend/Execute.scala:38:24, :128:23
-      r_agu_uop_decode_is_flw <= exe_uopMem_decode_is_flw;	// backend/src/zaqal/backend/Execute.scala:38:24, :128:23
-      r_agu_uop_decode_is_fld <= exe_uopMem_decode_is_fld;	// backend/src/zaqal/backend/Execute.scala:38:24, :128:23
-      r_agu_uop_decode_is_fstore <= exe_uopMem_decode_is_fstore;	// backend/src/zaqal/backend/Execute.scala:38:24, :128:23
-      r_agu_uop_decode_is_fsw <= exe_uopMem_decode_is_fsw;	// backend/src/zaqal/backend/Execute.scala:38:24, :128:23
-      r_agu_uop_decode_is_fsd <= exe_uopMem_decode_is_fsd;	// backend/src/zaqal/backend/Execute.scala:38:24, :128:23
-      r_agu_uop_pdest <= exe_uopMem_pdest;	// backend/src/zaqal/backend/Execute.scala:38:24, :128:23
+    else begin	// backend/src/zaqal/backend/Execute.scala:385:30, :386:23, :396:25, :397:23, :407:25
+      r_agu_uop_decode_is_lb <= exe_uopMem_decode_is_lb;	// backend/src/zaqal/backend/Execute.scala:38:24, :132:23
+      r_agu_uop_decode_is_lh <= exe_uopMem_decode_is_lh;	// backend/src/zaqal/backend/Execute.scala:38:24, :132:23
+      r_agu_uop_decode_is_lw <= exe_uopMem_decode_is_lw;	// backend/src/zaqal/backend/Execute.scala:38:24, :132:23
+      r_agu_uop_decode_is_ld <= exe_uopMem_decode_is_ld;	// backend/src/zaqal/backend/Execute.scala:38:24, :132:23
+      r_agu_uop_decode_is_lbu <= exe_uopMem_decode_is_lbu;	// backend/src/zaqal/backend/Execute.scala:38:24, :132:23
+      r_agu_uop_decode_is_lhu <= exe_uopMem_decode_is_lhu;	// backend/src/zaqal/backend/Execute.scala:38:24, :132:23
+      r_agu_uop_decode_is_lwu <= exe_uopMem_decode_is_lwu;	// backend/src/zaqal/backend/Execute.scala:38:24, :132:23
+      r_agu_uop_decode_is_load <= exe_uopMem_decode_is_load;	// backend/src/zaqal/backend/Execute.scala:38:24, :132:23
+      r_agu_uop_decode_is_sb <= exe_uopMem_decode_is_sb;	// backend/src/zaqal/backend/Execute.scala:38:24, :132:23
+      r_agu_uop_decode_is_sh <= exe_uopMem_decode_is_sh;	// backend/src/zaqal/backend/Execute.scala:38:24, :132:23
+      r_agu_uop_decode_is_sw <= exe_uopMem_decode_is_sw;	// backend/src/zaqal/backend/Execute.scala:38:24, :132:23
+      r_agu_uop_decode_is_sd <= exe_uopMem_decode_is_sd;	// backend/src/zaqal/backend/Execute.scala:38:24, :132:23
+      r_agu_uop_decode_is_store <= exe_uopMem_decode_is_store;	// backend/src/zaqal/backend/Execute.scala:38:24, :132:23
+      r_agu_uop_decode_is_lr <= exe_uopMem_decode_is_lr;	// backend/src/zaqal/backend/Execute.scala:38:24, :132:23
+      r_agu_uop_decode_is_sc <= exe_uopMem_decode_is_sc;	// backend/src/zaqal/backend/Execute.scala:38:24, :132:23
+      r_agu_uop_decode_is_lr_w <= exe_uopMem_decode_is_lr_w;	// backend/src/zaqal/backend/Execute.scala:38:24, :132:23
+      r_agu_uop_decode_is_lr_d <= exe_uopMem_decode_is_lr_d;	// backend/src/zaqal/backend/Execute.scala:38:24, :132:23
+      r_agu_uop_decode_is_sc_w <= exe_uopMem_decode_is_sc_w;	// backend/src/zaqal/backend/Execute.scala:38:24, :132:23
+      r_agu_uop_decode_is_sc_d <= exe_uopMem_decode_is_sc_d;	// backend/src/zaqal/backend/Execute.scala:38:24, :132:23
+      r_agu_uop_decode_is_amoadd <= exe_uopMem_decode_is_amoadd;	// backend/src/zaqal/backend/Execute.scala:38:24, :132:23
+      r_agu_uop_decode_is_amoswap <= exe_uopMem_decode_is_amoswap;	// backend/src/zaqal/backend/Execute.scala:38:24, :132:23
+      r_agu_uop_decode_is_amoxor <= exe_uopMem_decode_is_amoxor;	// backend/src/zaqal/backend/Execute.scala:38:24, :132:23
+      r_agu_uop_decode_is_amoand <= exe_uopMem_decode_is_amoand;	// backend/src/zaqal/backend/Execute.scala:38:24, :132:23
+      r_agu_uop_decode_is_amoor <= exe_uopMem_decode_is_amoor;	// backend/src/zaqal/backend/Execute.scala:38:24, :132:23
+      r_agu_uop_decode_is_amomin <= exe_uopMem_decode_is_amomin;	// backend/src/zaqal/backend/Execute.scala:38:24, :132:23
+      r_agu_uop_decode_is_amomax <= exe_uopMem_decode_is_amomax;	// backend/src/zaqal/backend/Execute.scala:38:24, :132:23
+      r_agu_uop_decode_is_amominu <= exe_uopMem_decode_is_amominu;	// backend/src/zaqal/backend/Execute.scala:38:24, :132:23
+      r_agu_uop_decode_is_amomaxu <= exe_uopMem_decode_is_amomaxu;	// backend/src/zaqal/backend/Execute.scala:38:24, :132:23
+      r_agu_uop_decode_is_amo_w <= exe_uopMem_decode_is_amo_w;	// backend/src/zaqal/backend/Execute.scala:38:24, :132:23
+      r_agu_uop_decode_is_amo_d <= exe_uopMem_decode_is_amo_d;	// backend/src/zaqal/backend/Execute.scala:38:24, :132:23
+      r_agu_uop_decode_is_atomic <= exe_uopMem_decode_is_atomic;	// backend/src/zaqal/backend/Execute.scala:38:24, :132:23
+      r_agu_uop_decode_is_fload <= exe_uopMem_decode_is_fload;	// backend/src/zaqal/backend/Execute.scala:38:24, :132:23
+      r_agu_uop_decode_is_flw <= exe_uopMem_decode_is_flw;	// backend/src/zaqal/backend/Execute.scala:38:24, :132:23
+      r_agu_uop_decode_is_fld <= exe_uopMem_decode_is_fld;	// backend/src/zaqal/backend/Execute.scala:38:24, :132:23
+      r_agu_uop_decode_is_fstore <= exe_uopMem_decode_is_fstore;	// backend/src/zaqal/backend/Execute.scala:38:24, :132:23
+      r_agu_uop_decode_is_fsw <= exe_uopMem_decode_is_fsw;	// backend/src/zaqal/backend/Execute.scala:38:24, :132:23
+      r_agu_uop_decode_is_fsd <= exe_uopMem_decode_is_fsd;	// backend/src/zaqal/backend/Execute.scala:38:24, :132:23
+      r_agu_uop_pdest <= exe_uopMem_pdest;	// backend/src/zaqal/backend/Execute.scala:38:24, :132:23
       r_agu_paddr <= _tlb_io_paddr;	// backend/src/zaqal/backend/Execute.scala:33:20, :40:24
       r_agu_src2 <=
         wb3_valid & r_agu_uop_pdest == exe_uopMem_psrs2 & (|exe_uopMem_psrs2)
@@ -1770,294 +1776,294 @@ module Execute(	// backend/src/zaqal/backend/Execute.scala:10:7
                                                         & r2_wb5_pdest == exe_uopMem_psrs2
                                                         & (|exe_uopMem_psrs2)
                                                           ? r2_wb5_data
-                                                          : r_regFile_rdata5;	// backend/src/zaqal/backend/Execute.scala:26:20, :38:24, :41:24, :128:23, :175:29, :231:86, :250:28, :251:28, :252:28, :254:28, :255:28, :256:28, :258:28, :259:28, :260:28, :262:28, :263:28, :264:28, :266:28, :267:28, :268:28, :270:28, :271:28, :272:28, :275:29, :276:29, :277:29, :279:29, :280:29, :281:29, :283:29, :284:29, :285:29, :287:29, :288:29, :289:29, :291:29, :292:29, :293:29, :295:29, :296:29, :297:29, :319:{66,77,87}, src/main/scala/chisel3/util/Mux.scala:126:16
-      r_agu_fsrc2 <= r_fpRegFile_rdata3;	// backend/src/zaqal/backend/Execute.scala:42:24, :176:31
-      exe_uopMem_decode_is_lb <= io_mem_in_bits_decode_is_lb;	// backend/src/zaqal/backend/Execute.scala:128:23
-      exe_uopMem_decode_is_lh <= io_mem_in_bits_decode_is_lh;	// backend/src/zaqal/backend/Execute.scala:128:23
-      exe_uopMem_decode_is_lw <= io_mem_in_bits_decode_is_lw;	// backend/src/zaqal/backend/Execute.scala:128:23
-      exe_uopMem_decode_is_ld <= io_mem_in_bits_decode_is_ld;	// backend/src/zaqal/backend/Execute.scala:128:23
-      exe_uopMem_decode_is_lbu <= io_mem_in_bits_decode_is_lbu;	// backend/src/zaqal/backend/Execute.scala:128:23
-      exe_uopMem_decode_is_lhu <= io_mem_in_bits_decode_is_lhu;	// backend/src/zaqal/backend/Execute.scala:128:23
-      exe_uopMem_decode_is_lwu <= io_mem_in_bits_decode_is_lwu;	// backend/src/zaqal/backend/Execute.scala:128:23
-      exe_uopMem_decode_is_load <= io_mem_in_bits_decode_is_load;	// backend/src/zaqal/backend/Execute.scala:128:23
-      exe_uopMem_decode_is_sb <= io_mem_in_bits_decode_is_sb;	// backend/src/zaqal/backend/Execute.scala:128:23
-      exe_uopMem_decode_is_sh <= io_mem_in_bits_decode_is_sh;	// backend/src/zaqal/backend/Execute.scala:128:23
-      exe_uopMem_decode_is_sw <= io_mem_in_bits_decode_is_sw;	// backend/src/zaqal/backend/Execute.scala:128:23
-      exe_uopMem_decode_is_sd <= io_mem_in_bits_decode_is_sd;	// backend/src/zaqal/backend/Execute.scala:128:23
-      exe_uopMem_decode_is_store <= io_mem_in_bits_decode_is_store;	// backend/src/zaqal/backend/Execute.scala:128:23
-      exe_uopMem_decode_is_lr <= io_mem_in_bits_decode_is_lr;	// backend/src/zaqal/backend/Execute.scala:128:23
-      exe_uopMem_decode_is_sc <= io_mem_in_bits_decode_is_sc;	// backend/src/zaqal/backend/Execute.scala:128:23
-      exe_uopMem_decode_is_lr_w <= io_mem_in_bits_decode_is_lr_w;	// backend/src/zaqal/backend/Execute.scala:128:23
-      exe_uopMem_decode_is_lr_d <= io_mem_in_bits_decode_is_lr_d;	// backend/src/zaqal/backend/Execute.scala:128:23
-      exe_uopMem_decode_is_sc_w <= io_mem_in_bits_decode_is_sc_w;	// backend/src/zaqal/backend/Execute.scala:128:23
-      exe_uopMem_decode_is_sc_d <= io_mem_in_bits_decode_is_sc_d;	// backend/src/zaqal/backend/Execute.scala:128:23
-      exe_uopMem_decode_is_amoadd <= io_mem_in_bits_decode_is_amoadd;	// backend/src/zaqal/backend/Execute.scala:128:23
-      exe_uopMem_decode_is_amoswap <= io_mem_in_bits_decode_is_amoswap;	// backend/src/zaqal/backend/Execute.scala:128:23
-      exe_uopMem_decode_is_amoxor <= io_mem_in_bits_decode_is_amoxor;	// backend/src/zaqal/backend/Execute.scala:128:23
-      exe_uopMem_decode_is_amoand <= io_mem_in_bits_decode_is_amoand;	// backend/src/zaqal/backend/Execute.scala:128:23
-      exe_uopMem_decode_is_amoor <= io_mem_in_bits_decode_is_amoor;	// backend/src/zaqal/backend/Execute.scala:128:23
-      exe_uopMem_decode_is_amomin <= io_mem_in_bits_decode_is_amomin;	// backend/src/zaqal/backend/Execute.scala:128:23
-      exe_uopMem_decode_is_amomax <= io_mem_in_bits_decode_is_amomax;	// backend/src/zaqal/backend/Execute.scala:128:23
-      exe_uopMem_decode_is_amominu <= io_mem_in_bits_decode_is_amominu;	// backend/src/zaqal/backend/Execute.scala:128:23
-      exe_uopMem_decode_is_amomaxu <= io_mem_in_bits_decode_is_amomaxu;	// backend/src/zaqal/backend/Execute.scala:128:23
-      exe_uopMem_decode_is_amo_w <= io_mem_in_bits_decode_is_amo_w;	// backend/src/zaqal/backend/Execute.scala:128:23
-      exe_uopMem_decode_is_amo_d <= io_mem_in_bits_decode_is_amo_d;	// backend/src/zaqal/backend/Execute.scala:128:23
-      exe_uopMem_decode_is_atomic <= io_mem_in_bits_decode_is_atomic;	// backend/src/zaqal/backend/Execute.scala:128:23
-      exe_uopMem_decode_is_fload <= io_mem_in_bits_decode_is_fload;	// backend/src/zaqal/backend/Execute.scala:128:23
-      exe_uopMem_decode_is_flw <= io_mem_in_bits_decode_is_flw;	// backend/src/zaqal/backend/Execute.scala:128:23
-      exe_uopMem_decode_is_fld <= io_mem_in_bits_decode_is_fld;	// backend/src/zaqal/backend/Execute.scala:128:23
-      exe_uopMem_decode_is_fstore <= io_mem_in_bits_decode_is_fstore;	// backend/src/zaqal/backend/Execute.scala:128:23
-      exe_uopMem_decode_is_fsw <= io_mem_in_bits_decode_is_fsw;	// backend/src/zaqal/backend/Execute.scala:128:23
-      exe_uopMem_decode_is_fsd <= io_mem_in_bits_decode_is_fsd;	// backend/src/zaqal/backend/Execute.scala:128:23
-      exe_uopMem_decode_imm <= io_mem_in_bits_decode_imm;	// backend/src/zaqal/backend/Execute.scala:128:23
-      exe_uopMem_psrs1 <= io_mem_in_bits_psrs1;	// backend/src/zaqal/backend/Execute.scala:128:23
-      exe_uopMem_psrs2 <= io_mem_in_bits_psrs2;	// backend/src/zaqal/backend/Execute.scala:128:23
-      exe_uopMem_pdest <= io_mem_in_bits_pdest;	// backend/src/zaqal/backend/Execute.scala:128:23
+                                                          : r_regFile_rdata5;	// backend/src/zaqal/backend/Execute.scala:26:20, :38:24, :41:24, :132:23, :179:29, :235:86, :254:28, :255:28, :256:28, :258:28, :259:28, :260:28, :262:28, :263:28, :264:28, :266:28, :267:28, :268:28, :270:28, :271:28, :272:28, :274:28, :275:28, :276:28, :279:29, :280:29, :281:29, :283:29, :284:29, :285:29, :287:29, :288:29, :289:29, :291:29, :292:29, :293:29, :295:29, :296:29, :297:29, :299:29, :300:29, :301:29, :323:{66,77,87}, src/main/scala/chisel3/util/Mux.scala:126:16
+      r_agu_fsrc2 <= r_fpRegFile_rdata3;	// backend/src/zaqal/backend/Execute.scala:42:24, :180:31
+      exe_uopMem_decode_is_lb <= io_mem_in_bits_decode_is_lb;	// backend/src/zaqal/backend/Execute.scala:132:23
+      exe_uopMem_decode_is_lh <= io_mem_in_bits_decode_is_lh;	// backend/src/zaqal/backend/Execute.scala:132:23
+      exe_uopMem_decode_is_lw <= io_mem_in_bits_decode_is_lw;	// backend/src/zaqal/backend/Execute.scala:132:23
+      exe_uopMem_decode_is_ld <= io_mem_in_bits_decode_is_ld;	// backend/src/zaqal/backend/Execute.scala:132:23
+      exe_uopMem_decode_is_lbu <= io_mem_in_bits_decode_is_lbu;	// backend/src/zaqal/backend/Execute.scala:132:23
+      exe_uopMem_decode_is_lhu <= io_mem_in_bits_decode_is_lhu;	// backend/src/zaqal/backend/Execute.scala:132:23
+      exe_uopMem_decode_is_lwu <= io_mem_in_bits_decode_is_lwu;	// backend/src/zaqal/backend/Execute.scala:132:23
+      exe_uopMem_decode_is_load <= io_mem_in_bits_decode_is_load;	// backend/src/zaqal/backend/Execute.scala:132:23
+      exe_uopMem_decode_is_sb <= io_mem_in_bits_decode_is_sb;	// backend/src/zaqal/backend/Execute.scala:132:23
+      exe_uopMem_decode_is_sh <= io_mem_in_bits_decode_is_sh;	// backend/src/zaqal/backend/Execute.scala:132:23
+      exe_uopMem_decode_is_sw <= io_mem_in_bits_decode_is_sw;	// backend/src/zaqal/backend/Execute.scala:132:23
+      exe_uopMem_decode_is_sd <= io_mem_in_bits_decode_is_sd;	// backend/src/zaqal/backend/Execute.scala:132:23
+      exe_uopMem_decode_is_store <= io_mem_in_bits_decode_is_store;	// backend/src/zaqal/backend/Execute.scala:132:23
+      exe_uopMem_decode_is_lr <= io_mem_in_bits_decode_is_lr;	// backend/src/zaqal/backend/Execute.scala:132:23
+      exe_uopMem_decode_is_sc <= io_mem_in_bits_decode_is_sc;	// backend/src/zaqal/backend/Execute.scala:132:23
+      exe_uopMem_decode_is_lr_w <= io_mem_in_bits_decode_is_lr_w;	// backend/src/zaqal/backend/Execute.scala:132:23
+      exe_uopMem_decode_is_lr_d <= io_mem_in_bits_decode_is_lr_d;	// backend/src/zaqal/backend/Execute.scala:132:23
+      exe_uopMem_decode_is_sc_w <= io_mem_in_bits_decode_is_sc_w;	// backend/src/zaqal/backend/Execute.scala:132:23
+      exe_uopMem_decode_is_sc_d <= io_mem_in_bits_decode_is_sc_d;	// backend/src/zaqal/backend/Execute.scala:132:23
+      exe_uopMem_decode_is_amoadd <= io_mem_in_bits_decode_is_amoadd;	// backend/src/zaqal/backend/Execute.scala:132:23
+      exe_uopMem_decode_is_amoswap <= io_mem_in_bits_decode_is_amoswap;	// backend/src/zaqal/backend/Execute.scala:132:23
+      exe_uopMem_decode_is_amoxor <= io_mem_in_bits_decode_is_amoxor;	// backend/src/zaqal/backend/Execute.scala:132:23
+      exe_uopMem_decode_is_amoand <= io_mem_in_bits_decode_is_amoand;	// backend/src/zaqal/backend/Execute.scala:132:23
+      exe_uopMem_decode_is_amoor <= io_mem_in_bits_decode_is_amoor;	// backend/src/zaqal/backend/Execute.scala:132:23
+      exe_uopMem_decode_is_amomin <= io_mem_in_bits_decode_is_amomin;	// backend/src/zaqal/backend/Execute.scala:132:23
+      exe_uopMem_decode_is_amomax <= io_mem_in_bits_decode_is_amomax;	// backend/src/zaqal/backend/Execute.scala:132:23
+      exe_uopMem_decode_is_amominu <= io_mem_in_bits_decode_is_amominu;	// backend/src/zaqal/backend/Execute.scala:132:23
+      exe_uopMem_decode_is_amomaxu <= io_mem_in_bits_decode_is_amomaxu;	// backend/src/zaqal/backend/Execute.scala:132:23
+      exe_uopMem_decode_is_amo_w <= io_mem_in_bits_decode_is_amo_w;	// backend/src/zaqal/backend/Execute.scala:132:23
+      exe_uopMem_decode_is_amo_d <= io_mem_in_bits_decode_is_amo_d;	// backend/src/zaqal/backend/Execute.scala:132:23
+      exe_uopMem_decode_is_atomic <= io_mem_in_bits_decode_is_atomic;	// backend/src/zaqal/backend/Execute.scala:132:23
+      exe_uopMem_decode_is_fload <= io_mem_in_bits_decode_is_fload;	// backend/src/zaqal/backend/Execute.scala:132:23
+      exe_uopMem_decode_is_flw <= io_mem_in_bits_decode_is_flw;	// backend/src/zaqal/backend/Execute.scala:132:23
+      exe_uopMem_decode_is_fld <= io_mem_in_bits_decode_is_fld;	// backend/src/zaqal/backend/Execute.scala:132:23
+      exe_uopMem_decode_is_fstore <= io_mem_in_bits_decode_is_fstore;	// backend/src/zaqal/backend/Execute.scala:132:23
+      exe_uopMem_decode_is_fsw <= io_mem_in_bits_decode_is_fsw;	// backend/src/zaqal/backend/Execute.scala:132:23
+      exe_uopMem_decode_is_fsd <= io_mem_in_bits_decode_is_fsd;	// backend/src/zaqal/backend/Execute.scala:132:23
+      exe_uopMem_decode_imm <= io_mem_in_bits_decode_imm;	// backend/src/zaqal/backend/Execute.scala:132:23
+      exe_uopMem_psrs1 <= io_mem_in_bits_psrs1;	// backend/src/zaqal/backend/Execute.scala:132:23
+      exe_uopMem_psrs2 <= io_mem_in_bits_psrs2;	// backend/src/zaqal/backend/Execute.scala:132:23
+      exe_uopMem_pdest <= io_mem_in_bits_pdest;	// backend/src/zaqal/backend/Execute.scala:132:23
     end
-    if (io_redirect_valid_0 | ~io_int_in_0_ready_0) begin	// backend/src/zaqal/backend/Execute.scala:103:28, :110:21, :111:27, :113:35, :381:30, :382:23, :388:25, :389:23, :395:25
+    if (io_redirect_valid_0 | ~io_int_in_0_ready_0) begin	// backend/src/zaqal/backend/Execute.scala:107:28, :114:21, :115:27, :117:35, :385:30, :386:23, :396:25, :397:23, :407:25
     end
-    else begin	// backend/src/zaqal/backend/Execute.scala:110:21, :111:27, :113:35
-      exe_uop0_uop_pc <= io_int_in_0_bits_uop_pc;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_uop_pre_is_rvc <= io_int_in_0_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_uop_is_predicted_taken <= io_int_in_0_bits_uop_is_predicted_taken;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_is_addi <= io_int_in_0_bits_decode_is_addi;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_is_add <= io_int_in_0_bits_decode_is_add;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_is_mul <= io_int_in_0_bits_decode_is_mul;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_is_mulh <= io_int_in_0_bits_decode_is_mulh;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_is_mulhsu <= io_int_in_0_bits_decode_is_mulhsu;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_is_mulhu <= io_int_in_0_bits_decode_is_mulhu;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_is_mulw <= io_int_in_0_bits_decode_is_mulw;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_is_div <= io_int_in_0_bits_decode_is_div;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_is_divu <= io_int_in_0_bits_decode_is_divu;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_is_rem <= io_int_in_0_bits_decode_is_rem;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_is_remu <= io_int_in_0_bits_decode_is_remu;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_is_divw <= io_int_in_0_bits_decode_is_divw;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_is_divuw <= io_int_in_0_bits_decode_is_divuw;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_is_remw <= io_int_in_0_bits_decode_is_remw;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_is_remuw <= io_int_in_0_bits_decode_is_remuw;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_is_beq <= io_int_in_0_bits_decode_is_beq;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_is_bne <= io_int_in_0_bits_decode_is_bne;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_is_blt <= io_int_in_0_bits_decode_is_blt;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_is_bge <= io_int_in_0_bits_decode_is_bge;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_is_bltu <= io_int_in_0_bits_decode_is_bltu;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_is_bgeu <= io_int_in_0_bits_decode_is_bgeu;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_is_and <= io_int_in_0_bits_decode_is_and;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_is_or <= io_int_in_0_bits_decode_is_or;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_is_xor <= io_int_in_0_bits_decode_is_xor;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_is_andi <= io_int_in_0_bits_decode_is_andi;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_is_ori <= io_int_in_0_bits_decode_is_ori;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_is_xori <= io_int_in_0_bits_decode_is_xori;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_is_sll <= io_int_in_0_bits_decode_is_sll;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_is_srl <= io_int_in_0_bits_decode_is_srl;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_is_sra <= io_int_in_0_bits_decode_is_sra;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_is_sllw <= io_int_in_0_bits_decode_is_sllw;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_is_srlw <= io_int_in_0_bits_decode_is_srlw;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_is_sraw <= io_int_in_0_bits_decode_is_sraw;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_is_slli <= io_int_in_0_bits_decode_is_slli;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_is_srli <= io_int_in_0_bits_decode_is_srli;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_is_srai <= io_int_in_0_bits_decode_is_srai;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_is_slliw <= io_int_in_0_bits_decode_is_slliw;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_is_srliw <= io_int_in_0_bits_decode_is_srliw;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_is_sraiw <= io_int_in_0_bits_decode_is_sraiw;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_is_slt <= io_int_in_0_bits_decode_is_slt;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_is_sltu <= io_int_in_0_bits_decode_is_sltu;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_is_slti <= io_int_in_0_bits_decode_is_slti;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_is_sltiu <= io_int_in_0_bits_decode_is_sltiu;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_is_sub <= io_int_in_0_bits_decode_is_sub;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_is_addw <= io_int_in_0_bits_decode_is_addw;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_is_subw <= io_int_in_0_bits_decode_is_subw;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_is_addiw <= io_int_in_0_bits_decode_is_addiw;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_is_lui <= io_int_in_0_bits_decode_is_lui;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_is_auipc <= io_int_in_0_bits_decode_is_auipc;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_is_branch <= io_int_in_0_bits_decode_is_branch;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_is_jal <= io_int_in_0_bits_decode_is_jal;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_is_jalr <= io_int_in_0_bits_decode_is_jalr;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_is_sh1add <= io_int_in_0_bits_decode_is_sh1add;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_is_sh2add <= io_int_in_0_bits_decode_is_sh2add;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_is_sh3add <= io_int_in_0_bits_decode_is_sh3add;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_is_sh1add_uw <= io_int_in_0_bits_decode_is_sh1add_uw;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_is_sh2add_uw <= io_int_in_0_bits_decode_is_sh2add_uw;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_is_sh3add_uw <= io_int_in_0_bits_decode_is_sh3add_uw;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_is_andn <= io_int_in_0_bits_decode_is_andn;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_is_orn <= io_int_in_0_bits_decode_is_orn;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_is_xorn <= io_int_in_0_bits_decode_is_xorn;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_is_rol <= io_int_in_0_bits_decode_is_rol;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_is_ror <= io_int_in_0_bits_decode_is_ror;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_is_rori <= io_int_in_0_bits_decode_is_rori;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_is_rolw <= io_int_in_0_bits_decode_is_rolw;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_is_rorw <= io_int_in_0_bits_decode_is_rorw;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_is_roriw <= io_int_in_0_bits_decode_is_roriw;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_is_clz <= io_int_in_0_bits_decode_is_clz;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_is_ctz <= io_int_in_0_bits_decode_is_ctz;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_is_cpop <= io_int_in_0_bits_decode_is_cpop;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_is_clzw <= io_int_in_0_bits_decode_is_clzw;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_is_ctzw <= io_int_in_0_bits_decode_is_ctzw;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_is_cpopw <= io_int_in_0_bits_decode_is_cpopw;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_is_rev8 <= io_int_in_0_bits_decode_is_rev8;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_is_orc_b <= io_int_in_0_bits_decode_is_orc_b;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_is_sextb <= io_int_in_0_bits_decode_is_sextb;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_is_sexth <= io_int_in_0_bits_decode_is_sexth;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_is_zexth <= io_int_in_0_bits_decode_is_zexth;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_is_min <= io_int_in_0_bits_decode_is_min;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_is_max <= io_int_in_0_bits_decode_is_max;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_is_minu <= io_int_in_0_bits_decode_is_minu;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_is_maxu <= io_int_in_0_bits_decode_is_maxu;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_is_bset <= io_int_in_0_bits_decode_is_bset;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_is_bseti <= io_int_in_0_bits_decode_is_bseti;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_is_bclr <= io_int_in_0_bits_decode_is_bclr;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_is_bclri <= io_int_in_0_bits_decode_is_bclri;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_is_binv <= io_int_in_0_bits_decode_is_binv;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_is_binvi <= io_int_in_0_bits_decode_is_binvi;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_is_bext <= io_int_in_0_bits_decode_is_bext;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_is_bexti <= io_int_in_0_bits_decode_is_bexti;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_imm <= io_int_in_0_bits_decode_imm;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_decode_is_fused_lui_addi <= io_int_in_0_bits_decode_is_fused_lui_addi;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_psrs1 <= io_int_in_0_bits_psrs1;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_psrs2 <= io_int_in_0_bits_psrs2;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_pdest <= io_int_in_0_bits_pdest;	// backend/src/zaqal/backend/Execute.scala:110:21
-      exe_uop0_snapshotIdx <= io_int_in_0_bits_snapshotIdx;	// backend/src/zaqal/backend/Execute.scala:110:21
+    else begin	// backend/src/zaqal/backend/Execute.scala:114:21, :115:27, :117:35
+      exe_uop0_uop_pc <= io_int_in_0_bits_uop_pc;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_uop_pre_is_rvc <= io_int_in_0_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_uop_is_predicted_taken <= io_int_in_0_bits_uop_is_predicted_taken;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_is_addi <= io_int_in_0_bits_decode_is_addi;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_is_add <= io_int_in_0_bits_decode_is_add;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_is_mul <= io_int_in_0_bits_decode_is_mul;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_is_mulh <= io_int_in_0_bits_decode_is_mulh;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_is_mulhsu <= io_int_in_0_bits_decode_is_mulhsu;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_is_mulhu <= io_int_in_0_bits_decode_is_mulhu;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_is_mulw <= io_int_in_0_bits_decode_is_mulw;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_is_div <= io_int_in_0_bits_decode_is_div;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_is_divu <= io_int_in_0_bits_decode_is_divu;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_is_rem <= io_int_in_0_bits_decode_is_rem;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_is_remu <= io_int_in_0_bits_decode_is_remu;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_is_divw <= io_int_in_0_bits_decode_is_divw;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_is_divuw <= io_int_in_0_bits_decode_is_divuw;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_is_remw <= io_int_in_0_bits_decode_is_remw;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_is_remuw <= io_int_in_0_bits_decode_is_remuw;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_is_beq <= io_int_in_0_bits_decode_is_beq;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_is_bne <= io_int_in_0_bits_decode_is_bne;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_is_blt <= io_int_in_0_bits_decode_is_blt;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_is_bge <= io_int_in_0_bits_decode_is_bge;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_is_bltu <= io_int_in_0_bits_decode_is_bltu;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_is_bgeu <= io_int_in_0_bits_decode_is_bgeu;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_is_and <= io_int_in_0_bits_decode_is_and;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_is_or <= io_int_in_0_bits_decode_is_or;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_is_xor <= io_int_in_0_bits_decode_is_xor;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_is_andi <= io_int_in_0_bits_decode_is_andi;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_is_ori <= io_int_in_0_bits_decode_is_ori;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_is_xori <= io_int_in_0_bits_decode_is_xori;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_is_sll <= io_int_in_0_bits_decode_is_sll;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_is_srl <= io_int_in_0_bits_decode_is_srl;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_is_sra <= io_int_in_0_bits_decode_is_sra;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_is_sllw <= io_int_in_0_bits_decode_is_sllw;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_is_srlw <= io_int_in_0_bits_decode_is_srlw;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_is_sraw <= io_int_in_0_bits_decode_is_sraw;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_is_slli <= io_int_in_0_bits_decode_is_slli;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_is_srli <= io_int_in_0_bits_decode_is_srli;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_is_srai <= io_int_in_0_bits_decode_is_srai;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_is_slliw <= io_int_in_0_bits_decode_is_slliw;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_is_srliw <= io_int_in_0_bits_decode_is_srliw;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_is_sraiw <= io_int_in_0_bits_decode_is_sraiw;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_is_slt <= io_int_in_0_bits_decode_is_slt;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_is_sltu <= io_int_in_0_bits_decode_is_sltu;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_is_slti <= io_int_in_0_bits_decode_is_slti;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_is_sltiu <= io_int_in_0_bits_decode_is_sltiu;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_is_sub <= io_int_in_0_bits_decode_is_sub;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_is_addw <= io_int_in_0_bits_decode_is_addw;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_is_subw <= io_int_in_0_bits_decode_is_subw;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_is_addiw <= io_int_in_0_bits_decode_is_addiw;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_is_lui <= io_int_in_0_bits_decode_is_lui;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_is_auipc <= io_int_in_0_bits_decode_is_auipc;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_is_branch <= io_int_in_0_bits_decode_is_branch;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_is_jal <= io_int_in_0_bits_decode_is_jal;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_is_jalr <= io_int_in_0_bits_decode_is_jalr;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_is_sh1add <= io_int_in_0_bits_decode_is_sh1add;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_is_sh2add <= io_int_in_0_bits_decode_is_sh2add;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_is_sh3add <= io_int_in_0_bits_decode_is_sh3add;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_is_sh1add_uw <= io_int_in_0_bits_decode_is_sh1add_uw;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_is_sh2add_uw <= io_int_in_0_bits_decode_is_sh2add_uw;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_is_sh3add_uw <= io_int_in_0_bits_decode_is_sh3add_uw;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_is_andn <= io_int_in_0_bits_decode_is_andn;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_is_orn <= io_int_in_0_bits_decode_is_orn;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_is_xorn <= io_int_in_0_bits_decode_is_xorn;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_is_rol <= io_int_in_0_bits_decode_is_rol;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_is_ror <= io_int_in_0_bits_decode_is_ror;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_is_rori <= io_int_in_0_bits_decode_is_rori;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_is_rolw <= io_int_in_0_bits_decode_is_rolw;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_is_rorw <= io_int_in_0_bits_decode_is_rorw;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_is_roriw <= io_int_in_0_bits_decode_is_roriw;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_is_clz <= io_int_in_0_bits_decode_is_clz;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_is_ctz <= io_int_in_0_bits_decode_is_ctz;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_is_cpop <= io_int_in_0_bits_decode_is_cpop;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_is_clzw <= io_int_in_0_bits_decode_is_clzw;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_is_ctzw <= io_int_in_0_bits_decode_is_ctzw;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_is_cpopw <= io_int_in_0_bits_decode_is_cpopw;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_is_rev8 <= io_int_in_0_bits_decode_is_rev8;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_is_orc_b <= io_int_in_0_bits_decode_is_orc_b;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_is_sextb <= io_int_in_0_bits_decode_is_sextb;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_is_sexth <= io_int_in_0_bits_decode_is_sexth;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_is_zexth <= io_int_in_0_bits_decode_is_zexth;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_is_min <= io_int_in_0_bits_decode_is_min;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_is_max <= io_int_in_0_bits_decode_is_max;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_is_minu <= io_int_in_0_bits_decode_is_minu;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_is_maxu <= io_int_in_0_bits_decode_is_maxu;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_is_bset <= io_int_in_0_bits_decode_is_bset;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_is_bseti <= io_int_in_0_bits_decode_is_bseti;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_is_bclr <= io_int_in_0_bits_decode_is_bclr;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_is_bclri <= io_int_in_0_bits_decode_is_bclri;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_is_binv <= io_int_in_0_bits_decode_is_binv;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_is_binvi <= io_int_in_0_bits_decode_is_binvi;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_is_bext <= io_int_in_0_bits_decode_is_bext;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_is_bexti <= io_int_in_0_bits_decode_is_bexti;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_imm <= io_int_in_0_bits_decode_imm;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_decode_is_fused_lui_addi <= io_int_in_0_bits_decode_is_fused_lui_addi;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_psrs1 <= io_int_in_0_bits_psrs1;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_psrs2 <= io_int_in_0_bits_psrs2;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_pdest <= io_int_in_0_bits_pdest;	// backend/src/zaqal/backend/Execute.scala:114:21
+      exe_uop0_snapshotIdx <= io_int_in_0_bits_snapshotIdx;	// backend/src/zaqal/backend/Execute.scala:114:21
     end
-    if (io_redirect_valid_0 | ~io_int_in_1_ready_0) begin	// backend/src/zaqal/backend/Execute.scala:104:28, :119:21, :120:27, :122:35, :381:30, :382:23, :388:25, :389:23, :395:25
+    if (io_redirect_valid_0 | ~io_int_in_1_ready_0) begin	// backend/src/zaqal/backend/Execute.scala:108:28, :123:21, :124:27, :126:35, :385:30, :386:23, :396:25, :397:23, :407:25
     end
-    else begin	// backend/src/zaqal/backend/Execute.scala:119:21, :120:27, :122:35
-      exe_uop1_uop_pc <= io_int_in_1_bits_uop_pc;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_uop_pre_is_rvc <= io_int_in_1_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_uop_is_predicted_taken <= io_int_in_1_bits_uop_is_predicted_taken;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_is_addi <= io_int_in_1_bits_decode_is_addi;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_is_add <= io_int_in_1_bits_decode_is_add;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_is_mul <= io_int_in_1_bits_decode_is_mul;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_is_mulh <= io_int_in_1_bits_decode_is_mulh;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_is_mulhsu <= io_int_in_1_bits_decode_is_mulhsu;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_is_mulhu <= io_int_in_1_bits_decode_is_mulhu;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_is_mulw <= io_int_in_1_bits_decode_is_mulw;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_is_div <= io_int_in_1_bits_decode_is_div;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_is_divu <= io_int_in_1_bits_decode_is_divu;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_is_rem <= io_int_in_1_bits_decode_is_rem;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_is_remu <= io_int_in_1_bits_decode_is_remu;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_is_divw <= io_int_in_1_bits_decode_is_divw;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_is_divuw <= io_int_in_1_bits_decode_is_divuw;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_is_remw <= io_int_in_1_bits_decode_is_remw;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_is_remuw <= io_int_in_1_bits_decode_is_remuw;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_is_beq <= io_int_in_1_bits_decode_is_beq;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_is_bne <= io_int_in_1_bits_decode_is_bne;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_is_blt <= io_int_in_1_bits_decode_is_blt;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_is_bge <= io_int_in_1_bits_decode_is_bge;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_is_bltu <= io_int_in_1_bits_decode_is_bltu;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_is_bgeu <= io_int_in_1_bits_decode_is_bgeu;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_is_and <= io_int_in_1_bits_decode_is_and;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_is_or <= io_int_in_1_bits_decode_is_or;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_is_xor <= io_int_in_1_bits_decode_is_xor;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_is_andi <= io_int_in_1_bits_decode_is_andi;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_is_ori <= io_int_in_1_bits_decode_is_ori;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_is_xori <= io_int_in_1_bits_decode_is_xori;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_is_sll <= io_int_in_1_bits_decode_is_sll;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_is_srl <= io_int_in_1_bits_decode_is_srl;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_is_sra <= io_int_in_1_bits_decode_is_sra;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_is_sllw <= io_int_in_1_bits_decode_is_sllw;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_is_srlw <= io_int_in_1_bits_decode_is_srlw;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_is_sraw <= io_int_in_1_bits_decode_is_sraw;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_is_slli <= io_int_in_1_bits_decode_is_slli;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_is_srli <= io_int_in_1_bits_decode_is_srli;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_is_srai <= io_int_in_1_bits_decode_is_srai;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_is_slliw <= io_int_in_1_bits_decode_is_slliw;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_is_srliw <= io_int_in_1_bits_decode_is_srliw;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_is_sraiw <= io_int_in_1_bits_decode_is_sraiw;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_is_slt <= io_int_in_1_bits_decode_is_slt;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_is_sltu <= io_int_in_1_bits_decode_is_sltu;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_is_slti <= io_int_in_1_bits_decode_is_slti;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_is_sltiu <= io_int_in_1_bits_decode_is_sltiu;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_is_sub <= io_int_in_1_bits_decode_is_sub;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_is_addw <= io_int_in_1_bits_decode_is_addw;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_is_subw <= io_int_in_1_bits_decode_is_subw;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_is_addiw <= io_int_in_1_bits_decode_is_addiw;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_is_lui <= io_int_in_1_bits_decode_is_lui;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_is_auipc <= io_int_in_1_bits_decode_is_auipc;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_is_branch <= io_int_in_1_bits_decode_is_branch;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_is_jal <= io_int_in_1_bits_decode_is_jal;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_is_jalr <= io_int_in_1_bits_decode_is_jalr;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_is_sh1add <= io_int_in_1_bits_decode_is_sh1add;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_is_sh2add <= io_int_in_1_bits_decode_is_sh2add;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_is_sh3add <= io_int_in_1_bits_decode_is_sh3add;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_is_sh1add_uw <= io_int_in_1_bits_decode_is_sh1add_uw;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_is_sh2add_uw <= io_int_in_1_bits_decode_is_sh2add_uw;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_is_sh3add_uw <= io_int_in_1_bits_decode_is_sh3add_uw;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_is_andn <= io_int_in_1_bits_decode_is_andn;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_is_orn <= io_int_in_1_bits_decode_is_orn;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_is_xorn <= io_int_in_1_bits_decode_is_xorn;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_is_rol <= io_int_in_1_bits_decode_is_rol;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_is_ror <= io_int_in_1_bits_decode_is_ror;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_is_rori <= io_int_in_1_bits_decode_is_rori;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_is_rolw <= io_int_in_1_bits_decode_is_rolw;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_is_rorw <= io_int_in_1_bits_decode_is_rorw;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_is_roriw <= io_int_in_1_bits_decode_is_roriw;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_is_clz <= io_int_in_1_bits_decode_is_clz;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_is_ctz <= io_int_in_1_bits_decode_is_ctz;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_is_cpop <= io_int_in_1_bits_decode_is_cpop;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_is_clzw <= io_int_in_1_bits_decode_is_clzw;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_is_ctzw <= io_int_in_1_bits_decode_is_ctzw;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_is_cpopw <= io_int_in_1_bits_decode_is_cpopw;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_is_rev8 <= io_int_in_1_bits_decode_is_rev8;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_is_orc_b <= io_int_in_1_bits_decode_is_orc_b;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_is_sextb <= io_int_in_1_bits_decode_is_sextb;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_is_sexth <= io_int_in_1_bits_decode_is_sexth;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_is_zexth <= io_int_in_1_bits_decode_is_zexth;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_is_min <= io_int_in_1_bits_decode_is_min;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_is_max <= io_int_in_1_bits_decode_is_max;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_is_minu <= io_int_in_1_bits_decode_is_minu;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_is_maxu <= io_int_in_1_bits_decode_is_maxu;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_is_bset <= io_int_in_1_bits_decode_is_bset;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_is_bseti <= io_int_in_1_bits_decode_is_bseti;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_is_bclr <= io_int_in_1_bits_decode_is_bclr;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_is_bclri <= io_int_in_1_bits_decode_is_bclri;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_is_binv <= io_int_in_1_bits_decode_is_binv;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_is_binvi <= io_int_in_1_bits_decode_is_binvi;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_is_bext <= io_int_in_1_bits_decode_is_bext;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_is_bexti <= io_int_in_1_bits_decode_is_bexti;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_imm <= io_int_in_1_bits_decode_imm;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_decode_is_fused_lui_addi <= io_int_in_1_bits_decode_is_fused_lui_addi;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_psrs1 <= io_int_in_1_bits_psrs1;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_psrs2 <= io_int_in_1_bits_psrs2;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_pdest <= io_int_in_1_bits_pdest;	// backend/src/zaqal/backend/Execute.scala:119:21
-      exe_uop1_snapshotIdx <= io_int_in_1_bits_snapshotIdx;	// backend/src/zaqal/backend/Execute.scala:119:21
+    else begin	// backend/src/zaqal/backend/Execute.scala:123:21, :124:27, :126:35
+      exe_uop1_uop_pc <= io_int_in_1_bits_uop_pc;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_uop_pre_is_rvc <= io_int_in_1_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_uop_is_predicted_taken <= io_int_in_1_bits_uop_is_predicted_taken;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_is_addi <= io_int_in_1_bits_decode_is_addi;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_is_add <= io_int_in_1_bits_decode_is_add;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_is_mul <= io_int_in_1_bits_decode_is_mul;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_is_mulh <= io_int_in_1_bits_decode_is_mulh;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_is_mulhsu <= io_int_in_1_bits_decode_is_mulhsu;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_is_mulhu <= io_int_in_1_bits_decode_is_mulhu;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_is_mulw <= io_int_in_1_bits_decode_is_mulw;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_is_div <= io_int_in_1_bits_decode_is_div;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_is_divu <= io_int_in_1_bits_decode_is_divu;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_is_rem <= io_int_in_1_bits_decode_is_rem;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_is_remu <= io_int_in_1_bits_decode_is_remu;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_is_divw <= io_int_in_1_bits_decode_is_divw;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_is_divuw <= io_int_in_1_bits_decode_is_divuw;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_is_remw <= io_int_in_1_bits_decode_is_remw;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_is_remuw <= io_int_in_1_bits_decode_is_remuw;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_is_beq <= io_int_in_1_bits_decode_is_beq;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_is_bne <= io_int_in_1_bits_decode_is_bne;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_is_blt <= io_int_in_1_bits_decode_is_blt;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_is_bge <= io_int_in_1_bits_decode_is_bge;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_is_bltu <= io_int_in_1_bits_decode_is_bltu;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_is_bgeu <= io_int_in_1_bits_decode_is_bgeu;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_is_and <= io_int_in_1_bits_decode_is_and;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_is_or <= io_int_in_1_bits_decode_is_or;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_is_xor <= io_int_in_1_bits_decode_is_xor;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_is_andi <= io_int_in_1_bits_decode_is_andi;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_is_ori <= io_int_in_1_bits_decode_is_ori;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_is_xori <= io_int_in_1_bits_decode_is_xori;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_is_sll <= io_int_in_1_bits_decode_is_sll;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_is_srl <= io_int_in_1_bits_decode_is_srl;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_is_sra <= io_int_in_1_bits_decode_is_sra;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_is_sllw <= io_int_in_1_bits_decode_is_sllw;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_is_srlw <= io_int_in_1_bits_decode_is_srlw;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_is_sraw <= io_int_in_1_bits_decode_is_sraw;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_is_slli <= io_int_in_1_bits_decode_is_slli;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_is_srli <= io_int_in_1_bits_decode_is_srli;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_is_srai <= io_int_in_1_bits_decode_is_srai;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_is_slliw <= io_int_in_1_bits_decode_is_slliw;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_is_srliw <= io_int_in_1_bits_decode_is_srliw;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_is_sraiw <= io_int_in_1_bits_decode_is_sraiw;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_is_slt <= io_int_in_1_bits_decode_is_slt;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_is_sltu <= io_int_in_1_bits_decode_is_sltu;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_is_slti <= io_int_in_1_bits_decode_is_slti;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_is_sltiu <= io_int_in_1_bits_decode_is_sltiu;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_is_sub <= io_int_in_1_bits_decode_is_sub;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_is_addw <= io_int_in_1_bits_decode_is_addw;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_is_subw <= io_int_in_1_bits_decode_is_subw;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_is_addiw <= io_int_in_1_bits_decode_is_addiw;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_is_lui <= io_int_in_1_bits_decode_is_lui;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_is_auipc <= io_int_in_1_bits_decode_is_auipc;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_is_branch <= io_int_in_1_bits_decode_is_branch;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_is_jal <= io_int_in_1_bits_decode_is_jal;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_is_jalr <= io_int_in_1_bits_decode_is_jalr;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_is_sh1add <= io_int_in_1_bits_decode_is_sh1add;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_is_sh2add <= io_int_in_1_bits_decode_is_sh2add;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_is_sh3add <= io_int_in_1_bits_decode_is_sh3add;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_is_sh1add_uw <= io_int_in_1_bits_decode_is_sh1add_uw;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_is_sh2add_uw <= io_int_in_1_bits_decode_is_sh2add_uw;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_is_sh3add_uw <= io_int_in_1_bits_decode_is_sh3add_uw;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_is_andn <= io_int_in_1_bits_decode_is_andn;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_is_orn <= io_int_in_1_bits_decode_is_orn;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_is_xorn <= io_int_in_1_bits_decode_is_xorn;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_is_rol <= io_int_in_1_bits_decode_is_rol;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_is_ror <= io_int_in_1_bits_decode_is_ror;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_is_rori <= io_int_in_1_bits_decode_is_rori;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_is_rolw <= io_int_in_1_bits_decode_is_rolw;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_is_rorw <= io_int_in_1_bits_decode_is_rorw;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_is_roriw <= io_int_in_1_bits_decode_is_roriw;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_is_clz <= io_int_in_1_bits_decode_is_clz;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_is_ctz <= io_int_in_1_bits_decode_is_ctz;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_is_cpop <= io_int_in_1_bits_decode_is_cpop;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_is_clzw <= io_int_in_1_bits_decode_is_clzw;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_is_ctzw <= io_int_in_1_bits_decode_is_ctzw;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_is_cpopw <= io_int_in_1_bits_decode_is_cpopw;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_is_rev8 <= io_int_in_1_bits_decode_is_rev8;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_is_orc_b <= io_int_in_1_bits_decode_is_orc_b;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_is_sextb <= io_int_in_1_bits_decode_is_sextb;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_is_sexth <= io_int_in_1_bits_decode_is_sexth;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_is_zexth <= io_int_in_1_bits_decode_is_zexth;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_is_min <= io_int_in_1_bits_decode_is_min;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_is_max <= io_int_in_1_bits_decode_is_max;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_is_minu <= io_int_in_1_bits_decode_is_minu;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_is_maxu <= io_int_in_1_bits_decode_is_maxu;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_is_bset <= io_int_in_1_bits_decode_is_bset;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_is_bseti <= io_int_in_1_bits_decode_is_bseti;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_is_bclr <= io_int_in_1_bits_decode_is_bclr;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_is_bclri <= io_int_in_1_bits_decode_is_bclri;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_is_binv <= io_int_in_1_bits_decode_is_binv;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_is_binvi <= io_int_in_1_bits_decode_is_binvi;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_is_bext <= io_int_in_1_bits_decode_is_bext;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_is_bexti <= io_int_in_1_bits_decode_is_bexti;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_imm <= io_int_in_1_bits_decode_imm;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_decode_is_fused_lui_addi <= io_int_in_1_bits_decode_is_fused_lui_addi;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_psrs1 <= io_int_in_1_bits_psrs1;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_psrs2 <= io_int_in_1_bits_psrs2;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_pdest <= io_int_in_1_bits_pdest;	// backend/src/zaqal/backend/Execute.scala:123:21
+      exe_uop1_snapshotIdx <= io_int_in_1_bits_snapshotIdx;	// backend/src/zaqal/backend/Execute.scala:123:21
     end
-    if (io_redirect_valid_0 | ~_fpdiv_io_ready) begin	// backend/src/zaqal/backend/Execute.scala:30:21, :137:22, :138:27, :140:31, :381:30, :382:23, :388:25, :389:23, :395:25
+    if (io_redirect_valid_0 | ~_fpdiv_io_ready) begin	// backend/src/zaqal/backend/Execute.scala:30:21, :141:22, :142:27, :144:31, :385:30, :386:23, :396:25, :397:23, :407:25
     end
-    else begin	// backend/src/zaqal/backend/Execute.scala:137:22, :138:27, :140:31
-      exe_uopFp_uop_inst_raw <= io_fp_in_bits_uop_inst_raw;	// backend/src/zaqal/backend/Execute.scala:137:22
-      exe_uopFp_decode_is_fmadd <= io_fp_in_bits_decode_is_fmadd;	// backend/src/zaqal/backend/Execute.scala:137:22
-      exe_uopFp_decode_is_fadd <= io_fp_in_bits_decode_is_fadd;	// backend/src/zaqal/backend/Execute.scala:137:22
-      exe_uopFp_decode_is_fsub <= io_fp_in_bits_decode_is_fsub;	// backend/src/zaqal/backend/Execute.scala:137:22
-      exe_uopFp_decode_is_fmul <= io_fp_in_bits_decode_is_fmul;	// backend/src/zaqal/backend/Execute.scala:137:22
-      exe_uopFp_decode_is_fdiv <= io_fp_in_bits_decode_is_fdiv;	// backend/src/zaqal/backend/Execute.scala:137:22
-      exe_uopFp_decode_is_fsqrt <= io_fp_in_bits_decode_is_fsqrt;	// backend/src/zaqal/backend/Execute.scala:137:22
-      exe_uopFp_decode_is_fsgnj <= io_fp_in_bits_decode_is_fsgnj;	// backend/src/zaqal/backend/Execute.scala:137:22
-      exe_uopFp_decode_is_fminmax <= io_fp_in_bits_decode_is_fminmax;	// backend/src/zaqal/backend/Execute.scala:137:22
-      exe_uopFp_decode_is_fcvt_f2i <= io_fp_in_bits_decode_is_fcvt_f2i;	// backend/src/zaqal/backend/Execute.scala:137:22
-      exe_uopFp_decode_is_fcvt_i2f <= io_fp_in_bits_decode_is_fcvt_i2f;	// backend/src/zaqal/backend/Execute.scala:137:22
-      exe_uopFp_decode_is_fmv_w_x <= io_fp_in_bits_decode_is_fmv_w_x;	// backend/src/zaqal/backend/Execute.scala:137:22
-      exe_uopFp_decode_is_fmv_x_w <= io_fp_in_bits_decode_is_fmv_x_w;	// backend/src/zaqal/backend/Execute.scala:137:22
-      exe_uopFp_decode_is_feq <= io_fp_in_bits_decode_is_feq;	// backend/src/zaqal/backend/Execute.scala:137:22
-      exe_uopFp_decode_is_flt <= io_fp_in_bits_decode_is_flt;	// backend/src/zaqal/backend/Execute.scala:137:22
-      exe_uopFp_decode_is_fle <= io_fp_in_bits_decode_is_fle;	// backend/src/zaqal/backend/Execute.scala:137:22
-      exe_uopFp_decode_is_fclass <= io_fp_in_bits_decode_is_fclass;	// backend/src/zaqal/backend/Execute.scala:137:22
-      exe_uopFp_psrs1 <= io_fp_in_bits_psrs1;	// backend/src/zaqal/backend/Execute.scala:137:22
-      exe_uopFp_pdest <= io_fp_in_bits_pdest;	// backend/src/zaqal/backend/Execute.scala:137:22
+    else begin	// backend/src/zaqal/backend/Execute.scala:141:22, :142:27, :144:31
+      exe_uopFp_uop_inst_raw <= io_fp_in_bits_uop_inst_raw;	// backend/src/zaqal/backend/Execute.scala:141:22
+      exe_uopFp_decode_is_fmadd <= io_fp_in_bits_decode_is_fmadd;	// backend/src/zaqal/backend/Execute.scala:141:22
+      exe_uopFp_decode_is_fadd <= io_fp_in_bits_decode_is_fadd;	// backend/src/zaqal/backend/Execute.scala:141:22
+      exe_uopFp_decode_is_fsub <= io_fp_in_bits_decode_is_fsub;	// backend/src/zaqal/backend/Execute.scala:141:22
+      exe_uopFp_decode_is_fmul <= io_fp_in_bits_decode_is_fmul;	// backend/src/zaqal/backend/Execute.scala:141:22
+      exe_uopFp_decode_is_fdiv <= io_fp_in_bits_decode_is_fdiv;	// backend/src/zaqal/backend/Execute.scala:141:22
+      exe_uopFp_decode_is_fsqrt <= io_fp_in_bits_decode_is_fsqrt;	// backend/src/zaqal/backend/Execute.scala:141:22
+      exe_uopFp_decode_is_fsgnj <= io_fp_in_bits_decode_is_fsgnj;	// backend/src/zaqal/backend/Execute.scala:141:22
+      exe_uopFp_decode_is_fminmax <= io_fp_in_bits_decode_is_fminmax;	// backend/src/zaqal/backend/Execute.scala:141:22
+      exe_uopFp_decode_is_fcvt_f2i <= io_fp_in_bits_decode_is_fcvt_f2i;	// backend/src/zaqal/backend/Execute.scala:141:22
+      exe_uopFp_decode_is_fcvt_i2f <= io_fp_in_bits_decode_is_fcvt_i2f;	// backend/src/zaqal/backend/Execute.scala:141:22
+      exe_uopFp_decode_is_fmv_w_x <= io_fp_in_bits_decode_is_fmv_w_x;	// backend/src/zaqal/backend/Execute.scala:141:22
+      exe_uopFp_decode_is_fmv_x_w <= io_fp_in_bits_decode_is_fmv_x_w;	// backend/src/zaqal/backend/Execute.scala:141:22
+      exe_uopFp_decode_is_feq <= io_fp_in_bits_decode_is_feq;	// backend/src/zaqal/backend/Execute.scala:141:22
+      exe_uopFp_decode_is_flt <= io_fp_in_bits_decode_is_flt;	// backend/src/zaqal/backend/Execute.scala:141:22
+      exe_uopFp_decode_is_fle <= io_fp_in_bits_decode_is_fle;	// backend/src/zaqal/backend/Execute.scala:141:22
+      exe_uopFp_decode_is_fclass <= io_fp_in_bits_decode_is_fclass;	// backend/src/zaqal/backend/Execute.scala:141:22
+      exe_uopFp_psrs1 <= io_fp_in_bits_psrs1;	// backend/src/zaqal/backend/Execute.scala:141:22
+      exe_uopFp_pdest <= io_fp_in_bits_pdest;	// backend/src/zaqal/backend/Execute.scala:141:22
     end
-    if (io_int_in_0_ready_0) begin	// backend/src/zaqal/backend/Execute.scala:103:28
-      r_regFile_rdata0 <= _regFile_io_rdata_0;	// backend/src/zaqal/backend/Execute.scala:47:23, :160:29
-      r_regFile_rdata1 <= _regFile_io_rdata_1;	// backend/src/zaqal/backend/Execute.scala:47:23, :161:29
+    if (io_int_in_0_ready_0) begin	// backend/src/zaqal/backend/Execute.scala:107:28
+      r_regFile_rdata0 <= _regFile_io_rdata_0;	// backend/src/zaqal/backend/Execute.scala:47:23, :164:29
+      r_regFile_rdata1 <= _regFile_io_rdata_1;	// backend/src/zaqal/backend/Execute.scala:47:23, :165:29
     end
-    if (io_int_in_1_ready_0) begin	// backend/src/zaqal/backend/Execute.scala:104:28
-      r_regFile_rdata2 <= _regFile_io_rdata_2;	// backend/src/zaqal/backend/Execute.scala:47:23, :167:29
-      r_regFile_rdata3 <= _regFile_io_rdata_3;	// backend/src/zaqal/backend/Execute.scala:47:23, :168:29
+    if (io_int_in_1_ready_0) begin	// backend/src/zaqal/backend/Execute.scala:108:28
+      r_regFile_rdata2 <= _regFile_io_rdata_2;	// backend/src/zaqal/backend/Execute.scala:47:23, :171:29
+      r_regFile_rdata3 <= _regFile_io_rdata_3;	// backend/src/zaqal/backend/Execute.scala:47:23, :172:29
     end
-    r_regFile_rdata4 <= _regFile_io_rdata_4;	// backend/src/zaqal/backend/Execute.scala:47:23, :174:29
-    r_regFile_rdata5 <= _regFile_io_rdata_5;	// backend/src/zaqal/backend/Execute.scala:47:23, :175:29
-    r_fpRegFile_rdata3 <= _fpRegFile_io_rdata_3;	// backend/src/zaqal/backend/Execute.scala:48:25, :176:31
+    r_regFile_rdata4 <= _regFile_io_rdata_4;	// backend/src/zaqal/backend/Execute.scala:47:23, :178:29
+    r_regFile_rdata5 <= _regFile_io_rdata_5;	// backend/src/zaqal/backend/Execute.scala:47:23, :179:29
+    r_fpRegFile_rdata3 <= _fpRegFile_io_rdata_3;	// backend/src/zaqal/backend/Execute.scala:48:25, :180:31
     if (_fpdiv_io_ready) begin	// backend/src/zaqal/backend/Execute.scala:30:21
-      r_fpRegFile_rdata0 <= _fpRegFile_io_rdata_0;	// backend/src/zaqal/backend/Execute.scala:48:25, :183:31
-      r_fpRegFile_rdata1 <= _fpRegFile_io_rdata_1;	// backend/src/zaqal/backend/Execute.scala:48:25, :184:31
-      r_regFile_rdata6 <= _regFile_io_rdata_6;	// backend/src/zaqal/backend/Execute.scala:47:23, :186:29
+      r_fpRegFile_rdata0 <= _fpRegFile_io_rdata_0;	// backend/src/zaqal/backend/Execute.scala:48:25, :187:31
+      r_fpRegFile_rdata1 <= _fpRegFile_io_rdata_1;	// backend/src/zaqal/backend/Execute.scala:48:25, :188:31
+      r_regFile_rdata6 <= _regFile_io_rdata_6;	// backend/src/zaqal/backend/Execute.scala:47:23, :190:29
     end
   end // always @(posedge)
   `ifdef ENABLE_INITIAL_REG_	// backend/src/zaqal/backend/Execute.scala:10:7
@@ -2135,341 +2141,341 @@ module Execute(	// backend/src/zaqal/backend/Execute.scala:10:7
         r_regFile_wdata_3 = {_RANDOM[8'h1F][31:14], _RANDOM[8'h20], _RANDOM[8'h21][13:0]};	// backend/src/zaqal/backend/Execute.scala:10:7, :53:32
         r_regFile_wdata_4 = {_RANDOM[8'h21][31:14], _RANDOM[8'h22], _RANDOM[8'h23][13:0]};	// backend/src/zaqal/backend/Execute.scala:10:7, :53:32
         r_regFile_wdata_5 = {_RANDOM[8'h23][31:14], _RANDOM[8'h24], _RANDOM[8'h25][13:0]};	// backend/src/zaqal/backend/Execute.scala:10:7, :53:32
-        exe_val0 = _RANDOM[8'h25][14];	// backend/src/zaqal/backend/Execute.scala:10:7, :53:32, :109:25
-        exe_uop0_uop_pc = {_RANDOM[8'h25][31:15], _RANDOM[8'h26], _RANDOM[8'h27][14:0]};	// backend/src/zaqal/backend/Execute.scala:10:7, :53:32, :110:21
-        exe_uop0_uop_pre_is_rvc = _RANDOM[8'h28][15];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_uop_is_predicted_taken = _RANDOM[8'h29][23];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_is_addi = _RANDOM[8'h29][26];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_is_add = _RANDOM[8'h29][27];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_is_mul = _RANDOM[8'h29][28];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_is_mulh = _RANDOM[8'h29][29];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_is_mulhsu = _RANDOM[8'h29][30];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_is_mulhu = _RANDOM[8'h29][31];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_is_mulw = _RANDOM[8'h2A][0];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_is_div = _RANDOM[8'h2A][1];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_is_divu = _RANDOM[8'h2A][2];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_is_rem = _RANDOM[8'h2A][3];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_is_remu = _RANDOM[8'h2A][4];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_is_divw = _RANDOM[8'h2A][5];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_is_divuw = _RANDOM[8'h2A][6];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_is_remw = _RANDOM[8'h2A][7];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_is_remuw = _RANDOM[8'h2A][8];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_is_beq = _RANDOM[8'h2A][9];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_is_bne = _RANDOM[8'h2A][10];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_is_blt = _RANDOM[8'h2A][11];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_is_bge = _RANDOM[8'h2A][12];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_is_bltu = _RANDOM[8'h2A][13];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_is_bgeu = _RANDOM[8'h2A][14];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_is_and = _RANDOM[8'h2A][15];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_is_or = _RANDOM[8'h2A][16];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_is_xor = _RANDOM[8'h2A][17];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_is_andi = _RANDOM[8'h2A][18];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_is_ori = _RANDOM[8'h2A][19];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_is_xori = _RANDOM[8'h2A][20];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_is_sll = _RANDOM[8'h2A][21];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_is_srl = _RANDOM[8'h2A][22];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_is_sra = _RANDOM[8'h2A][23];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_is_sllw = _RANDOM[8'h2A][24];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_is_srlw = _RANDOM[8'h2A][25];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_is_sraw = _RANDOM[8'h2A][26];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_is_slli = _RANDOM[8'h2A][27];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_is_srli = _RANDOM[8'h2A][28];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_is_srai = _RANDOM[8'h2A][29];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_is_slliw = _RANDOM[8'h2A][30];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_is_srliw = _RANDOM[8'h2A][31];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_is_sraiw = _RANDOM[8'h2B][0];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_is_slt = _RANDOM[8'h2B][1];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_is_sltu = _RANDOM[8'h2B][2];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_is_slti = _RANDOM[8'h2B][3];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_is_sltiu = _RANDOM[8'h2B][4];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_is_sub = _RANDOM[8'h2B][5];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_is_addw = _RANDOM[8'h2B][6];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_is_subw = _RANDOM[8'h2B][7];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_is_addiw = _RANDOM[8'h2B][8];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_is_lui = _RANDOM[8'h2B][9];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_is_auipc = _RANDOM[8'h2B][10];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_is_branch = _RANDOM[8'h2B][11];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_is_jal = _RANDOM[8'h2B][12];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_is_jalr = _RANDOM[8'h2B][13];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_is_sh1add = _RANDOM[8'h2B][27];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_is_sh2add = _RANDOM[8'h2B][28];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_is_sh3add = _RANDOM[8'h2B][29];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_is_sh1add_uw = _RANDOM[8'h2B][30];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_is_sh2add_uw = _RANDOM[8'h2B][31];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_is_sh3add_uw = _RANDOM[8'h2C][0];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_is_andn = _RANDOM[8'h2C][1];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_is_orn = _RANDOM[8'h2C][2];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_is_xorn = _RANDOM[8'h2C][3];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_is_rol = _RANDOM[8'h2C][4];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_is_ror = _RANDOM[8'h2C][5];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_is_rori = _RANDOM[8'h2C][6];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_is_rolw = _RANDOM[8'h2C][7];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_is_rorw = _RANDOM[8'h2C][8];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_is_roriw = _RANDOM[8'h2C][9];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_is_clz = _RANDOM[8'h2C][10];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_is_ctz = _RANDOM[8'h2C][11];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_is_cpop = _RANDOM[8'h2C][12];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_is_clzw = _RANDOM[8'h2C][13];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_is_ctzw = _RANDOM[8'h2C][14];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_is_cpopw = _RANDOM[8'h2C][15];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_is_rev8 = _RANDOM[8'h2C][16];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_is_orc_b = _RANDOM[8'h2C][17];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_is_sextb = _RANDOM[8'h2C][18];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_is_sexth = _RANDOM[8'h2C][19];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_is_zexth = _RANDOM[8'h2C][20];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_is_min = _RANDOM[8'h2C][21];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_is_max = _RANDOM[8'h2C][22];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_is_minu = _RANDOM[8'h2C][23];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_is_maxu = _RANDOM[8'h2C][24];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_is_bset = _RANDOM[8'h2C][25];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_is_bseti = _RANDOM[8'h2C][26];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_is_bclr = _RANDOM[8'h2C][27];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_is_bclri = _RANDOM[8'h2C][28];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_is_binv = _RANDOM[8'h2C][29];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_is_binvi = _RANDOM[8'h2C][30];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_is_bext = _RANDOM[8'h2C][31];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_is_bexti = _RANDOM[8'h2D][0];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_imm = {_RANDOM[8'h2F][31:2], _RANDOM[8'h30], _RANDOM[8'h31][1:0]};	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_decode_is_fused_lui_addi = _RANDOM[8'h31][3];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_psrs1 = _RANDOM[8'h33][17:10];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_psrs2 = _RANDOM[8'h33][25:18];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_pdest = _RANDOM[8'h34][9:2];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_uop0_snapshotIdx = _RANDOM[8'h34][20:18];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21
-        exe_val1 = _RANDOM[8'h34][22];	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21, :118:25
-        exe_uop1_uop_pc = {_RANDOM[8'h34][31:23], _RANDOM[8'h35], _RANDOM[8'h36][22:0]};	// backend/src/zaqal/backend/Execute.scala:10:7, :110:21, :119:21
-        exe_uop1_uop_pre_is_rvc = _RANDOM[8'h37][23];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_uop_is_predicted_taken = _RANDOM[8'h38][31];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_decode_is_addi = _RANDOM[8'h39][2];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_decode_is_add = _RANDOM[8'h39][3];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_decode_is_mul = _RANDOM[8'h39][4];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_decode_is_mulh = _RANDOM[8'h39][5];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_decode_is_mulhsu = _RANDOM[8'h39][6];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_decode_is_mulhu = _RANDOM[8'h39][7];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_decode_is_mulw = _RANDOM[8'h39][8];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_decode_is_div = _RANDOM[8'h39][9];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_decode_is_divu = _RANDOM[8'h39][10];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_decode_is_rem = _RANDOM[8'h39][11];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_decode_is_remu = _RANDOM[8'h39][12];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_decode_is_divw = _RANDOM[8'h39][13];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_decode_is_divuw = _RANDOM[8'h39][14];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_decode_is_remw = _RANDOM[8'h39][15];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_decode_is_remuw = _RANDOM[8'h39][16];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_decode_is_beq = _RANDOM[8'h39][17];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_decode_is_bne = _RANDOM[8'h39][18];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_decode_is_blt = _RANDOM[8'h39][19];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_decode_is_bge = _RANDOM[8'h39][20];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_decode_is_bltu = _RANDOM[8'h39][21];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_decode_is_bgeu = _RANDOM[8'h39][22];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_decode_is_and = _RANDOM[8'h39][23];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_decode_is_or = _RANDOM[8'h39][24];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_decode_is_xor = _RANDOM[8'h39][25];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_decode_is_andi = _RANDOM[8'h39][26];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_decode_is_ori = _RANDOM[8'h39][27];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_decode_is_xori = _RANDOM[8'h39][28];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_decode_is_sll = _RANDOM[8'h39][29];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_decode_is_srl = _RANDOM[8'h39][30];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_decode_is_sra = _RANDOM[8'h39][31];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_decode_is_sllw = _RANDOM[8'h3A][0];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_decode_is_srlw = _RANDOM[8'h3A][1];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_decode_is_sraw = _RANDOM[8'h3A][2];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_decode_is_slli = _RANDOM[8'h3A][3];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_decode_is_srli = _RANDOM[8'h3A][4];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_decode_is_srai = _RANDOM[8'h3A][5];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_decode_is_slliw = _RANDOM[8'h3A][6];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_decode_is_srliw = _RANDOM[8'h3A][7];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_decode_is_sraiw = _RANDOM[8'h3A][8];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_decode_is_slt = _RANDOM[8'h3A][9];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_decode_is_sltu = _RANDOM[8'h3A][10];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_decode_is_slti = _RANDOM[8'h3A][11];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_decode_is_sltiu = _RANDOM[8'h3A][12];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_decode_is_sub = _RANDOM[8'h3A][13];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_decode_is_addw = _RANDOM[8'h3A][14];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_decode_is_subw = _RANDOM[8'h3A][15];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_decode_is_addiw = _RANDOM[8'h3A][16];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_decode_is_lui = _RANDOM[8'h3A][17];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_decode_is_auipc = _RANDOM[8'h3A][18];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_decode_is_branch = _RANDOM[8'h3A][19];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_decode_is_jal = _RANDOM[8'h3A][20];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_decode_is_jalr = _RANDOM[8'h3A][21];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_decode_is_sh1add = _RANDOM[8'h3B][3];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_decode_is_sh2add = _RANDOM[8'h3B][4];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_decode_is_sh3add = _RANDOM[8'h3B][5];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_decode_is_sh1add_uw = _RANDOM[8'h3B][6];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_decode_is_sh2add_uw = _RANDOM[8'h3B][7];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_decode_is_sh3add_uw = _RANDOM[8'h3B][8];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_decode_is_andn = _RANDOM[8'h3B][9];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_decode_is_orn = _RANDOM[8'h3B][10];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_decode_is_xorn = _RANDOM[8'h3B][11];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_decode_is_rol = _RANDOM[8'h3B][12];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_decode_is_ror = _RANDOM[8'h3B][13];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_decode_is_rori = _RANDOM[8'h3B][14];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_decode_is_rolw = _RANDOM[8'h3B][15];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_decode_is_rorw = _RANDOM[8'h3B][16];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_decode_is_roriw = _RANDOM[8'h3B][17];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_decode_is_clz = _RANDOM[8'h3B][18];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_decode_is_ctz = _RANDOM[8'h3B][19];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_decode_is_cpop = _RANDOM[8'h3B][20];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_decode_is_clzw = _RANDOM[8'h3B][21];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_decode_is_ctzw = _RANDOM[8'h3B][22];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_decode_is_cpopw = _RANDOM[8'h3B][23];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_decode_is_rev8 = _RANDOM[8'h3B][24];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_decode_is_orc_b = _RANDOM[8'h3B][25];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_decode_is_sextb = _RANDOM[8'h3B][26];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_decode_is_sexth = _RANDOM[8'h3B][27];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_decode_is_zexth = _RANDOM[8'h3B][28];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_decode_is_min = _RANDOM[8'h3B][29];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_decode_is_max = _RANDOM[8'h3B][30];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_decode_is_minu = _RANDOM[8'h3B][31];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_decode_is_maxu = _RANDOM[8'h3C][0];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_decode_is_bset = _RANDOM[8'h3C][1];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_decode_is_bseti = _RANDOM[8'h3C][2];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_decode_is_bclr = _RANDOM[8'h3C][3];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_decode_is_bclri = _RANDOM[8'h3C][4];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_decode_is_binv = _RANDOM[8'h3C][5];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_decode_is_binvi = _RANDOM[8'h3C][6];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_decode_is_bext = _RANDOM[8'h3C][7];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_decode_is_bexti = _RANDOM[8'h3C][8];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
+        exe_val0 = _RANDOM[8'h25][14];	// backend/src/zaqal/backend/Execute.scala:10:7, :53:32, :113:25
+        exe_uop0_uop_pc = {_RANDOM[8'h25][31:15], _RANDOM[8'h26], _RANDOM[8'h27][14:0]};	// backend/src/zaqal/backend/Execute.scala:10:7, :53:32, :114:21
+        exe_uop0_uop_pre_is_rvc = _RANDOM[8'h28][15];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_uop_is_predicted_taken = _RANDOM[8'h29][23];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_is_addi = _RANDOM[8'h29][26];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_is_add = _RANDOM[8'h29][27];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_is_mul = _RANDOM[8'h29][28];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_is_mulh = _RANDOM[8'h29][29];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_is_mulhsu = _RANDOM[8'h29][30];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_is_mulhu = _RANDOM[8'h29][31];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_is_mulw = _RANDOM[8'h2A][0];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_is_div = _RANDOM[8'h2A][1];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_is_divu = _RANDOM[8'h2A][2];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_is_rem = _RANDOM[8'h2A][3];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_is_remu = _RANDOM[8'h2A][4];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_is_divw = _RANDOM[8'h2A][5];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_is_divuw = _RANDOM[8'h2A][6];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_is_remw = _RANDOM[8'h2A][7];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_is_remuw = _RANDOM[8'h2A][8];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_is_beq = _RANDOM[8'h2A][9];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_is_bne = _RANDOM[8'h2A][10];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_is_blt = _RANDOM[8'h2A][11];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_is_bge = _RANDOM[8'h2A][12];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_is_bltu = _RANDOM[8'h2A][13];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_is_bgeu = _RANDOM[8'h2A][14];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_is_and = _RANDOM[8'h2A][15];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_is_or = _RANDOM[8'h2A][16];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_is_xor = _RANDOM[8'h2A][17];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_is_andi = _RANDOM[8'h2A][18];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_is_ori = _RANDOM[8'h2A][19];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_is_xori = _RANDOM[8'h2A][20];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_is_sll = _RANDOM[8'h2A][21];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_is_srl = _RANDOM[8'h2A][22];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_is_sra = _RANDOM[8'h2A][23];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_is_sllw = _RANDOM[8'h2A][24];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_is_srlw = _RANDOM[8'h2A][25];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_is_sraw = _RANDOM[8'h2A][26];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_is_slli = _RANDOM[8'h2A][27];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_is_srli = _RANDOM[8'h2A][28];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_is_srai = _RANDOM[8'h2A][29];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_is_slliw = _RANDOM[8'h2A][30];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_is_srliw = _RANDOM[8'h2A][31];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_is_sraiw = _RANDOM[8'h2B][0];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_is_slt = _RANDOM[8'h2B][1];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_is_sltu = _RANDOM[8'h2B][2];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_is_slti = _RANDOM[8'h2B][3];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_is_sltiu = _RANDOM[8'h2B][4];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_is_sub = _RANDOM[8'h2B][5];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_is_addw = _RANDOM[8'h2B][6];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_is_subw = _RANDOM[8'h2B][7];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_is_addiw = _RANDOM[8'h2B][8];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_is_lui = _RANDOM[8'h2B][9];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_is_auipc = _RANDOM[8'h2B][10];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_is_branch = _RANDOM[8'h2B][11];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_is_jal = _RANDOM[8'h2B][12];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_is_jalr = _RANDOM[8'h2B][13];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_is_sh1add = _RANDOM[8'h2B][27];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_is_sh2add = _RANDOM[8'h2B][28];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_is_sh3add = _RANDOM[8'h2B][29];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_is_sh1add_uw = _RANDOM[8'h2B][30];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_is_sh2add_uw = _RANDOM[8'h2B][31];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_is_sh3add_uw = _RANDOM[8'h2C][0];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_is_andn = _RANDOM[8'h2C][1];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_is_orn = _RANDOM[8'h2C][2];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_is_xorn = _RANDOM[8'h2C][3];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_is_rol = _RANDOM[8'h2C][4];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_is_ror = _RANDOM[8'h2C][5];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_is_rori = _RANDOM[8'h2C][6];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_is_rolw = _RANDOM[8'h2C][7];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_is_rorw = _RANDOM[8'h2C][8];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_is_roriw = _RANDOM[8'h2C][9];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_is_clz = _RANDOM[8'h2C][10];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_is_ctz = _RANDOM[8'h2C][11];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_is_cpop = _RANDOM[8'h2C][12];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_is_clzw = _RANDOM[8'h2C][13];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_is_ctzw = _RANDOM[8'h2C][14];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_is_cpopw = _RANDOM[8'h2C][15];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_is_rev8 = _RANDOM[8'h2C][16];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_is_orc_b = _RANDOM[8'h2C][17];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_is_sextb = _RANDOM[8'h2C][18];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_is_sexth = _RANDOM[8'h2C][19];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_is_zexth = _RANDOM[8'h2C][20];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_is_min = _RANDOM[8'h2C][21];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_is_max = _RANDOM[8'h2C][22];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_is_minu = _RANDOM[8'h2C][23];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_is_maxu = _RANDOM[8'h2C][24];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_is_bset = _RANDOM[8'h2C][25];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_is_bseti = _RANDOM[8'h2C][26];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_is_bclr = _RANDOM[8'h2C][27];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_is_bclri = _RANDOM[8'h2C][28];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_is_binv = _RANDOM[8'h2C][29];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_is_binvi = _RANDOM[8'h2C][30];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_is_bext = _RANDOM[8'h2C][31];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_is_bexti = _RANDOM[8'h2D][0];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_imm = {_RANDOM[8'h2F][31:2], _RANDOM[8'h30], _RANDOM[8'h31][1:0]};	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_decode_is_fused_lui_addi = _RANDOM[8'h31][3];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_psrs1 = _RANDOM[8'h33][17:10];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_psrs2 = _RANDOM[8'h33][25:18];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_pdest = _RANDOM[8'h34][9:2];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_uop0_snapshotIdx = _RANDOM[8'h34][20:18];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21
+        exe_val1 = _RANDOM[8'h34][22];	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21, :122:25
+        exe_uop1_uop_pc = {_RANDOM[8'h34][31:23], _RANDOM[8'h35], _RANDOM[8'h36][22:0]};	// backend/src/zaqal/backend/Execute.scala:10:7, :114:21, :123:21
+        exe_uop1_uop_pre_is_rvc = _RANDOM[8'h37][23];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_uop_is_predicted_taken = _RANDOM[8'h38][31];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_decode_is_addi = _RANDOM[8'h39][2];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_decode_is_add = _RANDOM[8'h39][3];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_decode_is_mul = _RANDOM[8'h39][4];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_decode_is_mulh = _RANDOM[8'h39][5];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_decode_is_mulhsu = _RANDOM[8'h39][6];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_decode_is_mulhu = _RANDOM[8'h39][7];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_decode_is_mulw = _RANDOM[8'h39][8];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_decode_is_div = _RANDOM[8'h39][9];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_decode_is_divu = _RANDOM[8'h39][10];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_decode_is_rem = _RANDOM[8'h39][11];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_decode_is_remu = _RANDOM[8'h39][12];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_decode_is_divw = _RANDOM[8'h39][13];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_decode_is_divuw = _RANDOM[8'h39][14];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_decode_is_remw = _RANDOM[8'h39][15];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_decode_is_remuw = _RANDOM[8'h39][16];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_decode_is_beq = _RANDOM[8'h39][17];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_decode_is_bne = _RANDOM[8'h39][18];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_decode_is_blt = _RANDOM[8'h39][19];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_decode_is_bge = _RANDOM[8'h39][20];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_decode_is_bltu = _RANDOM[8'h39][21];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_decode_is_bgeu = _RANDOM[8'h39][22];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_decode_is_and = _RANDOM[8'h39][23];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_decode_is_or = _RANDOM[8'h39][24];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_decode_is_xor = _RANDOM[8'h39][25];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_decode_is_andi = _RANDOM[8'h39][26];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_decode_is_ori = _RANDOM[8'h39][27];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_decode_is_xori = _RANDOM[8'h39][28];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_decode_is_sll = _RANDOM[8'h39][29];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_decode_is_srl = _RANDOM[8'h39][30];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_decode_is_sra = _RANDOM[8'h39][31];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_decode_is_sllw = _RANDOM[8'h3A][0];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_decode_is_srlw = _RANDOM[8'h3A][1];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_decode_is_sraw = _RANDOM[8'h3A][2];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_decode_is_slli = _RANDOM[8'h3A][3];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_decode_is_srli = _RANDOM[8'h3A][4];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_decode_is_srai = _RANDOM[8'h3A][5];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_decode_is_slliw = _RANDOM[8'h3A][6];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_decode_is_srliw = _RANDOM[8'h3A][7];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_decode_is_sraiw = _RANDOM[8'h3A][8];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_decode_is_slt = _RANDOM[8'h3A][9];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_decode_is_sltu = _RANDOM[8'h3A][10];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_decode_is_slti = _RANDOM[8'h3A][11];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_decode_is_sltiu = _RANDOM[8'h3A][12];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_decode_is_sub = _RANDOM[8'h3A][13];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_decode_is_addw = _RANDOM[8'h3A][14];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_decode_is_subw = _RANDOM[8'h3A][15];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_decode_is_addiw = _RANDOM[8'h3A][16];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_decode_is_lui = _RANDOM[8'h3A][17];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_decode_is_auipc = _RANDOM[8'h3A][18];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_decode_is_branch = _RANDOM[8'h3A][19];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_decode_is_jal = _RANDOM[8'h3A][20];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_decode_is_jalr = _RANDOM[8'h3A][21];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_decode_is_sh1add = _RANDOM[8'h3B][3];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_decode_is_sh2add = _RANDOM[8'h3B][4];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_decode_is_sh3add = _RANDOM[8'h3B][5];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_decode_is_sh1add_uw = _RANDOM[8'h3B][6];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_decode_is_sh2add_uw = _RANDOM[8'h3B][7];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_decode_is_sh3add_uw = _RANDOM[8'h3B][8];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_decode_is_andn = _RANDOM[8'h3B][9];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_decode_is_orn = _RANDOM[8'h3B][10];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_decode_is_xorn = _RANDOM[8'h3B][11];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_decode_is_rol = _RANDOM[8'h3B][12];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_decode_is_ror = _RANDOM[8'h3B][13];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_decode_is_rori = _RANDOM[8'h3B][14];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_decode_is_rolw = _RANDOM[8'h3B][15];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_decode_is_rorw = _RANDOM[8'h3B][16];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_decode_is_roriw = _RANDOM[8'h3B][17];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_decode_is_clz = _RANDOM[8'h3B][18];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_decode_is_ctz = _RANDOM[8'h3B][19];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_decode_is_cpop = _RANDOM[8'h3B][20];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_decode_is_clzw = _RANDOM[8'h3B][21];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_decode_is_ctzw = _RANDOM[8'h3B][22];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_decode_is_cpopw = _RANDOM[8'h3B][23];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_decode_is_rev8 = _RANDOM[8'h3B][24];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_decode_is_orc_b = _RANDOM[8'h3B][25];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_decode_is_sextb = _RANDOM[8'h3B][26];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_decode_is_sexth = _RANDOM[8'h3B][27];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_decode_is_zexth = _RANDOM[8'h3B][28];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_decode_is_min = _RANDOM[8'h3B][29];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_decode_is_max = _RANDOM[8'h3B][30];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_decode_is_minu = _RANDOM[8'h3B][31];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_decode_is_maxu = _RANDOM[8'h3C][0];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_decode_is_bset = _RANDOM[8'h3C][1];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_decode_is_bseti = _RANDOM[8'h3C][2];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_decode_is_bclr = _RANDOM[8'h3C][3];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_decode_is_bclri = _RANDOM[8'h3C][4];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_decode_is_binv = _RANDOM[8'h3C][5];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_decode_is_binvi = _RANDOM[8'h3C][6];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_decode_is_bext = _RANDOM[8'h3C][7];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_decode_is_bexti = _RANDOM[8'h3C][8];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
         exe_uop1_decode_imm =
-          {_RANDOM[8'h3E][31:10], _RANDOM[8'h3F], _RANDOM[8'h40][9:0]};	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_decode_is_fused_lui_addi = _RANDOM[8'h40][11];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_psrs1 = _RANDOM[8'h42][25:18];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_psrs2 = {_RANDOM[8'h42][31:26], _RANDOM[8'h43][1:0]};	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_pdest = _RANDOM[8'h43][17:10];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_uop1_snapshotIdx = _RANDOM[8'h43][28:26];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21
-        exe_valMem = _RANDOM[8'h43][30];	// backend/src/zaqal/backend/Execute.scala:10:7, :119:21, :127:27
-        exe_uopMem_decode_is_lb = _RANDOM[8'h49][30];	// backend/src/zaqal/backend/Execute.scala:10:7, :128:23
-        exe_uopMem_decode_is_lh = _RANDOM[8'h49][31];	// backend/src/zaqal/backend/Execute.scala:10:7, :128:23
-        exe_uopMem_decode_is_lw = _RANDOM[8'h4A][0];	// backend/src/zaqal/backend/Execute.scala:10:7, :128:23
-        exe_uopMem_decode_is_ld = _RANDOM[8'h4A][1];	// backend/src/zaqal/backend/Execute.scala:10:7, :128:23
-        exe_uopMem_decode_is_lbu = _RANDOM[8'h4A][2];	// backend/src/zaqal/backend/Execute.scala:10:7, :128:23
-        exe_uopMem_decode_is_lhu = _RANDOM[8'h4A][3];	// backend/src/zaqal/backend/Execute.scala:10:7, :128:23
-        exe_uopMem_decode_is_lwu = _RANDOM[8'h4A][4];	// backend/src/zaqal/backend/Execute.scala:10:7, :128:23
-        exe_uopMem_decode_is_load = _RANDOM[8'h4A][5];	// backend/src/zaqal/backend/Execute.scala:10:7, :128:23
-        exe_uopMem_decode_is_sb = _RANDOM[8'h4A][6];	// backend/src/zaqal/backend/Execute.scala:10:7, :128:23
-        exe_uopMem_decode_is_sh = _RANDOM[8'h4A][7];	// backend/src/zaqal/backend/Execute.scala:10:7, :128:23
-        exe_uopMem_decode_is_sw = _RANDOM[8'h4A][8];	// backend/src/zaqal/backend/Execute.scala:10:7, :128:23
-        exe_uopMem_decode_is_sd = _RANDOM[8'h4A][9];	// backend/src/zaqal/backend/Execute.scala:10:7, :128:23
-        exe_uopMem_decode_is_store = _RANDOM[8'h4A][10];	// backend/src/zaqal/backend/Execute.scala:10:7, :128:23
-        exe_uopMem_decode_is_lr = _RANDOM[8'h4B][17];	// backend/src/zaqal/backend/Execute.scala:10:7, :128:23
-        exe_uopMem_decode_is_sc = _RANDOM[8'h4B][18];	// backend/src/zaqal/backend/Execute.scala:10:7, :128:23
-        exe_uopMem_decode_is_lr_w = _RANDOM[8'h4B][19];	// backend/src/zaqal/backend/Execute.scala:10:7, :128:23
-        exe_uopMem_decode_is_lr_d = _RANDOM[8'h4B][20];	// backend/src/zaqal/backend/Execute.scala:10:7, :128:23
-        exe_uopMem_decode_is_sc_w = _RANDOM[8'h4B][21];	// backend/src/zaqal/backend/Execute.scala:10:7, :128:23
-        exe_uopMem_decode_is_sc_d = _RANDOM[8'h4B][22];	// backend/src/zaqal/backend/Execute.scala:10:7, :128:23
-        exe_uopMem_decode_is_amoadd = _RANDOM[8'h4B][23];	// backend/src/zaqal/backend/Execute.scala:10:7, :128:23
-        exe_uopMem_decode_is_amoswap = _RANDOM[8'h4B][24];	// backend/src/zaqal/backend/Execute.scala:10:7, :128:23
-        exe_uopMem_decode_is_amoxor = _RANDOM[8'h4B][25];	// backend/src/zaqal/backend/Execute.scala:10:7, :128:23
-        exe_uopMem_decode_is_amoand = _RANDOM[8'h4B][26];	// backend/src/zaqal/backend/Execute.scala:10:7, :128:23
-        exe_uopMem_decode_is_amoor = _RANDOM[8'h4B][27];	// backend/src/zaqal/backend/Execute.scala:10:7, :128:23
-        exe_uopMem_decode_is_amomin = _RANDOM[8'h4B][28];	// backend/src/zaqal/backend/Execute.scala:10:7, :128:23
-        exe_uopMem_decode_is_amomax = _RANDOM[8'h4B][29];	// backend/src/zaqal/backend/Execute.scala:10:7, :128:23
-        exe_uopMem_decode_is_amominu = _RANDOM[8'h4B][30];	// backend/src/zaqal/backend/Execute.scala:10:7, :128:23
-        exe_uopMem_decode_is_amomaxu = _RANDOM[8'h4B][31];	// backend/src/zaqal/backend/Execute.scala:10:7, :128:23
-        exe_uopMem_decode_is_amo_w = _RANDOM[8'h4C][0];	// backend/src/zaqal/backend/Execute.scala:10:7, :128:23
-        exe_uopMem_decode_is_amo_d = _RANDOM[8'h4C][1];	// backend/src/zaqal/backend/Execute.scala:10:7, :128:23
-        exe_uopMem_decode_is_atomic = _RANDOM[8'h4C][2];	// backend/src/zaqal/backend/Execute.scala:10:7, :128:23
-        exe_uopMem_decode_is_fload = _RANDOM[8'h4C][3];	// backend/src/zaqal/backend/Execute.scala:10:7, :128:23
-        exe_uopMem_decode_is_flw = _RANDOM[8'h4C][4];	// backend/src/zaqal/backend/Execute.scala:10:7, :128:23
-        exe_uopMem_decode_is_fld = _RANDOM[8'h4C][5];	// backend/src/zaqal/backend/Execute.scala:10:7, :128:23
-        exe_uopMem_decode_is_fstore = _RANDOM[8'h4C][6];	// backend/src/zaqal/backend/Execute.scala:10:7, :128:23
-        exe_uopMem_decode_is_fsw = _RANDOM[8'h4C][7];	// backend/src/zaqal/backend/Execute.scala:10:7, :128:23
-        exe_uopMem_decode_is_fsd = _RANDOM[8'h4C][8];	// backend/src/zaqal/backend/Execute.scala:10:7, :128:23
+          {_RANDOM[8'h3E][31:10], _RANDOM[8'h3F], _RANDOM[8'h40][9:0]};	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_decode_is_fused_lui_addi = _RANDOM[8'h40][11];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_psrs1 = _RANDOM[8'h42][25:18];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_psrs2 = {_RANDOM[8'h42][31:26], _RANDOM[8'h43][1:0]};	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_pdest = _RANDOM[8'h43][17:10];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_uop1_snapshotIdx = _RANDOM[8'h43][28:26];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21
+        exe_valMem = _RANDOM[8'h43][30];	// backend/src/zaqal/backend/Execute.scala:10:7, :123:21, :131:27
+        exe_uopMem_decode_is_lb = _RANDOM[8'h49][30];	// backend/src/zaqal/backend/Execute.scala:10:7, :132:23
+        exe_uopMem_decode_is_lh = _RANDOM[8'h49][31];	// backend/src/zaqal/backend/Execute.scala:10:7, :132:23
+        exe_uopMem_decode_is_lw = _RANDOM[8'h4A][0];	// backend/src/zaqal/backend/Execute.scala:10:7, :132:23
+        exe_uopMem_decode_is_ld = _RANDOM[8'h4A][1];	// backend/src/zaqal/backend/Execute.scala:10:7, :132:23
+        exe_uopMem_decode_is_lbu = _RANDOM[8'h4A][2];	// backend/src/zaqal/backend/Execute.scala:10:7, :132:23
+        exe_uopMem_decode_is_lhu = _RANDOM[8'h4A][3];	// backend/src/zaqal/backend/Execute.scala:10:7, :132:23
+        exe_uopMem_decode_is_lwu = _RANDOM[8'h4A][4];	// backend/src/zaqal/backend/Execute.scala:10:7, :132:23
+        exe_uopMem_decode_is_load = _RANDOM[8'h4A][5];	// backend/src/zaqal/backend/Execute.scala:10:7, :132:23
+        exe_uopMem_decode_is_sb = _RANDOM[8'h4A][6];	// backend/src/zaqal/backend/Execute.scala:10:7, :132:23
+        exe_uopMem_decode_is_sh = _RANDOM[8'h4A][7];	// backend/src/zaqal/backend/Execute.scala:10:7, :132:23
+        exe_uopMem_decode_is_sw = _RANDOM[8'h4A][8];	// backend/src/zaqal/backend/Execute.scala:10:7, :132:23
+        exe_uopMem_decode_is_sd = _RANDOM[8'h4A][9];	// backend/src/zaqal/backend/Execute.scala:10:7, :132:23
+        exe_uopMem_decode_is_store = _RANDOM[8'h4A][10];	// backend/src/zaqal/backend/Execute.scala:10:7, :132:23
+        exe_uopMem_decode_is_lr = _RANDOM[8'h4B][17];	// backend/src/zaqal/backend/Execute.scala:10:7, :132:23
+        exe_uopMem_decode_is_sc = _RANDOM[8'h4B][18];	// backend/src/zaqal/backend/Execute.scala:10:7, :132:23
+        exe_uopMem_decode_is_lr_w = _RANDOM[8'h4B][19];	// backend/src/zaqal/backend/Execute.scala:10:7, :132:23
+        exe_uopMem_decode_is_lr_d = _RANDOM[8'h4B][20];	// backend/src/zaqal/backend/Execute.scala:10:7, :132:23
+        exe_uopMem_decode_is_sc_w = _RANDOM[8'h4B][21];	// backend/src/zaqal/backend/Execute.scala:10:7, :132:23
+        exe_uopMem_decode_is_sc_d = _RANDOM[8'h4B][22];	// backend/src/zaqal/backend/Execute.scala:10:7, :132:23
+        exe_uopMem_decode_is_amoadd = _RANDOM[8'h4B][23];	// backend/src/zaqal/backend/Execute.scala:10:7, :132:23
+        exe_uopMem_decode_is_amoswap = _RANDOM[8'h4B][24];	// backend/src/zaqal/backend/Execute.scala:10:7, :132:23
+        exe_uopMem_decode_is_amoxor = _RANDOM[8'h4B][25];	// backend/src/zaqal/backend/Execute.scala:10:7, :132:23
+        exe_uopMem_decode_is_amoand = _RANDOM[8'h4B][26];	// backend/src/zaqal/backend/Execute.scala:10:7, :132:23
+        exe_uopMem_decode_is_amoor = _RANDOM[8'h4B][27];	// backend/src/zaqal/backend/Execute.scala:10:7, :132:23
+        exe_uopMem_decode_is_amomin = _RANDOM[8'h4B][28];	// backend/src/zaqal/backend/Execute.scala:10:7, :132:23
+        exe_uopMem_decode_is_amomax = _RANDOM[8'h4B][29];	// backend/src/zaqal/backend/Execute.scala:10:7, :132:23
+        exe_uopMem_decode_is_amominu = _RANDOM[8'h4B][30];	// backend/src/zaqal/backend/Execute.scala:10:7, :132:23
+        exe_uopMem_decode_is_amomaxu = _RANDOM[8'h4B][31];	// backend/src/zaqal/backend/Execute.scala:10:7, :132:23
+        exe_uopMem_decode_is_amo_w = _RANDOM[8'h4C][0];	// backend/src/zaqal/backend/Execute.scala:10:7, :132:23
+        exe_uopMem_decode_is_amo_d = _RANDOM[8'h4C][1];	// backend/src/zaqal/backend/Execute.scala:10:7, :132:23
+        exe_uopMem_decode_is_atomic = _RANDOM[8'h4C][2];	// backend/src/zaqal/backend/Execute.scala:10:7, :132:23
+        exe_uopMem_decode_is_fload = _RANDOM[8'h4C][3];	// backend/src/zaqal/backend/Execute.scala:10:7, :132:23
+        exe_uopMem_decode_is_flw = _RANDOM[8'h4C][4];	// backend/src/zaqal/backend/Execute.scala:10:7, :132:23
+        exe_uopMem_decode_is_fld = _RANDOM[8'h4C][5];	// backend/src/zaqal/backend/Execute.scala:10:7, :132:23
+        exe_uopMem_decode_is_fstore = _RANDOM[8'h4C][6];	// backend/src/zaqal/backend/Execute.scala:10:7, :132:23
+        exe_uopMem_decode_is_fsw = _RANDOM[8'h4C][7];	// backend/src/zaqal/backend/Execute.scala:10:7, :132:23
+        exe_uopMem_decode_is_fsd = _RANDOM[8'h4C][8];	// backend/src/zaqal/backend/Execute.scala:10:7, :132:23
         exe_uopMem_decode_imm =
-          {_RANDOM[8'h4D][31:18], _RANDOM[8'h4E], _RANDOM[8'h4F][17:0]};	// backend/src/zaqal/backend/Execute.scala:10:7, :128:23
-        exe_uopMem_psrs1 = {_RANDOM[8'h51][31:26], _RANDOM[8'h52][1:0]};	// backend/src/zaqal/backend/Execute.scala:10:7, :128:23
-        exe_uopMem_psrs2 = _RANDOM[8'h52][9:2];	// backend/src/zaqal/backend/Execute.scala:10:7, :128:23
-        exe_uopMem_pdest = _RANDOM[8'h52][25:18];	// backend/src/zaqal/backend/Execute.scala:10:7, :128:23
-        exe_valFp = _RANDOM[8'h53][6];	// backend/src/zaqal/backend/Execute.scala:10:7, :136:26
-        exe_uopFp_uop_inst_raw = {_RANDOM[8'h55][31:7], _RANDOM[8'h56][6:0]};	// backend/src/zaqal/backend/Execute.scala:10:7, :137:22
-        exe_uopFp_decode_is_fmadd = _RANDOM[8'h5B][17];	// backend/src/zaqal/backend/Execute.scala:10:7, :137:22
-        exe_uopFp_decode_is_fadd = _RANDOM[8'h5B][21];	// backend/src/zaqal/backend/Execute.scala:10:7, :137:22
-        exe_uopFp_decode_is_fsub = _RANDOM[8'h5B][22];	// backend/src/zaqal/backend/Execute.scala:10:7, :137:22
-        exe_uopFp_decode_is_fmul = _RANDOM[8'h5B][23];	// backend/src/zaqal/backend/Execute.scala:10:7, :137:22
-        exe_uopFp_decode_is_fdiv = _RANDOM[8'h5B][24];	// backend/src/zaqal/backend/Execute.scala:10:7, :137:22
-        exe_uopFp_decode_is_fsqrt = _RANDOM[8'h5B][25];	// backend/src/zaqal/backend/Execute.scala:10:7, :137:22
-        exe_uopFp_decode_is_fsgnj = _RANDOM[8'h5B][26];	// backend/src/zaqal/backend/Execute.scala:10:7, :137:22
-        exe_uopFp_decode_is_fminmax = _RANDOM[8'h5B][27];	// backend/src/zaqal/backend/Execute.scala:10:7, :137:22
-        exe_uopFp_decode_is_fcvt_f2i = _RANDOM[8'h5B][28];	// backend/src/zaqal/backend/Execute.scala:10:7, :137:22
-        exe_uopFp_decode_is_fcvt_i2f = _RANDOM[8'h5B][29];	// backend/src/zaqal/backend/Execute.scala:10:7, :137:22
-        exe_uopFp_decode_is_fmv_w_x = _RANDOM[8'h5B][31];	// backend/src/zaqal/backend/Execute.scala:10:7, :137:22
-        exe_uopFp_decode_is_fmv_x_w = _RANDOM[8'h5C][0];	// backend/src/zaqal/backend/Execute.scala:10:7, :137:22
-        exe_uopFp_decode_is_feq = _RANDOM[8'h5C][1];	// backend/src/zaqal/backend/Execute.scala:10:7, :137:22
-        exe_uopFp_decode_is_flt = _RANDOM[8'h5C][2];	// backend/src/zaqal/backend/Execute.scala:10:7, :137:22
-        exe_uopFp_decode_is_fle = _RANDOM[8'h5C][3];	// backend/src/zaqal/backend/Execute.scala:10:7, :137:22
-        exe_uopFp_decode_is_fclass = _RANDOM[8'h5C][4];	// backend/src/zaqal/backend/Execute.scala:10:7, :137:22
-        exe_uopFp_psrs1 = _RANDOM[8'h61][9:2];	// backend/src/zaqal/backend/Execute.scala:10:7, :137:22
-        exe_uopFp_pdest = {_RANDOM[8'h61][31:26], _RANDOM[8'h62][1:0]};	// backend/src/zaqal/backend/Execute.scala:10:7, :137:22
-        r_regFile_rdata0 = {_RANDOM[8'h62][31:14], _RANDOM[8'h63], _RANDOM[8'h64][13:0]};	// backend/src/zaqal/backend/Execute.scala:10:7, :137:22, :160:29
-        r_regFile_rdata1 = {_RANDOM[8'h64][31:14], _RANDOM[8'h65], _RANDOM[8'h66][13:0]};	// backend/src/zaqal/backend/Execute.scala:10:7, :160:29, :161:29
-        r_regFile_rdata2 = {_RANDOM[8'h66][31:14], _RANDOM[8'h67], _RANDOM[8'h68][13:0]};	// backend/src/zaqal/backend/Execute.scala:10:7, :161:29, :167:29
-        r_regFile_rdata3 = {_RANDOM[8'h68][31:14], _RANDOM[8'h69], _RANDOM[8'h6A][13:0]};	// backend/src/zaqal/backend/Execute.scala:10:7, :167:29, :168:29
-        r_regFile_rdata4 = {_RANDOM[8'h6A][31:14], _RANDOM[8'h6B], _RANDOM[8'h6C][13:0]};	// backend/src/zaqal/backend/Execute.scala:10:7, :168:29, :174:29
-        r_regFile_rdata5 = {_RANDOM[8'h6C][31:14], _RANDOM[8'h6D], _RANDOM[8'h6E][13:0]};	// backend/src/zaqal/backend/Execute.scala:10:7, :174:29, :175:29
+          {_RANDOM[8'h4D][31:18], _RANDOM[8'h4E], _RANDOM[8'h4F][17:0]};	// backend/src/zaqal/backend/Execute.scala:10:7, :132:23
+        exe_uopMem_psrs1 = {_RANDOM[8'h51][31:26], _RANDOM[8'h52][1:0]};	// backend/src/zaqal/backend/Execute.scala:10:7, :132:23
+        exe_uopMem_psrs2 = _RANDOM[8'h52][9:2];	// backend/src/zaqal/backend/Execute.scala:10:7, :132:23
+        exe_uopMem_pdest = _RANDOM[8'h52][25:18];	// backend/src/zaqal/backend/Execute.scala:10:7, :132:23
+        exe_valFp = _RANDOM[8'h53][6];	// backend/src/zaqal/backend/Execute.scala:10:7, :140:26
+        exe_uopFp_uop_inst_raw = {_RANDOM[8'h55][31:7], _RANDOM[8'h56][6:0]};	// backend/src/zaqal/backend/Execute.scala:10:7, :141:22
+        exe_uopFp_decode_is_fmadd = _RANDOM[8'h5B][17];	// backend/src/zaqal/backend/Execute.scala:10:7, :141:22
+        exe_uopFp_decode_is_fadd = _RANDOM[8'h5B][21];	// backend/src/zaqal/backend/Execute.scala:10:7, :141:22
+        exe_uopFp_decode_is_fsub = _RANDOM[8'h5B][22];	// backend/src/zaqal/backend/Execute.scala:10:7, :141:22
+        exe_uopFp_decode_is_fmul = _RANDOM[8'h5B][23];	// backend/src/zaqal/backend/Execute.scala:10:7, :141:22
+        exe_uopFp_decode_is_fdiv = _RANDOM[8'h5B][24];	// backend/src/zaqal/backend/Execute.scala:10:7, :141:22
+        exe_uopFp_decode_is_fsqrt = _RANDOM[8'h5B][25];	// backend/src/zaqal/backend/Execute.scala:10:7, :141:22
+        exe_uopFp_decode_is_fsgnj = _RANDOM[8'h5B][26];	// backend/src/zaqal/backend/Execute.scala:10:7, :141:22
+        exe_uopFp_decode_is_fminmax = _RANDOM[8'h5B][27];	// backend/src/zaqal/backend/Execute.scala:10:7, :141:22
+        exe_uopFp_decode_is_fcvt_f2i = _RANDOM[8'h5B][28];	// backend/src/zaqal/backend/Execute.scala:10:7, :141:22
+        exe_uopFp_decode_is_fcvt_i2f = _RANDOM[8'h5B][29];	// backend/src/zaqal/backend/Execute.scala:10:7, :141:22
+        exe_uopFp_decode_is_fmv_w_x = _RANDOM[8'h5B][31];	// backend/src/zaqal/backend/Execute.scala:10:7, :141:22
+        exe_uopFp_decode_is_fmv_x_w = _RANDOM[8'h5C][0];	// backend/src/zaqal/backend/Execute.scala:10:7, :141:22
+        exe_uopFp_decode_is_feq = _RANDOM[8'h5C][1];	// backend/src/zaqal/backend/Execute.scala:10:7, :141:22
+        exe_uopFp_decode_is_flt = _RANDOM[8'h5C][2];	// backend/src/zaqal/backend/Execute.scala:10:7, :141:22
+        exe_uopFp_decode_is_fle = _RANDOM[8'h5C][3];	// backend/src/zaqal/backend/Execute.scala:10:7, :141:22
+        exe_uopFp_decode_is_fclass = _RANDOM[8'h5C][4];	// backend/src/zaqal/backend/Execute.scala:10:7, :141:22
+        exe_uopFp_psrs1 = _RANDOM[8'h61][9:2];	// backend/src/zaqal/backend/Execute.scala:10:7, :141:22
+        exe_uopFp_pdest = {_RANDOM[8'h61][31:26], _RANDOM[8'h62][1:0]};	// backend/src/zaqal/backend/Execute.scala:10:7, :141:22
+        r_regFile_rdata0 = {_RANDOM[8'h62][31:14], _RANDOM[8'h63], _RANDOM[8'h64][13:0]};	// backend/src/zaqal/backend/Execute.scala:10:7, :141:22, :164:29
+        r_regFile_rdata1 = {_RANDOM[8'h64][31:14], _RANDOM[8'h65], _RANDOM[8'h66][13:0]};	// backend/src/zaqal/backend/Execute.scala:10:7, :164:29, :165:29
+        r_regFile_rdata2 = {_RANDOM[8'h66][31:14], _RANDOM[8'h67], _RANDOM[8'h68][13:0]};	// backend/src/zaqal/backend/Execute.scala:10:7, :165:29, :171:29
+        r_regFile_rdata3 = {_RANDOM[8'h68][31:14], _RANDOM[8'h69], _RANDOM[8'h6A][13:0]};	// backend/src/zaqal/backend/Execute.scala:10:7, :171:29, :172:29
+        r_regFile_rdata4 = {_RANDOM[8'h6A][31:14], _RANDOM[8'h6B], _RANDOM[8'h6C][13:0]};	// backend/src/zaqal/backend/Execute.scala:10:7, :172:29, :178:29
+        r_regFile_rdata5 = {_RANDOM[8'h6C][31:14], _RANDOM[8'h6D], _RANDOM[8'h6E][13:0]};	// backend/src/zaqal/backend/Execute.scala:10:7, :178:29, :179:29
         r_fpRegFile_rdata3 =
-          {_RANDOM[8'h6E][31:14], _RANDOM[8'h6F], _RANDOM[8'h70][13:0]};	// backend/src/zaqal/backend/Execute.scala:10:7, :175:29, :176:31
+          {_RANDOM[8'h6E][31:14], _RANDOM[8'h6F], _RANDOM[8'h70][13:0]};	// backend/src/zaqal/backend/Execute.scala:10:7, :179:29, :180:31
         r_fpRegFile_rdata0 =
-          {_RANDOM[8'h70][31:14], _RANDOM[8'h71], _RANDOM[8'h72][13:0]};	// backend/src/zaqal/backend/Execute.scala:10:7, :176:31, :183:31
+          {_RANDOM[8'h70][31:14], _RANDOM[8'h71], _RANDOM[8'h72][13:0]};	// backend/src/zaqal/backend/Execute.scala:10:7, :180:31, :187:31
         r_fpRegFile_rdata1 =
-          {_RANDOM[8'h72][31:14], _RANDOM[8'h73], _RANDOM[8'h74][13:0]};	// backend/src/zaqal/backend/Execute.scala:10:7, :183:31, :184:31
-        r_regFile_rdata6 = {_RANDOM[8'h76][31:14], _RANDOM[8'h77], _RANDOM[8'h78][13:0]};	// backend/src/zaqal/backend/Execute.scala:10:7, :186:29
-        r_mul_val = _RANDOM[8'h78][14];	// backend/src/zaqal/backend/Execute.scala:10:7, :186:29, :240:26
-        r_mul_pdest = _RANDOM[8'h78][22:15];	// backend/src/zaqal/backend/Execute.scala:10:7, :186:29, :241:28
-        r2_mul_val = _RANDOM[8'h78][23];	// backend/src/zaqal/backend/Execute.scala:10:7, :186:29, :242:27
-        r2_mul_pdest = _RANDOM[8'h78][31:24];	// backend/src/zaqal/backend/Execute.scala:10:7, :186:29, :243:29
-        r_wb0_valid = _RANDOM[8'h79][0];	// backend/src/zaqal/backend/Execute.scala:10:7, :250:28
-        r_wb0_pdest = _RANDOM[8'h79][8:1];	// backend/src/zaqal/backend/Execute.scala:10:7, :250:28, :251:28
-        r_wb0_data = {_RANDOM[8'h79][31:9], _RANDOM[8'h7A], _RANDOM[8'h7B][8:0]};	// backend/src/zaqal/backend/Execute.scala:10:7, :250:28, :252:28
-        r_wb1_valid = _RANDOM[8'h7B][9];	// backend/src/zaqal/backend/Execute.scala:10:7, :252:28, :254:28
-        r_wb1_pdest = _RANDOM[8'h7B][17:10];	// backend/src/zaqal/backend/Execute.scala:10:7, :252:28, :255:28
-        r_wb1_data = {_RANDOM[8'h7B][31:18], _RANDOM[8'h7C], _RANDOM[8'h7D][17:0]};	// backend/src/zaqal/backend/Execute.scala:10:7, :252:28, :256:28
-        r_wb2_valid = _RANDOM[8'h7D][18];	// backend/src/zaqal/backend/Execute.scala:10:7, :256:28, :258:28
-        r_wb2_pdest = _RANDOM[8'h7D][26:19];	// backend/src/zaqal/backend/Execute.scala:10:7, :256:28, :259:28
-        r_wb2_data = {_RANDOM[8'h7D][31:27], _RANDOM[8'h7E], _RANDOM[8'h7F][26:0]};	// backend/src/zaqal/backend/Execute.scala:10:7, :256:28, :260:28
-        r_wb3_valid = _RANDOM[8'h7F][27];	// backend/src/zaqal/backend/Execute.scala:10:7, :260:28, :262:28
-        r_wb3_pdest = {_RANDOM[8'h7F][31:28], _RANDOM[8'h80][3:0]};	// backend/src/zaqal/backend/Execute.scala:10:7, :260:28, :263:28
-        r_wb3_data = {_RANDOM[8'h80][31:4], _RANDOM[8'h81], _RANDOM[8'h82][3:0]};	// backend/src/zaqal/backend/Execute.scala:10:7, :263:28, :264:28
-        r_wb4_valid = _RANDOM[8'h82][4];	// backend/src/zaqal/backend/Execute.scala:10:7, :264:28, :266:28
-        r_wb4_pdest = _RANDOM[8'h82][12:5];	// backend/src/zaqal/backend/Execute.scala:10:7, :264:28, :267:28
-        r_wb4_data = {_RANDOM[8'h82][31:13], _RANDOM[8'h83], _RANDOM[8'h84][12:0]};	// backend/src/zaqal/backend/Execute.scala:10:7, :264:28, :268:28
-        r_wb5_valid = _RANDOM[8'h84][13];	// backend/src/zaqal/backend/Execute.scala:10:7, :268:28, :270:28
-        r_wb5_pdest = _RANDOM[8'h84][21:14];	// backend/src/zaqal/backend/Execute.scala:10:7, :268:28, :271:28
-        r_wb5_data = {_RANDOM[8'h84][31:22], _RANDOM[8'h85], _RANDOM[8'h86][21:0]};	// backend/src/zaqal/backend/Execute.scala:10:7, :268:28, :272:28
-        r2_wb0_valid = _RANDOM[8'h86][22];	// backend/src/zaqal/backend/Execute.scala:10:7, :272:28, :275:29
-        r2_wb0_pdest = _RANDOM[8'h86][30:23];	// backend/src/zaqal/backend/Execute.scala:10:7, :272:28, :276:29
-        r2_wb0_data = {_RANDOM[8'h86][31], _RANDOM[8'h87], _RANDOM[8'h88][30:0]};	// backend/src/zaqal/backend/Execute.scala:10:7, :272:28, :277:29
-        r2_wb1_valid = _RANDOM[8'h88][31];	// backend/src/zaqal/backend/Execute.scala:10:7, :277:29, :279:29
-        r2_wb1_pdest = _RANDOM[8'h89][7:0];	// backend/src/zaqal/backend/Execute.scala:10:7, :280:29
-        r2_wb1_data = {_RANDOM[8'h89][31:8], _RANDOM[8'h8A], _RANDOM[8'h8B][7:0]};	// backend/src/zaqal/backend/Execute.scala:10:7, :280:29, :281:29
-        r2_wb2_valid = _RANDOM[8'h8B][8];	// backend/src/zaqal/backend/Execute.scala:10:7, :281:29, :283:29
-        r2_wb2_pdest = _RANDOM[8'h8B][16:9];	// backend/src/zaqal/backend/Execute.scala:10:7, :281:29, :284:29
-        r2_wb2_data = {_RANDOM[8'h8B][31:17], _RANDOM[8'h8C], _RANDOM[8'h8D][16:0]};	// backend/src/zaqal/backend/Execute.scala:10:7, :281:29, :285:29
-        r2_wb3_valid = _RANDOM[8'h8D][17];	// backend/src/zaqal/backend/Execute.scala:10:7, :285:29, :287:29
-        r2_wb3_pdest = _RANDOM[8'h8D][25:18];	// backend/src/zaqal/backend/Execute.scala:10:7, :285:29, :288:29
-        r2_wb3_data = {_RANDOM[8'h8D][31:26], _RANDOM[8'h8E], _RANDOM[8'h8F][25:0]};	// backend/src/zaqal/backend/Execute.scala:10:7, :285:29, :289:29
-        r2_wb4_valid = _RANDOM[8'h8F][26];	// backend/src/zaqal/backend/Execute.scala:10:7, :289:29, :291:29
-        r2_wb4_pdest = {_RANDOM[8'h8F][31:27], _RANDOM[8'h90][2:0]};	// backend/src/zaqal/backend/Execute.scala:10:7, :289:29, :292:29
-        r2_wb4_data = {_RANDOM[8'h90][31:3], _RANDOM[8'h91], _RANDOM[8'h92][2:0]};	// backend/src/zaqal/backend/Execute.scala:10:7, :292:29, :293:29
-        r2_wb5_valid = _RANDOM[8'h92][3];	// backend/src/zaqal/backend/Execute.scala:10:7, :293:29, :295:29
-        r2_wb5_pdest = _RANDOM[8'h92][11:4];	// backend/src/zaqal/backend/Execute.scala:10:7, :293:29, :296:29
-        r2_wb5_data = {_RANDOM[8'h92][31:12], _RANDOM[8'h93], _RANDOM[8'h94][11:0]};	// backend/src/zaqal/backend/Execute.scala:10:7, :293:29, :297:29
-        r_wu0_valid = _RANDOM[8'h94][12];	// backend/src/zaqal/backend/Execute.scala:10:7, :297:29, :416:28
-        r_wu0_pdest = _RANDOM[8'h94][20:13];	// backend/src/zaqal/backend/Execute.scala:10:7, :297:29, :417:28
-        r_mul_wu0_valid_raw = _RANDOM[8'h94][21];	// backend/src/zaqal/backend/Execute.scala:10:7, :297:29, :419:36
-        r_mul_wu0_pdest_raw = _RANDOM[8'h94][29:22];	// backend/src/zaqal/backend/Execute.scala:10:7, :297:29, :420:36
-        r_mul_wu0_valid = _RANDOM[8'h94][30];	// backend/src/zaqal/backend/Execute.scala:10:7, :297:29, :421:32
-        r_mul_wu0_pdest = {_RANDOM[8'h94][31], _RANDOM[8'h95][6:0]};	// backend/src/zaqal/backend/Execute.scala:10:7, :297:29, :422:32
-        r_wu1_valid = _RANDOM[8'h95][7];	// backend/src/zaqal/backend/Execute.scala:10:7, :422:32, :438:28
-        r_wu1_pdest = _RANDOM[8'h95][15:8];	// backend/src/zaqal/backend/Execute.scala:10:7, :422:32, :439:28
-        r_mul_wu1_valid_raw = _RANDOM[8'h95][16];	// backend/src/zaqal/backend/Execute.scala:10:7, :422:32, :441:36
-        r_mul_wu1_pdest_raw = _RANDOM[8'h95][24:17];	// backend/src/zaqal/backend/Execute.scala:10:7, :422:32, :442:36
-        r_mul_wu1_valid = _RANDOM[8'h95][25];	// backend/src/zaqal/backend/Execute.scala:10:7, :422:32, :443:32
-        r_mul_wu1_pdest = {_RANDOM[8'h95][31:26], _RANDOM[8'h96][1:0]};	// backend/src/zaqal/backend/Execute.scala:10:7, :422:32, :444:32
-        r_wuDiv_valid = _RANDOM[8'h96][2];	// backend/src/zaqal/backend/Execute.scala:10:7, :444:32, :463:30
-        r_wuDiv_pdest = _RANDOM[8'h96][10:3];	// backend/src/zaqal/backend/Execute.scala:10:7, :444:32, :464:30
-        r_wuMem_valid = _RANDOM[8'h96][11];	// backend/src/zaqal/backend/Execute.scala:10:7, :444:32, :520:30
-        r_wuMem_pdest = _RANDOM[8'h96][19:12];	// backend/src/zaqal/backend/Execute.scala:10:7, :444:32, :521:30
-        r_wuFp_valid = _RANDOM[8'h96][20];	// backend/src/zaqal/backend/Execute.scala:10:7, :444:32, :574:29
-        r_wuFp_pdest = _RANDOM[8'h96][28:21];	// backend/src/zaqal/backend/Execute.scala:10:7, :444:32, :575:29
+          {_RANDOM[8'h72][31:14], _RANDOM[8'h73], _RANDOM[8'h74][13:0]};	// backend/src/zaqal/backend/Execute.scala:10:7, :187:31, :188:31
+        r_regFile_rdata6 = {_RANDOM[8'h76][31:14], _RANDOM[8'h77], _RANDOM[8'h78][13:0]};	// backend/src/zaqal/backend/Execute.scala:10:7, :190:29
+        r_mul_val = _RANDOM[8'h78][14];	// backend/src/zaqal/backend/Execute.scala:10:7, :190:29, :244:26
+        r_mul_pdest = _RANDOM[8'h78][22:15];	// backend/src/zaqal/backend/Execute.scala:10:7, :190:29, :245:28
+        r2_mul_val = _RANDOM[8'h78][23];	// backend/src/zaqal/backend/Execute.scala:10:7, :190:29, :246:27
+        r2_mul_pdest = _RANDOM[8'h78][31:24];	// backend/src/zaqal/backend/Execute.scala:10:7, :190:29, :247:29
+        r_wb0_valid = _RANDOM[8'h79][0];	// backend/src/zaqal/backend/Execute.scala:10:7, :254:28
+        r_wb0_pdest = _RANDOM[8'h79][8:1];	// backend/src/zaqal/backend/Execute.scala:10:7, :254:28, :255:28
+        r_wb0_data = {_RANDOM[8'h79][31:9], _RANDOM[8'h7A], _RANDOM[8'h7B][8:0]};	// backend/src/zaqal/backend/Execute.scala:10:7, :254:28, :256:28
+        r_wb1_valid = _RANDOM[8'h7B][9];	// backend/src/zaqal/backend/Execute.scala:10:7, :256:28, :258:28
+        r_wb1_pdest = _RANDOM[8'h7B][17:10];	// backend/src/zaqal/backend/Execute.scala:10:7, :256:28, :259:28
+        r_wb1_data = {_RANDOM[8'h7B][31:18], _RANDOM[8'h7C], _RANDOM[8'h7D][17:0]};	// backend/src/zaqal/backend/Execute.scala:10:7, :256:28, :260:28
+        r_wb2_valid = _RANDOM[8'h7D][18];	// backend/src/zaqal/backend/Execute.scala:10:7, :260:28, :262:28
+        r_wb2_pdest = _RANDOM[8'h7D][26:19];	// backend/src/zaqal/backend/Execute.scala:10:7, :260:28, :263:28
+        r_wb2_data = {_RANDOM[8'h7D][31:27], _RANDOM[8'h7E], _RANDOM[8'h7F][26:0]};	// backend/src/zaqal/backend/Execute.scala:10:7, :260:28, :264:28
+        r_wb3_valid = _RANDOM[8'h7F][27];	// backend/src/zaqal/backend/Execute.scala:10:7, :264:28, :266:28
+        r_wb3_pdest = {_RANDOM[8'h7F][31:28], _RANDOM[8'h80][3:0]};	// backend/src/zaqal/backend/Execute.scala:10:7, :264:28, :267:28
+        r_wb3_data = {_RANDOM[8'h80][31:4], _RANDOM[8'h81], _RANDOM[8'h82][3:0]};	// backend/src/zaqal/backend/Execute.scala:10:7, :267:28, :268:28
+        r_wb4_valid = _RANDOM[8'h82][4];	// backend/src/zaqal/backend/Execute.scala:10:7, :268:28, :270:28
+        r_wb4_pdest = _RANDOM[8'h82][12:5];	// backend/src/zaqal/backend/Execute.scala:10:7, :268:28, :271:28
+        r_wb4_data = {_RANDOM[8'h82][31:13], _RANDOM[8'h83], _RANDOM[8'h84][12:0]};	// backend/src/zaqal/backend/Execute.scala:10:7, :268:28, :272:28
+        r_wb5_valid = _RANDOM[8'h84][13];	// backend/src/zaqal/backend/Execute.scala:10:7, :272:28, :274:28
+        r_wb5_pdest = _RANDOM[8'h84][21:14];	// backend/src/zaqal/backend/Execute.scala:10:7, :272:28, :275:28
+        r_wb5_data = {_RANDOM[8'h84][31:22], _RANDOM[8'h85], _RANDOM[8'h86][21:0]};	// backend/src/zaqal/backend/Execute.scala:10:7, :272:28, :276:28
+        r2_wb0_valid = _RANDOM[8'h86][22];	// backend/src/zaqal/backend/Execute.scala:10:7, :276:28, :279:29
+        r2_wb0_pdest = _RANDOM[8'h86][30:23];	// backend/src/zaqal/backend/Execute.scala:10:7, :276:28, :280:29
+        r2_wb0_data = {_RANDOM[8'h86][31], _RANDOM[8'h87], _RANDOM[8'h88][30:0]};	// backend/src/zaqal/backend/Execute.scala:10:7, :276:28, :281:29
+        r2_wb1_valid = _RANDOM[8'h88][31];	// backend/src/zaqal/backend/Execute.scala:10:7, :281:29, :283:29
+        r2_wb1_pdest = _RANDOM[8'h89][7:0];	// backend/src/zaqal/backend/Execute.scala:10:7, :284:29
+        r2_wb1_data = {_RANDOM[8'h89][31:8], _RANDOM[8'h8A], _RANDOM[8'h8B][7:0]};	// backend/src/zaqal/backend/Execute.scala:10:7, :284:29, :285:29
+        r2_wb2_valid = _RANDOM[8'h8B][8];	// backend/src/zaqal/backend/Execute.scala:10:7, :285:29, :287:29
+        r2_wb2_pdest = _RANDOM[8'h8B][16:9];	// backend/src/zaqal/backend/Execute.scala:10:7, :285:29, :288:29
+        r2_wb2_data = {_RANDOM[8'h8B][31:17], _RANDOM[8'h8C], _RANDOM[8'h8D][16:0]};	// backend/src/zaqal/backend/Execute.scala:10:7, :285:29, :289:29
+        r2_wb3_valid = _RANDOM[8'h8D][17];	// backend/src/zaqal/backend/Execute.scala:10:7, :289:29, :291:29
+        r2_wb3_pdest = _RANDOM[8'h8D][25:18];	// backend/src/zaqal/backend/Execute.scala:10:7, :289:29, :292:29
+        r2_wb3_data = {_RANDOM[8'h8D][31:26], _RANDOM[8'h8E], _RANDOM[8'h8F][25:0]};	// backend/src/zaqal/backend/Execute.scala:10:7, :289:29, :293:29
+        r2_wb4_valid = _RANDOM[8'h8F][26];	// backend/src/zaqal/backend/Execute.scala:10:7, :293:29, :295:29
+        r2_wb4_pdest = {_RANDOM[8'h8F][31:27], _RANDOM[8'h90][2:0]};	// backend/src/zaqal/backend/Execute.scala:10:7, :293:29, :296:29
+        r2_wb4_data = {_RANDOM[8'h90][31:3], _RANDOM[8'h91], _RANDOM[8'h92][2:0]};	// backend/src/zaqal/backend/Execute.scala:10:7, :296:29, :297:29
+        r2_wb5_valid = _RANDOM[8'h92][3];	// backend/src/zaqal/backend/Execute.scala:10:7, :297:29, :299:29
+        r2_wb5_pdest = _RANDOM[8'h92][11:4];	// backend/src/zaqal/backend/Execute.scala:10:7, :297:29, :300:29
+        r2_wb5_data = {_RANDOM[8'h92][31:12], _RANDOM[8'h93], _RANDOM[8'h94][11:0]};	// backend/src/zaqal/backend/Execute.scala:10:7, :297:29, :301:29
+        r_wu0_valid = _RANDOM[8'h94][12];	// backend/src/zaqal/backend/Execute.scala:10:7, :301:29, :432:28
+        r_wu0_pdest = _RANDOM[8'h94][20:13];	// backend/src/zaqal/backend/Execute.scala:10:7, :301:29, :433:28
+        r_mul_wu0_valid_raw = _RANDOM[8'h94][21];	// backend/src/zaqal/backend/Execute.scala:10:7, :301:29, :435:36
+        r_mul_wu0_pdest_raw = _RANDOM[8'h94][29:22];	// backend/src/zaqal/backend/Execute.scala:10:7, :301:29, :436:36
+        r_mul_wu0_valid = _RANDOM[8'h94][30];	// backend/src/zaqal/backend/Execute.scala:10:7, :301:29, :437:32
+        r_mul_wu0_pdest = {_RANDOM[8'h94][31], _RANDOM[8'h95][6:0]};	// backend/src/zaqal/backend/Execute.scala:10:7, :301:29, :438:32
+        r_wu1_valid = _RANDOM[8'h95][7];	// backend/src/zaqal/backend/Execute.scala:10:7, :438:32, :454:28
+        r_wu1_pdest = _RANDOM[8'h95][15:8];	// backend/src/zaqal/backend/Execute.scala:10:7, :438:32, :455:28
+        r_mul_wu1_valid_raw = _RANDOM[8'h95][16];	// backend/src/zaqal/backend/Execute.scala:10:7, :438:32, :457:36
+        r_mul_wu1_pdest_raw = _RANDOM[8'h95][24:17];	// backend/src/zaqal/backend/Execute.scala:10:7, :438:32, :458:36
+        r_mul_wu1_valid = _RANDOM[8'h95][25];	// backend/src/zaqal/backend/Execute.scala:10:7, :438:32, :459:32
+        r_mul_wu1_pdest = {_RANDOM[8'h95][31:26], _RANDOM[8'h96][1:0]};	// backend/src/zaqal/backend/Execute.scala:10:7, :438:32, :460:32
+        r_wuDiv_valid = _RANDOM[8'h96][2];	// backend/src/zaqal/backend/Execute.scala:10:7, :460:32, :479:30
+        r_wuDiv_pdest = _RANDOM[8'h96][10:3];	// backend/src/zaqal/backend/Execute.scala:10:7, :460:32, :480:30
+        r_wuMem_valid = _RANDOM[8'h96][11];	// backend/src/zaqal/backend/Execute.scala:10:7, :460:32, :536:30
+        r_wuMem_pdest = _RANDOM[8'h96][19:12];	// backend/src/zaqal/backend/Execute.scala:10:7, :460:32, :537:30
+        r_wuFp_valid = _RANDOM[8'h96][20];	// backend/src/zaqal/backend/Execute.scala:10:7, :460:32, :590:29
+        r_wuFp_pdest = _RANDOM[8'h96][28:21];	// backend/src/zaqal/backend/Execute.scala:10:7, :460:32, :591:29
       `endif // RANDOMIZE_REG_INIT
     end // initial
     `ifdef FIRRTL_AFTER_INITIAL	// backend/src/zaqal/backend/Execute.scala:10:7
@@ -2483,76 +2489,76 @@ module Execute(	// backend/src/zaqal/backend/Execute.scala:10:7
          ? exe_uop0_decode_imm + exe_uop0_uop_pc
          : exe_uop0_decode_is_addi | exe_uop0_decode_is_jalr
              ? exe_uop0_decode_imm
-             : src0_2),	// backend/src/zaqal/backend/Execute.scala:110:21, :330:{24,67}, :331:{21,39}, src/main/scala/chisel3/util/Mux.scala:126:16
-    .io_pc               (exe_uop0_uop_pc),	// backend/src/zaqal/backend/Execute.scala:110:21
-    .io_dec_is_addi      (exe_uop0_decode_is_addi),	// backend/src/zaqal/backend/Execute.scala:110:21
-    .io_dec_is_add       (exe_uop0_decode_is_add),	// backend/src/zaqal/backend/Execute.scala:110:21
-    .io_dec_is_and       (exe_uop0_decode_is_and),	// backend/src/zaqal/backend/Execute.scala:110:21
-    .io_dec_is_or        (exe_uop0_decode_is_or),	// backend/src/zaqal/backend/Execute.scala:110:21
-    .io_dec_is_xor       (exe_uop0_decode_is_xor),	// backend/src/zaqal/backend/Execute.scala:110:21
-    .io_dec_is_andi      (exe_uop0_decode_is_andi),	// backend/src/zaqal/backend/Execute.scala:110:21
-    .io_dec_is_ori       (exe_uop0_decode_is_ori),	// backend/src/zaqal/backend/Execute.scala:110:21
-    .io_dec_is_xori      (exe_uop0_decode_is_xori),	// backend/src/zaqal/backend/Execute.scala:110:21
-    .io_dec_is_sll       (exe_uop0_decode_is_sll),	// backend/src/zaqal/backend/Execute.scala:110:21
-    .io_dec_is_srl       (exe_uop0_decode_is_srl),	// backend/src/zaqal/backend/Execute.scala:110:21
-    .io_dec_is_sra       (exe_uop0_decode_is_sra),	// backend/src/zaqal/backend/Execute.scala:110:21
-    .io_dec_is_sllw      (exe_uop0_decode_is_sllw),	// backend/src/zaqal/backend/Execute.scala:110:21
-    .io_dec_is_srlw      (exe_uop0_decode_is_srlw),	// backend/src/zaqal/backend/Execute.scala:110:21
-    .io_dec_is_sraw      (exe_uop0_decode_is_sraw),	// backend/src/zaqal/backend/Execute.scala:110:21
-    .io_dec_is_slli      (exe_uop0_decode_is_slli),	// backend/src/zaqal/backend/Execute.scala:110:21
-    .io_dec_is_srli      (exe_uop0_decode_is_srli),	// backend/src/zaqal/backend/Execute.scala:110:21
-    .io_dec_is_srai      (exe_uop0_decode_is_srai),	// backend/src/zaqal/backend/Execute.scala:110:21
-    .io_dec_is_slliw     (exe_uop0_decode_is_slliw),	// backend/src/zaqal/backend/Execute.scala:110:21
-    .io_dec_is_srliw     (exe_uop0_decode_is_srliw),	// backend/src/zaqal/backend/Execute.scala:110:21
-    .io_dec_is_sraiw     (exe_uop0_decode_is_sraiw),	// backend/src/zaqal/backend/Execute.scala:110:21
-    .io_dec_is_slt       (exe_uop0_decode_is_slt),	// backend/src/zaqal/backend/Execute.scala:110:21
-    .io_dec_is_sltu      (exe_uop0_decode_is_sltu),	// backend/src/zaqal/backend/Execute.scala:110:21
-    .io_dec_is_slti      (exe_uop0_decode_is_slti),	// backend/src/zaqal/backend/Execute.scala:110:21
-    .io_dec_is_sltiu     (exe_uop0_decode_is_sltiu),	// backend/src/zaqal/backend/Execute.scala:110:21
-    .io_dec_is_sub       (exe_uop0_decode_is_sub),	// backend/src/zaqal/backend/Execute.scala:110:21
-    .io_dec_is_addw      (exe_uop0_decode_is_addw),	// backend/src/zaqal/backend/Execute.scala:110:21
-    .io_dec_is_subw      (exe_uop0_decode_is_subw),	// backend/src/zaqal/backend/Execute.scala:110:21
-    .io_dec_is_addiw     (exe_uop0_decode_is_addiw),	// backend/src/zaqal/backend/Execute.scala:110:21
-    .io_dec_is_lui       (exe_uop0_decode_is_lui),	// backend/src/zaqal/backend/Execute.scala:110:21
-    .io_dec_is_auipc     (exe_uop0_decode_is_auipc),	// backend/src/zaqal/backend/Execute.scala:110:21
-    .io_dec_is_sh1add    (exe_uop0_decode_is_sh1add),	// backend/src/zaqal/backend/Execute.scala:110:21
-    .io_dec_is_sh2add    (exe_uop0_decode_is_sh2add),	// backend/src/zaqal/backend/Execute.scala:110:21
-    .io_dec_is_sh3add    (exe_uop0_decode_is_sh3add),	// backend/src/zaqal/backend/Execute.scala:110:21
-    .io_dec_is_sh1add_uw (exe_uop0_decode_is_sh1add_uw),	// backend/src/zaqal/backend/Execute.scala:110:21
-    .io_dec_is_sh2add_uw (exe_uop0_decode_is_sh2add_uw),	// backend/src/zaqal/backend/Execute.scala:110:21
-    .io_dec_is_sh3add_uw (exe_uop0_decode_is_sh3add_uw),	// backend/src/zaqal/backend/Execute.scala:110:21
-    .io_dec_is_andn      (exe_uop0_decode_is_andn),	// backend/src/zaqal/backend/Execute.scala:110:21
-    .io_dec_is_orn       (exe_uop0_decode_is_orn),	// backend/src/zaqal/backend/Execute.scala:110:21
-    .io_dec_is_xorn      (exe_uop0_decode_is_xorn),	// backend/src/zaqal/backend/Execute.scala:110:21
-    .io_dec_is_rol       (exe_uop0_decode_is_rol),	// backend/src/zaqal/backend/Execute.scala:110:21
-    .io_dec_is_ror       (exe_uop0_decode_is_ror),	// backend/src/zaqal/backend/Execute.scala:110:21
-    .io_dec_is_rori      (exe_uop0_decode_is_rori),	// backend/src/zaqal/backend/Execute.scala:110:21
-    .io_dec_is_rolw      (exe_uop0_decode_is_rolw),	// backend/src/zaqal/backend/Execute.scala:110:21
-    .io_dec_is_rorw      (exe_uop0_decode_is_rorw),	// backend/src/zaqal/backend/Execute.scala:110:21
-    .io_dec_is_roriw     (exe_uop0_decode_is_roriw),	// backend/src/zaqal/backend/Execute.scala:110:21
-    .io_dec_is_clz       (exe_uop0_decode_is_clz),	// backend/src/zaqal/backend/Execute.scala:110:21
-    .io_dec_is_ctz       (exe_uop0_decode_is_ctz),	// backend/src/zaqal/backend/Execute.scala:110:21
-    .io_dec_is_cpop      (exe_uop0_decode_is_cpop),	// backend/src/zaqal/backend/Execute.scala:110:21
-    .io_dec_is_clzw      (exe_uop0_decode_is_clzw),	// backend/src/zaqal/backend/Execute.scala:110:21
-    .io_dec_is_ctzw      (exe_uop0_decode_is_ctzw),	// backend/src/zaqal/backend/Execute.scala:110:21
-    .io_dec_is_cpopw     (exe_uop0_decode_is_cpopw),	// backend/src/zaqal/backend/Execute.scala:110:21
-    .io_dec_is_rev8      (exe_uop0_decode_is_rev8),	// backend/src/zaqal/backend/Execute.scala:110:21
-    .io_dec_is_orc_b     (exe_uop0_decode_is_orc_b),	// backend/src/zaqal/backend/Execute.scala:110:21
-    .io_dec_is_sextb     (exe_uop0_decode_is_sextb),	// backend/src/zaqal/backend/Execute.scala:110:21
-    .io_dec_is_sexth     (exe_uop0_decode_is_sexth),	// backend/src/zaqal/backend/Execute.scala:110:21
-    .io_dec_is_zexth     (exe_uop0_decode_is_zexth),	// backend/src/zaqal/backend/Execute.scala:110:21
-    .io_dec_is_min       (exe_uop0_decode_is_min),	// backend/src/zaqal/backend/Execute.scala:110:21
-    .io_dec_is_max       (exe_uop0_decode_is_max),	// backend/src/zaqal/backend/Execute.scala:110:21
-    .io_dec_is_minu      (exe_uop0_decode_is_minu),	// backend/src/zaqal/backend/Execute.scala:110:21
-    .io_dec_is_maxu      (exe_uop0_decode_is_maxu),	// backend/src/zaqal/backend/Execute.scala:110:21
-    .io_dec_is_bset      (exe_uop0_decode_is_bset),	// backend/src/zaqal/backend/Execute.scala:110:21
-    .io_dec_is_bseti     (exe_uop0_decode_is_bseti),	// backend/src/zaqal/backend/Execute.scala:110:21
-    .io_dec_is_bclr      (exe_uop0_decode_is_bclr),	// backend/src/zaqal/backend/Execute.scala:110:21
-    .io_dec_is_bclri     (exe_uop0_decode_is_bclri),	// backend/src/zaqal/backend/Execute.scala:110:21
-    .io_dec_is_binv      (exe_uop0_decode_is_binv),	// backend/src/zaqal/backend/Execute.scala:110:21
-    .io_dec_is_binvi     (exe_uop0_decode_is_binvi),	// backend/src/zaqal/backend/Execute.scala:110:21
-    .io_dec_is_bext      (exe_uop0_decode_is_bext),	// backend/src/zaqal/backend/Execute.scala:110:21
-    .io_dec_is_bexti     (exe_uop0_decode_is_bexti),	// backend/src/zaqal/backend/Execute.scala:110:21
+             : src0_2),	// backend/src/zaqal/backend/Execute.scala:114:21, :334:{24,67}, :335:{21,39}, src/main/scala/chisel3/util/Mux.scala:126:16
+    .io_pc               (exe_uop0_uop_pc),	// backend/src/zaqal/backend/Execute.scala:114:21
+    .io_dec_is_addi      (exe_uop0_decode_is_addi),	// backend/src/zaqal/backend/Execute.scala:114:21
+    .io_dec_is_add       (exe_uop0_decode_is_add),	// backend/src/zaqal/backend/Execute.scala:114:21
+    .io_dec_is_and       (exe_uop0_decode_is_and),	// backend/src/zaqal/backend/Execute.scala:114:21
+    .io_dec_is_or        (exe_uop0_decode_is_or),	// backend/src/zaqal/backend/Execute.scala:114:21
+    .io_dec_is_xor       (exe_uop0_decode_is_xor),	// backend/src/zaqal/backend/Execute.scala:114:21
+    .io_dec_is_andi      (exe_uop0_decode_is_andi),	// backend/src/zaqal/backend/Execute.scala:114:21
+    .io_dec_is_ori       (exe_uop0_decode_is_ori),	// backend/src/zaqal/backend/Execute.scala:114:21
+    .io_dec_is_xori      (exe_uop0_decode_is_xori),	// backend/src/zaqal/backend/Execute.scala:114:21
+    .io_dec_is_sll       (exe_uop0_decode_is_sll),	// backend/src/zaqal/backend/Execute.scala:114:21
+    .io_dec_is_srl       (exe_uop0_decode_is_srl),	// backend/src/zaqal/backend/Execute.scala:114:21
+    .io_dec_is_sra       (exe_uop0_decode_is_sra),	// backend/src/zaqal/backend/Execute.scala:114:21
+    .io_dec_is_sllw      (exe_uop0_decode_is_sllw),	// backend/src/zaqal/backend/Execute.scala:114:21
+    .io_dec_is_srlw      (exe_uop0_decode_is_srlw),	// backend/src/zaqal/backend/Execute.scala:114:21
+    .io_dec_is_sraw      (exe_uop0_decode_is_sraw),	// backend/src/zaqal/backend/Execute.scala:114:21
+    .io_dec_is_slli      (exe_uop0_decode_is_slli),	// backend/src/zaqal/backend/Execute.scala:114:21
+    .io_dec_is_srli      (exe_uop0_decode_is_srli),	// backend/src/zaqal/backend/Execute.scala:114:21
+    .io_dec_is_srai      (exe_uop0_decode_is_srai),	// backend/src/zaqal/backend/Execute.scala:114:21
+    .io_dec_is_slliw     (exe_uop0_decode_is_slliw),	// backend/src/zaqal/backend/Execute.scala:114:21
+    .io_dec_is_srliw     (exe_uop0_decode_is_srliw),	// backend/src/zaqal/backend/Execute.scala:114:21
+    .io_dec_is_sraiw     (exe_uop0_decode_is_sraiw),	// backend/src/zaqal/backend/Execute.scala:114:21
+    .io_dec_is_slt       (exe_uop0_decode_is_slt),	// backend/src/zaqal/backend/Execute.scala:114:21
+    .io_dec_is_sltu      (exe_uop0_decode_is_sltu),	// backend/src/zaqal/backend/Execute.scala:114:21
+    .io_dec_is_slti      (exe_uop0_decode_is_slti),	// backend/src/zaqal/backend/Execute.scala:114:21
+    .io_dec_is_sltiu     (exe_uop0_decode_is_sltiu),	// backend/src/zaqal/backend/Execute.scala:114:21
+    .io_dec_is_sub       (exe_uop0_decode_is_sub),	// backend/src/zaqal/backend/Execute.scala:114:21
+    .io_dec_is_addw      (exe_uop0_decode_is_addw),	// backend/src/zaqal/backend/Execute.scala:114:21
+    .io_dec_is_subw      (exe_uop0_decode_is_subw),	// backend/src/zaqal/backend/Execute.scala:114:21
+    .io_dec_is_addiw     (exe_uop0_decode_is_addiw),	// backend/src/zaqal/backend/Execute.scala:114:21
+    .io_dec_is_lui       (exe_uop0_decode_is_lui),	// backend/src/zaqal/backend/Execute.scala:114:21
+    .io_dec_is_auipc     (exe_uop0_decode_is_auipc),	// backend/src/zaqal/backend/Execute.scala:114:21
+    .io_dec_is_sh1add    (exe_uop0_decode_is_sh1add),	// backend/src/zaqal/backend/Execute.scala:114:21
+    .io_dec_is_sh2add    (exe_uop0_decode_is_sh2add),	// backend/src/zaqal/backend/Execute.scala:114:21
+    .io_dec_is_sh3add    (exe_uop0_decode_is_sh3add),	// backend/src/zaqal/backend/Execute.scala:114:21
+    .io_dec_is_sh1add_uw (exe_uop0_decode_is_sh1add_uw),	// backend/src/zaqal/backend/Execute.scala:114:21
+    .io_dec_is_sh2add_uw (exe_uop0_decode_is_sh2add_uw),	// backend/src/zaqal/backend/Execute.scala:114:21
+    .io_dec_is_sh3add_uw (exe_uop0_decode_is_sh3add_uw),	// backend/src/zaqal/backend/Execute.scala:114:21
+    .io_dec_is_andn      (exe_uop0_decode_is_andn),	// backend/src/zaqal/backend/Execute.scala:114:21
+    .io_dec_is_orn       (exe_uop0_decode_is_orn),	// backend/src/zaqal/backend/Execute.scala:114:21
+    .io_dec_is_xorn      (exe_uop0_decode_is_xorn),	// backend/src/zaqal/backend/Execute.scala:114:21
+    .io_dec_is_rol       (exe_uop0_decode_is_rol),	// backend/src/zaqal/backend/Execute.scala:114:21
+    .io_dec_is_ror       (exe_uop0_decode_is_ror),	// backend/src/zaqal/backend/Execute.scala:114:21
+    .io_dec_is_rori      (exe_uop0_decode_is_rori),	// backend/src/zaqal/backend/Execute.scala:114:21
+    .io_dec_is_rolw      (exe_uop0_decode_is_rolw),	// backend/src/zaqal/backend/Execute.scala:114:21
+    .io_dec_is_rorw      (exe_uop0_decode_is_rorw),	// backend/src/zaqal/backend/Execute.scala:114:21
+    .io_dec_is_roriw     (exe_uop0_decode_is_roriw),	// backend/src/zaqal/backend/Execute.scala:114:21
+    .io_dec_is_clz       (exe_uop0_decode_is_clz),	// backend/src/zaqal/backend/Execute.scala:114:21
+    .io_dec_is_ctz       (exe_uop0_decode_is_ctz),	// backend/src/zaqal/backend/Execute.scala:114:21
+    .io_dec_is_cpop      (exe_uop0_decode_is_cpop),	// backend/src/zaqal/backend/Execute.scala:114:21
+    .io_dec_is_clzw      (exe_uop0_decode_is_clzw),	// backend/src/zaqal/backend/Execute.scala:114:21
+    .io_dec_is_ctzw      (exe_uop0_decode_is_ctzw),	// backend/src/zaqal/backend/Execute.scala:114:21
+    .io_dec_is_cpopw     (exe_uop0_decode_is_cpopw),	// backend/src/zaqal/backend/Execute.scala:114:21
+    .io_dec_is_rev8      (exe_uop0_decode_is_rev8),	// backend/src/zaqal/backend/Execute.scala:114:21
+    .io_dec_is_orc_b     (exe_uop0_decode_is_orc_b),	// backend/src/zaqal/backend/Execute.scala:114:21
+    .io_dec_is_sextb     (exe_uop0_decode_is_sextb),	// backend/src/zaqal/backend/Execute.scala:114:21
+    .io_dec_is_sexth     (exe_uop0_decode_is_sexth),	// backend/src/zaqal/backend/Execute.scala:114:21
+    .io_dec_is_zexth     (exe_uop0_decode_is_zexth),	// backend/src/zaqal/backend/Execute.scala:114:21
+    .io_dec_is_min       (exe_uop0_decode_is_min),	// backend/src/zaqal/backend/Execute.scala:114:21
+    .io_dec_is_max       (exe_uop0_decode_is_max),	// backend/src/zaqal/backend/Execute.scala:114:21
+    .io_dec_is_minu      (exe_uop0_decode_is_minu),	// backend/src/zaqal/backend/Execute.scala:114:21
+    .io_dec_is_maxu      (exe_uop0_decode_is_maxu),	// backend/src/zaqal/backend/Execute.scala:114:21
+    .io_dec_is_bset      (exe_uop0_decode_is_bset),	// backend/src/zaqal/backend/Execute.scala:114:21
+    .io_dec_is_bseti     (exe_uop0_decode_is_bseti),	// backend/src/zaqal/backend/Execute.scala:114:21
+    .io_dec_is_bclr      (exe_uop0_decode_is_bclr),	// backend/src/zaqal/backend/Execute.scala:114:21
+    .io_dec_is_bclri     (exe_uop0_decode_is_bclri),	// backend/src/zaqal/backend/Execute.scala:114:21
+    .io_dec_is_binv      (exe_uop0_decode_is_binv),	// backend/src/zaqal/backend/Execute.scala:114:21
+    .io_dec_is_binvi     (exe_uop0_decode_is_binvi),	// backend/src/zaqal/backend/Execute.scala:114:21
+    .io_dec_is_bext      (exe_uop0_decode_is_bext),	// backend/src/zaqal/backend/Execute.scala:114:21
+    .io_dec_is_bexti     (exe_uop0_decode_is_bexti),	// backend/src/zaqal/backend/Execute.scala:114:21
     .io_result           (_alu_0_io_result)
   );
   ALU alu_1 (	// backend/src/zaqal/backend/Execute.scala:24:32
@@ -2562,76 +2568,76 @@ module Execute(	// backend/src/zaqal/backend/Execute.scala:10:7
          ? exe_uop1_decode_imm + exe_uop1_uop_pc
          : exe_uop1_decode_is_addi | exe_uop1_decode_is_jalr
              ? exe_uop1_decode_imm
-             : src1_2),	// backend/src/zaqal/backend/Execute.scala:119:21, :347:{24,67}, :348:{21,39}, src/main/scala/chisel3/util/Mux.scala:126:16
-    .io_pc               (exe_uop1_uop_pc),	// backend/src/zaqal/backend/Execute.scala:119:21
-    .io_dec_is_addi      (exe_uop1_decode_is_addi),	// backend/src/zaqal/backend/Execute.scala:119:21
-    .io_dec_is_add       (exe_uop1_decode_is_add),	// backend/src/zaqal/backend/Execute.scala:119:21
-    .io_dec_is_and       (exe_uop1_decode_is_and),	// backend/src/zaqal/backend/Execute.scala:119:21
-    .io_dec_is_or        (exe_uop1_decode_is_or),	// backend/src/zaqal/backend/Execute.scala:119:21
-    .io_dec_is_xor       (exe_uop1_decode_is_xor),	// backend/src/zaqal/backend/Execute.scala:119:21
-    .io_dec_is_andi      (exe_uop1_decode_is_andi),	// backend/src/zaqal/backend/Execute.scala:119:21
-    .io_dec_is_ori       (exe_uop1_decode_is_ori),	// backend/src/zaqal/backend/Execute.scala:119:21
-    .io_dec_is_xori      (exe_uop1_decode_is_xori),	// backend/src/zaqal/backend/Execute.scala:119:21
-    .io_dec_is_sll       (exe_uop1_decode_is_sll),	// backend/src/zaqal/backend/Execute.scala:119:21
-    .io_dec_is_srl       (exe_uop1_decode_is_srl),	// backend/src/zaqal/backend/Execute.scala:119:21
-    .io_dec_is_sra       (exe_uop1_decode_is_sra),	// backend/src/zaqal/backend/Execute.scala:119:21
-    .io_dec_is_sllw      (exe_uop1_decode_is_sllw),	// backend/src/zaqal/backend/Execute.scala:119:21
-    .io_dec_is_srlw      (exe_uop1_decode_is_srlw),	// backend/src/zaqal/backend/Execute.scala:119:21
-    .io_dec_is_sraw      (exe_uop1_decode_is_sraw),	// backend/src/zaqal/backend/Execute.scala:119:21
-    .io_dec_is_slli      (exe_uop1_decode_is_slli),	// backend/src/zaqal/backend/Execute.scala:119:21
-    .io_dec_is_srli      (exe_uop1_decode_is_srli),	// backend/src/zaqal/backend/Execute.scala:119:21
-    .io_dec_is_srai      (exe_uop1_decode_is_srai),	// backend/src/zaqal/backend/Execute.scala:119:21
-    .io_dec_is_slliw     (exe_uop1_decode_is_slliw),	// backend/src/zaqal/backend/Execute.scala:119:21
-    .io_dec_is_srliw     (exe_uop1_decode_is_srliw),	// backend/src/zaqal/backend/Execute.scala:119:21
-    .io_dec_is_sraiw     (exe_uop1_decode_is_sraiw),	// backend/src/zaqal/backend/Execute.scala:119:21
-    .io_dec_is_slt       (exe_uop1_decode_is_slt),	// backend/src/zaqal/backend/Execute.scala:119:21
-    .io_dec_is_sltu      (exe_uop1_decode_is_sltu),	// backend/src/zaqal/backend/Execute.scala:119:21
-    .io_dec_is_slti      (exe_uop1_decode_is_slti),	// backend/src/zaqal/backend/Execute.scala:119:21
-    .io_dec_is_sltiu     (exe_uop1_decode_is_sltiu),	// backend/src/zaqal/backend/Execute.scala:119:21
-    .io_dec_is_sub       (exe_uop1_decode_is_sub),	// backend/src/zaqal/backend/Execute.scala:119:21
-    .io_dec_is_addw      (exe_uop1_decode_is_addw),	// backend/src/zaqal/backend/Execute.scala:119:21
-    .io_dec_is_subw      (exe_uop1_decode_is_subw),	// backend/src/zaqal/backend/Execute.scala:119:21
-    .io_dec_is_addiw     (exe_uop1_decode_is_addiw),	// backend/src/zaqal/backend/Execute.scala:119:21
-    .io_dec_is_lui       (exe_uop1_decode_is_lui),	// backend/src/zaqal/backend/Execute.scala:119:21
-    .io_dec_is_auipc     (exe_uop1_decode_is_auipc),	// backend/src/zaqal/backend/Execute.scala:119:21
-    .io_dec_is_sh1add    (exe_uop1_decode_is_sh1add),	// backend/src/zaqal/backend/Execute.scala:119:21
-    .io_dec_is_sh2add    (exe_uop1_decode_is_sh2add),	// backend/src/zaqal/backend/Execute.scala:119:21
-    .io_dec_is_sh3add    (exe_uop1_decode_is_sh3add),	// backend/src/zaqal/backend/Execute.scala:119:21
-    .io_dec_is_sh1add_uw (exe_uop1_decode_is_sh1add_uw),	// backend/src/zaqal/backend/Execute.scala:119:21
-    .io_dec_is_sh2add_uw (exe_uop1_decode_is_sh2add_uw),	// backend/src/zaqal/backend/Execute.scala:119:21
-    .io_dec_is_sh3add_uw (exe_uop1_decode_is_sh3add_uw),	// backend/src/zaqal/backend/Execute.scala:119:21
-    .io_dec_is_andn      (exe_uop1_decode_is_andn),	// backend/src/zaqal/backend/Execute.scala:119:21
-    .io_dec_is_orn       (exe_uop1_decode_is_orn),	// backend/src/zaqal/backend/Execute.scala:119:21
-    .io_dec_is_xorn      (exe_uop1_decode_is_xorn),	// backend/src/zaqal/backend/Execute.scala:119:21
-    .io_dec_is_rol       (exe_uop1_decode_is_rol),	// backend/src/zaqal/backend/Execute.scala:119:21
-    .io_dec_is_ror       (exe_uop1_decode_is_ror),	// backend/src/zaqal/backend/Execute.scala:119:21
-    .io_dec_is_rori      (exe_uop1_decode_is_rori),	// backend/src/zaqal/backend/Execute.scala:119:21
-    .io_dec_is_rolw      (exe_uop1_decode_is_rolw),	// backend/src/zaqal/backend/Execute.scala:119:21
-    .io_dec_is_rorw      (exe_uop1_decode_is_rorw),	// backend/src/zaqal/backend/Execute.scala:119:21
-    .io_dec_is_roriw     (exe_uop1_decode_is_roriw),	// backend/src/zaqal/backend/Execute.scala:119:21
-    .io_dec_is_clz       (exe_uop1_decode_is_clz),	// backend/src/zaqal/backend/Execute.scala:119:21
-    .io_dec_is_ctz       (exe_uop1_decode_is_ctz),	// backend/src/zaqal/backend/Execute.scala:119:21
-    .io_dec_is_cpop      (exe_uop1_decode_is_cpop),	// backend/src/zaqal/backend/Execute.scala:119:21
-    .io_dec_is_clzw      (exe_uop1_decode_is_clzw),	// backend/src/zaqal/backend/Execute.scala:119:21
-    .io_dec_is_ctzw      (exe_uop1_decode_is_ctzw),	// backend/src/zaqal/backend/Execute.scala:119:21
-    .io_dec_is_cpopw     (exe_uop1_decode_is_cpopw),	// backend/src/zaqal/backend/Execute.scala:119:21
-    .io_dec_is_rev8      (exe_uop1_decode_is_rev8),	// backend/src/zaqal/backend/Execute.scala:119:21
-    .io_dec_is_orc_b     (exe_uop1_decode_is_orc_b),	// backend/src/zaqal/backend/Execute.scala:119:21
-    .io_dec_is_sextb     (exe_uop1_decode_is_sextb),	// backend/src/zaqal/backend/Execute.scala:119:21
-    .io_dec_is_sexth     (exe_uop1_decode_is_sexth),	// backend/src/zaqal/backend/Execute.scala:119:21
-    .io_dec_is_zexth     (exe_uop1_decode_is_zexth),	// backend/src/zaqal/backend/Execute.scala:119:21
-    .io_dec_is_min       (exe_uop1_decode_is_min),	// backend/src/zaqal/backend/Execute.scala:119:21
-    .io_dec_is_max       (exe_uop1_decode_is_max),	// backend/src/zaqal/backend/Execute.scala:119:21
-    .io_dec_is_minu      (exe_uop1_decode_is_minu),	// backend/src/zaqal/backend/Execute.scala:119:21
-    .io_dec_is_maxu      (exe_uop1_decode_is_maxu),	// backend/src/zaqal/backend/Execute.scala:119:21
-    .io_dec_is_bset      (exe_uop1_decode_is_bset),	// backend/src/zaqal/backend/Execute.scala:119:21
-    .io_dec_is_bseti     (exe_uop1_decode_is_bseti),	// backend/src/zaqal/backend/Execute.scala:119:21
-    .io_dec_is_bclr      (exe_uop1_decode_is_bclr),	// backend/src/zaqal/backend/Execute.scala:119:21
-    .io_dec_is_bclri     (exe_uop1_decode_is_bclri),	// backend/src/zaqal/backend/Execute.scala:119:21
-    .io_dec_is_binv      (exe_uop1_decode_is_binv),	// backend/src/zaqal/backend/Execute.scala:119:21
-    .io_dec_is_binvi     (exe_uop1_decode_is_binvi),	// backend/src/zaqal/backend/Execute.scala:119:21
-    .io_dec_is_bext      (exe_uop1_decode_is_bext),	// backend/src/zaqal/backend/Execute.scala:119:21
-    .io_dec_is_bexti     (exe_uop1_decode_is_bexti),	// backend/src/zaqal/backend/Execute.scala:119:21
+             : src1_2),	// backend/src/zaqal/backend/Execute.scala:123:21, :351:{24,67}, :352:{21,39}, src/main/scala/chisel3/util/Mux.scala:126:16
+    .io_pc               (exe_uop1_uop_pc),	// backend/src/zaqal/backend/Execute.scala:123:21
+    .io_dec_is_addi      (exe_uop1_decode_is_addi),	// backend/src/zaqal/backend/Execute.scala:123:21
+    .io_dec_is_add       (exe_uop1_decode_is_add),	// backend/src/zaqal/backend/Execute.scala:123:21
+    .io_dec_is_and       (exe_uop1_decode_is_and),	// backend/src/zaqal/backend/Execute.scala:123:21
+    .io_dec_is_or        (exe_uop1_decode_is_or),	// backend/src/zaqal/backend/Execute.scala:123:21
+    .io_dec_is_xor       (exe_uop1_decode_is_xor),	// backend/src/zaqal/backend/Execute.scala:123:21
+    .io_dec_is_andi      (exe_uop1_decode_is_andi),	// backend/src/zaqal/backend/Execute.scala:123:21
+    .io_dec_is_ori       (exe_uop1_decode_is_ori),	// backend/src/zaqal/backend/Execute.scala:123:21
+    .io_dec_is_xori      (exe_uop1_decode_is_xori),	// backend/src/zaqal/backend/Execute.scala:123:21
+    .io_dec_is_sll       (exe_uop1_decode_is_sll),	// backend/src/zaqal/backend/Execute.scala:123:21
+    .io_dec_is_srl       (exe_uop1_decode_is_srl),	// backend/src/zaqal/backend/Execute.scala:123:21
+    .io_dec_is_sra       (exe_uop1_decode_is_sra),	// backend/src/zaqal/backend/Execute.scala:123:21
+    .io_dec_is_sllw      (exe_uop1_decode_is_sllw),	// backend/src/zaqal/backend/Execute.scala:123:21
+    .io_dec_is_srlw      (exe_uop1_decode_is_srlw),	// backend/src/zaqal/backend/Execute.scala:123:21
+    .io_dec_is_sraw      (exe_uop1_decode_is_sraw),	// backend/src/zaqal/backend/Execute.scala:123:21
+    .io_dec_is_slli      (exe_uop1_decode_is_slli),	// backend/src/zaqal/backend/Execute.scala:123:21
+    .io_dec_is_srli      (exe_uop1_decode_is_srli),	// backend/src/zaqal/backend/Execute.scala:123:21
+    .io_dec_is_srai      (exe_uop1_decode_is_srai),	// backend/src/zaqal/backend/Execute.scala:123:21
+    .io_dec_is_slliw     (exe_uop1_decode_is_slliw),	// backend/src/zaqal/backend/Execute.scala:123:21
+    .io_dec_is_srliw     (exe_uop1_decode_is_srliw),	// backend/src/zaqal/backend/Execute.scala:123:21
+    .io_dec_is_sraiw     (exe_uop1_decode_is_sraiw),	// backend/src/zaqal/backend/Execute.scala:123:21
+    .io_dec_is_slt       (exe_uop1_decode_is_slt),	// backend/src/zaqal/backend/Execute.scala:123:21
+    .io_dec_is_sltu      (exe_uop1_decode_is_sltu),	// backend/src/zaqal/backend/Execute.scala:123:21
+    .io_dec_is_slti      (exe_uop1_decode_is_slti),	// backend/src/zaqal/backend/Execute.scala:123:21
+    .io_dec_is_sltiu     (exe_uop1_decode_is_sltiu),	// backend/src/zaqal/backend/Execute.scala:123:21
+    .io_dec_is_sub       (exe_uop1_decode_is_sub),	// backend/src/zaqal/backend/Execute.scala:123:21
+    .io_dec_is_addw      (exe_uop1_decode_is_addw),	// backend/src/zaqal/backend/Execute.scala:123:21
+    .io_dec_is_subw      (exe_uop1_decode_is_subw),	// backend/src/zaqal/backend/Execute.scala:123:21
+    .io_dec_is_addiw     (exe_uop1_decode_is_addiw),	// backend/src/zaqal/backend/Execute.scala:123:21
+    .io_dec_is_lui       (exe_uop1_decode_is_lui),	// backend/src/zaqal/backend/Execute.scala:123:21
+    .io_dec_is_auipc     (exe_uop1_decode_is_auipc),	// backend/src/zaqal/backend/Execute.scala:123:21
+    .io_dec_is_sh1add    (exe_uop1_decode_is_sh1add),	// backend/src/zaqal/backend/Execute.scala:123:21
+    .io_dec_is_sh2add    (exe_uop1_decode_is_sh2add),	// backend/src/zaqal/backend/Execute.scala:123:21
+    .io_dec_is_sh3add    (exe_uop1_decode_is_sh3add),	// backend/src/zaqal/backend/Execute.scala:123:21
+    .io_dec_is_sh1add_uw (exe_uop1_decode_is_sh1add_uw),	// backend/src/zaqal/backend/Execute.scala:123:21
+    .io_dec_is_sh2add_uw (exe_uop1_decode_is_sh2add_uw),	// backend/src/zaqal/backend/Execute.scala:123:21
+    .io_dec_is_sh3add_uw (exe_uop1_decode_is_sh3add_uw),	// backend/src/zaqal/backend/Execute.scala:123:21
+    .io_dec_is_andn      (exe_uop1_decode_is_andn),	// backend/src/zaqal/backend/Execute.scala:123:21
+    .io_dec_is_orn       (exe_uop1_decode_is_orn),	// backend/src/zaqal/backend/Execute.scala:123:21
+    .io_dec_is_xorn      (exe_uop1_decode_is_xorn),	// backend/src/zaqal/backend/Execute.scala:123:21
+    .io_dec_is_rol       (exe_uop1_decode_is_rol),	// backend/src/zaqal/backend/Execute.scala:123:21
+    .io_dec_is_ror       (exe_uop1_decode_is_ror),	// backend/src/zaqal/backend/Execute.scala:123:21
+    .io_dec_is_rori      (exe_uop1_decode_is_rori),	// backend/src/zaqal/backend/Execute.scala:123:21
+    .io_dec_is_rolw      (exe_uop1_decode_is_rolw),	// backend/src/zaqal/backend/Execute.scala:123:21
+    .io_dec_is_rorw      (exe_uop1_decode_is_rorw),	// backend/src/zaqal/backend/Execute.scala:123:21
+    .io_dec_is_roriw     (exe_uop1_decode_is_roriw),	// backend/src/zaqal/backend/Execute.scala:123:21
+    .io_dec_is_clz       (exe_uop1_decode_is_clz),	// backend/src/zaqal/backend/Execute.scala:123:21
+    .io_dec_is_ctz       (exe_uop1_decode_is_ctz),	// backend/src/zaqal/backend/Execute.scala:123:21
+    .io_dec_is_cpop      (exe_uop1_decode_is_cpop),	// backend/src/zaqal/backend/Execute.scala:123:21
+    .io_dec_is_clzw      (exe_uop1_decode_is_clzw),	// backend/src/zaqal/backend/Execute.scala:123:21
+    .io_dec_is_ctzw      (exe_uop1_decode_is_ctzw),	// backend/src/zaqal/backend/Execute.scala:123:21
+    .io_dec_is_cpopw     (exe_uop1_decode_is_cpopw),	// backend/src/zaqal/backend/Execute.scala:123:21
+    .io_dec_is_rev8      (exe_uop1_decode_is_rev8),	// backend/src/zaqal/backend/Execute.scala:123:21
+    .io_dec_is_orc_b     (exe_uop1_decode_is_orc_b),	// backend/src/zaqal/backend/Execute.scala:123:21
+    .io_dec_is_sextb     (exe_uop1_decode_is_sextb),	// backend/src/zaqal/backend/Execute.scala:123:21
+    .io_dec_is_sexth     (exe_uop1_decode_is_sexth),	// backend/src/zaqal/backend/Execute.scala:123:21
+    .io_dec_is_zexth     (exe_uop1_decode_is_zexth),	// backend/src/zaqal/backend/Execute.scala:123:21
+    .io_dec_is_min       (exe_uop1_decode_is_min),	// backend/src/zaqal/backend/Execute.scala:123:21
+    .io_dec_is_max       (exe_uop1_decode_is_max),	// backend/src/zaqal/backend/Execute.scala:123:21
+    .io_dec_is_minu      (exe_uop1_decode_is_minu),	// backend/src/zaqal/backend/Execute.scala:123:21
+    .io_dec_is_maxu      (exe_uop1_decode_is_maxu),	// backend/src/zaqal/backend/Execute.scala:123:21
+    .io_dec_is_bset      (exe_uop1_decode_is_bset),	// backend/src/zaqal/backend/Execute.scala:123:21
+    .io_dec_is_bseti     (exe_uop1_decode_is_bseti),	// backend/src/zaqal/backend/Execute.scala:123:21
+    .io_dec_is_bclr      (exe_uop1_decode_is_bclr),	// backend/src/zaqal/backend/Execute.scala:123:21
+    .io_dec_is_bclri     (exe_uop1_decode_is_bclri),	// backend/src/zaqal/backend/Execute.scala:123:21
+    .io_dec_is_binv      (exe_uop1_decode_is_binv),	// backend/src/zaqal/backend/Execute.scala:123:21
+    .io_dec_is_binvi     (exe_uop1_decode_is_binvi),	// backend/src/zaqal/backend/Execute.scala:123:21
+    .io_dec_is_bext      (exe_uop1_decode_is_bext),	// backend/src/zaqal/backend/Execute.scala:123:21
+    .io_dec_is_bexti     (exe_uop1_decode_is_bexti),	// backend/src/zaqal/backend/Execute.scala:123:21
     .io_result           (_alu_1_io_result)
   );
   BRU bru_0 (	// backend/src/zaqal/backend/Execute.scala:25:32
@@ -2641,20 +2647,21 @@ module Execute(	// backend/src/zaqal/backend/Execute.scala:10:7
     .io_src2
       (exe_uop0_decode_is_jalr | exe_uop0_decode_is_branch
          ? src0_2
-         : exe_uop0_decode_imm),	// backend/src/zaqal/backend/Execute.scala:110:21, :336:{24,42}, src/main/scala/chisel3/util/Mux.scala:126:16
-    .io_dec_is_beq    (exe_uop0_decode_is_beq),	// backend/src/zaqal/backend/Execute.scala:110:21
-    .io_dec_is_bne    (exe_uop0_decode_is_bne),	// backend/src/zaqal/backend/Execute.scala:110:21
-    .io_dec_is_blt    (exe_uop0_decode_is_blt),	// backend/src/zaqal/backend/Execute.scala:110:21
-    .io_dec_is_bge    (exe_uop0_decode_is_bge),	// backend/src/zaqal/backend/Execute.scala:110:21
-    .io_dec_is_bltu   (exe_uop0_decode_is_bltu),	// backend/src/zaqal/backend/Execute.scala:110:21
-    .io_dec_is_bgeu   (exe_uop0_decode_is_bgeu),	// backend/src/zaqal/backend/Execute.scala:110:21
-    .io_dec_is_branch (exe_uop0_decode_is_branch),	// backend/src/zaqal/backend/Execute.scala:110:21
-    .io_dec_is_jal    (exe_uop0_decode_is_jal),	// backend/src/zaqal/backend/Execute.scala:110:21
-    .io_dec_is_jalr   (exe_uop0_decode_is_jalr),	// backend/src/zaqal/backend/Execute.scala:110:21
-    .io_dec_imm       (exe_uop0_decode_imm),	// backend/src/zaqal/backend/Execute.scala:110:21
-    .io_pc            (exe_uop0_uop_pc),	// backend/src/zaqal/backend/Execute.scala:110:21
-    .io_is_rvc        (exe_uop0_uop_pre_is_rvc),	// backend/src/zaqal/backend/Execute.scala:110:21
-    .io_pred_taken    (exe_uop0_uop_is_predicted_taken),	// backend/src/zaqal/backend/Execute.scala:110:21
+         : exe_uop0_decode_imm),	// backend/src/zaqal/backend/Execute.scala:114:21, :340:{24,42}, src/main/scala/chisel3/util/Mux.scala:126:16
+    .io_dec_is_beq    (exe_uop0_decode_is_beq),	// backend/src/zaqal/backend/Execute.scala:114:21
+    .io_dec_is_bne    (exe_uop0_decode_is_bne),	// backend/src/zaqal/backend/Execute.scala:114:21
+    .io_dec_is_blt    (exe_uop0_decode_is_blt),	// backend/src/zaqal/backend/Execute.scala:114:21
+    .io_dec_is_bge    (exe_uop0_decode_is_bge),	// backend/src/zaqal/backend/Execute.scala:114:21
+    .io_dec_is_bltu   (exe_uop0_decode_is_bltu),	// backend/src/zaqal/backend/Execute.scala:114:21
+    .io_dec_is_bgeu   (exe_uop0_decode_is_bgeu),	// backend/src/zaqal/backend/Execute.scala:114:21
+    .io_dec_is_branch (exe_uop0_decode_is_branch),	// backend/src/zaqal/backend/Execute.scala:114:21
+    .io_dec_is_jal    (exe_uop0_decode_is_jal),	// backend/src/zaqal/backend/Execute.scala:114:21
+    .io_dec_is_jalr   (exe_uop0_decode_is_jalr),	// backend/src/zaqal/backend/Execute.scala:114:21
+    .io_dec_imm       (exe_uop0_decode_imm),	// backend/src/zaqal/backend/Execute.scala:114:21
+    .io_pc            (exe_uop0_uop_pc),	// backend/src/zaqal/backend/Execute.scala:114:21
+    .io_is_rvc        (exe_uop0_uop_pre_is_rvc),	// backend/src/zaqal/backend/Execute.scala:114:21
+    .io_pred_taken    (exe_uop0_uop_is_predicted_taken),	// backend/src/zaqal/backend/Execute.scala:114:21
+    .io_taken         (_bru_0_io_taken),
     .io_mispredict    (_bru_0_io_mispredict),
     .io_target        (_bru_0_io_target),
     .io_exc_valid     (_bru_0_io_exc_valid)
@@ -2666,20 +2673,21 @@ module Execute(	// backend/src/zaqal/backend/Execute.scala:10:7
     .io_src2
       (exe_uop1_decode_is_jalr | exe_uop1_decode_is_branch
          ? src1_2
-         : exe_uop1_decode_imm),	// backend/src/zaqal/backend/Execute.scala:119:21, :353:{24,42}, src/main/scala/chisel3/util/Mux.scala:126:16
-    .io_dec_is_beq    (exe_uop1_decode_is_beq),	// backend/src/zaqal/backend/Execute.scala:119:21
-    .io_dec_is_bne    (exe_uop1_decode_is_bne),	// backend/src/zaqal/backend/Execute.scala:119:21
-    .io_dec_is_blt    (exe_uop1_decode_is_blt),	// backend/src/zaqal/backend/Execute.scala:119:21
-    .io_dec_is_bge    (exe_uop1_decode_is_bge),	// backend/src/zaqal/backend/Execute.scala:119:21
-    .io_dec_is_bltu   (exe_uop1_decode_is_bltu),	// backend/src/zaqal/backend/Execute.scala:119:21
-    .io_dec_is_bgeu   (exe_uop1_decode_is_bgeu),	// backend/src/zaqal/backend/Execute.scala:119:21
-    .io_dec_is_branch (exe_uop1_decode_is_branch),	// backend/src/zaqal/backend/Execute.scala:119:21
-    .io_dec_is_jal    (exe_uop1_decode_is_jal),	// backend/src/zaqal/backend/Execute.scala:119:21
-    .io_dec_is_jalr   (exe_uop1_decode_is_jalr),	// backend/src/zaqal/backend/Execute.scala:119:21
-    .io_dec_imm       (exe_uop1_decode_imm),	// backend/src/zaqal/backend/Execute.scala:119:21
-    .io_pc            (exe_uop1_uop_pc),	// backend/src/zaqal/backend/Execute.scala:119:21
-    .io_is_rvc        (exe_uop1_uop_pre_is_rvc),	// backend/src/zaqal/backend/Execute.scala:119:21
-    .io_pred_taken    (exe_uop1_uop_is_predicted_taken),	// backend/src/zaqal/backend/Execute.scala:119:21
+         : exe_uop1_decode_imm),	// backend/src/zaqal/backend/Execute.scala:123:21, :357:{24,42}, src/main/scala/chisel3/util/Mux.scala:126:16
+    .io_dec_is_beq    (exe_uop1_decode_is_beq),	// backend/src/zaqal/backend/Execute.scala:123:21
+    .io_dec_is_bne    (exe_uop1_decode_is_bne),	// backend/src/zaqal/backend/Execute.scala:123:21
+    .io_dec_is_blt    (exe_uop1_decode_is_blt),	// backend/src/zaqal/backend/Execute.scala:123:21
+    .io_dec_is_bge    (exe_uop1_decode_is_bge),	// backend/src/zaqal/backend/Execute.scala:123:21
+    .io_dec_is_bltu   (exe_uop1_decode_is_bltu),	// backend/src/zaqal/backend/Execute.scala:123:21
+    .io_dec_is_bgeu   (exe_uop1_decode_is_bgeu),	// backend/src/zaqal/backend/Execute.scala:123:21
+    .io_dec_is_branch (exe_uop1_decode_is_branch),	// backend/src/zaqal/backend/Execute.scala:123:21
+    .io_dec_is_jal    (exe_uop1_decode_is_jal),	// backend/src/zaqal/backend/Execute.scala:123:21
+    .io_dec_is_jalr   (exe_uop1_decode_is_jalr),	// backend/src/zaqal/backend/Execute.scala:123:21
+    .io_dec_imm       (exe_uop1_decode_imm),	// backend/src/zaqal/backend/Execute.scala:123:21
+    .io_pc            (exe_uop1_uop_pc),	// backend/src/zaqal/backend/Execute.scala:123:21
+    .io_is_rvc        (exe_uop1_uop_pre_is_rvc),	// backend/src/zaqal/backend/Execute.scala:123:21
+    .io_pred_taken    (exe_uop1_uop_is_predicted_taken),	// backend/src/zaqal/backend/Execute.scala:123:21
+    .io_taken         (_bru_1_io_taken),
     .io_mispredict    (_bru_1_io_mispredict),
     .io_target        (_bru_1_io_target),
     .io_exc_valid     (_bru_1_io_exc_valid)
@@ -2688,7 +2696,7 @@ module Execute(	// backend/src/zaqal/backend/Execute.scala:10:7
     .clock             (clock),
     .reset             (reset),
     .io_src1           (r_agu_paddr),	// backend/src/zaqal/backend/Execute.scala:40:24
-    .io_src2           (r_agu_uop_decode_is_fstore ? r_agu_fsrc2 : r_agu_src2),	// backend/src/zaqal/backend/Execute.scala:38:24, :41:24, :42:24, :494:21
+    .io_src2           (r_agu_uop_decode_is_fstore ? r_agu_fsrc2 : r_agu_src2),	// backend/src/zaqal/backend/Execute.scala:38:24, :41:24, :42:24, :510:21
     .io_dec_is_lb      (r_agu_uop_decode_is_lb),	// backend/src/zaqal/backend/Execute.scala:38:24
     .io_dec_is_lh      (r_agu_uop_decode_is_lh),	// backend/src/zaqal/backend/Execute.scala:38:24
     .io_dec_is_lw      (r_agu_uop_decode_is_lw),	// backend/src/zaqal/backend/Execute.scala:38:24
@@ -2732,36 +2740,36 @@ module Execute(	// backend/src/zaqal/backend/Execute.scala:10:7
   );
   Multiplier mul (	// backend/src/zaqal/backend/Execute.scala:27:20
     .clock            (clock),
-    .io_src1          (exe_is_mul_op0 ? src0_1 : src1_1),	// backend/src/zaqal/backend/Execute.scala:199:103, :360:21, src/main/scala/chisel3/util/Mux.scala:126:16
-    .io_src2          (exe_is_mul_op0 ? src0_2 : src1_2),	// backend/src/zaqal/backend/Execute.scala:199:103, :361:21, src/main/scala/chisel3/util/Mux.scala:126:16
-    .io_dec_is_mul    (exe_is_mul_op0 ? exe_uop0_decode_is_mul : exe_uop1_decode_is_mul),	// backend/src/zaqal/backend/Execute.scala:110:21, :119:21, :199:103, :362:21
+    .io_src1          (exe_is_mul_op0 ? src0_1 : src1_1),	// backend/src/zaqal/backend/Execute.scala:203:103, :364:21, src/main/scala/chisel3/util/Mux.scala:126:16
+    .io_src2          (exe_is_mul_op0 ? src0_2 : src1_2),	// backend/src/zaqal/backend/Execute.scala:203:103, :365:21, src/main/scala/chisel3/util/Mux.scala:126:16
+    .io_dec_is_mul    (exe_is_mul_op0 ? exe_uop0_decode_is_mul : exe_uop1_decode_is_mul),	// backend/src/zaqal/backend/Execute.scala:114:21, :123:21, :203:103, :366:21
     .io_dec_is_mulh
-      (exe_is_mul_op0 ? exe_uop0_decode_is_mulh : exe_uop1_decode_is_mulh),	// backend/src/zaqal/backend/Execute.scala:110:21, :119:21, :199:103, :362:21
+      (exe_is_mul_op0 ? exe_uop0_decode_is_mulh : exe_uop1_decode_is_mulh),	// backend/src/zaqal/backend/Execute.scala:114:21, :123:21, :203:103, :366:21
     .io_dec_is_mulhsu
-      (exe_is_mul_op0 ? exe_uop0_decode_is_mulhsu : exe_uop1_decode_is_mulhsu),	// backend/src/zaqal/backend/Execute.scala:110:21, :119:21, :199:103, :362:21
+      (exe_is_mul_op0 ? exe_uop0_decode_is_mulhsu : exe_uop1_decode_is_mulhsu),	// backend/src/zaqal/backend/Execute.scala:114:21, :123:21, :203:103, :366:21
     .io_dec_is_mulhu
-      (exe_is_mul_op0 ? exe_uop0_decode_is_mulhu : exe_uop1_decode_is_mulhu),	// backend/src/zaqal/backend/Execute.scala:110:21, :119:21, :199:103, :362:21
+      (exe_is_mul_op0 ? exe_uop0_decode_is_mulhu : exe_uop1_decode_is_mulhu),	// backend/src/zaqal/backend/Execute.scala:114:21, :123:21, :203:103, :366:21
     .io_dec_is_mulw
-      (exe_is_mul_op0 ? exe_uop0_decode_is_mulw : exe_uop1_decode_is_mulw),	// backend/src/zaqal/backend/Execute.scala:110:21, :119:21, :199:103, :362:21
+      (exe_is_mul_op0 ? exe_uop0_decode_is_mulw : exe_uop1_decode_is_mulw),	// backend/src/zaqal/backend/Execute.scala:114:21, :123:21, :203:103, :366:21
     .io_result        (_mul_io_result)
   );
   Divider div (	// backend/src/zaqal/backend/Execute.scala:28:20
     .clock           (clock),
     .reset           (reset),
-    .io_src1         (exe_is_div_op0 ? src0_1 : src1_1),	// backend/src/zaqal/backend/Execute.scala:198:82, :364:21, src/main/scala/chisel3/util/Mux.scala:126:16
-    .io_src2         (exe_is_div_op0 ? src0_2 : src1_2),	// backend/src/zaqal/backend/Execute.scala:198:82, :365:21, src/main/scala/chisel3/util/Mux.scala:126:16
-    .io_dec_is_div   (exe_is_div_op0 ? exe_uop0_decode_is_div : exe_uop1_decode_is_div),	// backend/src/zaqal/backend/Execute.scala:110:21, :119:21, :198:82, :366:21
-    .io_dec_is_divu  (exe_is_div_op0 ? exe_uop0_decode_is_divu : exe_uop1_decode_is_divu),	// backend/src/zaqal/backend/Execute.scala:110:21, :119:21, :198:82, :366:21
-    .io_dec_is_rem   (exe_is_div_op0 ? exe_uop0_decode_is_rem : exe_uop1_decode_is_rem),	// backend/src/zaqal/backend/Execute.scala:110:21, :119:21, :198:82, :366:21
-    .io_dec_is_remu  (exe_is_div_op0 ? exe_uop0_decode_is_remu : exe_uop1_decode_is_remu),	// backend/src/zaqal/backend/Execute.scala:110:21, :119:21, :198:82, :366:21
-    .io_dec_is_divw  (exe_is_div_op0 ? exe_uop0_decode_is_divw : exe_uop1_decode_is_divw),	// backend/src/zaqal/backend/Execute.scala:110:21, :119:21, :198:82, :366:21
+    .io_src1         (exe_is_div_op0 ? src0_1 : src1_1),	// backend/src/zaqal/backend/Execute.scala:202:82, :368:21, src/main/scala/chisel3/util/Mux.scala:126:16
+    .io_src2         (exe_is_div_op0 ? src0_2 : src1_2),	// backend/src/zaqal/backend/Execute.scala:202:82, :369:21, src/main/scala/chisel3/util/Mux.scala:126:16
+    .io_dec_is_div   (exe_is_div_op0 ? exe_uop0_decode_is_div : exe_uop1_decode_is_div),	// backend/src/zaqal/backend/Execute.scala:114:21, :123:21, :202:82, :370:21
+    .io_dec_is_divu  (exe_is_div_op0 ? exe_uop0_decode_is_divu : exe_uop1_decode_is_divu),	// backend/src/zaqal/backend/Execute.scala:114:21, :123:21, :202:82, :370:21
+    .io_dec_is_rem   (exe_is_div_op0 ? exe_uop0_decode_is_rem : exe_uop1_decode_is_rem),	// backend/src/zaqal/backend/Execute.scala:114:21, :123:21, :202:82, :370:21
+    .io_dec_is_remu  (exe_is_div_op0 ? exe_uop0_decode_is_remu : exe_uop1_decode_is_remu),	// backend/src/zaqal/backend/Execute.scala:114:21, :123:21, :202:82, :370:21
+    .io_dec_is_divw  (exe_is_div_op0 ? exe_uop0_decode_is_divw : exe_uop1_decode_is_divw),	// backend/src/zaqal/backend/Execute.scala:114:21, :123:21, :202:82, :370:21
     .io_dec_is_divuw
-      (exe_is_div_op0 ? exe_uop0_decode_is_divuw : exe_uop1_decode_is_divuw),	// backend/src/zaqal/backend/Execute.scala:110:21, :119:21, :198:82, :366:21
-    .io_dec_is_remw  (exe_is_div_op0 ? exe_uop0_decode_is_remw : exe_uop1_decode_is_remw),	// backend/src/zaqal/backend/Execute.scala:110:21, :119:21, :198:82, :366:21
+      (exe_is_div_op0 ? exe_uop0_decode_is_divuw : exe_uop1_decode_is_divuw),	// backend/src/zaqal/backend/Execute.scala:114:21, :123:21, :202:82, :370:21
+    .io_dec_is_remw  (exe_is_div_op0 ? exe_uop0_decode_is_remw : exe_uop1_decode_is_remw),	// backend/src/zaqal/backend/Execute.scala:114:21, :123:21, :202:82, :370:21
     .io_dec_is_remuw
-      (exe_is_div_op0 ? exe_uop0_decode_is_remuw : exe_uop1_decode_is_remuw),	// backend/src/zaqal/backend/Execute.scala:110:21, :119:21, :198:82, :366:21
-    .io_fire         (exe_is_div_op0 ? exe_val0 : exe_val1),	// backend/src/zaqal/backend/Execute.scala:109:25, :118:25, :198:82, :367:21
-    .io_flush        (io_redirect_valid_0),	// backend/src/zaqal/backend/Execute.scala:381:30, :382:23, :388:25, :389:23, :395:25
+      (exe_is_div_op0 ? exe_uop0_decode_is_remuw : exe_uop1_decode_is_remuw),	// backend/src/zaqal/backend/Execute.scala:114:21, :123:21, :202:82, :370:21
+    .io_fire         (exe_is_div_op0 ? exe_val0 : exe_val1),	// backend/src/zaqal/backend/Execute.scala:113:25, :122:25, :202:82, :371:21
+    .io_flush        (io_redirect_valid_0),	// backend/src/zaqal/backend/Execute.scala:385:30, :386:23, :396:25, :397:23, :407:25
     .io_ready        (_div_io_ready),
     .io_result       (_div_io_result),
     .io_done         (_div_io_done)
@@ -2769,19 +2777,19 @@ module Execute(	// backend/src/zaqal/backend/Execute.scala:10:7
   FPDivider fpdiv (	// backend/src/zaqal/backend/Execute.scala:30:21
     .clock           (clock),
     .reset           (reset),
-    .io_src1         (r_fpRegFile_rdata0),	// backend/src/zaqal/backend/Execute.scala:183:31
-    .io_src2         (r_fpRegFile_rdata1),	// backend/src/zaqal/backend/Execute.scala:184:31
-    .io_dec_is_fdiv  (exe_uopFp_decode_is_fdiv),	// backend/src/zaqal/backend/Execute.scala:137:22
-    .io_dec_is_fsqrt (exe_uopFp_decode_is_fsqrt),	// backend/src/zaqal/backend/Execute.scala:137:22
-    .io_fire         (exe_valFp & _fpdiv_io_fire_T),	// backend/src/zaqal/backend/Execute.scala:136:26, :539:{30,52}
-    .io_flush        (io_redirect_valid_0),	// backend/src/zaqal/backend/Execute.scala:381:30, :382:23, :388:25, :389:23, :395:25
+    .io_src1         (r_fpRegFile_rdata0),	// backend/src/zaqal/backend/Execute.scala:187:31
+    .io_src2         (r_fpRegFile_rdata1),	// backend/src/zaqal/backend/Execute.scala:188:31
+    .io_dec_is_fdiv  (exe_uopFp_decode_is_fdiv),	// backend/src/zaqal/backend/Execute.scala:141:22
+    .io_dec_is_fsqrt (exe_uopFp_decode_is_fsqrt),	// backend/src/zaqal/backend/Execute.scala:141:22
+    .io_fire         (exe_valFp & _fpdiv_io_fire_T),	// backend/src/zaqal/backend/Execute.scala:140:26, :555:{30,52}
+    .io_flush        (io_redirect_valid_0),	// backend/src/zaqal/backend/Execute.scala:385:30, :386:23, :396:25, :397:23, :407:25
     .io_ready        (_fpdiv_io_ready),
     .io_result       (_fpdiv_io_result),
     .io_done         (_fpdiv_io_done)
   );
   FPMisc fpmisc (	// backend/src/zaqal/backend/Execute.scala:31:22
-    .io_src1            (r_fpRegFile_rdata0),	// backend/src/zaqal/backend/Execute.scala:183:31
-    .io_src2            (r_fpRegFile_rdata1),	// backend/src/zaqal/backend/Execute.scala:184:31
+    .io_src1            (r_fpRegFile_rdata0),	// backend/src/zaqal/backend/Execute.scala:187:31
+    .io_src2            (r_fpRegFile_rdata1),	// backend/src/zaqal/backend/Execute.scala:188:31
     .io_rs1_int
       (wb3_valid & r_agu_uop_pdest == exe_uopFp_psrs1 & (|exe_uopFp_psrs1)
          ? _lsu_io_result
@@ -2820,18 +2828,18 @@ module Execute(	// backend/src/zaqal/backend/Execute.scala:10:7
                                                        & r2_wb5_pdest == exe_uopFp_psrs1
                                                        & (|exe_uopFp_psrs1)
                                                          ? r2_wb5_data
-                                                         : r_regFile_rdata6),	// backend/src/zaqal/backend/Execute.scala:26:20, :38:24, :137:22, :186:29, :231:86, :250:28, :251:28, :252:28, :254:28, :255:28, :256:28, :258:28, :259:28, :260:28, :262:28, :263:28, :264:28, :266:28, :267:28, :268:28, :270:28, :271:28, :272:28, :275:29, :276:29, :277:29, :279:29, :280:29, :281:29, :283:29, :284:29, :285:29, :287:29, :288:29, :289:29, :291:29, :292:29, :293:29, :295:29, :296:29, :297:29, :319:{66,77,87}, src/main/scala/chisel3/util/Mux.scala:126:16
-    .io_dec_is_fsgnj    (exe_uopFp_decode_is_fsgnj),	// backend/src/zaqal/backend/Execute.scala:137:22
-    .io_dec_is_fminmax  (exe_uopFp_decode_is_fminmax),	// backend/src/zaqal/backend/Execute.scala:137:22
-    .io_dec_is_fcvt_f2i (exe_uopFp_decode_is_fcvt_f2i),	// backend/src/zaqal/backend/Execute.scala:137:22
-    .io_dec_is_fcvt_i2f (exe_uopFp_decode_is_fcvt_i2f),	// backend/src/zaqal/backend/Execute.scala:137:22
-    .io_dec_is_fmv_w_x  (exe_uopFp_decode_is_fmv_w_x),	// backend/src/zaqal/backend/Execute.scala:137:22
-    .io_dec_is_fmv_x_w  (exe_uopFp_decode_is_fmv_x_w),	// backend/src/zaqal/backend/Execute.scala:137:22
-    .io_dec_is_feq      (exe_uopFp_decode_is_feq),	// backend/src/zaqal/backend/Execute.scala:137:22
-    .io_dec_is_flt      (exe_uopFp_decode_is_flt),	// backend/src/zaqal/backend/Execute.scala:137:22
-    .io_dec_is_fle      (exe_uopFp_decode_is_fle),	// backend/src/zaqal/backend/Execute.scala:137:22
-    .io_dec_is_fclass   (exe_uopFp_decode_is_fclass),	// backend/src/zaqal/backend/Execute.scala:137:22
-    .io_inst            (exe_uopFp_uop_inst_raw),	// backend/src/zaqal/backend/Execute.scala:137:22
+                                                         : r_regFile_rdata6),	// backend/src/zaqal/backend/Execute.scala:26:20, :38:24, :141:22, :190:29, :235:86, :254:28, :255:28, :256:28, :258:28, :259:28, :260:28, :262:28, :263:28, :264:28, :266:28, :267:28, :268:28, :270:28, :271:28, :272:28, :274:28, :275:28, :276:28, :279:29, :280:29, :281:29, :283:29, :284:29, :285:29, :287:29, :288:29, :289:29, :291:29, :292:29, :293:29, :295:29, :296:29, :297:29, :299:29, :300:29, :301:29, :323:{66,77,87}, src/main/scala/chisel3/util/Mux.scala:126:16
+    .io_dec_is_fsgnj    (exe_uopFp_decode_is_fsgnj),	// backend/src/zaqal/backend/Execute.scala:141:22
+    .io_dec_is_fminmax  (exe_uopFp_decode_is_fminmax),	// backend/src/zaqal/backend/Execute.scala:141:22
+    .io_dec_is_fcvt_f2i (exe_uopFp_decode_is_fcvt_f2i),	// backend/src/zaqal/backend/Execute.scala:141:22
+    .io_dec_is_fcvt_i2f (exe_uopFp_decode_is_fcvt_i2f),	// backend/src/zaqal/backend/Execute.scala:141:22
+    .io_dec_is_fmv_w_x  (exe_uopFp_decode_is_fmv_w_x),	// backend/src/zaqal/backend/Execute.scala:141:22
+    .io_dec_is_fmv_x_w  (exe_uopFp_decode_is_fmv_x_w),	// backend/src/zaqal/backend/Execute.scala:141:22
+    .io_dec_is_feq      (exe_uopFp_decode_is_feq),	// backend/src/zaqal/backend/Execute.scala:141:22
+    .io_dec_is_flt      (exe_uopFp_decode_is_flt),	// backend/src/zaqal/backend/Execute.scala:141:22
+    .io_dec_is_fle      (exe_uopFp_decode_is_fle),	// backend/src/zaqal/backend/Execute.scala:141:22
+    .io_dec_is_fclass   (exe_uopFp_decode_is_fclass),	// backend/src/zaqal/backend/Execute.scala:141:22
+    .io_inst            (exe_uopFp_uop_inst_raw),	// backend/src/zaqal/backend/Execute.scala:141:22
     .io_result_int      (_fpmisc_io_result_int),
     .io_result_fp       (_fpmisc_io_result_fp)
   );
@@ -2840,12 +2848,12 @@ module Execute(	// backend/src/zaqal/backend/Execute.scala:10:7
     .reset    (reset),
     .io_addr  (_lsu_io_mem_addr),	// backend/src/zaqal/backend/Execute.scala:26:20
     .io_data  (_dmem_io_data),
-    .io_wen   (_lsu_io_mem_wen & r_agu_val),	// backend/src/zaqal/backend/Execute.scala:26:20, :37:28, :499:35
+    .io_wen   (_lsu_io_mem_wen & r_agu_val),	// backend/src/zaqal/backend/Execute.scala:26:20, :37:28, :515:35
     .io_wmask (_lsu_io_mem_wmask),	// backend/src/zaqal/backend/Execute.scala:26:20
     .io_wdata (_lsu_io_mem_wdata)	// backend/src/zaqal/backend/Execute.scala:26:20
   );
   FastTLB tlb (	// backend/src/zaqal/backend/Execute.scala:33:20
-    .io_vaddr (exe_uopMem_decode_is_atomic ? srcMem_1 : srcMem_1 + exe_uopMem_decode_imm),	// backend/src/zaqal/backend/Execute.scala:128:23, :473:{22,79}, src/main/scala/chisel3/util/Mux.scala:126:16
+    .io_vaddr (exe_uopMem_decode_is_atomic ? srcMem_1 : srcMem_1 + exe_uopMem_decode_imm),	// backend/src/zaqal/backend/Execute.scala:132:23, :489:{22,79}, src/main/scala/chisel3/util/Mux.scala:126:16
     .io_paddr (_tlb_io_paddr)
   );
   RegFile regFile (	// backend/src/zaqal/backend/Execute.scala:47:23
@@ -3085,15 +3093,15 @@ module Execute(	// backend/src/zaqal/backend/Execute.scala:10:7
     .io_rdata_0        (_fpRegFile_io_rdata_0),
     .io_rdata_1        (_fpRegFile_io_rdata_1),
     .io_rdata_3        (_fpRegFile_io_rdata_3),
-    .io_wen_0          (_GEN_2 & exe_is_fp_wb_to_fp),	// backend/src/zaqal/backend/Execute.scala:69:46, :549:96, :553:19, :554:35, :555:32
+    .io_wen_0          (_GEN_2 & exe_is_fp_wb_to_fp),	// backend/src/zaqal/backend/Execute.scala:69:46, :565:96, :569:19, :570:35, :571:32
     .io_wen_1          (_fpdiv_io_done),	// backend/src/zaqal/backend/Execute.scala:30:21
-    .io_wen_2          (_GEN_0 & r_agu_uop_decode_is_fload),	// backend/src/zaqal/backend/Execute.scala:38:24, :69:46, :504:19, :505:35, :506:39
-    .io_waddr_0        (_GEN_3 ? exe_uopFp_pdest : 8'h0),	// backend/src/zaqal/backend/Execute.scala:10:7, :69:80, :137:22, :553:19, :554:35, :555:32, :557:31
-    .io_waddr_1        (_fpdiv_io_done ? fpdiv_rd_latch : 8'h0),	// backend/src/zaqal/backend/Execute.scala:10:7, :30:21, :45:31, :69:80, :579:23, :581:27
-    .io_waddr_2        (_GEN_1 ? r_agu_uop_pdest : 8'h0),	// backend/src/zaqal/backend/Execute.scala:10:7, :38:24, :69:80, :504:19, :505:35, :506:39, :508:31
-    .io_wdata_0        (_GEN_3 ? _fpmisc_io_result_fp : 64'h0),	// backend/src/zaqal/backend/Execute.scala:31:22, :53:40, :69:{80,110}, :553:19, :554:35, :555:32, :557:31, :558:31
-    .io_wdata_1        (_fpdiv_io_done ? _fpdiv_io_result : 64'h0),	// backend/src/zaqal/backend/Execute.scala:30:21, :53:40, :69:110, :579:23, :582:27
-    .io_wdata_2        (_GEN_1 ? _lsu_io_result : 64'h0),	// backend/src/zaqal/backend/Execute.scala:26:20, :53:40, :69:{80,110}, :504:19, :505:35, :506:39, :508:31, :509:31
+    .io_wen_2          (_GEN_0 & r_agu_uop_decode_is_fload),	// backend/src/zaqal/backend/Execute.scala:38:24, :69:46, :520:19, :521:35, :522:39
+    .io_waddr_0        (_GEN_3 ? exe_uopFp_pdest : 8'h0),	// backend/src/zaqal/backend/Execute.scala:10:7, :69:80, :141:22, :569:19, :570:35, :571:32, :573:31
+    .io_waddr_1        (_fpdiv_io_done ? fpdiv_rd_latch : 8'h0),	// backend/src/zaqal/backend/Execute.scala:10:7, :30:21, :45:31, :69:80, :595:23, :597:27
+    .io_waddr_2        (_GEN_1 ? r_agu_uop_pdest : 8'h0),	// backend/src/zaqal/backend/Execute.scala:10:7, :38:24, :69:80, :520:19, :521:35, :522:39, :524:31
+    .io_wdata_0        (_GEN_3 ? _fpmisc_io_result_fp : 64'h0),	// backend/src/zaqal/backend/Execute.scala:31:22, :53:40, :69:{80,110}, :569:19, :570:35, :571:32, :573:31, :574:31
+    .io_wdata_1        (_fpdiv_io_done ? _fpdiv_io_result : 64'h0),	// backend/src/zaqal/backend/Execute.scala:30:21, :53:40, :69:110, :595:23, :598:27
+    .io_wdata_2        (_GEN_1 ? _lsu_io_result : 64'h0),	// backend/src/zaqal/backend/Execute.scala:26:20, :53:40, :69:{80,110}, :520:19, :521:35, :522:39, :524:31, :525:31
     .io_debug_regs_0   (io_debug_fp_regs_0),
     .io_debug_regs_1   (io_debug_fp_regs_1),
     .io_debug_regs_2   (io_debug_fp_regs_2),
@@ -3287,27 +3295,49 @@ module Execute(	// backend/src/zaqal/backend/Execute.scala:10:7
     .io_debug_regs_190 (io_debug_fp_regs_190),
     .io_debug_regs_191 (io_debug_fp_regs_191)
   );
-  assign io_int_in_0_ready = io_int_in_0_ready_0;	// backend/src/zaqal/backend/Execute.scala:10:7, :103:28
-  assign io_int_in_1_ready = io_int_in_1_ready_0;	// backend/src/zaqal/backend/Execute.scala:10:7, :104:28
+  assign io_int_in_0_ready = io_int_in_0_ready_0;	// backend/src/zaqal/backend/Execute.scala:10:7, :107:28
+  assign io_int_in_1_ready = io_int_in_1_ready_0;	// backend/src/zaqal/backend/Execute.scala:10:7, :108:28
   assign io_fp_in_ready = _fpdiv_io_ready;	// backend/src/zaqal/backend/Execute.scala:10:7, :30:21
-  assign io_redirect_valid = io_redirect_valid_0;	// backend/src/zaqal/backend/Execute.scala:10:7, :381:30, :382:23, :388:25, :389:23, :395:25
+  assign io_redirect_valid = io_redirect_valid_0;	// backend/src/zaqal/backend/Execute.scala:10:7, :385:30, :386:23, :396:25, :397:23, :407:25
   assign io_redirect_target =
     _GEN
       ? (lane0_is_older ? _bru_0_io_target : _bru_1_io_target)
-      : r0_valid ? _bru_0_io_target : r1_valid ? _bru_1_io_target : 64'h0;	// backend/src/zaqal/backend/Execute.scala:10:7, :25:32, :53:40, :72:22, :376:30, :378:76, :379:76, :381:{17,30}, :383:{24,30}, :388:25, :390:24, :395:25, :397:24
+      : r0_valid ? _bru_0_io_target : r1_valid ? _bru_1_io_target : 64'h0;	// backend/src/zaqal/backend/Execute.scala:10:7, :25:32, :53:40, :72:22, :380:30, :382:76, :383:76, :385:{17,30}, :387:{24,30}, :396:25, :398:24, :407:25, :409:24
+  assign io_redirect_is_exception =
+    _GEN
+      ? (lane0_is_older ? _bru_0_io_exc_valid : _bru_1_io_exc_valid)
+      : r0_valid ? _bru_0_io_exc_valid : r1_valid & _bru_1_io_exc_valid;	// backend/src/zaqal/backend/Execute.scala:10:7, :25:32, :74:28, :380:30, :382:76, :383:76, :385:{17,30}, :389:{30,36}, :396:25, :400:30, :407:25, :411:30
   assign io_redirect_snapshotIdx =
     _GEN
       ? (lane0_is_older ? exe_uop0_snapshotIdx : exe_uop1_snapshotIdx)
-      : r0_valid ? exe_uop0_snapshotIdx : r1_valid ? exe_uop1_snapshotIdx : 3'h0;	// backend/src/zaqal/backend/Execute.scala:10:7, :11:14, :76:27, :110:21, :119:21, :376:30, :378:76, :379:76, :381:{17,30}, :387:{30,36}, :388:25, :394:30, :395:25, :401:30
-  assign io_wakeup_0_valid = r_wu0_valid | r_mul_wu0_valid;	// backend/src/zaqal/backend/Execute.scala:10:7, :416:28, :421:32, :424:37
-  assign io_wakeup_0_pdest = r_wu0_valid ? r_wu0_pdest : r_mul_wu0_pdest;	// backend/src/zaqal/backend/Execute.scala:10:7, :416:28, :417:28, :422:32, :425:28
-  assign io_wakeup_1_valid = r_wu1_valid | r_mul_wu1_valid;	// backend/src/zaqal/backend/Execute.scala:10:7, :438:28, :443:32, :446:37
-  assign io_wakeup_1_pdest = r_wu1_valid ? r_wu1_pdest : r_mul_wu1_pdest;	// backend/src/zaqal/backend/Execute.scala:10:7, :438:28, :439:28, :444:32, :447:28
-  assign io_wakeup_2_valid = r_wuDiv_valid;	// backend/src/zaqal/backend/Execute.scala:10:7, :463:30
-  assign io_wakeup_2_pdest = r_wuDiv_pdest;	// backend/src/zaqal/backend/Execute.scala:10:7, :464:30
-  assign io_wakeup_3_valid = r_wuMem_valid;	// backend/src/zaqal/backend/Execute.scala:10:7, :520:30
-  assign io_wakeup_3_pdest = r_wuMem_pdest;	// backend/src/zaqal/backend/Execute.scala:10:7, :521:30
-  assign io_wakeup_4_valid = r_wuFp_valid;	// backend/src/zaqal/backend/Execute.scala:10:7, :574:29
-  assign io_wakeup_4_pdest = r_wuFp_pdest;	// backend/src/zaqal/backend/Execute.scala:10:7, :575:29
+      : r0_valid ? exe_uop0_snapshotIdx : r1_valid ? exe_uop1_snapshotIdx : 3'h0;	// backend/src/zaqal/backend/Execute.scala:10:7, :11:14, :76:27, :114:21, :123:21, :380:30, :382:76, :383:76, :385:{17,30}, :391:{30,36}, :396:25, :402:30, :407:25, :413:30
+  assign io_redirect_pc =
+    _GEN
+      ? (lane0_is_older ? exe_uop0_uop_pc : exe_uop1_uop_pc)
+      : r0_valid ? exe_uop0_uop_pc : r1_valid ? exe_uop1_uop_pc : 64'h0;	// backend/src/zaqal/backend/Execute.scala:10:7, :53:40, :77:18, :114:21, :123:21, :380:30, :382:76, :383:76, :385:{17,30}, :392:{30,36}, :396:25, :403:30, :407:25, :414:30
+  assign io_redirect_taken =
+    _GEN
+      ? (lane0_is_older ? _bru_0_io_taken : _bru_1_io_taken)
+      : r0_valid ? _bru_0_io_taken : r1_valid & _bru_1_io_taken;	// backend/src/zaqal/backend/Execute.scala:10:7, :25:32, :78:21, :380:30, :382:76, :383:76, :385:{17,30}, :393:{30,36}, :396:25, :404:30, :407:25, :415:30
+  assign io_redirect_is_cfi =
+    _GEN
+      ? (lane0_is_older
+           ? exe_uop0_decode_is_branch | exe_uop0_decode_is_jal | exe_uop0_decode_is_jalr
+           : exe_uop1_decode_is_branch | exe_uop1_decode_is_jal | exe_uop1_decode_is_jalr)
+      : r0_valid
+          ? exe_uop0_decode_is_branch | exe_uop0_decode_is_jal | exe_uop0_decode_is_jalr
+          : r1_valid
+            & (exe_uop1_decode_is_branch | exe_uop1_decode_is_jal
+               | exe_uop1_decode_is_jalr);	// backend/src/zaqal/backend/Execute.scala:10:7, :79:22, :114:21, :123:21, :380:30, :382:76, :383:76, :385:{17,30}, :394:{30,36,91,150}, :396:25, :405:{30,71}, :407:25, :416:{30,71}
+  assign io_wakeup_0_valid = r_wu0_valid | r_mul_wu0_valid;	// backend/src/zaqal/backend/Execute.scala:10:7, :432:28, :437:32, :440:37
+  assign io_wakeup_0_pdest = r_wu0_valid ? r_wu0_pdest : r_mul_wu0_pdest;	// backend/src/zaqal/backend/Execute.scala:10:7, :432:28, :433:28, :438:32, :441:28
+  assign io_wakeup_1_valid = r_wu1_valid | r_mul_wu1_valid;	// backend/src/zaqal/backend/Execute.scala:10:7, :454:28, :459:32, :462:37
+  assign io_wakeup_1_pdest = r_wu1_valid ? r_wu1_pdest : r_mul_wu1_pdest;	// backend/src/zaqal/backend/Execute.scala:10:7, :454:28, :455:28, :460:32, :463:28
+  assign io_wakeup_2_valid = r_wuDiv_valid;	// backend/src/zaqal/backend/Execute.scala:10:7, :479:30
+  assign io_wakeup_2_pdest = r_wuDiv_pdest;	// backend/src/zaqal/backend/Execute.scala:10:7, :480:30
+  assign io_wakeup_3_valid = r_wuMem_valid;	// backend/src/zaqal/backend/Execute.scala:10:7, :536:30
+  assign io_wakeup_3_pdest = r_wuMem_pdest;	// backend/src/zaqal/backend/Execute.scala:10:7, :537:30
+  assign io_wakeup_4_valid = r_wuFp_valid;	// backend/src/zaqal/backend/Execute.scala:10:7, :590:29
+  assign io_wakeup_4_pdest = r_wuFp_pdest;	// backend/src/zaqal/backend/Execute.scala:10:7, :591:29
 endmodule
 

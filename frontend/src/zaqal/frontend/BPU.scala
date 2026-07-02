@@ -63,10 +63,15 @@ class BPU(implicit val p: Parameters) extends Module with HasZaqalParameter {
   io.out.valid := !reset.asBool
   io.out.bits.pc         := s0_pc
   
-  val taken_mask = (Fill(predictWidth, 1.U) >> ((predictWidth - 1).U - meta.slot))(predictWidth - 1, 0)
+  val mask_limit = Mux(meta.slot === (predictWidth - 1).U, (predictWidth - 1).U, meta.slot + 1.U)
+  val taken_mask = (Fill(predictWidth, 1.U) >> ((predictWidth - 1).U - mask_limit))(predictWidth - 1, 0)
   io.out.bits.mask       := Mux(meta.taken, current_mask & taken_mask, current_mask)
   
   io.out.bits.prediction := meta
   io.out.bits.ftqPtr     := 0.U 
   io.out.bits.epoch      := epoch // Tag every instruction with the current Color
+
+  when(io.out.fire && meta.taken) {
+    printf(p"[BPU FTB PREDICT] pc=${Hexadecimal(s0_pc)} -> target=${Hexadecimal(meta.target)} slot=${meta.slot}\n")
+  }
 }

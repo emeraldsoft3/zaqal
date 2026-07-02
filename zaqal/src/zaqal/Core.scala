@@ -12,27 +12,31 @@ import zaqal.utility.SkidBuffer
 
 class Core(implicit val p: Parameters) extends Module with HasZaqalParameter {
   val io = IO(new Bundle {
-    val success               = Output(Bool())
+    val success   = Output(Bool())
+    val debug_sum = if (!enableDebugPorts) Some(Output(UInt(xLen.W))) else None
+  })
+
+  val debug = if (enableDebugPorts) Some(IO(new Bundle {
     // Signals entering the FTQ (from BPU/IFU)
-    val debug_ftq_valid       = Output(Bool())
-    val debug_ftq_flush       = Output(Bool())
-    val debug_ftq_pc          = Output(UInt(xLen.W))
-    val debug_ftq_mask        = Output(UInt(fetchWidth.W))
-    val debug_ftq_insts       = Output(Vec(fetchWidth, UInt(instBits.W)))
-    val debug_ftq_ready       = Output(Bool())
-    val debug_ftq_pred_target = Output(UInt(xLen.W))
-    val debug_ftq_pred_taken  = Output(Bool())
-    val debug_ftq_pred_slot   = Output(UInt(log2Up(fetchWidth).W))
-    val debug_ftq_occupancy   = Output(UInt((ftqPtrWidth + 1).W))
+    val ftq_valid       = Output(Bool())
+    val ftq_flush       = Output(Bool())
+    val ftq_pc          = Output(UInt(xLen.W))
+    val ftq_mask        = Output(UInt(fetchWidth.W))
+    val ftq_insts       = Output(Vec(fetchWidth, UInt(instBits.W)))
+    val ftq_ready       = Output(Bool())
+    val ftq_pred_target = Output(UInt(xLen.W))
+    val ftq_pred_taken  = Output(Bool())
+    val ftq_pred_slot   = Output(UInt(log2Up(fetchWidth).W))
+    val ftq_occupancy   = Output(UInt((ftqPtrWidth + 1).W))
 
     // Signals leaving the Frontend (heading to Backend)
-    val debug_ftq_valid_out   = Output(Bool())
-    val debug_ftq_ready_out   = Output(Bool())
+    val ftq_valid_out   = Output(Bool())
+    val ftq_ready_out   = Output(Bool())
 
-    val debug_cycle_count     = Output(UInt(64.W))
-    val debug_regs            = Output(Vec(phyRegs, UInt(xLen.W)))
-    val debug_fp_regs         = Output(Vec(phyRegs, UInt(fLen.W)))
-  })
+    val cycle_count     = Output(UInt(64.W))
+    val regs            = Output(Vec(phyRegs, UInt(xLen.W)))
+    val fp_regs         = Output(Vec(phyRegs, UInt(fLen.W)))
+  })) else None
 
   // Cycle Counter logic
   val cycle_reg = RegInit(0.U(64.W))
@@ -56,24 +60,29 @@ class Core(implicit val p: Parameters) extends Module with HasZaqalParameter {
   dontTouch(frontend.io.ftq_read_data)
 
   // 4. Connect Internal Signals to External Debug Pins
-  io.debug_ftq_valid       := frontend.io.debug_ftq_valid
-  io.debug_ftq_flush       := frontend.io.debug_ftq_flush
-  io.debug_ftq_pc          := frontend.io.debug_ftq_pc
-  io.debug_ftq_mask        := frontend.io.debug_ftq_mask
-  io.debug_ftq_insts       := frontend.io.debug_ftq_insts
-  io.debug_ftq_ready       := frontend.io.debug_ftq_ready
-  io.debug_ftq_pred_target := frontend.io.debug_ftq_pred_target
-  io.debug_ftq_pred_taken  := frontend.io.debug_ftq_pred_taken
-  io.debug_ftq_pred_slot   := frontend.io.debug_ftq_pred_slot
-  io.debug_ftq_occupancy   := frontend.io.debug_ftq_occupancy
+  if (enableDebugPorts) {
+    val d = debug.get
+    d.ftq_valid       := frontend.io.debug_ftq_valid
+    d.ftq_flush       := frontend.io.debug_ftq_flush
+    d.ftq_pc          := frontend.io.debug_ftq_pc
+    d.ftq_mask        := frontend.io.debug_ftq_mask
+    d.ftq_insts       := frontend.io.debug_ftq_insts
+    d.ftq_ready       := frontend.io.debug_ftq_ready
+    d.ftq_pred_target := frontend.io.debug_ftq_pred_target
+    d.ftq_pred_taken  := frontend.io.debug_ftq_pred_taken
+    d.ftq_pred_slot   := frontend.io.debug_ftq_pred_slot
+    d.ftq_occupancy   := frontend.io.debug_ftq_occupancy
 
-  // Handshake with Backend
-  io.debug_ftq_valid_out   := frontend.io.dispatch(0).valid
-  io.debug_ftq_ready_out   := frontend.io.dispatch(0).ready
+    // Handshake with Backend
+    d.ftq_valid_out   := frontend.io.dispatch(0).valid
+    d.ftq_ready_out   := frontend.io.dispatch(0).ready
 
-  io.debug_cycle_count := cycle_reg
-  io.debug_regs := backend.io.debug_regs
-  io.debug_fp_regs := backend.io.debug_fp_regs
+    d.cycle_count     := cycle_reg
+    d.regs            := backend.io.debug_regs
+    d.fp_regs         := backend.io.debug_fp_regs
+  } else {
+    io.debug_sum.get := backend.io.debug_regs.reduce(_ ^ _) ^ backend.io.debug_fp_regs.reduce(_ ^ _) ^ frontend.io.debug_ftq_pc
+  }
 
   io.success := true.B
 }

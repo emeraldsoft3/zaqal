@@ -10,7 +10,7 @@ To achieve true XiangShan-level performance, the front-end must provide near-per
 ---
 
 ## Day 1-5: The Predictor Array (TAGE & FTB)
-- [ ] **Day 1-2**: **FTB (Fetch Target Buffer)**: Store targets and prediction metadata.
+- [x] **Day 1-2**: **FTB (Fetch Target Buffer)**: Store targets and prediction metadata.
 - [ ] **Day 3-5**: **TAGE & ITTAGE**: Implement tagged geometric predictors for long-history patterns.
 - **Detailed Plan**: A simple branch predictor is insufficient for deep superscalar cores. We will build a Fetch Target Buffer (FTB) to cache branch target addresses and instruction boundaries. Alongside it, we will implement the TAGE (TAgged GEometric) predictor, the gold standard in modern branch prediction. TAGE uses multiple tables indexed by geometrically increasing lengths of global branch history, allowing it to predict highly complex, long-correlating branch patterns with extreme accuracy.
 - **XiangShan Study**: [FTB.scala](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/frontend/FTB.scala)

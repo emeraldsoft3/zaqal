@@ -108,7 +108,11 @@ module Backend(	// backend/src/zaqal/backend/Backend.scala:14:7
   input         io_dispatch_5_bits_is_predicted_taken,	// backend/src/zaqal/backend/Backend.scala:15:14
   output        io_redirect_valid,	// backend/src/zaqal/backend/Backend.scala:15:14
   output [63:0] io_redirect_target,	// backend/src/zaqal/backend/Backend.scala:15:14
-                io_debug_regs_0,	// backend/src/zaqal/backend/Backend.scala:15:14
+  output        io_redirect_is_exception,	// backend/src/zaqal/backend/Backend.scala:15:14
+  output [63:0] io_redirect_pc,	// backend/src/zaqal/backend/Backend.scala:15:14
+  output        io_redirect_taken,	// backend/src/zaqal/backend/Backend.scala:15:14
+                io_redirect_is_cfi,	// backend/src/zaqal/backend/Backend.scala:15:14
+  output [63:0] io_debug_regs_0,	// backend/src/zaqal/backend/Backend.scala:15:14
                 io_debug_regs_1,	// backend/src/zaqal/backend/Backend.scala:15:14
                 io_debug_regs_2,	// backend/src/zaqal/backend/Backend.scala:15:14
                 io_debug_regs_3,	// backend/src/zaqal/backend/Backend.scala:15:14
@@ -6485,7 +6489,11 @@ module Backend(	// backend/src/zaqal/backend/Backend.scala:14:7
     .io_fp_in_bits_pdest                       (_fpIq_io_deq_0_bits_pdest),	// backend/src/zaqal/backend/Backend.scala:265:20
     .io_redirect_valid                         (_exec_io_redirect_valid),
     .io_redirect_target                        (io_redirect_target),
+    .io_redirect_is_exception                  (io_redirect_is_exception),
     .io_redirect_snapshotIdx                   (_exec_io_redirect_snapshotIdx),
+    .io_redirect_pc                            (io_redirect_pc),
+    .io_redirect_taken                         (io_redirect_taken),
+    .io_redirect_is_cfi                        (io_redirect_is_cfi),
     .io_debug_cycle                            (io_debug_cycle),
     .io_debug_regs_0                           (io_debug_regs_0),
     .io_debug_regs_1                           (io_debug_regs_1),
