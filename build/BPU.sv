@@ -81,18 +81,22 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:9:7
 
   wire [63:0] _ftb_io_target;	// frontend/src/zaqal/frontend/BPU.scala:20:19
   wire        _ftb_io_taken;	// frontend/src/zaqal/frontend/BPU.scala:20:19
-  wire [2:0]  _ftb_io_slot;	// frontend/src/zaqal/frontend/BPU.scala:20:19
+  wire [3:0]  _ftb_io_slot;	// frontend/src/zaqal/frontend/BPU.scala:20:19
   reg  [63:0] s0_pc;	// frontend/src/zaqal/frontend/BPU.scala:15:25
   reg  [15:0] mask_reg;	// frontend/src/zaqal/frontend/BPU.scala:16:25
   reg         epoch;	// frontend/src/zaqal/frontend/BPU.scala:17:25
   wire [63:0] _s0_pc_T_4 = s0_pc + 64'h20;	// frontend/src/zaqal/frontend/BPU.scala:15:25, :34:57
   wire [63:0] meta_target = _ftb_io_taken ? _ftb_io_target : _s0_pc_T_4;	// frontend/src/zaqal/frontend/BPU.scala:20:19, :34:{21,57}
   wire [30:0] _redirect_mask_T_2 = 31'hFFFF << io_redirect_target[4:1];	// frontend/src/zaqal/frontend/BPU.scala:45:{55,76}
+  wire        _GEN = io_out_ready & ~reset;	// frontend/src/zaqal/frontend/BPU.scala:63:19, src/main/scala/chisel3/util/Decoupled.scala:51:35
   `ifndef SYNTHESIS	// frontend/src/zaqal/frontend/BPU.scala:49:11
     always @(posedge clock) begin	// frontend/src/zaqal/frontend/BPU.scala:49:11
       if ((`PRINTF_COND_) & io_redirect_valid & ~reset)	// frontend/src/zaqal/frontend/BPU.scala:49:11
         $fwrite(32'h80000002, "BPU REDIRECT ACCEPTED: target=%x epoch=%d\n",
                 io_redirect_target, epoch);	// frontend/src/zaqal/frontend/BPU.scala:17:25, :49:11
+      if ((`PRINTF_COND_) & _GEN & _ftb_io_taken & ~reset)	// frontend/src/zaqal/frontend/BPU.scala:20:19, :49:11, :75:11, src/main/scala/chisel3/util/Decoupled.scala:51:35
+        $fwrite(32'h80000002, "[BPU FTB PREDICT] pc=%x -> target=%x slot=%d\n", s0_pc,
+                meta_target, _ftb_io_slot);	// frontend/src/zaqal/frontend/BPU.scala:15:25, :20:19, :34:21, :49:11, :75:11
     end // always @(posedge)
   `endif // not def SYNTHESIS
   wire [30:0] _next_mask_T_3 = 31'hFFFF << meta_target[4:1];	// frontend/src/zaqal/frontend/BPU.scala:34:21, :45:55, :55:{55,69}
@@ -107,7 +111,7 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:9:7
         s0_pc <= io_redirect_target & 64'hFFFFFFFFFFFFFFE0;	// frontend/src/zaqal/frontend/BPU.scala:15:25, :31:{32,35}
         mask_reg <= _redirect_mask_T_2[15:0];	// frontend/src/zaqal/frontend/BPU.scala:16:25, :45:{55,108}
       end
-      else if (io_out_ready & ~reset) begin	// frontend/src/zaqal/frontend/BPU.scala:63:19, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      else if (_GEN) begin	// src/main/scala/chisel3/util/Decoupled.scala:51:35
         if (_ftb_io_taken)	// frontend/src/zaqal/frontend/BPU.scala:20:19
           s0_pc <= meta_target & 64'hFFFFFFFFFFFFFFE0;	// frontend/src/zaqal/frontend/BPU.scala:15:25, :31:{32,35}, :34:21
         else	// frontend/src/zaqal/frontend/BPU.scala:20:19
@@ -158,10 +162,11 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:9:7
   assign io_out_valid = ~reset;	// frontend/src/zaqal/frontend/BPU.scala:9:7, :63:19
   assign io_out_bits_pc = s0_pc;	// frontend/src/zaqal/frontend/BPU.scala:9:7, :15:25
   assign io_out_bits_mask =
-    ({16{~_ftb_io_taken}} | 16'hFFFF >> 4'hF - {1'h0, _ftb_io_slot})
-    & (io_redirect_valid ? _redirect_mask_T_2[15:0] : mask_reg);	// frontend/src/zaqal/frontend/BPU.scala:9:7, :16:{25,30}, :17:25, :20:19, :43:25, :45:{55,108}, :47:18, :50:28, :66:{45,70}, :67:32
+    ({16{~_ftb_io_taken}} | 16'hFFFF >> 4'hF
+     - ((&_ftb_io_slot) ? 4'hF : _ftb_io_slot + 4'h1))
+    & (io_redirect_valid ? _redirect_mask_T_2[15:0] : mask_reg);	// frontend/src/zaqal/frontend/BPU.scala:9:7, :16:{25,30}, :20:19, :43:25, :45:{55,108}, :47:18, :50:28, :66:{23,34,92}, :67:{45,70}, :68:32
   assign io_out_bits_prediction_target = meta_target;	// frontend/src/zaqal/frontend/BPU.scala:9:7, :34:21
   assign io_out_bits_prediction_taken = _ftb_io_taken;	// frontend/src/zaqal/frontend/BPU.scala:9:7, :20:19
-  assign io_out_bits_prediction_slot = {1'h0, _ftb_io_slot};	// frontend/src/zaqal/frontend/BPU.scala:9:7, :17:25, :20:19, :36:15
+  assign io_out_bits_prediction_slot = _ftb_io_slot;	// frontend/src/zaqal/frontend/BPU.scala:9:7, :20:19
 endmodule
 

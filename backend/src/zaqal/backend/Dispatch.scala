@@ -42,7 +42,7 @@ class Dispatch(implicit val p: Parameters) extends Module with HasZaqalParameter
   // Capacity parameters for the current execution cluster
   val max_alu_units   = 2.U
   val max_mem_units   = 1.U
-  val max_bru_units   = 2.U
+  val max_bru_units   = 1.U
   val max_fpu_units   = 1.U
   val max_total_ports = 6.U  // Support up to 6-wide dispatch per cycle
 
@@ -140,20 +140,22 @@ class Dispatch(implicit val p: Parameters) extends Module with HasZaqalParameter
     val is_fpu_op = (dec.rd_is_fp || dec.rs1_is_fp || dec.rs2_is_fp || dec.rs3_is_fp || dec.is_fcsr_access) && !is_mem_op
     val is_alu_op = !is_mem_op && !is_bru_op && !is_fpu_op
 
+    val active = io.in(i).valid && !is_shadow(i) && !io.is_fused_away(i)
+
     // ALU Output Port Routing
-    io.aluOut(i).valid := io.in(i).valid && io.in(i).ready && is_alu_op
+    io.aluOut(i).valid := active && io.in(i).ready && is_alu_op
     io.aluOut(i).bits  := io.in(i).bits
 
     // MEM Output Port Routing
-    io.memOut(i).valid := io.in(i).valid && io.in(i).ready && is_mem_op
+    io.memOut(i).valid := active && io.in(i).ready && is_mem_op
     io.memOut(i).bits  := io.in(i).bits
 
     // BRU Output Port Routing
-    io.bruOut(i).valid := io.in(i).valid && io.in(i).ready && is_bru_op
+    io.bruOut(i).valid := active && io.in(i).ready && is_bru_op
     io.bruOut(i).bits  := io.in(i).bits
 
     // FPU Output Port Routing
-    io.fpuOut(i).valid := io.in(i).valid && io.in(i).ready && is_fpu_op
+    io.fpuOut(i).valid := active && io.in(i).ready && is_fpu_op
     io.fpuOut(i).bits  := io.in(i).bits
     
     // Debug output prints for active dispatch decisions

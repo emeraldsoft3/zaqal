@@ -44,7 +44,7 @@ object ZaqalTest extends App {
 
     // --- MAIN SIMULATION LOOP ---
     val resetCycles = 5
-    val maxCycles = 150
+    val maxCycles = 1000
     
     for (cycle <- 0 until maxCycles) {
       println(s"[TESTBENCH] Cycle $cycle")
@@ -89,7 +89,7 @@ object ZaqalTest extends App {
       }
 
       // 5. Periodic Dump (Dump every cycle to see the movement)
-      if (cycle >= 5 && cycle <= 100) {
+      if (cycle >= 5 && cycle <= 800) {
         dumpToCSV(cycle)
       }
 
@@ -99,16 +99,30 @@ object ZaqalTest extends App {
     csvFile.close() 
     println(s"--- Simulation Finished. CSV generated: ftq_dump.csv ---")
     
-    println("--- Final Register State ---")
-    for (i <- 0 until 64) {
+    println("--- Final Logical Integer Register State (Architectural / Speculative RAT) ---")
+    for (i <- 0 until 32) {
+      val pRegIdx = dut.debug.get.debug_int_rat(i).peek().litValue.toInt
+      val regVal = if (i == 0) BigInt(0) else dut.debug.get.regs(pRegIdx).peek().litValue
+      println(f"x$i%02d (maps to p$pRegIdx%02d): 0x$regVal%016x")
+    }
+
+    println("--- Final Logical FP Register State (Architectural / Speculative RAT) ---")
+    for (i <- 0 until 32) {
+      val pRegIdx = dut.debug.get.debug_fp_rat(i).peek().litValue.toInt
+      val regVal = dut.debug.get.fp_regs(pRegIdx).peek().litValue
+      println(f"f$i%02d (maps to pf$pRegIdx%02d): 0x$regVal%016x")
+    }
+
+    println("--- Final Physical Register State ---")
+    for (i <- 0 until params.phyRegs) {
       val regVal = dut.debug.get.regs(i).peek().litValue
       println(f"p$i%02d: 0x$regVal%016x")
     }
 
-    println("--- Final FP Register State ---")
-    for (i <- 0 until 32) {
+    println("--- Final Physical FP Register State ---")
+    for (i <- 0 until params.phyRegs) {
       val regVal = dut.debug.get.fp_regs(i).peek().litValue
-      println(f"f$i%02d: 0x$regVal%016x")
+      println(f"pf$i%02d: 0x$regVal%016x")
     }
   }
 

@@ -69,6 +69,7 @@ module Dispatch(	// backend/src/zaqal/backend/Dispatch.scala:8:7
   input         io_in_0_bits_uop_pre_is_rvc,	// backend/src/zaqal/backend/Dispatch.scala:9:14
                 io_in_0_bits_uop_is_predicted_taken,	// backend/src/zaqal/backend/Dispatch.scala:9:14
                 io_in_0_bits_decode_is_rvc,	// backend/src/zaqal/backend/Dispatch.scala:9:14
+                io_in_0_bits_decode_rs2_use,	// backend/src/zaqal/backend/Dispatch.scala:9:14
                 io_in_0_bits_decode_is_addi,	// backend/src/zaqal/backend/Dispatch.scala:9:14
                 io_in_0_bits_decode_is_add,	// backend/src/zaqal/backend/Dispatch.scala:9:14
                 io_in_0_bits_decode_is_mul,	// backend/src/zaqal/backend/Dispatch.scala:9:14
@@ -231,6 +232,7 @@ module Dispatch(	// backend/src/zaqal/backend/Dispatch.scala:8:7
   input         io_in_1_bits_uop_pre_is_rvc,	// backend/src/zaqal/backend/Dispatch.scala:9:14
                 io_in_1_bits_uop_is_predicted_taken,	// backend/src/zaqal/backend/Dispatch.scala:9:14
                 io_in_1_bits_decode_is_rvc,	// backend/src/zaqal/backend/Dispatch.scala:9:14
+                io_in_1_bits_decode_rs2_use,	// backend/src/zaqal/backend/Dispatch.scala:9:14
                 io_in_1_bits_decode_is_addi,	// backend/src/zaqal/backend/Dispatch.scala:9:14
                 io_in_1_bits_decode_is_add,	// backend/src/zaqal/backend/Dispatch.scala:9:14
                 io_in_1_bits_decode_is_mul,	// backend/src/zaqal/backend/Dispatch.scala:9:14
@@ -393,6 +395,7 @@ module Dispatch(	// backend/src/zaqal/backend/Dispatch.scala:8:7
   input         io_in_2_bits_uop_pre_is_rvc,	// backend/src/zaqal/backend/Dispatch.scala:9:14
                 io_in_2_bits_uop_is_predicted_taken,	// backend/src/zaqal/backend/Dispatch.scala:9:14
                 io_in_2_bits_decode_is_rvc,	// backend/src/zaqal/backend/Dispatch.scala:9:14
+                io_in_2_bits_decode_rs2_use,	// backend/src/zaqal/backend/Dispatch.scala:9:14
                 io_in_2_bits_decode_is_addi,	// backend/src/zaqal/backend/Dispatch.scala:9:14
                 io_in_2_bits_decode_is_add,	// backend/src/zaqal/backend/Dispatch.scala:9:14
                 io_in_2_bits_decode_is_mul,	// backend/src/zaqal/backend/Dispatch.scala:9:14
@@ -555,6 +558,7 @@ module Dispatch(	// backend/src/zaqal/backend/Dispatch.scala:8:7
   input         io_in_3_bits_uop_pre_is_rvc,	// backend/src/zaqal/backend/Dispatch.scala:9:14
                 io_in_3_bits_uop_is_predicted_taken,	// backend/src/zaqal/backend/Dispatch.scala:9:14
                 io_in_3_bits_decode_is_rvc,	// backend/src/zaqal/backend/Dispatch.scala:9:14
+                io_in_3_bits_decode_rs2_use,	// backend/src/zaqal/backend/Dispatch.scala:9:14
                 io_in_3_bits_decode_is_addi,	// backend/src/zaqal/backend/Dispatch.scala:9:14
                 io_in_3_bits_decode_is_add,	// backend/src/zaqal/backend/Dispatch.scala:9:14
                 io_in_3_bits_decode_is_mul,	// backend/src/zaqal/backend/Dispatch.scala:9:14
@@ -717,6 +721,7 @@ module Dispatch(	// backend/src/zaqal/backend/Dispatch.scala:8:7
   input         io_in_4_bits_uop_pre_is_rvc,	// backend/src/zaqal/backend/Dispatch.scala:9:14
                 io_in_4_bits_uop_is_predicted_taken,	// backend/src/zaqal/backend/Dispatch.scala:9:14
                 io_in_4_bits_decode_is_rvc,	// backend/src/zaqal/backend/Dispatch.scala:9:14
+                io_in_4_bits_decode_rs2_use,	// backend/src/zaqal/backend/Dispatch.scala:9:14
                 io_in_4_bits_decode_is_addi,	// backend/src/zaqal/backend/Dispatch.scala:9:14
                 io_in_4_bits_decode_is_add,	// backend/src/zaqal/backend/Dispatch.scala:9:14
                 io_in_4_bits_decode_is_mul,	// backend/src/zaqal/backend/Dispatch.scala:9:14
@@ -878,6 +883,7 @@ module Dispatch(	// backend/src/zaqal/backend/Dispatch.scala:8:7
   input  [31:0] io_in_5_bits_uop_inst_raw,	// backend/src/zaqal/backend/Dispatch.scala:9:14
   input         io_in_5_bits_uop_pre_is_rvc,	// backend/src/zaqal/backend/Dispatch.scala:9:14
                 io_in_5_bits_uop_is_predicted_taken,	// backend/src/zaqal/backend/Dispatch.scala:9:14
+                io_in_5_bits_decode_rs2_use,	// backend/src/zaqal/backend/Dispatch.scala:9:14
                 io_in_5_bits_decode_is_addi,	// backend/src/zaqal/backend/Dispatch.scala:9:14
                 io_in_5_bits_decode_is_add,	// backend/src/zaqal/backend/Dispatch.scala:9:14
                 io_in_5_bits_decode_is_mul,	// backend/src/zaqal/backend/Dispatch.scala:9:14
@@ -1043,6 +1049,7 @@ module Dispatch(	// backend/src/zaqal/backend/Dispatch.scala:8:7
   output [63:0] io_aluOut_0_bits_uop_pc,	// backend/src/zaqal/backend/Dispatch.scala:9:14
   output        io_aluOut_0_bits_uop_pre_is_rvc,	// backend/src/zaqal/backend/Dispatch.scala:9:14
                 io_aluOut_0_bits_uop_is_predicted_taken,	// backend/src/zaqal/backend/Dispatch.scala:9:14
+                io_aluOut_0_bits_decode_rs2_use,	// backend/src/zaqal/backend/Dispatch.scala:9:14
                 io_aluOut_0_bits_decode_is_addi,	// backend/src/zaqal/backend/Dispatch.scala:9:14
                 io_aluOut_0_bits_decode_is_add,	// backend/src/zaqal/backend/Dispatch.scala:9:14
                 io_aluOut_0_bits_decode_is_mul,	// backend/src/zaqal/backend/Dispatch.scala:9:14
@@ -1144,6 +1151,7 @@ module Dispatch(	// backend/src/zaqal/backend/Dispatch.scala:8:7
   output [63:0] io_aluOut_1_bits_uop_pc,	// backend/src/zaqal/backend/Dispatch.scala:9:14
   output        io_aluOut_1_bits_uop_pre_is_rvc,	// backend/src/zaqal/backend/Dispatch.scala:9:14
                 io_aluOut_1_bits_uop_is_predicted_taken,	// backend/src/zaqal/backend/Dispatch.scala:9:14
+                io_aluOut_1_bits_decode_rs2_use,	// backend/src/zaqal/backend/Dispatch.scala:9:14
                 io_aluOut_1_bits_decode_is_addi,	// backend/src/zaqal/backend/Dispatch.scala:9:14
                 io_aluOut_1_bits_decode_is_add,	// backend/src/zaqal/backend/Dispatch.scala:9:14
                 io_aluOut_1_bits_decode_is_mul,	// backend/src/zaqal/backend/Dispatch.scala:9:14
@@ -1245,6 +1253,7 @@ module Dispatch(	// backend/src/zaqal/backend/Dispatch.scala:8:7
   output [63:0] io_aluOut_2_bits_uop_pc,	// backend/src/zaqal/backend/Dispatch.scala:9:14
   output        io_aluOut_2_bits_uop_pre_is_rvc,	// backend/src/zaqal/backend/Dispatch.scala:9:14
                 io_aluOut_2_bits_uop_is_predicted_taken,	// backend/src/zaqal/backend/Dispatch.scala:9:14
+                io_aluOut_2_bits_decode_rs2_use,	// backend/src/zaqal/backend/Dispatch.scala:9:14
                 io_aluOut_2_bits_decode_is_addi,	// backend/src/zaqal/backend/Dispatch.scala:9:14
                 io_aluOut_2_bits_decode_is_add,	// backend/src/zaqal/backend/Dispatch.scala:9:14
                 io_aluOut_2_bits_decode_is_mul,	// backend/src/zaqal/backend/Dispatch.scala:9:14
@@ -1346,6 +1355,7 @@ module Dispatch(	// backend/src/zaqal/backend/Dispatch.scala:8:7
   output [63:0] io_aluOut_3_bits_uop_pc,	// backend/src/zaqal/backend/Dispatch.scala:9:14
   output        io_aluOut_3_bits_uop_pre_is_rvc,	// backend/src/zaqal/backend/Dispatch.scala:9:14
                 io_aluOut_3_bits_uop_is_predicted_taken,	// backend/src/zaqal/backend/Dispatch.scala:9:14
+                io_aluOut_3_bits_decode_rs2_use,	// backend/src/zaqal/backend/Dispatch.scala:9:14
                 io_aluOut_3_bits_decode_is_addi,	// backend/src/zaqal/backend/Dispatch.scala:9:14
                 io_aluOut_3_bits_decode_is_add,	// backend/src/zaqal/backend/Dispatch.scala:9:14
                 io_aluOut_3_bits_decode_is_mul,	// backend/src/zaqal/backend/Dispatch.scala:9:14
@@ -1447,6 +1457,7 @@ module Dispatch(	// backend/src/zaqal/backend/Dispatch.scala:8:7
   output [63:0] io_aluOut_4_bits_uop_pc,	// backend/src/zaqal/backend/Dispatch.scala:9:14
   output        io_aluOut_4_bits_uop_pre_is_rvc,	// backend/src/zaqal/backend/Dispatch.scala:9:14
                 io_aluOut_4_bits_uop_is_predicted_taken,	// backend/src/zaqal/backend/Dispatch.scala:9:14
+                io_aluOut_4_bits_decode_rs2_use,	// backend/src/zaqal/backend/Dispatch.scala:9:14
                 io_aluOut_4_bits_decode_is_addi,	// backend/src/zaqal/backend/Dispatch.scala:9:14
                 io_aluOut_4_bits_decode_is_add,	// backend/src/zaqal/backend/Dispatch.scala:9:14
                 io_aluOut_4_bits_decode_is_mul,	// backend/src/zaqal/backend/Dispatch.scala:9:14
@@ -1548,6 +1559,7 @@ module Dispatch(	// backend/src/zaqal/backend/Dispatch.scala:8:7
   output [63:0] io_aluOut_5_bits_uop_pc,	// backend/src/zaqal/backend/Dispatch.scala:9:14
   output        io_aluOut_5_bits_uop_pre_is_rvc,	// backend/src/zaqal/backend/Dispatch.scala:9:14
                 io_aluOut_5_bits_uop_is_predicted_taken,	// backend/src/zaqal/backend/Dispatch.scala:9:14
+                io_aluOut_5_bits_decode_rs2_use,	// backend/src/zaqal/backend/Dispatch.scala:9:14
                 io_aluOut_5_bits_decode_is_addi,	// backend/src/zaqal/backend/Dispatch.scala:9:14
                 io_aluOut_5_bits_decode_is_add,	// backend/src/zaqal/backend/Dispatch.scala:9:14
                 io_aluOut_5_bits_decode_is_mul,	// backend/src/zaqal/backend/Dispatch.scala:9:14
@@ -2021,6 +2033,7 @@ module Dispatch(	// backend/src/zaqal/backend/Dispatch.scala:8:7
   output [63:0] io_bruOut_0_bits_uop_pc,	// backend/src/zaqal/backend/Dispatch.scala:9:14
   output        io_bruOut_0_bits_uop_pre_is_rvc,	// backend/src/zaqal/backend/Dispatch.scala:9:14
                 io_bruOut_0_bits_uop_is_predicted_taken,	// backend/src/zaqal/backend/Dispatch.scala:9:14
+                io_bruOut_0_bits_decode_rs2_use,	// backend/src/zaqal/backend/Dispatch.scala:9:14
                 io_bruOut_0_bits_decode_is_addi,	// backend/src/zaqal/backend/Dispatch.scala:9:14
                 io_bruOut_0_bits_decode_is_add,	// backend/src/zaqal/backend/Dispatch.scala:9:14
                 io_bruOut_0_bits_decode_is_mul,	// backend/src/zaqal/backend/Dispatch.scala:9:14
@@ -2122,6 +2135,7 @@ module Dispatch(	// backend/src/zaqal/backend/Dispatch.scala:8:7
   output [63:0] io_bruOut_1_bits_uop_pc,	// backend/src/zaqal/backend/Dispatch.scala:9:14
   output        io_bruOut_1_bits_uop_pre_is_rvc,	// backend/src/zaqal/backend/Dispatch.scala:9:14
                 io_bruOut_1_bits_uop_is_predicted_taken,	// backend/src/zaqal/backend/Dispatch.scala:9:14
+                io_bruOut_1_bits_decode_rs2_use,	// backend/src/zaqal/backend/Dispatch.scala:9:14
                 io_bruOut_1_bits_decode_is_addi,	// backend/src/zaqal/backend/Dispatch.scala:9:14
                 io_bruOut_1_bits_decode_is_add,	// backend/src/zaqal/backend/Dispatch.scala:9:14
                 io_bruOut_1_bits_decode_is_mul,	// backend/src/zaqal/backend/Dispatch.scala:9:14
@@ -2223,6 +2237,7 @@ module Dispatch(	// backend/src/zaqal/backend/Dispatch.scala:8:7
   output [63:0] io_bruOut_2_bits_uop_pc,	// backend/src/zaqal/backend/Dispatch.scala:9:14
   output        io_bruOut_2_bits_uop_pre_is_rvc,	// backend/src/zaqal/backend/Dispatch.scala:9:14
                 io_bruOut_2_bits_uop_is_predicted_taken,	// backend/src/zaqal/backend/Dispatch.scala:9:14
+                io_bruOut_2_bits_decode_rs2_use,	// backend/src/zaqal/backend/Dispatch.scala:9:14
                 io_bruOut_2_bits_decode_is_addi,	// backend/src/zaqal/backend/Dispatch.scala:9:14
                 io_bruOut_2_bits_decode_is_add,	// backend/src/zaqal/backend/Dispatch.scala:9:14
                 io_bruOut_2_bits_decode_is_mul,	// backend/src/zaqal/backend/Dispatch.scala:9:14
@@ -2324,6 +2339,7 @@ module Dispatch(	// backend/src/zaqal/backend/Dispatch.scala:8:7
   output [63:0] io_bruOut_3_bits_uop_pc,	// backend/src/zaqal/backend/Dispatch.scala:9:14
   output        io_bruOut_3_bits_uop_pre_is_rvc,	// backend/src/zaqal/backend/Dispatch.scala:9:14
                 io_bruOut_3_bits_uop_is_predicted_taken,	// backend/src/zaqal/backend/Dispatch.scala:9:14
+                io_bruOut_3_bits_decode_rs2_use,	// backend/src/zaqal/backend/Dispatch.scala:9:14
                 io_bruOut_3_bits_decode_is_addi,	// backend/src/zaqal/backend/Dispatch.scala:9:14
                 io_bruOut_3_bits_decode_is_add,	// backend/src/zaqal/backend/Dispatch.scala:9:14
                 io_bruOut_3_bits_decode_is_mul,	// backend/src/zaqal/backend/Dispatch.scala:9:14
@@ -2425,6 +2441,7 @@ module Dispatch(	// backend/src/zaqal/backend/Dispatch.scala:8:7
   output [63:0] io_bruOut_4_bits_uop_pc,	// backend/src/zaqal/backend/Dispatch.scala:9:14
   output        io_bruOut_4_bits_uop_pre_is_rvc,	// backend/src/zaqal/backend/Dispatch.scala:9:14
                 io_bruOut_4_bits_uop_is_predicted_taken,	// backend/src/zaqal/backend/Dispatch.scala:9:14
+                io_bruOut_4_bits_decode_rs2_use,	// backend/src/zaqal/backend/Dispatch.scala:9:14
                 io_bruOut_4_bits_decode_is_addi,	// backend/src/zaqal/backend/Dispatch.scala:9:14
                 io_bruOut_4_bits_decode_is_add,	// backend/src/zaqal/backend/Dispatch.scala:9:14
                 io_bruOut_4_bits_decode_is_mul,	// backend/src/zaqal/backend/Dispatch.scala:9:14
@@ -2526,6 +2543,7 @@ module Dispatch(	// backend/src/zaqal/backend/Dispatch.scala:8:7
   output [63:0] io_bruOut_5_bits_uop_pc,	// backend/src/zaqal/backend/Dispatch.scala:9:14
   output        io_bruOut_5_bits_uop_pre_is_rvc,	// backend/src/zaqal/backend/Dispatch.scala:9:14
                 io_bruOut_5_bits_uop_is_predicted_taken,	// backend/src/zaqal/backend/Dispatch.scala:9:14
+                io_bruOut_5_bits_decode_rs2_use,	// backend/src/zaqal/backend/Dispatch.scala:9:14
                 io_bruOut_5_bits_decode_is_addi,	// backend/src/zaqal/backend/Dispatch.scala:9:14
                 io_bruOut_5_bits_decode_is_add,	// backend/src/zaqal/backend/Dispatch.scala:9:14
                 io_bruOut_5_bits_decode_is_mul,	// backend/src/zaqal/backend/Dispatch.scala:9:14
@@ -3038,6 +3056,7 @@ module Dispatch(	// backend/src/zaqal/backend/Dispatch.scala:8:7
      | io_in_0_bits_decode_is_fcsr_access) & ~is_mem;	// backend/src/zaqal/backend/Dispatch.scala:58:79, :60:{32,83,106,109}
   wire       active = io_in_0_valid & ~io_is_fused_away_0;	// backend/src/zaqal/backend/Dispatch.scala:63:{50,53}
   wire       req_mem_0 = active & is_mem;	// backend/src/zaqal/backend/Dispatch.scala:58:79, :63:50, :65:26
+  wire       req_bru_0 = active & is_bru;	// backend/src/zaqal/backend/Dispatch.scala:59:46, :63:50, :66:26
   wire       req_fpu_0 = active & is_fpu;	// backend/src/zaqal/backend/Dispatch.scala:60:106, :63:50, :67:26
   wire       _is_mem_op_T_21 = io_in_1_bits_decode_is_load | io_in_1_bits_decode_is_store;	// backend/src/zaqal/backend/Dispatch.scala:58:30
   wire       is_mem_1 =
@@ -3118,7 +3137,7 @@ module Dispatch(	// backend/src/zaqal/backend/Dispatch.scala:8:7
   wire [2:0] _alu_allocated_2_T_1 =
     {2'h0, active & ~is_mem & ~is_bru & ~is_fpu} + {2'h0, req_alu_1};	// backend/src/zaqal/backend/Dispatch.scala:58:79, :59:46, :60:{106,109}, :61:{29,40}, :63:50, :64:26, :85:48
   wire [2:0] _mem_allocated_2_T_1 = {2'h0, req_mem_0} + {2'h0, req_mem_1};	// backend/src/zaqal/backend/Dispatch.scala:65:26, :85:48, :86:48
-  wire [2:0] _bru_allocated_2_T_1 = {2'h0, active & is_bru} + {2'h0, req_bru_1};	// backend/src/zaqal/backend/Dispatch.scala:59:46, :63:50, :66:26, :85:48, :87:48
+  wire [2:0] _bru_allocated_2_T_1 = {2'h0, req_bru_0} + {2'h0, req_bru_1};	// backend/src/zaqal/backend/Dispatch.scala:66:26, :85:48, :87:48
   wire [2:0] _fpu_allocated_2_T_1 = {2'h0, req_fpu_0} + {2'h0, req_fpu_1};	// backend/src/zaqal/backend/Dispatch.scala:67:26, :85:48, :88:48
   wire [2:0] _total_allocated_2_T_1 = {2'h0, active} + {2'h0, active_1};	// backend/src/zaqal/backend/Dispatch.scala:63:50, :85:48, :89:50
   wire [2:0] _alu_allocated_3_T_1 = _alu_allocated_2_T_1 + {2'h0, req_alu_2};	// backend/src/zaqal/backend/Dispatch.scala:64:26, :85:48
@@ -3132,7 +3151,6 @@ module Dispatch(	// backend/src/zaqal/backend/Dispatch.scala:8:7
   wire [2:0] _fpu_allocated_4_T_1 = _fpu_allocated_3_T_1 + {2'h0, req_fpu_3};	// backend/src/zaqal/backend/Dispatch.scala:67:26, :85:48, :88:48
   wire [2:0] _total_allocated_4_T_1 = _total_allocated_3_T_1 + {2'h0, active_3};	// backend/src/zaqal/backend/Dispatch.scala:63:50, :85:48, :89:50
   wire [2:0] _alu_allocated_5_T_1 = _alu_allocated_4_T_1 + {2'h0, req_alu_4};	// backend/src/zaqal/backend/Dispatch.scala:64:26, :85:48
-  wire [2:0] _bru_allocated_5_T_1 = _bru_allocated_4_T_1 + {2'h0, req_bru_4};	// backend/src/zaqal/backend/Dispatch.scala:66:26, :85:48, :87:48
   wire       is_mem_op =
     _is_mem_op_T_18 | io_in_0_bits_decode_is_fload | io_in_0_bits_decode_is_fstore
     | io_in_0_bits_decode_is_atomic;	// backend/src/zaqal/backend/Dispatch.scala:58:30, :105:82
@@ -3190,7 +3208,8 @@ module Dispatch(	// backend/src/zaqal/backend/Dispatch.scala:8:7
                  ? io_memReady_1
                  : is_bru_op_1 ? io_bruReady_1 : is_fpu_op_1 & io_fpuReady_1)
             : io_aluReady_1)
-       & ~(~req_alu_1 & (req_mem_1 ? req_mem_0 : ~req_bru_1 & req_fpu_1 & req_fpu_0)
+       & ~(~req_alu_1
+           & (req_mem_1 ? req_mem_0 : req_bru_1 ? req_bru_0 : req_fpu_1 & req_fpu_0)
            | {2'h0, active} > 3'h5 & active_1));	// backend/src/zaqal/backend/Dispatch.scala:38:43, :63:50, :64:26, :65:26, :66:26, :67:26, :85:48, :89:50, :100:{8,31,50}, :105:82, :106:49, :107:109, :111:{22,77}, :116:{8,11}, :126:44, src/main/scala/chisel3/util/Mux.scala:126:16
   wire       can_dispatch_2 =
     can_dispatch_1
@@ -3205,7 +3224,7 @@ module Dispatch(	// backend/src/zaqal/backend/Dispatch.scala:8:7
               : req_mem_2
                   ? (|_mem_allocated_2_T_1)
                   : req_bru_2
-                      ? (|(_bru_allocated_2_T_1[2:1]))
+                      ? (|_bru_allocated_2_T_1)
                       : req_fpu_2 & (|_fpu_allocated_2_T_1))
            | _total_allocated_2_T_1 > 3'h5 & active_2));	// backend/src/zaqal/backend/Dispatch.scala:38:40, :63:50, :64:26, :65:26, :66:26, :67:26, :85:48, :86:48, :87:48, :88:48, :89:50, :96:39, :97:39, :98:39, :99:39, :100:{8,31,50}, :105:82, :106:49, :107:109, :111:{22,77}, :116:{8,11}, :126:44, src/main/scala/chisel3/util/Mux.scala:126:16
   wire       can_dispatch_3 =
@@ -3221,7 +3240,7 @@ module Dispatch(	// backend/src/zaqal/backend/Dispatch.scala:8:7
               : req_mem_3
                   ? (|_mem_allocated_3_T_1)
                   : req_bru_3
-                      ? (|(_bru_allocated_3_T_1[2:1]))
+                      ? (|_bru_allocated_3_T_1)
                       : req_fpu_3 & (|_fpu_allocated_3_T_1))
            | _total_allocated_3_T_1 > 3'h5 & active_3));	// backend/src/zaqal/backend/Dispatch.scala:38:40, :63:50, :64:26, :65:26, :66:26, :67:26, :85:48, :86:48, :87:48, :88:48, :89:50, :96:39, :97:39, :98:39, :99:39, :100:{8,31,50}, :105:82, :106:49, :107:109, :111:{22,77}, :116:{8,11}, :126:44, src/main/scala/chisel3/util/Mux.scala:126:16
   wire       can_dispatch_4 =
@@ -3237,7 +3256,7 @@ module Dispatch(	// backend/src/zaqal/backend/Dispatch.scala:8:7
               : req_mem_4
                   ? (|_mem_allocated_4_T_1)
                   : req_bru_4
-                      ? (|(_bru_allocated_4_T_1[2:1]))
+                      ? (|_bru_allocated_4_T_1)
                       : req_fpu_4 & (|_fpu_allocated_4_T_1))
            | _total_allocated_4_T_1 > 3'h5 & active_4));	// backend/src/zaqal/backend/Dispatch.scala:38:40, :63:50, :64:26, :65:26, :66:26, :67:26, :85:48, :86:48, :87:48, :88:48, :89:50, :96:39, :97:39, :98:39, :99:39, :100:{8,31,50}, :105:82, :106:49, :107:109, :111:{22,77}, :116:{8,11}, :126:44, src/main/scala/chisel3/util/Mux.scala:126:16
   wire       can_dispatch_5 =
@@ -3253,7 +3272,7 @@ module Dispatch(	// backend/src/zaqal/backend/Dispatch.scala:8:7
               : active_5 & is_mem_5
                   ? (|(_mem_allocated_4_T_1 + {2'h0, req_mem_4}))
                   : active_5 & is_bru_5
-                      ? (|(_bru_allocated_5_T_1[2:1]))
+                      ? (|(_bru_allocated_4_T_1 + {2'h0, req_bru_4}))
                       : active_5 & is_fpu_5
                         & (|(_fpu_allocated_4_T_1 + {2'h0, req_fpu_4})))
            | _total_allocated_4_T_1 + {2'h0, active_4} > 3'h5 & active_5));	// backend/src/zaqal/backend/Dispatch.scala:38:40, :58:79, :59:46, :60:{106,109}, :61:{29,40}, :63:50, :64:26, :65:26, :66:26, :67:26, :85:48, :86:48, :87:48, :88:48, :89:50, :96:39, :97:39, :98:39, :99:39, :100:{8,31,50}, :105:82, :106:49, :107:109, :111:{22,77}, :116:{8,11}, :126:44, src/main/scala/chisel3/util/Mux.scala:126:16
@@ -3264,7 +3283,7 @@ module Dispatch(	// backend/src/zaqal/backend/Dispatch.scala:8:7
   wire       is_fpu_op_6 =
     (_is_fpu_op_T_30 | io_in_0_bits_decode_rs2_is_fp | io_in_0_bits_decode_rs3_is_fp
      | io_in_0_bits_decode_is_fcsr_access) & ~is_mem_op_6;	// backend/src/zaqal/backend/Dispatch.scala:60:32, :138:82, :140:{86,109,112}
-  wire       _io_fpuOut_0_valid_T = io_in_0_valid & port_ready_0;	// backend/src/zaqal/backend/Dispatch.scala:111:77, :144:42
+  wire       _io_fpuOut_0_valid_T = io_in_0_valid & ~io_is_fused_away_0 & port_ready_0;	// backend/src/zaqal/backend/Dispatch.scala:63:53, :111:77, :146:34
   wire       is_mem_op_7 =
     _is_mem_op_T_21 | io_in_1_bits_decode_is_fload | io_in_1_bits_decode_is_fstore
     | io_in_1_bits_decode_is_atomic;	// backend/src/zaqal/backend/Dispatch.scala:58:30, :138:82
@@ -3272,7 +3291,8 @@ module Dispatch(	// backend/src/zaqal/backend/Dispatch.scala:8:7
   wire       is_fpu_op_7 =
     (_is_fpu_op_T_35 | io_in_1_bits_decode_rs2_is_fp | io_in_1_bits_decode_rs3_is_fp
      | io_in_1_bits_decode_is_fcsr_access) & ~is_mem_op_7;	// backend/src/zaqal/backend/Dispatch.scala:60:32, :138:82, :140:{86,109,112}
-  wire       _io_fpuOut_1_valid_T = io_in_1_valid & can_dispatch_1;	// backend/src/zaqal/backend/Dispatch.scala:126:44, :144:42
+  wire       _io_fpuOut_1_valid_T =
+    io_in_1_valid & io_in_0_bits_decode_is_rvc & ~io_is_fused_away_1 & can_dispatch_1;	// backend/src/zaqal/backend/Dispatch.scala:63:53, :126:44, :146:34
   wire       is_mem_op_8 =
     _is_mem_op_T_24 | io_in_2_bits_decode_is_fload | io_in_2_bits_decode_is_fstore
     | io_in_2_bits_decode_is_atomic;	// backend/src/zaqal/backend/Dispatch.scala:58:30, :138:82
@@ -3280,7 +3300,8 @@ module Dispatch(	// backend/src/zaqal/backend/Dispatch.scala:8:7
   wire       is_fpu_op_8 =
     (_is_fpu_op_T_40 | io_in_2_bits_decode_rs2_is_fp | io_in_2_bits_decode_rs3_is_fp
      | io_in_2_bits_decode_is_fcsr_access) & ~is_mem_op_8;	// backend/src/zaqal/backend/Dispatch.scala:60:32, :138:82, :140:{86,109,112}
-  wire       _io_fpuOut_2_valid_T = io_in_2_valid & can_dispatch_2;	// backend/src/zaqal/backend/Dispatch.scala:126:44, :144:42
+  wire       _io_fpuOut_2_valid_T =
+    io_in_2_valid & ~is_shadow_2 & ~io_is_fused_away_2 & can_dispatch_2;	// backend/src/zaqal/backend/Dispatch.scala:38:40, :39:23, :63:53, :126:44, :146:34
   wire       is_mem_op_9 =
     _is_mem_op_T_27 | io_in_3_bits_decode_is_fload | io_in_3_bits_decode_is_fstore
     | io_in_3_bits_decode_is_atomic;	// backend/src/zaqal/backend/Dispatch.scala:58:30, :138:82
@@ -3288,7 +3309,8 @@ module Dispatch(	// backend/src/zaqal/backend/Dispatch.scala:8:7
   wire       is_fpu_op_9 =
     (_is_fpu_op_T_45 | io_in_3_bits_decode_rs2_is_fp | io_in_3_bits_decode_rs3_is_fp
      | io_in_3_bits_decode_is_fcsr_access) & ~is_mem_op_9;	// backend/src/zaqal/backend/Dispatch.scala:60:32, :138:82, :140:{86,109,112}
-  wire       _io_fpuOut_3_valid_T = io_in_3_valid & can_dispatch_3;	// backend/src/zaqal/backend/Dispatch.scala:126:44, :144:42
+  wire       _io_fpuOut_3_valid_T =
+    io_in_3_valid & ~is_shadow_3 & ~io_is_fused_away_3 & can_dispatch_3;	// backend/src/zaqal/backend/Dispatch.scala:38:40, :39:23, :63:53, :126:44, :146:34
   wire       is_mem_op_10 =
     _is_mem_op_T_30 | io_in_4_bits_decode_is_fload | io_in_4_bits_decode_is_fstore
     | io_in_4_bits_decode_is_atomic;	// backend/src/zaqal/backend/Dispatch.scala:58:30, :138:82
@@ -3296,7 +3318,8 @@ module Dispatch(	// backend/src/zaqal/backend/Dispatch.scala:8:7
   wire       is_fpu_op_10 =
     (_is_fpu_op_T_50 | io_in_4_bits_decode_rs2_is_fp | io_in_4_bits_decode_rs3_is_fp
      | io_in_4_bits_decode_is_fcsr_access) & ~is_mem_op_10;	// backend/src/zaqal/backend/Dispatch.scala:60:32, :138:82, :140:{86,109,112}
-  wire       _io_fpuOut_4_valid_T = io_in_4_valid & can_dispatch_4;	// backend/src/zaqal/backend/Dispatch.scala:126:44, :144:42
+  wire       _io_fpuOut_4_valid_T =
+    io_in_4_valid & ~is_shadow_4 & ~io_is_fused_away_4 & can_dispatch_4;	// backend/src/zaqal/backend/Dispatch.scala:38:40, :39:23, :63:53, :126:44, :146:34
   wire       is_mem_op_11 =
     _is_mem_op_T_33 | io_in_5_bits_decode_is_fload | io_in_5_bits_decode_is_fstore
     | io_in_5_bits_decode_is_atomic;	// backend/src/zaqal/backend/Dispatch.scala:58:30, :138:82
@@ -3304,7 +3327,8 @@ module Dispatch(	// backend/src/zaqal/backend/Dispatch.scala:8:7
   wire       is_fpu_op_11 =
     (_is_fpu_op_T_55 | io_in_5_bits_decode_rs2_is_fp | io_in_5_bits_decode_rs3_is_fp
      | io_in_5_bits_decode_is_fcsr_access) & ~is_mem_op_11;	// backend/src/zaqal/backend/Dispatch.scala:60:32, :138:82, :140:{86,109,112}
-  wire       _io_fpuOut_5_valid_T = io_in_5_valid & can_dispatch_5;	// backend/src/zaqal/backend/Dispatch.scala:126:44, :144:42
+  wire       _io_fpuOut_5_valid_T =
+    io_in_5_valid & ~is_shadow_5 & ~io_is_fused_away_5 & can_dispatch_5;	// backend/src/zaqal/backend/Dispatch.scala:38:40, :39:23, :63:53, :126:44, :146:34
   assign io_in_0_ready = port_ready_0;	// backend/src/zaqal/backend/Dispatch.scala:8:7, :111:77
   assign io_in_1_ready = can_dispatch_1;	// backend/src/zaqal/backend/Dispatch.scala:8:7, :126:44
   assign io_in_2_ready = can_dispatch_2;	// backend/src/zaqal/backend/Dispatch.scala:8:7, :126:44
@@ -3312,10 +3336,11 @@ module Dispatch(	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_in_4_ready = can_dispatch_4;	// backend/src/zaqal/backend/Dispatch.scala:8:7, :126:44
   assign io_in_5_ready = can_dispatch_5;	// backend/src/zaqal/backend/Dispatch.scala:8:7, :126:44
   assign io_aluOut_0_valid =
-    _io_fpuOut_0_valid_T & ~is_mem_op_6 & ~is_bru_op_6 & ~is_fpu_op_6;	// backend/src/zaqal/backend/Dispatch.scala:8:7, :138:82, :139:49, :140:{109,112}, :141:{35,49}, :144:{42,60}
+    _io_fpuOut_0_valid_T & ~is_mem_op_6 & ~is_bru_op_6 & ~is_fpu_op_6;	// backend/src/zaqal/backend/Dispatch.scala:8:7, :138:82, :139:49, :140:{109,112}, :141:{35,49}, :146:{34,52}
   assign io_aluOut_0_bits_uop_pc = io_in_0_bits_uop_pc;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_aluOut_0_bits_uop_pre_is_rvc = io_in_0_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_aluOut_0_bits_uop_is_predicted_taken = io_in_0_bits_uop_is_predicted_taken;	// backend/src/zaqal/backend/Dispatch.scala:8:7
+  assign io_aluOut_0_bits_decode_rs2_use = io_in_0_bits_decode_rs2_use;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_aluOut_0_bits_decode_is_addi = io_in_0_bits_decode_is_addi;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_aluOut_0_bits_decode_is_add = io_in_0_bits_decode_is_add;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_aluOut_0_bits_decode_is_mul = io_in_0_bits_decode_is_mul;	// backend/src/zaqal/backend/Dispatch.scala:8:7
@@ -3415,10 +3440,11 @@ module Dispatch(	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_aluOut_0_bits_pdest = io_in_0_bits_pdest;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_aluOut_0_bits_snapshotIdx = io_in_0_bits_snapshotIdx;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_aluOut_1_valid =
-    _io_fpuOut_1_valid_T & ~is_mem_op_7 & ~is_bru_op_7 & ~is_fpu_op_7;	// backend/src/zaqal/backend/Dispatch.scala:8:7, :138:82, :139:49, :140:{109,112}, :141:{35,49}, :144:{42,60}
+    _io_fpuOut_1_valid_T & ~is_mem_op_7 & ~is_bru_op_7 & ~is_fpu_op_7;	// backend/src/zaqal/backend/Dispatch.scala:8:7, :138:82, :139:49, :140:{109,112}, :141:{35,49}, :146:{34,52}
   assign io_aluOut_1_bits_uop_pc = io_in_1_bits_uop_pc;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_aluOut_1_bits_uop_pre_is_rvc = io_in_1_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_aluOut_1_bits_uop_is_predicted_taken = io_in_1_bits_uop_is_predicted_taken;	// backend/src/zaqal/backend/Dispatch.scala:8:7
+  assign io_aluOut_1_bits_decode_rs2_use = io_in_1_bits_decode_rs2_use;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_aluOut_1_bits_decode_is_addi = io_in_1_bits_decode_is_addi;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_aluOut_1_bits_decode_is_add = io_in_1_bits_decode_is_add;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_aluOut_1_bits_decode_is_mul = io_in_1_bits_decode_is_mul;	// backend/src/zaqal/backend/Dispatch.scala:8:7
@@ -3518,10 +3544,11 @@ module Dispatch(	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_aluOut_1_bits_pdest = io_in_1_bits_pdest;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_aluOut_1_bits_snapshotIdx = io_in_1_bits_snapshotIdx;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_aluOut_2_valid =
-    _io_fpuOut_2_valid_T & ~is_mem_op_8 & ~is_bru_op_8 & ~is_fpu_op_8;	// backend/src/zaqal/backend/Dispatch.scala:8:7, :138:82, :139:49, :140:{109,112}, :141:{35,49}, :144:{42,60}
+    _io_fpuOut_2_valid_T & ~is_mem_op_8 & ~is_bru_op_8 & ~is_fpu_op_8;	// backend/src/zaqal/backend/Dispatch.scala:8:7, :138:82, :139:49, :140:{109,112}, :141:{35,49}, :146:{34,52}
   assign io_aluOut_2_bits_uop_pc = io_in_2_bits_uop_pc;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_aluOut_2_bits_uop_pre_is_rvc = io_in_2_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_aluOut_2_bits_uop_is_predicted_taken = io_in_2_bits_uop_is_predicted_taken;	// backend/src/zaqal/backend/Dispatch.scala:8:7
+  assign io_aluOut_2_bits_decode_rs2_use = io_in_2_bits_decode_rs2_use;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_aluOut_2_bits_decode_is_addi = io_in_2_bits_decode_is_addi;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_aluOut_2_bits_decode_is_add = io_in_2_bits_decode_is_add;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_aluOut_2_bits_decode_is_mul = io_in_2_bits_decode_is_mul;	// backend/src/zaqal/backend/Dispatch.scala:8:7
@@ -3621,10 +3648,11 @@ module Dispatch(	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_aluOut_2_bits_pdest = io_in_2_bits_pdest;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_aluOut_2_bits_snapshotIdx = io_in_2_bits_snapshotIdx;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_aluOut_3_valid =
-    _io_fpuOut_3_valid_T & ~is_mem_op_9 & ~is_bru_op_9 & ~is_fpu_op_9;	// backend/src/zaqal/backend/Dispatch.scala:8:7, :138:82, :139:49, :140:{109,112}, :141:{35,49}, :144:{42,60}
+    _io_fpuOut_3_valid_T & ~is_mem_op_9 & ~is_bru_op_9 & ~is_fpu_op_9;	// backend/src/zaqal/backend/Dispatch.scala:8:7, :138:82, :139:49, :140:{109,112}, :141:{35,49}, :146:{34,52}
   assign io_aluOut_3_bits_uop_pc = io_in_3_bits_uop_pc;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_aluOut_3_bits_uop_pre_is_rvc = io_in_3_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_aluOut_3_bits_uop_is_predicted_taken = io_in_3_bits_uop_is_predicted_taken;	// backend/src/zaqal/backend/Dispatch.scala:8:7
+  assign io_aluOut_3_bits_decode_rs2_use = io_in_3_bits_decode_rs2_use;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_aluOut_3_bits_decode_is_addi = io_in_3_bits_decode_is_addi;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_aluOut_3_bits_decode_is_add = io_in_3_bits_decode_is_add;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_aluOut_3_bits_decode_is_mul = io_in_3_bits_decode_is_mul;	// backend/src/zaqal/backend/Dispatch.scala:8:7
@@ -3724,10 +3752,11 @@ module Dispatch(	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_aluOut_3_bits_pdest = io_in_3_bits_pdest;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_aluOut_3_bits_snapshotIdx = io_in_3_bits_snapshotIdx;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_aluOut_4_valid =
-    _io_fpuOut_4_valid_T & ~is_mem_op_10 & ~is_bru_op_10 & ~is_fpu_op_10;	// backend/src/zaqal/backend/Dispatch.scala:8:7, :138:82, :139:49, :140:{109,112}, :141:{35,49}, :144:{42,60}
+    _io_fpuOut_4_valid_T & ~is_mem_op_10 & ~is_bru_op_10 & ~is_fpu_op_10;	// backend/src/zaqal/backend/Dispatch.scala:8:7, :138:82, :139:49, :140:{109,112}, :141:{35,49}, :146:{34,52}
   assign io_aluOut_4_bits_uop_pc = io_in_4_bits_uop_pc;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_aluOut_4_bits_uop_pre_is_rvc = io_in_4_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_aluOut_4_bits_uop_is_predicted_taken = io_in_4_bits_uop_is_predicted_taken;	// backend/src/zaqal/backend/Dispatch.scala:8:7
+  assign io_aluOut_4_bits_decode_rs2_use = io_in_4_bits_decode_rs2_use;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_aluOut_4_bits_decode_is_addi = io_in_4_bits_decode_is_addi;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_aluOut_4_bits_decode_is_add = io_in_4_bits_decode_is_add;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_aluOut_4_bits_decode_is_mul = io_in_4_bits_decode_is_mul;	// backend/src/zaqal/backend/Dispatch.scala:8:7
@@ -3827,10 +3856,11 @@ module Dispatch(	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_aluOut_4_bits_pdest = io_in_4_bits_pdest;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_aluOut_4_bits_snapshotIdx = io_in_4_bits_snapshotIdx;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_aluOut_5_valid =
-    _io_fpuOut_5_valid_T & ~is_mem_op_11 & ~is_bru_op_11 & ~is_fpu_op_11;	// backend/src/zaqal/backend/Dispatch.scala:8:7, :138:82, :139:49, :140:{109,112}, :141:{35,49}, :144:{42,60}
+    _io_fpuOut_5_valid_T & ~is_mem_op_11 & ~is_bru_op_11 & ~is_fpu_op_11;	// backend/src/zaqal/backend/Dispatch.scala:8:7, :138:82, :139:49, :140:{109,112}, :141:{35,49}, :146:{34,52}
   assign io_aluOut_5_bits_uop_pc = io_in_5_bits_uop_pc;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_aluOut_5_bits_uop_pre_is_rvc = io_in_5_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_aluOut_5_bits_uop_is_predicted_taken = io_in_5_bits_uop_is_predicted_taken;	// backend/src/zaqal/backend/Dispatch.scala:8:7
+  assign io_aluOut_5_bits_decode_rs2_use = io_in_5_bits_decode_rs2_use;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_aluOut_5_bits_decode_is_addi = io_in_5_bits_decode_is_addi;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_aluOut_5_bits_decode_is_add = io_in_5_bits_decode_is_add;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_aluOut_5_bits_decode_is_mul = io_in_5_bits_decode_is_mul;	// backend/src/zaqal/backend/Dispatch.scala:8:7
@@ -3929,7 +3959,7 @@ module Dispatch(	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_aluOut_5_bits_psrs3 = io_in_5_bits_psrs3;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_aluOut_5_bits_pdest = io_in_5_bits_pdest;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_aluOut_5_bits_snapshotIdx = io_in_5_bits_snapshotIdx;	// backend/src/zaqal/backend/Dispatch.scala:8:7
-  assign io_memOut_0_valid = _io_fpuOut_0_valid_T & is_mem_op_6;	// backend/src/zaqal/backend/Dispatch.scala:8:7, :138:82, :144:42, :148:60
+  assign io_memOut_0_valid = _io_fpuOut_0_valid_T & is_mem_op_6;	// backend/src/zaqal/backend/Dispatch.scala:8:7, :138:82, :146:34, :150:52
   assign io_memOut_0_bits_uop_pc = io_in_0_bits_uop_pc;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_memOut_0_bits_uop_inst_raw = io_in_0_bits_uop_inst_raw;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_memOut_0_bits_decode_is_lb = io_in_0_bits_decode_is_lb;	// backend/src/zaqal/backend/Dispatch.scala:8:7
@@ -3991,7 +4021,7 @@ module Dispatch(	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_memOut_0_bits_psrs3 = io_in_0_bits_psrs3;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_memOut_0_bits_pdest = io_in_0_bits_pdest;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_memOut_0_bits_snapshotIdx = io_in_0_bits_snapshotIdx;	// backend/src/zaqal/backend/Dispatch.scala:8:7
-  assign io_memOut_1_valid = _io_fpuOut_1_valid_T & is_mem_op_7;	// backend/src/zaqal/backend/Dispatch.scala:8:7, :138:82, :144:42, :148:60
+  assign io_memOut_1_valid = _io_fpuOut_1_valid_T & is_mem_op_7;	// backend/src/zaqal/backend/Dispatch.scala:8:7, :138:82, :146:34, :150:52
   assign io_memOut_1_bits_uop_pc = io_in_1_bits_uop_pc;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_memOut_1_bits_uop_inst_raw = io_in_1_bits_uop_inst_raw;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_memOut_1_bits_decode_is_lb = io_in_1_bits_decode_is_lb;	// backend/src/zaqal/backend/Dispatch.scala:8:7
@@ -4053,7 +4083,7 @@ module Dispatch(	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_memOut_1_bits_psrs3 = io_in_1_bits_psrs3;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_memOut_1_bits_pdest = io_in_1_bits_pdest;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_memOut_1_bits_snapshotIdx = io_in_1_bits_snapshotIdx;	// backend/src/zaqal/backend/Dispatch.scala:8:7
-  assign io_memOut_2_valid = _io_fpuOut_2_valid_T & is_mem_op_8;	// backend/src/zaqal/backend/Dispatch.scala:8:7, :138:82, :144:42, :148:60
+  assign io_memOut_2_valid = _io_fpuOut_2_valid_T & is_mem_op_8;	// backend/src/zaqal/backend/Dispatch.scala:8:7, :138:82, :146:34, :150:52
   assign io_memOut_2_bits_uop_pc = io_in_2_bits_uop_pc;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_memOut_2_bits_uop_inst_raw = io_in_2_bits_uop_inst_raw;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_memOut_2_bits_decode_is_lb = io_in_2_bits_decode_is_lb;	// backend/src/zaqal/backend/Dispatch.scala:8:7
@@ -4115,7 +4145,7 @@ module Dispatch(	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_memOut_2_bits_psrs3 = io_in_2_bits_psrs3;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_memOut_2_bits_pdest = io_in_2_bits_pdest;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_memOut_2_bits_snapshotIdx = io_in_2_bits_snapshotIdx;	// backend/src/zaqal/backend/Dispatch.scala:8:7
-  assign io_memOut_3_valid = _io_fpuOut_3_valid_T & is_mem_op_9;	// backend/src/zaqal/backend/Dispatch.scala:8:7, :138:82, :144:42, :148:60
+  assign io_memOut_3_valid = _io_fpuOut_3_valid_T & is_mem_op_9;	// backend/src/zaqal/backend/Dispatch.scala:8:7, :138:82, :146:34, :150:52
   assign io_memOut_3_bits_uop_pc = io_in_3_bits_uop_pc;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_memOut_3_bits_uop_inst_raw = io_in_3_bits_uop_inst_raw;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_memOut_3_bits_decode_is_lb = io_in_3_bits_decode_is_lb;	// backend/src/zaqal/backend/Dispatch.scala:8:7
@@ -4177,7 +4207,7 @@ module Dispatch(	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_memOut_3_bits_psrs3 = io_in_3_bits_psrs3;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_memOut_3_bits_pdest = io_in_3_bits_pdest;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_memOut_3_bits_snapshotIdx = io_in_3_bits_snapshotIdx;	// backend/src/zaqal/backend/Dispatch.scala:8:7
-  assign io_memOut_4_valid = _io_fpuOut_4_valid_T & is_mem_op_10;	// backend/src/zaqal/backend/Dispatch.scala:8:7, :138:82, :144:42, :148:60
+  assign io_memOut_4_valid = _io_fpuOut_4_valid_T & is_mem_op_10;	// backend/src/zaqal/backend/Dispatch.scala:8:7, :138:82, :146:34, :150:52
   assign io_memOut_4_bits_uop_pc = io_in_4_bits_uop_pc;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_memOut_4_bits_uop_inst_raw = io_in_4_bits_uop_inst_raw;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_memOut_4_bits_decode_is_lb = io_in_4_bits_decode_is_lb;	// backend/src/zaqal/backend/Dispatch.scala:8:7
@@ -4239,7 +4269,7 @@ module Dispatch(	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_memOut_4_bits_psrs3 = io_in_4_bits_psrs3;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_memOut_4_bits_pdest = io_in_4_bits_pdest;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_memOut_4_bits_snapshotIdx = io_in_4_bits_snapshotIdx;	// backend/src/zaqal/backend/Dispatch.scala:8:7
-  assign io_memOut_5_valid = _io_fpuOut_5_valid_T & is_mem_op_11;	// backend/src/zaqal/backend/Dispatch.scala:8:7, :138:82, :144:42, :148:60
+  assign io_memOut_5_valid = _io_fpuOut_5_valid_T & is_mem_op_11;	// backend/src/zaqal/backend/Dispatch.scala:8:7, :138:82, :146:34, :150:52
   assign io_memOut_5_bits_uop_pc = io_in_5_bits_uop_pc;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_memOut_5_bits_uop_inst_raw = io_in_5_bits_uop_inst_raw;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_memOut_5_bits_decode_is_lb = io_in_5_bits_decode_is_lb;	// backend/src/zaqal/backend/Dispatch.scala:8:7
@@ -4301,10 +4331,11 @@ module Dispatch(	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_memOut_5_bits_psrs3 = io_in_5_bits_psrs3;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_memOut_5_bits_pdest = io_in_5_bits_pdest;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_memOut_5_bits_snapshotIdx = io_in_5_bits_snapshotIdx;	// backend/src/zaqal/backend/Dispatch.scala:8:7
-  assign io_bruOut_0_valid = _io_fpuOut_0_valid_T & is_bru_op_6;	// backend/src/zaqal/backend/Dispatch.scala:8:7, :139:49, :144:42, :152:60
+  assign io_bruOut_0_valid = _io_fpuOut_0_valid_T & is_bru_op_6;	// backend/src/zaqal/backend/Dispatch.scala:8:7, :139:49, :146:34, :154:52
   assign io_bruOut_0_bits_uop_pc = io_in_0_bits_uop_pc;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_bruOut_0_bits_uop_pre_is_rvc = io_in_0_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_bruOut_0_bits_uop_is_predicted_taken = io_in_0_bits_uop_is_predicted_taken;	// backend/src/zaqal/backend/Dispatch.scala:8:7
+  assign io_bruOut_0_bits_decode_rs2_use = io_in_0_bits_decode_rs2_use;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_bruOut_0_bits_decode_is_addi = io_in_0_bits_decode_is_addi;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_bruOut_0_bits_decode_is_add = io_in_0_bits_decode_is_add;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_bruOut_0_bits_decode_is_mul = io_in_0_bits_decode_is_mul;	// backend/src/zaqal/backend/Dispatch.scala:8:7
@@ -4403,10 +4434,11 @@ module Dispatch(	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_bruOut_0_bits_psrs3 = io_in_0_bits_psrs3;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_bruOut_0_bits_pdest = io_in_0_bits_pdest;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_bruOut_0_bits_snapshotIdx = io_in_0_bits_snapshotIdx;	// backend/src/zaqal/backend/Dispatch.scala:8:7
-  assign io_bruOut_1_valid = _io_fpuOut_1_valid_T & is_bru_op_7;	// backend/src/zaqal/backend/Dispatch.scala:8:7, :139:49, :144:42, :152:60
+  assign io_bruOut_1_valid = _io_fpuOut_1_valid_T & is_bru_op_7;	// backend/src/zaqal/backend/Dispatch.scala:8:7, :139:49, :146:34, :154:52
   assign io_bruOut_1_bits_uop_pc = io_in_1_bits_uop_pc;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_bruOut_1_bits_uop_pre_is_rvc = io_in_1_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_bruOut_1_bits_uop_is_predicted_taken = io_in_1_bits_uop_is_predicted_taken;	// backend/src/zaqal/backend/Dispatch.scala:8:7
+  assign io_bruOut_1_bits_decode_rs2_use = io_in_1_bits_decode_rs2_use;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_bruOut_1_bits_decode_is_addi = io_in_1_bits_decode_is_addi;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_bruOut_1_bits_decode_is_add = io_in_1_bits_decode_is_add;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_bruOut_1_bits_decode_is_mul = io_in_1_bits_decode_is_mul;	// backend/src/zaqal/backend/Dispatch.scala:8:7
@@ -4505,10 +4537,11 @@ module Dispatch(	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_bruOut_1_bits_psrs3 = io_in_1_bits_psrs3;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_bruOut_1_bits_pdest = io_in_1_bits_pdest;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_bruOut_1_bits_snapshotIdx = io_in_1_bits_snapshotIdx;	// backend/src/zaqal/backend/Dispatch.scala:8:7
-  assign io_bruOut_2_valid = _io_fpuOut_2_valid_T & is_bru_op_8;	// backend/src/zaqal/backend/Dispatch.scala:8:7, :139:49, :144:42, :152:60
+  assign io_bruOut_2_valid = _io_fpuOut_2_valid_T & is_bru_op_8;	// backend/src/zaqal/backend/Dispatch.scala:8:7, :139:49, :146:34, :154:52
   assign io_bruOut_2_bits_uop_pc = io_in_2_bits_uop_pc;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_bruOut_2_bits_uop_pre_is_rvc = io_in_2_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_bruOut_2_bits_uop_is_predicted_taken = io_in_2_bits_uop_is_predicted_taken;	// backend/src/zaqal/backend/Dispatch.scala:8:7
+  assign io_bruOut_2_bits_decode_rs2_use = io_in_2_bits_decode_rs2_use;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_bruOut_2_bits_decode_is_addi = io_in_2_bits_decode_is_addi;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_bruOut_2_bits_decode_is_add = io_in_2_bits_decode_is_add;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_bruOut_2_bits_decode_is_mul = io_in_2_bits_decode_is_mul;	// backend/src/zaqal/backend/Dispatch.scala:8:7
@@ -4607,10 +4640,11 @@ module Dispatch(	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_bruOut_2_bits_psrs3 = io_in_2_bits_psrs3;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_bruOut_2_bits_pdest = io_in_2_bits_pdest;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_bruOut_2_bits_snapshotIdx = io_in_2_bits_snapshotIdx;	// backend/src/zaqal/backend/Dispatch.scala:8:7
-  assign io_bruOut_3_valid = _io_fpuOut_3_valid_T & is_bru_op_9;	// backend/src/zaqal/backend/Dispatch.scala:8:7, :139:49, :144:42, :152:60
+  assign io_bruOut_3_valid = _io_fpuOut_3_valid_T & is_bru_op_9;	// backend/src/zaqal/backend/Dispatch.scala:8:7, :139:49, :146:34, :154:52
   assign io_bruOut_3_bits_uop_pc = io_in_3_bits_uop_pc;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_bruOut_3_bits_uop_pre_is_rvc = io_in_3_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_bruOut_3_bits_uop_is_predicted_taken = io_in_3_bits_uop_is_predicted_taken;	// backend/src/zaqal/backend/Dispatch.scala:8:7
+  assign io_bruOut_3_bits_decode_rs2_use = io_in_3_bits_decode_rs2_use;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_bruOut_3_bits_decode_is_addi = io_in_3_bits_decode_is_addi;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_bruOut_3_bits_decode_is_add = io_in_3_bits_decode_is_add;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_bruOut_3_bits_decode_is_mul = io_in_3_bits_decode_is_mul;	// backend/src/zaqal/backend/Dispatch.scala:8:7
@@ -4709,10 +4743,11 @@ module Dispatch(	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_bruOut_3_bits_psrs3 = io_in_3_bits_psrs3;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_bruOut_3_bits_pdest = io_in_3_bits_pdest;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_bruOut_3_bits_snapshotIdx = io_in_3_bits_snapshotIdx;	// backend/src/zaqal/backend/Dispatch.scala:8:7
-  assign io_bruOut_4_valid = _io_fpuOut_4_valid_T & is_bru_op_10;	// backend/src/zaqal/backend/Dispatch.scala:8:7, :139:49, :144:42, :152:60
+  assign io_bruOut_4_valid = _io_fpuOut_4_valid_T & is_bru_op_10;	// backend/src/zaqal/backend/Dispatch.scala:8:7, :139:49, :146:34, :154:52
   assign io_bruOut_4_bits_uop_pc = io_in_4_bits_uop_pc;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_bruOut_4_bits_uop_pre_is_rvc = io_in_4_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_bruOut_4_bits_uop_is_predicted_taken = io_in_4_bits_uop_is_predicted_taken;	// backend/src/zaqal/backend/Dispatch.scala:8:7
+  assign io_bruOut_4_bits_decode_rs2_use = io_in_4_bits_decode_rs2_use;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_bruOut_4_bits_decode_is_addi = io_in_4_bits_decode_is_addi;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_bruOut_4_bits_decode_is_add = io_in_4_bits_decode_is_add;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_bruOut_4_bits_decode_is_mul = io_in_4_bits_decode_is_mul;	// backend/src/zaqal/backend/Dispatch.scala:8:7
@@ -4811,10 +4846,11 @@ module Dispatch(	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_bruOut_4_bits_psrs3 = io_in_4_bits_psrs3;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_bruOut_4_bits_pdest = io_in_4_bits_pdest;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_bruOut_4_bits_snapshotIdx = io_in_4_bits_snapshotIdx;	// backend/src/zaqal/backend/Dispatch.scala:8:7
-  assign io_bruOut_5_valid = _io_fpuOut_5_valid_T & is_bru_op_11;	// backend/src/zaqal/backend/Dispatch.scala:8:7, :139:49, :144:42, :152:60
+  assign io_bruOut_5_valid = _io_fpuOut_5_valid_T & is_bru_op_11;	// backend/src/zaqal/backend/Dispatch.scala:8:7, :139:49, :146:34, :154:52
   assign io_bruOut_5_bits_uop_pc = io_in_5_bits_uop_pc;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_bruOut_5_bits_uop_pre_is_rvc = io_in_5_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_bruOut_5_bits_uop_is_predicted_taken = io_in_5_bits_uop_is_predicted_taken;	// backend/src/zaqal/backend/Dispatch.scala:8:7
+  assign io_bruOut_5_bits_decode_rs2_use = io_in_5_bits_decode_rs2_use;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_bruOut_5_bits_decode_is_addi = io_in_5_bits_decode_is_addi;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_bruOut_5_bits_decode_is_add = io_in_5_bits_decode_is_add;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_bruOut_5_bits_decode_is_mul = io_in_5_bits_decode_is_mul;	// backend/src/zaqal/backend/Dispatch.scala:8:7
@@ -4913,7 +4949,7 @@ module Dispatch(	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_bruOut_5_bits_psrs3 = io_in_5_bits_psrs3;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_bruOut_5_bits_pdest = io_in_5_bits_pdest;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_bruOut_5_bits_snapshotIdx = io_in_5_bits_snapshotIdx;	// backend/src/zaqal/backend/Dispatch.scala:8:7
-  assign io_fpuOut_0_valid = _io_fpuOut_0_valid_T & is_fpu_op_6;	// backend/src/zaqal/backend/Dispatch.scala:8:7, :140:109, :144:42, :156:60
+  assign io_fpuOut_0_valid = _io_fpuOut_0_valid_T & is_fpu_op_6;	// backend/src/zaqal/backend/Dispatch.scala:8:7, :140:109, :146:34, :158:52
   assign io_fpuOut_0_bits_uop_pc = io_in_0_bits_uop_pc;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_fpuOut_0_bits_uop_inst_raw = io_in_0_bits_uop_inst_raw;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_fpuOut_0_bits_decode_is_lb = io_in_0_bits_decode_is_lb;	// backend/src/zaqal/backend/Dispatch.scala:8:7
@@ -4975,7 +5011,7 @@ module Dispatch(	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_fpuOut_0_bits_psrs3 = io_in_0_bits_psrs3;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_fpuOut_0_bits_pdest = io_in_0_bits_pdest;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_fpuOut_0_bits_snapshotIdx = io_in_0_bits_snapshotIdx;	// backend/src/zaqal/backend/Dispatch.scala:8:7
-  assign io_fpuOut_1_valid = _io_fpuOut_1_valid_T & is_fpu_op_7;	// backend/src/zaqal/backend/Dispatch.scala:8:7, :140:109, :144:42, :156:60
+  assign io_fpuOut_1_valid = _io_fpuOut_1_valid_T & is_fpu_op_7;	// backend/src/zaqal/backend/Dispatch.scala:8:7, :140:109, :146:34, :158:52
   assign io_fpuOut_1_bits_uop_pc = io_in_1_bits_uop_pc;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_fpuOut_1_bits_uop_inst_raw = io_in_1_bits_uop_inst_raw;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_fpuOut_1_bits_decode_is_lb = io_in_1_bits_decode_is_lb;	// backend/src/zaqal/backend/Dispatch.scala:8:7
@@ -5037,7 +5073,7 @@ module Dispatch(	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_fpuOut_1_bits_psrs3 = io_in_1_bits_psrs3;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_fpuOut_1_bits_pdest = io_in_1_bits_pdest;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_fpuOut_1_bits_snapshotIdx = io_in_1_bits_snapshotIdx;	// backend/src/zaqal/backend/Dispatch.scala:8:7
-  assign io_fpuOut_2_valid = _io_fpuOut_2_valid_T & is_fpu_op_8;	// backend/src/zaqal/backend/Dispatch.scala:8:7, :140:109, :144:42, :156:60
+  assign io_fpuOut_2_valid = _io_fpuOut_2_valid_T & is_fpu_op_8;	// backend/src/zaqal/backend/Dispatch.scala:8:7, :140:109, :146:34, :158:52
   assign io_fpuOut_2_bits_uop_pc = io_in_2_bits_uop_pc;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_fpuOut_2_bits_uop_inst_raw = io_in_2_bits_uop_inst_raw;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_fpuOut_2_bits_decode_is_lb = io_in_2_bits_decode_is_lb;	// backend/src/zaqal/backend/Dispatch.scala:8:7
@@ -5099,7 +5135,7 @@ module Dispatch(	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_fpuOut_2_bits_psrs3 = io_in_2_bits_psrs3;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_fpuOut_2_bits_pdest = io_in_2_bits_pdest;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_fpuOut_2_bits_snapshotIdx = io_in_2_bits_snapshotIdx;	// backend/src/zaqal/backend/Dispatch.scala:8:7
-  assign io_fpuOut_3_valid = _io_fpuOut_3_valid_T & is_fpu_op_9;	// backend/src/zaqal/backend/Dispatch.scala:8:7, :140:109, :144:42, :156:60
+  assign io_fpuOut_3_valid = _io_fpuOut_3_valid_T & is_fpu_op_9;	// backend/src/zaqal/backend/Dispatch.scala:8:7, :140:109, :146:34, :158:52
   assign io_fpuOut_3_bits_uop_pc = io_in_3_bits_uop_pc;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_fpuOut_3_bits_uop_inst_raw = io_in_3_bits_uop_inst_raw;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_fpuOut_3_bits_decode_is_lb = io_in_3_bits_decode_is_lb;	// backend/src/zaqal/backend/Dispatch.scala:8:7
@@ -5161,7 +5197,7 @@ module Dispatch(	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_fpuOut_3_bits_psrs3 = io_in_3_bits_psrs3;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_fpuOut_3_bits_pdest = io_in_3_bits_pdest;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_fpuOut_3_bits_snapshotIdx = io_in_3_bits_snapshotIdx;	// backend/src/zaqal/backend/Dispatch.scala:8:7
-  assign io_fpuOut_4_valid = _io_fpuOut_4_valid_T & is_fpu_op_10;	// backend/src/zaqal/backend/Dispatch.scala:8:7, :140:109, :144:42, :156:60
+  assign io_fpuOut_4_valid = _io_fpuOut_4_valid_T & is_fpu_op_10;	// backend/src/zaqal/backend/Dispatch.scala:8:7, :140:109, :146:34, :158:52
   assign io_fpuOut_4_bits_uop_pc = io_in_4_bits_uop_pc;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_fpuOut_4_bits_uop_inst_raw = io_in_4_bits_uop_inst_raw;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_fpuOut_4_bits_decode_is_lb = io_in_4_bits_decode_is_lb;	// backend/src/zaqal/backend/Dispatch.scala:8:7
@@ -5223,7 +5259,7 @@ module Dispatch(	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_fpuOut_4_bits_psrs3 = io_in_4_bits_psrs3;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_fpuOut_4_bits_pdest = io_in_4_bits_pdest;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_fpuOut_4_bits_snapshotIdx = io_in_4_bits_snapshotIdx;	// backend/src/zaqal/backend/Dispatch.scala:8:7
-  assign io_fpuOut_5_valid = _io_fpuOut_5_valid_T & is_fpu_op_11;	// backend/src/zaqal/backend/Dispatch.scala:8:7, :140:109, :144:42, :156:60
+  assign io_fpuOut_5_valid = _io_fpuOut_5_valid_T & is_fpu_op_11;	// backend/src/zaqal/backend/Dispatch.scala:8:7, :140:109, :146:34, :158:52
   assign io_fpuOut_5_bits_uop_pc = io_in_5_bits_uop_pc;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_fpuOut_5_bits_uop_inst_raw = io_in_5_bits_uop_inst_raw;	// backend/src/zaqal/backend/Dispatch.scala:8:7
   assign io_fpuOut_5_bits_decode_is_lb = io_in_5_bits_decode_is_lb;	// backend/src/zaqal/backend/Dispatch.scala:8:7

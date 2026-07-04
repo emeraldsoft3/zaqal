@@ -64,6 +64,9 @@
 module RenameTableWrapper(	// backend/src/zaqal/backend/RenameTableWrapper.scala:8:7
   input        clock,	// backend/src/zaqal/backend/RenameTableWrapper.scala:8:7
                reset,	// backend/src/zaqal/backend/RenameTableWrapper.scala:8:7
+               io_dec_0_rs1_use,	// backend/src/zaqal/backend/RenameTableWrapper.scala:9:14
+               io_dec_0_rs2_use,	// backend/src/zaqal/backend/RenameTableWrapper.scala:9:14
+               io_dec_0_rs3_use,	// backend/src/zaqal/backend/RenameTableWrapper.scala:9:14
   input  [4:0] io_dec_0_rs1,	// backend/src/zaqal/backend/RenameTableWrapper.scala:9:14
                io_dec_0_rs2,	// backend/src/zaqal/backend/RenameTableWrapper.scala:9:14
                io_dec_0_rs3,	// backend/src/zaqal/backend/RenameTableWrapper.scala:9:14
@@ -71,6 +74,9 @@ module RenameTableWrapper(	// backend/src/zaqal/backend/RenameTableWrapper.scala
                io_dec_0_rs2_is_fp,	// backend/src/zaqal/backend/RenameTableWrapper.scala:9:14
                io_dec_0_rs3_is_fp,	// backend/src/zaqal/backend/RenameTableWrapper.scala:9:14
                io_dec_0_rd_is_fp,	// backend/src/zaqal/backend/RenameTableWrapper.scala:9:14
+               io_dec_1_rs1_use,	// backend/src/zaqal/backend/RenameTableWrapper.scala:9:14
+               io_dec_1_rs2_use,	// backend/src/zaqal/backend/RenameTableWrapper.scala:9:14
+               io_dec_1_rs3_use,	// backend/src/zaqal/backend/RenameTableWrapper.scala:9:14
   input  [4:0] io_dec_1_rs1,	// backend/src/zaqal/backend/RenameTableWrapper.scala:9:14
                io_dec_1_rs2,	// backend/src/zaqal/backend/RenameTableWrapper.scala:9:14
                io_dec_1_rs3,	// backend/src/zaqal/backend/RenameTableWrapper.scala:9:14
@@ -78,6 +84,9 @@ module RenameTableWrapper(	// backend/src/zaqal/backend/RenameTableWrapper.scala
                io_dec_1_rs2_is_fp,	// backend/src/zaqal/backend/RenameTableWrapper.scala:9:14
                io_dec_1_rs3_is_fp,	// backend/src/zaqal/backend/RenameTableWrapper.scala:9:14
                io_dec_1_rd_is_fp,	// backend/src/zaqal/backend/RenameTableWrapper.scala:9:14
+               io_dec_2_rs1_use,	// backend/src/zaqal/backend/RenameTableWrapper.scala:9:14
+               io_dec_2_rs2_use,	// backend/src/zaqal/backend/RenameTableWrapper.scala:9:14
+               io_dec_2_rs3_use,	// backend/src/zaqal/backend/RenameTableWrapper.scala:9:14
   input  [4:0] io_dec_2_rs1,	// backend/src/zaqal/backend/RenameTableWrapper.scala:9:14
                io_dec_2_rs2,	// backend/src/zaqal/backend/RenameTableWrapper.scala:9:14
                io_dec_2_rs3,	// backend/src/zaqal/backend/RenameTableWrapper.scala:9:14
@@ -85,6 +94,9 @@ module RenameTableWrapper(	// backend/src/zaqal/backend/RenameTableWrapper.scala
                io_dec_2_rs2_is_fp,	// backend/src/zaqal/backend/RenameTableWrapper.scala:9:14
                io_dec_2_rs3_is_fp,	// backend/src/zaqal/backend/RenameTableWrapper.scala:9:14
                io_dec_2_rd_is_fp,	// backend/src/zaqal/backend/RenameTableWrapper.scala:9:14
+               io_dec_3_rs1_use,	// backend/src/zaqal/backend/RenameTableWrapper.scala:9:14
+               io_dec_3_rs2_use,	// backend/src/zaqal/backend/RenameTableWrapper.scala:9:14
+               io_dec_3_rs3_use,	// backend/src/zaqal/backend/RenameTableWrapper.scala:9:14
   input  [4:0] io_dec_3_rs1,	// backend/src/zaqal/backend/RenameTableWrapper.scala:9:14
                io_dec_3_rs2,	// backend/src/zaqal/backend/RenameTableWrapper.scala:9:14
                io_dec_3_rs3,	// backend/src/zaqal/backend/RenameTableWrapper.scala:9:14
@@ -92,6 +104,9 @@ module RenameTableWrapper(	// backend/src/zaqal/backend/RenameTableWrapper.scala
                io_dec_3_rs2_is_fp,	// backend/src/zaqal/backend/RenameTableWrapper.scala:9:14
                io_dec_3_rs3_is_fp,	// backend/src/zaqal/backend/RenameTableWrapper.scala:9:14
                io_dec_3_rd_is_fp,	// backend/src/zaqal/backend/RenameTableWrapper.scala:9:14
+               io_dec_4_rs1_use,	// backend/src/zaqal/backend/RenameTableWrapper.scala:9:14
+               io_dec_4_rs2_use,	// backend/src/zaqal/backend/RenameTableWrapper.scala:9:14
+               io_dec_4_rs3_use,	// backend/src/zaqal/backend/RenameTableWrapper.scala:9:14
   input  [4:0] io_dec_4_rs1,	// backend/src/zaqal/backend/RenameTableWrapper.scala:9:14
                io_dec_4_rs2,	// backend/src/zaqal/backend/RenameTableWrapper.scala:9:14
                io_dec_4_rs3,	// backend/src/zaqal/backend/RenameTableWrapper.scala:9:14
@@ -99,6 +114,9 @@ module RenameTableWrapper(	// backend/src/zaqal/backend/RenameTableWrapper.scala
                io_dec_4_rs2_is_fp,	// backend/src/zaqal/backend/RenameTableWrapper.scala:9:14
                io_dec_4_rs3_is_fp,	// backend/src/zaqal/backend/RenameTableWrapper.scala:9:14
                io_dec_4_rd_is_fp,	// backend/src/zaqal/backend/RenameTableWrapper.scala:9:14
+               io_dec_5_rs1_use,	// backend/src/zaqal/backend/RenameTableWrapper.scala:9:14
+               io_dec_5_rs2_use,	// backend/src/zaqal/backend/RenameTableWrapper.scala:9:14
+               io_dec_5_rs3_use,	// backend/src/zaqal/backend/RenameTableWrapper.scala:9:14
   input  [4:0] io_dec_5_rs1,	// backend/src/zaqal/backend/RenameTableWrapper.scala:9:14
                io_dec_5_rs2,	// backend/src/zaqal/backend/RenameTableWrapper.scala:9:14
                io_dec_5_rs3,	// backend/src/zaqal/backend/RenameTableWrapper.scala:9:14
@@ -381,41 +399,113 @@ module RenameTableWrapper(	// backend/src/zaqal/backend/RenameTableWrapper.scala
     .io_snptRestoreIdx     (io_snptRestoreIdx)
   );
   assign io_psrs1_0 =
-    io_dec_0_rs1_is_fp ? _fpRat_io_readPorts_0_0_data : _intRat_io_readPorts_0_0_data;	// backend/src/zaqal/backend/RenameTableWrapper.scala:8:7, :38:22, :39:22, :72:23
+    io_dec_0_rs1_use
+      ? (io_dec_0_rs1_is_fp
+           ? _fpRat_io_readPorts_0_0_data
+           : _intRat_io_readPorts_0_0_data)
+      : 8'h0;	// backend/src/zaqal/backend/RenameTableWrapper.scala:8:7, :38:22, :39:22, :72:{23,46}
   assign io_psrs1_1 =
-    io_dec_1_rs1_is_fp ? _fpRat_io_readPorts_1_0_data : _intRat_io_readPorts_1_0_data;	// backend/src/zaqal/backend/RenameTableWrapper.scala:8:7, :38:22, :39:22, :72:23
+    io_dec_1_rs1_use
+      ? (io_dec_1_rs1_is_fp
+           ? _fpRat_io_readPorts_1_0_data
+           : _intRat_io_readPorts_1_0_data)
+      : 8'h0;	// backend/src/zaqal/backend/RenameTableWrapper.scala:8:7, :38:22, :39:22, :72:{23,46}
   assign io_psrs1_2 =
-    io_dec_2_rs1_is_fp ? _fpRat_io_readPorts_2_0_data : _intRat_io_readPorts_2_0_data;	// backend/src/zaqal/backend/RenameTableWrapper.scala:8:7, :38:22, :39:22, :72:23
+    io_dec_2_rs1_use
+      ? (io_dec_2_rs1_is_fp
+           ? _fpRat_io_readPorts_2_0_data
+           : _intRat_io_readPorts_2_0_data)
+      : 8'h0;	// backend/src/zaqal/backend/RenameTableWrapper.scala:8:7, :38:22, :39:22, :72:{23,46}
   assign io_psrs1_3 =
-    io_dec_3_rs1_is_fp ? _fpRat_io_readPorts_3_0_data : _intRat_io_readPorts_3_0_data;	// backend/src/zaqal/backend/RenameTableWrapper.scala:8:7, :38:22, :39:22, :72:23
+    io_dec_3_rs1_use
+      ? (io_dec_3_rs1_is_fp
+           ? _fpRat_io_readPorts_3_0_data
+           : _intRat_io_readPorts_3_0_data)
+      : 8'h0;	// backend/src/zaqal/backend/RenameTableWrapper.scala:8:7, :38:22, :39:22, :72:{23,46}
   assign io_psrs1_4 =
-    io_dec_4_rs1_is_fp ? _fpRat_io_readPorts_4_0_data : _intRat_io_readPorts_4_0_data;	// backend/src/zaqal/backend/RenameTableWrapper.scala:8:7, :38:22, :39:22, :72:23
+    io_dec_4_rs1_use
+      ? (io_dec_4_rs1_is_fp
+           ? _fpRat_io_readPorts_4_0_data
+           : _intRat_io_readPorts_4_0_data)
+      : 8'h0;	// backend/src/zaqal/backend/RenameTableWrapper.scala:8:7, :38:22, :39:22, :72:{23,46}
   assign io_psrs1_5 =
-    io_dec_5_rs1_is_fp ? _fpRat_io_readPorts_5_0_data : _intRat_io_readPorts_5_0_data;	// backend/src/zaqal/backend/RenameTableWrapper.scala:8:7, :38:22, :39:22, :72:23
+    io_dec_5_rs1_use
+      ? (io_dec_5_rs1_is_fp
+           ? _fpRat_io_readPorts_5_0_data
+           : _intRat_io_readPorts_5_0_data)
+      : 8'h0;	// backend/src/zaqal/backend/RenameTableWrapper.scala:8:7, :38:22, :39:22, :72:{23,46}
   assign io_psrs2_0 =
-    io_dec_0_rs2_is_fp ? _fpRat_io_readPorts_0_1_data : _intRat_io_readPorts_0_1_data;	// backend/src/zaqal/backend/RenameTableWrapper.scala:8:7, :38:22, :39:22, :73:23
+    io_dec_0_rs2_use
+      ? (io_dec_0_rs2_is_fp
+           ? _fpRat_io_readPorts_0_1_data
+           : _intRat_io_readPorts_0_1_data)
+      : 8'h0;	// backend/src/zaqal/backend/RenameTableWrapper.scala:8:7, :38:22, :39:22, :72:23, :73:{23,46}
   assign io_psrs2_1 =
-    io_dec_1_rs2_is_fp ? _fpRat_io_readPorts_1_1_data : _intRat_io_readPorts_1_1_data;	// backend/src/zaqal/backend/RenameTableWrapper.scala:8:7, :38:22, :39:22, :73:23
+    io_dec_1_rs2_use
+      ? (io_dec_1_rs2_is_fp
+           ? _fpRat_io_readPorts_1_1_data
+           : _intRat_io_readPorts_1_1_data)
+      : 8'h0;	// backend/src/zaqal/backend/RenameTableWrapper.scala:8:7, :38:22, :39:22, :72:23, :73:{23,46}
   assign io_psrs2_2 =
-    io_dec_2_rs2_is_fp ? _fpRat_io_readPorts_2_1_data : _intRat_io_readPorts_2_1_data;	// backend/src/zaqal/backend/RenameTableWrapper.scala:8:7, :38:22, :39:22, :73:23
+    io_dec_2_rs2_use
+      ? (io_dec_2_rs2_is_fp
+           ? _fpRat_io_readPorts_2_1_data
+           : _intRat_io_readPorts_2_1_data)
+      : 8'h0;	// backend/src/zaqal/backend/RenameTableWrapper.scala:8:7, :38:22, :39:22, :72:23, :73:{23,46}
   assign io_psrs2_3 =
-    io_dec_3_rs2_is_fp ? _fpRat_io_readPorts_3_1_data : _intRat_io_readPorts_3_1_data;	// backend/src/zaqal/backend/RenameTableWrapper.scala:8:7, :38:22, :39:22, :73:23
+    io_dec_3_rs2_use
+      ? (io_dec_3_rs2_is_fp
+           ? _fpRat_io_readPorts_3_1_data
+           : _intRat_io_readPorts_3_1_data)
+      : 8'h0;	// backend/src/zaqal/backend/RenameTableWrapper.scala:8:7, :38:22, :39:22, :72:23, :73:{23,46}
   assign io_psrs2_4 =
-    io_dec_4_rs2_is_fp ? _fpRat_io_readPorts_4_1_data : _intRat_io_readPorts_4_1_data;	// backend/src/zaqal/backend/RenameTableWrapper.scala:8:7, :38:22, :39:22, :73:23
+    io_dec_4_rs2_use
+      ? (io_dec_4_rs2_is_fp
+           ? _fpRat_io_readPorts_4_1_data
+           : _intRat_io_readPorts_4_1_data)
+      : 8'h0;	// backend/src/zaqal/backend/RenameTableWrapper.scala:8:7, :38:22, :39:22, :72:23, :73:{23,46}
   assign io_psrs2_5 =
-    io_dec_5_rs2_is_fp ? _fpRat_io_readPorts_5_1_data : _intRat_io_readPorts_5_1_data;	// backend/src/zaqal/backend/RenameTableWrapper.scala:8:7, :38:22, :39:22, :73:23
+    io_dec_5_rs2_use
+      ? (io_dec_5_rs2_is_fp
+           ? _fpRat_io_readPorts_5_1_data
+           : _intRat_io_readPorts_5_1_data)
+      : 8'h0;	// backend/src/zaqal/backend/RenameTableWrapper.scala:8:7, :38:22, :39:22, :72:23, :73:{23,46}
   assign io_psrs3_0 =
-    io_dec_0_rs3_is_fp ? _fpRat_io_readPorts_0_2_data : _intRat_io_readPorts_0_2_data;	// backend/src/zaqal/backend/RenameTableWrapper.scala:8:7, :38:22, :39:22, :74:23
+    io_dec_0_rs3_use
+      ? (io_dec_0_rs3_is_fp
+           ? _fpRat_io_readPorts_0_2_data
+           : _intRat_io_readPorts_0_2_data)
+      : 8'h0;	// backend/src/zaqal/backend/RenameTableWrapper.scala:8:7, :38:22, :39:22, :72:23, :74:{23,46}
   assign io_psrs3_1 =
-    io_dec_1_rs3_is_fp ? _fpRat_io_readPorts_1_2_data : _intRat_io_readPorts_1_2_data;	// backend/src/zaqal/backend/RenameTableWrapper.scala:8:7, :38:22, :39:22, :74:23
+    io_dec_1_rs3_use
+      ? (io_dec_1_rs3_is_fp
+           ? _fpRat_io_readPorts_1_2_data
+           : _intRat_io_readPorts_1_2_data)
+      : 8'h0;	// backend/src/zaqal/backend/RenameTableWrapper.scala:8:7, :38:22, :39:22, :72:23, :74:{23,46}
   assign io_psrs3_2 =
-    io_dec_2_rs3_is_fp ? _fpRat_io_readPorts_2_2_data : _intRat_io_readPorts_2_2_data;	// backend/src/zaqal/backend/RenameTableWrapper.scala:8:7, :38:22, :39:22, :74:23
+    io_dec_2_rs3_use
+      ? (io_dec_2_rs3_is_fp
+           ? _fpRat_io_readPorts_2_2_data
+           : _intRat_io_readPorts_2_2_data)
+      : 8'h0;	// backend/src/zaqal/backend/RenameTableWrapper.scala:8:7, :38:22, :39:22, :72:23, :74:{23,46}
   assign io_psrs3_3 =
-    io_dec_3_rs3_is_fp ? _fpRat_io_readPorts_3_2_data : _intRat_io_readPorts_3_2_data;	// backend/src/zaqal/backend/RenameTableWrapper.scala:8:7, :38:22, :39:22, :74:23
+    io_dec_3_rs3_use
+      ? (io_dec_3_rs3_is_fp
+           ? _fpRat_io_readPorts_3_2_data
+           : _intRat_io_readPorts_3_2_data)
+      : 8'h0;	// backend/src/zaqal/backend/RenameTableWrapper.scala:8:7, :38:22, :39:22, :72:23, :74:{23,46}
   assign io_psrs3_4 =
-    io_dec_4_rs3_is_fp ? _fpRat_io_readPorts_4_2_data : _intRat_io_readPorts_4_2_data;	// backend/src/zaqal/backend/RenameTableWrapper.scala:8:7, :38:22, :39:22, :74:23
+    io_dec_4_rs3_use
+      ? (io_dec_4_rs3_is_fp
+           ? _fpRat_io_readPorts_4_2_data
+           : _intRat_io_readPorts_4_2_data)
+      : 8'h0;	// backend/src/zaqal/backend/RenameTableWrapper.scala:8:7, :38:22, :39:22, :72:23, :74:{23,46}
   assign io_psrs3_5 =
-    io_dec_5_rs3_is_fp ? _fpRat_io_readPorts_5_2_data : _intRat_io_readPorts_5_2_data;	// backend/src/zaqal/backend/RenameTableWrapper.scala:8:7, :38:22, :39:22, :74:23
+    io_dec_5_rs3_use
+      ? (io_dec_5_rs3_is_fp
+           ? _fpRat_io_readPorts_5_2_data
+           : _intRat_io_readPorts_5_2_data)
+      : 8'h0;	// backend/src/zaqal/backend/RenameTableWrapper.scala:8:7, :38:22, :39:22, :72:23, :74:{23,46}
   assign io_old_pdest_0 =
     io_dec_0_rd_is_fp ? _fpRat_io_old_pdest_0 : _intRat_io_old_pdest_0;	// backend/src/zaqal/backend/RenameTableWrapper.scala:8:7, :38:22, :39:22, :85:27
   assign io_old_pdest_1 =

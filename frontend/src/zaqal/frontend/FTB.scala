@@ -7,10 +7,10 @@ import zaqal.common._
 
 class FTBEntry(implicit val p: Parameters) extends Bundle with HasZaqalParameter {
   val valid            = Bool()
-  val tag              = UInt(53.W) // Tag size = 64 - indexWidth - offsetWidth = 64 - 6 - 5 = 53
+  val tag              = UInt((xLen - log2Up(ftbEntries) - log2Up(fetchWidth * 4)).W)
   val target           = UInt(xLen.W)
   val br_type          = UInt(2.W)  // 0: cond, 1: jal, 2: jalr, 3: call
-  val offset           = UInt(4.W)  // Instruction offset within fetch packet (0-15)
+  val offset           = UInt((log2Up(fetchWidth * 4) - 1).W)  // Instruction offset within fetch packet
   val taken            = Bool()     // Direction prediction
 }
 

@@ -266,4 +266,14 @@ class Decoder(implicit val p: Parameters) extends Module with HasZaqalParameter 
   io.out.rs3_is_fp := any_fma
   io.out.rd_is_fp  := io.out.is_fload || any_fma || (is_fp_op && !(io.out.is_fcvt_f2i || io.out.is_fmv_x_w || 
                                                                   io.out.is_feq || io.out.is_flt || io.out.is_fle || io.out.is_fclass))
+
+  // Operand Usage Flags
+  val is_r_type = (opcode === "b0110011".U)
+  val is_r_type_32 = (opcode === "b0111011".U)
+  val is_fp_fma = io.out.is_fmadd || io.out.is_fmsub || io.out.is_fnmsub || io.out.is_fnmadd
+  val is_atomic_rs2 = io.out.is_atomic && !io.out.is_lr
+
+  io.out.rs1_use := !(io.out.is_lui || io.out.is_auipc || io.out.is_jal)
+  io.out.rs2_use := is_r_type || is_r_type_32 || io.out.is_branch || io.out.is_store || io.out.is_fstore || is_atomic_rs2 || is_fp_fma || (is_fp_op && fp_r_type)
+  io.out.rs3_use := any_fma
 }

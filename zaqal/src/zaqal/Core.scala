@@ -36,6 +36,8 @@ class Core(implicit val p: Parameters) extends Module with HasZaqalParameter {
     val cycle_count     = Output(UInt(64.W))
     val regs            = Output(Vec(phyRegs, UInt(xLen.W)))
     val fp_regs         = Output(Vec(phyRegs, UInt(fLen.W)))
+    val debug_int_rat   = Output(Vec(32, UInt(phyRegIdxWidth.W)))
+    val debug_fp_rat    = Output(Vec(32, UInt(phyRegIdxWidth.W)))
   })) else None
 
   // Cycle Counter logic
@@ -50,9 +52,7 @@ class Core(implicit val p: Parameters) extends Module with HasZaqalParameter {
   for (i <- 0 until decodeWidth) {
     backend.io.dispatch(i) <> frontend.io.dispatch(i)
   }
-  val r_redirect = RegInit(0.U.asTypeOf(new BPURedirect))
-  r_redirect := backend.io.redirect
-  frontend.io.redirect := r_redirect
+  frontend.io.redirect := backend.io.redirect
   backend.io.debug_cycle := cycle_reg
 
   // Metadata access (XiangShan style) - Tie off for now
@@ -80,6 +80,8 @@ class Core(implicit val p: Parameters) extends Module with HasZaqalParameter {
     d.cycle_count     := cycle_reg
     d.regs            := backend.io.debug_regs
     d.fp_regs         := backend.io.debug_fp_regs
+    d.debug_int_rat   := backend.io.debug_int_rat
+    d.debug_fp_rat    := backend.io.debug_fp_rat
   } else {
     io.debug_sum.get := backend.io.debug_regs.reduce(_ ^ _) ^ backend.io.debug_fp_regs.reduce(_ ^ _) ^ frontend.io.debug_ftq_pc
   }

@@ -332,7 +332,7 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
 
   alu(0).io.src1 := src0_1
   alu(0).io.src2 := Mux(exe_dec0.is_fused_lui_addi, (exe_dec0.imm + exe_uop_raw0.pc.asSInt).asUInt,
-                 Mux(exe_dec0.is_addi || exe_dec0.is_jalr, exe_dec0.imm.asUInt, src0_2))
+                 Mux(!exe_dec0.rs2_use, exe_dec0.imm.asUInt, src0_2))
   alu(0).io.pc   := exe_uop_raw0.pc
   alu(0).io.dec  := exe_dec0
 
@@ -349,7 +349,7 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
 
   alu(1).io.src1 := src1_1
   alu(1).io.src2 := Mux(exe_dec1.is_fused_lui_addi, (exe_dec1.imm + exe_uop_raw1.pc.asSInt).asUInt,
-                 Mux(exe_dec1.is_addi || exe_dec1.is_jalr, exe_dec1.imm.asUInt, src1_2))
+                 Mux(!exe_dec1.rs2_use, exe_dec1.imm.asUInt, src1_2))
   alu(1).io.pc   := exe_uop_raw1.pc
   alu(1).io.dec  := exe_dec1
 

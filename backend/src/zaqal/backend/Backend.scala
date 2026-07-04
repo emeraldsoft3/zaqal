@@ -17,6 +17,8 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
     val redirect = Output(new BPURedirect)
     val debug_regs = Output(Vec(phyRegs, UInt(xLen.W)))
     val debug_fp_regs = Output(Vec(phyRegs, UInt(fLen.W)))
+    val debug_int_rat = Output(Vec(32, UInt(phyRegIdxWidth.W)))
+    val debug_fp_rat  = Output(Vec(32, UInt(phyRegIdxWidth.W)))
     val debug_cycle = Input(UInt(64.W))
   })
 
@@ -364,5 +366,7 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
   io.redirect := exec.io.redirect
   io.debug_regs := exec.io.debug_regs
   io.debug_fp_regs := exec.io.debug_fp_regs
+  io.debug_int_rat := rat.io.debug_int_rat
+  io.debug_fp_rat  := rat.io.debug_fp_rat
   exec.io.debug_cycle := io.debug_cycle
 }

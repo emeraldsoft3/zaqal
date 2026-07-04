@@ -101,5 +101,5 @@ class RenameTable(val numLogicalRegs: Int, val isFP: Boolean = false)(implicit v
     }
   }
   
-  io.debug_rat := arch_table
+  io.debug_rat := spec_table
 }

@@ -69,9 +69,9 @@ class RenameTableWrapper(implicit val p: Parameters) extends Module with HasZaqa
     fpRat.io.readPorts(i)(1).addr := io.dec(i).rs2
     fpRat.io.readPorts(i)(2).addr := io.dec(i).rs3
 
-    io.psrs1(i) := Mux(io.dec(i).rs1_is_fp, fpRat.io.readPorts(i)(0).data, intRat.io.readPorts(i)(0).data)
-    io.psrs2(i) := Mux(io.dec(i).rs2_is_fp, fpRat.io.readPorts(i)(1).data, intRat.io.readPorts(i)(1).data)
-    io.psrs3(i) := Mux(io.dec(i).rs3_is_fp, fpRat.io.readPorts(i)(2).data, intRat.io.readPorts(i)(2).data)
+    io.psrs1(i) := Mux(io.dec(i).rs1_use, Mux(io.dec(i).rs1_is_fp, fpRat.io.readPorts(i)(0).data, intRat.io.readPorts(i)(0).data), 0.U)
+    io.psrs2(i) := Mux(io.dec(i).rs2_use, Mux(io.dec(i).rs2_is_fp, fpRat.io.readPorts(i)(1).data, intRat.io.readPorts(i)(1).data), 0.U)
+    io.psrs3(i) := Mux(io.dec(i).rs3_use, Mux(io.dec(i).rs3_is_fp, fpRat.io.readPorts(i)(2).data, intRat.io.readPorts(i)(2).data), 0.U)
 
     // 2. Route Rename Ports (Speculative Update)
     intRat.io.renamePorts(i).wen  := io.renamePorts(i).wen && !io.dec(i).rd_is_fp

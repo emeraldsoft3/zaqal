@@ -122,35 +122,35 @@ module Multiplier(	// backend/src/zaqal/backend/fu/Multiplier.scala:8:7
         end	// backend/src/zaqal/backend/fu/Multiplier.scala:8:7
         r_src1 = {_RANDOM[5'h0], _RANDOM[5'h1]};	// backend/src/zaqal/backend/fu/Multiplier.scala:8:7, :17:23
         r_src2 = {_RANDOM[5'h2], _RANDOM[5'h3]};	// backend/src/zaqal/backend/fu/Multiplier.scala:8:7, :18:23
-        r_dec_is_mul = _RANDOM[5'h4][3];	// backend/src/zaqal/backend/fu/Multiplier.scala:8:7, :19:19
-        r_dec_is_mulh = _RANDOM[5'h4][4];	// backend/src/zaqal/backend/fu/Multiplier.scala:8:7, :19:19
-        r_dec_is_mulhsu = _RANDOM[5'h4][5];	// backend/src/zaqal/backend/fu/Multiplier.scala:8:7, :19:19
-        r_dec_is_mulhu = _RANDOM[5'h4][6];	// backend/src/zaqal/backend/fu/Multiplier.scala:8:7, :19:19
-        r_dec_is_mulw = _RANDOM[5'h4][7];	// backend/src/zaqal/backend/fu/Multiplier.scala:8:7, :19:19
+        r_dec_is_mul = _RANDOM[5'h4][6];	// backend/src/zaqal/backend/fu/Multiplier.scala:8:7, :19:19
+        r_dec_is_mulh = _RANDOM[5'h4][7];	// backend/src/zaqal/backend/fu/Multiplier.scala:8:7, :19:19
+        r_dec_is_mulhsu = _RANDOM[5'h4][8];	// backend/src/zaqal/backend/fu/Multiplier.scala:8:7, :19:19
+        r_dec_is_mulhu = _RANDOM[5'h4][9];	// backend/src/zaqal/backend/fu/Multiplier.scala:8:7, :19:19
+        r_dec_is_mulw = _RANDOM[5'h4][10];	// backend/src/zaqal/backend/fu/Multiplier.scala:8:7, :19:19
         r_full_mul_ss =
-          {_RANDOM[5'hD][31:17],
+          {_RANDOM[5'hD][31:20],
            _RANDOM[5'hE],
            _RANDOM[5'hF],
            _RANDOM[5'h10],
-           _RANDOM[5'h11][16:0]};	// backend/src/zaqal/backend/fu/Multiplier.scala:8:7, :33:30
+           _RANDOM[5'h11][19:0]};	// backend/src/zaqal/backend/fu/Multiplier.scala:8:7, :33:30
         r_full_mul_uu =
-          {_RANDOM[5'h11][31:17],
+          {_RANDOM[5'h11][31:20],
            _RANDOM[5'h12],
            _RANDOM[5'h13],
            _RANDOM[5'h14],
-           _RANDOM[5'h15][16:0]};	// backend/src/zaqal/backend/fu/Multiplier.scala:8:7, :33:30, :34:30
+           _RANDOM[5'h15][19:0]};	// backend/src/zaqal/backend/fu/Multiplier.scala:8:7, :33:30, :34:30
         r_full_mul_hsu =
-          {_RANDOM[5'h15][31:17],
+          {_RANDOM[5'h15][31:20],
            _RANDOM[5'h16],
            _RANDOM[5'h17],
            _RANDOM[5'h18],
-           _RANDOM[5'h19][17:0]};	// backend/src/zaqal/backend/fu/Multiplier.scala:8:7, :34:30, :35:31
-        r_mulw_res = {_RANDOM[5'h19][31:18], _RANDOM[5'h1A][17:0]};	// backend/src/zaqal/backend/fu/Multiplier.scala:8:7, :35:31, :36:27
-        r_dec_stage2_is_mul = _RANDOM[5'h1A][21];	// backend/src/zaqal/backend/fu/Multiplier.scala:8:7, :36:27, :37:29
-        r_dec_stage2_is_mulh = _RANDOM[5'h1A][22];	// backend/src/zaqal/backend/fu/Multiplier.scala:8:7, :36:27, :37:29
-        r_dec_stage2_is_mulhsu = _RANDOM[5'h1A][23];	// backend/src/zaqal/backend/fu/Multiplier.scala:8:7, :36:27, :37:29
-        r_dec_stage2_is_mulhu = _RANDOM[5'h1A][24];	// backend/src/zaqal/backend/fu/Multiplier.scala:8:7, :36:27, :37:29
-        r_dec_stage2_is_mulw = _RANDOM[5'h1A][25];	// backend/src/zaqal/backend/fu/Multiplier.scala:8:7, :36:27, :37:29
+           _RANDOM[5'h19][20:0]};	// backend/src/zaqal/backend/fu/Multiplier.scala:8:7, :34:30, :35:31
+        r_mulw_res = {_RANDOM[5'h19][31:21], _RANDOM[5'h1A][20:0]};	// backend/src/zaqal/backend/fu/Multiplier.scala:8:7, :35:31, :36:27
+        r_dec_stage2_is_mul = _RANDOM[5'h1A][27];	// backend/src/zaqal/backend/fu/Multiplier.scala:8:7, :36:27, :37:29
+        r_dec_stage2_is_mulh = _RANDOM[5'h1A][28];	// backend/src/zaqal/backend/fu/Multiplier.scala:8:7, :36:27, :37:29
+        r_dec_stage2_is_mulhsu = _RANDOM[5'h1A][29];	// backend/src/zaqal/backend/fu/Multiplier.scala:8:7, :36:27, :37:29
+        r_dec_stage2_is_mulhu = _RANDOM[5'h1A][30];	// backend/src/zaqal/backend/fu/Multiplier.scala:8:7, :36:27, :37:29
+        r_dec_stage2_is_mulw = _RANDOM[5'h1A][31];	// backend/src/zaqal/backend/fu/Multiplier.scala:8:7, :36:27, :37:29
       `endif // RANDOMIZE_REG_INIT
     end // initial
     `ifdef FIRRTL_AFTER_INITIAL	// backend/src/zaqal/backend/fu/Multiplier.scala:8:7
