@@ -26,36 +26,57 @@ class ICache(implicit val p: Parameters) extends Module with HasZaqalParameter {
       println(s"[ICache] Loaded ${insts.length} instructions from $path")
       insts
     } else {
-      println(s"[ICache] Warning: Using rich branch stress-test program with nested loops and alternating branches.")
-      Seq(
-        "h00c00093".U, // 0x00: addi x1, x0, 12   (Outer loop counter: x1 = 12)
-        "h00000213".U, // 0x04: addi x4, x0, 0    (Accumulator x4 = 0)
-        "h00000313".U, // 0x08: addi x6, x0, 0    (Accumulator path A: x6 = 0)
-        "h00000393".U, // 0x0c: addi x7, x0, 0    (Accumulator path B: x7 = 0)
-        "h00000413".U, // 0x10: addi x8, x0, 0    (Accumulator path C: x8 = 0)
-        "h00300113".U, // 0x14: addi x2, x0, 3    (Middle loop limit: x2 = 3)
-        "h00200193".U, // 0x18: addi x3, x0, 2    (Inner loop limit: x3 = 2)
-        "h00120233".U, // 0x1c: add x4, x4, x1    (Accumulate x4 += x1)
-        "hfff18193".U, // 0x20: addi x3, x3, -1   (Decrement inner counter)
-        "hfe019ce3".U, // 0x24: bne x3, x0, -8    (If x3 != 0, branch to 0x1c)
-        "hfff10113".U, // 0x28: addi x2, x2, -1   (Decrement middle counter)
-        "hfe0116e3".U, // 0x2c: bne x2, x0, -20   (If x2 != 0, branch to 0x18)
-        "h0010f493".U, // 0x30: andi x9, x1, 1    (x9 = x1 & 1)
-        "h00048663".U, // 0x34: beq x9, x0, 12    (If x9 == 0, branch to 0x40)
-        "h00530313".U, // 0x38: addi x6, x6, 5    (Odd path: x6 += 5)
-        "h0080006f".U, // 0x3c: jal x0, 8         (Jump to 0x44)
-        "h00a38393".U, // 0x40: addi x7, x7, 10   (Even path: x7 += 10)
-        "h00600513".U, // 0x44: addi x10, x0, 6   (x10 = 6)
-        "h00a0c663".U, // 0x48: blt x1, x10, 12   (If x1 < 6, branch to 0x54)
-        "h01440413".U, // 0x4c: addi x8, x8, 20   (Upper path: x8 += 20)
-        "h0080006f".U, // 0x50: jal x0, 8         (Jump to 0x58)
-        "h00140413".U, // 0x54: addi x8, x8, 1    (Lower path: x8 += 1)
-        "hfff08093".U, // 0x58: addi x1, x1, -1   (Decrement outer counter)
-        "hfc009ce3".U, // 0x5c: bne x1, x0, -72   (If x1 != 0, branch to 0x14)
-        "h06300613".U  // 0x60: addi x12, x0, 99  (Done marker: x12 = 99)
-      ) ++ Seq.fill(80)("h00000013".U) ++ Seq(
-        "h0000006f".U  // Halt loop
-      )
+      val useTageTest = true // Set to true to run the TAGE/ITTAGE stress test
+      if (useTageTest) {
+        println(s"[ICache] Warning: Using TAGE & ITTAGE stress-test program with alternating conditional branch and indirect branch.")
+        Seq(
+          "h00a00093".U, // 0x00: addi x1, x0, 10   (Outer loop counter: x1 = 10)
+          "h00000293".U, // 0x04: addi x5, x0, 0    (Alternating index counter: x5 = 0)
+          "h00628293".U, // 0x08: addi x5, x5, 6    (Modify counter by adding 6)
+          "h0032f713".U, // 0x0c: andi x14, x5, 3   (x14 = x5 % 4; sequence: 2, 0, 2, 0...)
+          "h00070463".U, // 0x10: beq x14, x0, 8    (Taken if x14 == 0; Jumps to 0x18)
+          "h00100793".U, // 0x14: addi x15, x0, 1   (Executed only on odd iterations)
+          "h00271893".U, // 0x18: slli x17, x14, 2  (x17 = x14 * 4; alternates between 0 and 8)
+          "h0140026f".U, // 0x1c: jal x4, 20        (Jal to helper at 0x30, link address 0x20 saved in x4)
+          "h00a00793".U, // 0x20: addi x15, x0, 10  (Target A: Executed if x14 == 0)
+          "h0180006f".U, // 0x24: jal x0, 24        (Jump to Loop End at 0x3c)
+          "h01400793".U, // 0x28: addi x15, x0, 20  (Target B: Executed if x14 == 2)
+          "h0100006f".U, // 0x2c: jal x0, 16        (Jump to Loop End at 0x3c)
+          "h01120233".U, // 0x30: add x4, x4, x17   (Add offset: x4 = 0x20 + x17)
+          "h000200e7".U, // 0x34: jalr x1, x4, 0    (Dynamic indirect jump to Target A or B)
+          "hfff08093".U, // 0x38: addi x1, x1, -1   (Decrement outer loop counter)
+          "hfc0096e3".U, // 0x3c: bne x1, x0, -52   (If x1 != 0, branch to Loop Start at 0x08)
+          "h06300613".U  // 0x40: addi x12, x0, 99  (Done marker: x12 = 99)
+        ) ++ Seq.fill(80)("h00000013".U) ++ Seq(
+          "h0000006f".U  // Halt loop
+        )
+      } else {
+        println(s"[ICache] Warning: Using rich branch stress-test program with nested loops and alternating branches.")
+        Seq(
+          "h00a00093".U, // 0x00: addi x1, x0, 10   (Outer loop counter: x1 = 10) p32
+          "h00200113".U, // 0x04: addi x2, x0, 2    (Inner loop limit: x2 = 2) p33
+          "h00000193".U, // 0x08: addi x3, x0, 0    (Accumulator: x3 = 0)
+          "h00000213".U, // 0x0c: addi x4, x0, 0    (Outer accumulator: x4 = 0)
+          "h00000693".U, // 0x10: addi x13, x0, 0   (Alternating counter: x13 = 0) p36
+          "h00120233".U, // 0x14: add x4, x4, x1    (Outer loop logic: x4 += x1) p37=10
+          "h00000293".U, // 0x18: addi x5, x0, 0    (Inner loop counter: x5 = 0)
+          "h004181b3".U, // 0x1c: add x3, x3, x4    (Inner loop accumulator: x3 += x4) p39=10
+          "h00128293".U, // 0x20: addi x5, x5, 1    (Increment inner counter) p40 =1
+          "hfe229ce3".U, // 0x24: bne x5, x2, -8     (If x5 != x2, branch to 0x1c) 
+          "h00168693".U, // 0x28: addi x13, x13, 1  (Increment alternating counter) p41
+          "h0016f713".U, // 0x2c: andi x14, x13, 1  (x14 = x13 & 1)
+          "h00070663".U, // 0x30: beq x14, x0, 12   (If x14 == 0, branch to 0x3c)
+          "h06400793".U, // 0x34: addi x15, x0, 100 (Odd iteration: x15 = 100)
+          "h0080006f".U, // 0x38: jal x0, 8         (Jump to 0x40)
+          "h0c800793".U, // 0x3c: addi x15, x0, 200 (Even iteration: x15 = 200)
+          "h00f181b3".U, // 0x40: add x3, x3, x15   (Accumulate x15)
+          "hfff08093".U, // 0x44: addi x1, x1, -1   (Decrement outer counter)
+          "hfc0096e3".U, // 0x48: bne x1, x0, -52   (If x1 != 0, branch to 0x14)
+          "h06300613".U  // 0x4c: addi x12, x0, 99  (Done marker: x12 = 99)
+        ) ++ Seq.fill(80)("h00000013".U) ++ Seq(
+          "h0000006f".U  // Halt loop
+        )
+      }
     }
   }
 

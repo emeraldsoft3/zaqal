@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.111 (w)1999-2020 BSI
-[*] Thu Jul  2 13:06:04 2026
+[*] Tue Jul  7 10:55:49 2026
 [*]
 [dumpfile] "/home/emerald/zaqal/programs/vcd/Lithium.vcd"
-[dumpfile_mtime] "Thu Jul  2 11:46:47 2026"
-[dumpfile_size] 2755875
+[dumpfile_mtime] "Tue Jul  7 08:37:41 2026"
+[dumpfile_size] 4587411
 [savefile] "/home/emerald/zaqal/programs/vcd/Lithium.gtkw"
-[timestart] 7
+[timestart] 0
 [size] 1882 932
 [pos] -1 -1
-*-2.900000 12 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-2.900000 211 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] TOP.
 [treeopen] TOP.Core.
 [treeopen] TOP.Core.backend.
@@ -49,13 +49,18 @@ TOP.Core.frontend.bpu.current_mask[15:0]
 @200
 -FTQ
 -ftb
+@22
+TOP.Core.frontend.bpu.ftb.io_req_pc[63:0]
+TOP.Core.frontend.bpu.ftb.io_target[63:0]
+TOP.Core.frontend.bpu.ftb.io_update_target[63:0]
 @28
+TOP.Core.frontend.bpu.ftb.io_update_valid
 TOP.Core.frontend.bpu.ftb.hit
 TOP.Core.frontend.bpu.ftb.io_taken
 TOP.Core.frontend.bpu.ftb.io_update_taken
-@22
+@24
 TOP.Core.frontend.bpu.ftb.io_slot[3:0]
-@29
+@28
 TOP.Core.frontend.bpu.ftb.io_update_valid
 @22
 TOP.Core.frontend.bpu.ftb.entries_0_tag[52:0]
@@ -65,14 +70,106 @@ TOP.Core.frontend.bpu.ftb.entries_0_taken
 TOP.Core.frontend.bpu.ftb.entries_0_target[63:0]
 @28
 TOP.Core.frontend.bpu.ftb.entries_0_valid
+@24
++{TOP.Core.frontend.bpu.ftb.entries_1_offset[3:0]} TOP.Core.frontend.bpu.ftb.entries_1_offset[3:0]
 @22
 TOP.Core.frontend.bpu.ftb.entries_1_tag[52:0]
 @28
 TOP.Core.frontend.bpu.ftb.entries_1_taken
 @22
-TOP.Core.frontend.bpu.ftb.entries_1_target[63:0]
++{TOP.Core.frontend.bpu.ftb.entries_1_target[63:0]} TOP.Core.frontend.bpu.ftb.entries_1_target[63:0]
 @28
 TOP.Core.frontend.bpu.ftb.entries_1_valid
+@22
+TOP.Core.frontend.bpu.ftb.entries_2_offset[3:0]
+TOP.Core.frontend.bpu.ftb.entries_2_tag[52:0]
+@28
+TOP.Core.frontend.bpu.ftb.entries_2_taken
+@22
+TOP.Core.frontend.bpu.ftb.entries_2_target[63:0]
+@28
+TOP.Core.frontend.bpu.ftb.entries_2_valid
+@22
+TOP.Core.frontend.bpu.ftb.entries_3_offset[3:0]
+TOP.Core.frontend.bpu.ftb.entries_3_tag[52:0]
+@28
+TOP.Core.frontend.bpu.ftb.entries_3_taken
+@22
+TOP.Core.frontend.bpu.ftb.entries_3_target[63:0]
+@28
+TOP.Core.frontend.bpu.ftb.entries_3_valid
+@22
+TOP.Core.frontend.bpu.ftb.entries_4_offset[3:0]
+TOP.Core.frontend.bpu.ftb.entries_4_tag[52:0]
+@28
+TOP.Core.frontend.bpu.ftb.entries_4_taken
+@22
+TOP.Core.frontend.bpu.ftb.entries_4_target[63:0]
+@28
+TOP.Core.frontend.bpu.ftb.entries_4_valid
+@22
+TOP.Core.frontend.bpu.ftb.entries_5_offset[3:0]
+TOP.Core.frontend.bpu.ftb.entries_5_tag[52:0]
+@28
+TOP.Core.frontend.bpu.ftb.entries_5_taken
+@22
+TOP.Core.frontend.bpu.ftb.entries_5_target[63:0]
+@28
+TOP.Core.frontend.bpu.ftb.entries_5_valid
+@22
+TOP.Core.frontend.bpu.ftb.entries_6_offset[3:0]
+TOP.Core.frontend.bpu.ftb.entries_6_tag[52:0]
+@28
+TOP.Core.frontend.bpu.ftb.entries_6_taken
+@22
+TOP.Core.frontend.bpu.ftb.entries_6_target[63:0]
+@28
+TOP.Core.frontend.bpu.ftb.entries_6_valid
+@22
+TOP.Core.frontend.bpu.ftb.entries_7_offset[3:0]
+TOP.Core.frontend.bpu.ftb.entries_7_tag[52:0]
+@28
+TOP.Core.frontend.bpu.ftb.entries_7_taken
+@22
+TOP.Core.frontend.bpu.ftb.entries_7_target[63:0]
+@28
+TOP.Core.frontend.bpu.ftb.entries_7_valid
+@22
+TOP.Core.frontend.bpu.ftb.entries_8_offset[3:0]
+TOP.Core.frontend.bpu.ftb.entries_8_tag[52:0]
+@28
+TOP.Core.frontend.bpu.ftb.entries_8_taken
+@22
+TOP.Core.frontend.bpu.ftb.entries_8_target[63:0]
+@28
+TOP.Core.frontend.bpu.ftb.entries_8_valid
+@22
+TOP.Core.frontend.bpu.ftb.entries_9_offset[3:0]
+TOP.Core.frontend.bpu.ftb.entries_9_tag[52:0]
+@28
+TOP.Core.frontend.bpu.ftb.entries_9_taken
+@22
+TOP.Core.frontend.bpu.ftb.entries_9_target[63:0]
+@28
+TOP.Core.frontend.bpu.ftb.entries_9_valid
+@22
+TOP.Core.frontend.bpu.ftb.entries_10_offset[3:0]
+TOP.Core.frontend.bpu.ftb.entries_10_tag[52:0]
+@28
+TOP.Core.frontend.bpu.ftb.entries_10_taken
+@22
+TOP.Core.frontend.bpu.ftb.entries_10_target[63:0]
+@28
+TOP.Core.frontend.bpu.ftb.entries_10_valid
+@22
+TOP.Core.frontend.bpu.ftb.entries_11_offset[3:0]
+TOP.Core.frontend.bpu.ftb.entries_11_tag[52:0]
+@28
+TOP.Core.frontend.bpu.ftb.entries_11_taken
+@22
+TOP.Core.frontend.bpu.ftb.entries_11_target[63:0]
+@28
+TOP.Core.frontend.bpu.ftb.entries_11_valid
 @22
 TOP.Core.frontend.ftq.io_fromBpu_bits_pc[63:0]
 TOP.Core.frontend.ftq.io_toIfu_bits_pc[63:0]
@@ -80,7 +177,7 @@ TOP.Core.frontend.ftq.count[6:0]
 TOP.Core.frontend.ftq.enqPtr[5:0]
 +{TOP.Core.frontend.ftq.deqPtr[5:0]} TOP.Core.frontend.ftq.deqPtr[5:0]
 @28
-TOP.Core.frontend.ftq.io_flush
++{TOP.Core.frontend.ftq.io_flush} TOP.Core.frontend.ftq.io_flush
 @200
 -IFU
 -Icache
@@ -163,29 +260,13 @@ TOP.Core.backend.decoders_5_io_inst[31:0]
 -intfreelist
 -RAT
 @24
-TOP.Core.backend.rat.intRat.spec_table_0[7:0]
-@22
-TOP.Core.backend.rat.intRat.curr_spec_table_1_27[7:0]
-@24
-TOP.Core.backend.rat.intRat.curr_spec_table_1_28[7:0]
-@22
-TOP.Core.backend.rat.intRat.curr_spec_table_1_29[7:0]
-@24
-+{TOP.Core.backend.rat.intRat.spec_table_1[7:0]} TOP.Core.backend.rat.intRat.spec_table_1[7:0]
-TOP.Core.backend.rat.intRat.spec_table_2[7:0]
-+{TOP.Core.backend.rat.intRat.spec_table_3[7:0]} TOP.Core.backend.rat.intRat.spec_table_3[7:0]
-TOP.Core.backend.rat.intRat.spec_table_4[7:0]
-TOP.Core.backend.rat.intRat.spec_table_5[7:0]
-TOP.Core.backend.rat.intRat.spec_table_6[7:0]
-TOP.Core.backend.rat.intRat.spec_table_7[7:0]
-TOP.Core.backend.rat.intRat.spec_table_8[7:0]
-TOP.Core.backend.rat.intRat.spec_table_9[7:0]
-TOP.Core.backend.rat.intRat.spec_table_10[7:0]
-TOP.Core.backend.rat.intRat.spec_table_11[7:0]
-TOP.Core.backend.rat.intRat.spec_table_12[7:0]
-TOP.Core.backend.rat.intRat.spec_table_13[7:0]
-TOP.Core.backend.rat.intRat.spec_table_14[7:0]
-TOP.Core.backend.rat.intRat.spec_table_15[7:0]
++{TOP.Core.backend.rat.intRat.snapshots.snptEnqPtr[2:0]} TOP.Core.backend.rat.intRat.snapshots.snptEnqPtr[2:0]
+TOP.Core.backend.rat.intRat.snapshots.clock
+TOP.Core.backend.rat.intRat.snapshots.io_deqPtr[2:0]
+TOP.Core.backend.rat.intRat.snapshots.snptDeqPtr[2:0]
+TOP.Core.backend.rat.intRat.snapshots.snptDeqPtr_next[3:0]
+TOP.Core.backend.rat.intRat.snapshots.snptEnqPtr[2:0]
+TOP.Core.backend.rat.intRat.snapshots.snptEnqPtr_next[3:0]
 TOP.Core.backend.rat.intRat.curr_spec_table_1_0[7:0]
 +{TOP.Core.backend.rat.intRat.curr_spec_table_1_1[7:0]} TOP.Core.backend.rat.intRat.curr_spec_table_1_1[7:0]
 +{TOP.Core.backend.rat.intRat.curr_spec_table_1_2[7:0]} TOP.Core.backend.rat.intRat.curr_spec_table_1_2[7:0]
@@ -199,7 +280,38 @@ TOP.Core.backend.rat.intRat.curr_spec_table_1_9[7:0]
 TOP.Core.backend.rat.intRat.curr_spec_table_1_10[7:0]
 TOP.Core.backend.rat.intRat.curr_spec_table_1_11[7:0]
 TOP.Core.backend.rat.intRat.curr_spec_table_1_12[7:0]
-TOP.Core.backend.rat.intRat.curr_spec_table_1_13[7:0]
++{TOP.Core.backend.rat.intRat.curr_spec_table_1_13[7:0]} TOP.Core.backend.rat.intRat.curr_spec_table_1_13[7:0]
+TOP.Core.backend.rat.intRat.curr_spec_table_2_13[7:0]
+TOP.Core.backend.rat.intRat.curr_spec_table_3_13[7:0]
+TOP.Core.backend.rat.intRat.curr_spec_table_4_13[7:0]
+TOP.Core.backend.rat.intRat.curr_spec_table_5_13[7:0]
+TOP.Core.backend.rat.intRat.curr_spec_table_6_13[7:0]
+TOP.Core.backend.rat.intRat.spec_table_13[7:0]
+TOP.Core.backend.rat.intRat_io_snptEnq
+TOP.Core.backend.rat.io_snptEnq
+TOP.Core.backend.rat.io_snptEnqIdx[2:0]
+TOP.Core.backend.rat.io_snptEnqPtr[2:0]
+TOP.Core.backend.rat.intRat.snapshots.io_enqData_13[7:0]
+@28
+TOP.Core.backend.rat.io_snptDeqPtr[2:0]
+TOP.Core.backend.rat.intRat_io_snptDeqPtr[2:0]
+@24
+TOP.Core.backend.rat.intRat.snapshots.io_snapshots_0_13[7:0]
+TOP.Core.backend.rat.intRat.snapshots.io_snapshots_1_13[7:0]
+TOP.Core.backend.rat.intRat.snapshots.io_snapshots_2_13[7:0]
+TOP.Core.backend.rat.intRat.snapshots.io_snapshots_3_13[7:0]
+TOP.Core.backend.rat.intRat.snapshots.io_snapshots_4_13[7:0]
+TOP.Core.backend.rat.intRat.snapshots.io_snapshots_5_13[7:0]
+TOP.Core.backend.rat.intRat.snapshots.io_snapshots_6_13[7:0]
+TOP.Core.backend.rat.intRat.snapshots.io_snapshots_7_13[7:0]
+TOP.Core.backend.rat.intRat.snapshots.snapshots_0_13[7:0]
+TOP.Core.backend.rat.intRat.snapshots.snapshots_1_13[7:0]
+TOP.Core.backend.rat.intRat.snapshots.snapshots_2_13[7:0]
+TOP.Core.backend.rat.intRat.snapshots.snapshots_3_13[7:0]
+TOP.Core.backend.rat.intRat.snapshots.snapshots_4_13[7:0]
+TOP.Core.backend.rat.intRat.snapshots.snapshots_5_13[7:0]
+TOP.Core.backend.rat.intRat.snapshots.snapshots_6_13[7:0]
+TOP.Core.backend.rat.intRat.snapshots.snapshots_7_13[7:0]
 TOP.Core.backend.rat.intRat.curr_spec_table_1_14[7:0]
 TOP.Core.backend.rat.intRat.curr_spec_table_1_15[7:0]
 TOP.Core.backend.rat.intRat.curr_spec_table_1_16[7:0]
@@ -209,21 +321,6 @@ TOP.Core.backend.rat.intRat.curr_spec_table_1_19[7:0]
 TOP.Core.backend.rat.intRat.curr_spec_table_1_20[7:0]
 TOP.Core.backend.rat.intRat.curr_spec_table_1_21[7:0]
 TOP.Core.backend.rat.intRat.curr_spec_table_1_22[7:0]
-+{TOP.Core.backend.rat.intRat.curr_spec_table_2_1[7:0]} TOP.Core.backend.rat.intRat.curr_spec_table_2_1[7:0]
-TOP.Core.backend.rat.intRat.curr_spec_table_2_2[7:0]
-TOP.Core.backend.rat.intRat.curr_spec_table_2_3[7:0]
-TOP.Core.backend.rat.intRat.curr_spec_table_2_4[7:0]
-TOP.Core.backend.rat.intRat.curr_spec_table_2_5[7:0]
-TOP.Core.backend.rat.intRat.curr_spec_table_2_6[7:0]
-TOP.Core.backend.rat.intRat.curr_spec_table_2_7[7:0]
-TOP.Core.backend.rat.intRat.curr_spec_table_2_8[7:0]
-TOP.Core.backend.rat.intRat.curr_spec_table_2_9[7:0]
-TOP.Core.backend.rat.intRat.curr_spec_table_2_10[7:0]
-TOP.Core.backend.rat.intRat.curr_spec_table_2_11[7:0]
-TOP.Core.backend.rat.intRat.curr_spec_table_2_12[7:0]
-TOP.Core.backend.rat.intRat.curr_spec_table_2_13[7:0]
-TOP.Core.backend.rat.intRat.curr_spec_table_2_14[7:0]
-TOP.Core.backend.rat.intRat.curr_spec_table_2_15[7:0]
 TOP.Core.backend.rat.io_renamePorts_0_addr[4:0]
 @28
 TOP.Core.backend.rat.io_renamePorts_0_wen
@@ -332,6 +429,10 @@ TOP.Core.backend.exec.alu_0.io_pc[63:0]
 -bru_0
 @22
 TOP.Core.backend.exec.bru_0.io_pc[63:0]
+@28
+TOP.Core.backend.exec.bru_0.io_mispredict
+@23
+TOP.Core.backend.exec.bru_0.redirect_target[63:0]
 @200
 -bru_1
 @22
@@ -348,46 +449,43 @@ TOP.Core.backend.exec.div.io_done
 TOP.Core.backend.exec.div.io_ready
 @200
 -memIQ
-@24
-TOP.Core.backend.memIq.alloc_idx_0[2:0]
-TOP.Core.backend.memIq.alloc_idx_1[2:0]
-TOP.Core.backend.memIq.alloc_idx_2[2:0]
-TOP.Core.backend.memIq.alloc_idx_3[2:0]
-TOP.Core.backend.memIq.alloc_idx_4[2:0]
-TOP.Core.backend.memIq.alloc_idx_5[2:0]
-@28
-TOP.Core.backend.memIq.entries_0_valid
-TOP.Core.backend.memIq.entries_1_valid
-TOP.Core.backend.memIq.entries_2_valid
-TOP.Core.backend.memIq.entries_3_valid
-TOP.Core.backend.memIq.entries_4_valid
-TOP.Core.backend.memIq.entries_5_valid
-TOP.Core.backend.memIq.entries_6_valid
-TOP.Core.backend.memIq.entries_7_valid
-TOP.Core.backend.memIq.io_deq_0_valid
-TOP.Core.backend.memIq.io_enq_0_valid
-TOP.Core.backend.memIq.io_enq_1_valid
-TOP.Core.backend.memIq.io_enq_2_valid
-TOP.Core.backend.memIq.io_enq_3_valid
-TOP.Core.backend.memIq.io_enq_4_valid
-TOP.Core.backend.memIq.io_enq_5_valid
-@200
 -RegFile
+@22
+TOP.Core.backend.intFreeList.tailPtr[7:0]
 @24
+TOP.Core.backend.intFreeList.actualAlloc[2:0]
+@28
+TOP.Core.backend.intFreeList.allocMask[12:0]
+@c00024
+TOP.Core.backend.intFreeList.freeCount[7:0]
+@28
+(0)TOP.Core.backend.intFreeList.freeCount[7:0]
+(1)TOP.Core.backend.intFreeList.freeCount[7:0]
+(2)TOP.Core.backend.intFreeList.freeCount[7:0]
+(3)TOP.Core.backend.intFreeList.freeCount[7:0]
+(4)TOP.Core.backend.intFreeList.freeCount[7:0]
+(5)TOP.Core.backend.intFreeList.freeCount[7:0]
+(6)TOP.Core.backend.intFreeList.freeCount[7:0]
+(7)TOP.Core.backend.intFreeList.freeCount[7:0]
+@1401200
+-group_end
+@24
+TOP.Core.backend.intFreeList.headPtr[7:0]
+@28
++{TOP.Core.backend.intFreeList.snapshots_reset} TOP.Core.backend.intFreeList.snapshots_reset
+@24
+TOP.debug_cycle_count[63:0]
 +{TOP.Core.backend.exec.regFile.regs_32[63:0]} TOP.Core.backend.exec.regFile.regs_32[63:0]
 +{TOP.Core.backend.exec.regFile.regs_33[63:0]} TOP.Core.backend.exec.regFile.regs_33[63:0]
 TOP.Core.backend.exec.regFile.regs_34[63:0]
 +{TOP.Core.backend.exec.regFile.regs_35[63:0]} TOP.Core.backend.exec.regFile.regs_35[63:0]
 +{TOP.Core.backend.exec.regFile.regs_36[63:0]} TOP.Core.backend.exec.regFile.regs_36[63:0]
 TOP.Core.backend.exec.regFile.regs_37[63:0]
-@420
 +{TOP.Core.backend.exec.regFile.regs_38[63:0]} TOP.Core.backend.exec.regFile.regs_38[63:0]
-@24
-TOP.Core.backend.exec.regFile.regs_39[63:0]
-TOP.Core.backend.exec.regFile.regs_40[63:0]
++{TOP.Core.backend.exec.regFile.regs_39[63:0]} TOP.Core.backend.exec.regFile.regs_39[63:0]
++{TOP.Core.backend.exec.regFile.regs_40[63:0]} TOP.Core.backend.exec.regFile.regs_40[63:0]
 +{TOP.Core.backend.exec.regFile.regs_41[63:0]} TOP.Core.backend.exec.regFile.regs_41[63:0]
-TOP.Core.backend.exec.regFile.regs_42[63:0]
-@22
++{TOP.Core.backend.exec.regFile.regs_42[63:0]} TOP.Core.backend.exec.regFile.regs_42[63:0]
 TOP.Core.backend.exec.regFile.regs_43[63:0]
 TOP.Core.backend.exec.regFile.regs_44[63:0]
 TOP.Core.backend.exec.regFile.regs_45[63:0]
@@ -397,9 +495,7 @@ TOP.Core.backend.exec.regFile.regs_48[63:0]
 TOP.Core.backend.exec.regFile.regs_49[63:0]
 TOP.Core.backend.exec.regFile.regs_50[63:0]
 TOP.Core.backend.exec.regFile.regs_51[63:0]
-@24
 TOP.Core.backend.exec.regFile.regs_52[63:0]
-@22
 TOP.Core.backend.exec.regFile.regs_53[63:0]
 TOP.Core.backend.exec.regFile.regs_54[63:0]
 TOP.Core.backend.exec.regFile.regs_55[63:0]
@@ -409,6 +505,7 @@ TOP.Core.backend.exec.regFile.regs_58[63:0]
 TOP.Core.backend.exec.regFile.regs_59[63:0]
 TOP.Core.backend.exec.regFile.regs_60[63:0]
 TOP.Core.backend.exec.regFile.regs_61[63:0]
+@22
 TOP.Core.backend.exec.regFile.regs_62[63:0]
 TOP.Core.backend.exec.regFile.regs_63[63:0]
 TOP.Core.backend.exec.regFile.regs_64[63:0]

@@ -39,6 +39,7 @@ class FreeList(val numPhyRegs: Int, val numLogicalRegs: Int)(implicit val p: Par
 
   // The list of free physical registers
   val freeList = RegInit(VecInit(Seq.tabulate(size)(i => (i + numLogicalRegs).U(phyRegIdxWidth.W))))
+  dontTouch(freeList)
   
   // Pointers for circular buffer
   val headPtr = RegInit(0.U(log2Up(size).W))   // Speculative allocation pointer
