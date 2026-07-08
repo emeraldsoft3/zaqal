@@ -46,6 +46,7 @@ class TageTable(val histLen: Int, val tIdx: Int)(implicit val p: Parameters) ext
     val update_ctr = Input(UInt(tageCtrBits.W))
     val we_u = Input(Bool())
     val we_ctr = Input(Bool())
+    val update_u = Output(UInt(tageUBits.W))
   })
   
   // Fold history for index and tag
@@ -78,16 +79,16 @@ class TageTable(val histLen: Int, val tIdx: Int)(implicit val p: Parameters) ext
   val read_u = us.read(req_idx)
   val read_valid = valids(req_idx)
   
-  io.hit := read_valid && (read_tag === req_tag)
-  io.tag := read_tag
-  io.ctr := read_ctr
-  io.u := read_u
-  
-  // Update Logic
   val u_idx_fh = fold(io.update_ghr, histLen, indexWidth)
   val u_tag_fh = fold(io.update_ghr, histLen, tagWidth)
   val u_idx = (io.update_pc(indexWidth - 1, 0) ^ u_idx_fh)(indexWidth - 1, 0)
   val u_tag = (io.update_pc(tagWidth - 1, 0) ^ u_tag_fh)(tagWidth - 1, 0)
+
+  io.hit := read_valid && (read_tag === req_tag)
+  io.tag := read_tag
+  io.ctr := read_ctr
+  io.u := read_u
+  io.update_u := us.read(u_idx)
   
   when(io.update_valid) {
     when(io.allocate) {
@@ -236,9 +237,8 @@ class TagePredictor(implicit val p: Parameters) extends Module with HasZaqalPara
     when(mispredict) {
       // Find eligible tables (longer history, u == 0)
       val eligible = WireInit(VecInit(Seq.fill(tageNTables)(false.B)))
-      val indexWidth = log2Up(tableRows)
       for(i <- 0 until tageNTables) {
-        val u_val = tables(i).us.read((io.update_pc(indexWidth - 1, 0) ^ tables(i).fold(io.update_ghr, tables(i).histLen, indexWidth))(indexWidth - 1, 0))
+        val u_val = tables(i).io.update_u
         if(i == 0) {
            eligible(i) := (!io.providerHit || io.providerIdx < i.U) && (u_val === 0.U)
         } else {

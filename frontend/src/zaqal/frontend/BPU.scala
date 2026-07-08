@@ -6,6 +6,22 @@ import org.chipsalliance.cde.config.Parameters
 import zaqal._
 import zaqal.common._
 
+// Bundle to hold branch prediction metadata at fetch time
+class BPUMetaEntry(implicit val p: Parameters) extends Bundle with HasZaqalParameter {
+  val ghr = UInt(128.W)
+  // TAGE Metadata
+  val tage_providerIdx = UInt(2.W)
+  val tage_providerHit = Bool()
+  val tage_providerCtr = UInt(3.W)
+  val tage_altTaken = Bool()
+  val tage_providerU = UInt(2.W)
+  // ITTAGE Metadata
+  val ittage_providerIdx = UInt(2.W)
+  val ittage_providerHit = Bool()
+  val ittage_altTarget = UInt(xLen.W)
+  val ittage_providerU = UInt(2.W)
+}
+
 class BPU(implicit val p: Parameters) extends Module with HasZaqalParameter {
   val io = IO(new Bundle {
     val redirect = Input(new BPURedirect)
@@ -16,11 +32,43 @@ class BPU(implicit val p: Parameters) extends Module with HasZaqalParameter {
   val mask_reg = RegInit(Fill(predictWidth, 1.U(1.W)))
   val epoch    = RegInit(false.B) // Current Fetch Epoch
 
-  // Instantiate the Fetch Target Buffer (FTB)
+  // Global History Register (GHR)
+  val ghr = RegInit(0.U(128.W))
+
+  // Instantiate sub-predictors
   val ftb = Module(new FTB)
+  val tage = Module(new TagePredictor)
+  val ittage = Module(new ITTagePredictor)
+
+  // BPU Shadow Pointer to track FTQ occupancy/index
+  val bpu_enq_ptr = RegInit(0.U(ftqPtrWidth.W))
+  when(io.redirect.valid) {
+    bpu_enq_ptr := 0.U
+  } .elsewhen(io.out.fire) {
+    bpu_enq_ptr := bpu_enq_ptr + 1.U
+  }
+
+  // Circular storage for prediction metadata
+  val meta_storage = Reg(Vec(ftqEntries, new BPUMetaEntry))
+  val redirect_meta = meta_storage(io.redirect.ftqPtr)
+
+  // --- LOOKUP PATH ---
   ftb.io.req_pc := s0_pc
 
-  // FTB Update Path from resolved branches
+  tage.io.req_pc  := s0_pc
+  tage.io.req_ghr := ghr
+
+  ittage.io.req_pc  := s0_pc
+  ittage.io.req_ghr := ghr
+
+  // Override FTB's conditional branch direction with TAGE
+  val final_taken = Mux(ftb.io.hit && ftb.io.br_type === 0.U, tage.io.pred.taken, ftb.io.taken)
+  
+  // Override FTB's indirect jump target with ITTAGE
+  val final_target = Mux(ftb.io.hit && ftb.io.br_type === 2.U && ittage.io.pred.hit, ittage.io.pred.target, ftb.io.target)
+
+  // --- UPDATE / TRAINING PATH ---
+  // FTB Update
   ftb.io.update_valid  := io.redirect.valid && !io.redirect.is_exception
   ftb.io.update_pc     := io.redirect.pc
   ftb.io.update_target := io.redirect.target
@@ -28,16 +76,65 @@ class BPU(implicit val p: Parameters) extends Module with HasZaqalParameter {
   ftb.io.update_is_cfi := io.redirect.is_cfi
   ftb.io.update_is_jalr:= io.redirect.is_jalr
 
+  // TAGE Update
+  tage.io.update_valid := io.redirect.valid && !io.redirect.is_exception && io.redirect.is_cfi && !io.redirect.is_jalr
+  tage.io.update_pc    := io.redirect.pc
+  tage.io.update_ghr   := redirect_meta.ghr
+  tage.io.update_dir   := io.redirect.taken
+  tage.io.providerIdx  := redirect_meta.tage_providerIdx
+  tage.io.providerHit  := redirect_meta.tage_providerHit
+  tage.io.providerCtr  := redirect_meta.tage_providerCtr
+  tage.io.altTaken     := redirect_meta.tage_altTaken
+  tage.io.providerU    := redirect_meta.tage_providerU
+
+  // ITTAGE Update
+  ittage.io.update_valid  := io.redirect.valid && !io.redirect.is_exception && io.redirect.is_cfi && io.redirect.is_jalr
+  ittage.io.update_pc     := io.redirect.pc
+  ittage.io.update_ghr    := redirect_meta.ghr
+  ittage.io.update_target := io.redirect.target
+  ittage.io.providerIdx   := redirect_meta.ittage_providerIdx
+  ittage.io.providerHit   := redirect_meta.ittage_providerHit
+  ittage.io.altTarget     := redirect_meta.ittage_altTarget
+  ittage.io.providerU     := redirect_meta.ittage_providerU
+
+  // --- GHR UPDATE AND ROLLBACK ---
+  val restored_ghr = Mux(io.redirect.is_cfi, Cat(redirect_meta.ghr(126, 0), io.redirect.taken), redirect_meta.ghr)
+  val spec_shift_val = Mux(ftb.io.br_type === 0.U, final_taken, 1.B)
+  val has_spec_cfi = ftb.io.hit && (ftb.io.br_type === 0.U || ftb.io.br_type === 1.U || ftb.io.br_type === 2.U)
+
+  when(io.redirect.valid) {
+    ghr := restored_ghr
+  } .elsewhen(io.out.fire && has_spec_cfi) {
+    ghr := Cat(ghr(126, 0), spec_shift_val)
+  }
+
+  // --- METADATA ENQUEUE LOGIC ---
+  when(io.out.fire) {
+    val new_meta = Wire(new BPUMetaEntry)
+    new_meta.ghr                := ghr
+    new_meta.tage_providerIdx   := tage.io.pred.providerIdx
+    new_meta.tage_providerHit   := tage.io.pred.hit
+    new_meta.tage_providerCtr   := tage.io.pred.providerCtr
+    new_meta.tage_altTaken      := tage.io.pred.altTaken
+    new_meta.tage_providerU     := tage.io.pred.providerU
+    
+    new_meta.ittage_providerIdx := ittage.io.pred.providerIdx
+    new_meta.ittage_providerHit := ittage.io.pred.hit
+    new_meta.ittage_altTarget   := ittage.io.pred.altTarget
+    new_meta.ittage_providerU   := ittage.io.pred.providerU
+
+    meta_storage(bpu_enq_ptr)   := new_meta
+  }
+
+  // --- FRONTEND CONTROL FLOW LOGIC ---
   def align(addr: UInt) = addr & (~((fetchWidth * 4) - 1).U(xLen.W))
 
   val meta    = Wire(new PredictionMeta)
-  meta.target := Mux(ftb.io.taken, ftb.io.target, s0_pc + (fetchWidth * 4).U)
-  meta.taken  := ftb.io.taken
+  meta.target := Mux(final_taken, final_target, s0_pc + (fetchWidth * 4).U)
+  meta.taken  := final_taken
   meta.slot   := ftb.io.slot
 
   val current_mask = Wire(UInt(predictWidth.W))
-  
-  // Logic: Only accept a redirect if the redirect is valid
   val is_new_redirect = io.redirect.valid
 
   when(is_new_redirect) {
@@ -69,9 +166,9 @@ class BPU(implicit val p: Parameters) extends Module with HasZaqalParameter {
   
   io.out.bits.prediction := meta
   io.out.bits.ftqPtr     := 0.U 
-  io.out.bits.epoch      := epoch // Tag every instruction with the current Color
+  io.out.bits.epoch      := epoch
 
   when(io.out.fire && meta.taken) {
-    printf(p"[BPU FTB PREDICT] pc=${Hexadecimal(s0_pc)} -> target=${Hexadecimal(meta.target)} slot=${meta.slot}\n")
+    printf(p"[BPU PREDICT] pc=${Hexadecimal(s0_pc)} -> target=${Hexadecimal(meta.target)} slot=${meta.slot}\n")
   }
 }

@@ -21,6 +21,7 @@ class FTB(implicit val p: Parameters) extends Module with HasZaqalParameter {
     val target  = Output(UInt(xLen.W))
     val taken   = Output(Bool())
     val slot    = Output(UInt(4.W))
+    val br_type = Output(UInt(2.W))
     
     // Update interface from BRU
     val update_valid = Input(Bool())
@@ -54,6 +55,7 @@ class FTB(implicit val p: Parameters) extends Module with HasZaqalParameter {
   io.target := Mux(hit, entry.target, io.req_pc + 32.U)
   io.taken  := hit && entry.taken
   io.slot   := Mux(hit, entry.offset, 0.U)
+  io.br_type := Mux(hit, entry.br_type, 0.U)
 
   // Update logic
   val update_index = getIndex(io.update_pc)

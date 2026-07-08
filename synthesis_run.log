@@ -1,6 +1,3 @@
-make: Entering directory '/home/emerald/OpenLane'
-cd /home/emerald/OpenLane && \
-	docker run --rm -v /home/emerald/OpenLane:/openlane -v /home/emerald/OpenLane/designs:/openlane/install -v /home/emerald:/home/emerald -v /home/emerald/.ciel:/home/emerald/.ciel -e PDK_ROOT=/home/emerald/.ciel -e PDK=sky130A  --user 1000:1000 -e DISPLAY=:0 -v /tmp/.X11-unix:/tmp/.X11-unix --network host --security-opt seccomp=unconfined ghcr.io/the-openroad-project/openlane:ff5509f65b17bfa4068d5336495ab1718987ff69-amd64 sh -c "./flow.tcl -design zaqal"
 OpenLane v1.0.2 (ff5509f65b17bfa4068d5336495ab1718987ff69)
 All rights reserved. (c) 2020-2025 Efabless Corporation and contributors.
 Available under the Apache License, version 2.0. See the LICENSE file for more details.
@@ -10,49 +7,77 @@ Available under the Apache License, version 2.0. See the LICENSE file for more d
 [INFO]: Process Design Kit: sky130A
 [INFO]: Standard Cell Library: sky130_fd_sc_hd
 [INFO]: Optimization Standard Cell Library: sky130_fd_sc_hd
-[INFO]: Run Directory: /openlane/designs/zaqal/runs/RUN_2026.07.07_04.58.18
+[INFO]: Run Directory: /openlane/designs/zaqal/runs/RUN_2026.07.08_10.02.13
 [INFO]: Saving runtime environment...
 [INFO]: Preparing LEF files for the nom corner...
 [INFO]: Preparing LEF files for the min corner...
 [INFO]: Preparing LEF files for the max corner...
-[INFO]: Running linter (Verilator) (log: designs/zaqal/runs/RUN_2026.07.07_04.58.18/logs/synthesis/linter.log)...
+[INFO]: Running linter (Verilator) (log: designs/zaqal/runs/RUN_2026.07.08_10.02.13/logs/synthesis/linter.log)...
 [INFO]: 0 errors found by linter
-[WARNING]: 290 warnings found by linter
+[WARNING]: 356 warnings found by linter
 [STEP 1]
-[INFO]: Running Synthesis (log: designs/zaqal/runs/RUN_2026.07.07_04.58.18/logs/synthesis/1-synthesis.log)...
+[INFO]: Running Synthesis (log: designs/zaqal/runs/RUN_2026.07.08_10.02.13/logs/synthesis/1-synthesis.log)...
 [STEP 2]
-[INFO]: Running Single-Corner Static Timing Analysis (log: designs/zaqal/runs/RUN_2026.07.07_04.58.18/logs/synthesis/2-sta.log)...
+[INFO]: Running Single-Corner Static Timing Analysis (log: designs/zaqal/runs/RUN_2026.07.08_10.02.13/logs/synthesis/2-sta.log)...
 [STEP 3]
-[INFO]: Running Initial Floorplanning (log: designs/zaqal/runs/RUN_2026.07.07_04.58.18/logs/floorplan/3-initial_fp.log)...
-[INFO]: Floorplanned with width 4697.06 and height 4694.72.
+[INFO]: Running Initial Floorplanning (log: designs/zaqal/runs/RUN_2026.07.08_10.02.13/logs/floorplan/3-initial_fp.log)...
+[INFO]: Floorplanned with width 6008.98 and height 6008.48.
 [STEP 4]
 [INFO]: Running IO Placement...
 [STEP 5]
-[INFO]: Running Global Placement (log: designs/zaqal/runs/RUN_2026.07.07_04.58.18/logs/placement/5-global.log)...
-[STEP 6]
-[INFO]: Running Single-Corner Static Timing Analysis (log: designs/zaqal/runs/RUN_2026.07.07_04.58.18/logs/placement/6-gpl_sta.log)...
-[STEP 7]
-[INFO]: Running basic macro placement (log: designs/zaqal/runs/RUN_2026.07.07_04.58.18/logs/placement/7-basic_mp.log)...
-[STEP 8]
-[INFO]: Running Tap/Decap Insertion (log: designs/zaqal/runs/RUN_2026.07.07_04.58.18/logs/floorplan/8-tap.log)...
-[INFO]: Power planning with power {VPWR} and ground {VGND}...
-[STEP 9]
-[INFO]: Generating PDN (log: designs/zaqal/runs/RUN_2026.07.07_04.58.18/logs/floorplan/9-pdn.log)...
-[STEP 10]
-[INFO]: Running Global Placement (log: designs/zaqal/runs/RUN_2026.07.07_04.58.18/logs/placement/10-global.log)...
-[STEP 11]
-[INFO]: Running Single-Corner Static Timing Analysis (log: designs/zaqal/runs/RUN_2026.07.07_04.58.18/logs/placement/11-gpl_sta.log)...
-[STEP 12]
-[INFO]: Running Placement Resizer Design Optimizations (log: designs/zaqal/runs/RUN_2026.07.07_04.58.18/logs/placement/12-resizer.log)...
-[STEP 13]
-[INFO]: Running Detailed Placement (log: designs/zaqal/runs/RUN_2026.07.07_04.58.18/logs/placement/13-detailed.log)...
-[STEP 14]
-[INFO]: Running Single-Corner Static Timing Analysis (log: designs/zaqal/runs/RUN_2026.07.07_04.58.18/logs/placement/14-dpl_sta.log)...
-[STEP 15]
-[INFO]: Running Clock Tree Synthesis (log: designs/zaqal/runs/RUN_2026.07.07_04.58.18/logs/cts/15-cts.log)...
-[STEP 16]
-[INFO]: Running Single-Corner Static Timing Analysis (log: designs/zaqal/runs/RUN_2026.07.07_04.58.18/logs/cts/16-cts_sta.log)...
-[STEP 17]
-[INFO]: Running Placement Resizer Timing Optimizations (log: designs/zaqal/runs/RUN_2026.07.07_04.58.18/logs/cts/17-resizer.log)...
-[STEP 18]
-[INFO]: Running Global Routing Resizer Design Optimizations (log: designs/zaqal/runs/RUN_2026.07.07_04.58.18/logs/routing/18-resizer_design.log)...
+[INFO]: Running Global Placement (log: designs/zaqal/runs/RUN_2026.07.08_10.02.13/logs/placement/5-global.log)...
+[ERROR]: during executing openroad script /openlane/scripts/openroad/gpl.tcl
+[ERROR]: Log: designs/zaqal/runs/RUN_2026.07.08_10.02.13/logs/placement/5-global.log
+[ERROR]: Last 10 lines:
+[InitialPlace]  Iter: 16 CG residual: 0.00006122 HPWL: 8285557830
+[InitialPlace]  Iter: 17 CG residual: 0.00007165 HPWL: 8256744189
+[InitialPlace]  Iter: 18 CG residual: 0.00006572 HPWL: 8285635474
+[InitialPlace]  Iter: 19 CG residual: 0.00006333 HPWL: 8256251743
+[InitialPlace]  Iter: 20 CG residual: 0.00006901 HPWL: 8286107290
+[ERROR GPL-0302] Use a higher -density or re-floorplan with a larger core area.
+Given target density: 0.25
+Suggested target density: 0.26
+Error: gpl.tcl, 71 GPL-0302
+child process exited abnormally
+
+[ERROR]: Creating issue reproducible...
+[INFO]: Saving runtime environment...
+OpenLane TCL Issue Packager
+
+EFABLESS CORPORATION AND ALL AUTHORS OF THE OPENLANE PROJECT SHALL NOT BE HELD
+LIABLE FOR ANY LEAKS THAT MAY OCCUR TO ANY PROPRIETARY DATA AS A RESULT OF USING
+THIS SCRIPT. THIS SCRIPT IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTIES OR
+CONDITIONS OF ANY KIND.
+
+BY USING THIS SCRIPT, YOU ACKNOWLEDGE THAT YOU FULLY UNDERSTAND THIS DISCLAIMER
+AND ALL IT ENTAILS.
+
+Parsing config file(s)…
+Setting up /openlane/designs/zaqal/runs/RUN_2026.07.08_10.02.13/issue_reproducible…
+Done.
+[INFO]: Reproducible packaged: Please tarball and upload 'designs/zaqal/runs/RUN_2026.07.08_10.02.13/issue_reproducible' if you're going to submit an issue.
+[ERROR]: Step 5 (floorplan) failed with error:
+-code 1 -level 0 -errorcode NONE -errorinfo {
+    while executing
+"throw_error"
+    (procedure "run_tcl_script" line 219)
+    invoked from within
+"run_tcl_script -tool openroad -no_consume {*}$args"
+    (procedure "run_openroad_script" line 2)
+    invoked from within
+"run_openroad_script $::env(SCRIPTS_DIR)/openroad/gpl.tcl -indexed_log [index_file $::env(placement_logs)/global.log] -save "to=$::env(placement_tmpfil..."
+    (procedure "global_placement_or" line 12)
+    invoked from within
+"global_placement_or"
+    (procedure "run_floorplan" line 45)
+    invoked from within
+"run_floorplan"} -errorline 1
+[INFO]: Saving current set of views in 'designs/zaqal/runs/RUN_2026.07.08_10.02.13/results/final'...
+[INFO]: Generating final set of reports...
+[INFO]: Created manufacturability report at 'designs/zaqal/runs/RUN_2026.07.08_10.02.13/reports/manufacturability.rpt'.
+[INFO]: Created metrics report at 'designs/zaqal/runs/RUN_2026.07.08_10.02.13/reports/metrics.csv'.
+[INFO]: Saving runtime environment...
+[ERROR]: Flow failed.
+[INFO]: The failure may have been because of the following warnings:
+[WARNING]: 356 warnings found by linter
+

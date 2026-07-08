@@ -78,6 +78,7 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   io.redirect.taken := false.B
   io.redirect.is_cfi := false.B
   io.redirect.is_jalr := false.B
+  io.redirect.ftqPtr := 0.U
   
   fcsr.io.csr_addr  := 0.U
   fcsr.io.csr_wen   := false.B
@@ -393,6 +394,7 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
     io.redirect.taken        := Mux(lane0_is_older, bru(0).io.taken, bru(1).io.taken)
     io.redirect.is_cfi       := Mux(lane0_is_older, exe_dec0.is_branch || exe_dec0.is_jal || exe_dec0.is_jalr, exe_dec1.is_branch || exe_dec1.is_jal || exe_dec1.is_jalr)
     io.redirect.is_jalr      := Mux(lane0_is_older, exe_dec0.is_jalr, exe_dec1.is_jalr)
+    io.redirect.ftqPtr       := Mux(lane0_is_older, exe_uop_raw0.ftqPtr, exe_uop_raw1.ftqPtr)
   } .elsewhen(r0_valid) {
     io.redirect.valid := true.B
     io.redirect.target := bru(0).io.target
@@ -404,6 +406,7 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
     io.redirect.taken        := bru(0).io.taken
     io.redirect.is_cfi       := exe_dec0.is_branch || exe_dec0.is_jal || exe_dec0.is_jalr
     io.redirect.is_jalr      := exe_dec0.is_jalr
+    io.redirect.ftqPtr       := exe_uop_raw0.ftqPtr
   } .elsewhen(r1_valid) {
     io.redirect.valid := true.B
     io.redirect.target := bru(1).io.target
@@ -415,6 +418,7 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
     io.redirect.taken        := bru(1).io.taken
     io.redirect.is_cfi       := exe_dec1.is_branch || exe_dec1.is_jal || exe_dec1.is_jalr
     io.redirect.is_jalr      := exe_dec1.is_jalr
+    io.redirect.ftqPtr       := exe_uop_raw1.ftqPtr
   }
 
   // Writebacks and latch registers

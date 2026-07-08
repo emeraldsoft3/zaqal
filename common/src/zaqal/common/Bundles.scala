@@ -269,6 +269,7 @@ class BPURedirect(implicit val p: Parameters) extends Bundle with HasZaqalParame
   val taken        = Bool()
   val is_cfi       = Bool()
   val is_jalr      = Bool()
+  val ftqPtr       = UInt(ftqPtrWidth.W)
 }
 
 object Causes {
