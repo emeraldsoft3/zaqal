@@ -38,3 +38,9 @@ To achieve true XiangShan-level performance, the front-end must provide near-per
 
 ## Future Scope: Multi-Branch Support
 - Parallelize `PreDecode` to identify multiple branches per fetch packet (Kunminghu-style), allowing the frontend to predict past multiple sequential branches in a single cycle.
+
+## Future Scope: TAGE & ITTAGE XiangShan Parity Upgrades
+- [ ] **TAGE-L (Loop Predictor)**: Add a dedicated loop prediction array (matching XiangShan's loop predictor) to track loops with long, fixed iteration counts that geometric tables fail to capture.
+- [ ] **Circular Shift Registers (CSRs)**: Transition from combinatorial/Scala folding of the global history register to hardware-efficient circular shift registers (CSRs) to reduce critical path wire delay.
+- [ ] **Pipelined Multi-Cycle BPU Lookup**: Redesign lookup logic to span 2–3 pipeline stages (allowing larger tables to be queried without limiting clock frequency).
+- [ ] **Table Sizing Expansion**: Scale table capacity up to 1024–4096 entries per table to match the footprint of XiangShan Nanhu/Kunminghu configurations.

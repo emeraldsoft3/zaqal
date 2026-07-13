@@ -35,6 +35,10 @@ To achieve world-class performance, Zaqal must eventually implement these critic
 - [x] **Skid Buffers** (Register Slices) for module decoupling.
 - [/] **FTQ (Fetch Target Queue)** with deep pointer-based skidding.
 - [ ] **Multi-stage BPU** (Bimodal -> GShare -> TAGE -> ITTAGE).
+  - [ ] **TAGE-L (Loop Predictor)**: Add dedicated loop predictor table to handle loop termination counts.
+  - [ ] **Circular Shift Registers (CSRs)**: Hardware-based shifting for fast GHR folding.
+  - [ ] **Pipelined Multi-Cycle BPU Lookup**: Pipeline predictor access over 2-3 cycles to maintain high frequencies.
+  - [ ] **Table Capacity Scaling**: Expand tables to 1024-4096 entries (XiangShan Nanhu/Kunminghu parity).
 - [ ] **Neural BPU (Perceptron)** for data-dependent branches.
 - [ ] **Instruction Buffer (IBuffer)** with banked parallel dequeue.
 
