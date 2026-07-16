@@ -76,9 +76,11 @@ class BPU(implicit val p: Parameters) extends Module with HasZaqalParameter {
   ftb.io.update_is_cfi := io.redirect.is_cfi
   ftb.io.update_is_jalr:= io.redirect.is_jalr
 
+  val aligned_update_pc = io.redirect.pc & (~31.U(xLen.W))
+
   // TAGE Update
   tage.io.update_valid := io.redirect.valid && !io.redirect.is_exception && io.redirect.is_cfi && !io.redirect.is_jalr
-  tage.io.update_pc    := io.redirect.pc
+  tage.io.update_pc    := aligned_update_pc
   tage.io.update_ghr   := redirect_meta.ghr
   tage.io.update_dir   := io.redirect.taken
   tage.io.providerIdx  := redirect_meta.tage_providerIdx
@@ -89,7 +91,7 @@ class BPU(implicit val p: Parameters) extends Module with HasZaqalParameter {
 
   // ITTAGE Update
   ittage.io.update_valid  := io.redirect.valid && !io.redirect.is_exception && io.redirect.is_cfi && io.redirect.is_jalr
-  ittage.io.update_pc     := io.redirect.pc
+  ittage.io.update_pc     := aligned_update_pc
   ittage.io.update_ghr    := redirect_meta.ghr
   ittage.io.update_target := io.redirect.target
   ittage.io.providerIdx   := redirect_meta.ittage_providerIdx
@@ -97,10 +99,41 @@ class BPU(implicit val p: Parameters) extends Module with HasZaqalParameter {
   ittage.io.altTarget     := redirect_meta.ittage_altTarget
   ittage.io.providerU     := redirect_meta.ittage_providerU
 
+  // --- FRONTEND CONTROL FLOW LOGIC ---
+  def align(addr: UInt) = addr & (~((fetchWidth * 4) - 1).U(xLen.W))
+
+  val current_mask = Wire(UInt(predictWidth.W))
+  val is_new_redirect = io.redirect.valid
+
+  val meta    = Wire(new PredictionMeta)
+  meta.target := Mux(final_taken, final_target, s0_pc + (fetchWidth * 4).U)
+  meta.taken  := final_taken && current_mask(ftb.io.slot)
+  meta.slot   := ftb.io.slot
+
+  when(is_new_redirect) {
+    s0_pc    := align(io.redirect.target)
+    val redirect_mask = (Fill(predictWidth, 1.U(1.W)) << io.redirect.target(log2Up(fetchWidth * 4) - 1, 1))(predictWidth - 1, 0)
+    mask_reg     := redirect_mask
+    current_mask := redirect_mask
+    epoch        := ~epoch // Sync with Backend's new color
+    printf(p"BPU REDIRECT ACCEPTED: target=${Hexadecimal(io.redirect.target)} epoch=$epoch\n")
+  } .elsewhen(io.out.fire) {
+    s0_pc := Mux(meta.taken, align(meta.target), s0_pc + (fetchWidth * 4).U)
+    
+    val target_is_same_block = align(meta.target) === s0_pc
+    val next_mask = Mux(meta.taken && target_is_same_block,
+                        (Fill(predictWidth, 1.U(1.W)) << meta.target(log2Up(fetchWidth * 4) - 1, 1))(predictWidth - 1, 0),
+                        Fill(predictWidth, 1.U(1.W)))
+    mask_reg     := next_mask
+    current_mask := mask_reg
+  } .otherwise {
+    current_mask := mask_reg
+  }
+
   // --- GHR UPDATE AND ROLLBACK ---
   val restored_ghr = Mux(io.redirect.is_cfi, Cat(redirect_meta.ghr(126, 0), io.redirect.taken), redirect_meta.ghr)
   val spec_shift_val = Mux(ftb.io.br_type === 0.U, final_taken, 1.B)
-  val has_spec_cfi = ftb.io.hit && (ftb.io.br_type === 0.U || ftb.io.br_type === 1.U || ftb.io.br_type === 2.U)
+  val has_spec_cfi = ftb.io.hit && (ftb.io.br_type === 0.U || ftb.io.br_type === 1.U || ftb.io.br_type === 2.U) && current_mask(ftb.io.slot)
 
   when(io.redirect.valid) {
     ghr := restored_ghr
@@ -126,37 +159,6 @@ class BPU(implicit val p: Parameters) extends Module with HasZaqalParameter {
     meta_storage(bpu_enq_ptr)   := new_meta
   }
 
-  // --- FRONTEND CONTROL FLOW LOGIC ---
-  def align(addr: UInt) = addr & (~((fetchWidth * 4) - 1).U(xLen.W))
-
-  val meta    = Wire(new PredictionMeta)
-  meta.target := Mux(final_taken, final_target, s0_pc + (fetchWidth * 4).U)
-  meta.taken  := final_taken
-  meta.slot   := ftb.io.slot
-
-  val current_mask = Wire(UInt(predictWidth.W))
-  val is_new_redirect = io.redirect.valid
-
-  when(is_new_redirect) {
-    s0_pc    := align(io.redirect.target)
-    val redirect_mask = (Fill(predictWidth, 1.U(1.W)) << io.redirect.target(log2Up(fetchWidth * 4) - 1, 1))(predictWidth - 1, 0)
-    mask_reg     := redirect_mask
-    current_mask := redirect_mask
-    epoch        := ~epoch // Sync with Backend's new color
-    printf(p"BPU REDIRECT ACCEPTED: target=${Hexadecimal(io.redirect.target)} epoch=$epoch\n")
-  } .elsewhen(io.out.fire) {
-    s0_pc := Mux(meta.taken, align(meta.target), s0_pc + (fetchWidth * 4).U)
-    
-    val target_is_same_block = align(meta.target) === s0_pc
-    val next_mask = Mux(meta.taken && target_is_same_block,
-                        (Fill(predictWidth, 1.U(1.W)) << meta.target(log2Up(fetchWidth * 4) - 1, 1))(predictWidth - 1, 0),
-                        Fill(predictWidth, 1.U(1.W)))
-    mask_reg     := next_mask
-    current_mask := mask_reg
-  } .otherwise {
-    current_mask := mask_reg
-  }
-
   io.out.valid := !reset.asBool
   io.out.bits.pc         := s0_pc
   
@@ -165,7 +167,7 @@ class BPU(implicit val p: Parameters) extends Module with HasZaqalParameter {
   io.out.bits.mask       := Mux(meta.taken, current_mask & taken_mask, current_mask)
   
   io.out.bits.prediction := meta
-  io.out.bits.ftqPtr     := 0.U 
+  io.out.bits.ftqPtr     := bpu_enq_ptr 
   io.out.bits.epoch      := epoch
 
   when(io.out.fire && meta.taken) {

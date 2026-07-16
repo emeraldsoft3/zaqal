@@ -119,15 +119,15 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
 
   // When a branch is renamed/dispatched, we enqueue a snapshot
   rat.io.snptEnq := is_branch_op
-  rat.io.snptEnqIdx := branch_slot
+  rat.io.snptEnqIdx := branch_slot + 1.U
   rat.io.snptDeq := false.B
 
   intFreeList.io.snptEnq := is_branch_op
-  intFreeList.io.snptEnqIdx := branch_slot
+  intFreeList.io.snptEnqIdx := branch_slot + 1.U
   intFreeList.io.snptDeq := false.B
 
   fpFreeList.io.snptEnq := is_branch_op
-  fpFreeList.io.snptEnqIdx := branch_slot
+  fpFreeList.io.snptEnqIdx := branch_slot + 1.U
   fpFreeList.io.snptDeq := false.B
 
   // Wires for Execute redirection feedback

@@ -471,6 +471,7 @@ module Frontend(	// frontend/src/zaqal/frontend/Frontend.scala:10:7
   wire [63:0] _bpu_io_out_bits_prediction_target;	// frontend/src/zaqal/frontend/Frontend.scala:34:20
   wire        _bpu_io_out_bits_prediction_taken;	// frontend/src/zaqal/frontend/Frontend.scala:34:20
   wire [3:0]  _bpu_io_out_bits_prediction_slot;	// frontend/src/zaqal/frontend/Frontend.scala:34:20
+  wire [5:0]  _bpu_io_out_bits_ftqPtr;	// frontend/src/zaqal/frontend/Frontend.scala:34:20
   reg         fetch_epoch;	// frontend/src/zaqal/frontend/Frontend.scala:41:28
   `ifndef SYNTHESIS	// frontend/src/zaqal/frontend/Frontend.scala:46:11
     always @(posedge clock) begin	// frontend/src/zaqal/frontend/Frontend.scala:46:11
@@ -525,7 +526,8 @@ module Frontend(	// frontend/src/zaqal/frontend/Frontend.scala:10:7
     .io_out_bits_mask              (_bpu_io_out_bits_mask),
     .io_out_bits_prediction_target (_bpu_io_out_bits_prediction_target),
     .io_out_bits_prediction_taken  (_bpu_io_out_bits_prediction_taken),
-    .io_out_bits_prediction_slot   (_bpu_io_out_bits_prediction_slot)
+    .io_out_bits_prediction_slot   (_bpu_io_out_bits_prediction_slot),
+    .io_out_bits_ftqPtr            (_bpu_io_out_bits_ftqPtr)
   );
   FTQ ftq (	// frontend/src/zaqal/frontend/Frontend.scala:35:20
     .clock                             (clock),
@@ -938,7 +940,7 @@ module Frontend(	// frontend/src/zaqal/frontend/Frontend.scala:10:7
     .io_enq_bits_prediction_target (_bpu_io_out_bits_prediction_target),	// frontend/src/zaqal/frontend/Frontend.scala:34:20
     .io_enq_bits_prediction_taken  (_bpu_io_out_bits_prediction_taken),	// frontend/src/zaqal/frontend/Frontend.scala:34:20
     .io_enq_bits_prediction_slot   (_bpu_io_out_bits_prediction_slot),	// frontend/src/zaqal/frontend/Frontend.scala:34:20
-    .io_enq_bits_ftqPtr            (6'h0),	// frontend/src/zaqal/frontend/Frontend.scala:10:7, :11:14, :34:20, :35:20, utility/src/zaqal/utility/Utility.scala:59:21
+    .io_enq_bits_ftqPtr            (_bpu_io_out_bits_ftqPtr),	// frontend/src/zaqal/frontend/Frontend.scala:34:20
     .io_deq_ready                  (_ftq_io_fromBpu_ready),	// frontend/src/zaqal/frontend/Frontend.scala:35:20
     .io_deq_valid                  (_bpu_out_buffered_buf_io_deq_valid),
     .io_deq_bits_pc                (_bpu_out_buffered_buf_io_deq_bits_pc),
@@ -1420,7 +1422,7 @@ module Frontend(	// frontend/src/zaqal/frontend/Frontend.scala:10:7
   assign io_ftq_read_data_debug_seqNum_13 = 64'h0;	// frontend/src/zaqal/frontend/Frontend.scala:10:7, :35:20, :36:20, utility/src/zaqal/utility/Utility.scala:59:21
   assign io_ftq_read_data_debug_seqNum_14 = 64'h0;	// frontend/src/zaqal/frontend/Frontend.scala:10:7, :35:20, :36:20, utility/src/zaqal/utility/Utility.scala:59:21
   assign io_ftq_read_data_debug_seqNum_15 = 64'h0;	// frontend/src/zaqal/frontend/Frontend.scala:10:7, :35:20, :36:20, utility/src/zaqal/utility/Utility.scala:59:21
-  assign io_ftq_read_data_ftqPtr = 6'h0;	// frontend/src/zaqal/frontend/Frontend.scala:10:7, :11:14, :34:20, :35:20, utility/src/zaqal/utility/Utility.scala:59:21
+  assign io_ftq_read_data_ftqPtr = 6'h0;	// frontend/src/zaqal/frontend/Frontend.scala:10:7, :11:14, :35:20
   assign io_ftq_read_data_epoch = 1'h0;	// frontend/src/zaqal/frontend/Frontend.scala:10:7
   assign io_debug_ftq_pc = _bpu_io_out_bits_pc;	// frontend/src/zaqal/frontend/Frontend.scala:10:7, :34:20
 endmodule

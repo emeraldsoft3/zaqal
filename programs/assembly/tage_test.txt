@@ -1,0 +1,44 @@
+addi x1, x0, 10
+addi x5, x0, 0 
+addi x5, x5, 6 
+andi x14, x5, 3
+beq x14, x0, 8
+addi x15, x0, 1
+slli x17, x14, 2
+jal x4, 20
+addi x15, x0, 10
+jal x0, 24
+addi x15, x0, 20
+jal x0, 16
+add x4, x4, x17
+jalr x1, x4, 0
+addi x1, x1, -1
+bne x1, x0, -52
+addi x12, x0, 99
+
+
+
+
+order : - 
+1) x0:addi x1, x0, 10
+2) x4:addi x5, x0, 0 
+3) x8:addi x5, x5, 6 
+4) xc:andi x14, x5, 3
+5) x10:beq x14, x0, 8
+6) x14:addi x15, x0, 1
+7) x18:slli x17, x14, 2
+8) x1c:jal x4, 20
+9) x30:add x4, x4, x17
+10) x34:jalr x1, x4, 0
+11) x28:addi x15, x0, 20
+12) x2c:jal x0, 16
+13) x3:bne x1, x0, -52
+14) x8:addi x5, x5, 6 
+15) xc:andi x14, x5, 3
+16) x10:beq x14, x0, 8
+17) x18:slli x17, x14, 2
+18) x1c:jal x4, 20
+19) x30:add x4, x4, x17
+20) x34:jalr x1, x4, 0
+21) x20:addi x15, x0, 10
+22) x24:jal x0, 24

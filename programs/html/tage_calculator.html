@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zaqal BPU - TAGE/ITTAGE Hashing Calculator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary: #818cf8;
+            --primary-glow: rgba(129, 140, 248, 0.3);
+            --accent: #f43f5e;
+            --success: #34d399;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--bg-gradient);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 3rem 1.5rem;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1100px;
+            z-index: 1;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(to right, #c084fc, #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.05em;
+        }
+
+        p.subtitle {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        /* Glassmorphism Card styling */
+        .card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            backdrop-filter: blur(12px);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: #c084fc;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Inputs Grid */
+        .inputs-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .inputs-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        label {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        input[type="text"] {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--glass-border);
+            border-radius: 8px;
+            padding: 0.8rem 1rem;
+            color: var(--text-main);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.1rem;
+            width: 100%;
+            transition: all 0.3s;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 10px var(--primary-glow);
+        }
+
+        /* GHR Interactivity */
+        .ghr-editor {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .ghr-bits {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid var(--glass-border);
+            max-height: 180px;
+            overflow-y: auto;
+        }
+
+        .bit-btn {
+            width: 28px;
+            height: 28px;
+            background: #334155;
+            border: none;
+            border-radius: 4px;
+            color: var(--text-main);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            user-select: none;
+        }
+
+        .bit-btn.active {
+            background: var(--primary);
+            box-shadow: 0 0 8px var(--primary-glow);
+            font-weight: bold;
+        }
+
+        .bit-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .ghr-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .btn-reset {
+            background: transparent;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .btn-reset:hover {
+            background: var(--accent);
+            color: white;
+        }
+
+        /* Results Tables */
+        .results-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        .table-section {
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+
+        .table-header-custom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--glass-border);
+            padding-bottom: 0.8rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .table-title {
+            font-weight: 600;
+            color: #818cf8;
+            font-size: 1.1rem;
+        }
+
+        .table-meta {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .calc-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .step-box {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--glass-border);
+            border-radius: 8px;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .step-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            letter-spacing: 0.05em;
+        }
+
+        .step-val {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--text-main);
+        }
+
+        .highlight-green {
+            color: var(--success);
+            text-shadow: 0 0 10px rgba(52, 211, 153, 0.2);
+        }
+
+        .highlight-pink {
+            color: #f43f5e;
+            text-shadow: 0 0 10px rgba(244, 63, 94, 0.2);
+        }
+
+        .math-expr {
+            font-size: 0.75rem;
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--text-muted);
+            word-break: break-all;
+        }
+
+        /* Tab selector for TAGE / ITTAGE */
+        .tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tab-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            color: var(--text-muted);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .tab-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            box-shadow: 0 0 15px var(--primary-glow);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>ZAQAL Branch Predictor</h1>
+        <p class="subtitle">Interactive TAGE / ITTAGE Hashing Calculator</p>
+    </header>
+
+    <div class="tabs">
+        <button class="tab-btn active" onclick="switchPredictor('tage')">TAGE Predictor</button>
+        <button class="tab-btn" onclick="switchPredictor('ittage')">ITTAGE Predictor</button>
+    </div>
+
+    <!-- Configuration/Input Card -->
+    <div class="card">
+        <h2>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line><line x1="15" y1="3" x2="15" y2="21"></line><line x1="3" y1="9" x2="21" y2="9"></line><line x1="3" y1="15" x2="21" y2="15"></line></svg>
+            Predictor Input Configuration
+        </h2>
+
+        <div class="inputs-grid">
+            <div class="input-group">
+                <label for="pc-input">Target PC (Hex)</label>
+                <input type="text" id="pc-input" value="0x80000000" placeholder="e.g. 0x80000000">
+                <div class="ghr-info" style="margin-top: 5px;">
+                    <span id="aligned-pc-info">Aligned Block PC: 0x80000000</span>
+                </div>
+            </div>
+
+            <div class="ghr-editor">
+                <div class="ghr-info">
+                    <label>Global History Register (GHR) - Click bits to toggle (Rightmost is LSB/most recent)</label>
+                    <button class="btn-reset" onclick="resetGhr()">Reset GHR</button>
+                </div>
+                <div class="ghr-bits" id="ghr-container">
+                    <!-- JavaScript will generate 128 bit buttons here -->
+                </div>
+                <div class="ghr-info">
+                    <span id="ghr-hex-val">Value: 0x00000000000000000000000000000000</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Output Cards Container -->
+    <div class="card">
+        <h2 id="results-headline">TAGE Calculation Output</h2>
+        <div class="results-container" id="results-grid">
+            <!-- Dynamic tables generated here -->
+        </div>
+    </div>
+</div>
+
+<script>
+    // Configuration structures mimicking TageConfig and ITTageConfig
+    const configs = {
+        tage: {
+            title: "TAGE Predictor Hashing (128-row tables, 8-bit Tag Width)",
+            nTables: 4,
+            tableRows: 128,
+            tagWidth: 8,
+            historyLengths: [4, 12, 36, 108],
+            indexWidth: 7
+        },
+        ittage: {
+            title: "ITTAGE Predictor Hashing (64-row tables, 8-bit Tag Width)",
+            nTables: 4,
+            tableRows: 64,
+            tagWidth: 8,
+            historyLengths: [4, 12, 36, 108],
+            indexWidth: 6
+        }
+    };
+
+    let activePredictor = 'tage';
+    let ghr = Array(128).fill(0); // index 0 is LSB, index 127 is MSB
+
+    // Initialize UI
+    const ghrContainer = document.getElementById('ghr-container');
+    const pcInput = document.getElementById('pc-input');
+
+    function initGhrEditor() {
+        ghrContainer.innerHTML = '';
+        // Create 128 bit editors, from MSB (127) down to LSB (0)
+        for (let i = 127; i >= 0; i--) {
+            const btn = document.createElement('button');
+            btn.className = 'bit-btn';
+            btn.id = `bit-${i}`;
+            btn.innerText = '0';
+            btn.title = `Bit ${i}`;
+            btn.onclick = () => toggleBit(i);
+            ghrContainer.appendChild(btn);
+        }
+        updateGhrHex();
+    }
+
+    function toggleBit(idx) {
+        ghr[idx] = ghr[idx] === 0 ? 1 : 0;
+        const btn = document.getElementById(`bit-${idx}`);
+        btn.innerText = ghr[idx];
+        if (ghr[idx] === 1) {
+            btn.classList.add('active');
+        } else {
+            btn.classList.remove('active');
+        }
+        updateGhrHex();
+        recalculate();
+    }
+
+    function resetGhr() {
+        ghr = Array(128).fill(0);
+        for (let i = 0; i < 128; i++) {
+            const btn = document.getElementById(`bit-${i}`);
+            btn.innerText = '0';
+            btn.classList.remove('active');
+        }
+        updateGhrHex();
+        recalculate();
+    }
+
+    function updateGhrHex() {
+        let hex = '';
+        for (let i = 127; i >= 0; i -= 4) {
+            let nibble = (ghr[i] << 3) | (ghr[i-1] << 2) | (ghr[i-2] << 1) | ghr[i-3];
+            hex += nibble.toString(16);
+        }
+        document.getElementById('ghr-hex-val').innerText = 'Value: 0x' + hex.toUpperCase();
+    }
+
+    function switchPredictor(pred) {
+        activePredictor = pred;
+        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+        if (pred === 'tage') {
+            document.querySelectorAll('.tab-btn')[0].classList.add('active');
+        } else {
+            document.querySelectorAll('.tab-btn')[1].classList.add('active');
+        }
+        document.getElementById('results-headline').innerText = configs[pred].title;
+        recalculate();
+    }
+
+    // Hashing functions mirroring Chisel's fold
+    function foldGhr(len, foldWidth) {
+        const chunks = Math.ceil(len / foldWidth);
+        let result = 0;
+        for (let i = 0; i < chunks; i++) {
+            const start = i * foldWidth;
+            const end = Math.min((i + 1) * foldWidth, len);
+            
+            // Construct chunk integer value
+            let chunkVal = 0;
+            for (let j = start; j < end; j++) {
+                if (ghr[j] === 1) {
+                    chunkVal |= (1 << (j - start));
+                }
+            }
+            result ^= chunkVal;
+        }
+        return result;
+    }
+
+    function recalculate() {
+        let pcStr = pcInput.value.trim().toLowerCase();
+        if (!pcStr.startsWith('0x')) pcStr = '0x' + pcStr;
+        let pc = parseInt(pcStr, 16);
+        if (isNaN(pc)) {
+            pc = 0x80000000;
+        }
+
+        // Apply 32-byte block alignment (forces bottom 5 bits to 0)
+        const alignedPc = pc & ~31;
+        document.getElementById('aligned-pc-info').innerText = 'Aligned Block PC: 0x' + alignedPc.toString(16).toUpperCase();
+
+        const conf = configs[activePredictor];
+        const resultsGrid = document.getElementById('results-grid');
+        resultsGrid.innerHTML = '';
+
+        conf.historyLengths.forEach((histLen, tableIdx) => {
+            // Fold GHR
+            const idx_fh = foldGhr(histLen, conf.indexWidth);
+            const tag_fh = foldGhr(histLen, conf.tagWidth);
+
+            // PC bit slices
+            const pc_idx_mask = (1 << conf.indexWidth) - 1;
+            const pc_tag_mask = (1 << conf.tagWidth) - 1;
+
+            const pc_idx_bits = alignedPc & pc_idx_mask;
+            const pc_tag_bits = alignedPc & pc_tag_mask;
+
+            // Final XOR index and tag
+            const final_idx = pc_idx_bits ^ idx_fh;
+            const final_tag = pc_tag_bits ^ tag_fh;
+
+            // HTML templates
+            const tableDiv = document.createElement('div');
+            tableDiv.className = 'table-section';
+
+            tableDiv.innerHTML = `
+                <div class="table-header-custom">
+                    <span class="table-title">Table ${tableIdx}</span>
+                    <span class="table-meta">History Length: ${histLen} bits</span>
+                </div>
+                <div class="calc-steps">
+                    <!-- Step 1: Index Fold -->
+                    <div class="step-box">
+                        <span class="step-label">1. Folded GHR Index Hash</span>
+                        <span class="step-val">0x${idx_fh.toString(16).toUpperCase()}</span>
+                        <span class="math-expr">fold(GHR, len=${histLen}, width=${conf.indexWidth})</span>
+                    </div>
+                    <!-- Step 2: Tag Fold -->
+                    <div class="step-box">
+                        <span class="step-label">2. Folded GHR Tag Hash</span>
+                        <span class="step-val">0x${tag_fh.toString(16).toUpperCase()}</span>
+                        <span class="math-expr">fold(GHR, len=${histLen}, width=${conf.tagWidth})</span>
+                    </div>
+                    <!-- Step 3: Index Result -->
+                    <div class="step-box">
+                        <span class="step-label">3. Target Row Index</span>
+                        <span class="step-val highlight-green">${final_idx} <span style="font-size: 0.8rem; font-weight: normal; color: var(--text-muted)">(0x${final_idx.toString(16).toUpperCase()})</span></span>
+                        <span class="math-expr">Index = (PC[${conf.indexWidth-1}:0] = 0x${pc_idx_bits.toString(16).toUpperCase()}) ^ Folded_GHR</span>
+                    </div>
+                    <!-- Step 4: Tag Result -->
+                    <div class="step-box">
+                        <span class="step-label">4. Target Compare Tag</span>
+                        <span class="step-val highlight-pink">0x${final_tag.toString(16).toUpperCase()}</span>
+                        <span class="math-expr">Tag = (PC[${conf.tagWidth-1}:0] = 0x${pc_tag_bits.toString(16).toUpperCase()}) ^ Folded_GHR</span>
+                    </div>
+                </div>
+            `;
+            resultsGrid.appendChild(tableDiv);
+        });
+    }
+
+    // Set up listeners
+    pcInput.oninput = recalculate;
+
+    // Start
+    initGhrEditor();
+    // Default setting: bit 0 is active (GHR = 1)
+    toggleBit(0);
+</script>
+</body>
+</html>
