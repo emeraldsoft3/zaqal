@@ -1,6 +1,27 @@
 import os
 import re
 
+def write_tage_snapshot(t, update_idx, cycle, mem):
+    for folder in ['debug/memory/snapshots', 'testing/memory/snapshots']:
+        os.makedirs(folder, exist_ok=True)
+        csv_file = f"{folder}/tage_table_{t}_update_{update_idx}_cycle_{cycle}.csv"
+        with open(csv_file, 'w') as out:
+            out.write("Row,Valid,Tag_Hex,Counter,Useful\n")
+            for r in range(128):
+                tag_hex = f"0x{mem['tags'][r]:02X}"
+                out.write(f"{r},{mem['valids'][r]},{tag_hex},{mem['ctrs'][r]},{mem['us'][r]}\n")
+
+def write_ittage_snapshot(t, update_idx, cycle, mem):
+    for folder in ['debug/memory/snapshots', 'testing/memory/snapshots']:
+        os.makedirs(folder, exist_ok=True)
+        csv_file = f"{folder}/ittage_table_{t}_update_{update_idx}_cycle_{cycle}.csv"
+        with open(csv_file, 'w') as out:
+            out.write("Row,Valid,Tag_Hex,Target_Hex,Useful\n")
+            for r in range(64):
+                tag_hex = f"0x{mem['tags'][r]:02X}"
+                tgt_hex = f"0x{mem['targets'][r]:08X}"
+                out.write(f"{r},{mem['valids'][r]},{tag_hex},{tgt_hex},{mem['us'][r]}\n")
+
 def parse_vcd_and_dump():
     vcd_path = 'programs/vcd/Lithium.vcd'
     if not os.path.exists(vcd_path):
@@ -80,9 +101,6 @@ def parse_vcd_and_dump():
                         tage_symbols[t]['tag_addr'].append(sym)
                     elif path.endswith(".tags_MPORT_data") or path.endswith("_tags_MPORT_data"):
                         tage_symbols[t]['tag_data'].append(sym)
-                    elif path.endswith(".ctrs_MPORT_en") or path.endswith("_ctrs_MPORT_en") or path.endswith(".ctrs_MPORT_1_en") or path_k.endswith("_ctrs_MPORT_1_en") if 'path_k' in locals() else False:
-                        # Fallback handling for ctrs write en
-                        tage_symbols[t]['ctr_en'].append(sym)
                     elif path.endswith(".ctrs_MPORT_en") or path.endswith("_ctrs_MPORT_en") or path.endswith(".ctrs_MPORT_1_en") or path.endswith("_ctrs_MPORT_1_en"):
                         tage_symbols[t]['ctr_en'].append(sym)
                     elif path.endswith(".ctrs_MPORT_addr") or path.endswith("_ctrs_MPORT_addr") or path.endswith(".ctrs_MPORT_1_addr") or path.endswith("_ctrs_MPORT_1_addr"):
@@ -90,7 +108,6 @@ def parse_vcd_and_dump():
                     elif path.endswith(".ctrs_MPORT_data") or path.endswith("_ctrs_MPORT_data") or path.endswith(".ctrs_MPORT_1_data") or path.endswith("_ctrs_MPORT_1_data"):
                         tage_symbols[t]['ctr_data'].append(sym)
                     elif "us_MPORT_" in path:
-                        # Extract port
                         m = re.search(r'us_MPORT_(\d+)', path)
                         if m:
                             port = int(m.group(1))
@@ -174,6 +191,9 @@ def parse_vcd_and_dump():
 
     symbol_values = {}
     prev_clock = '0'
+    cycle_count = 0
+    tage_update_counts = [0] * 4
+    ittage_update_counts = [0] * 4
 
     with open(vcd_path, 'r') as f:
         # Skip header definitions again
@@ -201,6 +221,7 @@ def parse_vcd_and_dump():
             if clock_symbol and sym == clock_symbol:
                 current_clock = val
                 if prev_clock == '0' and current_clock == '1':
+                    cycle_count += 1
                     # Process TAGE
                     for t in range(4):
                         syms = tage_symbols[t]
@@ -225,20 +246,29 @@ def parse_vcd_and_dump():
                         update_valid = any(parse_bin(symbol_values.get(s, '0')) == 1 for s in syms['update_valid'])
                         allocate = any(parse_bin(symbol_values.get(s, '0')) == 1 for s in syms['allocate'])
 
+                        updated = False
                         if tag_en:
                             tage_mem[t]['tags'][tag_addr] = tag_data
                             print(f"  [Write TAGE T{t}] Row {tag_addr} tag = 0x{tag_data:02X}")
+                            updated = True
                         if ctr_en:
                             tage_mem[t]['ctrs'][ctr_addr] = ctr_data
                             print(f"  [Write TAGE T{t}] Row {ctr_addr} ctr = {ctr_data}")
+                            updated = True
                         if us_en:
                             tage_mem[t]['us'][us_addr] = us_data
                             print(f"  [Write TAGE T{t}] Row {us_addr} u = {us_data}")
+                            updated = True
                         if update_valid and allocate:
                             # Use the tag_addr or ctr_addr write address
                             u_idx = tag_addr if tag_en else (ctr_addr if ctr_en else 0)
                             tage_mem[t]['valids'][u_idx] = True
                             print(f"  [Allocate TAGE T{t}] Row {u_idx} valid = True")
+                            updated = True
+
+                        if updated:
+                            tage_update_counts[t] += 1
+                            write_tage_snapshot(t, tage_update_counts[t], cycle_count, tage_mem[t])
 
                     # Process ITTAGE
                     for t in range(4):
@@ -264,23 +294,32 @@ def parse_vcd_and_dump():
                         update_valid = any(parse_bin(symbol_values.get(s, '0')) == 1 for s in syms['update_valid'])
                         allocate = any(parse_bin(symbol_values.get(s, '0')) == 1 for s in syms['allocate'])
 
+                        updated = False
                         if tag_en:
                             ittage_mem[t]['tags'][tag_addr] = tag_data
                             print(f"  [Write ITTAGE T{t}] Row {tag_addr} tag = 0x{tag_data:02X}")
+                            updated = True
                         if tgt_en:
                             ittage_mem[t]['targets'][tgt_addr] = tgt_data
                             print(f"  [Write ITTAGE T{t}] Row {tgt_addr} target = 0x{tgt_data:X}")
+                            updated = True
                         if us_en:
                             ittage_mem[t]['us'][us_addr] = us_data
                             print(f"  [Write ITTAGE T{t}] Row {us_addr} u = {us_data}")
+                            updated = True
                         if update_valid and allocate:
                             u_idx = tag_addr if tag_en else (tgt_addr if tgt_en else 0)
                             ittage_mem[t]['valids'][u_idx] = True
                             print(f"  [Allocate ITTAGE T{t}] Row {u_idx} valid = True")
+                            updated = True
+
+                        if updated:
+                            ittage_update_counts[t] += 1
+                            write_ittage_snapshot(t, ittage_update_counts[t], cycle_count, ittage_mem[t])
 
                 prev_clock = current_clock
 
-    # 3. Write CSVs
+    # 3. Write final CSVs
     for folder in ['debug/memory', 'testing/memory']:
         os.makedirs(folder, exist_ok=True)
         for t in range(4):

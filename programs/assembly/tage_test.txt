@@ -1,12 +1,12 @@
-addi x1, x0, 10
-addi x5, x0, 0 
-addi x5, x5, 6 
-andi x14, x5, 3
-beq x14, x0, 8
-addi x15, x0, 1
-slli x17, x14, 2
-jal x4, 20
-addi x15, x0, 10
+0:addi x1, x0, 10
+x4:addi x5, x0, 0 
+x8:addi x5, x5, 6 
+xc:andi x14, x5, 3
+x10:beq x14, x0, 8
+x14:addi x15, x0, 1
+x18:slli x17, x14, 2
+x1c:jal x4, 20
+x20:addi x15, x0, 10
 jal x0, 24
 addi x15, x0, 20
 jal x0, 16
@@ -32,10 +32,11 @@ order : -
 10) x34:jalr x1, x4, 0
 11) x28:addi x15, x0, 20
 12) x2c:jal x0, 16
-13) x3:bne x1, x0, -52
-14) x8:addi x5, x5, 6 
+13) x3c:bne x1, x0, -52
+14) x8:addi x5, x5, 6 |cycle 56|
 15) xc:andi x14, x5, 3
 16) x10:beq x14, x0, 8
+16 a spec) addi x15, x0, 1 |cycle 57| 
 17) x18:slli x17, x14, 2
 18) x1c:jal x4, 20
 19) x30:add x4, x4, x17

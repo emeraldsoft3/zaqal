@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.111 (w)1999-2020 BSI
-[*] Thu Jul 16 05:22:26 2026
+[*] Fri Jul 17 10:55:53 2026
 [*]
 [dumpfile] "/home/emerald/zaqal/programs/vcd/Lithium.vcd"
-[dumpfile_mtime] "Thu Jul 16 04:34:15 2026"
-[dumpfile_size] 3032356
+[dumpfile_mtime] "Thu Jul 16 13:12:08 2026"
+[dumpfile_size] 4949153
 [savefile] "/home/emerald/zaqal/programs/vcd/Lithium.gtkw"
-[timestart] 0
+[timestart] 47
 [size] 1882 931
 [pos] -1 -1
-*-2.900000 87 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-2.900000 65 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] TOP.
 [treeopen] TOP.Core.
 [treeopen] TOP.Core.backend.
@@ -53,9 +53,6 @@ TOP.Core.frontend.bpu.io_redirect_target[63:0]
 TOP.Core.frontend.bpu.current_mask[15:0]
 @1000200
 -BPU
-@200
--FTQ
--ftb
 @800200
 -ftb
 @22
@@ -82,6 +79,8 @@ TOP.Core.frontend.bpu.ftb.entries_0_taken
 +{TOP.Core.frontend.bpu.ftb.entries_0_target[63:0]} TOP.Core.frontend.bpu.ftb.entries_0_target[63:0]
 @28
 TOP.Core.frontend.bpu.ftb.entries_0_valid
+@23
+TOP.Core.frontend.bpu.ftb.entries_0_offset[3:0]
 @24
 +{TOP.Core.frontend.bpu.ftb.entries_1_offset[3:0]} TOP.Core.frontend.bpu.ftb.entries_1_offset[3:0]
 @22
@@ -111,13 +110,81 @@ TOP.Core.frontend.ftq.enqPtr[5:0]
 +{TOP.Core.frontend.ftq.io_flush} TOP.Core.frontend.ftq.io_flush
 @1000200
 -ftb
+@c00200
+-TAGE
+@22
+TOP.Core.frontend.bpu.tage.io_req_pc[63:0]
+TOP.Core.frontend.bpu.tage.tables_0.io_req_ghr[127:0]
+@28
+TOP.Core.frontend.bpu.tage.io_update_valid
+TOP.Core.frontend.bpu.tage.io_pred_hit
 @200
--IFU
+-t0
+@28
+TOP.Core.frontend.bpu.tage.tables_0.clock
+TOP.Core.frontend.bpu.tage.tables_0.valids_0
+TOP.Core.frontend.bpu.tage.tables_0.valids_3
++{TOP.Core.frontend.bpu.tage.tables_0.valids_28} TOP.Core.frontend.bpu.tage.tables_0.valids_28
+@22
+TOP.Core.frontend.bpu.tage.tables_0.req_tag[7:0]
++{TOP.Core.frontend.bpu.tage.tables_0.tags_MPORT_data[7:0]} TOP.Core.frontend.bpu.tage.tables_0.tags_MPORT_data[7:0]
++{TOP.Core.frontend.bpu.tage.tables_0.tags_MPORT_addr[6:0]} TOP.Core.frontend.bpu.tage.tables_0.tags_MPORT_addr[6:0]
+TOP.Core.frontend.bpu.tage.tables_0.us_read_u_addr[6:0]
++{TOP.Core.frontend.bpu.tage.tables_0.us_MPORT_2_addr[6:0]} TOP.Core.frontend.bpu.tage.tables_0.us_MPORT_2_addr[6:0]
+@28
++{TOP.Core.frontend.bpu.tage.tables_0.us_MPORT_2_data[1:0]} TOP.Core.frontend.bpu.tage.tables_0.us_MPORT_2_data[1:0]
+@22
++{TOP.Core.frontend.bpu.tage.tables_0.ctrs_MPORT_1_addr[6:0]} TOP.Core.frontend.bpu.tage.tables_0.ctrs_MPORT_1_addr[6:0]
+@28
++{TOP.Core.frontend.bpu.tage.tables_0.ctrs_MPORT_1_data[2:0]} TOP.Core.frontend.bpu.tage.tables_0.ctrs_MPORT_1_data[2:0]
+TOP.Core.frontend.bpu.tage.tables_0.valids_0
+@200
+-t1
+@1401200
+-TAGE
+@800200
+-ITTAGE
+@28
+TOP.Core.frontend.bpu.ittage.tables_0.valids_33
+@22
++{TOP.Core.frontend.bpu.ittage.tables_0.io_update_ghr[127:0]} TOP.Core.frontend.bpu.ittage.tables_0.io_update_ghr[127:0]
+TOP.Core.frontend.bpu.ittage.tables_0.io_update_pc[63:0]
+TOP.Core.frontend.bpu.ittage.tables_0.io_update_target[63:0]
++{TOP.Core.frontend.bpu.ittage.tables_0.tags_MPORT_addr[5:0]} TOP.Core.frontend.bpu.ittage.tables_0.tags_MPORT_addr[5:0]
++{TOP.Core.frontend.bpu.ittage.tables_0.tags_MPORT_data[7:0]} TOP.Core.frontend.bpu.ittage.tables_0.tags_MPORT_data[7:0]
++{TOP.Core.frontend.bpu.ittage.tables_0.targets_MPORT_1_addr[5:0]} TOP.Core.frontend.bpu.ittage.tables_0.targets_MPORT_1_addr[5:0]
++{TOP.Core.frontend.bpu.ittage.tables_0.targets_MPORT_1_data[63:0]} TOP.Core.frontend.bpu.ittage.tables_0.targets_MPORT_1_data[63:0]
+TOP.Core.frontend.bpu.ittage.tables_0.targets_MPORT_4_addr[5:0]
+TOP.Core.frontend.bpu.ittage.tables_0.targets_MPORT_4_data[63:0]
+TOP.Core.frontend.bpu.ittage.tables_0.us_MPORT_2_addr[5:0]
+@28
+TOP.Core.frontend.bpu.ittage.tables_0.us_MPORT_2_data[1:0]
+@22
+TOP.Core.frontend.bpu.ittage.tables_0_io_target[63:0]
++{TOP.Core.frontend.bpu.ittage.tables_0_io_req_pc[63:0]} TOP.Core.frontend.bpu.ittage.tables_0_io_req_pc[63:0]
++{TOP.Core.frontend.bpu.ittage.tables_0_io_req_ghr[127:0]} TOP.Core.frontend.bpu.ittage.tables_0_io_req_ghr[127:0]
+@1000200
+-ITTAGE
+@800200
+-FTQ
+@28
+TOP.Core.frontend.ftq.io_fromBpu_bits_mask[15:0]
+@22
+TOP.Core.frontend.ftq.io_occupancy[6:0]
+TOP.Core.frontend.ftq.enqPtr[5:0]
+TOP.Core.frontend.ftq.deqPtr[5:0]
+TOP.Core.frontend.ftq.io_fromBpu_bits_pc[63:0]
+TOP.Core.frontend.ftq.io_toIfu_bits_ftqPtr[5:0]
+TOP.Core.frontend.ftq.io_toIfu_bits_mask[15:0]
+TOP.Core.frontend.ftq.io_toIfu_bits_pc[63:0]
+@28
+TOP.Core.frontend.ftq.io_toIfu_bits_prediction_taken
+@1000200
+-FTQ
+@200
 -Icache
 @22
 TOP.Core.frontend.icache.io_pc[63:0]
-@200
--IBUF
 @c00200
 -IBUF
 @28
@@ -177,9 +244,6 @@ TOP.Core.frontend.ibuf.io_inst_data_bits_instructions_14[31:0]
 TOP.Core.frontend.ibuf.io_inst_data_bits_instructions_15[31:0]
 @1401200
 -IBUF
-@200
--backend
--Decoder
 @c00200
 -Decoders
 @22
@@ -192,11 +256,9 @@ TOP.Core.backend.decoders_5_io_inst[31:0]
 @1401200
 -Decoders
 @200
--Renaming
 -Snaphot
 -intfreelist
--RAT
-@800200
+@c00200
 -RAT
 @24
 +{TOP.Core.backend.rat.intRat.snapshots.snptEnqPtr[2:0]} TOP.Core.backend.rat.intRat.snapshots.snptEnqPtr[2:0]
@@ -226,7 +288,7 @@ TOP.Core.backend.rat.intRat.curr_spec_table_4_13[7:0]
 TOP.Core.backend.rat.intRat.curr_spec_table_5_13[7:0]
 TOP.Core.backend.rat.intRat.curr_spec_table_6_13[7:0]
 TOP.Core.backend.rat.intRat.curr_spec_table_1_14[7:0]
-TOP.Core.backend.rat.intRat.curr_spec_table_1_15[7:0]
++{TOP.Core.backend.rat.intRat.curr_spec_table_1_15[7:0]} TOP.Core.backend.rat.intRat.curr_spec_table_1_15[7:0]
 TOP.Core.backend.rat.intRat.curr_spec_table_1_16[7:0]
 TOP.Core.backend.rat.intRat.curr_spec_table_1_17[7:0]
 TOP.Core.backend.rat.intRat.curr_spec_table_1_18[7:0]
@@ -234,7 +296,7 @@ TOP.Core.backend.rat.intRat.curr_spec_table_1_19[7:0]
 TOP.Core.backend.rat.intRat.curr_spec_table_1_20[7:0]
 TOP.Core.backend.rat.intRat.curr_spec_table_1_21[7:0]
 TOP.Core.backend.rat.intRat.curr_spec_table_1_22[7:0]
-@1000200
+@1401200
 -RAT
 @c00200
 -Dispatch
@@ -269,6 +331,10 @@ TOP.Core.backend.dispatch.io_in_5_bits_uop_inst_raw[31:0]
 -Dispatch
 @200
 -intIQ
+-memIQ
+@800200
+-Execute
+@200
 -adder
 @22
 TOP.Core.backend.exec.alu_0.adder.io_result[63:0]
@@ -297,8 +363,17 @@ TOP.Core.backend.exec.bru_0.io_src2[63:0]
 @28
 TOP.Core.backend.exec.bru_0.io_dec_is_beq
 TOP.Core.backend.exec.bru_0.io_dec_is_jal
+TOP.Core.backend.exec.bru_0.io_dec_is_jalr
 @200
 -bru_1
+@22
+TOP.Core.backend.exec.bru_1.io_src1[63:0]
+TOP.Core.backend.exec.bru_1.io_src2[63:0]
+TOP.Core.backend.exec.bru_1.io_target[63:0]
+TOP.Core.backend.exec.bru_1.redirect_target[63:0]
+@28
+TOP.Core.backend.exec.bru_1.io_dec_is_jal
+TOP.Core.backend.exec.bru_1.io_dec_is_jalr
 @22
 TOP.Core.backend.exec.bru_1.io_pc[63:0]
 @200
@@ -311,58 +386,8 @@ TOP.Core.backend.exec.div_rd_latch[7:0]
 @28
 TOP.Core.backend.exec.div.io_done
 TOP.Core.backend.exec.div.io_ready
-@200
--memIQ
--TAGE
-@22
-TOP.Core.frontend.bpu.tage.io_req_pc[63:0]
-TOP.Core.frontend.bpu.tage.tables_0.io_req_ghr[127:0]
-@28
-TOP.Core.frontend.bpu.tage.io_update_valid
-@200
--t0
-@28
-TOP.Core.frontend.bpu.tage.tables_0.clock
-TOP.Core.frontend.bpu.tage.tables_0.valids_0
-@29
-TOP.Core.frontend.bpu.tage.tables_0.valids_3
-@28
-+{TOP.Core.frontend.bpu.tage.tables_0.valids_28} TOP.Core.frontend.bpu.tage.tables_0.valids_28
-@22
-TOP.Core.frontend.bpu.tage.tables_0.req_tag[7:0]
-+{TOP.Core.frontend.bpu.tage.tables_0.tags_MPORT_data[7:0]} TOP.Core.frontend.bpu.tage.tables_0.tags_MPORT_data[7:0]
-+{TOP.Core.frontend.bpu.tage.tables_0.tags_MPORT_addr[6:0]} TOP.Core.frontend.bpu.tage.tables_0.tags_MPORT_addr[6:0]
-TOP.Core.frontend.bpu.tage.tables_0.us_read_u_addr[6:0]
-+{TOP.Core.frontend.bpu.tage.tables_0.us_MPORT_2_addr[6:0]} TOP.Core.frontend.bpu.tage.tables_0.us_MPORT_2_addr[6:0]
-@28
-+{TOP.Core.frontend.bpu.tage.tables_0.us_MPORT_2_data[1:0]} TOP.Core.frontend.bpu.tage.tables_0.us_MPORT_2_data[1:0]
-@22
-+{TOP.Core.frontend.bpu.tage.tables_0.ctrs_MPORT_1_addr[6:0]} TOP.Core.frontend.bpu.tage.tables_0.ctrs_MPORT_1_addr[6:0]
-@28
-+{TOP.Core.frontend.bpu.tage.tables_0.ctrs_MPORT_1_data[2:0]} TOP.Core.frontend.bpu.tage.tables_0.ctrs_MPORT_1_data[2:0]
-TOP.Core.frontend.bpu.tage.tables_0.valids_0
-@200
--t1
--ITTAGE
-@28
-TOP.Core.frontend.bpu.ittage.tables_0.valids_33
-@22
-+{TOP.Core.frontend.bpu.ittage.tables_0.io_update_ghr[127:0]} TOP.Core.frontend.bpu.ittage.tables_0.io_update_ghr[127:0]
-TOP.Core.frontend.bpu.ittage.tables_0.io_update_pc[63:0]
-TOP.Core.frontend.bpu.ittage.tables_0.io_update_target[63:0]
-+{TOP.Core.frontend.bpu.ittage.tables_0.tags_MPORT_addr[5:0]} TOP.Core.frontend.bpu.ittage.tables_0.tags_MPORT_addr[5:0]
-+{TOP.Core.frontend.bpu.ittage.tables_0.tags_MPORT_data[7:0]} TOP.Core.frontend.bpu.ittage.tables_0.tags_MPORT_data[7:0]
-+{TOP.Core.frontend.bpu.ittage.tables_0.targets_MPORT_1_addr[5:0]} TOP.Core.frontend.bpu.ittage.tables_0.targets_MPORT_1_addr[5:0]
-+{TOP.Core.frontend.bpu.ittage.tables_0.targets_MPORT_1_data[63:0]} TOP.Core.frontend.bpu.ittage.tables_0.targets_MPORT_1_data[63:0]
-TOP.Core.frontend.bpu.ittage.tables_0.targets_MPORT_4_addr[5:0]
-TOP.Core.frontend.bpu.ittage.tables_0.targets_MPORT_4_data[63:0]
-TOP.Core.frontend.bpu.ittage.tables_0.us_MPORT_2_addr[5:0]
-@28
-TOP.Core.frontend.bpu.ittage.tables_0.us_MPORT_2_data[1:0]
-@22
-TOP.Core.frontend.bpu.ittage.tables_0_io_target[63:0]
-+{TOP.Core.frontend.bpu.ittage.tables_0_io_req_pc[63:0]} TOP.Core.frontend.bpu.ittage.tables_0_io_req_pc[63:0]
-+{TOP.Core.frontend.bpu.ittage.tables_0_io_req_ghr[127:0]} TOP.Core.frontend.bpu.ittage.tables_0_io_req_ghr[127:0]
+@1000200
+-Execute
 @200
 -RegFile
 @22
@@ -399,16 +424,18 @@ TOP.Core.backend.exec.regFile.regs_37[63:0]
 @22
 +{TOP.Core.backend.exec.regFile.regs_38[63:0]} TOP.Core.backend.exec.regFile.regs_38[63:0]
 +{TOP.Core.backend.exec.regFile.regs_39[63:0]} TOP.Core.backend.exec.regFile.regs_39[63:0]
-@24
 +{TOP.Core.backend.exec.regFile.regs_40[63:0]} TOP.Core.backend.exec.regFile.regs_40[63:0]
+@24
 +{TOP.Core.backend.exec.regFile.regs_41[63:0]} TOP.Core.backend.exec.regFile.regs_41[63:0]
 +{TOP.Core.backend.exec.regFile.regs_42[63:0]} TOP.Core.backend.exec.regFile.regs_42[63:0]
 TOP.Core.backend.exec.regFile.regs_43[63:0]
-TOP.Core.backend.exec.regFile.regs_44[63:0]
++{TOP.Core.backend.exec.regFile.regs_44[63:0]} TOP.Core.backend.exec.regFile.regs_44[63:0]
 TOP.Core.backend.exec.regFile.regs_45[63:0]
 TOP.Core.backend.exec.regFile.regs_46[63:0]
 TOP.Core.backend.exec.regFile.regs_47[63:0]
-TOP.Core.backend.exec.regFile.regs_48[63:0]
+@22
++{TOP.Core.backend.exec.regFile.regs_48[63:0]} TOP.Core.backend.exec.regFile.regs_48[63:0]
+@24
 TOP.Core.backend.exec.regFile.regs_49[63:0]
 TOP.Core.backend.exec.regFile.regs_50[63:0]
 TOP.Core.backend.exec.regFile.regs_51[63:0]

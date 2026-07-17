@@ -26,60 +26,62 @@ class ITTagePrediction(implicit val p: Parameters) extends Bundle with HasZaqalP
 
 class ITTageTable(val histLen: Int, val tIdx: Int)(implicit val p: Parameters) extends Module with HasZaqalParameter with ITTageConfig {
   val io = IO(new Bundle {
-    val req_pc = Input(UInt(xLen.W))
-    val req_ghr = Input(UInt(128.W))
-    val hit = Output(Bool())
-    val tag = Output(UInt(tagWidth.W))
-    val target = Output(UInt(xLen.W))
-    val u = Output(UInt(ittageUBits.W))
-    
+    val req_pc  = Input(UInt(xLen.W))
+    val req_phr = Input(UInt(32.W))  // Path History Register (32-bit)
+    val hit     = Output(Bool())
+    val tag     = Output(UInt(tagWidth.W))
+    val target  = Output(UInt(xLen.W))
+    val u       = Output(UInt(ittageUBits.W))
+
     // Update port
-    val update_valid = Input(Bool())
-    val update_pc = Input(UInt(xLen.W))
-    val update_ghr = Input(UInt(128.W))
-    val allocate = Input(Bool()) // If true, we allocate (set U=0, initialize target)
-    val update_target = Input(UInt(xLen.W)) // The actual target
-    val decrement_u = Input(Bool()) // For decay
-    val update_u_val = Input(UInt(ittageUBits.W)) // the new U value
-    val we_u = Input(Bool())
-    val we_target = Input(Bool())
-    val update_u = Output(UInt(ittageUBits.W))
+    val update_valid  = Input(Bool())
+    val update_pc     = Input(UInt(xLen.W))
+    val update_phr    = Input(UInt(32.W))  // Path History Register at retire time
+    val allocate      = Input(Bool())
+    val update_target = Input(UInt(xLen.W))
+    val decrement_u   = Input(Bool())
+    val update_u_val  = Input(UInt(ittageUBits.W))
+    val we_u          = Input(Bool())
+    val we_target     = Input(Bool())
+    val update_u      = Output(UInt(ittageUBits.W))
   })
   
   // Fold history for index and tag
-  def fold(ghr: UInt, len: Int, foldWidth: Int): UInt = {
-    val chunks = (len + foldWidth - 1) / foldWidth
-    val parts = (0 until chunks).map { i =>
+  // PHR is 32 bits wide; we fold the relevant history length into indexWidth/tagWidth
+  def fold(phr: UInt, len: Int, foldWidth: Int): UInt = {
+    val safeLen = math.min(len, 32) // PHR is 32-bit
+    val chunks  = (safeLen + foldWidth - 1) / foldWidth
+    val parts   = (0 until chunks).map { i =>
       val start = i * foldWidth
-      val end = math.min((i + 1) * foldWidth, len)
-      ghr(end - 1, start)
+      val end   = math.min((i + 1) * foldWidth, safeLen)
+      phr(end - 1, start)
     }
     parts.reduce(_ ^ _)
   }
-  
+
   val indexWidth = log2Up(tableRows)
-  val idx_fh = fold(io.req_ghr, histLen, indexWidth)
-  val tag_fh = fold(io.req_ghr, histLen, tagWidth)
-  
+  val idx_fh = fold(io.req_phr, histLen, indexWidth)
+  val tag_fh = fold(io.req_phr, histLen, tagWidth)
+
   val req_idx = (io.req_pc(indexWidth - 1, 0) ^ idx_fh)(indexWidth - 1, 0)
   val req_tag = (io.req_pc(tagWidth - 1, 0) ^ tag_fh)(tagWidth - 1, 0)
-  
+
   // Storage arrays
-  val tags = Mem(tableRows, UInt(tagWidth.W))
+  val tags    = Mem(tableRows, UInt(tagWidth.W))
   val targets = Mem(tableRows, UInt(xLen.W))
-  val us = Mem(tableRows, UInt(ittageUBits.W))
-  val valids = RegInit(VecInit(Seq.fill(tableRows)(false.B)))
-  
+  val us      = Mem(tableRows, UInt(ittageUBits.W))
+  val valids  = RegInit(VecInit(Seq.fill(tableRows)(false.B)))
+
   // Read logic
-  val read_tag = tags.read(req_idx)
+  val read_tag    = tags.read(req_idx)
   val read_target = targets.read(req_idx)
-  val read_u = us.read(req_idx)
-  val read_valid = valids(req_idx)
-  
-  val u_idx_fh = fold(io.update_ghr, histLen, indexWidth)
-  val u_tag_fh = fold(io.update_ghr, histLen, tagWidth)
-  val u_idx = (io.update_pc(indexWidth - 1, 0) ^ u_idx_fh)(indexWidth - 1, 0)
-  val u_tag = (io.update_pc(tagWidth - 1, 0) ^ u_tag_fh)(tagWidth - 1, 0)
+  val read_u      = us.read(req_idx)
+  val read_valid  = valids(req_idx)
+
+  val u_idx_fh = fold(io.update_phr, histLen, indexWidth)
+  val u_tag_fh = fold(io.update_phr, histLen, tagWidth)
+  val u_idx    = (io.update_pc(indexWidth - 1, 0) ^ u_idx_fh)(indexWidth - 1, 0)
+  val u_tag    = (io.update_pc(tagWidth - 1, 0) ^ u_tag_fh)(tagWidth - 1, 0)
 
   io.hit := read_valid && (read_tag === req_tag)
   io.tag := read_tag
@@ -112,36 +114,36 @@ class ITTageTable(val histLen: Int, val tIdx: Int)(implicit val p: Parameters) e
 
 class ITTagePredictor(implicit val p: Parameters) extends Module with HasZaqalParameter with ITTageConfig {
   val io = IO(new Bundle {
-    val req_pc = Input(UInt(xLen.W))
-    val req_ghr = Input(UInt(128.W))
-    
+    val req_pc  = Input(UInt(xLen.W))
+    val req_phr = Input(UInt(32.W))  // Path History Register
+
     val pred = Output(new ITTagePrediction)
-    
+
     // Update port
-    val update_valid = Input(Bool())
-    val update_pc = Input(UInt(xLen.W))
-    val update_ghr = Input(UInt(128.W))
-    val update_target = Input(UInt(xLen.W)) // actual outcome
-    val providerIdx = Input(UInt(log2Up(ittageNTables).W))
-    val providerHit = Input(Bool())
-    val altTarget = Input(UInt(xLen.W))
-    val providerU = Input(UInt(ittageUBits.W))
+    val update_valid  = Input(Bool())
+    val update_pc     = Input(UInt(xLen.W))
+    val update_phr    = Input(UInt(32.W))  // PHR at retire time
+    val update_target = Input(UInt(xLen.W))
+    val providerIdx   = Input(UInt(log2Up(ittageNTables).W))
+    val providerHit   = Input(Bool())
+    val altTarget     = Input(UInt(xLen.W))
+    val providerU     = Input(UInt(ittageUBits.W))
   })
-  
+
   val tables = historyLengths.zipWithIndex.map { case (len, i) =>
     val t = Module(new ITTageTable(len, i))
-    t.io.req_pc := io.req_pc
-    t.io.req_ghr := io.req_ghr
-    
-    t.io.update_valid := false.B
-    t.io.update_pc := io.update_pc
-    t.io.update_ghr := io.update_ghr
-    t.io.allocate := false.B
+    t.io.req_pc  := io.req_pc
+    t.io.req_phr := io.req_phr
+
+    t.io.update_valid  := false.B
+    t.io.update_pc     := io.update_pc
+    t.io.update_phr    := io.update_phr
+    t.io.allocate      := false.B
     t.io.update_target := io.update_target
-    t.io.decrement_u := false.B
-    t.io.update_u_val := 0.U
-    t.io.we_u := false.B
-    t.io.we_target := false.B
+    t.io.decrement_u   := false.B
+    t.io.update_u_val  := 0.U
+    t.io.we_u          := false.B
+    t.io.we_target     := false.B
     t
   }
   

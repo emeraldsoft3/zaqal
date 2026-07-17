@@ -382,20 +382,36 @@
     };
 
     let activePredictor = 'tage';
-    let ghr = Array(128).fill(0); // index 0 is LSB, index 127 is MSB
+    // GHR: 128 bits for TAGE. PHR: 32 bits for ITTAGE.
+    let ghr = Array(128).fill(0); // index 0 = LSB (most recent)
+    let phr = Array(32).fill(0);  // index 0 = LSB
 
     // Initialize UI
     const ghrContainer = document.getElementById('ghr-container');
     const pcInput = document.getElementById('pc-input');
 
+    function getRegisterBits() {
+        return activePredictor === 'tage' ? ghr : phr;
+    }
+    function getRegisterLen() {
+        return activePredictor === 'tage' ? 128 : 32;
+    }
+
     function initGhrEditor() {
         ghrContainer.innerHTML = '';
-        // Create 128 bit editors, from MSB (127) down to LSB (0)
-        for (let i = 127; i >= 0; i--) {
+        const len = getRegisterLen();
+        const label = document.querySelector('label[for=""]') ;
+        document.querySelector('.ghr-editor .ghr-info label').innerText =
+            activePredictor === 'tage'
+                ? 'Global History Register (GHR) - 128-bit, click to toggle (Bit 0 = most recent branch)'
+                : 'Path History Register (PHR) - 32-bit, click to toggle (Bit 0 = most recent JALR target bits)';
+
+        for (let i = len - 1; i >= 0; i--) {
+            const bits = getRegisterBits();
             const btn = document.createElement('button');
-            btn.className = 'bit-btn';
+            btn.className = 'bit-btn' + (bits[i] ? ' active' : '');
             btn.id = `bit-${i}`;
-            btn.innerText = '0';
+            btn.innerText = bits[i];
             btn.title = `Bit ${i}`;
             btn.onclick = () => toggleBit(i);
             ghrContainer.appendChild(btn);
@@ -404,36 +420,41 @@
     }
 
     function toggleBit(idx) {
-        ghr[idx] = ghr[idx] === 0 ? 1 : 0;
+        const bits = getRegisterBits();
+        bits[idx] = bits[idx] === 0 ? 1 : 0;
         const btn = document.getElementById(`bit-${idx}`);
-        btn.innerText = ghr[idx];
-        if (ghr[idx] === 1) {
-            btn.classList.add('active');
-        } else {
-            btn.classList.remove('active');
-        }
+        btn.innerText = bits[idx];
+        bits[idx] === 1 ? btn.classList.add('active') : btn.classList.remove('active');
         updateGhrHex();
         recalculate();
     }
 
     function resetGhr() {
-        ghr = Array(128).fill(0);
-        for (let i = 0; i < 128; i++) {
+        const len = getRegisterLen();
+        const bits = getRegisterBits();
+        for (let i = 0; i < len; i++) {
+            bits[i] = 0;
             const btn = document.getElementById(`bit-${i}`);
-            btn.innerText = '0';
-            btn.classList.remove('active');
+            if (btn) { btn.innerText = '0'; btn.classList.remove('active'); }
         }
         updateGhrHex();
         recalculate();
     }
 
     function updateGhrHex() {
+        const bits = getRegisterBits();
+        const len  = getRegisterLen();
         let hex = '';
-        for (let i = 127; i >= 0; i -= 4) {
-            let nibble = (ghr[i] << 3) | (ghr[i-1] << 2) | (ghr[i-2] << 1) | ghr[i-3];
+        for (let i = len - 1; i >= 0; i -= 4) {
+            const b3 = bits[i]   || 0;
+            const b2 = bits[i-1] || 0;
+            const b1 = bits[i-2] || 0;
+            const b0 = bits[i-3] || 0;
+            let nibble = (b3 << 3) | (b2 << 2) | (b1 << 1) | b0;
             hex += nibble.toString(16);
         }
-        document.getElementById('ghr-hex-val').innerText = 'Value: 0x' + hex.toUpperCase();
+        const label = activePredictor === 'tage' ? 'GHR' : 'PHR';
+        document.getElementById('ghr-hex-val').innerText = `${label} Value: 0x${hex.toUpperCase()}`;
     }
 
     function switchPredictor(pred) {
@@ -445,23 +466,24 @@
             document.querySelectorAll('.tab-btn')[1].classList.add('active');
         }
         document.getElementById('results-headline').innerText = configs[pred].title;
+        initGhrEditor(); // Re-render bit editor for correct register width
         recalculate();
     }
 
-    // Hashing functions mirroring Chisel's fold
-    function foldGhr(len, foldWidth) {
-        const chunks = Math.ceil(len / foldWidth);
+    // Hashing function mirroring Chisel's fold()
+    // For TAGE: reads ghr[] (128 bits), for ITTAGE: reads phr[] (32 bits, clamped)
+    function foldHistory(len, foldWidth) {
+        const bits    = getRegisterBits();
+        const maxLen  = getRegisterLen();
+        const safeLen = Math.min(len, maxLen); // PHR is only 32 bits
+        const chunks  = Math.ceil(safeLen / foldWidth);
         let result = 0;
         for (let i = 0; i < chunks; i++) {
             const start = i * foldWidth;
-            const end = Math.min((i + 1) * foldWidth, len);
-            
-            // Construct chunk integer value
+            const end   = Math.min((i + 1) * foldWidth, safeLen);
             let chunkVal = 0;
             for (let j = start; j < end; j++) {
-                if (ghr[j] === 1) {
-                    chunkVal |= (1 << (j - start));
-                }
+                if (bits[j] === 1) chunkVal |= (1 << (j - start));
             }
             result ^= chunkVal;
         }
@@ -472,12 +494,10 @@
         let pcStr = pcInput.value.trim().toLowerCase();
         if (!pcStr.startsWith('0x')) pcStr = '0x' + pcStr;
         let pc = parseInt(pcStr, 16);
-        if (isNaN(pc)) {
-            pc = 0x80000000;
-        }
+        if (isNaN(pc)) pc = 0x80000000;
 
         // Apply 32-byte block alignment (forces bottom 5 bits to 0)
-        const alignedPc = pc & ~31;
+        const alignedPc = (pc & ~31) >>> 0;
         document.getElementById('aligned-pc-info').innerText = 'Aligned Block PC: 0x' + alignedPc.toString(16).toUpperCase();
 
         const conf = configs[activePredictor];
@@ -485,9 +505,8 @@
         resultsGrid.innerHTML = '';
 
         conf.historyLengths.forEach((histLen, tableIdx) => {
-            // Fold GHR
-            const idx_fh = foldGhr(histLen, conf.indexWidth);
-            const tag_fh = foldGhr(histLen, conf.tagWidth);
+            const idx_fh = foldHistory(histLen, conf.indexWidth);
+            const tag_fh = foldHistory(histLen, conf.tagWidth);
 
             // PC bit slices
             const pc_idx_mask = (1 << conf.indexWidth) - 1;

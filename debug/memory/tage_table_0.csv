@@ -44,7 +44,7 @@ Row,Valid,Tag_Hex,Counter,Useful
 42,False,0x00,3,0
 43,False,0x00,3,0
 44,False,0x00,3,0
-45,False,0x00,3,0
+45,True,0x2D,4,0
 46,False,0x00,3,0
 47,False,0x00,3,0
 48,False,0x00,3,0

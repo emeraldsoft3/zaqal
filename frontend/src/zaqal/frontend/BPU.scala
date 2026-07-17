@@ -9,6 +9,7 @@ import zaqal.common._
 // Bundle to hold branch prediction metadata at fetch time
 class BPUMetaEntry(implicit val p: Parameters) extends Bundle with HasZaqalParameter {
   val ghr = UInt(128.W)
+  val phr = UInt(32.W)   // Path History Register (for ITTAGE)
   // TAGE Metadata
   val tage_providerIdx = UInt(2.W)
   val tage_providerHit = Bool()
@@ -32,8 +33,12 @@ class BPU(implicit val p: Parameters) extends Module with HasZaqalParameter {
   val mask_reg = RegInit(Fill(predictWidth, 1.U(1.W)))
   val epoch    = RegInit(false.B) // Current Fetch Epoch
 
-  // Global History Register (GHR)
+  // Global History Register (GHR) — for TAGE (branch directions)
   val ghr = RegInit(0.U(128.W))
+
+  // Path History Register (PHR) — for ITTAGE (indirect jump target PCs)
+  // 32-bit register; on each taken JALR we shift in target(7, 2) (6 bits)
+  val phr = RegInit(0.U(32.W))
 
   // Instantiate sub-predictors
   val ftb = Module(new FTB)
@@ -59,7 +64,7 @@ class BPU(implicit val p: Parameters) extends Module with HasZaqalParameter {
   tage.io.req_ghr := ghr
 
   ittage.io.req_pc  := s0_pc
-  ittage.io.req_ghr := ghr
+  ittage.io.req_phr := phr  // PHR feeds ITTAGE, not GHR
 
   // Override FTB's conditional branch direction with TAGE
   val final_taken = Mux(ftb.io.hit && ftb.io.br_type === 0.U, tage.io.pred.taken, ftb.io.taken)
@@ -89,10 +94,10 @@ class BPU(implicit val p: Parameters) extends Module with HasZaqalParameter {
   tage.io.altTaken     := redirect_meta.tage_altTaken
   tage.io.providerU    := redirect_meta.tage_providerU
 
-  // ITTAGE Update
+  // ITTAGE Update — uses snapshotted PHR from the retire packet
   ittage.io.update_valid  := io.redirect.valid && !io.redirect.is_exception && io.redirect.is_cfi && io.redirect.is_jalr
   ittage.io.update_pc     := aligned_update_pc
-  ittage.io.update_ghr    := redirect_meta.ghr
+  ittage.io.update_phr    := redirect_meta.phr  // PHR at the time this JALR was fetched
   ittage.io.update_target := io.redirect.target
   ittage.io.providerIdx   := redirect_meta.ittage_providerIdx
   ittage.io.providerHit   := redirect_meta.ittage_providerHit
@@ -141,16 +146,28 @@ class BPU(implicit val p: Parameters) extends Module with HasZaqalParameter {
     ghr := Cat(ghr(126, 0), spec_shift_val)
   }
 
+  // --- PHR UPDATE AND ROLLBACK ---
+  // PHR is shifted on every taken JALR (indirect jump): shift in target[7:2] (6 bits)
+  val is_spec_jalr = ftb.io.hit && ftb.io.br_type === 2.U && current_mask(ftb.io.slot) && final_taken
+  val restored_phr = Cat(redirect_meta.phr(25, 0), io.redirect.target(7, 2))
+
+  when(io.redirect.valid && io.redirect.is_jalr) {
+    phr := restored_phr
+  } .elsewhen(io.out.fire && is_spec_jalr) {
+    phr := Cat(phr(25, 0), final_target(7, 2))
+  }
+
   // --- METADATA ENQUEUE LOGIC ---
   when(io.out.fire) {
     val new_meta = Wire(new BPUMetaEntry)
     new_meta.ghr                := ghr
+    new_meta.phr                := phr   // Snapshot current PHR
     new_meta.tage_providerIdx   := tage.io.pred.providerIdx
     new_meta.tage_providerHit   := tage.io.pred.hit
     new_meta.tage_providerCtr   := tage.io.pred.providerCtr
     new_meta.tage_altTaken      := tage.io.pred.altTaken
     new_meta.tage_providerU     := tage.io.pred.providerU
-    
+
     new_meta.ittage_providerIdx := ittage.io.pred.providerIdx
     new_meta.ittage_providerHit := ittage.io.pred.hit
     new_meta.ittage_altTarget   := ittage.io.pred.altTarget
