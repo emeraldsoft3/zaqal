@@ -138,7 +138,7 @@ class BPU(implicit val p: Parameters) extends Module with HasZaqalParameter {
   // --- GHR UPDATE AND ROLLBACK ---
   val restored_ghr = Mux(io.redirect.is_cfi, Cat(redirect_meta.ghr(126, 0), io.redirect.taken), redirect_meta.ghr)
   val spec_shift_val = Mux(ftb.io.br_type === 0.U, final_taken, 1.B)
-  val has_spec_cfi = ftb.io.hit && (ftb.io.br_type === 0.U || ftb.io.br_type === 1.U || ftb.io.br_type === 2.U) && current_mask(ftb.io.slot)
+  val has_spec_cfi = ftb.io.hit && current_mask(ftb.io.slot) && (ftb.io.br_type === 0.U || final_taken)
 
   when(io.redirect.valid) {
     ghr := restored_ghr
@@ -148,10 +148,13 @@ class BPU(implicit val p: Parameters) extends Module with HasZaqalParameter {
 
   // --- PHR UPDATE AND ROLLBACK ---
   // PHR is shifted on every taken JALR (indirect jump): shift in target[7:2] (6 bits)
+  // On ANY redirect, restore the snapshotted PHR (or update it if the redirect was a JALR)
   val is_spec_jalr = ftb.io.hit && ftb.io.br_type === 2.U && current_mask(ftb.io.slot) && final_taken
-  val restored_phr = Cat(redirect_meta.phr(25, 0), io.redirect.target(7, 2))
+  val restored_phr = Mux(io.redirect.is_cfi && io.redirect.is_jalr,
+                         Cat(redirect_meta.phr(25, 0), io.redirect.target(7, 2)),
+                         redirect_meta.phr)
 
-  when(io.redirect.valid && io.redirect.is_jalr) {
+  when(io.redirect.valid) {
     phr := restored_phr
   } .elsewhen(io.out.fire && is_spec_jalr) {
     phr := Cat(phr(25, 0), final_target(7, 2))

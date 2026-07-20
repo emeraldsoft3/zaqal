@@ -519,6 +519,8 @@
             const final_idx = pc_idx_bits ^ idx_fh;
             const final_tag = pc_tag_bits ^ tag_fh;
 
+            const regName = activePredictor === 'tage' ? 'GHR' : 'PHR';
+
             // HTML templates
             const tableDiv = document.createElement('div');
             tableDiv.className = 'table-section';
@@ -531,27 +533,27 @@
                 <div class="calc-steps">
                     <!-- Step 1: Index Fold -->
                     <div class="step-box">
-                        <span class="step-label">1. Folded GHR Index Hash</span>
+                        <span class="step-label">1. Folded ${regName} Index Hash</span>
                         <span class="step-val">0x${idx_fh.toString(16).toUpperCase()}</span>
-                        <span class="math-expr">fold(GHR, len=${histLen}, width=${conf.indexWidth})</span>
+                        <span class="math-expr">fold(${regName}, len=${histLen}, width=${conf.indexWidth})</span>
                     </div>
                     <!-- Step 2: Tag Fold -->
                     <div class="step-box">
-                        <span class="step-label">2. Folded GHR Tag Hash</span>
+                        <span class="step-label">2. Folded ${regName} Tag Hash</span>
                         <span class="step-val">0x${tag_fh.toString(16).toUpperCase()}</span>
-                        <span class="math-expr">fold(GHR, len=${histLen}, width=${conf.tagWidth})</span>
+                        <span class="math-expr">fold(${regName}, len=${histLen}, width=${conf.tagWidth})</span>
                     </div>
                     <!-- Step 3: Index Result -->
                     <div class="step-box">
                         <span class="step-label">3. Target Row Index</span>
                         <span class="step-val highlight-green">${final_idx} <span style="font-size: 0.8rem; font-weight: normal; color: var(--text-muted)">(0x${final_idx.toString(16).toUpperCase()})</span></span>
-                        <span class="math-expr">Index = (PC[${conf.indexWidth-1}:0] = 0x${pc_idx_bits.toString(16).toUpperCase()}) ^ Folded_GHR</span>
+                        <span class="math-expr">Index = (PC[${conf.indexWidth-1}:0] = 0x${pc_idx_bits.toString(16).toUpperCase()}) ^ Folded_${regName}</span>
                     </div>
                     <!-- Step 4: Tag Result -->
                     <div class="step-box">
                         <span class="step-label">4. Target Compare Tag</span>
                         <span class="step-val highlight-pink">0x${final_tag.toString(16).toUpperCase()}</span>
-                        <span class="math-expr">Tag = (PC[${conf.tagWidth-1}:0] = 0x${pc_tag_bits.toString(16).toUpperCase()}) ^ Folded_GHR</span>
+                        <span class="math-expr">Tag = (PC[${conf.tagWidth-1}:0] = 0x${pc_tag_bits.toString(16).toUpperCase()}) ^ Folded_${regName}</span>
                     </div>
                 </div>
             `;
