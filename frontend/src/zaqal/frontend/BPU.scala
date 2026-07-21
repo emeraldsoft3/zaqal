@@ -79,12 +79,13 @@ class BPU(implicit val p: Parameters) extends Module with HasZaqalParameter {
   ftb.io.update_target := io.redirect.target
   ftb.io.update_taken  := io.redirect.taken
   ftb.io.update_is_cfi := io.redirect.is_cfi
+  ftb.io.update_is_jal := io.redirect.is_jal
   ftb.io.update_is_jalr:= io.redirect.is_jalr
 
   val aligned_update_pc = io.redirect.pc & (~31.U(xLen.W))
 
-  // TAGE Update
-  tage.io.update_valid := io.redirect.valid && !io.redirect.is_exception && io.redirect.is_cfi && !io.redirect.is_jalr
+  // TAGE Update: strictly for conditional branches (not JAL, not JALR)
+  tage.io.update_valid := io.redirect.valid && !io.redirect.is_exception && io.redirect.is_cfi && !io.redirect.is_jal && !io.redirect.is_jalr
   tage.io.update_pc    := aligned_update_pc
   tage.io.update_ghr   := redirect_meta.ghr
   tage.io.update_dir   := io.redirect.taken
@@ -135,15 +136,18 @@ class BPU(implicit val p: Parameters) extends Module with HasZaqalParameter {
     current_mask := mask_reg
   }
 
-  // --- GHR UPDATE AND ROLLBACK ---
-  val restored_ghr = Mux(io.redirect.is_cfi, Cat(redirect_meta.ghr(126, 0), io.redirect.taken), redirect_meta.ghr)
-  val spec_shift_val = Mux(ftb.io.br_type === 0.U, final_taken, 1.B)
-  val has_spec_cfi = ftb.io.hit && current_mask(ftb.io.slot) && (ftb.io.br_type === 0.U || final_taken)
+  // --- GHR UPDATE AND ROLLBACK (Strictly for Conditional Branches) ---
+  val is_cond_redirect = io.redirect.is_cfi && !io.redirect.is_jal && !io.redirect.is_jalr
+  val restored_ghr     = Mux(is_cond_redirect, Cat(redirect_meta.ghr(126, 0), io.redirect.taken), redirect_meta.ghr)
+  val spec_shift_val   = final_taken
+  val has_spec_cond_br = ftb.io.hit && current_mask(ftb.io.slot) && (ftb.io.br_type === 0.U)
 
   when(io.redirect.valid) {
     ghr := restored_ghr
-  } .elsewhen(io.out.fire && has_spec_cfi) {
+    printf(p"[BPU GHR RESTORE] ghr=${Hexadecimal(restored_ghr)} redirect_pc=${Hexadecimal(io.redirect.pc)} target=${Hexadecimal(io.redirect.target)}\n")
+  } .elsewhen(io.out.fire && has_spec_cond_br) {
     ghr := Cat(ghr(126, 0), spec_shift_val)
+    printf(p"[BPU GHR SPEC SHIFT] ghr=${Hexadecimal(Cat(ghr(126, 0), spec_shift_val))} s0_pc=${Hexadecimal(s0_pc)} val=$spec_shift_val\n")
   }
 
   // --- PHR UPDATE AND ROLLBACK ---

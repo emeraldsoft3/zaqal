@@ -268,6 +268,7 @@ class BPURedirect(implicit val p: Parameters) extends Bundle with HasZaqalParame
   val pc           = UInt(xLen.W)
   val taken        = Bool()
   val is_cfi       = Bool()
+  val is_jal       = Bool()
   val is_jalr      = Bool()
   val ftqPtr       = UInt(ftqPtrWidth.W)
 }

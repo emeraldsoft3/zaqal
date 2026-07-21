@@ -29,6 +29,7 @@ class FTB(implicit val p: Parameters) extends Module with HasZaqalParameter {
     val update_target= Input(UInt(xLen.W))
     val update_taken = Input(Bool())
     val update_is_cfi= Input(Bool())
+    val update_is_jal= Input(Bool())
     val update_is_jalr= Input(Bool())
   })
 
@@ -67,7 +68,7 @@ class FTB(implicit val p: Parameters) extends Module with HasZaqalParameter {
     new_entry.valid   := true.B
     new_entry.tag     := update_tag
     new_entry.target  := io.update_target
-    new_entry.br_type := Mux(io.update_is_jalr, 2.U, 0.U)
+    new_entry.br_type := Mux(io.update_is_jalr, 2.U, Mux(io.update_is_jal, 1.U, 0.U))
     new_entry.offset  := update_offset
     new_entry.taken   := io.update_taken
     
