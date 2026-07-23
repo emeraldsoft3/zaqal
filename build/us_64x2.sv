@@ -67,7 +67,7 @@
 `endif // not def PRINTF_COND_
 
 // VCS coverage exclude_file
-module us_64x2(	// frontend/src/zaqal/frontend/ITTAGE.scala:70:15
+module us_64x2(	// frontend/src/zaqal/frontend/ITTAGE.scala:72:20
   input  [5:0] R0_addr,
   input        R0_en,
                R0_clk,
@@ -94,29 +94,29 @@ module us_64x2(	// frontend/src/zaqal/frontend/ITTAGE.scala:70:15
   input  [1:0] W2_data
 );
 
-  reg [1:0] Memory[0:63];	// frontend/src/zaqal/frontend/ITTAGE.scala:70:15
-  always @(posedge W0_clk) begin	// frontend/src/zaqal/frontend/ITTAGE.scala:70:15
-    if (W0_en & 1'h1)	// frontend/src/zaqal/frontend/ITTAGE.scala:70:15
-      Memory[W0_addr] <= W0_data;	// frontend/src/zaqal/frontend/ITTAGE.scala:70:15
-    if (W1_en & 1'h1)	// frontend/src/zaqal/frontend/ITTAGE.scala:70:15
-      Memory[W1_addr] <= W1_data;	// frontend/src/zaqal/frontend/ITTAGE.scala:70:15
-    if (W2_en & 1'h1)	// frontend/src/zaqal/frontend/ITTAGE.scala:70:15
-      Memory[W2_addr] <= W2_data;	// frontend/src/zaqal/frontend/ITTAGE.scala:70:15
+  reg [1:0] Memory[0:63];	// frontend/src/zaqal/frontend/ITTAGE.scala:72:20
+  always @(posedge W0_clk) begin	// frontend/src/zaqal/frontend/ITTAGE.scala:72:20
+    if (W0_en & 1'h1)	// frontend/src/zaqal/frontend/ITTAGE.scala:72:20
+      Memory[W0_addr] <= W0_data;	// frontend/src/zaqal/frontend/ITTAGE.scala:72:20
+    if (W1_en & 1'h1)	// frontend/src/zaqal/frontend/ITTAGE.scala:72:20
+      Memory[W1_addr] <= W1_data;	// frontend/src/zaqal/frontend/ITTAGE.scala:72:20
+    if (W2_en & 1'h1)	// frontend/src/zaqal/frontend/ITTAGE.scala:72:20
+      Memory[W2_addr] <= W2_data;	// frontend/src/zaqal/frontend/ITTAGE.scala:72:20
   end // always @(posedge)
-  `ifdef ENABLE_INITIAL_MEM_	// frontend/src/zaqal/frontend/ITTAGE.scala:70:15
-    reg [31:0] _RANDOM_MEM;	// frontend/src/zaqal/frontend/ITTAGE.scala:70:15
-    initial begin	// frontend/src/zaqal/frontend/ITTAGE.scala:70:15
-      `INIT_RANDOM_PROLOG_	// frontend/src/zaqal/frontend/ITTAGE.scala:70:15
-      `ifdef RANDOMIZE_MEM_INIT	// frontend/src/zaqal/frontend/ITTAGE.scala:70:15
+  `ifdef ENABLE_INITIAL_MEM_	// frontend/src/zaqal/frontend/ITTAGE.scala:72:20
+    reg [31:0] _RANDOM_MEM;	// frontend/src/zaqal/frontend/ITTAGE.scala:72:20
+    initial begin	// frontend/src/zaqal/frontend/ITTAGE.scala:72:20
+      `INIT_RANDOM_PROLOG_	// frontend/src/zaqal/frontend/ITTAGE.scala:72:20
+      `ifdef RANDOMIZE_MEM_INIT	// frontend/src/zaqal/frontend/ITTAGE.scala:72:20
         for (logic [6:0] i = 7'h0; i < 7'h40; i += 7'h1) begin
-          _RANDOM_MEM = `RANDOM;	// frontend/src/zaqal/frontend/ITTAGE.scala:70:15
-          Memory[i[5:0]] = _RANDOM_MEM[1:0];	// frontend/src/zaqal/frontend/ITTAGE.scala:70:15
-        end	// frontend/src/zaqal/frontend/ITTAGE.scala:70:15
+          _RANDOM_MEM = `RANDOM;	// frontend/src/zaqal/frontend/ITTAGE.scala:72:20
+          Memory[i[5:0]] = _RANDOM_MEM[1:0];	// frontend/src/zaqal/frontend/ITTAGE.scala:72:20
+        end	// frontend/src/zaqal/frontend/ITTAGE.scala:72:20
       `endif // RANDOMIZE_MEM_INIT
     end // initial
   `endif // ENABLE_INITIAL_MEM_
-  assign R0_data = R0_en ? Memory[R0_addr] : 2'bx;	// frontend/src/zaqal/frontend/ITTAGE.scala:70:15
-  assign R1_data = R1_en ? Memory[R1_addr] : 2'bx;	// frontend/src/zaqal/frontend/ITTAGE.scala:70:15
-  assign R2_data = R2_en ? Memory[R2_addr] : 2'bx;	// frontend/src/zaqal/frontend/ITTAGE.scala:70:15
+  assign R0_data = R0_en ? Memory[R0_addr] : 2'bx;	// frontend/src/zaqal/frontend/ITTAGE.scala:72:20
+  assign R1_data = R1_en ? Memory[R1_addr] : 2'bx;	// frontend/src/zaqal/frontend/ITTAGE.scala:72:20
+  assign R2_data = R2_en ? Memory[R2_addr] : 2'bx;	// frontend/src/zaqal/frontend/ITTAGE.scala:72:20
 endmodule
 

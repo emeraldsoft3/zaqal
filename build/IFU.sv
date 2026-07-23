@@ -74,7 +74,8 @@ module IFU(	// frontend/src/zaqal/frontend/IFU.scala:9:7
   input         io_fetch_req_bits_prediction_taken,	// frontend/src/zaqal/frontend/IFU.scala:10:14
   input  [3:0]  io_fetch_req_bits_prediction_slot,	// frontend/src/zaqal/frontend/IFU.scala:10:14
   input  [5:0]  io_fetch_req_bits_ftqPtr,	// frontend/src/zaqal/frontend/IFU.scala:10:14
-  input         io_toIbuffer_ready,	// frontend/src/zaqal/frontend/IFU.scala:10:14
+  input         io_fetch_req_bits_epoch,	// frontend/src/zaqal/frontend/IFU.scala:10:14
+                io_toIbuffer_ready,	// frontend/src/zaqal/frontend/IFU.scala:10:14
   output        io_toIbuffer_valid,	// frontend/src/zaqal/frontend/IFU.scala:10:14
   output [63:0] io_toIbuffer_bits_pc_0,	// frontend/src/zaqal/frontend/IFU.scala:10:14
                 io_toIbuffer_bits_pc_1,	// frontend/src/zaqal/frontend/IFU.scala:10:14
@@ -144,6 +145,7 @@ module IFU(	// frontend/src/zaqal/frontend/IFU.scala:9:7
   output        io_toIbuffer_bits_prediction_taken,	// frontend/src/zaqal/frontend/IFU.scala:10:14
   output [3:0]  io_toIbuffer_bits_prediction_slot,	// frontend/src/zaqal/frontend/IFU.scala:10:14
   output [5:0]  io_toIbuffer_bits_ftqPtr,	// frontend/src/zaqal/frontend/IFU.scala:10:14
+  output        io_toIbuffer_bits_epoch,	// frontend/src/zaqal/frontend/IFU.scala:10:14
   input  [31:0] io_insts_in_0,	// frontend/src/zaqal/frontend/IFU.scala:10:14
                 io_insts_in_1,	// frontend/src/zaqal/frontend/IFU.scala:10:14
                 io_insts_in_2,	// frontend/src/zaqal/frontend/IFU.scala:10:14
@@ -280,5 +282,6 @@ module IFU(	// frontend/src/zaqal/frontend/IFU.scala:9:7
   assign io_toIbuffer_bits_prediction_taken = io_fetch_req_bits_prediction_taken;	// frontend/src/zaqal/frontend/IFU.scala:9:7
   assign io_toIbuffer_bits_prediction_slot = io_fetch_req_bits_prediction_slot;	// frontend/src/zaqal/frontend/IFU.scala:9:7
   assign io_toIbuffer_bits_ftqPtr = io_fetch_req_bits_ftqPtr;	// frontend/src/zaqal/frontend/IFU.scala:9:7
+  assign io_toIbuffer_bits_epoch = io_fetch_req_bits_epoch;	// frontend/src/zaqal/frontend/IFU.scala:9:7
 endmodule
 

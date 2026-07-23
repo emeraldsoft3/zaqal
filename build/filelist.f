@@ -14,7 +14,6 @@ us_64x2.sv
 ITTageTable.sv
 ITTageTable_1.sv
 ITTageTable_2.sv
-ITTageTable_3.sv
 ITTagePredictor.sv
 BPU.sv
 FTQ.sv

@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zaqal Branch Prediction Unit Trace Dashboard</title>
+    <style>
+        body {
+            background-color: #0d0d0d;
+            color: #e0e0e0;
+            font-family: 'Consolas', 'Courier New', monospace;
+            margin: 20px;
+        }
+        h1 {
+            color: #FFD700;
+            text-align: center;
+            border-bottom: 2px solid #333;
+            padding-bottom: 10px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .table-container {
+            overflow-x: auto;
+            margin-top: 20px;
+            border-radius: 8px;
+            border: 1px solid #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #000000;
+        }
+        th {
+            background-color: #202020;
+            color: #ffffff;
+            font-weight: bold;
+            padding: 12px;
+            border: 1px solid #333;
+            font-size: 13px;
+        }
+        td {
+            padding: 8px 12px;
+            border: 1px solid #333;
+            font-size: 12px;
+            color: #FFFF00; /* Default yellow */
+        }
+        tr.branch-row {
+            background-color: #332B00; /* Dark gold fill */
+        }
+        tr.speculative-row td {
+            color: #DDA0DD !important; /* Speculative purple text */
+        }
+        tr:hover {
+            background-color: #1a1a1a;
+        }
+        .search-box {
+            margin-bottom: 20px;
+            padding: 10px;
+            width: 100%;
+            max-width: 400px;
+            background-color: #151515;
+            border: 1px solid #444;
+            color: #fff;
+            font-family: inherit;
+            font-size: 14px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Zaqal BPU / TAGE Trace Dashboard (First 1000 Cycles)</h1>
+    <input type="text" id="search" class="search-box" placeholder="Search instruction, PC, cycle..." onkeyup="filterTable()">
+    
+    <div class="table-container">
+        <table id="trace-table">
+            <thead>
+                <tr>
+                    <th>Order</th>
+                    <th>PC</th>
+                    <th>Instruction</th>
+                    <th>Cycle Commit PRF</th>
+                    <th>Cycle BRU</th>
+                    <th>x1</th>
+                    <th>x4</th>
+                    <th>x5</th>
+                    <th>x14</th>
+                    <th>x15</th>
+                    <th>x17</th>
+                    <th>FTB Entry 0</th>
+                    <th>FTB Entry 1</th>
+                    <th>GHR</th>
+                    <th>TAGE Details</th>
+                    <th>PHR</th>
+                    <th>ITTAGE Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr >
+                    <td>1</td>
+                    <td>x00</td>
+                    <td style="text-align: left;">addi x1, x0, 10</td>
+                    <td>10</td>
+                    <td>-</td>
+                    <td>0xA</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>EMPTY</td>
+                    <td>EMPTY</td>
+                    <td>0</td>
+                    <td>-</td>
+                    <td>0</td>
+                    <td>-</td>
+                </tr>
+                <tr >
+                    <td>2</td>
+                    <td>x04</td>
+                    <td style="text-align: left;">addi x5, x0, 0</td>
+                    <td>10</td>
+                    <td>-</td>
+                    <td>0xA</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>EMPTY</td>
+                    <td>EMPTY</td>
+                    <td>0</td>
+                    <td>-</td>
+                    <td>0</td>
+                    <td>-</td>
+                </tr>
+                <tr >
+                    <td>3</td>
+                    <td>x08</td>
+                    <td style="text-align: left;">addi x5, x5, 6</td>
+                    <td>11</td>
+                    <td>-</td>
+                    <td>0xA</td>
+                    <td>0</td>
+                    <td>6</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>EMPTY</td>
+                    <td>EMPTY</td>
+                    <td>0</td>
+                    <td>-</td>
+                    <td>0</td>
+                    <td>-</td>
+                </tr>
+                <tr >
+                    <td>4</td>
+                    <td>x0c</td>
+                    <td style="text-align: left;">andi x14, x5, 3</td>
+                    <td>12</td>
+                    <td>-</td>
+                    <td>0xA</td>
+                    <td>0</td>
+                    <td>6</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>EMPTY</td>
+                    <td>EMPTY</td>
+                    <td>0</td>
+                    <td>-</td>
+                    <td>0</td>
+                    <td>-</td>
+                </tr>
+                <tr class="branch-row">
+                    <td>5</td>
+                    <td>x10</td>
+                    <td style="text-align: left;">beq x14, x0, 8</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>0xA</td>
+                    <td>0</td>
+                    <td>6</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>EMPTY</td>
+                    <td>EMPTY</td>
+                    <td>0</td>
+                    <td>Bimodal Fallback</td>
+                    <td>0</td>
+                    <td>-</td>
+                </tr>
+                <tr >
+                    <td>6</td>
+                    <td>x14</td>
+                    <td style="text-align: left;">addi x15, x0, 1</td>
+                    <td>12</td>
+                    <td>-</td>
+                    <td>0xA</td>
+                    <td>0</td>
+                    <td>6</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>EMPTY</td>
+                    <td>EMPTY</td>
+                    <td>0</td>
+                    <td>-</td>
+                    <td>0</td>
+                    <td>-</td>
+                </tr>
+                <tr >
+                    <td>7</td>
+                    <td>x18</td>
+                    <td style="text-align: left;">slli x17, x14, 2</td>
+                    <td>13</td>
+                    <td>-</td>
+                    <td>0xA</td>
+                    <td>0</td>
+                    <td>6</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>8</td>
+                    <td>EMPTY</td>
+                    <td>EMPTY</td>
+                    <td>0</td>
+                    <td>-</td>
+                    <td>0</td>
+                    <td>-</td>
+                </tr>
+                <tr class="branch-row">
+                    <td>8</td>
+                    <td>x1c</td>
+                    <td style="text-align: left;">jal x4, 20</td>
+                    <td>14</td>
+                    <td>13</td>
+                    <td>0xA</td>
+                    <td>0x80000020</td>
+                    <td>6</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>8</td>
+                    <td>EMPTY</td>
+                    <td>EMPTY</td>
+                    <td>0</td>
+                    <td>-</td>
+                    <td>0</td>
+                    <td>-</td>
+                </tr>
+                <tr >
+                    <td>9</td>
+                    <td>x30</td>
+                    <td style="text-align: left;">add x4, x4, x17</td>
+                    <td>24</td>
+                    <td>-</td>
+                    <td>0xA</td>
+                    <td>0x80000028</td>
+                    <td>6</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>8</td>
+                    <td>x1c - x30</td>
+                    <td>EMPTY</td>
+                    <td>0</td>
+                    <td>-</td>
+                    <td>0</td>
+                    <td>-</td>
+                </tr>
+                <tr class="branch-row">
+                    <td>10</td>
+                    <td>x34</td>
+                    <td style="text-align: left;">jalr x1, x4, 0</td>
+                    <td>25</td>
+                    <td>23</td>
+                    <td>0x80000038</td>
+                    <td>0x80000028</td>
+                    <td>6</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>8</td>
+                    <td>x1c - x30</td>
+                    <td>EMPTY</td>
+                    <td>0</td>
+                    <td>-</td>
+                    <td>0</td>
+                    <td>Indirect Fallback</td>
+                </tr>
+                <tr >
+                    <td>11</td>
+                    <td>x28</td>
+                    <td style="text-align: left;">addi x15, x0, 20</td>
+                    <td>35</td>
+                    <td>-</td>
+                    <td>0x80000038</td>
+                    <td>0x80000028</td>
+                    <td>6</td>
+                    <td>2</td>
+                    <td>0x14</td>
+                    <td>8</td>
+                    <td>x1c - x30</td>
+                    <td>x34 - x28</td>
+                    <td>0</td>
+                    <td>-</td>
+                    <td>0b10001010001010001010001010001010</td>
+                    <td>-</td>
+                </tr>
+                <tr class="branch-row">
+                    <td>12</td>
+                    <td>x2c</td>
+                    <td style="text-align: left;">jal x0, 16</td>
+                    <td>-</td>
+                    <td>34</td>
+                    <td>0x80000038</td>
+                    <td>0x80000028</td>
+                    <td>6</td>
+                    <td>2</td>
+                    <td>0x14</td>
+                    <td>8</td>
+                    <td>x1c - x30</td>
+                    <td>x34 - x28</td>
+                    <td>0</td>
+                    <td>-</td>
+                    <td>0b10001010001010001010001010001010</td>
+                    <td>-</td>
+                </tr>
+                <tr class="branch-row">
+                    <td>13</td>
+                    <td>x3c</td>
+                    <td style="text-align: left;">bne x1, x0, -52</td>
+                    <td>-</td>
+                    <td>43</td>
+                    <td>0x80000038</td>
+                    <td>0x80000028</td>
+                    <td>6</td>
+                    <td>2</td>
+                    <td>0x14</td>
+                    <td>8</td>
+                    <td>x1c - x30</td>
+                    <td>x2c - x3c</td>
+                    <td>0</td>
+                    <td>Bimodal Fallback</td>
+                    <td>0b1010</td>
+                    <td>-</td>
+                </tr>
+                <tr >
+                    <td>14</td>
+                    <td>x08</td>
+                    <td style="text-align: left;">addi x5, x5, 6</td>
+                    <td>55</td>
+                    <td>-</td>
+                    <td>0x80000038</td>
+                    <td>0x80000028</td>
+                    <td>0xC</td>
+                    <td>2</td>
+                    <td>0x14</td>
+                    <td>8</td>
+                    <td>x1c - x30</td>
+                    <td>x3c - x08</td>
+                    <td>0b10</td>
+                    <td>-</td>
+                    <td>0b1010</td>
+                    <td>-</td>
+                </tr>
+                <tr >
+                    <td>15</td>
+                    <td>x0c</td>
+                    <td style="text-align: left;">andi x14, x5, 3</td>
+                    <td>56</td>
+                    <td>-</td>
+                    <td>0x80000038</td>
+                    <td>0x80000028</td>
+                    <td>0xC</td>
+                    <td>0</td>
+                    <td>0x14</td>
+                    <td>8</td>
+                    <td>x1c - x30</td>
+                    <td>x3c - x08</td>
+                    <td>0b10</td>
+                    <td>-</td>
+                    <td>0b1010</td>
+                    <td>-</td>
+                </tr>
+                <tr class="branch-row">
+                    <td>16</td>
+                    <td>x10</td>
+                    <td style="text-align: left;">beq x14, x0, 8</td>
+                    <td>-</td>
+                    <td>56</td>
+                    <td>0x80000038</td>
+                    <td>0x80000028</td>
+                    <td>0xC</td>
+                    <td>0</td>
+                    <td>0x14</td>
+                    <td>8</td>
+                    <td>x1c - x30</td>
+                    <td>x3c - x08</td>
+                    <td>0b10</td>
+                    <td>Bimodal Fallback</td>
+                    <td>0b1010</td>
+                    <td>-</td>
+                </tr>
+                <tr >
+                    <td>17</td>
+                    <td>x18</td>
+                    <td style="text-align: left;">slli x17, x14, 2</td>
+                    <td>67</td>
+                    <td>-</td>
+                    <td>0x80000038</td>
+                    <td>0x80000028</td>
+                    <td>0xC</td>
+                    <td>0</td>
+                    <td>0x14</td>
+                    <td>0</td>
+                    <td>x10 - x18</td>
+                    <td>x3c - x08</td>
+                    <td>0b110</td>
+                    <td>-</td>
+                    <td>0b1010</td>
+                    <td>-</td>
+                </tr>
+                <tr class="branch-row">
+                    <td>18</td>
+                    <td>x1c</td>
+                    <td style="text-align: left;">jal x4, 20</td>
+                    <td>67</td>
+                    <td>66</td>
+                    <td>0x80000038</td>
+                    <td>0x80000020</td>
+                    <td>0xC</td>
+                    <td>0</td>
+                    <td>0x14</td>
+                    <td>0</td>
+                    <td>x10 - x18</td>
+                    <td>x3c - x08</td>
+                    <td>0b110</td>
+                    <td>-</td>
+                    <td>0b1010</td>
+                    <td>-</td>
+                </tr>
+                <tr >
+                    <td>19</td>
+                    <td>x30</td>
+                    <td style="text-align: left;">add x4, x4, x17</td>
+                    <td>77</td>
+                    <td>-</td>
+                    <td>0x80000038</td>
+                    <td>0x80000020</td>
+                    <td>0xC</td>
+                    <td>0</td>
+                    <td>0x14</td>
+                    <td>0</td>
+                    <td>x1c - x30</td>
+                    <td>x3c - x08</td>
+                    <td>0b110</td>
+                    <td>-</td>
+                    <td>0b1010</td>
+                    <td>-</td>
+                </tr>
+                <tr class="branch-row">
+                    <td>20</td>
+                    <td>x34</td>
+                    <td style="text-align: left;">jalr x1, x4, 0</td>
+                    <td>78</td>
+                    <td>77</td>
+                    <td>0x80000038</td>
+                    <td>0x80000020</td>
+                    <td>0xC</td>
+                    <td>0</td>
+                    <td>0x14</td>
+                    <td>0</td>
+                    <td>x1c - x30</td>
+                    <td>x3c - x08</td>
+                    <td>0b110</td>
+                    <td>-</td>
+                    <td>0b1010</td>
+                    <td>Indirect Fallback</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        function filterTable() {
+            var input = document.getElementById("search");
+            var filter = input.value.toUpperCase();
+            var table = document.getElementById("trace-table");
+            var tr = table.getElementsByTagName("tr");
+
+            for (var i = 1; i < tr.length; i++) {
+                var show = false;
+                var tds = tr[i].getElementsByTagName("td");
+                for (var j = 0; j < tds.length; j++) {
+                    if (tds[j]) {
+                        var text = tds[j].textContent || tds[j].innerText;
+                        if (text.toUpperCase().indexOf(filter) > -1) {
+                            show = true;
+                            break;
+                        }
+                    }
+                }
+                tr[i].style.display = show ? "" : "none";
+            }
+        }
+    </script>
+</body>
+</html>

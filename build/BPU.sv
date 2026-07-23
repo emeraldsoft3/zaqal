@@ -66,3919 +66,4269 @@
   `endif // PRINTF_COND
 `endif // not def PRINTF_COND_
 
-module BPU(	// frontend/src/zaqal/frontend/BPU.scala:25:7
-  input         clock,	// frontend/src/zaqal/frontend/BPU.scala:25:7
-                reset,	// frontend/src/zaqal/frontend/BPU.scala:25:7
-                io_redirect_valid,	// frontend/src/zaqal/frontend/BPU.scala:26:14
-  input  [63:0] io_redirect_target,	// frontend/src/zaqal/frontend/BPU.scala:26:14
-  input         io_redirect_is_exception,	// frontend/src/zaqal/frontend/BPU.scala:26:14
-  input  [63:0] io_redirect_pc,	// frontend/src/zaqal/frontend/BPU.scala:26:14
-  input         io_redirect_taken,	// frontend/src/zaqal/frontend/BPU.scala:26:14
-                io_redirect_is_cfi,	// frontend/src/zaqal/frontend/BPU.scala:26:14
-                io_redirect_is_jalr,	// frontend/src/zaqal/frontend/BPU.scala:26:14
-  input  [5:0]  io_redirect_ftqPtr,	// frontend/src/zaqal/frontend/BPU.scala:26:14
-  input         io_out_ready,	// frontend/src/zaqal/frontend/BPU.scala:26:14
-  output        io_out_valid,	// frontend/src/zaqal/frontend/BPU.scala:26:14
-  output [63:0] io_out_bits_pc,	// frontend/src/zaqal/frontend/BPU.scala:26:14
-  output [15:0] io_out_bits_mask,	// frontend/src/zaqal/frontend/BPU.scala:26:14
-  output [63:0] io_out_bits_prediction_target,	// frontend/src/zaqal/frontend/BPU.scala:26:14
-  output        io_out_bits_prediction_taken,	// frontend/src/zaqal/frontend/BPU.scala:26:14
-  output [3:0]  io_out_bits_prediction_slot,	// frontend/src/zaqal/frontend/BPU.scala:26:14
-  output [5:0]  io_out_bits_ftqPtr	// frontend/src/zaqal/frontend/BPU.scala:26:14
+module BPU(	// frontend/src/zaqal/frontend/BPU.scala:26:7
+  input         clock,	// frontend/src/zaqal/frontend/BPU.scala:26:7
+                reset,	// frontend/src/zaqal/frontend/BPU.scala:26:7
+                io_redirect_valid,	// frontend/src/zaqal/frontend/BPU.scala:27:14
+  input  [63:0] io_redirect_target,	// frontend/src/zaqal/frontend/BPU.scala:27:14
+  input         io_redirect_is_exception,	// frontend/src/zaqal/frontend/BPU.scala:27:14
+  input  [63:0] io_redirect_pc,	// frontend/src/zaqal/frontend/BPU.scala:27:14
+  input         io_redirect_taken,	// frontend/src/zaqal/frontend/BPU.scala:27:14
+                io_redirect_is_cfi,	// frontend/src/zaqal/frontend/BPU.scala:27:14
+                io_redirect_is_jal,	// frontend/src/zaqal/frontend/BPU.scala:27:14
+                io_redirect_is_jalr,	// frontend/src/zaqal/frontend/BPU.scala:27:14
+  input  [5:0]  io_redirect_ftqPtr,	// frontend/src/zaqal/frontend/BPU.scala:27:14
+  input         io_out_ready,	// frontend/src/zaqal/frontend/BPU.scala:27:14
+  output        io_out_valid,	// frontend/src/zaqal/frontend/BPU.scala:27:14
+  output [63:0] io_out_bits_pc,	// frontend/src/zaqal/frontend/BPU.scala:27:14
+  output [15:0] io_out_bits_mask,	// frontend/src/zaqal/frontend/BPU.scala:27:14
+  output [63:0] io_out_bits_prediction_target,	// frontend/src/zaqal/frontend/BPU.scala:27:14
+  output        io_out_bits_prediction_taken,	// frontend/src/zaqal/frontend/BPU.scala:27:14
+  output [3:0]  io_out_bits_prediction_slot,	// frontend/src/zaqal/frontend/BPU.scala:27:14
+  output [5:0]  io_out_bits_ftqPtr,	// frontend/src/zaqal/frontend/BPU.scala:27:14
+  output        io_out_bits_epoch	// frontend/src/zaqal/frontend/BPU.scala:27:14
 );
 
-  wire [1:0]   _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:41:22
-  wire [63:0]  _ittage_io_pred_target;	// frontend/src/zaqal/frontend/BPU.scala:41:22
-  wire [63:0]  _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:41:22
-  wire [1:0]   _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:41:22
-  wire         _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:41:22
-  wire [1:0]   _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:40:20
-  wire         _tage_io_pred_taken;	// frontend/src/zaqal/frontend/BPU.scala:40:20
-  wire         _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:40:20
-  wire [1:0]   _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:40:20
-  wire [2:0]   _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:40:20
-  wire         _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:40:20
-  wire         _ftb_io_hit;	// frontend/src/zaqal/frontend/BPU.scala:39:19
-  wire [63:0]  _ftb_io_target;	// frontend/src/zaqal/frontend/BPU.scala:39:19
-  wire         _ftb_io_taken;	// frontend/src/zaqal/frontend/BPU.scala:39:19
-  wire [3:0]   _ftb_io_slot;	// frontend/src/zaqal/frontend/BPU.scala:39:19
-  wire [1:0]   _ftb_io_br_type;	// frontend/src/zaqal/frontend/BPU.scala:39:19
-  reg  [63:0]  s0_pc;	// frontend/src/zaqal/frontend/BPU.scala:31:25
-  reg  [15:0]  mask_reg;	// frontend/src/zaqal/frontend/BPU.scala:32:25
-  reg          epoch;	// frontend/src/zaqal/frontend/BPU.scala:33:25
-  reg  [127:0] ghr;	// frontend/src/zaqal/frontend/BPU.scala:36:20
-  reg  [5:0]   bpu_enq_ptr;	// frontend/src/zaqal/frontend/BPU.scala:44:28
-  wire         _GEN = io_out_ready & ~reset;	// frontend/src/zaqal/frontend/BPU.scala:162:19, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  reg  [127:0] meta_storage_0_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_0_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_0_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [2:0]   meta_storage_0_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_0_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_0_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_0_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_0_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [63:0]  meta_storage_0_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_0_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [127:0] meta_storage_1_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_1_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_1_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [2:0]   meta_storage_1_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_1_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_1_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_1_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_1_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [63:0]  meta_storage_1_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_1_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [127:0] meta_storage_2_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_2_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_2_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [2:0]   meta_storage_2_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_2_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_2_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_2_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_2_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [63:0]  meta_storage_2_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_2_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [127:0] meta_storage_3_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_3_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_3_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [2:0]   meta_storage_3_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_3_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_3_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_3_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_3_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [63:0]  meta_storage_3_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_3_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [127:0] meta_storage_4_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_4_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_4_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [2:0]   meta_storage_4_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_4_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_4_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_4_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_4_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [63:0]  meta_storage_4_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_4_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [127:0] meta_storage_5_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_5_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_5_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [2:0]   meta_storage_5_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_5_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_5_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_5_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_5_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [63:0]  meta_storage_5_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_5_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [127:0] meta_storage_6_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_6_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_6_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [2:0]   meta_storage_6_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_6_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_6_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_6_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_6_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [63:0]  meta_storage_6_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_6_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [127:0] meta_storage_7_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_7_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_7_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [2:0]   meta_storage_7_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_7_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_7_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_7_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_7_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [63:0]  meta_storage_7_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_7_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [127:0] meta_storage_8_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_8_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_8_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [2:0]   meta_storage_8_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_8_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_8_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_8_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_8_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [63:0]  meta_storage_8_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_8_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [127:0] meta_storage_9_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_9_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_9_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [2:0]   meta_storage_9_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_9_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_9_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_9_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_9_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [63:0]  meta_storage_9_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_9_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [127:0] meta_storage_10_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_10_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_10_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [2:0]   meta_storage_10_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_10_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_10_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_10_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_10_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [63:0]  meta_storage_10_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_10_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [127:0] meta_storage_11_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_11_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_11_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [2:0]   meta_storage_11_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_11_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_11_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_11_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_11_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [63:0]  meta_storage_11_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_11_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [127:0] meta_storage_12_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_12_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_12_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [2:0]   meta_storage_12_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_12_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_12_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_12_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_12_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [63:0]  meta_storage_12_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_12_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [127:0] meta_storage_13_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_13_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_13_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [2:0]   meta_storage_13_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_13_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_13_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_13_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_13_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [63:0]  meta_storage_13_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_13_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [127:0] meta_storage_14_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_14_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_14_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [2:0]   meta_storage_14_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_14_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_14_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_14_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_14_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [63:0]  meta_storage_14_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_14_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [127:0] meta_storage_15_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_15_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_15_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [2:0]   meta_storage_15_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_15_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_15_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_15_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_15_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [63:0]  meta_storage_15_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_15_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [127:0] meta_storage_16_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_16_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_16_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [2:0]   meta_storage_16_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_16_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_16_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_16_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_16_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [63:0]  meta_storage_16_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_16_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [127:0] meta_storage_17_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_17_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_17_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [2:0]   meta_storage_17_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_17_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_17_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_17_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_17_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [63:0]  meta_storage_17_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_17_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [127:0] meta_storage_18_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_18_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_18_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [2:0]   meta_storage_18_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_18_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_18_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_18_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_18_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [63:0]  meta_storage_18_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_18_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [127:0] meta_storage_19_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_19_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_19_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [2:0]   meta_storage_19_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_19_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_19_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_19_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_19_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [63:0]  meta_storage_19_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_19_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [127:0] meta_storage_20_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_20_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_20_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [2:0]   meta_storage_20_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_20_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_20_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_20_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_20_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [63:0]  meta_storage_20_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_20_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [127:0] meta_storage_21_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_21_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_21_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [2:0]   meta_storage_21_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_21_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_21_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_21_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_21_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [63:0]  meta_storage_21_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_21_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [127:0] meta_storage_22_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_22_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_22_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [2:0]   meta_storage_22_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_22_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_22_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_22_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_22_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [63:0]  meta_storage_22_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_22_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [127:0] meta_storage_23_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_23_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_23_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [2:0]   meta_storage_23_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_23_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_23_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_23_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_23_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [63:0]  meta_storage_23_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_23_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [127:0] meta_storage_24_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_24_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_24_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [2:0]   meta_storage_24_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_24_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_24_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_24_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_24_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [63:0]  meta_storage_24_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_24_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [127:0] meta_storage_25_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_25_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_25_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [2:0]   meta_storage_25_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_25_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_25_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_25_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_25_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [63:0]  meta_storage_25_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_25_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [127:0] meta_storage_26_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_26_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_26_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [2:0]   meta_storage_26_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_26_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_26_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_26_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_26_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [63:0]  meta_storage_26_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_26_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [127:0] meta_storage_27_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_27_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_27_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [2:0]   meta_storage_27_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_27_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_27_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_27_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_27_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [63:0]  meta_storage_27_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_27_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [127:0] meta_storage_28_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_28_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_28_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [2:0]   meta_storage_28_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_28_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_28_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_28_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_28_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [63:0]  meta_storage_28_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_28_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [127:0] meta_storage_29_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_29_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_29_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [2:0]   meta_storage_29_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_29_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_29_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_29_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_29_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [63:0]  meta_storage_29_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_29_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [127:0] meta_storage_30_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_30_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_30_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [2:0]   meta_storage_30_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_30_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_30_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_30_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_30_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [63:0]  meta_storage_30_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_30_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [127:0] meta_storage_31_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_31_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_31_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [2:0]   meta_storage_31_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_31_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_31_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_31_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_31_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [63:0]  meta_storage_31_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_31_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [127:0] meta_storage_32_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_32_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_32_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [2:0]   meta_storage_32_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_32_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_32_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_32_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_32_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [63:0]  meta_storage_32_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_32_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [127:0] meta_storage_33_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_33_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_33_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [2:0]   meta_storage_33_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_33_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_33_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_33_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_33_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [63:0]  meta_storage_33_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_33_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [127:0] meta_storage_34_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_34_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_34_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [2:0]   meta_storage_34_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_34_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_34_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_34_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_34_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [63:0]  meta_storage_34_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_34_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [127:0] meta_storage_35_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_35_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_35_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [2:0]   meta_storage_35_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_35_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_35_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_35_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_35_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [63:0]  meta_storage_35_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_35_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [127:0] meta_storage_36_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_36_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_36_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [2:0]   meta_storage_36_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_36_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_36_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_36_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_36_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [63:0]  meta_storage_36_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_36_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [127:0] meta_storage_37_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_37_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_37_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [2:0]   meta_storage_37_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_37_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_37_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_37_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_37_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [63:0]  meta_storage_37_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_37_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [127:0] meta_storage_38_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_38_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_38_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [2:0]   meta_storage_38_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_38_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_38_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_38_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_38_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [63:0]  meta_storage_38_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_38_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [127:0] meta_storage_39_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_39_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_39_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [2:0]   meta_storage_39_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_39_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_39_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_39_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_39_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [63:0]  meta_storage_39_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_39_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [127:0] meta_storage_40_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_40_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_40_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [2:0]   meta_storage_40_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_40_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_40_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_40_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_40_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [63:0]  meta_storage_40_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_40_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [127:0] meta_storage_41_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_41_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_41_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [2:0]   meta_storage_41_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_41_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_41_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_41_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_41_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [63:0]  meta_storage_41_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_41_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [127:0] meta_storage_42_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_42_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_42_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [2:0]   meta_storage_42_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_42_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_42_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_42_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_42_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [63:0]  meta_storage_42_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_42_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [127:0] meta_storage_43_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_43_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_43_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [2:0]   meta_storage_43_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_43_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_43_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_43_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_43_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [63:0]  meta_storage_43_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_43_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [127:0] meta_storage_44_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_44_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_44_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [2:0]   meta_storage_44_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_44_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_44_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_44_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_44_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [63:0]  meta_storage_44_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_44_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [127:0] meta_storage_45_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_45_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_45_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [2:0]   meta_storage_45_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_45_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_45_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_45_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_45_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [63:0]  meta_storage_45_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_45_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [127:0] meta_storage_46_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_46_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_46_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [2:0]   meta_storage_46_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_46_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_46_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_46_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_46_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [63:0]  meta_storage_46_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_46_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [127:0] meta_storage_47_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_47_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_47_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [2:0]   meta_storage_47_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_47_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_47_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_47_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_47_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [63:0]  meta_storage_47_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_47_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [127:0] meta_storage_48_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_48_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_48_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [2:0]   meta_storage_48_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_48_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_48_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_48_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_48_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [63:0]  meta_storage_48_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_48_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [127:0] meta_storage_49_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_49_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_49_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [2:0]   meta_storage_49_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_49_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_49_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_49_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_49_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [63:0]  meta_storage_49_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_49_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [127:0] meta_storage_50_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_50_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_50_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [2:0]   meta_storage_50_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_50_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_50_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_50_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_50_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [63:0]  meta_storage_50_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_50_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [127:0] meta_storage_51_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_51_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_51_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [2:0]   meta_storage_51_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_51_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_51_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_51_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_51_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [63:0]  meta_storage_51_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_51_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [127:0] meta_storage_52_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_52_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_52_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [2:0]   meta_storage_52_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_52_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_52_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_52_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_52_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [63:0]  meta_storage_52_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_52_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [127:0] meta_storage_53_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_53_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_53_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [2:0]   meta_storage_53_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_53_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_53_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_53_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_53_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [63:0]  meta_storage_53_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_53_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [127:0] meta_storage_54_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_54_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_54_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [2:0]   meta_storage_54_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_54_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_54_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_54_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_54_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [63:0]  meta_storage_54_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_54_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [127:0] meta_storage_55_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_55_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_55_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [2:0]   meta_storage_55_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_55_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_55_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_55_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_55_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [63:0]  meta_storage_55_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_55_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [127:0] meta_storage_56_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_56_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_56_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [2:0]   meta_storage_56_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_56_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_56_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_56_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_56_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [63:0]  meta_storage_56_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_56_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [127:0] meta_storage_57_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_57_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_57_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [2:0]   meta_storage_57_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_57_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_57_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_57_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_57_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [63:0]  meta_storage_57_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_57_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [127:0] meta_storage_58_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_58_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_58_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [2:0]   meta_storage_58_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_58_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_58_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_58_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_58_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [63:0]  meta_storage_58_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_58_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [127:0] meta_storage_59_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_59_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_59_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [2:0]   meta_storage_59_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_59_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_59_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_59_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_59_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [63:0]  meta_storage_59_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_59_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [127:0] meta_storage_60_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_60_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_60_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [2:0]   meta_storage_60_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_60_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_60_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_60_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_60_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [63:0]  meta_storage_60_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_60_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [127:0] meta_storage_61_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_61_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_61_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [2:0]   meta_storage_61_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_61_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_61_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_61_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_61_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [63:0]  meta_storage_61_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_61_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [127:0] meta_storage_62_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_62_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_62_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [2:0]   meta_storage_62_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_62_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_62_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_62_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_62_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [63:0]  meta_storage_62_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_62_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [127:0] meta_storage_63_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_63_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_63_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [2:0]   meta_storage_63_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_63_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_63_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_63_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg          meta_storage_63_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [63:0]  meta_storage_63_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  reg  [1:0]   meta_storage_63_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25
-  wire         _has_spec_cfi_T = _ftb_io_br_type == 2'h0;	// frontend/src/zaqal/frontend/BPU.scala:39:19, :65:54
-  wire         meta_taken =
-    _ftb_io_hit & _has_spec_cfi_T ? _tage_io_pred_taken : _ftb_io_taken;	// frontend/src/zaqal/frontend/BPU.scala:39:19, :40:20, :65:{24,36,54}
-  wire         _has_spec_cfi_T_3 = _ftb_io_br_type == 2'h2;	// frontend/src/zaqal/frontend/BPU.scala:39:19, :68:55
-  wire [63:0]  aligned_update_pc = io_redirect_pc & 64'hFFFFFFFFFFFFFFE0;	// frontend/src/zaqal/frontend/BPU.scala:79:{42,45}
-  reg  [127:0] casez_tmp;	// frontend/src/zaqal/frontend/BPU.scala:84:24
-  always_comb begin	// frontend/src/zaqal/frontend/BPU.scala:84:24
-    casez (io_redirect_ftqPtr)	// frontend/src/zaqal/frontend/BPU.scala:84:24
+  wire [15:0]  current_mask;	// frontend/src/zaqal/frontend/BPU.scala:119:25, :123:18, :126:28
+  wire [1:0]   _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:46:22
+  wire [63:0]  _ittage_io_pred_target;	// frontend/src/zaqal/frontend/BPU.scala:46:22
+  wire [63:0]  _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:46:22
+  wire [1:0]   _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:46:22
+  wire         _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:46:22
+  wire [1:0]   _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:45:20
+  wire         _tage_io_pred_taken;	// frontend/src/zaqal/frontend/BPU.scala:45:20
+  wire         _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:45:20
+  wire [1:0]   _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:45:20
+  wire [2:0]   _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:45:20
+  wire         _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:45:20
+  wire         _ftb_io_hit;	// frontend/src/zaqal/frontend/BPU.scala:44:19
+  wire [63:0]  _ftb_io_target;	// frontend/src/zaqal/frontend/BPU.scala:44:19
+  wire         _ftb_io_taken;	// frontend/src/zaqal/frontend/BPU.scala:44:19
+  wire [3:0]   _ftb_io_slot;	// frontend/src/zaqal/frontend/BPU.scala:44:19
+  wire [1:0]   _ftb_io_br_type;	// frontend/src/zaqal/frontend/BPU.scala:44:19
+  reg  [63:0]  s0_pc;	// frontend/src/zaqal/frontend/BPU.scala:32:25
+  reg  [15:0]  mask_reg;	// frontend/src/zaqal/frontend/BPU.scala:33:25
+  reg          epoch;	// frontend/src/zaqal/frontend/BPU.scala:34:25
+  reg  [127:0] ghr;	// frontend/src/zaqal/frontend/BPU.scala:37:20
+  reg  [31:0]  phr;	// frontend/src/zaqal/frontend/BPU.scala:41:20
+  reg  [5:0]   bpu_enq_ptr;	// frontend/src/zaqal/frontend/BPU.scala:49:28
+  wire         _GEN = io_out_ready & ~reset;	// frontend/src/zaqal/frontend/BPU.scala:186:19, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  reg  [127:0] meta_storage_0_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [31:0]  meta_storage_0_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_0_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_0_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [2:0]   meta_storage_0_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_0_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_0_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_0_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_0_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [63:0]  meta_storage_0_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_0_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [127:0] meta_storage_1_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [31:0]  meta_storage_1_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_1_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_1_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [2:0]   meta_storage_1_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_1_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_1_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_1_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_1_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [63:0]  meta_storage_1_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_1_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [127:0] meta_storage_2_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [31:0]  meta_storage_2_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_2_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_2_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [2:0]   meta_storage_2_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_2_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_2_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_2_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_2_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [63:0]  meta_storage_2_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_2_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [127:0] meta_storage_3_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [31:0]  meta_storage_3_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_3_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_3_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [2:0]   meta_storage_3_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_3_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_3_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_3_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_3_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [63:0]  meta_storage_3_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_3_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [127:0] meta_storage_4_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [31:0]  meta_storage_4_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_4_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_4_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [2:0]   meta_storage_4_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_4_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_4_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_4_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_4_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [63:0]  meta_storage_4_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_4_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [127:0] meta_storage_5_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [31:0]  meta_storage_5_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_5_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_5_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [2:0]   meta_storage_5_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_5_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_5_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_5_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_5_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [63:0]  meta_storage_5_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_5_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [127:0] meta_storage_6_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [31:0]  meta_storage_6_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_6_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_6_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [2:0]   meta_storage_6_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_6_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_6_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_6_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_6_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [63:0]  meta_storage_6_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_6_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [127:0] meta_storage_7_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [31:0]  meta_storage_7_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_7_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_7_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [2:0]   meta_storage_7_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_7_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_7_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_7_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_7_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [63:0]  meta_storage_7_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_7_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [127:0] meta_storage_8_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [31:0]  meta_storage_8_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_8_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_8_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [2:0]   meta_storage_8_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_8_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_8_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_8_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_8_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [63:0]  meta_storage_8_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_8_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [127:0] meta_storage_9_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [31:0]  meta_storage_9_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_9_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_9_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [2:0]   meta_storage_9_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_9_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_9_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_9_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_9_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [63:0]  meta_storage_9_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_9_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [127:0] meta_storage_10_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [31:0]  meta_storage_10_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_10_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_10_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [2:0]   meta_storage_10_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_10_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_10_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_10_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_10_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [63:0]  meta_storage_10_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_10_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [127:0] meta_storage_11_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [31:0]  meta_storage_11_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_11_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_11_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [2:0]   meta_storage_11_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_11_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_11_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_11_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_11_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [63:0]  meta_storage_11_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_11_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [127:0] meta_storage_12_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [31:0]  meta_storage_12_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_12_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_12_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [2:0]   meta_storage_12_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_12_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_12_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_12_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_12_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [63:0]  meta_storage_12_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_12_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [127:0] meta_storage_13_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [31:0]  meta_storage_13_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_13_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_13_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [2:0]   meta_storage_13_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_13_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_13_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_13_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_13_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [63:0]  meta_storage_13_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_13_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [127:0] meta_storage_14_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [31:0]  meta_storage_14_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_14_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_14_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [2:0]   meta_storage_14_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_14_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_14_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_14_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_14_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [63:0]  meta_storage_14_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_14_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [127:0] meta_storage_15_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [31:0]  meta_storage_15_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_15_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_15_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [2:0]   meta_storage_15_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_15_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_15_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_15_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_15_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [63:0]  meta_storage_15_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_15_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [127:0] meta_storage_16_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [31:0]  meta_storage_16_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_16_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_16_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [2:0]   meta_storage_16_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_16_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_16_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_16_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_16_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [63:0]  meta_storage_16_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_16_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [127:0] meta_storage_17_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [31:0]  meta_storage_17_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_17_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_17_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [2:0]   meta_storage_17_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_17_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_17_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_17_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_17_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [63:0]  meta_storage_17_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_17_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [127:0] meta_storage_18_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [31:0]  meta_storage_18_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_18_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_18_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [2:0]   meta_storage_18_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_18_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_18_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_18_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_18_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [63:0]  meta_storage_18_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_18_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [127:0] meta_storage_19_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [31:0]  meta_storage_19_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_19_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_19_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [2:0]   meta_storage_19_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_19_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_19_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_19_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_19_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [63:0]  meta_storage_19_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_19_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [127:0] meta_storage_20_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [31:0]  meta_storage_20_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_20_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_20_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [2:0]   meta_storage_20_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_20_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_20_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_20_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_20_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [63:0]  meta_storage_20_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_20_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [127:0] meta_storage_21_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [31:0]  meta_storage_21_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_21_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_21_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [2:0]   meta_storage_21_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_21_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_21_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_21_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_21_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [63:0]  meta_storage_21_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_21_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [127:0] meta_storage_22_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [31:0]  meta_storage_22_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_22_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_22_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [2:0]   meta_storage_22_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_22_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_22_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_22_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_22_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [63:0]  meta_storage_22_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_22_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [127:0] meta_storage_23_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [31:0]  meta_storage_23_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_23_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_23_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [2:0]   meta_storage_23_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_23_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_23_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_23_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_23_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [63:0]  meta_storage_23_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_23_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [127:0] meta_storage_24_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [31:0]  meta_storage_24_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_24_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_24_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [2:0]   meta_storage_24_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_24_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_24_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_24_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_24_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [63:0]  meta_storage_24_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_24_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [127:0] meta_storage_25_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [31:0]  meta_storage_25_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_25_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_25_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [2:0]   meta_storage_25_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_25_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_25_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_25_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_25_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [63:0]  meta_storage_25_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_25_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [127:0] meta_storage_26_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [31:0]  meta_storage_26_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_26_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_26_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [2:0]   meta_storage_26_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_26_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_26_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_26_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_26_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [63:0]  meta_storage_26_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_26_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [127:0] meta_storage_27_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [31:0]  meta_storage_27_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_27_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_27_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [2:0]   meta_storage_27_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_27_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_27_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_27_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_27_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [63:0]  meta_storage_27_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_27_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [127:0] meta_storage_28_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [31:0]  meta_storage_28_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_28_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_28_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [2:0]   meta_storage_28_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_28_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_28_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_28_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_28_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [63:0]  meta_storage_28_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_28_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [127:0] meta_storage_29_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [31:0]  meta_storage_29_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_29_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_29_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [2:0]   meta_storage_29_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_29_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_29_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_29_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_29_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [63:0]  meta_storage_29_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_29_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [127:0] meta_storage_30_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [31:0]  meta_storage_30_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_30_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_30_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [2:0]   meta_storage_30_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_30_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_30_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_30_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_30_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [63:0]  meta_storage_30_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_30_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [127:0] meta_storage_31_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [31:0]  meta_storage_31_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_31_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_31_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [2:0]   meta_storage_31_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_31_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_31_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_31_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_31_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [63:0]  meta_storage_31_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_31_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [127:0] meta_storage_32_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [31:0]  meta_storage_32_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_32_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_32_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [2:0]   meta_storage_32_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_32_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_32_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_32_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_32_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [63:0]  meta_storage_32_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_32_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [127:0] meta_storage_33_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [31:0]  meta_storage_33_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_33_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_33_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [2:0]   meta_storage_33_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_33_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_33_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_33_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_33_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [63:0]  meta_storage_33_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_33_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [127:0] meta_storage_34_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [31:0]  meta_storage_34_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_34_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_34_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [2:0]   meta_storage_34_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_34_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_34_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_34_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_34_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [63:0]  meta_storage_34_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_34_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [127:0] meta_storage_35_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [31:0]  meta_storage_35_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_35_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_35_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [2:0]   meta_storage_35_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_35_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_35_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_35_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_35_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [63:0]  meta_storage_35_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_35_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [127:0] meta_storage_36_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [31:0]  meta_storage_36_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_36_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_36_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [2:0]   meta_storage_36_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_36_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_36_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_36_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_36_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [63:0]  meta_storage_36_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_36_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [127:0] meta_storage_37_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [31:0]  meta_storage_37_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_37_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_37_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [2:0]   meta_storage_37_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_37_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_37_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_37_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_37_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [63:0]  meta_storage_37_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_37_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [127:0] meta_storage_38_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [31:0]  meta_storage_38_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_38_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_38_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [2:0]   meta_storage_38_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_38_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_38_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_38_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_38_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [63:0]  meta_storage_38_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_38_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [127:0] meta_storage_39_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [31:0]  meta_storage_39_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_39_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_39_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [2:0]   meta_storage_39_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_39_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_39_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_39_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_39_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [63:0]  meta_storage_39_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_39_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [127:0] meta_storage_40_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [31:0]  meta_storage_40_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_40_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_40_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [2:0]   meta_storage_40_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_40_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_40_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_40_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_40_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [63:0]  meta_storage_40_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_40_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [127:0] meta_storage_41_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [31:0]  meta_storage_41_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_41_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_41_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [2:0]   meta_storage_41_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_41_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_41_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_41_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_41_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [63:0]  meta_storage_41_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_41_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [127:0] meta_storage_42_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [31:0]  meta_storage_42_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_42_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_42_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [2:0]   meta_storage_42_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_42_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_42_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_42_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_42_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [63:0]  meta_storage_42_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_42_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [127:0] meta_storage_43_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [31:0]  meta_storage_43_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_43_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_43_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [2:0]   meta_storage_43_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_43_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_43_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_43_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_43_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [63:0]  meta_storage_43_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_43_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [127:0] meta_storage_44_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [31:0]  meta_storage_44_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_44_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_44_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [2:0]   meta_storage_44_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_44_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_44_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_44_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_44_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [63:0]  meta_storage_44_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_44_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [127:0] meta_storage_45_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [31:0]  meta_storage_45_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_45_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_45_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [2:0]   meta_storage_45_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_45_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_45_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_45_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_45_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [63:0]  meta_storage_45_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_45_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [127:0] meta_storage_46_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [31:0]  meta_storage_46_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_46_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_46_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [2:0]   meta_storage_46_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_46_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_46_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_46_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_46_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [63:0]  meta_storage_46_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_46_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [127:0] meta_storage_47_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [31:0]  meta_storage_47_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_47_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_47_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [2:0]   meta_storage_47_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_47_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_47_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_47_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_47_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [63:0]  meta_storage_47_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_47_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [127:0] meta_storage_48_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [31:0]  meta_storage_48_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_48_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_48_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [2:0]   meta_storage_48_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_48_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_48_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_48_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_48_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [63:0]  meta_storage_48_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_48_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [127:0] meta_storage_49_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [31:0]  meta_storage_49_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_49_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_49_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [2:0]   meta_storage_49_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_49_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_49_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_49_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_49_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [63:0]  meta_storage_49_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_49_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [127:0] meta_storage_50_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [31:0]  meta_storage_50_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_50_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_50_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [2:0]   meta_storage_50_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_50_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_50_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_50_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_50_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [63:0]  meta_storage_50_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_50_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [127:0] meta_storage_51_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [31:0]  meta_storage_51_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_51_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_51_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [2:0]   meta_storage_51_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_51_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_51_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_51_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_51_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [63:0]  meta_storage_51_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_51_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [127:0] meta_storage_52_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [31:0]  meta_storage_52_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_52_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_52_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [2:0]   meta_storage_52_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_52_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_52_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_52_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_52_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [63:0]  meta_storage_52_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_52_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [127:0] meta_storage_53_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [31:0]  meta_storage_53_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_53_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_53_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [2:0]   meta_storage_53_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_53_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_53_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_53_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_53_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [63:0]  meta_storage_53_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_53_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [127:0] meta_storage_54_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [31:0]  meta_storage_54_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_54_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_54_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [2:0]   meta_storage_54_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_54_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_54_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_54_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_54_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [63:0]  meta_storage_54_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_54_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [127:0] meta_storage_55_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [31:0]  meta_storage_55_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_55_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_55_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [2:0]   meta_storage_55_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_55_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_55_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_55_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_55_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [63:0]  meta_storage_55_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_55_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [127:0] meta_storage_56_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [31:0]  meta_storage_56_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_56_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_56_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [2:0]   meta_storage_56_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_56_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_56_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_56_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_56_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [63:0]  meta_storage_56_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_56_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [127:0] meta_storage_57_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [31:0]  meta_storage_57_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_57_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_57_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [2:0]   meta_storage_57_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_57_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_57_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_57_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_57_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [63:0]  meta_storage_57_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_57_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [127:0] meta_storage_58_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [31:0]  meta_storage_58_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_58_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_58_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [2:0]   meta_storage_58_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_58_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_58_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_58_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_58_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [63:0]  meta_storage_58_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_58_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [127:0] meta_storage_59_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [31:0]  meta_storage_59_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_59_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_59_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [2:0]   meta_storage_59_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_59_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_59_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_59_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_59_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [63:0]  meta_storage_59_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_59_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [127:0] meta_storage_60_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [31:0]  meta_storage_60_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_60_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_60_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [2:0]   meta_storage_60_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_60_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_60_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_60_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_60_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [63:0]  meta_storage_60_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_60_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [127:0] meta_storage_61_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [31:0]  meta_storage_61_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_61_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_61_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [2:0]   meta_storage_61_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_61_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_61_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_61_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_61_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [63:0]  meta_storage_61_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_61_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [127:0] meta_storage_62_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [31:0]  meta_storage_62_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_62_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_62_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [2:0]   meta_storage_62_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_62_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_62_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_62_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_62_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [63:0]  meta_storage_62_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_62_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [127:0] meta_storage_63_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [31:0]  meta_storage_63_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_63_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_63_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [2:0]   meta_storage_63_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_63_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_63_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_63_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg          meta_storage_63_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [63:0]  meta_storage_63_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  reg  [1:0]   meta_storage_63_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25
+  wire         _has_spec_cond_br_T_3 = _ftb_io_br_type == 2'h0;	// frontend/src/zaqal/frontend/BPU.scala:44:19, :70:54
+  wire         final_taken =
+    _ftb_io_hit & _has_spec_cond_br_T_3 ? _tage_io_pred_taken : _ftb_io_taken;	// frontend/src/zaqal/frontend/BPU.scala:44:19, :45:20, :70:{24,36,54}
+  wire         _is_spec_jalr_T = _ftb_io_br_type == 2'h2;	// frontend/src/zaqal/frontend/BPU.scala:44:19, :73:55
+  wire [63:0]  final_target =
+    _ftb_io_hit & _is_spec_jalr_T & _ittage_io_pred_hit
+      ? _ittage_io_pred_target
+      : _ftb_io_target;	// frontend/src/zaqal/frontend/BPU.scala:44:19, :46:22, :73:{25,55,63}
+  wire [63:0]  aligned_update_pc = io_redirect_pc & 64'hFFFFFFFFFFFFFFE0;	// frontend/src/zaqal/frontend/BPU.scala:85:{42,45}
+  reg  [127:0] casez_tmp;	// frontend/src/zaqal/frontend/BPU.scala:90:24
+  always_comb begin	// frontend/src/zaqal/frontend/BPU.scala:90:24
+    casez (io_redirect_ftqPtr)	// frontend/src/zaqal/frontend/BPU.scala:90:24
       6'b000000:
-        casez_tmp = meta_storage_0_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp = meta_storage_0_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b000001:
-        casez_tmp = meta_storage_1_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp = meta_storage_1_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b000010:
-        casez_tmp = meta_storage_2_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp = meta_storage_2_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b000011:
-        casez_tmp = meta_storage_3_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp = meta_storage_3_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b000100:
-        casez_tmp = meta_storage_4_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp = meta_storage_4_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b000101:
-        casez_tmp = meta_storage_5_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp = meta_storage_5_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b000110:
-        casez_tmp = meta_storage_6_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp = meta_storage_6_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b000111:
-        casez_tmp = meta_storage_7_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp = meta_storage_7_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b001000:
-        casez_tmp = meta_storage_8_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp = meta_storage_8_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b001001:
-        casez_tmp = meta_storage_9_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp = meta_storage_9_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b001010:
-        casez_tmp = meta_storage_10_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp = meta_storage_10_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b001011:
-        casez_tmp = meta_storage_11_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp = meta_storage_11_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b001100:
-        casez_tmp = meta_storage_12_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp = meta_storage_12_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b001101:
-        casez_tmp = meta_storage_13_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp = meta_storage_13_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b001110:
-        casez_tmp = meta_storage_14_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp = meta_storage_14_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b001111:
-        casez_tmp = meta_storage_15_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp = meta_storage_15_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b010000:
-        casez_tmp = meta_storage_16_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp = meta_storage_16_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b010001:
-        casez_tmp = meta_storage_17_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp = meta_storage_17_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b010010:
-        casez_tmp = meta_storage_18_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp = meta_storage_18_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b010011:
-        casez_tmp = meta_storage_19_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp = meta_storage_19_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b010100:
-        casez_tmp = meta_storage_20_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp = meta_storage_20_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b010101:
-        casez_tmp = meta_storage_21_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp = meta_storage_21_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b010110:
-        casez_tmp = meta_storage_22_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp = meta_storage_22_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b010111:
-        casez_tmp = meta_storage_23_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp = meta_storage_23_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b011000:
-        casez_tmp = meta_storage_24_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp = meta_storage_24_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b011001:
-        casez_tmp = meta_storage_25_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp = meta_storage_25_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b011010:
-        casez_tmp = meta_storage_26_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp = meta_storage_26_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b011011:
-        casez_tmp = meta_storage_27_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp = meta_storage_27_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b011100:
-        casez_tmp = meta_storage_28_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp = meta_storage_28_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b011101:
-        casez_tmp = meta_storage_29_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp = meta_storage_29_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b011110:
-        casez_tmp = meta_storage_30_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp = meta_storage_30_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b011111:
-        casez_tmp = meta_storage_31_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp = meta_storage_31_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b100000:
-        casez_tmp = meta_storage_32_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp = meta_storage_32_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b100001:
-        casez_tmp = meta_storage_33_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp = meta_storage_33_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b100010:
-        casez_tmp = meta_storage_34_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp = meta_storage_34_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b100011:
-        casez_tmp = meta_storage_35_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp = meta_storage_35_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b100100:
-        casez_tmp = meta_storage_36_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp = meta_storage_36_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b100101:
-        casez_tmp = meta_storage_37_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp = meta_storage_37_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b100110:
-        casez_tmp = meta_storage_38_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp = meta_storage_38_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b100111:
-        casez_tmp = meta_storage_39_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp = meta_storage_39_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b101000:
-        casez_tmp = meta_storage_40_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp = meta_storage_40_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b101001:
-        casez_tmp = meta_storage_41_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp = meta_storage_41_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b101010:
-        casez_tmp = meta_storage_42_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp = meta_storage_42_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b101011:
-        casez_tmp = meta_storage_43_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp = meta_storage_43_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b101100:
-        casez_tmp = meta_storage_44_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp = meta_storage_44_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b101101:
-        casez_tmp = meta_storage_45_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp = meta_storage_45_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b101110:
-        casez_tmp = meta_storage_46_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp = meta_storage_46_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b101111:
-        casez_tmp = meta_storage_47_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp = meta_storage_47_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b110000:
-        casez_tmp = meta_storage_48_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp = meta_storage_48_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b110001:
-        casez_tmp = meta_storage_49_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp = meta_storage_49_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b110010:
-        casez_tmp = meta_storage_50_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp = meta_storage_50_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b110011:
-        casez_tmp = meta_storage_51_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp = meta_storage_51_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b110100:
-        casez_tmp = meta_storage_52_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp = meta_storage_52_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b110101:
-        casez_tmp = meta_storage_53_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp = meta_storage_53_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b110110:
-        casez_tmp = meta_storage_54_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp = meta_storage_54_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b110111:
-        casez_tmp = meta_storage_55_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp = meta_storage_55_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b111000:
-        casez_tmp = meta_storage_56_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp = meta_storage_56_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b111001:
-        casez_tmp = meta_storage_57_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp = meta_storage_57_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b111010:
-        casez_tmp = meta_storage_58_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp = meta_storage_58_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b111011:
-        casez_tmp = meta_storage_59_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp = meta_storage_59_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b111100:
-        casez_tmp = meta_storage_60_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp = meta_storage_60_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b111101:
-        casez_tmp = meta_storage_61_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp = meta_storage_61_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b111110:
-        casez_tmp = meta_storage_62_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp = meta_storage_62_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       default:
-        casez_tmp = meta_storage_63_ghr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
-    endcase	// frontend/src/zaqal/frontend/BPU.scala:84:24
+        casez_tmp = meta_storage_63_ghr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
+    endcase	// frontend/src/zaqal/frontend/BPU.scala:90:24
   end // always_comb
-  reg  [1:0]   casez_tmp_0;	// frontend/src/zaqal/frontend/BPU.scala:84:24
-  always_comb begin	// frontend/src/zaqal/frontend/BPU.scala:84:24
-    casez (io_redirect_ftqPtr)	// frontend/src/zaqal/frontend/BPU.scala:84:24
+  reg  [31:0]  casez_tmp_0;	// frontend/src/zaqal/frontend/BPU.scala:90:24
+  always_comb begin	// frontend/src/zaqal/frontend/BPU.scala:90:24
+    casez (io_redirect_ftqPtr)	// frontend/src/zaqal/frontend/BPU.scala:90:24
       6'b000000:
-        casez_tmp_0 = meta_storage_0_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_0 = meta_storage_0_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b000001:
-        casez_tmp_0 = meta_storage_1_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_0 = meta_storage_1_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b000010:
-        casez_tmp_0 = meta_storage_2_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_0 = meta_storage_2_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b000011:
-        casez_tmp_0 = meta_storage_3_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_0 = meta_storage_3_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b000100:
-        casez_tmp_0 = meta_storage_4_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_0 = meta_storage_4_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b000101:
-        casez_tmp_0 = meta_storage_5_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_0 = meta_storage_5_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b000110:
-        casez_tmp_0 = meta_storage_6_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_0 = meta_storage_6_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b000111:
-        casez_tmp_0 = meta_storage_7_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_0 = meta_storage_7_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b001000:
-        casez_tmp_0 = meta_storage_8_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_0 = meta_storage_8_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b001001:
-        casez_tmp_0 = meta_storage_9_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_0 = meta_storage_9_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b001010:
-        casez_tmp_0 = meta_storage_10_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_0 = meta_storage_10_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b001011:
-        casez_tmp_0 = meta_storage_11_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_0 = meta_storage_11_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b001100:
-        casez_tmp_0 = meta_storage_12_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_0 = meta_storage_12_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b001101:
-        casez_tmp_0 = meta_storage_13_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_0 = meta_storage_13_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b001110:
-        casez_tmp_0 = meta_storage_14_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_0 = meta_storage_14_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b001111:
-        casez_tmp_0 = meta_storage_15_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_0 = meta_storage_15_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b010000:
-        casez_tmp_0 = meta_storage_16_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_0 = meta_storage_16_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b010001:
-        casez_tmp_0 = meta_storage_17_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_0 = meta_storage_17_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b010010:
-        casez_tmp_0 = meta_storage_18_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_0 = meta_storage_18_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b010011:
-        casez_tmp_0 = meta_storage_19_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_0 = meta_storage_19_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b010100:
-        casez_tmp_0 = meta_storage_20_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_0 = meta_storage_20_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b010101:
-        casez_tmp_0 = meta_storage_21_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_0 = meta_storage_21_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b010110:
-        casez_tmp_0 = meta_storage_22_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_0 = meta_storage_22_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b010111:
-        casez_tmp_0 = meta_storage_23_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_0 = meta_storage_23_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b011000:
-        casez_tmp_0 = meta_storage_24_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_0 = meta_storage_24_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b011001:
-        casez_tmp_0 = meta_storage_25_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_0 = meta_storage_25_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b011010:
-        casez_tmp_0 = meta_storage_26_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_0 = meta_storage_26_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b011011:
-        casez_tmp_0 = meta_storage_27_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_0 = meta_storage_27_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b011100:
-        casez_tmp_0 = meta_storage_28_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_0 = meta_storage_28_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b011101:
-        casez_tmp_0 = meta_storage_29_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_0 = meta_storage_29_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b011110:
-        casez_tmp_0 = meta_storage_30_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_0 = meta_storage_30_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b011111:
-        casez_tmp_0 = meta_storage_31_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_0 = meta_storage_31_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b100000:
-        casez_tmp_0 = meta_storage_32_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_0 = meta_storage_32_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b100001:
-        casez_tmp_0 = meta_storage_33_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_0 = meta_storage_33_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b100010:
-        casez_tmp_0 = meta_storage_34_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_0 = meta_storage_34_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b100011:
-        casez_tmp_0 = meta_storage_35_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_0 = meta_storage_35_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b100100:
-        casez_tmp_0 = meta_storage_36_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_0 = meta_storage_36_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b100101:
-        casez_tmp_0 = meta_storage_37_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_0 = meta_storage_37_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b100110:
-        casez_tmp_0 = meta_storage_38_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_0 = meta_storage_38_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b100111:
-        casez_tmp_0 = meta_storage_39_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_0 = meta_storage_39_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b101000:
-        casez_tmp_0 = meta_storage_40_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_0 = meta_storage_40_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b101001:
-        casez_tmp_0 = meta_storage_41_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_0 = meta_storage_41_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b101010:
-        casez_tmp_0 = meta_storage_42_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_0 = meta_storage_42_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b101011:
-        casez_tmp_0 = meta_storage_43_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_0 = meta_storage_43_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b101100:
-        casez_tmp_0 = meta_storage_44_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_0 = meta_storage_44_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b101101:
-        casez_tmp_0 = meta_storage_45_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_0 = meta_storage_45_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b101110:
-        casez_tmp_0 = meta_storage_46_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_0 = meta_storage_46_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b101111:
-        casez_tmp_0 = meta_storage_47_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_0 = meta_storage_47_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b110000:
-        casez_tmp_0 = meta_storage_48_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_0 = meta_storage_48_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b110001:
-        casez_tmp_0 = meta_storage_49_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_0 = meta_storage_49_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b110010:
-        casez_tmp_0 = meta_storage_50_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_0 = meta_storage_50_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b110011:
-        casez_tmp_0 = meta_storage_51_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_0 = meta_storage_51_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b110100:
-        casez_tmp_0 = meta_storage_52_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_0 = meta_storage_52_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b110101:
-        casez_tmp_0 = meta_storage_53_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_0 = meta_storage_53_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b110110:
-        casez_tmp_0 = meta_storage_54_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_0 = meta_storage_54_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b110111:
-        casez_tmp_0 = meta_storage_55_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_0 = meta_storage_55_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b111000:
-        casez_tmp_0 = meta_storage_56_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_0 = meta_storage_56_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b111001:
-        casez_tmp_0 = meta_storage_57_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_0 = meta_storage_57_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b111010:
-        casez_tmp_0 = meta_storage_58_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_0 = meta_storage_58_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b111011:
-        casez_tmp_0 = meta_storage_59_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_0 = meta_storage_59_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b111100:
-        casez_tmp_0 = meta_storage_60_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_0 = meta_storage_60_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b111101:
-        casez_tmp_0 = meta_storage_61_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_0 = meta_storage_61_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b111110:
-        casez_tmp_0 = meta_storage_62_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_0 = meta_storage_62_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       default:
-        casez_tmp_0 = meta_storage_63_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
-    endcase	// frontend/src/zaqal/frontend/BPU.scala:84:24
+        casez_tmp_0 = meta_storage_63_phr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
+    endcase	// frontend/src/zaqal/frontend/BPU.scala:90:24
   end // always_comb
-  reg          casez_tmp_1;	// frontend/src/zaqal/frontend/BPU.scala:84:24
-  always_comb begin	// frontend/src/zaqal/frontend/BPU.scala:84:24
-    casez (io_redirect_ftqPtr)	// frontend/src/zaqal/frontend/BPU.scala:84:24
+  reg  [1:0]   casez_tmp_1;	// frontend/src/zaqal/frontend/BPU.scala:90:24
+  always_comb begin	// frontend/src/zaqal/frontend/BPU.scala:90:24
+    casez (io_redirect_ftqPtr)	// frontend/src/zaqal/frontend/BPU.scala:90:24
       6'b000000:
-        casez_tmp_1 = meta_storage_0_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_1 = meta_storage_0_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b000001:
-        casez_tmp_1 = meta_storage_1_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_1 = meta_storage_1_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b000010:
-        casez_tmp_1 = meta_storage_2_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_1 = meta_storage_2_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b000011:
-        casez_tmp_1 = meta_storage_3_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_1 = meta_storage_3_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b000100:
-        casez_tmp_1 = meta_storage_4_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_1 = meta_storage_4_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b000101:
-        casez_tmp_1 = meta_storage_5_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_1 = meta_storage_5_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b000110:
-        casez_tmp_1 = meta_storage_6_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_1 = meta_storage_6_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b000111:
-        casez_tmp_1 = meta_storage_7_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_1 = meta_storage_7_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b001000:
-        casez_tmp_1 = meta_storage_8_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_1 = meta_storage_8_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b001001:
-        casez_tmp_1 = meta_storage_9_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_1 = meta_storage_9_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b001010:
-        casez_tmp_1 = meta_storage_10_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_1 = meta_storage_10_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b001011:
-        casez_tmp_1 = meta_storage_11_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_1 = meta_storage_11_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b001100:
-        casez_tmp_1 = meta_storage_12_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_1 = meta_storage_12_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b001101:
-        casez_tmp_1 = meta_storage_13_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_1 = meta_storage_13_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b001110:
-        casez_tmp_1 = meta_storage_14_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_1 = meta_storage_14_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b001111:
-        casez_tmp_1 = meta_storage_15_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_1 = meta_storage_15_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b010000:
-        casez_tmp_1 = meta_storage_16_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_1 = meta_storage_16_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b010001:
-        casez_tmp_1 = meta_storage_17_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_1 = meta_storage_17_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b010010:
-        casez_tmp_1 = meta_storage_18_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_1 = meta_storage_18_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b010011:
-        casez_tmp_1 = meta_storage_19_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_1 = meta_storage_19_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b010100:
-        casez_tmp_1 = meta_storage_20_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_1 = meta_storage_20_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b010101:
-        casez_tmp_1 = meta_storage_21_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_1 = meta_storage_21_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b010110:
-        casez_tmp_1 = meta_storage_22_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_1 = meta_storage_22_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b010111:
-        casez_tmp_1 = meta_storage_23_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_1 = meta_storage_23_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b011000:
-        casez_tmp_1 = meta_storage_24_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_1 = meta_storage_24_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b011001:
-        casez_tmp_1 = meta_storage_25_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_1 = meta_storage_25_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b011010:
-        casez_tmp_1 = meta_storage_26_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_1 = meta_storage_26_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b011011:
-        casez_tmp_1 = meta_storage_27_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_1 = meta_storage_27_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b011100:
-        casez_tmp_1 = meta_storage_28_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_1 = meta_storage_28_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b011101:
-        casez_tmp_1 = meta_storage_29_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_1 = meta_storage_29_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b011110:
-        casez_tmp_1 = meta_storage_30_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_1 = meta_storage_30_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b011111:
-        casez_tmp_1 = meta_storage_31_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_1 = meta_storage_31_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b100000:
-        casez_tmp_1 = meta_storage_32_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_1 = meta_storage_32_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b100001:
-        casez_tmp_1 = meta_storage_33_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_1 = meta_storage_33_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b100010:
-        casez_tmp_1 = meta_storage_34_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_1 = meta_storage_34_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b100011:
-        casez_tmp_1 = meta_storage_35_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_1 = meta_storage_35_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b100100:
-        casez_tmp_1 = meta_storage_36_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_1 = meta_storage_36_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b100101:
-        casez_tmp_1 = meta_storage_37_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_1 = meta_storage_37_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b100110:
-        casez_tmp_1 = meta_storage_38_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_1 = meta_storage_38_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b100111:
-        casez_tmp_1 = meta_storage_39_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_1 = meta_storage_39_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b101000:
-        casez_tmp_1 = meta_storage_40_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_1 = meta_storage_40_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b101001:
-        casez_tmp_1 = meta_storage_41_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_1 = meta_storage_41_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b101010:
-        casez_tmp_1 = meta_storage_42_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_1 = meta_storage_42_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b101011:
-        casez_tmp_1 = meta_storage_43_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_1 = meta_storage_43_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b101100:
-        casez_tmp_1 = meta_storage_44_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_1 = meta_storage_44_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b101101:
-        casez_tmp_1 = meta_storage_45_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_1 = meta_storage_45_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b101110:
-        casez_tmp_1 = meta_storage_46_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_1 = meta_storage_46_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b101111:
-        casez_tmp_1 = meta_storage_47_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_1 = meta_storage_47_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b110000:
-        casez_tmp_1 = meta_storage_48_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_1 = meta_storage_48_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b110001:
-        casez_tmp_1 = meta_storage_49_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_1 = meta_storage_49_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b110010:
-        casez_tmp_1 = meta_storage_50_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_1 = meta_storage_50_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b110011:
-        casez_tmp_1 = meta_storage_51_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_1 = meta_storage_51_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b110100:
-        casez_tmp_1 = meta_storage_52_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_1 = meta_storage_52_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b110101:
-        casez_tmp_1 = meta_storage_53_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_1 = meta_storage_53_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b110110:
-        casez_tmp_1 = meta_storage_54_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_1 = meta_storage_54_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b110111:
-        casez_tmp_1 = meta_storage_55_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_1 = meta_storage_55_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b111000:
-        casez_tmp_1 = meta_storage_56_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_1 = meta_storage_56_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b111001:
-        casez_tmp_1 = meta_storage_57_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_1 = meta_storage_57_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b111010:
-        casez_tmp_1 = meta_storage_58_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_1 = meta_storage_58_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b111011:
-        casez_tmp_1 = meta_storage_59_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_1 = meta_storage_59_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b111100:
-        casez_tmp_1 = meta_storage_60_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_1 = meta_storage_60_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b111101:
-        casez_tmp_1 = meta_storage_61_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_1 = meta_storage_61_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b111110:
-        casez_tmp_1 = meta_storage_62_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_1 = meta_storage_62_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       default:
-        casez_tmp_1 = meta_storage_63_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
-    endcase	// frontend/src/zaqal/frontend/BPU.scala:84:24
+        casez_tmp_1 = meta_storage_63_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
+    endcase	// frontend/src/zaqal/frontend/BPU.scala:90:24
   end // always_comb
-  reg  [2:0]   casez_tmp_2;	// frontend/src/zaqal/frontend/BPU.scala:84:24
-  always_comb begin	// frontend/src/zaqal/frontend/BPU.scala:84:24
-    casez (io_redirect_ftqPtr)	// frontend/src/zaqal/frontend/BPU.scala:84:24
+  reg          casez_tmp_2;	// frontend/src/zaqal/frontend/BPU.scala:90:24
+  always_comb begin	// frontend/src/zaqal/frontend/BPU.scala:90:24
+    casez (io_redirect_ftqPtr)	// frontend/src/zaqal/frontend/BPU.scala:90:24
       6'b000000:
-        casez_tmp_2 = meta_storage_0_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_2 = meta_storage_0_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b000001:
-        casez_tmp_2 = meta_storage_1_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_2 = meta_storage_1_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b000010:
-        casez_tmp_2 = meta_storage_2_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_2 = meta_storage_2_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b000011:
-        casez_tmp_2 = meta_storage_3_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_2 = meta_storage_3_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b000100:
-        casez_tmp_2 = meta_storage_4_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_2 = meta_storage_4_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b000101:
-        casez_tmp_2 = meta_storage_5_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_2 = meta_storage_5_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b000110:
-        casez_tmp_2 = meta_storage_6_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_2 = meta_storage_6_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b000111:
-        casez_tmp_2 = meta_storage_7_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_2 = meta_storage_7_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b001000:
-        casez_tmp_2 = meta_storage_8_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_2 = meta_storage_8_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b001001:
-        casez_tmp_2 = meta_storage_9_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_2 = meta_storage_9_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b001010:
-        casez_tmp_2 = meta_storage_10_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_2 = meta_storage_10_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b001011:
-        casez_tmp_2 = meta_storage_11_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_2 = meta_storage_11_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b001100:
-        casez_tmp_2 = meta_storage_12_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_2 = meta_storage_12_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b001101:
-        casez_tmp_2 = meta_storage_13_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_2 = meta_storage_13_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b001110:
-        casez_tmp_2 = meta_storage_14_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_2 = meta_storage_14_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b001111:
-        casez_tmp_2 = meta_storage_15_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_2 = meta_storage_15_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b010000:
-        casez_tmp_2 = meta_storage_16_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_2 = meta_storage_16_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b010001:
-        casez_tmp_2 = meta_storage_17_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_2 = meta_storage_17_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b010010:
-        casez_tmp_2 = meta_storage_18_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_2 = meta_storage_18_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b010011:
-        casez_tmp_2 = meta_storage_19_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_2 = meta_storage_19_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b010100:
-        casez_tmp_2 = meta_storage_20_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_2 = meta_storage_20_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b010101:
-        casez_tmp_2 = meta_storage_21_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_2 = meta_storage_21_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b010110:
-        casez_tmp_2 = meta_storage_22_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_2 = meta_storage_22_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b010111:
-        casez_tmp_2 = meta_storage_23_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_2 = meta_storage_23_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b011000:
-        casez_tmp_2 = meta_storage_24_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_2 = meta_storage_24_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b011001:
-        casez_tmp_2 = meta_storage_25_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_2 = meta_storage_25_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b011010:
-        casez_tmp_2 = meta_storage_26_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_2 = meta_storage_26_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b011011:
-        casez_tmp_2 = meta_storage_27_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_2 = meta_storage_27_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b011100:
-        casez_tmp_2 = meta_storage_28_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_2 = meta_storage_28_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b011101:
-        casez_tmp_2 = meta_storage_29_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_2 = meta_storage_29_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b011110:
-        casez_tmp_2 = meta_storage_30_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_2 = meta_storage_30_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b011111:
-        casez_tmp_2 = meta_storage_31_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_2 = meta_storage_31_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b100000:
-        casez_tmp_2 = meta_storage_32_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_2 = meta_storage_32_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b100001:
-        casez_tmp_2 = meta_storage_33_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_2 = meta_storage_33_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b100010:
-        casez_tmp_2 = meta_storage_34_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_2 = meta_storage_34_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b100011:
-        casez_tmp_2 = meta_storage_35_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_2 = meta_storage_35_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b100100:
-        casez_tmp_2 = meta_storage_36_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_2 = meta_storage_36_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b100101:
-        casez_tmp_2 = meta_storage_37_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_2 = meta_storage_37_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b100110:
-        casez_tmp_2 = meta_storage_38_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_2 = meta_storage_38_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b100111:
-        casez_tmp_2 = meta_storage_39_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_2 = meta_storage_39_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b101000:
-        casez_tmp_2 = meta_storage_40_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_2 = meta_storage_40_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b101001:
-        casez_tmp_2 = meta_storage_41_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_2 = meta_storage_41_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b101010:
-        casez_tmp_2 = meta_storage_42_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_2 = meta_storage_42_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b101011:
-        casez_tmp_2 = meta_storage_43_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_2 = meta_storage_43_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b101100:
-        casez_tmp_2 = meta_storage_44_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_2 = meta_storage_44_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b101101:
-        casez_tmp_2 = meta_storage_45_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_2 = meta_storage_45_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b101110:
-        casez_tmp_2 = meta_storage_46_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_2 = meta_storage_46_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b101111:
-        casez_tmp_2 = meta_storage_47_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_2 = meta_storage_47_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b110000:
-        casez_tmp_2 = meta_storage_48_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_2 = meta_storage_48_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b110001:
-        casez_tmp_2 = meta_storage_49_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_2 = meta_storage_49_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b110010:
-        casez_tmp_2 = meta_storage_50_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_2 = meta_storage_50_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b110011:
-        casez_tmp_2 = meta_storage_51_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_2 = meta_storage_51_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b110100:
-        casez_tmp_2 = meta_storage_52_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_2 = meta_storage_52_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b110101:
-        casez_tmp_2 = meta_storage_53_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_2 = meta_storage_53_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b110110:
-        casez_tmp_2 = meta_storage_54_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_2 = meta_storage_54_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b110111:
-        casez_tmp_2 = meta_storage_55_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_2 = meta_storage_55_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b111000:
-        casez_tmp_2 = meta_storage_56_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_2 = meta_storage_56_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b111001:
-        casez_tmp_2 = meta_storage_57_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_2 = meta_storage_57_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b111010:
-        casez_tmp_2 = meta_storage_58_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_2 = meta_storage_58_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b111011:
-        casez_tmp_2 = meta_storage_59_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_2 = meta_storage_59_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b111100:
-        casez_tmp_2 = meta_storage_60_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_2 = meta_storage_60_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b111101:
-        casez_tmp_2 = meta_storage_61_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_2 = meta_storage_61_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b111110:
-        casez_tmp_2 = meta_storage_62_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_2 = meta_storage_62_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       default:
-        casez_tmp_2 = meta_storage_63_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
-    endcase	// frontend/src/zaqal/frontend/BPU.scala:84:24
+        casez_tmp_2 = meta_storage_63_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
+    endcase	// frontend/src/zaqal/frontend/BPU.scala:90:24
   end // always_comb
-  reg          casez_tmp_3;	// frontend/src/zaqal/frontend/BPU.scala:84:24
-  always_comb begin	// frontend/src/zaqal/frontend/BPU.scala:84:24
-    casez (io_redirect_ftqPtr)	// frontend/src/zaqal/frontend/BPU.scala:84:24
+  reg  [2:0]   casez_tmp_3;	// frontend/src/zaqal/frontend/BPU.scala:90:24
+  always_comb begin	// frontend/src/zaqal/frontend/BPU.scala:90:24
+    casez (io_redirect_ftqPtr)	// frontend/src/zaqal/frontend/BPU.scala:90:24
       6'b000000:
-        casez_tmp_3 = meta_storage_0_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_3 = meta_storage_0_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b000001:
-        casez_tmp_3 = meta_storage_1_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_3 = meta_storage_1_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b000010:
-        casez_tmp_3 = meta_storage_2_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_3 = meta_storage_2_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b000011:
-        casez_tmp_3 = meta_storage_3_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_3 = meta_storage_3_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b000100:
-        casez_tmp_3 = meta_storage_4_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_3 = meta_storage_4_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b000101:
-        casez_tmp_3 = meta_storage_5_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_3 = meta_storage_5_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b000110:
-        casez_tmp_3 = meta_storage_6_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_3 = meta_storage_6_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b000111:
-        casez_tmp_3 = meta_storage_7_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_3 = meta_storage_7_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b001000:
-        casez_tmp_3 = meta_storage_8_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_3 = meta_storage_8_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b001001:
-        casez_tmp_3 = meta_storage_9_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_3 = meta_storage_9_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b001010:
-        casez_tmp_3 = meta_storage_10_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_3 = meta_storage_10_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b001011:
-        casez_tmp_3 = meta_storage_11_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_3 = meta_storage_11_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b001100:
-        casez_tmp_3 = meta_storage_12_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_3 = meta_storage_12_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b001101:
-        casez_tmp_3 = meta_storage_13_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_3 = meta_storage_13_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b001110:
-        casez_tmp_3 = meta_storage_14_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_3 = meta_storage_14_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b001111:
-        casez_tmp_3 = meta_storage_15_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_3 = meta_storage_15_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b010000:
-        casez_tmp_3 = meta_storage_16_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_3 = meta_storage_16_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b010001:
-        casez_tmp_3 = meta_storage_17_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_3 = meta_storage_17_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b010010:
-        casez_tmp_3 = meta_storage_18_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_3 = meta_storage_18_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b010011:
-        casez_tmp_3 = meta_storage_19_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_3 = meta_storage_19_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b010100:
-        casez_tmp_3 = meta_storage_20_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_3 = meta_storage_20_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b010101:
-        casez_tmp_3 = meta_storage_21_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_3 = meta_storage_21_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b010110:
-        casez_tmp_3 = meta_storage_22_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_3 = meta_storage_22_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b010111:
-        casez_tmp_3 = meta_storage_23_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_3 = meta_storage_23_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b011000:
-        casez_tmp_3 = meta_storage_24_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_3 = meta_storage_24_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b011001:
-        casez_tmp_3 = meta_storage_25_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_3 = meta_storage_25_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b011010:
-        casez_tmp_3 = meta_storage_26_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_3 = meta_storage_26_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b011011:
-        casez_tmp_3 = meta_storage_27_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_3 = meta_storage_27_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b011100:
-        casez_tmp_3 = meta_storage_28_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_3 = meta_storage_28_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b011101:
-        casez_tmp_3 = meta_storage_29_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_3 = meta_storage_29_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b011110:
-        casez_tmp_3 = meta_storage_30_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_3 = meta_storage_30_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b011111:
-        casez_tmp_3 = meta_storage_31_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_3 = meta_storage_31_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b100000:
-        casez_tmp_3 = meta_storage_32_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_3 = meta_storage_32_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b100001:
-        casez_tmp_3 = meta_storage_33_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_3 = meta_storage_33_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b100010:
-        casez_tmp_3 = meta_storage_34_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_3 = meta_storage_34_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b100011:
-        casez_tmp_3 = meta_storage_35_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_3 = meta_storage_35_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b100100:
-        casez_tmp_3 = meta_storage_36_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_3 = meta_storage_36_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b100101:
-        casez_tmp_3 = meta_storage_37_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_3 = meta_storage_37_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b100110:
-        casez_tmp_3 = meta_storage_38_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_3 = meta_storage_38_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b100111:
-        casez_tmp_3 = meta_storage_39_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_3 = meta_storage_39_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b101000:
-        casez_tmp_3 = meta_storage_40_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_3 = meta_storage_40_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b101001:
-        casez_tmp_3 = meta_storage_41_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_3 = meta_storage_41_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b101010:
-        casez_tmp_3 = meta_storage_42_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_3 = meta_storage_42_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b101011:
-        casez_tmp_3 = meta_storage_43_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_3 = meta_storage_43_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b101100:
-        casez_tmp_3 = meta_storage_44_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_3 = meta_storage_44_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b101101:
-        casez_tmp_3 = meta_storage_45_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_3 = meta_storage_45_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b101110:
-        casez_tmp_3 = meta_storage_46_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_3 = meta_storage_46_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b101111:
-        casez_tmp_3 = meta_storage_47_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_3 = meta_storage_47_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b110000:
-        casez_tmp_3 = meta_storage_48_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_3 = meta_storage_48_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b110001:
-        casez_tmp_3 = meta_storage_49_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_3 = meta_storage_49_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b110010:
-        casez_tmp_3 = meta_storage_50_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_3 = meta_storage_50_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b110011:
-        casez_tmp_3 = meta_storage_51_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_3 = meta_storage_51_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b110100:
-        casez_tmp_3 = meta_storage_52_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_3 = meta_storage_52_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b110101:
-        casez_tmp_3 = meta_storage_53_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_3 = meta_storage_53_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b110110:
-        casez_tmp_3 = meta_storage_54_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_3 = meta_storage_54_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b110111:
-        casez_tmp_3 = meta_storage_55_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_3 = meta_storage_55_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b111000:
-        casez_tmp_3 = meta_storage_56_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_3 = meta_storage_56_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b111001:
-        casez_tmp_3 = meta_storage_57_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_3 = meta_storage_57_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b111010:
-        casez_tmp_3 = meta_storage_58_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_3 = meta_storage_58_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b111011:
-        casez_tmp_3 = meta_storage_59_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_3 = meta_storage_59_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b111100:
-        casez_tmp_3 = meta_storage_60_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_3 = meta_storage_60_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b111101:
-        casez_tmp_3 = meta_storage_61_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_3 = meta_storage_61_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b111110:
-        casez_tmp_3 = meta_storage_62_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_3 = meta_storage_62_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       default:
-        casez_tmp_3 = meta_storage_63_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
-    endcase	// frontend/src/zaqal/frontend/BPU.scala:84:24
+        casez_tmp_3 = meta_storage_63_tage_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
+    endcase	// frontend/src/zaqal/frontend/BPU.scala:90:24
   end // always_comb
-  reg  [1:0]   casez_tmp_4;	// frontend/src/zaqal/frontend/BPU.scala:84:24
-  always_comb begin	// frontend/src/zaqal/frontend/BPU.scala:84:24
-    casez (io_redirect_ftqPtr)	// frontend/src/zaqal/frontend/BPU.scala:84:24
+  reg          casez_tmp_4;	// frontend/src/zaqal/frontend/BPU.scala:90:24
+  always_comb begin	// frontend/src/zaqal/frontend/BPU.scala:90:24
+    casez (io_redirect_ftqPtr)	// frontend/src/zaqal/frontend/BPU.scala:90:24
       6'b000000:
-        casez_tmp_4 = meta_storage_0_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_4 = meta_storage_0_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b000001:
-        casez_tmp_4 = meta_storage_1_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_4 = meta_storage_1_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b000010:
-        casez_tmp_4 = meta_storage_2_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_4 = meta_storage_2_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b000011:
-        casez_tmp_4 = meta_storage_3_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_4 = meta_storage_3_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b000100:
-        casez_tmp_4 = meta_storage_4_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_4 = meta_storage_4_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b000101:
-        casez_tmp_4 = meta_storage_5_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_4 = meta_storage_5_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b000110:
-        casez_tmp_4 = meta_storage_6_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_4 = meta_storage_6_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b000111:
-        casez_tmp_4 = meta_storage_7_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_4 = meta_storage_7_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b001000:
-        casez_tmp_4 = meta_storage_8_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_4 = meta_storage_8_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b001001:
-        casez_tmp_4 = meta_storage_9_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_4 = meta_storage_9_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b001010:
-        casez_tmp_4 = meta_storage_10_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_4 = meta_storage_10_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b001011:
-        casez_tmp_4 = meta_storage_11_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_4 = meta_storage_11_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b001100:
-        casez_tmp_4 = meta_storage_12_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_4 = meta_storage_12_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b001101:
-        casez_tmp_4 = meta_storage_13_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_4 = meta_storage_13_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b001110:
-        casez_tmp_4 = meta_storage_14_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_4 = meta_storage_14_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b001111:
-        casez_tmp_4 = meta_storage_15_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_4 = meta_storage_15_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b010000:
-        casez_tmp_4 = meta_storage_16_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_4 = meta_storage_16_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b010001:
-        casez_tmp_4 = meta_storage_17_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_4 = meta_storage_17_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b010010:
-        casez_tmp_4 = meta_storage_18_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_4 = meta_storage_18_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b010011:
-        casez_tmp_4 = meta_storage_19_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_4 = meta_storage_19_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b010100:
-        casez_tmp_4 = meta_storage_20_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_4 = meta_storage_20_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b010101:
-        casez_tmp_4 = meta_storage_21_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_4 = meta_storage_21_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b010110:
-        casez_tmp_4 = meta_storage_22_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_4 = meta_storage_22_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b010111:
-        casez_tmp_4 = meta_storage_23_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_4 = meta_storage_23_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b011000:
-        casez_tmp_4 = meta_storage_24_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_4 = meta_storage_24_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b011001:
-        casez_tmp_4 = meta_storage_25_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_4 = meta_storage_25_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b011010:
-        casez_tmp_4 = meta_storage_26_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_4 = meta_storage_26_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b011011:
-        casez_tmp_4 = meta_storage_27_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_4 = meta_storage_27_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b011100:
-        casez_tmp_4 = meta_storage_28_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_4 = meta_storage_28_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b011101:
-        casez_tmp_4 = meta_storage_29_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_4 = meta_storage_29_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b011110:
-        casez_tmp_4 = meta_storage_30_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_4 = meta_storage_30_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b011111:
-        casez_tmp_4 = meta_storage_31_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_4 = meta_storage_31_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b100000:
-        casez_tmp_4 = meta_storage_32_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_4 = meta_storage_32_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b100001:
-        casez_tmp_4 = meta_storage_33_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_4 = meta_storage_33_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b100010:
-        casez_tmp_4 = meta_storage_34_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_4 = meta_storage_34_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b100011:
-        casez_tmp_4 = meta_storage_35_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_4 = meta_storage_35_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b100100:
-        casez_tmp_4 = meta_storage_36_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_4 = meta_storage_36_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b100101:
-        casez_tmp_4 = meta_storage_37_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_4 = meta_storage_37_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b100110:
-        casez_tmp_4 = meta_storage_38_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_4 = meta_storage_38_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b100111:
-        casez_tmp_4 = meta_storage_39_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_4 = meta_storage_39_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b101000:
-        casez_tmp_4 = meta_storage_40_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_4 = meta_storage_40_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b101001:
-        casez_tmp_4 = meta_storage_41_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_4 = meta_storage_41_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b101010:
-        casez_tmp_4 = meta_storage_42_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_4 = meta_storage_42_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b101011:
-        casez_tmp_4 = meta_storage_43_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_4 = meta_storage_43_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b101100:
-        casez_tmp_4 = meta_storage_44_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_4 = meta_storage_44_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b101101:
-        casez_tmp_4 = meta_storage_45_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_4 = meta_storage_45_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b101110:
-        casez_tmp_4 = meta_storage_46_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_4 = meta_storage_46_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b101111:
-        casez_tmp_4 = meta_storage_47_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_4 = meta_storage_47_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b110000:
-        casez_tmp_4 = meta_storage_48_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_4 = meta_storage_48_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b110001:
-        casez_tmp_4 = meta_storage_49_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_4 = meta_storage_49_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b110010:
-        casez_tmp_4 = meta_storage_50_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_4 = meta_storage_50_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b110011:
-        casez_tmp_4 = meta_storage_51_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_4 = meta_storage_51_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b110100:
-        casez_tmp_4 = meta_storage_52_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_4 = meta_storage_52_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b110101:
-        casez_tmp_4 = meta_storage_53_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_4 = meta_storage_53_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b110110:
-        casez_tmp_4 = meta_storage_54_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_4 = meta_storage_54_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b110111:
-        casez_tmp_4 = meta_storage_55_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_4 = meta_storage_55_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b111000:
-        casez_tmp_4 = meta_storage_56_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_4 = meta_storage_56_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b111001:
-        casez_tmp_4 = meta_storage_57_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_4 = meta_storage_57_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b111010:
-        casez_tmp_4 = meta_storage_58_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_4 = meta_storage_58_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b111011:
-        casez_tmp_4 = meta_storage_59_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_4 = meta_storage_59_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b111100:
-        casez_tmp_4 = meta_storage_60_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_4 = meta_storage_60_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b111101:
-        casez_tmp_4 = meta_storage_61_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_4 = meta_storage_61_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b111110:
-        casez_tmp_4 = meta_storage_62_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_4 = meta_storage_62_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       default:
-        casez_tmp_4 = meta_storage_63_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
-    endcase	// frontend/src/zaqal/frontend/BPU.scala:84:24
+        casez_tmp_4 = meta_storage_63_tage_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
+    endcase	// frontend/src/zaqal/frontend/BPU.scala:90:24
   end // always_comb
-  reg  [1:0]   casez_tmp_5;	// frontend/src/zaqal/frontend/BPU.scala:84:24
-  always_comb begin	// frontend/src/zaqal/frontend/BPU.scala:84:24
-    casez (io_redirect_ftqPtr)	// frontend/src/zaqal/frontend/BPU.scala:84:24
+  reg  [1:0]   casez_tmp_5;	// frontend/src/zaqal/frontend/BPU.scala:90:24
+  always_comb begin	// frontend/src/zaqal/frontend/BPU.scala:90:24
+    casez (io_redirect_ftqPtr)	// frontend/src/zaqal/frontend/BPU.scala:90:24
       6'b000000:
-        casez_tmp_5 = meta_storage_0_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_5 = meta_storage_0_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b000001:
-        casez_tmp_5 = meta_storage_1_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_5 = meta_storage_1_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b000010:
-        casez_tmp_5 = meta_storage_2_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_5 = meta_storage_2_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b000011:
-        casez_tmp_5 = meta_storage_3_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_5 = meta_storage_3_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b000100:
-        casez_tmp_5 = meta_storage_4_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_5 = meta_storage_4_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b000101:
-        casez_tmp_5 = meta_storage_5_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_5 = meta_storage_5_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b000110:
-        casez_tmp_5 = meta_storage_6_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_5 = meta_storage_6_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b000111:
-        casez_tmp_5 = meta_storage_7_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_5 = meta_storage_7_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b001000:
-        casez_tmp_5 = meta_storage_8_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_5 = meta_storage_8_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b001001:
-        casez_tmp_5 = meta_storage_9_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_5 = meta_storage_9_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b001010:
-        casez_tmp_5 = meta_storage_10_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_5 = meta_storage_10_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b001011:
-        casez_tmp_5 = meta_storage_11_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_5 = meta_storage_11_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b001100:
-        casez_tmp_5 = meta_storage_12_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_5 = meta_storage_12_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b001101:
-        casez_tmp_5 = meta_storage_13_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_5 = meta_storage_13_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b001110:
-        casez_tmp_5 = meta_storage_14_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_5 = meta_storage_14_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b001111:
-        casez_tmp_5 = meta_storage_15_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_5 = meta_storage_15_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b010000:
-        casez_tmp_5 = meta_storage_16_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_5 = meta_storage_16_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b010001:
-        casez_tmp_5 = meta_storage_17_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_5 = meta_storage_17_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b010010:
-        casez_tmp_5 = meta_storage_18_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_5 = meta_storage_18_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b010011:
-        casez_tmp_5 = meta_storage_19_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_5 = meta_storage_19_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b010100:
-        casez_tmp_5 = meta_storage_20_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_5 = meta_storage_20_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b010101:
-        casez_tmp_5 = meta_storage_21_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_5 = meta_storage_21_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b010110:
-        casez_tmp_5 = meta_storage_22_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_5 = meta_storage_22_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b010111:
-        casez_tmp_5 = meta_storage_23_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_5 = meta_storage_23_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b011000:
-        casez_tmp_5 = meta_storage_24_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_5 = meta_storage_24_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b011001:
-        casez_tmp_5 = meta_storage_25_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_5 = meta_storage_25_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b011010:
-        casez_tmp_5 = meta_storage_26_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_5 = meta_storage_26_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b011011:
-        casez_tmp_5 = meta_storage_27_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_5 = meta_storage_27_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b011100:
-        casez_tmp_5 = meta_storage_28_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_5 = meta_storage_28_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b011101:
-        casez_tmp_5 = meta_storage_29_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_5 = meta_storage_29_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b011110:
-        casez_tmp_5 = meta_storage_30_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_5 = meta_storage_30_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b011111:
-        casez_tmp_5 = meta_storage_31_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_5 = meta_storage_31_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b100000:
-        casez_tmp_5 = meta_storage_32_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_5 = meta_storage_32_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b100001:
-        casez_tmp_5 = meta_storage_33_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_5 = meta_storage_33_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b100010:
-        casez_tmp_5 = meta_storage_34_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_5 = meta_storage_34_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b100011:
-        casez_tmp_5 = meta_storage_35_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_5 = meta_storage_35_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b100100:
-        casez_tmp_5 = meta_storage_36_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_5 = meta_storage_36_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b100101:
-        casez_tmp_5 = meta_storage_37_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_5 = meta_storage_37_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b100110:
-        casez_tmp_5 = meta_storage_38_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_5 = meta_storage_38_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b100111:
-        casez_tmp_5 = meta_storage_39_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_5 = meta_storage_39_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b101000:
-        casez_tmp_5 = meta_storage_40_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_5 = meta_storage_40_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b101001:
-        casez_tmp_5 = meta_storage_41_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_5 = meta_storage_41_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b101010:
-        casez_tmp_5 = meta_storage_42_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_5 = meta_storage_42_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b101011:
-        casez_tmp_5 = meta_storage_43_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_5 = meta_storage_43_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b101100:
-        casez_tmp_5 = meta_storage_44_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_5 = meta_storage_44_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b101101:
-        casez_tmp_5 = meta_storage_45_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_5 = meta_storage_45_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b101110:
-        casez_tmp_5 = meta_storage_46_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_5 = meta_storage_46_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b101111:
-        casez_tmp_5 = meta_storage_47_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_5 = meta_storage_47_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b110000:
-        casez_tmp_5 = meta_storage_48_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_5 = meta_storage_48_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b110001:
-        casez_tmp_5 = meta_storage_49_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_5 = meta_storage_49_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b110010:
-        casez_tmp_5 = meta_storage_50_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_5 = meta_storage_50_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b110011:
-        casez_tmp_5 = meta_storage_51_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_5 = meta_storage_51_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b110100:
-        casez_tmp_5 = meta_storage_52_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_5 = meta_storage_52_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b110101:
-        casez_tmp_5 = meta_storage_53_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_5 = meta_storage_53_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b110110:
-        casez_tmp_5 = meta_storage_54_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_5 = meta_storage_54_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b110111:
-        casez_tmp_5 = meta_storage_55_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_5 = meta_storage_55_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b111000:
-        casez_tmp_5 = meta_storage_56_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_5 = meta_storage_56_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b111001:
-        casez_tmp_5 = meta_storage_57_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_5 = meta_storage_57_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b111010:
-        casez_tmp_5 = meta_storage_58_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_5 = meta_storage_58_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b111011:
-        casez_tmp_5 = meta_storage_59_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_5 = meta_storage_59_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b111100:
-        casez_tmp_5 = meta_storage_60_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_5 = meta_storage_60_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b111101:
-        casez_tmp_5 = meta_storage_61_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_5 = meta_storage_61_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b111110:
-        casez_tmp_5 = meta_storage_62_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_5 = meta_storage_62_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       default:
-        casez_tmp_5 = meta_storage_63_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
-    endcase	// frontend/src/zaqal/frontend/BPU.scala:84:24
+        casez_tmp_5 = meta_storage_63_tage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
+    endcase	// frontend/src/zaqal/frontend/BPU.scala:90:24
   end // always_comb
-  reg          casez_tmp_6;	// frontend/src/zaqal/frontend/BPU.scala:84:24
-  always_comb begin	// frontend/src/zaqal/frontend/BPU.scala:84:24
-    casez (io_redirect_ftqPtr)	// frontend/src/zaqal/frontend/BPU.scala:84:24
+  reg  [1:0]   casez_tmp_6;	// frontend/src/zaqal/frontend/BPU.scala:90:24
+  always_comb begin	// frontend/src/zaqal/frontend/BPU.scala:90:24
+    casez (io_redirect_ftqPtr)	// frontend/src/zaqal/frontend/BPU.scala:90:24
       6'b000000:
-        casez_tmp_6 = meta_storage_0_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_6 = meta_storage_0_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b000001:
-        casez_tmp_6 = meta_storage_1_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_6 = meta_storage_1_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b000010:
-        casez_tmp_6 = meta_storage_2_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_6 = meta_storage_2_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b000011:
-        casez_tmp_6 = meta_storage_3_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_6 = meta_storage_3_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b000100:
-        casez_tmp_6 = meta_storage_4_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_6 = meta_storage_4_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b000101:
-        casez_tmp_6 = meta_storage_5_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_6 = meta_storage_5_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b000110:
-        casez_tmp_6 = meta_storage_6_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_6 = meta_storage_6_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b000111:
-        casez_tmp_6 = meta_storage_7_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_6 = meta_storage_7_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b001000:
-        casez_tmp_6 = meta_storage_8_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_6 = meta_storage_8_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b001001:
-        casez_tmp_6 = meta_storage_9_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_6 = meta_storage_9_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b001010:
-        casez_tmp_6 = meta_storage_10_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_6 = meta_storage_10_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b001011:
-        casez_tmp_6 = meta_storage_11_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_6 = meta_storage_11_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b001100:
-        casez_tmp_6 = meta_storage_12_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_6 = meta_storage_12_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b001101:
-        casez_tmp_6 = meta_storage_13_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_6 = meta_storage_13_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b001110:
-        casez_tmp_6 = meta_storage_14_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_6 = meta_storage_14_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b001111:
-        casez_tmp_6 = meta_storage_15_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_6 = meta_storage_15_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b010000:
-        casez_tmp_6 = meta_storage_16_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_6 = meta_storage_16_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b010001:
-        casez_tmp_6 = meta_storage_17_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_6 = meta_storage_17_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b010010:
-        casez_tmp_6 = meta_storage_18_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_6 = meta_storage_18_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b010011:
-        casez_tmp_6 = meta_storage_19_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_6 = meta_storage_19_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b010100:
-        casez_tmp_6 = meta_storage_20_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_6 = meta_storage_20_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b010101:
-        casez_tmp_6 = meta_storage_21_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_6 = meta_storage_21_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b010110:
-        casez_tmp_6 = meta_storage_22_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_6 = meta_storage_22_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b010111:
-        casez_tmp_6 = meta_storage_23_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_6 = meta_storage_23_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b011000:
-        casez_tmp_6 = meta_storage_24_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_6 = meta_storage_24_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b011001:
-        casez_tmp_6 = meta_storage_25_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_6 = meta_storage_25_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b011010:
-        casez_tmp_6 = meta_storage_26_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_6 = meta_storage_26_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b011011:
-        casez_tmp_6 = meta_storage_27_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_6 = meta_storage_27_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b011100:
-        casez_tmp_6 = meta_storage_28_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_6 = meta_storage_28_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b011101:
-        casez_tmp_6 = meta_storage_29_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_6 = meta_storage_29_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b011110:
-        casez_tmp_6 = meta_storage_30_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_6 = meta_storage_30_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b011111:
-        casez_tmp_6 = meta_storage_31_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_6 = meta_storage_31_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b100000:
-        casez_tmp_6 = meta_storage_32_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_6 = meta_storage_32_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b100001:
-        casez_tmp_6 = meta_storage_33_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_6 = meta_storage_33_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b100010:
-        casez_tmp_6 = meta_storage_34_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_6 = meta_storage_34_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b100011:
-        casez_tmp_6 = meta_storage_35_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_6 = meta_storage_35_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b100100:
-        casez_tmp_6 = meta_storage_36_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_6 = meta_storage_36_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b100101:
-        casez_tmp_6 = meta_storage_37_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_6 = meta_storage_37_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b100110:
-        casez_tmp_6 = meta_storage_38_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_6 = meta_storage_38_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b100111:
-        casez_tmp_6 = meta_storage_39_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_6 = meta_storage_39_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b101000:
-        casez_tmp_6 = meta_storage_40_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_6 = meta_storage_40_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b101001:
-        casez_tmp_6 = meta_storage_41_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_6 = meta_storage_41_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b101010:
-        casez_tmp_6 = meta_storage_42_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_6 = meta_storage_42_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b101011:
-        casez_tmp_6 = meta_storage_43_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_6 = meta_storage_43_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b101100:
-        casez_tmp_6 = meta_storage_44_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_6 = meta_storage_44_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b101101:
-        casez_tmp_6 = meta_storage_45_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_6 = meta_storage_45_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b101110:
-        casez_tmp_6 = meta_storage_46_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_6 = meta_storage_46_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b101111:
-        casez_tmp_6 = meta_storage_47_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_6 = meta_storage_47_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b110000:
-        casez_tmp_6 = meta_storage_48_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_6 = meta_storage_48_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b110001:
-        casez_tmp_6 = meta_storage_49_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_6 = meta_storage_49_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b110010:
-        casez_tmp_6 = meta_storage_50_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_6 = meta_storage_50_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b110011:
-        casez_tmp_6 = meta_storage_51_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_6 = meta_storage_51_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b110100:
-        casez_tmp_6 = meta_storage_52_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_6 = meta_storage_52_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b110101:
-        casez_tmp_6 = meta_storage_53_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_6 = meta_storage_53_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b110110:
-        casez_tmp_6 = meta_storage_54_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_6 = meta_storage_54_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b110111:
-        casez_tmp_6 = meta_storage_55_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_6 = meta_storage_55_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b111000:
-        casez_tmp_6 = meta_storage_56_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_6 = meta_storage_56_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b111001:
-        casez_tmp_6 = meta_storage_57_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_6 = meta_storage_57_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b111010:
-        casez_tmp_6 = meta_storage_58_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_6 = meta_storage_58_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b111011:
-        casez_tmp_6 = meta_storage_59_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_6 = meta_storage_59_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b111100:
-        casez_tmp_6 = meta_storage_60_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_6 = meta_storage_60_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b111101:
-        casez_tmp_6 = meta_storage_61_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_6 = meta_storage_61_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b111110:
-        casez_tmp_6 = meta_storage_62_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_6 = meta_storage_62_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       default:
-        casez_tmp_6 = meta_storage_63_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
-    endcase	// frontend/src/zaqal/frontend/BPU.scala:84:24
+        casez_tmp_6 = meta_storage_63_ittage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
+    endcase	// frontend/src/zaqal/frontend/BPU.scala:90:24
   end // always_comb
-  reg  [63:0]  casez_tmp_7;	// frontend/src/zaqal/frontend/BPU.scala:84:24
-  always_comb begin	// frontend/src/zaqal/frontend/BPU.scala:84:24
-    casez (io_redirect_ftqPtr)	// frontend/src/zaqal/frontend/BPU.scala:84:24
+  reg          casez_tmp_7;	// frontend/src/zaqal/frontend/BPU.scala:90:24
+  always_comb begin	// frontend/src/zaqal/frontend/BPU.scala:90:24
+    casez (io_redirect_ftqPtr)	// frontend/src/zaqal/frontend/BPU.scala:90:24
       6'b000000:
-        casez_tmp_7 = meta_storage_0_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_7 = meta_storage_0_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b000001:
-        casez_tmp_7 = meta_storage_1_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_7 = meta_storage_1_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b000010:
-        casez_tmp_7 = meta_storage_2_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_7 = meta_storage_2_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b000011:
-        casez_tmp_7 = meta_storage_3_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_7 = meta_storage_3_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b000100:
-        casez_tmp_7 = meta_storage_4_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_7 = meta_storage_4_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b000101:
-        casez_tmp_7 = meta_storage_5_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_7 = meta_storage_5_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b000110:
-        casez_tmp_7 = meta_storage_6_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_7 = meta_storage_6_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b000111:
-        casez_tmp_7 = meta_storage_7_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_7 = meta_storage_7_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b001000:
-        casez_tmp_7 = meta_storage_8_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_7 = meta_storage_8_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b001001:
-        casez_tmp_7 = meta_storage_9_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_7 = meta_storage_9_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b001010:
-        casez_tmp_7 = meta_storage_10_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_7 = meta_storage_10_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b001011:
-        casez_tmp_7 = meta_storage_11_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_7 = meta_storage_11_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b001100:
-        casez_tmp_7 = meta_storage_12_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_7 = meta_storage_12_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b001101:
-        casez_tmp_7 = meta_storage_13_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_7 = meta_storage_13_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b001110:
-        casez_tmp_7 = meta_storage_14_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_7 = meta_storage_14_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b001111:
-        casez_tmp_7 = meta_storage_15_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_7 = meta_storage_15_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b010000:
-        casez_tmp_7 = meta_storage_16_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_7 = meta_storage_16_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b010001:
-        casez_tmp_7 = meta_storage_17_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_7 = meta_storage_17_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b010010:
-        casez_tmp_7 = meta_storage_18_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_7 = meta_storage_18_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b010011:
-        casez_tmp_7 = meta_storage_19_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_7 = meta_storage_19_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b010100:
-        casez_tmp_7 = meta_storage_20_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_7 = meta_storage_20_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b010101:
-        casez_tmp_7 = meta_storage_21_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_7 = meta_storage_21_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b010110:
-        casez_tmp_7 = meta_storage_22_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_7 = meta_storage_22_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b010111:
-        casez_tmp_7 = meta_storage_23_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_7 = meta_storage_23_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b011000:
-        casez_tmp_7 = meta_storage_24_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_7 = meta_storage_24_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b011001:
-        casez_tmp_7 = meta_storage_25_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_7 = meta_storage_25_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b011010:
-        casez_tmp_7 = meta_storage_26_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_7 = meta_storage_26_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b011011:
-        casez_tmp_7 = meta_storage_27_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_7 = meta_storage_27_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b011100:
-        casez_tmp_7 = meta_storage_28_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_7 = meta_storage_28_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b011101:
-        casez_tmp_7 = meta_storage_29_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_7 = meta_storage_29_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b011110:
-        casez_tmp_7 = meta_storage_30_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_7 = meta_storage_30_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b011111:
-        casez_tmp_7 = meta_storage_31_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_7 = meta_storage_31_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b100000:
-        casez_tmp_7 = meta_storage_32_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_7 = meta_storage_32_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b100001:
-        casez_tmp_7 = meta_storage_33_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_7 = meta_storage_33_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b100010:
-        casez_tmp_7 = meta_storage_34_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_7 = meta_storage_34_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b100011:
-        casez_tmp_7 = meta_storage_35_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_7 = meta_storage_35_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b100100:
-        casez_tmp_7 = meta_storage_36_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_7 = meta_storage_36_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b100101:
-        casez_tmp_7 = meta_storage_37_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_7 = meta_storage_37_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b100110:
-        casez_tmp_7 = meta_storage_38_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_7 = meta_storage_38_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b100111:
-        casez_tmp_7 = meta_storage_39_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_7 = meta_storage_39_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b101000:
-        casez_tmp_7 = meta_storage_40_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_7 = meta_storage_40_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b101001:
-        casez_tmp_7 = meta_storage_41_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_7 = meta_storage_41_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b101010:
-        casez_tmp_7 = meta_storage_42_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_7 = meta_storage_42_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b101011:
-        casez_tmp_7 = meta_storage_43_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_7 = meta_storage_43_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b101100:
-        casez_tmp_7 = meta_storage_44_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_7 = meta_storage_44_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b101101:
-        casez_tmp_7 = meta_storage_45_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_7 = meta_storage_45_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b101110:
-        casez_tmp_7 = meta_storage_46_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_7 = meta_storage_46_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b101111:
-        casez_tmp_7 = meta_storage_47_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_7 = meta_storage_47_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b110000:
-        casez_tmp_7 = meta_storage_48_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_7 = meta_storage_48_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b110001:
-        casez_tmp_7 = meta_storage_49_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_7 = meta_storage_49_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b110010:
-        casez_tmp_7 = meta_storage_50_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_7 = meta_storage_50_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b110011:
-        casez_tmp_7 = meta_storage_51_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_7 = meta_storage_51_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b110100:
-        casez_tmp_7 = meta_storage_52_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_7 = meta_storage_52_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b110101:
-        casez_tmp_7 = meta_storage_53_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_7 = meta_storage_53_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b110110:
-        casez_tmp_7 = meta_storage_54_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_7 = meta_storage_54_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b110111:
-        casez_tmp_7 = meta_storage_55_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_7 = meta_storage_55_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b111000:
-        casez_tmp_7 = meta_storage_56_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_7 = meta_storage_56_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b111001:
-        casez_tmp_7 = meta_storage_57_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_7 = meta_storage_57_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b111010:
-        casez_tmp_7 = meta_storage_58_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_7 = meta_storage_58_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b111011:
-        casez_tmp_7 = meta_storage_59_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_7 = meta_storage_59_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b111100:
-        casez_tmp_7 = meta_storage_60_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_7 = meta_storage_60_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b111101:
-        casez_tmp_7 = meta_storage_61_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_7 = meta_storage_61_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b111110:
-        casez_tmp_7 = meta_storage_62_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_7 = meta_storage_62_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       default:
-        casez_tmp_7 = meta_storage_63_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
-    endcase	// frontend/src/zaqal/frontend/BPU.scala:84:24
+        casez_tmp_7 = meta_storage_63_ittage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
+    endcase	// frontend/src/zaqal/frontend/BPU.scala:90:24
   end // always_comb
-  reg  [1:0]   casez_tmp_8;	// frontend/src/zaqal/frontend/BPU.scala:84:24
-  always_comb begin	// frontend/src/zaqal/frontend/BPU.scala:84:24
-    casez (io_redirect_ftqPtr)	// frontend/src/zaqal/frontend/BPU.scala:84:24
+  reg  [63:0]  casez_tmp_8;	// frontend/src/zaqal/frontend/BPU.scala:90:24
+  always_comb begin	// frontend/src/zaqal/frontend/BPU.scala:90:24
+    casez (io_redirect_ftqPtr)	// frontend/src/zaqal/frontend/BPU.scala:90:24
       6'b000000:
-        casez_tmp_8 = meta_storage_0_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_8 = meta_storage_0_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b000001:
-        casez_tmp_8 = meta_storage_1_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_8 = meta_storage_1_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b000010:
-        casez_tmp_8 = meta_storage_2_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_8 = meta_storage_2_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b000011:
-        casez_tmp_8 = meta_storage_3_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_8 = meta_storage_3_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b000100:
-        casez_tmp_8 = meta_storage_4_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_8 = meta_storage_4_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b000101:
-        casez_tmp_8 = meta_storage_5_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_8 = meta_storage_5_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b000110:
-        casez_tmp_8 = meta_storage_6_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_8 = meta_storage_6_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b000111:
-        casez_tmp_8 = meta_storage_7_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_8 = meta_storage_7_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b001000:
-        casez_tmp_8 = meta_storage_8_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_8 = meta_storage_8_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b001001:
-        casez_tmp_8 = meta_storage_9_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_8 = meta_storage_9_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b001010:
-        casez_tmp_8 = meta_storage_10_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_8 = meta_storage_10_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b001011:
-        casez_tmp_8 = meta_storage_11_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_8 = meta_storage_11_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b001100:
-        casez_tmp_8 = meta_storage_12_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_8 = meta_storage_12_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b001101:
-        casez_tmp_8 = meta_storage_13_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_8 = meta_storage_13_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b001110:
-        casez_tmp_8 = meta_storage_14_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_8 = meta_storage_14_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b001111:
-        casez_tmp_8 = meta_storage_15_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_8 = meta_storage_15_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b010000:
-        casez_tmp_8 = meta_storage_16_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_8 = meta_storage_16_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b010001:
-        casez_tmp_8 = meta_storage_17_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_8 = meta_storage_17_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b010010:
-        casez_tmp_8 = meta_storage_18_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_8 = meta_storage_18_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b010011:
-        casez_tmp_8 = meta_storage_19_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_8 = meta_storage_19_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b010100:
-        casez_tmp_8 = meta_storage_20_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_8 = meta_storage_20_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b010101:
-        casez_tmp_8 = meta_storage_21_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_8 = meta_storage_21_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b010110:
-        casez_tmp_8 = meta_storage_22_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_8 = meta_storage_22_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b010111:
-        casez_tmp_8 = meta_storage_23_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_8 = meta_storage_23_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b011000:
-        casez_tmp_8 = meta_storage_24_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_8 = meta_storage_24_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b011001:
-        casez_tmp_8 = meta_storage_25_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_8 = meta_storage_25_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b011010:
-        casez_tmp_8 = meta_storage_26_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_8 = meta_storage_26_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b011011:
-        casez_tmp_8 = meta_storage_27_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_8 = meta_storage_27_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b011100:
-        casez_tmp_8 = meta_storage_28_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_8 = meta_storage_28_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b011101:
-        casez_tmp_8 = meta_storage_29_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_8 = meta_storage_29_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b011110:
-        casez_tmp_8 = meta_storage_30_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_8 = meta_storage_30_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b011111:
-        casez_tmp_8 = meta_storage_31_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_8 = meta_storage_31_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b100000:
-        casez_tmp_8 = meta_storage_32_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_8 = meta_storage_32_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b100001:
-        casez_tmp_8 = meta_storage_33_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_8 = meta_storage_33_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b100010:
-        casez_tmp_8 = meta_storage_34_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_8 = meta_storage_34_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b100011:
-        casez_tmp_8 = meta_storage_35_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_8 = meta_storage_35_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b100100:
-        casez_tmp_8 = meta_storage_36_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_8 = meta_storage_36_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b100101:
-        casez_tmp_8 = meta_storage_37_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_8 = meta_storage_37_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b100110:
-        casez_tmp_8 = meta_storage_38_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_8 = meta_storage_38_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b100111:
-        casez_tmp_8 = meta_storage_39_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_8 = meta_storage_39_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b101000:
-        casez_tmp_8 = meta_storage_40_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_8 = meta_storage_40_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b101001:
-        casez_tmp_8 = meta_storage_41_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_8 = meta_storage_41_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b101010:
-        casez_tmp_8 = meta_storage_42_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_8 = meta_storage_42_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b101011:
-        casez_tmp_8 = meta_storage_43_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_8 = meta_storage_43_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b101100:
-        casez_tmp_8 = meta_storage_44_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_8 = meta_storage_44_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b101101:
-        casez_tmp_8 = meta_storage_45_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_8 = meta_storage_45_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b101110:
-        casez_tmp_8 = meta_storage_46_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_8 = meta_storage_46_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b101111:
-        casez_tmp_8 = meta_storage_47_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_8 = meta_storage_47_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b110000:
-        casez_tmp_8 = meta_storage_48_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_8 = meta_storage_48_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b110001:
-        casez_tmp_8 = meta_storage_49_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_8 = meta_storage_49_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b110010:
-        casez_tmp_8 = meta_storage_50_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_8 = meta_storage_50_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b110011:
-        casez_tmp_8 = meta_storage_51_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_8 = meta_storage_51_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b110100:
-        casez_tmp_8 = meta_storage_52_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_8 = meta_storage_52_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b110101:
-        casez_tmp_8 = meta_storage_53_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_8 = meta_storage_53_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b110110:
-        casez_tmp_8 = meta_storage_54_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_8 = meta_storage_54_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b110111:
-        casez_tmp_8 = meta_storage_55_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_8 = meta_storage_55_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b111000:
-        casez_tmp_8 = meta_storage_56_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_8 = meta_storage_56_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b111001:
-        casez_tmp_8 = meta_storage_57_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_8 = meta_storage_57_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b111010:
-        casez_tmp_8 = meta_storage_58_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_8 = meta_storage_58_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b111011:
-        casez_tmp_8 = meta_storage_59_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_8 = meta_storage_59_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b111100:
-        casez_tmp_8 = meta_storage_60_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_8 = meta_storage_60_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b111101:
-        casez_tmp_8 = meta_storage_61_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_8 = meta_storage_61_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       6'b111110:
-        casez_tmp_8 = meta_storage_62_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
+        casez_tmp_8 = meta_storage_62_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
       default:
-        casez_tmp_8 = meta_storage_63_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:25, :84:24
-    endcase	// frontend/src/zaqal/frontend/BPU.scala:84:24
+        casez_tmp_8 = meta_storage_63_ittage_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
+    endcase	// frontend/src/zaqal/frontend/BPU.scala:90:24
   end // always_comb
-  wire [63:0]  _s0_pc_T_4 = s0_pc + 64'h20;	// frontend/src/zaqal/frontend/BPU.scala:31:25, :135:55
-  wire [63:0]  meta_target =
-    meta_taken
-      ? (_ftb_io_hit & _has_spec_cfi_T_3 & _ittage_io_pred_hit
-           ? _ittage_io_pred_target
-           : _ftb_io_target)
-      : _s0_pc_T_4;	// frontend/src/zaqal/frontend/BPU.scala:39:19, :41:22, :65:24, :68:{25,55,63}, :135:{21,55}
-  wire [30:0]  _redirect_mask_T_2 = 31'hFFFF << io_redirect_target[4:1];	// frontend/src/zaqal/frontend/BPU.scala:144:{55,76}
-  `ifndef SYNTHESIS	// frontend/src/zaqal/frontend/BPU.scala:148:11
-    always @(posedge clock) begin	// frontend/src/zaqal/frontend/BPU.scala:148:11
-      if ((`PRINTF_COND_) & io_redirect_valid & ~reset)	// frontend/src/zaqal/frontend/BPU.scala:148:11
+  reg  [1:0]   casez_tmp_9;	// frontend/src/zaqal/frontend/BPU.scala:90:24
+  always_comb begin	// frontend/src/zaqal/frontend/BPU.scala:90:24
+    casez (io_redirect_ftqPtr)	// frontend/src/zaqal/frontend/BPU.scala:90:24
+      6'b000000:
+        casez_tmp_9 = meta_storage_0_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
+      6'b000001:
+        casez_tmp_9 = meta_storage_1_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
+      6'b000010:
+        casez_tmp_9 = meta_storage_2_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
+      6'b000011:
+        casez_tmp_9 = meta_storage_3_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
+      6'b000100:
+        casez_tmp_9 = meta_storage_4_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
+      6'b000101:
+        casez_tmp_9 = meta_storage_5_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
+      6'b000110:
+        casez_tmp_9 = meta_storage_6_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
+      6'b000111:
+        casez_tmp_9 = meta_storage_7_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
+      6'b001000:
+        casez_tmp_9 = meta_storage_8_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
+      6'b001001:
+        casez_tmp_9 = meta_storage_9_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
+      6'b001010:
+        casez_tmp_9 = meta_storage_10_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
+      6'b001011:
+        casez_tmp_9 = meta_storage_11_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
+      6'b001100:
+        casez_tmp_9 = meta_storage_12_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
+      6'b001101:
+        casez_tmp_9 = meta_storage_13_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
+      6'b001110:
+        casez_tmp_9 = meta_storage_14_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
+      6'b001111:
+        casez_tmp_9 = meta_storage_15_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
+      6'b010000:
+        casez_tmp_9 = meta_storage_16_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
+      6'b010001:
+        casez_tmp_9 = meta_storage_17_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
+      6'b010010:
+        casez_tmp_9 = meta_storage_18_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
+      6'b010011:
+        casez_tmp_9 = meta_storage_19_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
+      6'b010100:
+        casez_tmp_9 = meta_storage_20_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
+      6'b010101:
+        casez_tmp_9 = meta_storage_21_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
+      6'b010110:
+        casez_tmp_9 = meta_storage_22_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
+      6'b010111:
+        casez_tmp_9 = meta_storage_23_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
+      6'b011000:
+        casez_tmp_9 = meta_storage_24_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
+      6'b011001:
+        casez_tmp_9 = meta_storage_25_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
+      6'b011010:
+        casez_tmp_9 = meta_storage_26_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
+      6'b011011:
+        casez_tmp_9 = meta_storage_27_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
+      6'b011100:
+        casez_tmp_9 = meta_storage_28_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
+      6'b011101:
+        casez_tmp_9 = meta_storage_29_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
+      6'b011110:
+        casez_tmp_9 = meta_storage_30_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
+      6'b011111:
+        casez_tmp_9 = meta_storage_31_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
+      6'b100000:
+        casez_tmp_9 = meta_storage_32_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
+      6'b100001:
+        casez_tmp_9 = meta_storage_33_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
+      6'b100010:
+        casez_tmp_9 = meta_storage_34_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
+      6'b100011:
+        casez_tmp_9 = meta_storage_35_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
+      6'b100100:
+        casez_tmp_9 = meta_storage_36_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
+      6'b100101:
+        casez_tmp_9 = meta_storage_37_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
+      6'b100110:
+        casez_tmp_9 = meta_storage_38_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
+      6'b100111:
+        casez_tmp_9 = meta_storage_39_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
+      6'b101000:
+        casez_tmp_9 = meta_storage_40_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
+      6'b101001:
+        casez_tmp_9 = meta_storage_41_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
+      6'b101010:
+        casez_tmp_9 = meta_storage_42_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
+      6'b101011:
+        casez_tmp_9 = meta_storage_43_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
+      6'b101100:
+        casez_tmp_9 = meta_storage_44_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
+      6'b101101:
+        casez_tmp_9 = meta_storage_45_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
+      6'b101110:
+        casez_tmp_9 = meta_storage_46_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
+      6'b101111:
+        casez_tmp_9 = meta_storage_47_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
+      6'b110000:
+        casez_tmp_9 = meta_storage_48_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
+      6'b110001:
+        casez_tmp_9 = meta_storage_49_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
+      6'b110010:
+        casez_tmp_9 = meta_storage_50_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
+      6'b110011:
+        casez_tmp_9 = meta_storage_51_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
+      6'b110100:
+        casez_tmp_9 = meta_storage_52_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
+      6'b110101:
+        casez_tmp_9 = meta_storage_53_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
+      6'b110110:
+        casez_tmp_9 = meta_storage_54_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
+      6'b110111:
+        casez_tmp_9 = meta_storage_55_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
+      6'b111000:
+        casez_tmp_9 = meta_storage_56_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
+      6'b111001:
+        casez_tmp_9 = meta_storage_57_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
+      6'b111010:
+        casez_tmp_9 = meta_storage_58_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
+      6'b111011:
+        casez_tmp_9 = meta_storage_59_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
+      6'b111100:
+        casez_tmp_9 = meta_storage_60_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
+      6'b111101:
+        casez_tmp_9 = meta_storage_61_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
+      6'b111110:
+        casez_tmp_9 = meta_storage_62_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
+      default:
+        casez_tmp_9 = meta_storage_63_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:57:25, :90:24
+    endcase	// frontend/src/zaqal/frontend/BPU.scala:90:24
+  end // always_comb
+  wire [63:0]  _s0_pc_T_4 = s0_pc + 64'h20;	// frontend/src/zaqal/frontend/BPU.scala:32:25, :115:55
+  wire [63:0]  meta_target = final_taken ? final_target : _s0_pc_T_4;	// frontend/src/zaqal/frontend/BPU.scala:70:24, :73:25, :115:{21,55}
+  wire [15:0]  _is_spec_jalr_T_2 = current_mask >> _ftb_io_slot;	// frontend/src/zaqal/frontend/BPU.scala:44:19, :116:45, :119:25, :123:18, :126:28
+  wire         meta_taken = final_taken & _is_spec_jalr_T_2[0];	// frontend/src/zaqal/frontend/BPU.scala:70:24, :116:{30,45}
+  wire [30:0]  _redirect_mask_T_2 = 31'hFFFF << io_redirect_target[4:1];	// frontend/src/zaqal/frontend/BPU.scala:121:{55,76}
+  assign current_mask = io_redirect_valid ? _redirect_mask_T_2[15:0] : mask_reg;	// frontend/src/zaqal/frontend/BPU.scala:33:25, :119:25, :121:{55,108}, :123:18, :126:28
+  wire [127:0] restored_ghr =
+    io_redirect_is_cfi & ~io_redirect_is_jal & ~io_redirect_is_jalr
+      ? {casez_tmp[126:0], io_redirect_taken}
+      : casez_tmp;	// frontend/src/zaqal/frontend/BPU.scala:88:{99,122}, :90:24, :140:68, :141:{29,51,69}
+  wire         _GEN_0 = _GEN & _ftb_io_hit & _is_spec_jalr_T_2[0] & _has_spec_cond_br_T_3;	// frontend/src/zaqal/frontend/BPU.scala:44:19, :70:54, :116:45, :143:52, :148:27, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  `ifndef SYNTHESIS	// frontend/src/zaqal/frontend/BPU.scala:125:11
+    always @(posedge clock) begin	// frontend/src/zaqal/frontend/BPU.scala:125:11
+      if ((`PRINTF_COND_) & io_redirect_valid & ~reset) begin	// frontend/src/zaqal/frontend/BPU.scala:125:11, :147:11
         $fwrite(32'h80000002, "BPU REDIRECT ACCEPTED: target=%x epoch=%d\n",
-                io_redirect_target, epoch);	// frontend/src/zaqal/frontend/BPU.scala:33:25, :148:11
-      if ((`PRINTF_COND_) & _GEN & meta_taken & ~reset)	// frontend/src/zaqal/frontend/BPU.scala:65:24, :148:11, :174:11, src/main/scala/chisel3/util/Decoupled.scala:51:35
+                io_redirect_target, epoch);	// frontend/src/zaqal/frontend/BPU.scala:34:25, :125:11
+        $fwrite(32'h80000002, "[BPU GHR RESTORE] ghr=%x redirect_pc=%x target=%x\n",
+                restored_ghr, io_redirect_pc, io_redirect_target);	// frontend/src/zaqal/frontend/BPU.scala:125:11, :141:29, :147:11
+      end
+      if ((`PRINTF_COND_) & ~io_redirect_valid & _GEN_0 & ~reset)	// frontend/src/zaqal/frontend/BPU.scala:125:11, :145:27, :148:27, :150:11
+        $fwrite(32'h80000002, "[BPU GHR SPEC SHIFT] ghr=%x s0_pc=%x val=%d\n",
+                {ghr[126:0], final_taken}, s0_pc, final_taken);	// frontend/src/zaqal/frontend/BPU.scala:32:25, :37:20, :70:24, :125:11, :149:19, :150:{11,56}
+      if ((`PRINTF_COND_) & _GEN & meta_taken & ~reset)	// frontend/src/zaqal/frontend/BPU.scala:116:30, :125:11, :198:11, src/main/scala/chisel3/util/Decoupled.scala:51:35
         $fwrite(32'h80000002, "[BPU PREDICT] pc=%x -> target=%x slot=%d\n", s0_pc,
-                meta_target, _ftb_io_slot);	// frontend/src/zaqal/frontend/BPU.scala:31:25, :39:19, :135:21, :148:11, :174:11
+                meta_target, _ftb_io_slot);	// frontend/src/zaqal/frontend/BPU.scala:32:25, :44:19, :115:21, :125:11, :198:11
     end // always @(posedge)
   `endif // not def SYNTHESIS
-  wire [30:0]  _next_mask_T_3 = 31'hFFFF << meta_target[4:1];	// frontend/src/zaqal/frontend/BPU.scala:135:21, :144:55, :154:{55,69}
-  always @(posedge clock) begin	// frontend/src/zaqal/frontend/BPU.scala:25:7
-    if (reset) begin	// frontend/src/zaqal/frontend/BPU.scala:25:7
-      s0_pc <= 64'h80000000;	// frontend/src/zaqal/frontend/BPU.scala:31:25
-      mask_reg <= 16'hFFFF;	// frontend/src/zaqal/frontend/BPU.scala:32:{25,30}
-      epoch <= 1'h0;	// frontend/src/zaqal/frontend/BPU.scala:33:25
-      ghr <= 128'h0;	// frontend/src/zaqal/frontend/BPU.scala:36:20
-      bpu_enq_ptr <= 6'h0;	// frontend/src/zaqal/frontend/BPU.scala:44:28
+  wire [30:0]  _next_mask_T_3 = 31'hFFFF << meta_target[4:1];	// frontend/src/zaqal/frontend/BPU.scala:115:21, :121:55, :131:{55,69}
+  always @(posedge clock) begin	// frontend/src/zaqal/frontend/BPU.scala:26:7
+    if (reset) begin	// frontend/src/zaqal/frontend/BPU.scala:26:7
+      s0_pc <= 64'h80000000;	// frontend/src/zaqal/frontend/BPU.scala:32:25
+      mask_reg <= 16'hFFFF;	// frontend/src/zaqal/frontend/BPU.scala:33:{25,30}
+      epoch <= 1'h0;	// frontend/src/zaqal/frontend/BPU.scala:34:25
+      ghr <= 128'h0;	// frontend/src/zaqal/frontend/BPU.scala:37:20
+      phr <= 32'h0;	// frontend/src/zaqal/frontend/BPU.scala:41:20
+      bpu_enq_ptr <= 6'h0;	// frontend/src/zaqal/frontend/BPU.scala:49:28
     end
-    else begin	// frontend/src/zaqal/frontend/BPU.scala:25:7
-      if (io_redirect_valid) begin	// frontend/src/zaqal/frontend/BPU.scala:26:14
-        s0_pc <= io_redirect_target & 64'hFFFFFFFFFFFFFFE0;	// frontend/src/zaqal/frontend/BPU.scala:31:25, :79:45, :132:32
-        mask_reg <= _redirect_mask_T_2[15:0];	// frontend/src/zaqal/frontend/BPU.scala:32:25, :144:{55,108}
-        ghr <= io_redirect_is_cfi ? {casez_tmp[126:0], io_redirect_taken} : casez_tmp;	// frontend/src/zaqal/frontend/BPU.scala:36:20, :84:24, :103:{25,49,67}
-        bpu_enq_ptr <= 6'h0;	// frontend/src/zaqal/frontend/BPU.scala:44:28
+    else begin	// frontend/src/zaqal/frontend/BPU.scala:26:7
+      if (io_redirect_valid) begin	// frontend/src/zaqal/frontend/BPU.scala:27:14
+        s0_pc <= io_redirect_target & 64'hFFFFFFFFFFFFFFE0;	// frontend/src/zaqal/frontend/BPU.scala:32:25, :85:45, :109:32
+        mask_reg <= _redirect_mask_T_2[15:0];	// frontend/src/zaqal/frontend/BPU.scala:33:25, :121:{55,108}
+        ghr <= restored_ghr;	// frontend/src/zaqal/frontend/BPU.scala:37:20, :141:29
+        phr <=
+          io_redirect_is_cfi & io_redirect_is_jalr
+            ? {casez_tmp_0[25:0], io_redirect_target[7:2]}
+            : casez_tmp_0;	// frontend/src/zaqal/frontend/BPU.scala:41:20, :90:24, :157:{25,45}, :158:{29,47,74}
+        bpu_enq_ptr <= 6'h0;	// frontend/src/zaqal/frontend/BPU.scala:49:28
       end
-      else begin	// frontend/src/zaqal/frontend/BPU.scala:26:14
+      else begin	// frontend/src/zaqal/frontend/BPU.scala:27:14
         if (_GEN) begin	// src/main/scala/chisel3/util/Decoupled.scala:51:35
-          if (meta_taken)	// frontend/src/zaqal/frontend/BPU.scala:65:24
-            s0_pc <= meta_target & 64'hFFFFFFFFFFFFFFE0;	// frontend/src/zaqal/frontend/BPU.scala:31:25, :79:45, :132:32, :135:21
-          else	// frontend/src/zaqal/frontend/BPU.scala:65:24
-            s0_pc <= _s0_pc_T_4;	// frontend/src/zaqal/frontend/BPU.scala:31:25, :135:55
-          mask_reg <=
-            meta_taken & (meta_target & 64'hFFFFFFFFFFFFFFE0) == s0_pc
-              ? _next_mask_T_3[15:0]
-              : 16'hFFFF;	// frontend/src/zaqal/frontend/BPU.scala:31:25, :32:{25,30}, :65:24, :79:45, :132:32, :135:21, :152:51, :153:{24,36}, :154:{55,101}
-          bpu_enq_ptr <= bpu_enq_ptr + 6'h1;	// frontend/src/zaqal/frontend/BPU.scala:44:28, :48:32, :128:33
+          if (meta_taken)	// frontend/src/zaqal/frontend/BPU.scala:116:30
+            s0_pc <= meta_target & 64'hFFFFFFFFFFFFFFE0;	// frontend/src/zaqal/frontend/BPU.scala:32:25, :85:45, :109:32, :115:21
+          else	// frontend/src/zaqal/frontend/BPU.scala:116:30
+            s0_pc <= _s0_pc_T_4;	// frontend/src/zaqal/frontend/BPU.scala:32:25, :115:55
+          if (meta_taken & (meta_target & 64'hFFFFFFFFFFFFFFE0) == s0_pc)	// frontend/src/zaqal/frontend/BPU.scala:32:25, :85:45, :109:32, :115:21, :116:30, :129:51, :130:36
+            mask_reg <= _next_mask_T_3[15:0];	// frontend/src/zaqal/frontend/BPU.scala:33:25, :131:{55,101}
+          else	// frontend/src/zaqal/frontend/BPU.scala:130:36
+            mask_reg <= 16'hFFFF;	// frontend/src/zaqal/frontend/BPU.scala:33:{25,30}
+          bpu_enq_ptr <= bpu_enq_ptr + 6'h1;	// frontend/src/zaqal/frontend/BPU.scala:49:28, :53:32, :183:33
         end
-        if (_GEN & _ftb_io_hit
-            & (_has_spec_cfi_T | _ftb_io_br_type == 2'h1 | _has_spec_cfi_T_3))	// frontend/src/zaqal/frontend/BPU.scala:39:19, :65:54, :68:55, :105:{78,86}, :109:27, src/main/scala/chisel3/util/Decoupled.scala:51:35
-          ghr <= {ghr[126:0], ~_has_spec_cfi_T | meta_taken};	// frontend/src/zaqal/frontend/BPU.scala:36:20, :65:{24,54}, :104:27, :110:{15,19}
+        if (_GEN_0)	// frontend/src/zaqal/frontend/BPU.scala:148:27
+          ghr <= {ghr[126:0], final_taken};	// frontend/src/zaqal/frontend/BPU.scala:37:20, :70:24, :149:{15,19}
+        if (_GEN & _ftb_io_hit & _is_spec_jalr_T & _is_spec_jalr_T_2[0] & final_taken)	// frontend/src/zaqal/frontend/BPU.scala:44:19, :70:24, :73:55, :116:45, :156:74, :163:27, src/main/scala/chisel3/util/Decoupled.scala:51:35
+          phr <= {phr[25:0], final_target[7:2]};	// frontend/src/zaqal/frontend/BPU.scala:41:20, :73:25, :164:{15,19,40}
       end
-      epoch <= io_redirect_valid ^ epoch;	// frontend/src/zaqal/frontend/BPU.scala:33:25, :142:25, :147:18
-    end
-    if (_GEN & bpu_enq_ptr == 6'h0) begin	// frontend/src/zaqal/frontend/BPU.scala:44:28, :52:25, :114:21, :128:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_0_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:36:20, :52:25
-      meta_storage_0_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_0_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_0_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_0_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_0_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_0_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_0_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_0_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_0_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-    end
-    if (_GEN & bpu_enq_ptr == 6'h1) begin	// frontend/src/zaqal/frontend/BPU.scala:44:28, :52:25, :114:21, :128:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_1_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:36:20, :52:25
-      meta_storage_1_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_1_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_1_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_1_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_1_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_1_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_1_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_1_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_1_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-    end
-    if (_GEN & bpu_enq_ptr == 6'h2) begin	// frontend/src/zaqal/frontend/BPU.scala:44:28, :52:25, :114:21, :128:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_2_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:36:20, :52:25
-      meta_storage_2_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_2_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_2_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_2_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_2_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_2_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_2_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_2_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_2_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-    end
-    if (_GEN & bpu_enq_ptr == 6'h3) begin	// frontend/src/zaqal/frontend/BPU.scala:44:28, :52:25, :114:21, :128:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_3_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:36:20, :52:25
-      meta_storage_3_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_3_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_3_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_3_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_3_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_3_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_3_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_3_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_3_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-    end
-    if (_GEN & bpu_enq_ptr == 6'h4) begin	// frontend/src/zaqal/frontend/BPU.scala:44:28, :52:25, :114:21, :128:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_4_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:36:20, :52:25
-      meta_storage_4_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_4_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_4_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_4_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_4_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_4_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_4_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_4_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_4_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-    end
-    if (_GEN & bpu_enq_ptr == 6'h5) begin	// frontend/src/zaqal/frontend/BPU.scala:44:28, :52:25, :114:21, :128:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_5_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:36:20, :52:25
-      meta_storage_5_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_5_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_5_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_5_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_5_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_5_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_5_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_5_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_5_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-    end
-    if (_GEN & bpu_enq_ptr == 6'h6) begin	// frontend/src/zaqal/frontend/BPU.scala:44:28, :52:25, :114:21, :128:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_6_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:36:20, :52:25
-      meta_storage_6_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_6_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_6_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_6_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_6_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_6_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_6_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_6_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_6_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-    end
-    if (_GEN & bpu_enq_ptr == 6'h7) begin	// frontend/src/zaqal/frontend/BPU.scala:44:28, :52:25, :114:21, :128:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_7_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:36:20, :52:25
-      meta_storage_7_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_7_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_7_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_7_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_7_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_7_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_7_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_7_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_7_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-    end
-    if (_GEN & bpu_enq_ptr == 6'h8) begin	// frontend/src/zaqal/frontend/BPU.scala:44:28, :52:25, :114:21, :128:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_8_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:36:20, :52:25
-      meta_storage_8_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_8_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_8_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_8_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_8_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_8_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_8_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_8_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_8_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-    end
-    if (_GEN & bpu_enq_ptr == 6'h9) begin	// frontend/src/zaqal/frontend/BPU.scala:44:28, :52:25, :114:21, :128:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_9_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:36:20, :52:25
-      meta_storage_9_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_9_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_9_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_9_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_9_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_9_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_9_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_9_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_9_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-    end
-    if (_GEN & bpu_enq_ptr == 6'hA) begin	// frontend/src/zaqal/frontend/BPU.scala:44:28, :52:25, :114:21, :128:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_10_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:36:20, :52:25
-      meta_storage_10_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_10_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_10_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_10_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_10_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_10_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_10_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_10_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_10_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-    end
-    if (_GEN & bpu_enq_ptr == 6'hB) begin	// frontend/src/zaqal/frontend/BPU.scala:44:28, :52:25, :114:21, :128:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_11_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:36:20, :52:25
-      meta_storage_11_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_11_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_11_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_11_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_11_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_11_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_11_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_11_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_11_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-    end
-    if (_GEN & bpu_enq_ptr == 6'hC) begin	// frontend/src/zaqal/frontend/BPU.scala:44:28, :52:25, :114:21, :128:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_12_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:36:20, :52:25
-      meta_storage_12_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_12_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_12_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_12_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_12_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_12_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_12_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_12_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_12_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-    end
-    if (_GEN & bpu_enq_ptr == 6'hD) begin	// frontend/src/zaqal/frontend/BPU.scala:44:28, :52:25, :114:21, :128:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_13_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:36:20, :52:25
-      meta_storage_13_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_13_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_13_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_13_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_13_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_13_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_13_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_13_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_13_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-    end
-    if (_GEN & bpu_enq_ptr == 6'hE) begin	// frontend/src/zaqal/frontend/BPU.scala:44:28, :52:25, :114:21, :128:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_14_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:36:20, :52:25
-      meta_storage_14_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_14_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_14_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_14_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_14_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_14_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_14_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_14_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_14_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-    end
-    if (_GEN & bpu_enq_ptr == 6'hF) begin	// frontend/src/zaqal/frontend/BPU.scala:44:28, :52:25, :114:21, :128:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_15_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:36:20, :52:25
-      meta_storage_15_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_15_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_15_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_15_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_15_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_15_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_15_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_15_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_15_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-    end
-    if (_GEN & bpu_enq_ptr == 6'h10) begin	// frontend/src/zaqal/frontend/BPU.scala:44:28, :52:25, :114:21, :128:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_16_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:36:20, :52:25
-      meta_storage_16_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_16_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_16_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_16_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_16_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_16_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_16_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_16_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_16_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-    end
-    if (_GEN & bpu_enq_ptr == 6'h11) begin	// frontend/src/zaqal/frontend/BPU.scala:44:28, :52:25, :114:21, :128:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_17_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:36:20, :52:25
-      meta_storage_17_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_17_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_17_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_17_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_17_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_17_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_17_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_17_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_17_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-    end
-    if (_GEN & bpu_enq_ptr == 6'h12) begin	// frontend/src/zaqal/frontend/BPU.scala:44:28, :52:25, :114:21, :128:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_18_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:36:20, :52:25
-      meta_storage_18_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_18_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_18_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_18_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_18_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_18_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_18_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_18_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_18_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-    end
-    if (_GEN & bpu_enq_ptr == 6'h13) begin	// frontend/src/zaqal/frontend/BPU.scala:44:28, :52:25, :114:21, :128:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_19_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:36:20, :52:25
-      meta_storage_19_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_19_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_19_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_19_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_19_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_19_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_19_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_19_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_19_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-    end
-    if (_GEN & bpu_enq_ptr == 6'h14) begin	// frontend/src/zaqal/frontend/BPU.scala:44:28, :52:25, :114:21, :128:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_20_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:36:20, :52:25
-      meta_storage_20_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_20_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_20_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_20_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_20_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_20_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_20_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_20_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_20_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-    end
-    if (_GEN & bpu_enq_ptr == 6'h15) begin	// frontend/src/zaqal/frontend/BPU.scala:44:28, :52:25, :114:21, :128:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_21_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:36:20, :52:25
-      meta_storage_21_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_21_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_21_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_21_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_21_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_21_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_21_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_21_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_21_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-    end
-    if (_GEN & bpu_enq_ptr == 6'h16) begin	// frontend/src/zaqal/frontend/BPU.scala:44:28, :52:25, :114:21, :128:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_22_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:36:20, :52:25
-      meta_storage_22_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_22_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_22_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_22_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_22_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_22_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_22_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_22_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_22_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-    end
-    if (_GEN & bpu_enq_ptr == 6'h17) begin	// frontend/src/zaqal/frontend/BPU.scala:44:28, :52:25, :114:21, :128:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_23_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:36:20, :52:25
-      meta_storage_23_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_23_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_23_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_23_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_23_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_23_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_23_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_23_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_23_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-    end
-    if (_GEN & bpu_enq_ptr == 6'h18) begin	// frontend/src/zaqal/frontend/BPU.scala:44:28, :52:25, :114:21, :128:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_24_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:36:20, :52:25
-      meta_storage_24_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_24_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_24_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_24_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_24_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_24_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_24_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_24_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_24_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-    end
-    if (_GEN & bpu_enq_ptr == 6'h19) begin	// frontend/src/zaqal/frontend/BPU.scala:44:28, :52:25, :114:21, :128:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_25_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:36:20, :52:25
-      meta_storage_25_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_25_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_25_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_25_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_25_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_25_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_25_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_25_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_25_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-    end
-    if (_GEN & bpu_enq_ptr == 6'h1A) begin	// frontend/src/zaqal/frontend/BPU.scala:44:28, :52:25, :114:21, :128:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_26_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:36:20, :52:25
-      meta_storage_26_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_26_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_26_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_26_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_26_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_26_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_26_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_26_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_26_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-    end
-    if (_GEN & bpu_enq_ptr == 6'h1B) begin	// frontend/src/zaqal/frontend/BPU.scala:44:28, :52:25, :114:21, :128:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_27_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:36:20, :52:25
-      meta_storage_27_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_27_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_27_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_27_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_27_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_27_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_27_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_27_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_27_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-    end
-    if (_GEN & bpu_enq_ptr == 6'h1C) begin	// frontend/src/zaqal/frontend/BPU.scala:44:28, :52:25, :114:21, :128:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_28_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:36:20, :52:25
-      meta_storage_28_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_28_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_28_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_28_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_28_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_28_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_28_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_28_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_28_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-    end
-    if (_GEN & bpu_enq_ptr == 6'h1D) begin	// frontend/src/zaqal/frontend/BPU.scala:44:28, :52:25, :114:21, :128:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_29_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:36:20, :52:25
-      meta_storage_29_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_29_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_29_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_29_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_29_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_29_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_29_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_29_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_29_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-    end
-    if (_GEN & bpu_enq_ptr == 6'h1E) begin	// frontend/src/zaqal/frontend/BPU.scala:44:28, :52:25, :114:21, :128:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_30_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:36:20, :52:25
-      meta_storage_30_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_30_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_30_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_30_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_30_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_30_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_30_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_30_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_30_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-    end
-    if (_GEN & bpu_enq_ptr == 6'h1F) begin	// frontend/src/zaqal/frontend/BPU.scala:44:28, :52:25, :114:21, :128:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_31_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:36:20, :52:25
-      meta_storage_31_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_31_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_31_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_31_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_31_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_31_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_31_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_31_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_31_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-    end
-    if (_GEN & bpu_enq_ptr == 6'h20) begin	// frontend/src/zaqal/frontend/BPU.scala:44:28, :52:25, :114:21, :128:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_32_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:36:20, :52:25
-      meta_storage_32_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_32_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_32_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_32_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_32_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_32_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_32_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_32_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_32_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-    end
-    if (_GEN & bpu_enq_ptr == 6'h21) begin	// frontend/src/zaqal/frontend/BPU.scala:44:28, :52:25, :114:21, :128:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_33_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:36:20, :52:25
-      meta_storage_33_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_33_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_33_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_33_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_33_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_33_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_33_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_33_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_33_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-    end
-    if (_GEN & bpu_enq_ptr == 6'h22) begin	// frontend/src/zaqal/frontend/BPU.scala:44:28, :52:25, :114:21, :128:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_34_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:36:20, :52:25
-      meta_storage_34_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_34_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_34_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_34_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_34_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_34_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_34_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_34_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_34_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-    end
-    if (_GEN & bpu_enq_ptr == 6'h23) begin	// frontend/src/zaqal/frontend/BPU.scala:44:28, :52:25, :114:21, :128:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_35_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:36:20, :52:25
-      meta_storage_35_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_35_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_35_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_35_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_35_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_35_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_35_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_35_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_35_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-    end
-    if (_GEN & bpu_enq_ptr == 6'h24) begin	// frontend/src/zaqal/frontend/BPU.scala:44:28, :52:25, :114:21, :128:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_36_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:36:20, :52:25
-      meta_storage_36_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_36_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_36_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_36_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_36_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_36_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_36_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_36_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_36_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-    end
-    if (_GEN & bpu_enq_ptr == 6'h25) begin	// frontend/src/zaqal/frontend/BPU.scala:44:28, :52:25, :114:21, :128:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_37_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:36:20, :52:25
-      meta_storage_37_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_37_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_37_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_37_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_37_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_37_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_37_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_37_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_37_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-    end
-    if (_GEN & bpu_enq_ptr == 6'h26) begin	// frontend/src/zaqal/frontend/BPU.scala:44:28, :52:25, :114:21, :128:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_38_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:36:20, :52:25
-      meta_storage_38_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_38_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_38_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_38_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_38_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_38_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_38_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_38_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_38_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-    end
-    if (_GEN & bpu_enq_ptr == 6'h27) begin	// frontend/src/zaqal/frontend/BPU.scala:44:28, :52:25, :114:21, :128:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_39_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:36:20, :52:25
-      meta_storage_39_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_39_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_39_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_39_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_39_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_39_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_39_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_39_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_39_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-    end
-    if (_GEN & bpu_enq_ptr == 6'h28) begin	// frontend/src/zaqal/frontend/BPU.scala:44:28, :52:25, :114:21, :128:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_40_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:36:20, :52:25
-      meta_storage_40_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_40_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_40_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_40_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_40_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_40_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_40_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_40_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_40_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-    end
-    if (_GEN & bpu_enq_ptr == 6'h29) begin	// frontend/src/zaqal/frontend/BPU.scala:44:28, :52:25, :114:21, :128:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_41_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:36:20, :52:25
-      meta_storage_41_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_41_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_41_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_41_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_41_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_41_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_41_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_41_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_41_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-    end
-    if (_GEN & bpu_enq_ptr == 6'h2A) begin	// frontend/src/zaqal/frontend/BPU.scala:44:28, :52:25, :114:21, :128:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_42_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:36:20, :52:25
-      meta_storage_42_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_42_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_42_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_42_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_42_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_42_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_42_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_42_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_42_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-    end
-    if (_GEN & bpu_enq_ptr == 6'h2B) begin	// frontend/src/zaqal/frontend/BPU.scala:44:28, :52:25, :114:21, :128:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_43_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:36:20, :52:25
-      meta_storage_43_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_43_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_43_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_43_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_43_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_43_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_43_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_43_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_43_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-    end
-    if (_GEN & bpu_enq_ptr == 6'h2C) begin	// frontend/src/zaqal/frontend/BPU.scala:44:28, :52:25, :114:21, :128:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_44_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:36:20, :52:25
-      meta_storage_44_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_44_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_44_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_44_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_44_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_44_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_44_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_44_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_44_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-    end
-    if (_GEN & bpu_enq_ptr == 6'h2D) begin	// frontend/src/zaqal/frontend/BPU.scala:44:28, :52:25, :114:21, :128:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_45_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:36:20, :52:25
-      meta_storage_45_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_45_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_45_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_45_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_45_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_45_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_45_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_45_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_45_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-    end
-    if (_GEN & bpu_enq_ptr == 6'h2E) begin	// frontend/src/zaqal/frontend/BPU.scala:44:28, :52:25, :114:21, :128:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_46_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:36:20, :52:25
-      meta_storage_46_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_46_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_46_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_46_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_46_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_46_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_46_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_46_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_46_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-    end
-    if (_GEN & bpu_enq_ptr == 6'h2F) begin	// frontend/src/zaqal/frontend/BPU.scala:44:28, :52:25, :114:21, :128:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_47_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:36:20, :52:25
-      meta_storage_47_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_47_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_47_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_47_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_47_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_47_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_47_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_47_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_47_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-    end
-    if (_GEN & bpu_enq_ptr == 6'h30) begin	// frontend/src/zaqal/frontend/BPU.scala:44:28, :52:25, :114:21, :128:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_48_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:36:20, :52:25
-      meta_storage_48_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_48_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_48_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_48_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_48_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_48_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_48_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_48_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_48_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-    end
-    if (_GEN & bpu_enq_ptr == 6'h31) begin	// frontend/src/zaqal/frontend/BPU.scala:44:28, :52:25, :114:21, :128:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_49_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:36:20, :52:25
-      meta_storage_49_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_49_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_49_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_49_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_49_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_49_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_49_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_49_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_49_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-    end
-    if (_GEN & bpu_enq_ptr == 6'h32) begin	// frontend/src/zaqal/frontend/BPU.scala:44:28, :52:25, :114:21, :128:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_50_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:36:20, :52:25
-      meta_storage_50_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_50_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_50_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_50_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_50_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_50_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_50_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_50_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_50_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-    end
-    if (_GEN & bpu_enq_ptr == 6'h33) begin	// frontend/src/zaqal/frontend/BPU.scala:44:28, :52:25, :114:21, :128:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_51_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:36:20, :52:25
-      meta_storage_51_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_51_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_51_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_51_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_51_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_51_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_51_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_51_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_51_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-    end
-    if (_GEN & bpu_enq_ptr == 6'h34) begin	// frontend/src/zaqal/frontend/BPU.scala:44:28, :52:25, :114:21, :128:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_52_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:36:20, :52:25
-      meta_storage_52_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_52_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_52_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_52_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_52_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_52_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_52_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_52_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_52_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-    end
-    if (_GEN & bpu_enq_ptr == 6'h35) begin	// frontend/src/zaqal/frontend/BPU.scala:44:28, :52:25, :114:21, :128:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_53_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:36:20, :52:25
-      meta_storage_53_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_53_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_53_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_53_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_53_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_53_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_53_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_53_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_53_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-    end
-    if (_GEN & bpu_enq_ptr == 6'h36) begin	// frontend/src/zaqal/frontend/BPU.scala:44:28, :52:25, :114:21, :128:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_54_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:36:20, :52:25
-      meta_storage_54_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_54_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_54_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_54_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_54_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_54_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_54_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_54_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_54_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-    end
-    if (_GEN & bpu_enq_ptr == 6'h37) begin	// frontend/src/zaqal/frontend/BPU.scala:44:28, :52:25, :114:21, :128:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_55_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:36:20, :52:25
-      meta_storage_55_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_55_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_55_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_55_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_55_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_55_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_55_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_55_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_55_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-    end
-    if (_GEN & bpu_enq_ptr == 6'h38) begin	// frontend/src/zaqal/frontend/BPU.scala:44:28, :52:25, :114:21, :128:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_56_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:36:20, :52:25
-      meta_storage_56_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_56_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_56_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_56_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_56_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_56_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_56_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_56_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_56_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-    end
-    if (_GEN & bpu_enq_ptr == 6'h39) begin	// frontend/src/zaqal/frontend/BPU.scala:44:28, :52:25, :114:21, :128:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_57_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:36:20, :52:25
-      meta_storage_57_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_57_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_57_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_57_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_57_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_57_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_57_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_57_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_57_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-    end
-    if (_GEN & bpu_enq_ptr == 6'h3A) begin	// frontend/src/zaqal/frontend/BPU.scala:44:28, :52:25, :114:21, :128:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_58_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:36:20, :52:25
-      meta_storage_58_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_58_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_58_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_58_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_58_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_58_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_58_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_58_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_58_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-    end
-    if (_GEN & bpu_enq_ptr == 6'h3B) begin	// frontend/src/zaqal/frontend/BPU.scala:44:28, :52:25, :114:21, :128:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_59_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:36:20, :52:25
-      meta_storage_59_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_59_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_59_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_59_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_59_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_59_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_59_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_59_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_59_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-    end
-    if (_GEN & bpu_enq_ptr == 6'h3C) begin	// frontend/src/zaqal/frontend/BPU.scala:44:28, :52:25, :114:21, :128:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_60_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:36:20, :52:25
-      meta_storage_60_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_60_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_60_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_60_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_60_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_60_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_60_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_60_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_60_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-    end
-    if (_GEN & bpu_enq_ptr == 6'h3D) begin	// frontend/src/zaqal/frontend/BPU.scala:44:28, :52:25, :114:21, :128:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_61_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:36:20, :52:25
-      meta_storage_61_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_61_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_61_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_61_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_61_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_61_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_61_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_61_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_61_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-    end
-    if (_GEN & bpu_enq_ptr == 6'h3E) begin	// frontend/src/zaqal/frontend/BPU.scala:44:28, :52:25, :114:21, :128:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_62_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:36:20, :52:25
-      meta_storage_62_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_62_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_62_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_62_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_62_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_62_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_62_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_62_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_62_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-    end
-    if (_GEN & (&bpu_enq_ptr)) begin	// frontend/src/zaqal/frontend/BPU.scala:44:28, :52:25, :114:21, :128:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_63_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:36:20, :52:25
-      meta_storage_63_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_63_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_63_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_63_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_63_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:40:20, :52:25
-      meta_storage_63_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_63_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_63_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
-      meta_storage_63_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:41:22, :52:25
+      epoch <= io_redirect_valid ^ epoch;	// frontend/src/zaqal/frontend/BPU.scala:34:25, :119:25, :124:18
+    end
+    if (_GEN & bpu_enq_ptr == 6'h0) begin	// frontend/src/zaqal/frontend/BPU.scala:49:28, :57:25, :168:21, :183:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_0_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:37:20, :57:25
+      meta_storage_0_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:41:20, :57:25
+      meta_storage_0_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_0_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_0_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_0_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_0_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_0_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_0_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_0_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_0_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+    end
+    if (_GEN & bpu_enq_ptr == 6'h1) begin	// frontend/src/zaqal/frontend/BPU.scala:49:28, :57:25, :168:21, :183:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_1_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:37:20, :57:25
+      meta_storage_1_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:41:20, :57:25
+      meta_storage_1_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_1_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_1_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_1_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_1_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_1_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_1_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_1_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_1_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+    end
+    if (_GEN & bpu_enq_ptr == 6'h2) begin	// frontend/src/zaqal/frontend/BPU.scala:49:28, :57:25, :168:21, :183:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_2_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:37:20, :57:25
+      meta_storage_2_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:41:20, :57:25
+      meta_storage_2_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_2_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_2_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_2_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_2_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_2_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_2_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_2_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_2_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+    end
+    if (_GEN & bpu_enq_ptr == 6'h3) begin	// frontend/src/zaqal/frontend/BPU.scala:49:28, :57:25, :168:21, :183:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_3_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:37:20, :57:25
+      meta_storage_3_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:41:20, :57:25
+      meta_storage_3_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_3_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_3_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_3_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_3_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_3_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_3_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_3_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_3_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+    end
+    if (_GEN & bpu_enq_ptr == 6'h4) begin	// frontend/src/zaqal/frontend/BPU.scala:49:28, :57:25, :168:21, :183:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_4_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:37:20, :57:25
+      meta_storage_4_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:41:20, :57:25
+      meta_storage_4_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_4_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_4_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_4_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_4_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_4_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_4_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_4_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_4_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+    end
+    if (_GEN & bpu_enq_ptr == 6'h5) begin	// frontend/src/zaqal/frontend/BPU.scala:49:28, :57:25, :168:21, :183:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_5_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:37:20, :57:25
+      meta_storage_5_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:41:20, :57:25
+      meta_storage_5_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_5_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_5_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_5_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_5_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_5_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_5_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_5_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_5_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+    end
+    if (_GEN & bpu_enq_ptr == 6'h6) begin	// frontend/src/zaqal/frontend/BPU.scala:49:28, :57:25, :168:21, :183:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_6_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:37:20, :57:25
+      meta_storage_6_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:41:20, :57:25
+      meta_storage_6_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_6_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_6_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_6_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_6_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_6_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_6_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_6_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_6_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+    end
+    if (_GEN & bpu_enq_ptr == 6'h7) begin	// frontend/src/zaqal/frontend/BPU.scala:49:28, :57:25, :168:21, :183:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_7_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:37:20, :57:25
+      meta_storage_7_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:41:20, :57:25
+      meta_storage_7_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_7_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_7_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_7_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_7_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_7_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_7_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_7_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_7_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+    end
+    if (_GEN & bpu_enq_ptr == 6'h8) begin	// frontend/src/zaqal/frontend/BPU.scala:49:28, :57:25, :168:21, :183:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_8_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:37:20, :57:25
+      meta_storage_8_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:41:20, :57:25
+      meta_storage_8_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_8_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_8_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_8_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_8_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_8_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_8_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_8_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_8_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+    end
+    if (_GEN & bpu_enq_ptr == 6'h9) begin	// frontend/src/zaqal/frontend/BPU.scala:49:28, :57:25, :168:21, :183:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_9_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:37:20, :57:25
+      meta_storage_9_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:41:20, :57:25
+      meta_storage_9_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_9_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_9_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_9_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_9_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_9_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_9_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_9_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_9_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+    end
+    if (_GEN & bpu_enq_ptr == 6'hA) begin	// frontend/src/zaqal/frontend/BPU.scala:49:28, :57:25, :168:21, :183:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_10_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:37:20, :57:25
+      meta_storage_10_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:41:20, :57:25
+      meta_storage_10_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_10_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_10_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_10_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_10_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_10_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_10_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_10_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_10_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+    end
+    if (_GEN & bpu_enq_ptr == 6'hB) begin	// frontend/src/zaqal/frontend/BPU.scala:49:28, :57:25, :168:21, :183:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_11_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:37:20, :57:25
+      meta_storage_11_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:41:20, :57:25
+      meta_storage_11_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_11_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_11_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_11_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_11_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_11_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_11_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_11_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_11_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+    end
+    if (_GEN & bpu_enq_ptr == 6'hC) begin	// frontend/src/zaqal/frontend/BPU.scala:49:28, :57:25, :168:21, :183:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_12_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:37:20, :57:25
+      meta_storage_12_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:41:20, :57:25
+      meta_storage_12_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_12_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_12_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_12_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_12_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_12_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_12_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_12_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_12_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+    end
+    if (_GEN & bpu_enq_ptr == 6'hD) begin	// frontend/src/zaqal/frontend/BPU.scala:49:28, :57:25, :168:21, :183:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_13_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:37:20, :57:25
+      meta_storage_13_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:41:20, :57:25
+      meta_storage_13_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_13_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_13_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_13_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_13_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_13_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_13_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_13_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_13_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+    end
+    if (_GEN & bpu_enq_ptr == 6'hE) begin	// frontend/src/zaqal/frontend/BPU.scala:49:28, :57:25, :168:21, :183:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_14_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:37:20, :57:25
+      meta_storage_14_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:41:20, :57:25
+      meta_storage_14_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_14_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_14_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_14_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_14_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_14_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_14_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_14_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_14_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+    end
+    if (_GEN & bpu_enq_ptr == 6'hF) begin	// frontend/src/zaqal/frontend/BPU.scala:49:28, :57:25, :168:21, :183:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_15_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:37:20, :57:25
+      meta_storage_15_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:41:20, :57:25
+      meta_storage_15_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_15_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_15_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_15_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_15_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_15_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_15_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_15_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_15_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+    end
+    if (_GEN & bpu_enq_ptr == 6'h10) begin	// frontend/src/zaqal/frontend/BPU.scala:49:28, :57:25, :168:21, :183:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_16_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:37:20, :57:25
+      meta_storage_16_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:41:20, :57:25
+      meta_storage_16_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_16_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_16_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_16_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_16_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_16_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_16_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_16_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_16_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+    end
+    if (_GEN & bpu_enq_ptr == 6'h11) begin	// frontend/src/zaqal/frontend/BPU.scala:49:28, :57:25, :168:21, :183:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_17_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:37:20, :57:25
+      meta_storage_17_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:41:20, :57:25
+      meta_storage_17_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_17_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_17_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_17_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_17_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_17_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_17_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_17_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_17_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+    end
+    if (_GEN & bpu_enq_ptr == 6'h12) begin	// frontend/src/zaqal/frontend/BPU.scala:49:28, :57:25, :168:21, :183:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_18_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:37:20, :57:25
+      meta_storage_18_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:41:20, :57:25
+      meta_storage_18_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_18_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_18_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_18_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_18_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_18_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_18_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_18_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_18_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+    end
+    if (_GEN & bpu_enq_ptr == 6'h13) begin	// frontend/src/zaqal/frontend/BPU.scala:49:28, :57:25, :168:21, :183:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_19_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:37:20, :57:25
+      meta_storage_19_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:41:20, :57:25
+      meta_storage_19_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_19_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_19_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_19_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_19_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_19_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_19_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_19_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_19_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+    end
+    if (_GEN & bpu_enq_ptr == 6'h14) begin	// frontend/src/zaqal/frontend/BPU.scala:49:28, :57:25, :168:21, :183:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_20_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:37:20, :57:25
+      meta_storage_20_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:41:20, :57:25
+      meta_storage_20_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_20_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_20_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_20_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_20_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_20_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_20_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_20_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_20_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+    end
+    if (_GEN & bpu_enq_ptr == 6'h15) begin	// frontend/src/zaqal/frontend/BPU.scala:49:28, :57:25, :168:21, :183:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_21_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:37:20, :57:25
+      meta_storage_21_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:41:20, :57:25
+      meta_storage_21_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_21_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_21_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_21_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_21_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_21_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_21_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_21_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_21_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+    end
+    if (_GEN & bpu_enq_ptr == 6'h16) begin	// frontend/src/zaqal/frontend/BPU.scala:49:28, :57:25, :168:21, :183:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_22_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:37:20, :57:25
+      meta_storage_22_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:41:20, :57:25
+      meta_storage_22_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_22_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_22_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_22_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_22_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_22_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_22_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_22_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_22_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+    end
+    if (_GEN & bpu_enq_ptr == 6'h17) begin	// frontend/src/zaqal/frontend/BPU.scala:49:28, :57:25, :168:21, :183:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_23_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:37:20, :57:25
+      meta_storage_23_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:41:20, :57:25
+      meta_storage_23_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_23_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_23_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_23_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_23_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_23_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_23_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_23_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_23_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+    end
+    if (_GEN & bpu_enq_ptr == 6'h18) begin	// frontend/src/zaqal/frontend/BPU.scala:49:28, :57:25, :168:21, :183:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_24_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:37:20, :57:25
+      meta_storage_24_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:41:20, :57:25
+      meta_storage_24_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_24_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_24_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_24_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_24_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_24_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_24_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_24_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_24_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+    end
+    if (_GEN & bpu_enq_ptr == 6'h19) begin	// frontend/src/zaqal/frontend/BPU.scala:49:28, :57:25, :168:21, :183:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_25_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:37:20, :57:25
+      meta_storage_25_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:41:20, :57:25
+      meta_storage_25_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_25_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_25_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_25_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_25_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_25_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_25_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_25_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_25_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+    end
+    if (_GEN & bpu_enq_ptr == 6'h1A) begin	// frontend/src/zaqal/frontend/BPU.scala:49:28, :57:25, :168:21, :183:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_26_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:37:20, :57:25
+      meta_storage_26_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:41:20, :57:25
+      meta_storage_26_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_26_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_26_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_26_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_26_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_26_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_26_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_26_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_26_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+    end
+    if (_GEN & bpu_enq_ptr == 6'h1B) begin	// frontend/src/zaqal/frontend/BPU.scala:49:28, :57:25, :168:21, :183:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_27_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:37:20, :57:25
+      meta_storage_27_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:41:20, :57:25
+      meta_storage_27_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_27_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_27_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_27_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_27_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_27_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_27_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_27_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_27_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+    end
+    if (_GEN & bpu_enq_ptr == 6'h1C) begin	// frontend/src/zaqal/frontend/BPU.scala:49:28, :57:25, :168:21, :183:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_28_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:37:20, :57:25
+      meta_storage_28_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:41:20, :57:25
+      meta_storage_28_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_28_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_28_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_28_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_28_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_28_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_28_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_28_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_28_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+    end
+    if (_GEN & bpu_enq_ptr == 6'h1D) begin	// frontend/src/zaqal/frontend/BPU.scala:49:28, :57:25, :168:21, :183:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_29_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:37:20, :57:25
+      meta_storage_29_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:41:20, :57:25
+      meta_storage_29_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_29_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_29_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_29_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_29_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_29_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_29_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_29_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_29_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+    end
+    if (_GEN & bpu_enq_ptr == 6'h1E) begin	// frontend/src/zaqal/frontend/BPU.scala:49:28, :57:25, :168:21, :183:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_30_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:37:20, :57:25
+      meta_storage_30_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:41:20, :57:25
+      meta_storage_30_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_30_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_30_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_30_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_30_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_30_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_30_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_30_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_30_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+    end
+    if (_GEN & bpu_enq_ptr == 6'h1F) begin	// frontend/src/zaqal/frontend/BPU.scala:49:28, :57:25, :168:21, :183:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_31_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:37:20, :57:25
+      meta_storage_31_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:41:20, :57:25
+      meta_storage_31_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_31_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_31_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_31_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_31_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_31_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_31_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_31_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_31_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+    end
+    if (_GEN & bpu_enq_ptr == 6'h20) begin	// frontend/src/zaqal/frontend/BPU.scala:49:28, :57:25, :115:55, :168:21, :183:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_32_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:37:20, :57:25
+      meta_storage_32_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:41:20, :57:25
+      meta_storage_32_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_32_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_32_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_32_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_32_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_32_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_32_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_32_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_32_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+    end
+    if (_GEN & bpu_enq_ptr == 6'h21) begin	// frontend/src/zaqal/frontend/BPU.scala:49:28, :57:25, :168:21, :183:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_33_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:37:20, :57:25
+      meta_storage_33_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:41:20, :57:25
+      meta_storage_33_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_33_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_33_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_33_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_33_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_33_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_33_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_33_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_33_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+    end
+    if (_GEN & bpu_enq_ptr == 6'h22) begin	// frontend/src/zaqal/frontend/BPU.scala:49:28, :57:25, :168:21, :183:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_34_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:37:20, :57:25
+      meta_storage_34_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:41:20, :57:25
+      meta_storage_34_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_34_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_34_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_34_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_34_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_34_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_34_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_34_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_34_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+    end
+    if (_GEN & bpu_enq_ptr == 6'h23) begin	// frontend/src/zaqal/frontend/BPU.scala:49:28, :57:25, :168:21, :183:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_35_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:37:20, :57:25
+      meta_storage_35_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:41:20, :57:25
+      meta_storage_35_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_35_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_35_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_35_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_35_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_35_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_35_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_35_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_35_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+    end
+    if (_GEN & bpu_enq_ptr == 6'h24) begin	// frontend/src/zaqal/frontend/BPU.scala:49:28, :57:25, :168:21, :183:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_36_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:37:20, :57:25
+      meta_storage_36_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:41:20, :57:25
+      meta_storage_36_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_36_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_36_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_36_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_36_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_36_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_36_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_36_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_36_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+    end
+    if (_GEN & bpu_enq_ptr == 6'h25) begin	// frontend/src/zaqal/frontend/BPU.scala:49:28, :57:25, :168:21, :183:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_37_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:37:20, :57:25
+      meta_storage_37_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:41:20, :57:25
+      meta_storage_37_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_37_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_37_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_37_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_37_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_37_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_37_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_37_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_37_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+    end
+    if (_GEN & bpu_enq_ptr == 6'h26) begin	// frontend/src/zaqal/frontend/BPU.scala:49:28, :57:25, :168:21, :183:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_38_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:37:20, :57:25
+      meta_storage_38_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:41:20, :57:25
+      meta_storage_38_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_38_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_38_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_38_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_38_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_38_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_38_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_38_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_38_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+    end
+    if (_GEN & bpu_enq_ptr == 6'h27) begin	// frontend/src/zaqal/frontend/BPU.scala:49:28, :57:25, :168:21, :183:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_39_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:37:20, :57:25
+      meta_storage_39_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:41:20, :57:25
+      meta_storage_39_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_39_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_39_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_39_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_39_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_39_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_39_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_39_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_39_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+    end
+    if (_GEN & bpu_enq_ptr == 6'h28) begin	// frontend/src/zaqal/frontend/BPU.scala:49:28, :57:25, :168:21, :183:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_40_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:37:20, :57:25
+      meta_storage_40_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:41:20, :57:25
+      meta_storage_40_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_40_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_40_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_40_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_40_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_40_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_40_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_40_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_40_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+    end
+    if (_GEN & bpu_enq_ptr == 6'h29) begin	// frontend/src/zaqal/frontend/BPU.scala:49:28, :57:25, :168:21, :183:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_41_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:37:20, :57:25
+      meta_storage_41_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:41:20, :57:25
+      meta_storage_41_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_41_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_41_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_41_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_41_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_41_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_41_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_41_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_41_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+    end
+    if (_GEN & bpu_enq_ptr == 6'h2A) begin	// frontend/src/zaqal/frontend/BPU.scala:49:28, :57:25, :168:21, :183:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_42_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:37:20, :57:25
+      meta_storage_42_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:41:20, :57:25
+      meta_storage_42_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_42_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_42_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_42_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_42_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_42_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_42_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_42_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_42_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+    end
+    if (_GEN & bpu_enq_ptr == 6'h2B) begin	// frontend/src/zaqal/frontend/BPU.scala:49:28, :57:25, :168:21, :183:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_43_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:37:20, :57:25
+      meta_storage_43_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:41:20, :57:25
+      meta_storage_43_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_43_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_43_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_43_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_43_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_43_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_43_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_43_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_43_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+    end
+    if (_GEN & bpu_enq_ptr == 6'h2C) begin	// frontend/src/zaqal/frontend/BPU.scala:49:28, :57:25, :168:21, :183:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_44_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:37:20, :57:25
+      meta_storage_44_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:41:20, :57:25
+      meta_storage_44_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_44_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_44_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_44_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_44_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_44_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_44_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_44_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_44_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+    end
+    if (_GEN & bpu_enq_ptr == 6'h2D) begin	// frontend/src/zaqal/frontend/BPU.scala:49:28, :57:25, :168:21, :183:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_45_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:37:20, :57:25
+      meta_storage_45_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:41:20, :57:25
+      meta_storage_45_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_45_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_45_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_45_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_45_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_45_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_45_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_45_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_45_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+    end
+    if (_GEN & bpu_enq_ptr == 6'h2E) begin	// frontend/src/zaqal/frontend/BPU.scala:49:28, :57:25, :168:21, :183:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_46_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:37:20, :57:25
+      meta_storage_46_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:41:20, :57:25
+      meta_storage_46_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_46_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_46_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_46_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_46_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_46_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_46_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_46_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_46_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+    end
+    if (_GEN & bpu_enq_ptr == 6'h2F) begin	// frontend/src/zaqal/frontend/BPU.scala:49:28, :57:25, :168:21, :183:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_47_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:37:20, :57:25
+      meta_storage_47_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:41:20, :57:25
+      meta_storage_47_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_47_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_47_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_47_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_47_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_47_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_47_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_47_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_47_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+    end
+    if (_GEN & bpu_enq_ptr == 6'h30) begin	// frontend/src/zaqal/frontend/BPU.scala:49:28, :57:25, :168:21, :183:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_48_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:37:20, :57:25
+      meta_storage_48_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:41:20, :57:25
+      meta_storage_48_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_48_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_48_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_48_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_48_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_48_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_48_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_48_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_48_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+    end
+    if (_GEN & bpu_enq_ptr == 6'h31) begin	// frontend/src/zaqal/frontend/BPU.scala:49:28, :57:25, :168:21, :183:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_49_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:37:20, :57:25
+      meta_storage_49_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:41:20, :57:25
+      meta_storage_49_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_49_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_49_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_49_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_49_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_49_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_49_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_49_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_49_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+    end
+    if (_GEN & bpu_enq_ptr == 6'h32) begin	// frontend/src/zaqal/frontend/BPU.scala:49:28, :57:25, :168:21, :183:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_50_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:37:20, :57:25
+      meta_storage_50_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:41:20, :57:25
+      meta_storage_50_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_50_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_50_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_50_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_50_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_50_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_50_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_50_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_50_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+    end
+    if (_GEN & bpu_enq_ptr == 6'h33) begin	// frontend/src/zaqal/frontend/BPU.scala:49:28, :57:25, :168:21, :183:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_51_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:37:20, :57:25
+      meta_storage_51_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:41:20, :57:25
+      meta_storage_51_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_51_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_51_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_51_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_51_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_51_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_51_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_51_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_51_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+    end
+    if (_GEN & bpu_enq_ptr == 6'h34) begin	// frontend/src/zaqal/frontend/BPU.scala:49:28, :57:25, :168:21, :183:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_52_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:37:20, :57:25
+      meta_storage_52_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:41:20, :57:25
+      meta_storage_52_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_52_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_52_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_52_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_52_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_52_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_52_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_52_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_52_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+    end
+    if (_GEN & bpu_enq_ptr == 6'h35) begin	// frontend/src/zaqal/frontend/BPU.scala:49:28, :57:25, :168:21, :183:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_53_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:37:20, :57:25
+      meta_storage_53_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:41:20, :57:25
+      meta_storage_53_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_53_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_53_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_53_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_53_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_53_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_53_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_53_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_53_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+    end
+    if (_GEN & bpu_enq_ptr == 6'h36) begin	// frontend/src/zaqal/frontend/BPU.scala:49:28, :57:25, :168:21, :183:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_54_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:37:20, :57:25
+      meta_storage_54_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:41:20, :57:25
+      meta_storage_54_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_54_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_54_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_54_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_54_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_54_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_54_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_54_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_54_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+    end
+    if (_GEN & bpu_enq_ptr == 6'h37) begin	// frontend/src/zaqal/frontend/BPU.scala:49:28, :57:25, :168:21, :183:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_55_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:37:20, :57:25
+      meta_storage_55_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:41:20, :57:25
+      meta_storage_55_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_55_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_55_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_55_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_55_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_55_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_55_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_55_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_55_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+    end
+    if (_GEN & bpu_enq_ptr == 6'h38) begin	// frontend/src/zaqal/frontend/BPU.scala:49:28, :57:25, :168:21, :183:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_56_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:37:20, :57:25
+      meta_storage_56_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:41:20, :57:25
+      meta_storage_56_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_56_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_56_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_56_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_56_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_56_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_56_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_56_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_56_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+    end
+    if (_GEN & bpu_enq_ptr == 6'h39) begin	// frontend/src/zaqal/frontend/BPU.scala:49:28, :57:25, :168:21, :183:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_57_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:37:20, :57:25
+      meta_storage_57_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:41:20, :57:25
+      meta_storage_57_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_57_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_57_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_57_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_57_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_57_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_57_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_57_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_57_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+    end
+    if (_GEN & bpu_enq_ptr == 6'h3A) begin	// frontend/src/zaqal/frontend/BPU.scala:49:28, :57:25, :168:21, :183:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_58_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:37:20, :57:25
+      meta_storage_58_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:41:20, :57:25
+      meta_storage_58_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_58_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_58_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_58_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_58_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_58_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_58_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_58_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_58_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+    end
+    if (_GEN & bpu_enq_ptr == 6'h3B) begin	// frontend/src/zaqal/frontend/BPU.scala:49:28, :57:25, :168:21, :183:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_59_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:37:20, :57:25
+      meta_storage_59_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:41:20, :57:25
+      meta_storage_59_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_59_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_59_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_59_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_59_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_59_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_59_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_59_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_59_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+    end
+    if (_GEN & bpu_enq_ptr == 6'h3C) begin	// frontend/src/zaqal/frontend/BPU.scala:49:28, :57:25, :168:21, :183:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_60_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:37:20, :57:25
+      meta_storage_60_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:41:20, :57:25
+      meta_storage_60_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_60_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_60_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_60_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_60_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_60_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_60_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_60_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_60_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+    end
+    if (_GEN & bpu_enq_ptr == 6'h3D) begin	// frontend/src/zaqal/frontend/BPU.scala:49:28, :57:25, :168:21, :183:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_61_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:37:20, :57:25
+      meta_storage_61_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:41:20, :57:25
+      meta_storage_61_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_61_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_61_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_61_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_61_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_61_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_61_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_61_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_61_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+    end
+    if (_GEN & bpu_enq_ptr == 6'h3E) begin	// frontend/src/zaqal/frontend/BPU.scala:49:28, :57:25, :168:21, :183:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_62_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:37:20, :57:25
+      meta_storage_62_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:41:20, :57:25
+      meta_storage_62_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_62_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_62_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_62_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_62_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_62_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_62_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_62_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_62_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+    end
+    if (_GEN & (&bpu_enq_ptr)) begin	// frontend/src/zaqal/frontend/BPU.scala:49:28, :57:25, :168:21, :183:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_63_ghr <= ghr;	// frontend/src/zaqal/frontend/BPU.scala:37:20, :57:25
+      meta_storage_63_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:41:20, :57:25
+      meta_storage_63_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_63_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_63_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_63_tage_altTaken <= _tage_io_pred_altTaken;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_63_tage_providerU <= _tage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:45:20, :57:25
+      meta_storage_63_ittage_providerIdx <= _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_63_ittage_providerHit <= _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_63_ittage_altTarget <= _ittage_io_pred_altTarget;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
+      meta_storage_63_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:46:22, :57:25
     end
   end // always @(posedge)
-  `ifdef ENABLE_INITIAL_REG_	// frontend/src/zaqal/frontend/BPU.scala:25:7
-    `ifdef FIRRTL_BEFORE_INITIAL	// frontend/src/zaqal/frontend/BPU.scala:25:7
-      `FIRRTL_BEFORE_INITIAL	// frontend/src/zaqal/frontend/BPU.scala:25:7
+  `ifdef ENABLE_INITIAL_REG_	// frontend/src/zaqal/frontend/BPU.scala:26:7
+    `ifdef FIRRTL_BEFORE_INITIAL	// frontend/src/zaqal/frontend/BPU.scala:26:7
+      `FIRRTL_BEFORE_INITIAL	// frontend/src/zaqal/frontend/BPU.scala:26:7
     `endif // FIRRTL_BEFORE_INITIAL
-    logic [31:0] _RANDOM[0:418];	// frontend/src/zaqal/frontend/BPU.scala:25:7
-    initial begin	// frontend/src/zaqal/frontend/BPU.scala:25:7
-      `ifdef INIT_RANDOM_PROLOG_	// frontend/src/zaqal/frontend/BPU.scala:25:7
-        `INIT_RANDOM_PROLOG_	// frontend/src/zaqal/frontend/BPU.scala:25:7
+    logic [31:0] _RANDOM[0:483];	// frontend/src/zaqal/frontend/BPU.scala:26:7
+    initial begin	// frontend/src/zaqal/frontend/BPU.scala:26:7
+      `ifdef INIT_RANDOM_PROLOG_	// frontend/src/zaqal/frontend/BPU.scala:26:7
+        `INIT_RANDOM_PROLOG_	// frontend/src/zaqal/frontend/BPU.scala:26:7
       `endif // INIT_RANDOM_PROLOG_
-      `ifdef RANDOMIZE_REG_INIT	// frontend/src/zaqal/frontend/BPU.scala:25:7
-        for (logic [8:0] i = 9'h0; i < 9'h1A3; i += 9'h1) begin
-          _RANDOM[i] = `RANDOM;	// frontend/src/zaqal/frontend/BPU.scala:25:7
-        end	// frontend/src/zaqal/frontend/BPU.scala:25:7
-        s0_pc = {_RANDOM[9'h0], _RANDOM[9'h1]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :31:25
-        mask_reg = _RANDOM[9'h2][15:0];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :32:25
-        epoch = _RANDOM[9'h2][16];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :32:25, :33:25
+      `ifdef RANDOMIZE_REG_INIT	// frontend/src/zaqal/frontend/BPU.scala:26:7
+        for (logic [8:0] i = 9'h0; i < 9'h1E4; i += 9'h1) begin
+          _RANDOM[i] = `RANDOM;	// frontend/src/zaqal/frontend/BPU.scala:26:7
+        end	// frontend/src/zaqal/frontend/BPU.scala:26:7
+        s0_pc = {_RANDOM[9'h0], _RANDOM[9'h1]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :32:25
+        mask_reg = _RANDOM[9'h2][15:0];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :33:25
+        epoch = _RANDOM[9'h2][16];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :33:25, :34:25
         ghr =
           {_RANDOM[9'h2][31:17],
            _RANDOM[9'h3],
            _RANDOM[9'h4],
            _RANDOM[9'h5],
-           _RANDOM[9'h6][16:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :32:25, :36:20
-        bpu_enq_ptr = _RANDOM[9'h6][22:17];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :36:20, :44:28
+           _RANDOM[9'h6][16:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :33:25, :37:20
+        phr = {_RANDOM[9'h6][31:17], _RANDOM[9'h7][16:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :37:20, :41:20
+        bpu_enq_ptr = _RANDOM[9'h7][22:17];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :41:20, :49:28
         meta_storage_0_ghr =
-          {_RANDOM[9'h6][31:23],
-           _RANDOM[9'h7],
+          {_RANDOM[9'h7][31:23],
            _RANDOM[9'h8],
            _RANDOM[9'h9],
-           _RANDOM[9'hA][22:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :36:20, :52:25
-        meta_storage_0_tage_providerIdx = _RANDOM[9'hA][24:23];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_0_tage_providerHit = _RANDOM[9'hA][25];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_0_tage_providerCtr = _RANDOM[9'hA][28:26];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_0_tage_altTaken = _RANDOM[9'hA][29];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_0_tage_providerU = _RANDOM[9'hA][31:30];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_0_ittage_providerIdx = _RANDOM[9'hB][1:0];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_0_ittage_providerHit = _RANDOM[9'hB][2];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
+           _RANDOM[9'hA],
+           _RANDOM[9'hB][22:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :41:20, :57:25
+        meta_storage_0_phr = {_RANDOM[9'hB][31:23], _RANDOM[9'hC][22:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_0_tage_providerIdx = _RANDOM[9'hC][24:23];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_0_tage_providerHit = _RANDOM[9'hC][25];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_0_tage_providerCtr = _RANDOM[9'hC][28:26];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_0_tage_altTaken = _RANDOM[9'hC][29];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_0_tage_providerU = _RANDOM[9'hC][31:30];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_0_ittage_providerIdx = _RANDOM[9'hD][1:0];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_0_ittage_providerHit = _RANDOM[9'hD][2];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
         meta_storage_0_ittage_altTarget =
-          {_RANDOM[9'hB][31:3], _RANDOM[9'hC], _RANDOM[9'hD][2:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_0_ittage_providerU = _RANDOM[9'hD][4:3];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
+          {_RANDOM[9'hD][31:3], _RANDOM[9'hE], _RANDOM[9'hF][2:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_0_ittage_providerU = _RANDOM[9'hF][4:3];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
         meta_storage_1_ghr =
-          {_RANDOM[9'hD][31:5],
-           _RANDOM[9'hE],
-           _RANDOM[9'hF],
+          {_RANDOM[9'hF][31:5],
            _RANDOM[9'h10],
-           _RANDOM[9'h11][4:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_1_tage_providerIdx = _RANDOM[9'h11][6:5];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_1_tage_providerHit = _RANDOM[9'h11][7];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_1_tage_providerCtr = _RANDOM[9'h11][10:8];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_1_tage_altTaken = _RANDOM[9'h11][11];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_1_tage_providerU = _RANDOM[9'h11][13:12];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_1_ittage_providerIdx = _RANDOM[9'h11][15:14];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_1_ittage_providerHit = _RANDOM[9'h11][16];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
+           _RANDOM[9'h11],
+           _RANDOM[9'h12],
+           _RANDOM[9'h13][4:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_1_phr = {_RANDOM[9'h13][31:5], _RANDOM[9'h14][4:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_1_tage_providerIdx = _RANDOM[9'h14][6:5];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_1_tage_providerHit = _RANDOM[9'h14][7];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_1_tage_providerCtr = _RANDOM[9'h14][10:8];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_1_tage_altTaken = _RANDOM[9'h14][11];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_1_tage_providerU = _RANDOM[9'h14][13:12];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_1_ittage_providerIdx = _RANDOM[9'h14][15:14];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_1_ittage_providerHit = _RANDOM[9'h14][16];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
         meta_storage_1_ittage_altTarget =
-          {_RANDOM[9'h11][31:17], _RANDOM[9'h12], _RANDOM[9'h13][16:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_1_ittage_providerU = _RANDOM[9'h13][18:17];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
+          {_RANDOM[9'h14][31:17], _RANDOM[9'h15], _RANDOM[9'h16][16:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_1_ittage_providerU = _RANDOM[9'h16][18:17];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
         meta_storage_2_ghr =
-          {_RANDOM[9'h13][31:19],
-           _RANDOM[9'h14],
-           _RANDOM[9'h15],
-           _RANDOM[9'h16],
-           _RANDOM[9'h17][18:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_2_tage_providerIdx = _RANDOM[9'h17][20:19];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_2_tage_providerHit = _RANDOM[9'h17][21];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_2_tage_providerCtr = _RANDOM[9'h17][24:22];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_2_tage_altTaken = _RANDOM[9'h17][25];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_2_tage_providerU = _RANDOM[9'h17][27:26];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_2_ittage_providerIdx = _RANDOM[9'h17][29:28];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_2_ittage_providerHit = _RANDOM[9'h17][30];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
+          {_RANDOM[9'h16][31:19],
+           _RANDOM[9'h17],
+           _RANDOM[9'h18],
+           _RANDOM[9'h19],
+           _RANDOM[9'h1A][18:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_2_phr = {_RANDOM[9'h1A][31:19], _RANDOM[9'h1B][18:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_2_tage_providerIdx = _RANDOM[9'h1B][20:19];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_2_tage_providerHit = _RANDOM[9'h1B][21];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_2_tage_providerCtr = _RANDOM[9'h1B][24:22];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_2_tage_altTaken = _RANDOM[9'h1B][25];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_2_tage_providerU = _RANDOM[9'h1B][27:26];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_2_ittage_providerIdx = _RANDOM[9'h1B][29:28];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_2_ittage_providerHit = _RANDOM[9'h1B][30];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
         meta_storage_2_ittage_altTarget =
-          {_RANDOM[9'h17][31], _RANDOM[9'h18], _RANDOM[9'h19][30:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_2_ittage_providerU = {_RANDOM[9'h19][31], _RANDOM[9'h1A][0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
+          {_RANDOM[9'h1B][31], _RANDOM[9'h1C], _RANDOM[9'h1D][30:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_2_ittage_providerU = {_RANDOM[9'h1D][31], _RANDOM[9'h1E][0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
         meta_storage_3_ghr =
-          {_RANDOM[9'h1A][31:1],
-           _RANDOM[9'h1B],
-           _RANDOM[9'h1C],
-           _RANDOM[9'h1D],
-           _RANDOM[9'h1E][0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_3_tage_providerIdx = _RANDOM[9'h1E][2:1];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_3_tage_providerHit = _RANDOM[9'h1E][3];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_3_tage_providerCtr = _RANDOM[9'h1E][6:4];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_3_tage_altTaken = _RANDOM[9'h1E][7];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_3_tage_providerU = _RANDOM[9'h1E][9:8];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_3_ittage_providerIdx = _RANDOM[9'h1E][11:10];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_3_ittage_providerHit = _RANDOM[9'h1E][12];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_3_ittage_altTarget =
-          {_RANDOM[9'h1E][31:13], _RANDOM[9'h1F], _RANDOM[9'h20][12:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_3_ittage_providerU = _RANDOM[9'h20][14:13];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_4_ghr =
-          {_RANDOM[9'h20][31:15],
+          {_RANDOM[9'h1E][31:1],
+           _RANDOM[9'h1F],
+           _RANDOM[9'h20],
            _RANDOM[9'h21],
-           _RANDOM[9'h22],
-           _RANDOM[9'h23],
-           _RANDOM[9'h24][14:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_4_tage_providerIdx = _RANDOM[9'h24][16:15];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_4_tage_providerHit = _RANDOM[9'h24][17];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_4_tage_providerCtr = _RANDOM[9'h24][20:18];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_4_tage_altTaken = _RANDOM[9'h24][21];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_4_tage_providerU = _RANDOM[9'h24][23:22];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_4_ittage_providerIdx = _RANDOM[9'h24][25:24];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_4_ittage_providerHit = _RANDOM[9'h24][26];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_4_ittage_altTarget =
-          {_RANDOM[9'h24][31:27], _RANDOM[9'h25], _RANDOM[9'h26][26:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_4_ittage_providerU = _RANDOM[9'h26][28:27];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_5_ghr =
-          {_RANDOM[9'h26][31:29],
+           _RANDOM[9'h22][0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_3_phr = {_RANDOM[9'h22][31:1], _RANDOM[9'h23][0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_3_tage_providerIdx = _RANDOM[9'h23][2:1];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_3_tage_providerHit = _RANDOM[9'h23][3];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_3_tage_providerCtr = _RANDOM[9'h23][6:4];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_3_tage_altTaken = _RANDOM[9'h23][7];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_3_tage_providerU = _RANDOM[9'h23][9:8];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_3_ittage_providerIdx = _RANDOM[9'h23][11:10];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_3_ittage_providerHit = _RANDOM[9'h23][12];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_3_ittage_altTarget =
+          {_RANDOM[9'h23][31:13], _RANDOM[9'h24], _RANDOM[9'h25][12:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_3_ittage_providerU = _RANDOM[9'h25][14:13];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_4_ghr =
+          {_RANDOM[9'h25][31:15],
+           _RANDOM[9'h26],
            _RANDOM[9'h27],
            _RANDOM[9'h28],
-           _RANDOM[9'h29],
-           _RANDOM[9'h2A][28:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_5_tage_providerIdx = _RANDOM[9'h2A][30:29];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_5_tage_providerHit = _RANDOM[9'h2A][31];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_5_tage_providerCtr = _RANDOM[9'h2B][2:0];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_5_tage_altTaken = _RANDOM[9'h2B][3];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_5_tage_providerU = _RANDOM[9'h2B][5:4];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_5_ittage_providerIdx = _RANDOM[9'h2B][7:6];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_5_ittage_providerHit = _RANDOM[9'h2B][8];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_5_ittage_altTarget =
-          {_RANDOM[9'h2B][31:9], _RANDOM[9'h2C], _RANDOM[9'h2D][8:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_5_ittage_providerU = _RANDOM[9'h2D][10:9];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_6_ghr =
-          {_RANDOM[9'h2D][31:11],
+           _RANDOM[9'h29][14:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_4_phr = {_RANDOM[9'h29][31:15], _RANDOM[9'h2A][14:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_4_tage_providerIdx = _RANDOM[9'h2A][16:15];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_4_tage_providerHit = _RANDOM[9'h2A][17];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_4_tage_providerCtr = _RANDOM[9'h2A][20:18];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_4_tage_altTaken = _RANDOM[9'h2A][21];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_4_tage_providerU = _RANDOM[9'h2A][23:22];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_4_ittage_providerIdx = _RANDOM[9'h2A][25:24];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_4_ittage_providerHit = _RANDOM[9'h2A][26];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_4_ittage_altTarget =
+          {_RANDOM[9'h2A][31:27], _RANDOM[9'h2B], _RANDOM[9'h2C][26:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_4_ittage_providerU = _RANDOM[9'h2C][28:27];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_5_ghr =
+          {_RANDOM[9'h2C][31:29],
+           _RANDOM[9'h2D],
            _RANDOM[9'h2E],
            _RANDOM[9'h2F],
-           _RANDOM[9'h30],
-           _RANDOM[9'h31][10:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_6_tage_providerIdx = _RANDOM[9'h31][12:11];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_6_tage_providerHit = _RANDOM[9'h31][13];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_6_tage_providerCtr = _RANDOM[9'h31][16:14];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_6_tage_altTaken = _RANDOM[9'h31][17];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_6_tage_providerU = _RANDOM[9'h31][19:18];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_6_ittage_providerIdx = _RANDOM[9'h31][21:20];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_6_ittage_providerHit = _RANDOM[9'h31][22];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_6_ittage_altTarget =
-          {_RANDOM[9'h31][31:23], _RANDOM[9'h32], _RANDOM[9'h33][22:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_6_ittage_providerU = _RANDOM[9'h33][24:23];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_7_ghr =
-          {_RANDOM[9'h33][31:25],
-           _RANDOM[9'h34],
+           _RANDOM[9'h30][28:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_5_phr = {_RANDOM[9'h30][31:29], _RANDOM[9'h31][28:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_5_tage_providerIdx = _RANDOM[9'h31][30:29];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_5_tage_providerHit = _RANDOM[9'h31][31];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_5_tage_providerCtr = _RANDOM[9'h32][2:0];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_5_tage_altTaken = _RANDOM[9'h32][3];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_5_tage_providerU = _RANDOM[9'h32][5:4];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_5_ittage_providerIdx = _RANDOM[9'h32][7:6];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_5_ittage_providerHit = _RANDOM[9'h32][8];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_5_ittage_altTarget =
+          {_RANDOM[9'h32][31:9], _RANDOM[9'h33], _RANDOM[9'h34][8:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_5_ittage_providerU = _RANDOM[9'h34][10:9];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_6_ghr =
+          {_RANDOM[9'h34][31:11],
            _RANDOM[9'h35],
            _RANDOM[9'h36],
-           _RANDOM[9'h37][24:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_7_tage_providerIdx = _RANDOM[9'h37][26:25];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_7_tage_providerHit = _RANDOM[9'h37][27];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_7_tage_providerCtr = _RANDOM[9'h37][30:28];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_7_tage_altTaken = _RANDOM[9'h37][31];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_7_tage_providerU = _RANDOM[9'h38][1:0];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_7_ittage_providerIdx = _RANDOM[9'h38][3:2];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_7_ittage_providerHit = _RANDOM[9'h38][4];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_7_ittage_altTarget =
-          {_RANDOM[9'h38][31:5], _RANDOM[9'h39], _RANDOM[9'h3A][4:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_7_ittage_providerU = _RANDOM[9'h3A][6:5];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_8_ghr =
-          {_RANDOM[9'h3A][31:7],
-           _RANDOM[9'h3B],
+           _RANDOM[9'h37],
+           _RANDOM[9'h38][10:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_6_phr = {_RANDOM[9'h38][31:11], _RANDOM[9'h39][10:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_6_tage_providerIdx = _RANDOM[9'h39][12:11];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_6_tage_providerHit = _RANDOM[9'h39][13];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_6_tage_providerCtr = _RANDOM[9'h39][16:14];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_6_tage_altTaken = _RANDOM[9'h39][17];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_6_tage_providerU = _RANDOM[9'h39][19:18];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_6_ittage_providerIdx = _RANDOM[9'h39][21:20];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_6_ittage_providerHit = _RANDOM[9'h39][22];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_6_ittage_altTarget =
+          {_RANDOM[9'h39][31:23], _RANDOM[9'h3A], _RANDOM[9'h3B][22:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_6_ittage_providerU = _RANDOM[9'h3B][24:23];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_7_ghr =
+          {_RANDOM[9'h3B][31:25],
            _RANDOM[9'h3C],
            _RANDOM[9'h3D],
-           _RANDOM[9'h3E][6:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_8_tage_providerIdx = _RANDOM[9'h3E][8:7];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_8_tage_providerHit = _RANDOM[9'h3E][9];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_8_tage_providerCtr = _RANDOM[9'h3E][12:10];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_8_tage_altTaken = _RANDOM[9'h3E][13];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_8_tage_providerU = _RANDOM[9'h3E][15:14];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_8_ittage_providerIdx = _RANDOM[9'h3E][17:16];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_8_ittage_providerHit = _RANDOM[9'h3E][18];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
+           _RANDOM[9'h3E],
+           _RANDOM[9'h3F][24:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_7_phr = {_RANDOM[9'h3F][31:25], _RANDOM[9'h40][24:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_7_tage_providerIdx = _RANDOM[9'h40][26:25];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_7_tage_providerHit = _RANDOM[9'h40][27];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_7_tage_providerCtr = _RANDOM[9'h40][30:28];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_7_tage_altTaken = _RANDOM[9'h40][31];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_7_tage_providerU = _RANDOM[9'h41][1:0];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_7_ittage_providerIdx = _RANDOM[9'h41][3:2];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_7_ittage_providerHit = _RANDOM[9'h41][4];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_7_ittage_altTarget =
+          {_RANDOM[9'h41][31:5], _RANDOM[9'h42], _RANDOM[9'h43][4:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_7_ittage_providerU = _RANDOM[9'h43][6:5];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_8_ghr =
+          {_RANDOM[9'h43][31:7],
+           _RANDOM[9'h44],
+           _RANDOM[9'h45],
+           _RANDOM[9'h46],
+           _RANDOM[9'h47][6:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_8_phr = {_RANDOM[9'h47][31:7], _RANDOM[9'h48][6:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_8_tage_providerIdx = _RANDOM[9'h48][8:7];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_8_tage_providerHit = _RANDOM[9'h48][9];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_8_tage_providerCtr = _RANDOM[9'h48][12:10];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_8_tage_altTaken = _RANDOM[9'h48][13];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_8_tage_providerU = _RANDOM[9'h48][15:14];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_8_ittage_providerIdx = _RANDOM[9'h48][17:16];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_8_ittage_providerHit = _RANDOM[9'h48][18];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
         meta_storage_8_ittage_altTarget =
-          {_RANDOM[9'h3E][31:19], _RANDOM[9'h3F], _RANDOM[9'h40][18:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_8_ittage_providerU = _RANDOM[9'h40][20:19];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
+          {_RANDOM[9'h48][31:19], _RANDOM[9'h49], _RANDOM[9'h4A][18:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_8_ittage_providerU = _RANDOM[9'h4A][20:19];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
         meta_storage_9_ghr =
-          {_RANDOM[9'h40][31:21],
-           _RANDOM[9'h41],
-           _RANDOM[9'h42],
-           _RANDOM[9'h43],
-           _RANDOM[9'h44][20:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_9_tage_providerIdx = _RANDOM[9'h44][22:21];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_9_tage_providerHit = _RANDOM[9'h44][23];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_9_tage_providerCtr = _RANDOM[9'h44][26:24];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_9_tage_altTaken = _RANDOM[9'h44][27];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_9_tage_providerU = _RANDOM[9'h44][29:28];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_9_ittage_providerIdx = _RANDOM[9'h44][31:30];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_9_ittage_providerHit = _RANDOM[9'h45][0];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
+          {_RANDOM[9'h4A][31:21],
+           _RANDOM[9'h4B],
+           _RANDOM[9'h4C],
+           _RANDOM[9'h4D],
+           _RANDOM[9'h4E][20:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_9_phr = {_RANDOM[9'h4E][31:21], _RANDOM[9'h4F][20:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_9_tage_providerIdx = _RANDOM[9'h4F][22:21];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_9_tage_providerHit = _RANDOM[9'h4F][23];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_9_tage_providerCtr = _RANDOM[9'h4F][26:24];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_9_tage_altTaken = _RANDOM[9'h4F][27];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_9_tage_providerU = _RANDOM[9'h4F][29:28];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_9_ittage_providerIdx = _RANDOM[9'h4F][31:30];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_9_ittage_providerHit = _RANDOM[9'h50][0];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
         meta_storage_9_ittage_altTarget =
-          {_RANDOM[9'h45][31:1], _RANDOM[9'h46], _RANDOM[9'h47][0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_9_ittage_providerU = _RANDOM[9'h47][2:1];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
+          {_RANDOM[9'h50][31:1], _RANDOM[9'h51], _RANDOM[9'h52][0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_9_ittage_providerU = _RANDOM[9'h52][2:1];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
         meta_storage_10_ghr =
-          {_RANDOM[9'h47][31:3],
-           _RANDOM[9'h48],
-           _RANDOM[9'h49],
-           _RANDOM[9'h4A],
-           _RANDOM[9'h4B][2:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_10_tage_providerIdx = _RANDOM[9'h4B][4:3];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_10_tage_providerHit = _RANDOM[9'h4B][5];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_10_tage_providerCtr = _RANDOM[9'h4B][8:6];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_10_tage_altTaken = _RANDOM[9'h4B][9];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_10_tage_providerU = _RANDOM[9'h4B][11:10];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_10_ittage_providerIdx = _RANDOM[9'h4B][13:12];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_10_ittage_providerHit = _RANDOM[9'h4B][14];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_10_ittage_altTarget =
-          {_RANDOM[9'h4B][31:15], _RANDOM[9'h4C], _RANDOM[9'h4D][14:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_10_ittage_providerU = _RANDOM[9'h4D][16:15];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_11_ghr =
-          {_RANDOM[9'h4D][31:17],
-           _RANDOM[9'h4E],
-           _RANDOM[9'h4F],
-           _RANDOM[9'h50],
-           _RANDOM[9'h51][16:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_11_tage_providerIdx = _RANDOM[9'h51][18:17];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_11_tage_providerHit = _RANDOM[9'h51][19];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_11_tage_providerCtr = _RANDOM[9'h51][22:20];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_11_tage_altTaken = _RANDOM[9'h51][23];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_11_tage_providerU = _RANDOM[9'h51][25:24];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_11_ittage_providerIdx = _RANDOM[9'h51][27:26];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_11_ittage_providerHit = _RANDOM[9'h51][28];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_11_ittage_altTarget =
-          {_RANDOM[9'h51][31:29], _RANDOM[9'h52], _RANDOM[9'h53][28:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_11_ittage_providerU = _RANDOM[9'h53][30:29];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_12_ghr =
-          {_RANDOM[9'h53][31],
+          {_RANDOM[9'h52][31:3],
+           _RANDOM[9'h53],
            _RANDOM[9'h54],
            _RANDOM[9'h55],
-           _RANDOM[9'h56],
-           _RANDOM[9'h57][30:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_12_tage_providerIdx = {_RANDOM[9'h57][31], _RANDOM[9'h58][0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_12_tage_providerHit = _RANDOM[9'h58][1];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_12_tage_providerCtr = _RANDOM[9'h58][4:2];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_12_tage_altTaken = _RANDOM[9'h58][5];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_12_tage_providerU = _RANDOM[9'h58][7:6];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_12_ittage_providerIdx = _RANDOM[9'h58][9:8];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_12_ittage_providerHit = _RANDOM[9'h58][10];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_12_ittage_altTarget =
-          {_RANDOM[9'h58][31:11], _RANDOM[9'h59], _RANDOM[9'h5A][10:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_12_ittage_providerU = _RANDOM[9'h5A][12:11];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_13_ghr =
-          {_RANDOM[9'h5A][31:13],
+           _RANDOM[9'h56][2:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_10_phr = {_RANDOM[9'h56][31:3], _RANDOM[9'h57][2:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_10_tage_providerIdx = _RANDOM[9'h57][4:3];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_10_tage_providerHit = _RANDOM[9'h57][5];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_10_tage_providerCtr = _RANDOM[9'h57][8:6];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_10_tage_altTaken = _RANDOM[9'h57][9];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_10_tage_providerU = _RANDOM[9'h57][11:10];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_10_ittage_providerIdx = _RANDOM[9'h57][13:12];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_10_ittage_providerHit = _RANDOM[9'h57][14];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_10_ittage_altTarget =
+          {_RANDOM[9'h57][31:15], _RANDOM[9'h58], _RANDOM[9'h59][14:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_10_ittage_providerU = _RANDOM[9'h59][16:15];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_11_ghr =
+          {_RANDOM[9'h59][31:17],
+           _RANDOM[9'h5A],
            _RANDOM[9'h5B],
            _RANDOM[9'h5C],
-           _RANDOM[9'h5D],
-           _RANDOM[9'h5E][12:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_13_tage_providerIdx = _RANDOM[9'h5E][14:13];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_13_tage_providerHit = _RANDOM[9'h5E][15];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_13_tage_providerCtr = _RANDOM[9'h5E][18:16];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_13_tage_altTaken = _RANDOM[9'h5E][19];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_13_tage_providerU = _RANDOM[9'h5E][21:20];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_13_ittage_providerIdx = _RANDOM[9'h5E][23:22];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_13_ittage_providerHit = _RANDOM[9'h5E][24];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_13_ittage_altTarget =
-          {_RANDOM[9'h5E][31:25], _RANDOM[9'h5F], _RANDOM[9'h60][24:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_13_ittage_providerU = _RANDOM[9'h60][26:25];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_14_ghr =
-          {_RANDOM[9'h60][31:27],
+           _RANDOM[9'h5D][16:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_11_phr = {_RANDOM[9'h5D][31:17], _RANDOM[9'h5E][16:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_11_tage_providerIdx = _RANDOM[9'h5E][18:17];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_11_tage_providerHit = _RANDOM[9'h5E][19];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_11_tage_providerCtr = _RANDOM[9'h5E][22:20];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_11_tage_altTaken = _RANDOM[9'h5E][23];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_11_tage_providerU = _RANDOM[9'h5E][25:24];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_11_ittage_providerIdx = _RANDOM[9'h5E][27:26];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_11_ittage_providerHit = _RANDOM[9'h5E][28];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_11_ittage_altTarget =
+          {_RANDOM[9'h5E][31:29], _RANDOM[9'h5F], _RANDOM[9'h60][28:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_11_ittage_providerU = _RANDOM[9'h60][30:29];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_12_ghr =
+          {_RANDOM[9'h60][31],
            _RANDOM[9'h61],
            _RANDOM[9'h62],
            _RANDOM[9'h63],
-           _RANDOM[9'h64][26:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_14_tage_providerIdx = _RANDOM[9'h64][28:27];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_14_tage_providerHit = _RANDOM[9'h64][29];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_14_tage_providerCtr = {_RANDOM[9'h64][31:30], _RANDOM[9'h65][0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_14_tage_altTaken = _RANDOM[9'h65][1];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_14_tage_providerU = _RANDOM[9'h65][3:2];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_14_ittage_providerIdx = _RANDOM[9'h65][5:4];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_14_ittage_providerHit = _RANDOM[9'h65][6];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_14_ittage_altTarget =
-          {_RANDOM[9'h65][31:7], _RANDOM[9'h66], _RANDOM[9'h67][6:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_14_ittage_providerU = _RANDOM[9'h67][8:7];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_15_ghr =
-          {_RANDOM[9'h67][31:9],
-           _RANDOM[9'h68],
+           _RANDOM[9'h64][30:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_12_phr = {_RANDOM[9'h64][31], _RANDOM[9'h65][30:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_12_tage_providerIdx = {_RANDOM[9'h65][31], _RANDOM[9'h66][0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_12_tage_providerHit = _RANDOM[9'h66][1];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_12_tage_providerCtr = _RANDOM[9'h66][4:2];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_12_tage_altTaken = _RANDOM[9'h66][5];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_12_tage_providerU = _RANDOM[9'h66][7:6];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_12_ittage_providerIdx = _RANDOM[9'h66][9:8];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_12_ittage_providerHit = _RANDOM[9'h66][10];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_12_ittage_altTarget =
+          {_RANDOM[9'h66][31:11], _RANDOM[9'h67], _RANDOM[9'h68][10:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_12_ittage_providerU = _RANDOM[9'h68][12:11];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_13_ghr =
+          {_RANDOM[9'h68][31:13],
            _RANDOM[9'h69],
            _RANDOM[9'h6A],
-           _RANDOM[9'h6B][8:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_15_tage_providerIdx = _RANDOM[9'h6B][10:9];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_15_tage_providerHit = _RANDOM[9'h6B][11];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_15_tage_providerCtr = _RANDOM[9'h6B][14:12];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_15_tage_altTaken = _RANDOM[9'h6B][15];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_15_tage_providerU = _RANDOM[9'h6B][17:16];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_15_ittage_providerIdx = _RANDOM[9'h6B][19:18];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_15_ittage_providerHit = _RANDOM[9'h6B][20];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_15_ittage_altTarget =
-          {_RANDOM[9'h6B][31:21], _RANDOM[9'h6C], _RANDOM[9'h6D][20:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_15_ittage_providerU = _RANDOM[9'h6D][22:21];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_16_ghr =
-          {_RANDOM[9'h6D][31:23],
-           _RANDOM[9'h6E],
-           _RANDOM[9'h6F],
+           _RANDOM[9'h6B],
+           _RANDOM[9'h6C][12:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_13_phr = {_RANDOM[9'h6C][31:13], _RANDOM[9'h6D][12:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_13_tage_providerIdx = _RANDOM[9'h6D][14:13];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_13_tage_providerHit = _RANDOM[9'h6D][15];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_13_tage_providerCtr = _RANDOM[9'h6D][18:16];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_13_tage_altTaken = _RANDOM[9'h6D][19];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_13_tage_providerU = _RANDOM[9'h6D][21:20];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_13_ittage_providerIdx = _RANDOM[9'h6D][23:22];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_13_ittage_providerHit = _RANDOM[9'h6D][24];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_13_ittage_altTarget =
+          {_RANDOM[9'h6D][31:25], _RANDOM[9'h6E], _RANDOM[9'h6F][24:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_13_ittage_providerU = _RANDOM[9'h6F][26:25];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_14_ghr =
+          {_RANDOM[9'h6F][31:27],
            _RANDOM[9'h70],
-           _RANDOM[9'h71][22:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_16_tage_providerIdx = _RANDOM[9'h71][24:23];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_16_tage_providerHit = _RANDOM[9'h71][25];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_16_tage_providerCtr = _RANDOM[9'h71][28:26];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_16_tage_altTaken = _RANDOM[9'h71][29];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_16_tage_providerU = _RANDOM[9'h71][31:30];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_16_ittage_providerIdx = _RANDOM[9'h72][1:0];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_16_ittage_providerHit = _RANDOM[9'h72][2];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
+           _RANDOM[9'h71],
+           _RANDOM[9'h72],
+           _RANDOM[9'h73][26:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_14_phr = {_RANDOM[9'h73][31:27], _RANDOM[9'h74][26:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_14_tage_providerIdx = _RANDOM[9'h74][28:27];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_14_tage_providerHit = _RANDOM[9'h74][29];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_14_tage_providerCtr = {_RANDOM[9'h74][31:30], _RANDOM[9'h75][0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_14_tage_altTaken = _RANDOM[9'h75][1];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_14_tage_providerU = _RANDOM[9'h75][3:2];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_14_ittage_providerIdx = _RANDOM[9'h75][5:4];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_14_ittage_providerHit = _RANDOM[9'h75][6];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_14_ittage_altTarget =
+          {_RANDOM[9'h75][31:7], _RANDOM[9'h76], _RANDOM[9'h77][6:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_14_ittage_providerU = _RANDOM[9'h77][8:7];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_15_ghr =
+          {_RANDOM[9'h77][31:9],
+           _RANDOM[9'h78],
+           _RANDOM[9'h79],
+           _RANDOM[9'h7A],
+           _RANDOM[9'h7B][8:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_15_phr = {_RANDOM[9'h7B][31:9], _RANDOM[9'h7C][8:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_15_tage_providerIdx = _RANDOM[9'h7C][10:9];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_15_tage_providerHit = _RANDOM[9'h7C][11];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_15_tage_providerCtr = _RANDOM[9'h7C][14:12];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_15_tage_altTaken = _RANDOM[9'h7C][15];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_15_tage_providerU = _RANDOM[9'h7C][17:16];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_15_ittage_providerIdx = _RANDOM[9'h7C][19:18];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_15_ittage_providerHit = _RANDOM[9'h7C][20];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_15_ittage_altTarget =
+          {_RANDOM[9'h7C][31:21], _RANDOM[9'h7D], _RANDOM[9'h7E][20:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_15_ittage_providerU = _RANDOM[9'h7E][22:21];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_16_ghr =
+          {_RANDOM[9'h7E][31:23],
+           _RANDOM[9'h7F],
+           _RANDOM[9'h80],
+           _RANDOM[9'h81],
+           _RANDOM[9'h82][22:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_16_phr = {_RANDOM[9'h82][31:23], _RANDOM[9'h83][22:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_16_tage_providerIdx = _RANDOM[9'h83][24:23];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_16_tage_providerHit = _RANDOM[9'h83][25];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_16_tage_providerCtr = _RANDOM[9'h83][28:26];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_16_tage_altTaken = _RANDOM[9'h83][29];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_16_tage_providerU = _RANDOM[9'h83][31:30];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_16_ittage_providerIdx = _RANDOM[9'h84][1:0];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_16_ittage_providerHit = _RANDOM[9'h84][2];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
         meta_storage_16_ittage_altTarget =
-          {_RANDOM[9'h72][31:3], _RANDOM[9'h73], _RANDOM[9'h74][2:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_16_ittage_providerU = _RANDOM[9'h74][4:3];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
+          {_RANDOM[9'h84][31:3], _RANDOM[9'h85], _RANDOM[9'h86][2:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_16_ittage_providerU = _RANDOM[9'h86][4:3];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
         meta_storage_17_ghr =
-          {_RANDOM[9'h74][31:5],
-           _RANDOM[9'h75],
-           _RANDOM[9'h76],
-           _RANDOM[9'h77],
-           _RANDOM[9'h78][4:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_17_tage_providerIdx = _RANDOM[9'h78][6:5];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_17_tage_providerHit = _RANDOM[9'h78][7];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_17_tage_providerCtr = _RANDOM[9'h78][10:8];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_17_tage_altTaken = _RANDOM[9'h78][11];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_17_tage_providerU = _RANDOM[9'h78][13:12];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_17_ittage_providerIdx = _RANDOM[9'h78][15:14];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_17_ittage_providerHit = _RANDOM[9'h78][16];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_17_ittage_altTarget =
-          {_RANDOM[9'h78][31:17], _RANDOM[9'h79], _RANDOM[9'h7A][16:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_17_ittage_providerU = _RANDOM[9'h7A][18:17];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_18_ghr =
-          {_RANDOM[9'h7A][31:19],
-           _RANDOM[9'h7B],
-           _RANDOM[9'h7C],
-           _RANDOM[9'h7D],
-           _RANDOM[9'h7E][18:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_18_tage_providerIdx = _RANDOM[9'h7E][20:19];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_18_tage_providerHit = _RANDOM[9'h7E][21];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_18_tage_providerCtr = _RANDOM[9'h7E][24:22];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_18_tage_altTaken = _RANDOM[9'h7E][25];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_18_tage_providerU = _RANDOM[9'h7E][27:26];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_18_ittage_providerIdx = _RANDOM[9'h7E][29:28];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_18_ittage_providerHit = _RANDOM[9'h7E][30];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_18_ittage_altTarget =
-          {_RANDOM[9'h7E][31], _RANDOM[9'h7F], _RANDOM[9'h80][30:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_18_ittage_providerU = {_RANDOM[9'h80][31], _RANDOM[9'h81][0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_19_ghr =
-          {_RANDOM[9'h81][31:1],
-           _RANDOM[9'h82],
-           _RANDOM[9'h83],
-           _RANDOM[9'h84],
-           _RANDOM[9'h85][0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_19_tage_providerIdx = _RANDOM[9'h85][2:1];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_19_tage_providerHit = _RANDOM[9'h85][3];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_19_tage_providerCtr = _RANDOM[9'h85][6:4];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_19_tage_altTaken = _RANDOM[9'h85][7];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_19_tage_providerU = _RANDOM[9'h85][9:8];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_19_ittage_providerIdx = _RANDOM[9'h85][11:10];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_19_ittage_providerHit = _RANDOM[9'h85][12];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_19_ittage_altTarget =
-          {_RANDOM[9'h85][31:13], _RANDOM[9'h86], _RANDOM[9'h87][12:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_19_ittage_providerU = _RANDOM[9'h87][14:13];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_20_ghr =
-          {_RANDOM[9'h87][31:15],
+          {_RANDOM[9'h86][31:5],
+           _RANDOM[9'h87],
            _RANDOM[9'h88],
            _RANDOM[9'h89],
-           _RANDOM[9'h8A],
-           _RANDOM[9'h8B][14:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_20_tage_providerIdx = _RANDOM[9'h8B][16:15];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_20_tage_providerHit = _RANDOM[9'h8B][17];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_20_tage_providerCtr = _RANDOM[9'h8B][20:18];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_20_tage_altTaken = _RANDOM[9'h8B][21];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_20_tage_providerU = _RANDOM[9'h8B][23:22];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_20_ittage_providerIdx = _RANDOM[9'h8B][25:24];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_20_ittage_providerHit = _RANDOM[9'h8B][26];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_20_ittage_altTarget =
-          {_RANDOM[9'h8B][31:27], _RANDOM[9'h8C], _RANDOM[9'h8D][26:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_20_ittage_providerU = _RANDOM[9'h8D][28:27];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_21_ghr =
-          {_RANDOM[9'h8D][31:29],
+           _RANDOM[9'h8A][4:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_17_phr = {_RANDOM[9'h8A][31:5], _RANDOM[9'h8B][4:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_17_tage_providerIdx = _RANDOM[9'h8B][6:5];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_17_tage_providerHit = _RANDOM[9'h8B][7];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_17_tage_providerCtr = _RANDOM[9'h8B][10:8];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_17_tage_altTaken = _RANDOM[9'h8B][11];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_17_tage_providerU = _RANDOM[9'h8B][13:12];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_17_ittage_providerIdx = _RANDOM[9'h8B][15:14];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_17_ittage_providerHit = _RANDOM[9'h8B][16];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_17_ittage_altTarget =
+          {_RANDOM[9'h8B][31:17], _RANDOM[9'h8C], _RANDOM[9'h8D][16:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_17_ittage_providerU = _RANDOM[9'h8D][18:17];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_18_ghr =
+          {_RANDOM[9'h8D][31:19],
            _RANDOM[9'h8E],
            _RANDOM[9'h8F],
            _RANDOM[9'h90],
-           _RANDOM[9'h91][28:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_21_tage_providerIdx = _RANDOM[9'h91][30:29];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_21_tage_providerHit = _RANDOM[9'h91][31];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_21_tage_providerCtr = _RANDOM[9'h92][2:0];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_21_tage_altTaken = _RANDOM[9'h92][3];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_21_tage_providerU = _RANDOM[9'h92][5:4];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_21_ittage_providerIdx = _RANDOM[9'h92][7:6];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_21_ittage_providerHit = _RANDOM[9'h92][8];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_21_ittage_altTarget =
-          {_RANDOM[9'h92][31:9], _RANDOM[9'h93], _RANDOM[9'h94][8:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_21_ittage_providerU = _RANDOM[9'h94][10:9];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_22_ghr =
-          {_RANDOM[9'h94][31:11],
-           _RANDOM[9'h95],
+           _RANDOM[9'h91][18:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_18_phr = {_RANDOM[9'h91][31:19], _RANDOM[9'h92][18:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_18_tage_providerIdx = _RANDOM[9'h92][20:19];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_18_tage_providerHit = _RANDOM[9'h92][21];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_18_tage_providerCtr = _RANDOM[9'h92][24:22];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_18_tage_altTaken = _RANDOM[9'h92][25];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_18_tage_providerU = _RANDOM[9'h92][27:26];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_18_ittage_providerIdx = _RANDOM[9'h92][29:28];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_18_ittage_providerHit = _RANDOM[9'h92][30];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_18_ittage_altTarget =
+          {_RANDOM[9'h92][31], _RANDOM[9'h93], _RANDOM[9'h94][30:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_18_ittage_providerU = {_RANDOM[9'h94][31], _RANDOM[9'h95][0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_19_ghr =
+          {_RANDOM[9'h95][31:1],
            _RANDOM[9'h96],
            _RANDOM[9'h97],
-           _RANDOM[9'h98][10:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_22_tage_providerIdx = _RANDOM[9'h98][12:11];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_22_tage_providerHit = _RANDOM[9'h98][13];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_22_tage_providerCtr = _RANDOM[9'h98][16:14];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_22_tage_altTaken = _RANDOM[9'h98][17];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_22_tage_providerU = _RANDOM[9'h98][19:18];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_22_ittage_providerIdx = _RANDOM[9'h98][21:20];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_22_ittage_providerHit = _RANDOM[9'h98][22];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_22_ittage_altTarget =
-          {_RANDOM[9'h98][31:23], _RANDOM[9'h99], _RANDOM[9'h9A][22:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_22_ittage_providerU = _RANDOM[9'h9A][24:23];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_23_ghr =
-          {_RANDOM[9'h9A][31:25],
-           _RANDOM[9'h9B],
-           _RANDOM[9'h9C],
+           _RANDOM[9'h98],
+           _RANDOM[9'h99][0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_19_phr = {_RANDOM[9'h99][31:1], _RANDOM[9'h9A][0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_19_tage_providerIdx = _RANDOM[9'h9A][2:1];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_19_tage_providerHit = _RANDOM[9'h9A][3];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_19_tage_providerCtr = _RANDOM[9'h9A][6:4];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_19_tage_altTaken = _RANDOM[9'h9A][7];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_19_tage_providerU = _RANDOM[9'h9A][9:8];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_19_ittage_providerIdx = _RANDOM[9'h9A][11:10];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_19_ittage_providerHit = _RANDOM[9'h9A][12];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_19_ittage_altTarget =
+          {_RANDOM[9'h9A][31:13], _RANDOM[9'h9B], _RANDOM[9'h9C][12:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_19_ittage_providerU = _RANDOM[9'h9C][14:13];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_20_ghr =
+          {_RANDOM[9'h9C][31:15],
            _RANDOM[9'h9D],
-           _RANDOM[9'h9E][24:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_23_tage_providerIdx = _RANDOM[9'h9E][26:25];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_23_tage_providerHit = _RANDOM[9'h9E][27];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_23_tage_providerCtr = _RANDOM[9'h9E][30:28];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_23_tage_altTaken = _RANDOM[9'h9E][31];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_23_tage_providerU = _RANDOM[9'h9F][1:0];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_23_ittage_providerIdx = _RANDOM[9'h9F][3:2];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_23_ittage_providerHit = _RANDOM[9'h9F][4];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_23_ittage_altTarget =
-          {_RANDOM[9'h9F][31:5], _RANDOM[9'hA0], _RANDOM[9'hA1][4:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_23_ittage_providerU = _RANDOM[9'hA1][6:5];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_24_ghr =
-          {_RANDOM[9'hA1][31:7],
-           _RANDOM[9'hA2],
-           _RANDOM[9'hA3],
+           _RANDOM[9'h9E],
+           _RANDOM[9'h9F],
+           _RANDOM[9'hA0][14:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_20_phr = {_RANDOM[9'hA0][31:15], _RANDOM[9'hA1][14:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_20_tage_providerIdx = _RANDOM[9'hA1][16:15];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_20_tage_providerHit = _RANDOM[9'hA1][17];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_20_tage_providerCtr = _RANDOM[9'hA1][20:18];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_20_tage_altTaken = _RANDOM[9'hA1][21];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_20_tage_providerU = _RANDOM[9'hA1][23:22];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_20_ittage_providerIdx = _RANDOM[9'hA1][25:24];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_20_ittage_providerHit = _RANDOM[9'hA1][26];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_20_ittage_altTarget =
+          {_RANDOM[9'hA1][31:27], _RANDOM[9'hA2], _RANDOM[9'hA3][26:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_20_ittage_providerU = _RANDOM[9'hA3][28:27];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_21_ghr =
+          {_RANDOM[9'hA3][31:29],
            _RANDOM[9'hA4],
-           _RANDOM[9'hA5][6:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_24_tage_providerIdx = _RANDOM[9'hA5][8:7];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_24_tage_providerHit = _RANDOM[9'hA5][9];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_24_tage_providerCtr = _RANDOM[9'hA5][12:10];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_24_tage_altTaken = _RANDOM[9'hA5][13];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_24_tage_providerU = _RANDOM[9'hA5][15:14];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_24_ittage_providerIdx = _RANDOM[9'hA5][17:16];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_24_ittage_providerHit = _RANDOM[9'hA5][18];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_24_ittage_altTarget =
-          {_RANDOM[9'hA5][31:19], _RANDOM[9'hA6], _RANDOM[9'hA7][18:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_24_ittage_providerU = _RANDOM[9'hA7][20:19];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_25_ghr =
-          {_RANDOM[9'hA7][31:21],
-           _RANDOM[9'hA8],
-           _RANDOM[9'hA9],
-           _RANDOM[9'hAA],
-           _RANDOM[9'hAB][20:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_25_tage_providerIdx = _RANDOM[9'hAB][22:21];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_25_tage_providerHit = _RANDOM[9'hAB][23];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_25_tage_providerCtr = _RANDOM[9'hAB][26:24];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_25_tage_altTaken = _RANDOM[9'hAB][27];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_25_tage_providerU = _RANDOM[9'hAB][29:28];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_25_ittage_providerIdx = _RANDOM[9'hAB][31:30];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_25_ittage_providerHit = _RANDOM[9'hAC][0];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_25_ittage_altTarget =
-          {_RANDOM[9'hAC][31:1], _RANDOM[9'hAD], _RANDOM[9'hAE][0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_25_ittage_providerU = _RANDOM[9'hAE][2:1];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_26_ghr =
-          {_RANDOM[9'hAE][31:3],
-           _RANDOM[9'hAF],
-           _RANDOM[9'hB0],
-           _RANDOM[9'hB1],
-           _RANDOM[9'hB2][2:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_26_tage_providerIdx = _RANDOM[9'hB2][4:3];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_26_tage_providerHit = _RANDOM[9'hB2][5];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_26_tage_providerCtr = _RANDOM[9'hB2][8:6];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_26_tage_altTaken = _RANDOM[9'hB2][9];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_26_tage_providerU = _RANDOM[9'hB2][11:10];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_26_ittage_providerIdx = _RANDOM[9'hB2][13:12];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_26_ittage_providerHit = _RANDOM[9'hB2][14];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_26_ittage_altTarget =
-          {_RANDOM[9'hB2][31:15], _RANDOM[9'hB3], _RANDOM[9'hB4][14:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_26_ittage_providerU = _RANDOM[9'hB4][16:15];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_27_ghr =
-          {_RANDOM[9'hB4][31:17],
+           _RANDOM[9'hA5],
+           _RANDOM[9'hA6],
+           _RANDOM[9'hA7][28:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_21_phr = {_RANDOM[9'hA7][31:29], _RANDOM[9'hA8][28:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_21_tage_providerIdx = _RANDOM[9'hA8][30:29];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_21_tage_providerHit = _RANDOM[9'hA8][31];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_21_tage_providerCtr = _RANDOM[9'hA9][2:0];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_21_tage_altTaken = _RANDOM[9'hA9][3];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_21_tage_providerU = _RANDOM[9'hA9][5:4];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_21_ittage_providerIdx = _RANDOM[9'hA9][7:6];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_21_ittage_providerHit = _RANDOM[9'hA9][8];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_21_ittage_altTarget =
+          {_RANDOM[9'hA9][31:9], _RANDOM[9'hAA], _RANDOM[9'hAB][8:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_21_ittage_providerU = _RANDOM[9'hAB][10:9];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_22_ghr =
+          {_RANDOM[9'hAB][31:11],
+           _RANDOM[9'hAC],
+           _RANDOM[9'hAD],
+           _RANDOM[9'hAE],
+           _RANDOM[9'hAF][10:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_22_phr = {_RANDOM[9'hAF][31:11], _RANDOM[9'hB0][10:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_22_tage_providerIdx = _RANDOM[9'hB0][12:11];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_22_tage_providerHit = _RANDOM[9'hB0][13];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_22_tage_providerCtr = _RANDOM[9'hB0][16:14];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_22_tage_altTaken = _RANDOM[9'hB0][17];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_22_tage_providerU = _RANDOM[9'hB0][19:18];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_22_ittage_providerIdx = _RANDOM[9'hB0][21:20];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_22_ittage_providerHit = _RANDOM[9'hB0][22];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_22_ittage_altTarget =
+          {_RANDOM[9'hB0][31:23], _RANDOM[9'hB1], _RANDOM[9'hB2][22:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_22_ittage_providerU = _RANDOM[9'hB2][24:23];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_23_ghr =
+          {_RANDOM[9'hB2][31:25],
+           _RANDOM[9'hB3],
+           _RANDOM[9'hB4],
            _RANDOM[9'hB5],
-           _RANDOM[9'hB6],
-           _RANDOM[9'hB7],
-           _RANDOM[9'hB8][16:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_27_tage_providerIdx = _RANDOM[9'hB8][18:17];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_27_tage_providerHit = _RANDOM[9'hB8][19];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_27_tage_providerCtr = _RANDOM[9'hB8][22:20];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_27_tage_altTaken = _RANDOM[9'hB8][23];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_27_tage_providerU = _RANDOM[9'hB8][25:24];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_27_ittage_providerIdx = _RANDOM[9'hB8][27:26];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_27_ittage_providerHit = _RANDOM[9'hB8][28];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_27_ittage_altTarget =
-          {_RANDOM[9'hB8][31:29], _RANDOM[9'hB9], _RANDOM[9'hBA][28:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_27_ittage_providerU = _RANDOM[9'hBA][30:29];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_28_ghr =
-          {_RANDOM[9'hBA][31],
+           _RANDOM[9'hB6][24:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_23_phr = {_RANDOM[9'hB6][31:25], _RANDOM[9'hB7][24:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_23_tage_providerIdx = _RANDOM[9'hB7][26:25];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_23_tage_providerHit = _RANDOM[9'hB7][27];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_23_tage_providerCtr = _RANDOM[9'hB7][30:28];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_23_tage_altTaken = _RANDOM[9'hB7][31];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_23_tage_providerU = _RANDOM[9'hB8][1:0];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_23_ittage_providerIdx = _RANDOM[9'hB8][3:2];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_23_ittage_providerHit = _RANDOM[9'hB8][4];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_23_ittage_altTarget =
+          {_RANDOM[9'hB8][31:5], _RANDOM[9'hB9], _RANDOM[9'hBA][4:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_23_ittage_providerU = _RANDOM[9'hBA][6:5];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_24_ghr =
+          {_RANDOM[9'hBA][31:7],
            _RANDOM[9'hBB],
            _RANDOM[9'hBC],
            _RANDOM[9'hBD],
-           _RANDOM[9'hBE][30:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_28_tage_providerIdx = {_RANDOM[9'hBE][31], _RANDOM[9'hBF][0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_28_tage_providerHit = _RANDOM[9'hBF][1];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_28_tage_providerCtr = _RANDOM[9'hBF][4:2];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_28_tage_altTaken = _RANDOM[9'hBF][5];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_28_tage_providerU = _RANDOM[9'hBF][7:6];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_28_ittage_providerIdx = _RANDOM[9'hBF][9:8];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_28_ittage_providerHit = _RANDOM[9'hBF][10];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_28_ittage_altTarget =
-          {_RANDOM[9'hBF][31:11], _RANDOM[9'hC0], _RANDOM[9'hC1][10:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_28_ittage_providerU = _RANDOM[9'hC1][12:11];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_29_ghr =
-          {_RANDOM[9'hC1][31:13],
+           _RANDOM[9'hBE][6:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_24_phr = {_RANDOM[9'hBE][31:7], _RANDOM[9'hBF][6:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_24_tage_providerIdx = _RANDOM[9'hBF][8:7];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_24_tage_providerHit = _RANDOM[9'hBF][9];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_24_tage_providerCtr = _RANDOM[9'hBF][12:10];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_24_tage_altTaken = _RANDOM[9'hBF][13];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_24_tage_providerU = _RANDOM[9'hBF][15:14];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_24_ittage_providerIdx = _RANDOM[9'hBF][17:16];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_24_ittage_providerHit = _RANDOM[9'hBF][18];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_24_ittage_altTarget =
+          {_RANDOM[9'hBF][31:19], _RANDOM[9'hC0], _RANDOM[9'hC1][18:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_24_ittage_providerU = _RANDOM[9'hC1][20:19];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_25_ghr =
+          {_RANDOM[9'hC1][31:21],
            _RANDOM[9'hC2],
            _RANDOM[9'hC3],
            _RANDOM[9'hC4],
-           _RANDOM[9'hC5][12:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_29_tage_providerIdx = _RANDOM[9'hC5][14:13];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_29_tage_providerHit = _RANDOM[9'hC5][15];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_29_tage_providerCtr = _RANDOM[9'hC5][18:16];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_29_tage_altTaken = _RANDOM[9'hC5][19];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_29_tage_providerU = _RANDOM[9'hC5][21:20];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_29_ittage_providerIdx = _RANDOM[9'hC5][23:22];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_29_ittage_providerHit = _RANDOM[9'hC5][24];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_29_ittage_altTarget =
-          {_RANDOM[9'hC5][31:25], _RANDOM[9'hC6], _RANDOM[9'hC7][24:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_29_ittage_providerU = _RANDOM[9'hC7][26:25];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_30_ghr =
-          {_RANDOM[9'hC7][31:27],
-           _RANDOM[9'hC8],
-           _RANDOM[9'hC9],
+           _RANDOM[9'hC5][20:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_25_phr = {_RANDOM[9'hC5][31:21], _RANDOM[9'hC6][20:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_25_tage_providerIdx = _RANDOM[9'hC6][22:21];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_25_tage_providerHit = _RANDOM[9'hC6][23];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_25_tage_providerCtr = _RANDOM[9'hC6][26:24];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_25_tage_altTaken = _RANDOM[9'hC6][27];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_25_tage_providerU = _RANDOM[9'hC6][29:28];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_25_ittage_providerIdx = _RANDOM[9'hC6][31:30];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_25_ittage_providerHit = _RANDOM[9'hC7][0];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_25_ittage_altTarget =
+          {_RANDOM[9'hC7][31:1], _RANDOM[9'hC8], _RANDOM[9'hC9][0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_25_ittage_providerU = _RANDOM[9'hC9][2:1];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_26_ghr =
+          {_RANDOM[9'hC9][31:3],
            _RANDOM[9'hCA],
-           _RANDOM[9'hCB][26:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_30_tage_providerIdx = _RANDOM[9'hCB][28:27];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_30_tage_providerHit = _RANDOM[9'hCB][29];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_30_tage_providerCtr = {_RANDOM[9'hCB][31:30], _RANDOM[9'hCC][0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_30_tage_altTaken = _RANDOM[9'hCC][1];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_30_tage_providerU = _RANDOM[9'hCC][3:2];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_30_ittage_providerIdx = _RANDOM[9'hCC][5:4];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_30_ittage_providerHit = _RANDOM[9'hCC][6];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_30_ittage_altTarget =
-          {_RANDOM[9'hCC][31:7], _RANDOM[9'hCD], _RANDOM[9'hCE][6:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_30_ittage_providerU = _RANDOM[9'hCE][8:7];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_31_ghr =
-          {_RANDOM[9'hCE][31:9],
-           _RANDOM[9'hCF],
-           _RANDOM[9'hD0],
+           _RANDOM[9'hCB],
+           _RANDOM[9'hCC],
+           _RANDOM[9'hCD][2:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_26_phr = {_RANDOM[9'hCD][31:3], _RANDOM[9'hCE][2:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_26_tage_providerIdx = _RANDOM[9'hCE][4:3];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_26_tage_providerHit = _RANDOM[9'hCE][5];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_26_tage_providerCtr = _RANDOM[9'hCE][8:6];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_26_tage_altTaken = _RANDOM[9'hCE][9];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_26_tage_providerU = _RANDOM[9'hCE][11:10];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_26_ittage_providerIdx = _RANDOM[9'hCE][13:12];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_26_ittage_providerHit = _RANDOM[9'hCE][14];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_26_ittage_altTarget =
+          {_RANDOM[9'hCE][31:15], _RANDOM[9'hCF], _RANDOM[9'hD0][14:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_26_ittage_providerU = _RANDOM[9'hD0][16:15];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_27_ghr =
+          {_RANDOM[9'hD0][31:17],
            _RANDOM[9'hD1],
-           _RANDOM[9'hD2][8:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_31_tage_providerIdx = _RANDOM[9'hD2][10:9];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_31_tage_providerHit = _RANDOM[9'hD2][11];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_31_tage_providerCtr = _RANDOM[9'hD2][14:12];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_31_tage_altTaken = _RANDOM[9'hD2][15];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_31_tage_providerU = _RANDOM[9'hD2][17:16];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_31_ittage_providerIdx = _RANDOM[9'hD2][19:18];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_31_ittage_providerHit = _RANDOM[9'hD2][20];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_31_ittage_altTarget =
-          {_RANDOM[9'hD2][31:21], _RANDOM[9'hD3], _RANDOM[9'hD4][20:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_31_ittage_providerU = _RANDOM[9'hD4][22:21];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_32_ghr =
-          {_RANDOM[9'hD4][31:23],
-           _RANDOM[9'hD5],
-           _RANDOM[9'hD6],
-           _RANDOM[9'hD7],
-           _RANDOM[9'hD8][22:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_32_tage_providerIdx = _RANDOM[9'hD8][24:23];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_32_tage_providerHit = _RANDOM[9'hD8][25];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_32_tage_providerCtr = _RANDOM[9'hD8][28:26];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_32_tage_altTaken = _RANDOM[9'hD8][29];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_32_tage_providerU = _RANDOM[9'hD8][31:30];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_32_ittage_providerIdx = _RANDOM[9'hD9][1:0];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_32_ittage_providerHit = _RANDOM[9'hD9][2];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_32_ittage_altTarget =
-          {_RANDOM[9'hD9][31:3], _RANDOM[9'hDA], _RANDOM[9'hDB][2:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_32_ittage_providerU = _RANDOM[9'hDB][4:3];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_33_ghr =
-          {_RANDOM[9'hDB][31:5],
-           _RANDOM[9'hDC],
-           _RANDOM[9'hDD],
-           _RANDOM[9'hDE],
-           _RANDOM[9'hDF][4:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_33_tage_providerIdx = _RANDOM[9'hDF][6:5];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_33_tage_providerHit = _RANDOM[9'hDF][7];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_33_tage_providerCtr = _RANDOM[9'hDF][10:8];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_33_tage_altTaken = _RANDOM[9'hDF][11];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_33_tage_providerU = _RANDOM[9'hDF][13:12];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_33_ittage_providerIdx = _RANDOM[9'hDF][15:14];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_33_ittage_providerHit = _RANDOM[9'hDF][16];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_33_ittage_altTarget =
-          {_RANDOM[9'hDF][31:17], _RANDOM[9'hE0], _RANDOM[9'hE1][16:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_33_ittage_providerU = _RANDOM[9'hE1][18:17];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_34_ghr =
-          {_RANDOM[9'hE1][31:19],
+           _RANDOM[9'hD2],
+           _RANDOM[9'hD3],
+           _RANDOM[9'hD4][16:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_27_phr = {_RANDOM[9'hD4][31:17], _RANDOM[9'hD5][16:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_27_tage_providerIdx = _RANDOM[9'hD5][18:17];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_27_tage_providerHit = _RANDOM[9'hD5][19];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_27_tage_providerCtr = _RANDOM[9'hD5][22:20];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_27_tage_altTaken = _RANDOM[9'hD5][23];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_27_tage_providerU = _RANDOM[9'hD5][25:24];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_27_ittage_providerIdx = _RANDOM[9'hD5][27:26];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_27_ittage_providerHit = _RANDOM[9'hD5][28];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_27_ittage_altTarget =
+          {_RANDOM[9'hD5][31:29], _RANDOM[9'hD6], _RANDOM[9'hD7][28:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_27_ittage_providerU = _RANDOM[9'hD7][30:29];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_28_ghr =
+          {_RANDOM[9'hD7][31],
+           _RANDOM[9'hD8],
+           _RANDOM[9'hD9],
+           _RANDOM[9'hDA],
+           _RANDOM[9'hDB][30:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_28_phr = {_RANDOM[9'hDB][31], _RANDOM[9'hDC][30:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_28_tage_providerIdx = {_RANDOM[9'hDC][31], _RANDOM[9'hDD][0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_28_tage_providerHit = _RANDOM[9'hDD][1];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_28_tage_providerCtr = _RANDOM[9'hDD][4:2];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_28_tage_altTaken = _RANDOM[9'hDD][5];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_28_tage_providerU = _RANDOM[9'hDD][7:6];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_28_ittage_providerIdx = _RANDOM[9'hDD][9:8];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_28_ittage_providerHit = _RANDOM[9'hDD][10];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_28_ittage_altTarget =
+          {_RANDOM[9'hDD][31:11], _RANDOM[9'hDE], _RANDOM[9'hDF][10:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_28_ittage_providerU = _RANDOM[9'hDF][12:11];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_29_ghr =
+          {_RANDOM[9'hDF][31:13],
+           _RANDOM[9'hE0],
+           _RANDOM[9'hE1],
            _RANDOM[9'hE2],
-           _RANDOM[9'hE3],
-           _RANDOM[9'hE4],
-           _RANDOM[9'hE5][18:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_34_tage_providerIdx = _RANDOM[9'hE5][20:19];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_34_tage_providerHit = _RANDOM[9'hE5][21];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_34_tage_providerCtr = _RANDOM[9'hE5][24:22];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_34_tage_altTaken = _RANDOM[9'hE5][25];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_34_tage_providerU = _RANDOM[9'hE5][27:26];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_34_ittage_providerIdx = _RANDOM[9'hE5][29:28];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_34_ittage_providerHit = _RANDOM[9'hE5][30];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_34_ittage_altTarget =
-          {_RANDOM[9'hE5][31], _RANDOM[9'hE6], _RANDOM[9'hE7][30:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_34_ittage_providerU = {_RANDOM[9'hE7][31], _RANDOM[9'hE8][0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_35_ghr =
-          {_RANDOM[9'hE8][31:1],
+           _RANDOM[9'hE3][12:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_29_phr = {_RANDOM[9'hE3][31:13], _RANDOM[9'hE4][12:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_29_tage_providerIdx = _RANDOM[9'hE4][14:13];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_29_tage_providerHit = _RANDOM[9'hE4][15];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_29_tage_providerCtr = _RANDOM[9'hE4][18:16];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_29_tage_altTaken = _RANDOM[9'hE4][19];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_29_tage_providerU = _RANDOM[9'hE4][21:20];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_29_ittage_providerIdx = _RANDOM[9'hE4][23:22];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_29_ittage_providerHit = _RANDOM[9'hE4][24];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_29_ittage_altTarget =
+          {_RANDOM[9'hE4][31:25], _RANDOM[9'hE5], _RANDOM[9'hE6][24:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_29_ittage_providerU = _RANDOM[9'hE6][26:25];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_30_ghr =
+          {_RANDOM[9'hE6][31:27],
+           _RANDOM[9'hE7],
+           _RANDOM[9'hE8],
            _RANDOM[9'hE9],
-           _RANDOM[9'hEA],
-           _RANDOM[9'hEB],
-           _RANDOM[9'hEC][0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_35_tage_providerIdx = _RANDOM[9'hEC][2:1];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_35_tage_providerHit = _RANDOM[9'hEC][3];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_35_tage_providerCtr = _RANDOM[9'hEC][6:4];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_35_tage_altTaken = _RANDOM[9'hEC][7];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_35_tage_providerU = _RANDOM[9'hEC][9:8];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_35_ittage_providerIdx = _RANDOM[9'hEC][11:10];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_35_ittage_providerHit = _RANDOM[9'hEC][12];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_35_ittage_altTarget =
-          {_RANDOM[9'hEC][31:13], _RANDOM[9'hED], _RANDOM[9'hEE][12:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_35_ittage_providerU = _RANDOM[9'hEE][14:13];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_36_ghr =
-          {_RANDOM[9'hEE][31:15],
+           _RANDOM[9'hEA][26:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_30_phr = {_RANDOM[9'hEA][31:27], _RANDOM[9'hEB][26:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_30_tage_providerIdx = _RANDOM[9'hEB][28:27];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_30_tage_providerHit = _RANDOM[9'hEB][29];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_30_tage_providerCtr = {_RANDOM[9'hEB][31:30], _RANDOM[9'hEC][0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_30_tage_altTaken = _RANDOM[9'hEC][1];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_30_tage_providerU = _RANDOM[9'hEC][3:2];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_30_ittage_providerIdx = _RANDOM[9'hEC][5:4];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_30_ittage_providerHit = _RANDOM[9'hEC][6];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_30_ittage_altTarget =
+          {_RANDOM[9'hEC][31:7], _RANDOM[9'hED], _RANDOM[9'hEE][6:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_30_ittage_providerU = _RANDOM[9'hEE][8:7];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_31_ghr =
+          {_RANDOM[9'hEE][31:9],
            _RANDOM[9'hEF],
            _RANDOM[9'hF0],
            _RANDOM[9'hF1],
-           _RANDOM[9'hF2][14:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_36_tage_providerIdx = _RANDOM[9'hF2][16:15];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_36_tage_providerHit = _RANDOM[9'hF2][17];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_36_tage_providerCtr = _RANDOM[9'hF2][20:18];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_36_tage_altTaken = _RANDOM[9'hF2][21];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_36_tage_providerU = _RANDOM[9'hF2][23:22];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_36_ittage_providerIdx = _RANDOM[9'hF2][25:24];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_36_ittage_providerHit = _RANDOM[9'hF2][26];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_36_ittage_altTarget =
-          {_RANDOM[9'hF2][31:27], _RANDOM[9'hF3], _RANDOM[9'hF4][26:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_36_ittage_providerU = _RANDOM[9'hF4][28:27];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_37_ghr =
-          {_RANDOM[9'hF4][31:29],
-           _RANDOM[9'hF5],
+           _RANDOM[9'hF2][8:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_31_phr = {_RANDOM[9'hF2][31:9], _RANDOM[9'hF3][8:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_31_tage_providerIdx = _RANDOM[9'hF3][10:9];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_31_tage_providerHit = _RANDOM[9'hF3][11];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_31_tage_providerCtr = _RANDOM[9'hF3][14:12];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_31_tage_altTaken = _RANDOM[9'hF3][15];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_31_tage_providerU = _RANDOM[9'hF3][17:16];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_31_ittage_providerIdx = _RANDOM[9'hF3][19:18];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_31_ittage_providerHit = _RANDOM[9'hF3][20];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_31_ittage_altTarget =
+          {_RANDOM[9'hF3][31:21], _RANDOM[9'hF4], _RANDOM[9'hF5][20:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_31_ittage_providerU = _RANDOM[9'hF5][22:21];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_32_ghr =
+          {_RANDOM[9'hF5][31:23],
            _RANDOM[9'hF6],
            _RANDOM[9'hF7],
-           _RANDOM[9'hF8][28:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_37_tage_providerIdx = _RANDOM[9'hF8][30:29];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_37_tage_providerHit = _RANDOM[9'hF8][31];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_37_tage_providerCtr = _RANDOM[9'hF9][2:0];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_37_tage_altTaken = _RANDOM[9'hF9][3];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_37_tage_providerU = _RANDOM[9'hF9][5:4];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_37_ittage_providerIdx = _RANDOM[9'hF9][7:6];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_37_ittage_providerHit = _RANDOM[9'hF9][8];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_37_ittage_altTarget =
-          {_RANDOM[9'hF9][31:9], _RANDOM[9'hFA], _RANDOM[9'hFB][8:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_37_ittage_providerU = _RANDOM[9'hFB][10:9];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_38_ghr =
-          {_RANDOM[9'hFB][31:11],
-           _RANDOM[9'hFC],
-           _RANDOM[9'hFD],
+           _RANDOM[9'hF8],
+           _RANDOM[9'hF9][22:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_32_phr = {_RANDOM[9'hF9][31:23], _RANDOM[9'hFA][22:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_32_tage_providerIdx = _RANDOM[9'hFA][24:23];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_32_tage_providerHit = _RANDOM[9'hFA][25];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_32_tage_providerCtr = _RANDOM[9'hFA][28:26];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_32_tage_altTaken = _RANDOM[9'hFA][29];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_32_tage_providerU = _RANDOM[9'hFA][31:30];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_32_ittage_providerIdx = _RANDOM[9'hFB][1:0];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_32_ittage_providerHit = _RANDOM[9'hFB][2];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_32_ittage_altTarget =
+          {_RANDOM[9'hFB][31:3], _RANDOM[9'hFC], _RANDOM[9'hFD][2:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_32_ittage_providerU = _RANDOM[9'hFD][4:3];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_33_ghr =
+          {_RANDOM[9'hFD][31:5],
            _RANDOM[9'hFE],
-           _RANDOM[9'hFF][10:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_38_tage_providerIdx = _RANDOM[9'hFF][12:11];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_38_tage_providerHit = _RANDOM[9'hFF][13];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_38_tage_providerCtr = _RANDOM[9'hFF][16:14];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_38_tage_altTaken = _RANDOM[9'hFF][17];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_38_tage_providerU = _RANDOM[9'hFF][19:18];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_38_ittage_providerIdx = _RANDOM[9'hFF][21:20];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_38_ittage_providerHit = _RANDOM[9'hFF][22];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_38_ittage_altTarget =
-          {_RANDOM[9'hFF][31:23], _RANDOM[9'h100], _RANDOM[9'h101][22:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_38_ittage_providerU = _RANDOM[9'h101][24:23];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_39_ghr =
-          {_RANDOM[9'h101][31:25],
-           _RANDOM[9'h102],
-           _RANDOM[9'h103],
-           _RANDOM[9'h104],
-           _RANDOM[9'h105][24:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_39_tage_providerIdx = _RANDOM[9'h105][26:25];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_39_tage_providerHit = _RANDOM[9'h105][27];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_39_tage_providerCtr = _RANDOM[9'h105][30:28];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_39_tage_altTaken = _RANDOM[9'h105][31];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_39_tage_providerU = _RANDOM[9'h106][1:0];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_39_ittage_providerIdx = _RANDOM[9'h106][3:2];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_39_ittage_providerHit = _RANDOM[9'h106][4];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_39_ittage_altTarget =
-          {_RANDOM[9'h106][31:5], _RANDOM[9'h107], _RANDOM[9'h108][4:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_39_ittage_providerU = _RANDOM[9'h108][6:5];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_40_ghr =
-          {_RANDOM[9'h108][31:7],
-           _RANDOM[9'h109],
-           _RANDOM[9'h10A],
-           _RANDOM[9'h10B],
-           _RANDOM[9'h10C][6:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_40_tage_providerIdx = _RANDOM[9'h10C][8:7];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_40_tage_providerHit = _RANDOM[9'h10C][9];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_40_tage_providerCtr = _RANDOM[9'h10C][12:10];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_40_tage_altTaken = _RANDOM[9'h10C][13];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_40_tage_providerU = _RANDOM[9'h10C][15:14];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_40_ittage_providerIdx = _RANDOM[9'h10C][17:16];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_40_ittage_providerHit = _RANDOM[9'h10C][18];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_40_ittage_altTarget =
-          {_RANDOM[9'h10C][31:19], _RANDOM[9'h10D], _RANDOM[9'h10E][18:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_40_ittage_providerU = _RANDOM[9'h10E][20:19];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_41_ghr =
-          {_RANDOM[9'h10E][31:21],
+           _RANDOM[9'hFF],
+           _RANDOM[9'h100],
+           _RANDOM[9'h101][4:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_33_phr = {_RANDOM[9'h101][31:5], _RANDOM[9'h102][4:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_33_tage_providerIdx = _RANDOM[9'h102][6:5];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_33_tage_providerHit = _RANDOM[9'h102][7];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_33_tage_providerCtr = _RANDOM[9'h102][10:8];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_33_tage_altTaken = _RANDOM[9'h102][11];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_33_tage_providerU = _RANDOM[9'h102][13:12];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_33_ittage_providerIdx = _RANDOM[9'h102][15:14];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_33_ittage_providerHit = _RANDOM[9'h102][16];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_33_ittage_altTarget =
+          {_RANDOM[9'h102][31:17], _RANDOM[9'h103], _RANDOM[9'h104][16:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_33_ittage_providerU = _RANDOM[9'h104][18:17];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_34_ghr =
+          {_RANDOM[9'h104][31:19],
+           _RANDOM[9'h105],
+           _RANDOM[9'h106],
+           _RANDOM[9'h107],
+           _RANDOM[9'h108][18:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_34_phr = {_RANDOM[9'h108][31:19], _RANDOM[9'h109][18:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_34_tage_providerIdx = _RANDOM[9'h109][20:19];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_34_tage_providerHit = _RANDOM[9'h109][21];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_34_tage_providerCtr = _RANDOM[9'h109][24:22];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_34_tage_altTaken = _RANDOM[9'h109][25];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_34_tage_providerU = _RANDOM[9'h109][27:26];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_34_ittage_providerIdx = _RANDOM[9'h109][29:28];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_34_ittage_providerHit = _RANDOM[9'h109][30];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_34_ittage_altTarget =
+          {_RANDOM[9'h109][31], _RANDOM[9'h10A], _RANDOM[9'h10B][30:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_34_ittage_providerU = {_RANDOM[9'h10B][31], _RANDOM[9'h10C][0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_35_ghr =
+          {_RANDOM[9'h10C][31:1],
+           _RANDOM[9'h10D],
+           _RANDOM[9'h10E],
            _RANDOM[9'h10F],
-           _RANDOM[9'h110],
-           _RANDOM[9'h111],
-           _RANDOM[9'h112][20:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_41_tage_providerIdx = _RANDOM[9'h112][22:21];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_41_tage_providerHit = _RANDOM[9'h112][23];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_41_tage_providerCtr = _RANDOM[9'h112][26:24];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_41_tage_altTaken = _RANDOM[9'h112][27];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_41_tage_providerU = _RANDOM[9'h112][29:28];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_41_ittage_providerIdx = _RANDOM[9'h112][31:30];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_41_ittage_providerHit = _RANDOM[9'h113][0];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_41_ittage_altTarget =
-          {_RANDOM[9'h113][31:1], _RANDOM[9'h114], _RANDOM[9'h115][0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_41_ittage_providerU = _RANDOM[9'h115][2:1];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_42_ghr =
-          {_RANDOM[9'h115][31:3],
+           _RANDOM[9'h110][0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_35_phr = {_RANDOM[9'h110][31:1], _RANDOM[9'h111][0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_35_tage_providerIdx = _RANDOM[9'h111][2:1];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_35_tage_providerHit = _RANDOM[9'h111][3];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_35_tage_providerCtr = _RANDOM[9'h111][6:4];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_35_tage_altTaken = _RANDOM[9'h111][7];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_35_tage_providerU = _RANDOM[9'h111][9:8];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_35_ittage_providerIdx = _RANDOM[9'h111][11:10];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_35_ittage_providerHit = _RANDOM[9'h111][12];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_35_ittage_altTarget =
+          {_RANDOM[9'h111][31:13], _RANDOM[9'h112], _RANDOM[9'h113][12:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_35_ittage_providerU = _RANDOM[9'h113][14:13];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_36_ghr =
+          {_RANDOM[9'h113][31:15],
+           _RANDOM[9'h114],
+           _RANDOM[9'h115],
            _RANDOM[9'h116],
-           _RANDOM[9'h117],
-           _RANDOM[9'h118],
-           _RANDOM[9'h119][2:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_42_tage_providerIdx = _RANDOM[9'h119][4:3];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_42_tage_providerHit = _RANDOM[9'h119][5];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_42_tage_providerCtr = _RANDOM[9'h119][8:6];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_42_tage_altTaken = _RANDOM[9'h119][9];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_42_tage_providerU = _RANDOM[9'h119][11:10];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_42_ittage_providerIdx = _RANDOM[9'h119][13:12];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_42_ittage_providerHit = _RANDOM[9'h119][14];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_42_ittage_altTarget =
-          {_RANDOM[9'h119][31:15], _RANDOM[9'h11A], _RANDOM[9'h11B][14:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_42_ittage_providerU = _RANDOM[9'h11B][16:15];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_43_ghr =
-          {_RANDOM[9'h11B][31:17],
+           _RANDOM[9'h117][14:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_36_phr = {_RANDOM[9'h117][31:15], _RANDOM[9'h118][14:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_36_tage_providerIdx = _RANDOM[9'h118][16:15];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_36_tage_providerHit = _RANDOM[9'h118][17];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_36_tage_providerCtr = _RANDOM[9'h118][20:18];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_36_tage_altTaken = _RANDOM[9'h118][21];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_36_tage_providerU = _RANDOM[9'h118][23:22];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_36_ittage_providerIdx = _RANDOM[9'h118][25:24];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_36_ittage_providerHit = _RANDOM[9'h118][26];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_36_ittage_altTarget =
+          {_RANDOM[9'h118][31:27], _RANDOM[9'h119], _RANDOM[9'h11A][26:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_36_ittage_providerU = _RANDOM[9'h11A][28:27];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_37_ghr =
+          {_RANDOM[9'h11A][31:29],
+           _RANDOM[9'h11B],
            _RANDOM[9'h11C],
            _RANDOM[9'h11D],
-           _RANDOM[9'h11E],
-           _RANDOM[9'h11F][16:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_43_tage_providerIdx = _RANDOM[9'h11F][18:17];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_43_tage_providerHit = _RANDOM[9'h11F][19];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_43_tage_providerCtr = _RANDOM[9'h11F][22:20];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_43_tage_altTaken = _RANDOM[9'h11F][23];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_43_tage_providerU = _RANDOM[9'h11F][25:24];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_43_ittage_providerIdx = _RANDOM[9'h11F][27:26];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_43_ittage_providerHit = _RANDOM[9'h11F][28];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_43_ittage_altTarget =
-          {_RANDOM[9'h11F][31:29], _RANDOM[9'h120], _RANDOM[9'h121][28:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_43_ittage_providerU = _RANDOM[9'h121][30:29];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_44_ghr =
-          {_RANDOM[9'h121][31],
-           _RANDOM[9'h122],
+           _RANDOM[9'h11E][28:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_37_phr = {_RANDOM[9'h11E][31:29], _RANDOM[9'h11F][28:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_37_tage_providerIdx = _RANDOM[9'h11F][30:29];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_37_tage_providerHit = _RANDOM[9'h11F][31];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_37_tage_providerCtr = _RANDOM[9'h120][2:0];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_37_tage_altTaken = _RANDOM[9'h120][3];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_37_tage_providerU = _RANDOM[9'h120][5:4];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_37_ittage_providerIdx = _RANDOM[9'h120][7:6];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_37_ittage_providerHit = _RANDOM[9'h120][8];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_37_ittage_altTarget =
+          {_RANDOM[9'h120][31:9], _RANDOM[9'h121], _RANDOM[9'h122][8:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_37_ittage_providerU = _RANDOM[9'h122][10:9];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_38_ghr =
+          {_RANDOM[9'h122][31:11],
            _RANDOM[9'h123],
            _RANDOM[9'h124],
-           _RANDOM[9'h125][30:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_44_tage_providerIdx = {_RANDOM[9'h125][31], _RANDOM[9'h126][0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_44_tage_providerHit = _RANDOM[9'h126][1];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_44_tage_providerCtr = _RANDOM[9'h126][4:2];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_44_tage_altTaken = _RANDOM[9'h126][5];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_44_tage_providerU = _RANDOM[9'h126][7:6];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_44_ittage_providerIdx = _RANDOM[9'h126][9:8];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_44_ittage_providerHit = _RANDOM[9'h126][10];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_44_ittage_altTarget =
-          {_RANDOM[9'h126][31:11], _RANDOM[9'h127], _RANDOM[9'h128][10:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_44_ittage_providerU = _RANDOM[9'h128][12:11];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_45_ghr =
-          {_RANDOM[9'h128][31:13],
-           _RANDOM[9'h129],
+           _RANDOM[9'h125],
+           _RANDOM[9'h126][10:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_38_phr = {_RANDOM[9'h126][31:11], _RANDOM[9'h127][10:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_38_tage_providerIdx = _RANDOM[9'h127][12:11];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_38_tage_providerHit = _RANDOM[9'h127][13];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_38_tage_providerCtr = _RANDOM[9'h127][16:14];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_38_tage_altTaken = _RANDOM[9'h127][17];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_38_tage_providerU = _RANDOM[9'h127][19:18];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_38_ittage_providerIdx = _RANDOM[9'h127][21:20];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_38_ittage_providerHit = _RANDOM[9'h127][22];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_38_ittage_altTarget =
+          {_RANDOM[9'h127][31:23], _RANDOM[9'h128], _RANDOM[9'h129][22:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_38_ittage_providerU = _RANDOM[9'h129][24:23];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_39_ghr =
+          {_RANDOM[9'h129][31:25],
            _RANDOM[9'h12A],
            _RANDOM[9'h12B],
-           _RANDOM[9'h12C][12:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_45_tage_providerIdx = _RANDOM[9'h12C][14:13];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_45_tage_providerHit = _RANDOM[9'h12C][15];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_45_tage_providerCtr = _RANDOM[9'h12C][18:16];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_45_tage_altTaken = _RANDOM[9'h12C][19];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_45_tage_providerU = _RANDOM[9'h12C][21:20];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_45_ittage_providerIdx = _RANDOM[9'h12C][23:22];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_45_ittage_providerHit = _RANDOM[9'h12C][24];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_45_ittage_altTarget =
-          {_RANDOM[9'h12C][31:25], _RANDOM[9'h12D], _RANDOM[9'h12E][24:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_45_ittage_providerU = _RANDOM[9'h12E][26:25];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_46_ghr =
-          {_RANDOM[9'h12E][31:27],
-           _RANDOM[9'h12F],
-           _RANDOM[9'h130],
-           _RANDOM[9'h131],
-           _RANDOM[9'h132][26:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_46_tage_providerIdx = _RANDOM[9'h132][28:27];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_46_tage_providerHit = _RANDOM[9'h132][29];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_46_tage_providerCtr = {_RANDOM[9'h132][31:30], _RANDOM[9'h133][0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_46_tage_altTaken = _RANDOM[9'h133][1];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_46_tage_providerU = _RANDOM[9'h133][3:2];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_46_ittage_providerIdx = _RANDOM[9'h133][5:4];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_46_ittage_providerHit = _RANDOM[9'h133][6];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_46_ittage_altTarget =
-          {_RANDOM[9'h133][31:7], _RANDOM[9'h134], _RANDOM[9'h135][6:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_46_ittage_providerU = _RANDOM[9'h135][8:7];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_47_ghr =
-          {_RANDOM[9'h135][31:9],
-           _RANDOM[9'h136],
-           _RANDOM[9'h137],
-           _RANDOM[9'h138],
-           _RANDOM[9'h139][8:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_47_tage_providerIdx = _RANDOM[9'h139][10:9];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_47_tage_providerHit = _RANDOM[9'h139][11];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_47_tage_providerCtr = _RANDOM[9'h139][14:12];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_47_tage_altTaken = _RANDOM[9'h139][15];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_47_tage_providerU = _RANDOM[9'h139][17:16];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_47_ittage_providerIdx = _RANDOM[9'h139][19:18];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_47_ittage_providerHit = _RANDOM[9'h139][20];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_47_ittage_altTarget =
-          {_RANDOM[9'h139][31:21], _RANDOM[9'h13A], _RANDOM[9'h13B][20:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_47_ittage_providerU = _RANDOM[9'h13B][22:21];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_48_ghr =
-          {_RANDOM[9'h13B][31:23],
-           _RANDOM[9'h13C],
-           _RANDOM[9'h13D],
-           _RANDOM[9'h13E],
-           _RANDOM[9'h13F][22:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_48_tage_providerIdx = _RANDOM[9'h13F][24:23];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_48_tage_providerHit = _RANDOM[9'h13F][25];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_48_tage_providerCtr = _RANDOM[9'h13F][28:26];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_48_tage_altTaken = _RANDOM[9'h13F][29];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_48_tage_providerU = _RANDOM[9'h13F][31:30];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_48_ittage_providerIdx = _RANDOM[9'h140][1:0];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_48_ittage_providerHit = _RANDOM[9'h140][2];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_48_ittage_altTarget =
-          {_RANDOM[9'h140][31:3], _RANDOM[9'h141], _RANDOM[9'h142][2:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_48_ittage_providerU = _RANDOM[9'h142][4:3];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_49_ghr =
-          {_RANDOM[9'h142][31:5],
+           _RANDOM[9'h12C],
+           _RANDOM[9'h12D][24:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_39_phr = {_RANDOM[9'h12D][31:25], _RANDOM[9'h12E][24:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_39_tage_providerIdx = _RANDOM[9'h12E][26:25];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_39_tage_providerHit = _RANDOM[9'h12E][27];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_39_tage_providerCtr = _RANDOM[9'h12E][30:28];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_39_tage_altTaken = _RANDOM[9'h12E][31];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_39_tage_providerU = _RANDOM[9'h12F][1:0];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_39_ittage_providerIdx = _RANDOM[9'h12F][3:2];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_39_ittage_providerHit = _RANDOM[9'h12F][4];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_39_ittage_altTarget =
+          {_RANDOM[9'h12F][31:5], _RANDOM[9'h130], _RANDOM[9'h131][4:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_39_ittage_providerU = _RANDOM[9'h131][6:5];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_40_ghr =
+          {_RANDOM[9'h131][31:7],
+           _RANDOM[9'h132],
+           _RANDOM[9'h133],
+           _RANDOM[9'h134],
+           _RANDOM[9'h135][6:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_40_phr = {_RANDOM[9'h135][31:7], _RANDOM[9'h136][6:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_40_tage_providerIdx = _RANDOM[9'h136][8:7];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_40_tage_providerHit = _RANDOM[9'h136][9];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_40_tage_providerCtr = _RANDOM[9'h136][12:10];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_40_tage_altTaken = _RANDOM[9'h136][13];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_40_tage_providerU = _RANDOM[9'h136][15:14];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_40_ittage_providerIdx = _RANDOM[9'h136][17:16];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_40_ittage_providerHit = _RANDOM[9'h136][18];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_40_ittage_altTarget =
+          {_RANDOM[9'h136][31:19], _RANDOM[9'h137], _RANDOM[9'h138][18:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_40_ittage_providerU = _RANDOM[9'h138][20:19];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_41_ghr =
+          {_RANDOM[9'h138][31:21],
+           _RANDOM[9'h139],
+           _RANDOM[9'h13A],
+           _RANDOM[9'h13B],
+           _RANDOM[9'h13C][20:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_41_phr = {_RANDOM[9'h13C][31:21], _RANDOM[9'h13D][20:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_41_tage_providerIdx = _RANDOM[9'h13D][22:21];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_41_tage_providerHit = _RANDOM[9'h13D][23];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_41_tage_providerCtr = _RANDOM[9'h13D][26:24];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_41_tage_altTaken = _RANDOM[9'h13D][27];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_41_tage_providerU = _RANDOM[9'h13D][29:28];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_41_ittage_providerIdx = _RANDOM[9'h13D][31:30];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_41_ittage_providerHit = _RANDOM[9'h13E][0];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_41_ittage_altTarget =
+          {_RANDOM[9'h13E][31:1], _RANDOM[9'h13F], _RANDOM[9'h140][0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_41_ittage_providerU = _RANDOM[9'h140][2:1];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_42_ghr =
+          {_RANDOM[9'h140][31:3],
+           _RANDOM[9'h141],
+           _RANDOM[9'h142],
            _RANDOM[9'h143],
-           _RANDOM[9'h144],
-           _RANDOM[9'h145],
-           _RANDOM[9'h146][4:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_49_tage_providerIdx = _RANDOM[9'h146][6:5];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_49_tage_providerHit = _RANDOM[9'h146][7];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_49_tage_providerCtr = _RANDOM[9'h146][10:8];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_49_tage_altTaken = _RANDOM[9'h146][11];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_49_tage_providerU = _RANDOM[9'h146][13:12];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_49_ittage_providerIdx = _RANDOM[9'h146][15:14];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_49_ittage_providerHit = _RANDOM[9'h146][16];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_49_ittage_altTarget =
-          {_RANDOM[9'h146][31:17], _RANDOM[9'h147], _RANDOM[9'h148][16:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_49_ittage_providerU = _RANDOM[9'h148][18:17];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_50_ghr =
-          {_RANDOM[9'h148][31:19],
+           _RANDOM[9'h144][2:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_42_phr = {_RANDOM[9'h144][31:3], _RANDOM[9'h145][2:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_42_tage_providerIdx = _RANDOM[9'h145][4:3];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_42_tage_providerHit = _RANDOM[9'h145][5];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_42_tage_providerCtr = _RANDOM[9'h145][8:6];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_42_tage_altTaken = _RANDOM[9'h145][9];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_42_tage_providerU = _RANDOM[9'h145][11:10];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_42_ittage_providerIdx = _RANDOM[9'h145][13:12];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_42_ittage_providerHit = _RANDOM[9'h145][14];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_42_ittage_altTarget =
+          {_RANDOM[9'h145][31:15], _RANDOM[9'h146], _RANDOM[9'h147][14:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_42_ittage_providerU = _RANDOM[9'h147][16:15];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_43_ghr =
+          {_RANDOM[9'h147][31:17],
+           _RANDOM[9'h148],
            _RANDOM[9'h149],
            _RANDOM[9'h14A],
-           _RANDOM[9'h14B],
-           _RANDOM[9'h14C][18:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_50_tage_providerIdx = _RANDOM[9'h14C][20:19];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_50_tage_providerHit = _RANDOM[9'h14C][21];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_50_tage_providerCtr = _RANDOM[9'h14C][24:22];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_50_tage_altTaken = _RANDOM[9'h14C][25];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_50_tage_providerU = _RANDOM[9'h14C][27:26];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_50_ittage_providerIdx = _RANDOM[9'h14C][29:28];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_50_ittage_providerHit = _RANDOM[9'h14C][30];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_50_ittage_altTarget =
-          {_RANDOM[9'h14C][31], _RANDOM[9'h14D], _RANDOM[9'h14E][30:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_50_ittage_providerU = {_RANDOM[9'h14E][31], _RANDOM[9'h14F][0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_51_ghr =
-          {_RANDOM[9'h14F][31:1],
+           _RANDOM[9'h14B][16:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_43_phr = {_RANDOM[9'h14B][31:17], _RANDOM[9'h14C][16:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_43_tage_providerIdx = _RANDOM[9'h14C][18:17];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_43_tage_providerHit = _RANDOM[9'h14C][19];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_43_tage_providerCtr = _RANDOM[9'h14C][22:20];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_43_tage_altTaken = _RANDOM[9'h14C][23];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_43_tage_providerU = _RANDOM[9'h14C][25:24];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_43_ittage_providerIdx = _RANDOM[9'h14C][27:26];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_43_ittage_providerHit = _RANDOM[9'h14C][28];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_43_ittage_altTarget =
+          {_RANDOM[9'h14C][31:29], _RANDOM[9'h14D], _RANDOM[9'h14E][28:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_43_ittage_providerU = _RANDOM[9'h14E][30:29];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_44_ghr =
+          {_RANDOM[9'h14E][31],
+           _RANDOM[9'h14F],
            _RANDOM[9'h150],
            _RANDOM[9'h151],
-           _RANDOM[9'h152],
-           _RANDOM[9'h153][0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_51_tage_providerIdx = _RANDOM[9'h153][2:1];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_51_tage_providerHit = _RANDOM[9'h153][3];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_51_tage_providerCtr = _RANDOM[9'h153][6:4];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_51_tage_altTaken = _RANDOM[9'h153][7];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_51_tage_providerU = _RANDOM[9'h153][9:8];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_51_ittage_providerIdx = _RANDOM[9'h153][11:10];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_51_ittage_providerHit = _RANDOM[9'h153][12];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_51_ittage_altTarget =
-          {_RANDOM[9'h153][31:13], _RANDOM[9'h154], _RANDOM[9'h155][12:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_51_ittage_providerU = _RANDOM[9'h155][14:13];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_52_ghr =
-          {_RANDOM[9'h155][31:15],
-           _RANDOM[9'h156],
+           _RANDOM[9'h152][30:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_44_phr = {_RANDOM[9'h152][31], _RANDOM[9'h153][30:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_44_tage_providerIdx = {_RANDOM[9'h153][31], _RANDOM[9'h154][0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_44_tage_providerHit = _RANDOM[9'h154][1];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_44_tage_providerCtr = _RANDOM[9'h154][4:2];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_44_tage_altTaken = _RANDOM[9'h154][5];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_44_tage_providerU = _RANDOM[9'h154][7:6];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_44_ittage_providerIdx = _RANDOM[9'h154][9:8];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_44_ittage_providerHit = _RANDOM[9'h154][10];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_44_ittage_altTarget =
+          {_RANDOM[9'h154][31:11], _RANDOM[9'h155], _RANDOM[9'h156][10:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_44_ittage_providerU = _RANDOM[9'h156][12:11];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_45_ghr =
+          {_RANDOM[9'h156][31:13],
            _RANDOM[9'h157],
            _RANDOM[9'h158],
-           _RANDOM[9'h159][14:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_52_tage_providerIdx = _RANDOM[9'h159][16:15];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_52_tage_providerHit = _RANDOM[9'h159][17];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_52_tage_providerCtr = _RANDOM[9'h159][20:18];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_52_tage_altTaken = _RANDOM[9'h159][21];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_52_tage_providerU = _RANDOM[9'h159][23:22];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_52_ittage_providerIdx = _RANDOM[9'h159][25:24];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_52_ittage_providerHit = _RANDOM[9'h159][26];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_52_ittage_altTarget =
-          {_RANDOM[9'h159][31:27], _RANDOM[9'h15A], _RANDOM[9'h15B][26:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_52_ittage_providerU = _RANDOM[9'h15B][28:27];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_53_ghr =
-          {_RANDOM[9'h15B][31:29],
-           _RANDOM[9'h15C],
-           _RANDOM[9'h15D],
+           _RANDOM[9'h159],
+           _RANDOM[9'h15A][12:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_45_phr = {_RANDOM[9'h15A][31:13], _RANDOM[9'h15B][12:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_45_tage_providerIdx = _RANDOM[9'h15B][14:13];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_45_tage_providerHit = _RANDOM[9'h15B][15];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_45_tage_providerCtr = _RANDOM[9'h15B][18:16];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_45_tage_altTaken = _RANDOM[9'h15B][19];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_45_tage_providerU = _RANDOM[9'h15B][21:20];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_45_ittage_providerIdx = _RANDOM[9'h15B][23:22];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_45_ittage_providerHit = _RANDOM[9'h15B][24];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_45_ittage_altTarget =
+          {_RANDOM[9'h15B][31:25], _RANDOM[9'h15C], _RANDOM[9'h15D][24:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_45_ittage_providerU = _RANDOM[9'h15D][26:25];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_46_ghr =
+          {_RANDOM[9'h15D][31:27],
            _RANDOM[9'h15E],
-           _RANDOM[9'h15F][28:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_53_tage_providerIdx = _RANDOM[9'h15F][30:29];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_53_tage_providerHit = _RANDOM[9'h15F][31];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_53_tage_providerCtr = _RANDOM[9'h160][2:0];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_53_tage_altTaken = _RANDOM[9'h160][3];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_53_tage_providerU = _RANDOM[9'h160][5:4];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_53_ittage_providerIdx = _RANDOM[9'h160][7:6];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_53_ittage_providerHit = _RANDOM[9'h160][8];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_53_ittage_altTarget =
-          {_RANDOM[9'h160][31:9], _RANDOM[9'h161], _RANDOM[9'h162][8:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_53_ittage_providerU = _RANDOM[9'h162][10:9];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_54_ghr =
-          {_RANDOM[9'h162][31:11],
-           _RANDOM[9'h163],
-           _RANDOM[9'h164],
-           _RANDOM[9'h165],
-           _RANDOM[9'h166][10:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_54_tage_providerIdx = _RANDOM[9'h166][12:11];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_54_tage_providerHit = _RANDOM[9'h166][13];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_54_tage_providerCtr = _RANDOM[9'h166][16:14];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_54_tage_altTaken = _RANDOM[9'h166][17];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_54_tage_providerU = _RANDOM[9'h166][19:18];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_54_ittage_providerIdx = _RANDOM[9'h166][21:20];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_54_ittage_providerHit = _RANDOM[9'h166][22];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_54_ittage_altTarget =
-          {_RANDOM[9'h166][31:23], _RANDOM[9'h167], _RANDOM[9'h168][22:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_54_ittage_providerU = _RANDOM[9'h168][24:23];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_55_ghr =
-          {_RANDOM[9'h168][31:25],
-           _RANDOM[9'h169],
-           _RANDOM[9'h16A],
-           _RANDOM[9'h16B],
-           _RANDOM[9'h16C][24:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_55_tage_providerIdx = _RANDOM[9'h16C][26:25];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_55_tage_providerHit = _RANDOM[9'h16C][27];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_55_tage_providerCtr = _RANDOM[9'h16C][30:28];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_55_tage_altTaken = _RANDOM[9'h16C][31];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_55_tage_providerU = _RANDOM[9'h16D][1:0];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_55_ittage_providerIdx = _RANDOM[9'h16D][3:2];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_55_ittage_providerHit = _RANDOM[9'h16D][4];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_55_ittage_altTarget =
-          {_RANDOM[9'h16D][31:5], _RANDOM[9'h16E], _RANDOM[9'h16F][4:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_55_ittage_providerU = _RANDOM[9'h16F][6:5];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_56_ghr =
-          {_RANDOM[9'h16F][31:7],
-           _RANDOM[9'h170],
-           _RANDOM[9'h171],
-           _RANDOM[9'h172],
-           _RANDOM[9'h173][6:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_56_tage_providerIdx = _RANDOM[9'h173][8:7];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_56_tage_providerHit = _RANDOM[9'h173][9];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_56_tage_providerCtr = _RANDOM[9'h173][12:10];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_56_tage_altTaken = _RANDOM[9'h173][13];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_56_tage_providerU = _RANDOM[9'h173][15:14];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_56_ittage_providerIdx = _RANDOM[9'h173][17:16];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_56_ittage_providerHit = _RANDOM[9'h173][18];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_56_ittage_altTarget =
-          {_RANDOM[9'h173][31:19], _RANDOM[9'h174], _RANDOM[9'h175][18:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_56_ittage_providerU = _RANDOM[9'h175][20:19];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_57_ghr =
-          {_RANDOM[9'h175][31:21],
+           _RANDOM[9'h15F],
+           _RANDOM[9'h160],
+           _RANDOM[9'h161][26:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_46_phr = {_RANDOM[9'h161][31:27], _RANDOM[9'h162][26:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_46_tage_providerIdx = _RANDOM[9'h162][28:27];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_46_tage_providerHit = _RANDOM[9'h162][29];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_46_tage_providerCtr = {_RANDOM[9'h162][31:30], _RANDOM[9'h163][0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_46_tage_altTaken = _RANDOM[9'h163][1];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_46_tage_providerU = _RANDOM[9'h163][3:2];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_46_ittage_providerIdx = _RANDOM[9'h163][5:4];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_46_ittage_providerHit = _RANDOM[9'h163][6];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_46_ittage_altTarget =
+          {_RANDOM[9'h163][31:7], _RANDOM[9'h164], _RANDOM[9'h165][6:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_46_ittage_providerU = _RANDOM[9'h165][8:7];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_47_ghr =
+          {_RANDOM[9'h165][31:9],
+           _RANDOM[9'h166],
+           _RANDOM[9'h167],
+           _RANDOM[9'h168],
+           _RANDOM[9'h169][8:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_47_phr = {_RANDOM[9'h169][31:9], _RANDOM[9'h16A][8:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_47_tage_providerIdx = _RANDOM[9'h16A][10:9];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_47_tage_providerHit = _RANDOM[9'h16A][11];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_47_tage_providerCtr = _RANDOM[9'h16A][14:12];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_47_tage_altTaken = _RANDOM[9'h16A][15];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_47_tage_providerU = _RANDOM[9'h16A][17:16];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_47_ittage_providerIdx = _RANDOM[9'h16A][19:18];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_47_ittage_providerHit = _RANDOM[9'h16A][20];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_47_ittage_altTarget =
+          {_RANDOM[9'h16A][31:21], _RANDOM[9'h16B], _RANDOM[9'h16C][20:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_47_ittage_providerU = _RANDOM[9'h16C][22:21];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_48_ghr =
+          {_RANDOM[9'h16C][31:23],
+           _RANDOM[9'h16D],
+           _RANDOM[9'h16E],
+           _RANDOM[9'h16F],
+           _RANDOM[9'h170][22:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_48_phr = {_RANDOM[9'h170][31:23], _RANDOM[9'h171][22:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_48_tage_providerIdx = _RANDOM[9'h171][24:23];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_48_tage_providerHit = _RANDOM[9'h171][25];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_48_tage_providerCtr = _RANDOM[9'h171][28:26];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_48_tage_altTaken = _RANDOM[9'h171][29];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_48_tage_providerU = _RANDOM[9'h171][31:30];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_48_ittage_providerIdx = _RANDOM[9'h172][1:0];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_48_ittage_providerHit = _RANDOM[9'h172][2];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_48_ittage_altTarget =
+          {_RANDOM[9'h172][31:3], _RANDOM[9'h173], _RANDOM[9'h174][2:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_48_ittage_providerU = _RANDOM[9'h174][4:3];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_49_ghr =
+          {_RANDOM[9'h174][31:5],
+           _RANDOM[9'h175],
            _RANDOM[9'h176],
            _RANDOM[9'h177],
-           _RANDOM[9'h178],
-           _RANDOM[9'h179][20:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_57_tage_providerIdx = _RANDOM[9'h179][22:21];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_57_tage_providerHit = _RANDOM[9'h179][23];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_57_tage_providerCtr = _RANDOM[9'h179][26:24];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_57_tage_altTaken = _RANDOM[9'h179][27];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_57_tage_providerU = _RANDOM[9'h179][29:28];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_57_ittage_providerIdx = _RANDOM[9'h179][31:30];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_57_ittage_providerHit = _RANDOM[9'h17A][0];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_57_ittage_altTarget =
-          {_RANDOM[9'h17A][31:1], _RANDOM[9'h17B], _RANDOM[9'h17C][0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_57_ittage_providerU = _RANDOM[9'h17C][2:1];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_58_ghr =
-          {_RANDOM[9'h17C][31:3],
+           _RANDOM[9'h178][4:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_49_phr = {_RANDOM[9'h178][31:5], _RANDOM[9'h179][4:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_49_tage_providerIdx = _RANDOM[9'h179][6:5];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_49_tage_providerHit = _RANDOM[9'h179][7];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_49_tage_providerCtr = _RANDOM[9'h179][10:8];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_49_tage_altTaken = _RANDOM[9'h179][11];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_49_tage_providerU = _RANDOM[9'h179][13:12];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_49_ittage_providerIdx = _RANDOM[9'h179][15:14];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_49_ittage_providerHit = _RANDOM[9'h179][16];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_49_ittage_altTarget =
+          {_RANDOM[9'h179][31:17], _RANDOM[9'h17A], _RANDOM[9'h17B][16:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_49_ittage_providerU = _RANDOM[9'h17B][18:17];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_50_ghr =
+          {_RANDOM[9'h17B][31:19],
+           _RANDOM[9'h17C],
            _RANDOM[9'h17D],
            _RANDOM[9'h17E],
-           _RANDOM[9'h17F],
-           _RANDOM[9'h180][2:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_58_tage_providerIdx = _RANDOM[9'h180][4:3];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_58_tage_providerHit = _RANDOM[9'h180][5];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_58_tage_providerCtr = _RANDOM[9'h180][8:6];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_58_tage_altTaken = _RANDOM[9'h180][9];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_58_tage_providerU = _RANDOM[9'h180][11:10];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_58_ittage_providerIdx = _RANDOM[9'h180][13:12];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_58_ittage_providerHit = _RANDOM[9'h180][14];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_58_ittage_altTarget =
-          {_RANDOM[9'h180][31:15], _RANDOM[9'h181], _RANDOM[9'h182][14:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_58_ittage_providerU = _RANDOM[9'h182][16:15];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_59_ghr =
-          {_RANDOM[9'h182][31:17],
-           _RANDOM[9'h183],
+           _RANDOM[9'h17F][18:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_50_phr = {_RANDOM[9'h17F][31:19], _RANDOM[9'h180][18:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_50_tage_providerIdx = _RANDOM[9'h180][20:19];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_50_tage_providerHit = _RANDOM[9'h180][21];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_50_tage_providerCtr = _RANDOM[9'h180][24:22];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_50_tage_altTaken = _RANDOM[9'h180][25];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_50_tage_providerU = _RANDOM[9'h180][27:26];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_50_ittage_providerIdx = _RANDOM[9'h180][29:28];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_50_ittage_providerHit = _RANDOM[9'h180][30];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_50_ittage_altTarget =
+          {_RANDOM[9'h180][31], _RANDOM[9'h181], _RANDOM[9'h182][30:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_50_ittage_providerU = {_RANDOM[9'h182][31], _RANDOM[9'h183][0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_51_ghr =
+          {_RANDOM[9'h183][31:1],
            _RANDOM[9'h184],
            _RANDOM[9'h185],
-           _RANDOM[9'h186][16:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_59_tage_providerIdx = _RANDOM[9'h186][18:17];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_59_tage_providerHit = _RANDOM[9'h186][19];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_59_tage_providerCtr = _RANDOM[9'h186][22:20];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_59_tage_altTaken = _RANDOM[9'h186][23];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_59_tage_providerU = _RANDOM[9'h186][25:24];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_59_ittage_providerIdx = _RANDOM[9'h186][27:26];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_59_ittage_providerHit = _RANDOM[9'h186][28];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_59_ittage_altTarget =
-          {_RANDOM[9'h186][31:29], _RANDOM[9'h187], _RANDOM[9'h188][28:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_59_ittage_providerU = _RANDOM[9'h188][30:29];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_60_ghr =
-          {_RANDOM[9'h188][31],
-           _RANDOM[9'h189],
-           _RANDOM[9'h18A],
+           _RANDOM[9'h186],
+           _RANDOM[9'h187][0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_51_phr = {_RANDOM[9'h187][31:1], _RANDOM[9'h188][0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_51_tage_providerIdx = _RANDOM[9'h188][2:1];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_51_tage_providerHit = _RANDOM[9'h188][3];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_51_tage_providerCtr = _RANDOM[9'h188][6:4];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_51_tage_altTaken = _RANDOM[9'h188][7];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_51_tage_providerU = _RANDOM[9'h188][9:8];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_51_ittage_providerIdx = _RANDOM[9'h188][11:10];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_51_ittage_providerHit = _RANDOM[9'h188][12];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_51_ittage_altTarget =
+          {_RANDOM[9'h188][31:13], _RANDOM[9'h189], _RANDOM[9'h18A][12:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_51_ittage_providerU = _RANDOM[9'h18A][14:13];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_52_ghr =
+          {_RANDOM[9'h18A][31:15],
            _RANDOM[9'h18B],
-           _RANDOM[9'h18C][30:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_60_tage_providerIdx = {_RANDOM[9'h18C][31], _RANDOM[9'h18D][0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_60_tage_providerHit = _RANDOM[9'h18D][1];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_60_tage_providerCtr = _RANDOM[9'h18D][4:2];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_60_tage_altTaken = _RANDOM[9'h18D][5];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_60_tage_providerU = _RANDOM[9'h18D][7:6];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_60_ittage_providerIdx = _RANDOM[9'h18D][9:8];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_60_ittage_providerHit = _RANDOM[9'h18D][10];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_60_ittage_altTarget =
-          {_RANDOM[9'h18D][31:11], _RANDOM[9'h18E], _RANDOM[9'h18F][10:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_60_ittage_providerU = _RANDOM[9'h18F][12:11];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_61_ghr =
-          {_RANDOM[9'h18F][31:13],
-           _RANDOM[9'h190],
-           _RANDOM[9'h191],
+           _RANDOM[9'h18C],
+           _RANDOM[9'h18D],
+           _RANDOM[9'h18E][14:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_52_phr = {_RANDOM[9'h18E][31:15], _RANDOM[9'h18F][14:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_52_tage_providerIdx = _RANDOM[9'h18F][16:15];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_52_tage_providerHit = _RANDOM[9'h18F][17];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_52_tage_providerCtr = _RANDOM[9'h18F][20:18];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_52_tage_altTaken = _RANDOM[9'h18F][21];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_52_tage_providerU = _RANDOM[9'h18F][23:22];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_52_ittage_providerIdx = _RANDOM[9'h18F][25:24];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_52_ittage_providerHit = _RANDOM[9'h18F][26];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_52_ittage_altTarget =
+          {_RANDOM[9'h18F][31:27], _RANDOM[9'h190], _RANDOM[9'h191][26:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_52_ittage_providerU = _RANDOM[9'h191][28:27];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_53_ghr =
+          {_RANDOM[9'h191][31:29],
            _RANDOM[9'h192],
-           _RANDOM[9'h193][12:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_61_tage_providerIdx = _RANDOM[9'h193][14:13];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_61_tage_providerHit = _RANDOM[9'h193][15];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_61_tage_providerCtr = _RANDOM[9'h193][18:16];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_61_tage_altTaken = _RANDOM[9'h193][19];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_61_tage_providerU = _RANDOM[9'h193][21:20];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_61_ittage_providerIdx = _RANDOM[9'h193][23:22];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_61_ittage_providerHit = _RANDOM[9'h193][24];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
+           _RANDOM[9'h193],
+           _RANDOM[9'h194],
+           _RANDOM[9'h195][28:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_53_phr = {_RANDOM[9'h195][31:29], _RANDOM[9'h196][28:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_53_tage_providerIdx = _RANDOM[9'h196][30:29];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_53_tage_providerHit = _RANDOM[9'h196][31];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_53_tage_providerCtr = _RANDOM[9'h197][2:0];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_53_tage_altTaken = _RANDOM[9'h197][3];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_53_tage_providerU = _RANDOM[9'h197][5:4];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_53_ittage_providerIdx = _RANDOM[9'h197][7:6];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_53_ittage_providerHit = _RANDOM[9'h197][8];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_53_ittage_altTarget =
+          {_RANDOM[9'h197][31:9], _RANDOM[9'h198], _RANDOM[9'h199][8:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_53_ittage_providerU = _RANDOM[9'h199][10:9];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_54_ghr =
+          {_RANDOM[9'h199][31:11],
+           _RANDOM[9'h19A],
+           _RANDOM[9'h19B],
+           _RANDOM[9'h19C],
+           _RANDOM[9'h19D][10:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_54_phr = {_RANDOM[9'h19D][31:11], _RANDOM[9'h19E][10:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_54_tage_providerIdx = _RANDOM[9'h19E][12:11];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_54_tage_providerHit = _RANDOM[9'h19E][13];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_54_tage_providerCtr = _RANDOM[9'h19E][16:14];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_54_tage_altTaken = _RANDOM[9'h19E][17];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_54_tage_providerU = _RANDOM[9'h19E][19:18];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_54_ittage_providerIdx = _RANDOM[9'h19E][21:20];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_54_ittage_providerHit = _RANDOM[9'h19E][22];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_54_ittage_altTarget =
+          {_RANDOM[9'h19E][31:23], _RANDOM[9'h19F], _RANDOM[9'h1A0][22:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_54_ittage_providerU = _RANDOM[9'h1A0][24:23];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_55_ghr =
+          {_RANDOM[9'h1A0][31:25],
+           _RANDOM[9'h1A1],
+           _RANDOM[9'h1A2],
+           _RANDOM[9'h1A3],
+           _RANDOM[9'h1A4][24:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_55_phr = {_RANDOM[9'h1A4][31:25], _RANDOM[9'h1A5][24:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_55_tage_providerIdx = _RANDOM[9'h1A5][26:25];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_55_tage_providerHit = _RANDOM[9'h1A5][27];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_55_tage_providerCtr = _RANDOM[9'h1A5][30:28];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_55_tage_altTaken = _RANDOM[9'h1A5][31];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_55_tage_providerU = _RANDOM[9'h1A6][1:0];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_55_ittage_providerIdx = _RANDOM[9'h1A6][3:2];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_55_ittage_providerHit = _RANDOM[9'h1A6][4];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_55_ittage_altTarget =
+          {_RANDOM[9'h1A6][31:5], _RANDOM[9'h1A7], _RANDOM[9'h1A8][4:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_55_ittage_providerU = _RANDOM[9'h1A8][6:5];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_56_ghr =
+          {_RANDOM[9'h1A8][31:7],
+           _RANDOM[9'h1A9],
+           _RANDOM[9'h1AA],
+           _RANDOM[9'h1AB],
+           _RANDOM[9'h1AC][6:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_56_phr = {_RANDOM[9'h1AC][31:7], _RANDOM[9'h1AD][6:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_56_tage_providerIdx = _RANDOM[9'h1AD][8:7];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_56_tage_providerHit = _RANDOM[9'h1AD][9];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_56_tage_providerCtr = _RANDOM[9'h1AD][12:10];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_56_tage_altTaken = _RANDOM[9'h1AD][13];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_56_tage_providerU = _RANDOM[9'h1AD][15:14];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_56_ittage_providerIdx = _RANDOM[9'h1AD][17:16];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_56_ittage_providerHit = _RANDOM[9'h1AD][18];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_56_ittage_altTarget =
+          {_RANDOM[9'h1AD][31:19], _RANDOM[9'h1AE], _RANDOM[9'h1AF][18:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_56_ittage_providerU = _RANDOM[9'h1AF][20:19];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_57_ghr =
+          {_RANDOM[9'h1AF][31:21],
+           _RANDOM[9'h1B0],
+           _RANDOM[9'h1B1],
+           _RANDOM[9'h1B2],
+           _RANDOM[9'h1B3][20:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_57_phr = {_RANDOM[9'h1B3][31:21], _RANDOM[9'h1B4][20:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_57_tage_providerIdx = _RANDOM[9'h1B4][22:21];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_57_tage_providerHit = _RANDOM[9'h1B4][23];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_57_tage_providerCtr = _RANDOM[9'h1B4][26:24];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_57_tage_altTaken = _RANDOM[9'h1B4][27];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_57_tage_providerU = _RANDOM[9'h1B4][29:28];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_57_ittage_providerIdx = _RANDOM[9'h1B4][31:30];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_57_ittage_providerHit = _RANDOM[9'h1B5][0];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_57_ittage_altTarget =
+          {_RANDOM[9'h1B5][31:1], _RANDOM[9'h1B6], _RANDOM[9'h1B7][0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_57_ittage_providerU = _RANDOM[9'h1B7][2:1];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_58_ghr =
+          {_RANDOM[9'h1B7][31:3],
+           _RANDOM[9'h1B8],
+           _RANDOM[9'h1B9],
+           _RANDOM[9'h1BA],
+           _RANDOM[9'h1BB][2:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_58_phr = {_RANDOM[9'h1BB][31:3], _RANDOM[9'h1BC][2:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_58_tage_providerIdx = _RANDOM[9'h1BC][4:3];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_58_tage_providerHit = _RANDOM[9'h1BC][5];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_58_tage_providerCtr = _RANDOM[9'h1BC][8:6];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_58_tage_altTaken = _RANDOM[9'h1BC][9];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_58_tage_providerU = _RANDOM[9'h1BC][11:10];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_58_ittage_providerIdx = _RANDOM[9'h1BC][13:12];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_58_ittage_providerHit = _RANDOM[9'h1BC][14];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_58_ittage_altTarget =
+          {_RANDOM[9'h1BC][31:15], _RANDOM[9'h1BD], _RANDOM[9'h1BE][14:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_58_ittage_providerU = _RANDOM[9'h1BE][16:15];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_59_ghr =
+          {_RANDOM[9'h1BE][31:17],
+           _RANDOM[9'h1BF],
+           _RANDOM[9'h1C0],
+           _RANDOM[9'h1C1],
+           _RANDOM[9'h1C2][16:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_59_phr = {_RANDOM[9'h1C2][31:17], _RANDOM[9'h1C3][16:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_59_tage_providerIdx = _RANDOM[9'h1C3][18:17];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_59_tage_providerHit = _RANDOM[9'h1C3][19];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_59_tage_providerCtr = _RANDOM[9'h1C3][22:20];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_59_tage_altTaken = _RANDOM[9'h1C3][23];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_59_tage_providerU = _RANDOM[9'h1C3][25:24];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_59_ittage_providerIdx = _RANDOM[9'h1C3][27:26];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_59_ittage_providerHit = _RANDOM[9'h1C3][28];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_59_ittage_altTarget =
+          {_RANDOM[9'h1C3][31:29], _RANDOM[9'h1C4], _RANDOM[9'h1C5][28:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_59_ittage_providerU = _RANDOM[9'h1C5][30:29];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_60_ghr =
+          {_RANDOM[9'h1C5][31],
+           _RANDOM[9'h1C6],
+           _RANDOM[9'h1C7],
+           _RANDOM[9'h1C8],
+           _RANDOM[9'h1C9][30:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_60_phr = {_RANDOM[9'h1C9][31], _RANDOM[9'h1CA][30:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_60_tage_providerIdx = {_RANDOM[9'h1CA][31], _RANDOM[9'h1CB][0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_60_tage_providerHit = _RANDOM[9'h1CB][1];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_60_tage_providerCtr = _RANDOM[9'h1CB][4:2];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_60_tage_altTaken = _RANDOM[9'h1CB][5];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_60_tage_providerU = _RANDOM[9'h1CB][7:6];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_60_ittage_providerIdx = _RANDOM[9'h1CB][9:8];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_60_ittage_providerHit = _RANDOM[9'h1CB][10];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_60_ittage_altTarget =
+          {_RANDOM[9'h1CB][31:11], _RANDOM[9'h1CC], _RANDOM[9'h1CD][10:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_60_ittage_providerU = _RANDOM[9'h1CD][12:11];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_61_ghr =
+          {_RANDOM[9'h1CD][31:13],
+           _RANDOM[9'h1CE],
+           _RANDOM[9'h1CF],
+           _RANDOM[9'h1D0],
+           _RANDOM[9'h1D1][12:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_61_phr = {_RANDOM[9'h1D1][31:13], _RANDOM[9'h1D2][12:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_61_tage_providerIdx = _RANDOM[9'h1D2][14:13];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_61_tage_providerHit = _RANDOM[9'h1D2][15];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_61_tage_providerCtr = _RANDOM[9'h1D2][18:16];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_61_tage_altTaken = _RANDOM[9'h1D2][19];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_61_tage_providerU = _RANDOM[9'h1D2][21:20];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_61_ittage_providerIdx = _RANDOM[9'h1D2][23:22];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_61_ittage_providerHit = _RANDOM[9'h1D2][24];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
         meta_storage_61_ittage_altTarget =
-          {_RANDOM[9'h193][31:25], _RANDOM[9'h194], _RANDOM[9'h195][24:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_61_ittage_providerU = _RANDOM[9'h195][26:25];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
+          {_RANDOM[9'h1D2][31:25], _RANDOM[9'h1D3], _RANDOM[9'h1D4][24:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_61_ittage_providerU = _RANDOM[9'h1D4][26:25];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
         meta_storage_62_ghr =
-          {_RANDOM[9'h195][31:27],
-           _RANDOM[9'h196],
-           _RANDOM[9'h197],
-           _RANDOM[9'h198],
-           _RANDOM[9'h199][26:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_62_tage_providerIdx = _RANDOM[9'h199][28:27];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_62_tage_providerHit = _RANDOM[9'h199][29];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_62_tage_providerCtr = {_RANDOM[9'h199][31:30], _RANDOM[9'h19A][0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_62_tage_altTaken = _RANDOM[9'h19A][1];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_62_tage_providerU = _RANDOM[9'h19A][3:2];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_62_ittage_providerIdx = _RANDOM[9'h19A][5:4];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_62_ittage_providerHit = _RANDOM[9'h19A][6];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
+          {_RANDOM[9'h1D4][31:27],
+           _RANDOM[9'h1D5],
+           _RANDOM[9'h1D6],
+           _RANDOM[9'h1D7],
+           _RANDOM[9'h1D8][26:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_62_phr = {_RANDOM[9'h1D8][31:27], _RANDOM[9'h1D9][26:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_62_tage_providerIdx = _RANDOM[9'h1D9][28:27];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_62_tage_providerHit = _RANDOM[9'h1D9][29];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_62_tage_providerCtr = {_RANDOM[9'h1D9][31:30], _RANDOM[9'h1DA][0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_62_tage_altTaken = _RANDOM[9'h1DA][1];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_62_tage_providerU = _RANDOM[9'h1DA][3:2];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_62_ittage_providerIdx = _RANDOM[9'h1DA][5:4];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_62_ittage_providerHit = _RANDOM[9'h1DA][6];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
         meta_storage_62_ittage_altTarget =
-          {_RANDOM[9'h19A][31:7], _RANDOM[9'h19B], _RANDOM[9'h19C][6:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_62_ittage_providerU = _RANDOM[9'h19C][8:7];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
+          {_RANDOM[9'h1DA][31:7], _RANDOM[9'h1DB], _RANDOM[9'h1DC][6:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_62_ittage_providerU = _RANDOM[9'h1DC][8:7];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
         meta_storage_63_ghr =
-          {_RANDOM[9'h19C][31:9],
-           _RANDOM[9'h19D],
-           _RANDOM[9'h19E],
-           _RANDOM[9'h19F],
-           _RANDOM[9'h1A0][8:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_63_tage_providerIdx = _RANDOM[9'h1A0][10:9];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_63_tage_providerHit = _RANDOM[9'h1A0][11];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_63_tage_providerCtr = _RANDOM[9'h1A0][14:12];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_63_tage_altTaken = _RANDOM[9'h1A0][15];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_63_tage_providerU = _RANDOM[9'h1A0][17:16];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_63_ittage_providerIdx = _RANDOM[9'h1A0][19:18];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_63_ittage_providerHit = _RANDOM[9'h1A0][20];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
+          {_RANDOM[9'h1DC][31:9],
+           _RANDOM[9'h1DD],
+           _RANDOM[9'h1DE],
+           _RANDOM[9'h1DF],
+           _RANDOM[9'h1E0][8:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_63_phr = {_RANDOM[9'h1E0][31:9], _RANDOM[9'h1E1][8:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_63_tage_providerIdx = _RANDOM[9'h1E1][10:9];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_63_tage_providerHit = _RANDOM[9'h1E1][11];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_63_tage_providerCtr = _RANDOM[9'h1E1][14:12];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_63_tage_altTaken = _RANDOM[9'h1E1][15];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_63_tage_providerU = _RANDOM[9'h1E1][17:16];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_63_ittage_providerIdx = _RANDOM[9'h1E1][19:18];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_63_ittage_providerHit = _RANDOM[9'h1E1][20];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
         meta_storage_63_ittage_altTarget =
-          {_RANDOM[9'h1A0][31:21], _RANDOM[9'h1A1], _RANDOM[9'h1A2][20:0]};	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
-        meta_storage_63_ittage_providerU = _RANDOM[9'h1A2][22:21];	// frontend/src/zaqal/frontend/BPU.scala:25:7, :52:25
+          {_RANDOM[9'h1E1][31:21], _RANDOM[9'h1E2], _RANDOM[9'h1E3][20:0]};	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
+        meta_storage_63_ittage_providerU = _RANDOM[9'h1E3][22:21];	// frontend/src/zaqal/frontend/BPU.scala:26:7, :57:25
       `endif // RANDOMIZE_REG_INIT
     end // initial
-    `ifdef FIRRTL_AFTER_INITIAL	// frontend/src/zaqal/frontend/BPU.scala:25:7
-      `FIRRTL_AFTER_INITIAL	// frontend/src/zaqal/frontend/BPU.scala:25:7
+    `ifdef FIRRTL_AFTER_INITIAL	// frontend/src/zaqal/frontend/BPU.scala:26:7
+      `FIRRTL_AFTER_INITIAL	// frontend/src/zaqal/frontend/BPU.scala:26:7
     `endif // FIRRTL_AFTER_INITIAL
   `endif // ENABLE_INITIAL_REG_
-  FTB ftb (	// frontend/src/zaqal/frontend/BPU.scala:39:19
+  FTB ftb (	// frontend/src/zaqal/frontend/BPU.scala:44:19
     .clock             (clock),
     .reset             (reset),
-    .io_req_pc         (s0_pc),	// frontend/src/zaqal/frontend/BPU.scala:31:25
+    .io_req_pc         (s0_pc),	// frontend/src/zaqal/frontend/BPU.scala:32:25
     .io_hit            (_ftb_io_hit),
     .io_target         (_ftb_io_target),
     .io_taken          (_ftb_io_taken),
     .io_slot           (_ftb_io_slot),
     .io_br_type        (_ftb_io_br_type),
-    .io_update_valid   (io_redirect_valid & ~io_redirect_is_exception),	// frontend/src/zaqal/frontend/BPU.scala:72:{45,48}
+    .io_update_valid   (io_redirect_valid & ~io_redirect_is_exception),	// frontend/src/zaqal/frontend/BPU.scala:77:{45,48}
     .io_update_pc      (io_redirect_pc),
     .io_update_target  (io_redirect_target),
     .io_update_taken   (io_redirect_taken),
     .io_update_is_cfi  (io_redirect_is_cfi),
+    .io_update_is_jal  (io_redirect_is_jal),
     .io_update_is_jalr (io_redirect_is_jalr)
   );
-  TagePredictor tage (	// frontend/src/zaqal/frontend/BPU.scala:40:20
+  TagePredictor tage (	// frontend/src/zaqal/frontend/BPU.scala:45:20
     .clock               (clock),
     .reset               (reset),
-    .io_req_pc           (s0_pc),	// frontend/src/zaqal/frontend/BPU.scala:31:25
-    .io_req_ghr          (ghr),	// frontend/src/zaqal/frontend/BPU.scala:36:20
+    .io_req_pc           (s0_pc),	// frontend/src/zaqal/frontend/BPU.scala:32:25
+    .io_req_ghr          (ghr),	// frontend/src/zaqal/frontend/BPU.scala:37:20
     .io_pred_providerIdx (_tage_io_pred_providerIdx),
     .io_pred_taken       (_tage_io_pred_taken),
     .io_pred_altTaken    (_tage_io_pred_altTaken),
@@ -3987,21 +4337,21 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:25:7
     .io_pred_hit         (_tage_io_pred_hit),
     .io_update_valid
       (io_redirect_valid & ~io_redirect_is_exception & io_redirect_is_cfi
-       & ~io_redirect_is_jalr),	// frontend/src/zaqal/frontend/BPU.scala:72:48, :82:{96,99}
-    .io_update_pc        (aligned_update_pc),	// frontend/src/zaqal/frontend/BPU.scala:79:42
-    .io_update_ghr       (casez_tmp),	// frontend/src/zaqal/frontend/BPU.scala:84:24
+       & ~io_redirect_is_jal & ~io_redirect_is_jalr),	// frontend/src/zaqal/frontend/BPU.scala:77:48, :88:{99,119,122}
+    .io_update_pc        (aligned_update_pc),	// frontend/src/zaqal/frontend/BPU.scala:85:42
+    .io_update_ghr       (casez_tmp),	// frontend/src/zaqal/frontend/BPU.scala:90:24
     .io_update_dir       (io_redirect_taken),
-    .io_providerIdx      (casez_tmp_0),	// frontend/src/zaqal/frontend/BPU.scala:84:24
-    .io_providerHit      (casez_tmp_1),	// frontend/src/zaqal/frontend/BPU.scala:84:24
-    .io_providerCtr      (casez_tmp_2),	// frontend/src/zaqal/frontend/BPU.scala:84:24
-    .io_altTaken         (casez_tmp_3),	// frontend/src/zaqal/frontend/BPU.scala:84:24
-    .io_providerU        (casez_tmp_4)	// frontend/src/zaqal/frontend/BPU.scala:84:24
+    .io_providerIdx      (casez_tmp_1),	// frontend/src/zaqal/frontend/BPU.scala:90:24
+    .io_providerHit      (casez_tmp_2),	// frontend/src/zaqal/frontend/BPU.scala:90:24
+    .io_providerCtr      (casez_tmp_3),	// frontend/src/zaqal/frontend/BPU.scala:90:24
+    .io_altTaken         (casez_tmp_4),	// frontend/src/zaqal/frontend/BPU.scala:90:24
+    .io_providerU        (casez_tmp_5)	// frontend/src/zaqal/frontend/BPU.scala:90:24
   );
-  ITTagePredictor ittage (	// frontend/src/zaqal/frontend/BPU.scala:41:22
+  ITTagePredictor ittage (	// frontend/src/zaqal/frontend/BPU.scala:46:22
     .clock               (clock),
     .reset               (reset),
-    .io_req_pc           (s0_pc),	// frontend/src/zaqal/frontend/BPU.scala:31:25
-    .io_req_ghr          (ghr),	// frontend/src/zaqal/frontend/BPU.scala:36:20
+    .io_req_pc           (s0_pc),	// frontend/src/zaqal/frontend/BPU.scala:32:25
+    .io_req_phr          (phr),	// frontend/src/zaqal/frontend/BPU.scala:41:20
     .io_pred_providerIdx (_ittage_io_pred_providerIdx),
     .io_pred_target      (_ittage_io_pred_target),
     .io_pred_altTarget   (_ittage_io_pred_altTarget),
@@ -4009,24 +4359,24 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:25:7
     .io_pred_hit         (_ittage_io_pred_hit),
     .io_update_valid
       (io_redirect_valid & ~io_redirect_is_exception & io_redirect_is_cfi
-       & io_redirect_is_jalr),	// frontend/src/zaqal/frontend/BPU.scala:72:48, :93:99
-    .io_update_pc        (aligned_update_pc),	// frontend/src/zaqal/frontend/BPU.scala:79:42
-    .io_update_ghr       (casez_tmp),	// frontend/src/zaqal/frontend/BPU.scala:84:24
+       & io_redirect_is_jalr),	// frontend/src/zaqal/frontend/BPU.scala:77:48, :99:99
+    .io_update_pc        (aligned_update_pc),	// frontend/src/zaqal/frontend/BPU.scala:85:42
+    .io_update_phr       (casez_tmp_0),	// frontend/src/zaqal/frontend/BPU.scala:90:24
     .io_update_target    (io_redirect_target),
-    .io_providerIdx      (casez_tmp_5),	// frontend/src/zaqal/frontend/BPU.scala:84:24
-    .io_providerHit      (casez_tmp_6),	// frontend/src/zaqal/frontend/BPU.scala:84:24
-    .io_altTarget        (casez_tmp_7),	// frontend/src/zaqal/frontend/BPU.scala:84:24
-    .io_providerU        (casez_tmp_8)	// frontend/src/zaqal/frontend/BPU.scala:84:24
+    .io_providerIdx      (casez_tmp_6),	// frontend/src/zaqal/frontend/BPU.scala:90:24
+    .io_providerHit      (casez_tmp_7),	// frontend/src/zaqal/frontend/BPU.scala:90:24
+    .io_altTarget        (casez_tmp_8),	// frontend/src/zaqal/frontend/BPU.scala:90:24
+    .io_providerU        (casez_tmp_9)	// frontend/src/zaqal/frontend/BPU.scala:90:24
   );
-  assign io_out_valid = ~reset;	// frontend/src/zaqal/frontend/BPU.scala:25:7, :162:19
-  assign io_out_bits_pc = s0_pc;	// frontend/src/zaqal/frontend/BPU.scala:25:7, :31:25
+  assign io_out_valid = ~reset;	// frontend/src/zaqal/frontend/BPU.scala:26:7, :186:19
+  assign io_out_bits_pc = s0_pc;	// frontend/src/zaqal/frontend/BPU.scala:26:7, :32:25
   assign io_out_bits_mask =
     ({16{~meta_taken}} | 16'hFFFF >> 4'hF
-     - ((&_ftb_io_slot) ? 4'hF : _ftb_io_slot + 4'h1))
-    & (io_redirect_valid ? _redirect_mask_T_2[15:0] : mask_reg);	// frontend/src/zaqal/frontend/BPU.scala:25:7, :32:{25,30}, :39:19, :65:24, :142:25, :144:{55,108}, :146:18, :149:28, :165:{23,34,92}, :166:{45,70}, :167:32
-  assign io_out_bits_prediction_target = meta_target;	// frontend/src/zaqal/frontend/BPU.scala:25:7, :135:21
-  assign io_out_bits_prediction_taken = meta_taken;	// frontend/src/zaqal/frontend/BPU.scala:25:7, :65:24
-  assign io_out_bits_prediction_slot = _ftb_io_slot;	// frontend/src/zaqal/frontend/BPU.scala:25:7, :39:19
-  assign io_out_bits_ftqPtr = bpu_enq_ptr;	// frontend/src/zaqal/frontend/BPU.scala:25:7, :44:28
+     - ((&_ftb_io_slot) ? 4'hF : _ftb_io_slot + 4'h1)) & current_mask;	// frontend/src/zaqal/frontend/BPU.scala:26:7, :33:30, :44:19, :116:30, :119:25, :123:18, :126:28, :189:{23,34,92}, :190:{45,70}, :191:32
+  assign io_out_bits_prediction_target = meta_target;	// frontend/src/zaqal/frontend/BPU.scala:26:7, :115:21
+  assign io_out_bits_prediction_taken = meta_taken;	// frontend/src/zaqal/frontend/BPU.scala:26:7, :116:30
+  assign io_out_bits_prediction_slot = _ftb_io_slot;	// frontend/src/zaqal/frontend/BPU.scala:26:7, :44:19
+  assign io_out_bits_ftqPtr = bpu_enq_ptr;	// frontend/src/zaqal/frontend/BPU.scala:26:7, :49:28
+  assign io_out_bits_epoch = epoch;	// frontend/src/zaqal/frontend/BPU.scala:26:7, :34:25
 endmodule
 

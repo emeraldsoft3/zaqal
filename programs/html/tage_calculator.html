@@ -350,6 +350,30 @@
             </div>
         </div>
     </div>
+    
+    <!-- Useful & Counter Update Rules Card -->
+    <div class="card" style="margin-top: 1rem; border-color: rgba(129, 140, 248, 0.2);">
+        <h2 style="color: #818cf8;">Useful (u) Bit & Counter Update Rules</h2>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; font-size: 0.95rem; line-height: 1.6; color: var(--text-muted);">
+            <div>
+                <strong style="color: var(--text-main); display: block; margin-bottom: 0.5rem;">Useful Bit (u) Rules (2-bit range: 0 to 3)</strong>
+                <ul style="padding-left: 1.2rem; margin-bottom: 1rem;">
+                    <li><strong>Initial Value / Allocation:</strong> Set to <code style="color: var(--success);">u = 0</code> when a new entry is allocated.</li>
+                    <li><strong>Correct Prediction:</strong> If this provider entry predicts correctly AND the alternative prediction differed, increment usefulness: <code style="color: var(--success);">u := min(u + 1, 3)</code>.</li>
+                    <li><strong>Incorrect Prediction:</strong> If this provider entry predicted incorrectly, decrement usefulness: <code style="color: var(--accent);">u := max(u - 1, 0)</code>.</li>
+                    <li><strong>Decay:</strong> On allocation failure (all allocation targets have <code style="color: var(--primary);">u &gt; 0</code>), decrement all targets by 1.</li>
+                </ul>
+            </div>
+            <div>
+                <strong style="color: var(--text-main); display: block; margin-bottom: 0.5rem;">Counter (ctr) Rules (3-bit range: 0 to 7)</strong>
+                <ul style="padding-left: 1.2rem;">
+                    <li><strong>Allocation Counter:</strong> Initialized to weakly taken (<code style="color: var(--primary);">ctr = 4</code>) if actual direction is Taken, or weakly not-taken (<code style="color: var(--primary);">ctr = 3</code>) if actual direction is Not-Taken.</li>
+                    <li><strong>Correct Prediction (Taken):</strong> Increment counter: <code style="color: var(--success);">ctr := min(ctr + 1, 7)</code>.</li>
+                    <li><strong>Incorrect Prediction (Not-Taken):</strong> Decrement counter: <code style="color: var(--accent);">ctr := max(ctr - 1, 0)</code>.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
 
     <!-- Output Cards Container -->
     <div class="card">

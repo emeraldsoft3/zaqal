@@ -39,7 +39,7 @@ class Frontend(implicit val p: Parameters) extends Module with HasZaqalParameter
 
   // Epoch Check Reg
   val fetch_epoch = RegInit(false.B)
-  val is_valid_redirect = io.redirect.valid
+  val is_valid_redirect = io.redirect.valid && (io.redirect.epoch === fetch_epoch)
 
   when(is_valid_redirect) {
     fetch_epoch := ~fetch_epoch
@@ -105,7 +105,7 @@ class Frontend(implicit val p: Parameters) extends Module with HasZaqalParameter
   ftq.io.flush := is_valid_redirect
   ibuf.io.flush := is_valid_redirect
   
-  bpu.io.redirect.valid  := io.redirect.valid
+  bpu.io.redirect.valid  := is_valid_redirect
   bpu.io.redirect.target := io.redirect.target
   bpu.io.redirect.epoch  := io.redirect.epoch
   bpu.io.redirect.is_exception := io.redirect.is_exception

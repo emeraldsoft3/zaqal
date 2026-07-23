@@ -81,10 +81,12 @@ module Core(	// zaqal/src/zaqal/Core.scala:13:7
   wire        _backend_io_dispatch_5_ready;	// zaqal/src/zaqal/Core.scala:49:24
   wire        _backend_io_redirect_valid;	// zaqal/src/zaqal/Core.scala:49:24
   wire [63:0] _backend_io_redirect_target;	// zaqal/src/zaqal/Core.scala:49:24
+  wire        _backend_io_redirect_epoch;	// zaqal/src/zaqal/Core.scala:49:24
   wire        _backend_io_redirect_is_exception;	// zaqal/src/zaqal/Core.scala:49:24
   wire [63:0] _backend_io_redirect_pc;	// zaqal/src/zaqal/Core.scala:49:24
   wire        _backend_io_redirect_taken;	// zaqal/src/zaqal/Core.scala:49:24
   wire        _backend_io_redirect_is_cfi;	// zaqal/src/zaqal/Core.scala:49:24
+  wire        _backend_io_redirect_is_jal;	// zaqal/src/zaqal/Core.scala:49:24
   wire        _backend_io_redirect_is_jalr;	// zaqal/src/zaqal/Core.scala:49:24
   wire [5:0]  _backend_io_redirect_ftqPtr;	// zaqal/src/zaqal/Core.scala:49:24
   wire [63:0] _backend_io_debug_regs_0;	// zaqal/src/zaqal/Core.scala:49:24
@@ -478,6 +480,7 @@ module Core(	// zaqal/src/zaqal/Core.scala:13:7
   wire [31:0] _frontend_io_dispatch_0_bits_pre_expanded_inst;	// zaqal/src/zaqal/Core.scala:48:24
   wire [5:0]  _frontend_io_dispatch_0_bits_ftqPtr;	// zaqal/src/zaqal/Core.scala:48:24
   wire        _frontend_io_dispatch_0_bits_is_predicted_taken;	// zaqal/src/zaqal/Core.scala:48:24
+  wire        _frontend_io_dispatch_0_bits_epoch;	// zaqal/src/zaqal/Core.scala:48:24
   wire        _frontend_io_dispatch_1_valid;	// zaqal/src/zaqal/Core.scala:48:24
   wire [63:0] _frontend_io_dispatch_1_bits_pc;	// zaqal/src/zaqal/Core.scala:48:24
   wire [31:0] _frontend_io_dispatch_1_bits_inst_raw;	// zaqal/src/zaqal/Core.scala:48:24
@@ -485,6 +488,7 @@ module Core(	// zaqal/src/zaqal/Core.scala:13:7
   wire [31:0] _frontend_io_dispatch_1_bits_pre_expanded_inst;	// zaqal/src/zaqal/Core.scala:48:24
   wire [5:0]  _frontend_io_dispatch_1_bits_ftqPtr;	// zaqal/src/zaqal/Core.scala:48:24
   wire        _frontend_io_dispatch_1_bits_is_predicted_taken;	// zaqal/src/zaqal/Core.scala:48:24
+  wire        _frontend_io_dispatch_1_bits_epoch;	// zaqal/src/zaqal/Core.scala:48:24
   wire        _frontend_io_dispatch_2_valid;	// zaqal/src/zaqal/Core.scala:48:24
   wire [63:0] _frontend_io_dispatch_2_bits_pc;	// zaqal/src/zaqal/Core.scala:48:24
   wire [31:0] _frontend_io_dispatch_2_bits_inst_raw;	// zaqal/src/zaqal/Core.scala:48:24
@@ -492,6 +496,7 @@ module Core(	// zaqal/src/zaqal/Core.scala:13:7
   wire [31:0] _frontend_io_dispatch_2_bits_pre_expanded_inst;	// zaqal/src/zaqal/Core.scala:48:24
   wire [5:0]  _frontend_io_dispatch_2_bits_ftqPtr;	// zaqal/src/zaqal/Core.scala:48:24
   wire        _frontend_io_dispatch_2_bits_is_predicted_taken;	// zaqal/src/zaqal/Core.scala:48:24
+  wire        _frontend_io_dispatch_2_bits_epoch;	// zaqal/src/zaqal/Core.scala:48:24
   wire        _frontend_io_dispatch_3_valid;	// zaqal/src/zaqal/Core.scala:48:24
   wire [63:0] _frontend_io_dispatch_3_bits_pc;	// zaqal/src/zaqal/Core.scala:48:24
   wire [31:0] _frontend_io_dispatch_3_bits_inst_raw;	// zaqal/src/zaqal/Core.scala:48:24
@@ -499,6 +504,7 @@ module Core(	// zaqal/src/zaqal/Core.scala:13:7
   wire [31:0] _frontend_io_dispatch_3_bits_pre_expanded_inst;	// zaqal/src/zaqal/Core.scala:48:24
   wire [5:0]  _frontend_io_dispatch_3_bits_ftqPtr;	// zaqal/src/zaqal/Core.scala:48:24
   wire        _frontend_io_dispatch_3_bits_is_predicted_taken;	// zaqal/src/zaqal/Core.scala:48:24
+  wire        _frontend_io_dispatch_3_bits_epoch;	// zaqal/src/zaqal/Core.scala:48:24
   wire        _frontend_io_dispatch_4_valid;	// zaqal/src/zaqal/Core.scala:48:24
   wire [63:0] _frontend_io_dispatch_4_bits_pc;	// zaqal/src/zaqal/Core.scala:48:24
   wire [31:0] _frontend_io_dispatch_4_bits_inst_raw;	// zaqal/src/zaqal/Core.scala:48:24
@@ -506,6 +512,7 @@ module Core(	// zaqal/src/zaqal/Core.scala:13:7
   wire [31:0] _frontend_io_dispatch_4_bits_pre_expanded_inst;	// zaqal/src/zaqal/Core.scala:48:24
   wire [5:0]  _frontend_io_dispatch_4_bits_ftqPtr;	// zaqal/src/zaqal/Core.scala:48:24
   wire        _frontend_io_dispatch_4_bits_is_predicted_taken;	// zaqal/src/zaqal/Core.scala:48:24
+  wire        _frontend_io_dispatch_4_bits_epoch;	// zaqal/src/zaqal/Core.scala:48:24
   wire        _frontend_io_dispatch_5_valid;	// zaqal/src/zaqal/Core.scala:48:24
   wire [63:0] _frontend_io_dispatch_5_bits_pc;	// zaqal/src/zaqal/Core.scala:48:24
   wire [31:0] _frontend_io_dispatch_5_bits_inst_raw;	// zaqal/src/zaqal/Core.scala:48:24
@@ -513,6 +520,7 @@ module Core(	// zaqal/src/zaqal/Core.scala:13:7
   wire [31:0] _frontend_io_dispatch_5_bits_pre_expanded_inst;	// zaqal/src/zaqal/Core.scala:48:24
   wire [5:0]  _frontend_io_dispatch_5_bits_ftqPtr;	// zaqal/src/zaqal/Core.scala:48:24
   wire        _frontend_io_dispatch_5_bits_is_predicted_taken;	// zaqal/src/zaqal/Core.scala:48:24
+  wire        _frontend_io_dispatch_5_bits_epoch;	// zaqal/src/zaqal/Core.scala:48:24
   wire [63:0] _frontend_io_debug_ftq_pc;	// zaqal/src/zaqal/Core.scala:48:24
   reg  [63:0] cycle_reg;	// zaqal/src/zaqal/Core.scala:44:26
   always @(posedge clock) begin	// zaqal/src/zaqal/Core.scala:13:7
@@ -546,10 +554,12 @@ module Core(	// zaqal/src/zaqal/Core.scala:13:7
     .reset                                         (reset),
     .io_redirect_valid                             (_backend_io_redirect_valid),	// zaqal/src/zaqal/Core.scala:49:24
     .io_redirect_target                            (_backend_io_redirect_target),	// zaqal/src/zaqal/Core.scala:49:24
+    .io_redirect_epoch                             (_backend_io_redirect_epoch),	// zaqal/src/zaqal/Core.scala:49:24
     .io_redirect_is_exception                      (_backend_io_redirect_is_exception),	// zaqal/src/zaqal/Core.scala:49:24
     .io_redirect_pc                                (_backend_io_redirect_pc),	// zaqal/src/zaqal/Core.scala:49:24
     .io_redirect_taken                             (_backend_io_redirect_taken),	// zaqal/src/zaqal/Core.scala:49:24
     .io_redirect_is_cfi                            (_backend_io_redirect_is_cfi),	// zaqal/src/zaqal/Core.scala:49:24
+    .io_redirect_is_jal                            (_backend_io_redirect_is_jal),	// zaqal/src/zaqal/Core.scala:49:24
     .io_redirect_is_jalr                           (_backend_io_redirect_is_jalr),	// zaqal/src/zaqal/Core.scala:49:24
     .io_redirect_ftqPtr                            (_backend_io_redirect_ftqPtr),	// zaqal/src/zaqal/Core.scala:49:24
     .io_dispatch_0_ready                           (_backend_io_dispatch_0_ready),	// zaqal/src/zaqal/Core.scala:49:24
@@ -564,6 +574,7 @@ module Core(	// zaqal/src/zaqal/Core.scala:13:7
     .io_dispatch_0_bits_ftqPtr                     (_frontend_io_dispatch_0_bits_ftqPtr),
     .io_dispatch_0_bits_is_predicted_taken
       (_frontend_io_dispatch_0_bits_is_predicted_taken),
+    .io_dispatch_0_bits_epoch                      (_frontend_io_dispatch_0_bits_epoch),
     .io_dispatch_1_ready                           (_backend_io_dispatch_1_ready),	// zaqal/src/zaqal/Core.scala:49:24
     .io_dispatch_1_valid                           (_frontend_io_dispatch_1_valid),
     .io_dispatch_1_bits_pc                         (_frontend_io_dispatch_1_bits_pc),
@@ -576,6 +587,7 @@ module Core(	// zaqal/src/zaqal/Core.scala:13:7
     .io_dispatch_1_bits_ftqPtr                     (_frontend_io_dispatch_1_bits_ftqPtr),
     .io_dispatch_1_bits_is_predicted_taken
       (_frontend_io_dispatch_1_bits_is_predicted_taken),
+    .io_dispatch_1_bits_epoch                      (_frontend_io_dispatch_1_bits_epoch),
     .io_dispatch_2_ready                           (_backend_io_dispatch_2_ready),	// zaqal/src/zaqal/Core.scala:49:24
     .io_dispatch_2_valid                           (_frontend_io_dispatch_2_valid),
     .io_dispatch_2_bits_pc                         (_frontend_io_dispatch_2_bits_pc),
@@ -588,6 +600,7 @@ module Core(	// zaqal/src/zaqal/Core.scala:13:7
     .io_dispatch_2_bits_ftqPtr                     (_frontend_io_dispatch_2_bits_ftqPtr),
     .io_dispatch_2_bits_is_predicted_taken
       (_frontend_io_dispatch_2_bits_is_predicted_taken),
+    .io_dispatch_2_bits_epoch                      (_frontend_io_dispatch_2_bits_epoch),
     .io_dispatch_3_ready                           (_backend_io_dispatch_3_ready),	// zaqal/src/zaqal/Core.scala:49:24
     .io_dispatch_3_valid                           (_frontend_io_dispatch_3_valid),
     .io_dispatch_3_bits_pc                         (_frontend_io_dispatch_3_bits_pc),
@@ -600,6 +613,7 @@ module Core(	// zaqal/src/zaqal/Core.scala:13:7
     .io_dispatch_3_bits_ftqPtr                     (_frontend_io_dispatch_3_bits_ftqPtr),
     .io_dispatch_3_bits_is_predicted_taken
       (_frontend_io_dispatch_3_bits_is_predicted_taken),
+    .io_dispatch_3_bits_epoch                      (_frontend_io_dispatch_3_bits_epoch),
     .io_dispatch_4_ready                           (_backend_io_dispatch_4_ready),	// zaqal/src/zaqal/Core.scala:49:24
     .io_dispatch_4_valid                           (_frontend_io_dispatch_4_valid),
     .io_dispatch_4_bits_pc                         (_frontend_io_dispatch_4_bits_pc),
@@ -612,6 +626,7 @@ module Core(	// zaqal/src/zaqal/Core.scala:13:7
     .io_dispatch_4_bits_ftqPtr                     (_frontend_io_dispatch_4_bits_ftqPtr),
     .io_dispatch_4_bits_is_predicted_taken
       (_frontend_io_dispatch_4_bits_is_predicted_taken),
+    .io_dispatch_4_bits_epoch                      (_frontend_io_dispatch_4_bits_epoch),
     .io_dispatch_5_ready                           (_backend_io_dispatch_5_ready),	// zaqal/src/zaqal/Core.scala:49:24
     .io_dispatch_5_valid                           (_frontend_io_dispatch_5_valid),
     .io_dispatch_5_bits_pc                         (_frontend_io_dispatch_5_bits_pc),
@@ -624,6 +639,7 @@ module Core(	// zaqal/src/zaqal/Core.scala:13:7
     .io_dispatch_5_bits_ftqPtr                     (_frontend_io_dispatch_5_bits_ftqPtr),
     .io_dispatch_5_bits_is_predicted_taken
       (_frontend_io_dispatch_5_bits_is_predicted_taken),
+    .io_dispatch_5_bits_epoch                      (_frontend_io_dispatch_5_bits_epoch),
     .io_ftq_read_data_pc_0                         (/* unused */),
     .io_ftq_read_data_pc_1                         (/* unused */),
     .io_ftq_read_data_pc_2                         (/* unused */),
@@ -757,6 +773,7 @@ module Core(	// zaqal/src/zaqal/Core.scala:13:7
     .io_dispatch_0_bits_ftqPtr             (_frontend_io_dispatch_0_bits_ftqPtr),	// zaqal/src/zaqal/Core.scala:48:24
     .io_dispatch_0_bits_is_predicted_taken
       (_frontend_io_dispatch_0_bits_is_predicted_taken),	// zaqal/src/zaqal/Core.scala:48:24
+    .io_dispatch_0_bits_epoch              (_frontend_io_dispatch_0_bits_epoch),	// zaqal/src/zaqal/Core.scala:48:24
     .io_dispatch_1_ready                   (_backend_io_dispatch_1_ready),
     .io_dispatch_1_valid                   (_frontend_io_dispatch_1_valid),	// zaqal/src/zaqal/Core.scala:48:24
     .io_dispatch_1_bits_pc                 (_frontend_io_dispatch_1_bits_pc),	// zaqal/src/zaqal/Core.scala:48:24
@@ -767,6 +784,7 @@ module Core(	// zaqal/src/zaqal/Core.scala:13:7
     .io_dispatch_1_bits_ftqPtr             (_frontend_io_dispatch_1_bits_ftqPtr),	// zaqal/src/zaqal/Core.scala:48:24
     .io_dispatch_1_bits_is_predicted_taken
       (_frontend_io_dispatch_1_bits_is_predicted_taken),	// zaqal/src/zaqal/Core.scala:48:24
+    .io_dispatch_1_bits_epoch              (_frontend_io_dispatch_1_bits_epoch),	// zaqal/src/zaqal/Core.scala:48:24
     .io_dispatch_2_ready                   (_backend_io_dispatch_2_ready),
     .io_dispatch_2_valid                   (_frontend_io_dispatch_2_valid),	// zaqal/src/zaqal/Core.scala:48:24
     .io_dispatch_2_bits_pc                 (_frontend_io_dispatch_2_bits_pc),	// zaqal/src/zaqal/Core.scala:48:24
@@ -777,6 +795,7 @@ module Core(	// zaqal/src/zaqal/Core.scala:13:7
     .io_dispatch_2_bits_ftqPtr             (_frontend_io_dispatch_2_bits_ftqPtr),	// zaqal/src/zaqal/Core.scala:48:24
     .io_dispatch_2_bits_is_predicted_taken
       (_frontend_io_dispatch_2_bits_is_predicted_taken),	// zaqal/src/zaqal/Core.scala:48:24
+    .io_dispatch_2_bits_epoch              (_frontend_io_dispatch_2_bits_epoch),	// zaqal/src/zaqal/Core.scala:48:24
     .io_dispatch_3_ready                   (_backend_io_dispatch_3_ready),
     .io_dispatch_3_valid                   (_frontend_io_dispatch_3_valid),	// zaqal/src/zaqal/Core.scala:48:24
     .io_dispatch_3_bits_pc                 (_frontend_io_dispatch_3_bits_pc),	// zaqal/src/zaqal/Core.scala:48:24
@@ -787,6 +806,7 @@ module Core(	// zaqal/src/zaqal/Core.scala:13:7
     .io_dispatch_3_bits_ftqPtr             (_frontend_io_dispatch_3_bits_ftqPtr),	// zaqal/src/zaqal/Core.scala:48:24
     .io_dispatch_3_bits_is_predicted_taken
       (_frontend_io_dispatch_3_bits_is_predicted_taken),	// zaqal/src/zaqal/Core.scala:48:24
+    .io_dispatch_3_bits_epoch              (_frontend_io_dispatch_3_bits_epoch),	// zaqal/src/zaqal/Core.scala:48:24
     .io_dispatch_4_ready                   (_backend_io_dispatch_4_ready),
     .io_dispatch_4_valid                   (_frontend_io_dispatch_4_valid),	// zaqal/src/zaqal/Core.scala:48:24
     .io_dispatch_4_bits_pc                 (_frontend_io_dispatch_4_bits_pc),	// zaqal/src/zaqal/Core.scala:48:24
@@ -797,6 +817,7 @@ module Core(	// zaqal/src/zaqal/Core.scala:13:7
     .io_dispatch_4_bits_ftqPtr             (_frontend_io_dispatch_4_bits_ftqPtr),	// zaqal/src/zaqal/Core.scala:48:24
     .io_dispatch_4_bits_is_predicted_taken
       (_frontend_io_dispatch_4_bits_is_predicted_taken),	// zaqal/src/zaqal/Core.scala:48:24
+    .io_dispatch_4_bits_epoch              (_frontend_io_dispatch_4_bits_epoch),	// zaqal/src/zaqal/Core.scala:48:24
     .io_dispatch_5_ready                   (_backend_io_dispatch_5_ready),
     .io_dispatch_5_valid                   (_frontend_io_dispatch_5_valid),	// zaqal/src/zaqal/Core.scala:48:24
     .io_dispatch_5_bits_pc                 (_frontend_io_dispatch_5_bits_pc),	// zaqal/src/zaqal/Core.scala:48:24
@@ -807,12 +828,15 @@ module Core(	// zaqal/src/zaqal/Core.scala:13:7
     .io_dispatch_5_bits_ftqPtr             (_frontend_io_dispatch_5_bits_ftqPtr),	// zaqal/src/zaqal/Core.scala:48:24
     .io_dispatch_5_bits_is_predicted_taken
       (_frontend_io_dispatch_5_bits_is_predicted_taken),	// zaqal/src/zaqal/Core.scala:48:24
+    .io_dispatch_5_bits_epoch              (_frontend_io_dispatch_5_bits_epoch),	// zaqal/src/zaqal/Core.scala:48:24
     .io_redirect_valid                     (_backend_io_redirect_valid),
     .io_redirect_target                    (_backend_io_redirect_target),
+    .io_redirect_epoch                     (_backend_io_redirect_epoch),
     .io_redirect_is_exception              (_backend_io_redirect_is_exception),
     .io_redirect_pc                        (_backend_io_redirect_pc),
     .io_redirect_taken                     (_backend_io_redirect_taken),
     .io_redirect_is_cfi                    (_backend_io_redirect_is_cfi),
+    .io_redirect_is_jal                    (_backend_io_redirect_is_jal),
     .io_redirect_is_jalr                   (_backend_io_redirect_is_jalr),
     .io_redirect_ftqPtr                    (_backend_io_redirect_ftqPtr),
     .io_debug_regs_0                       (_backend_io_debug_regs_0),

@@ -80,2166 +80,2167 @@ module FTB(	// frontend/src/zaqal/frontend/FTB.scala:17:7
                 io_update_target,	// frontend/src/zaqal/frontend/FTB.scala:18:14
   input         io_update_taken,	// frontend/src/zaqal/frontend/FTB.scala:18:14
                 io_update_is_cfi,	// frontend/src/zaqal/frontend/FTB.scala:18:14
+                io_update_is_jal,	// frontend/src/zaqal/frontend/FTB.scala:18:14
                 io_update_is_jalr	// frontend/src/zaqal/frontend/FTB.scala:18:14
 );
 
-  reg         entries_0_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [52:0] entries_0_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [63:0] entries_0_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [1:0]  entries_0_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [3:0]  entries_0_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_0_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_1_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [52:0] entries_1_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [63:0] entries_1_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [1:0]  entries_1_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [3:0]  entries_1_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_1_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_2_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [52:0] entries_2_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [63:0] entries_2_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [1:0]  entries_2_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [3:0]  entries_2_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_2_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_3_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [52:0] entries_3_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [63:0] entries_3_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [1:0]  entries_3_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [3:0]  entries_3_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_3_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_4_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [52:0] entries_4_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [63:0] entries_4_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [1:0]  entries_4_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [3:0]  entries_4_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_4_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_5_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [52:0] entries_5_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [63:0] entries_5_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [1:0]  entries_5_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [3:0]  entries_5_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_5_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_6_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [52:0] entries_6_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [63:0] entries_6_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [1:0]  entries_6_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [3:0]  entries_6_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_6_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_7_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [52:0] entries_7_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [63:0] entries_7_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [1:0]  entries_7_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [3:0]  entries_7_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_7_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_8_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [52:0] entries_8_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [63:0] entries_8_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [1:0]  entries_8_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [3:0]  entries_8_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_8_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_9_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [52:0] entries_9_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [63:0] entries_9_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [1:0]  entries_9_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [3:0]  entries_9_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_9_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_10_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [52:0] entries_10_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [63:0] entries_10_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [1:0]  entries_10_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [3:0]  entries_10_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_10_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_11_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [52:0] entries_11_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [63:0] entries_11_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [1:0]  entries_11_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [3:0]  entries_11_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_11_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_12_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [52:0] entries_12_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [63:0] entries_12_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [1:0]  entries_12_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [3:0]  entries_12_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_12_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_13_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [52:0] entries_13_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [63:0] entries_13_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [1:0]  entries_13_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [3:0]  entries_13_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_13_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_14_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [52:0] entries_14_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [63:0] entries_14_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [1:0]  entries_14_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [3:0]  entries_14_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_14_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_15_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [52:0] entries_15_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [63:0] entries_15_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [1:0]  entries_15_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [3:0]  entries_15_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_15_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_16_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [52:0] entries_16_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [63:0] entries_16_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [1:0]  entries_16_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [3:0]  entries_16_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_16_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_17_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [52:0] entries_17_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [63:0] entries_17_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [1:0]  entries_17_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [3:0]  entries_17_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_17_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_18_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [52:0] entries_18_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [63:0] entries_18_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [1:0]  entries_18_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [3:0]  entries_18_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_18_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_19_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [52:0] entries_19_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [63:0] entries_19_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [1:0]  entries_19_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [3:0]  entries_19_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_19_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_20_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [52:0] entries_20_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [63:0] entries_20_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [1:0]  entries_20_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [3:0]  entries_20_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_20_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_21_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [52:0] entries_21_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [63:0] entries_21_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [1:0]  entries_21_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [3:0]  entries_21_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_21_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_22_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [52:0] entries_22_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [63:0] entries_22_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [1:0]  entries_22_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [3:0]  entries_22_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_22_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_23_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [52:0] entries_23_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [63:0] entries_23_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [1:0]  entries_23_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [3:0]  entries_23_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_23_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_24_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [52:0] entries_24_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [63:0] entries_24_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [1:0]  entries_24_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [3:0]  entries_24_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_24_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_25_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [52:0] entries_25_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [63:0] entries_25_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [1:0]  entries_25_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [3:0]  entries_25_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_25_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_26_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [52:0] entries_26_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [63:0] entries_26_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [1:0]  entries_26_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [3:0]  entries_26_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_26_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_27_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [52:0] entries_27_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [63:0] entries_27_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [1:0]  entries_27_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [3:0]  entries_27_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_27_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_28_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [52:0] entries_28_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [63:0] entries_28_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [1:0]  entries_28_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [3:0]  entries_28_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_28_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_29_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [52:0] entries_29_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [63:0] entries_29_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [1:0]  entries_29_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [3:0]  entries_29_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_29_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_30_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [52:0] entries_30_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [63:0] entries_30_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [1:0]  entries_30_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [3:0]  entries_30_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_30_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_31_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [52:0] entries_31_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [63:0] entries_31_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [1:0]  entries_31_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [3:0]  entries_31_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_31_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_32_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [52:0] entries_32_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [63:0] entries_32_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [1:0]  entries_32_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [3:0]  entries_32_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_32_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_33_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [52:0] entries_33_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [63:0] entries_33_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [1:0]  entries_33_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [3:0]  entries_33_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_33_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_34_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [52:0] entries_34_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [63:0] entries_34_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [1:0]  entries_34_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [3:0]  entries_34_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_34_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_35_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [52:0] entries_35_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [63:0] entries_35_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [1:0]  entries_35_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [3:0]  entries_35_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_35_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_36_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [52:0] entries_36_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [63:0] entries_36_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [1:0]  entries_36_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [3:0]  entries_36_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_36_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_37_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [52:0] entries_37_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [63:0] entries_37_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [1:0]  entries_37_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [3:0]  entries_37_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_37_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_38_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [52:0] entries_38_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [63:0] entries_38_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [1:0]  entries_38_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [3:0]  entries_38_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_38_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_39_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [52:0] entries_39_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [63:0] entries_39_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [1:0]  entries_39_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [3:0]  entries_39_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_39_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_40_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [52:0] entries_40_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [63:0] entries_40_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [1:0]  entries_40_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [3:0]  entries_40_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_40_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_41_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [52:0] entries_41_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [63:0] entries_41_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [1:0]  entries_41_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [3:0]  entries_41_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_41_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_42_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [52:0] entries_42_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [63:0] entries_42_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [1:0]  entries_42_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [3:0]  entries_42_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_42_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_43_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [52:0] entries_43_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [63:0] entries_43_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [1:0]  entries_43_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [3:0]  entries_43_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_43_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_44_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [52:0] entries_44_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [63:0] entries_44_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [1:0]  entries_44_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [3:0]  entries_44_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_44_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_45_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [52:0] entries_45_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [63:0] entries_45_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [1:0]  entries_45_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [3:0]  entries_45_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_45_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_46_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [52:0] entries_46_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [63:0] entries_46_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [1:0]  entries_46_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [3:0]  entries_46_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_46_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_47_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [52:0] entries_47_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [63:0] entries_47_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [1:0]  entries_47_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [3:0]  entries_47_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_47_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_48_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [52:0] entries_48_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [63:0] entries_48_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [1:0]  entries_48_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [3:0]  entries_48_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_48_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_49_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [52:0] entries_49_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [63:0] entries_49_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [1:0]  entries_49_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [3:0]  entries_49_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_49_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_50_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [52:0] entries_50_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [63:0] entries_50_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [1:0]  entries_50_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [3:0]  entries_50_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_50_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_51_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [52:0] entries_51_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [63:0] entries_51_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [1:0]  entries_51_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [3:0]  entries_51_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_51_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_52_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [52:0] entries_52_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [63:0] entries_52_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [1:0]  entries_52_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [3:0]  entries_52_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_52_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_53_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [52:0] entries_53_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [63:0] entries_53_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [1:0]  entries_53_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [3:0]  entries_53_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_53_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_54_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [52:0] entries_54_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [63:0] entries_54_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [1:0]  entries_54_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [3:0]  entries_54_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_54_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_55_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [52:0] entries_55_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [63:0] entries_55_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [1:0]  entries_55_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [3:0]  entries_55_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_55_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_56_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [52:0] entries_56_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [63:0] entries_56_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [1:0]  entries_56_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [3:0]  entries_56_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_56_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_57_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [52:0] entries_57_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [63:0] entries_57_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [1:0]  entries_57_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [3:0]  entries_57_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_57_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_58_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [52:0] entries_58_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [63:0] entries_58_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [1:0]  entries_58_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [3:0]  entries_58_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_58_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_59_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [52:0] entries_59_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [63:0] entries_59_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [1:0]  entries_59_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [3:0]  entries_59_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_59_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_60_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [52:0] entries_60_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [63:0] entries_60_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [1:0]  entries_60_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [3:0]  entries_60_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_60_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_61_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [52:0] entries_61_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [63:0] entries_61_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [1:0]  entries_61_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [3:0]  entries_61_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_61_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_62_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [52:0] entries_62_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [63:0] entries_62_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [1:0]  entries_62_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [3:0]  entries_62_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_62_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_63_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [52:0] entries_63_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [63:0] entries_63_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [1:0]  entries_63_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg  [3:0]  entries_63_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         entries_63_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-  reg         casez_tmp;	// frontend/src/zaqal/frontend/FTB.scala:53:39
-  always_comb begin	// frontend/src/zaqal/frontend/FTB.scala:53:39
-    casez (io_req_pc[10:5])	// frontend/src/zaqal/frontend/FTB.scala:44:36, :53:39
+  reg         entries_0_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [52:0] entries_0_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [63:0] entries_0_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [1:0]  entries_0_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [3:0]  entries_0_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_0_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_1_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [52:0] entries_1_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [63:0] entries_1_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [1:0]  entries_1_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [3:0]  entries_1_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_1_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_2_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [52:0] entries_2_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [63:0] entries_2_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [1:0]  entries_2_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [3:0]  entries_2_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_2_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_3_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [52:0] entries_3_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [63:0] entries_3_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [1:0]  entries_3_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [3:0]  entries_3_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_3_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_4_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [52:0] entries_4_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [63:0] entries_4_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [1:0]  entries_4_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [3:0]  entries_4_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_4_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_5_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [52:0] entries_5_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [63:0] entries_5_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [1:0]  entries_5_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [3:0]  entries_5_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_5_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_6_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [52:0] entries_6_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [63:0] entries_6_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [1:0]  entries_6_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [3:0]  entries_6_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_6_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_7_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [52:0] entries_7_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [63:0] entries_7_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [1:0]  entries_7_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [3:0]  entries_7_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_7_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_8_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [52:0] entries_8_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [63:0] entries_8_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [1:0]  entries_8_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [3:0]  entries_8_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_8_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_9_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [52:0] entries_9_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [63:0] entries_9_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [1:0]  entries_9_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [3:0]  entries_9_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_9_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_10_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [52:0] entries_10_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [63:0] entries_10_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [1:0]  entries_10_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [3:0]  entries_10_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_10_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_11_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [52:0] entries_11_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [63:0] entries_11_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [1:0]  entries_11_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [3:0]  entries_11_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_11_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_12_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [52:0] entries_12_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [63:0] entries_12_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [1:0]  entries_12_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [3:0]  entries_12_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_12_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_13_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [52:0] entries_13_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [63:0] entries_13_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [1:0]  entries_13_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [3:0]  entries_13_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_13_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_14_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [52:0] entries_14_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [63:0] entries_14_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [1:0]  entries_14_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [3:0]  entries_14_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_14_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_15_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [52:0] entries_15_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [63:0] entries_15_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [1:0]  entries_15_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [3:0]  entries_15_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_15_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_16_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [52:0] entries_16_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [63:0] entries_16_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [1:0]  entries_16_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [3:0]  entries_16_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_16_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_17_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [52:0] entries_17_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [63:0] entries_17_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [1:0]  entries_17_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [3:0]  entries_17_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_17_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_18_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [52:0] entries_18_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [63:0] entries_18_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [1:0]  entries_18_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [3:0]  entries_18_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_18_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_19_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [52:0] entries_19_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [63:0] entries_19_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [1:0]  entries_19_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [3:0]  entries_19_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_19_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_20_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [52:0] entries_20_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [63:0] entries_20_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [1:0]  entries_20_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [3:0]  entries_20_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_20_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_21_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [52:0] entries_21_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [63:0] entries_21_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [1:0]  entries_21_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [3:0]  entries_21_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_21_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_22_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [52:0] entries_22_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [63:0] entries_22_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [1:0]  entries_22_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [3:0]  entries_22_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_22_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_23_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [52:0] entries_23_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [63:0] entries_23_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [1:0]  entries_23_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [3:0]  entries_23_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_23_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_24_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [52:0] entries_24_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [63:0] entries_24_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [1:0]  entries_24_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [3:0]  entries_24_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_24_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_25_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [52:0] entries_25_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [63:0] entries_25_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [1:0]  entries_25_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [3:0]  entries_25_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_25_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_26_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [52:0] entries_26_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [63:0] entries_26_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [1:0]  entries_26_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [3:0]  entries_26_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_26_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_27_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [52:0] entries_27_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [63:0] entries_27_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [1:0]  entries_27_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [3:0]  entries_27_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_27_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_28_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [52:0] entries_28_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [63:0] entries_28_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [1:0]  entries_28_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [3:0]  entries_28_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_28_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_29_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [52:0] entries_29_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [63:0] entries_29_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [1:0]  entries_29_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [3:0]  entries_29_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_29_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_30_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [52:0] entries_30_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [63:0] entries_30_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [1:0]  entries_30_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [3:0]  entries_30_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_30_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_31_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [52:0] entries_31_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [63:0] entries_31_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [1:0]  entries_31_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [3:0]  entries_31_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_31_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_32_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [52:0] entries_32_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [63:0] entries_32_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [1:0]  entries_32_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [3:0]  entries_32_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_32_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_33_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [52:0] entries_33_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [63:0] entries_33_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [1:0]  entries_33_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [3:0]  entries_33_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_33_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_34_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [52:0] entries_34_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [63:0] entries_34_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [1:0]  entries_34_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [3:0]  entries_34_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_34_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_35_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [52:0] entries_35_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [63:0] entries_35_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [1:0]  entries_35_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [3:0]  entries_35_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_35_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_36_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [52:0] entries_36_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [63:0] entries_36_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [1:0]  entries_36_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [3:0]  entries_36_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_36_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_37_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [52:0] entries_37_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [63:0] entries_37_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [1:0]  entries_37_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [3:0]  entries_37_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_37_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_38_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [52:0] entries_38_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [63:0] entries_38_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [1:0]  entries_38_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [3:0]  entries_38_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_38_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_39_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [52:0] entries_39_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [63:0] entries_39_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [1:0]  entries_39_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [3:0]  entries_39_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_39_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_40_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [52:0] entries_40_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [63:0] entries_40_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [1:0]  entries_40_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [3:0]  entries_40_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_40_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_41_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [52:0] entries_41_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [63:0] entries_41_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [1:0]  entries_41_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [3:0]  entries_41_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_41_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_42_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [52:0] entries_42_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [63:0] entries_42_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [1:0]  entries_42_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [3:0]  entries_42_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_42_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_43_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [52:0] entries_43_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [63:0] entries_43_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [1:0]  entries_43_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [3:0]  entries_43_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_43_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_44_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [52:0] entries_44_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [63:0] entries_44_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [1:0]  entries_44_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [3:0]  entries_44_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_44_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_45_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [52:0] entries_45_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [63:0] entries_45_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [1:0]  entries_45_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [3:0]  entries_45_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_45_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_46_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [52:0] entries_46_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [63:0] entries_46_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [1:0]  entries_46_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [3:0]  entries_46_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_46_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_47_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [52:0] entries_47_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [63:0] entries_47_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [1:0]  entries_47_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [3:0]  entries_47_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_47_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_48_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [52:0] entries_48_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [63:0] entries_48_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [1:0]  entries_48_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [3:0]  entries_48_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_48_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_49_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [52:0] entries_49_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [63:0] entries_49_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [1:0]  entries_49_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [3:0]  entries_49_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_49_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_50_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [52:0] entries_50_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [63:0] entries_50_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [1:0]  entries_50_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [3:0]  entries_50_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_50_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_51_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [52:0] entries_51_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [63:0] entries_51_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [1:0]  entries_51_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [3:0]  entries_51_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_51_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_52_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [52:0] entries_52_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [63:0] entries_52_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [1:0]  entries_52_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [3:0]  entries_52_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_52_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_53_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [52:0] entries_53_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [63:0] entries_53_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [1:0]  entries_53_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [3:0]  entries_53_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_53_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_54_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [52:0] entries_54_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [63:0] entries_54_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [1:0]  entries_54_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [3:0]  entries_54_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_54_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_55_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [52:0] entries_55_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [63:0] entries_55_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [1:0]  entries_55_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [3:0]  entries_55_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_55_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_56_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [52:0] entries_56_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [63:0] entries_56_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [1:0]  entries_56_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [3:0]  entries_56_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_56_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_57_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [52:0] entries_57_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [63:0] entries_57_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [1:0]  entries_57_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [3:0]  entries_57_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_57_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_58_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [52:0] entries_58_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [63:0] entries_58_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [1:0]  entries_58_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [3:0]  entries_58_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_58_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_59_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [52:0] entries_59_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [63:0] entries_59_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [1:0]  entries_59_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [3:0]  entries_59_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_59_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_60_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [52:0] entries_60_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [63:0] entries_60_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [1:0]  entries_60_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [3:0]  entries_60_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_60_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_61_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [52:0] entries_61_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [63:0] entries_61_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [1:0]  entries_61_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [3:0]  entries_61_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_61_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_62_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [52:0] entries_62_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [63:0] entries_62_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [1:0]  entries_62_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [3:0]  entries_62_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_62_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_63_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [52:0] entries_63_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [63:0] entries_63_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [1:0]  entries_63_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg  [3:0]  entries_63_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         entries_63_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+  reg         casez_tmp;	// frontend/src/zaqal/frontend/FTB.scala:54:39
+  always_comb begin	// frontend/src/zaqal/frontend/FTB.scala:54:39
+    casez (io_req_pc[10:5])	// frontend/src/zaqal/frontend/FTB.scala:45:36, :54:39
       6'b000000:
-        casez_tmp = entries_0_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp = entries_0_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b000001:
-        casez_tmp = entries_1_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp = entries_1_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b000010:
-        casez_tmp = entries_2_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp = entries_2_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b000011:
-        casez_tmp = entries_3_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp = entries_3_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b000100:
-        casez_tmp = entries_4_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp = entries_4_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b000101:
-        casez_tmp = entries_5_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp = entries_5_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b000110:
-        casez_tmp = entries_6_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp = entries_6_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b000111:
-        casez_tmp = entries_7_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp = entries_7_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b001000:
-        casez_tmp = entries_8_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp = entries_8_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b001001:
-        casez_tmp = entries_9_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp = entries_9_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b001010:
-        casez_tmp = entries_10_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp = entries_10_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b001011:
-        casez_tmp = entries_11_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp = entries_11_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b001100:
-        casez_tmp = entries_12_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp = entries_12_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b001101:
-        casez_tmp = entries_13_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp = entries_13_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b001110:
-        casez_tmp = entries_14_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp = entries_14_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b001111:
-        casez_tmp = entries_15_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp = entries_15_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b010000:
-        casez_tmp = entries_16_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp = entries_16_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b010001:
-        casez_tmp = entries_17_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp = entries_17_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b010010:
-        casez_tmp = entries_18_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp = entries_18_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b010011:
-        casez_tmp = entries_19_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp = entries_19_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b010100:
-        casez_tmp = entries_20_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp = entries_20_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b010101:
-        casez_tmp = entries_21_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp = entries_21_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b010110:
-        casez_tmp = entries_22_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp = entries_22_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b010111:
-        casez_tmp = entries_23_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp = entries_23_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b011000:
-        casez_tmp = entries_24_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp = entries_24_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b011001:
-        casez_tmp = entries_25_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp = entries_25_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b011010:
-        casez_tmp = entries_26_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp = entries_26_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b011011:
-        casez_tmp = entries_27_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp = entries_27_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b011100:
-        casez_tmp = entries_28_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp = entries_28_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b011101:
-        casez_tmp = entries_29_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp = entries_29_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b011110:
-        casez_tmp = entries_30_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp = entries_30_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b011111:
-        casez_tmp = entries_31_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp = entries_31_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b100000:
-        casez_tmp = entries_32_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp = entries_32_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b100001:
-        casez_tmp = entries_33_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp = entries_33_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b100010:
-        casez_tmp = entries_34_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp = entries_34_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b100011:
-        casez_tmp = entries_35_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp = entries_35_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b100100:
-        casez_tmp = entries_36_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp = entries_36_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b100101:
-        casez_tmp = entries_37_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp = entries_37_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b100110:
-        casez_tmp = entries_38_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp = entries_38_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b100111:
-        casez_tmp = entries_39_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp = entries_39_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b101000:
-        casez_tmp = entries_40_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp = entries_40_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b101001:
-        casez_tmp = entries_41_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp = entries_41_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b101010:
-        casez_tmp = entries_42_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp = entries_42_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b101011:
-        casez_tmp = entries_43_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp = entries_43_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b101100:
-        casez_tmp = entries_44_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp = entries_44_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b101101:
-        casez_tmp = entries_45_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp = entries_45_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b101110:
-        casez_tmp = entries_46_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp = entries_46_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b101111:
-        casez_tmp = entries_47_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp = entries_47_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b110000:
-        casez_tmp = entries_48_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp = entries_48_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b110001:
-        casez_tmp = entries_49_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp = entries_49_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b110010:
-        casez_tmp = entries_50_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp = entries_50_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b110011:
-        casez_tmp = entries_51_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp = entries_51_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b110100:
-        casez_tmp = entries_52_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp = entries_52_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b110101:
-        casez_tmp = entries_53_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp = entries_53_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b110110:
-        casez_tmp = entries_54_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp = entries_54_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b110111:
-        casez_tmp = entries_55_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp = entries_55_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b111000:
-        casez_tmp = entries_56_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp = entries_56_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b111001:
-        casez_tmp = entries_57_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp = entries_57_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b111010:
-        casez_tmp = entries_58_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp = entries_58_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b111011:
-        casez_tmp = entries_59_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp = entries_59_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b111100:
-        casez_tmp = entries_60_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp = entries_60_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b111101:
-        casez_tmp = entries_61_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp = entries_61_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b111110:
-        casez_tmp = entries_62_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp = entries_62_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       default:
-        casez_tmp = entries_63_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
-    endcase	// frontend/src/zaqal/frontend/FTB.scala:44:36, :53:39
+        casez_tmp = entries_63_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
+    endcase	// frontend/src/zaqal/frontend/FTB.scala:45:36, :54:39
   end // always_comb
-  reg  [52:0] casez_tmp_0;	// frontend/src/zaqal/frontend/FTB.scala:53:39
-  always_comb begin	// frontend/src/zaqal/frontend/FTB.scala:53:39
-    casez (io_req_pc[10:5])	// frontend/src/zaqal/frontend/FTB.scala:44:36, :53:39
+  reg  [52:0] casez_tmp_0;	// frontend/src/zaqal/frontend/FTB.scala:54:39
+  always_comb begin	// frontend/src/zaqal/frontend/FTB.scala:54:39
+    casez (io_req_pc[10:5])	// frontend/src/zaqal/frontend/FTB.scala:45:36, :54:39
       6'b000000:
-        casez_tmp_0 = entries_0_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_0 = entries_0_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b000001:
-        casez_tmp_0 = entries_1_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_0 = entries_1_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b000010:
-        casez_tmp_0 = entries_2_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_0 = entries_2_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b000011:
-        casez_tmp_0 = entries_3_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_0 = entries_3_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b000100:
-        casez_tmp_0 = entries_4_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_0 = entries_4_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b000101:
-        casez_tmp_0 = entries_5_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_0 = entries_5_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b000110:
-        casez_tmp_0 = entries_6_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_0 = entries_6_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b000111:
-        casez_tmp_0 = entries_7_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_0 = entries_7_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b001000:
-        casez_tmp_0 = entries_8_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_0 = entries_8_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b001001:
-        casez_tmp_0 = entries_9_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_0 = entries_9_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b001010:
-        casez_tmp_0 = entries_10_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_0 = entries_10_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b001011:
-        casez_tmp_0 = entries_11_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_0 = entries_11_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b001100:
-        casez_tmp_0 = entries_12_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_0 = entries_12_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b001101:
-        casez_tmp_0 = entries_13_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_0 = entries_13_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b001110:
-        casez_tmp_0 = entries_14_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_0 = entries_14_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b001111:
-        casez_tmp_0 = entries_15_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_0 = entries_15_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b010000:
-        casez_tmp_0 = entries_16_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_0 = entries_16_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b010001:
-        casez_tmp_0 = entries_17_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_0 = entries_17_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b010010:
-        casez_tmp_0 = entries_18_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_0 = entries_18_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b010011:
-        casez_tmp_0 = entries_19_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_0 = entries_19_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b010100:
-        casez_tmp_0 = entries_20_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_0 = entries_20_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b010101:
-        casez_tmp_0 = entries_21_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_0 = entries_21_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b010110:
-        casez_tmp_0 = entries_22_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_0 = entries_22_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b010111:
-        casez_tmp_0 = entries_23_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_0 = entries_23_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b011000:
-        casez_tmp_0 = entries_24_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_0 = entries_24_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b011001:
-        casez_tmp_0 = entries_25_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_0 = entries_25_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b011010:
-        casez_tmp_0 = entries_26_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_0 = entries_26_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b011011:
-        casez_tmp_0 = entries_27_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_0 = entries_27_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b011100:
-        casez_tmp_0 = entries_28_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_0 = entries_28_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b011101:
-        casez_tmp_0 = entries_29_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_0 = entries_29_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b011110:
-        casez_tmp_0 = entries_30_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_0 = entries_30_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b011111:
-        casez_tmp_0 = entries_31_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_0 = entries_31_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b100000:
-        casez_tmp_0 = entries_32_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_0 = entries_32_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b100001:
-        casez_tmp_0 = entries_33_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_0 = entries_33_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b100010:
-        casez_tmp_0 = entries_34_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_0 = entries_34_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b100011:
-        casez_tmp_0 = entries_35_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_0 = entries_35_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b100100:
-        casez_tmp_0 = entries_36_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_0 = entries_36_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b100101:
-        casez_tmp_0 = entries_37_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_0 = entries_37_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b100110:
-        casez_tmp_0 = entries_38_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_0 = entries_38_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b100111:
-        casez_tmp_0 = entries_39_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_0 = entries_39_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b101000:
-        casez_tmp_0 = entries_40_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_0 = entries_40_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b101001:
-        casez_tmp_0 = entries_41_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_0 = entries_41_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b101010:
-        casez_tmp_0 = entries_42_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_0 = entries_42_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b101011:
-        casez_tmp_0 = entries_43_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_0 = entries_43_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b101100:
-        casez_tmp_0 = entries_44_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_0 = entries_44_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b101101:
-        casez_tmp_0 = entries_45_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_0 = entries_45_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b101110:
-        casez_tmp_0 = entries_46_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_0 = entries_46_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b101111:
-        casez_tmp_0 = entries_47_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_0 = entries_47_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b110000:
-        casez_tmp_0 = entries_48_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_0 = entries_48_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b110001:
-        casez_tmp_0 = entries_49_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_0 = entries_49_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b110010:
-        casez_tmp_0 = entries_50_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_0 = entries_50_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b110011:
-        casez_tmp_0 = entries_51_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_0 = entries_51_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b110100:
-        casez_tmp_0 = entries_52_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_0 = entries_52_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b110101:
-        casez_tmp_0 = entries_53_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_0 = entries_53_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b110110:
-        casez_tmp_0 = entries_54_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_0 = entries_54_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b110111:
-        casez_tmp_0 = entries_55_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_0 = entries_55_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b111000:
-        casez_tmp_0 = entries_56_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_0 = entries_56_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b111001:
-        casez_tmp_0 = entries_57_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_0 = entries_57_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b111010:
-        casez_tmp_0 = entries_58_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_0 = entries_58_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b111011:
-        casez_tmp_0 = entries_59_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_0 = entries_59_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b111100:
-        casez_tmp_0 = entries_60_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_0 = entries_60_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b111101:
-        casez_tmp_0 = entries_61_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_0 = entries_61_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b111110:
-        casez_tmp_0 = entries_62_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_0 = entries_62_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       default:
-        casez_tmp_0 = entries_63_tag;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
-    endcase	// frontend/src/zaqal/frontend/FTB.scala:44:36, :53:39
+        casez_tmp_0 = entries_63_tag;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
+    endcase	// frontend/src/zaqal/frontend/FTB.scala:45:36, :54:39
   end // always_comb
-  reg  [63:0] casez_tmp_1;	// frontend/src/zaqal/frontend/FTB.scala:53:39
-  always_comb begin	// frontend/src/zaqal/frontend/FTB.scala:53:39
-    casez (io_req_pc[10:5])	// frontend/src/zaqal/frontend/FTB.scala:44:36, :53:39
+  reg  [63:0] casez_tmp_1;	// frontend/src/zaqal/frontend/FTB.scala:54:39
+  always_comb begin	// frontend/src/zaqal/frontend/FTB.scala:54:39
+    casez (io_req_pc[10:5])	// frontend/src/zaqal/frontend/FTB.scala:45:36, :54:39
       6'b000000:
-        casez_tmp_1 = entries_0_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_1 = entries_0_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b000001:
-        casez_tmp_1 = entries_1_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_1 = entries_1_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b000010:
-        casez_tmp_1 = entries_2_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_1 = entries_2_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b000011:
-        casez_tmp_1 = entries_3_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_1 = entries_3_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b000100:
-        casez_tmp_1 = entries_4_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_1 = entries_4_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b000101:
-        casez_tmp_1 = entries_5_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_1 = entries_5_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b000110:
-        casez_tmp_1 = entries_6_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_1 = entries_6_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b000111:
-        casez_tmp_1 = entries_7_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_1 = entries_7_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b001000:
-        casez_tmp_1 = entries_8_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_1 = entries_8_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b001001:
-        casez_tmp_1 = entries_9_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_1 = entries_9_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b001010:
-        casez_tmp_1 = entries_10_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_1 = entries_10_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b001011:
-        casez_tmp_1 = entries_11_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_1 = entries_11_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b001100:
-        casez_tmp_1 = entries_12_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_1 = entries_12_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b001101:
-        casez_tmp_1 = entries_13_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_1 = entries_13_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b001110:
-        casez_tmp_1 = entries_14_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_1 = entries_14_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b001111:
-        casez_tmp_1 = entries_15_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_1 = entries_15_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b010000:
-        casez_tmp_1 = entries_16_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_1 = entries_16_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b010001:
-        casez_tmp_1 = entries_17_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_1 = entries_17_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b010010:
-        casez_tmp_1 = entries_18_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_1 = entries_18_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b010011:
-        casez_tmp_1 = entries_19_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_1 = entries_19_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b010100:
-        casez_tmp_1 = entries_20_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_1 = entries_20_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b010101:
-        casez_tmp_1 = entries_21_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_1 = entries_21_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b010110:
-        casez_tmp_1 = entries_22_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_1 = entries_22_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b010111:
-        casez_tmp_1 = entries_23_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_1 = entries_23_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b011000:
-        casez_tmp_1 = entries_24_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_1 = entries_24_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b011001:
-        casez_tmp_1 = entries_25_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_1 = entries_25_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b011010:
-        casez_tmp_1 = entries_26_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_1 = entries_26_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b011011:
-        casez_tmp_1 = entries_27_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_1 = entries_27_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b011100:
-        casez_tmp_1 = entries_28_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_1 = entries_28_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b011101:
-        casez_tmp_1 = entries_29_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_1 = entries_29_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b011110:
-        casez_tmp_1 = entries_30_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_1 = entries_30_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b011111:
-        casez_tmp_1 = entries_31_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_1 = entries_31_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b100000:
-        casez_tmp_1 = entries_32_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_1 = entries_32_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b100001:
-        casez_tmp_1 = entries_33_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_1 = entries_33_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b100010:
-        casez_tmp_1 = entries_34_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_1 = entries_34_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b100011:
-        casez_tmp_1 = entries_35_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_1 = entries_35_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b100100:
-        casez_tmp_1 = entries_36_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_1 = entries_36_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b100101:
-        casez_tmp_1 = entries_37_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_1 = entries_37_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b100110:
-        casez_tmp_1 = entries_38_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_1 = entries_38_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b100111:
-        casez_tmp_1 = entries_39_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_1 = entries_39_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b101000:
-        casez_tmp_1 = entries_40_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_1 = entries_40_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b101001:
-        casez_tmp_1 = entries_41_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_1 = entries_41_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b101010:
-        casez_tmp_1 = entries_42_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_1 = entries_42_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b101011:
-        casez_tmp_1 = entries_43_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_1 = entries_43_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b101100:
-        casez_tmp_1 = entries_44_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_1 = entries_44_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b101101:
-        casez_tmp_1 = entries_45_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_1 = entries_45_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b101110:
-        casez_tmp_1 = entries_46_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_1 = entries_46_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b101111:
-        casez_tmp_1 = entries_47_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_1 = entries_47_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b110000:
-        casez_tmp_1 = entries_48_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_1 = entries_48_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b110001:
-        casez_tmp_1 = entries_49_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_1 = entries_49_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b110010:
-        casez_tmp_1 = entries_50_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_1 = entries_50_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b110011:
-        casez_tmp_1 = entries_51_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_1 = entries_51_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b110100:
-        casez_tmp_1 = entries_52_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_1 = entries_52_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b110101:
-        casez_tmp_1 = entries_53_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_1 = entries_53_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b110110:
-        casez_tmp_1 = entries_54_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_1 = entries_54_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b110111:
-        casez_tmp_1 = entries_55_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_1 = entries_55_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b111000:
-        casez_tmp_1 = entries_56_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_1 = entries_56_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b111001:
-        casez_tmp_1 = entries_57_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_1 = entries_57_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b111010:
-        casez_tmp_1 = entries_58_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_1 = entries_58_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b111011:
-        casez_tmp_1 = entries_59_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_1 = entries_59_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b111100:
-        casez_tmp_1 = entries_60_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_1 = entries_60_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b111101:
-        casez_tmp_1 = entries_61_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_1 = entries_61_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b111110:
-        casez_tmp_1 = entries_62_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_1 = entries_62_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       default:
-        casez_tmp_1 = entries_63_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
-    endcase	// frontend/src/zaqal/frontend/FTB.scala:44:36, :53:39
+        casez_tmp_1 = entries_63_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
+    endcase	// frontend/src/zaqal/frontend/FTB.scala:45:36, :54:39
   end // always_comb
-  reg  [1:0]  casez_tmp_2;	// frontend/src/zaqal/frontend/FTB.scala:53:39
-  always_comb begin	// frontend/src/zaqal/frontend/FTB.scala:53:39
-    casez (io_req_pc[10:5])	// frontend/src/zaqal/frontend/FTB.scala:44:36, :53:39
+  reg  [1:0]  casez_tmp_2;	// frontend/src/zaqal/frontend/FTB.scala:54:39
+  always_comb begin	// frontend/src/zaqal/frontend/FTB.scala:54:39
+    casez (io_req_pc[10:5])	// frontend/src/zaqal/frontend/FTB.scala:45:36, :54:39
       6'b000000:
-        casez_tmp_2 = entries_0_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_2 = entries_0_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b000001:
-        casez_tmp_2 = entries_1_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_2 = entries_1_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b000010:
-        casez_tmp_2 = entries_2_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_2 = entries_2_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b000011:
-        casez_tmp_2 = entries_3_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_2 = entries_3_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b000100:
-        casez_tmp_2 = entries_4_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_2 = entries_4_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b000101:
-        casez_tmp_2 = entries_5_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_2 = entries_5_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b000110:
-        casez_tmp_2 = entries_6_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_2 = entries_6_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b000111:
-        casez_tmp_2 = entries_7_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_2 = entries_7_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b001000:
-        casez_tmp_2 = entries_8_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_2 = entries_8_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b001001:
-        casez_tmp_2 = entries_9_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_2 = entries_9_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b001010:
-        casez_tmp_2 = entries_10_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_2 = entries_10_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b001011:
-        casez_tmp_2 = entries_11_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_2 = entries_11_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b001100:
-        casez_tmp_2 = entries_12_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_2 = entries_12_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b001101:
-        casez_tmp_2 = entries_13_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_2 = entries_13_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b001110:
-        casez_tmp_2 = entries_14_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_2 = entries_14_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b001111:
-        casez_tmp_2 = entries_15_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_2 = entries_15_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b010000:
-        casez_tmp_2 = entries_16_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_2 = entries_16_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b010001:
-        casez_tmp_2 = entries_17_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_2 = entries_17_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b010010:
-        casez_tmp_2 = entries_18_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_2 = entries_18_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b010011:
-        casez_tmp_2 = entries_19_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_2 = entries_19_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b010100:
-        casez_tmp_2 = entries_20_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_2 = entries_20_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b010101:
-        casez_tmp_2 = entries_21_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_2 = entries_21_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b010110:
-        casez_tmp_2 = entries_22_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_2 = entries_22_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b010111:
-        casez_tmp_2 = entries_23_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_2 = entries_23_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b011000:
-        casez_tmp_2 = entries_24_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_2 = entries_24_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b011001:
-        casez_tmp_2 = entries_25_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_2 = entries_25_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b011010:
-        casez_tmp_2 = entries_26_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_2 = entries_26_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b011011:
-        casez_tmp_2 = entries_27_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_2 = entries_27_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b011100:
-        casez_tmp_2 = entries_28_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_2 = entries_28_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b011101:
-        casez_tmp_2 = entries_29_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_2 = entries_29_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b011110:
-        casez_tmp_2 = entries_30_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_2 = entries_30_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b011111:
-        casez_tmp_2 = entries_31_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_2 = entries_31_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b100000:
-        casez_tmp_2 = entries_32_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_2 = entries_32_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b100001:
-        casez_tmp_2 = entries_33_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_2 = entries_33_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b100010:
-        casez_tmp_2 = entries_34_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_2 = entries_34_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b100011:
-        casez_tmp_2 = entries_35_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_2 = entries_35_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b100100:
-        casez_tmp_2 = entries_36_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_2 = entries_36_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b100101:
-        casez_tmp_2 = entries_37_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_2 = entries_37_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b100110:
-        casez_tmp_2 = entries_38_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_2 = entries_38_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b100111:
-        casez_tmp_2 = entries_39_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_2 = entries_39_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b101000:
-        casez_tmp_2 = entries_40_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_2 = entries_40_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b101001:
-        casez_tmp_2 = entries_41_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_2 = entries_41_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b101010:
-        casez_tmp_2 = entries_42_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_2 = entries_42_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b101011:
-        casez_tmp_2 = entries_43_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_2 = entries_43_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b101100:
-        casez_tmp_2 = entries_44_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_2 = entries_44_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b101101:
-        casez_tmp_2 = entries_45_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_2 = entries_45_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b101110:
-        casez_tmp_2 = entries_46_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_2 = entries_46_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b101111:
-        casez_tmp_2 = entries_47_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_2 = entries_47_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b110000:
-        casez_tmp_2 = entries_48_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_2 = entries_48_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b110001:
-        casez_tmp_2 = entries_49_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_2 = entries_49_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b110010:
-        casez_tmp_2 = entries_50_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_2 = entries_50_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b110011:
-        casez_tmp_2 = entries_51_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_2 = entries_51_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b110100:
-        casez_tmp_2 = entries_52_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_2 = entries_52_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b110101:
-        casez_tmp_2 = entries_53_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_2 = entries_53_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b110110:
-        casez_tmp_2 = entries_54_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_2 = entries_54_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b110111:
-        casez_tmp_2 = entries_55_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_2 = entries_55_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b111000:
-        casez_tmp_2 = entries_56_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_2 = entries_56_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b111001:
-        casez_tmp_2 = entries_57_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_2 = entries_57_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b111010:
-        casez_tmp_2 = entries_58_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_2 = entries_58_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b111011:
-        casez_tmp_2 = entries_59_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_2 = entries_59_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b111100:
-        casez_tmp_2 = entries_60_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_2 = entries_60_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b111101:
-        casez_tmp_2 = entries_61_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_2 = entries_61_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b111110:
-        casez_tmp_2 = entries_62_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_2 = entries_62_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       default:
-        casez_tmp_2 = entries_63_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
-    endcase	// frontend/src/zaqal/frontend/FTB.scala:44:36, :53:39
+        casez_tmp_2 = entries_63_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
+    endcase	// frontend/src/zaqal/frontend/FTB.scala:45:36, :54:39
   end // always_comb
-  reg  [3:0]  casez_tmp_3;	// frontend/src/zaqal/frontend/FTB.scala:53:39
-  always_comb begin	// frontend/src/zaqal/frontend/FTB.scala:53:39
-    casez (io_req_pc[10:5])	// frontend/src/zaqal/frontend/FTB.scala:44:36, :53:39
+  reg  [3:0]  casez_tmp_3;	// frontend/src/zaqal/frontend/FTB.scala:54:39
+  always_comb begin	// frontend/src/zaqal/frontend/FTB.scala:54:39
+    casez (io_req_pc[10:5])	// frontend/src/zaqal/frontend/FTB.scala:45:36, :54:39
       6'b000000:
-        casez_tmp_3 = entries_0_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_3 = entries_0_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b000001:
-        casez_tmp_3 = entries_1_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_3 = entries_1_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b000010:
-        casez_tmp_3 = entries_2_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_3 = entries_2_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b000011:
-        casez_tmp_3 = entries_3_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_3 = entries_3_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b000100:
-        casez_tmp_3 = entries_4_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_3 = entries_4_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b000101:
-        casez_tmp_3 = entries_5_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_3 = entries_5_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b000110:
-        casez_tmp_3 = entries_6_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_3 = entries_6_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b000111:
-        casez_tmp_3 = entries_7_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_3 = entries_7_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b001000:
-        casez_tmp_3 = entries_8_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_3 = entries_8_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b001001:
-        casez_tmp_3 = entries_9_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_3 = entries_9_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b001010:
-        casez_tmp_3 = entries_10_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_3 = entries_10_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b001011:
-        casez_tmp_3 = entries_11_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_3 = entries_11_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b001100:
-        casez_tmp_3 = entries_12_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_3 = entries_12_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b001101:
-        casez_tmp_3 = entries_13_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_3 = entries_13_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b001110:
-        casez_tmp_3 = entries_14_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_3 = entries_14_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b001111:
-        casez_tmp_3 = entries_15_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_3 = entries_15_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b010000:
-        casez_tmp_3 = entries_16_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_3 = entries_16_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b010001:
-        casez_tmp_3 = entries_17_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_3 = entries_17_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b010010:
-        casez_tmp_3 = entries_18_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_3 = entries_18_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b010011:
-        casez_tmp_3 = entries_19_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_3 = entries_19_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b010100:
-        casez_tmp_3 = entries_20_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_3 = entries_20_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b010101:
-        casez_tmp_3 = entries_21_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_3 = entries_21_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b010110:
-        casez_tmp_3 = entries_22_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_3 = entries_22_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b010111:
-        casez_tmp_3 = entries_23_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_3 = entries_23_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b011000:
-        casez_tmp_3 = entries_24_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_3 = entries_24_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b011001:
-        casez_tmp_3 = entries_25_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_3 = entries_25_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b011010:
-        casez_tmp_3 = entries_26_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_3 = entries_26_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b011011:
-        casez_tmp_3 = entries_27_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_3 = entries_27_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b011100:
-        casez_tmp_3 = entries_28_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_3 = entries_28_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b011101:
-        casez_tmp_3 = entries_29_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_3 = entries_29_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b011110:
-        casez_tmp_3 = entries_30_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_3 = entries_30_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b011111:
-        casez_tmp_3 = entries_31_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_3 = entries_31_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b100000:
-        casez_tmp_3 = entries_32_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_3 = entries_32_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b100001:
-        casez_tmp_3 = entries_33_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_3 = entries_33_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b100010:
-        casez_tmp_3 = entries_34_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_3 = entries_34_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b100011:
-        casez_tmp_3 = entries_35_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_3 = entries_35_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b100100:
-        casez_tmp_3 = entries_36_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_3 = entries_36_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b100101:
-        casez_tmp_3 = entries_37_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_3 = entries_37_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b100110:
-        casez_tmp_3 = entries_38_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_3 = entries_38_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b100111:
-        casez_tmp_3 = entries_39_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_3 = entries_39_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b101000:
-        casez_tmp_3 = entries_40_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_3 = entries_40_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b101001:
-        casez_tmp_3 = entries_41_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_3 = entries_41_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b101010:
-        casez_tmp_3 = entries_42_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_3 = entries_42_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b101011:
-        casez_tmp_3 = entries_43_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_3 = entries_43_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b101100:
-        casez_tmp_3 = entries_44_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_3 = entries_44_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b101101:
-        casez_tmp_3 = entries_45_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_3 = entries_45_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b101110:
-        casez_tmp_3 = entries_46_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_3 = entries_46_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b101111:
-        casez_tmp_3 = entries_47_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_3 = entries_47_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b110000:
-        casez_tmp_3 = entries_48_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_3 = entries_48_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b110001:
-        casez_tmp_3 = entries_49_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_3 = entries_49_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b110010:
-        casez_tmp_3 = entries_50_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_3 = entries_50_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b110011:
-        casez_tmp_3 = entries_51_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_3 = entries_51_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b110100:
-        casez_tmp_3 = entries_52_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_3 = entries_52_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b110101:
-        casez_tmp_3 = entries_53_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_3 = entries_53_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b110110:
-        casez_tmp_3 = entries_54_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_3 = entries_54_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b110111:
-        casez_tmp_3 = entries_55_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_3 = entries_55_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b111000:
-        casez_tmp_3 = entries_56_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_3 = entries_56_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b111001:
-        casez_tmp_3 = entries_57_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_3 = entries_57_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b111010:
-        casez_tmp_3 = entries_58_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_3 = entries_58_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b111011:
-        casez_tmp_3 = entries_59_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_3 = entries_59_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b111100:
-        casez_tmp_3 = entries_60_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_3 = entries_60_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b111101:
-        casez_tmp_3 = entries_61_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_3 = entries_61_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b111110:
-        casez_tmp_3 = entries_62_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_3 = entries_62_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       default:
-        casez_tmp_3 = entries_63_offset;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
-    endcase	// frontend/src/zaqal/frontend/FTB.scala:44:36, :53:39
+        casez_tmp_3 = entries_63_offset;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
+    endcase	// frontend/src/zaqal/frontend/FTB.scala:45:36, :54:39
   end // always_comb
-  reg         casez_tmp_4;	// frontend/src/zaqal/frontend/FTB.scala:53:39
-  always_comb begin	// frontend/src/zaqal/frontend/FTB.scala:53:39
-    casez (io_req_pc[10:5])	// frontend/src/zaqal/frontend/FTB.scala:44:36, :53:39
+  reg         casez_tmp_4;	// frontend/src/zaqal/frontend/FTB.scala:54:39
+  always_comb begin	// frontend/src/zaqal/frontend/FTB.scala:54:39
+    casez (io_req_pc[10:5])	// frontend/src/zaqal/frontend/FTB.scala:45:36, :54:39
       6'b000000:
-        casez_tmp_4 = entries_0_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_4 = entries_0_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b000001:
-        casez_tmp_4 = entries_1_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_4 = entries_1_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b000010:
-        casez_tmp_4 = entries_2_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_4 = entries_2_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b000011:
-        casez_tmp_4 = entries_3_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_4 = entries_3_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b000100:
-        casez_tmp_4 = entries_4_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_4 = entries_4_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b000101:
-        casez_tmp_4 = entries_5_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_4 = entries_5_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b000110:
-        casez_tmp_4 = entries_6_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_4 = entries_6_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b000111:
-        casez_tmp_4 = entries_7_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_4 = entries_7_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b001000:
-        casez_tmp_4 = entries_8_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_4 = entries_8_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b001001:
-        casez_tmp_4 = entries_9_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_4 = entries_9_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b001010:
-        casez_tmp_4 = entries_10_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_4 = entries_10_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b001011:
-        casez_tmp_4 = entries_11_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_4 = entries_11_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b001100:
-        casez_tmp_4 = entries_12_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_4 = entries_12_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b001101:
-        casez_tmp_4 = entries_13_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_4 = entries_13_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b001110:
-        casez_tmp_4 = entries_14_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_4 = entries_14_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b001111:
-        casez_tmp_4 = entries_15_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_4 = entries_15_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b010000:
-        casez_tmp_4 = entries_16_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_4 = entries_16_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b010001:
-        casez_tmp_4 = entries_17_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_4 = entries_17_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b010010:
-        casez_tmp_4 = entries_18_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_4 = entries_18_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b010011:
-        casez_tmp_4 = entries_19_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_4 = entries_19_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b010100:
-        casez_tmp_4 = entries_20_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_4 = entries_20_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b010101:
-        casez_tmp_4 = entries_21_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_4 = entries_21_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b010110:
-        casez_tmp_4 = entries_22_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_4 = entries_22_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b010111:
-        casez_tmp_4 = entries_23_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_4 = entries_23_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b011000:
-        casez_tmp_4 = entries_24_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_4 = entries_24_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b011001:
-        casez_tmp_4 = entries_25_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_4 = entries_25_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b011010:
-        casez_tmp_4 = entries_26_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_4 = entries_26_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b011011:
-        casez_tmp_4 = entries_27_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_4 = entries_27_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b011100:
-        casez_tmp_4 = entries_28_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_4 = entries_28_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b011101:
-        casez_tmp_4 = entries_29_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_4 = entries_29_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b011110:
-        casez_tmp_4 = entries_30_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_4 = entries_30_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b011111:
-        casez_tmp_4 = entries_31_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_4 = entries_31_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b100000:
-        casez_tmp_4 = entries_32_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_4 = entries_32_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b100001:
-        casez_tmp_4 = entries_33_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_4 = entries_33_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b100010:
-        casez_tmp_4 = entries_34_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_4 = entries_34_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b100011:
-        casez_tmp_4 = entries_35_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_4 = entries_35_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b100100:
-        casez_tmp_4 = entries_36_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_4 = entries_36_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b100101:
-        casez_tmp_4 = entries_37_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_4 = entries_37_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b100110:
-        casez_tmp_4 = entries_38_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_4 = entries_38_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b100111:
-        casez_tmp_4 = entries_39_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_4 = entries_39_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b101000:
-        casez_tmp_4 = entries_40_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_4 = entries_40_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b101001:
-        casez_tmp_4 = entries_41_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_4 = entries_41_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b101010:
-        casez_tmp_4 = entries_42_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_4 = entries_42_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b101011:
-        casez_tmp_4 = entries_43_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_4 = entries_43_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b101100:
-        casez_tmp_4 = entries_44_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_4 = entries_44_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b101101:
-        casez_tmp_4 = entries_45_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_4 = entries_45_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b101110:
-        casez_tmp_4 = entries_46_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_4 = entries_46_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b101111:
-        casez_tmp_4 = entries_47_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_4 = entries_47_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b110000:
-        casez_tmp_4 = entries_48_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_4 = entries_48_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b110001:
-        casez_tmp_4 = entries_49_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_4 = entries_49_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b110010:
-        casez_tmp_4 = entries_50_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_4 = entries_50_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b110011:
-        casez_tmp_4 = entries_51_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_4 = entries_51_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b110100:
-        casez_tmp_4 = entries_52_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_4 = entries_52_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b110101:
-        casez_tmp_4 = entries_53_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_4 = entries_53_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b110110:
-        casez_tmp_4 = entries_54_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_4 = entries_54_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b110111:
-        casez_tmp_4 = entries_55_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_4 = entries_55_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b111000:
-        casez_tmp_4 = entries_56_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_4 = entries_56_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b111001:
-        casez_tmp_4 = entries_57_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_4 = entries_57_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b111010:
-        casez_tmp_4 = entries_58_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_4 = entries_58_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b111011:
-        casez_tmp_4 = entries_59_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_4 = entries_59_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b111100:
-        casez_tmp_4 = entries_60_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_4 = entries_60_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b111101:
-        casez_tmp_4 = entries_61_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_4 = entries_61_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       6'b111110:
-        casez_tmp_4 = entries_62_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
+        casez_tmp_4 = entries_62_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
       default:
-        casez_tmp_4 = entries_63_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :53:39
-    endcase	// frontend/src/zaqal/frontend/FTB.scala:44:36, :53:39
+        casez_tmp_4 = entries_63_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :54:39
+    endcase	// frontend/src/zaqal/frontend/FTB.scala:45:36, :54:39
   end // always_comb
-  wire        hit = casez_tmp & casez_tmp_0 == io_req_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:45:34, :53:{25,39}
-  wire        _GEN = io_update_valid & io_update_is_cfi;	// frontend/src/zaqal/frontend/FTB.scala:65:24
-  `ifndef SYNTHESIS	// frontend/src/zaqal/frontend/FTB.scala:75:11
-    always @(posedge clock) begin	// frontend/src/zaqal/frontend/FTB.scala:75:11
-      if ((`PRINTF_COND_) & _GEN & ~reset)	// frontend/src/zaqal/frontend/FTB.scala:65:24, :75:11
+  wire        hit = casez_tmp & casez_tmp_0 == io_req_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:46:34, :54:{25,39}
+  wire        _GEN = io_update_valid & io_update_is_cfi;	// frontend/src/zaqal/frontend/FTB.scala:66:24
+  `ifndef SYNTHESIS	// frontend/src/zaqal/frontend/FTB.scala:76:11
+    always @(posedge clock) begin	// frontend/src/zaqal/frontend/FTB.scala:76:11
+      if ((`PRINTF_COND_) & _GEN & ~reset)	// frontend/src/zaqal/frontend/FTB.scala:66:24, :76:11
         $fwrite(32'h80000002,
                 "[FTB UPDATE] pc=%x index=%d tag=%d offset=%d target=%x taken=%d\n",
                 io_update_pc, io_update_pc[10:5], io_update_pc[63:11], io_update_pc[4:1],
-                io_update_target, io_update_taken);	// frontend/src/zaqal/frontend/FTB.scala:44:36, :45:34, :46:37, :75:11
+                io_update_target, io_update_taken);	// frontend/src/zaqal/frontend/FTB.scala:45:36, :46:34, :47:37, :76:11
     end // always @(posedge)
   `endif // not def SYNTHESIS
-  wire [1:0]  new_entry_br_type = {io_update_is_jalr, 1'h0};	// frontend/src/zaqal/frontend/FTB.scala:41:66, :70:29
-  wire        _GEN_0 = _GEN & io_update_pc[10:5] == 6'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :44:36, :65:{24,45}, :74:27
-  wire        _GEN_1 = _GEN & io_update_pc[10:5] == 6'h1;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :44:36, :65:{24,45}, :74:27
-  wire        _GEN_2 = _GEN & io_update_pc[10:5] == 6'h2;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :44:36, :65:{24,45}, :74:27
-  wire        _GEN_3 = _GEN & io_update_pc[10:5] == 6'h3;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :44:36, :65:{24,45}, :74:27
-  wire        _GEN_4 = _GEN & io_update_pc[10:5] == 6'h4;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :44:36, :65:{24,45}, :74:27
-  wire        _GEN_5 = _GEN & io_update_pc[10:5] == 6'h5;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :44:36, :65:{24,45}, :74:27
-  wire        _GEN_6 = _GEN & io_update_pc[10:5] == 6'h6;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :44:36, :65:{24,45}, :74:27
-  wire        _GEN_7 = _GEN & io_update_pc[10:5] == 6'h7;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :44:36, :65:{24,45}, :74:27
-  wire        _GEN_8 = _GEN & io_update_pc[10:5] == 6'h8;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :44:36, :65:{24,45}, :74:27
-  wire        _GEN_9 = _GEN & io_update_pc[10:5] == 6'h9;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :44:36, :65:{24,45}, :74:27
-  wire        _GEN_10 = _GEN & io_update_pc[10:5] == 6'hA;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :44:36, :65:{24,45}, :74:27
-  wire        _GEN_11 = _GEN & io_update_pc[10:5] == 6'hB;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :44:36, :65:{24,45}, :74:27
-  wire        _GEN_12 = _GEN & io_update_pc[10:5] == 6'hC;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :44:36, :65:{24,45}, :74:27
-  wire        _GEN_13 = _GEN & io_update_pc[10:5] == 6'hD;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :44:36, :65:{24,45}, :74:27
-  wire        _GEN_14 = _GEN & io_update_pc[10:5] == 6'hE;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :44:36, :65:{24,45}, :74:27
-  wire        _GEN_15 = _GEN & io_update_pc[10:5] == 6'hF;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :44:36, :65:{24,45}, :74:27
-  wire        _GEN_16 = _GEN & io_update_pc[10:5] == 6'h10;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :44:36, :65:{24,45}, :74:27
-  wire        _GEN_17 = _GEN & io_update_pc[10:5] == 6'h11;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :44:36, :65:{24,45}, :74:27
-  wire        _GEN_18 = _GEN & io_update_pc[10:5] == 6'h12;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :44:36, :65:{24,45}, :74:27
-  wire        _GEN_19 = _GEN & io_update_pc[10:5] == 6'h13;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :44:36, :65:{24,45}, :74:27
-  wire        _GEN_20 = _GEN & io_update_pc[10:5] == 6'h14;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :44:36, :65:{24,45}, :74:27
-  wire        _GEN_21 = _GEN & io_update_pc[10:5] == 6'h15;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :44:36, :65:{24,45}, :74:27
-  wire        _GEN_22 = _GEN & io_update_pc[10:5] == 6'h16;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :44:36, :65:{24,45}, :74:27
-  wire        _GEN_23 = _GEN & io_update_pc[10:5] == 6'h17;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :44:36, :65:{24,45}, :74:27
-  wire        _GEN_24 = _GEN & io_update_pc[10:5] == 6'h18;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :44:36, :65:{24,45}, :74:27
-  wire        _GEN_25 = _GEN & io_update_pc[10:5] == 6'h19;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :44:36, :65:{24,45}, :74:27
-  wire        _GEN_26 = _GEN & io_update_pc[10:5] == 6'h1A;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :44:36, :65:{24,45}, :74:27
-  wire        _GEN_27 = _GEN & io_update_pc[10:5] == 6'h1B;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :44:36, :65:{24,45}, :74:27
-  wire        _GEN_28 = _GEN & io_update_pc[10:5] == 6'h1C;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :44:36, :65:{24,45}, :74:27
-  wire        _GEN_29 = _GEN & io_update_pc[10:5] == 6'h1D;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :44:36, :65:{24,45}, :74:27
-  wire        _GEN_30 = _GEN & io_update_pc[10:5] == 6'h1E;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :44:36, :65:{24,45}, :74:27
-  wire        _GEN_31 = _GEN & io_update_pc[10:5] == 6'h1F;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :44:36, :65:{24,45}, :74:27
-  wire        _GEN_32 = _GEN & io_update_pc[10:5] == 6'h20;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :44:36, :55:49, :65:{24,45}, :74:27
-  wire        _GEN_33 = _GEN & io_update_pc[10:5] == 6'h21;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :44:36, :65:{24,45}, :74:27
-  wire        _GEN_34 = _GEN & io_update_pc[10:5] == 6'h22;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :44:36, :65:{24,45}, :74:27
-  wire        _GEN_35 = _GEN & io_update_pc[10:5] == 6'h23;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :44:36, :65:{24,45}, :74:27
-  wire        _GEN_36 = _GEN & io_update_pc[10:5] == 6'h24;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :44:36, :65:{24,45}, :74:27
-  wire        _GEN_37 = _GEN & io_update_pc[10:5] == 6'h25;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :44:36, :65:{24,45}, :74:27
-  wire        _GEN_38 = _GEN & io_update_pc[10:5] == 6'h26;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :44:36, :65:{24,45}, :74:27
-  wire        _GEN_39 = _GEN & io_update_pc[10:5] == 6'h27;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :44:36, :65:{24,45}, :74:27
-  wire        _GEN_40 = _GEN & io_update_pc[10:5] == 6'h28;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :44:36, :65:{24,45}, :74:27
-  wire        _GEN_41 = _GEN & io_update_pc[10:5] == 6'h29;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :44:36, :65:{24,45}, :74:27
-  wire        _GEN_42 = _GEN & io_update_pc[10:5] == 6'h2A;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :44:36, :65:{24,45}, :74:27
-  wire        _GEN_43 = _GEN & io_update_pc[10:5] == 6'h2B;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :44:36, :65:{24,45}, :74:27
-  wire        _GEN_44 = _GEN & io_update_pc[10:5] == 6'h2C;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :44:36, :65:{24,45}, :74:27
-  wire        _GEN_45 = _GEN & io_update_pc[10:5] == 6'h2D;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :44:36, :65:{24,45}, :74:27
-  wire        _GEN_46 = _GEN & io_update_pc[10:5] == 6'h2E;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :44:36, :65:{24,45}, :74:27
-  wire        _GEN_47 = _GEN & io_update_pc[10:5] == 6'h2F;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :44:36, :65:{24,45}, :74:27
-  wire        _GEN_48 = _GEN & io_update_pc[10:5] == 6'h30;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :44:36, :65:{24,45}, :74:27
-  wire        _GEN_49 = _GEN & io_update_pc[10:5] == 6'h31;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :44:36, :65:{24,45}, :74:27
-  wire        _GEN_50 = _GEN & io_update_pc[10:5] == 6'h32;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :44:36, :65:{24,45}, :74:27
-  wire        _GEN_51 = _GEN & io_update_pc[10:5] == 6'h33;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :44:36, :65:{24,45}, :74:27
-  wire        _GEN_52 = _GEN & io_update_pc[10:5] == 6'h34;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :44:36, :65:{24,45}, :74:27
-  wire        _GEN_53 = _GEN & io_update_pc[10:5] == 6'h35;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :44:36, :65:{24,45}, :74:27
-  wire        _GEN_54 = _GEN & io_update_pc[10:5] == 6'h36;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :44:36, :65:{24,45}, :74:27
-  wire        _GEN_55 = _GEN & io_update_pc[10:5] == 6'h37;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :44:36, :65:{24,45}, :74:27
-  wire        _GEN_56 = _GEN & io_update_pc[10:5] == 6'h38;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :44:36, :65:{24,45}, :74:27
-  wire        _GEN_57 = _GEN & io_update_pc[10:5] == 6'h39;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :44:36, :65:{24,45}, :74:27
-  wire        _GEN_58 = _GEN & io_update_pc[10:5] == 6'h3A;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :44:36, :65:{24,45}, :74:27
-  wire        _GEN_59 = _GEN & io_update_pc[10:5] == 6'h3B;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :44:36, :65:{24,45}, :74:27
-  wire        _GEN_60 = _GEN & io_update_pc[10:5] == 6'h3C;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :44:36, :65:{24,45}, :74:27
-  wire        _GEN_61 = _GEN & io_update_pc[10:5] == 6'h3D;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :44:36, :65:{24,45}, :74:27
-  wire        _GEN_62 = _GEN & io_update_pc[10:5] == 6'h3E;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :44:36, :65:{24,45}, :74:27
-  wire        _GEN_63 = _GEN & (&(io_update_pc[10:5]));	// frontend/src/zaqal/frontend/FTB.scala:41:24, :44:36, :65:{24,45}, :74:27
+  wire [1:0]  new_entry_br_type = io_update_is_jalr ? 2'h2 : {1'h0, io_update_is_jal};	// frontend/src/zaqal/frontend/FTB.scala:42:66, :71:29
+  wire        _GEN_0 = _GEN & io_update_pc[10:5] == 6'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
+  wire        _GEN_1 = _GEN & io_update_pc[10:5] == 6'h1;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
+  wire        _GEN_2 = _GEN & io_update_pc[10:5] == 6'h2;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
+  wire        _GEN_3 = _GEN & io_update_pc[10:5] == 6'h3;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
+  wire        _GEN_4 = _GEN & io_update_pc[10:5] == 6'h4;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
+  wire        _GEN_5 = _GEN & io_update_pc[10:5] == 6'h5;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
+  wire        _GEN_6 = _GEN & io_update_pc[10:5] == 6'h6;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
+  wire        _GEN_7 = _GEN & io_update_pc[10:5] == 6'h7;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
+  wire        _GEN_8 = _GEN & io_update_pc[10:5] == 6'h8;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
+  wire        _GEN_9 = _GEN & io_update_pc[10:5] == 6'h9;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
+  wire        _GEN_10 = _GEN & io_update_pc[10:5] == 6'hA;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
+  wire        _GEN_11 = _GEN & io_update_pc[10:5] == 6'hB;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
+  wire        _GEN_12 = _GEN & io_update_pc[10:5] == 6'hC;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
+  wire        _GEN_13 = _GEN & io_update_pc[10:5] == 6'hD;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
+  wire        _GEN_14 = _GEN & io_update_pc[10:5] == 6'hE;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
+  wire        _GEN_15 = _GEN & io_update_pc[10:5] == 6'hF;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
+  wire        _GEN_16 = _GEN & io_update_pc[10:5] == 6'h10;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
+  wire        _GEN_17 = _GEN & io_update_pc[10:5] == 6'h11;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
+  wire        _GEN_18 = _GEN & io_update_pc[10:5] == 6'h12;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
+  wire        _GEN_19 = _GEN & io_update_pc[10:5] == 6'h13;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
+  wire        _GEN_20 = _GEN & io_update_pc[10:5] == 6'h14;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
+  wire        _GEN_21 = _GEN & io_update_pc[10:5] == 6'h15;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
+  wire        _GEN_22 = _GEN & io_update_pc[10:5] == 6'h16;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
+  wire        _GEN_23 = _GEN & io_update_pc[10:5] == 6'h17;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
+  wire        _GEN_24 = _GEN & io_update_pc[10:5] == 6'h18;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
+  wire        _GEN_25 = _GEN & io_update_pc[10:5] == 6'h19;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
+  wire        _GEN_26 = _GEN & io_update_pc[10:5] == 6'h1A;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
+  wire        _GEN_27 = _GEN & io_update_pc[10:5] == 6'h1B;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
+  wire        _GEN_28 = _GEN & io_update_pc[10:5] == 6'h1C;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
+  wire        _GEN_29 = _GEN & io_update_pc[10:5] == 6'h1D;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
+  wire        _GEN_30 = _GEN & io_update_pc[10:5] == 6'h1E;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
+  wire        _GEN_31 = _GEN & io_update_pc[10:5] == 6'h1F;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
+  wire        _GEN_32 = _GEN & io_update_pc[10:5] == 6'h20;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :56:49, :66:{24,45}, :75:27
+  wire        _GEN_33 = _GEN & io_update_pc[10:5] == 6'h21;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
+  wire        _GEN_34 = _GEN & io_update_pc[10:5] == 6'h22;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
+  wire        _GEN_35 = _GEN & io_update_pc[10:5] == 6'h23;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
+  wire        _GEN_36 = _GEN & io_update_pc[10:5] == 6'h24;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
+  wire        _GEN_37 = _GEN & io_update_pc[10:5] == 6'h25;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
+  wire        _GEN_38 = _GEN & io_update_pc[10:5] == 6'h26;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
+  wire        _GEN_39 = _GEN & io_update_pc[10:5] == 6'h27;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
+  wire        _GEN_40 = _GEN & io_update_pc[10:5] == 6'h28;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
+  wire        _GEN_41 = _GEN & io_update_pc[10:5] == 6'h29;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
+  wire        _GEN_42 = _GEN & io_update_pc[10:5] == 6'h2A;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
+  wire        _GEN_43 = _GEN & io_update_pc[10:5] == 6'h2B;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
+  wire        _GEN_44 = _GEN & io_update_pc[10:5] == 6'h2C;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
+  wire        _GEN_45 = _GEN & io_update_pc[10:5] == 6'h2D;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
+  wire        _GEN_46 = _GEN & io_update_pc[10:5] == 6'h2E;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
+  wire        _GEN_47 = _GEN & io_update_pc[10:5] == 6'h2F;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
+  wire        _GEN_48 = _GEN & io_update_pc[10:5] == 6'h30;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
+  wire        _GEN_49 = _GEN & io_update_pc[10:5] == 6'h31;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
+  wire        _GEN_50 = _GEN & io_update_pc[10:5] == 6'h32;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
+  wire        _GEN_51 = _GEN & io_update_pc[10:5] == 6'h33;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
+  wire        _GEN_52 = _GEN & io_update_pc[10:5] == 6'h34;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
+  wire        _GEN_53 = _GEN & io_update_pc[10:5] == 6'h35;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
+  wire        _GEN_54 = _GEN & io_update_pc[10:5] == 6'h36;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
+  wire        _GEN_55 = _GEN & io_update_pc[10:5] == 6'h37;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
+  wire        _GEN_56 = _GEN & io_update_pc[10:5] == 6'h38;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
+  wire        _GEN_57 = _GEN & io_update_pc[10:5] == 6'h39;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
+  wire        _GEN_58 = _GEN & io_update_pc[10:5] == 6'h3A;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
+  wire        _GEN_59 = _GEN & io_update_pc[10:5] == 6'h3B;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
+  wire        _GEN_60 = _GEN & io_update_pc[10:5] == 6'h3C;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
+  wire        _GEN_61 = _GEN & io_update_pc[10:5] == 6'h3D;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
+  wire        _GEN_62 = _GEN & io_update_pc[10:5] == 6'h3E;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
+  wire        _GEN_63 = _GEN & (&(io_update_pc[10:5]));	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
   always @(posedge clock) begin	// frontend/src/zaqal/frontend/FTB.scala:17:7
     if (reset) begin	// frontend/src/zaqal/frontend/FTB.scala:17:7
-      entries_0_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_0_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_0_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_0_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_0_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_0_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_1_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_1_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_1_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_1_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_1_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_1_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_2_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_2_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_2_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_2_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_2_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_2_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_3_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_3_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_3_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_3_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_3_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_3_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_4_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_4_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_4_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_4_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_4_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_4_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_5_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_5_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_5_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_5_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_5_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_5_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_6_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_6_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_6_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_6_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_6_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_6_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_7_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_7_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_7_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_7_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_7_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_7_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_8_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_8_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_8_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_8_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_8_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_8_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_9_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_9_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_9_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_9_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_9_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_9_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_10_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_10_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_10_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_10_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_10_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_10_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_11_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_11_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_11_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_11_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_11_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_11_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_12_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_12_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_12_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_12_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_12_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_12_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_13_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_13_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_13_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_13_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_13_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_13_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_14_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_14_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_14_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_14_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_14_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_14_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_15_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_15_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_15_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_15_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_15_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_15_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_16_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_16_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_16_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_16_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_16_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_16_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_17_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_17_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_17_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_17_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_17_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_17_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_18_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_18_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_18_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_18_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_18_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_18_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_19_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_19_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_19_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_19_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_19_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_19_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_20_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_20_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_20_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_20_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_20_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_20_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_21_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_21_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_21_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_21_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_21_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_21_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_22_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_22_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_22_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_22_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_22_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_22_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_23_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_23_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_23_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_23_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_23_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_23_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_24_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_24_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_24_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_24_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_24_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_24_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_25_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_25_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_25_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_25_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_25_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_25_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_26_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_26_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_26_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_26_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_26_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_26_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_27_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_27_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_27_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_27_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_27_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_27_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_28_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_28_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_28_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_28_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_28_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_28_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_29_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_29_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_29_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_29_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_29_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_29_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_30_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_30_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_30_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_30_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_30_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_30_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_31_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_31_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_31_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_31_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_31_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_31_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_32_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_32_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_32_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_32_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_32_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_32_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_33_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_33_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_33_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_33_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_33_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_33_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_34_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_34_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_34_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_34_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_34_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_34_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_35_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_35_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_35_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_35_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_35_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_35_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_36_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_36_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_36_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_36_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_36_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_36_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_37_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_37_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_37_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_37_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_37_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_37_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_38_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_38_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_38_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_38_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_38_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_38_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_39_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_39_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_39_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_39_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_39_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_39_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_40_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_40_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_40_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_40_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_40_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_40_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_41_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_41_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_41_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_41_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_41_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_41_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_42_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_42_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_42_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_42_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_42_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_42_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_43_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_43_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_43_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_43_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_43_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_43_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_44_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_44_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_44_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_44_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_44_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_44_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_45_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_45_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_45_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_45_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_45_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_45_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_46_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_46_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_46_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_46_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_46_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_46_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_47_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_47_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_47_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_47_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_47_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_47_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_48_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_48_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_48_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_48_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_48_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_48_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_49_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_49_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_49_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_49_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_49_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_49_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_50_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_50_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_50_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_50_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_50_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_50_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_51_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_51_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_51_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_51_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_51_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_51_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_52_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_52_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_52_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_52_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_52_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_52_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_53_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_53_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_53_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_53_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_53_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_53_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_54_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_54_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_54_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_54_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_54_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_54_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_55_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_55_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_55_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_55_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_55_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_55_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_56_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_56_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_56_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_56_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_56_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_56_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_57_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_57_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_57_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_57_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_57_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_57_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_58_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_58_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_58_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_58_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_58_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_58_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_59_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_59_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_59_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_59_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_59_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_59_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_60_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_60_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_60_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_60_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_60_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_60_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_61_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_61_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_61_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_61_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_61_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_61_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_62_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_62_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_62_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_62_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_62_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_62_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_63_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_63_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_63_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_63_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_63_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
-      entries_63_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:41:{24,66}
+      entries_0_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_0_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_0_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_0_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_0_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_0_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_1_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_1_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_1_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_1_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_1_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_1_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_2_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_2_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_2_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_2_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_2_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_2_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_3_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_3_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_3_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_3_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_3_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_3_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_4_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_4_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_4_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_4_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_4_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_4_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_5_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_5_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_5_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_5_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_5_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_5_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_6_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_6_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_6_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_6_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_6_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_6_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_7_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_7_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_7_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_7_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_7_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_7_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_8_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_8_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_8_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_8_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_8_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_8_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_9_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_9_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_9_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_9_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_9_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_9_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_10_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_10_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_10_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_10_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_10_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_10_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_11_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_11_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_11_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_11_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_11_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_11_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_12_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_12_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_12_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_12_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_12_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_12_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_13_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_13_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_13_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_13_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_13_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_13_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_14_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_14_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_14_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_14_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_14_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_14_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_15_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_15_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_15_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_15_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_15_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_15_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_16_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_16_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_16_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_16_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_16_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_16_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_17_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_17_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_17_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_17_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_17_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_17_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_18_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_18_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_18_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_18_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_18_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_18_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_19_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_19_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_19_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_19_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_19_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_19_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_20_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_20_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_20_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_20_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_20_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_20_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_21_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_21_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_21_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_21_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_21_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_21_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_22_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_22_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_22_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_22_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_22_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_22_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_23_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_23_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_23_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_23_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_23_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_23_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_24_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_24_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_24_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_24_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_24_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_24_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_25_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_25_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_25_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_25_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_25_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_25_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_26_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_26_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_26_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_26_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_26_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_26_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_27_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_27_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_27_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_27_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_27_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_27_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_28_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_28_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_28_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_28_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_28_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_28_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_29_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_29_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_29_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_29_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_29_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_29_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_30_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_30_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_30_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_30_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_30_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_30_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_31_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_31_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_31_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_31_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_31_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_31_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_32_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_32_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_32_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_32_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_32_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_32_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_33_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_33_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_33_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_33_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_33_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_33_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_34_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_34_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_34_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_34_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_34_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_34_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_35_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_35_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_35_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_35_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_35_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_35_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_36_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_36_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_36_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_36_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_36_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_36_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_37_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_37_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_37_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_37_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_37_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_37_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_38_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_38_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_38_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_38_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_38_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_38_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_39_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_39_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_39_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_39_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_39_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_39_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_40_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_40_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_40_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_40_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_40_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_40_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_41_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_41_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_41_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_41_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_41_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_41_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_42_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_42_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_42_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_42_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_42_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_42_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_43_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_43_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_43_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_43_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_43_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_43_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_44_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_44_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_44_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_44_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_44_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_44_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_45_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_45_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_45_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_45_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_45_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_45_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_46_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_46_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_46_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_46_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_46_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_46_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_47_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_47_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_47_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_47_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_47_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_47_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_48_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_48_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_48_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_48_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_48_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_48_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_49_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_49_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_49_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_49_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_49_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_49_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_50_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_50_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_50_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_50_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_50_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_50_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_51_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_51_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_51_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_51_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_51_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_51_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_52_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_52_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_52_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_52_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_52_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_52_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_53_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_53_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_53_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_53_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_53_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_53_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_54_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_54_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_54_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_54_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_54_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_54_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_55_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_55_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_55_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_55_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_55_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_55_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_56_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_56_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_56_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_56_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_56_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_56_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_57_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_57_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_57_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_57_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_57_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_57_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_58_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_58_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_58_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_58_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_58_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_58_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_59_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_59_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_59_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_59_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_59_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_59_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_60_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_60_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_60_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_60_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_60_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_60_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_61_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_61_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_61_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_61_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_61_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_61_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_62_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_62_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_62_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_62_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_62_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_62_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_63_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_63_tag <= 53'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_63_target <= 64'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_63_br_type <= 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_63_offset <= 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
+      entries_63_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
     end
     else begin	// frontend/src/zaqal/frontend/FTB.scala:17:7
-      entries_0_valid <= _GEN_0 | entries_0_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-      if (_GEN_0) begin	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-        entries_0_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :45:34
-        entries_0_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-        entries_0_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :70:29
-        entries_0_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :46:37
-        entries_0_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
+      entries_0_valid <= _GEN_0 | entries_0_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      if (_GEN_0) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+        entries_0_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
+        entries_0_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+        entries_0_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
+        entries_0_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
+        entries_0_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_1_valid <= _GEN_1 | entries_1_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-      if (_GEN_1) begin	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-        entries_1_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :45:34
-        entries_1_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-        entries_1_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :70:29
-        entries_1_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :46:37
-        entries_1_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
+      entries_1_valid <= _GEN_1 | entries_1_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      if (_GEN_1) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+        entries_1_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
+        entries_1_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+        entries_1_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
+        entries_1_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
+        entries_1_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_2_valid <= _GEN_2 | entries_2_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-      if (_GEN_2) begin	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-        entries_2_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :45:34
-        entries_2_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-        entries_2_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :70:29
-        entries_2_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :46:37
-        entries_2_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
+      entries_2_valid <= _GEN_2 | entries_2_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      if (_GEN_2) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+        entries_2_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
+        entries_2_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+        entries_2_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
+        entries_2_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
+        entries_2_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_3_valid <= _GEN_3 | entries_3_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-      if (_GEN_3) begin	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-        entries_3_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :45:34
-        entries_3_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-        entries_3_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :70:29
-        entries_3_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :46:37
-        entries_3_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
+      entries_3_valid <= _GEN_3 | entries_3_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      if (_GEN_3) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+        entries_3_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
+        entries_3_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+        entries_3_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
+        entries_3_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
+        entries_3_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_4_valid <= _GEN_4 | entries_4_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-      if (_GEN_4) begin	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-        entries_4_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :45:34
-        entries_4_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-        entries_4_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :70:29
-        entries_4_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :46:37
-        entries_4_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
+      entries_4_valid <= _GEN_4 | entries_4_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      if (_GEN_4) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+        entries_4_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
+        entries_4_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+        entries_4_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
+        entries_4_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
+        entries_4_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_5_valid <= _GEN_5 | entries_5_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-      if (_GEN_5) begin	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-        entries_5_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :45:34
-        entries_5_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-        entries_5_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :70:29
-        entries_5_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :46:37
-        entries_5_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
+      entries_5_valid <= _GEN_5 | entries_5_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      if (_GEN_5) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+        entries_5_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
+        entries_5_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+        entries_5_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
+        entries_5_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
+        entries_5_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_6_valid <= _GEN_6 | entries_6_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-      if (_GEN_6) begin	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-        entries_6_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :45:34
-        entries_6_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-        entries_6_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :70:29
-        entries_6_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :46:37
-        entries_6_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
+      entries_6_valid <= _GEN_6 | entries_6_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      if (_GEN_6) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+        entries_6_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
+        entries_6_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+        entries_6_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
+        entries_6_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
+        entries_6_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_7_valid <= _GEN_7 | entries_7_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-      if (_GEN_7) begin	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-        entries_7_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :45:34
-        entries_7_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-        entries_7_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :70:29
-        entries_7_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :46:37
-        entries_7_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
+      entries_7_valid <= _GEN_7 | entries_7_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      if (_GEN_7) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+        entries_7_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
+        entries_7_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+        entries_7_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
+        entries_7_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
+        entries_7_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_8_valid <= _GEN_8 | entries_8_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-      if (_GEN_8) begin	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-        entries_8_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :45:34
-        entries_8_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-        entries_8_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :70:29
-        entries_8_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :46:37
-        entries_8_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
+      entries_8_valid <= _GEN_8 | entries_8_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      if (_GEN_8) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+        entries_8_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
+        entries_8_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+        entries_8_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
+        entries_8_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
+        entries_8_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_9_valid <= _GEN_9 | entries_9_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-      if (_GEN_9) begin	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-        entries_9_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :45:34
-        entries_9_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-        entries_9_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :70:29
-        entries_9_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :46:37
-        entries_9_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
+      entries_9_valid <= _GEN_9 | entries_9_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      if (_GEN_9) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+        entries_9_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
+        entries_9_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+        entries_9_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
+        entries_9_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
+        entries_9_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_10_valid <= _GEN_10 | entries_10_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-      if (_GEN_10) begin	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-        entries_10_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :45:34
-        entries_10_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-        entries_10_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :70:29
-        entries_10_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :46:37
-        entries_10_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
+      entries_10_valid <= _GEN_10 | entries_10_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      if (_GEN_10) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+        entries_10_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
+        entries_10_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+        entries_10_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
+        entries_10_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
+        entries_10_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_11_valid <= _GEN_11 | entries_11_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-      if (_GEN_11) begin	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-        entries_11_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :45:34
-        entries_11_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-        entries_11_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :70:29
-        entries_11_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :46:37
-        entries_11_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
+      entries_11_valid <= _GEN_11 | entries_11_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      if (_GEN_11) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+        entries_11_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
+        entries_11_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+        entries_11_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
+        entries_11_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
+        entries_11_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_12_valid <= _GEN_12 | entries_12_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-      if (_GEN_12) begin	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-        entries_12_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :45:34
-        entries_12_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-        entries_12_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :70:29
-        entries_12_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :46:37
-        entries_12_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
+      entries_12_valid <= _GEN_12 | entries_12_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      if (_GEN_12) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+        entries_12_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
+        entries_12_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+        entries_12_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
+        entries_12_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
+        entries_12_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_13_valid <= _GEN_13 | entries_13_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-      if (_GEN_13) begin	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-        entries_13_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :45:34
-        entries_13_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-        entries_13_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :70:29
-        entries_13_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :46:37
-        entries_13_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
+      entries_13_valid <= _GEN_13 | entries_13_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      if (_GEN_13) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+        entries_13_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
+        entries_13_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+        entries_13_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
+        entries_13_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
+        entries_13_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_14_valid <= _GEN_14 | entries_14_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-      if (_GEN_14) begin	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-        entries_14_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :45:34
-        entries_14_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-        entries_14_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :70:29
-        entries_14_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :46:37
-        entries_14_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
+      entries_14_valid <= _GEN_14 | entries_14_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      if (_GEN_14) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+        entries_14_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
+        entries_14_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+        entries_14_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
+        entries_14_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
+        entries_14_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_15_valid <= _GEN_15 | entries_15_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-      if (_GEN_15) begin	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-        entries_15_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :45:34
-        entries_15_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-        entries_15_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :70:29
-        entries_15_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :46:37
-        entries_15_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
+      entries_15_valid <= _GEN_15 | entries_15_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      if (_GEN_15) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+        entries_15_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
+        entries_15_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+        entries_15_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
+        entries_15_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
+        entries_15_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_16_valid <= _GEN_16 | entries_16_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-      if (_GEN_16) begin	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-        entries_16_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :45:34
-        entries_16_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-        entries_16_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :70:29
-        entries_16_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :46:37
-        entries_16_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
+      entries_16_valid <= _GEN_16 | entries_16_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      if (_GEN_16) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+        entries_16_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
+        entries_16_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+        entries_16_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
+        entries_16_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
+        entries_16_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_17_valid <= _GEN_17 | entries_17_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-      if (_GEN_17) begin	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-        entries_17_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :45:34
-        entries_17_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-        entries_17_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :70:29
-        entries_17_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :46:37
-        entries_17_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
+      entries_17_valid <= _GEN_17 | entries_17_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      if (_GEN_17) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+        entries_17_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
+        entries_17_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+        entries_17_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
+        entries_17_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
+        entries_17_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_18_valid <= _GEN_18 | entries_18_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-      if (_GEN_18) begin	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-        entries_18_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :45:34
-        entries_18_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-        entries_18_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :70:29
-        entries_18_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :46:37
-        entries_18_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
+      entries_18_valid <= _GEN_18 | entries_18_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      if (_GEN_18) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+        entries_18_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
+        entries_18_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+        entries_18_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
+        entries_18_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
+        entries_18_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_19_valid <= _GEN_19 | entries_19_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-      if (_GEN_19) begin	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-        entries_19_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :45:34
-        entries_19_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-        entries_19_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :70:29
-        entries_19_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :46:37
-        entries_19_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
+      entries_19_valid <= _GEN_19 | entries_19_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      if (_GEN_19) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+        entries_19_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
+        entries_19_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+        entries_19_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
+        entries_19_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
+        entries_19_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_20_valid <= _GEN_20 | entries_20_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-      if (_GEN_20) begin	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-        entries_20_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :45:34
-        entries_20_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-        entries_20_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :70:29
-        entries_20_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :46:37
-        entries_20_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
+      entries_20_valid <= _GEN_20 | entries_20_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      if (_GEN_20) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+        entries_20_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
+        entries_20_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+        entries_20_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
+        entries_20_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
+        entries_20_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_21_valid <= _GEN_21 | entries_21_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-      if (_GEN_21) begin	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-        entries_21_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :45:34
-        entries_21_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-        entries_21_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :70:29
-        entries_21_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :46:37
-        entries_21_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
+      entries_21_valid <= _GEN_21 | entries_21_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      if (_GEN_21) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+        entries_21_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
+        entries_21_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+        entries_21_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
+        entries_21_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
+        entries_21_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_22_valid <= _GEN_22 | entries_22_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-      if (_GEN_22) begin	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-        entries_22_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :45:34
-        entries_22_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-        entries_22_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :70:29
-        entries_22_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :46:37
-        entries_22_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
+      entries_22_valid <= _GEN_22 | entries_22_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      if (_GEN_22) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+        entries_22_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
+        entries_22_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+        entries_22_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
+        entries_22_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
+        entries_22_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_23_valid <= _GEN_23 | entries_23_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-      if (_GEN_23) begin	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-        entries_23_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :45:34
-        entries_23_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-        entries_23_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :70:29
-        entries_23_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :46:37
-        entries_23_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
+      entries_23_valid <= _GEN_23 | entries_23_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      if (_GEN_23) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+        entries_23_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
+        entries_23_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+        entries_23_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
+        entries_23_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
+        entries_23_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_24_valid <= _GEN_24 | entries_24_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-      if (_GEN_24) begin	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-        entries_24_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :45:34
-        entries_24_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-        entries_24_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :70:29
-        entries_24_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :46:37
-        entries_24_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
+      entries_24_valid <= _GEN_24 | entries_24_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      if (_GEN_24) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+        entries_24_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
+        entries_24_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+        entries_24_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
+        entries_24_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
+        entries_24_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_25_valid <= _GEN_25 | entries_25_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-      if (_GEN_25) begin	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-        entries_25_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :45:34
-        entries_25_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-        entries_25_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :70:29
-        entries_25_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :46:37
-        entries_25_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
+      entries_25_valid <= _GEN_25 | entries_25_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      if (_GEN_25) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+        entries_25_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
+        entries_25_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+        entries_25_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
+        entries_25_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
+        entries_25_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_26_valid <= _GEN_26 | entries_26_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-      if (_GEN_26) begin	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-        entries_26_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :45:34
-        entries_26_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-        entries_26_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :70:29
-        entries_26_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :46:37
-        entries_26_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
+      entries_26_valid <= _GEN_26 | entries_26_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      if (_GEN_26) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+        entries_26_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
+        entries_26_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+        entries_26_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
+        entries_26_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
+        entries_26_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_27_valid <= _GEN_27 | entries_27_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-      if (_GEN_27) begin	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-        entries_27_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :45:34
-        entries_27_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-        entries_27_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :70:29
-        entries_27_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :46:37
-        entries_27_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
+      entries_27_valid <= _GEN_27 | entries_27_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      if (_GEN_27) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+        entries_27_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
+        entries_27_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+        entries_27_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
+        entries_27_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
+        entries_27_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_28_valid <= _GEN_28 | entries_28_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-      if (_GEN_28) begin	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-        entries_28_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :45:34
-        entries_28_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-        entries_28_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :70:29
-        entries_28_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :46:37
-        entries_28_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
+      entries_28_valid <= _GEN_28 | entries_28_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      if (_GEN_28) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+        entries_28_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
+        entries_28_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+        entries_28_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
+        entries_28_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
+        entries_28_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_29_valid <= _GEN_29 | entries_29_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-      if (_GEN_29) begin	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-        entries_29_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :45:34
-        entries_29_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-        entries_29_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :70:29
-        entries_29_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :46:37
-        entries_29_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
+      entries_29_valid <= _GEN_29 | entries_29_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      if (_GEN_29) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+        entries_29_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
+        entries_29_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+        entries_29_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
+        entries_29_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
+        entries_29_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_30_valid <= _GEN_30 | entries_30_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-      if (_GEN_30) begin	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-        entries_30_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :45:34
-        entries_30_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-        entries_30_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :70:29
-        entries_30_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :46:37
-        entries_30_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
+      entries_30_valid <= _GEN_30 | entries_30_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      if (_GEN_30) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+        entries_30_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
+        entries_30_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+        entries_30_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
+        entries_30_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
+        entries_30_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_31_valid <= _GEN_31 | entries_31_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-      if (_GEN_31) begin	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-        entries_31_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :45:34
-        entries_31_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-        entries_31_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :70:29
-        entries_31_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :46:37
-        entries_31_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
+      entries_31_valid <= _GEN_31 | entries_31_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      if (_GEN_31) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+        entries_31_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
+        entries_31_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+        entries_31_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
+        entries_31_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
+        entries_31_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_32_valid <= _GEN_32 | entries_32_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-      if (_GEN_32) begin	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-        entries_32_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :45:34
-        entries_32_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-        entries_32_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :70:29
-        entries_32_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :46:37
-        entries_32_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
+      entries_32_valid <= _GEN_32 | entries_32_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      if (_GEN_32) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+        entries_32_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
+        entries_32_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+        entries_32_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
+        entries_32_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
+        entries_32_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_33_valid <= _GEN_33 | entries_33_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-      if (_GEN_33) begin	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-        entries_33_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :45:34
-        entries_33_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-        entries_33_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :70:29
-        entries_33_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :46:37
-        entries_33_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
+      entries_33_valid <= _GEN_33 | entries_33_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      if (_GEN_33) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+        entries_33_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
+        entries_33_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+        entries_33_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
+        entries_33_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
+        entries_33_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_34_valid <= _GEN_34 | entries_34_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-      if (_GEN_34) begin	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-        entries_34_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :45:34
-        entries_34_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-        entries_34_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :70:29
-        entries_34_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :46:37
-        entries_34_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
+      entries_34_valid <= _GEN_34 | entries_34_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      if (_GEN_34) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+        entries_34_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
+        entries_34_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+        entries_34_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
+        entries_34_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
+        entries_34_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_35_valid <= _GEN_35 | entries_35_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-      if (_GEN_35) begin	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-        entries_35_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :45:34
-        entries_35_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-        entries_35_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :70:29
-        entries_35_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :46:37
-        entries_35_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
+      entries_35_valid <= _GEN_35 | entries_35_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      if (_GEN_35) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+        entries_35_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
+        entries_35_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+        entries_35_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
+        entries_35_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
+        entries_35_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_36_valid <= _GEN_36 | entries_36_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-      if (_GEN_36) begin	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-        entries_36_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :45:34
-        entries_36_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-        entries_36_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :70:29
-        entries_36_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :46:37
-        entries_36_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
+      entries_36_valid <= _GEN_36 | entries_36_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      if (_GEN_36) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+        entries_36_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
+        entries_36_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+        entries_36_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
+        entries_36_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
+        entries_36_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_37_valid <= _GEN_37 | entries_37_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-      if (_GEN_37) begin	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-        entries_37_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :45:34
-        entries_37_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-        entries_37_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :70:29
-        entries_37_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :46:37
-        entries_37_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
+      entries_37_valid <= _GEN_37 | entries_37_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      if (_GEN_37) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+        entries_37_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
+        entries_37_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+        entries_37_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
+        entries_37_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
+        entries_37_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_38_valid <= _GEN_38 | entries_38_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-      if (_GEN_38) begin	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-        entries_38_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :45:34
-        entries_38_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-        entries_38_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :70:29
-        entries_38_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :46:37
-        entries_38_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
+      entries_38_valid <= _GEN_38 | entries_38_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      if (_GEN_38) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+        entries_38_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
+        entries_38_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+        entries_38_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
+        entries_38_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
+        entries_38_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_39_valid <= _GEN_39 | entries_39_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-      if (_GEN_39) begin	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-        entries_39_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :45:34
-        entries_39_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-        entries_39_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :70:29
-        entries_39_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :46:37
-        entries_39_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
+      entries_39_valid <= _GEN_39 | entries_39_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      if (_GEN_39) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+        entries_39_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
+        entries_39_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+        entries_39_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
+        entries_39_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
+        entries_39_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_40_valid <= _GEN_40 | entries_40_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-      if (_GEN_40) begin	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-        entries_40_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :45:34
-        entries_40_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-        entries_40_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :70:29
-        entries_40_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :46:37
-        entries_40_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
+      entries_40_valid <= _GEN_40 | entries_40_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      if (_GEN_40) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+        entries_40_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
+        entries_40_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+        entries_40_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
+        entries_40_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
+        entries_40_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_41_valid <= _GEN_41 | entries_41_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-      if (_GEN_41) begin	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-        entries_41_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :45:34
-        entries_41_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-        entries_41_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :70:29
-        entries_41_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :46:37
-        entries_41_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
+      entries_41_valid <= _GEN_41 | entries_41_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      if (_GEN_41) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+        entries_41_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
+        entries_41_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+        entries_41_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
+        entries_41_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
+        entries_41_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_42_valid <= _GEN_42 | entries_42_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-      if (_GEN_42) begin	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-        entries_42_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :45:34
-        entries_42_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-        entries_42_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :70:29
-        entries_42_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :46:37
-        entries_42_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
+      entries_42_valid <= _GEN_42 | entries_42_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      if (_GEN_42) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+        entries_42_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
+        entries_42_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+        entries_42_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
+        entries_42_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
+        entries_42_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_43_valid <= _GEN_43 | entries_43_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-      if (_GEN_43) begin	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-        entries_43_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :45:34
-        entries_43_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-        entries_43_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :70:29
-        entries_43_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :46:37
-        entries_43_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
+      entries_43_valid <= _GEN_43 | entries_43_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      if (_GEN_43) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+        entries_43_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
+        entries_43_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+        entries_43_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
+        entries_43_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
+        entries_43_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_44_valid <= _GEN_44 | entries_44_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-      if (_GEN_44) begin	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-        entries_44_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :45:34
-        entries_44_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-        entries_44_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :70:29
-        entries_44_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :46:37
-        entries_44_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
+      entries_44_valid <= _GEN_44 | entries_44_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      if (_GEN_44) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+        entries_44_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
+        entries_44_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+        entries_44_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
+        entries_44_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
+        entries_44_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_45_valid <= _GEN_45 | entries_45_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-      if (_GEN_45) begin	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-        entries_45_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :45:34
-        entries_45_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-        entries_45_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :70:29
-        entries_45_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :46:37
-        entries_45_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
+      entries_45_valid <= _GEN_45 | entries_45_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      if (_GEN_45) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+        entries_45_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
+        entries_45_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+        entries_45_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
+        entries_45_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
+        entries_45_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_46_valid <= _GEN_46 | entries_46_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-      if (_GEN_46) begin	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-        entries_46_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :45:34
-        entries_46_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-        entries_46_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :70:29
-        entries_46_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :46:37
-        entries_46_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
+      entries_46_valid <= _GEN_46 | entries_46_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      if (_GEN_46) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+        entries_46_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
+        entries_46_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+        entries_46_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
+        entries_46_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
+        entries_46_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_47_valid <= _GEN_47 | entries_47_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-      if (_GEN_47) begin	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-        entries_47_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :45:34
-        entries_47_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-        entries_47_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :70:29
-        entries_47_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :46:37
-        entries_47_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
+      entries_47_valid <= _GEN_47 | entries_47_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      if (_GEN_47) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+        entries_47_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
+        entries_47_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+        entries_47_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
+        entries_47_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
+        entries_47_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_48_valid <= _GEN_48 | entries_48_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-      if (_GEN_48) begin	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-        entries_48_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :45:34
-        entries_48_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-        entries_48_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :70:29
-        entries_48_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :46:37
-        entries_48_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
+      entries_48_valid <= _GEN_48 | entries_48_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      if (_GEN_48) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+        entries_48_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
+        entries_48_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+        entries_48_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
+        entries_48_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
+        entries_48_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_49_valid <= _GEN_49 | entries_49_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-      if (_GEN_49) begin	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-        entries_49_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :45:34
-        entries_49_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-        entries_49_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :70:29
-        entries_49_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :46:37
-        entries_49_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
+      entries_49_valid <= _GEN_49 | entries_49_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      if (_GEN_49) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+        entries_49_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
+        entries_49_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+        entries_49_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
+        entries_49_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
+        entries_49_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_50_valid <= _GEN_50 | entries_50_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-      if (_GEN_50) begin	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-        entries_50_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :45:34
-        entries_50_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-        entries_50_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :70:29
-        entries_50_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :46:37
-        entries_50_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
+      entries_50_valid <= _GEN_50 | entries_50_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      if (_GEN_50) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+        entries_50_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
+        entries_50_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+        entries_50_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
+        entries_50_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
+        entries_50_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_51_valid <= _GEN_51 | entries_51_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-      if (_GEN_51) begin	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-        entries_51_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :45:34
-        entries_51_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-        entries_51_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :70:29
-        entries_51_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :46:37
-        entries_51_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
+      entries_51_valid <= _GEN_51 | entries_51_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      if (_GEN_51) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+        entries_51_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
+        entries_51_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+        entries_51_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
+        entries_51_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
+        entries_51_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_52_valid <= _GEN_52 | entries_52_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-      if (_GEN_52) begin	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-        entries_52_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :45:34
-        entries_52_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-        entries_52_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :70:29
-        entries_52_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :46:37
-        entries_52_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
+      entries_52_valid <= _GEN_52 | entries_52_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      if (_GEN_52) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+        entries_52_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
+        entries_52_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+        entries_52_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
+        entries_52_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
+        entries_52_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_53_valid <= _GEN_53 | entries_53_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-      if (_GEN_53) begin	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-        entries_53_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :45:34
-        entries_53_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-        entries_53_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :70:29
-        entries_53_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :46:37
-        entries_53_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
+      entries_53_valid <= _GEN_53 | entries_53_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      if (_GEN_53) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+        entries_53_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
+        entries_53_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+        entries_53_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
+        entries_53_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
+        entries_53_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_54_valid <= _GEN_54 | entries_54_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-      if (_GEN_54) begin	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-        entries_54_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :45:34
-        entries_54_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-        entries_54_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :70:29
-        entries_54_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :46:37
-        entries_54_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
+      entries_54_valid <= _GEN_54 | entries_54_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      if (_GEN_54) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+        entries_54_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
+        entries_54_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+        entries_54_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
+        entries_54_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
+        entries_54_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_55_valid <= _GEN_55 | entries_55_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-      if (_GEN_55) begin	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-        entries_55_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :45:34
-        entries_55_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-        entries_55_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :70:29
-        entries_55_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :46:37
-        entries_55_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
+      entries_55_valid <= _GEN_55 | entries_55_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      if (_GEN_55) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+        entries_55_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
+        entries_55_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+        entries_55_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
+        entries_55_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
+        entries_55_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_56_valid <= _GEN_56 | entries_56_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-      if (_GEN_56) begin	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-        entries_56_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :45:34
-        entries_56_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-        entries_56_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :70:29
-        entries_56_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :46:37
-        entries_56_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
+      entries_56_valid <= _GEN_56 | entries_56_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      if (_GEN_56) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+        entries_56_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
+        entries_56_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+        entries_56_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
+        entries_56_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
+        entries_56_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_57_valid <= _GEN_57 | entries_57_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-      if (_GEN_57) begin	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-        entries_57_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :45:34
-        entries_57_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-        entries_57_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :70:29
-        entries_57_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :46:37
-        entries_57_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
+      entries_57_valid <= _GEN_57 | entries_57_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      if (_GEN_57) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+        entries_57_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
+        entries_57_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+        entries_57_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
+        entries_57_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
+        entries_57_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_58_valid <= _GEN_58 | entries_58_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-      if (_GEN_58) begin	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-        entries_58_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :45:34
-        entries_58_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-        entries_58_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :70:29
-        entries_58_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :46:37
-        entries_58_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
+      entries_58_valid <= _GEN_58 | entries_58_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      if (_GEN_58) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+        entries_58_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
+        entries_58_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+        entries_58_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
+        entries_58_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
+        entries_58_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_59_valid <= _GEN_59 | entries_59_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-      if (_GEN_59) begin	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-        entries_59_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :45:34
-        entries_59_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-        entries_59_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :70:29
-        entries_59_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :46:37
-        entries_59_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
+      entries_59_valid <= _GEN_59 | entries_59_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      if (_GEN_59) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+        entries_59_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
+        entries_59_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+        entries_59_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
+        entries_59_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
+        entries_59_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_60_valid <= _GEN_60 | entries_60_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-      if (_GEN_60) begin	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-        entries_60_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :45:34
-        entries_60_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-        entries_60_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :70:29
-        entries_60_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :46:37
-        entries_60_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
+      entries_60_valid <= _GEN_60 | entries_60_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      if (_GEN_60) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+        entries_60_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
+        entries_60_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+        entries_60_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
+        entries_60_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
+        entries_60_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_61_valid <= _GEN_61 | entries_61_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-      if (_GEN_61) begin	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-        entries_61_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :45:34
-        entries_61_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-        entries_61_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :70:29
-        entries_61_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :46:37
-        entries_61_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
+      entries_61_valid <= _GEN_61 | entries_61_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      if (_GEN_61) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+        entries_61_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
+        entries_61_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+        entries_61_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
+        entries_61_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
+        entries_61_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_62_valid <= _GEN_62 | entries_62_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-      if (_GEN_62) begin	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-        entries_62_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :45:34
-        entries_62_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-        entries_62_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :70:29
-        entries_62_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :46:37
-        entries_62_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
+      entries_62_valid <= _GEN_62 | entries_62_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      if (_GEN_62) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+        entries_62_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
+        entries_62_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+        entries_62_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
+        entries_62_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
+        entries_62_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_63_valid <= _GEN_63 | entries_63_valid;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-      if (_GEN_63) begin	// frontend/src/zaqal/frontend/FTB.scala:41:24, :65:45, :74:27
-        entries_63_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :45:34
-        entries_63_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:41:24
-        entries_63_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:41:24, :70:29
-        entries_63_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:41:24, :46:37
-        entries_63_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:41:24
+      entries_63_valid <= _GEN_63 | entries_63_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      if (_GEN_63) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+        entries_63_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
+        entries_63_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
+        entries_63_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
+        entries_63_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
+        entries_63_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
     end
   end // always @(posedge)
@@ -2256,400 +2257,400 @@ module FTB(	// frontend/src/zaqal/frontend/FTB.scala:17:7
         for (logic [7:0] i = 8'h0; i < 8'hFA; i += 8'h1) begin
           _RANDOM[i] = `RANDOM;	// frontend/src/zaqal/frontend/FTB.scala:17:7
         end	// frontend/src/zaqal/frontend/FTB.scala:17:7
-        entries_0_valid = _RANDOM[8'h0][0];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_0_tag = {_RANDOM[8'h0][31:1], _RANDOM[8'h1][21:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_0_target = {_RANDOM[8'h1][31:22], _RANDOM[8'h2], _RANDOM[8'h3][21:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_0_br_type = _RANDOM[8'h3][23:22];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_0_offset = _RANDOM[8'h3][27:24];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_0_taken = _RANDOM[8'h3][28];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_1_valid = _RANDOM[8'h3][29];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_1_tag = {_RANDOM[8'h3][31:30], _RANDOM[8'h4], _RANDOM[8'h5][18:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_1_target = {_RANDOM[8'h5][31:19], _RANDOM[8'h6], _RANDOM[8'h7][18:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_1_br_type = _RANDOM[8'h7][20:19];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_1_offset = _RANDOM[8'h7][24:21];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_1_taken = _RANDOM[8'h7][25];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_2_valid = _RANDOM[8'h7][26];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_2_tag = {_RANDOM[8'h7][31:27], _RANDOM[8'h8], _RANDOM[8'h9][15:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_2_target = {_RANDOM[8'h9][31:16], _RANDOM[8'hA], _RANDOM[8'hB][15:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_2_br_type = _RANDOM[8'hB][17:16];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_2_offset = _RANDOM[8'hB][21:18];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_2_taken = _RANDOM[8'hB][22];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_3_valid = _RANDOM[8'hB][23];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_3_tag = {_RANDOM[8'hB][31:24], _RANDOM[8'hC], _RANDOM[8'hD][12:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_3_target = {_RANDOM[8'hD][31:13], _RANDOM[8'hE], _RANDOM[8'hF][12:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_3_br_type = _RANDOM[8'hF][14:13];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_3_offset = _RANDOM[8'hF][18:15];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_3_taken = _RANDOM[8'hF][19];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_4_valid = _RANDOM[8'hF][20];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_4_tag = {_RANDOM[8'hF][31:21], _RANDOM[8'h10], _RANDOM[8'h11][9:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_4_target = {_RANDOM[8'h11][31:10], _RANDOM[8'h12], _RANDOM[8'h13][9:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_4_br_type = _RANDOM[8'h13][11:10];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_4_offset = _RANDOM[8'h13][15:12];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_4_taken = _RANDOM[8'h13][16];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_5_valid = _RANDOM[8'h13][17];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_5_tag = {_RANDOM[8'h13][31:18], _RANDOM[8'h14], _RANDOM[8'h15][6:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_5_target = {_RANDOM[8'h15][31:7], _RANDOM[8'h16], _RANDOM[8'h17][6:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_5_br_type = _RANDOM[8'h17][8:7];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_5_offset = _RANDOM[8'h17][12:9];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_5_taken = _RANDOM[8'h17][13];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_6_valid = _RANDOM[8'h17][14];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_6_tag = {_RANDOM[8'h17][31:15], _RANDOM[8'h18], _RANDOM[8'h19][3:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_6_target = {_RANDOM[8'h19][31:4], _RANDOM[8'h1A], _RANDOM[8'h1B][3:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_6_br_type = _RANDOM[8'h1B][5:4];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_6_offset = _RANDOM[8'h1B][9:6];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_6_taken = _RANDOM[8'h1B][10];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_7_valid = _RANDOM[8'h1B][11];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_7_tag = {_RANDOM[8'h1B][31:12], _RANDOM[8'h1C], _RANDOM[8'h1D][0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_7_target = {_RANDOM[8'h1D][31:1], _RANDOM[8'h1E], _RANDOM[8'h1F][0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_7_br_type = _RANDOM[8'h1F][2:1];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_7_offset = _RANDOM[8'h1F][6:3];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_7_taken = _RANDOM[8'h1F][7];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_8_valid = _RANDOM[8'h1F][8];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_8_tag = {_RANDOM[8'h1F][31:9], _RANDOM[8'h20][29:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_8_target = {_RANDOM[8'h20][31:30], _RANDOM[8'h21], _RANDOM[8'h22][29:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_8_br_type = _RANDOM[8'h22][31:30];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_8_offset = _RANDOM[8'h23][3:0];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_8_taken = _RANDOM[8'h23][4];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_9_valid = _RANDOM[8'h23][5];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_9_tag = {_RANDOM[8'h23][31:6], _RANDOM[8'h24][26:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_9_target = {_RANDOM[8'h24][31:27], _RANDOM[8'h25], _RANDOM[8'h26][26:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_9_br_type = _RANDOM[8'h26][28:27];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_9_offset = {_RANDOM[8'h26][31:29], _RANDOM[8'h27][0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_9_taken = _RANDOM[8'h27][1];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_10_valid = _RANDOM[8'h27][2];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_10_tag = {_RANDOM[8'h27][31:3], _RANDOM[8'h28][23:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_10_target = {_RANDOM[8'h28][31:24], _RANDOM[8'h29], _RANDOM[8'h2A][23:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_10_br_type = _RANDOM[8'h2A][25:24];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_10_offset = _RANDOM[8'h2A][29:26];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_10_taken = _RANDOM[8'h2A][30];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_11_valid = _RANDOM[8'h2A][31];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_11_tag = {_RANDOM[8'h2B], _RANDOM[8'h2C][20:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_11_target = {_RANDOM[8'h2C][31:21], _RANDOM[8'h2D], _RANDOM[8'h2E][20:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_11_br_type = _RANDOM[8'h2E][22:21];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_11_offset = _RANDOM[8'h2E][26:23];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_11_taken = _RANDOM[8'h2E][27];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_12_valid = _RANDOM[8'h2E][28];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_12_tag = {_RANDOM[8'h2E][31:29], _RANDOM[8'h2F], _RANDOM[8'h30][17:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_12_target = {_RANDOM[8'h30][31:18], _RANDOM[8'h31], _RANDOM[8'h32][17:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_12_br_type = _RANDOM[8'h32][19:18];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_12_offset = _RANDOM[8'h32][23:20];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_12_taken = _RANDOM[8'h32][24];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_13_valid = _RANDOM[8'h32][25];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_13_tag = {_RANDOM[8'h32][31:26], _RANDOM[8'h33], _RANDOM[8'h34][14:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_13_target = {_RANDOM[8'h34][31:15], _RANDOM[8'h35], _RANDOM[8'h36][14:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_13_br_type = _RANDOM[8'h36][16:15];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_13_offset = _RANDOM[8'h36][20:17];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_13_taken = _RANDOM[8'h36][21];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_14_valid = _RANDOM[8'h36][22];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_14_tag = {_RANDOM[8'h36][31:23], _RANDOM[8'h37], _RANDOM[8'h38][11:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_14_target = {_RANDOM[8'h38][31:12], _RANDOM[8'h39], _RANDOM[8'h3A][11:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_14_br_type = _RANDOM[8'h3A][13:12];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_14_offset = _RANDOM[8'h3A][17:14];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_14_taken = _RANDOM[8'h3A][18];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_15_valid = _RANDOM[8'h3A][19];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_15_tag = {_RANDOM[8'h3A][31:20], _RANDOM[8'h3B], _RANDOM[8'h3C][8:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_15_target = {_RANDOM[8'h3C][31:9], _RANDOM[8'h3D], _RANDOM[8'h3E][8:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_15_br_type = _RANDOM[8'h3E][10:9];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_15_offset = _RANDOM[8'h3E][14:11];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_15_taken = _RANDOM[8'h3E][15];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_16_valid = _RANDOM[8'h3E][16];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_16_tag = {_RANDOM[8'h3E][31:17], _RANDOM[8'h3F], _RANDOM[8'h40][5:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_16_target = {_RANDOM[8'h40][31:6], _RANDOM[8'h41], _RANDOM[8'h42][5:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_16_br_type = _RANDOM[8'h42][7:6];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_16_offset = _RANDOM[8'h42][11:8];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_16_taken = _RANDOM[8'h42][12];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_17_valid = _RANDOM[8'h42][13];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_17_tag = {_RANDOM[8'h42][31:14], _RANDOM[8'h43], _RANDOM[8'h44][2:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_17_target = {_RANDOM[8'h44][31:3], _RANDOM[8'h45], _RANDOM[8'h46][2:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_17_br_type = _RANDOM[8'h46][4:3];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_17_offset = _RANDOM[8'h46][8:5];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_17_taken = _RANDOM[8'h46][9];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_18_valid = _RANDOM[8'h46][10];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_18_tag = {_RANDOM[8'h46][31:11], _RANDOM[8'h47]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_18_target = {_RANDOM[8'h48], _RANDOM[8'h49]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_18_br_type = _RANDOM[8'h4A][1:0];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_18_offset = _RANDOM[8'h4A][5:2];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_18_taken = _RANDOM[8'h4A][6];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_19_valid = _RANDOM[8'h4A][7];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_19_tag = {_RANDOM[8'h4A][31:8], _RANDOM[8'h4B][28:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_19_target = {_RANDOM[8'h4B][31:29], _RANDOM[8'h4C], _RANDOM[8'h4D][28:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_19_br_type = _RANDOM[8'h4D][30:29];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_19_offset = {_RANDOM[8'h4D][31], _RANDOM[8'h4E][2:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_19_taken = _RANDOM[8'h4E][3];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_20_valid = _RANDOM[8'h4E][4];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_20_tag = {_RANDOM[8'h4E][31:5], _RANDOM[8'h4F][25:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_20_target = {_RANDOM[8'h4F][31:26], _RANDOM[8'h50], _RANDOM[8'h51][25:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_20_br_type = _RANDOM[8'h51][27:26];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_20_offset = _RANDOM[8'h51][31:28];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_20_taken = _RANDOM[8'h52][0];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_21_valid = _RANDOM[8'h52][1];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_21_tag = {_RANDOM[8'h52][31:2], _RANDOM[8'h53][22:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_21_target = {_RANDOM[8'h53][31:23], _RANDOM[8'h54], _RANDOM[8'h55][22:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_21_br_type = _RANDOM[8'h55][24:23];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_21_offset = _RANDOM[8'h55][28:25];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_21_taken = _RANDOM[8'h55][29];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_22_valid = _RANDOM[8'h55][30];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_22_tag = {_RANDOM[8'h55][31], _RANDOM[8'h56], _RANDOM[8'h57][19:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_22_target = {_RANDOM[8'h57][31:20], _RANDOM[8'h58], _RANDOM[8'h59][19:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_22_br_type = _RANDOM[8'h59][21:20];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_22_offset = _RANDOM[8'h59][25:22];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_22_taken = _RANDOM[8'h59][26];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_23_valid = _RANDOM[8'h59][27];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_23_tag = {_RANDOM[8'h59][31:28], _RANDOM[8'h5A], _RANDOM[8'h5B][16:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_23_target = {_RANDOM[8'h5B][31:17], _RANDOM[8'h5C], _RANDOM[8'h5D][16:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_23_br_type = _RANDOM[8'h5D][18:17];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_23_offset = _RANDOM[8'h5D][22:19];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_23_taken = _RANDOM[8'h5D][23];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_24_valid = _RANDOM[8'h5D][24];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_24_tag = {_RANDOM[8'h5D][31:25], _RANDOM[8'h5E], _RANDOM[8'h5F][13:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_24_target = {_RANDOM[8'h5F][31:14], _RANDOM[8'h60], _RANDOM[8'h61][13:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_24_br_type = _RANDOM[8'h61][15:14];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_24_offset = _RANDOM[8'h61][19:16];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_24_taken = _RANDOM[8'h61][20];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_25_valid = _RANDOM[8'h61][21];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_25_tag = {_RANDOM[8'h61][31:22], _RANDOM[8'h62], _RANDOM[8'h63][10:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_25_target = {_RANDOM[8'h63][31:11], _RANDOM[8'h64], _RANDOM[8'h65][10:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_25_br_type = _RANDOM[8'h65][12:11];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_25_offset = _RANDOM[8'h65][16:13];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_25_taken = _RANDOM[8'h65][17];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_26_valid = _RANDOM[8'h65][18];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_26_tag = {_RANDOM[8'h65][31:19], _RANDOM[8'h66], _RANDOM[8'h67][7:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_26_target = {_RANDOM[8'h67][31:8], _RANDOM[8'h68], _RANDOM[8'h69][7:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_26_br_type = _RANDOM[8'h69][9:8];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_26_offset = _RANDOM[8'h69][13:10];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_26_taken = _RANDOM[8'h69][14];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_27_valid = _RANDOM[8'h69][15];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_27_tag = {_RANDOM[8'h69][31:16], _RANDOM[8'h6A], _RANDOM[8'h6B][4:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_27_target = {_RANDOM[8'h6B][31:5], _RANDOM[8'h6C], _RANDOM[8'h6D][4:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_27_br_type = _RANDOM[8'h6D][6:5];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_27_offset = _RANDOM[8'h6D][10:7];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_27_taken = _RANDOM[8'h6D][11];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_28_valid = _RANDOM[8'h6D][12];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_28_tag = {_RANDOM[8'h6D][31:13], _RANDOM[8'h6E], _RANDOM[8'h6F][1:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_28_target = {_RANDOM[8'h6F][31:2], _RANDOM[8'h70], _RANDOM[8'h71][1:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_28_br_type = _RANDOM[8'h71][3:2];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_28_offset = _RANDOM[8'h71][7:4];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_28_taken = _RANDOM[8'h71][8];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_29_valid = _RANDOM[8'h71][9];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_29_tag = {_RANDOM[8'h71][31:10], _RANDOM[8'h72][30:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_29_target = {_RANDOM[8'h72][31], _RANDOM[8'h73], _RANDOM[8'h74][30:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_29_br_type = {_RANDOM[8'h74][31], _RANDOM[8'h75][0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_29_offset = _RANDOM[8'h75][4:1];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_29_taken = _RANDOM[8'h75][5];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_30_valid = _RANDOM[8'h75][6];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_30_tag = {_RANDOM[8'h75][31:7], _RANDOM[8'h76][27:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_30_target = {_RANDOM[8'h76][31:28], _RANDOM[8'h77], _RANDOM[8'h78][27:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_30_br_type = _RANDOM[8'h78][29:28];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_30_offset = {_RANDOM[8'h78][31:30], _RANDOM[8'h79][1:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_30_taken = _RANDOM[8'h79][2];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_31_valid = _RANDOM[8'h79][3];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_31_tag = {_RANDOM[8'h79][31:4], _RANDOM[8'h7A][24:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_31_target = {_RANDOM[8'h7A][31:25], _RANDOM[8'h7B], _RANDOM[8'h7C][24:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_31_br_type = _RANDOM[8'h7C][26:25];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_31_offset = _RANDOM[8'h7C][30:27];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_31_taken = _RANDOM[8'h7C][31];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_32_valid = _RANDOM[8'h7D][0];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_32_tag = {_RANDOM[8'h7D][31:1], _RANDOM[8'h7E][21:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_32_target = {_RANDOM[8'h7E][31:22], _RANDOM[8'h7F], _RANDOM[8'h80][21:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_32_br_type = _RANDOM[8'h80][23:22];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_32_offset = _RANDOM[8'h80][27:24];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_32_taken = _RANDOM[8'h80][28];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_33_valid = _RANDOM[8'h80][29];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_33_tag = {_RANDOM[8'h80][31:30], _RANDOM[8'h81], _RANDOM[8'h82][18:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_33_target = {_RANDOM[8'h82][31:19], _RANDOM[8'h83], _RANDOM[8'h84][18:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_33_br_type = _RANDOM[8'h84][20:19];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_33_offset = _RANDOM[8'h84][24:21];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_33_taken = _RANDOM[8'h84][25];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_34_valid = _RANDOM[8'h84][26];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_34_tag = {_RANDOM[8'h84][31:27], _RANDOM[8'h85], _RANDOM[8'h86][15:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_34_target = {_RANDOM[8'h86][31:16], _RANDOM[8'h87], _RANDOM[8'h88][15:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_34_br_type = _RANDOM[8'h88][17:16];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_34_offset = _RANDOM[8'h88][21:18];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_34_taken = _RANDOM[8'h88][22];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_35_valid = _RANDOM[8'h88][23];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_35_tag = {_RANDOM[8'h88][31:24], _RANDOM[8'h89], _RANDOM[8'h8A][12:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_35_target = {_RANDOM[8'h8A][31:13], _RANDOM[8'h8B], _RANDOM[8'h8C][12:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_35_br_type = _RANDOM[8'h8C][14:13];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_35_offset = _RANDOM[8'h8C][18:15];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_35_taken = _RANDOM[8'h8C][19];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_36_valid = _RANDOM[8'h8C][20];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_36_tag = {_RANDOM[8'h8C][31:21], _RANDOM[8'h8D], _RANDOM[8'h8E][9:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_36_target = {_RANDOM[8'h8E][31:10], _RANDOM[8'h8F], _RANDOM[8'h90][9:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_36_br_type = _RANDOM[8'h90][11:10];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_36_offset = _RANDOM[8'h90][15:12];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_36_taken = _RANDOM[8'h90][16];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_37_valid = _RANDOM[8'h90][17];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_37_tag = {_RANDOM[8'h90][31:18], _RANDOM[8'h91], _RANDOM[8'h92][6:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_37_target = {_RANDOM[8'h92][31:7], _RANDOM[8'h93], _RANDOM[8'h94][6:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_37_br_type = _RANDOM[8'h94][8:7];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_37_offset = _RANDOM[8'h94][12:9];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_37_taken = _RANDOM[8'h94][13];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_38_valid = _RANDOM[8'h94][14];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_38_tag = {_RANDOM[8'h94][31:15], _RANDOM[8'h95], _RANDOM[8'h96][3:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_38_target = {_RANDOM[8'h96][31:4], _RANDOM[8'h97], _RANDOM[8'h98][3:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_38_br_type = _RANDOM[8'h98][5:4];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_38_offset = _RANDOM[8'h98][9:6];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_38_taken = _RANDOM[8'h98][10];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_39_valid = _RANDOM[8'h98][11];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_39_tag = {_RANDOM[8'h98][31:12], _RANDOM[8'h99], _RANDOM[8'h9A][0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_39_target = {_RANDOM[8'h9A][31:1], _RANDOM[8'h9B], _RANDOM[8'h9C][0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_39_br_type = _RANDOM[8'h9C][2:1];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_39_offset = _RANDOM[8'h9C][6:3];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_39_taken = _RANDOM[8'h9C][7];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_40_valid = _RANDOM[8'h9C][8];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_40_tag = {_RANDOM[8'h9C][31:9], _RANDOM[8'h9D][29:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_40_target = {_RANDOM[8'h9D][31:30], _RANDOM[8'h9E], _RANDOM[8'h9F][29:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_40_br_type = _RANDOM[8'h9F][31:30];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_40_offset = _RANDOM[8'hA0][3:0];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_40_taken = _RANDOM[8'hA0][4];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_41_valid = _RANDOM[8'hA0][5];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_41_tag = {_RANDOM[8'hA0][31:6], _RANDOM[8'hA1][26:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_41_target = {_RANDOM[8'hA1][31:27], _RANDOM[8'hA2], _RANDOM[8'hA3][26:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_41_br_type = _RANDOM[8'hA3][28:27];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_41_offset = {_RANDOM[8'hA3][31:29], _RANDOM[8'hA4][0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_41_taken = _RANDOM[8'hA4][1];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_42_valid = _RANDOM[8'hA4][2];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_42_tag = {_RANDOM[8'hA4][31:3], _RANDOM[8'hA5][23:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_42_target = {_RANDOM[8'hA5][31:24], _RANDOM[8'hA6], _RANDOM[8'hA7][23:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_42_br_type = _RANDOM[8'hA7][25:24];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_42_offset = _RANDOM[8'hA7][29:26];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_42_taken = _RANDOM[8'hA7][30];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_43_valid = _RANDOM[8'hA7][31];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_43_tag = {_RANDOM[8'hA8], _RANDOM[8'hA9][20:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_43_target = {_RANDOM[8'hA9][31:21], _RANDOM[8'hAA], _RANDOM[8'hAB][20:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_43_br_type = _RANDOM[8'hAB][22:21];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_43_offset = _RANDOM[8'hAB][26:23];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_43_taken = _RANDOM[8'hAB][27];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_44_valid = _RANDOM[8'hAB][28];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_44_tag = {_RANDOM[8'hAB][31:29], _RANDOM[8'hAC], _RANDOM[8'hAD][17:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_44_target = {_RANDOM[8'hAD][31:18], _RANDOM[8'hAE], _RANDOM[8'hAF][17:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_44_br_type = _RANDOM[8'hAF][19:18];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_44_offset = _RANDOM[8'hAF][23:20];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_44_taken = _RANDOM[8'hAF][24];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_45_valid = _RANDOM[8'hAF][25];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_45_tag = {_RANDOM[8'hAF][31:26], _RANDOM[8'hB0], _RANDOM[8'hB1][14:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_45_target = {_RANDOM[8'hB1][31:15], _RANDOM[8'hB2], _RANDOM[8'hB3][14:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_45_br_type = _RANDOM[8'hB3][16:15];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_45_offset = _RANDOM[8'hB3][20:17];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_45_taken = _RANDOM[8'hB3][21];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_46_valid = _RANDOM[8'hB3][22];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_46_tag = {_RANDOM[8'hB3][31:23], _RANDOM[8'hB4], _RANDOM[8'hB5][11:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_46_target = {_RANDOM[8'hB5][31:12], _RANDOM[8'hB6], _RANDOM[8'hB7][11:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_46_br_type = _RANDOM[8'hB7][13:12];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_46_offset = _RANDOM[8'hB7][17:14];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_46_taken = _RANDOM[8'hB7][18];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_47_valid = _RANDOM[8'hB7][19];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_47_tag = {_RANDOM[8'hB7][31:20], _RANDOM[8'hB8], _RANDOM[8'hB9][8:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_47_target = {_RANDOM[8'hB9][31:9], _RANDOM[8'hBA], _RANDOM[8'hBB][8:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_47_br_type = _RANDOM[8'hBB][10:9];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_47_offset = _RANDOM[8'hBB][14:11];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_47_taken = _RANDOM[8'hBB][15];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_48_valid = _RANDOM[8'hBB][16];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_48_tag = {_RANDOM[8'hBB][31:17], _RANDOM[8'hBC], _RANDOM[8'hBD][5:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_48_target = {_RANDOM[8'hBD][31:6], _RANDOM[8'hBE], _RANDOM[8'hBF][5:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_48_br_type = _RANDOM[8'hBF][7:6];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_48_offset = _RANDOM[8'hBF][11:8];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_48_taken = _RANDOM[8'hBF][12];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_49_valid = _RANDOM[8'hBF][13];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_49_tag = {_RANDOM[8'hBF][31:14], _RANDOM[8'hC0], _RANDOM[8'hC1][2:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_49_target = {_RANDOM[8'hC1][31:3], _RANDOM[8'hC2], _RANDOM[8'hC3][2:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_49_br_type = _RANDOM[8'hC3][4:3];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_49_offset = _RANDOM[8'hC3][8:5];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_49_taken = _RANDOM[8'hC3][9];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_50_valid = _RANDOM[8'hC3][10];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_50_tag = {_RANDOM[8'hC3][31:11], _RANDOM[8'hC4]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_50_target = {_RANDOM[8'hC5], _RANDOM[8'hC6]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_50_br_type = _RANDOM[8'hC7][1:0];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_50_offset = _RANDOM[8'hC7][5:2];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_50_taken = _RANDOM[8'hC7][6];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_51_valid = _RANDOM[8'hC7][7];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_51_tag = {_RANDOM[8'hC7][31:8], _RANDOM[8'hC8][28:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_51_target = {_RANDOM[8'hC8][31:29], _RANDOM[8'hC9], _RANDOM[8'hCA][28:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_51_br_type = _RANDOM[8'hCA][30:29];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_51_offset = {_RANDOM[8'hCA][31], _RANDOM[8'hCB][2:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_51_taken = _RANDOM[8'hCB][3];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_52_valid = _RANDOM[8'hCB][4];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_52_tag = {_RANDOM[8'hCB][31:5], _RANDOM[8'hCC][25:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_52_target = {_RANDOM[8'hCC][31:26], _RANDOM[8'hCD], _RANDOM[8'hCE][25:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_52_br_type = _RANDOM[8'hCE][27:26];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_52_offset = _RANDOM[8'hCE][31:28];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_52_taken = _RANDOM[8'hCF][0];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_53_valid = _RANDOM[8'hCF][1];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_53_tag = {_RANDOM[8'hCF][31:2], _RANDOM[8'hD0][22:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_53_target = {_RANDOM[8'hD0][31:23], _RANDOM[8'hD1], _RANDOM[8'hD2][22:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_53_br_type = _RANDOM[8'hD2][24:23];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_53_offset = _RANDOM[8'hD2][28:25];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_53_taken = _RANDOM[8'hD2][29];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_54_valid = _RANDOM[8'hD2][30];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_54_tag = {_RANDOM[8'hD2][31], _RANDOM[8'hD3], _RANDOM[8'hD4][19:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_54_target = {_RANDOM[8'hD4][31:20], _RANDOM[8'hD5], _RANDOM[8'hD6][19:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_54_br_type = _RANDOM[8'hD6][21:20];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_54_offset = _RANDOM[8'hD6][25:22];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_54_taken = _RANDOM[8'hD6][26];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_55_valid = _RANDOM[8'hD6][27];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_55_tag = {_RANDOM[8'hD6][31:28], _RANDOM[8'hD7], _RANDOM[8'hD8][16:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_55_target = {_RANDOM[8'hD8][31:17], _RANDOM[8'hD9], _RANDOM[8'hDA][16:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_55_br_type = _RANDOM[8'hDA][18:17];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_55_offset = _RANDOM[8'hDA][22:19];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_55_taken = _RANDOM[8'hDA][23];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_56_valid = _RANDOM[8'hDA][24];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_56_tag = {_RANDOM[8'hDA][31:25], _RANDOM[8'hDB], _RANDOM[8'hDC][13:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_56_target = {_RANDOM[8'hDC][31:14], _RANDOM[8'hDD], _RANDOM[8'hDE][13:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_56_br_type = _RANDOM[8'hDE][15:14];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_56_offset = _RANDOM[8'hDE][19:16];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_56_taken = _RANDOM[8'hDE][20];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_57_valid = _RANDOM[8'hDE][21];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_57_tag = {_RANDOM[8'hDE][31:22], _RANDOM[8'hDF], _RANDOM[8'hE0][10:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_57_target = {_RANDOM[8'hE0][31:11], _RANDOM[8'hE1], _RANDOM[8'hE2][10:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_57_br_type = _RANDOM[8'hE2][12:11];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_57_offset = _RANDOM[8'hE2][16:13];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_57_taken = _RANDOM[8'hE2][17];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_58_valid = _RANDOM[8'hE2][18];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_58_tag = {_RANDOM[8'hE2][31:19], _RANDOM[8'hE3], _RANDOM[8'hE4][7:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_58_target = {_RANDOM[8'hE4][31:8], _RANDOM[8'hE5], _RANDOM[8'hE6][7:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_58_br_type = _RANDOM[8'hE6][9:8];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_58_offset = _RANDOM[8'hE6][13:10];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_58_taken = _RANDOM[8'hE6][14];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_59_valid = _RANDOM[8'hE6][15];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_59_tag = {_RANDOM[8'hE6][31:16], _RANDOM[8'hE7], _RANDOM[8'hE8][4:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_59_target = {_RANDOM[8'hE8][31:5], _RANDOM[8'hE9], _RANDOM[8'hEA][4:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_59_br_type = _RANDOM[8'hEA][6:5];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_59_offset = _RANDOM[8'hEA][10:7];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_59_taken = _RANDOM[8'hEA][11];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_60_valid = _RANDOM[8'hEA][12];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_60_tag = {_RANDOM[8'hEA][31:13], _RANDOM[8'hEB], _RANDOM[8'hEC][1:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_60_target = {_RANDOM[8'hEC][31:2], _RANDOM[8'hED], _RANDOM[8'hEE][1:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_60_br_type = _RANDOM[8'hEE][3:2];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_60_offset = _RANDOM[8'hEE][7:4];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_60_taken = _RANDOM[8'hEE][8];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_61_valid = _RANDOM[8'hEE][9];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_61_tag = {_RANDOM[8'hEE][31:10], _RANDOM[8'hEF][30:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_61_target = {_RANDOM[8'hEF][31], _RANDOM[8'hF0], _RANDOM[8'hF1][30:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_61_br_type = {_RANDOM[8'hF1][31], _RANDOM[8'hF2][0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_61_offset = _RANDOM[8'hF2][4:1];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_61_taken = _RANDOM[8'hF2][5];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_62_valid = _RANDOM[8'hF2][6];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_62_tag = {_RANDOM[8'hF2][31:7], _RANDOM[8'hF3][27:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_62_target = {_RANDOM[8'hF3][31:28], _RANDOM[8'hF4], _RANDOM[8'hF5][27:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_62_br_type = _RANDOM[8'hF5][29:28];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_62_offset = {_RANDOM[8'hF5][31:30], _RANDOM[8'hF6][1:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_62_taken = _RANDOM[8'hF6][2];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_63_valid = _RANDOM[8'hF6][3];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_63_tag = {_RANDOM[8'hF6][31:4], _RANDOM[8'hF7][24:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_63_target = {_RANDOM[8'hF7][31:25], _RANDOM[8'hF8], _RANDOM[8'hF9][24:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_63_br_type = _RANDOM[8'hF9][26:25];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_63_offset = _RANDOM[8'hF9][30:27];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
-        entries_63_taken = _RANDOM[8'hF9][31];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:24
+        entries_0_valid = _RANDOM[8'h0][0];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_0_tag = {_RANDOM[8'h0][31:1], _RANDOM[8'h1][21:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_0_target = {_RANDOM[8'h1][31:22], _RANDOM[8'h2], _RANDOM[8'h3][21:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_0_br_type = _RANDOM[8'h3][23:22];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_0_offset = _RANDOM[8'h3][27:24];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_0_taken = _RANDOM[8'h3][28];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_1_valid = _RANDOM[8'h3][29];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_1_tag = {_RANDOM[8'h3][31:30], _RANDOM[8'h4], _RANDOM[8'h5][18:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_1_target = {_RANDOM[8'h5][31:19], _RANDOM[8'h6], _RANDOM[8'h7][18:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_1_br_type = _RANDOM[8'h7][20:19];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_1_offset = _RANDOM[8'h7][24:21];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_1_taken = _RANDOM[8'h7][25];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_2_valid = _RANDOM[8'h7][26];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_2_tag = {_RANDOM[8'h7][31:27], _RANDOM[8'h8], _RANDOM[8'h9][15:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_2_target = {_RANDOM[8'h9][31:16], _RANDOM[8'hA], _RANDOM[8'hB][15:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_2_br_type = _RANDOM[8'hB][17:16];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_2_offset = _RANDOM[8'hB][21:18];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_2_taken = _RANDOM[8'hB][22];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_3_valid = _RANDOM[8'hB][23];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_3_tag = {_RANDOM[8'hB][31:24], _RANDOM[8'hC], _RANDOM[8'hD][12:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_3_target = {_RANDOM[8'hD][31:13], _RANDOM[8'hE], _RANDOM[8'hF][12:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_3_br_type = _RANDOM[8'hF][14:13];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_3_offset = _RANDOM[8'hF][18:15];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_3_taken = _RANDOM[8'hF][19];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_4_valid = _RANDOM[8'hF][20];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_4_tag = {_RANDOM[8'hF][31:21], _RANDOM[8'h10], _RANDOM[8'h11][9:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_4_target = {_RANDOM[8'h11][31:10], _RANDOM[8'h12], _RANDOM[8'h13][9:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_4_br_type = _RANDOM[8'h13][11:10];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_4_offset = _RANDOM[8'h13][15:12];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_4_taken = _RANDOM[8'h13][16];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_5_valid = _RANDOM[8'h13][17];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_5_tag = {_RANDOM[8'h13][31:18], _RANDOM[8'h14], _RANDOM[8'h15][6:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_5_target = {_RANDOM[8'h15][31:7], _RANDOM[8'h16], _RANDOM[8'h17][6:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_5_br_type = _RANDOM[8'h17][8:7];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_5_offset = _RANDOM[8'h17][12:9];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_5_taken = _RANDOM[8'h17][13];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_6_valid = _RANDOM[8'h17][14];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_6_tag = {_RANDOM[8'h17][31:15], _RANDOM[8'h18], _RANDOM[8'h19][3:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_6_target = {_RANDOM[8'h19][31:4], _RANDOM[8'h1A], _RANDOM[8'h1B][3:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_6_br_type = _RANDOM[8'h1B][5:4];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_6_offset = _RANDOM[8'h1B][9:6];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_6_taken = _RANDOM[8'h1B][10];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_7_valid = _RANDOM[8'h1B][11];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_7_tag = {_RANDOM[8'h1B][31:12], _RANDOM[8'h1C], _RANDOM[8'h1D][0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_7_target = {_RANDOM[8'h1D][31:1], _RANDOM[8'h1E], _RANDOM[8'h1F][0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_7_br_type = _RANDOM[8'h1F][2:1];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_7_offset = _RANDOM[8'h1F][6:3];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_7_taken = _RANDOM[8'h1F][7];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_8_valid = _RANDOM[8'h1F][8];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_8_tag = {_RANDOM[8'h1F][31:9], _RANDOM[8'h20][29:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_8_target = {_RANDOM[8'h20][31:30], _RANDOM[8'h21], _RANDOM[8'h22][29:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_8_br_type = _RANDOM[8'h22][31:30];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_8_offset = _RANDOM[8'h23][3:0];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_8_taken = _RANDOM[8'h23][4];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_9_valid = _RANDOM[8'h23][5];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_9_tag = {_RANDOM[8'h23][31:6], _RANDOM[8'h24][26:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_9_target = {_RANDOM[8'h24][31:27], _RANDOM[8'h25], _RANDOM[8'h26][26:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_9_br_type = _RANDOM[8'h26][28:27];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_9_offset = {_RANDOM[8'h26][31:29], _RANDOM[8'h27][0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_9_taken = _RANDOM[8'h27][1];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_10_valid = _RANDOM[8'h27][2];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_10_tag = {_RANDOM[8'h27][31:3], _RANDOM[8'h28][23:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_10_target = {_RANDOM[8'h28][31:24], _RANDOM[8'h29], _RANDOM[8'h2A][23:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_10_br_type = _RANDOM[8'h2A][25:24];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_10_offset = _RANDOM[8'h2A][29:26];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_10_taken = _RANDOM[8'h2A][30];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_11_valid = _RANDOM[8'h2A][31];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_11_tag = {_RANDOM[8'h2B], _RANDOM[8'h2C][20:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_11_target = {_RANDOM[8'h2C][31:21], _RANDOM[8'h2D], _RANDOM[8'h2E][20:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_11_br_type = _RANDOM[8'h2E][22:21];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_11_offset = _RANDOM[8'h2E][26:23];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_11_taken = _RANDOM[8'h2E][27];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_12_valid = _RANDOM[8'h2E][28];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_12_tag = {_RANDOM[8'h2E][31:29], _RANDOM[8'h2F], _RANDOM[8'h30][17:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_12_target = {_RANDOM[8'h30][31:18], _RANDOM[8'h31], _RANDOM[8'h32][17:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_12_br_type = _RANDOM[8'h32][19:18];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_12_offset = _RANDOM[8'h32][23:20];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_12_taken = _RANDOM[8'h32][24];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_13_valid = _RANDOM[8'h32][25];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_13_tag = {_RANDOM[8'h32][31:26], _RANDOM[8'h33], _RANDOM[8'h34][14:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_13_target = {_RANDOM[8'h34][31:15], _RANDOM[8'h35], _RANDOM[8'h36][14:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_13_br_type = _RANDOM[8'h36][16:15];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_13_offset = _RANDOM[8'h36][20:17];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_13_taken = _RANDOM[8'h36][21];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_14_valid = _RANDOM[8'h36][22];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_14_tag = {_RANDOM[8'h36][31:23], _RANDOM[8'h37], _RANDOM[8'h38][11:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_14_target = {_RANDOM[8'h38][31:12], _RANDOM[8'h39], _RANDOM[8'h3A][11:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_14_br_type = _RANDOM[8'h3A][13:12];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_14_offset = _RANDOM[8'h3A][17:14];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_14_taken = _RANDOM[8'h3A][18];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_15_valid = _RANDOM[8'h3A][19];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_15_tag = {_RANDOM[8'h3A][31:20], _RANDOM[8'h3B], _RANDOM[8'h3C][8:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_15_target = {_RANDOM[8'h3C][31:9], _RANDOM[8'h3D], _RANDOM[8'h3E][8:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_15_br_type = _RANDOM[8'h3E][10:9];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_15_offset = _RANDOM[8'h3E][14:11];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_15_taken = _RANDOM[8'h3E][15];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_16_valid = _RANDOM[8'h3E][16];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_16_tag = {_RANDOM[8'h3E][31:17], _RANDOM[8'h3F], _RANDOM[8'h40][5:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_16_target = {_RANDOM[8'h40][31:6], _RANDOM[8'h41], _RANDOM[8'h42][5:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_16_br_type = _RANDOM[8'h42][7:6];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_16_offset = _RANDOM[8'h42][11:8];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_16_taken = _RANDOM[8'h42][12];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_17_valid = _RANDOM[8'h42][13];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_17_tag = {_RANDOM[8'h42][31:14], _RANDOM[8'h43], _RANDOM[8'h44][2:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_17_target = {_RANDOM[8'h44][31:3], _RANDOM[8'h45], _RANDOM[8'h46][2:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_17_br_type = _RANDOM[8'h46][4:3];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_17_offset = _RANDOM[8'h46][8:5];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_17_taken = _RANDOM[8'h46][9];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_18_valid = _RANDOM[8'h46][10];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_18_tag = {_RANDOM[8'h46][31:11], _RANDOM[8'h47]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_18_target = {_RANDOM[8'h48], _RANDOM[8'h49]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_18_br_type = _RANDOM[8'h4A][1:0];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_18_offset = _RANDOM[8'h4A][5:2];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_18_taken = _RANDOM[8'h4A][6];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_19_valid = _RANDOM[8'h4A][7];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_19_tag = {_RANDOM[8'h4A][31:8], _RANDOM[8'h4B][28:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_19_target = {_RANDOM[8'h4B][31:29], _RANDOM[8'h4C], _RANDOM[8'h4D][28:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_19_br_type = _RANDOM[8'h4D][30:29];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_19_offset = {_RANDOM[8'h4D][31], _RANDOM[8'h4E][2:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_19_taken = _RANDOM[8'h4E][3];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_20_valid = _RANDOM[8'h4E][4];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_20_tag = {_RANDOM[8'h4E][31:5], _RANDOM[8'h4F][25:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_20_target = {_RANDOM[8'h4F][31:26], _RANDOM[8'h50], _RANDOM[8'h51][25:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_20_br_type = _RANDOM[8'h51][27:26];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_20_offset = _RANDOM[8'h51][31:28];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_20_taken = _RANDOM[8'h52][0];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_21_valid = _RANDOM[8'h52][1];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_21_tag = {_RANDOM[8'h52][31:2], _RANDOM[8'h53][22:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_21_target = {_RANDOM[8'h53][31:23], _RANDOM[8'h54], _RANDOM[8'h55][22:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_21_br_type = _RANDOM[8'h55][24:23];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_21_offset = _RANDOM[8'h55][28:25];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_21_taken = _RANDOM[8'h55][29];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_22_valid = _RANDOM[8'h55][30];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_22_tag = {_RANDOM[8'h55][31], _RANDOM[8'h56], _RANDOM[8'h57][19:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_22_target = {_RANDOM[8'h57][31:20], _RANDOM[8'h58], _RANDOM[8'h59][19:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_22_br_type = _RANDOM[8'h59][21:20];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_22_offset = _RANDOM[8'h59][25:22];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_22_taken = _RANDOM[8'h59][26];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_23_valid = _RANDOM[8'h59][27];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_23_tag = {_RANDOM[8'h59][31:28], _RANDOM[8'h5A], _RANDOM[8'h5B][16:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_23_target = {_RANDOM[8'h5B][31:17], _RANDOM[8'h5C], _RANDOM[8'h5D][16:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_23_br_type = _RANDOM[8'h5D][18:17];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_23_offset = _RANDOM[8'h5D][22:19];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_23_taken = _RANDOM[8'h5D][23];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_24_valid = _RANDOM[8'h5D][24];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_24_tag = {_RANDOM[8'h5D][31:25], _RANDOM[8'h5E], _RANDOM[8'h5F][13:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_24_target = {_RANDOM[8'h5F][31:14], _RANDOM[8'h60], _RANDOM[8'h61][13:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_24_br_type = _RANDOM[8'h61][15:14];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_24_offset = _RANDOM[8'h61][19:16];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_24_taken = _RANDOM[8'h61][20];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_25_valid = _RANDOM[8'h61][21];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_25_tag = {_RANDOM[8'h61][31:22], _RANDOM[8'h62], _RANDOM[8'h63][10:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_25_target = {_RANDOM[8'h63][31:11], _RANDOM[8'h64], _RANDOM[8'h65][10:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_25_br_type = _RANDOM[8'h65][12:11];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_25_offset = _RANDOM[8'h65][16:13];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_25_taken = _RANDOM[8'h65][17];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_26_valid = _RANDOM[8'h65][18];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_26_tag = {_RANDOM[8'h65][31:19], _RANDOM[8'h66], _RANDOM[8'h67][7:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_26_target = {_RANDOM[8'h67][31:8], _RANDOM[8'h68], _RANDOM[8'h69][7:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_26_br_type = _RANDOM[8'h69][9:8];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_26_offset = _RANDOM[8'h69][13:10];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_26_taken = _RANDOM[8'h69][14];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_27_valid = _RANDOM[8'h69][15];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_27_tag = {_RANDOM[8'h69][31:16], _RANDOM[8'h6A], _RANDOM[8'h6B][4:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_27_target = {_RANDOM[8'h6B][31:5], _RANDOM[8'h6C], _RANDOM[8'h6D][4:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_27_br_type = _RANDOM[8'h6D][6:5];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_27_offset = _RANDOM[8'h6D][10:7];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_27_taken = _RANDOM[8'h6D][11];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_28_valid = _RANDOM[8'h6D][12];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_28_tag = {_RANDOM[8'h6D][31:13], _RANDOM[8'h6E], _RANDOM[8'h6F][1:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_28_target = {_RANDOM[8'h6F][31:2], _RANDOM[8'h70], _RANDOM[8'h71][1:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_28_br_type = _RANDOM[8'h71][3:2];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_28_offset = _RANDOM[8'h71][7:4];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_28_taken = _RANDOM[8'h71][8];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_29_valid = _RANDOM[8'h71][9];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_29_tag = {_RANDOM[8'h71][31:10], _RANDOM[8'h72][30:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_29_target = {_RANDOM[8'h72][31], _RANDOM[8'h73], _RANDOM[8'h74][30:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_29_br_type = {_RANDOM[8'h74][31], _RANDOM[8'h75][0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_29_offset = _RANDOM[8'h75][4:1];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_29_taken = _RANDOM[8'h75][5];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_30_valid = _RANDOM[8'h75][6];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_30_tag = {_RANDOM[8'h75][31:7], _RANDOM[8'h76][27:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_30_target = {_RANDOM[8'h76][31:28], _RANDOM[8'h77], _RANDOM[8'h78][27:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_30_br_type = _RANDOM[8'h78][29:28];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_30_offset = {_RANDOM[8'h78][31:30], _RANDOM[8'h79][1:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_30_taken = _RANDOM[8'h79][2];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_31_valid = _RANDOM[8'h79][3];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_31_tag = {_RANDOM[8'h79][31:4], _RANDOM[8'h7A][24:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_31_target = {_RANDOM[8'h7A][31:25], _RANDOM[8'h7B], _RANDOM[8'h7C][24:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_31_br_type = _RANDOM[8'h7C][26:25];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_31_offset = _RANDOM[8'h7C][30:27];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_31_taken = _RANDOM[8'h7C][31];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_32_valid = _RANDOM[8'h7D][0];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_32_tag = {_RANDOM[8'h7D][31:1], _RANDOM[8'h7E][21:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_32_target = {_RANDOM[8'h7E][31:22], _RANDOM[8'h7F], _RANDOM[8'h80][21:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_32_br_type = _RANDOM[8'h80][23:22];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_32_offset = _RANDOM[8'h80][27:24];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_32_taken = _RANDOM[8'h80][28];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_33_valid = _RANDOM[8'h80][29];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_33_tag = {_RANDOM[8'h80][31:30], _RANDOM[8'h81], _RANDOM[8'h82][18:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_33_target = {_RANDOM[8'h82][31:19], _RANDOM[8'h83], _RANDOM[8'h84][18:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_33_br_type = _RANDOM[8'h84][20:19];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_33_offset = _RANDOM[8'h84][24:21];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_33_taken = _RANDOM[8'h84][25];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_34_valid = _RANDOM[8'h84][26];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_34_tag = {_RANDOM[8'h84][31:27], _RANDOM[8'h85], _RANDOM[8'h86][15:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_34_target = {_RANDOM[8'h86][31:16], _RANDOM[8'h87], _RANDOM[8'h88][15:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_34_br_type = _RANDOM[8'h88][17:16];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_34_offset = _RANDOM[8'h88][21:18];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_34_taken = _RANDOM[8'h88][22];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_35_valid = _RANDOM[8'h88][23];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_35_tag = {_RANDOM[8'h88][31:24], _RANDOM[8'h89], _RANDOM[8'h8A][12:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_35_target = {_RANDOM[8'h8A][31:13], _RANDOM[8'h8B], _RANDOM[8'h8C][12:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_35_br_type = _RANDOM[8'h8C][14:13];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_35_offset = _RANDOM[8'h8C][18:15];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_35_taken = _RANDOM[8'h8C][19];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_36_valid = _RANDOM[8'h8C][20];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_36_tag = {_RANDOM[8'h8C][31:21], _RANDOM[8'h8D], _RANDOM[8'h8E][9:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_36_target = {_RANDOM[8'h8E][31:10], _RANDOM[8'h8F], _RANDOM[8'h90][9:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_36_br_type = _RANDOM[8'h90][11:10];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_36_offset = _RANDOM[8'h90][15:12];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_36_taken = _RANDOM[8'h90][16];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_37_valid = _RANDOM[8'h90][17];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_37_tag = {_RANDOM[8'h90][31:18], _RANDOM[8'h91], _RANDOM[8'h92][6:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_37_target = {_RANDOM[8'h92][31:7], _RANDOM[8'h93], _RANDOM[8'h94][6:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_37_br_type = _RANDOM[8'h94][8:7];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_37_offset = _RANDOM[8'h94][12:9];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_37_taken = _RANDOM[8'h94][13];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_38_valid = _RANDOM[8'h94][14];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_38_tag = {_RANDOM[8'h94][31:15], _RANDOM[8'h95], _RANDOM[8'h96][3:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_38_target = {_RANDOM[8'h96][31:4], _RANDOM[8'h97], _RANDOM[8'h98][3:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_38_br_type = _RANDOM[8'h98][5:4];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_38_offset = _RANDOM[8'h98][9:6];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_38_taken = _RANDOM[8'h98][10];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_39_valid = _RANDOM[8'h98][11];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_39_tag = {_RANDOM[8'h98][31:12], _RANDOM[8'h99], _RANDOM[8'h9A][0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_39_target = {_RANDOM[8'h9A][31:1], _RANDOM[8'h9B], _RANDOM[8'h9C][0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_39_br_type = _RANDOM[8'h9C][2:1];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_39_offset = _RANDOM[8'h9C][6:3];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_39_taken = _RANDOM[8'h9C][7];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_40_valid = _RANDOM[8'h9C][8];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_40_tag = {_RANDOM[8'h9C][31:9], _RANDOM[8'h9D][29:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_40_target = {_RANDOM[8'h9D][31:30], _RANDOM[8'h9E], _RANDOM[8'h9F][29:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_40_br_type = _RANDOM[8'h9F][31:30];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_40_offset = _RANDOM[8'hA0][3:0];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_40_taken = _RANDOM[8'hA0][4];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_41_valid = _RANDOM[8'hA0][5];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_41_tag = {_RANDOM[8'hA0][31:6], _RANDOM[8'hA1][26:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_41_target = {_RANDOM[8'hA1][31:27], _RANDOM[8'hA2], _RANDOM[8'hA3][26:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_41_br_type = _RANDOM[8'hA3][28:27];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_41_offset = {_RANDOM[8'hA3][31:29], _RANDOM[8'hA4][0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_41_taken = _RANDOM[8'hA4][1];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_42_valid = _RANDOM[8'hA4][2];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_42_tag = {_RANDOM[8'hA4][31:3], _RANDOM[8'hA5][23:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_42_target = {_RANDOM[8'hA5][31:24], _RANDOM[8'hA6], _RANDOM[8'hA7][23:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_42_br_type = _RANDOM[8'hA7][25:24];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_42_offset = _RANDOM[8'hA7][29:26];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_42_taken = _RANDOM[8'hA7][30];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_43_valid = _RANDOM[8'hA7][31];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_43_tag = {_RANDOM[8'hA8], _RANDOM[8'hA9][20:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_43_target = {_RANDOM[8'hA9][31:21], _RANDOM[8'hAA], _RANDOM[8'hAB][20:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_43_br_type = _RANDOM[8'hAB][22:21];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_43_offset = _RANDOM[8'hAB][26:23];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_43_taken = _RANDOM[8'hAB][27];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_44_valid = _RANDOM[8'hAB][28];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_44_tag = {_RANDOM[8'hAB][31:29], _RANDOM[8'hAC], _RANDOM[8'hAD][17:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_44_target = {_RANDOM[8'hAD][31:18], _RANDOM[8'hAE], _RANDOM[8'hAF][17:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_44_br_type = _RANDOM[8'hAF][19:18];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_44_offset = _RANDOM[8'hAF][23:20];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_44_taken = _RANDOM[8'hAF][24];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_45_valid = _RANDOM[8'hAF][25];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_45_tag = {_RANDOM[8'hAF][31:26], _RANDOM[8'hB0], _RANDOM[8'hB1][14:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_45_target = {_RANDOM[8'hB1][31:15], _RANDOM[8'hB2], _RANDOM[8'hB3][14:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_45_br_type = _RANDOM[8'hB3][16:15];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_45_offset = _RANDOM[8'hB3][20:17];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_45_taken = _RANDOM[8'hB3][21];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_46_valid = _RANDOM[8'hB3][22];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_46_tag = {_RANDOM[8'hB3][31:23], _RANDOM[8'hB4], _RANDOM[8'hB5][11:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_46_target = {_RANDOM[8'hB5][31:12], _RANDOM[8'hB6], _RANDOM[8'hB7][11:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_46_br_type = _RANDOM[8'hB7][13:12];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_46_offset = _RANDOM[8'hB7][17:14];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_46_taken = _RANDOM[8'hB7][18];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_47_valid = _RANDOM[8'hB7][19];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_47_tag = {_RANDOM[8'hB7][31:20], _RANDOM[8'hB8], _RANDOM[8'hB9][8:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_47_target = {_RANDOM[8'hB9][31:9], _RANDOM[8'hBA], _RANDOM[8'hBB][8:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_47_br_type = _RANDOM[8'hBB][10:9];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_47_offset = _RANDOM[8'hBB][14:11];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_47_taken = _RANDOM[8'hBB][15];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_48_valid = _RANDOM[8'hBB][16];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_48_tag = {_RANDOM[8'hBB][31:17], _RANDOM[8'hBC], _RANDOM[8'hBD][5:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_48_target = {_RANDOM[8'hBD][31:6], _RANDOM[8'hBE], _RANDOM[8'hBF][5:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_48_br_type = _RANDOM[8'hBF][7:6];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_48_offset = _RANDOM[8'hBF][11:8];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_48_taken = _RANDOM[8'hBF][12];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_49_valid = _RANDOM[8'hBF][13];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_49_tag = {_RANDOM[8'hBF][31:14], _RANDOM[8'hC0], _RANDOM[8'hC1][2:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_49_target = {_RANDOM[8'hC1][31:3], _RANDOM[8'hC2], _RANDOM[8'hC3][2:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_49_br_type = _RANDOM[8'hC3][4:3];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_49_offset = _RANDOM[8'hC3][8:5];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_49_taken = _RANDOM[8'hC3][9];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_50_valid = _RANDOM[8'hC3][10];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_50_tag = {_RANDOM[8'hC3][31:11], _RANDOM[8'hC4]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_50_target = {_RANDOM[8'hC5], _RANDOM[8'hC6]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_50_br_type = _RANDOM[8'hC7][1:0];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_50_offset = _RANDOM[8'hC7][5:2];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_50_taken = _RANDOM[8'hC7][6];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_51_valid = _RANDOM[8'hC7][7];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_51_tag = {_RANDOM[8'hC7][31:8], _RANDOM[8'hC8][28:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_51_target = {_RANDOM[8'hC8][31:29], _RANDOM[8'hC9], _RANDOM[8'hCA][28:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_51_br_type = _RANDOM[8'hCA][30:29];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_51_offset = {_RANDOM[8'hCA][31], _RANDOM[8'hCB][2:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_51_taken = _RANDOM[8'hCB][3];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_52_valid = _RANDOM[8'hCB][4];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_52_tag = {_RANDOM[8'hCB][31:5], _RANDOM[8'hCC][25:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_52_target = {_RANDOM[8'hCC][31:26], _RANDOM[8'hCD], _RANDOM[8'hCE][25:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_52_br_type = _RANDOM[8'hCE][27:26];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_52_offset = _RANDOM[8'hCE][31:28];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_52_taken = _RANDOM[8'hCF][0];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_53_valid = _RANDOM[8'hCF][1];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_53_tag = {_RANDOM[8'hCF][31:2], _RANDOM[8'hD0][22:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_53_target = {_RANDOM[8'hD0][31:23], _RANDOM[8'hD1], _RANDOM[8'hD2][22:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_53_br_type = _RANDOM[8'hD2][24:23];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_53_offset = _RANDOM[8'hD2][28:25];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_53_taken = _RANDOM[8'hD2][29];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_54_valid = _RANDOM[8'hD2][30];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_54_tag = {_RANDOM[8'hD2][31], _RANDOM[8'hD3], _RANDOM[8'hD4][19:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_54_target = {_RANDOM[8'hD4][31:20], _RANDOM[8'hD5], _RANDOM[8'hD6][19:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_54_br_type = _RANDOM[8'hD6][21:20];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_54_offset = _RANDOM[8'hD6][25:22];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_54_taken = _RANDOM[8'hD6][26];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_55_valid = _RANDOM[8'hD6][27];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_55_tag = {_RANDOM[8'hD6][31:28], _RANDOM[8'hD7], _RANDOM[8'hD8][16:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_55_target = {_RANDOM[8'hD8][31:17], _RANDOM[8'hD9], _RANDOM[8'hDA][16:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_55_br_type = _RANDOM[8'hDA][18:17];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_55_offset = _RANDOM[8'hDA][22:19];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_55_taken = _RANDOM[8'hDA][23];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_56_valid = _RANDOM[8'hDA][24];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_56_tag = {_RANDOM[8'hDA][31:25], _RANDOM[8'hDB], _RANDOM[8'hDC][13:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_56_target = {_RANDOM[8'hDC][31:14], _RANDOM[8'hDD], _RANDOM[8'hDE][13:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_56_br_type = _RANDOM[8'hDE][15:14];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_56_offset = _RANDOM[8'hDE][19:16];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_56_taken = _RANDOM[8'hDE][20];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_57_valid = _RANDOM[8'hDE][21];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_57_tag = {_RANDOM[8'hDE][31:22], _RANDOM[8'hDF], _RANDOM[8'hE0][10:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_57_target = {_RANDOM[8'hE0][31:11], _RANDOM[8'hE1], _RANDOM[8'hE2][10:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_57_br_type = _RANDOM[8'hE2][12:11];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_57_offset = _RANDOM[8'hE2][16:13];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_57_taken = _RANDOM[8'hE2][17];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_58_valid = _RANDOM[8'hE2][18];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_58_tag = {_RANDOM[8'hE2][31:19], _RANDOM[8'hE3], _RANDOM[8'hE4][7:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_58_target = {_RANDOM[8'hE4][31:8], _RANDOM[8'hE5], _RANDOM[8'hE6][7:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_58_br_type = _RANDOM[8'hE6][9:8];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_58_offset = _RANDOM[8'hE6][13:10];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_58_taken = _RANDOM[8'hE6][14];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_59_valid = _RANDOM[8'hE6][15];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_59_tag = {_RANDOM[8'hE6][31:16], _RANDOM[8'hE7], _RANDOM[8'hE8][4:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_59_target = {_RANDOM[8'hE8][31:5], _RANDOM[8'hE9], _RANDOM[8'hEA][4:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_59_br_type = _RANDOM[8'hEA][6:5];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_59_offset = _RANDOM[8'hEA][10:7];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_59_taken = _RANDOM[8'hEA][11];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_60_valid = _RANDOM[8'hEA][12];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_60_tag = {_RANDOM[8'hEA][31:13], _RANDOM[8'hEB], _RANDOM[8'hEC][1:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_60_target = {_RANDOM[8'hEC][31:2], _RANDOM[8'hED], _RANDOM[8'hEE][1:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_60_br_type = _RANDOM[8'hEE][3:2];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_60_offset = _RANDOM[8'hEE][7:4];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_60_taken = _RANDOM[8'hEE][8];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_61_valid = _RANDOM[8'hEE][9];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_61_tag = {_RANDOM[8'hEE][31:10], _RANDOM[8'hEF][30:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_61_target = {_RANDOM[8'hEF][31], _RANDOM[8'hF0], _RANDOM[8'hF1][30:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_61_br_type = {_RANDOM[8'hF1][31], _RANDOM[8'hF2][0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_61_offset = _RANDOM[8'hF2][4:1];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_61_taken = _RANDOM[8'hF2][5];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_62_valid = _RANDOM[8'hF2][6];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_62_tag = {_RANDOM[8'hF2][31:7], _RANDOM[8'hF3][27:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_62_target = {_RANDOM[8'hF3][31:28], _RANDOM[8'hF4], _RANDOM[8'hF5][27:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_62_br_type = _RANDOM[8'hF5][29:28];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_62_offset = {_RANDOM[8'hF5][31:30], _RANDOM[8'hF6][1:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_62_taken = _RANDOM[8'hF6][2];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_63_valid = _RANDOM[8'hF6][3];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_63_tag = {_RANDOM[8'hF6][31:4], _RANDOM[8'hF7][24:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_63_target = {_RANDOM[8'hF7][31:25], _RANDOM[8'hF8], _RANDOM[8'hF9][24:0]};	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_63_br_type = _RANDOM[8'hF9][26:25];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_63_offset = _RANDOM[8'hF9][30:27];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
+        entries_63_taken = _RANDOM[8'hF9][31];	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:24
       `endif // RANDOMIZE_REG_INIT
     end // initial
     `ifdef FIRRTL_AFTER_INITIAL	// frontend/src/zaqal/frontend/FTB.scala:17:7
       `FIRRTL_AFTER_INITIAL	// frontend/src/zaqal/frontend/FTB.scala:17:7
     `endif // FIRRTL_AFTER_INITIAL
   `endif // ENABLE_INITIAL_REG_
-  assign io_hit = hit;	// frontend/src/zaqal/frontend/FTB.scala:17:7, :53:25
-  assign io_target = hit ? casez_tmp_1 : io_req_pc + 64'h20;	// frontend/src/zaqal/frontend/FTB.scala:17:7, :53:{25,39}, :55:{19,49}
-  assign io_taken = hit & casez_tmp_4;	// frontend/src/zaqal/frontend/FTB.scala:17:7, :53:{25,39}, :56:20
-  assign io_slot = hit ? casez_tmp_3 : 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:66, :53:{25,39}, :57:19
-  assign io_br_type = hit ? casez_tmp_2 : 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:17:7, :41:66, :53:{25,39}, :58:20
+  assign io_hit = hit;	// frontend/src/zaqal/frontend/FTB.scala:17:7, :54:25
+  assign io_target = hit ? casez_tmp_1 : io_req_pc + 64'h20;	// frontend/src/zaqal/frontend/FTB.scala:17:7, :54:{25,39}, :56:{19,49}
+  assign io_taken = hit & casez_tmp_4;	// frontend/src/zaqal/frontend/FTB.scala:17:7, :54:{25,39}, :57:20
+  assign io_slot = hit ? casez_tmp_3 : 4'h0;	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:66, :54:{25,39}, :58:19
+  assign io_br_type = hit ? casez_tmp_2 : 2'h0;	// frontend/src/zaqal/frontend/FTB.scala:17:7, :42:66, :54:{25,39}, :59:20
 endmodule
 

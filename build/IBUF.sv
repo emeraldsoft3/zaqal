@@ -139,7 +139,8 @@ module IBUF(	// frontend/src/zaqal/frontend/IBUF.scala:9:7
   input         io_inst_data_bits_prediction_taken,	// frontend/src/zaqal/frontend/IBUF.scala:10:14
   input  [3:0]  io_inst_data_bits_prediction_slot,	// frontend/src/zaqal/frontend/IBUF.scala:10:14
   input  [5:0]  io_inst_data_bits_ftqPtr,	// frontend/src/zaqal/frontend/IBUF.scala:10:14
-  input         io_flush,	// frontend/src/zaqal/frontend/IBUF.scala:10:14
+  input         io_inst_data_bits_epoch,	// frontend/src/zaqal/frontend/IBUF.scala:10:14
+                io_flush,	// frontend/src/zaqal/frontend/IBUF.scala:10:14
                 io_out_0_ready,	// frontend/src/zaqal/frontend/IBUF.scala:10:14
   output        io_out_0_valid,	// frontend/src/zaqal/frontend/IBUF.scala:10:14
   output [63:0] io_out_0_bits_pc,	// frontend/src/zaqal/frontend/IBUF.scala:10:14
@@ -148,6 +149,7 @@ module IBUF(	// frontend/src/zaqal/frontend/IBUF.scala:9:7
   output [31:0] io_out_0_bits_pre_expanded_inst,	// frontend/src/zaqal/frontend/IBUF.scala:10:14
   output [5:0]  io_out_0_bits_ftqPtr,	// frontend/src/zaqal/frontend/IBUF.scala:10:14
   output        io_out_0_bits_is_predicted_taken,	// frontend/src/zaqal/frontend/IBUF.scala:10:14
+                io_out_0_bits_epoch,	// frontend/src/zaqal/frontend/IBUF.scala:10:14
   input         io_out_1_ready,	// frontend/src/zaqal/frontend/IBUF.scala:10:14
   output        io_out_1_valid,	// frontend/src/zaqal/frontend/IBUF.scala:10:14
   output [63:0] io_out_1_bits_pc,	// frontend/src/zaqal/frontend/IBUF.scala:10:14
@@ -156,6 +158,7 @@ module IBUF(	// frontend/src/zaqal/frontend/IBUF.scala:9:7
   output [31:0] io_out_1_bits_pre_expanded_inst,	// frontend/src/zaqal/frontend/IBUF.scala:10:14
   output [5:0]  io_out_1_bits_ftqPtr,	// frontend/src/zaqal/frontend/IBUF.scala:10:14
   output        io_out_1_bits_is_predicted_taken,	// frontend/src/zaqal/frontend/IBUF.scala:10:14
+                io_out_1_bits_epoch,	// frontend/src/zaqal/frontend/IBUF.scala:10:14
   input         io_out_2_ready,	// frontend/src/zaqal/frontend/IBUF.scala:10:14
   output        io_out_2_valid,	// frontend/src/zaqal/frontend/IBUF.scala:10:14
   output [63:0] io_out_2_bits_pc,	// frontend/src/zaqal/frontend/IBUF.scala:10:14
@@ -164,6 +167,7 @@ module IBUF(	// frontend/src/zaqal/frontend/IBUF.scala:9:7
   output [31:0] io_out_2_bits_pre_expanded_inst,	// frontend/src/zaqal/frontend/IBUF.scala:10:14
   output [5:0]  io_out_2_bits_ftqPtr,	// frontend/src/zaqal/frontend/IBUF.scala:10:14
   output        io_out_2_bits_is_predicted_taken,	// frontend/src/zaqal/frontend/IBUF.scala:10:14
+                io_out_2_bits_epoch,	// frontend/src/zaqal/frontend/IBUF.scala:10:14
   input         io_out_3_ready,	// frontend/src/zaqal/frontend/IBUF.scala:10:14
   output        io_out_3_valid,	// frontend/src/zaqal/frontend/IBUF.scala:10:14
   output [63:0] io_out_3_bits_pc,	// frontend/src/zaqal/frontend/IBUF.scala:10:14
@@ -172,6 +176,7 @@ module IBUF(	// frontend/src/zaqal/frontend/IBUF.scala:9:7
   output [31:0] io_out_3_bits_pre_expanded_inst,	// frontend/src/zaqal/frontend/IBUF.scala:10:14
   output [5:0]  io_out_3_bits_ftqPtr,	// frontend/src/zaqal/frontend/IBUF.scala:10:14
   output        io_out_3_bits_is_predicted_taken,	// frontend/src/zaqal/frontend/IBUF.scala:10:14
+                io_out_3_bits_epoch,	// frontend/src/zaqal/frontend/IBUF.scala:10:14
   input         io_out_4_ready,	// frontend/src/zaqal/frontend/IBUF.scala:10:14
   output        io_out_4_valid,	// frontend/src/zaqal/frontend/IBUF.scala:10:14
   output [63:0] io_out_4_bits_pc,	// frontend/src/zaqal/frontend/IBUF.scala:10:14
@@ -180,6 +185,7 @@ module IBUF(	// frontend/src/zaqal/frontend/IBUF.scala:9:7
   output [31:0] io_out_4_bits_pre_expanded_inst,	// frontend/src/zaqal/frontend/IBUF.scala:10:14
   output [5:0]  io_out_4_bits_ftqPtr,	// frontend/src/zaqal/frontend/IBUF.scala:10:14
   output        io_out_4_bits_is_predicted_taken,	// frontend/src/zaqal/frontend/IBUF.scala:10:14
+                io_out_4_bits_epoch,	// frontend/src/zaqal/frontend/IBUF.scala:10:14
   input         io_out_5_ready,	// frontend/src/zaqal/frontend/IBUF.scala:10:14
   output        io_out_5_valid,	// frontend/src/zaqal/frontend/IBUF.scala:10:14
   output [63:0] io_out_5_bits_pc,	// frontend/src/zaqal/frontend/IBUF.scala:10:14
@@ -187,7 +193,8 @@ module IBUF(	// frontend/src/zaqal/frontend/IBUF.scala:9:7
   output        io_out_5_bits_pre_is_rvc,	// frontend/src/zaqal/frontend/IBUF.scala:10:14
   output [31:0] io_out_5_bits_pre_expanded_inst,	// frontend/src/zaqal/frontend/IBUF.scala:10:14
   output [5:0]  io_out_5_bits_ftqPtr,	// frontend/src/zaqal/frontend/IBUF.scala:10:14
-  output        io_out_5_bits_is_predicted_taken	// frontend/src/zaqal/frontend/IBUF.scala:10:14
+  output        io_out_5_bits_is_predicted_taken,	// frontend/src/zaqal/frontend/IBUF.scala:10:14
+                io_out_5_bits_epoch	// frontend/src/zaqal/frontend/IBUF.scala:10:14
 );
 
   reg  [63:0] buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
@@ -196,288 +203,336 @@ module IBUF(	// frontend/src/zaqal/frontend/IBUF.scala:9:7
   reg  [31:0] buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [5:0]  buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+  reg         buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [63:0] buffer_1_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_1_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_1_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_1_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [5:0]  buffer_1_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_1_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+  reg         buffer_1_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [63:0] buffer_2_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_2_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_2_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_2_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [5:0]  buffer_2_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_2_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+  reg         buffer_2_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [63:0] buffer_3_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_3_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_3_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_3_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [5:0]  buffer_3_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_3_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+  reg         buffer_3_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [63:0] buffer_4_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_4_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_4_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_4_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [5:0]  buffer_4_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_4_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+  reg         buffer_4_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [63:0] buffer_5_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_5_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_5_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_5_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [5:0]  buffer_5_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_5_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+  reg         buffer_5_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [63:0] buffer_6_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_6_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_6_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_6_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [5:0]  buffer_6_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_6_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+  reg         buffer_6_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [63:0] buffer_7_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_7_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_7_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_7_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [5:0]  buffer_7_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_7_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+  reg         buffer_7_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [63:0] buffer_8_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_8_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_8_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_8_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [5:0]  buffer_8_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_8_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+  reg         buffer_8_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [63:0] buffer_9_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_9_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_9_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_9_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [5:0]  buffer_9_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_9_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+  reg         buffer_9_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [63:0] buffer_10_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_10_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_10_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_10_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [5:0]  buffer_10_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_10_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+  reg         buffer_10_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [63:0] buffer_11_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_11_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_11_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_11_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [5:0]  buffer_11_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_11_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+  reg         buffer_11_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [63:0] buffer_12_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_12_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_12_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_12_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [5:0]  buffer_12_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_12_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+  reg         buffer_12_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [63:0] buffer_13_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_13_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_13_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_13_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [5:0]  buffer_13_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_13_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+  reg         buffer_13_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [63:0] buffer_14_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_14_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_14_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_14_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [5:0]  buffer_14_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_14_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+  reg         buffer_14_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [63:0] buffer_15_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_15_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_15_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_15_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [5:0]  buffer_15_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_15_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+  reg         buffer_15_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [63:0] buffer_16_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_16_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_16_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_16_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [5:0]  buffer_16_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_16_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+  reg         buffer_16_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [63:0] buffer_17_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_17_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_17_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_17_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [5:0]  buffer_17_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_17_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+  reg         buffer_17_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [63:0] buffer_18_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_18_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_18_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_18_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [5:0]  buffer_18_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_18_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+  reg         buffer_18_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [63:0] buffer_19_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_19_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_19_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_19_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [5:0]  buffer_19_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_19_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+  reg         buffer_19_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [63:0] buffer_20_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_20_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_20_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_20_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [5:0]  buffer_20_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_20_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+  reg         buffer_20_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [63:0] buffer_21_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_21_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_21_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_21_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [5:0]  buffer_21_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_21_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+  reg         buffer_21_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [63:0] buffer_22_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_22_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_22_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_22_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [5:0]  buffer_22_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_22_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+  reg         buffer_22_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [63:0] buffer_23_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_23_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_23_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_23_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [5:0]  buffer_23_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_23_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+  reg         buffer_23_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [63:0] buffer_24_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_24_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_24_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_24_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [5:0]  buffer_24_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_24_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+  reg         buffer_24_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [63:0] buffer_25_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_25_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_25_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_25_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [5:0]  buffer_25_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_25_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+  reg         buffer_25_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [63:0] buffer_26_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_26_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_26_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_26_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [5:0]  buffer_26_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_26_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+  reg         buffer_26_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [63:0] buffer_27_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_27_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_27_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_27_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [5:0]  buffer_27_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_27_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+  reg         buffer_27_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [63:0] buffer_28_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_28_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_28_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_28_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [5:0]  buffer_28_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_28_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+  reg         buffer_28_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [63:0] buffer_29_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_29_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_29_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_29_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [5:0]  buffer_29_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_29_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+  reg         buffer_29_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [63:0] buffer_30_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_30_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_30_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_30_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [5:0]  buffer_30_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_30_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+  reg         buffer_30_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [63:0] buffer_31_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_31_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_31_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_31_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [5:0]  buffer_31_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_31_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+  reg         buffer_31_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [63:0] buffer_32_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_32_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_32_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_32_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [5:0]  buffer_32_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_32_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+  reg         buffer_32_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [63:0] buffer_33_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_33_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_33_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_33_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [5:0]  buffer_33_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_33_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+  reg         buffer_33_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [63:0] buffer_34_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_34_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_34_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_34_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [5:0]  buffer_34_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_34_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+  reg         buffer_34_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [63:0] buffer_35_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_35_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_35_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_35_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [5:0]  buffer_35_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_35_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+  reg         buffer_35_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [63:0] buffer_36_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_36_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_36_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_36_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [5:0]  buffer_36_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_36_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+  reg         buffer_36_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [63:0] buffer_37_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_37_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_37_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_37_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [5:0]  buffer_37_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_37_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+  reg         buffer_37_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [63:0] buffer_38_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_38_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_38_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_38_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [5:0]  buffer_38_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_38_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+  reg         buffer_38_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [63:0] buffer_39_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_39_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_39_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_39_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [5:0]  buffer_39_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_39_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+  reg         buffer_39_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [63:0] buffer_40_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_40_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_40_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_40_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [5:0]  buffer_40_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_40_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+  reg         buffer_40_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [63:0] buffer_41_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_41_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_41_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_41_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [5:0]  buffer_41_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_41_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+  reg         buffer_41_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [63:0] buffer_42_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_42_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_42_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_42_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [5:0]  buffer_42_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_42_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+  reg         buffer_42_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [63:0] buffer_43_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_43_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_43_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_43_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [5:0]  buffer_43_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_43_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+  reg         buffer_43_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [63:0] buffer_44_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_44_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_44_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_44_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [5:0]  buffer_44_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_44_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+  reg         buffer_44_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [63:0] buffer_45_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_45_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_45_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_45_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [5:0]  buffer_45_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_45_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+  reg         buffer_45_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [63:0] buffer_46_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_46_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_46_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_46_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [5:0]  buffer_46_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_46_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+  reg         buffer_46_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [63:0] buffer_47_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_47_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_47_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [31:0] buffer_47_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg  [5:0]  buffer_47_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         buffer_47_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+  reg         buffer_47_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
   reg         valid_0;	// frontend/src/zaqal/frontend/IBUF.scala:17:23
   reg         valid_1;	// frontend/src/zaqal/frontend/IBUF.scala:17:23
   reg         valid_2;	// frontend/src/zaqal/frontend/IBUF.scala:17:23
@@ -2190,4004 +2245,4802 @@ module IBUF(	// frontend/src/zaqal/frontend/IBUF.scala:9:7
         casez_tmp_10 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
     endcase	// frontend/src/zaqal/frontend/IBUF.scala:65:26, :67:21
   end // always_comb
+  reg         casez_tmp_11;	// frontend/src/zaqal/frontend/IBUF.scala:67:21
+  always_comb begin	// frontend/src/zaqal/frontend/IBUF.scala:67:21
+    casez (wrapped_ptr)	// frontend/src/zaqal/frontend/IBUF.scala:65:26, :67:21
+      6'b000000:
+        casez_tmp_11 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b000001:
+        casez_tmp_11 = buffer_1_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b000010:
+        casez_tmp_11 = buffer_2_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b000011:
+        casez_tmp_11 = buffer_3_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b000100:
+        casez_tmp_11 = buffer_4_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b000101:
+        casez_tmp_11 = buffer_5_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b000110:
+        casez_tmp_11 = buffer_6_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b000111:
+        casez_tmp_11 = buffer_7_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b001000:
+        casez_tmp_11 = buffer_8_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b001001:
+        casez_tmp_11 = buffer_9_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b001010:
+        casez_tmp_11 = buffer_10_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b001011:
+        casez_tmp_11 = buffer_11_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b001100:
+        casez_tmp_11 = buffer_12_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b001101:
+        casez_tmp_11 = buffer_13_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b001110:
+        casez_tmp_11 = buffer_14_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b001111:
+        casez_tmp_11 = buffer_15_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b010000:
+        casez_tmp_11 = buffer_16_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b010001:
+        casez_tmp_11 = buffer_17_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b010010:
+        casez_tmp_11 = buffer_18_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b010011:
+        casez_tmp_11 = buffer_19_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b010100:
+        casez_tmp_11 = buffer_20_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b010101:
+        casez_tmp_11 = buffer_21_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b010110:
+        casez_tmp_11 = buffer_22_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b010111:
+        casez_tmp_11 = buffer_23_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b011000:
+        casez_tmp_11 = buffer_24_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b011001:
+        casez_tmp_11 = buffer_25_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b011010:
+        casez_tmp_11 = buffer_26_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b011011:
+        casez_tmp_11 = buffer_27_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b011100:
+        casez_tmp_11 = buffer_28_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b011101:
+        casez_tmp_11 = buffer_29_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b011110:
+        casez_tmp_11 = buffer_30_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b011111:
+        casez_tmp_11 = buffer_31_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b100000:
+        casez_tmp_11 = buffer_32_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b100001:
+        casez_tmp_11 = buffer_33_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b100010:
+        casez_tmp_11 = buffer_34_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b100011:
+        casez_tmp_11 = buffer_35_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b100100:
+        casez_tmp_11 = buffer_36_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b100101:
+        casez_tmp_11 = buffer_37_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b100110:
+        casez_tmp_11 = buffer_38_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b100111:
+        casez_tmp_11 = buffer_39_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b101000:
+        casez_tmp_11 = buffer_40_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b101001:
+        casez_tmp_11 = buffer_41_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b101010:
+        casez_tmp_11 = buffer_42_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b101011:
+        casez_tmp_11 = buffer_43_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b101100:
+        casez_tmp_11 = buffer_44_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b101101:
+        casez_tmp_11 = buffer_45_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b101110:
+        casez_tmp_11 = buffer_46_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b101111:
+        casez_tmp_11 = buffer_47_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b110000:
+        casez_tmp_11 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b110001:
+        casez_tmp_11 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b110010:
+        casez_tmp_11 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b110011:
+        casez_tmp_11 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b110100:
+        casez_tmp_11 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b110101:
+        casez_tmp_11 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b110110:
+        casez_tmp_11 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b110111:
+        casez_tmp_11 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b111000:
+        casez_tmp_11 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b111001:
+        casez_tmp_11 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b111010:
+        casez_tmp_11 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b111011:
+        casez_tmp_11 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b111100:
+        casez_tmp_11 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b111101:
+        casez_tmp_11 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b111110:
+        casez_tmp_11 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      default:
+        casez_tmp_11 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+    endcase	// frontend/src/zaqal/frontend/IBUF.scala:65:26, :67:21
+  end // always_comb
   wire [5:0]  wrapped_ptr_1 = ptr_1 > 7'h2F ? head + 6'h11 : ptr_1[5:0];	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :46:21, :58:20, :65:{26,31,50}, :74:42
   wire        io_out_1_valid_0 = deq_valid_mask_1 & ~io_flush;	// frontend/src/zaqal/frontend/IBUF.scala:24:36, :61:24, :66:42
-  reg  [63:0] casez_tmp_11;	// frontend/src/zaqal/frontend/IBUF.scala:67:21
+  reg  [63:0] casez_tmp_12;	// frontend/src/zaqal/frontend/IBUF.scala:67:21
   always_comb begin	// frontend/src/zaqal/frontend/IBUF.scala:67:21
     casez (wrapped_ptr_1)	// frontend/src/zaqal/frontend/IBUF.scala:65:26, :67:21
       6'b000000:
-        casez_tmp_11 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_12 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000001:
-        casez_tmp_11 = buffer_1_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_12 = buffer_1_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000010:
-        casez_tmp_11 = buffer_2_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_12 = buffer_2_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000011:
-        casez_tmp_11 = buffer_3_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_12 = buffer_3_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000100:
-        casez_tmp_11 = buffer_4_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_12 = buffer_4_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000101:
-        casez_tmp_11 = buffer_5_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_12 = buffer_5_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000110:
-        casez_tmp_11 = buffer_6_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_12 = buffer_6_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000111:
-        casez_tmp_11 = buffer_7_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_12 = buffer_7_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001000:
-        casez_tmp_11 = buffer_8_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_12 = buffer_8_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001001:
-        casez_tmp_11 = buffer_9_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_12 = buffer_9_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001010:
-        casez_tmp_11 = buffer_10_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_12 = buffer_10_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001011:
-        casez_tmp_11 = buffer_11_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_12 = buffer_11_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001100:
-        casez_tmp_11 = buffer_12_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_12 = buffer_12_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001101:
-        casez_tmp_11 = buffer_13_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_12 = buffer_13_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001110:
-        casez_tmp_11 = buffer_14_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_12 = buffer_14_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001111:
-        casez_tmp_11 = buffer_15_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_12 = buffer_15_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010000:
-        casez_tmp_11 = buffer_16_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_12 = buffer_16_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010001:
-        casez_tmp_11 = buffer_17_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_12 = buffer_17_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010010:
-        casez_tmp_11 = buffer_18_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_12 = buffer_18_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010011:
-        casez_tmp_11 = buffer_19_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_12 = buffer_19_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010100:
-        casez_tmp_11 = buffer_20_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_12 = buffer_20_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010101:
-        casez_tmp_11 = buffer_21_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_12 = buffer_21_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010110:
-        casez_tmp_11 = buffer_22_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_12 = buffer_22_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010111:
-        casez_tmp_11 = buffer_23_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_12 = buffer_23_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011000:
-        casez_tmp_11 = buffer_24_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_12 = buffer_24_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011001:
-        casez_tmp_11 = buffer_25_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_12 = buffer_25_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011010:
-        casez_tmp_11 = buffer_26_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_12 = buffer_26_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011011:
-        casez_tmp_11 = buffer_27_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_12 = buffer_27_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011100:
-        casez_tmp_11 = buffer_28_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_12 = buffer_28_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011101:
-        casez_tmp_11 = buffer_29_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_12 = buffer_29_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011110:
-        casez_tmp_11 = buffer_30_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_12 = buffer_30_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011111:
-        casez_tmp_11 = buffer_31_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_12 = buffer_31_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100000:
-        casez_tmp_11 = buffer_32_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_12 = buffer_32_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100001:
-        casez_tmp_11 = buffer_33_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_12 = buffer_33_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100010:
-        casez_tmp_11 = buffer_34_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_12 = buffer_34_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100011:
-        casez_tmp_11 = buffer_35_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_12 = buffer_35_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100100:
-        casez_tmp_11 = buffer_36_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_12 = buffer_36_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100101:
-        casez_tmp_11 = buffer_37_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_12 = buffer_37_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100110:
-        casez_tmp_11 = buffer_38_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_12 = buffer_38_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100111:
-        casez_tmp_11 = buffer_39_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_12 = buffer_39_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101000:
-        casez_tmp_11 = buffer_40_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_12 = buffer_40_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101001:
-        casez_tmp_11 = buffer_41_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_12 = buffer_41_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101010:
-        casez_tmp_11 = buffer_42_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_12 = buffer_42_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101011:
-        casez_tmp_11 = buffer_43_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_12 = buffer_43_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101100:
-        casez_tmp_11 = buffer_44_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_12 = buffer_44_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101101:
-        casez_tmp_11 = buffer_45_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_12 = buffer_45_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101110:
-        casez_tmp_11 = buffer_46_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_12 = buffer_46_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101111:
-        casez_tmp_11 = buffer_47_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_12 = buffer_47_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110000:
-        casez_tmp_11 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_12 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110001:
-        casez_tmp_11 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_12 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110010:
-        casez_tmp_11 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_12 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110011:
-        casez_tmp_11 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_12 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110100:
-        casez_tmp_11 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_12 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110101:
-        casez_tmp_11 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_12 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110110:
-        casez_tmp_11 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_12 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110111:
-        casez_tmp_11 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_12 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111000:
-        casez_tmp_11 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_12 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111001:
-        casez_tmp_11 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_12 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111010:
-        casez_tmp_11 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_12 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111011:
-        casez_tmp_11 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_12 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111100:
-        casez_tmp_11 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_12 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111101:
-        casez_tmp_11 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_12 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111110:
-        casez_tmp_11 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_12 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       default:
-        casez_tmp_11 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_12 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
     endcase	// frontend/src/zaqal/frontend/IBUF.scala:65:26, :67:21
   end // always_comb
-  reg  [31:0] casez_tmp_12;	// frontend/src/zaqal/frontend/IBUF.scala:67:21
+  reg  [31:0] casez_tmp_13;	// frontend/src/zaqal/frontend/IBUF.scala:67:21
   always_comb begin	// frontend/src/zaqal/frontend/IBUF.scala:67:21
     casez (wrapped_ptr_1)	// frontend/src/zaqal/frontend/IBUF.scala:65:26, :67:21
       6'b000000:
-        casez_tmp_12 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_13 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000001:
-        casez_tmp_12 = buffer_1_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_13 = buffer_1_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000010:
-        casez_tmp_12 = buffer_2_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_13 = buffer_2_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000011:
-        casez_tmp_12 = buffer_3_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_13 = buffer_3_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000100:
-        casez_tmp_12 = buffer_4_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_13 = buffer_4_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000101:
-        casez_tmp_12 = buffer_5_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_13 = buffer_5_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000110:
-        casez_tmp_12 = buffer_6_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_13 = buffer_6_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000111:
-        casez_tmp_12 = buffer_7_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_13 = buffer_7_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001000:
-        casez_tmp_12 = buffer_8_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_13 = buffer_8_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001001:
-        casez_tmp_12 = buffer_9_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_13 = buffer_9_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001010:
-        casez_tmp_12 = buffer_10_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_13 = buffer_10_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001011:
-        casez_tmp_12 = buffer_11_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_13 = buffer_11_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001100:
-        casez_tmp_12 = buffer_12_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_13 = buffer_12_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001101:
-        casez_tmp_12 = buffer_13_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_13 = buffer_13_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001110:
-        casez_tmp_12 = buffer_14_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_13 = buffer_14_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001111:
-        casez_tmp_12 = buffer_15_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_13 = buffer_15_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010000:
-        casez_tmp_12 = buffer_16_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_13 = buffer_16_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010001:
-        casez_tmp_12 = buffer_17_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_13 = buffer_17_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010010:
-        casez_tmp_12 = buffer_18_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_13 = buffer_18_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010011:
-        casez_tmp_12 = buffer_19_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_13 = buffer_19_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010100:
-        casez_tmp_12 = buffer_20_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_13 = buffer_20_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010101:
-        casez_tmp_12 = buffer_21_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_13 = buffer_21_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010110:
-        casez_tmp_12 = buffer_22_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_13 = buffer_22_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010111:
-        casez_tmp_12 = buffer_23_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_13 = buffer_23_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011000:
-        casez_tmp_12 = buffer_24_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_13 = buffer_24_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011001:
-        casez_tmp_12 = buffer_25_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_13 = buffer_25_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011010:
-        casez_tmp_12 = buffer_26_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_13 = buffer_26_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011011:
-        casez_tmp_12 = buffer_27_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_13 = buffer_27_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011100:
-        casez_tmp_12 = buffer_28_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_13 = buffer_28_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011101:
-        casez_tmp_12 = buffer_29_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_13 = buffer_29_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011110:
-        casez_tmp_12 = buffer_30_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_13 = buffer_30_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011111:
-        casez_tmp_12 = buffer_31_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_13 = buffer_31_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100000:
-        casez_tmp_12 = buffer_32_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_13 = buffer_32_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100001:
-        casez_tmp_12 = buffer_33_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_13 = buffer_33_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100010:
-        casez_tmp_12 = buffer_34_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_13 = buffer_34_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100011:
-        casez_tmp_12 = buffer_35_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_13 = buffer_35_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100100:
-        casez_tmp_12 = buffer_36_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_13 = buffer_36_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100101:
-        casez_tmp_12 = buffer_37_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_13 = buffer_37_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100110:
-        casez_tmp_12 = buffer_38_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_13 = buffer_38_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100111:
-        casez_tmp_12 = buffer_39_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_13 = buffer_39_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101000:
-        casez_tmp_12 = buffer_40_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_13 = buffer_40_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101001:
-        casez_tmp_12 = buffer_41_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_13 = buffer_41_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101010:
-        casez_tmp_12 = buffer_42_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_13 = buffer_42_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101011:
-        casez_tmp_12 = buffer_43_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_13 = buffer_43_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101100:
-        casez_tmp_12 = buffer_44_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_13 = buffer_44_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101101:
-        casez_tmp_12 = buffer_45_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_13 = buffer_45_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101110:
-        casez_tmp_12 = buffer_46_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_13 = buffer_46_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101111:
-        casez_tmp_12 = buffer_47_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_13 = buffer_47_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110000:
-        casez_tmp_12 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_13 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110001:
-        casez_tmp_12 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_13 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110010:
-        casez_tmp_12 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_13 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110011:
-        casez_tmp_12 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_13 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110100:
-        casez_tmp_12 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_13 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110101:
-        casez_tmp_12 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_13 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110110:
-        casez_tmp_12 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_13 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110111:
-        casez_tmp_12 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_13 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111000:
-        casez_tmp_12 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_13 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111001:
-        casez_tmp_12 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_13 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111010:
-        casez_tmp_12 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_13 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111011:
-        casez_tmp_12 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_13 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111100:
-        casez_tmp_12 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_13 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111101:
-        casez_tmp_12 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_13 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111110:
-        casez_tmp_12 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_13 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       default:
-        casez_tmp_12 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_13 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
     endcase	// frontend/src/zaqal/frontend/IBUF.scala:65:26, :67:21
   end // always_comb
-  reg         casez_tmp_13;	// frontend/src/zaqal/frontend/IBUF.scala:67:21
+  reg         casez_tmp_14;	// frontend/src/zaqal/frontend/IBUF.scala:67:21
   always_comb begin	// frontend/src/zaqal/frontend/IBUF.scala:67:21
     casez (wrapped_ptr_1)	// frontend/src/zaqal/frontend/IBUF.scala:65:26, :67:21
       6'b000000:
-        casez_tmp_13 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_14 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000001:
-        casez_tmp_13 = buffer_1_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_14 = buffer_1_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000010:
-        casez_tmp_13 = buffer_2_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_14 = buffer_2_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000011:
-        casez_tmp_13 = buffer_3_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_14 = buffer_3_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000100:
-        casez_tmp_13 = buffer_4_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_14 = buffer_4_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000101:
-        casez_tmp_13 = buffer_5_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_14 = buffer_5_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000110:
-        casez_tmp_13 = buffer_6_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_14 = buffer_6_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000111:
-        casez_tmp_13 = buffer_7_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_14 = buffer_7_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001000:
-        casez_tmp_13 = buffer_8_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_14 = buffer_8_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001001:
-        casez_tmp_13 = buffer_9_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_14 = buffer_9_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001010:
-        casez_tmp_13 = buffer_10_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_14 = buffer_10_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001011:
-        casez_tmp_13 = buffer_11_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_14 = buffer_11_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001100:
-        casez_tmp_13 = buffer_12_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_14 = buffer_12_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001101:
-        casez_tmp_13 = buffer_13_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_14 = buffer_13_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001110:
-        casez_tmp_13 = buffer_14_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_14 = buffer_14_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001111:
-        casez_tmp_13 = buffer_15_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_14 = buffer_15_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010000:
-        casez_tmp_13 = buffer_16_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_14 = buffer_16_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010001:
-        casez_tmp_13 = buffer_17_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_14 = buffer_17_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010010:
-        casez_tmp_13 = buffer_18_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_14 = buffer_18_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010011:
-        casez_tmp_13 = buffer_19_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_14 = buffer_19_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010100:
-        casez_tmp_13 = buffer_20_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_14 = buffer_20_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010101:
-        casez_tmp_13 = buffer_21_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_14 = buffer_21_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010110:
-        casez_tmp_13 = buffer_22_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_14 = buffer_22_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010111:
-        casez_tmp_13 = buffer_23_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_14 = buffer_23_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011000:
-        casez_tmp_13 = buffer_24_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_14 = buffer_24_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011001:
-        casez_tmp_13 = buffer_25_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_14 = buffer_25_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011010:
-        casez_tmp_13 = buffer_26_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_14 = buffer_26_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011011:
-        casez_tmp_13 = buffer_27_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_14 = buffer_27_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011100:
-        casez_tmp_13 = buffer_28_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_14 = buffer_28_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011101:
-        casez_tmp_13 = buffer_29_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_14 = buffer_29_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011110:
-        casez_tmp_13 = buffer_30_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_14 = buffer_30_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011111:
-        casez_tmp_13 = buffer_31_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_14 = buffer_31_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100000:
-        casez_tmp_13 = buffer_32_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_14 = buffer_32_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100001:
-        casez_tmp_13 = buffer_33_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_14 = buffer_33_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100010:
-        casez_tmp_13 = buffer_34_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_14 = buffer_34_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100011:
-        casez_tmp_13 = buffer_35_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_14 = buffer_35_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100100:
-        casez_tmp_13 = buffer_36_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_14 = buffer_36_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100101:
-        casez_tmp_13 = buffer_37_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_14 = buffer_37_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100110:
-        casez_tmp_13 = buffer_38_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_14 = buffer_38_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100111:
-        casez_tmp_13 = buffer_39_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_14 = buffer_39_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101000:
-        casez_tmp_13 = buffer_40_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_14 = buffer_40_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101001:
-        casez_tmp_13 = buffer_41_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_14 = buffer_41_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101010:
-        casez_tmp_13 = buffer_42_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_14 = buffer_42_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101011:
-        casez_tmp_13 = buffer_43_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_14 = buffer_43_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101100:
-        casez_tmp_13 = buffer_44_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_14 = buffer_44_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101101:
-        casez_tmp_13 = buffer_45_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_14 = buffer_45_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101110:
-        casez_tmp_13 = buffer_46_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_14 = buffer_46_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101111:
-        casez_tmp_13 = buffer_47_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_14 = buffer_47_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110000:
-        casez_tmp_13 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_14 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110001:
-        casez_tmp_13 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_14 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110010:
-        casez_tmp_13 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_14 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110011:
-        casez_tmp_13 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_14 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110100:
-        casez_tmp_13 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_14 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110101:
-        casez_tmp_13 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_14 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110110:
-        casez_tmp_13 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_14 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110111:
-        casez_tmp_13 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_14 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111000:
-        casez_tmp_13 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_14 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111001:
-        casez_tmp_13 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_14 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111010:
-        casez_tmp_13 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_14 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111011:
-        casez_tmp_13 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_14 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111100:
-        casez_tmp_13 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_14 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111101:
-        casez_tmp_13 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_14 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111110:
-        casez_tmp_13 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_14 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       default:
-        casez_tmp_13 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_14 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
     endcase	// frontend/src/zaqal/frontend/IBUF.scala:65:26, :67:21
   end // always_comb
-  reg  [31:0] casez_tmp_14;	// frontend/src/zaqal/frontend/IBUF.scala:67:21
+  reg  [31:0] casez_tmp_15;	// frontend/src/zaqal/frontend/IBUF.scala:67:21
   always_comb begin	// frontend/src/zaqal/frontend/IBUF.scala:67:21
     casez (wrapped_ptr_1)	// frontend/src/zaqal/frontend/IBUF.scala:65:26, :67:21
       6'b000000:
-        casez_tmp_14 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_15 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000001:
-        casez_tmp_14 = buffer_1_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_15 = buffer_1_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000010:
-        casez_tmp_14 = buffer_2_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_15 = buffer_2_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000011:
-        casez_tmp_14 = buffer_3_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_15 = buffer_3_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000100:
-        casez_tmp_14 = buffer_4_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_15 = buffer_4_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000101:
-        casez_tmp_14 = buffer_5_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_15 = buffer_5_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000110:
-        casez_tmp_14 = buffer_6_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_15 = buffer_6_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000111:
-        casez_tmp_14 = buffer_7_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_15 = buffer_7_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001000:
-        casez_tmp_14 = buffer_8_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_15 = buffer_8_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001001:
-        casez_tmp_14 = buffer_9_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_15 = buffer_9_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001010:
-        casez_tmp_14 = buffer_10_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_15 = buffer_10_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001011:
-        casez_tmp_14 = buffer_11_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_15 = buffer_11_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001100:
-        casez_tmp_14 = buffer_12_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_15 = buffer_12_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001101:
-        casez_tmp_14 = buffer_13_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_15 = buffer_13_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001110:
-        casez_tmp_14 = buffer_14_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_15 = buffer_14_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001111:
-        casez_tmp_14 = buffer_15_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_15 = buffer_15_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010000:
-        casez_tmp_14 = buffer_16_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_15 = buffer_16_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010001:
-        casez_tmp_14 = buffer_17_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_15 = buffer_17_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010010:
-        casez_tmp_14 = buffer_18_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_15 = buffer_18_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010011:
-        casez_tmp_14 = buffer_19_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_15 = buffer_19_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010100:
-        casez_tmp_14 = buffer_20_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_15 = buffer_20_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010101:
-        casez_tmp_14 = buffer_21_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_15 = buffer_21_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010110:
-        casez_tmp_14 = buffer_22_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_15 = buffer_22_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010111:
-        casez_tmp_14 = buffer_23_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_15 = buffer_23_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011000:
-        casez_tmp_14 = buffer_24_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_15 = buffer_24_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011001:
-        casez_tmp_14 = buffer_25_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_15 = buffer_25_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011010:
-        casez_tmp_14 = buffer_26_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_15 = buffer_26_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011011:
-        casez_tmp_14 = buffer_27_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_15 = buffer_27_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011100:
-        casez_tmp_14 = buffer_28_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_15 = buffer_28_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011101:
-        casez_tmp_14 = buffer_29_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_15 = buffer_29_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011110:
-        casez_tmp_14 = buffer_30_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_15 = buffer_30_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011111:
-        casez_tmp_14 = buffer_31_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_15 = buffer_31_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100000:
-        casez_tmp_14 = buffer_32_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_15 = buffer_32_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100001:
-        casez_tmp_14 = buffer_33_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_15 = buffer_33_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100010:
-        casez_tmp_14 = buffer_34_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_15 = buffer_34_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100011:
-        casez_tmp_14 = buffer_35_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_15 = buffer_35_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100100:
-        casez_tmp_14 = buffer_36_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_15 = buffer_36_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100101:
-        casez_tmp_14 = buffer_37_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_15 = buffer_37_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100110:
-        casez_tmp_14 = buffer_38_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_15 = buffer_38_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100111:
-        casez_tmp_14 = buffer_39_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_15 = buffer_39_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101000:
-        casez_tmp_14 = buffer_40_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_15 = buffer_40_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101001:
-        casez_tmp_14 = buffer_41_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_15 = buffer_41_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101010:
-        casez_tmp_14 = buffer_42_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_15 = buffer_42_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101011:
-        casez_tmp_14 = buffer_43_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_15 = buffer_43_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101100:
-        casez_tmp_14 = buffer_44_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_15 = buffer_44_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101101:
-        casez_tmp_14 = buffer_45_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_15 = buffer_45_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101110:
-        casez_tmp_14 = buffer_46_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_15 = buffer_46_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101111:
-        casez_tmp_14 = buffer_47_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_15 = buffer_47_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110000:
-        casez_tmp_14 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_15 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110001:
-        casez_tmp_14 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_15 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110010:
-        casez_tmp_14 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_15 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110011:
-        casez_tmp_14 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_15 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110100:
-        casez_tmp_14 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_15 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110101:
-        casez_tmp_14 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_15 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110110:
-        casez_tmp_14 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_15 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110111:
-        casez_tmp_14 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_15 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111000:
-        casez_tmp_14 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_15 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111001:
-        casez_tmp_14 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_15 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111010:
-        casez_tmp_14 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_15 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111011:
-        casez_tmp_14 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_15 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111100:
-        casez_tmp_14 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_15 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111101:
-        casez_tmp_14 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_15 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111110:
-        casez_tmp_14 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_15 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       default:
-        casez_tmp_14 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_15 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
     endcase	// frontend/src/zaqal/frontend/IBUF.scala:65:26, :67:21
   end // always_comb
-  reg  [5:0]  casez_tmp_15;	// frontend/src/zaqal/frontend/IBUF.scala:67:21
+  reg  [5:0]  casez_tmp_16;	// frontend/src/zaqal/frontend/IBUF.scala:67:21
   always_comb begin	// frontend/src/zaqal/frontend/IBUF.scala:67:21
     casez (wrapped_ptr_1)	// frontend/src/zaqal/frontend/IBUF.scala:65:26, :67:21
       6'b000000:
-        casez_tmp_15 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_16 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000001:
-        casez_tmp_15 = buffer_1_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_16 = buffer_1_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000010:
-        casez_tmp_15 = buffer_2_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_16 = buffer_2_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000011:
-        casez_tmp_15 = buffer_3_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_16 = buffer_3_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000100:
-        casez_tmp_15 = buffer_4_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_16 = buffer_4_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000101:
-        casez_tmp_15 = buffer_5_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_16 = buffer_5_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000110:
-        casez_tmp_15 = buffer_6_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_16 = buffer_6_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000111:
-        casez_tmp_15 = buffer_7_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_16 = buffer_7_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001000:
-        casez_tmp_15 = buffer_8_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_16 = buffer_8_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001001:
-        casez_tmp_15 = buffer_9_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_16 = buffer_9_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001010:
-        casez_tmp_15 = buffer_10_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_16 = buffer_10_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001011:
-        casez_tmp_15 = buffer_11_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_16 = buffer_11_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001100:
-        casez_tmp_15 = buffer_12_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_16 = buffer_12_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001101:
-        casez_tmp_15 = buffer_13_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_16 = buffer_13_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001110:
-        casez_tmp_15 = buffer_14_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_16 = buffer_14_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001111:
-        casez_tmp_15 = buffer_15_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_16 = buffer_15_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010000:
-        casez_tmp_15 = buffer_16_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_16 = buffer_16_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010001:
-        casez_tmp_15 = buffer_17_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_16 = buffer_17_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010010:
-        casez_tmp_15 = buffer_18_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_16 = buffer_18_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010011:
-        casez_tmp_15 = buffer_19_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_16 = buffer_19_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010100:
-        casez_tmp_15 = buffer_20_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_16 = buffer_20_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010101:
-        casez_tmp_15 = buffer_21_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_16 = buffer_21_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010110:
-        casez_tmp_15 = buffer_22_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_16 = buffer_22_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010111:
-        casez_tmp_15 = buffer_23_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_16 = buffer_23_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011000:
-        casez_tmp_15 = buffer_24_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_16 = buffer_24_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011001:
-        casez_tmp_15 = buffer_25_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_16 = buffer_25_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011010:
-        casez_tmp_15 = buffer_26_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_16 = buffer_26_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011011:
-        casez_tmp_15 = buffer_27_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_16 = buffer_27_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011100:
-        casez_tmp_15 = buffer_28_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_16 = buffer_28_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011101:
-        casez_tmp_15 = buffer_29_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_16 = buffer_29_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011110:
-        casez_tmp_15 = buffer_30_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_16 = buffer_30_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011111:
-        casez_tmp_15 = buffer_31_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_16 = buffer_31_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100000:
-        casez_tmp_15 = buffer_32_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_16 = buffer_32_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100001:
-        casez_tmp_15 = buffer_33_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_16 = buffer_33_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100010:
-        casez_tmp_15 = buffer_34_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_16 = buffer_34_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100011:
-        casez_tmp_15 = buffer_35_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_16 = buffer_35_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100100:
-        casez_tmp_15 = buffer_36_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_16 = buffer_36_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100101:
-        casez_tmp_15 = buffer_37_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_16 = buffer_37_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100110:
-        casez_tmp_15 = buffer_38_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_16 = buffer_38_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100111:
-        casez_tmp_15 = buffer_39_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_16 = buffer_39_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101000:
-        casez_tmp_15 = buffer_40_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_16 = buffer_40_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101001:
-        casez_tmp_15 = buffer_41_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_16 = buffer_41_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101010:
-        casez_tmp_15 = buffer_42_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_16 = buffer_42_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101011:
-        casez_tmp_15 = buffer_43_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_16 = buffer_43_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101100:
-        casez_tmp_15 = buffer_44_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_16 = buffer_44_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101101:
-        casez_tmp_15 = buffer_45_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_16 = buffer_45_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101110:
-        casez_tmp_15 = buffer_46_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_16 = buffer_46_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101111:
-        casez_tmp_15 = buffer_47_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_16 = buffer_47_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110000:
-        casez_tmp_15 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_16 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110001:
-        casez_tmp_15 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_16 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110010:
-        casez_tmp_15 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_16 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110011:
-        casez_tmp_15 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_16 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110100:
-        casez_tmp_15 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_16 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110101:
-        casez_tmp_15 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_16 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110110:
-        casez_tmp_15 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_16 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110111:
-        casez_tmp_15 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_16 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111000:
-        casez_tmp_15 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_16 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111001:
-        casez_tmp_15 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_16 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111010:
-        casez_tmp_15 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_16 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111011:
-        casez_tmp_15 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_16 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111100:
-        casez_tmp_15 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_16 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111101:
-        casez_tmp_15 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_16 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111110:
-        casez_tmp_15 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_16 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       default:
-        casez_tmp_15 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_16 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
     endcase	// frontend/src/zaqal/frontend/IBUF.scala:65:26, :67:21
   end // always_comb
-  reg         casez_tmp_16;	// frontend/src/zaqal/frontend/IBUF.scala:67:21
+  reg         casez_tmp_17;	// frontend/src/zaqal/frontend/IBUF.scala:67:21
   always_comb begin	// frontend/src/zaqal/frontend/IBUF.scala:67:21
     casez (wrapped_ptr_1)	// frontend/src/zaqal/frontend/IBUF.scala:65:26, :67:21
       6'b000000:
-        casez_tmp_16 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_17 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000001:
-        casez_tmp_16 = buffer_1_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_17 = buffer_1_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000010:
-        casez_tmp_16 = buffer_2_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_17 = buffer_2_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000011:
-        casez_tmp_16 = buffer_3_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_17 = buffer_3_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000100:
-        casez_tmp_16 = buffer_4_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_17 = buffer_4_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000101:
-        casez_tmp_16 = buffer_5_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_17 = buffer_5_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000110:
-        casez_tmp_16 = buffer_6_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_17 = buffer_6_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000111:
-        casez_tmp_16 = buffer_7_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_17 = buffer_7_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001000:
-        casez_tmp_16 = buffer_8_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_17 = buffer_8_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001001:
-        casez_tmp_16 = buffer_9_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_17 = buffer_9_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001010:
-        casez_tmp_16 = buffer_10_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_17 = buffer_10_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001011:
-        casez_tmp_16 = buffer_11_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_17 = buffer_11_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001100:
-        casez_tmp_16 = buffer_12_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_17 = buffer_12_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001101:
-        casez_tmp_16 = buffer_13_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_17 = buffer_13_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001110:
-        casez_tmp_16 = buffer_14_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_17 = buffer_14_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001111:
-        casez_tmp_16 = buffer_15_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_17 = buffer_15_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010000:
-        casez_tmp_16 = buffer_16_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_17 = buffer_16_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010001:
-        casez_tmp_16 = buffer_17_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_17 = buffer_17_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010010:
-        casez_tmp_16 = buffer_18_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_17 = buffer_18_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010011:
-        casez_tmp_16 = buffer_19_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_17 = buffer_19_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010100:
-        casez_tmp_16 = buffer_20_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_17 = buffer_20_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010101:
-        casez_tmp_16 = buffer_21_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_17 = buffer_21_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010110:
-        casez_tmp_16 = buffer_22_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_17 = buffer_22_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010111:
-        casez_tmp_16 = buffer_23_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_17 = buffer_23_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011000:
-        casez_tmp_16 = buffer_24_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_17 = buffer_24_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011001:
-        casez_tmp_16 = buffer_25_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_17 = buffer_25_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011010:
-        casez_tmp_16 = buffer_26_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_17 = buffer_26_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011011:
-        casez_tmp_16 = buffer_27_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_17 = buffer_27_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011100:
-        casez_tmp_16 = buffer_28_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_17 = buffer_28_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011101:
-        casez_tmp_16 = buffer_29_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_17 = buffer_29_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011110:
-        casez_tmp_16 = buffer_30_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_17 = buffer_30_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011111:
-        casez_tmp_16 = buffer_31_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_17 = buffer_31_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100000:
-        casez_tmp_16 = buffer_32_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_17 = buffer_32_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100001:
-        casez_tmp_16 = buffer_33_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_17 = buffer_33_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100010:
-        casez_tmp_16 = buffer_34_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_17 = buffer_34_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100011:
-        casez_tmp_16 = buffer_35_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_17 = buffer_35_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100100:
-        casez_tmp_16 = buffer_36_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_17 = buffer_36_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100101:
-        casez_tmp_16 = buffer_37_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_17 = buffer_37_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100110:
-        casez_tmp_16 = buffer_38_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_17 = buffer_38_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100111:
-        casez_tmp_16 = buffer_39_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_17 = buffer_39_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101000:
-        casez_tmp_16 = buffer_40_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_17 = buffer_40_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101001:
-        casez_tmp_16 = buffer_41_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_17 = buffer_41_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101010:
-        casez_tmp_16 = buffer_42_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_17 = buffer_42_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101011:
-        casez_tmp_16 = buffer_43_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_17 = buffer_43_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101100:
-        casez_tmp_16 = buffer_44_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_17 = buffer_44_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101101:
-        casez_tmp_16 = buffer_45_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_17 = buffer_45_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101110:
-        casez_tmp_16 = buffer_46_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_17 = buffer_46_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101111:
-        casez_tmp_16 = buffer_47_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_17 = buffer_47_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110000:
-        casez_tmp_16 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_17 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110001:
-        casez_tmp_16 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_17 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110010:
-        casez_tmp_16 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_17 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110011:
-        casez_tmp_16 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_17 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110100:
-        casez_tmp_16 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_17 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110101:
-        casez_tmp_16 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_17 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110110:
-        casez_tmp_16 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_17 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110111:
-        casez_tmp_16 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_17 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111000:
-        casez_tmp_16 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_17 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111001:
-        casez_tmp_16 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_17 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111010:
-        casez_tmp_16 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_17 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111011:
-        casez_tmp_16 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_17 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111100:
-        casez_tmp_16 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_17 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111101:
-        casez_tmp_16 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_17 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111110:
-        casez_tmp_16 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_17 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       default:
-        casez_tmp_16 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_17 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+    endcase	// frontend/src/zaqal/frontend/IBUF.scala:65:26, :67:21
+  end // always_comb
+  reg         casez_tmp_18;	// frontend/src/zaqal/frontend/IBUF.scala:67:21
+  always_comb begin	// frontend/src/zaqal/frontend/IBUF.scala:67:21
+    casez (wrapped_ptr_1)	// frontend/src/zaqal/frontend/IBUF.scala:65:26, :67:21
+      6'b000000:
+        casez_tmp_18 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b000001:
+        casez_tmp_18 = buffer_1_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b000010:
+        casez_tmp_18 = buffer_2_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b000011:
+        casez_tmp_18 = buffer_3_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b000100:
+        casez_tmp_18 = buffer_4_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b000101:
+        casez_tmp_18 = buffer_5_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b000110:
+        casez_tmp_18 = buffer_6_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b000111:
+        casez_tmp_18 = buffer_7_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b001000:
+        casez_tmp_18 = buffer_8_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b001001:
+        casez_tmp_18 = buffer_9_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b001010:
+        casez_tmp_18 = buffer_10_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b001011:
+        casez_tmp_18 = buffer_11_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b001100:
+        casez_tmp_18 = buffer_12_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b001101:
+        casez_tmp_18 = buffer_13_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b001110:
+        casez_tmp_18 = buffer_14_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b001111:
+        casez_tmp_18 = buffer_15_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b010000:
+        casez_tmp_18 = buffer_16_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b010001:
+        casez_tmp_18 = buffer_17_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b010010:
+        casez_tmp_18 = buffer_18_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b010011:
+        casez_tmp_18 = buffer_19_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b010100:
+        casez_tmp_18 = buffer_20_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b010101:
+        casez_tmp_18 = buffer_21_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b010110:
+        casez_tmp_18 = buffer_22_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b010111:
+        casez_tmp_18 = buffer_23_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b011000:
+        casez_tmp_18 = buffer_24_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b011001:
+        casez_tmp_18 = buffer_25_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b011010:
+        casez_tmp_18 = buffer_26_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b011011:
+        casez_tmp_18 = buffer_27_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b011100:
+        casez_tmp_18 = buffer_28_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b011101:
+        casez_tmp_18 = buffer_29_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b011110:
+        casez_tmp_18 = buffer_30_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b011111:
+        casez_tmp_18 = buffer_31_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b100000:
+        casez_tmp_18 = buffer_32_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b100001:
+        casez_tmp_18 = buffer_33_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b100010:
+        casez_tmp_18 = buffer_34_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b100011:
+        casez_tmp_18 = buffer_35_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b100100:
+        casez_tmp_18 = buffer_36_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b100101:
+        casez_tmp_18 = buffer_37_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b100110:
+        casez_tmp_18 = buffer_38_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b100111:
+        casez_tmp_18 = buffer_39_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b101000:
+        casez_tmp_18 = buffer_40_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b101001:
+        casez_tmp_18 = buffer_41_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b101010:
+        casez_tmp_18 = buffer_42_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b101011:
+        casez_tmp_18 = buffer_43_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b101100:
+        casez_tmp_18 = buffer_44_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b101101:
+        casez_tmp_18 = buffer_45_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b101110:
+        casez_tmp_18 = buffer_46_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b101111:
+        casez_tmp_18 = buffer_47_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b110000:
+        casez_tmp_18 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b110001:
+        casez_tmp_18 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b110010:
+        casez_tmp_18 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b110011:
+        casez_tmp_18 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b110100:
+        casez_tmp_18 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b110101:
+        casez_tmp_18 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b110110:
+        casez_tmp_18 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b110111:
+        casez_tmp_18 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b111000:
+        casez_tmp_18 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b111001:
+        casez_tmp_18 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b111010:
+        casez_tmp_18 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b111011:
+        casez_tmp_18 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b111100:
+        casez_tmp_18 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b111101:
+        casez_tmp_18 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b111110:
+        casez_tmp_18 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      default:
+        casez_tmp_18 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
     endcase	// frontend/src/zaqal/frontend/IBUF.scala:65:26, :67:21
   end // always_comb
   wire [5:0]  wrapped_ptr_2 = ptr_2 > 7'h2F ? head + 6'h12 : ptr_2[5:0];	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :46:21, :58:20, :65:{26,31,50}, :74:42
   wire        io_out_2_valid_0 = deq_valid_mask_2 & ~io_flush;	// frontend/src/zaqal/frontend/IBUF.scala:24:36, :61:24, :66:42
-  reg  [63:0] casez_tmp_17;	// frontend/src/zaqal/frontend/IBUF.scala:67:21
+  reg  [63:0] casez_tmp_19;	// frontend/src/zaqal/frontend/IBUF.scala:67:21
   always_comb begin	// frontend/src/zaqal/frontend/IBUF.scala:67:21
     casez (wrapped_ptr_2)	// frontend/src/zaqal/frontend/IBUF.scala:65:26, :67:21
       6'b000000:
-        casez_tmp_17 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_19 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000001:
-        casez_tmp_17 = buffer_1_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_19 = buffer_1_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000010:
-        casez_tmp_17 = buffer_2_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_19 = buffer_2_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000011:
-        casez_tmp_17 = buffer_3_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_19 = buffer_3_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000100:
-        casez_tmp_17 = buffer_4_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_19 = buffer_4_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000101:
-        casez_tmp_17 = buffer_5_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_19 = buffer_5_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000110:
-        casez_tmp_17 = buffer_6_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_19 = buffer_6_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000111:
-        casez_tmp_17 = buffer_7_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_19 = buffer_7_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001000:
-        casez_tmp_17 = buffer_8_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_19 = buffer_8_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001001:
-        casez_tmp_17 = buffer_9_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_19 = buffer_9_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001010:
-        casez_tmp_17 = buffer_10_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_19 = buffer_10_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001011:
-        casez_tmp_17 = buffer_11_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_19 = buffer_11_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001100:
-        casez_tmp_17 = buffer_12_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_19 = buffer_12_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001101:
-        casez_tmp_17 = buffer_13_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_19 = buffer_13_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001110:
-        casez_tmp_17 = buffer_14_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_19 = buffer_14_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001111:
-        casez_tmp_17 = buffer_15_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_19 = buffer_15_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010000:
-        casez_tmp_17 = buffer_16_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_19 = buffer_16_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010001:
-        casez_tmp_17 = buffer_17_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_19 = buffer_17_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010010:
-        casez_tmp_17 = buffer_18_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_19 = buffer_18_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010011:
-        casez_tmp_17 = buffer_19_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_19 = buffer_19_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010100:
-        casez_tmp_17 = buffer_20_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_19 = buffer_20_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010101:
-        casez_tmp_17 = buffer_21_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_19 = buffer_21_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010110:
-        casez_tmp_17 = buffer_22_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_19 = buffer_22_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010111:
-        casez_tmp_17 = buffer_23_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_19 = buffer_23_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011000:
-        casez_tmp_17 = buffer_24_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_19 = buffer_24_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011001:
-        casez_tmp_17 = buffer_25_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_19 = buffer_25_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011010:
-        casez_tmp_17 = buffer_26_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_19 = buffer_26_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011011:
-        casez_tmp_17 = buffer_27_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_19 = buffer_27_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011100:
-        casez_tmp_17 = buffer_28_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_19 = buffer_28_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011101:
-        casez_tmp_17 = buffer_29_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_19 = buffer_29_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011110:
-        casez_tmp_17 = buffer_30_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_19 = buffer_30_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011111:
-        casez_tmp_17 = buffer_31_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_19 = buffer_31_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100000:
-        casez_tmp_17 = buffer_32_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_19 = buffer_32_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100001:
-        casez_tmp_17 = buffer_33_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_19 = buffer_33_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100010:
-        casez_tmp_17 = buffer_34_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_19 = buffer_34_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100011:
-        casez_tmp_17 = buffer_35_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_19 = buffer_35_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100100:
-        casez_tmp_17 = buffer_36_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_19 = buffer_36_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100101:
-        casez_tmp_17 = buffer_37_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_19 = buffer_37_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100110:
-        casez_tmp_17 = buffer_38_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_19 = buffer_38_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100111:
-        casez_tmp_17 = buffer_39_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_19 = buffer_39_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101000:
-        casez_tmp_17 = buffer_40_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_19 = buffer_40_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101001:
-        casez_tmp_17 = buffer_41_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_19 = buffer_41_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101010:
-        casez_tmp_17 = buffer_42_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_19 = buffer_42_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101011:
-        casez_tmp_17 = buffer_43_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_19 = buffer_43_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101100:
-        casez_tmp_17 = buffer_44_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_19 = buffer_44_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101101:
-        casez_tmp_17 = buffer_45_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_19 = buffer_45_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101110:
-        casez_tmp_17 = buffer_46_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_19 = buffer_46_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101111:
-        casez_tmp_17 = buffer_47_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_19 = buffer_47_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110000:
-        casez_tmp_17 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_19 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110001:
-        casez_tmp_17 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_19 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110010:
-        casez_tmp_17 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_19 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110011:
-        casez_tmp_17 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_19 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110100:
-        casez_tmp_17 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_19 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110101:
-        casez_tmp_17 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_19 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110110:
-        casez_tmp_17 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_19 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110111:
-        casez_tmp_17 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_19 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111000:
-        casez_tmp_17 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_19 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111001:
-        casez_tmp_17 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_19 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111010:
-        casez_tmp_17 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_19 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111011:
-        casez_tmp_17 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_19 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111100:
-        casez_tmp_17 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_19 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111101:
-        casez_tmp_17 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_19 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111110:
-        casez_tmp_17 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_19 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       default:
-        casez_tmp_17 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-    endcase	// frontend/src/zaqal/frontend/IBUF.scala:65:26, :67:21
-  end // always_comb
-  reg  [31:0] casez_tmp_18;	// frontend/src/zaqal/frontend/IBUF.scala:67:21
-  always_comb begin	// frontend/src/zaqal/frontend/IBUF.scala:67:21
-    casez (wrapped_ptr_2)	// frontend/src/zaqal/frontend/IBUF.scala:65:26, :67:21
-      6'b000000:
-        casez_tmp_18 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b000001:
-        casez_tmp_18 = buffer_1_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b000010:
-        casez_tmp_18 = buffer_2_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b000011:
-        casez_tmp_18 = buffer_3_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b000100:
-        casez_tmp_18 = buffer_4_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b000101:
-        casez_tmp_18 = buffer_5_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b000110:
-        casez_tmp_18 = buffer_6_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b000111:
-        casez_tmp_18 = buffer_7_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b001000:
-        casez_tmp_18 = buffer_8_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b001001:
-        casez_tmp_18 = buffer_9_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b001010:
-        casez_tmp_18 = buffer_10_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b001011:
-        casez_tmp_18 = buffer_11_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b001100:
-        casez_tmp_18 = buffer_12_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b001101:
-        casez_tmp_18 = buffer_13_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b001110:
-        casez_tmp_18 = buffer_14_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b001111:
-        casez_tmp_18 = buffer_15_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b010000:
-        casez_tmp_18 = buffer_16_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b010001:
-        casez_tmp_18 = buffer_17_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b010010:
-        casez_tmp_18 = buffer_18_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b010011:
-        casez_tmp_18 = buffer_19_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b010100:
-        casez_tmp_18 = buffer_20_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b010101:
-        casez_tmp_18 = buffer_21_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b010110:
-        casez_tmp_18 = buffer_22_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b010111:
-        casez_tmp_18 = buffer_23_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b011000:
-        casez_tmp_18 = buffer_24_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b011001:
-        casez_tmp_18 = buffer_25_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b011010:
-        casez_tmp_18 = buffer_26_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b011011:
-        casez_tmp_18 = buffer_27_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b011100:
-        casez_tmp_18 = buffer_28_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b011101:
-        casez_tmp_18 = buffer_29_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b011110:
-        casez_tmp_18 = buffer_30_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b011111:
-        casez_tmp_18 = buffer_31_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b100000:
-        casez_tmp_18 = buffer_32_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b100001:
-        casez_tmp_18 = buffer_33_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b100010:
-        casez_tmp_18 = buffer_34_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b100011:
-        casez_tmp_18 = buffer_35_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b100100:
-        casez_tmp_18 = buffer_36_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b100101:
-        casez_tmp_18 = buffer_37_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b100110:
-        casez_tmp_18 = buffer_38_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b100111:
-        casez_tmp_18 = buffer_39_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b101000:
-        casez_tmp_18 = buffer_40_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b101001:
-        casez_tmp_18 = buffer_41_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b101010:
-        casez_tmp_18 = buffer_42_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b101011:
-        casez_tmp_18 = buffer_43_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b101100:
-        casez_tmp_18 = buffer_44_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b101101:
-        casez_tmp_18 = buffer_45_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b101110:
-        casez_tmp_18 = buffer_46_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b101111:
-        casez_tmp_18 = buffer_47_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b110000:
-        casez_tmp_18 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b110001:
-        casez_tmp_18 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b110010:
-        casez_tmp_18 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b110011:
-        casez_tmp_18 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b110100:
-        casez_tmp_18 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b110101:
-        casez_tmp_18 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b110110:
-        casez_tmp_18 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b110111:
-        casez_tmp_18 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b111000:
-        casez_tmp_18 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b111001:
-        casez_tmp_18 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b111010:
-        casez_tmp_18 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b111011:
-        casez_tmp_18 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b111100:
-        casez_tmp_18 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b111101:
-        casez_tmp_18 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b111110:
-        casez_tmp_18 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      default:
-        casez_tmp_18 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-    endcase	// frontend/src/zaqal/frontend/IBUF.scala:65:26, :67:21
-  end // always_comb
-  reg         casez_tmp_19;	// frontend/src/zaqal/frontend/IBUF.scala:67:21
-  always_comb begin	// frontend/src/zaqal/frontend/IBUF.scala:67:21
-    casez (wrapped_ptr_2)	// frontend/src/zaqal/frontend/IBUF.scala:65:26, :67:21
-      6'b000000:
-        casez_tmp_19 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b000001:
-        casez_tmp_19 = buffer_1_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b000010:
-        casez_tmp_19 = buffer_2_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b000011:
-        casez_tmp_19 = buffer_3_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b000100:
-        casez_tmp_19 = buffer_4_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b000101:
-        casez_tmp_19 = buffer_5_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b000110:
-        casez_tmp_19 = buffer_6_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b000111:
-        casez_tmp_19 = buffer_7_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b001000:
-        casez_tmp_19 = buffer_8_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b001001:
-        casez_tmp_19 = buffer_9_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b001010:
-        casez_tmp_19 = buffer_10_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b001011:
-        casez_tmp_19 = buffer_11_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b001100:
-        casez_tmp_19 = buffer_12_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b001101:
-        casez_tmp_19 = buffer_13_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b001110:
-        casez_tmp_19 = buffer_14_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b001111:
-        casez_tmp_19 = buffer_15_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b010000:
-        casez_tmp_19 = buffer_16_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b010001:
-        casez_tmp_19 = buffer_17_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b010010:
-        casez_tmp_19 = buffer_18_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b010011:
-        casez_tmp_19 = buffer_19_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b010100:
-        casez_tmp_19 = buffer_20_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b010101:
-        casez_tmp_19 = buffer_21_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b010110:
-        casez_tmp_19 = buffer_22_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b010111:
-        casez_tmp_19 = buffer_23_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b011000:
-        casez_tmp_19 = buffer_24_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b011001:
-        casez_tmp_19 = buffer_25_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b011010:
-        casez_tmp_19 = buffer_26_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b011011:
-        casez_tmp_19 = buffer_27_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b011100:
-        casez_tmp_19 = buffer_28_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b011101:
-        casez_tmp_19 = buffer_29_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b011110:
-        casez_tmp_19 = buffer_30_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b011111:
-        casez_tmp_19 = buffer_31_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b100000:
-        casez_tmp_19 = buffer_32_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b100001:
-        casez_tmp_19 = buffer_33_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b100010:
-        casez_tmp_19 = buffer_34_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b100011:
-        casez_tmp_19 = buffer_35_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b100100:
-        casez_tmp_19 = buffer_36_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b100101:
-        casez_tmp_19 = buffer_37_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b100110:
-        casez_tmp_19 = buffer_38_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b100111:
-        casez_tmp_19 = buffer_39_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b101000:
-        casez_tmp_19 = buffer_40_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b101001:
-        casez_tmp_19 = buffer_41_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b101010:
-        casez_tmp_19 = buffer_42_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b101011:
-        casez_tmp_19 = buffer_43_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b101100:
-        casez_tmp_19 = buffer_44_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b101101:
-        casez_tmp_19 = buffer_45_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b101110:
-        casez_tmp_19 = buffer_46_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b101111:
-        casez_tmp_19 = buffer_47_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b110000:
-        casez_tmp_19 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b110001:
-        casez_tmp_19 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b110010:
-        casez_tmp_19 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b110011:
-        casez_tmp_19 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b110100:
-        casez_tmp_19 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b110101:
-        casez_tmp_19 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b110110:
-        casez_tmp_19 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b110111:
-        casez_tmp_19 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b111000:
-        casez_tmp_19 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b111001:
-        casez_tmp_19 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b111010:
-        casez_tmp_19 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b111011:
-        casez_tmp_19 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b111100:
-        casez_tmp_19 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b111101:
-        casez_tmp_19 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b111110:
-        casez_tmp_19 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      default:
-        casez_tmp_19 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_19 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
     endcase	// frontend/src/zaqal/frontend/IBUF.scala:65:26, :67:21
   end // always_comb
   reg  [31:0] casez_tmp_20;	// frontend/src/zaqal/frontend/IBUF.scala:67:21
   always_comb begin	// frontend/src/zaqal/frontend/IBUF.scala:67:21
     casez (wrapped_ptr_2)	// frontend/src/zaqal/frontend/IBUF.scala:65:26, :67:21
       6'b000000:
-        casez_tmp_20 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_20 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000001:
-        casez_tmp_20 = buffer_1_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_20 = buffer_1_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000010:
-        casez_tmp_20 = buffer_2_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_20 = buffer_2_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000011:
-        casez_tmp_20 = buffer_3_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_20 = buffer_3_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000100:
-        casez_tmp_20 = buffer_4_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_20 = buffer_4_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000101:
-        casez_tmp_20 = buffer_5_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_20 = buffer_5_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000110:
-        casez_tmp_20 = buffer_6_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_20 = buffer_6_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000111:
-        casez_tmp_20 = buffer_7_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_20 = buffer_7_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001000:
-        casez_tmp_20 = buffer_8_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_20 = buffer_8_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001001:
-        casez_tmp_20 = buffer_9_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_20 = buffer_9_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001010:
-        casez_tmp_20 = buffer_10_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_20 = buffer_10_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001011:
-        casez_tmp_20 = buffer_11_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_20 = buffer_11_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001100:
-        casez_tmp_20 = buffer_12_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_20 = buffer_12_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001101:
-        casez_tmp_20 = buffer_13_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_20 = buffer_13_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001110:
-        casez_tmp_20 = buffer_14_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_20 = buffer_14_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001111:
-        casez_tmp_20 = buffer_15_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_20 = buffer_15_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010000:
-        casez_tmp_20 = buffer_16_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_20 = buffer_16_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010001:
-        casez_tmp_20 = buffer_17_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_20 = buffer_17_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010010:
-        casez_tmp_20 = buffer_18_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_20 = buffer_18_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010011:
-        casez_tmp_20 = buffer_19_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_20 = buffer_19_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010100:
-        casez_tmp_20 = buffer_20_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_20 = buffer_20_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010101:
-        casez_tmp_20 = buffer_21_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_20 = buffer_21_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010110:
-        casez_tmp_20 = buffer_22_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_20 = buffer_22_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010111:
-        casez_tmp_20 = buffer_23_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_20 = buffer_23_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011000:
-        casez_tmp_20 = buffer_24_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_20 = buffer_24_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011001:
-        casez_tmp_20 = buffer_25_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_20 = buffer_25_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011010:
-        casez_tmp_20 = buffer_26_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_20 = buffer_26_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011011:
-        casez_tmp_20 = buffer_27_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_20 = buffer_27_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011100:
-        casez_tmp_20 = buffer_28_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_20 = buffer_28_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011101:
-        casez_tmp_20 = buffer_29_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_20 = buffer_29_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011110:
-        casez_tmp_20 = buffer_30_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_20 = buffer_30_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011111:
-        casez_tmp_20 = buffer_31_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_20 = buffer_31_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100000:
-        casez_tmp_20 = buffer_32_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_20 = buffer_32_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100001:
-        casez_tmp_20 = buffer_33_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_20 = buffer_33_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100010:
-        casez_tmp_20 = buffer_34_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_20 = buffer_34_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100011:
-        casez_tmp_20 = buffer_35_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_20 = buffer_35_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100100:
-        casez_tmp_20 = buffer_36_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_20 = buffer_36_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100101:
-        casez_tmp_20 = buffer_37_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_20 = buffer_37_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100110:
-        casez_tmp_20 = buffer_38_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_20 = buffer_38_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100111:
-        casez_tmp_20 = buffer_39_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_20 = buffer_39_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101000:
-        casez_tmp_20 = buffer_40_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_20 = buffer_40_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101001:
-        casez_tmp_20 = buffer_41_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_20 = buffer_41_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101010:
-        casez_tmp_20 = buffer_42_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_20 = buffer_42_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101011:
-        casez_tmp_20 = buffer_43_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_20 = buffer_43_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101100:
-        casez_tmp_20 = buffer_44_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_20 = buffer_44_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101101:
-        casez_tmp_20 = buffer_45_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_20 = buffer_45_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101110:
-        casez_tmp_20 = buffer_46_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_20 = buffer_46_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101111:
-        casez_tmp_20 = buffer_47_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_20 = buffer_47_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110000:
-        casez_tmp_20 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_20 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110001:
-        casez_tmp_20 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_20 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110010:
-        casez_tmp_20 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_20 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110011:
-        casez_tmp_20 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_20 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110100:
-        casez_tmp_20 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_20 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110101:
-        casez_tmp_20 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_20 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110110:
-        casez_tmp_20 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_20 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110111:
-        casez_tmp_20 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_20 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111000:
-        casez_tmp_20 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_20 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111001:
-        casez_tmp_20 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_20 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111010:
-        casez_tmp_20 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_20 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111011:
-        casez_tmp_20 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_20 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111100:
-        casez_tmp_20 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_20 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111101:
-        casez_tmp_20 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_20 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111110:
-        casez_tmp_20 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_20 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       default:
-        casez_tmp_20 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_20 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
     endcase	// frontend/src/zaqal/frontend/IBUF.scala:65:26, :67:21
   end // always_comb
-  reg  [5:0]  casez_tmp_21;	// frontend/src/zaqal/frontend/IBUF.scala:67:21
+  reg         casez_tmp_21;	// frontend/src/zaqal/frontend/IBUF.scala:67:21
   always_comb begin	// frontend/src/zaqal/frontend/IBUF.scala:67:21
     casez (wrapped_ptr_2)	// frontend/src/zaqal/frontend/IBUF.scala:65:26, :67:21
       6'b000000:
-        casez_tmp_21 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_21 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000001:
-        casez_tmp_21 = buffer_1_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_21 = buffer_1_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000010:
-        casez_tmp_21 = buffer_2_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_21 = buffer_2_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000011:
-        casez_tmp_21 = buffer_3_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_21 = buffer_3_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000100:
-        casez_tmp_21 = buffer_4_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_21 = buffer_4_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000101:
-        casez_tmp_21 = buffer_5_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_21 = buffer_5_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000110:
-        casez_tmp_21 = buffer_6_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_21 = buffer_6_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000111:
-        casez_tmp_21 = buffer_7_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_21 = buffer_7_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001000:
-        casez_tmp_21 = buffer_8_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_21 = buffer_8_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001001:
-        casez_tmp_21 = buffer_9_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_21 = buffer_9_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001010:
-        casez_tmp_21 = buffer_10_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_21 = buffer_10_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001011:
-        casez_tmp_21 = buffer_11_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_21 = buffer_11_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001100:
-        casez_tmp_21 = buffer_12_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_21 = buffer_12_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001101:
-        casez_tmp_21 = buffer_13_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_21 = buffer_13_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001110:
-        casez_tmp_21 = buffer_14_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_21 = buffer_14_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001111:
-        casez_tmp_21 = buffer_15_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_21 = buffer_15_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010000:
-        casez_tmp_21 = buffer_16_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_21 = buffer_16_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010001:
-        casez_tmp_21 = buffer_17_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_21 = buffer_17_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010010:
-        casez_tmp_21 = buffer_18_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_21 = buffer_18_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010011:
-        casez_tmp_21 = buffer_19_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_21 = buffer_19_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010100:
-        casez_tmp_21 = buffer_20_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_21 = buffer_20_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010101:
-        casez_tmp_21 = buffer_21_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_21 = buffer_21_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010110:
-        casez_tmp_21 = buffer_22_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_21 = buffer_22_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010111:
-        casez_tmp_21 = buffer_23_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_21 = buffer_23_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011000:
-        casez_tmp_21 = buffer_24_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_21 = buffer_24_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011001:
-        casez_tmp_21 = buffer_25_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_21 = buffer_25_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011010:
-        casez_tmp_21 = buffer_26_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_21 = buffer_26_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011011:
-        casez_tmp_21 = buffer_27_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_21 = buffer_27_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011100:
-        casez_tmp_21 = buffer_28_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_21 = buffer_28_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011101:
-        casez_tmp_21 = buffer_29_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_21 = buffer_29_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011110:
-        casez_tmp_21 = buffer_30_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_21 = buffer_30_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011111:
-        casez_tmp_21 = buffer_31_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_21 = buffer_31_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100000:
-        casez_tmp_21 = buffer_32_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_21 = buffer_32_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100001:
-        casez_tmp_21 = buffer_33_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_21 = buffer_33_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100010:
-        casez_tmp_21 = buffer_34_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_21 = buffer_34_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100011:
-        casez_tmp_21 = buffer_35_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_21 = buffer_35_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100100:
-        casez_tmp_21 = buffer_36_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_21 = buffer_36_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100101:
-        casez_tmp_21 = buffer_37_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_21 = buffer_37_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100110:
-        casez_tmp_21 = buffer_38_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_21 = buffer_38_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100111:
-        casez_tmp_21 = buffer_39_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_21 = buffer_39_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101000:
-        casez_tmp_21 = buffer_40_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_21 = buffer_40_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101001:
-        casez_tmp_21 = buffer_41_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_21 = buffer_41_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101010:
-        casez_tmp_21 = buffer_42_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_21 = buffer_42_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101011:
-        casez_tmp_21 = buffer_43_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_21 = buffer_43_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101100:
-        casez_tmp_21 = buffer_44_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_21 = buffer_44_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101101:
-        casez_tmp_21 = buffer_45_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_21 = buffer_45_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101110:
-        casez_tmp_21 = buffer_46_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_21 = buffer_46_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101111:
-        casez_tmp_21 = buffer_47_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_21 = buffer_47_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110000:
-        casez_tmp_21 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_21 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110001:
-        casez_tmp_21 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_21 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110010:
-        casez_tmp_21 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_21 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110011:
-        casez_tmp_21 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_21 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110100:
-        casez_tmp_21 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_21 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110101:
-        casez_tmp_21 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_21 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110110:
-        casez_tmp_21 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_21 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110111:
-        casez_tmp_21 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_21 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111000:
-        casez_tmp_21 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_21 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111001:
-        casez_tmp_21 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_21 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111010:
-        casez_tmp_21 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_21 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111011:
-        casez_tmp_21 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_21 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111100:
-        casez_tmp_21 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_21 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111101:
-        casez_tmp_21 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_21 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111110:
-        casez_tmp_21 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_21 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       default:
-        casez_tmp_21 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_21 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
     endcase	// frontend/src/zaqal/frontend/IBUF.scala:65:26, :67:21
   end // always_comb
-  reg         casez_tmp_22;	// frontend/src/zaqal/frontend/IBUF.scala:67:21
+  reg  [31:0] casez_tmp_22;	// frontend/src/zaqal/frontend/IBUF.scala:67:21
   always_comb begin	// frontend/src/zaqal/frontend/IBUF.scala:67:21
     casez (wrapped_ptr_2)	// frontend/src/zaqal/frontend/IBUF.scala:65:26, :67:21
       6'b000000:
-        casez_tmp_22 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_22 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000001:
-        casez_tmp_22 = buffer_1_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_22 = buffer_1_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000010:
-        casez_tmp_22 = buffer_2_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_22 = buffer_2_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000011:
-        casez_tmp_22 = buffer_3_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_22 = buffer_3_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000100:
-        casez_tmp_22 = buffer_4_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_22 = buffer_4_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000101:
-        casez_tmp_22 = buffer_5_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_22 = buffer_5_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000110:
-        casez_tmp_22 = buffer_6_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_22 = buffer_6_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000111:
-        casez_tmp_22 = buffer_7_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_22 = buffer_7_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001000:
-        casez_tmp_22 = buffer_8_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_22 = buffer_8_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001001:
-        casez_tmp_22 = buffer_9_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_22 = buffer_9_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001010:
-        casez_tmp_22 = buffer_10_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_22 = buffer_10_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001011:
-        casez_tmp_22 = buffer_11_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_22 = buffer_11_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001100:
-        casez_tmp_22 = buffer_12_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_22 = buffer_12_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001101:
-        casez_tmp_22 = buffer_13_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_22 = buffer_13_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001110:
-        casez_tmp_22 = buffer_14_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_22 = buffer_14_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001111:
-        casez_tmp_22 = buffer_15_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_22 = buffer_15_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010000:
-        casez_tmp_22 = buffer_16_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_22 = buffer_16_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010001:
-        casez_tmp_22 = buffer_17_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_22 = buffer_17_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010010:
-        casez_tmp_22 = buffer_18_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_22 = buffer_18_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010011:
-        casez_tmp_22 = buffer_19_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_22 = buffer_19_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010100:
-        casez_tmp_22 = buffer_20_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_22 = buffer_20_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010101:
-        casez_tmp_22 = buffer_21_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_22 = buffer_21_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010110:
-        casez_tmp_22 = buffer_22_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_22 = buffer_22_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010111:
-        casez_tmp_22 = buffer_23_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_22 = buffer_23_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011000:
-        casez_tmp_22 = buffer_24_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_22 = buffer_24_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011001:
-        casez_tmp_22 = buffer_25_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_22 = buffer_25_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011010:
-        casez_tmp_22 = buffer_26_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_22 = buffer_26_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011011:
-        casez_tmp_22 = buffer_27_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_22 = buffer_27_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011100:
-        casez_tmp_22 = buffer_28_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_22 = buffer_28_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011101:
-        casez_tmp_22 = buffer_29_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_22 = buffer_29_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011110:
-        casez_tmp_22 = buffer_30_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_22 = buffer_30_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011111:
-        casez_tmp_22 = buffer_31_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_22 = buffer_31_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100000:
-        casez_tmp_22 = buffer_32_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_22 = buffer_32_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100001:
-        casez_tmp_22 = buffer_33_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_22 = buffer_33_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100010:
-        casez_tmp_22 = buffer_34_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_22 = buffer_34_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100011:
-        casez_tmp_22 = buffer_35_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_22 = buffer_35_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100100:
-        casez_tmp_22 = buffer_36_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_22 = buffer_36_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100101:
-        casez_tmp_22 = buffer_37_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_22 = buffer_37_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100110:
-        casez_tmp_22 = buffer_38_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_22 = buffer_38_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100111:
-        casez_tmp_22 = buffer_39_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_22 = buffer_39_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101000:
-        casez_tmp_22 = buffer_40_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_22 = buffer_40_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101001:
-        casez_tmp_22 = buffer_41_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_22 = buffer_41_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101010:
-        casez_tmp_22 = buffer_42_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_22 = buffer_42_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101011:
-        casez_tmp_22 = buffer_43_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_22 = buffer_43_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101100:
-        casez_tmp_22 = buffer_44_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_22 = buffer_44_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101101:
-        casez_tmp_22 = buffer_45_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_22 = buffer_45_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101110:
-        casez_tmp_22 = buffer_46_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_22 = buffer_46_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101111:
-        casez_tmp_22 = buffer_47_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_22 = buffer_47_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110000:
-        casez_tmp_22 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_22 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110001:
-        casez_tmp_22 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_22 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110010:
-        casez_tmp_22 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_22 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110011:
-        casez_tmp_22 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_22 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110100:
-        casez_tmp_22 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_22 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110101:
-        casez_tmp_22 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_22 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110110:
-        casez_tmp_22 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_22 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110111:
-        casez_tmp_22 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_22 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111000:
-        casez_tmp_22 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_22 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111001:
-        casez_tmp_22 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_22 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111010:
-        casez_tmp_22 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_22 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111011:
-        casez_tmp_22 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_22 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111100:
-        casez_tmp_22 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_22 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111101:
-        casez_tmp_22 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_22 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111110:
-        casez_tmp_22 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_22 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       default:
-        casez_tmp_22 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_22 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
     endcase	// frontend/src/zaqal/frontend/IBUF.scala:65:26, :67:21
   end // always_comb
-  wire [5:0]  wrapped_ptr_3 = ptr_3 > 7'h2F ? head + 6'h13 : ptr_3[5:0];	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :46:21, :58:20, :65:{26,31,50}, :74:42
-  wire        io_out_3_valid_0 = deq_valid_mask_3 & ~io_flush;	// frontend/src/zaqal/frontend/IBUF.scala:24:36, :61:24, :66:42
-  reg  [63:0] casez_tmp_23;	// frontend/src/zaqal/frontend/IBUF.scala:67:21
+  reg  [5:0]  casez_tmp_23;	// frontend/src/zaqal/frontend/IBUF.scala:67:21
   always_comb begin	// frontend/src/zaqal/frontend/IBUF.scala:67:21
-    casez (wrapped_ptr_3)	// frontend/src/zaqal/frontend/IBUF.scala:65:26, :67:21
+    casez (wrapped_ptr_2)	// frontend/src/zaqal/frontend/IBUF.scala:65:26, :67:21
       6'b000000:
-        casez_tmp_23 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_23 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000001:
-        casez_tmp_23 = buffer_1_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_23 = buffer_1_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000010:
-        casez_tmp_23 = buffer_2_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_23 = buffer_2_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000011:
-        casez_tmp_23 = buffer_3_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_23 = buffer_3_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000100:
-        casez_tmp_23 = buffer_4_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_23 = buffer_4_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000101:
-        casez_tmp_23 = buffer_5_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_23 = buffer_5_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000110:
-        casez_tmp_23 = buffer_6_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_23 = buffer_6_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000111:
-        casez_tmp_23 = buffer_7_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_23 = buffer_7_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001000:
-        casez_tmp_23 = buffer_8_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_23 = buffer_8_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001001:
-        casez_tmp_23 = buffer_9_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_23 = buffer_9_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001010:
-        casez_tmp_23 = buffer_10_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_23 = buffer_10_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001011:
-        casez_tmp_23 = buffer_11_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_23 = buffer_11_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001100:
-        casez_tmp_23 = buffer_12_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_23 = buffer_12_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001101:
-        casez_tmp_23 = buffer_13_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_23 = buffer_13_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001110:
-        casez_tmp_23 = buffer_14_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_23 = buffer_14_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001111:
-        casez_tmp_23 = buffer_15_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_23 = buffer_15_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010000:
-        casez_tmp_23 = buffer_16_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_23 = buffer_16_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010001:
-        casez_tmp_23 = buffer_17_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_23 = buffer_17_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010010:
-        casez_tmp_23 = buffer_18_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_23 = buffer_18_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010011:
-        casez_tmp_23 = buffer_19_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_23 = buffer_19_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010100:
-        casez_tmp_23 = buffer_20_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_23 = buffer_20_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010101:
-        casez_tmp_23 = buffer_21_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_23 = buffer_21_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010110:
-        casez_tmp_23 = buffer_22_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_23 = buffer_22_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010111:
-        casez_tmp_23 = buffer_23_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_23 = buffer_23_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011000:
-        casez_tmp_23 = buffer_24_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_23 = buffer_24_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011001:
-        casez_tmp_23 = buffer_25_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_23 = buffer_25_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011010:
-        casez_tmp_23 = buffer_26_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_23 = buffer_26_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011011:
-        casez_tmp_23 = buffer_27_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_23 = buffer_27_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011100:
-        casez_tmp_23 = buffer_28_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_23 = buffer_28_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011101:
-        casez_tmp_23 = buffer_29_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_23 = buffer_29_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011110:
-        casez_tmp_23 = buffer_30_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_23 = buffer_30_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011111:
-        casez_tmp_23 = buffer_31_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_23 = buffer_31_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100000:
-        casez_tmp_23 = buffer_32_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_23 = buffer_32_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100001:
-        casez_tmp_23 = buffer_33_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_23 = buffer_33_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100010:
-        casez_tmp_23 = buffer_34_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_23 = buffer_34_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100011:
-        casez_tmp_23 = buffer_35_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_23 = buffer_35_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100100:
-        casez_tmp_23 = buffer_36_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_23 = buffer_36_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100101:
-        casez_tmp_23 = buffer_37_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_23 = buffer_37_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100110:
-        casez_tmp_23 = buffer_38_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_23 = buffer_38_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100111:
-        casez_tmp_23 = buffer_39_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_23 = buffer_39_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101000:
-        casez_tmp_23 = buffer_40_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_23 = buffer_40_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101001:
-        casez_tmp_23 = buffer_41_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_23 = buffer_41_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101010:
-        casez_tmp_23 = buffer_42_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_23 = buffer_42_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101011:
-        casez_tmp_23 = buffer_43_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_23 = buffer_43_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101100:
-        casez_tmp_23 = buffer_44_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_23 = buffer_44_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101101:
-        casez_tmp_23 = buffer_45_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_23 = buffer_45_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101110:
-        casez_tmp_23 = buffer_46_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_23 = buffer_46_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101111:
-        casez_tmp_23 = buffer_47_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_23 = buffer_47_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110000:
-        casez_tmp_23 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_23 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110001:
-        casez_tmp_23 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_23 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110010:
-        casez_tmp_23 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_23 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110011:
-        casez_tmp_23 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_23 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110100:
-        casez_tmp_23 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_23 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110101:
-        casez_tmp_23 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_23 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110110:
-        casez_tmp_23 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_23 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110111:
-        casez_tmp_23 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_23 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111000:
-        casez_tmp_23 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_23 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111001:
-        casez_tmp_23 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_23 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111010:
-        casez_tmp_23 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_23 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111011:
-        casez_tmp_23 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_23 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111100:
-        casez_tmp_23 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_23 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111101:
-        casez_tmp_23 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_23 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111110:
-        casez_tmp_23 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_23 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       default:
-        casez_tmp_23 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_23 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
     endcase	// frontend/src/zaqal/frontend/IBUF.scala:65:26, :67:21
   end // always_comb
-  reg  [31:0] casez_tmp_24;	// frontend/src/zaqal/frontend/IBUF.scala:67:21
+  reg         casez_tmp_24;	// frontend/src/zaqal/frontend/IBUF.scala:67:21
   always_comb begin	// frontend/src/zaqal/frontend/IBUF.scala:67:21
-    casez (wrapped_ptr_3)	// frontend/src/zaqal/frontend/IBUF.scala:65:26, :67:21
+    casez (wrapped_ptr_2)	// frontend/src/zaqal/frontend/IBUF.scala:65:26, :67:21
       6'b000000:
-        casez_tmp_24 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_24 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000001:
-        casez_tmp_24 = buffer_1_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_24 = buffer_1_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000010:
-        casez_tmp_24 = buffer_2_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_24 = buffer_2_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000011:
-        casez_tmp_24 = buffer_3_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_24 = buffer_3_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000100:
-        casez_tmp_24 = buffer_4_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_24 = buffer_4_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000101:
-        casez_tmp_24 = buffer_5_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_24 = buffer_5_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000110:
-        casez_tmp_24 = buffer_6_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_24 = buffer_6_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000111:
-        casez_tmp_24 = buffer_7_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_24 = buffer_7_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001000:
-        casez_tmp_24 = buffer_8_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_24 = buffer_8_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001001:
-        casez_tmp_24 = buffer_9_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_24 = buffer_9_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001010:
-        casez_tmp_24 = buffer_10_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_24 = buffer_10_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001011:
-        casez_tmp_24 = buffer_11_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_24 = buffer_11_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001100:
-        casez_tmp_24 = buffer_12_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_24 = buffer_12_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001101:
-        casez_tmp_24 = buffer_13_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_24 = buffer_13_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001110:
-        casez_tmp_24 = buffer_14_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_24 = buffer_14_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001111:
-        casez_tmp_24 = buffer_15_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_24 = buffer_15_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010000:
-        casez_tmp_24 = buffer_16_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_24 = buffer_16_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010001:
-        casez_tmp_24 = buffer_17_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_24 = buffer_17_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010010:
-        casez_tmp_24 = buffer_18_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_24 = buffer_18_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010011:
-        casez_tmp_24 = buffer_19_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_24 = buffer_19_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010100:
-        casez_tmp_24 = buffer_20_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_24 = buffer_20_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010101:
-        casez_tmp_24 = buffer_21_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_24 = buffer_21_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010110:
-        casez_tmp_24 = buffer_22_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_24 = buffer_22_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010111:
-        casez_tmp_24 = buffer_23_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_24 = buffer_23_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011000:
-        casez_tmp_24 = buffer_24_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_24 = buffer_24_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011001:
-        casez_tmp_24 = buffer_25_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_24 = buffer_25_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011010:
-        casez_tmp_24 = buffer_26_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_24 = buffer_26_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011011:
-        casez_tmp_24 = buffer_27_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_24 = buffer_27_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011100:
-        casez_tmp_24 = buffer_28_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_24 = buffer_28_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011101:
-        casez_tmp_24 = buffer_29_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_24 = buffer_29_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011110:
-        casez_tmp_24 = buffer_30_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_24 = buffer_30_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011111:
-        casez_tmp_24 = buffer_31_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_24 = buffer_31_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100000:
-        casez_tmp_24 = buffer_32_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_24 = buffer_32_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100001:
-        casez_tmp_24 = buffer_33_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_24 = buffer_33_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100010:
-        casez_tmp_24 = buffer_34_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_24 = buffer_34_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100011:
-        casez_tmp_24 = buffer_35_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_24 = buffer_35_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100100:
-        casez_tmp_24 = buffer_36_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_24 = buffer_36_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100101:
-        casez_tmp_24 = buffer_37_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_24 = buffer_37_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100110:
-        casez_tmp_24 = buffer_38_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_24 = buffer_38_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100111:
-        casez_tmp_24 = buffer_39_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_24 = buffer_39_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101000:
-        casez_tmp_24 = buffer_40_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_24 = buffer_40_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101001:
-        casez_tmp_24 = buffer_41_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_24 = buffer_41_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101010:
-        casez_tmp_24 = buffer_42_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_24 = buffer_42_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101011:
-        casez_tmp_24 = buffer_43_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_24 = buffer_43_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101100:
-        casez_tmp_24 = buffer_44_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_24 = buffer_44_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101101:
-        casez_tmp_24 = buffer_45_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_24 = buffer_45_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101110:
-        casez_tmp_24 = buffer_46_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_24 = buffer_46_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101111:
-        casez_tmp_24 = buffer_47_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_24 = buffer_47_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110000:
-        casez_tmp_24 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_24 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110001:
-        casez_tmp_24 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_24 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110010:
-        casez_tmp_24 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_24 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110011:
-        casez_tmp_24 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_24 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110100:
-        casez_tmp_24 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_24 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110101:
-        casez_tmp_24 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_24 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110110:
-        casez_tmp_24 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_24 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110111:
-        casez_tmp_24 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_24 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111000:
-        casez_tmp_24 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_24 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111001:
-        casez_tmp_24 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_24 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111010:
-        casez_tmp_24 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_24 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111011:
-        casez_tmp_24 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_24 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111100:
-        casez_tmp_24 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_24 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111101:
-        casez_tmp_24 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_24 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111110:
-        casez_tmp_24 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_24 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       default:
-        casez_tmp_24 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_24 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
     endcase	// frontend/src/zaqal/frontend/IBUF.scala:65:26, :67:21
   end // always_comb
   reg         casez_tmp_25;	// frontend/src/zaqal/frontend/IBUF.scala:67:21
   always_comb begin	// frontend/src/zaqal/frontend/IBUF.scala:67:21
-    casez (wrapped_ptr_3)	// frontend/src/zaqal/frontend/IBUF.scala:65:26, :67:21
+    casez (wrapped_ptr_2)	// frontend/src/zaqal/frontend/IBUF.scala:65:26, :67:21
       6'b000000:
-        casez_tmp_25 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_25 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000001:
-        casez_tmp_25 = buffer_1_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_25 = buffer_1_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000010:
-        casez_tmp_25 = buffer_2_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_25 = buffer_2_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000011:
-        casez_tmp_25 = buffer_3_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_25 = buffer_3_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000100:
-        casez_tmp_25 = buffer_4_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_25 = buffer_4_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000101:
-        casez_tmp_25 = buffer_5_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_25 = buffer_5_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000110:
-        casez_tmp_25 = buffer_6_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_25 = buffer_6_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000111:
-        casez_tmp_25 = buffer_7_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_25 = buffer_7_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001000:
-        casez_tmp_25 = buffer_8_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_25 = buffer_8_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001001:
-        casez_tmp_25 = buffer_9_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_25 = buffer_9_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001010:
-        casez_tmp_25 = buffer_10_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_25 = buffer_10_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001011:
-        casez_tmp_25 = buffer_11_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_25 = buffer_11_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001100:
-        casez_tmp_25 = buffer_12_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_25 = buffer_12_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001101:
-        casez_tmp_25 = buffer_13_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_25 = buffer_13_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001110:
-        casez_tmp_25 = buffer_14_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_25 = buffer_14_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001111:
-        casez_tmp_25 = buffer_15_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_25 = buffer_15_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010000:
-        casez_tmp_25 = buffer_16_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_25 = buffer_16_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010001:
-        casez_tmp_25 = buffer_17_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_25 = buffer_17_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010010:
-        casez_tmp_25 = buffer_18_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_25 = buffer_18_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010011:
-        casez_tmp_25 = buffer_19_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_25 = buffer_19_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010100:
-        casez_tmp_25 = buffer_20_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_25 = buffer_20_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010101:
-        casez_tmp_25 = buffer_21_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_25 = buffer_21_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010110:
-        casez_tmp_25 = buffer_22_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_25 = buffer_22_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010111:
-        casez_tmp_25 = buffer_23_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_25 = buffer_23_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011000:
-        casez_tmp_25 = buffer_24_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_25 = buffer_24_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011001:
-        casez_tmp_25 = buffer_25_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_25 = buffer_25_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011010:
-        casez_tmp_25 = buffer_26_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_25 = buffer_26_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011011:
-        casez_tmp_25 = buffer_27_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_25 = buffer_27_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011100:
-        casez_tmp_25 = buffer_28_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_25 = buffer_28_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011101:
-        casez_tmp_25 = buffer_29_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_25 = buffer_29_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011110:
-        casez_tmp_25 = buffer_30_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_25 = buffer_30_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011111:
-        casez_tmp_25 = buffer_31_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_25 = buffer_31_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100000:
-        casez_tmp_25 = buffer_32_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_25 = buffer_32_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100001:
-        casez_tmp_25 = buffer_33_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_25 = buffer_33_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100010:
-        casez_tmp_25 = buffer_34_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_25 = buffer_34_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100011:
-        casez_tmp_25 = buffer_35_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_25 = buffer_35_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100100:
-        casez_tmp_25 = buffer_36_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_25 = buffer_36_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100101:
-        casez_tmp_25 = buffer_37_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_25 = buffer_37_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100110:
-        casez_tmp_25 = buffer_38_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_25 = buffer_38_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100111:
-        casez_tmp_25 = buffer_39_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_25 = buffer_39_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101000:
-        casez_tmp_25 = buffer_40_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_25 = buffer_40_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101001:
-        casez_tmp_25 = buffer_41_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_25 = buffer_41_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101010:
-        casez_tmp_25 = buffer_42_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_25 = buffer_42_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101011:
-        casez_tmp_25 = buffer_43_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_25 = buffer_43_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101100:
-        casez_tmp_25 = buffer_44_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_25 = buffer_44_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101101:
-        casez_tmp_25 = buffer_45_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_25 = buffer_45_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101110:
-        casez_tmp_25 = buffer_46_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_25 = buffer_46_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101111:
-        casez_tmp_25 = buffer_47_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_25 = buffer_47_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110000:
-        casez_tmp_25 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_25 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110001:
-        casez_tmp_25 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_25 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110010:
-        casez_tmp_25 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_25 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110011:
-        casez_tmp_25 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_25 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110100:
-        casez_tmp_25 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_25 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110101:
-        casez_tmp_25 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_25 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110110:
-        casez_tmp_25 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_25 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110111:
-        casez_tmp_25 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_25 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111000:
-        casez_tmp_25 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_25 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111001:
-        casez_tmp_25 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_25 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111010:
-        casez_tmp_25 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_25 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111011:
-        casez_tmp_25 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_25 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111100:
-        casez_tmp_25 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_25 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111101:
-        casez_tmp_25 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_25 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111110:
-        casez_tmp_25 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_25 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       default:
-        casez_tmp_25 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_25 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
     endcase	// frontend/src/zaqal/frontend/IBUF.scala:65:26, :67:21
   end // always_comb
-  reg  [31:0] casez_tmp_26;	// frontend/src/zaqal/frontend/IBUF.scala:67:21
+  wire [5:0]  wrapped_ptr_3 = ptr_3 > 7'h2F ? head + 6'h13 : ptr_3[5:0];	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :46:21, :58:20, :65:{26,31,50}, :74:42
+  wire        io_out_3_valid_0 = deq_valid_mask_3 & ~io_flush;	// frontend/src/zaqal/frontend/IBUF.scala:24:36, :61:24, :66:42
+  reg  [63:0] casez_tmp_26;	// frontend/src/zaqal/frontend/IBUF.scala:67:21
   always_comb begin	// frontend/src/zaqal/frontend/IBUF.scala:67:21
     casez (wrapped_ptr_3)	// frontend/src/zaqal/frontend/IBUF.scala:65:26, :67:21
       6'b000000:
-        casez_tmp_26 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_26 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000001:
-        casez_tmp_26 = buffer_1_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_26 = buffer_1_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000010:
-        casez_tmp_26 = buffer_2_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_26 = buffer_2_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000011:
-        casez_tmp_26 = buffer_3_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_26 = buffer_3_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000100:
-        casez_tmp_26 = buffer_4_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_26 = buffer_4_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000101:
-        casez_tmp_26 = buffer_5_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_26 = buffer_5_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000110:
-        casez_tmp_26 = buffer_6_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_26 = buffer_6_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000111:
-        casez_tmp_26 = buffer_7_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_26 = buffer_7_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001000:
-        casez_tmp_26 = buffer_8_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_26 = buffer_8_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001001:
-        casez_tmp_26 = buffer_9_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_26 = buffer_9_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001010:
-        casez_tmp_26 = buffer_10_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_26 = buffer_10_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001011:
-        casez_tmp_26 = buffer_11_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_26 = buffer_11_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001100:
-        casez_tmp_26 = buffer_12_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_26 = buffer_12_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001101:
-        casez_tmp_26 = buffer_13_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_26 = buffer_13_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001110:
-        casez_tmp_26 = buffer_14_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_26 = buffer_14_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001111:
-        casez_tmp_26 = buffer_15_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_26 = buffer_15_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010000:
-        casez_tmp_26 = buffer_16_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_26 = buffer_16_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010001:
-        casez_tmp_26 = buffer_17_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_26 = buffer_17_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010010:
-        casez_tmp_26 = buffer_18_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_26 = buffer_18_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010011:
-        casez_tmp_26 = buffer_19_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_26 = buffer_19_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010100:
-        casez_tmp_26 = buffer_20_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_26 = buffer_20_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010101:
-        casez_tmp_26 = buffer_21_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_26 = buffer_21_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010110:
-        casez_tmp_26 = buffer_22_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_26 = buffer_22_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010111:
-        casez_tmp_26 = buffer_23_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_26 = buffer_23_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011000:
-        casez_tmp_26 = buffer_24_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_26 = buffer_24_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011001:
-        casez_tmp_26 = buffer_25_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_26 = buffer_25_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011010:
-        casez_tmp_26 = buffer_26_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_26 = buffer_26_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011011:
-        casez_tmp_26 = buffer_27_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_26 = buffer_27_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011100:
-        casez_tmp_26 = buffer_28_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_26 = buffer_28_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011101:
-        casez_tmp_26 = buffer_29_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_26 = buffer_29_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011110:
-        casez_tmp_26 = buffer_30_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_26 = buffer_30_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011111:
-        casez_tmp_26 = buffer_31_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_26 = buffer_31_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100000:
-        casez_tmp_26 = buffer_32_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_26 = buffer_32_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100001:
-        casez_tmp_26 = buffer_33_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_26 = buffer_33_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100010:
-        casez_tmp_26 = buffer_34_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_26 = buffer_34_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100011:
-        casez_tmp_26 = buffer_35_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_26 = buffer_35_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100100:
-        casez_tmp_26 = buffer_36_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_26 = buffer_36_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100101:
-        casez_tmp_26 = buffer_37_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_26 = buffer_37_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100110:
-        casez_tmp_26 = buffer_38_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_26 = buffer_38_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100111:
-        casez_tmp_26 = buffer_39_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_26 = buffer_39_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101000:
-        casez_tmp_26 = buffer_40_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_26 = buffer_40_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101001:
-        casez_tmp_26 = buffer_41_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_26 = buffer_41_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101010:
-        casez_tmp_26 = buffer_42_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_26 = buffer_42_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101011:
-        casez_tmp_26 = buffer_43_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_26 = buffer_43_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101100:
-        casez_tmp_26 = buffer_44_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_26 = buffer_44_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101101:
-        casez_tmp_26 = buffer_45_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_26 = buffer_45_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101110:
-        casez_tmp_26 = buffer_46_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_26 = buffer_46_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101111:
-        casez_tmp_26 = buffer_47_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_26 = buffer_47_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110000:
-        casez_tmp_26 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_26 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110001:
-        casez_tmp_26 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_26 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110010:
-        casez_tmp_26 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_26 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110011:
-        casez_tmp_26 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_26 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110100:
-        casez_tmp_26 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_26 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110101:
-        casez_tmp_26 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_26 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110110:
-        casez_tmp_26 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_26 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110111:
-        casez_tmp_26 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_26 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111000:
-        casez_tmp_26 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_26 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111001:
-        casez_tmp_26 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_26 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111010:
-        casez_tmp_26 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_26 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111011:
-        casez_tmp_26 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_26 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111100:
-        casez_tmp_26 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_26 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111101:
-        casez_tmp_26 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_26 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111110:
-        casez_tmp_26 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_26 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       default:
-        casez_tmp_26 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_26 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
     endcase	// frontend/src/zaqal/frontend/IBUF.scala:65:26, :67:21
   end // always_comb
-  reg  [5:0]  casez_tmp_27;	// frontend/src/zaqal/frontend/IBUF.scala:67:21
+  reg  [31:0] casez_tmp_27;	// frontend/src/zaqal/frontend/IBUF.scala:67:21
   always_comb begin	// frontend/src/zaqal/frontend/IBUF.scala:67:21
     casez (wrapped_ptr_3)	// frontend/src/zaqal/frontend/IBUF.scala:65:26, :67:21
       6'b000000:
-        casez_tmp_27 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_27 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000001:
-        casez_tmp_27 = buffer_1_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_27 = buffer_1_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000010:
-        casez_tmp_27 = buffer_2_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_27 = buffer_2_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000011:
-        casez_tmp_27 = buffer_3_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_27 = buffer_3_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000100:
-        casez_tmp_27 = buffer_4_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_27 = buffer_4_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000101:
-        casez_tmp_27 = buffer_5_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_27 = buffer_5_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000110:
-        casez_tmp_27 = buffer_6_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_27 = buffer_6_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000111:
-        casez_tmp_27 = buffer_7_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_27 = buffer_7_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001000:
-        casez_tmp_27 = buffer_8_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_27 = buffer_8_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001001:
-        casez_tmp_27 = buffer_9_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_27 = buffer_9_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001010:
-        casez_tmp_27 = buffer_10_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_27 = buffer_10_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001011:
-        casez_tmp_27 = buffer_11_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_27 = buffer_11_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001100:
-        casez_tmp_27 = buffer_12_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_27 = buffer_12_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001101:
-        casez_tmp_27 = buffer_13_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_27 = buffer_13_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001110:
-        casez_tmp_27 = buffer_14_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_27 = buffer_14_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001111:
-        casez_tmp_27 = buffer_15_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_27 = buffer_15_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010000:
-        casez_tmp_27 = buffer_16_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_27 = buffer_16_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010001:
-        casez_tmp_27 = buffer_17_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_27 = buffer_17_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010010:
-        casez_tmp_27 = buffer_18_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_27 = buffer_18_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010011:
-        casez_tmp_27 = buffer_19_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_27 = buffer_19_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010100:
-        casez_tmp_27 = buffer_20_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_27 = buffer_20_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010101:
-        casez_tmp_27 = buffer_21_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_27 = buffer_21_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010110:
-        casez_tmp_27 = buffer_22_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_27 = buffer_22_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010111:
-        casez_tmp_27 = buffer_23_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_27 = buffer_23_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011000:
-        casez_tmp_27 = buffer_24_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_27 = buffer_24_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011001:
-        casez_tmp_27 = buffer_25_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_27 = buffer_25_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011010:
-        casez_tmp_27 = buffer_26_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_27 = buffer_26_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011011:
-        casez_tmp_27 = buffer_27_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_27 = buffer_27_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011100:
-        casez_tmp_27 = buffer_28_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_27 = buffer_28_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011101:
-        casez_tmp_27 = buffer_29_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_27 = buffer_29_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011110:
-        casez_tmp_27 = buffer_30_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_27 = buffer_30_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011111:
-        casez_tmp_27 = buffer_31_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_27 = buffer_31_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100000:
-        casez_tmp_27 = buffer_32_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_27 = buffer_32_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100001:
-        casez_tmp_27 = buffer_33_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_27 = buffer_33_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100010:
-        casez_tmp_27 = buffer_34_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_27 = buffer_34_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100011:
-        casez_tmp_27 = buffer_35_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_27 = buffer_35_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100100:
-        casez_tmp_27 = buffer_36_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_27 = buffer_36_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100101:
-        casez_tmp_27 = buffer_37_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_27 = buffer_37_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100110:
-        casez_tmp_27 = buffer_38_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_27 = buffer_38_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100111:
-        casez_tmp_27 = buffer_39_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_27 = buffer_39_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101000:
-        casez_tmp_27 = buffer_40_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_27 = buffer_40_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101001:
-        casez_tmp_27 = buffer_41_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_27 = buffer_41_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101010:
-        casez_tmp_27 = buffer_42_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_27 = buffer_42_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101011:
-        casez_tmp_27 = buffer_43_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_27 = buffer_43_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101100:
-        casez_tmp_27 = buffer_44_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_27 = buffer_44_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101101:
-        casez_tmp_27 = buffer_45_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_27 = buffer_45_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101110:
-        casez_tmp_27 = buffer_46_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_27 = buffer_46_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101111:
-        casez_tmp_27 = buffer_47_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_27 = buffer_47_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110000:
-        casez_tmp_27 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_27 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110001:
-        casez_tmp_27 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_27 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110010:
-        casez_tmp_27 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_27 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110011:
-        casez_tmp_27 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_27 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110100:
-        casez_tmp_27 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_27 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110101:
-        casez_tmp_27 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_27 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110110:
-        casez_tmp_27 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_27 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110111:
-        casez_tmp_27 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_27 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111000:
-        casez_tmp_27 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_27 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111001:
-        casez_tmp_27 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_27 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111010:
-        casez_tmp_27 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_27 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111011:
-        casez_tmp_27 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_27 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111100:
-        casez_tmp_27 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_27 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111101:
-        casez_tmp_27 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_27 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111110:
-        casez_tmp_27 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_27 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       default:
-        casez_tmp_27 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_27 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
     endcase	// frontend/src/zaqal/frontend/IBUF.scala:65:26, :67:21
   end // always_comb
   reg         casez_tmp_28;	// frontend/src/zaqal/frontend/IBUF.scala:67:21
   always_comb begin	// frontend/src/zaqal/frontend/IBUF.scala:67:21
     casez (wrapped_ptr_3)	// frontend/src/zaqal/frontend/IBUF.scala:65:26, :67:21
       6'b000000:
-        casez_tmp_28 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_28 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000001:
-        casez_tmp_28 = buffer_1_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_28 = buffer_1_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000010:
-        casez_tmp_28 = buffer_2_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_28 = buffer_2_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000011:
-        casez_tmp_28 = buffer_3_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_28 = buffer_3_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000100:
-        casez_tmp_28 = buffer_4_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_28 = buffer_4_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000101:
-        casez_tmp_28 = buffer_5_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_28 = buffer_5_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000110:
-        casez_tmp_28 = buffer_6_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_28 = buffer_6_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000111:
-        casez_tmp_28 = buffer_7_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_28 = buffer_7_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001000:
-        casez_tmp_28 = buffer_8_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_28 = buffer_8_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001001:
-        casez_tmp_28 = buffer_9_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_28 = buffer_9_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001010:
-        casez_tmp_28 = buffer_10_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_28 = buffer_10_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001011:
-        casez_tmp_28 = buffer_11_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_28 = buffer_11_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001100:
-        casez_tmp_28 = buffer_12_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_28 = buffer_12_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001101:
-        casez_tmp_28 = buffer_13_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_28 = buffer_13_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001110:
-        casez_tmp_28 = buffer_14_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_28 = buffer_14_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001111:
-        casez_tmp_28 = buffer_15_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_28 = buffer_15_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010000:
-        casez_tmp_28 = buffer_16_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_28 = buffer_16_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010001:
-        casez_tmp_28 = buffer_17_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_28 = buffer_17_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010010:
-        casez_tmp_28 = buffer_18_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_28 = buffer_18_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010011:
-        casez_tmp_28 = buffer_19_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_28 = buffer_19_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010100:
-        casez_tmp_28 = buffer_20_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_28 = buffer_20_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010101:
-        casez_tmp_28 = buffer_21_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_28 = buffer_21_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010110:
-        casez_tmp_28 = buffer_22_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_28 = buffer_22_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010111:
-        casez_tmp_28 = buffer_23_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_28 = buffer_23_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011000:
-        casez_tmp_28 = buffer_24_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_28 = buffer_24_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011001:
-        casez_tmp_28 = buffer_25_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_28 = buffer_25_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011010:
-        casez_tmp_28 = buffer_26_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_28 = buffer_26_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011011:
-        casez_tmp_28 = buffer_27_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_28 = buffer_27_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011100:
-        casez_tmp_28 = buffer_28_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_28 = buffer_28_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011101:
-        casez_tmp_28 = buffer_29_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_28 = buffer_29_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011110:
-        casez_tmp_28 = buffer_30_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_28 = buffer_30_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011111:
-        casez_tmp_28 = buffer_31_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_28 = buffer_31_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100000:
-        casez_tmp_28 = buffer_32_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_28 = buffer_32_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100001:
-        casez_tmp_28 = buffer_33_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_28 = buffer_33_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100010:
-        casez_tmp_28 = buffer_34_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_28 = buffer_34_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100011:
-        casez_tmp_28 = buffer_35_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_28 = buffer_35_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100100:
-        casez_tmp_28 = buffer_36_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_28 = buffer_36_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100101:
-        casez_tmp_28 = buffer_37_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_28 = buffer_37_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100110:
-        casez_tmp_28 = buffer_38_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_28 = buffer_38_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100111:
-        casez_tmp_28 = buffer_39_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_28 = buffer_39_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101000:
-        casez_tmp_28 = buffer_40_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_28 = buffer_40_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101001:
-        casez_tmp_28 = buffer_41_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_28 = buffer_41_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101010:
-        casez_tmp_28 = buffer_42_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_28 = buffer_42_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101011:
-        casez_tmp_28 = buffer_43_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_28 = buffer_43_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101100:
-        casez_tmp_28 = buffer_44_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_28 = buffer_44_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101101:
-        casez_tmp_28 = buffer_45_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_28 = buffer_45_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101110:
-        casez_tmp_28 = buffer_46_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_28 = buffer_46_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101111:
-        casez_tmp_28 = buffer_47_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_28 = buffer_47_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110000:
-        casez_tmp_28 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_28 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110001:
-        casez_tmp_28 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_28 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110010:
-        casez_tmp_28 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_28 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110011:
-        casez_tmp_28 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_28 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110100:
-        casez_tmp_28 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_28 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110101:
-        casez_tmp_28 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_28 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110110:
-        casez_tmp_28 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_28 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110111:
-        casez_tmp_28 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_28 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111000:
-        casez_tmp_28 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_28 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111001:
-        casez_tmp_28 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_28 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111010:
-        casez_tmp_28 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_28 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111011:
-        casez_tmp_28 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_28 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111100:
-        casez_tmp_28 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_28 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111101:
-        casez_tmp_28 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_28 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111110:
-        casez_tmp_28 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_28 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       default:
-        casez_tmp_28 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_28 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
     endcase	// frontend/src/zaqal/frontend/IBUF.scala:65:26, :67:21
   end // always_comb
-  wire [5:0]  wrapped_ptr_4 = ptr_4 > 7'h2F ? head + 6'h14 : ptr_4[5:0];	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :46:21, :58:20, :65:{26,31,50}, :74:42
-  wire        io_out_4_valid_0 = deq_valid_mask_4 & ~io_flush;	// frontend/src/zaqal/frontend/IBUF.scala:24:36, :61:24, :66:42
-  reg  [63:0] casez_tmp_29;	// frontend/src/zaqal/frontend/IBUF.scala:67:21
+  reg  [31:0] casez_tmp_29;	// frontend/src/zaqal/frontend/IBUF.scala:67:21
   always_comb begin	// frontend/src/zaqal/frontend/IBUF.scala:67:21
-    casez (wrapped_ptr_4)	// frontend/src/zaqal/frontend/IBUF.scala:65:26, :67:21
+    casez (wrapped_ptr_3)	// frontend/src/zaqal/frontend/IBUF.scala:65:26, :67:21
       6'b000000:
-        casez_tmp_29 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_29 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000001:
-        casez_tmp_29 = buffer_1_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_29 = buffer_1_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000010:
-        casez_tmp_29 = buffer_2_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_29 = buffer_2_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000011:
-        casez_tmp_29 = buffer_3_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_29 = buffer_3_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000100:
-        casez_tmp_29 = buffer_4_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_29 = buffer_4_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000101:
-        casez_tmp_29 = buffer_5_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_29 = buffer_5_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000110:
-        casez_tmp_29 = buffer_6_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_29 = buffer_6_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000111:
-        casez_tmp_29 = buffer_7_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_29 = buffer_7_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001000:
-        casez_tmp_29 = buffer_8_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_29 = buffer_8_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001001:
-        casez_tmp_29 = buffer_9_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_29 = buffer_9_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001010:
-        casez_tmp_29 = buffer_10_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_29 = buffer_10_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001011:
-        casez_tmp_29 = buffer_11_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_29 = buffer_11_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001100:
-        casez_tmp_29 = buffer_12_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_29 = buffer_12_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001101:
-        casez_tmp_29 = buffer_13_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_29 = buffer_13_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001110:
-        casez_tmp_29 = buffer_14_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_29 = buffer_14_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001111:
-        casez_tmp_29 = buffer_15_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_29 = buffer_15_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010000:
-        casez_tmp_29 = buffer_16_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_29 = buffer_16_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010001:
-        casez_tmp_29 = buffer_17_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_29 = buffer_17_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010010:
-        casez_tmp_29 = buffer_18_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_29 = buffer_18_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010011:
-        casez_tmp_29 = buffer_19_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_29 = buffer_19_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010100:
-        casez_tmp_29 = buffer_20_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_29 = buffer_20_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010101:
-        casez_tmp_29 = buffer_21_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_29 = buffer_21_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010110:
-        casez_tmp_29 = buffer_22_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_29 = buffer_22_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010111:
-        casez_tmp_29 = buffer_23_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_29 = buffer_23_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011000:
-        casez_tmp_29 = buffer_24_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_29 = buffer_24_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011001:
-        casez_tmp_29 = buffer_25_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_29 = buffer_25_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011010:
-        casez_tmp_29 = buffer_26_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_29 = buffer_26_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011011:
-        casez_tmp_29 = buffer_27_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_29 = buffer_27_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011100:
-        casez_tmp_29 = buffer_28_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_29 = buffer_28_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011101:
-        casez_tmp_29 = buffer_29_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_29 = buffer_29_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011110:
-        casez_tmp_29 = buffer_30_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_29 = buffer_30_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011111:
-        casez_tmp_29 = buffer_31_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_29 = buffer_31_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100000:
-        casez_tmp_29 = buffer_32_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_29 = buffer_32_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100001:
-        casez_tmp_29 = buffer_33_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_29 = buffer_33_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100010:
-        casez_tmp_29 = buffer_34_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_29 = buffer_34_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100011:
-        casez_tmp_29 = buffer_35_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_29 = buffer_35_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100100:
-        casez_tmp_29 = buffer_36_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_29 = buffer_36_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100101:
-        casez_tmp_29 = buffer_37_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_29 = buffer_37_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100110:
-        casez_tmp_29 = buffer_38_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_29 = buffer_38_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100111:
-        casez_tmp_29 = buffer_39_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_29 = buffer_39_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101000:
-        casez_tmp_29 = buffer_40_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_29 = buffer_40_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101001:
-        casez_tmp_29 = buffer_41_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_29 = buffer_41_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101010:
-        casez_tmp_29 = buffer_42_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_29 = buffer_42_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101011:
-        casez_tmp_29 = buffer_43_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_29 = buffer_43_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101100:
-        casez_tmp_29 = buffer_44_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_29 = buffer_44_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101101:
-        casez_tmp_29 = buffer_45_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_29 = buffer_45_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101110:
-        casez_tmp_29 = buffer_46_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_29 = buffer_46_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101111:
-        casez_tmp_29 = buffer_47_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_29 = buffer_47_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110000:
-        casez_tmp_29 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_29 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110001:
-        casez_tmp_29 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_29 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110010:
-        casez_tmp_29 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_29 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110011:
-        casez_tmp_29 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_29 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110100:
-        casez_tmp_29 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_29 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110101:
-        casez_tmp_29 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_29 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110110:
-        casez_tmp_29 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_29 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110111:
-        casez_tmp_29 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_29 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111000:
-        casez_tmp_29 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_29 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111001:
-        casez_tmp_29 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_29 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111010:
-        casez_tmp_29 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_29 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111011:
-        casez_tmp_29 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_29 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111100:
-        casez_tmp_29 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_29 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111101:
-        casez_tmp_29 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_29 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111110:
-        casez_tmp_29 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_29 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       default:
-        casez_tmp_29 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_29 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
     endcase	// frontend/src/zaqal/frontend/IBUF.scala:65:26, :67:21
   end // always_comb
-  reg  [31:0] casez_tmp_30;	// frontend/src/zaqal/frontend/IBUF.scala:67:21
+  reg  [5:0]  casez_tmp_30;	// frontend/src/zaqal/frontend/IBUF.scala:67:21
   always_comb begin	// frontend/src/zaqal/frontend/IBUF.scala:67:21
-    casez (wrapped_ptr_4)	// frontend/src/zaqal/frontend/IBUF.scala:65:26, :67:21
+    casez (wrapped_ptr_3)	// frontend/src/zaqal/frontend/IBUF.scala:65:26, :67:21
       6'b000000:
-        casez_tmp_30 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_30 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000001:
-        casez_tmp_30 = buffer_1_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_30 = buffer_1_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000010:
-        casez_tmp_30 = buffer_2_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_30 = buffer_2_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000011:
-        casez_tmp_30 = buffer_3_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_30 = buffer_3_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000100:
-        casez_tmp_30 = buffer_4_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_30 = buffer_4_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000101:
-        casez_tmp_30 = buffer_5_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_30 = buffer_5_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000110:
-        casez_tmp_30 = buffer_6_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_30 = buffer_6_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000111:
-        casez_tmp_30 = buffer_7_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_30 = buffer_7_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001000:
-        casez_tmp_30 = buffer_8_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_30 = buffer_8_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001001:
-        casez_tmp_30 = buffer_9_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_30 = buffer_9_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001010:
-        casez_tmp_30 = buffer_10_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_30 = buffer_10_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001011:
-        casez_tmp_30 = buffer_11_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_30 = buffer_11_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001100:
-        casez_tmp_30 = buffer_12_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_30 = buffer_12_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001101:
-        casez_tmp_30 = buffer_13_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_30 = buffer_13_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001110:
-        casez_tmp_30 = buffer_14_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_30 = buffer_14_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001111:
-        casez_tmp_30 = buffer_15_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_30 = buffer_15_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010000:
-        casez_tmp_30 = buffer_16_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_30 = buffer_16_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010001:
-        casez_tmp_30 = buffer_17_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_30 = buffer_17_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010010:
-        casez_tmp_30 = buffer_18_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_30 = buffer_18_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010011:
-        casez_tmp_30 = buffer_19_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_30 = buffer_19_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010100:
-        casez_tmp_30 = buffer_20_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_30 = buffer_20_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010101:
-        casez_tmp_30 = buffer_21_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_30 = buffer_21_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010110:
-        casez_tmp_30 = buffer_22_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_30 = buffer_22_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010111:
-        casez_tmp_30 = buffer_23_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_30 = buffer_23_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011000:
-        casez_tmp_30 = buffer_24_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_30 = buffer_24_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011001:
-        casez_tmp_30 = buffer_25_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_30 = buffer_25_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011010:
-        casez_tmp_30 = buffer_26_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_30 = buffer_26_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011011:
-        casez_tmp_30 = buffer_27_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_30 = buffer_27_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011100:
-        casez_tmp_30 = buffer_28_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_30 = buffer_28_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011101:
-        casez_tmp_30 = buffer_29_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_30 = buffer_29_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011110:
-        casez_tmp_30 = buffer_30_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_30 = buffer_30_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011111:
-        casez_tmp_30 = buffer_31_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_30 = buffer_31_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100000:
-        casez_tmp_30 = buffer_32_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_30 = buffer_32_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100001:
-        casez_tmp_30 = buffer_33_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_30 = buffer_33_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100010:
-        casez_tmp_30 = buffer_34_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_30 = buffer_34_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100011:
-        casez_tmp_30 = buffer_35_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_30 = buffer_35_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100100:
-        casez_tmp_30 = buffer_36_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_30 = buffer_36_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100101:
-        casez_tmp_30 = buffer_37_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_30 = buffer_37_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100110:
-        casez_tmp_30 = buffer_38_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_30 = buffer_38_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100111:
-        casez_tmp_30 = buffer_39_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_30 = buffer_39_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101000:
-        casez_tmp_30 = buffer_40_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_30 = buffer_40_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101001:
-        casez_tmp_30 = buffer_41_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_30 = buffer_41_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101010:
-        casez_tmp_30 = buffer_42_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_30 = buffer_42_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101011:
-        casez_tmp_30 = buffer_43_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_30 = buffer_43_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101100:
-        casez_tmp_30 = buffer_44_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_30 = buffer_44_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101101:
-        casez_tmp_30 = buffer_45_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_30 = buffer_45_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101110:
-        casez_tmp_30 = buffer_46_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_30 = buffer_46_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101111:
-        casez_tmp_30 = buffer_47_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_30 = buffer_47_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110000:
-        casez_tmp_30 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_30 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110001:
-        casez_tmp_30 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_30 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110010:
-        casez_tmp_30 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_30 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110011:
-        casez_tmp_30 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_30 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110100:
-        casez_tmp_30 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_30 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110101:
-        casez_tmp_30 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_30 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110110:
-        casez_tmp_30 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_30 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110111:
-        casez_tmp_30 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_30 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111000:
-        casez_tmp_30 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_30 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111001:
-        casez_tmp_30 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_30 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111010:
-        casez_tmp_30 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_30 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111011:
-        casez_tmp_30 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_30 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111100:
-        casez_tmp_30 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_30 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111101:
-        casez_tmp_30 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_30 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111110:
-        casez_tmp_30 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_30 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       default:
-        casez_tmp_30 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_30 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
     endcase	// frontend/src/zaqal/frontend/IBUF.scala:65:26, :67:21
   end // always_comb
   reg         casez_tmp_31;	// frontend/src/zaqal/frontend/IBUF.scala:67:21
   always_comb begin	// frontend/src/zaqal/frontend/IBUF.scala:67:21
-    casez (wrapped_ptr_4)	// frontend/src/zaqal/frontend/IBUF.scala:65:26, :67:21
+    casez (wrapped_ptr_3)	// frontend/src/zaqal/frontend/IBUF.scala:65:26, :67:21
       6'b000000:
-        casez_tmp_31 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_31 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000001:
-        casez_tmp_31 = buffer_1_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_31 = buffer_1_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000010:
-        casez_tmp_31 = buffer_2_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_31 = buffer_2_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000011:
-        casez_tmp_31 = buffer_3_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_31 = buffer_3_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000100:
-        casez_tmp_31 = buffer_4_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_31 = buffer_4_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000101:
-        casez_tmp_31 = buffer_5_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_31 = buffer_5_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000110:
-        casez_tmp_31 = buffer_6_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_31 = buffer_6_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000111:
-        casez_tmp_31 = buffer_7_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_31 = buffer_7_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001000:
-        casez_tmp_31 = buffer_8_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_31 = buffer_8_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001001:
-        casez_tmp_31 = buffer_9_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_31 = buffer_9_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001010:
-        casez_tmp_31 = buffer_10_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_31 = buffer_10_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001011:
-        casez_tmp_31 = buffer_11_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_31 = buffer_11_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001100:
-        casez_tmp_31 = buffer_12_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_31 = buffer_12_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001101:
-        casez_tmp_31 = buffer_13_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_31 = buffer_13_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001110:
-        casez_tmp_31 = buffer_14_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_31 = buffer_14_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001111:
-        casez_tmp_31 = buffer_15_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_31 = buffer_15_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010000:
-        casez_tmp_31 = buffer_16_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_31 = buffer_16_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010001:
-        casez_tmp_31 = buffer_17_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_31 = buffer_17_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010010:
-        casez_tmp_31 = buffer_18_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_31 = buffer_18_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010011:
-        casez_tmp_31 = buffer_19_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_31 = buffer_19_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010100:
-        casez_tmp_31 = buffer_20_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_31 = buffer_20_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010101:
-        casez_tmp_31 = buffer_21_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_31 = buffer_21_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010110:
-        casez_tmp_31 = buffer_22_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_31 = buffer_22_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010111:
-        casez_tmp_31 = buffer_23_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_31 = buffer_23_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011000:
-        casez_tmp_31 = buffer_24_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_31 = buffer_24_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011001:
-        casez_tmp_31 = buffer_25_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_31 = buffer_25_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011010:
-        casez_tmp_31 = buffer_26_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_31 = buffer_26_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011011:
-        casez_tmp_31 = buffer_27_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_31 = buffer_27_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011100:
-        casez_tmp_31 = buffer_28_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_31 = buffer_28_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011101:
-        casez_tmp_31 = buffer_29_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_31 = buffer_29_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011110:
-        casez_tmp_31 = buffer_30_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_31 = buffer_30_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011111:
-        casez_tmp_31 = buffer_31_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_31 = buffer_31_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100000:
-        casez_tmp_31 = buffer_32_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_31 = buffer_32_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100001:
-        casez_tmp_31 = buffer_33_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_31 = buffer_33_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100010:
-        casez_tmp_31 = buffer_34_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_31 = buffer_34_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100011:
-        casez_tmp_31 = buffer_35_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_31 = buffer_35_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100100:
-        casez_tmp_31 = buffer_36_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_31 = buffer_36_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100101:
-        casez_tmp_31 = buffer_37_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_31 = buffer_37_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100110:
-        casez_tmp_31 = buffer_38_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_31 = buffer_38_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100111:
-        casez_tmp_31 = buffer_39_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_31 = buffer_39_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101000:
-        casez_tmp_31 = buffer_40_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_31 = buffer_40_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101001:
-        casez_tmp_31 = buffer_41_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_31 = buffer_41_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101010:
-        casez_tmp_31 = buffer_42_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_31 = buffer_42_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101011:
-        casez_tmp_31 = buffer_43_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_31 = buffer_43_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101100:
-        casez_tmp_31 = buffer_44_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_31 = buffer_44_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101101:
-        casez_tmp_31 = buffer_45_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_31 = buffer_45_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101110:
-        casez_tmp_31 = buffer_46_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_31 = buffer_46_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101111:
-        casez_tmp_31 = buffer_47_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_31 = buffer_47_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110000:
-        casez_tmp_31 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_31 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110001:
-        casez_tmp_31 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_31 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110010:
-        casez_tmp_31 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_31 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110011:
-        casez_tmp_31 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_31 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110100:
-        casez_tmp_31 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_31 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110101:
-        casez_tmp_31 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_31 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110110:
-        casez_tmp_31 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_31 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110111:
-        casez_tmp_31 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_31 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111000:
-        casez_tmp_31 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_31 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111001:
-        casez_tmp_31 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_31 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111010:
-        casez_tmp_31 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_31 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111011:
-        casez_tmp_31 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_31 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111100:
-        casez_tmp_31 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_31 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111101:
-        casez_tmp_31 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_31 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111110:
-        casez_tmp_31 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_31 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       default:
-        casez_tmp_31 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_31 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
     endcase	// frontend/src/zaqal/frontend/IBUF.scala:65:26, :67:21
   end // always_comb
-  reg  [31:0] casez_tmp_32;	// frontend/src/zaqal/frontend/IBUF.scala:67:21
+  reg         casez_tmp_32;	// frontend/src/zaqal/frontend/IBUF.scala:67:21
+  always_comb begin	// frontend/src/zaqal/frontend/IBUF.scala:67:21
+    casez (wrapped_ptr_3)	// frontend/src/zaqal/frontend/IBUF.scala:65:26, :67:21
+      6'b000000:
+        casez_tmp_32 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b000001:
+        casez_tmp_32 = buffer_1_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b000010:
+        casez_tmp_32 = buffer_2_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b000011:
+        casez_tmp_32 = buffer_3_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b000100:
+        casez_tmp_32 = buffer_4_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b000101:
+        casez_tmp_32 = buffer_5_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b000110:
+        casez_tmp_32 = buffer_6_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b000111:
+        casez_tmp_32 = buffer_7_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b001000:
+        casez_tmp_32 = buffer_8_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b001001:
+        casez_tmp_32 = buffer_9_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b001010:
+        casez_tmp_32 = buffer_10_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b001011:
+        casez_tmp_32 = buffer_11_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b001100:
+        casez_tmp_32 = buffer_12_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b001101:
+        casez_tmp_32 = buffer_13_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b001110:
+        casez_tmp_32 = buffer_14_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b001111:
+        casez_tmp_32 = buffer_15_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b010000:
+        casez_tmp_32 = buffer_16_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b010001:
+        casez_tmp_32 = buffer_17_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b010010:
+        casez_tmp_32 = buffer_18_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b010011:
+        casez_tmp_32 = buffer_19_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b010100:
+        casez_tmp_32 = buffer_20_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b010101:
+        casez_tmp_32 = buffer_21_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b010110:
+        casez_tmp_32 = buffer_22_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b010111:
+        casez_tmp_32 = buffer_23_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b011000:
+        casez_tmp_32 = buffer_24_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b011001:
+        casez_tmp_32 = buffer_25_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b011010:
+        casez_tmp_32 = buffer_26_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b011011:
+        casez_tmp_32 = buffer_27_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b011100:
+        casez_tmp_32 = buffer_28_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b011101:
+        casez_tmp_32 = buffer_29_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b011110:
+        casez_tmp_32 = buffer_30_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b011111:
+        casez_tmp_32 = buffer_31_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b100000:
+        casez_tmp_32 = buffer_32_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b100001:
+        casez_tmp_32 = buffer_33_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b100010:
+        casez_tmp_32 = buffer_34_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b100011:
+        casez_tmp_32 = buffer_35_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b100100:
+        casez_tmp_32 = buffer_36_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b100101:
+        casez_tmp_32 = buffer_37_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b100110:
+        casez_tmp_32 = buffer_38_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b100111:
+        casez_tmp_32 = buffer_39_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b101000:
+        casez_tmp_32 = buffer_40_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b101001:
+        casez_tmp_32 = buffer_41_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b101010:
+        casez_tmp_32 = buffer_42_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b101011:
+        casez_tmp_32 = buffer_43_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b101100:
+        casez_tmp_32 = buffer_44_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b101101:
+        casez_tmp_32 = buffer_45_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b101110:
+        casez_tmp_32 = buffer_46_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b101111:
+        casez_tmp_32 = buffer_47_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b110000:
+        casez_tmp_32 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b110001:
+        casez_tmp_32 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b110010:
+        casez_tmp_32 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b110011:
+        casez_tmp_32 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b110100:
+        casez_tmp_32 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b110101:
+        casez_tmp_32 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b110110:
+        casez_tmp_32 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b110111:
+        casez_tmp_32 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b111000:
+        casez_tmp_32 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b111001:
+        casez_tmp_32 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b111010:
+        casez_tmp_32 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b111011:
+        casez_tmp_32 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b111100:
+        casez_tmp_32 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b111101:
+        casez_tmp_32 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b111110:
+        casez_tmp_32 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      default:
+        casez_tmp_32 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+    endcase	// frontend/src/zaqal/frontend/IBUF.scala:65:26, :67:21
+  end // always_comb
+  wire [5:0]  wrapped_ptr_4 = ptr_4 > 7'h2F ? head + 6'h14 : ptr_4[5:0];	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :46:21, :58:20, :65:{26,31,50}, :74:42
+  wire        io_out_4_valid_0 = deq_valid_mask_4 & ~io_flush;	// frontend/src/zaqal/frontend/IBUF.scala:24:36, :61:24, :66:42
+  reg  [63:0] casez_tmp_33;	// frontend/src/zaqal/frontend/IBUF.scala:67:21
   always_comb begin	// frontend/src/zaqal/frontend/IBUF.scala:67:21
     casez (wrapped_ptr_4)	// frontend/src/zaqal/frontend/IBUF.scala:65:26, :67:21
       6'b000000:
-        casez_tmp_32 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_33 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000001:
-        casez_tmp_32 = buffer_1_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_33 = buffer_1_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000010:
-        casez_tmp_32 = buffer_2_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_33 = buffer_2_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000011:
-        casez_tmp_32 = buffer_3_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_33 = buffer_3_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000100:
-        casez_tmp_32 = buffer_4_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_33 = buffer_4_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000101:
-        casez_tmp_32 = buffer_5_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_33 = buffer_5_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000110:
-        casez_tmp_32 = buffer_6_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_33 = buffer_6_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000111:
-        casez_tmp_32 = buffer_7_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_33 = buffer_7_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001000:
-        casez_tmp_32 = buffer_8_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_33 = buffer_8_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001001:
-        casez_tmp_32 = buffer_9_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_33 = buffer_9_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001010:
-        casez_tmp_32 = buffer_10_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_33 = buffer_10_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001011:
-        casez_tmp_32 = buffer_11_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_33 = buffer_11_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001100:
-        casez_tmp_32 = buffer_12_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_33 = buffer_12_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001101:
-        casez_tmp_32 = buffer_13_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_33 = buffer_13_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001110:
-        casez_tmp_32 = buffer_14_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_33 = buffer_14_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001111:
-        casez_tmp_32 = buffer_15_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_33 = buffer_15_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010000:
-        casez_tmp_32 = buffer_16_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_33 = buffer_16_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010001:
-        casez_tmp_32 = buffer_17_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_33 = buffer_17_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010010:
-        casez_tmp_32 = buffer_18_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_33 = buffer_18_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010011:
-        casez_tmp_32 = buffer_19_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_33 = buffer_19_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010100:
-        casez_tmp_32 = buffer_20_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_33 = buffer_20_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010101:
-        casez_tmp_32 = buffer_21_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_33 = buffer_21_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010110:
-        casez_tmp_32 = buffer_22_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_33 = buffer_22_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010111:
-        casez_tmp_32 = buffer_23_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_33 = buffer_23_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011000:
-        casez_tmp_32 = buffer_24_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_33 = buffer_24_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011001:
-        casez_tmp_32 = buffer_25_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_33 = buffer_25_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011010:
-        casez_tmp_32 = buffer_26_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_33 = buffer_26_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011011:
-        casez_tmp_32 = buffer_27_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_33 = buffer_27_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011100:
-        casez_tmp_32 = buffer_28_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_33 = buffer_28_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011101:
-        casez_tmp_32 = buffer_29_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_33 = buffer_29_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011110:
-        casez_tmp_32 = buffer_30_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_33 = buffer_30_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011111:
-        casez_tmp_32 = buffer_31_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_33 = buffer_31_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100000:
-        casez_tmp_32 = buffer_32_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_33 = buffer_32_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100001:
-        casez_tmp_32 = buffer_33_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_33 = buffer_33_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100010:
-        casez_tmp_32 = buffer_34_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_33 = buffer_34_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100011:
-        casez_tmp_32 = buffer_35_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_33 = buffer_35_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100100:
-        casez_tmp_32 = buffer_36_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_33 = buffer_36_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100101:
-        casez_tmp_32 = buffer_37_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_33 = buffer_37_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100110:
-        casez_tmp_32 = buffer_38_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_33 = buffer_38_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100111:
-        casez_tmp_32 = buffer_39_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_33 = buffer_39_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101000:
-        casez_tmp_32 = buffer_40_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_33 = buffer_40_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101001:
-        casez_tmp_32 = buffer_41_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_33 = buffer_41_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101010:
-        casez_tmp_32 = buffer_42_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_33 = buffer_42_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101011:
-        casez_tmp_32 = buffer_43_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_33 = buffer_43_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101100:
-        casez_tmp_32 = buffer_44_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_33 = buffer_44_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101101:
-        casez_tmp_32 = buffer_45_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_33 = buffer_45_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101110:
-        casez_tmp_32 = buffer_46_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_33 = buffer_46_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101111:
-        casez_tmp_32 = buffer_47_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_33 = buffer_47_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110000:
-        casez_tmp_32 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_33 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110001:
-        casez_tmp_32 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_33 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110010:
-        casez_tmp_32 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_33 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110011:
-        casez_tmp_32 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_33 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110100:
-        casez_tmp_32 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_33 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110101:
-        casez_tmp_32 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_33 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110110:
-        casez_tmp_32 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_33 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110111:
-        casez_tmp_32 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_33 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111000:
-        casez_tmp_32 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_33 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111001:
-        casez_tmp_32 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_33 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111010:
-        casez_tmp_32 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_33 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111011:
-        casez_tmp_32 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_33 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111100:
-        casez_tmp_32 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_33 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111101:
-        casez_tmp_32 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_33 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111110:
-        casez_tmp_32 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_33 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       default:
-        casez_tmp_32 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_33 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
     endcase	// frontend/src/zaqal/frontend/IBUF.scala:65:26, :67:21
   end // always_comb
-  reg  [5:0]  casez_tmp_33;	// frontend/src/zaqal/frontend/IBUF.scala:67:21
+  reg  [31:0] casez_tmp_34;	// frontend/src/zaqal/frontend/IBUF.scala:67:21
   always_comb begin	// frontend/src/zaqal/frontend/IBUF.scala:67:21
     casez (wrapped_ptr_4)	// frontend/src/zaqal/frontend/IBUF.scala:65:26, :67:21
       6'b000000:
-        casez_tmp_33 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_34 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000001:
-        casez_tmp_33 = buffer_1_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_34 = buffer_1_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000010:
-        casez_tmp_33 = buffer_2_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_34 = buffer_2_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000011:
-        casez_tmp_33 = buffer_3_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_34 = buffer_3_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000100:
-        casez_tmp_33 = buffer_4_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_34 = buffer_4_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000101:
-        casez_tmp_33 = buffer_5_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_34 = buffer_5_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000110:
-        casez_tmp_33 = buffer_6_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_34 = buffer_6_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000111:
-        casez_tmp_33 = buffer_7_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_34 = buffer_7_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001000:
-        casez_tmp_33 = buffer_8_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_34 = buffer_8_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001001:
-        casez_tmp_33 = buffer_9_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_34 = buffer_9_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001010:
-        casez_tmp_33 = buffer_10_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_34 = buffer_10_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001011:
-        casez_tmp_33 = buffer_11_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_34 = buffer_11_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001100:
-        casez_tmp_33 = buffer_12_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_34 = buffer_12_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001101:
-        casez_tmp_33 = buffer_13_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_34 = buffer_13_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001110:
-        casez_tmp_33 = buffer_14_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_34 = buffer_14_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001111:
-        casez_tmp_33 = buffer_15_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_34 = buffer_15_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010000:
-        casez_tmp_33 = buffer_16_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_34 = buffer_16_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010001:
-        casez_tmp_33 = buffer_17_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_34 = buffer_17_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010010:
-        casez_tmp_33 = buffer_18_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_34 = buffer_18_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010011:
-        casez_tmp_33 = buffer_19_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_34 = buffer_19_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010100:
-        casez_tmp_33 = buffer_20_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_34 = buffer_20_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010101:
-        casez_tmp_33 = buffer_21_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_34 = buffer_21_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010110:
-        casez_tmp_33 = buffer_22_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_34 = buffer_22_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010111:
-        casez_tmp_33 = buffer_23_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_34 = buffer_23_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011000:
-        casez_tmp_33 = buffer_24_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_34 = buffer_24_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011001:
-        casez_tmp_33 = buffer_25_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_34 = buffer_25_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011010:
-        casez_tmp_33 = buffer_26_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_34 = buffer_26_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011011:
-        casez_tmp_33 = buffer_27_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_34 = buffer_27_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011100:
-        casez_tmp_33 = buffer_28_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_34 = buffer_28_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011101:
-        casez_tmp_33 = buffer_29_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_34 = buffer_29_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011110:
-        casez_tmp_33 = buffer_30_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_34 = buffer_30_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011111:
-        casez_tmp_33 = buffer_31_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_34 = buffer_31_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100000:
-        casez_tmp_33 = buffer_32_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_34 = buffer_32_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100001:
-        casez_tmp_33 = buffer_33_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_34 = buffer_33_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100010:
-        casez_tmp_33 = buffer_34_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_34 = buffer_34_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100011:
-        casez_tmp_33 = buffer_35_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_34 = buffer_35_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100100:
-        casez_tmp_33 = buffer_36_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_34 = buffer_36_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100101:
-        casez_tmp_33 = buffer_37_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_34 = buffer_37_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100110:
-        casez_tmp_33 = buffer_38_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_34 = buffer_38_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100111:
-        casez_tmp_33 = buffer_39_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_34 = buffer_39_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101000:
-        casez_tmp_33 = buffer_40_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_34 = buffer_40_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101001:
-        casez_tmp_33 = buffer_41_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_34 = buffer_41_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101010:
-        casez_tmp_33 = buffer_42_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_34 = buffer_42_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101011:
-        casez_tmp_33 = buffer_43_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_34 = buffer_43_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101100:
-        casez_tmp_33 = buffer_44_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_34 = buffer_44_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101101:
-        casez_tmp_33 = buffer_45_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_34 = buffer_45_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101110:
-        casez_tmp_33 = buffer_46_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_34 = buffer_46_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101111:
-        casez_tmp_33 = buffer_47_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_34 = buffer_47_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110000:
-        casez_tmp_33 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_34 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110001:
-        casez_tmp_33 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_34 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110010:
-        casez_tmp_33 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_34 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110011:
-        casez_tmp_33 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_34 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110100:
-        casez_tmp_33 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_34 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110101:
-        casez_tmp_33 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_34 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110110:
-        casez_tmp_33 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_34 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110111:
-        casez_tmp_33 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_34 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111000:
-        casez_tmp_33 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_34 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111001:
-        casez_tmp_33 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_34 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111010:
-        casez_tmp_33 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_34 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111011:
-        casez_tmp_33 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_34 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111100:
-        casez_tmp_33 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_34 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111101:
-        casez_tmp_33 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_34 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111110:
-        casez_tmp_33 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_34 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       default:
-        casez_tmp_33 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_34 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
     endcase	// frontend/src/zaqal/frontend/IBUF.scala:65:26, :67:21
   end // always_comb
-  reg         casez_tmp_34;	// frontend/src/zaqal/frontend/IBUF.scala:67:21
+  reg         casez_tmp_35;	// frontend/src/zaqal/frontend/IBUF.scala:67:21
   always_comb begin	// frontend/src/zaqal/frontend/IBUF.scala:67:21
     casez (wrapped_ptr_4)	// frontend/src/zaqal/frontend/IBUF.scala:65:26, :67:21
       6'b000000:
-        casez_tmp_34 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_35 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000001:
-        casez_tmp_34 = buffer_1_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_35 = buffer_1_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000010:
-        casez_tmp_34 = buffer_2_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_35 = buffer_2_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000011:
-        casez_tmp_34 = buffer_3_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_35 = buffer_3_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000100:
-        casez_tmp_34 = buffer_4_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_35 = buffer_4_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000101:
-        casez_tmp_34 = buffer_5_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_35 = buffer_5_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000110:
-        casez_tmp_34 = buffer_6_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_35 = buffer_6_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000111:
-        casez_tmp_34 = buffer_7_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_35 = buffer_7_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001000:
-        casez_tmp_34 = buffer_8_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_35 = buffer_8_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001001:
-        casez_tmp_34 = buffer_9_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_35 = buffer_9_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001010:
-        casez_tmp_34 = buffer_10_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_35 = buffer_10_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001011:
-        casez_tmp_34 = buffer_11_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_35 = buffer_11_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001100:
-        casez_tmp_34 = buffer_12_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_35 = buffer_12_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001101:
-        casez_tmp_34 = buffer_13_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_35 = buffer_13_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001110:
-        casez_tmp_34 = buffer_14_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_35 = buffer_14_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001111:
-        casez_tmp_34 = buffer_15_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_35 = buffer_15_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010000:
-        casez_tmp_34 = buffer_16_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_35 = buffer_16_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010001:
-        casez_tmp_34 = buffer_17_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_35 = buffer_17_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010010:
-        casez_tmp_34 = buffer_18_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_35 = buffer_18_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010011:
-        casez_tmp_34 = buffer_19_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_35 = buffer_19_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010100:
-        casez_tmp_34 = buffer_20_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_35 = buffer_20_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010101:
-        casez_tmp_34 = buffer_21_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_35 = buffer_21_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010110:
-        casez_tmp_34 = buffer_22_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_35 = buffer_22_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010111:
-        casez_tmp_34 = buffer_23_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_35 = buffer_23_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011000:
-        casez_tmp_34 = buffer_24_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_35 = buffer_24_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011001:
-        casez_tmp_34 = buffer_25_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_35 = buffer_25_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011010:
-        casez_tmp_34 = buffer_26_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_35 = buffer_26_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011011:
-        casez_tmp_34 = buffer_27_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_35 = buffer_27_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011100:
-        casez_tmp_34 = buffer_28_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_35 = buffer_28_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011101:
-        casez_tmp_34 = buffer_29_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_35 = buffer_29_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011110:
-        casez_tmp_34 = buffer_30_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_35 = buffer_30_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011111:
-        casez_tmp_34 = buffer_31_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_35 = buffer_31_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100000:
-        casez_tmp_34 = buffer_32_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_35 = buffer_32_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100001:
-        casez_tmp_34 = buffer_33_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_35 = buffer_33_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100010:
-        casez_tmp_34 = buffer_34_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_35 = buffer_34_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100011:
-        casez_tmp_34 = buffer_35_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_35 = buffer_35_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100100:
-        casez_tmp_34 = buffer_36_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_35 = buffer_36_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100101:
-        casez_tmp_34 = buffer_37_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_35 = buffer_37_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100110:
-        casez_tmp_34 = buffer_38_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_35 = buffer_38_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100111:
-        casez_tmp_34 = buffer_39_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_35 = buffer_39_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101000:
-        casez_tmp_34 = buffer_40_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_35 = buffer_40_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101001:
-        casez_tmp_34 = buffer_41_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_35 = buffer_41_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101010:
-        casez_tmp_34 = buffer_42_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_35 = buffer_42_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101011:
-        casez_tmp_34 = buffer_43_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_35 = buffer_43_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101100:
-        casez_tmp_34 = buffer_44_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_35 = buffer_44_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101101:
-        casez_tmp_34 = buffer_45_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_35 = buffer_45_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101110:
-        casez_tmp_34 = buffer_46_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_35 = buffer_46_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101111:
-        casez_tmp_34 = buffer_47_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_35 = buffer_47_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110000:
-        casez_tmp_34 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_35 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110001:
-        casez_tmp_34 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_35 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110010:
-        casez_tmp_34 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_35 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110011:
-        casez_tmp_34 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_35 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110100:
-        casez_tmp_34 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_35 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110101:
-        casez_tmp_34 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_35 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110110:
-        casez_tmp_34 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_35 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110111:
-        casez_tmp_34 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_35 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111000:
-        casez_tmp_34 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_35 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111001:
-        casez_tmp_34 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_35 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111010:
-        casez_tmp_34 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_35 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111011:
-        casez_tmp_34 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_35 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111100:
-        casez_tmp_34 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_35 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111101:
-        casez_tmp_34 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_35 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111110:
-        casez_tmp_34 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_35 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       default:
-        casez_tmp_34 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-    endcase	// frontend/src/zaqal/frontend/IBUF.scala:65:26, :67:21
-  end // always_comb
-  wire [5:0]  wrapped_ptr_5 = ptr_5 > 7'h2F ? head + 6'h15 : ptr_5[5:0];	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :46:21, :58:20, :65:{26,31,50}, :74:42
-  wire        io_out_5_valid_0 = deq_valid_mask_4 & casez_tmp_4 & ~io_flush;	// frontend/src/zaqal/frontend/IBUF.scala:24:36, :61:24, :66:42
-  reg  [63:0] casez_tmp_35;	// frontend/src/zaqal/frontend/IBUF.scala:67:21
-  always_comb begin	// frontend/src/zaqal/frontend/IBUF.scala:67:21
-    casez (wrapped_ptr_5)	// frontend/src/zaqal/frontend/IBUF.scala:65:26, :67:21
-      6'b000000:
-        casez_tmp_35 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b000001:
-        casez_tmp_35 = buffer_1_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b000010:
-        casez_tmp_35 = buffer_2_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b000011:
-        casez_tmp_35 = buffer_3_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b000100:
-        casez_tmp_35 = buffer_4_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b000101:
-        casez_tmp_35 = buffer_5_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b000110:
-        casez_tmp_35 = buffer_6_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b000111:
-        casez_tmp_35 = buffer_7_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b001000:
-        casez_tmp_35 = buffer_8_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b001001:
-        casez_tmp_35 = buffer_9_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b001010:
-        casez_tmp_35 = buffer_10_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b001011:
-        casez_tmp_35 = buffer_11_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b001100:
-        casez_tmp_35 = buffer_12_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b001101:
-        casez_tmp_35 = buffer_13_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b001110:
-        casez_tmp_35 = buffer_14_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b001111:
-        casez_tmp_35 = buffer_15_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b010000:
-        casez_tmp_35 = buffer_16_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b010001:
-        casez_tmp_35 = buffer_17_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b010010:
-        casez_tmp_35 = buffer_18_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b010011:
-        casez_tmp_35 = buffer_19_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b010100:
-        casez_tmp_35 = buffer_20_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b010101:
-        casez_tmp_35 = buffer_21_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b010110:
-        casez_tmp_35 = buffer_22_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b010111:
-        casez_tmp_35 = buffer_23_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b011000:
-        casez_tmp_35 = buffer_24_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b011001:
-        casez_tmp_35 = buffer_25_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b011010:
-        casez_tmp_35 = buffer_26_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b011011:
-        casez_tmp_35 = buffer_27_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b011100:
-        casez_tmp_35 = buffer_28_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b011101:
-        casez_tmp_35 = buffer_29_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b011110:
-        casez_tmp_35 = buffer_30_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b011111:
-        casez_tmp_35 = buffer_31_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b100000:
-        casez_tmp_35 = buffer_32_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b100001:
-        casez_tmp_35 = buffer_33_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b100010:
-        casez_tmp_35 = buffer_34_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b100011:
-        casez_tmp_35 = buffer_35_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b100100:
-        casez_tmp_35 = buffer_36_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b100101:
-        casez_tmp_35 = buffer_37_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b100110:
-        casez_tmp_35 = buffer_38_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b100111:
-        casez_tmp_35 = buffer_39_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b101000:
-        casez_tmp_35 = buffer_40_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b101001:
-        casez_tmp_35 = buffer_41_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b101010:
-        casez_tmp_35 = buffer_42_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b101011:
-        casez_tmp_35 = buffer_43_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b101100:
-        casez_tmp_35 = buffer_44_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b101101:
-        casez_tmp_35 = buffer_45_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b101110:
-        casez_tmp_35 = buffer_46_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b101111:
-        casez_tmp_35 = buffer_47_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b110000:
-        casez_tmp_35 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b110001:
-        casez_tmp_35 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b110010:
-        casez_tmp_35 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b110011:
-        casez_tmp_35 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b110100:
-        casez_tmp_35 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b110101:
-        casez_tmp_35 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b110110:
-        casez_tmp_35 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b110111:
-        casez_tmp_35 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b111000:
-        casez_tmp_35 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b111001:
-        casez_tmp_35 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b111010:
-        casez_tmp_35 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b111011:
-        casez_tmp_35 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b111100:
-        casez_tmp_35 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b111101:
-        casez_tmp_35 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      6'b111110:
-        casez_tmp_35 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
-      default:
-        casez_tmp_35 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_35 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
     endcase	// frontend/src/zaqal/frontend/IBUF.scala:65:26, :67:21
   end // always_comb
   reg  [31:0] casez_tmp_36;	// frontend/src/zaqal/frontend/IBUF.scala:67:21
   always_comb begin	// frontend/src/zaqal/frontend/IBUF.scala:67:21
-    casez (wrapped_ptr_5)	// frontend/src/zaqal/frontend/IBUF.scala:65:26, :67:21
+    casez (wrapped_ptr_4)	// frontend/src/zaqal/frontend/IBUF.scala:65:26, :67:21
       6'b000000:
-        casez_tmp_36 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_36 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000001:
-        casez_tmp_36 = buffer_1_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_36 = buffer_1_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000010:
-        casez_tmp_36 = buffer_2_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_36 = buffer_2_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000011:
-        casez_tmp_36 = buffer_3_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_36 = buffer_3_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000100:
-        casez_tmp_36 = buffer_4_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_36 = buffer_4_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000101:
-        casez_tmp_36 = buffer_5_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_36 = buffer_5_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000110:
-        casez_tmp_36 = buffer_6_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_36 = buffer_6_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000111:
-        casez_tmp_36 = buffer_7_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_36 = buffer_7_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001000:
-        casez_tmp_36 = buffer_8_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_36 = buffer_8_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001001:
-        casez_tmp_36 = buffer_9_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_36 = buffer_9_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001010:
-        casez_tmp_36 = buffer_10_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_36 = buffer_10_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001011:
-        casez_tmp_36 = buffer_11_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_36 = buffer_11_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001100:
-        casez_tmp_36 = buffer_12_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_36 = buffer_12_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001101:
-        casez_tmp_36 = buffer_13_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_36 = buffer_13_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001110:
-        casez_tmp_36 = buffer_14_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_36 = buffer_14_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001111:
-        casez_tmp_36 = buffer_15_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_36 = buffer_15_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010000:
-        casez_tmp_36 = buffer_16_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_36 = buffer_16_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010001:
-        casez_tmp_36 = buffer_17_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_36 = buffer_17_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010010:
-        casez_tmp_36 = buffer_18_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_36 = buffer_18_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010011:
-        casez_tmp_36 = buffer_19_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_36 = buffer_19_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010100:
-        casez_tmp_36 = buffer_20_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_36 = buffer_20_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010101:
-        casez_tmp_36 = buffer_21_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_36 = buffer_21_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010110:
-        casez_tmp_36 = buffer_22_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_36 = buffer_22_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010111:
-        casez_tmp_36 = buffer_23_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_36 = buffer_23_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011000:
-        casez_tmp_36 = buffer_24_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_36 = buffer_24_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011001:
-        casez_tmp_36 = buffer_25_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_36 = buffer_25_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011010:
-        casez_tmp_36 = buffer_26_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_36 = buffer_26_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011011:
-        casez_tmp_36 = buffer_27_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_36 = buffer_27_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011100:
-        casez_tmp_36 = buffer_28_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_36 = buffer_28_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011101:
-        casez_tmp_36 = buffer_29_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_36 = buffer_29_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011110:
-        casez_tmp_36 = buffer_30_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_36 = buffer_30_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011111:
-        casez_tmp_36 = buffer_31_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_36 = buffer_31_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100000:
-        casez_tmp_36 = buffer_32_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_36 = buffer_32_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100001:
-        casez_tmp_36 = buffer_33_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_36 = buffer_33_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100010:
-        casez_tmp_36 = buffer_34_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_36 = buffer_34_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100011:
-        casez_tmp_36 = buffer_35_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_36 = buffer_35_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100100:
-        casez_tmp_36 = buffer_36_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_36 = buffer_36_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100101:
-        casez_tmp_36 = buffer_37_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_36 = buffer_37_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100110:
-        casez_tmp_36 = buffer_38_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_36 = buffer_38_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100111:
-        casez_tmp_36 = buffer_39_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_36 = buffer_39_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101000:
-        casez_tmp_36 = buffer_40_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_36 = buffer_40_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101001:
-        casez_tmp_36 = buffer_41_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_36 = buffer_41_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101010:
-        casez_tmp_36 = buffer_42_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_36 = buffer_42_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101011:
-        casez_tmp_36 = buffer_43_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_36 = buffer_43_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101100:
-        casez_tmp_36 = buffer_44_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_36 = buffer_44_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101101:
-        casez_tmp_36 = buffer_45_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_36 = buffer_45_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101110:
-        casez_tmp_36 = buffer_46_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_36 = buffer_46_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101111:
-        casez_tmp_36 = buffer_47_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_36 = buffer_47_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110000:
-        casez_tmp_36 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_36 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110001:
-        casez_tmp_36 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_36 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110010:
-        casez_tmp_36 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_36 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110011:
-        casez_tmp_36 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_36 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110100:
-        casez_tmp_36 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_36 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110101:
-        casez_tmp_36 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_36 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110110:
-        casez_tmp_36 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_36 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110111:
-        casez_tmp_36 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_36 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111000:
-        casez_tmp_36 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_36 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111001:
-        casez_tmp_36 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_36 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111010:
-        casez_tmp_36 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_36 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111011:
-        casez_tmp_36 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_36 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111100:
-        casez_tmp_36 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_36 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111101:
-        casez_tmp_36 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_36 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111110:
-        casez_tmp_36 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_36 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       default:
-        casez_tmp_36 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_36 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
     endcase	// frontend/src/zaqal/frontend/IBUF.scala:65:26, :67:21
   end // always_comb
-  reg         casez_tmp_37;	// frontend/src/zaqal/frontend/IBUF.scala:67:21
+  reg  [5:0]  casez_tmp_37;	// frontend/src/zaqal/frontend/IBUF.scala:67:21
+  always_comb begin	// frontend/src/zaqal/frontend/IBUF.scala:67:21
+    casez (wrapped_ptr_4)	// frontend/src/zaqal/frontend/IBUF.scala:65:26, :67:21
+      6'b000000:
+        casez_tmp_37 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b000001:
+        casez_tmp_37 = buffer_1_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b000010:
+        casez_tmp_37 = buffer_2_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b000011:
+        casez_tmp_37 = buffer_3_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b000100:
+        casez_tmp_37 = buffer_4_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b000101:
+        casez_tmp_37 = buffer_5_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b000110:
+        casez_tmp_37 = buffer_6_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b000111:
+        casez_tmp_37 = buffer_7_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b001000:
+        casez_tmp_37 = buffer_8_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b001001:
+        casez_tmp_37 = buffer_9_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b001010:
+        casez_tmp_37 = buffer_10_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b001011:
+        casez_tmp_37 = buffer_11_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b001100:
+        casez_tmp_37 = buffer_12_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b001101:
+        casez_tmp_37 = buffer_13_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b001110:
+        casez_tmp_37 = buffer_14_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b001111:
+        casez_tmp_37 = buffer_15_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b010000:
+        casez_tmp_37 = buffer_16_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b010001:
+        casez_tmp_37 = buffer_17_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b010010:
+        casez_tmp_37 = buffer_18_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b010011:
+        casez_tmp_37 = buffer_19_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b010100:
+        casez_tmp_37 = buffer_20_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b010101:
+        casez_tmp_37 = buffer_21_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b010110:
+        casez_tmp_37 = buffer_22_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b010111:
+        casez_tmp_37 = buffer_23_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b011000:
+        casez_tmp_37 = buffer_24_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b011001:
+        casez_tmp_37 = buffer_25_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b011010:
+        casez_tmp_37 = buffer_26_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b011011:
+        casez_tmp_37 = buffer_27_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b011100:
+        casez_tmp_37 = buffer_28_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b011101:
+        casez_tmp_37 = buffer_29_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b011110:
+        casez_tmp_37 = buffer_30_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b011111:
+        casez_tmp_37 = buffer_31_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b100000:
+        casez_tmp_37 = buffer_32_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b100001:
+        casez_tmp_37 = buffer_33_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b100010:
+        casez_tmp_37 = buffer_34_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b100011:
+        casez_tmp_37 = buffer_35_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b100100:
+        casez_tmp_37 = buffer_36_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b100101:
+        casez_tmp_37 = buffer_37_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b100110:
+        casez_tmp_37 = buffer_38_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b100111:
+        casez_tmp_37 = buffer_39_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b101000:
+        casez_tmp_37 = buffer_40_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b101001:
+        casez_tmp_37 = buffer_41_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b101010:
+        casez_tmp_37 = buffer_42_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b101011:
+        casez_tmp_37 = buffer_43_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b101100:
+        casez_tmp_37 = buffer_44_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b101101:
+        casez_tmp_37 = buffer_45_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b101110:
+        casez_tmp_37 = buffer_46_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b101111:
+        casez_tmp_37 = buffer_47_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b110000:
+        casez_tmp_37 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b110001:
+        casez_tmp_37 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b110010:
+        casez_tmp_37 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b110011:
+        casez_tmp_37 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b110100:
+        casez_tmp_37 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b110101:
+        casez_tmp_37 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b110110:
+        casez_tmp_37 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b110111:
+        casez_tmp_37 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b111000:
+        casez_tmp_37 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b111001:
+        casez_tmp_37 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b111010:
+        casez_tmp_37 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b111011:
+        casez_tmp_37 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b111100:
+        casez_tmp_37 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b111101:
+        casez_tmp_37 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b111110:
+        casez_tmp_37 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      default:
+        casez_tmp_37 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+    endcase	// frontend/src/zaqal/frontend/IBUF.scala:65:26, :67:21
+  end // always_comb
+  reg         casez_tmp_38;	// frontend/src/zaqal/frontend/IBUF.scala:67:21
+  always_comb begin	// frontend/src/zaqal/frontend/IBUF.scala:67:21
+    casez (wrapped_ptr_4)	// frontend/src/zaqal/frontend/IBUF.scala:65:26, :67:21
+      6'b000000:
+        casez_tmp_38 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b000001:
+        casez_tmp_38 = buffer_1_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b000010:
+        casez_tmp_38 = buffer_2_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b000011:
+        casez_tmp_38 = buffer_3_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b000100:
+        casez_tmp_38 = buffer_4_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b000101:
+        casez_tmp_38 = buffer_5_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b000110:
+        casez_tmp_38 = buffer_6_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b000111:
+        casez_tmp_38 = buffer_7_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b001000:
+        casez_tmp_38 = buffer_8_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b001001:
+        casez_tmp_38 = buffer_9_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b001010:
+        casez_tmp_38 = buffer_10_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b001011:
+        casez_tmp_38 = buffer_11_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b001100:
+        casez_tmp_38 = buffer_12_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b001101:
+        casez_tmp_38 = buffer_13_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b001110:
+        casez_tmp_38 = buffer_14_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b001111:
+        casez_tmp_38 = buffer_15_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b010000:
+        casez_tmp_38 = buffer_16_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b010001:
+        casez_tmp_38 = buffer_17_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b010010:
+        casez_tmp_38 = buffer_18_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b010011:
+        casez_tmp_38 = buffer_19_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b010100:
+        casez_tmp_38 = buffer_20_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b010101:
+        casez_tmp_38 = buffer_21_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b010110:
+        casez_tmp_38 = buffer_22_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b010111:
+        casez_tmp_38 = buffer_23_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b011000:
+        casez_tmp_38 = buffer_24_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b011001:
+        casez_tmp_38 = buffer_25_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b011010:
+        casez_tmp_38 = buffer_26_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b011011:
+        casez_tmp_38 = buffer_27_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b011100:
+        casez_tmp_38 = buffer_28_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b011101:
+        casez_tmp_38 = buffer_29_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b011110:
+        casez_tmp_38 = buffer_30_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b011111:
+        casez_tmp_38 = buffer_31_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b100000:
+        casez_tmp_38 = buffer_32_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b100001:
+        casez_tmp_38 = buffer_33_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b100010:
+        casez_tmp_38 = buffer_34_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b100011:
+        casez_tmp_38 = buffer_35_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b100100:
+        casez_tmp_38 = buffer_36_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b100101:
+        casez_tmp_38 = buffer_37_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b100110:
+        casez_tmp_38 = buffer_38_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b100111:
+        casez_tmp_38 = buffer_39_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b101000:
+        casez_tmp_38 = buffer_40_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b101001:
+        casez_tmp_38 = buffer_41_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b101010:
+        casez_tmp_38 = buffer_42_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b101011:
+        casez_tmp_38 = buffer_43_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b101100:
+        casez_tmp_38 = buffer_44_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b101101:
+        casez_tmp_38 = buffer_45_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b101110:
+        casez_tmp_38 = buffer_46_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b101111:
+        casez_tmp_38 = buffer_47_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b110000:
+        casez_tmp_38 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b110001:
+        casez_tmp_38 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b110010:
+        casez_tmp_38 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b110011:
+        casez_tmp_38 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b110100:
+        casez_tmp_38 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b110101:
+        casez_tmp_38 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b110110:
+        casez_tmp_38 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b110111:
+        casez_tmp_38 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b111000:
+        casez_tmp_38 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b111001:
+        casez_tmp_38 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b111010:
+        casez_tmp_38 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b111011:
+        casez_tmp_38 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b111100:
+        casez_tmp_38 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b111101:
+        casez_tmp_38 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b111110:
+        casez_tmp_38 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      default:
+        casez_tmp_38 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+    endcase	// frontend/src/zaqal/frontend/IBUF.scala:65:26, :67:21
+  end // always_comb
+  reg         casez_tmp_39;	// frontend/src/zaqal/frontend/IBUF.scala:67:21
+  always_comb begin	// frontend/src/zaqal/frontend/IBUF.scala:67:21
+    casez (wrapped_ptr_4)	// frontend/src/zaqal/frontend/IBUF.scala:65:26, :67:21
+      6'b000000:
+        casez_tmp_39 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b000001:
+        casez_tmp_39 = buffer_1_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b000010:
+        casez_tmp_39 = buffer_2_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b000011:
+        casez_tmp_39 = buffer_3_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b000100:
+        casez_tmp_39 = buffer_4_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b000101:
+        casez_tmp_39 = buffer_5_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b000110:
+        casez_tmp_39 = buffer_6_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b000111:
+        casez_tmp_39 = buffer_7_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b001000:
+        casez_tmp_39 = buffer_8_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b001001:
+        casez_tmp_39 = buffer_9_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b001010:
+        casez_tmp_39 = buffer_10_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b001011:
+        casez_tmp_39 = buffer_11_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b001100:
+        casez_tmp_39 = buffer_12_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b001101:
+        casez_tmp_39 = buffer_13_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b001110:
+        casez_tmp_39 = buffer_14_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b001111:
+        casez_tmp_39 = buffer_15_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b010000:
+        casez_tmp_39 = buffer_16_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b010001:
+        casez_tmp_39 = buffer_17_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b010010:
+        casez_tmp_39 = buffer_18_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b010011:
+        casez_tmp_39 = buffer_19_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b010100:
+        casez_tmp_39 = buffer_20_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b010101:
+        casez_tmp_39 = buffer_21_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b010110:
+        casez_tmp_39 = buffer_22_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b010111:
+        casez_tmp_39 = buffer_23_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b011000:
+        casez_tmp_39 = buffer_24_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b011001:
+        casez_tmp_39 = buffer_25_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b011010:
+        casez_tmp_39 = buffer_26_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b011011:
+        casez_tmp_39 = buffer_27_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b011100:
+        casez_tmp_39 = buffer_28_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b011101:
+        casez_tmp_39 = buffer_29_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b011110:
+        casez_tmp_39 = buffer_30_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b011111:
+        casez_tmp_39 = buffer_31_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b100000:
+        casez_tmp_39 = buffer_32_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b100001:
+        casez_tmp_39 = buffer_33_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b100010:
+        casez_tmp_39 = buffer_34_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b100011:
+        casez_tmp_39 = buffer_35_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b100100:
+        casez_tmp_39 = buffer_36_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b100101:
+        casez_tmp_39 = buffer_37_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b100110:
+        casez_tmp_39 = buffer_38_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b100111:
+        casez_tmp_39 = buffer_39_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b101000:
+        casez_tmp_39 = buffer_40_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b101001:
+        casez_tmp_39 = buffer_41_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b101010:
+        casez_tmp_39 = buffer_42_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b101011:
+        casez_tmp_39 = buffer_43_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b101100:
+        casez_tmp_39 = buffer_44_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b101101:
+        casez_tmp_39 = buffer_45_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b101110:
+        casez_tmp_39 = buffer_46_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b101111:
+        casez_tmp_39 = buffer_47_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b110000:
+        casez_tmp_39 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b110001:
+        casez_tmp_39 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b110010:
+        casez_tmp_39 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b110011:
+        casez_tmp_39 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b110100:
+        casez_tmp_39 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b110101:
+        casez_tmp_39 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b110110:
+        casez_tmp_39 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b110111:
+        casez_tmp_39 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b111000:
+        casez_tmp_39 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b111001:
+        casez_tmp_39 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b111010:
+        casez_tmp_39 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b111011:
+        casez_tmp_39 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b111100:
+        casez_tmp_39 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b111101:
+        casez_tmp_39 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b111110:
+        casez_tmp_39 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      default:
+        casez_tmp_39 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+    endcase	// frontend/src/zaqal/frontend/IBUF.scala:65:26, :67:21
+  end // always_comb
+  wire [5:0]  wrapped_ptr_5 = ptr_5 > 7'h2F ? head + 6'h15 : ptr_5[5:0];	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :46:21, :58:20, :65:{26,31,50}, :74:42
+  wire        io_out_5_valid_0 = deq_valid_mask_4 & casez_tmp_4 & ~io_flush;	// frontend/src/zaqal/frontend/IBUF.scala:24:36, :61:24, :66:42
+  reg  [63:0] casez_tmp_40;	// frontend/src/zaqal/frontend/IBUF.scala:67:21
   always_comb begin	// frontend/src/zaqal/frontend/IBUF.scala:67:21
     casez (wrapped_ptr_5)	// frontend/src/zaqal/frontend/IBUF.scala:65:26, :67:21
       6'b000000:
-        casez_tmp_37 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_40 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000001:
-        casez_tmp_37 = buffer_1_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_40 = buffer_1_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000010:
-        casez_tmp_37 = buffer_2_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_40 = buffer_2_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000011:
-        casez_tmp_37 = buffer_3_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_40 = buffer_3_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000100:
-        casez_tmp_37 = buffer_4_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_40 = buffer_4_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000101:
-        casez_tmp_37 = buffer_5_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_40 = buffer_5_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000110:
-        casez_tmp_37 = buffer_6_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_40 = buffer_6_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000111:
-        casez_tmp_37 = buffer_7_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_40 = buffer_7_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001000:
-        casez_tmp_37 = buffer_8_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_40 = buffer_8_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001001:
-        casez_tmp_37 = buffer_9_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_40 = buffer_9_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001010:
-        casez_tmp_37 = buffer_10_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_40 = buffer_10_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001011:
-        casez_tmp_37 = buffer_11_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_40 = buffer_11_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001100:
-        casez_tmp_37 = buffer_12_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_40 = buffer_12_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001101:
-        casez_tmp_37 = buffer_13_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_40 = buffer_13_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001110:
-        casez_tmp_37 = buffer_14_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_40 = buffer_14_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001111:
-        casez_tmp_37 = buffer_15_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_40 = buffer_15_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010000:
-        casez_tmp_37 = buffer_16_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_40 = buffer_16_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010001:
-        casez_tmp_37 = buffer_17_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_40 = buffer_17_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010010:
-        casez_tmp_37 = buffer_18_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_40 = buffer_18_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010011:
-        casez_tmp_37 = buffer_19_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_40 = buffer_19_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010100:
-        casez_tmp_37 = buffer_20_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_40 = buffer_20_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010101:
-        casez_tmp_37 = buffer_21_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_40 = buffer_21_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010110:
-        casez_tmp_37 = buffer_22_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_40 = buffer_22_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010111:
-        casez_tmp_37 = buffer_23_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_40 = buffer_23_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011000:
-        casez_tmp_37 = buffer_24_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_40 = buffer_24_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011001:
-        casez_tmp_37 = buffer_25_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_40 = buffer_25_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011010:
-        casez_tmp_37 = buffer_26_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_40 = buffer_26_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011011:
-        casez_tmp_37 = buffer_27_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_40 = buffer_27_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011100:
-        casez_tmp_37 = buffer_28_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_40 = buffer_28_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011101:
-        casez_tmp_37 = buffer_29_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_40 = buffer_29_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011110:
-        casez_tmp_37 = buffer_30_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_40 = buffer_30_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011111:
-        casez_tmp_37 = buffer_31_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_40 = buffer_31_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100000:
-        casez_tmp_37 = buffer_32_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_40 = buffer_32_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100001:
-        casez_tmp_37 = buffer_33_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_40 = buffer_33_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100010:
-        casez_tmp_37 = buffer_34_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_40 = buffer_34_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100011:
-        casez_tmp_37 = buffer_35_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_40 = buffer_35_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100100:
-        casez_tmp_37 = buffer_36_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_40 = buffer_36_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100101:
-        casez_tmp_37 = buffer_37_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_40 = buffer_37_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100110:
-        casez_tmp_37 = buffer_38_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_40 = buffer_38_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100111:
-        casez_tmp_37 = buffer_39_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_40 = buffer_39_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101000:
-        casez_tmp_37 = buffer_40_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_40 = buffer_40_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101001:
-        casez_tmp_37 = buffer_41_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_40 = buffer_41_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101010:
-        casez_tmp_37 = buffer_42_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_40 = buffer_42_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101011:
-        casez_tmp_37 = buffer_43_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_40 = buffer_43_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101100:
-        casez_tmp_37 = buffer_44_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_40 = buffer_44_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101101:
-        casez_tmp_37 = buffer_45_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_40 = buffer_45_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101110:
-        casez_tmp_37 = buffer_46_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_40 = buffer_46_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101111:
-        casez_tmp_37 = buffer_47_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_40 = buffer_47_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110000:
-        casez_tmp_37 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_40 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110001:
-        casez_tmp_37 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_40 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110010:
-        casez_tmp_37 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_40 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110011:
-        casez_tmp_37 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_40 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110100:
-        casez_tmp_37 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_40 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110101:
-        casez_tmp_37 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_40 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110110:
-        casez_tmp_37 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_40 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110111:
-        casez_tmp_37 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_40 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111000:
-        casez_tmp_37 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_40 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111001:
-        casez_tmp_37 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_40 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111010:
-        casez_tmp_37 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_40 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111011:
-        casez_tmp_37 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_40 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111100:
-        casez_tmp_37 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_40 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111101:
-        casez_tmp_37 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_40 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111110:
-        casez_tmp_37 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_40 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       default:
-        casez_tmp_37 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_40 = buffer_0_pc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
     endcase	// frontend/src/zaqal/frontend/IBUF.scala:65:26, :67:21
   end // always_comb
-  reg  [31:0] casez_tmp_38;	// frontend/src/zaqal/frontend/IBUF.scala:67:21
+  reg  [31:0] casez_tmp_41;	// frontend/src/zaqal/frontend/IBUF.scala:67:21
   always_comb begin	// frontend/src/zaqal/frontend/IBUF.scala:67:21
     casez (wrapped_ptr_5)	// frontend/src/zaqal/frontend/IBUF.scala:65:26, :67:21
       6'b000000:
-        casez_tmp_38 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_41 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000001:
-        casez_tmp_38 = buffer_1_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_41 = buffer_1_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000010:
-        casez_tmp_38 = buffer_2_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_41 = buffer_2_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000011:
-        casez_tmp_38 = buffer_3_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_41 = buffer_3_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000100:
-        casez_tmp_38 = buffer_4_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_41 = buffer_4_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000101:
-        casez_tmp_38 = buffer_5_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_41 = buffer_5_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000110:
-        casez_tmp_38 = buffer_6_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_41 = buffer_6_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000111:
-        casez_tmp_38 = buffer_7_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_41 = buffer_7_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001000:
-        casez_tmp_38 = buffer_8_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_41 = buffer_8_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001001:
-        casez_tmp_38 = buffer_9_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_41 = buffer_9_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001010:
-        casez_tmp_38 = buffer_10_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_41 = buffer_10_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001011:
-        casez_tmp_38 = buffer_11_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_41 = buffer_11_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001100:
-        casez_tmp_38 = buffer_12_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_41 = buffer_12_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001101:
-        casez_tmp_38 = buffer_13_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_41 = buffer_13_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001110:
-        casez_tmp_38 = buffer_14_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_41 = buffer_14_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001111:
-        casez_tmp_38 = buffer_15_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_41 = buffer_15_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010000:
-        casez_tmp_38 = buffer_16_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_41 = buffer_16_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010001:
-        casez_tmp_38 = buffer_17_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_41 = buffer_17_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010010:
-        casez_tmp_38 = buffer_18_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_41 = buffer_18_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010011:
-        casez_tmp_38 = buffer_19_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_41 = buffer_19_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010100:
-        casez_tmp_38 = buffer_20_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_41 = buffer_20_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010101:
-        casez_tmp_38 = buffer_21_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_41 = buffer_21_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010110:
-        casez_tmp_38 = buffer_22_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_41 = buffer_22_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010111:
-        casez_tmp_38 = buffer_23_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_41 = buffer_23_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011000:
-        casez_tmp_38 = buffer_24_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_41 = buffer_24_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011001:
-        casez_tmp_38 = buffer_25_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_41 = buffer_25_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011010:
-        casez_tmp_38 = buffer_26_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_41 = buffer_26_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011011:
-        casez_tmp_38 = buffer_27_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_41 = buffer_27_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011100:
-        casez_tmp_38 = buffer_28_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_41 = buffer_28_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011101:
-        casez_tmp_38 = buffer_29_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_41 = buffer_29_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011110:
-        casez_tmp_38 = buffer_30_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_41 = buffer_30_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011111:
-        casez_tmp_38 = buffer_31_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_41 = buffer_31_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100000:
-        casez_tmp_38 = buffer_32_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_41 = buffer_32_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100001:
-        casez_tmp_38 = buffer_33_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_41 = buffer_33_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100010:
-        casez_tmp_38 = buffer_34_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_41 = buffer_34_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100011:
-        casez_tmp_38 = buffer_35_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_41 = buffer_35_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100100:
-        casez_tmp_38 = buffer_36_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_41 = buffer_36_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100101:
-        casez_tmp_38 = buffer_37_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_41 = buffer_37_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100110:
-        casez_tmp_38 = buffer_38_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_41 = buffer_38_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100111:
-        casez_tmp_38 = buffer_39_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_41 = buffer_39_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101000:
-        casez_tmp_38 = buffer_40_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_41 = buffer_40_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101001:
-        casez_tmp_38 = buffer_41_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_41 = buffer_41_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101010:
-        casez_tmp_38 = buffer_42_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_41 = buffer_42_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101011:
-        casez_tmp_38 = buffer_43_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_41 = buffer_43_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101100:
-        casez_tmp_38 = buffer_44_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_41 = buffer_44_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101101:
-        casez_tmp_38 = buffer_45_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_41 = buffer_45_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101110:
-        casez_tmp_38 = buffer_46_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_41 = buffer_46_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101111:
-        casez_tmp_38 = buffer_47_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_41 = buffer_47_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110000:
-        casez_tmp_38 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_41 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110001:
-        casez_tmp_38 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_41 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110010:
-        casez_tmp_38 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_41 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110011:
-        casez_tmp_38 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_41 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110100:
-        casez_tmp_38 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_41 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110101:
-        casez_tmp_38 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_41 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110110:
-        casez_tmp_38 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_41 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110111:
-        casez_tmp_38 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_41 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111000:
-        casez_tmp_38 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_41 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111001:
-        casez_tmp_38 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_41 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111010:
-        casez_tmp_38 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_41 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111011:
-        casez_tmp_38 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_41 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111100:
-        casez_tmp_38 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_41 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111101:
-        casez_tmp_38 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_41 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111110:
-        casez_tmp_38 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_41 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       default:
-        casez_tmp_38 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_41 = buffer_0_inst_raw;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
     endcase	// frontend/src/zaqal/frontend/IBUF.scala:65:26, :67:21
   end // always_comb
-  reg  [5:0]  casez_tmp_39;	// frontend/src/zaqal/frontend/IBUF.scala:67:21
+  reg         casez_tmp_42;	// frontend/src/zaqal/frontend/IBUF.scala:67:21
   always_comb begin	// frontend/src/zaqal/frontend/IBUF.scala:67:21
     casez (wrapped_ptr_5)	// frontend/src/zaqal/frontend/IBUF.scala:65:26, :67:21
       6'b000000:
-        casez_tmp_39 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_42 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000001:
-        casez_tmp_39 = buffer_1_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_42 = buffer_1_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000010:
-        casez_tmp_39 = buffer_2_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_42 = buffer_2_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000011:
-        casez_tmp_39 = buffer_3_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_42 = buffer_3_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000100:
-        casez_tmp_39 = buffer_4_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_42 = buffer_4_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000101:
-        casez_tmp_39 = buffer_5_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_42 = buffer_5_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000110:
-        casez_tmp_39 = buffer_6_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_42 = buffer_6_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000111:
-        casez_tmp_39 = buffer_7_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_42 = buffer_7_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001000:
-        casez_tmp_39 = buffer_8_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_42 = buffer_8_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001001:
-        casez_tmp_39 = buffer_9_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_42 = buffer_9_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001010:
-        casez_tmp_39 = buffer_10_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_42 = buffer_10_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001011:
-        casez_tmp_39 = buffer_11_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_42 = buffer_11_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001100:
-        casez_tmp_39 = buffer_12_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_42 = buffer_12_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001101:
-        casez_tmp_39 = buffer_13_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_42 = buffer_13_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001110:
-        casez_tmp_39 = buffer_14_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_42 = buffer_14_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001111:
-        casez_tmp_39 = buffer_15_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_42 = buffer_15_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010000:
-        casez_tmp_39 = buffer_16_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_42 = buffer_16_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010001:
-        casez_tmp_39 = buffer_17_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_42 = buffer_17_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010010:
-        casez_tmp_39 = buffer_18_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_42 = buffer_18_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010011:
-        casez_tmp_39 = buffer_19_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_42 = buffer_19_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010100:
-        casez_tmp_39 = buffer_20_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_42 = buffer_20_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010101:
-        casez_tmp_39 = buffer_21_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_42 = buffer_21_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010110:
-        casez_tmp_39 = buffer_22_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_42 = buffer_22_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010111:
-        casez_tmp_39 = buffer_23_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_42 = buffer_23_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011000:
-        casez_tmp_39 = buffer_24_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_42 = buffer_24_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011001:
-        casez_tmp_39 = buffer_25_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_42 = buffer_25_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011010:
-        casez_tmp_39 = buffer_26_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_42 = buffer_26_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011011:
-        casez_tmp_39 = buffer_27_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_42 = buffer_27_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011100:
-        casez_tmp_39 = buffer_28_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_42 = buffer_28_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011101:
-        casez_tmp_39 = buffer_29_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_42 = buffer_29_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011110:
-        casez_tmp_39 = buffer_30_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_42 = buffer_30_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011111:
-        casez_tmp_39 = buffer_31_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_42 = buffer_31_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100000:
-        casez_tmp_39 = buffer_32_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_42 = buffer_32_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100001:
-        casez_tmp_39 = buffer_33_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_42 = buffer_33_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100010:
-        casez_tmp_39 = buffer_34_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_42 = buffer_34_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100011:
-        casez_tmp_39 = buffer_35_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_42 = buffer_35_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100100:
-        casez_tmp_39 = buffer_36_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_42 = buffer_36_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100101:
-        casez_tmp_39 = buffer_37_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_42 = buffer_37_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100110:
-        casez_tmp_39 = buffer_38_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_42 = buffer_38_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100111:
-        casez_tmp_39 = buffer_39_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_42 = buffer_39_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101000:
-        casez_tmp_39 = buffer_40_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_42 = buffer_40_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101001:
-        casez_tmp_39 = buffer_41_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_42 = buffer_41_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101010:
-        casez_tmp_39 = buffer_42_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_42 = buffer_42_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101011:
-        casez_tmp_39 = buffer_43_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_42 = buffer_43_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101100:
-        casez_tmp_39 = buffer_44_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_42 = buffer_44_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101101:
-        casez_tmp_39 = buffer_45_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_42 = buffer_45_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101110:
-        casez_tmp_39 = buffer_46_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_42 = buffer_46_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101111:
-        casez_tmp_39 = buffer_47_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_42 = buffer_47_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110000:
-        casez_tmp_39 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_42 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110001:
-        casez_tmp_39 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_42 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110010:
-        casez_tmp_39 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_42 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110011:
-        casez_tmp_39 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_42 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110100:
-        casez_tmp_39 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_42 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110101:
-        casez_tmp_39 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_42 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110110:
-        casez_tmp_39 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_42 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110111:
-        casez_tmp_39 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_42 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111000:
-        casez_tmp_39 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_42 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111001:
-        casez_tmp_39 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_42 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111010:
-        casez_tmp_39 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_42 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111011:
-        casez_tmp_39 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_42 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111100:
-        casez_tmp_39 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_42 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111101:
-        casez_tmp_39 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_42 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111110:
-        casez_tmp_39 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_42 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       default:
-        casez_tmp_39 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_42 = buffer_0_pre_is_rvc;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
     endcase	// frontend/src/zaqal/frontend/IBUF.scala:65:26, :67:21
   end // always_comb
-  reg         casez_tmp_40;	// frontend/src/zaqal/frontend/IBUF.scala:67:21
+  reg  [31:0] casez_tmp_43;	// frontend/src/zaqal/frontend/IBUF.scala:67:21
   always_comb begin	// frontend/src/zaqal/frontend/IBUF.scala:67:21
     casez (wrapped_ptr_5)	// frontend/src/zaqal/frontend/IBUF.scala:65:26, :67:21
       6'b000000:
-        casez_tmp_40 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_43 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000001:
-        casez_tmp_40 = buffer_1_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_43 = buffer_1_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000010:
-        casez_tmp_40 = buffer_2_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_43 = buffer_2_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000011:
-        casez_tmp_40 = buffer_3_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_43 = buffer_3_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000100:
-        casez_tmp_40 = buffer_4_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_43 = buffer_4_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000101:
-        casez_tmp_40 = buffer_5_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_43 = buffer_5_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000110:
-        casez_tmp_40 = buffer_6_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_43 = buffer_6_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b000111:
-        casez_tmp_40 = buffer_7_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_43 = buffer_7_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001000:
-        casez_tmp_40 = buffer_8_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_43 = buffer_8_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001001:
-        casez_tmp_40 = buffer_9_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_43 = buffer_9_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001010:
-        casez_tmp_40 = buffer_10_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_43 = buffer_10_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001011:
-        casez_tmp_40 = buffer_11_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_43 = buffer_11_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001100:
-        casez_tmp_40 = buffer_12_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_43 = buffer_12_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001101:
-        casez_tmp_40 = buffer_13_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_43 = buffer_13_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001110:
-        casez_tmp_40 = buffer_14_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_43 = buffer_14_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b001111:
-        casez_tmp_40 = buffer_15_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_43 = buffer_15_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010000:
-        casez_tmp_40 = buffer_16_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_43 = buffer_16_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010001:
-        casez_tmp_40 = buffer_17_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_43 = buffer_17_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010010:
-        casez_tmp_40 = buffer_18_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_43 = buffer_18_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010011:
-        casez_tmp_40 = buffer_19_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_43 = buffer_19_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010100:
-        casez_tmp_40 = buffer_20_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_43 = buffer_20_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010101:
-        casez_tmp_40 = buffer_21_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_43 = buffer_21_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010110:
-        casez_tmp_40 = buffer_22_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_43 = buffer_22_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b010111:
-        casez_tmp_40 = buffer_23_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_43 = buffer_23_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011000:
-        casez_tmp_40 = buffer_24_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_43 = buffer_24_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011001:
-        casez_tmp_40 = buffer_25_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_43 = buffer_25_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011010:
-        casez_tmp_40 = buffer_26_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_43 = buffer_26_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011011:
-        casez_tmp_40 = buffer_27_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_43 = buffer_27_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011100:
-        casez_tmp_40 = buffer_28_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_43 = buffer_28_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011101:
-        casez_tmp_40 = buffer_29_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_43 = buffer_29_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011110:
-        casez_tmp_40 = buffer_30_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_43 = buffer_30_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b011111:
-        casez_tmp_40 = buffer_31_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_43 = buffer_31_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100000:
-        casez_tmp_40 = buffer_32_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_43 = buffer_32_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100001:
-        casez_tmp_40 = buffer_33_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_43 = buffer_33_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100010:
-        casez_tmp_40 = buffer_34_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_43 = buffer_34_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100011:
-        casez_tmp_40 = buffer_35_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_43 = buffer_35_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100100:
-        casez_tmp_40 = buffer_36_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_43 = buffer_36_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100101:
-        casez_tmp_40 = buffer_37_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_43 = buffer_37_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100110:
-        casez_tmp_40 = buffer_38_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_43 = buffer_38_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b100111:
-        casez_tmp_40 = buffer_39_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_43 = buffer_39_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101000:
-        casez_tmp_40 = buffer_40_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_43 = buffer_40_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101001:
-        casez_tmp_40 = buffer_41_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_43 = buffer_41_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101010:
-        casez_tmp_40 = buffer_42_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_43 = buffer_42_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101011:
-        casez_tmp_40 = buffer_43_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_43 = buffer_43_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101100:
-        casez_tmp_40 = buffer_44_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_43 = buffer_44_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101101:
-        casez_tmp_40 = buffer_45_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_43 = buffer_45_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101110:
-        casez_tmp_40 = buffer_46_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_43 = buffer_46_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b101111:
-        casez_tmp_40 = buffer_47_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_43 = buffer_47_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110000:
-        casez_tmp_40 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_43 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110001:
-        casez_tmp_40 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_43 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110010:
-        casez_tmp_40 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_43 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110011:
-        casez_tmp_40 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_43 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110100:
-        casez_tmp_40 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_43 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110101:
-        casez_tmp_40 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_43 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110110:
-        casez_tmp_40 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_43 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b110111:
-        casez_tmp_40 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_43 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111000:
-        casez_tmp_40 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_43 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111001:
-        casez_tmp_40 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_43 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111010:
-        casez_tmp_40 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_43 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111011:
-        casez_tmp_40 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_43 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111100:
-        casez_tmp_40 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_43 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111101:
-        casez_tmp_40 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_43 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       6'b111110:
-        casez_tmp_40 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_43 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
       default:
-        casez_tmp_40 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+        casez_tmp_43 = buffer_0_pre_expanded_inst;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+    endcase	// frontend/src/zaqal/frontend/IBUF.scala:65:26, :67:21
+  end // always_comb
+  reg  [5:0]  casez_tmp_44;	// frontend/src/zaqal/frontend/IBUF.scala:67:21
+  always_comb begin	// frontend/src/zaqal/frontend/IBUF.scala:67:21
+    casez (wrapped_ptr_5)	// frontend/src/zaqal/frontend/IBUF.scala:65:26, :67:21
+      6'b000000:
+        casez_tmp_44 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b000001:
+        casez_tmp_44 = buffer_1_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b000010:
+        casez_tmp_44 = buffer_2_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b000011:
+        casez_tmp_44 = buffer_3_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b000100:
+        casez_tmp_44 = buffer_4_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b000101:
+        casez_tmp_44 = buffer_5_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b000110:
+        casez_tmp_44 = buffer_6_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b000111:
+        casez_tmp_44 = buffer_7_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b001000:
+        casez_tmp_44 = buffer_8_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b001001:
+        casez_tmp_44 = buffer_9_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b001010:
+        casez_tmp_44 = buffer_10_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b001011:
+        casez_tmp_44 = buffer_11_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b001100:
+        casez_tmp_44 = buffer_12_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b001101:
+        casez_tmp_44 = buffer_13_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b001110:
+        casez_tmp_44 = buffer_14_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b001111:
+        casez_tmp_44 = buffer_15_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b010000:
+        casez_tmp_44 = buffer_16_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b010001:
+        casez_tmp_44 = buffer_17_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b010010:
+        casez_tmp_44 = buffer_18_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b010011:
+        casez_tmp_44 = buffer_19_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b010100:
+        casez_tmp_44 = buffer_20_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b010101:
+        casez_tmp_44 = buffer_21_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b010110:
+        casez_tmp_44 = buffer_22_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b010111:
+        casez_tmp_44 = buffer_23_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b011000:
+        casez_tmp_44 = buffer_24_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b011001:
+        casez_tmp_44 = buffer_25_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b011010:
+        casez_tmp_44 = buffer_26_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b011011:
+        casez_tmp_44 = buffer_27_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b011100:
+        casez_tmp_44 = buffer_28_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b011101:
+        casez_tmp_44 = buffer_29_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b011110:
+        casez_tmp_44 = buffer_30_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b011111:
+        casez_tmp_44 = buffer_31_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b100000:
+        casez_tmp_44 = buffer_32_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b100001:
+        casez_tmp_44 = buffer_33_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b100010:
+        casez_tmp_44 = buffer_34_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b100011:
+        casez_tmp_44 = buffer_35_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b100100:
+        casez_tmp_44 = buffer_36_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b100101:
+        casez_tmp_44 = buffer_37_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b100110:
+        casez_tmp_44 = buffer_38_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b100111:
+        casez_tmp_44 = buffer_39_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b101000:
+        casez_tmp_44 = buffer_40_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b101001:
+        casez_tmp_44 = buffer_41_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b101010:
+        casez_tmp_44 = buffer_42_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b101011:
+        casez_tmp_44 = buffer_43_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b101100:
+        casez_tmp_44 = buffer_44_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b101101:
+        casez_tmp_44 = buffer_45_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b101110:
+        casez_tmp_44 = buffer_46_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b101111:
+        casez_tmp_44 = buffer_47_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b110000:
+        casez_tmp_44 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b110001:
+        casez_tmp_44 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b110010:
+        casez_tmp_44 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b110011:
+        casez_tmp_44 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b110100:
+        casez_tmp_44 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b110101:
+        casez_tmp_44 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b110110:
+        casez_tmp_44 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b110111:
+        casez_tmp_44 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b111000:
+        casez_tmp_44 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b111001:
+        casez_tmp_44 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b111010:
+        casez_tmp_44 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b111011:
+        casez_tmp_44 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b111100:
+        casez_tmp_44 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b111101:
+        casez_tmp_44 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b111110:
+        casez_tmp_44 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      default:
+        casez_tmp_44 = buffer_0_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+    endcase	// frontend/src/zaqal/frontend/IBUF.scala:65:26, :67:21
+  end // always_comb
+  reg         casez_tmp_45;	// frontend/src/zaqal/frontend/IBUF.scala:67:21
+  always_comb begin	// frontend/src/zaqal/frontend/IBUF.scala:67:21
+    casez (wrapped_ptr_5)	// frontend/src/zaqal/frontend/IBUF.scala:65:26, :67:21
+      6'b000000:
+        casez_tmp_45 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b000001:
+        casez_tmp_45 = buffer_1_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b000010:
+        casez_tmp_45 = buffer_2_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b000011:
+        casez_tmp_45 = buffer_3_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b000100:
+        casez_tmp_45 = buffer_4_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b000101:
+        casez_tmp_45 = buffer_5_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b000110:
+        casez_tmp_45 = buffer_6_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b000111:
+        casez_tmp_45 = buffer_7_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b001000:
+        casez_tmp_45 = buffer_8_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b001001:
+        casez_tmp_45 = buffer_9_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b001010:
+        casez_tmp_45 = buffer_10_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b001011:
+        casez_tmp_45 = buffer_11_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b001100:
+        casez_tmp_45 = buffer_12_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b001101:
+        casez_tmp_45 = buffer_13_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b001110:
+        casez_tmp_45 = buffer_14_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b001111:
+        casez_tmp_45 = buffer_15_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b010000:
+        casez_tmp_45 = buffer_16_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b010001:
+        casez_tmp_45 = buffer_17_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b010010:
+        casez_tmp_45 = buffer_18_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b010011:
+        casez_tmp_45 = buffer_19_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b010100:
+        casez_tmp_45 = buffer_20_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b010101:
+        casez_tmp_45 = buffer_21_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b010110:
+        casez_tmp_45 = buffer_22_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b010111:
+        casez_tmp_45 = buffer_23_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b011000:
+        casez_tmp_45 = buffer_24_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b011001:
+        casez_tmp_45 = buffer_25_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b011010:
+        casez_tmp_45 = buffer_26_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b011011:
+        casez_tmp_45 = buffer_27_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b011100:
+        casez_tmp_45 = buffer_28_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b011101:
+        casez_tmp_45 = buffer_29_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b011110:
+        casez_tmp_45 = buffer_30_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b011111:
+        casez_tmp_45 = buffer_31_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b100000:
+        casez_tmp_45 = buffer_32_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b100001:
+        casez_tmp_45 = buffer_33_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b100010:
+        casez_tmp_45 = buffer_34_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b100011:
+        casez_tmp_45 = buffer_35_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b100100:
+        casez_tmp_45 = buffer_36_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b100101:
+        casez_tmp_45 = buffer_37_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b100110:
+        casez_tmp_45 = buffer_38_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b100111:
+        casez_tmp_45 = buffer_39_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b101000:
+        casez_tmp_45 = buffer_40_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b101001:
+        casez_tmp_45 = buffer_41_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b101010:
+        casez_tmp_45 = buffer_42_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b101011:
+        casez_tmp_45 = buffer_43_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b101100:
+        casez_tmp_45 = buffer_44_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b101101:
+        casez_tmp_45 = buffer_45_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b101110:
+        casez_tmp_45 = buffer_46_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b101111:
+        casez_tmp_45 = buffer_47_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b110000:
+        casez_tmp_45 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b110001:
+        casez_tmp_45 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b110010:
+        casez_tmp_45 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b110011:
+        casez_tmp_45 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b110100:
+        casez_tmp_45 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b110101:
+        casez_tmp_45 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b110110:
+        casez_tmp_45 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b110111:
+        casez_tmp_45 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b111000:
+        casez_tmp_45 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b111001:
+        casez_tmp_45 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b111010:
+        casez_tmp_45 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b111011:
+        casez_tmp_45 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b111100:
+        casez_tmp_45 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b111101:
+        casez_tmp_45 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b111110:
+        casez_tmp_45 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      default:
+        casez_tmp_45 = buffer_0_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+    endcase	// frontend/src/zaqal/frontend/IBUF.scala:65:26, :67:21
+  end // always_comb
+  reg         casez_tmp_46;	// frontend/src/zaqal/frontend/IBUF.scala:67:21
+  always_comb begin	// frontend/src/zaqal/frontend/IBUF.scala:67:21
+    casez (wrapped_ptr_5)	// frontend/src/zaqal/frontend/IBUF.scala:65:26, :67:21
+      6'b000000:
+        casez_tmp_46 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b000001:
+        casez_tmp_46 = buffer_1_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b000010:
+        casez_tmp_46 = buffer_2_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b000011:
+        casez_tmp_46 = buffer_3_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b000100:
+        casez_tmp_46 = buffer_4_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b000101:
+        casez_tmp_46 = buffer_5_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b000110:
+        casez_tmp_46 = buffer_6_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b000111:
+        casez_tmp_46 = buffer_7_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b001000:
+        casez_tmp_46 = buffer_8_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b001001:
+        casez_tmp_46 = buffer_9_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b001010:
+        casez_tmp_46 = buffer_10_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b001011:
+        casez_tmp_46 = buffer_11_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b001100:
+        casez_tmp_46 = buffer_12_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b001101:
+        casez_tmp_46 = buffer_13_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b001110:
+        casez_tmp_46 = buffer_14_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b001111:
+        casez_tmp_46 = buffer_15_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b010000:
+        casez_tmp_46 = buffer_16_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b010001:
+        casez_tmp_46 = buffer_17_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b010010:
+        casez_tmp_46 = buffer_18_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b010011:
+        casez_tmp_46 = buffer_19_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b010100:
+        casez_tmp_46 = buffer_20_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b010101:
+        casez_tmp_46 = buffer_21_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b010110:
+        casez_tmp_46 = buffer_22_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b010111:
+        casez_tmp_46 = buffer_23_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b011000:
+        casez_tmp_46 = buffer_24_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b011001:
+        casez_tmp_46 = buffer_25_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b011010:
+        casez_tmp_46 = buffer_26_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b011011:
+        casez_tmp_46 = buffer_27_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b011100:
+        casez_tmp_46 = buffer_28_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b011101:
+        casez_tmp_46 = buffer_29_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b011110:
+        casez_tmp_46 = buffer_30_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b011111:
+        casez_tmp_46 = buffer_31_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b100000:
+        casez_tmp_46 = buffer_32_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b100001:
+        casez_tmp_46 = buffer_33_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b100010:
+        casez_tmp_46 = buffer_34_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b100011:
+        casez_tmp_46 = buffer_35_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b100100:
+        casez_tmp_46 = buffer_36_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b100101:
+        casez_tmp_46 = buffer_37_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b100110:
+        casez_tmp_46 = buffer_38_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b100111:
+        casez_tmp_46 = buffer_39_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b101000:
+        casez_tmp_46 = buffer_40_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b101001:
+        casez_tmp_46 = buffer_41_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b101010:
+        casez_tmp_46 = buffer_42_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b101011:
+        casez_tmp_46 = buffer_43_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b101100:
+        casez_tmp_46 = buffer_44_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b101101:
+        casez_tmp_46 = buffer_45_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b101110:
+        casez_tmp_46 = buffer_46_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b101111:
+        casez_tmp_46 = buffer_47_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b110000:
+        casez_tmp_46 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b110001:
+        casez_tmp_46 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b110010:
+        casez_tmp_46 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b110011:
+        casez_tmp_46 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b110100:
+        casez_tmp_46 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b110101:
+        casez_tmp_46 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b110110:
+        casez_tmp_46 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b110111:
+        casez_tmp_46 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b111000:
+        casez_tmp_46 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b111001:
+        casez_tmp_46 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b111010:
+        casez_tmp_46 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b111011:
+        casez_tmp_46 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b111100:
+        casez_tmp_46 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b111101:
+        casez_tmp_46 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      6'b111110:
+        casez_tmp_46 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
+      default:
+        casez_tmp_46 = buffer_0_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :67:21
     endcase	// frontend/src/zaqal/frontend/IBUF.scala:65:26, :67:21
   end // always_comb
   wire        entry_is_predicted_taken =
@@ -14257,149 +15110,341 @@ module IBUF(	// frontend/src/zaqal/frontend/IBUF.scala:9:7
       end
     end
     if (_GEN_1
-        & (io_inst_data_bits_mask[15] ? _GEN_1347 | _GEN_1156 : _GEN_1298 | _GEN_1156))	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+        & (io_inst_data_bits_mask[15]
+             ? _GEN_1347 | _GEN_1156
+             : _GEN_1298 | _GEN_1156)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       buffer_0_ftqPtr <= io_inst_data_bits_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+      buffer_0_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+    end
     if (_GEN_1
-        & (io_inst_data_bits_mask[15] ? _GEN_1349 | _GEN_1159 : _GEN_1299 | _GEN_1159))	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+        & (io_inst_data_bits_mask[15]
+             ? _GEN_1349 | _GEN_1159
+             : _GEN_1299 | _GEN_1159)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       buffer_1_ftqPtr <= io_inst_data_bits_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+      buffer_1_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+    end
     if (_GEN_1
-        & (io_inst_data_bits_mask[15] ? _GEN_1351 | _GEN_1162 : _GEN_1300 | _GEN_1162))	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+        & (io_inst_data_bits_mask[15]
+             ? _GEN_1351 | _GEN_1162
+             : _GEN_1300 | _GEN_1162)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       buffer_2_ftqPtr <= io_inst_data_bits_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+      buffer_2_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+    end
     if (_GEN_1
-        & (io_inst_data_bits_mask[15] ? _GEN_1353 | _GEN_1165 : _GEN_1301 | _GEN_1165))	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+        & (io_inst_data_bits_mask[15]
+             ? _GEN_1353 | _GEN_1165
+             : _GEN_1301 | _GEN_1165)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       buffer_3_ftqPtr <= io_inst_data_bits_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+      buffer_3_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+    end
     if (_GEN_1
-        & (io_inst_data_bits_mask[15] ? _GEN_1355 | _GEN_1168 : _GEN_1302 | _GEN_1168))	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+        & (io_inst_data_bits_mask[15]
+             ? _GEN_1355 | _GEN_1168
+             : _GEN_1302 | _GEN_1168)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       buffer_4_ftqPtr <= io_inst_data_bits_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+      buffer_4_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+    end
     if (_GEN_1
-        & (io_inst_data_bits_mask[15] ? _GEN_1357 | _GEN_1171 : _GEN_1303 | _GEN_1171))	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+        & (io_inst_data_bits_mask[15]
+             ? _GEN_1357 | _GEN_1171
+             : _GEN_1303 | _GEN_1171)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       buffer_5_ftqPtr <= io_inst_data_bits_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+      buffer_5_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+    end
     if (_GEN_1
-        & (io_inst_data_bits_mask[15] ? _GEN_1359 | _GEN_1174 : _GEN_1304 | _GEN_1174))	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+        & (io_inst_data_bits_mask[15]
+             ? _GEN_1359 | _GEN_1174
+             : _GEN_1304 | _GEN_1174)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       buffer_6_ftqPtr <= io_inst_data_bits_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+      buffer_6_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+    end
     if (_GEN_1
-        & (io_inst_data_bits_mask[15] ? _GEN_1361 | _GEN_1177 : _GEN_1305 | _GEN_1177))	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+        & (io_inst_data_bits_mask[15]
+             ? _GEN_1361 | _GEN_1177
+             : _GEN_1305 | _GEN_1177)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       buffer_7_ftqPtr <= io_inst_data_bits_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+      buffer_7_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+    end
     if (_GEN_1
-        & (io_inst_data_bits_mask[15] ? _GEN_1363 | _GEN_1180 : _GEN_1306 | _GEN_1180))	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+        & (io_inst_data_bits_mask[15]
+             ? _GEN_1363 | _GEN_1180
+             : _GEN_1306 | _GEN_1180)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       buffer_8_ftqPtr <= io_inst_data_bits_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+      buffer_8_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+    end
     if (_GEN_1
-        & (io_inst_data_bits_mask[15] ? _GEN_1365 | _GEN_1183 : _GEN_1307 | _GEN_1183))	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+        & (io_inst_data_bits_mask[15]
+             ? _GEN_1365 | _GEN_1183
+             : _GEN_1307 | _GEN_1183)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       buffer_9_ftqPtr <= io_inst_data_bits_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+      buffer_9_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+    end
     if (_GEN_1
-        & (io_inst_data_bits_mask[15] ? _GEN_1367 | _GEN_1186 : _GEN_1308 | _GEN_1186))	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+        & (io_inst_data_bits_mask[15]
+             ? _GEN_1367 | _GEN_1186
+             : _GEN_1308 | _GEN_1186)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       buffer_10_ftqPtr <= io_inst_data_bits_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+      buffer_10_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+    end
     if (_GEN_1
-        & (io_inst_data_bits_mask[15] ? _GEN_1369 | _GEN_1189 : _GEN_1309 | _GEN_1189))	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+        & (io_inst_data_bits_mask[15]
+             ? _GEN_1369 | _GEN_1189
+             : _GEN_1309 | _GEN_1189)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       buffer_11_ftqPtr <= io_inst_data_bits_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+      buffer_11_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+    end
     if (_GEN_1
-        & (io_inst_data_bits_mask[15] ? _GEN_1371 | _GEN_1192 : _GEN_1310 | _GEN_1192))	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+        & (io_inst_data_bits_mask[15]
+             ? _GEN_1371 | _GEN_1192
+             : _GEN_1310 | _GEN_1192)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       buffer_12_ftqPtr <= io_inst_data_bits_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+      buffer_12_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+    end
     if (_GEN_1
-        & (io_inst_data_bits_mask[15] ? _GEN_1373 | _GEN_1195 : _GEN_1311 | _GEN_1195))	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+        & (io_inst_data_bits_mask[15]
+             ? _GEN_1373 | _GEN_1195
+             : _GEN_1311 | _GEN_1195)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       buffer_13_ftqPtr <= io_inst_data_bits_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+      buffer_13_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+    end
     if (_GEN_1
-        & (io_inst_data_bits_mask[15] ? _GEN_1375 | _GEN_1198 : _GEN_1312 | _GEN_1198))	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+        & (io_inst_data_bits_mask[15]
+             ? _GEN_1375 | _GEN_1198
+             : _GEN_1312 | _GEN_1198)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       buffer_14_ftqPtr <= io_inst_data_bits_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+      buffer_14_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+    end
     if (_GEN_1
-        & (io_inst_data_bits_mask[15] ? _GEN_1377 | _GEN_1201 : _GEN_1313 | _GEN_1201))	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+        & (io_inst_data_bits_mask[15]
+             ? _GEN_1377 | _GEN_1201
+             : _GEN_1313 | _GEN_1201)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       buffer_15_ftqPtr <= io_inst_data_bits_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+      buffer_15_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+    end
     if (_GEN_1
-        & (io_inst_data_bits_mask[15] ? _GEN_1379 | _GEN_1204 : _GEN_1314 | _GEN_1204))	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+        & (io_inst_data_bits_mask[15]
+             ? _GEN_1379 | _GEN_1204
+             : _GEN_1314 | _GEN_1204)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       buffer_16_ftqPtr <= io_inst_data_bits_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+      buffer_16_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+    end
     if (_GEN_1
-        & (io_inst_data_bits_mask[15] ? _GEN_1381 | _GEN_1207 : _GEN_1315 | _GEN_1207))	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+        & (io_inst_data_bits_mask[15]
+             ? _GEN_1381 | _GEN_1207
+             : _GEN_1315 | _GEN_1207)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       buffer_17_ftqPtr <= io_inst_data_bits_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+      buffer_17_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+    end
     if (_GEN_1
-        & (io_inst_data_bits_mask[15] ? _GEN_1383 | _GEN_1210 : _GEN_1316 | _GEN_1210))	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+        & (io_inst_data_bits_mask[15]
+             ? _GEN_1383 | _GEN_1210
+             : _GEN_1316 | _GEN_1210)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       buffer_18_ftqPtr <= io_inst_data_bits_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+      buffer_18_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+    end
     if (_GEN_1
-        & (io_inst_data_bits_mask[15] ? _GEN_1385 | _GEN_1213 : _GEN_1317 | _GEN_1213))	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+        & (io_inst_data_bits_mask[15]
+             ? _GEN_1385 | _GEN_1213
+             : _GEN_1317 | _GEN_1213)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       buffer_19_ftqPtr <= io_inst_data_bits_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+      buffer_19_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+    end
     if (_GEN_1
-        & (io_inst_data_bits_mask[15] ? _GEN_1387 | _GEN_1216 : _GEN_1318 | _GEN_1216))	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+        & (io_inst_data_bits_mask[15]
+             ? _GEN_1387 | _GEN_1216
+             : _GEN_1318 | _GEN_1216)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       buffer_20_ftqPtr <= io_inst_data_bits_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+      buffer_20_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+    end
     if (_GEN_1
-        & (io_inst_data_bits_mask[15] ? _GEN_1389 | _GEN_1219 : _GEN_1319 | _GEN_1219))	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+        & (io_inst_data_bits_mask[15]
+             ? _GEN_1389 | _GEN_1219
+             : _GEN_1319 | _GEN_1219)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       buffer_21_ftqPtr <= io_inst_data_bits_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+      buffer_21_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+    end
     if (_GEN_1
-        & (io_inst_data_bits_mask[15] ? _GEN_1391 | _GEN_1222 : _GEN_1320 | _GEN_1222))	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+        & (io_inst_data_bits_mask[15]
+             ? _GEN_1391 | _GEN_1222
+             : _GEN_1320 | _GEN_1222)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       buffer_22_ftqPtr <= io_inst_data_bits_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+      buffer_22_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+    end
     if (_GEN_1
-        & (io_inst_data_bits_mask[15] ? _GEN_1393 | _GEN_1225 : _GEN_1321 | _GEN_1225))	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+        & (io_inst_data_bits_mask[15]
+             ? _GEN_1393 | _GEN_1225
+             : _GEN_1321 | _GEN_1225)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       buffer_23_ftqPtr <= io_inst_data_bits_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+      buffer_23_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+    end
     if (_GEN_1
-        & (io_inst_data_bits_mask[15] ? _GEN_1395 | _GEN_1228 : _GEN_1322 | _GEN_1228))	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+        & (io_inst_data_bits_mask[15]
+             ? _GEN_1395 | _GEN_1228
+             : _GEN_1322 | _GEN_1228)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       buffer_24_ftqPtr <= io_inst_data_bits_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+      buffer_24_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+    end
     if (_GEN_1
-        & (io_inst_data_bits_mask[15] ? _GEN_1397 | _GEN_1231 : _GEN_1323 | _GEN_1231))	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+        & (io_inst_data_bits_mask[15]
+             ? _GEN_1397 | _GEN_1231
+             : _GEN_1323 | _GEN_1231)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       buffer_25_ftqPtr <= io_inst_data_bits_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+      buffer_25_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+    end
     if (_GEN_1
-        & (io_inst_data_bits_mask[15] ? _GEN_1399 | _GEN_1234 : _GEN_1324 | _GEN_1234))	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+        & (io_inst_data_bits_mask[15]
+             ? _GEN_1399 | _GEN_1234
+             : _GEN_1324 | _GEN_1234)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       buffer_26_ftqPtr <= io_inst_data_bits_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+      buffer_26_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+    end
     if (_GEN_1
-        & (io_inst_data_bits_mask[15] ? _GEN_1401 | _GEN_1237 : _GEN_1325 | _GEN_1237))	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+        & (io_inst_data_bits_mask[15]
+             ? _GEN_1401 | _GEN_1237
+             : _GEN_1325 | _GEN_1237)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       buffer_27_ftqPtr <= io_inst_data_bits_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+      buffer_27_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+    end
     if (_GEN_1
-        & (io_inst_data_bits_mask[15] ? _GEN_1403 | _GEN_1240 : _GEN_1326 | _GEN_1240))	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+        & (io_inst_data_bits_mask[15]
+             ? _GEN_1403 | _GEN_1240
+             : _GEN_1326 | _GEN_1240)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       buffer_28_ftqPtr <= io_inst_data_bits_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+      buffer_28_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+    end
     if (_GEN_1
-        & (io_inst_data_bits_mask[15] ? _GEN_1405 | _GEN_1243 : _GEN_1327 | _GEN_1243))	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+        & (io_inst_data_bits_mask[15]
+             ? _GEN_1405 | _GEN_1243
+             : _GEN_1327 | _GEN_1243)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       buffer_29_ftqPtr <= io_inst_data_bits_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+      buffer_29_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+    end
     if (_GEN_1
-        & (io_inst_data_bits_mask[15] ? _GEN_1407 | _GEN_1246 : _GEN_1328 | _GEN_1246))	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+        & (io_inst_data_bits_mask[15]
+             ? _GEN_1407 | _GEN_1246
+             : _GEN_1328 | _GEN_1246)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       buffer_30_ftqPtr <= io_inst_data_bits_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+      buffer_30_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+    end
     if (_GEN_1
-        & (io_inst_data_bits_mask[15] ? _GEN_1409 | _GEN_1249 : _GEN_1329 | _GEN_1249))	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+        & (io_inst_data_bits_mask[15]
+             ? _GEN_1409 | _GEN_1249
+             : _GEN_1329 | _GEN_1249)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       buffer_31_ftqPtr <= io_inst_data_bits_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+      buffer_31_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+    end
     if (_GEN_1
-        & (io_inst_data_bits_mask[15] ? _GEN_1411 | _GEN_1252 : _GEN_1330 | _GEN_1252))	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+        & (io_inst_data_bits_mask[15]
+             ? _GEN_1411 | _GEN_1252
+             : _GEN_1330 | _GEN_1252)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       buffer_32_ftqPtr <= io_inst_data_bits_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+      buffer_32_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+    end
     if (_GEN_1
-        & (io_inst_data_bits_mask[15] ? _GEN_1413 | _GEN_1255 : _GEN_1331 | _GEN_1255))	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+        & (io_inst_data_bits_mask[15]
+             ? _GEN_1413 | _GEN_1255
+             : _GEN_1331 | _GEN_1255)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       buffer_33_ftqPtr <= io_inst_data_bits_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+      buffer_33_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+    end
     if (_GEN_1
-        & (io_inst_data_bits_mask[15] ? _GEN_1415 | _GEN_1258 : _GEN_1332 | _GEN_1258))	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+        & (io_inst_data_bits_mask[15]
+             ? _GEN_1415 | _GEN_1258
+             : _GEN_1332 | _GEN_1258)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       buffer_34_ftqPtr <= io_inst_data_bits_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+      buffer_34_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+    end
     if (_GEN_1
-        & (io_inst_data_bits_mask[15] ? _GEN_1417 | _GEN_1261 : _GEN_1333 | _GEN_1261))	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+        & (io_inst_data_bits_mask[15]
+             ? _GEN_1417 | _GEN_1261
+             : _GEN_1333 | _GEN_1261)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       buffer_35_ftqPtr <= io_inst_data_bits_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+      buffer_35_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+    end
     if (_GEN_1
-        & (io_inst_data_bits_mask[15] ? _GEN_1419 | _GEN_1264 : _GEN_1334 | _GEN_1264))	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+        & (io_inst_data_bits_mask[15]
+             ? _GEN_1419 | _GEN_1264
+             : _GEN_1334 | _GEN_1264)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       buffer_36_ftqPtr <= io_inst_data_bits_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+      buffer_36_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+    end
     if (_GEN_1
-        & (io_inst_data_bits_mask[15] ? _GEN_1421 | _GEN_1267 : _GEN_1335 | _GEN_1267))	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+        & (io_inst_data_bits_mask[15]
+             ? _GEN_1421 | _GEN_1267
+             : _GEN_1335 | _GEN_1267)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       buffer_37_ftqPtr <= io_inst_data_bits_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+      buffer_37_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+    end
     if (_GEN_1
-        & (io_inst_data_bits_mask[15] ? _GEN_1423 | _GEN_1270 : _GEN_1336 | _GEN_1270))	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+        & (io_inst_data_bits_mask[15]
+             ? _GEN_1423 | _GEN_1270
+             : _GEN_1336 | _GEN_1270)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       buffer_38_ftqPtr <= io_inst_data_bits_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+      buffer_38_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+    end
     if (_GEN_1
-        & (io_inst_data_bits_mask[15] ? _GEN_1425 | _GEN_1273 : _GEN_1337 | _GEN_1273))	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+        & (io_inst_data_bits_mask[15]
+             ? _GEN_1425 | _GEN_1273
+             : _GEN_1337 | _GEN_1273)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       buffer_39_ftqPtr <= io_inst_data_bits_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+      buffer_39_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+    end
     if (_GEN_1
-        & (io_inst_data_bits_mask[15] ? _GEN_1427 | _GEN_1276 : _GEN_1338 | _GEN_1276))	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+        & (io_inst_data_bits_mask[15]
+             ? _GEN_1427 | _GEN_1276
+             : _GEN_1338 | _GEN_1276)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       buffer_40_ftqPtr <= io_inst_data_bits_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+      buffer_40_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+    end
     if (_GEN_1
-        & (io_inst_data_bits_mask[15] ? _GEN_1429 | _GEN_1279 : _GEN_1339 | _GEN_1279))	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+        & (io_inst_data_bits_mask[15]
+             ? _GEN_1429 | _GEN_1279
+             : _GEN_1339 | _GEN_1279)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       buffer_41_ftqPtr <= io_inst_data_bits_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+      buffer_41_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+    end
     if (_GEN_1
-        & (io_inst_data_bits_mask[15] ? _GEN_1431 | _GEN_1282 : _GEN_1340 | _GEN_1282))	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+        & (io_inst_data_bits_mask[15]
+             ? _GEN_1431 | _GEN_1282
+             : _GEN_1340 | _GEN_1282)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       buffer_42_ftqPtr <= io_inst_data_bits_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+      buffer_42_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+    end
     if (_GEN_1
-        & (io_inst_data_bits_mask[15] ? _GEN_1433 | _GEN_1285 : _GEN_1341 | _GEN_1285))	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+        & (io_inst_data_bits_mask[15]
+             ? _GEN_1433 | _GEN_1285
+             : _GEN_1341 | _GEN_1285)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       buffer_43_ftqPtr <= io_inst_data_bits_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+      buffer_43_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+    end
     if (_GEN_1
-        & (io_inst_data_bits_mask[15] ? _GEN_1435 | _GEN_1288 : _GEN_1342 | _GEN_1288))	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+        & (io_inst_data_bits_mask[15]
+             ? _GEN_1435 | _GEN_1288
+             : _GEN_1342 | _GEN_1288)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       buffer_44_ftqPtr <= io_inst_data_bits_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+      buffer_44_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+    end
     if (_GEN_1
-        & (io_inst_data_bits_mask[15] ? _GEN_1437 | _GEN_1291 : _GEN_1343 | _GEN_1291))	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+        & (io_inst_data_bits_mask[15]
+             ? _GEN_1437 | _GEN_1291
+             : _GEN_1343 | _GEN_1291)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       buffer_45_ftqPtr <= io_inst_data_bits_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+      buffer_45_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+    end
     if (_GEN_1
-        & (io_inst_data_bits_mask[15] ? _GEN_1439 | _GEN_1294 : _GEN_1344 | _GEN_1294))	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+        & (io_inst_data_bits_mask[15]
+             ? _GEN_1439 | _GEN_1294
+             : _GEN_1344 | _GEN_1294)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       buffer_46_ftqPtr <= io_inst_data_bits_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+      buffer_46_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+    end
     if (_GEN_1
-        & (io_inst_data_bits_mask[15] ? _GEN_1441 | _GEN_1297 : _GEN_1345 | _GEN_1297))	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+        & (io_inst_data_bits_mask[15]
+             ? _GEN_1441 | _GEN_1297
+             : _GEN_1345 | _GEN_1297)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :46:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       buffer_47_ftqPtr <= io_inst_data_bits_ftqPtr;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+      buffer_47_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
+    end
     if (reset) begin	// frontend/src/zaqal/frontend/IBUF.scala:9:7
       valid_0 <= 1'h0;	// frontend/src/zaqal/frontend/IBUF.scala:17:{23,46}
       valid_1 <= 1'h0;	// frontend/src/zaqal/frontend/IBUF.scala:17:{23,46}
@@ -14964,288 +16009,336 @@ module IBUF(	// frontend/src/zaqal/frontend/IBUF.scala:9:7
         buffer_0_pre_expanded_inst = {_RANDOM[8'h3][31:2], _RANDOM[8'h4][1:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_0_ftqPtr = _RANDOM[8'h4][7:2];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_0_is_predicted_taken = _RANDOM[8'h4][8];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
+        buffer_0_epoch = _RANDOM[8'h4][9];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_1_pc = {_RANDOM[8'h4][31:10], _RANDOM[8'h5], _RANDOM[8'h6][9:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_1_inst_raw = {_RANDOM[8'h6][31:10], _RANDOM[8'h7][9:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_1_pre_is_rvc = _RANDOM[8'h7][10];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_1_pre_expanded_inst = {_RANDOM[8'h7][31:12], _RANDOM[8'h8][11:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_1_ftqPtr = _RANDOM[8'h8][17:12];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_1_is_predicted_taken = _RANDOM[8'h8][18];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
+        buffer_1_epoch = _RANDOM[8'h8][19];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_2_pc = {_RANDOM[8'h8][31:20], _RANDOM[8'h9], _RANDOM[8'hA][19:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_2_inst_raw = {_RANDOM[8'hA][31:20], _RANDOM[8'hB][19:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_2_pre_is_rvc = _RANDOM[8'hB][20];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_2_pre_expanded_inst = {_RANDOM[8'hB][31:22], _RANDOM[8'hC][21:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_2_ftqPtr = _RANDOM[8'hC][27:22];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_2_is_predicted_taken = _RANDOM[8'hC][28];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
+        buffer_2_epoch = _RANDOM[8'hC][29];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_3_pc = {_RANDOM[8'hC][31:30], _RANDOM[8'hD], _RANDOM[8'hE][29:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_3_inst_raw = {_RANDOM[8'hE][31:30], _RANDOM[8'hF][29:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_3_pre_is_rvc = _RANDOM[8'hF][30];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_3_pre_expanded_inst = _RANDOM[8'h10];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_3_ftqPtr = _RANDOM[8'h11][5:0];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_3_is_predicted_taken = _RANDOM[8'h11][6];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
+        buffer_3_epoch = _RANDOM[8'h11][7];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_4_pc = {_RANDOM[8'h11][31:8], _RANDOM[8'h12], _RANDOM[8'h13][7:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_4_inst_raw = {_RANDOM[8'h13][31:8], _RANDOM[8'h14][7:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_4_pre_is_rvc = _RANDOM[8'h14][8];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_4_pre_expanded_inst = {_RANDOM[8'h14][31:10], _RANDOM[8'h15][9:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_4_ftqPtr = _RANDOM[8'h15][15:10];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_4_is_predicted_taken = _RANDOM[8'h15][16];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
+        buffer_4_epoch = _RANDOM[8'h15][17];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_5_pc = {_RANDOM[8'h15][31:18], _RANDOM[8'h16], _RANDOM[8'h17][17:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_5_inst_raw = {_RANDOM[8'h17][31:18], _RANDOM[8'h18][17:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_5_pre_is_rvc = _RANDOM[8'h18][18];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_5_pre_expanded_inst = {_RANDOM[8'h18][31:20], _RANDOM[8'h19][19:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_5_ftqPtr = _RANDOM[8'h19][25:20];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_5_is_predicted_taken = _RANDOM[8'h19][26];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
+        buffer_5_epoch = _RANDOM[8'h19][27];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_6_pc = {_RANDOM[8'h19][31:28], _RANDOM[8'h1A], _RANDOM[8'h1B][27:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_6_inst_raw = {_RANDOM[8'h1B][31:28], _RANDOM[8'h1C][27:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_6_pre_is_rvc = _RANDOM[8'h1C][28];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_6_pre_expanded_inst = {_RANDOM[8'h1C][31:30], _RANDOM[8'h1D][29:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_6_ftqPtr = {_RANDOM[8'h1D][31:30], _RANDOM[8'h1E][3:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_6_is_predicted_taken = _RANDOM[8'h1E][4];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
+        buffer_6_epoch = _RANDOM[8'h1E][5];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_7_pc = {_RANDOM[8'h1E][31:6], _RANDOM[8'h1F], _RANDOM[8'h20][5:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_7_inst_raw = {_RANDOM[8'h20][31:6], _RANDOM[8'h21][5:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_7_pre_is_rvc = _RANDOM[8'h21][6];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_7_pre_expanded_inst = {_RANDOM[8'h21][31:8], _RANDOM[8'h22][7:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_7_ftqPtr = _RANDOM[8'h22][13:8];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_7_is_predicted_taken = _RANDOM[8'h22][14];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
+        buffer_7_epoch = _RANDOM[8'h22][15];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_8_pc = {_RANDOM[8'h22][31:16], _RANDOM[8'h23], _RANDOM[8'h24][15:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_8_inst_raw = {_RANDOM[8'h24][31:16], _RANDOM[8'h25][15:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_8_pre_is_rvc = _RANDOM[8'h25][16];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_8_pre_expanded_inst = {_RANDOM[8'h25][31:18], _RANDOM[8'h26][17:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_8_ftqPtr = _RANDOM[8'h26][23:18];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_8_is_predicted_taken = _RANDOM[8'h26][24];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
+        buffer_8_epoch = _RANDOM[8'h26][25];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_9_pc = {_RANDOM[8'h26][31:26], _RANDOM[8'h27], _RANDOM[8'h28][25:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_9_inst_raw = {_RANDOM[8'h28][31:26], _RANDOM[8'h29][25:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_9_pre_is_rvc = _RANDOM[8'h29][26];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_9_pre_expanded_inst = {_RANDOM[8'h29][31:28], _RANDOM[8'h2A][27:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_9_ftqPtr = {_RANDOM[8'h2A][31:28], _RANDOM[8'h2B][1:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_9_is_predicted_taken = _RANDOM[8'h2B][2];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
+        buffer_9_epoch = _RANDOM[8'h2B][3];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_10_pc = {_RANDOM[8'h2B][31:4], _RANDOM[8'h2C], _RANDOM[8'h2D][3:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_10_inst_raw = {_RANDOM[8'h2D][31:4], _RANDOM[8'h2E][3:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_10_pre_is_rvc = _RANDOM[8'h2E][4];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_10_pre_expanded_inst = {_RANDOM[8'h2E][31:6], _RANDOM[8'h2F][5:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_10_ftqPtr = _RANDOM[8'h2F][11:6];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_10_is_predicted_taken = _RANDOM[8'h2F][12];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
+        buffer_10_epoch = _RANDOM[8'h2F][13];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_11_pc = {_RANDOM[8'h2F][31:14], _RANDOM[8'h30], _RANDOM[8'h31][13:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_11_inst_raw = {_RANDOM[8'h31][31:14], _RANDOM[8'h32][13:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_11_pre_is_rvc = _RANDOM[8'h32][14];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_11_pre_expanded_inst = {_RANDOM[8'h32][31:16], _RANDOM[8'h33][15:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_11_ftqPtr = _RANDOM[8'h33][21:16];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_11_is_predicted_taken = _RANDOM[8'h33][22];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
+        buffer_11_epoch = _RANDOM[8'h33][23];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_12_pc = {_RANDOM[8'h33][31:24], _RANDOM[8'h34], _RANDOM[8'h35][23:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_12_inst_raw = {_RANDOM[8'h35][31:24], _RANDOM[8'h36][23:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_12_pre_is_rvc = _RANDOM[8'h36][24];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_12_pre_expanded_inst = {_RANDOM[8'h36][31:26], _RANDOM[8'h37][25:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_12_ftqPtr = _RANDOM[8'h37][31:26];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_12_is_predicted_taken = _RANDOM[8'h38][0];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
+        buffer_12_epoch = _RANDOM[8'h38][1];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_13_pc = {_RANDOM[8'h38][31:2], _RANDOM[8'h39], _RANDOM[8'h3A][1:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_13_inst_raw = {_RANDOM[8'h3A][31:2], _RANDOM[8'h3B][1:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_13_pre_is_rvc = _RANDOM[8'h3B][2];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_13_pre_expanded_inst = {_RANDOM[8'h3B][31:4], _RANDOM[8'h3C][3:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_13_ftqPtr = _RANDOM[8'h3C][9:4];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_13_is_predicted_taken = _RANDOM[8'h3C][10];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
+        buffer_13_epoch = _RANDOM[8'h3C][11];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_14_pc = {_RANDOM[8'h3C][31:12], _RANDOM[8'h3D], _RANDOM[8'h3E][11:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_14_inst_raw = {_RANDOM[8'h3E][31:12], _RANDOM[8'h3F][11:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_14_pre_is_rvc = _RANDOM[8'h3F][12];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_14_pre_expanded_inst = {_RANDOM[8'h3F][31:14], _RANDOM[8'h40][13:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_14_ftqPtr = _RANDOM[8'h40][19:14];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_14_is_predicted_taken = _RANDOM[8'h40][20];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
+        buffer_14_epoch = _RANDOM[8'h40][21];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_15_pc = {_RANDOM[8'h40][31:22], _RANDOM[8'h41], _RANDOM[8'h42][21:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_15_inst_raw = {_RANDOM[8'h42][31:22], _RANDOM[8'h43][21:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_15_pre_is_rvc = _RANDOM[8'h43][22];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_15_pre_expanded_inst = {_RANDOM[8'h43][31:24], _RANDOM[8'h44][23:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_15_ftqPtr = _RANDOM[8'h44][29:24];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_15_is_predicted_taken = _RANDOM[8'h44][30];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
+        buffer_15_epoch = _RANDOM[8'h44][31];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_16_pc = {_RANDOM[8'h45], _RANDOM[8'h46]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_16_inst_raw = _RANDOM[8'h47];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_16_pre_is_rvc = _RANDOM[8'h48][0];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_16_pre_expanded_inst = {_RANDOM[8'h48][31:2], _RANDOM[8'h49][1:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_16_ftqPtr = _RANDOM[8'h49][7:2];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_16_is_predicted_taken = _RANDOM[8'h49][8];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
+        buffer_16_epoch = _RANDOM[8'h49][9];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_17_pc = {_RANDOM[8'h49][31:10], _RANDOM[8'h4A], _RANDOM[8'h4B][9:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_17_inst_raw = {_RANDOM[8'h4B][31:10], _RANDOM[8'h4C][9:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_17_pre_is_rvc = _RANDOM[8'h4C][10];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_17_pre_expanded_inst = {_RANDOM[8'h4C][31:12], _RANDOM[8'h4D][11:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_17_ftqPtr = _RANDOM[8'h4D][17:12];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_17_is_predicted_taken = _RANDOM[8'h4D][18];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
+        buffer_17_epoch = _RANDOM[8'h4D][19];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_18_pc = {_RANDOM[8'h4D][31:20], _RANDOM[8'h4E], _RANDOM[8'h4F][19:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_18_inst_raw = {_RANDOM[8'h4F][31:20], _RANDOM[8'h50][19:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_18_pre_is_rvc = _RANDOM[8'h50][20];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_18_pre_expanded_inst = {_RANDOM[8'h50][31:22], _RANDOM[8'h51][21:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_18_ftqPtr = _RANDOM[8'h51][27:22];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_18_is_predicted_taken = _RANDOM[8'h51][28];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
+        buffer_18_epoch = _RANDOM[8'h51][29];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_19_pc = {_RANDOM[8'h51][31:30], _RANDOM[8'h52], _RANDOM[8'h53][29:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_19_inst_raw = {_RANDOM[8'h53][31:30], _RANDOM[8'h54][29:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_19_pre_is_rvc = _RANDOM[8'h54][30];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_19_pre_expanded_inst = _RANDOM[8'h55];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_19_ftqPtr = _RANDOM[8'h56][5:0];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_19_is_predicted_taken = _RANDOM[8'h56][6];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
+        buffer_19_epoch = _RANDOM[8'h56][7];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_20_pc = {_RANDOM[8'h56][31:8], _RANDOM[8'h57], _RANDOM[8'h58][7:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_20_inst_raw = {_RANDOM[8'h58][31:8], _RANDOM[8'h59][7:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_20_pre_is_rvc = _RANDOM[8'h59][8];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_20_pre_expanded_inst = {_RANDOM[8'h59][31:10], _RANDOM[8'h5A][9:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_20_ftqPtr = _RANDOM[8'h5A][15:10];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_20_is_predicted_taken = _RANDOM[8'h5A][16];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
+        buffer_20_epoch = _RANDOM[8'h5A][17];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_21_pc = {_RANDOM[8'h5A][31:18], _RANDOM[8'h5B], _RANDOM[8'h5C][17:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_21_inst_raw = {_RANDOM[8'h5C][31:18], _RANDOM[8'h5D][17:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_21_pre_is_rvc = _RANDOM[8'h5D][18];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_21_pre_expanded_inst = {_RANDOM[8'h5D][31:20], _RANDOM[8'h5E][19:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_21_ftqPtr = _RANDOM[8'h5E][25:20];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_21_is_predicted_taken = _RANDOM[8'h5E][26];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
+        buffer_21_epoch = _RANDOM[8'h5E][27];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_22_pc = {_RANDOM[8'h5E][31:28], _RANDOM[8'h5F], _RANDOM[8'h60][27:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_22_inst_raw = {_RANDOM[8'h60][31:28], _RANDOM[8'h61][27:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_22_pre_is_rvc = _RANDOM[8'h61][28];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_22_pre_expanded_inst = {_RANDOM[8'h61][31:30], _RANDOM[8'h62][29:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_22_ftqPtr = {_RANDOM[8'h62][31:30], _RANDOM[8'h63][3:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_22_is_predicted_taken = _RANDOM[8'h63][4];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
+        buffer_22_epoch = _RANDOM[8'h63][5];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_23_pc = {_RANDOM[8'h63][31:6], _RANDOM[8'h64], _RANDOM[8'h65][5:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_23_inst_raw = {_RANDOM[8'h65][31:6], _RANDOM[8'h66][5:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_23_pre_is_rvc = _RANDOM[8'h66][6];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_23_pre_expanded_inst = {_RANDOM[8'h66][31:8], _RANDOM[8'h67][7:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_23_ftqPtr = _RANDOM[8'h67][13:8];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_23_is_predicted_taken = _RANDOM[8'h67][14];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
+        buffer_23_epoch = _RANDOM[8'h67][15];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_24_pc = {_RANDOM[8'h67][31:16], _RANDOM[8'h68], _RANDOM[8'h69][15:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_24_inst_raw = {_RANDOM[8'h69][31:16], _RANDOM[8'h6A][15:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_24_pre_is_rvc = _RANDOM[8'h6A][16];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_24_pre_expanded_inst = {_RANDOM[8'h6A][31:18], _RANDOM[8'h6B][17:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_24_ftqPtr = _RANDOM[8'h6B][23:18];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_24_is_predicted_taken = _RANDOM[8'h6B][24];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
+        buffer_24_epoch = _RANDOM[8'h6B][25];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_25_pc = {_RANDOM[8'h6B][31:26], _RANDOM[8'h6C], _RANDOM[8'h6D][25:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_25_inst_raw = {_RANDOM[8'h6D][31:26], _RANDOM[8'h6E][25:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_25_pre_is_rvc = _RANDOM[8'h6E][26];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_25_pre_expanded_inst = {_RANDOM[8'h6E][31:28], _RANDOM[8'h6F][27:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_25_ftqPtr = {_RANDOM[8'h6F][31:28], _RANDOM[8'h70][1:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_25_is_predicted_taken = _RANDOM[8'h70][2];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
+        buffer_25_epoch = _RANDOM[8'h70][3];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_26_pc = {_RANDOM[8'h70][31:4], _RANDOM[8'h71], _RANDOM[8'h72][3:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_26_inst_raw = {_RANDOM[8'h72][31:4], _RANDOM[8'h73][3:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_26_pre_is_rvc = _RANDOM[8'h73][4];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_26_pre_expanded_inst = {_RANDOM[8'h73][31:6], _RANDOM[8'h74][5:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_26_ftqPtr = _RANDOM[8'h74][11:6];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_26_is_predicted_taken = _RANDOM[8'h74][12];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
+        buffer_26_epoch = _RANDOM[8'h74][13];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_27_pc = {_RANDOM[8'h74][31:14], _RANDOM[8'h75], _RANDOM[8'h76][13:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_27_inst_raw = {_RANDOM[8'h76][31:14], _RANDOM[8'h77][13:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_27_pre_is_rvc = _RANDOM[8'h77][14];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_27_pre_expanded_inst = {_RANDOM[8'h77][31:16], _RANDOM[8'h78][15:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_27_ftqPtr = _RANDOM[8'h78][21:16];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_27_is_predicted_taken = _RANDOM[8'h78][22];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
+        buffer_27_epoch = _RANDOM[8'h78][23];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_28_pc = {_RANDOM[8'h78][31:24], _RANDOM[8'h79], _RANDOM[8'h7A][23:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_28_inst_raw = {_RANDOM[8'h7A][31:24], _RANDOM[8'h7B][23:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_28_pre_is_rvc = _RANDOM[8'h7B][24];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_28_pre_expanded_inst = {_RANDOM[8'h7B][31:26], _RANDOM[8'h7C][25:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_28_ftqPtr = _RANDOM[8'h7C][31:26];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_28_is_predicted_taken = _RANDOM[8'h7D][0];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
+        buffer_28_epoch = _RANDOM[8'h7D][1];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_29_pc = {_RANDOM[8'h7D][31:2], _RANDOM[8'h7E], _RANDOM[8'h7F][1:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_29_inst_raw = {_RANDOM[8'h7F][31:2], _RANDOM[8'h80][1:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_29_pre_is_rvc = _RANDOM[8'h80][2];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_29_pre_expanded_inst = {_RANDOM[8'h80][31:4], _RANDOM[8'h81][3:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_29_ftqPtr = _RANDOM[8'h81][9:4];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_29_is_predicted_taken = _RANDOM[8'h81][10];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
+        buffer_29_epoch = _RANDOM[8'h81][11];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_30_pc = {_RANDOM[8'h81][31:12], _RANDOM[8'h82], _RANDOM[8'h83][11:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_30_inst_raw = {_RANDOM[8'h83][31:12], _RANDOM[8'h84][11:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_30_pre_is_rvc = _RANDOM[8'h84][12];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_30_pre_expanded_inst = {_RANDOM[8'h84][31:14], _RANDOM[8'h85][13:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_30_ftqPtr = _RANDOM[8'h85][19:14];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_30_is_predicted_taken = _RANDOM[8'h85][20];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
+        buffer_30_epoch = _RANDOM[8'h85][21];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_31_pc = {_RANDOM[8'h85][31:22], _RANDOM[8'h86], _RANDOM[8'h87][21:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_31_inst_raw = {_RANDOM[8'h87][31:22], _RANDOM[8'h88][21:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_31_pre_is_rvc = _RANDOM[8'h88][22];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_31_pre_expanded_inst = {_RANDOM[8'h88][31:24], _RANDOM[8'h89][23:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_31_ftqPtr = _RANDOM[8'h89][29:24];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_31_is_predicted_taken = _RANDOM[8'h89][30];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
+        buffer_31_epoch = _RANDOM[8'h89][31];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_32_pc = {_RANDOM[8'h8A], _RANDOM[8'h8B]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_32_inst_raw = _RANDOM[8'h8C];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_32_pre_is_rvc = _RANDOM[8'h8D][0];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_32_pre_expanded_inst = {_RANDOM[8'h8D][31:2], _RANDOM[8'h8E][1:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_32_ftqPtr = _RANDOM[8'h8E][7:2];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_32_is_predicted_taken = _RANDOM[8'h8E][8];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
+        buffer_32_epoch = _RANDOM[8'h8E][9];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_33_pc = {_RANDOM[8'h8E][31:10], _RANDOM[8'h8F], _RANDOM[8'h90][9:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_33_inst_raw = {_RANDOM[8'h90][31:10], _RANDOM[8'h91][9:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_33_pre_is_rvc = _RANDOM[8'h91][10];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_33_pre_expanded_inst = {_RANDOM[8'h91][31:12], _RANDOM[8'h92][11:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_33_ftqPtr = _RANDOM[8'h92][17:12];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_33_is_predicted_taken = _RANDOM[8'h92][18];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
+        buffer_33_epoch = _RANDOM[8'h92][19];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_34_pc = {_RANDOM[8'h92][31:20], _RANDOM[8'h93], _RANDOM[8'h94][19:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_34_inst_raw = {_RANDOM[8'h94][31:20], _RANDOM[8'h95][19:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_34_pre_is_rvc = _RANDOM[8'h95][20];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_34_pre_expanded_inst = {_RANDOM[8'h95][31:22], _RANDOM[8'h96][21:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_34_ftqPtr = _RANDOM[8'h96][27:22];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_34_is_predicted_taken = _RANDOM[8'h96][28];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
+        buffer_34_epoch = _RANDOM[8'h96][29];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_35_pc = {_RANDOM[8'h96][31:30], _RANDOM[8'h97], _RANDOM[8'h98][29:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_35_inst_raw = {_RANDOM[8'h98][31:30], _RANDOM[8'h99][29:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_35_pre_is_rvc = _RANDOM[8'h99][30];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_35_pre_expanded_inst = _RANDOM[8'h9A];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_35_ftqPtr = _RANDOM[8'h9B][5:0];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_35_is_predicted_taken = _RANDOM[8'h9B][6];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
+        buffer_35_epoch = _RANDOM[8'h9B][7];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_36_pc = {_RANDOM[8'h9B][31:8], _RANDOM[8'h9C], _RANDOM[8'h9D][7:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_36_inst_raw = {_RANDOM[8'h9D][31:8], _RANDOM[8'h9E][7:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_36_pre_is_rvc = _RANDOM[8'h9E][8];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_36_pre_expanded_inst = {_RANDOM[8'h9E][31:10], _RANDOM[8'h9F][9:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_36_ftqPtr = _RANDOM[8'h9F][15:10];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_36_is_predicted_taken = _RANDOM[8'h9F][16];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
+        buffer_36_epoch = _RANDOM[8'h9F][17];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_37_pc = {_RANDOM[8'h9F][31:18], _RANDOM[8'hA0], _RANDOM[8'hA1][17:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_37_inst_raw = {_RANDOM[8'hA1][31:18], _RANDOM[8'hA2][17:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_37_pre_is_rvc = _RANDOM[8'hA2][18];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_37_pre_expanded_inst = {_RANDOM[8'hA2][31:20], _RANDOM[8'hA3][19:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_37_ftqPtr = _RANDOM[8'hA3][25:20];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_37_is_predicted_taken = _RANDOM[8'hA3][26];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
+        buffer_37_epoch = _RANDOM[8'hA3][27];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_38_pc = {_RANDOM[8'hA3][31:28], _RANDOM[8'hA4], _RANDOM[8'hA5][27:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_38_inst_raw = {_RANDOM[8'hA5][31:28], _RANDOM[8'hA6][27:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_38_pre_is_rvc = _RANDOM[8'hA6][28];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_38_pre_expanded_inst = {_RANDOM[8'hA6][31:30], _RANDOM[8'hA7][29:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_38_ftqPtr = {_RANDOM[8'hA7][31:30], _RANDOM[8'hA8][3:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_38_is_predicted_taken = _RANDOM[8'hA8][4];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
+        buffer_38_epoch = _RANDOM[8'hA8][5];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_39_pc = {_RANDOM[8'hA8][31:6], _RANDOM[8'hA9], _RANDOM[8'hAA][5:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_39_inst_raw = {_RANDOM[8'hAA][31:6], _RANDOM[8'hAB][5:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_39_pre_is_rvc = _RANDOM[8'hAB][6];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_39_pre_expanded_inst = {_RANDOM[8'hAB][31:8], _RANDOM[8'hAC][7:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_39_ftqPtr = _RANDOM[8'hAC][13:8];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_39_is_predicted_taken = _RANDOM[8'hAC][14];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
+        buffer_39_epoch = _RANDOM[8'hAC][15];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_40_pc = {_RANDOM[8'hAC][31:16], _RANDOM[8'hAD], _RANDOM[8'hAE][15:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_40_inst_raw = {_RANDOM[8'hAE][31:16], _RANDOM[8'hAF][15:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_40_pre_is_rvc = _RANDOM[8'hAF][16];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_40_pre_expanded_inst = {_RANDOM[8'hAF][31:18], _RANDOM[8'hB0][17:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_40_ftqPtr = _RANDOM[8'hB0][23:18];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_40_is_predicted_taken = _RANDOM[8'hB0][24];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
+        buffer_40_epoch = _RANDOM[8'hB0][25];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_41_pc = {_RANDOM[8'hB0][31:26], _RANDOM[8'hB1], _RANDOM[8'hB2][25:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_41_inst_raw = {_RANDOM[8'hB2][31:26], _RANDOM[8'hB3][25:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_41_pre_is_rvc = _RANDOM[8'hB3][26];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_41_pre_expanded_inst = {_RANDOM[8'hB3][31:28], _RANDOM[8'hB4][27:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_41_ftqPtr = {_RANDOM[8'hB4][31:28], _RANDOM[8'hB5][1:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_41_is_predicted_taken = _RANDOM[8'hB5][2];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
+        buffer_41_epoch = _RANDOM[8'hB5][3];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_42_pc = {_RANDOM[8'hB5][31:4], _RANDOM[8'hB6], _RANDOM[8'hB7][3:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_42_inst_raw = {_RANDOM[8'hB7][31:4], _RANDOM[8'hB8][3:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_42_pre_is_rvc = _RANDOM[8'hB8][4];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_42_pre_expanded_inst = {_RANDOM[8'hB8][31:6], _RANDOM[8'hB9][5:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_42_ftqPtr = _RANDOM[8'hB9][11:6];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_42_is_predicted_taken = _RANDOM[8'hB9][12];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
+        buffer_42_epoch = _RANDOM[8'hB9][13];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_43_pc = {_RANDOM[8'hB9][31:14], _RANDOM[8'hBA], _RANDOM[8'hBB][13:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_43_inst_raw = {_RANDOM[8'hBB][31:14], _RANDOM[8'hBC][13:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_43_pre_is_rvc = _RANDOM[8'hBC][14];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_43_pre_expanded_inst = {_RANDOM[8'hBC][31:16], _RANDOM[8'hBD][15:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_43_ftqPtr = _RANDOM[8'hBD][21:16];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_43_is_predicted_taken = _RANDOM[8'hBD][22];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
+        buffer_43_epoch = _RANDOM[8'hBD][23];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_44_pc = {_RANDOM[8'hBD][31:24], _RANDOM[8'hBE], _RANDOM[8'hBF][23:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_44_inst_raw = {_RANDOM[8'hBF][31:24], _RANDOM[8'hC0][23:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_44_pre_is_rvc = _RANDOM[8'hC0][24];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_44_pre_expanded_inst = {_RANDOM[8'hC0][31:26], _RANDOM[8'hC1][25:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_44_ftqPtr = _RANDOM[8'hC1][31:26];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_44_is_predicted_taken = _RANDOM[8'hC2][0];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
+        buffer_44_epoch = _RANDOM[8'hC2][1];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_45_pc = {_RANDOM[8'hC2][31:2], _RANDOM[8'hC3], _RANDOM[8'hC4][1:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_45_inst_raw = {_RANDOM[8'hC4][31:2], _RANDOM[8'hC5][1:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_45_pre_is_rvc = _RANDOM[8'hC5][2];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_45_pre_expanded_inst = {_RANDOM[8'hC5][31:4], _RANDOM[8'hC6][3:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_45_ftqPtr = _RANDOM[8'hC6][9:4];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_45_is_predicted_taken = _RANDOM[8'hC6][10];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
+        buffer_45_epoch = _RANDOM[8'hC6][11];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_46_pc = {_RANDOM[8'hC6][31:12], _RANDOM[8'hC7], _RANDOM[8'hC8][11:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_46_inst_raw = {_RANDOM[8'hC8][31:12], _RANDOM[8'hC9][11:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_46_pre_is_rvc = _RANDOM[8'hC9][12];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_46_pre_expanded_inst = {_RANDOM[8'hC9][31:14], _RANDOM[8'hCA][13:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_46_ftqPtr = _RANDOM[8'hCA][19:14];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_46_is_predicted_taken = _RANDOM[8'hCA][20];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
+        buffer_46_epoch = _RANDOM[8'hCA][21];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_47_pc = {_RANDOM[8'hCA][31:22], _RANDOM[8'hCB], _RANDOM[8'hCC][21:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_47_inst_raw = {_RANDOM[8'hCC][31:22], _RANDOM[8'hCD][21:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_47_pre_is_rvc = _RANDOM[8'hCD][22];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_47_pre_expanded_inst = {_RANDOM[8'hCD][31:24], _RANDOM[8'hCE][23:0]};	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_47_ftqPtr = _RANDOM[8'hCE][29:24];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         buffer_47_is_predicted_taken = _RANDOM[8'hCE][30];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
+        buffer_47_epoch = _RANDOM[8'hCE][31];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :16:19
         valid_0 = _RANDOM[8'hCF][0];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :17:23
         valid_1 = _RANDOM[8'hCF][1];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :17:23
         valid_2 = _RANDOM[8'hCF][2];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :17:23
@@ -15310,40 +16403,46 @@ module IBUF(	// frontend/src/zaqal/frontend/IBUF.scala:9:7
   assign io_out_0_bits_pre_expanded_inst = casez_tmp_8;	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :67:21
   assign io_out_0_bits_ftqPtr = casez_tmp_9;	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :67:21
   assign io_out_0_bits_is_predicted_taken = casez_tmp_10;	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :67:21
+  assign io_out_0_bits_epoch = casez_tmp_11;	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :67:21
   assign io_out_1_valid = io_out_1_valid_0;	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :66:42
-  assign io_out_1_bits_pc = casez_tmp_11;	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :67:21
-  assign io_out_1_bits_inst_raw = casez_tmp_12;	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :67:21
-  assign io_out_1_bits_pre_is_rvc = casez_tmp_13;	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :67:21
-  assign io_out_1_bits_pre_expanded_inst = casez_tmp_14;	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :67:21
-  assign io_out_1_bits_ftqPtr = casez_tmp_15;	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :67:21
-  assign io_out_1_bits_is_predicted_taken = casez_tmp_16;	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :67:21
+  assign io_out_1_bits_pc = casez_tmp_12;	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :67:21
+  assign io_out_1_bits_inst_raw = casez_tmp_13;	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :67:21
+  assign io_out_1_bits_pre_is_rvc = casez_tmp_14;	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :67:21
+  assign io_out_1_bits_pre_expanded_inst = casez_tmp_15;	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :67:21
+  assign io_out_1_bits_ftqPtr = casez_tmp_16;	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :67:21
+  assign io_out_1_bits_is_predicted_taken = casez_tmp_17;	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :67:21
+  assign io_out_1_bits_epoch = casez_tmp_18;	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :67:21
   assign io_out_2_valid = io_out_2_valid_0;	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :66:42
-  assign io_out_2_bits_pc = casez_tmp_17;	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :67:21
-  assign io_out_2_bits_inst_raw = casez_tmp_18;	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :67:21
-  assign io_out_2_bits_pre_is_rvc = casez_tmp_19;	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :67:21
-  assign io_out_2_bits_pre_expanded_inst = casez_tmp_20;	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :67:21
-  assign io_out_2_bits_ftqPtr = casez_tmp_21;	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :67:21
-  assign io_out_2_bits_is_predicted_taken = casez_tmp_22;	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :67:21
+  assign io_out_2_bits_pc = casez_tmp_19;	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :67:21
+  assign io_out_2_bits_inst_raw = casez_tmp_20;	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :67:21
+  assign io_out_2_bits_pre_is_rvc = casez_tmp_21;	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :67:21
+  assign io_out_2_bits_pre_expanded_inst = casez_tmp_22;	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :67:21
+  assign io_out_2_bits_ftqPtr = casez_tmp_23;	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :67:21
+  assign io_out_2_bits_is_predicted_taken = casez_tmp_24;	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :67:21
+  assign io_out_2_bits_epoch = casez_tmp_25;	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :67:21
   assign io_out_3_valid = io_out_3_valid_0;	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :66:42
-  assign io_out_3_bits_pc = casez_tmp_23;	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :67:21
-  assign io_out_3_bits_inst_raw = casez_tmp_24;	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :67:21
-  assign io_out_3_bits_pre_is_rvc = casez_tmp_25;	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :67:21
-  assign io_out_3_bits_pre_expanded_inst = casez_tmp_26;	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :67:21
-  assign io_out_3_bits_ftqPtr = casez_tmp_27;	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :67:21
-  assign io_out_3_bits_is_predicted_taken = casez_tmp_28;	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :67:21
+  assign io_out_3_bits_pc = casez_tmp_26;	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :67:21
+  assign io_out_3_bits_inst_raw = casez_tmp_27;	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :67:21
+  assign io_out_3_bits_pre_is_rvc = casez_tmp_28;	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :67:21
+  assign io_out_3_bits_pre_expanded_inst = casez_tmp_29;	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :67:21
+  assign io_out_3_bits_ftqPtr = casez_tmp_30;	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :67:21
+  assign io_out_3_bits_is_predicted_taken = casez_tmp_31;	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :67:21
+  assign io_out_3_bits_epoch = casez_tmp_32;	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :67:21
   assign io_out_4_valid = io_out_4_valid_0;	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :66:42
-  assign io_out_4_bits_pc = casez_tmp_29;	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :67:21
-  assign io_out_4_bits_inst_raw = casez_tmp_30;	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :67:21
-  assign io_out_4_bits_pre_is_rvc = casez_tmp_31;	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :67:21
-  assign io_out_4_bits_pre_expanded_inst = casez_tmp_32;	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :67:21
-  assign io_out_4_bits_ftqPtr = casez_tmp_33;	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :67:21
-  assign io_out_4_bits_is_predicted_taken = casez_tmp_34;	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :67:21
+  assign io_out_4_bits_pc = casez_tmp_33;	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :67:21
+  assign io_out_4_bits_inst_raw = casez_tmp_34;	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :67:21
+  assign io_out_4_bits_pre_is_rvc = casez_tmp_35;	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :67:21
+  assign io_out_4_bits_pre_expanded_inst = casez_tmp_36;	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :67:21
+  assign io_out_4_bits_ftqPtr = casez_tmp_37;	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :67:21
+  assign io_out_4_bits_is_predicted_taken = casez_tmp_38;	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :67:21
+  assign io_out_4_bits_epoch = casez_tmp_39;	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :67:21
   assign io_out_5_valid = io_out_5_valid_0;	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :66:42
-  assign io_out_5_bits_pc = casez_tmp_35;	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :67:21
-  assign io_out_5_bits_inst_raw = casez_tmp_36;	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :67:21
-  assign io_out_5_bits_pre_is_rvc = casez_tmp_37;	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :67:21
-  assign io_out_5_bits_pre_expanded_inst = casez_tmp_38;	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :67:21
-  assign io_out_5_bits_ftqPtr = casez_tmp_39;	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :67:21
-  assign io_out_5_bits_is_predicted_taken = casez_tmp_40;	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :67:21
+  assign io_out_5_bits_pc = casez_tmp_40;	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :67:21
+  assign io_out_5_bits_inst_raw = casez_tmp_41;	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :67:21
+  assign io_out_5_bits_pre_is_rvc = casez_tmp_42;	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :67:21
+  assign io_out_5_bits_pre_expanded_inst = casez_tmp_43;	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :67:21
+  assign io_out_5_bits_ftqPtr = casez_tmp_44;	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :67:21
+  assign io_out_5_bits_is_predicted_taken = casez_tmp_45;	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :67:21
+  assign io_out_5_bits_epoch = casez_tmp_46;	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :67:21
 endmodule
 

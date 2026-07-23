@@ -66,96 +66,96 @@
   `endif // PRINTF_COND
 `endif // not def PRINTF_COND_
 
-module ITTagePredictor(	// frontend/src/zaqal/frontend/ITTAGE.scala:113:7
-  input          clock,	// frontend/src/zaqal/frontend/ITTAGE.scala:113:7
-                 reset,	// frontend/src/zaqal/frontend/ITTAGE.scala:113:7
-  input  [63:0]  io_req_pc,	// frontend/src/zaqal/frontend/ITTAGE.scala:114:14
-  input  [127:0] io_req_ghr,	// frontend/src/zaqal/frontend/ITTAGE.scala:114:14
-  output [1:0]   io_pred_providerIdx,	// frontend/src/zaqal/frontend/ITTAGE.scala:114:14
-  output [63:0]  io_pred_target,	// frontend/src/zaqal/frontend/ITTAGE.scala:114:14
-                 io_pred_altTarget,	// frontend/src/zaqal/frontend/ITTAGE.scala:114:14
-  output [1:0]   io_pred_providerU,	// frontend/src/zaqal/frontend/ITTAGE.scala:114:14
-  output         io_pred_hit,	// frontend/src/zaqal/frontend/ITTAGE.scala:114:14
-  input          io_update_valid,	// frontend/src/zaqal/frontend/ITTAGE.scala:114:14
-  input  [63:0]  io_update_pc,	// frontend/src/zaqal/frontend/ITTAGE.scala:114:14
-  input  [127:0] io_update_ghr,	// frontend/src/zaqal/frontend/ITTAGE.scala:114:14
-  input  [63:0]  io_update_target,	// frontend/src/zaqal/frontend/ITTAGE.scala:114:14
-  input  [1:0]   io_providerIdx,	// frontend/src/zaqal/frontend/ITTAGE.scala:114:14
-  input          io_providerHit,	// frontend/src/zaqal/frontend/ITTAGE.scala:114:14
-  input  [63:0]  io_altTarget,	// frontend/src/zaqal/frontend/ITTAGE.scala:114:14
-  input  [1:0]   io_providerU	// frontend/src/zaqal/frontend/ITTAGE.scala:114:14
+module ITTagePredictor(	// frontend/src/zaqal/frontend/ITTAGE.scala:115:7
+  input         clock,	// frontend/src/zaqal/frontend/ITTAGE.scala:115:7
+                reset,	// frontend/src/zaqal/frontend/ITTAGE.scala:115:7
+  input  [63:0] io_req_pc,	// frontend/src/zaqal/frontend/ITTAGE.scala:116:14
+  input  [31:0] io_req_phr,	// frontend/src/zaqal/frontend/ITTAGE.scala:116:14
+  output [1:0]  io_pred_providerIdx,	// frontend/src/zaqal/frontend/ITTAGE.scala:116:14
+  output [63:0] io_pred_target,	// frontend/src/zaqal/frontend/ITTAGE.scala:116:14
+                io_pred_altTarget,	// frontend/src/zaqal/frontend/ITTAGE.scala:116:14
+  output [1:0]  io_pred_providerU,	// frontend/src/zaqal/frontend/ITTAGE.scala:116:14
+  output        io_pred_hit,	// frontend/src/zaqal/frontend/ITTAGE.scala:116:14
+  input         io_update_valid,	// frontend/src/zaqal/frontend/ITTAGE.scala:116:14
+  input  [63:0] io_update_pc,	// frontend/src/zaqal/frontend/ITTAGE.scala:116:14
+  input  [31:0] io_update_phr,	// frontend/src/zaqal/frontend/ITTAGE.scala:116:14
+  input  [63:0] io_update_target,	// frontend/src/zaqal/frontend/ITTAGE.scala:116:14
+  input  [1:0]  io_providerIdx,	// frontend/src/zaqal/frontend/ITTAGE.scala:116:14
+  input         io_providerHit,	// frontend/src/zaqal/frontend/ITTAGE.scala:116:14
+  input  [63:0] io_altTarget,	// frontend/src/zaqal/frontend/ITTAGE.scala:116:14
+  input  [1:0]  io_providerU	// frontend/src/zaqal/frontend/ITTAGE.scala:116:14
 );
 
-  wire        _tables_3_io_hit;	// frontend/src/zaqal/frontend/ITTAGE.scala:132:19
-  wire [63:0] _tables_3_io_target;	// frontend/src/zaqal/frontend/ITTAGE.scala:132:19
-  wire [1:0]  _tables_3_io_u;	// frontend/src/zaqal/frontend/ITTAGE.scala:132:19
-  wire [1:0]  _tables_3_io_update_u;	// frontend/src/zaqal/frontend/ITTAGE.scala:132:19
-  wire        _tables_2_io_hit;	// frontend/src/zaqal/frontend/ITTAGE.scala:132:19
-  wire [63:0] _tables_2_io_target;	// frontend/src/zaqal/frontend/ITTAGE.scala:132:19
-  wire [1:0]  _tables_2_io_u;	// frontend/src/zaqal/frontend/ITTAGE.scala:132:19
-  wire [1:0]  _tables_2_io_update_u;	// frontend/src/zaqal/frontend/ITTAGE.scala:132:19
-  wire        _tables_1_io_hit;	// frontend/src/zaqal/frontend/ITTAGE.scala:132:19
-  wire [63:0] _tables_1_io_target;	// frontend/src/zaqal/frontend/ITTAGE.scala:132:19
-  wire [1:0]  _tables_1_io_u;	// frontend/src/zaqal/frontend/ITTAGE.scala:132:19
-  wire [1:0]  _tables_1_io_update_u;	// frontend/src/zaqal/frontend/ITTAGE.scala:132:19
-  wire        _tables_0_io_hit;	// frontend/src/zaqal/frontend/ITTAGE.scala:132:19
-  wire [63:0] _tables_0_io_target;	// frontend/src/zaqal/frontend/ITTAGE.scala:132:19
-  wire [1:0]  _tables_0_io_u;	// frontend/src/zaqal/frontend/ITTAGE.scala:132:19
-  wire [1:0]  _tables_0_io_update_u;	// frontend/src/zaqal/frontend/ITTAGE.scala:132:19
+  wire        _tables_3_io_hit;	// frontend/src/zaqal/frontend/ITTAGE.scala:134:19
+  wire [63:0] _tables_3_io_target;	// frontend/src/zaqal/frontend/ITTAGE.scala:134:19
+  wire [1:0]  _tables_3_io_u;	// frontend/src/zaqal/frontend/ITTAGE.scala:134:19
+  wire [1:0]  _tables_3_io_update_u;	// frontend/src/zaqal/frontend/ITTAGE.scala:134:19
+  wire        _tables_2_io_hit;	// frontend/src/zaqal/frontend/ITTAGE.scala:134:19
+  wire [63:0] _tables_2_io_target;	// frontend/src/zaqal/frontend/ITTAGE.scala:134:19
+  wire [1:0]  _tables_2_io_u;	// frontend/src/zaqal/frontend/ITTAGE.scala:134:19
+  wire [1:0]  _tables_2_io_update_u;	// frontend/src/zaqal/frontend/ITTAGE.scala:134:19
+  wire        _tables_1_io_hit;	// frontend/src/zaqal/frontend/ITTAGE.scala:134:19
+  wire [63:0] _tables_1_io_target;	// frontend/src/zaqal/frontend/ITTAGE.scala:134:19
+  wire [1:0]  _tables_1_io_u;	// frontend/src/zaqal/frontend/ITTAGE.scala:134:19
+  wire [1:0]  _tables_1_io_update_u;	// frontend/src/zaqal/frontend/ITTAGE.scala:134:19
+  wire        _tables_0_io_hit;	// frontend/src/zaqal/frontend/ITTAGE.scala:134:19
+  wire [63:0] _tables_0_io_target;	// frontend/src/zaqal/frontend/ITTAGE.scala:134:19
+  wire [1:0]  _tables_0_io_u;	// frontend/src/zaqal/frontend/ITTAGE.scala:134:19
+  wire [1:0]  _tables_0_io_update_u;	// frontend/src/zaqal/frontend/ITTAGE.scala:134:19
   wire [3:0]  providerMask_enc =
     _tables_3_io_hit
       ? 4'h1
-      : _tables_2_io_hit ? 4'h2 : _tables_1_io_hit ? 4'h4 : {_tables_0_io_hit, 3'h0};	// frontend/src/zaqal/frontend/ITTAGE.scala:132:19, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        altHits_0 = _tables_0_io_hit & ~(providerMask_enc[3]);	// frontend/src/zaqal/frontend/ITTAGE.scala:132:19, :155:{27,30}, src/main/scala/chisel3/util/Mux.scala:50:70, src/main/scala/chisel3/util/OneHot.scala:83:30
-  wire        altHits_1 = _tables_1_io_hit & ~(providerMask_enc[2]);	// frontend/src/zaqal/frontend/ITTAGE.scala:132:19, :155:{27,30}, src/main/scala/chisel3/util/Mux.scala:50:70, src/main/scala/chisel3/util/OneHot.scala:83:30
-  wire        altHits_2 = _tables_2_io_hit & ~(providerMask_enc[1]);	// frontend/src/zaqal/frontend/ITTAGE.scala:132:19, :155:{27,30}, src/main/scala/chisel3/util/Mux.scala:50:70, src/main/scala/chisel3/util/OneHot.scala:83:30
-  wire        altHits_3 = _tables_3_io_hit & ~(providerMask_enc[0]);	// frontend/src/zaqal/frontend/ITTAGE.scala:132:19, :155:{27,30}, src/main/scala/chisel3/util/Mux.scala:50:70, src/main/scala/chisel3/util/OneHot.scala:83:30
+      : _tables_2_io_hit ? 4'h2 : _tables_1_io_hit ? 4'h4 : {_tables_0_io_hit, 3'h0};	// frontend/src/zaqal/frontend/ITTAGE.scala:134:19, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        altHits_0 = _tables_0_io_hit & ~(providerMask_enc[3]);	// frontend/src/zaqal/frontend/ITTAGE.scala:134:19, :157:{27,30}, src/main/scala/chisel3/util/Mux.scala:50:70, src/main/scala/chisel3/util/OneHot.scala:83:30
+  wire        altHits_1 = _tables_1_io_hit & ~(providerMask_enc[2]);	// frontend/src/zaqal/frontend/ITTAGE.scala:134:19, :157:{27,30}, src/main/scala/chisel3/util/Mux.scala:50:70, src/main/scala/chisel3/util/OneHot.scala:83:30
+  wire        altHits_2 = _tables_2_io_hit & ~(providerMask_enc[1]);	// frontend/src/zaqal/frontend/ITTAGE.scala:134:19, :157:{27,30}, src/main/scala/chisel3/util/Mux.scala:50:70, src/main/scala/chisel3/util/OneHot.scala:83:30
+  wire        altHits_3 = _tables_3_io_hit & ~(providerMask_enc[0]);	// frontend/src/zaqal/frontend/ITTAGE.scala:134:19, :157:{27,30}, src/main/scala/chisel3/util/Mux.scala:50:70, src/main/scala/chisel3/util/OneHot.scala:83:30
   wire [3:0]  altMask_enc =
-    altHits_3 ? 4'h1 : altHits_2 ? 4'h2 : altHits_1 ? 4'h4 : {altHits_0, 3'h0};	// frontend/src/zaqal/frontend/ITTAGE.scala:155:27, src/main/scala/chisel3/util/Mux.scala:50:70
+    altHits_3 ? 4'h1 : altHits_2 ? 4'h2 : altHits_1 ? 4'h4 : {altHits_0, 3'h0};	// frontend/src/zaqal/frontend/ITTAGE.scala:157:27, src/main/scala/chisel3/util/Mux.scala:50:70
   wire [63:0] provider_target =
     (providerMask_enc[3] ? _tables_0_io_target : 64'h0)
     | (providerMask_enc[2] ? _tables_1_io_target : 64'h0)
     | (providerMask_enc[1] ? _tables_2_io_target : 64'h0)
-    | (providerMask_enc[0] ? _tables_3_io_target : 64'h0);	// frontend/src/zaqal/frontend/ITTAGE.scala:132:19, :166:23, src/main/scala/chisel3/util/Mux.scala:30:73, :50:70, src/main/scala/chisel3/util/OneHot.scala:83:30
-  wire        _GEN = io_providerHit & provider_target != io_altTarget;	// frontend/src/zaqal/frontend/ITTAGE.scala:179:{25,43}, src/main/scala/chisel3/util/Mux.scala:30:73
+    | (providerMask_enc[0] ? _tables_3_io_target : 64'h0);	// frontend/src/zaqal/frontend/ITTAGE.scala:134:19, :168:23, src/main/scala/chisel3/util/Mux.scala:30:73, :50:70, src/main/scala/chisel3/util/OneHot.scala:83:30
+  wire        _GEN = io_providerHit & provider_target != io_altTarget;	// frontend/src/zaqal/frontend/ITTAGE.scala:181:{25,43}, src/main/scala/chisel3/util/Mux.scala:30:73
   wire [1:0]  new_u =
     provider_target == io_update_target
       ? ((&io_providerU) ? 2'h3 : io_providerU + 2'h1)
-      : io_providerU == 2'h0 ? 2'h0 : io_providerU - 2'h1;	// frontend/src/zaqal/frontend/ITTAGE.scala:142:23, :180:39, :181:22, :182:{12,26,53}, :183:{12,26,53}, src/main/scala/chisel3/util/Mux.scala:30:73, :50:70
-  wire        _GEN_0 = io_providerIdx == 2'h0;	// frontend/src/zaqal/frontend/ITTAGE.scala:142:23, :186:30
-  wire        _GEN_1 = _GEN & _GEN_0;	// frontend/src/zaqal/frontend/ITTAGE.scala:136:23, :179:{25,62}, :186:{30,39}
-  wire        _GEN_2 = io_update_valid & _GEN;	// frontend/src/zaqal/frontend/ITTAGE.scala:143:15, :175:25, :179:{25,62}, :186:39
-  wire        _GEN_3 = io_providerIdx == 2'h1;	// frontend/src/zaqal/frontend/ITTAGE.scala:186:30, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_4 = _GEN & _GEN_3;	// frontend/src/zaqal/frontend/ITTAGE.scala:136:23, :179:{25,62}, :186:{30,39}
-  wire        _GEN_5 = io_providerIdx == 2'h2;	// frontend/src/zaqal/frontend/ITTAGE.scala:186:30, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_6 = _GEN & _GEN_5;	// frontend/src/zaqal/frontend/ITTAGE.scala:136:23, :179:{25,62}, :186:{30,39}
-  wire        _GEN_7 = _GEN & (&io_providerIdx);	// frontend/src/zaqal/frontend/ITTAGE.scala:136:23, :179:{25,62}, :186:{30,39}
+      : io_providerU == 2'h0 ? 2'h0 : io_providerU - 2'h1;	// frontend/src/zaqal/frontend/ITTAGE.scala:144:24, :182:39, :183:22, :184:{12,26,53}, :185:{12,26,53}, src/main/scala/chisel3/util/Mux.scala:30:73, :50:70
+  wire        _GEN_0 = io_providerIdx == 2'h0;	// frontend/src/zaqal/frontend/ITTAGE.scala:144:24, :188:30
+  wire        _GEN_1 = _GEN & _GEN_0;	// frontend/src/zaqal/frontend/ITTAGE.scala:138:24, :181:{25,62}, :188:{30,39}
+  wire        _GEN_2 = io_update_valid & _GEN;	// frontend/src/zaqal/frontend/ITTAGE.scala:145:24, :177:25, :181:{25,62}, :188:39
+  wire        _GEN_3 = io_providerIdx == 2'h1;	// frontend/src/zaqal/frontend/ITTAGE.scala:188:30, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_4 = _GEN & _GEN_3;	// frontend/src/zaqal/frontend/ITTAGE.scala:138:24, :181:{25,62}, :188:{30,39}
+  wire        _GEN_5 = io_providerIdx == 2'h2;	// frontend/src/zaqal/frontend/ITTAGE.scala:188:30, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_6 = _GEN & _GEN_5;	// frontend/src/zaqal/frontend/ITTAGE.scala:138:24, :181:{25,62}, :188:{30,39}
+  wire        _GEN_7 = _GEN & (&io_providerIdx);	// frontend/src/zaqal/frontend/ITTAGE.scala:138:24, :181:{25,62}, :188:{30,39}
   wire        mispredict =
-    ~io_providerHit | io_providerHit & provider_target != io_update_target;	// frontend/src/zaqal/frontend/ITTAGE.scala:195:{23,40,59,77}, src/main/scala/chisel3/util/Mux.scala:30:73
-  wire        eligible_0 = ~io_providerHit & _tables_0_io_update_u == 2'h0;	// frontend/src/zaqal/frontend/ITTAGE.scala:132:19, :142:23, :195:23, :202:{69,79}
+    ~io_providerHit | io_providerHit & provider_target != io_update_target;	// frontend/src/zaqal/frontend/ITTAGE.scala:197:{23,40,59,77}, src/main/scala/chisel3/util/Mux.scala:30:73
+  wire        eligible_0 = ~io_providerHit & _tables_0_io_update_u == 2'h0;	// frontend/src/zaqal/frontend/ITTAGE.scala:134:19, :144:24, :197:23, :204:{69,79}
   wire        eligible_1 =
-    (~io_providerHit | io_providerIdx == 2'h0) & _tables_1_io_update_u == 2'h0;	// frontend/src/zaqal/frontend/ITTAGE.scala:132:19, :142:23, :195:23, :204:{44,62,69,79}
+    (~io_providerHit | io_providerIdx == 2'h0) & _tables_1_io_update_u == 2'h0;	// frontend/src/zaqal/frontend/ITTAGE.scala:134:19, :144:24, :197:23, :206:{44,62,69,79}
   wire        eligible_2 =
-    (~io_providerHit | ~(io_providerIdx[1])) & _tables_2_io_update_u == 2'h0;	// frontend/src/zaqal/frontend/ITTAGE.scala:132:19, :142:23, :195:23, :204:{44,62,69,79}
+    (~io_providerHit | ~(io_providerIdx[1])) & _tables_2_io_update_u == 2'h0;	// frontend/src/zaqal/frontend/ITTAGE.scala:134:19, :144:24, :197:23, :206:{44,62,69,79}
   wire [3:0]  _GEN_8 =
     {(~io_providerHit | io_providerIdx != 2'h3) & _tables_3_io_update_u == 2'h0,
      eligible_2,
      eligible_1,
-     eligible_0};	// frontend/src/zaqal/frontend/ITTAGE.scala:132:19, :142:23, :195:23, :202:69, :204:{44,62,69,79}, :208:21, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire [1:0]  alloc_idx = eligible_0 ? 2'h0 : eligible_1 ? 2'h1 : {1'h1, ~eligible_2};	// frontend/src/zaqal/frontend/ITTAGE.scala:142:23, :202:69, :204:69, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_9 = alloc_idx == 2'h0;	// frontend/src/zaqal/frontend/ITTAGE.scala:142:23, :212:26, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_10 = io_update_valid & mispredict & (|_GEN_8);	// frontend/src/zaqal/frontend/ITTAGE.scala:139:19, :175:25, :195:40, :196:22, :208:{21,28,33}, :212:35
-  wire        _GEN_11 = alloc_idx == 2'h1;	// frontend/src/zaqal/frontend/ITTAGE.scala:212:26, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_12 = alloc_idx == 2'h2;	// frontend/src/zaqal/frontend/ITTAGE.scala:212:26, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_13 = io_update_valid & mispredict;	// frontend/src/zaqal/frontend/ITTAGE.scala:141:22, :175:25, :195:40, :196:22, :208:33
-  wire        _GEN_14 = ~io_providerHit | _GEN_0;	// frontend/src/zaqal/frontend/ITTAGE.scala:186:30, :195:23, :220:32
-  wire        _GEN_15 = ~io_providerHit | ~(io_providerIdx[1]);	// frontend/src/zaqal/frontend/ITTAGE.scala:195:23, :204:62, :220:{32,39}
-  wire        _GEN_16 = ~io_providerHit | io_providerIdx != 2'h3;	// frontend/src/zaqal/frontend/ITTAGE.scala:195:23, :220:{32,39}, src/main/scala/chisel3/util/Mux.scala:50:70
-  ITTageTable tables_0 (	// frontend/src/zaqal/frontend/ITTAGE.scala:132:19
+     eligible_0};	// frontend/src/zaqal/frontend/ITTAGE.scala:134:19, :144:24, :197:23, :204:69, :206:{44,62,69,79}, :210:21, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire [1:0]  alloc_idx = eligible_0 ? 2'h0 : eligible_1 ? 2'h1 : {1'h1, ~eligible_2};	// frontend/src/zaqal/frontend/ITTAGE.scala:144:24, :204:69, :206:69, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_9 = alloc_idx == 2'h0;	// frontend/src/zaqal/frontend/ITTAGE.scala:144:24, :214:26, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_10 = io_update_valid & mispredict & (|_GEN_8);	// frontend/src/zaqal/frontend/ITTAGE.scala:141:24, :177:25, :197:40, :198:22, :210:{21,28,33}, :214:35
+  wire        _GEN_11 = alloc_idx == 2'h1;	// frontend/src/zaqal/frontend/ITTAGE.scala:214:26, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_12 = alloc_idx == 2'h2;	// frontend/src/zaqal/frontend/ITTAGE.scala:214:26, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_13 = io_update_valid & mispredict;	// frontend/src/zaqal/frontend/ITTAGE.scala:143:24, :177:25, :197:40, :198:22, :210:33
+  wire        _GEN_14 = ~io_providerHit | _GEN_0;	// frontend/src/zaqal/frontend/ITTAGE.scala:188:30, :197:23, :222:32
+  wire        _GEN_15 = ~io_providerHit | ~(io_providerIdx[1]);	// frontend/src/zaqal/frontend/ITTAGE.scala:197:23, :206:62, :222:{32,39}
+  wire        _GEN_16 = ~io_providerHit | io_providerIdx != 2'h3;	// frontend/src/zaqal/frontend/ITTAGE.scala:197:23, :222:{32,39}, src/main/scala/chisel3/util/Mux.scala:50:70
+  ITTageTable tables_0 (	// frontend/src/zaqal/frontend/ITTAGE.scala:134:19
     .clock            (clock),
     .reset            (reset),
     .io_req_pc        (io_req_pc),
-    .io_req_ghr       (io_req_ghr),
+    .io_req_phr       (io_req_phr),
     .io_hit           (_tables_0_io_hit),
     .io_target        (_tables_0_io_target),
     .io_u             (_tables_0_io_u),
@@ -163,93 +163,93 @@ module ITTagePredictor(	// frontend/src/zaqal/frontend/ITTAGE.scala:113:7
       (io_update_valid
        & (mispredict
             ? ((|_GEN_8) ? _GEN_9 | _GEN_1 : ~io_providerHit | _GEN_1)
-            : _GEN_1)),	// frontend/src/zaqal/frontend/ITTAGE.scala:136:23, :175:25, :179:62, :186:39, :195:{23,40}, :196:22, :208:{21,28,33}, :212:{26,35}, :213:39, :220:57, :221:39
+            : _GEN_1)),	// frontend/src/zaqal/frontend/ITTAGE.scala:138:24, :177:25, :181:62, :188:39, :197:{23,40}, :198:22, :210:{21,28,33}, :214:{26,35}, :215:39, :222:57, :223:39
     .io_update_pc     (io_update_pc),
-    .io_update_ghr    (io_update_ghr),
-    .io_allocate      (_GEN_10 & _GEN_9),	// frontend/src/zaqal/frontend/ITTAGE.scala:139:19, :175:25, :196:22, :208:33, :212:{26,35}
+    .io_update_phr    (io_update_phr),
+    .io_allocate      (_GEN_10 & _GEN_9),	// frontend/src/zaqal/frontend/ITTAGE.scala:141:24, :177:25, :198:22, :210:33, :214:{26,35}
     .io_update_target (io_update_target),
-    .io_decrement_u   (_GEN_13 & ~(|_GEN_8) & ~io_providerHit),	// frontend/src/zaqal/frontend/ITTAGE.scala:141:22, :175:25, :195:23, :196:22, :208:{21,28,33}, :220:57
-    .io_update_u_val  (io_update_valid & _GEN & _GEN_0 ? new_u : 2'h0),	// frontend/src/zaqal/frontend/ITTAGE.scala:142:23, :175:25, :179:{25,62}, :181:22, :186:{30,39}, :189:37
-    .io_we_u          (_GEN_2 & _GEN_0),	// frontend/src/zaqal/frontend/ITTAGE.scala:143:15, :175:25, :179:62, :186:{30,39}
+    .io_decrement_u   (_GEN_13 & ~(|_GEN_8) & ~io_providerHit),	// frontend/src/zaqal/frontend/ITTAGE.scala:143:24, :177:25, :197:23, :198:22, :210:{21,28,33}, :222:57
+    .io_update_u_val  (io_update_valid & _GEN & _GEN_0 ? new_u : 2'h0),	// frontend/src/zaqal/frontend/ITTAGE.scala:144:24, :177:25, :181:{25,62}, :183:22, :188:{30,39}, :191:37
+    .io_we_u          (_GEN_2 & _GEN_0),	// frontend/src/zaqal/frontend/ITTAGE.scala:145:24, :177:25, :181:62, :188:{30,39}
     .io_update_u      (_tables_0_io_update_u)
   );
-  ITTageTable_1 tables_1 (	// frontend/src/zaqal/frontend/ITTAGE.scala:132:19
+  ITTageTable_1 tables_1 (	// frontend/src/zaqal/frontend/ITTAGE.scala:134:19
     .clock            (clock),
     .reset            (reset),
     .io_req_pc        (io_req_pc),
-    .io_req_ghr       (io_req_ghr),
+    .io_req_phr       (io_req_phr),
     .io_hit           (_tables_1_io_hit),
     .io_target        (_tables_1_io_target),
     .io_u             (_tables_1_io_u),
     .io_update_valid
       (io_update_valid
-       & (mispredict ? ((|_GEN_8) ? _GEN_11 | _GEN_4 : _GEN_14 | _GEN_4) : _GEN_4)),	// frontend/src/zaqal/frontend/ITTAGE.scala:136:23, :175:25, :179:62, :186:39, :195:40, :196:22, :208:{21,28,33}, :212:{26,35}, :213:39, :220:{32,57}, :221:39
+       & (mispredict ? ((|_GEN_8) ? _GEN_11 | _GEN_4 : _GEN_14 | _GEN_4) : _GEN_4)),	// frontend/src/zaqal/frontend/ITTAGE.scala:138:24, :177:25, :181:62, :188:39, :197:40, :198:22, :210:{21,28,33}, :214:{26,35}, :215:39, :222:{32,57}, :223:39
     .io_update_pc     (io_update_pc),
-    .io_update_ghr    (io_update_ghr),
-    .io_allocate      (_GEN_10 & _GEN_11),	// frontend/src/zaqal/frontend/ITTAGE.scala:139:19, :175:25, :196:22, :208:33, :212:{26,35}
+    .io_update_phr    (io_update_phr),
+    .io_allocate      (_GEN_10 & _GEN_11),	// frontend/src/zaqal/frontend/ITTAGE.scala:141:24, :177:25, :198:22, :210:33, :214:{26,35}
     .io_update_target (io_update_target),
-    .io_decrement_u   (_GEN_13 & ~(|_GEN_8) & _GEN_14),	// frontend/src/zaqal/frontend/ITTAGE.scala:141:22, :175:25, :196:22, :208:{21,28,33}, :220:{32,57}
-    .io_update_u_val  (io_update_valid & _GEN & _GEN_3 ? new_u : 2'h0),	// frontend/src/zaqal/frontend/ITTAGE.scala:142:23, :175:25, :179:{25,62}, :181:22, :186:{30,39}, :189:37
-    .io_we_u          (_GEN_2 & _GEN_3),	// frontend/src/zaqal/frontend/ITTAGE.scala:143:15, :175:25, :179:62, :186:{30,39}
+    .io_decrement_u   (_GEN_13 & ~(|_GEN_8) & _GEN_14),	// frontend/src/zaqal/frontend/ITTAGE.scala:143:24, :177:25, :198:22, :210:{21,28,33}, :222:{32,57}
+    .io_update_u_val  (io_update_valid & _GEN & _GEN_3 ? new_u : 2'h0),	// frontend/src/zaqal/frontend/ITTAGE.scala:144:24, :177:25, :181:{25,62}, :183:22, :188:{30,39}, :191:37
+    .io_we_u          (_GEN_2 & _GEN_3),	// frontend/src/zaqal/frontend/ITTAGE.scala:145:24, :177:25, :181:62, :188:{30,39}
     .io_update_u      (_tables_1_io_update_u)
   );
-  ITTageTable_2 tables_2 (	// frontend/src/zaqal/frontend/ITTAGE.scala:132:19
+  ITTageTable_2 tables_2 (	// frontend/src/zaqal/frontend/ITTAGE.scala:134:19
     .clock            (clock),
     .reset            (reset),
     .io_req_pc        (io_req_pc),
-    .io_req_ghr       (io_req_ghr),
+    .io_req_phr       (io_req_phr),
     .io_hit           (_tables_2_io_hit),
     .io_target        (_tables_2_io_target),
     .io_u             (_tables_2_io_u),
     .io_update_valid
       (io_update_valid
-       & (mispredict ? ((|_GEN_8) ? _GEN_12 | _GEN_6 : _GEN_15 | _GEN_6) : _GEN_6)),	// frontend/src/zaqal/frontend/ITTAGE.scala:136:23, :175:25, :179:62, :186:39, :195:40, :196:22, :208:{21,28,33}, :212:{26,35}, :213:39, :220:{32,57}, :221:39
+       & (mispredict ? ((|_GEN_8) ? _GEN_12 | _GEN_6 : _GEN_15 | _GEN_6) : _GEN_6)),	// frontend/src/zaqal/frontend/ITTAGE.scala:138:24, :177:25, :181:62, :188:39, :197:40, :198:22, :210:{21,28,33}, :214:{26,35}, :215:39, :222:{32,57}, :223:39
     .io_update_pc     (io_update_pc),
-    .io_update_ghr    (io_update_ghr),
-    .io_allocate      (_GEN_10 & _GEN_12),	// frontend/src/zaqal/frontend/ITTAGE.scala:139:19, :175:25, :196:22, :208:33, :212:{26,35}
+    .io_update_phr    (io_update_phr),
+    .io_allocate      (_GEN_10 & _GEN_12),	// frontend/src/zaqal/frontend/ITTAGE.scala:141:24, :177:25, :198:22, :210:33, :214:{26,35}
     .io_update_target (io_update_target),
-    .io_decrement_u   (_GEN_13 & ~(|_GEN_8) & _GEN_15),	// frontend/src/zaqal/frontend/ITTAGE.scala:141:22, :175:25, :196:22, :208:{21,28,33}, :220:{32,57}
-    .io_update_u_val  (io_update_valid & _GEN & _GEN_5 ? new_u : 2'h0),	// frontend/src/zaqal/frontend/ITTAGE.scala:142:23, :175:25, :179:{25,62}, :181:22, :186:{30,39}, :189:37
-    .io_we_u          (_GEN_2 & _GEN_5),	// frontend/src/zaqal/frontend/ITTAGE.scala:143:15, :175:25, :179:62, :186:{30,39}
+    .io_decrement_u   (_GEN_13 & ~(|_GEN_8) & _GEN_15),	// frontend/src/zaqal/frontend/ITTAGE.scala:143:24, :177:25, :198:22, :210:{21,28,33}, :222:{32,57}
+    .io_update_u_val  (io_update_valid & _GEN & _GEN_5 ? new_u : 2'h0),	// frontend/src/zaqal/frontend/ITTAGE.scala:144:24, :177:25, :181:{25,62}, :183:22, :188:{30,39}, :191:37
+    .io_we_u          (_GEN_2 & _GEN_5),	// frontend/src/zaqal/frontend/ITTAGE.scala:145:24, :177:25, :181:62, :188:{30,39}
     .io_update_u      (_tables_2_io_update_u)
   );
-  ITTageTable_3 tables_3 (	// frontend/src/zaqal/frontend/ITTAGE.scala:132:19
+  ITTageTable_2 tables_3 (	// frontend/src/zaqal/frontend/ITTAGE.scala:134:19
     .clock            (clock),
     .reset            (reset),
     .io_req_pc        (io_req_pc),
-    .io_req_ghr       (io_req_ghr),
+    .io_req_phr       (io_req_phr),
     .io_hit           (_tables_3_io_hit),
     .io_target        (_tables_3_io_target),
     .io_u             (_tables_3_io_u),
     .io_update_valid
       (io_update_valid
-       & (mispredict ? ((|_GEN_8) ? (&alloc_idx) | _GEN_7 : _GEN_16 | _GEN_7) : _GEN_7)),	// frontend/src/zaqal/frontend/ITTAGE.scala:136:23, :175:25, :179:62, :186:39, :195:40, :196:22, :208:{21,28,33}, :212:{26,35}, :213:39, :220:{32,57}, :221:39, src/main/scala/chisel3/util/Mux.scala:50:70
+       & (mispredict ? ((|_GEN_8) ? (&alloc_idx) | _GEN_7 : _GEN_16 | _GEN_7) : _GEN_7)),	// frontend/src/zaqal/frontend/ITTAGE.scala:138:24, :177:25, :181:62, :188:39, :197:40, :198:22, :210:{21,28,33}, :214:{26,35}, :215:39, :222:{32,57}, :223:39, src/main/scala/chisel3/util/Mux.scala:50:70
     .io_update_pc     (io_update_pc),
-    .io_update_ghr    (io_update_ghr),
-    .io_allocate      (_GEN_10 & (&alloc_idx)),	// frontend/src/zaqal/frontend/ITTAGE.scala:139:19, :175:25, :196:22, :208:33, :212:{26,35}, src/main/scala/chisel3/util/Mux.scala:50:70
+    .io_update_phr    (io_update_phr),
+    .io_allocate      (_GEN_10 & (&alloc_idx)),	// frontend/src/zaqal/frontend/ITTAGE.scala:141:24, :177:25, :198:22, :210:33, :214:{26,35}, src/main/scala/chisel3/util/Mux.scala:50:70
     .io_update_target (io_update_target),
-    .io_decrement_u   (_GEN_13 & ~(|_GEN_8) & _GEN_16),	// frontend/src/zaqal/frontend/ITTAGE.scala:141:22, :175:25, :196:22, :208:{21,28,33}, :220:{32,57}
-    .io_update_u_val  (io_update_valid & _GEN & (&io_providerIdx) ? new_u : 2'h0),	// frontend/src/zaqal/frontend/ITTAGE.scala:142:23, :175:25, :179:{25,62}, :181:22, :186:{30,39}, :189:37
-    .io_we_u          (_GEN_2 & (&io_providerIdx)),	// frontend/src/zaqal/frontend/ITTAGE.scala:143:15, :175:25, :179:62, :186:{30,39}
+    .io_decrement_u   (_GEN_13 & ~(|_GEN_8) & _GEN_16),	// frontend/src/zaqal/frontend/ITTAGE.scala:143:24, :177:25, :198:22, :210:{21,28,33}, :222:{32,57}
+    .io_update_u_val  (io_update_valid & _GEN & (&io_providerIdx) ? new_u : 2'h0),	// frontend/src/zaqal/frontend/ITTAGE.scala:144:24, :177:25, :181:{25,62}, :183:22, :188:{30,39}, :191:37
+    .io_we_u          (_GEN_2 & (&io_providerIdx)),	// frontend/src/zaqal/frontend/ITTAGE.scala:145:24, :177:25, :181:62, :188:{30,39}
     .io_update_u      (_tables_3_io_update_u)
   );
   assign io_pred_providerIdx =
     2'h3
-    - (_tables_3_io_hit ? 2'h0 : _tables_2_io_hit ? 2'h1 : {1'h1, ~_tables_1_io_hit});	// frontend/src/zaqal/frontend/ITTAGE.scala:113:7, :132:19, :142:23, :161:44, src/main/scala/chisel3/util/Mux.scala:50:70
-  assign io_pred_target = provider_target;	// frontend/src/zaqal/frontend/ITTAGE.scala:113:7, src/main/scala/chisel3/util/Mux.scala:30:73
+    - (_tables_3_io_hit ? 2'h0 : _tables_2_io_hit ? 2'h1 : {1'h1, ~_tables_1_io_hit});	// frontend/src/zaqal/frontend/ITTAGE.scala:115:7, :134:19, :144:24, :163:44, src/main/scala/chisel3/util/Mux.scala:50:70
+  assign io_pred_target = provider_target;	// frontend/src/zaqal/frontend/ITTAGE.scala:115:7, src/main/scala/chisel3/util/Mux.scala:30:73
   assign io_pred_altTarget =
     (|{altHits_3, altHits_2, altHits_1, altHits_0})
       ? (altMask_enc[3] ? _tables_0_io_target : 64'h0)
         | (altMask_enc[2] ? _tables_1_io_target : 64'h0)
         | (altMask_enc[1] ? _tables_2_io_target : 64'h0)
         | (altMask_enc[0] ? _tables_3_io_target : 64'h0)
-      : 64'h0;	// frontend/src/zaqal/frontend/ITTAGE.scala:113:7, :132:19, :155:27, :158:{24,31}, :166:23, src/main/scala/chisel3/util/Mux.scala:30:73, :50:70, src/main/scala/chisel3/util/OneHot.scala:83:30
+      : 64'h0;	// frontend/src/zaqal/frontend/ITTAGE.scala:115:7, :134:19, :157:27, :160:{24,31}, :168:23, src/main/scala/chisel3/util/Mux.scala:30:73, :50:70, src/main/scala/chisel3/util/OneHot.scala:83:30
   assign io_pred_providerU =
     (providerMask_enc[3] ? _tables_0_io_u : 2'h0)
     | (providerMask_enc[2] ? _tables_1_io_u : 2'h0)
     | (providerMask_enc[1] ? _tables_2_io_u : 2'h0)
-    | (providerMask_enc[0] ? _tables_3_io_u : 2'h0);	// frontend/src/zaqal/frontend/ITTAGE.scala:113:7, :132:19, :142:23, src/main/scala/chisel3/util/Mux.scala:30:73, :50:70, src/main/scala/chisel3/util/OneHot.scala:83:30
+    | (providerMask_enc[0] ? _tables_3_io_u : 2'h0);	// frontend/src/zaqal/frontend/ITTAGE.scala:115:7, :134:19, :144:24, src/main/scala/chisel3/util/Mux.scala:30:73, :50:70, src/main/scala/chisel3/util/OneHot.scala:83:30
   assign io_pred_hit =
-    |{_tables_3_io_hit, _tables_2_io_hit, _tables_1_io_hit, _tables_0_io_hit};	// frontend/src/zaqal/frontend/ITTAGE.scala:113:7, :132:19, :151:{26,33}
+    |{_tables_3_io_hit, _tables_2_io_hit, _tables_1_io_hit, _tables_0_io_hit};	// frontend/src/zaqal/frontend/ITTAGE.scala:115:7, :134:19, :153:{26,33}
 endmodule
 
