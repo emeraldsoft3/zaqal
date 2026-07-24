@@ -13,6 +13,7 @@ class IssueQueue(val numEntries: Int, val numEnq: Int, val numDeq: Int, val numW
     val redirect_valid = Input(Bool())
     val redirect_restore_idx = Input(UInt(log2Up(renameSnapshotNum).W))
     val redirect_enq_ptr = Input(UInt(log2Up(renameSnapshotNum).W))
+    val redirect_deq_ptr = Input(UInt(log2Up(renameSnapshotNum).W))
     
     val rs1_ready_in = Vec(numEnq, Input(Bool()))
     val rs2_ready_in = Vec(numEnq, Input(Bool()))
@@ -49,7 +50,19 @@ class IssueQueue(val numEntries: Int, val numEnq: Int, val numDeq: Int, val numW
 
   val can_issue = Wire(Vec(numEntries, Bool()))
   for (i <- 0 until numEntries) {
-    can_issue(i) := entries(i).valid && woken_rs1(i) && woken_rs2(i) && woken_rs3(i)
+    val is_cfi = entries(i).uop.decode.is_branch || entries(i).uop.decode.is_jal || entries(i).uop.decode.is_jalr
+    val has_older_cfi = VecInit((0 until numEntries).map { j =>
+      val j_valid = entries(j).valid
+      val j_is_cfi = j_valid && (entries(j).uop.decode.is_branch || entries(j).uop.decode.is_jal || entries(j).uop.decode.is_jalr)
+      val j_snap = entries(j).uop.snapshotIdx
+      val i_snap = entries(i).uop.snapshotIdx
+      val deqPtr = io.redirect_deq_ptr
+      def circDist(ptr: UInt): UInt = Mux(ptr >= deqPtr, ptr - deqPtr, ptr + renameSnapshotNum.U - deqPtr)
+      val j_is_older = circDist(j_snap) < circDist(i_snap)
+      (i.U =/= j.U) && j_is_cfi && j_is_older
+    }).asUInt.orR
+
+    can_issue(i) := entries(i).valid && woken_rs1(i) && woken_rs2(i) && woken_rs3(i) && !(is_cfi && has_older_cfi)
   }
 
   val ageDetector = Module(new AgeDetector(numEntries, numEnq, numDeq))
@@ -132,9 +145,20 @@ class IssueQueue(val numEntries: Int, val numEnq: Int, val numDeq: Int, val numW
   when (io.redirect_valid) {
     printf(p"  [IQ REDIRECT] restore_idx=${io.redirect_restore_idx} enq_ptr=${io.redirect_enq_ptr}\n")
     for (i <- 0 until numEntries) {
-      val entry_is_younger = Mux(io.redirect_restore_idx < io.redirect_enq_ptr,
-                                 entries(i).uop.snapshotIdx > io.redirect_restore_idx && entries(i).uop.snapshotIdx < io.redirect_enq_ptr,
-                                 entries(i).uop.snapshotIdx > io.redirect_restore_idx || entries(i).uop.snapshotIdx < io.redirect_enq_ptr)
+      // Circular-distance flush: flush entries whose snapIdx is >= restore_idx
+      // in circular order from deqPtr, up to (but not including) enqPtr.
+      // This handles wrap-around correctly (e.g. restore_idx=5, enqPtr=0).
+      val snapIdx = entries(i).uop.snapshotIdx
+      val deqPtr  = io.redirect_deq_ptr
+      val enqPtr  = io.redirect_enq_ptr
+      def circDist(ptr: UInt): UInt =
+        Mux(ptr >= deqPtr, ptr - deqPtr,
+            ptr + renameSnapshotNum.U - deqPtr)
+      val dist_snap    = circDist(snapIdx)
+      val dist_restore = circDist(io.redirect_restore_idx)
+      val dist_enq     = circDist(enqPtr)
+      val in_valid_window  = dist_snap < dist_enq
+      val entry_is_younger = in_valid_window && dist_snap >= dist_restore
       when (entries(i).valid) {
         printf(p"    Entry $i: pc=${Hexadecimal(entries(i).uop.uop.pc)} snapIdx=${entries(i).uop.snapshotIdx} is_younger=${entry_is_younger}\n")
       }

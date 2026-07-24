@@ -146,12 +146,21 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
   fpFreeList.io.useSnapshot := true.B
   fpFreeList.io.snptRestoreIdx := restore_idx
 
-  // Compute younger snapshot flush mask
+  // Compute younger snapshot flush mask using circular distance from deqPtr.
+  // This correctly handles wrap-around (e.g. restore_idx=5, enqPtr=0).
+  // An entry is "younger" if its circular distance from deqPtr is >= that of restore_idx.
   for (i <- 0 until renameSnapshotNum) {
-    val enqPtr = rat.io.snptEnqPtr
-    val is_younger = Mux(restore_idx < enqPtr,
-                         i.U > restore_idx && i.U < enqPtr,
-                         i.U > restore_idx || i.U < enqPtr)
+    val deqPtr  = rat.io.snptDeqPtr
+    val enqPtr  = rat.io.snptEnqPtr
+    def circDist(ptr: UInt): UInt =
+      Mux(ptr >= deqPtr, ptr - deqPtr,
+          ptr + renameSnapshotNum.U - deqPtr)
+    val dist_i       = circDist(i.U)
+    val dist_restore = circDist(restore_idx)
+    // Flush if: dist_i >= dist_restore AND dist_i < dist_enqPtr (valid window)
+    val dist_enq = circDist(enqPtr)
+    val in_valid_window = dist_i < dist_enq
+    val is_younger = in_valid_window && dist_i >= dist_restore
     val flush = redirect_valid && is_younger && rat.io.snptValids(i)
     rat.io.snptFlushVec(i) := flush
     intFreeList.io.snptFlushVec(i) := flush
@@ -319,14 +328,17 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
   intIq.io.redirect_valid := redirect_valid
   intIq.io.redirect_restore_idx := restore_idx
   intIq.io.redirect_enq_ptr := rat.io.snptEnqPtr
+  intIq.io.redirect_deq_ptr := rat.io.snptDeqPtr
 
   memIq.io.redirect_valid := redirect_valid
   memIq.io.redirect_restore_idx := restore_idx
   memIq.io.redirect_enq_ptr := rat.io.snptEnqPtr
+  memIq.io.redirect_deq_ptr := rat.io.snptDeqPtr
 
   fpIq.io.redirect_valid := redirect_valid
   fpIq.io.redirect_restore_idx := restore_idx
   fpIq.io.redirect_enq_ptr := rat.io.snptEnqPtr
+  fpIq.io.redirect_deq_ptr := rat.io.snptDeqPtr
 
   for (i <- 0 until decodeWidth) {
     intIq.io.enq(i).valid := dispatch.io.aluOut(i).valid || dispatch.io.bruOut(i).valid
