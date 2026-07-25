@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.111 (w)1999-2020 BSI
-[*] Thu Jul 23 08:38:20 2026
+[*] Sat Jul 25 07:18:41 2026
 [*]
 [dumpfile] "/home/emerald/zaqal/programs/vcd/Lithium.vcd"
-[dumpfile_mtime] "Tue Jul 21 11:42:08 2026"
-[dumpfile_size] 9039425
+[dumpfile_mtime] "Sat Jul 25 06:17:33 2026"
+[dumpfile_size] 17553574
 [savefile] "/home/emerald/zaqal/programs/vcd/Lithium.gtkw"
-[timestart] 86
-[size] 1352 931
-[pos] 5 6
-*-2.900000 39 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[timestart] 189
+[size] 1865 931
+[pos] -1 -1
+*-2.900000 205 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] TOP.
 [treeopen] TOP.Core.
 [treeopen] TOP.Core.backend.
@@ -28,18 +28,8 @@
 [signals_width] 500
 [sst_expanded] 1
 [sst_vpaned_height] 271
-@200
--TOP
--Core
 @24
 +{TOP.Core.cycle_reg[63:0]} TOP.Core.cycle_reg[63:0]
-@200
--Frontend
--BPU
-@28
-TOP.Core.frontend.bpu.ftb.io_hit
-@22
-TOP.Core.frontend.bpu.ghr[127:0]
 @800200
 -BPU
 @22
@@ -58,30 +48,6 @@ TOP.Core.frontend.bpu.current_mask[15:0]
 @28
 [color] 1
 TOP.Core.frontend.bpu.ftb.io_update_valid
-@22
-TOP.Core.frontend.bpu.ftb.io_req_pc[63:0]
-@28
-TOP.Core.frontend.bpu.ftb.io_hit
-@22
-TOP.Core.frontend.bpu.ftb.io_target[63:0]
-TOP.Core.frontend.bpu.ftb.io_update_target[63:0]
-@28
-TOP.Core.frontend.bpu.ftb.hit
-TOP.Core.frontend.bpu.ftb.io_taken
-TOP.Core.frontend.bpu.ftb.io_update_taken
-@24
-TOP.Core.frontend.bpu.ftb.io_slot[3:0]
-@28
-TOP.Core.frontend.bpu.ftb.io_update_valid
-+{TOP.Core.frontend.bpu.ftb.io_br_type[1:0]} TOP.Core.frontend.bpu.ftb.io_br_type[1:0]
-@22
-+{TOP.Core.frontend.bpu.ftb.entries_0_tag[52:0]} TOP.Core.frontend.bpu.ftb.entries_0_tag[52:0]
-@28
-TOP.Core.frontend.bpu.ftb.entries_0_taken
-@22
-+{TOP.Core.frontend.bpu.ftb.entries_0_target[63:0]} TOP.Core.frontend.bpu.ftb.entries_0_target[63:0]
-@28
-TOP.Core.frontend.bpu.ftb.entries_0_valid
 @c00022
 TOP.Core.frontend.bpu.ftb.entries_0_offset[3:0]
 @28
@@ -91,43 +57,15 @@ TOP.Core.frontend.bpu.ftb.entries_0_offset[3:0]
 (3)TOP.Core.frontend.bpu.ftb.entries_0_offset[3:0]
 @1401200
 -group_end
-@28
-+{TOP.Core.frontend.bpu.ftb.entries_0_br_type[1:0]} TOP.Core.frontend.bpu.ftb.entries_0_br_type[1:0]
 @22
++{TOP.Core.frontend.bpu.ftb.entries_0_target[63:0]} TOP.Core.frontend.bpu.ftb.entries_0_target[63:0]
 +{TOP.Core.frontend.bpu.ftb.entries_1_offset[3:0]} TOP.Core.frontend.bpu.ftb.entries_1_offset[3:0]
-@28
-+{TOP.Core.frontend.bpu.ftb.entries_1_br_type[1:0]} TOP.Core.frontend.bpu.ftb.entries_1_br_type[1:0]
-@22
-+{TOP.Core.frontend.bpu.ftb.entries_1_tag[52:0]} TOP.Core.frontend.bpu.ftb.entries_1_tag[52:0]
-@28
-TOP.Core.frontend.bpu.ftb.entries_1_taken
-@22
 +{TOP.Core.frontend.bpu.ftb.entries_1_target[63:0]} TOP.Core.frontend.bpu.ftb.entries_1_target[63:0]
-@28
-TOP.Core.frontend.bpu.ftb.entries_1_valid
-@22
-TOP.Core.frontend.bpu.ftb.entries_2_offset[3:0]
-TOP.Core.frontend.bpu.ftb.entries_2_tag[52:0]
-@28
-TOP.Core.frontend.bpu.ftb.entries_2_taken
-@22
-TOP.Core.frontend.bpu.ftb.entries_2_target[63:0]
-@28
-TOP.Core.frontend.bpu.ftb.entries_2_valid
-TOP.Core.frontend.bpu.ftb.entries_2_br_type[1:0]
-@22
-TOP.Core.frontend.ftq.io_fromBpu_bits_pc[63:0]
-TOP.Core.frontend.ftq.io_toIfu_bits_pc[63:0]
-TOP.Core.frontend.ftq.count[6:0]
-TOP.Core.frontend.ftq.enqPtr[5:0]
-+{TOP.Core.frontend.ftq.deqPtr[5:0]} TOP.Core.frontend.ftq.deqPtr[5:0]
-@28
-+{TOP.Core.frontend.ftq.io_flush} TOP.Core.frontend.ftq.io_flush
 @1000200
 -ftb
 @800200
 -TAGE
-@25
+@24
 TOP.Core.debug_cycle_count[63:0]
 @28
 [color] 1
@@ -135,13 +73,13 @@ TOP.Core.debug_cycle_count[63:0]
 @22
 TOP.Core.frontend.bpu.tage.io_req_pc[63:0]
 +{TOP.Core.frontend.bpu.tage.tables_0.io_req_ghr[127:0]} TOP.Core.frontend.bpu.tage.tables_0.io_req_ghr[127:0]
++{TOP.Core.frontend.bpu.tage.io_update_ghr[127:0]} TOP.Core.frontend.bpu.tage.io_update_ghr[127:0]
 @28
 TOP.Core.frontend.bpu.tage.io_pred_hit
 @200
 -t0
 @28
 +{TOP.Core.frontend.bpu.tage.tables_0.io_update_valid} TOP.Core.frontend.bpu.tage.tables_0.io_update_valid
-TOP.Core.frontend.bpu.tage.tables_0.clock
 +{TOP.Core.frontend.bpu.tage.tables_0.valids_32} TOP.Core.frontend.bpu.tage.tables_0.valids_32
 @22
 +{TOP.Core.frontend.bpu.tage.tables_0.req_tag[7:0]} TOP.Core.frontend.bpu.tage.tables_0.req_tag[7:0]
@@ -152,6 +90,8 @@ TOP.Core.frontend.bpu.tage.tables_0.clock
 +{TOP.Core.frontend.bpu.tage.tables_0.us_MPORT_2_data[1:0]} TOP.Core.frontend.bpu.tage.tables_0.us_MPORT_2_data[1:0]
 +{TOP.Core.frontend.bpu.tage.tables_0.ctrs_MPORT_1_addr[6:0]} TOP.Core.frontend.bpu.tage.tables_0.ctrs_MPORT_1_addr[6:0]
 +{TOP.Core.frontend.bpu.tage.tables_0.ctrs_MPORT_1_data[2:0]} TOP.Core.frontend.bpu.tage.tables_0.ctrs_MPORT_1_data[2:0]
+@28
++{TOP.Core.frontend.bpu.tage.tables_0.valids_1} TOP.Core.frontend.bpu.tage.tables_0.valids_1
 @200
 -t1
 @28
@@ -166,7 +106,7 @@ TOP.Core.frontend.bpu.tage.tables_1.ctrs_read_ctr_addr[6:0]
 TOP.Core.frontend.bpu.tage.tables_1.ctrs_read_ctr_data[2:0]
 @1000200
 -TAGE
-@800200
+@c00200
 -ITTAGE
 @28
 [color] 1
@@ -189,7 +129,7 @@ TOP.Core.frontend.bpu.ittage.tables_0.us_MPORT_2_data[1:0]
 @22
 TOP.Core.frontend.bpu.ittage.tables_0_io_target[63:0]
 +{TOP.Core.frontend.bpu.ittage.tables_0_io_req_pc[63:0]} TOP.Core.frontend.bpu.ittage.tables_0_io_req_pc[63:0]
-@1000200
+@1401200
 -ITTAGE
 @c00200
 -FTQ
@@ -281,9 +221,6 @@ TOP.Core.backend.decoders_4_io_inst[31:0]
 TOP.Core.backend.decoders_5_io_inst[31:0]
 @1401200
 -Decoders
-@200
--Snaphot
--intfreelist
 @c00200
 -RAT
 @24
@@ -363,7 +300,6 @@ TOP.Core.backend.dispatch.io_in_5_bits_uop_inst_raw[31:0]
 [color] 1
 +{TOP.Core.backend.exec.bru_0.io_pc[63:0]} TOP.Core.backend.exec.bru_0.io_pc[63:0]
 @28
-TOP.Core.backend.exec.bru_0.comparator.io_eq
 TOP.Core.backend.exec.bru_0.io_mispredict
 @22
 TOP.Core.backend.exec.bru_0.redirect_target[63:0]
