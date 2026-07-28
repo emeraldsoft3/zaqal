@@ -13,6 +13,7 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
     val mem_in = Flipped(Decoupled(new DecodedMicroOp))
     val fp_in = Flipped(Decoupled(new DecodedMicroOp))
     val redirect = Output(new BPURedirect)
+    val bpu_update = Output(new BPUUpdate)
     val debug_cycle = Input(UInt(64.W))
     val debug_regs = Output(Vec(phyRegs, UInt(xLen.W)))
     val debug_fp_regs = Output(Vec(phyRegs, UInt(xLen.W)))
@@ -80,6 +81,15 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   io.redirect.is_jal := false.B
   io.redirect.is_jalr := false.B
   io.redirect.ftqPtr := 0.U
+
+  io.bpu_update.valid := false.B
+  io.bpu_update.pc := 0.U
+  io.bpu_update.target := 0.U
+  io.bpu_update.taken := false.B
+  io.bpu_update.is_cfi := false.B
+  io.bpu_update.is_jal := false.B
+  io.bpu_update.is_jalr := false.B
+  io.bpu_update.ftqPtr := 0.U
   
   fcsr.io.csr_addr  := 0.U
   fcsr.io.csr_wen   := false.B
@@ -423,6 +433,33 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
     io.redirect.is_jal       := exe_dec1.is_jal
     io.redirect.is_jalr      := exe_dec1.is_jalr
     io.redirect.ftqPtr       := exe_uop_raw1.ftqPtr
+  }
+
+  // Non-Flushing BPU Update (Trains FTB and GHR for executed branches without flushing pipeline)
+  // ARCHITECTURAL NOTE FOR FUTURE ROB PHASE:
+  // When transitioning to the ROB Commit phase (Phase 7 performance tuning), this io.bpu_update
+  // interface should be re-driven by the ROB commit queue (ftq.commitUpdate) to avoid speculative branch training.
+  val update0_valid = exe_val0 && (exe_dec0.is_branch || exe_dec0.is_jal || exe_dec0.is_jalr) && !r0_valid && io.snptValids(r0_snap)
+  val update1_valid = exe_val1 && (exe_dec1.is_branch || exe_dec1.is_jal || exe_dec1.is_jalr) && !r1_valid && io.snptValids(r1_snap)
+
+  when(update0_valid) {
+    io.bpu_update.valid  := true.B
+    io.bpu_update.pc     := exe_uop_raw0.pc
+    io.bpu_update.target := bru(0).io.target
+    io.bpu_update.taken  := bru(0).io.taken
+    io.bpu_update.is_cfi := true.B
+    io.bpu_update.is_jal := exe_dec0.is_jal
+    io.bpu_update.is_jalr:= exe_dec0.is_jalr
+    io.bpu_update.ftqPtr := exe_uop_raw0.ftqPtr
+  } .elsewhen(update1_valid) {
+    io.bpu_update.valid  := true.B
+    io.bpu_update.pc     := exe_uop_raw1.pc
+    io.bpu_update.target := bru(1).io.target
+    io.bpu_update.taken  := bru(1).io.taken
+    io.bpu_update.is_cfi := true.B
+    io.bpu_update.is_jal := exe_dec1.is_jal
+    io.bpu_update.is_jalr:= exe_dec1.is_jalr
+    io.bpu_update.ftqPtr := exe_uop_raw1.ftqPtr
   }
 
   // Writebacks and latch registers

@@ -10,6 +10,7 @@ import zaqal.utility.SkidBuffer
 class Frontend(implicit val p: Parameters) extends Module with HasZaqalParameter {
   val io = IO(new Bundle {
     val redirect     = Input(new BPURedirect)
+    val bpu_update   = Input(new BPUUpdate)
     val dispatch     = Vec(decodeWidth, Decoupled(new MicroOp)) // Output to Backend (6-wide)
     
     // Backend access to FTQ (XiangShan style)
@@ -117,6 +118,8 @@ class Frontend(implicit val p: Parameters) extends Module with HasZaqalParameter
   bpu.io.redirect.is_jal       := io.redirect.is_jal
   bpu.io.redirect.is_jalr      := io.redirect.is_jalr
   bpu.io.redirect.ftqPtr       := io.redirect.ftqPtr
+
+  bpu.io.bpu_update := io.bpu_update
 
   // 6. Debug Port Mapping (Using the raw BPU signals for the trace)
   io.debug_ftq_valid       := bpu.io.out.valid

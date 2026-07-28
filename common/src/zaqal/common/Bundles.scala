@@ -273,6 +273,18 @@ class BPURedirect(implicit val p: Parameters) extends Bundle with HasZaqalParame
   val ftqPtr       = UInt(ftqPtrWidth.W)
 }
 
+// Non-flushing BPU Training signal from Backend to Frontend
+class BPUUpdate(implicit val p: Parameters) extends Bundle with HasZaqalParameter {
+  val valid  = Bool()
+  val pc     = UInt(xLen.W)
+  val target = UInt(xLen.W)
+  val taken  = Bool()
+  val is_cfi = Bool()
+  val is_jal = Bool()
+  val is_jalr= Bool()
+  val ftqPtr = UInt(ftqPtrWidth.W)
+}
+
 object Causes {
   val inst_address_misaligned = 0.U
 }

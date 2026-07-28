@@ -15,6 +15,7 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
   val io = IO(new Bundle {
     val dispatch = Vec(decodeWidth, Flipped(Decoupled(new MicroOp)))
     val redirect = Output(new BPURedirect)
+    val bpu_update = Output(new BPUUpdate)
     val debug_regs = Output(Vec(phyRegs, UInt(xLen.W)))
     val debug_fp_regs = Output(Vec(phyRegs, UInt(fLen.W)))
     val debug_int_rat = Output(Vec(32, UInt(phyRegIdxWidth.W)))
@@ -376,6 +377,7 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
 
   // Route redirection from Execute to Frontend
   io.redirect := exec.io.redirect
+  io.bpu_update := exec.io.bpu_update
   io.debug_regs := exec.io.debug_regs
   io.debug_fp_regs := exec.io.debug_fp_regs
   io.debug_int_rat := rat.io.debug_int_rat

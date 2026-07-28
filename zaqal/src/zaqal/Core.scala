@@ -53,6 +53,7 @@ class Core(implicit val p: Parameters) extends Module with HasZaqalParameter {
     backend.io.dispatch(i) <> frontend.io.dispatch(i)
   }
   frontend.io.redirect := backend.io.redirect
+  frontend.io.bpu_update := backend.io.bpu_update
   backend.io.debug_cycle := cycle_reg
 
   // Metadata access (XiangShan style) - Tie off for now
