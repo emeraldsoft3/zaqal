@@ -63,7 +63,7 @@ class FTB(implicit val p: Parameters) extends Module with HasZaqalParameter {
   val update_tag   = getTag(io.update_pc)
   val update_offset = getOffset(io.update_pc)
 
-  when(io.update_valid && io.update_is_cfi) {
+  when(io.update_valid && io.update_is_cfi && (io.update_taken || io.update_is_jal || io.update_is_jalr)) {
     val new_entry = Wire(new FTBEntry)
     new_entry.valid   := true.B
     new_entry.tag     := update_tag

@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.111 (w)1999-2020 BSI
-[*] Sat Jul 25 07:18:41 2026
+[*] Wed Jul 29 08:48:40 2026
 [*]
 [dumpfile] "/home/emerald/zaqal/programs/vcd/Lithium.vcd"
-[dumpfile_mtime] "Sat Jul 25 06:17:33 2026"
-[dumpfile_size] 17553574
+[dumpfile_mtime] "Tue Jul 28 10:43:51 2026"
+[dumpfile_size] 18099179
 [savefile] "/home/emerald/zaqal/programs/vcd/Lithium.gtkw"
-[timestart] 189
+[timestart] 216
 [size] 1865 931
 [pos] -1 -1
-*-2.900000 205 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-2.900000 234 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] TOP.
 [treeopen] TOP.Core.
 [treeopen] TOP.Core.backend.
@@ -46,6 +46,18 @@ TOP.Core.frontend.bpu.current_mask[15:0]
 @800200
 -ftb
 @28
+TOP.Core.frontend.bpu.ftb.io_hit
+@22
+TOP.Core.frontend.bpu.ftb.io_req_pc[63:0]
+@28
+TOP.Core.frontend.bpu.ftb.io_br_type[1:0]
+@29
+TOP.Core.frontend.bpu.ftb.io_taken
+@22
+TOP.Core.frontend.bpu.ftb.io_slot[3:0]
+TOP.Core.frontend.bpu.ftb.io_target[63:0]
+TOP.Core.frontend.bpu.ftb.io_update_target[63:0]
+@28
 [color] 1
 TOP.Core.frontend.bpu.ftb.io_update_valid
 @c00022
@@ -71,16 +83,21 @@ TOP.Core.debug_cycle_count[63:0]
 [color] 1
 +{TOP.Core.frontend.bpu.tage.io_update_valid} TOP.Core.frontend.bpu.tage.io_update_valid
 @22
-TOP.Core.frontend.bpu.tage.io_req_pc[63:0]
++{TOP.Core.frontend.bpu.tage.io_req_pc[63:0]} TOP.Core.frontend.bpu.tage.io_req_pc[63:0]
 +{TOP.Core.frontend.bpu.tage.tables_0.io_req_ghr[127:0]} TOP.Core.frontend.bpu.tage.tables_0.io_req_ghr[127:0]
 +{TOP.Core.frontend.bpu.tage.io_update_ghr[127:0]} TOP.Core.frontend.bpu.tage.io_update_ghr[127:0]
 @28
 TOP.Core.frontend.bpu.tage.io_pred_hit
+TOP.Core.frontend.bpu.tage.io_pred_taken
 @200
 -t0
 @28
+TOP.Core.frontend.bpu.tage.tables_0.io_hit
+TOP.Core.frontend.bpu.tage.tables_0.io_ctr[2:0]
 +{TOP.Core.frontend.bpu.tage.tables_0.io_update_valid} TOP.Core.frontend.bpu.tage.tables_0.io_update_valid
++{TOP.Core.frontend.bpu.tage.tables_0.valids_1} TOP.Core.frontend.bpu.tage.tables_0.valids_1
 +{TOP.Core.frontend.bpu.tage.tables_0.valids_32} TOP.Core.frontend.bpu.tage.tables_0.valids_32
++{TOP.Core.frontend.bpu.tage.tables_0.valids_7} TOP.Core.frontend.bpu.tage.tables_0.valids_7
 @22
 +{TOP.Core.frontend.bpu.tage.tables_0.req_tag[7:0]} TOP.Core.frontend.bpu.tage.tables_0.req_tag[7:0]
 +{TOP.Core.frontend.bpu.tage.tables_0.tags_MPORT_data[7:0]} TOP.Core.frontend.bpu.tage.tables_0.tags_MPORT_data[7:0]
@@ -90,8 +107,6 @@ TOP.Core.frontend.bpu.tage.io_pred_hit
 +{TOP.Core.frontend.bpu.tage.tables_0.us_MPORT_2_data[1:0]} TOP.Core.frontend.bpu.tage.tables_0.us_MPORT_2_data[1:0]
 +{TOP.Core.frontend.bpu.tage.tables_0.ctrs_MPORT_1_addr[6:0]} TOP.Core.frontend.bpu.tage.tables_0.ctrs_MPORT_1_addr[6:0]
 +{TOP.Core.frontend.bpu.tage.tables_0.ctrs_MPORT_1_data[2:0]} TOP.Core.frontend.bpu.tage.tables_0.ctrs_MPORT_1_data[2:0]
-@28
-+{TOP.Core.frontend.bpu.tage.tables_0.valids_1} TOP.Core.frontend.bpu.tage.tables_0.valids_1
 @200
 -t1
 @28
@@ -142,9 +157,39 @@ TOP.Core.frontend.ftq.deqPtr[5:0]
 TOP.Core.frontend.ftq.io_fromBpu_bits_pc[63:0]
 TOP.Core.frontend.ftq.io_toIfu_bits_ftqPtr[5:0]
 TOP.Core.frontend.ftq.io_toIfu_bits_mask[15:0]
-TOP.Core.frontend.ftq.io_toIfu_bits_pc[63:0]
 @28
-TOP.Core.frontend.ftq.io_toIfu_bits_prediction_taken
+TOP.Core.frontend.ftq.ram_0_epoch
+@22
+TOP.Core.frontend.ftq.ram_0_ftqPtr[5:0]
+TOP.Core.frontend.ftq.ram_0_mask[15:0]
+TOP.Core.frontend.ftq.ram_0_pc[63:0]
+TOP.Core.frontend.ftq.ram_0_prediction_slot[3:0]
+@28
+TOP.Core.frontend.ftq.ram_0_prediction_taken
+@22
+TOP.Core.frontend.ftq.ram_0_prediction_target[63:0]
+@28
+TOP.Core.frontend.ftq.ram_1_epoch
+@22
+TOP.Core.frontend.ftq.ram_1_ftqPtr[5:0]
+TOP.Core.frontend.ftq.ram_1_mask[15:0]
+TOP.Core.frontend.ftq.ram_1_pc[63:0]
+TOP.Core.frontend.ftq.ram_1_prediction_slot[3:0]
+@28
+TOP.Core.frontend.ftq.ram_1_prediction_taken
+@22
+TOP.Core.frontend.ftq.ram_1_prediction_target[63:0]
+@28
+TOP.Core.frontend.ftq.ram_2_epoch
+@22
+TOP.Core.frontend.ftq.ram_2_ftqPtr[5:0]
+TOP.Core.frontend.ftq.ram_2_mask[15:0]
+TOP.Core.frontend.ftq.ram_2_pc[63:0]
+TOP.Core.frontend.ftq.ram_2_prediction_slot[3:0]
+@28
+TOP.Core.frontend.ftq.ram_2_prediction_taken
+@22
+TOP.Core.frontend.ftq.ram_2_prediction_target[63:0]
 @1401200
 -FTQ
 @200
@@ -300,7 +345,7 @@ TOP.Core.backend.dispatch.io_in_5_bits_uop_inst_raw[31:0]
 [color] 1
 +{TOP.Core.backend.exec.bru_0.io_pc[63:0]} TOP.Core.backend.exec.bru_0.io_pc[63:0]
 @28
-TOP.Core.backend.exec.bru_0.io_mispredict
++{TOP.Core.backend.exec.bru_0.io_mispredict} TOP.Core.backend.exec.bru_0.io_mispredict
 @22
 TOP.Core.backend.exec.bru_0.redirect_target[63:0]
 TOP.Core.backend.exec.bru_0.io_src1[63:0]
