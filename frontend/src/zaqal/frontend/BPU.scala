@@ -138,8 +138,7 @@ class BPU(implicit val p: Parameters) extends Module with HasZaqalParameter {
   } .elsewhen(io.out.fire) {
     s0_pc := Mux(meta.taken, align(meta.target), s0_pc + (fetchWidth * 4).U)
     
-    val target_is_same_block = align(meta.target) === s0_pc
-    val next_mask = Mux(meta.taken && target_is_same_block,
+    val next_mask = Mux(meta.taken,
                         (Fill(predictWidth, 1.U(1.W)) << meta.target(log2Up(fetchWidth * 4) - 1, 1))(predictWidth - 1, 0),
                         Fill(predictWidth, 1.U(1.W)))
     mask_reg     := next_mask

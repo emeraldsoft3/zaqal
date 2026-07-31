@@ -329,17 +329,33 @@
 
         <div class="inputs-grid">
             <div class="input-group">
-                <label for="pc-input">Target PC (Hex)</label>
-                <input type="text" id="pc-input" value="0x80000000" placeholder="e.g. 0x80000000">
+                <label for="pc-input">Current PC (Hex)</label>
+                <input type="text" id="pc-input" value="0x34" placeholder="e.g. 0x34">
                 <div class="ghr-info" style="margin-top: 5px;">
-                    <span id="aligned-pc-info">Aligned Block PC: 0x80000000</span>
+                    <span id="aligned-pc-info">Aligned Block PC: 0x20</span>
                 </div>
             </div>
 
-            <div class="ghr-editor">
+            <div class="input-group" id="redirect-group">
+                <label for="redirect-input">Redirect Target PC (Hex)</label>
+                <input type="text" id="redirect-input" value="0x28" placeholder="e.g. 0x28">
+                <div class="ghr-info" style="margin-top: 5px;">
+                    <span id="target-hash-info">Target Hash (PC[7:2]): 0x0A (10)</span>
+                </div>
+            </div>
+
+            <div class="input-group" id="outcome-group">
+                <label for="outcome-select">Actual Outcome (for Post-GHR)</label>
+                <select id="outcome-select" style="background: rgba(0, 0, 0, 0.4); border: 1px solid var(--glass-border); border-radius: 8px; padding: 0.8rem 1rem; color: var(--text-main); font-family: 'Outfit', sans-serif; font-size: 1.1rem; width: 100%; transition: all 0.3s; cursor: pointer;">
+                    <option value="1">Taken (1)</option>
+                    <option value="0">Not Taken (0)</option>
+                </select>
+            </div>
+
+            <div class="ghr-editor" style="grid-column: 1 / -1;">
                 <div class="ghr-info">
                     <label>Global History Register (GHR) - Click bits to toggle (Rightmost is LSB/most recent)</label>
-                    <button class="btn-reset" onclick="resetGhr()">Reset GHR</button>
+                    <button class="btn-reset" onclick="resetGhr()">Reset Register</button>
                 </div>
                 <div class="ghr-bits" id="ghr-container">
                     <!-- JavaScript will generate 128 bit buttons here -->
@@ -347,6 +363,23 @@
                 <div class="ghr-info">
                     <span id="ghr-hex-val">Value: 0x00000000000000000000000000000000</span>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- History Register Outputs Card -->
+    <div class="card" style="border-color: rgba(52, 211, 153, 0.25);">
+        <h2 style="color: #34d399;">History Register Transition Outputs</h2>
+        <div class="calc-steps">
+            <div class="step-box">
+                <span class="step-label">1. Post-GHR (Conditional)</span>
+                <span class="step-val highlight-green" id="post-ghr-val">0x00000000000000000000000000000001</span>
+                <span class="math-expr">Post-GHR = (GHR << 1) | Taken</span>
+            </div>
+            <div class="step-box">
+                <span class="step-label">2. Post-PHR (Indirect / JALR)</span>
+                <span class="step-val highlight-pink" id="post-phr-val">0x0000000A</span>
+                <span class="math-expr">Post-PHR = (PHR << 6) | Target[7:2]</span>
             </div>
         </div>
     </div>
@@ -413,6 +446,8 @@
     // Initialize UI
     const ghrContainer = document.getElementById('ghr-container');
     const pcInput = document.getElementById('pc-input');
+    const redirectInput = document.getElementById('redirect-input');
+    const outcomeSelect = document.getElementById('outcome-select');
 
     function getRegisterBits() {
         return activePredictor === 'tage' ? ghr : phr;
@@ -421,10 +456,29 @@
         return activePredictor === 'tage' ? 128 : 32;
     }
 
+    function getGhrAsBigInt() {
+        let val = 0n;
+        for (let i = 0; i < 128; i++) {
+            if (ghr[i] === 1) {
+                val |= (1n << BigInt(i));
+            }
+        }
+        return val;
+    }
+
+    function getPhrAsInt() {
+        let val = 0;
+        for (let i = 0; i < 32; i++) {
+            if (phr[i] === 1) {
+                val |= (1 << i);
+            }
+        }
+        return val >>> 0;
+    }
+
     function initGhrEditor() {
         ghrContainer.innerHTML = '';
         const len = getRegisterLen();
-        const label = document.querySelector('label[for=""]') ;
         document.querySelector('.ghr-editor .ghr-info label').innerText =
             activePredictor === 'tage'
                 ? 'Global History Register (GHR) - 128-bit, click to toggle (Bit 0 = most recent branch)'
@@ -520,9 +574,32 @@
         let pc = parseInt(pcStr, 16);
         if (isNaN(pc)) pc = 0x80000000;
 
+        let tgtStr = redirectInput.value.trim().toLowerCase();
+        if (!tgtStr.startsWith('0x')) tgtStr = '0x' + tgtStr;
+        let tgt = parseInt(tgtStr, 16);
+        if (isNaN(tgt)) tgt = 0x0;
+
         // Apply 32-byte block alignment (forces bottom 5 bits to 0)
         const alignedPc = (pc & ~31) >>> 0;
         document.getElementById('aligned-pc-info').innerText = 'Aligned Block PC: 0x' + alignedPc.toString(16).toUpperCase();
+
+        const tgtHash = (tgt >>> 2) & 0x3F;
+        document.getElementById('target-hash-info').innerText = `Target Hash (PC[7:2]): 0x${tgtHash.toString(16).toUpperCase().padStart(2, '0')} (${tgtHash})`;
+
+        // Calculate Post-Registers
+        const outcome = parseInt(outcomeSelect.value);
+        
+        // Post-GHR (128-bit)
+        const curGhrVal = getGhrAsBigInt();
+        const postGhrVal = ((curGhrVal << 1n) | BigInt(outcome)) & ((1n << 128n) - 1n);
+        let postGhrHex = postGhrVal.toString(16).toUpperCase();
+        postGhrHex = postGhrHex.padStart(32, '0');
+        document.getElementById('post-ghr-val').innerText = '0x' + postGhrHex;
+
+        // Post-PHR (32-bit)
+        const curPhrVal = getPhrAsInt();
+        const postPhrVal = (((curPhrVal << 6) | tgtHash) & 0xFFFFFFFF) >>> 0;
+        document.getElementById('post-phr-val').innerText = '0x' + postPhrVal.toString(16).toUpperCase().padStart(8, '0');
 
         const conf = configs[activePredictor];
         const resultsGrid = document.getElementById('results-grid');
@@ -587,6 +664,8 @@
 
     // Set up listeners
     pcInput.oninput = recalculate;
+    redirectInput.oninput = recalculate;
+    outcomeSelect.onchange = recalculate;
 
     // Start
     initGhrEditor();

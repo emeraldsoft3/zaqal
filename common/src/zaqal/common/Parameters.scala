@@ -18,7 +18,7 @@ case class ZaqalParams(
   fLen: Int = 64,
   decodeWidth: Int = 6,
   programFile: String = "programs/hex/program.hex",
-  renameSnapshotNum: Int = 8,
+  renameSnapshotNum: Int = 256,
   ibufSize: Int = 48,
   enableDebugPorts: Boolean = true,
   ftbEntries: Int = 64

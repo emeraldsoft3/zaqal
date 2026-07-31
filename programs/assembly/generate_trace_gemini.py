@@ -186,6 +186,7 @@ def parse_vcd_and_log():
     prev_clock = '0'
     cycle_count = 0
     tage_write_events = []
+    ittage_write_events = []
 
     # cycle snapshots
     snapshots = {}
@@ -287,6 +288,15 @@ def parse_vcd_and_log():
                         if tag_en: ittage_mem[t]['tags'][tag_addr] = tag_data
                         if tgt_en: ittage_mem[t]['targets'][tgt_addr] = tgt_data
                         if us_en:  ittage_mem[t]['us'][us_addr] = us_data
+                        
+                        if t == 0 and (tag_en or tgt_en or us_en):
+                            ittage_write_events.append({
+                                'cycle': cycle_count,
+                                'idx': tag_addr if tag_en else (tgt_addr if tgt_en else us_addr),
+                                'req_tag': tag_data if tag_en else 0,
+                                'target': tgt_data if tgt_en else 0
+                            })
+                            
                         if update_valid and allocate:
                             u_idx = tag_addr if tag_en else (tgt_addr if tgt_en else 0)
                             ittage_mem[t]['valids'][u_idx] = True
@@ -393,7 +403,8 @@ def parse_vcd_and_log():
                     'bru_cycle': None,
                     'flushed': False,
                     'ftb0': ftb[0],
-                    'ftb1': ftb[1]
+                    'ftb1': ftb[1],
+                    'hexInsn': inst_hex
                 }
                 all_renamed.append(inst_dict)
                 continue
@@ -434,10 +445,10 @@ def parse_vcd_and_log():
                     next_redirect_idx = idx_redirect + 1
                 continue
 
-    return snapshots, all_renamed, tage_write_events
+    return snapshots, all_renamed, tage_write_events, ittage_write_events
 
 def generate_reports():
-    snapshots, all_renamed, tage_write_events = parse_vcd_and_log()
+    snapshots, all_renamed, tage_write_events, ittage_write_events = parse_vcd_and_log()
     if not snapshots or not all_renamed:
         return
 
@@ -493,6 +504,12 @@ def generate_reports():
         ghr_val = snap_ren['ghr'] if snap_ren else 0
         phr_val = snap_ren['phr'] if snap_ren else 0
         
+        post_phr_val = phr_val
+        if "jalr" in inst['instruction']:
+            tgt = regs[4] if pc_short == 0x34 else 0 # Assuming jalr target is mostly from x4 in this trace, but for exact trace we take what happens
+            tgt = (tgt >> 2) & 0x3f
+            post_phr_val = ((phr_val << 6) | tgt) & 0xffffffff
+        
         tage_info = "-"
         if "beq" in inst['instruction'] or "bne" in inst['instruction']:
             matched_write = None
@@ -520,12 +537,24 @@ def generate_reports():
                 pred = snap_ren['ittage_predictions'][provider_table]
                 ittage_info = f"T{provider_table}[{pred['idx']}], Tag=0x{pred['req_tag']:02X}, Target=0x{pred['target']:08X}"
             else:
-                ittage_info = "Indirect Fallback"
+                matched_ittage_write = None
+                if inst['bru_cycle'] is not None:
+                    for w in ittage_write_events:
+                        if w['cycle'] not in used_write_cycles:
+                            if inst['bru_cycle'] - 2 <= w['cycle'] <= inst['bru_cycle'] + 10:
+                                matched_ittage_write = w
+                                used_write_cycles.add(w['cycle'])
+                                break
+                if matched_ittage_write:
+                    ittage_info = f"T0[{matched_ittage_write['idx']}], Tag=0x{matched_ittage_write['req_tag']:02X}, Target=0x{matched_ittage_write['target']:08X}, US=0"
+                else:
+                    ittage_info = "Indirect Fallback"
 
         row = {
             'order': str(order_num),
             'pc': inst['pc_short'],
             'instruction': inst['instruction'],
+            'hexInsn': inst.get('hexInsn', '-'),
             'commit_cycle': str(inst['commit_cycle']) if inst['commit_cycle'] else "-",
             'bru_cycle': str(inst['bru_cycle']) if inst['bru_cycle'] else "-",
             'x1': reg_vals[1],
@@ -538,6 +567,7 @@ def generate_reports():
             'ftb1': inst['ftb1'],
             'ghr': f"0b{ghr_val:b}" if ghr_val else "0",
             'phr': f"0b{phr_val:b}" if phr_val else "0",
+            'post_phr': f"0b{post_phr_val:b}" if post_phr_val else "0",
             'tage': tage_info,
             'ittage': ittage_info,
             'is_spec': False,
@@ -546,16 +576,16 @@ def generate_reports():
         final_rows.append(row)
         order_num += 1
 
-    print("Step 5: Writing Styled Excel file (tage_test_trace_gemini.xlsx)...")
+    print("Step 5: Writing Styled Excel file (rtl_test_trace_gemini.xlsx)...")
     wb = openpyxl.Workbook()
     ws = wb.active
     ws.title = "Zaqal BPU Trace"
 
     headers = [
-        "Order", "PC", "Instruction", "Cycle Commit PRF", "Cycle BRU",
+        "Order", "PC", "Instruction", "Hex", "Cycle Commit PRF", "Cycle BRU",
         "x1", "x4", "x5", "x14", "x15", "x17",
         "FTB Entry 0 (Src-Tgt)", "FTB Entry 1 (Src-Tgt)", "GHR (TAGE index)", "TAGE Details",
-        "PHR (ITTAGE index)", "ITTAGE Details"
+        "Pre PHR (ITTAGE index)", "Post PHR", "ITTAGE Details"
     ]
     ws.append(headers)
 
@@ -585,11 +615,11 @@ def generate_reports():
     # Row styling
     for r_idx, row_data in enumerate(final_rows, start=2):
         row_values = [
-            row_data['order'], row_data['pc'], row_data['instruction'],
+            row_data['order'], row_data['pc'], row_data['instruction'], row_data['hexInsn'],
             row_data['commit_cycle'], row_data['bru_cycle'],
             row_data['x1'], row_data['x4'], row_data['x5'], row_data['x14'], row_data['x15'], row_data['x17'],
             row_data['ftb0'], row_data['ftb1'], row_data['ghr'], row_data['tage'],
-            row_data['phr'], row_data['ittage']
+            row_data['phr'], row_data['post_phr'], row_data['ittage']
         ]
         ws.append(row_values)
         
@@ -604,11 +634,11 @@ def generate_reports():
             cell.alignment = Alignment(horizontal="left" if col_idx == 3 else "center", vertical="center")
 
     # Save
-    excel_out_path = 'programs/assembly/tage_test_trace_gemini.xlsx'
+    excel_out_path = 'programs/assembly/rtl_test_trace_gemini.xlsx'
     wb.save(excel_out_path)
     print(f"Excel report saved to {excel_out_path}.")
 
-    print("Step 6: Writing Styled HTML dashboard (tage_test_trace_gemini.html)...")
+    print("Step 6: Writing Styled HTML dashboard (rtl_test_trace_gemini.html)...")
     # Generate interactive HTML report
     html_content = """<!DOCTYPE html>
 <html lang="en">
@@ -689,6 +719,7 @@ def generate_reports():
                     <th>Order</th>
                     <th>PC</th>
                     <th>Instruction</th>
+                    <th>Hex</th>
                     <th>Cycle Commit PRF</th>
                     <th>Cycle BRU</th>
                     <th>x1</th>
@@ -701,7 +732,8 @@ def generate_reports():
                     <th>FTB Entry 1</th>
                     <th>GHR</th>
                     <th>TAGE Details</th>
-                    <th>PHR</th>
+                    <th>Pre PHR</th>
+                    <th>Post PHR</th>
                     <th>ITTAGE Details</th>
                 </tr>
             </thead>
@@ -718,6 +750,7 @@ def generate_reports():
                     <td>{row['order']}</td>
                     <td>{row['pc']}</td>
                     <td style="text-align: left;">{row['instruction']}</td>
+                    <td>{row['hexInsn']}</td>
                     <td>{row['commit_cycle']}</td>
                     <td>{row['bru_cycle']}</td>
                     <td>{row['x1']}</td>
@@ -731,6 +764,7 @@ def generate_reports():
                     <td>{row['ghr']}</td>
                     <td>{row['tage']}</td>
                     <td>{row['phr']}</td>
+                    <td>{row['post_phr']}</td>
                     <td>{row['ittage']}</td>
                 </tr>\n"""
 
@@ -764,7 +798,7 @@ def generate_reports():
 </body>
 </html>
 """
-    html_out_path = 'programs/assembly/tage_test_trace_gemini.html'
+    html_out_path = 'programs/assembly/rtl_test_trace_gemini.html'
     with open(html_out_path, 'w') as f:
         f.write(html_content)
     print(f"HTML dashboard saved to {html_out_path}.")

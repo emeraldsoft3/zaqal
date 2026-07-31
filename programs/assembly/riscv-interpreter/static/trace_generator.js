@@ -367,7 +367,7 @@ function generatePredictorTrace(codeText, limit) {
             0x00: "00a00093", 0x04: "00000293", 0x08: "00628293", 0x0c: "0032f713",
             0x10: "00070463", 0x14: "00100793", 0x18: "00271893", 0x1c: "0140026f",
             0x20: "00a00793", 0x24: "0180006f", 0x28: "01400793", 0x2c: "0100006f",
-            0x30: "01120233", 0x34: "000200e7", 0x38: "fff08093", 0x3c: "fe009ce3",
+            0x30: "01120233", 0x34: "000200e7", 0x38: "fff08093", 0x3c: "fc0096e3",
             0x40: "06300613"
         };
         let hexVal = hexMap[pcOffset] || "00000013";
@@ -387,7 +387,8 @@ function generatePredictorTrace(codeText, limit) {
             ftb1: ftb[1] || "EMPTY",
             ghr: formatGhr(rowGhr),
             tage: tageDetails,
-            phr: formatPhr(rowPhr),
+            prePhr: formatPhr(rowPhr),
+            postPhr: formatPhr(phr),
             ittage: ittageDetails
         });
     }
@@ -401,7 +402,7 @@ function exportTraceToCSV(traceData) {
         "x1", "x4", "x5", "x14", "x15", "x17",
         "FTB Entry 0 (Src-Tgt)", "FTB Entry 1 (Src-Tgt)",
         "GHR (TAGE index)", "TAGE Details",
-        "PHR (ITTAGE index)", "ITTAGE Details"
+        "Pre PHR", "Post PHR", "ITTAGE Details"
     ];
     
     let csvRows = [headers.join(",")];
@@ -422,7 +423,8 @@ function exportTraceToCSV(traceData) {
             row.ftb1,
             row.ghr,
             `"${row.tage}"`,
-            row.phr,
+            row.prePhr,
+            row.postPhr,
             `"${row.ittage}"`
         ];
         csvRows.push(fields.join(","));
