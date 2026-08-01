@@ -26,28 +26,44 @@ class ICache(implicit val p: Parameters) extends Module with HasZaqalParameter {
       println(s"[ICache] Loaded ${insts.length} instructions from $path")
       insts
     } else {
-      println(s"[ICache] Warning: Using TAGE & ITTAGE stress-test program with alternating conditional branch and indirect branch.")
+      println(s"[ICache] Warning: Using SC/TAGE/ITTAGE stress-test program with spaced out branches.")
       Seq(
-        "h00a00093".U, // 0x00: addi x1, x0, 10   1|x1 = 10| (Outer loop counter: x1 = 10)
-        "h00000293".U, // 0x04: addi x5, x0, 0    2|x5 = 0| (Alternating index counter: x5 = 0)
-        "h00628293".U, // 0x08: addi x5, x5, 6    14||3|x5 = 6|(Modify counter by adding 6)
-        "h0032f713".U, // 0x0c: andi x14, x5, 3   15|x14=0|4|x14 = 2|(x14 = x5 % 4; sequence: 2, 0, 2, 0...)
-        "h00070463".U, // 0x10: beq x14, x0, 8    16||0=0 taken|5|not taken|(Taken if x14 == 0; Jumps to 0x18)
-        "h00100793".U, // 0x14: addi x15, x0, 1   6|x15 = 1|(Executed only on odd iterations)
-        "h00271893".U, // 0x18: slli x17, x14, 2  17|x17=0|7|x17 = 8|(x17 = x14 * 4; alternates between 0 and 8)
-        "h0140026f".U, // 0x1c: jal x4, 20        8|x4 = 0x20|(Jal to helper at 0x30, link address 0x20 saved in x4)
-        "h00a00793".U, // 0x20: addi x15, x0, 10  (Target A: Executed if x14 == 0)
-        "h0180006f".U, // 0x24: jal x0, 24        (Jump to Loop End at 0x3c)
-        "h01400793".U, // 0x28: addi x15, x0, 20  11|x15=20(Target B: Executed if x14 == 2)
-        "h0100006f".U, // 0x2c: jal x0, 16        12||(Jump to Loop End at 0x3c)
-        "h01120233".U, // 0x30: add x4, x4, x17   9|x4 = 0x28|(Add offset: x4 = 0x20 + x17)
-        "h000200e7".U, // 0x34: jalr x1, x4, 0    10|x1 = 0x38|(Dynamic indirect jump to Target A or B)
-        "hfff08093".U, // 0x38: addi x1, x1, -1   (Decrement outer loop counter)
-        "hfc0096e3".U, // 0x3c: bne x1, x0, -52   13||(If x1 != 0, branch to Loop Start at 0x08)
-        "h06300613".U  // 0x40: addi x12, x0, 99  (Done marker: x12 = 99)
-      ) ++ Seq.fill(80)("h00000013".U) ++ Seq(
-        "h0000006f".U  // Halt loop
-      )
+        // Block 0: Init
+        "h01400093".U, // 0x00: addi x1, x0, 20  (outer loop counter = 20)
+        "h00000293".U, // 0x04: addi x5, x0, 0   (state = 0)
+        "h00200113".U, // 0x08: addi x2, x0, 2   (marker)
+        "h00300193".U, // 0x0c: addi x3, x0, 3   (marker)
+        // Block 0 continued: Loop Start
+        "h00628293".U, // 0x10: addi x5, x5, 6   (state += 6)
+        "h0032f713".U, // 0x14: andi x14, x5, 3  (cond = state % 4)
+        "h00070863".U, // 0x18: beq x14, x0, 0x28(Target1)  -> TAGE Predicts this
+        "h00600313".U, // 0x1c: addi x6, x0, 6   (Fallthrough marker)
+        // Block 1
+        "h00700393".U, // 0x20: addi x7, x0, 7   (Fallthrough marker)
+        "h00c0006f".U, // 0x24: jal x0, 0x30     (Jump to target_join)
+        "h00800413".U, // 0x28: addi x8, x0, 8   (Target1 marker)
+        "h00900493".U, // 0x2c: addi x9, x0, 9   (Target1 marker)
+        // Block 1 continued: Join
+        "h00271893".U, // 0x30: slli x17, x14, 2 (offset = cond * 4)
+        "h0180026f".U, // 0x34: jal x4, 0x4c     (helper call, saves link 0x38 in x4)
+        // Block 1 continued: Return Targets
+        "h00a00513".U, // 0x38: addi x10, x0, 10 (Ret A)
+        "h01c0006f".U, // 0x3c: jal x0, 0x58     (Jump to loop_end)
+        // Block 2
+        "h00b00593".U, // 0x40: addi x11, x0, 11 (Ret B)
+        "h00c00613".U, // 0x44: addi x12, x0, 12 (Ret B marker)
+        "h0100006f".U, // 0x48: jal x0, 0x58     (Jump to loop_end)
+        // Block 2 continued: Helper
+        "h01120233".U, // 0x4c: add x4, x4, x17  (x4 = 0x38 + offset)
+        "h00d00693".U, // 0x50: addi x13, x0, 13 (marker)
+        "h000200e7".U, // 0x54: jalr x0, x4, 0   -> ITTAGE Predicts this
+        // Block 2 continued: Loop End
+        "hfff08093".U, // 0x58: addi x1, x1, -1  (decrement counter)
+        "hfa009ae3".U, // 0x5c: bne x1, x0, 0x10 (loop back)
+        // Block 3: Done
+        "h06300613".U, // 0x60: addi x12, x0, 99
+        "hffdff06f".U  // 0x64: jal x0, 0x60
+      ) ++ Seq.fill(60)("h00000013".U) // Padding
     }
   }
 

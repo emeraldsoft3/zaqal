@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.111 (w)1999-2020 BSI
-[*] Fri Jul 31 08:56:00 2026
+[*] Sat Aug  1 07:46:40 2026
 [*]
 [dumpfile] "/home/emerald/zaqal/programs/vcd/Lithium.vcd"
-[dumpfile_mtime] "Thu Jul 30 13:41:58 2026"
-[dumpfile_size] 6531609
+[dumpfile_mtime] "Fri Jul 31 12:56:11 2026"
+[dumpfile_size] 19232373
 [savefile] "/home/emerald/zaqal/programs/vcd/Lithium.gtkw"
-[timestart] 329
+[timestart] 285
 [size] 1865 931
 [pos] -1 -1
-*-2.900000 339 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-2.900000 297 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] TOP.
 [treeopen] TOP.Core.
 [treeopen] TOP.Core.backend.
@@ -18,8 +18,6 @@
 [treeopen] TOP.Core.backend.intFreeList.
 [treeopen] TOP.Core.backend.intIq.
 [treeopen] TOP.Core.backend.memIq.
-[treeopen] TOP.Core.backend.rat.
-[treeopen] TOP.Core.backend.rat.intRat.
 [treeopen] TOP.Core.frontend.
 [treeopen] TOP.Core.frontend.bpu.
 [treeopen] TOP.Core.frontend.bpu.ittage.
@@ -31,6 +29,21 @@
 @200
 -Workspace
 @24
++{TOP.Core.backend.rat.intRat.curr_spec_table_1_5[7:0]} TOP.Core.backend.rat.intRat.curr_spec_table_1_5[7:0]
+TOP.Core.backend.exec.regFile.regs_49[63:0]
++{TOP.Core.backend.exec.regFile.regs_57[63:0]} TOP.Core.backend.exec.regFile.regs_57[63:0]
++{TOP.Core.backend.exec.regFile.io_wdata_0[63:0]} TOP.Core.backend.exec.regFile.io_wdata_0[63:0]
+TOP.Core.backend.exec.regFile.io_wdata_1[63:0]
+TOP.Core.backend.exec.regFile.io_wdata_2[63:0]
+TOP.Core.backend.exec.regFile.io_wdata_3[63:0]
+TOP.Core.backend.exec.regFile.io_wdata_4[63:0]
+TOP.Core.backend.exec.regFile.io_wdata_5[63:0]
++{TOP.Core.backend.exec.regFile.io_waddr_0[7:0]} TOP.Core.backend.exec.regFile.io_waddr_0[7:0]
+TOP.Core.backend.exec.regFile.io_waddr_1[7:0]
+TOP.Core.backend.exec.regFile.io_waddr_2[7:0]
+TOP.Core.backend.exec.regFile.io_waddr_3[7:0]
+TOP.Core.backend.exec.regFile.io_waddr_4[7:0]
+TOP.Core.backend.exec.regFile.io_waddr_5[7:0]
 [color] 6
 +{TOP.Core.cycle_reg[63:0]} TOP.Core.cycle_reg[63:0]
 @28
@@ -139,9 +152,7 @@ TOP.Core.frontend.bpu.ittage.tables_0.valids_40
 @22
 TOP.Core.frontend.bpu.ittage.io_req_pc[63:0]
 +{TOP.Core.frontend.bpu.ittage.io_req_phr[31:0]} TOP.Core.frontend.bpu.ittage.io_req_phr[31:0]
-@28
 +{TOP.Core.frontend.bpu.ittage.io_update_phr[31:0]} TOP.Core.frontend.bpu.ittage.io_update_phr[31:0]
-@22
 TOP.Core.frontend.bpu.ittage.tables_0.io_update_pc[63:0]
 TOP.Core.frontend.bpu.ittage.tables_0.io_update_target[63:0]
 +{TOP.Core.frontend.bpu.ittage.tables_0.tags_MPORT_addr[5:0]} TOP.Core.frontend.bpu.ittage.tables_0.tags_MPORT_addr[5:0]
@@ -293,19 +304,13 @@ TOP.Core.backend.decoders_5_io_inst[31:0]
 @c00200
 -RAT
 @24
-+{TOP.Core.backend.rat.intRat.snapshots.snptEnqPtr[2:0]} TOP.Core.backend.rat.intRat.snapshots.snptEnqPtr[2:0]
 TOP.Core.backend.rat.intRat.snapshots.clock
-TOP.Core.backend.rat.intRat.snapshots.io_deqPtr[2:0]
-TOP.Core.backend.rat.intRat.snapshots.snptDeqPtr[2:0]
-TOP.Core.backend.rat.intRat.snapshots.snptDeqPtr_next[3:0]
-TOP.Core.backend.rat.intRat.snapshots.snptEnqPtr[2:0]
-TOP.Core.backend.rat.intRat.snapshots.snptEnqPtr_next[3:0]
 TOP.Core.backend.rat.intRat.curr_spec_table_1_0[7:0]
 +{TOP.Core.backend.rat.intRat.curr_spec_table_1_1[7:0]} TOP.Core.backend.rat.intRat.curr_spec_table_1_1[7:0]
 +{TOP.Core.backend.rat.intRat.curr_spec_table_1_2[7:0]} TOP.Core.backend.rat.intRat.curr_spec_table_1_2[7:0]
 +{TOP.Core.backend.rat.intRat.curr_spec_table_1_3[7:0]} TOP.Core.backend.rat.intRat.curr_spec_table_1_3[7:0]
 +{TOP.Core.backend.rat.intRat.curr_spec_table_1_4[7:0]} TOP.Core.backend.rat.intRat.curr_spec_table_1_4[7:0]
-TOP.Core.backend.rat.intRat.curr_spec_table_1_5[7:0]
++{TOP.Core.backend.rat.intRat.curr_spec_table_1_5[7:0]} TOP.Core.backend.rat.intRat.curr_spec_table_1_5[7:0]
 TOP.Core.backend.rat.intRat.curr_spec_table_1_6[7:0]
 TOP.Core.backend.rat.intRat.curr_spec_table_1_7[7:0]
 TOP.Core.backend.rat.intRat.curr_spec_table_1_8[7:0]
@@ -396,34 +401,11 @@ TOP.Core.backend.exec.alu_0.io_pc[63:0]
 TOP.Core.backend.exec.alu_1.io_pc[63:0]
 @1000200
 -Execute
-@25
+@24
 [color] 6
 TOP.debug_cycle_count[63:0]
 @200
 -RegFile
-@22
-TOP.Core.backend.intFreeList.tailPtr[7:0]
-@24
-TOP.Core.backend.intFreeList.actualAlloc[2:0]
-@28
-TOP.Core.backend.intFreeList.allocMask[12:0]
-@c00024
-TOP.Core.backend.intFreeList.freeCount[7:0]
-@28
-(0)TOP.Core.backend.intFreeList.freeCount[7:0]
-(1)TOP.Core.backend.intFreeList.freeCount[7:0]
-(2)TOP.Core.backend.intFreeList.freeCount[7:0]
-(3)TOP.Core.backend.intFreeList.freeCount[7:0]
-(4)TOP.Core.backend.intFreeList.freeCount[7:0]
-(5)TOP.Core.backend.intFreeList.freeCount[7:0]
-(6)TOP.Core.backend.intFreeList.freeCount[7:0]
-(7)TOP.Core.backend.intFreeList.freeCount[7:0]
-@1401200
--group_end
-@24
-TOP.Core.backend.intFreeList.headPtr[7:0]
-@28
-+{TOP.Core.backend.intFreeList.snapshots_reset} TOP.Core.backend.intFreeList.snapshots_reset
 @24
 +{TOP.Core.backend.exec.regFile.regs_32[63:0]} TOP.Core.backend.exec.regFile.regs_32[63:0]
 +{TOP.Core.backend.exec.regFile.regs_33[63:0]} TOP.Core.backend.exec.regFile.regs_33[63:0]

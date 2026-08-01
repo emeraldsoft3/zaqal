@@ -357,6 +357,10 @@
                     <label>Global History Register (GHR) - Click bits to toggle (Rightmost is LSB/most recent)</label>
                     <button class="btn-reset" onclick="resetGhr()">Reset Register</button>
                 </div>
+                <div class="ghr-info" style="margin-top: 5px;">
+                    <input type="text" id="history-input-str" class="input-field" placeholder="Enter Hex (0x...) or Bin (0b...)" style="width: 250px; font-family: monospace;">
+                    <button class="btn-reset" style="background: rgba(129, 140, 248, 0.2); color: #818cf8; border-color: rgba(129, 140, 248, 0.5);" onclick="applyHistoryInput()">Apply Hex/Bin</button>
+                </div>
                 <div class="ghr-bits" id="ghr-container">
                     <!-- JavaScript will generate 128 bit buttons here -->
                 </div>
@@ -474,6 +478,48 @@
             }
         }
         return val >>> 0;
+    }
+
+    function applyHistoryInput() {
+        let valStr = document.getElementById('history-input-str').value.trim();
+        if (!valStr) return;
+        
+        let bits = getRegisterBits();
+        let len = getRegisterLen();
+        
+        // Reset to 0
+        for (let i = 0; i < len; i++) bits[i] = 0;
+        
+        try {
+            if (valStr.toLowerCase().startsWith('0x')) {
+                // Parse hex
+                let hexStr = valStr.substring(2);
+                let bitIdx = 0;
+                for (let i = hexStr.length - 1; i >= 0; i--) {
+                    let nibble = parseInt(hexStr[i], 16);
+                    if (isNaN(nibble)) continue;
+                    for (let j = 0; j < 4; j++) {
+                        if (bitIdx < len) {
+                            bits[bitIdx] = (nibble >> j) & 1;
+                        }
+                        bitIdx++;
+                    }
+                }
+            } else if (valStr.toLowerCase().startsWith('0b') || /^[01]+$/.test(valStr)) {
+                // Parse binary
+                let binStr = valStr.toLowerCase().startsWith('0b') ? valStr.substring(2) : valStr;
+                let bitIdx = 0;
+                for (let i = binStr.length - 1; i >= 0; i--) {
+                    if (bitIdx < len) {
+                        bits[bitIdx] = binStr[i] === '1' ? 1 : 0;
+                    }
+                    bitIdx++;
+                }
+            }
+        } catch (e) {}
+        
+        initGhrEditor();
+        recalculate();
     }
 
     function initGhrEditor() {

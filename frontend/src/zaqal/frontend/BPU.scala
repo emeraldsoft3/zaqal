@@ -22,6 +22,8 @@ class BPUMetaEntry(implicit val p: Parameters) extends Bundle with HasZaqalParam
   val ittage_providerHit = Bool()
   val ittage_altTarget = UInt(xLen.W)
   val ittage_providerU = UInt(2.W)
+  // SC Metadata
+  val sc_sum = SInt(10.W)
 }
 
 class BPU(implicit val p: Parameters) extends Module with HasZaqalParameter {
@@ -46,6 +48,7 @@ class BPU(implicit val p: Parameters) extends Module with HasZaqalParameter {
   val ftb = Module(new FTB)
   val tage = Module(new TagePredictor)
   val ittage = Module(new ITTagePredictor)
+  val sc = Module(new SCPredictor)
 
   // BPU Shadow Pointer to track FTQ occupancy/index
   val bpu_enq_ptr = RegInit(0.U(ftqPtrWidth.W))
@@ -68,8 +71,12 @@ class BPU(implicit val p: Parameters) extends Module with HasZaqalParameter {
   ittage.io.req_pc  := s0_pc
   ittage.io.req_phr := phr  // PHR feeds ITTAGE, not GHR
 
-  // Override FTB's conditional branch direction with TAGE
-  val final_taken = Mux(ftb.io.hit && ftb.io.br_type === 0.U, tage.io.pred.taken, ftb.io.taken)
+  sc.io.req_pc  := s0_pc
+  sc.io.req_ghr := ghr
+
+  // Override FTB's conditional branch direction with TAGE, and override TAGE with SC if SC is strong
+  val tage_sc_taken = Mux(sc.io.pred.strong, sc.io.pred.taken, tage.io.pred.taken)
+  val final_taken = Mux(ftb.io.hit && ftb.io.br_type === 0.U, tage_sc_taken, ftb.io.taken)
   
   // Override FTB's indirect jump target with ITTAGE
   val final_target = Mux(ftb.io.hit && ftb.io.br_type === 2.U && ittage.io.pred.hit, ittage.io.pred.target, ftb.io.target)
@@ -116,6 +123,13 @@ class BPU(implicit val p: Parameters) extends Module with HasZaqalParameter {
   ittage.io.providerHit   := bpu_update_meta.ittage_providerHit
   ittage.io.altTarget     := bpu_update_meta.ittage_altTarget
   ittage.io.providerU     := bpu_update_meta.ittage_providerU
+
+  // SC Update: Strictly for conditional branches
+  sc.io.update_valid := bpu_update_valid && !(io.redirect.valid && io.redirect.is_exception) && bpu_update_is_cfi && !bpu_update_is_jal && !bpu_update_is_jalr
+  sc.io.update_pc    := aligned_update_pc
+  sc.io.update_ghr   := bpu_update_meta.ghr
+  sc.io.update_dir   := bpu_update_taken
+  sc.io.update_sum   := bpu_update_meta.sc_sum
 
   // --- FRONTEND CONTROL FLOW LOGIC ---
   def align(addr: UInt) = addr & (~((fetchWidth * 4) - 1).U(xLen.W))
@@ -212,6 +226,7 @@ class BPU(implicit val p: Parameters) extends Module with HasZaqalParameter {
     new_meta.ittage_providerHit := ittage.io.pred.hit
     new_meta.ittage_altTarget   := ittage.io.pred.altTarget
     new_meta.ittage_providerU   := ittage.io.pred.providerU
+    new_meta.sc_sum             := sc.io.pred.sum
 
     meta_storage(bpu_enq_ptr)   := new_meta
   }
