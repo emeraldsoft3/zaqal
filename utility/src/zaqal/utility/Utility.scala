@@ -15,6 +15,7 @@ class SkidBuffer[T <: Data](gen: T)(implicit val p: Parameters) extends Module w
     val enq   = Flipped(Decoupled(gen))
     val deq   = Decoupled(gen)
     val flush = Input(Bool())
+    val occupancy = Output(UInt(2.W))
   })
 
   // Two slots to ensure full throughput + registered ready
@@ -22,6 +23,9 @@ class SkidBuffer[T <: Data](gen: T)(implicit val p: Parameters) extends Module w
   val slot0_valid = RegInit(false.B)
   val slot1_data  = Reg(gen)
   val slot1_valid = RegInit(false.B)
+
+  // Compute Occupancy
+  io.occupancy := slot0_valid.asUInt +& slot1_valid.asUInt
 
   // Enqueue logic
   // We are ready if at least one slot is empty

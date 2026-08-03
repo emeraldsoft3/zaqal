@@ -389,8 +389,8 @@ def generate_golden_trace(limit=200):
             'ftb1': ftb.get(1, "EMPTY"),
             'ghr': fmt_ghr(row_ghr),
             'tage': tage_details,
-            'pre_phr': fmt_phr(row_phr),
-            'post_phr': fmt_phr(phr),
+            'prePhr': fmt_phr(row_phr),
+            'postPhr': fmt_phr(phr),
             'ittage': ittage_details
         })
         
@@ -439,7 +439,7 @@ def write_excel(trace):
             row['x1'], row['x4'], row['x5'], row['x14'], row['x15'], row['x17'],
             row['ftb0'], row['ftb1'],
             row['ghr'], row['tage'],
-            row['pre_phr'], row['post_phr'], row['ittage']
+            row['prePhr'], row['postPhr'], row['ittage']
         ]
         ws.append(vals)
         r_idx = idx + 2
@@ -502,8 +502,8 @@ def write_html(trace):
             <td style="text-align: left; font-family: monospace; font-size: 0.9em; color: #a9a9b3;">{row['ftb1']}</td>
             <td style="text-align: left; font-family: monospace; font-size: 0.85em; max-width: 150px; overflow-wrap: break-word;">{row['ghr']}</td>
             <td style="text-align: left; font-weight: bold;" class="{tage_cls}">{row['tage']}</td>
-            <td style="text-align: left; font-family: monospace; font-size: 0.85em; max-width: 150px; overflow-wrap: break-word;">{row['pre_phr']}</td>
-            <td style="text-align: left; font-family: monospace; font-size: 0.85em; max-width: 150px; overflow-wrap: break-word;">{row['post_phr']}</td>
+            <td style="text-align: left; font-family: monospace; font-size: 0.85em; max-width: 150px; overflow-wrap: break-word;">{row['prePhr']}</td>
+            <td style="text-align: left; font-family: monospace; font-size: 0.85em; max-width: 150px; overflow-wrap: break-word;">{row['postPhr']}</td>
             <td style="text-align: left; font-weight: bold;" class="{ittage_cls}">{row['ittage']}</td>
         </tr>
         """

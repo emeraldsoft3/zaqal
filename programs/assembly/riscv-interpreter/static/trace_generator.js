@@ -185,6 +185,10 @@ function generatePredictorTrace(codeText, limit) {
             actualTaken = (afterPc !== branchPc + 4);
         }
         
+        let providerName = "-";
+        let predictedStr = "-";
+        let actualStr = "-";
+        
         // FTB Update
         let isCfi = isJalr || (op === "jal") || (isCond && actualTaken);
         if (isCfi) {
@@ -199,7 +203,7 @@ function generatePredictorTrace(codeText, limit) {
             let pIdx = (pT !== -1) ? tageIndices[pT] : -1;
             let pTag = (pT !== -1) ? tageTags[pT] : -1;
             
-            let providerPred = true; // Base bimodal table initial state in RTL is 2 (weakly taken)
+            let providerPred = false; // Default to Not Taken when no entries exist
             let altPred = false;
             
             if (pT !== -1) {
@@ -220,9 +224,13 @@ function generatePredictorTrace(codeText, limit) {
                 if (altT !== -1) {
                     altPred = (tageTables[altT][altIdx].ctr >= 4);
                 } else {
-                    altPred = true; // Base predictor
+                    altPred = false; // Base predictor
                 }
             }
+            
+            providerName = (pT !== -1) ? `TAGE T${pT}` : "Base";
+            predictedStr = providerPred ? "Taken" : "Not Taken";
+            actualStr = actualTaken ? "Taken" : "Not Taken";
             
             let mispredict = (providerPred !== actualTaken);
             let updateTable = -1;
@@ -304,6 +312,10 @@ function generatePredictorTrace(codeText, limit) {
             let providerPredTarget = (pT !== -1) ? ittageTables[pT][pIdx].target : 0;
             let mispredict = (pT === -1) || (providerPredTarget !== afterPc);
             
+            providerName = (pT !== -1) ? `ITTAGE T${pT}` : "FTB/None";
+            predictedStr = `0x${providerPredTarget.toString(16).toUpperCase()}`;
+            actualStr = `0x${afterPc.toString(16).toUpperCase()}`;
+            
             let updateTable = -1;
             let updateIdx = -1;
             let updateTag = -1;
@@ -372,24 +384,25 @@ function generatePredictorTrace(codeText, limit) {
         };
         let hexVal = hexMap[pcOffset] || "00000013";
 
+        let scDetails = "-"; // Placeholder for SC details logic
+
         traceData.push({
             order: stepCount,
             pc: "x" + branchPc.toString(16).padStart(2, '0'),
             instruction: insn[2],
             hexInsn: hexVal,
-            x1: formatReg(prog.registers[1], true),
-            x4: formatReg(prog.registers[4], true),
-            x5: formatReg(prog.registers[5], false),
-            x14: formatReg(prog.registers[14], false),
-            x15: formatReg(prog.registers[15], false),
-            x17: formatReg(prog.registers[17], false),
-            ftb0: ftb[0] || "EMPTY",
-            ftb1: ftb[1] || "EMPTY",
-            ghr: formatGhr(rowGhr),
+            regsSnapshot: prog.registers.slice(),
+            ftbSnapshot: {...ftb},
+            preGhr: formatGhr(rowGhr),
+            postGhr: formatGhr(ghr),
             tage: tageDetails,
             prePhr: formatPhr(rowPhr),
             postPhr: formatPhr(phr),
-            ittage: ittageDetails
+            ittage: ittageDetails,
+            provider: providerName,
+            predicted: predictedStr,
+            actual: actualStr,
+            sc: scDetails
         });
     }
     
@@ -397,13 +410,36 @@ function generatePredictorTrace(codeText, limit) {
 }
 
 function exportTraceToCSV(traceData) {
+    // 1. Determine which registers and FTB entries are used
+    let usedRegs = new Set();
+    let usedFtb = new Set();
+    traceData.forEach(row => {
+        row.regsSnapshot.forEach((val, idx) => {
+            if (val !== 0) usedRegs.add(idx);
+        });
+        Object.keys(row.ftbSnapshot).forEach(k => usedFtb.add(parseInt(k)));
+    });
+    // Convert to sorted arrays
+    let usedRegsArray = Array.from(usedRegs).sort((a, b) => a - b);
+    let usedFtbArray = Array.from(usedFtb).sort((a, b) => a - b);
+    
+    // 2. Generate headers dynamically
     const headers = [
-        "Order", "PC", "Instruction", "Hex",
-        "x1", "x4", "x5", "x14", "x15", "x17",
-        "FTB Entry 0 (Src-Tgt)", "FTB Entry 1 (Src-Tgt)",
-        "GHR (TAGE index)", "TAGE Details",
-        "Pre PHR", "Post PHR", "ITTAGE Details"
+        "Order", "PC", "Instruction", "Hex"
     ];
+    usedRegsArray.forEach(regIdx => {
+        headers.push(`x${regIdx}`);
+    });
+    
+    usedFtbArray.forEach(ftbIdx => {
+        headers.push(`FTB Entry ${ftbIdx} (Src-Tgt)`);
+    });
+    
+    headers.push(
+        "Provider", "Predicted", "Actual",
+        "PRE GHR", "POST GHR", "TAGE Details",
+        "PRE PHR", "POST PHR", "ITTAGE Details", "SC Details"
+    );
     
     let csvRows = [headers.join(",")];
     
@@ -412,21 +448,34 @@ function exportTraceToCSV(traceData) {
             row.order,
             row.pc,
             `"${row.instruction}"`,
-            row.hexInsn,
-            row.x1,
-            row.x4,
-            row.x5,
-            row.x14,
-            row.x15,
-            row.x17,
-            row.ftb0,
-            row.ftb1,
-            row.ghr,
+            row.hexInsn
+        ];
+        
+        // Add dynamic register values
+        usedRegsArray.forEach(regIdx => {
+            let val = row.regsSnapshot[regIdx];
+            let isHex = (regIdx === 1 || regIdx === 4);
+            let formatted = val === 0 ? "0" : (isHex ? "0x" + (val >>> 0).toString(16).toUpperCase() : val.toString());
+            fields.push(formatted);
+        });
+        
+        // Add dynamic FTB values
+        usedFtbArray.forEach(ftbIdx => {
+            fields.push(`"${row.ftbSnapshot[ftbIdx] || 'EMPTY'}"`);
+        });
+        
+        fields.push(
+            `"${row.provider}"`,
+            `"${row.predicted}"`,
+            `"${row.actual}"`,
+            row.preGhr,
+            row.postGhr,
             `"${row.tage}"`,
             row.prePhr,
             row.postPhr,
-            `"${row.ittage}"`
-        ];
+            `"${row.ittage}"`,
+            `"${row.sc}"`
+        );
         csvRows.push(fields.join(","));
     });
     

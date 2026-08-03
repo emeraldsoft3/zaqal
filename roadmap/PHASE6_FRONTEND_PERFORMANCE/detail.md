@@ -17,7 +17,7 @@ To achieve true XiangShan-level performance, the front-end must provide near-per
 
 ## Day 6-10: Neural BPU & Checkpointing (XiangShan-Parity)
 - [ ] **Day 6-8**: **Neural BPU (Statistical Corrector / SC)**: Perceptron weight tables to override TAGE on hard data-dependent branches.
-- [ ] **Day 9**: **Advanced Pointer Management**: Unify FTQ and SkidBuffer systems into a single elastic flow.
+- [x] **Day 9**: **Advanced Pointer Management**: Unify FTQ and SkidBuffer systems into a single elastic flow.
 - [ ] **Day 10**: **Branch Checkpointing**: Store GHR/RAS snapshots in the FTQ for **1-cycle rollback** on mispredicts.
 - **Detailed Plan**: To complement TAGE, we will implement a Neural Perceptron predictor functioning as a Statistical Corrector (SC), perfectly aligning with XiangShan's Kunminghu BPU stack. The Perceptron uses weight arrays to catch hard data-dependent branches that geometric history misses. The BPU will become a decoupled, 2-stage pipeline. To protect this massive predictive state, we will implement Branch Checkpointing, storing snapshots of the Global History Register (GHR) and Return Address Stack (RAS) in the Fetch Target Queue (FTQ). If a misprediction occurs, we can restore the exact predictor state in a single clock cycle, avoiding massive penalty delays.
 - **XiangShan Study**: [Bpu.scala](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/frontend/Bpu.scala)

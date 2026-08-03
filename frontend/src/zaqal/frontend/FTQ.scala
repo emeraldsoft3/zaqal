@@ -8,13 +8,15 @@ import zaqal.common._
 
 class FTQ(implicit val p: Parameters) extends Module with HasZaqalParameter {
   val io = IO(new Bundle {
-    val fromBpu   = Flipped(Decoupled(new FetchRequest))
-    val toIfu     = Decoupled(new FetchRequest)
-    val toICache  = Decoupled(new FetchRequest)
-    val readPtr   = Input(UInt(ftqPtrWidth.W))
-    val readData  = Output(new FetchPacket)
-    val flush     = Input(Bool())
-    val occupancy = Output(UInt((ftqPtrWidth + 1).W))
+    val fromBpu       = Flipped(Decoupled(new FetchRequest))
+    val toIfu         = Decoupled(new FetchRequest)
+    val toICache      = Decoupled(new FetchRequest)
+    val redirect      = Input(new BPURedirect)
+    val readPtr       = Input(UInt(ftqPtrWidth.W))
+    val readData      = Output(new FetchPacket)
+    val flush         = Input(Bool())
+    val totalInFlight = Input(UInt(4.W))
+    val occupancy     = Output(UInt((ftqPtrWidth + 1).W))
   })
 
   // Manual Circular Queue for Metadata (XiangShan style)
@@ -23,12 +25,13 @@ class FTQ(implicit val p: Parameters) extends Module with HasZaqalParameter {
   val deqPtr = RegInit(0.U(ftqPtrWidth.W)) // This acts as the 'next to fetch' pointer
   val count  = RegInit(0.U((ftqPtrWidth + 1).W))
 
-  val full  = count === ftqEntries.U
+  val effectiveOccupancy = count +& io.totalInFlight
+  val full  = effectiveOccupancy >= ftqEntries.U
   val empty = count === 0.U
 
   // 1. Enqueue from BPU
   io.fromBpu.ready := !full
-  when(io.fromBpu.fire) {
+  when(io.fromBpu.fire && !io.flush) {
     val newReq = Wire(new FetchRequest)
     newReq := io.fromBpu.bits
     newReq.ftqPtr := enqPtr // Tag it with the entry index
@@ -63,7 +66,12 @@ class FTQ(implicit val p: Parameters) extends Module with HasZaqalParameter {
   io.readData := readPacket
 
   // Flush and Count Logic
-  when(io.flush) {
+  when(io.redirect.valid) {
+    val recoveryPtr = io.redirect.ftqPtr + 1.U
+    enqPtr := recoveryPtr
+    deqPtr := recoveryPtr
+    count  := 0.U
+  } .elsewhen(io.flush) {
     enqPtr := 0.U
     deqPtr := 0.U
     count  := 0.U

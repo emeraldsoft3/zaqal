@@ -48,32 +48,46 @@ class Frontend(implicit val p: Parameters) extends Module with HasZaqalParameter
   }
   
   // 1. BPU -> FTQ (Prediction Path - Buffered!)
-  val bpu_out_buffered = SkidBuffer(bpu.io.out, is_valid_redirect)
-  ftq.io.fromBpu.valid        := bpu_out_buffered.valid
-  bpu_out_buffered.ready      := ftq.io.fromBpu.ready
-  ftq.io.fromBpu.bits         := bpu_out_buffered.bits
+  val bpu_skid  = Module(new SkidBuffer(new FetchRequest))
+  bpu_skid.io.enq <> bpu.io.out
+  bpu_skid.io.flush := is_valid_redirect
+  ftq.io.fromBpu.valid        := bpu_skid.io.deq.valid
+  bpu_skid.io.deq.ready       := ftq.io.fromBpu.ready
+  ftq.io.fromBpu.bits         := bpu_skid.io.deq.bits
   ftq.io.fromBpu.bits.epoch    := fetch_epoch
 
   // 2. FTQ -> IFU and ICache (Fetch Request Path - Buffered!)
-  val ftq_to_ifu_buffered = SkidBuffer(ftq.io.toIfu, is_valid_redirect)
+  val ftq_skid  = Module(new SkidBuffer(new FetchRequest))
+  ftq_skid.io.enq <> ftq.io.toIfu
+  ftq_skid.io.flush := is_valid_redirect
   
   // Lock-step Handshake: Fire only if both are ready
   // ftq.io.toIfu.ready should be driven by the buffer's ready
   // and we also need to inform ICache.
-  ftq_to_ifu_buffered.ready := ifu.io.fetch_req.ready && icache.io.ready
-  ftq.io.toICache.ready      := ftq_to_ifu_buffered.ready
+  ftq_skid.io.deq.ready := ifu.io.fetch_req.ready && icache.io.ready
+  ftq.io.toICache.ready      := ftq_skid.io.deq.ready
 
-  ifu.io.fetch_req.valid := ftq_to_ifu_buffered.valid && icache.io.ready
-  ifu.io.fetch_req.bits  := ftq_to_ifu_buffered.bits
+  ifu.io.fetch_req.valid := ftq_skid.io.deq.valid && icache.io.ready
+  ifu.io.fetch_req.bits  := ftq_skid.io.deq.bits
 
-  icache.io.pc := ftq_to_ifu_buffered.bits.pc
+  icache.io.pc := ftq_skid.io.deq.bits.pc
 
   // 3. ICache -> IFU (Instruction Data Path)
   ifu.io.icache_ready := icache.io.ready
   ifu.io.insts_in     := icache.io.insts
 
   // 4. IFU -> IBUF (Data Path - Buffered!)
-  ibuf.io.inst_data <> SkidBuffer(ifu.io.toIbuffer, is_valid_redirect)
+  val ifu_skid = Module(new SkidBuffer(new FetchPacket))
+  ifu_skid.io.enq <> ifu.io.toIbuffer
+  ifu_skid.io.flush := is_valid_redirect
+  ibuf.io.inst_data <> ifu_skid.io.deq
+
+  // Calculate Total Skid Buffer Occupancy
+  val total_skid_occupancy = bpu_skid.io.occupancy +& ftq_skid.io.occupancy +& ifu_skid.io.occupancy
+  ftq.io.totalInFlight := total_skid_occupancy
+
+  // Wiring Redirect to FTQ for Dynamic Rollback
+  ftq.io.redirect := io.redirect
 
   // 5. IBUF -> Backend (Dispatch Path - Pipelined Staging Boundary!)
   // We instantiate the SkidBuffers manually to enforce contiguous dequeue from IBUF.
