@@ -34,12 +34,17 @@ To achieve world-class performance, Zaqal must eventually implement these critic
 ### Front-End
 - [x] **Skid Buffers** (Register Slices) for module decoupling.
 - [/] **FTQ (Fetch Target Queue)** with deep pointer-based skidding.
-- [ ] **Multi-stage BPU** (Bimodal -> GShare -> TAGE -> ITTAGE).
+- [ ] **Multi-stage BPU Stack (XiangShan Parity)**:
+  - [x] **FTB (Fetch Target Buffer)**: Store targets and prediction metadata.
+  - [x] **TAGE & ITTAGE**: Tagged geometric & indirect target predictors.
+  - [/] **Neural BPU (Perceptron / SC)**: Statistical Corrector *(SC implementation complete, verification remaining)*.
+  - [ ] **RAS (Return Address Stack)**: Function call return target predictor (`x1`/`x5` link register handling).
+  - [ ] **uFTB (Micro Fetch Target Buffer)**: Stage-0 (`s0_uFTB`) fast zero-bubble target predictor.
+  - [ ] **Branch Checkpointing**: Store GHR/PHR/RAS snapshots in FTQ for 1-cycle rollback on mispredicts.
   - [ ] **TAGE-L (Loop Predictor)**: Add dedicated loop predictor table to handle loop termination counts.
   - [ ] **Circular Shift Registers (CSRs)**: Hardware-based shifting for fast GHR folding.
   - [ ] **Pipelined Multi-Cycle BPU Lookup**: Pipeline predictor access over 2-3 cycles to maintain high frequencies.
   - [ ] **Table Capacity Scaling**: Expand tables to 1024-4096 entries (XiangShan Nanhu/Kunminghu parity).
-- [ ] **Neural BPU (Perceptron)** for data-dependent branches.
 - [ ] **Instruction Buffer (IBuffer)** with banked parallel dequeue.
 
 ### Execution Engine

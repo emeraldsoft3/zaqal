@@ -15,23 +15,25 @@ To achieve true XiangShan-level performance, the front-end must provide near-per
 - **Detailed Plan**: A simple branch predictor is insufficient for deep superscalar cores. We will build a Fetch Target Buffer (FTB) to cache branch target addresses and instruction boundaries. Alongside it, we will implement the TAGE (TAgged GEometric) predictor, the gold standard in modern branch prediction. TAGE uses multiple tables indexed by geometrically increasing lengths of global branch history, allowing it to predict highly complex, long-correlating branch patterns with extreme accuracy.
 - **XiangShan Study**: [FTB.scala](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/frontend/FTB.scala)
 
-## Day 6-10: Neural BPU & Checkpointing (XiangShan-Parity)
-- [ ] **Day 6-8**: **Neural BPU (Statistical Corrector / SC)**: Perceptron weight tables to override TAGE on hard data-dependent branches.
+## Day 6-12: Neural BPU, RAS, uFTB & Checkpointing (XiangShan-Parity)
+- [x] **Day 6-8**: **Neural BPU (Statistical Corrector / SC)**: Perceptron weight tables to override TAGE on hard data-dependent branches. *(Note: SC implementation complete, verification remaining).*
 - [x] **Day 9**: **Advanced Pointer Management**: Unify FTQ and SkidBuffer systems into a single elastic flow.
-- [ ] **Day 10**: **Branch Checkpointing**: Store GHR/RAS snapshots in the FTQ for **1-cycle rollback** on mispredicts.
-- **Detailed Plan**: To complement TAGE, we will implement a Neural Perceptron predictor functioning as a Statistical Corrector (SC), perfectly aligning with XiangShan's Kunminghu BPU stack. The Perceptron uses weight arrays to catch hard data-dependent branches that geometric history misses. The BPU will become a decoupled, 2-stage pipeline. To protect this massive predictive state, we will implement Branch Checkpointing, storing snapshots of the Global History Register (GHR) and Return Address Stack (RAS) in the Fetch Target Queue (FTQ). If a misprediction occurs, we can restore the exact predictor state in a single clock cycle, avoiding massive penalty delays.
-- **XiangShan Study**: [Bpu.scala](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/frontend/Bpu.scala)
+- [ ] **Day 10**: **Return Address Stack (RAS)**: Build functional 16-entry Return Address Stack to predict function return targets (`JAL/JALR` with `x1`/`x5` link registers) at fetch time. *(See [Day 10 RAS Implementation & Verification Plan](./day10_ras.md))*.
+- [ ] **Day 11**: **uFTB (Micro Fetch Target Buffer)**: Implement Stage-0 (`s0_uFTB`) zero-bubble / 1-cycle fast target predictor array (matching XiangShan Nanhu/Kunminghu parity). *(See [Day 11 uFTB Implementation & Verification Plan](./day11_uftb.md))*.
+- [ ] **Day 12**: **Branch Checkpointing & State Recovery**: Store unified GHR/PHR/RAS snapshots in the FTQ for **1-cycle rollback** on mispredicts. *(See [Day 12 Branch Checkpointing Plan](./day12_branch_checkpointing.md))*.
+- **Detailed Plan**: To achieve true XiangShan parity, the BPU predictor stack comprises **uFTB**, **FTB**, **TAGE**, **ITTAGE**, **SC**, and **RAS**. We will first build a dedicated **Return Address Stack (RAS)** to predict function returns (`ret`), followed by an ultra-fast Stage-0 **uFTB (Micro-FTB)** to eliminate fetch bubble latency. Finally, we will implement unified **Branch Checkpointing**, storing GHR, PHR, and RAS snapshots in the Fetch Target Queue (FTQ). If a misprediction occurs, the backend restores exact predictor states in a single clock cycle.
+- **XiangShan Study**: [Bpu.scala](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/frontend/Bpu.scala), [RAS.scala](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/frontend/RAS.scala), [uFTB.scala](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/frontend/uFTB.scala)
 
-## Day 11-15: Memory Interface (Caches & uOp Cache)
-- [ ] **Day 11**: **uOp Cache (L0 Decoded Cache)**: Implement decoded instruction cache to bypass decoders and increase fetch bandwidth (XiangShan parity).
-- [ ] **Day 12-13**: **Instruction Cache (I-Cache)**: Replace the bypass model with a real L1-I with refill logic.
-- [ ] **Day 14-15**: **Data Cache (D-Cache) & MSHRs**: Non-blocking L1-D with Miss Status Handling Registers (MSHRs) for true hit-under-miss support.
+## Day 13-17: Memory Interface (Caches & uOp Cache)
+- [ ] **Day 13**: **uOp Cache (L0 Decoded Cache)**: Implement decoded instruction cache to bypass decoders and increase fetch bandwidth (XiangShan parity).
+- [ ] **Day 14-15**: **Instruction Cache (I-Cache)**: Replace the bypass model with a real L1-I with refill logic.
+- [ ] **Day 16-17**: **Data Cache (D-Cache) & MSHRs**: Non-blocking L1-D with Miss Status Handling Registers (MSHRs) for true hit-under-miss support.
 - **Detailed Plan**: We will rip out the simple mock instruction memory and build a genuine, Set-Associative Level-1 Instruction Cache (L1-I) with cache-line refill logic from the L2/Main Memory. To further decouple fetch from decode, we will introduce a uOp Cache (L0 Decoded Cache) that caches already-decoded micro-operations, saving significant decoding power and increasing frontend bandwidth. For the Data Cache (L1-D), we will implement a non-blocking architecture using Miss Status Handling Registers (MSHRs). MSHRs allow the cache to continue serving new memory requests even while waiting for a previous cache miss to be fetched from main memory, unlocking the true potential of out-of-order execution (Hit-Under-Miss).
 - **XiangShan Study**: [icache/](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/frontend/icache/)
 
-## Day 16-20: Speculative State & Resilience
-- [ ] **Day 16-18**: **Speculative RAS Buffers**: Prevent Return Address Stack corruption on wrong-path calls.
-- [ ] **Day 19-20**: **BPU Composer**: Integrate all predictors into a single tournament-style BPU.
+## Day 18-20: Speculative State & Resilience
+- [ ] **Day 18-19**: **Speculative RAS Buffers**: Prevent Return Address Stack corruption on wrong-path calls.
+- [ ] **Day 20**: **BPU Composer**: Integrate all predictors into a single tournament-style BPU.
 - **Detailed Plan**: When the core executes speculatively on the wrong path of a branch, it might execute `call` and `return` instructions that corrupt the Return Address Stack (RAS). We will build speculative RAS buffers to isolate these changes, applying them to the architectural RAS only when the branch commits. Finally, we will build a BPU Composer—a meta-predictor that dynamically learns whether the TAGE predictor or the Neural Predictor (SC) is more accurate for a specific branch, intelligently multiplexing between them to achieve peak IPC.
 
 ---
