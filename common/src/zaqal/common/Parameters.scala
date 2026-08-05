@@ -21,7 +21,30 @@ case class ZaqalParams(
   renameSnapshotNum: Int = 256,
   ibufSize: Int = 48,
   enableDebugPorts: Boolean = true,
-  ftbEntries: Int = 64
+  ftbEntries: Int = 64,
+  
+  // BPU Parameters
+  rasEntries: Int = 16,
+  
+  // SC Predictor Parameters
+  scHistLen: Int = 8,
+  scNumWeights: Int = 64,
+  scWeightWidth: Int = 6,
+  
+  // TAGE Parameters
+  tageNTables: Int = 4,
+  tageCtrBits: Int = 3,
+  tageUBits: Int = 2,
+  tageHistoryLengths: Seq[Int] = Seq(4, 12, 36, 108),
+  tageTableRows: Int = 128,
+  tageTagWidth: Int = 8,
+  
+  // ITTAGE Parameters
+  ittageNTables: Int = 4,
+  ittageUBits: Int = 2,
+  ittageHistoryLengths: Seq[Int] = Seq(4, 12, 36, 108),
+  ittageTableRows: Int = 64,
+  ittageTagWidth: Int = 8
 )
 
 // 2. Define the Field Key that CDE uses to locate ZaqalParams
@@ -51,6 +74,24 @@ trait HasZaqalParameter {
   def ftbEntries = zP.ftbEntries
   def phyRegIdxWidth = log2Up(phyRegs)
   def predictWidth = fetchWidth * (if (hasCExtension) 2 else 1)
+  
+  def rasEntries = zP.rasEntries
+  def scHistLen = zP.scHistLen
+  def scNumWeights = zP.scNumWeights
+  def scWeightWidth = zP.scWeightWidth
+  
+  def tageNTables = zP.tageNTables
+  def tageCtrBits = zP.tageCtrBits
+  def tageUBits = zP.tageUBits
+  def tageHistoryLengths = zP.tageHistoryLengths
+  def tageTableRows = zP.tageTableRows
+  def tageTagWidth = zP.tageTagWidth
+  
+  def ittageNTables = zP.ittageNTables
+  def ittageUBits = zP.ittageUBits
+  def ittageHistoryLengths = zP.ittageHistoryLengths
+  def ittageTableRows = zP.ittageTableRows
+  def ittageTagWidth = zP.ittageTagWidth
 }
 
 // 4. Default configuration overlay

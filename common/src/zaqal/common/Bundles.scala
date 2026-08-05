@@ -37,6 +37,8 @@ class FetchPacket(implicit val p: Parameters) extends Bundle with HasZaqalParame
 class PreDecodeSignals extends Bundle {
   val is_rvc = Bool() // Compressed ISA hint
   val is_cfi = Bool() // Control Flow Instruction hint
+  val is_call = Bool() // Call hint (rd == x1 || rd == x5)
+  val is_ret  = Bool() // Return hint (rs1 == x1 || rs1 == x5)
   val expanded_inst = UInt(32.W) // Expanded 32-bit instruction
 }
 

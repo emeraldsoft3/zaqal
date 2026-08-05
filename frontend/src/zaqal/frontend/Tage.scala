@@ -7,17 +7,12 @@ import zaqal.common._
 import zaqal._
 
 // Basic configuration for TAGE tables
-trait TageConfig {
-  val tageNTables = 4
-  val tageCtrBits = 3
-  val tageUBits = 2
-  val historyLengths = Seq(4, 12, 36, 108) // Geometrically increasing
-  val tableRows = 128
-  val tagWidth = 8
+trait TageConfig extends HasZaqalParameter {
+  // Using parameters from HasZaqalParameter
 }
 
 // Predictor response bundle
-class TagePrediction extends Bundle with TageConfig {
+class TagePrediction(implicit val p: Parameters) extends Bundle with TageConfig {
   val providerIdx = UInt(log2Up(tageNTables).W)
   val taken = Bool()
   val altTaken = Bool()
@@ -31,7 +26,7 @@ class TageTable(val histLen: Int, val tIdx: Int)(implicit val p: Parameters) ext
     val req_pc = Input(UInt(xLen.W))
     val req_ghr = Input(UInt(128.W))
     val hit = Output(Bool())
-    val tag = Output(UInt(tagWidth.W))
+    val tag = Output(UInt(tageTagWidth.W))
     val ctr = Output(UInt(tageCtrBits.W))
     val u = Output(UInt(tageUBits.W))
     
@@ -60,18 +55,18 @@ class TageTable(val histLen: Int, val tIdx: Int)(implicit val p: Parameters) ext
     parts.reduce(_ ^ _)
   }
   
-  val indexWidth = log2Up(tableRows)
+  val indexWidth = log2Up(tageTableRows)
   val idx_fh = fold(io.req_ghr, histLen, indexWidth)
-  val tag_fh = fold(io.req_ghr, histLen, tagWidth)
+  val tag_fh = fold(io.req_ghr, histLen, tageTagWidth)
   
   val req_idx = (io.req_pc(indexWidth - 1, 0) ^ idx_fh)(indexWidth - 1, 0)
-  val req_tag = (io.req_pc(tagWidth - 1, 0) ^ tag_fh)(tagWidth - 1, 0)
+  val req_tag = (io.req_pc(tageTagWidth - 1, 0) ^ tag_fh)(tageTagWidth - 1, 0)
   
   // Storage arrays
-  val tags = Mem(tableRows, UInt(tagWidth.W))
-  val ctrs = Mem(tableRows, UInt(tageCtrBits.W))
-  val us = Mem(tableRows, UInt(tageUBits.W))
-  val valids = RegInit(VecInit(Seq.fill(tableRows)(false.B)))
+  val tags = Mem(tageTableRows, UInt(tageTagWidth.W))
+  val ctrs = Mem(tageTableRows, UInt(tageCtrBits.W))
+  val us = Mem(tageTableRows, UInt(tageUBits.W))
+  val valids = RegInit(VecInit(Seq.fill(tageTableRows)(false.B)))
   
   // Read logic
   val read_tag = tags.read(req_idx)
@@ -80,9 +75,9 @@ class TageTable(val histLen: Int, val tIdx: Int)(implicit val p: Parameters) ext
   val read_valid = valids(req_idx)
   
   val u_idx_fh = fold(io.update_ghr, histLen, indexWidth)
-  val u_tag_fh = fold(io.update_ghr, histLen, tagWidth)
+  val u_tag_fh = fold(io.update_ghr, histLen, tageTagWidth)
   val u_idx = (io.update_pc(indexWidth - 1, 0) ^ u_idx_fh)(indexWidth - 1, 0)
-  val u_tag = (io.update_pc(tagWidth - 1, 0) ^ u_tag_fh)(tagWidth - 1, 0)
+  val u_tag = (io.update_pc(tageTagWidth - 1, 0) ^ u_tag_fh)(tageTagWidth - 1, 0)
 
   io.hit := read_valid && (read_tag === req_tag)
   io.tag := read_tag
@@ -133,12 +128,12 @@ class TagePredictor(implicit val p: Parameters) extends Module with HasZaqalPara
   })
   
   // Base Predictor (Bimodal)
-  val baseTable = Mem(tableRows, UInt(2.W))
-  val req_base_idx = io.req_pc(log2Up(tableRows) - 1, 0)
+  val baseTable = Mem(tageTableRows, UInt(2.W))
+  val req_base_idx = io.req_pc(log2Up(tageTableRows) - 1, 0)
   val base_pred = baseTable.read(req_base_idx)
   val base_taken = base_pred(1)
   
-  val tables = historyLengths.zipWithIndex.map { case (len, i) =>
+  val tables = tageHistoryLengths.zipWithIndex.map { case (len, i) =>
     val t = Module(new TageTable(len, i))
     t.io.req_pc := io.req_pc
     t.io.req_ghr := io.req_ghr
@@ -187,7 +182,7 @@ class TagePredictor(implicit val p: Parameters) extends Module with HasZaqalPara
   io.pred.providerCtr := provider_ctr
   
   // Base Predictor Update
-  val u_base_idx = io.update_pc(log2Up(tableRows) - 1, 0)
+  val u_base_idx = io.update_pc(log2Up(tageTableRows) - 1, 0)
   val u_base_ctr = baseTable.read(u_base_idx)
   when(io.update_valid && !io.providerHit) {
     val new_base_ctr = Mux(io.update_dir, 

@@ -7,12 +7,8 @@ import zaqal.common._
 import zaqal._
 
 // Basic configuration for ITTAGE tables
-trait ITTageConfig {
-  val ittageNTables = 4
-  val ittageUBits = 2
-  val historyLengths = Seq(4, 12, 36, 108) // Geometrically increasing
-  val tableRows = 64 // Target addresses are large, smaller table size
-  val tagWidth = 8
+trait ITTageConfig extends HasZaqalParameter {
+  // Using parameters from HasZaqalParameter
 }
 
 // Predictor response bundle
@@ -29,7 +25,7 @@ class ITTageTable(val histLen: Int, val tIdx: Int)(implicit val p: Parameters) e
     val req_pc  = Input(UInt(xLen.W))
     val req_phr = Input(UInt(32.W))  // Path History Register (32-bit)
     val hit     = Output(Bool())
-    val tag     = Output(UInt(tagWidth.W))
+    val tag     = Output(UInt(ittageTagWidth.W))
     val target  = Output(UInt(xLen.W))
     val u       = Output(UInt(ittageUBits.W))
 
@@ -59,18 +55,18 @@ class ITTageTable(val histLen: Int, val tIdx: Int)(implicit val p: Parameters) e
     parts.reduce(_ ^ _)
   }
 
-  val indexWidth = log2Up(tableRows)
+  val indexWidth = log2Up(ittageTableRows)
   val idx_fh = fold(io.req_phr, histLen, indexWidth)
-  val tag_fh = fold(io.req_phr, histLen, tagWidth)
+  val tag_fh = fold(io.req_phr, histLen, ittageTagWidth)
 
   val req_idx = (io.req_pc(indexWidth - 1, 0) ^ idx_fh)(indexWidth - 1, 0)
-  val req_tag = (io.req_pc(tagWidth - 1, 0) ^ tag_fh)(tagWidth - 1, 0)
+  val req_tag = (io.req_pc(ittageTagWidth - 1, 0) ^ tag_fh)(ittageTagWidth - 1, 0)
 
   // Storage arrays
-  val tags    = Mem(tableRows, UInt(tagWidth.W))
-  val targets = Mem(tableRows, UInt(xLen.W))
-  val us      = Mem(tableRows, UInt(ittageUBits.W))
-  val valids  = RegInit(VecInit(Seq.fill(tableRows)(false.B)))
+  val tags    = Mem(ittageTableRows, UInt(ittageTagWidth.W))
+  val targets = Mem(ittageTableRows, UInt(xLen.W))
+  val us      = Mem(ittageTableRows, UInt(ittageUBits.W))
+  val valids  = RegInit(VecInit(Seq.fill(ittageTableRows)(false.B)))
 
   // Read logic
   val read_tag    = tags.read(req_idx)
@@ -79,9 +75,9 @@ class ITTageTable(val histLen: Int, val tIdx: Int)(implicit val p: Parameters) e
   val read_valid  = valids(req_idx)
 
   val u_idx_fh = fold(io.update_phr, histLen, indexWidth)
-  val u_tag_fh = fold(io.update_phr, histLen, tagWidth)
+  val u_tag_fh = fold(io.update_phr, histLen, ittageTagWidth)
   val u_idx    = (io.update_pc(indexWidth - 1, 0) ^ u_idx_fh)(indexWidth - 1, 0)
-  val u_tag    = (io.update_pc(tagWidth - 1, 0) ^ u_tag_fh)(tagWidth - 1, 0)
+  val u_tag    = (io.update_pc(ittageTagWidth - 1, 0) ^ u_tag_fh)(ittageTagWidth - 1, 0)
 
   io.hit := read_valid && (read_tag === req_tag)
   io.tag := read_tag
@@ -130,7 +126,7 @@ class ITTagePredictor(implicit val p: Parameters) extends Module with HasZaqalPa
     val providerU     = Input(UInt(ittageUBits.W))
   })
 
-  val tables = historyLengths.zipWithIndex.map { case (len, i) =>
+  val tables = ittageHistoryLengths.zipWithIndex.map { case (len, i) =>
     val t = Module(new ITTageTable(len, i))
     t.io.req_pc  := io.req_pc
     t.io.req_phr := io.req_phr

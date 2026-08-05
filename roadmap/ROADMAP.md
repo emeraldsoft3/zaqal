@@ -38,7 +38,7 @@ To achieve world-class performance, Zaqal must eventually implement these critic
   - [x] **FTB (Fetch Target Buffer)**: Store targets and prediction metadata.
   - [x] **TAGE & ITTAGE**: Tagged geometric & indirect target predictors.
   - [/] **Neural BPU (Perceptron / SC)**: Statistical Corrector *(SC implementation complete, verification remaining)*.
-  - [ ] **RAS (Return Address Stack)**: Function call return target predictor (`x1`/`x5` link register handling).
+  - [x] **RAS (Return Address Stack)**: Function call return target predictor (`x1`/`x5` link register handling).
   - [ ] **uFTB (Micro Fetch Target Buffer)**: Stage-0 (`s0_uFTB`) fast zero-bubble target predictor.
   - [ ] **Branch Checkpointing**: Store GHR/PHR/RAS snapshots in FTQ for 1-cycle rollback on mispredicts.
   - [ ] **TAGE-L (Loop Predictor)**: Add dedicated loop predictor table to handle loop termination counts.

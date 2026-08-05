@@ -10,6 +10,7 @@ import zaqal.common._
 class BPUMetaEntry(implicit val p: Parameters) extends Bundle with HasZaqalParameter {
   val ghr = UInt(128.W)
   val phr = UInt(32.W)   // Path History Register (for ITTAGE)
+  val ras_sp = UInt(log2Up(rasEntries).W) // Snapshot of RAS Stack Pointer
   val ghr_spec_shifted = Bool() // Tracks if GHR was speculatively shifted at fetch time (FTB hit)
   // TAGE Metadata
   val tage_providerIdx = UInt(2.W)
@@ -49,6 +50,8 @@ class BPU(implicit val p: Parameters) extends Module with HasZaqalParameter {
   val tage = Module(new TagePredictor)
   val ittage = Module(new ITTagePredictor)
   val sc = Module(new SCPredictor)
+  val ras = Module(new RAS)
+  val uftb = Module(new uFTB) // Stage-0 Micro-FTB
 
   // BPU Shadow Pointer to track FTQ occupancy/index
   val bpu_enq_ptr = RegInit(0.U(ftqPtrWidth.W))
@@ -63,7 +66,8 @@ class BPU(implicit val p: Parameters) extends Module with HasZaqalParameter {
   val redirect_meta = meta_storage(io.redirect.ftqPtr)
 
   // --- LOOKUP PATH ---
-  ftb.io.req_pc := s0_pc
+  uftb.io.req_pc := s0_pc
+  ftb.io.req_pc  := s0_pc
 
   tage.io.req_pc  := s0_pc
   tage.io.req_ghr := ghr
@@ -76,10 +80,32 @@ class BPU(implicit val p: Parameters) extends Module with HasZaqalParameter {
 
   // Override FTB's conditional branch direction with TAGE, and override TAGE with SC if SC is strong
   val tage_sc_taken = Mux(sc.io.pred.strong, sc.io.pred.taken, tage.io.pred.taken)
-  val final_taken = Mux(ftb.io.hit && ftb.io.br_type === 0.U, tage_sc_taken, ftb.io.taken)
+  val ftb_taken = Mux(ftb.io.hit && ftb.io.br_type === 0.U, tage_sc_taken, ftb.io.taken)
   
-  // Override FTB's indirect jump target with ITTAGE
-  val final_target = Mux(ftb.io.hit && ftb.io.br_type === 2.U && ittage.io.pred.hit, ittage.io.pred.target, ftb.io.target)
+  // uFTB Zero-Bubble Override (uFTB only stores taken branches)
+  val uftb_hit = uftb.io.pred_hit
+  val uftb_target = uftb.io.pred_target
+  
+  val final_taken = Mux(uftb_hit, true.B, ftb_taken)
+  
+  val ras_hit = ftb.io.hit && ftb.io.br_type === 2.U && ras.io.pop_valid_out
+  val ras_target = ras.io.pop_addr
+  
+  val ftb_target = Mux(ras_hit, ras_target,
+                     Mux(ftb.io.hit && ftb.io.br_type === 2.U && ittage.io.pred.hit, ittage.io.pred.target,
+                     ftb.io.target))
+
+  val final_target = Mux(uftb_hit, uftb_target, ftb_target)
+
+  // Speculative RAS push & pop signals
+  val is_spec_call = ftb.io.hit && (ftb.io.br_type === 1.U) && final_taken
+  val is_spec_ret  = ftb.io.hit && (ftb.io.br_type === 2.U) && final_taken
+
+  ras.io.push_valid := io.out.fire && is_spec_call
+  ras.io.push_addr  := s0_pc + (fetchWidth * 4).U
+  ras.io.pop_valid  := io.out.fire && is_spec_ret
+  ras.io.restore_en := io.redirect.valid
+  ras.io.restore_sp := redirect_meta.ras_sp
 
   // --- UPDATE / TRAINING PATH ---
   val bpu_update_valid = io.redirect.valid || io.bpu_update.valid
@@ -100,6 +126,12 @@ class BPU(implicit val p: Parameters) extends Module with HasZaqalParameter {
   ftb.io.update_is_cfi := bpu_update_is_cfi
   ftb.io.update_is_jal := bpu_update_is_jal
   ftb.io.update_is_jalr:= bpu_update_is_jalr
+
+  // uFTB Update (L0 Cache for FTB)
+  uftb.io.update_valid  := ftb.io.update_valid && (bpu_update_taken || bpu_update_is_jal || bpu_update_is_jalr)
+  uftb.io.update_pc     := bpu_update_pc
+  uftb.io.update_target := bpu_update_target
+  uftb.io.update_br_type:= Mux(bpu_update_is_jalr, 2.U, Mux(bpu_update_is_jal, 1.U, 0.U))
 
   val aligned_update_pc = bpu_update_pc & (~31.U(xLen.W))
 
@@ -215,6 +247,7 @@ class BPU(implicit val p: Parameters) extends Module with HasZaqalParameter {
     val new_meta = Wire(new BPUMetaEntry)
     new_meta.ghr                := Mux(do_non_spec_shift, Cat(ghr(126, 0), bpu_update_taken), ghr)
     new_meta.phr                := phr   // Snapshot current PHR
+    new_meta.ras_sp             := ras.io.sp // Snapshot current RAS pointer
     new_meta.ghr_spec_shifted   := has_spec_cond_br
     new_meta.tage_providerIdx   := tage.io.pred.providerIdx
     new_meta.tage_providerHit   := tage.io.pred.hit

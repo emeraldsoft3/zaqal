@@ -22,8 +22,21 @@ class Predecoder(implicit val p: Parameters) extends Module with HasZaqalParamet
   val expanded = Mux(is_rvc, rvc_expander.io.out, io.inst)
   io.out.expanded_inst := expanded
 
-  // Simple Control Flow Instruction (CFI) check for RISC-V
-  // Use expanded instruction for CFI check to support compressed branches/jumps in future
+  // Control Flow Instruction (CFI) check for RISC-V
   val opcode = expanded(6, 0)
-  io.out.is_cfi := (opcode === "b1101111".U) || (opcode === "b1100111".U) || (opcode === "b1100011".U)
+  val rd     = expanded(11, 7)
+  val rs1    = expanded(19, 15)
+
+  val is_jal  = opcode === "b1101111".U
+  val is_jalr = opcode === "b1100111".U
+  val is_br   = opcode === "b1100011".U
+
+  io.out.is_cfi := is_jal || is_jalr || is_br
+
+  // RISC-V Calling Convention Link Registers: x1 (ra) and x5 (t0)
+  val rd_link  = (rd === 1.U) || (rd === 5.U)
+  val rs1_link = (rs1 === 1.U) || (rs1 === 5.U)
+
+  io.out.is_call := (is_jal || is_jalr) && rd_link
+  io.out.is_ret  := is_jalr && rs1_link && (rd =/= rs1)
 }

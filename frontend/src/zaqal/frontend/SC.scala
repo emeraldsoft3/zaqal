@@ -23,9 +23,9 @@ class SCPredictor(implicit val p: Parameters) extends Module with HasZaqalParame
     val update_sum   = Input(SInt(10.W)) // Sum that was calculated at fetch time
   })
 
-  val histLen = 8
-  val numWeights = 64
-  val weightWidth = 6
+  val histLen = scHistLen
+  val numWeights = scNumWeights
+  val weightWidth = scWeightWidth
   val maxWeight = ((1 << (weightWidth - 1)) - 1).S(weightWidth.W)
   val minWeight = (-(1 << (weightWidth - 1))).S(weightWidth.W)
   val threshold = 12.S(10.W)
