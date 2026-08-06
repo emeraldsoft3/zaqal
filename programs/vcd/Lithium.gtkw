@@ -1,10 +1,10 @@
 [*]
 [*] GTKWave Analyzer v3.3.111 (w)1999-2020 BSI
-[*] Wed Aug  5 05:36:36 2026
+[*] Thu Aug  6 04:55:12 2026
 [*]
 [dumpfile] "/home/emerald/zaqal/programs/vcd/Lithium.vcd"
-[dumpfile_mtime] "Tue Aug  4 06:51:01 2026"
-[dumpfile_size] 9282521
+[dumpfile_mtime] "Wed Aug  5 09:43:07 2026"
+[dumpfile_size] 13653546
 [savefile] "/home/emerald/zaqal/programs/vcd/Lithium.gtkw"
 [timestart] 28
 [size] 1865 931
@@ -52,85 +52,6 @@ TOP.Core.frontend.bpu.bpu_update_is_jal
 TOP.Core.frontend.bpu.bpu_update_is_jalr
 TOP.Core.frontend.bpu.bpu_update_taken
 TOP.Core.frontend.bpu.final_taken
-@22
-TOP.Core.frontend.bpu.final_target[63:0]
-TOP.Core.frontend.bpu.new_meta_ittage_altTarget[63:0]
-@28
-TOP.Core.frontend.bpu.new_meta_ittage_providerHit
-TOP.Core.frontend.bpu.new_meta_ittage_providerIdx[1:0]
-TOP.Core.frontend.bpu.new_meta_ittage_providerU[1:0]
-@22
-TOP.Core.frontend.bpu.new_meta_ras_sp[3:0]
-TOP.Core.frontend.bpu.ras_io_sp[3:0]
-TOP.Core.frontend.bpu.ras_io_restore_sp[3:0]
-TOP.Core.frontend.bpu.meta_slot[3:0]
-TOP.Core.frontend.bpu.meta_storage_0_ghr[127:0]
-@28
-TOP.Core.frontend.bpu.meta_storage_0_ghr_spec_shifted
-@22
-TOP.Core.frontend.bpu.meta_storage_0_ittage_altTarget[63:0]
-@28
-TOP.Core.frontend.bpu.meta_storage_0_ittage_providerHit
-TOP.Core.frontend.bpu.meta_storage_0_ittage_providerIdx[1:0]
-TOP.Core.frontend.bpu.meta_storage_0_ittage_providerU[1:0]
-@22
-TOP.Core.frontend.bpu.meta_storage_0_phr[31:0]
-TOP.Core.frontend.bpu.meta_storage_0_ras_sp[3:0]
-TOP.Core.frontend.bpu.meta_storage_0_sc_sum[9:0]
-@28
-TOP.Core.frontend.bpu.meta_storage_0_tage_altTaken
-TOP.Core.frontend.bpu.meta_storage_0_tage_providerCtr[2:0]
-TOP.Core.frontend.bpu.meta_storage_0_tage_providerHit
-TOP.Core.frontend.bpu.meta_storage_0_tage_providerIdx[1:0]
-TOP.Core.frontend.bpu.meta_storage_0_tage_providerU[1:0]
-@22
-TOP.Core.frontend.bpu.meta_storage_1_ghr[127:0]
-@28
-TOP.Core.frontend.bpu.meta_storage_1_ghr_spec_shifted
-@22
-TOP.Core.frontend.bpu.meta_storage_1_ittage_altTarget[63:0]
-@28
-TOP.Core.frontend.bpu.meta_storage_1_ittage_providerHit
-TOP.Core.frontend.bpu.meta_storage_1_ittage_providerIdx[1:0]
-TOP.Core.frontend.bpu.meta_storage_1_ittage_providerU[1:0]
-@22
-TOP.Core.frontend.bpu.meta_storage_1_phr[31:0]
-TOP.Core.frontend.bpu.meta_storage_1_ras_sp[3:0]
-TOP.Core.frontend.bpu.meta_storage_1_sc_sum[9:0]
-@28
-TOP.Core.frontend.bpu.meta_storage_1_tage_altTaken
-TOP.Core.frontend.bpu.meta_storage_1_tage_providerCtr[2:0]
-TOP.Core.frontend.bpu.meta_storage_1_tage_providerHit
-TOP.Core.frontend.bpu.meta_storage_1_tage_providerIdx[1:0]
-TOP.Core.frontend.bpu.meta_storage_1_tage_providerU[1:0]
-@22
-TOP.Core.frontend.bpu.meta_storage_2_ghr[127:0]
-@28
-TOP.Core.frontend.bpu.meta_storage_2_ghr_spec_shifted
-@22
-TOP.Core.frontend.bpu.meta_storage_2_ittage_altTarget[63:0]
-@28
-TOP.Core.frontend.bpu.meta_storage_2_ittage_providerHit
-TOP.Core.frontend.bpu.meta_storage_2_ittage_providerIdx[1:0]
-TOP.Core.frontend.bpu.meta_storage_2_ittage_providerU[1:0]
-@22
-TOP.Core.frontend.bpu.meta_storage_2_phr[31:0]
-TOP.Core.frontend.bpu.meta_storage_2_ras_sp[3:0]
-TOP.Core.frontend.bpu.meta_storage_2_sc_sum[9:0]
-@28
-TOP.Core.frontend.bpu.meta_storage_2_tage_altTaken
-TOP.Core.frontend.bpu.meta_storage_2_tage_providerCtr[2:0]
-TOP.Core.frontend.bpu.meta_storage_2_tage_providerHit
-TOP.Core.frontend.bpu.meta_storage_2_tage_providerIdx[1:0]
-TOP.Core.frontend.bpu.meta_storage_2_tage_providerU[1:0]
-@22
-TOP.Core.frontend.bpu.new_meta_sc_sum[9:0]
-@28
-TOP.Core.frontend.bpu.new_meta_tage_altTaken
-TOP.Core.frontend.bpu.new_meta_tage_providerCtr[2:0]
-TOP.Core.frontend.bpu.new_meta_tage_providerHit
-TOP.Core.frontend.bpu.new_meta_tage_providerIdx[1:0]
-TOP.Core.frontend.bpu.new_meta_tage_providerU[1:0]
 @1000200
 -BPU
 @800200

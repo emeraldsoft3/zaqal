@@ -79,7 +79,10 @@ class BPU(implicit val p: Parameters) extends Module with HasZaqalParameter {
   sc.io.req_ghr := ghr
 
   // Override FTB's conditional branch direction with TAGE, and override TAGE with SC if SC is strong
-  val tage_sc_taken = Mux(sc.io.pred.strong, sc.io.pred.taken, tage.io.pred.taken)
+  val tage_pred_taken = Mux(enableBpuTage.B, tage.io.pred.taken, false.B)
+  val sc_pred_strong = Mux(enableBpuSc.B, sc.io.pred.strong, false.B)
+  val sc_pred_taken = Mux(enableBpuSc.B, sc.io.pred.taken, false.B)
+  val tage_sc_taken = Mux(sc_pred_strong, sc_pred_taken, tage_pred_taken)
   val ftb_taken = Mux(ftb.io.hit && ftb.io.br_type === 0.U, tage_sc_taken, ftb.io.taken)
   
   // uFTB Zero-Bubble Override (uFTB only stores taken branches)
@@ -88,11 +91,14 @@ class BPU(implicit val p: Parameters) extends Module with HasZaqalParameter {
   
   val final_taken = Mux(uftb_hit, true.B, ftb_taken)
   
-  val ras_hit = ftb.io.hit && ftb.io.br_type === 2.U && ras.io.pop_valid_out
+  val ras_hit = enableBpuRas.B && ftb.io.hit && ftb.io.br_type === 2.U && ras.io.pop_valid_out
   val ras_target = ras.io.pop_addr
   
+  val ittage_hit = enableBpuIttage.B && ittage.io.pred.hit
+  val ittage_target = Mux(enableBpuIttage.B, ittage.io.pred.target, 0.U)
+  
   val ftb_target = Mux(ras_hit, ras_target,
-                     Mux(ftb.io.hit && ftb.io.br_type === 2.U && ittage.io.pred.hit, ittage.io.pred.target,
+                     Mux(ftb.io.hit && ftb.io.br_type === 2.U && ittage_hit, ittage_target,
                      ftb.io.target))
 
   val final_target = Mux(uftb_hit, uftb_target, ftb_target)

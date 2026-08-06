@@ -95944,10 +95944,15 @@ $timescale 1ps $end
      $var wire 64 o(# meta_storage_63_ittage_altTarget [63:0] $end
      $var wire 2 q(# meta_storage_63_ittage_providerU [1:0] $end
      $var wire 10 r(# meta_storage_63_sc_sum [9:0] $end
+     $var wire 1 +z" tage_pred_taken $end
+     $var wire 1 Mz" sc_pred_strong $end
+     $var wire 1 Kz" sc_pred_taken $end
      $var wire 1 s(# tage_sc_taken $end
      $var wire 1 t(# ftb_taken $end
      $var wire 1 u(# final_taken $end
      $var wire 1 v(# ras_hit $end
+     $var wire 1 Cz" ittage_hit $end
+     $var wire 64 >z" ittage_target [63:0] $end
      $var wire 64 w(# ftb_target [63:0] $end
      $var wire 64 y(# final_target [63:0] $end
      $var wire 1 {(# is_spec_call $end
@@ -96041,7 +96046,6 @@ $timescale 1ps $end
      $var wire 1 ,z" new_meta_tage_altTaken $end
      $var wire 2 -z" new_meta_tage_providerU [1:0] $end
      $var wire 2 =z" new_meta_ittage_providerIdx [1:0] $end
-     $var wire 1 Cz" new_meta_ittage_providerHit $end
      $var wire 64 @z" new_meta_ittage_altTarget [63:0] $end
      $var wire 2 Bz" new_meta_ittage_providerU [1:0] $end
      $var wire 10 Lz" new_meta_sc_sum [9:0] $end

@@ -26,7 +26,7 @@ class ICache(implicit val p: Parameters) extends Module with HasZaqalParameter {
       println(s"[ICache] Loaded ${insts.length} instructions from $path")
       insts
     } else {
-      println(s"[ICache] Using Dedicated RAS Test Program (Call & Return)")
+      println(s"[ICache] Using Branch Checkpointing & RAS Test Program (Spaced Branches)")
       Seq(
         // Block 0x00
         "h03200a13".U, // 0x00: addi x20, x0, 50  (loop counter = 50)

@@ -25,6 +25,10 @@ case class ZaqalParams(
   
   // BPU Parameters
   rasEntries: Int = 16,
+  enableBpuTage: Boolean = true,
+  enableBpuIttage: Boolean = true,
+  enableBpuSc: Boolean = true,
+  enableBpuRas: Boolean = true,
   
   // SC Predictor Parameters
   scHistLen: Int = 8,
@@ -76,6 +80,10 @@ trait HasZaqalParameter {
   def predictWidth = fetchWidth * (if (hasCExtension) 2 else 1)
   
   def rasEntries = zP.rasEntries
+  def enableBpuTage = zP.enableBpuTage
+  def enableBpuIttage = zP.enableBpuIttage
+  def enableBpuSc = zP.enableBpuSc
+  def enableBpuRas = zP.enableBpuRas
   def scHistLen = zP.scHistLen
   def scNumWeights = zP.scNumWeights
   def scWeightWidth = zP.scWeightWidth
