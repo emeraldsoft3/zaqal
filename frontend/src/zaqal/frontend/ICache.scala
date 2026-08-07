@@ -26,30 +26,26 @@ class ICache(implicit val p: Parameters) extends Module with HasZaqalParameter {
       println(s"[ICache] Loaded ${insts.length} instructions from $path")
       insts
     } else {
-      println(s"[ICache] Using Branch Checkpointing & RAS Test Program (Spaced Branches)")
+      println(s"[ICache] Using UOpCache Hit/Miss Verification Program")
       Seq(
-        // Block 0x00
-        "h03200a13".U, // 0x00: addi x20, x0, 50  (loop counter = 50)
-        "h00000a93".U, // 0x04: addi x21, x0, 0   (state = 0)
-        "h040a0c63".U, // 0x08: beq x20, x0, 0x60 (if counter == 0, go to Done)
-        "h00000013".U, "h00000013".U, "h00000013".U, "h00000013".U, "h00000013".U, // Padding to 0x20
+        // Block 0x00 (First 8 Instructions)
+        "h00108093".U, // 00: addi x1, x1, 1
+        "h00210113".U, // 01: addi x2, x2, 2
+        "h00318193".U, // 02: addi x3, x3, 3
+        "h00420213".U, // 03: addi x4, x4, 4
+        "h00528293".U, // 04: addi x5, x5, 5
+        "h00630313".U, // 05: addi x6, x6, 6
+        "h00738393".U, // 06: addi x7, x7, 7
+        "h00840413".U, // 07: addi x8, x8, 8
 
-        // Block 0x20
-        "h060000ef".U, // 0x20: jal x1, 0x80      (Call Subroutine A)
-        "h00000013".U, "h00000013".U, "h00000013".U, "h00000013".U, "h00000013".U, "h00000013".U, "h00000013".U, // Padding to 0x40
+        // Block 0x20 (Next 8 Instructions - Empty/NOPs)
+        "h00000013".U, "h00000013".U, "h00000013".U, "h00000013".U, 
+        "h00000013".U, "h00000013".U, "h00000013".U, "h00000013".U, 
 
-        // Block 0x40
-        "hfffa0a13".U, // 0x40: addi x20, x20, -1 (counter--)
-        "hfc5ff06f".U, // 0x44: jal x0, 0x08      (Jump to Loop Start)
-        "h00000013".U, "h00000013".U, "h00000013".U, "h00000013".U, "h00000013".U, "h00000013".U, // Padding to 0x60
-
-        // Block 0x60 (Done)
-        "h0000006f".U, // 0x60: jal x0, 0x60      (Infinite loop)
-        "h00000013".U, "h00000013".U, "h00000013".U, "h00000013".U, "h00000013".U, "h00000013".U, "h00000013".U, // Padding to 0x80
-
-        // Block 0x80 (Subroutine A)
-        "h001a8a93".U, // 0x80: addi x21, x21, 1  (state++)
-        "h00008067".U  // 0x84: jalr x0, x1, 0    (Return -> RAS Predicts this)
+        // Block 0x40 (Final 8 Instructions)
+        "h00000013".U, "h00000013".U, "h00000013".U, "h00000013".U, 
+        "h00000013".U, "h00000013".U, "h00000013".U, 
+        "hfa5ff06f".U  // 23: jal x0, -92 (Jump back to 00)
       ) ++ Seq.fill(100)("h00000013".U) // Padding
     }
   }

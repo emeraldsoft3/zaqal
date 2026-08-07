@@ -47,7 +47,7 @@ object ZaqalTest extends App {
     val maxCycles = 1000
     
     for (cycle <- 0 until maxCycles) {
-      println(s"[TESTBENCH] Cycle $cycle")
+      // println(s"[TESTBENCH] Cycle $cycle") // Disabled to reduce log spam
       // 1. Apply Reset
       dut.reset.poke((cycle < resetCycles).B)
       
@@ -88,10 +88,10 @@ object ZaqalTest extends App {
         manualReadPtr = (manualReadPtr + 1) % params.ftqEntries
       }
 
-      // 5. Periodic Dump (Dump every cycle to see the movement)
-      if (cycle >= 5 && cycle <= 800) {
-        dumpToCSV(cycle)
-      }
+      // 5. Periodic Dump (Disabled for speed, uncomment if debugging FTQ)
+      // if (cycle >= 5 && cycle <= 800) {
+      //   dumpToCSV(cycle)
+      // }
 
       dut.clock.step(1)
     }

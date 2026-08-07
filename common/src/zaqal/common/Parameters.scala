@@ -48,7 +48,12 @@ case class ZaqalParams(
   ittageUBits: Int = 2,
   ittageHistoryLengths: Seq[Int] = Seq(4, 12, 36, 108),
   ittageTableRows: Int = 64,
-  ittageTagWidth: Int = 8
+  ittageTagWidth: Int = 8,
+  
+  // UOp Cache Parameters (XiangShan Parity)
+  enableUOpCache: Boolean = true,
+  uopCacheSets: Int = 64,
+  uopCacheWays: Int = 8
 )
 
 // 2. Define the Field Key that CDE uses to locate ZaqalParams
@@ -100,6 +105,10 @@ trait HasZaqalParameter {
   def ittageHistoryLengths = zP.ittageHistoryLengths
   def ittageTableRows = zP.ittageTableRows
   def ittageTagWidth = zP.ittageTagWidth
+  
+  def enableUOpCache = zP.enableUOpCache
+  def uopCacheSets = zP.uopCacheSets
+  def uopCacheWays = zP.uopCacheWays
 }
 
 // 4. Default configuration overlay
