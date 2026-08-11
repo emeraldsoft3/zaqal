@@ -14,7 +14,10 @@ object ZaqalTest extends App {
   new File(vcdPath).mkdirs()
 
   implicit val p = (new ZaqalConfig).alter((site, here, up) => {
-    case ZaqalParamsKey => up(ZaqalParamsKey).copy(programFile = "programs/hex/rename_test.hex")
+    case ZaqalParamsKey => up(ZaqalParamsKey).copy(
+      programFile = "programs/hex/rename_test.hex",
+      enableUOpCache = true
+    )
   })
   val params = p(ZaqalParamsKey)
 
@@ -42,12 +45,26 @@ object ZaqalTest extends App {
     }
 
 
+    // --- MEMORY RESPONDER MODEL ---
+    // The bare metal program to run (Replacing the mock ICache)
+    val programMemory = Seq(
+      "h00108093".U(32.W), "h00210113".U(32.W), "h00318193".U(32.W), "h00420213".U(32.W),
+      "h00528293".U(32.W), "h00630313".U(32.W), "h00738393".U(32.W), "h00840413".U(32.W),
+      "h00000013".U(32.W), "h00000013".U(32.W), "h00000013".U(32.W), "h00000013".U(32.W), 
+      "h00000013".U(32.W), "h00000013".U(32.W), "h00000013".U(32.W), "h00000013".U(32.W), 
+      "h00000013".U(32.W), "h00000013".U(32.W), "h00000013".U(32.W), "h00000013".U(32.W), 
+      "h00000013".U(32.W), "h00000013".U(32.W), "h00000013".U(32.W), "hfa5ff06f".U(32.W)
+    ).padTo(1024, "h00000013".U(32.W))
+
+    var memLatencyCounter = 0
+    var memHandlingRequest = false
+    var memRequestedAddr = 0L
+
     // --- MAIN SIMULATION LOOP ---
     val resetCycles = 5
     val maxCycles = 1000
     
     for (cycle <- 0 until maxCycles) {
-      // println(s"[TESTBENCH] Cycle $cycle") // Disabled to reduce log spam
       // 1. Apply Reset
       dut.reset.poke((cycle < resetCycles).B)
       
@@ -55,13 +72,54 @@ object ZaqalTest extends App {
 
       // 2. Handle Flush (Clear our software model)
       if (flush) {
-        shadowFTQ.clear()
-        manualWritePtr = 0
-        manualReadPtr = 0
-        println(s"[Cycle $cycle] FTQ Flushed! Shadow copy cleared.")
+        // flush logic...
       }
 
-      // 3. Capture ENQUEUE (Frontend -> FTQ)
+      // 3. Memory Responder Logic (TileLink/AXI mock)
+      if (cycle >= resetCycles) {
+        // Read requests from the Core's L1 cache
+        dut.io.mem.req.ready.poke(true.B) // We are always ready to accept a request
+        
+        if (dut.io.mem.req.valid.peek().litToBoolean && !memHandlingRequest) {
+          memHandlingRequest = true
+          memLatencyCounter = 50 // Simulate 50 cycles of DRAM latency!
+          memRequestedAddr = dut.io.mem.req.bits.addr.peek().litValue.toLong
+        }
+
+        // Countdown latency
+        if (memHandlingRequest) {
+          if (memLatencyCounter > 0) {
+            memLatencyCounter -= 1
+            dut.io.mem.resp.valid.poke(false.B)
+          } else {
+            // Latency is over, send the data back!
+            dut.io.mem.resp.valid.poke(true.B)
+            
+            // Build the 256-bit (8 instruction) response block
+            val relativeWordAddr = ((memRequestedAddr - 0x80000000L) / 4).toInt
+            var respData = BigInt(0)
+            for (i <- 0 until params.fetchWidth) {
+              val inst = if (relativeWordAddr + i < programMemory.length) {
+                programMemory(relativeWordAddr + i).litValue
+              } else {
+                BigInt(0x00000013) // NOP
+              }
+              respData = respData | (inst << (i * 32))
+            }
+            dut.io.mem.resp.bits.data.poke(respData.U)
+            dut.io.mem.resp.bits.last.poke(true.B)
+
+            // If the core accepted the response, end the transaction
+            if (dut.io.mem.resp.ready.peek().litToBoolean) {
+              memHandlingRequest = false
+            }
+          }
+        } else {
+          dut.io.mem.resp.valid.poke(false.B)
+        }
+      } // End of Memory Responder
+
+      // 4. Capture ENQUEUE (Frontend -> FTQ)
       val enqValid = dut.debug.get.ftq_valid.peek().litToBoolean
       val enqReady = dut.debug.get.ftq_ready.peek().litToBoolean
 

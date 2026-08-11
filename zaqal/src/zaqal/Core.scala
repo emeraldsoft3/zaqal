@@ -14,6 +14,9 @@ class Core(implicit val p: Parameters) extends Module with HasZaqalParameter {
   val io = IO(new Bundle {
     val success   = Output(Bool())
     val debug_sum = if (!enableDebugPorts) Some(Output(UInt(xLen.W))) else None
+    
+    // External Memory Bus (For top-level testing)
+    val mem = new MemoryBus(xLen, instBits * fetchWidth)
   })
 
   val debug = if (enableDebugPorts) Some(IO(new Bundle {
@@ -55,6 +58,8 @@ class Core(implicit val p: Parameters) extends Module with HasZaqalParameter {
   frontend.io.redirect := backend.io.redirect
   frontend.io.bpu_update := backend.io.bpu_update
   backend.io.debug_cycle := cycle_reg
+  
+  io.mem <> frontend.io.mem
 
   // Metadata access (XiangShan style) - Tie off for now
   frontend.io.ftq_read_ptr := 0.U 

@@ -12,6 +12,7 @@ class Frontend(implicit val p: Parameters) extends Module with HasZaqalParameter
     val redirect     = Input(new BPURedirect)
     val bpu_update   = Input(new BPUUpdate)
     val dispatch     = Vec(decodeWidth, Decoupled(new MicroOp)) // Output to Backend (6-wide)
+    val mem          = new MemoryBus(xLen, instBits * fetchWidth) // Connects to L1 I-Cache
     
     // Backend access to FTQ (XiangShan style)
     val ftq_read_ptr  = Input(UInt(ftqPtrWidth.W))
@@ -36,6 +37,7 @@ class Frontend(implicit val p: Parameters) extends Module with HasZaqalParameter
   val ftq      = Module(new FTQ)
   val ifu      = Module(new IFU)
   val icache   = Module(new ICache)
+  io.mem <> icache.io.mem
   val uopCache = Module(new UOpCache)
   dontTouch(uopCache.io) // Prevent optimization so it appears in GTKWave
   val ibuf     = Module(new IBUF)
