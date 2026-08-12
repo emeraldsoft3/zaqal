@@ -25,7 +25,7 @@ To achieve true XiangShan-level performance, the front-end must provide near-per
 - **XiangShan Study**: [Bpu.scala](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/frontend/Bpu.scala), [RAS.scala](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/frontend/RAS.scala), [uFTB.scala](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/frontend/uFTB.scala)
 
 ## Day 13-17: Memory Interface (Caches & uOp Cache)
-- [ ] **Day 13**: **uOp Cache (L0 Decoded Cache)**: Implement decoded instruction cache to bypass decoders and increase fetch bandwidth (XiangShan parity).
+- [x] **Day 13**: **uOp Cache (L0 Decoded Cache)**: Implement decoded instruction cache to bypass decoders and increase fetch bandwidth (XiangShan parity).
 - [ ] **Day 14-15**: **Instruction Cache (I-Cache)**: Replace the bypass model with a real L1-I with refill logic.
 - [ ] **Day 16-17**: **Data Cache (D-Cache) & MSHRs**: Non-blocking L1-D with Miss Status Handling Registers (MSHRs) for true hit-under-miss support.
 - **Detailed Plan**: We will rip out the simple mock instruction memory and build a genuine, Set-Associative Level-1 Instruction Cache (L1-I) with cache-line refill logic from the L2/Main Memory. To further decouple fetch from decode, we will introduce a uOp Cache (L0 Decoded Cache) that caches already-decoded micro-operations, saving significant decoding power and increasing frontend bandwidth. For the Data Cache (L1-D), we will implement a non-blocking architecture using Miss Status Handling Registers (MSHRs). MSHRs allow the cache to continue serving new memory requests even while waiting for a previous cache miss to be fetched from main memory, unlocking the true potential of out-of-order execution (Hit-Under-Miss).
@@ -46,6 +46,9 @@ To achieve true XiangShan-level performance, the front-end must provide near-per
 - [ ] **Circular Shift Registers (CSRs)**: Transition from combinatorial/Scala folding of the global history register to hardware-efficient circular shift registers (CSRs) to reduce critical path wire delay.
 - [ ] **Pipelined Multi-Cycle BPU Lookup**: Redesign lookup logic to span 2–3 pipeline stages (allowing larger tables to be queried without limiting clock frequency).
 - [ ] **Table Sizing Expansion**: Scale table capacity up to 1024–4096 entries per table to match the footprint of XiangShan Nanhu/Kunminghu configurations.
+
+## Future Scope: Advanced Cache Features (SoC / Phase 9 Integration)
+- [ ] **Critical Word First (CWF)**: Enhance the L1-I and L1-D cache controllers to immediately forward the specific requested 64-bit word to the CPU during a cache refill, instead of waiting for the entire 64-byte line to arrive over a narrow AXI bus. This reduces L2 miss penalty dramatically (XiangShan parity feature).
 
 ## Future Phase: Comprehensive BPU Testing
 - Once the Reorder Buffer (ROB) and multi-branch support (PreDecode upgrades) are completed, rigorous verification of TAGE and ITTAGE will commence.

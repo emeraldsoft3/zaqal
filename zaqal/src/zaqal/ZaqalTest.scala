@@ -48,12 +48,35 @@ object ZaqalTest extends App {
     // --- MEMORY RESPONDER MODEL ---
     // The bare metal program to run (Replacing the mock ICache)
     val programMemory = Seq(
-      "h00108093".U(32.W), "h00210113".U(32.W), "h00318193".U(32.W), "h00420213".U(32.W),
-      "h00528293".U(32.W), "h00630313".U(32.W), "h00738393".U(32.W), "h00840413".U(32.W),
-      "h00000013".U(32.W), "h00000013".U(32.W), "h00000013".U(32.W), "h00000013".U(32.W), 
-      "h00000013".U(32.W), "h00000013".U(32.W), "h00000013".U(32.W), "h00000013".U(32.W), 
-      "h00000013".U(32.W), "h00000013".U(32.W), "h00000013".U(32.W), "h00000013".U(32.W), 
-      "h00000013".U(32.W), "h00000013".U(32.W), "h00000013".U(32.W), "hfa5ff06f".U(32.W)
+      // Block 0x00
+      "h00108093".U(32.W), // 00: addi x1, x1, 1
+      "h00210113".U(32.W), // 01: addi x2, x2, 2
+      "h00318193".U(32.W), // 02: addi x3, x3, 3
+      "h00420213".U(32.W), // 03: addi x4, x4, 4
+      "h00528293".U(32.W), // 04: addi x5, x5, 5
+      "h00630313".U(32.W), // 05: addi x6, x6, 6
+      "h00738393".U(32.W), // 06: addi x7, x7, 7
+      "h00840413".U(32.W), // 07: addi x8, x8, 8
+
+      // Block 0x20
+      "h00948493".U(32.W), // 08: addi x9, x9, 9
+      "h00948493".U(32.W), // 09: addi x9, x9, 9
+      "h00948493".U(32.W), // 10: addi x9, x9, 9
+      "h00948493".U(32.W), // 11: addi x9, x9, 9
+      "h00948493".U(32.W), // 12: addi x9, x9, 9
+      "h00948493".U(32.W), // 13: addi x9, x9, 9
+      "h00948493".U(32.W), // 14: addi x9, x9, 9
+      "h00948493".U(32.W), // 15: addi x9, x9, 9
+
+      // Block 0x40
+      "h00a50513".U(32.W), // 16: addi x10, x10, 10
+      "h00a50513".U(32.W), // 17: addi x10, x10, 10
+      "h00a50513".U(32.W), // 18: addi x10, x10, 10
+      "h00a50513".U(32.W), // 19: addi x10, x10, 10
+      "h00a50513".U(32.W), // 20: addi x10, x10, 10
+      "h00a50513".U(32.W), // 21: addi x10, x10, 10
+      "h00a50513".U(32.W), // 22: addi x10, x10, 10
+      "hfa5ff06f".U(32.W)  // 23: jal x0, -92 (Jump back to 00)
     ).padTo(1024, "h00000013".U(32.W))
 
     var memLatencyCounter = 0
@@ -99,7 +122,7 @@ object ZaqalTest extends App {
             val relativeWordAddr = ((memRequestedAddr - 0x80000000L) / 4).toInt
             var respData = BigInt(0)
             for (i <- 0 until params.fetchWidth) {
-              val inst = if (relativeWordAddr + i < programMemory.length) {
+              val inst = if (relativeWordAddr >= 0 && relativeWordAddr + i < programMemory.length) {
                 programMemory(relativeWordAddr + i).litValue
               } else {
                 BigInt(0x00000013) // NOP
