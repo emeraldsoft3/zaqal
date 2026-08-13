@@ -48,40 +48,24 @@ object ZaqalTest extends App {
     // --- MEMORY RESPONDER MODEL ---
     // The bare metal program to run (Replacing the mock ICache)
     val programMemory = Seq(
-      // Block 0x00
-      "h00108093".U(32.W), // 00: addi x1, x1, 1
-      "h00210113".U(32.W), // 01: addi x2, x2, 2
-      "h00318193".U(32.W), // 02: addi x3, x3, 3
-      "h00420213".U(32.W), // 03: addi x4, x4, 4
-      "h00528293".U(32.W), // 04: addi x5, x5, 5
-      "h00630313".U(32.W), // 05: addi x6, x6, 6
-      "h00738393".U(32.W), // 06: addi x7, x7, 7
-      "h00840413".U(32.W), // 07: addi x8, x8, 8
-
-      // Block 0x20
-      "h00948493".U(32.W), // 08: addi x9, x9, 9
-      "h00948493".U(32.W), // 09: addi x9, x9, 9
-      "h00948493".U(32.W), // 10: addi x9, x9, 9
-      "h00948493".U(32.W), // 11: addi x9, x9, 9
-      "h00948493".U(32.W), // 12: addi x9, x9, 9
-      "h00948493".U(32.W), // 13: addi x9, x9, 9
-      "h00948493".U(32.W), // 14: addi x9, x9, 9
-      "h00948493".U(32.W), // 15: addi x9, x9, 9
-
-      // Block 0x40
-      "h00a50513".U(32.W), // 16: addi x10, x10, 10
-      "h00a50513".U(32.W), // 17: addi x10, x10, 10
-      "h00a50513".U(32.W), // 18: addi x10, x10, 10
-      "h00a50513".U(32.W), // 19: addi x10, x10, 10
-      "h00a50513".U(32.W), // 20: addi x10, x10, 10
-      "h00a50513".U(32.W), // 21: addi x10, x10, 10
-      "h00a50513".U(32.W), // 22: addi x10, x10, 10
-      "hfa5ff06f".U(32.W)  // 23: jal x0, -92 (Jump back to 00)
+      // Block 0x00 (Cache Line 0)
+      "h00000093".U(32.W), // 00: addi x1, x0, 0     (Base Address)
+      "h00300113".U(32.W), // 04: addi x2, x0, 3     (Loop Counter)
+      "h0020a023".U(32.W), // 08: sw x2, 0(x1)       (Store: D-Cache MISS, allocates MSHR)
+      "h0000a183".U(32.W), // 0C: lw x3, 0(x1)       (Load: D-Cache HIT to same address)
+      "h0040a203".U(32.W), // 10: lw x4, 4(x1)       (Load: D-Cache HIT to same cache line)
+      "h02008093".U(32.W), // 14: addi x1, x1, 32    (Increment address to NEXT cache line)
+      "hfff10113".U(32.W), // 18: addi x2, x2, -1    (Decrement counter)
+      "hfc011ee3".U(32.W)  // 1C: bne x2, x0, -20    (Loop back to 08 if counter != 0)
     ).padTo(1024, "h00000013".U(32.W))
 
     var memLatencyCounter = 0
     var memHandlingRequest = false
     var memRequestedAddr = 0L
+
+    var dmemLatencyCounter = 0
+    var dmemHandlingRequest = false
+    var dmemRequestedAddr = 0L
 
     // --- MAIN SIMULATION LOOP ---
     val resetCycles = 5
@@ -141,6 +125,35 @@ object ZaqalTest extends App {
           dut.io.mem.resp.valid.poke(false.B)
         }
       } // End of Memory Responder
+
+      // D-Cache Memory Responder Logic
+
+      if (cycle >= resetCycles) {
+        dut.io.mem_d.req.ready.poke(true.B)
+        
+        if (dut.io.mem_d.req.valid.peek().litToBoolean && !dmemHandlingRequest) {
+          dmemHandlingRequest = true
+          dmemLatencyCounter = 50 // 50 cycles for data miss too
+          dmemRequestedAddr = dut.io.mem_d.req.bits.addr.peek().litValue.toLong
+        }
+
+        if (dmemHandlingRequest) {
+          if (dmemLatencyCounter > 0) {
+            dmemLatencyCounter -= 1
+            dut.io.mem_d.resp.valid.poke(false.B)
+          } else {
+            dut.io.mem_d.resp.valid.poke(true.B)
+            dut.io.mem_d.resp.bits.data.poke(BigInt("DEADBEEFCAFEBABE", 16).U) // Return some dummy memory data
+            dut.io.mem_d.resp.bits.last.poke(true.B)
+
+            if (dut.io.mem_d.resp.ready.peek().litToBoolean) {
+              dmemHandlingRequest = false
+            }
+          }
+        } else {
+          dut.io.mem_d.resp.valid.poke(false.B)
+        }
+      }
 
       // 4. Capture ENQUEUE (Frontend -> FTQ)
       val enqValid = dut.debug.get.ftq_valid.peek().litToBoolean

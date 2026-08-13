@@ -37,16 +37,22 @@ object utility extends ZaqalModule {
   override def moduleDeps = Seq(common)
 }
 
-// 3. Frontend (BPU, FTQ, IFU)
-object frontend extends ZaqalModule {
-  override def millSourcePath = os.pwd / "frontend"
+// 3. Cache Subsystem (ICache, DCache, UOpCache)
+object cache extends ZaqalModule {
+  override def millSourcePath = os.pwd / "cache"
   override def moduleDeps = Seq(common, utility)
 }
 
-// 4. Backend (ALU, RegFile, Decode)
+// 4. Frontend (BPU, FTQ, IFU)
+object frontend extends ZaqalModule {
+  override def millSourcePath = os.pwd / "frontend"
+  override def moduleDeps = Seq(common, utility, cache)
+}
+
+// 5. Backend (ALU, RegFile, Decode)
 object backend extends ZaqalModule {
   override def millSourcePath = os.pwd / "backend"
-  override def moduleDeps = Seq(common, utility)
+  override def moduleDeps = Seq(common, utility, cache)
 }
 
 // 5. Main Zaqal Core (Top level, Simulation, Elaborate)

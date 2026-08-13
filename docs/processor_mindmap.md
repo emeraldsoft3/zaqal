@@ -16,15 +16,22 @@ graph TD
     classDef scheduler fill:#8b4000,stroke:#ffffff,stroke-width:2px,color:#ffffff;
     classDef execute fill:#1b4d3e,stroke:#ffffff,stroke-width:2px,color:#ffffff;
     classDef regfile fill:#4c1c24,stroke:#ffffff,stroke-width:2px,color:#ffffff;
+    classDef memory fill:#555555,stroke:#ffffff,stroke-width:2px,color:#ffffff;
+
+    subgraph MEM [MAIN MEMORY / RAM]
+        DRAM[Simulated RAM: 50 Cycle Latency]
+    end
+    class DRAM memory;
 
     subgraph FE [1. FRONTEND: FETCH & BUFFER]
         BPU[BPU: Branch Predictor]
         FTQ[FTQ: Fetch Target Queue]
-        ICache[ICache: Instruction Cache]
+        ICache[L1 I-Cache: Instruction Cache]
+        UOP[L0 uOp Cache: Decoded Cache]
         IFU[IFU: Instruction Fetch Unit]
         IBUF[IBUF: Instruction Buffer]
     end
-    class BPU,FTQ,ICache,IFU,IBUF frontend;
+    class BPU,FTQ,ICache,UOP,IFU,IBUF frontend;
 
     subgraph DR [2. BACKEND: DECODE & RENAME]
         DEC[Decoders: 6-Wide Decode]
@@ -47,9 +54,10 @@ graph TD
         ALU0[ALU 0 / BRU]
         ALU1[ALU 1 / Mul / Div]
         LSU[LSU: Load Store Unit]
+        DCache[L1 D-Cache with MSHRs]
         FPU[FPU: Float / FPDiv]
     end
-    class ALU0,ALU1,LSU,FPU execute;
+    class ALU0,ALU1,LSU,DCache,FPU execute;
 
     subgraph REG [5. BACKEND: COMMIT & WAKEUP]
         RF[Integer RF: 7R / 5W]
@@ -58,10 +66,15 @@ graph TD
     end
     class RF,FPRF,WU regfile;
 
+    %% Memory Connections
+    DRAM <-->|Memory Bus Refills| ICache
+    DRAM <-->|Memory Bus Refills / Writebacks| DCache
+
     %% Direct Connections
     BPU -->|Prediction Target| FTQ
-    FTQ -->|PC Fetch Address| IFU & ICache
+    FTQ -->|PC Fetch Address| IFU & ICache & UOP
     ICache -->|Raw Bytes| IFU
+    UOP -->|Decoded uOps Bypass| IBUF
     IFU -->|FetchPacket| IBUF
     IBUF -->|6-Wide Instruction Bundle| DEC
     DEC -->|Decoded Flags| RAT
@@ -75,6 +88,7 @@ graph TD
     intIq -->|Deq 0| ALU0
     intIq -->|Deq 1| ALU1
     memIq -->|Deq 0| LSU
+    LSU <-->|Data Load/Store Requests| DCache
     fpIq -->|Deq 0| FPU
 
     %% Wakeup Broadcasts

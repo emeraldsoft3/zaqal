@@ -21,7 +21,10 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
     val debug_int_rat = Output(Vec(32, UInt(phyRegIdxWidth.W)))
     val debug_fp_rat  = Output(Vec(32, UInt(phyRegIdxWidth.W)))
     val debug_cycle = Input(UInt(64.W))
+    val mem_d = new MemoryBus(xLen, 256)
   })
+
+  import zaqal.cache.DCache
 
   def wrapAdd(ptr: UInt, add: UInt): UInt = {
     val next = ptr +& add
@@ -383,4 +386,9 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
   io.debug_int_rat := rat.io.debug_int_rat
   io.debug_fp_rat  := rat.io.debug_fp_rat
   exec.io.debug_cycle := io.debug_cycle
+
+  val dcache = Module(new DCache)
+  dcache.io.req <> exec.io.dcache_req
+  exec.io.dcache_resp <> dcache.io.resp
+  io.mem_d <> dcache.io.mem
 }

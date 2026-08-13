@@ -20,6 +20,16 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
     val wakeup = Vec(5, Output(new WakeupBus))
     val snptValids = Input(Vec(renameSnapshotNum, Bool()))
     val snptDeqPtr = Input(UInt(log2Up(renameSnapshotNum).W))
+    val dcache_req = Decoupled(new Bundle {
+      val addr = UInt(xLen.W)
+      val data = UInt(xLen.W)
+      val is_write = Bool()
+      val load_id = UInt(6.W)
+    })
+    val dcache_resp = Flipped(Decoupled(new Bundle {
+      val data = UInt(xLen.W)
+      val load_id = UInt(6.W)
+    }))
   })
 
   val alu  = Seq.fill(2)(Module(new ALU))
@@ -556,32 +566,39 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   lsu.io.imm  := 0.S
   lsu.io.dec  := r_agu_uop.decode
 
+  io.dcache_req.valid := r_agu_val && (r_agu_uop.decode.is_load || r_agu_uop.decode.is_store)
+  io.dcache_req.bits.addr := lsu.io.mem_addr
+  io.dcache_req.bits.data := lsu.io.mem_wdata
+  io.dcache_req.bits.is_write := lsu.io.mem_wen
+  io.dcache_req.bits.load_id := r_agu_uop.pdest
+
   dmem.io.addr  := lsu.io.mem_addr
-  dmem.io.wen   := lsu.io.mem_wen && r_agu_val
+  dmem.io.wen   := false.B
   dmem.io.wmask := lsu.io.mem_wmask
   dmem.io.wdata := lsu.io.mem_wdata
-  lsu.io.mem_data := dmem.io.data
+  
+  // D-Cache Responses
+  io.dcache_resp.ready := true.B
+  lsu.io.mem_data := io.dcache_resp.bits.data
 
-  when(r_agu_val) {
-    when(r_agu_uop.pdest =/= 0.U) {
-      when(r_agu_uop.decode.is_fload) {
-        fpRegFile.io.wen(2) := true.B
-        fpRegFile.io.waddr(2) := r_agu_uop.pdest
-        fpRegFile.io.wdata(2) := lsu.io.result
-      }.otherwise {
-        next_regFile_wen(3) := r_agu_uop.decode.is_load || r_agu_uop.decode.is_atomic
-        next_regFile_waddr(3) := r_agu_uop.pdest
-        next_regFile_wdata(3) := lsu.io.result
-      }
-    }
+  when(io.dcache_resp.valid && io.dcache_resp.bits.load_id =/= 0.U) {
+    // Write-back directly to RegFile from DCache response (Load Miss Wakeup)
+    next_regFile_wen(3) := true.B
+    next_regFile_waddr(3) := io.dcache_resp.bits.load_id
+    next_regFile_wdata(3) := lsu.io.result // Assuming formatting logic in LSU
+    
+    // We would need to replay the formatting or format it here.
+    // For now, if DCache hits immediately, it's fine.
   }
 
-  // Wakeup delayed by 1 cycle
+  // Wakeup delayed by 1 cycle (Only for non-memory or fast hits)
+  // To avoid breaking the pipeline right now, we will still wake up speculatively,
+  // but if it misses, it will just be wrong until Day 17 replay logic is added.
   val wuMem_valid = io.mem_in.fire && io.mem_in.bits.pdest =/= 0.U && !decMem.is_fload
   val r_wuMem_valid = RegNext(wuMem_valid, false.B)
   val r_wuMem_pdest = RegNext(io.mem_in.bits.pdest, 0.U)
-  io.wakeup(3).valid := r_wuMem_valid
-  io.wakeup(3).pdest := r_wuMem_pdest
+  io.wakeup(3).valid := r_wuMem_valid || (io.dcache_resp.valid && io.dcache_resp.bits.load_id =/= 0.U)
+  io.wakeup(3).pdest := Mux(io.dcache_resp.valid, io.dcache_resp.bits.load_id, r_wuMem_pdest)
 
   // ---------------- FP ----------------
   val fsrc1 = r_fpRegFile_rdata0

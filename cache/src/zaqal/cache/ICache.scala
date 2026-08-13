@@ -1,4 +1,4 @@
-package zaqal.frontend
+package zaqal.cache
 
 import chisel3._
 import chisel3.util._
@@ -35,6 +35,11 @@ class ICache(implicit val p: Parameters) extends Module with HasZaqalParameter {
   // Cache Controller FSM
   val s_IDLE :: s_MISS_REQ :: s_REFILL :: Nil = Enum(3)
   val state = RegInit(s_IDLE)
+  
+  // Register to latch the missing PC
+  val missAddress = Reg(UInt(xLen.W))
+  val missIndex = missAddress(lineBits + blockOffsetBits - 1, blockOffsetBits)
+  val missTag = missAddress(xLen - 1, lineBits + blockOffsetBits)
 
   // Hit Detection
   val isHit = validArray(reqIndex) && (tagArray(reqIndex) === reqTag)
@@ -55,13 +60,14 @@ class ICache(implicit val p: Parameters) extends Module with HasZaqalParameter {
     is(s_IDLE) {
       // If we have a PC but no hit, we need to fetch from memory
       when(!isHit) {
+        missAddress := io.pc
         state := s_MISS_REQ
       }
     }
     is(s_MISS_REQ) {
       io.mem.req.valid := true.B
-      // Align address to block boundary
-      io.mem.req.bits.addr := Cat(reqTag, reqIndex, 0.U(blockOffsetBits.W))
+      // Align latched address to block boundary
+      io.mem.req.bits.addr := Cat(missTag, missIndex, 0.U(blockOffsetBits.W))
       
       when(io.mem.req.fire) {
         state := s_REFILL
@@ -71,12 +77,12 @@ class ICache(implicit val p: Parameters) extends Module with HasZaqalParameter {
       io.mem.resp.ready := true.B
       
       when(io.mem.resp.fire) {
-        // Refill the cache line
-        validArray(reqIndex) := true.B
-        tagArray(reqIndex) := reqTag
+        // Refill the cache line using the latched address
+        validArray(missIndex) := true.B
+        tagArray(missIndex) := missTag
         // Extract individual instructions from the wide data bus
         for (i <- 0 until fetchWidth) {
-          dataArray(reqIndex)(i) := io.mem.resp.bits.data((i + 1) * instBits - 1, i * instBits)
+          dataArray(missIndex)(i) := io.mem.resp.bits.data((i + 1) * instBits - 1, i * instBits)
         }
         
         // Go back to IDLE so the IFU can retry and get a Hit!
