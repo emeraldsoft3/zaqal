@@ -1,11 +1,11 @@
-package zaqal.backend
+package zaqal.backend.exu
 
 import chisel3._
 import chisel3.util._
 import org.chipsalliance.cde.config.Parameters
 import zaqal._
 import zaqal.common._
-import zaqal.backend.fu._
+import zaqal.backend._
 
 class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter {
   val io = IO(new Bundle {

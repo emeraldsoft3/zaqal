@@ -1,4 +1,4 @@
-package zaqal.backend.fu
+package zaqal.backend.exu
 
 import chisel3._
 import chisel3.util._

@@ -4,7 +4,7 @@ import chisel3._
 import chiseltest._
 import org.chipsalliance.cde.config.Parameters
 import zaqal.common._
-import zaqal.backend.fu.Bitmanip
+import zaqal.backend.exu.Bitmanip
 import java.io.File
 import java.nio.file.{Files, StandardCopyOption}
 
@@ -13,7 +13,7 @@ object BitmanipTest extends App {
   val vcdDir = "programs/vcd"
   new File(vcdDir).mkdirs()
 
-  import zaqal.backend.fu.ALU
+  import zaqal.backend.exu.ALU
   
   RawTester.test(new ALU(), Seq(WriteVcdAnnotation)) { dut =>
     println("--- Testing Bitmanip Zbb & Zbs Instructions (via ALU) ---")

@@ -1,18 +1,19 @@
 [*]
 [*] GTKWave Analyzer v3.3.111 (w)1999-2020 BSI
-[*] Mon Aug 10 06:23:24 2026
+[*] Fri Aug 14 08:28:31 2026
 [*]
 [dumpfile] "/home/emerald/zaqal/programs/vcd/Lithium.vcd"
-[dumpfile_mtime] "Mon Aug 10 05:59:48 2026"
-[dumpfile_size] 13155675
+[dumpfile_mtime] "Fri Aug 14 04:37:24 2026"
+[dumpfile_size] 10268771
 [savefile] "/home/emerald/zaqal/programs/vcd/Lithium.gtkw"
-[timestart] 0
+[timestart] 220
 [size] 1865 931
 [pos] -1 -1
 *-2.900000 36 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] TOP.
 [treeopen] TOP.Core.
 [treeopen] TOP.Core.backend.
+[treeopen] TOP.Core.backend.dcache.
 [treeopen] TOP.Core.backend.exec.
 [treeopen] TOP.Core.backend.exec.bru_0.
 [treeopen] TOP.Core.backend.intFreeList.
@@ -54,7 +55,7 @@ TOP.Core.frontend.bpu.bpu_update_taken
 TOP.Core.frontend.bpu.final_taken
 @1000200
 -BPU
-@800200
+@c00201
 -ftb
 @28
 TOP.Core.frontend.bpu.ftb.io_hit
@@ -83,9 +84,9 @@ TOP.Core.frontend.bpu.ftb.entries_0_offset[3:0]
 +{TOP.Core.frontend.bpu.ftb.entries_0_target[63:0]} TOP.Core.frontend.bpu.ftb.entries_0_target[63:0]
 +{TOP.Core.frontend.bpu.ftb.entries_1_offset[3:0]} TOP.Core.frontend.bpu.ftb.entries_1_offset[3:0]
 +{TOP.Core.frontend.bpu.ftb.entries_1_target[63:0]} TOP.Core.frontend.bpu.ftb.entries_1_target[63:0]
-@1000200
+@1401201
 -ftb
-@800200
+@c00200
 -RAS
 @22
 TOP.Core.frontend.bpu.ras.io_pop_addr[63:0]
@@ -122,7 +123,7 @@ TOP.Core.frontend.bpu.ras.stack_13[63:0]
 TOP.Core.frontend.bpu.ras.stack_14[63:0]
 TOP.Core.frontend.bpu.ras.stack_15[63:0]
 TOP.Core.frontend.bpu.ras.top_idx[3:0]
-@1000200
+@1401200
 -RAS
 @c00200
 -TAGE
@@ -559,8 +560,8 @@ TOP.Core.backend.exec.bru_0.io_dec_is_beq
 TOP.Core.backend.exec.bru_0.io_dec_is_bne
 TOP.Core.backend.exec.bru_0.io_dec_is_jal
 TOP.Core.backend.exec.bru_0.io_dec_is_jalr
-@200
--bru_1
+@800200
+-BRU_1
 @28
 TOP.Core.backend.exec.bru_1.io_mispredict
 @22
@@ -573,6 +574,8 @@ TOP.Core.backend.exec.bru_1.redirect_target[63:0]
 TOP.Core.backend.exec.bru_1.io_dec_is_jal
 TOP.Core.backend.exec.bru_1.io_dec_is_jalr
 TOP.Core.backend.exec.bru_1.io_dec_is_bne
+@1000200
+-BRU_1
 @200
 -alu 0
 @22
@@ -581,7 +584,16 @@ TOP.Core.backend.exec.alu_0.io_pc[63:0]
 -alu 1
 @22
 TOP.Core.backend.exec.alu_1.io_pc[63:0]
+@800200
+-LSU
+@22
+TOP.Core.backend.exec.lsu.addr[63:0]
+TOP.Core.backend.exec.lsu.addr_raw[63:0]
+@28
++{TOP.Core.backend.exec.lsu.io_dec_is_sw} TOP.Core.backend.exec.lsu.io_dec_is_sw
+TOP.Core.backend.exec.lsu.io_dec_is_lw
 @1000200
+-LSU
 -Execute
 @24
 [color] 6
@@ -737,15 +749,42 @@ TOP.Core.backend.exec.regFile.regs_99[63:0]
 TOP.Core.backend.exec.regFile.regs_100[63:0]
 @200
 -DMEM
+@800200
+-DCache
+@24
+[color] 6
+TOP.debug_cycle_count[63:0]
+@28
++{TOP.Core.backend.dcache.io_req_valid} TOP.Core.backend.dcache.io_req_valid
+TOP.Core.backend.dcache.io_resp_valid
 @22
-TOP.Core.backend.exec.dmem.mem_0[63:0]
-TOP.Core.backend.exec.dmem.mem_1[63:0]
-TOP.Core.backend.exec.dmem.mem_2[63:0]
-TOP.Core.backend.exec.dmem.mem_3[63:0]
-TOP.Core.backend.exec.dmem.mem_4[63:0]
-TOP.Core.backend.exec.dmem.mem_5[63:0]
-TOP.Core.backend.exec.dmem.mem_6[63:0]
-TOP.Core.backend.exec.dmem.mem_7[63:0]
-TOP.Core.backend.exec.dmem.mem_8[63:0]
+TOP.Core.backend.dcache.io_mem_resp_bits_data[255:0]
+@28
+TOP.Core.backend.dcache.io_mem_resp_ready
+TOP.Core.backend.dcache.io_mem_resp_valid
+@22
+TOP.Core.backend.dcache.io_resp_bits_load_id[5:0]
+TOP.Core.backend.dcache.io_resp_bits_data[63:0]
+@28
+TOP.Core.backend.dcache.mshr.state[1:0]
+@22
++{TOP.Core.backend.dcache.dataArray_0_0[31:0]} TOP.Core.backend.dcache.dataArray_0_0[31:0]
++{TOP.Core.backend.dcache.dataArray_0_1[31:0]} TOP.Core.backend.dcache.dataArray_0_1[31:0]
+TOP.Core.backend.dcache.dataArray_0_2[31:0]
+TOP.Core.backend.dcache.dataArray_0_3[31:0]
+TOP.Core.backend.dcache.dataArray_0_4[31:0]
+TOP.Core.backend.dcache.dataArray_0_5[31:0]
+TOP.Core.backend.dcache.dataArray_0_6[31:0]
+TOP.Core.backend.dcache.dataArray_0_7[31:0]
+TOP.Core.backend.dcache.dataArray_1_0[31:0]
+TOP.Core.backend.dcache.dataArray_1_1[31:0]
+TOP.Core.backend.dcache.dataArray_1_2[31:0]
+TOP.Core.backend.dcache.dataArray_1_3[31:0]
+TOP.Core.backend.dcache.dataArray_1_4[31:0]
+TOP.Core.backend.dcache.dataArray_1_5[31:0]
+TOP.Core.backend.dcache.dataArray_1_6[31:0]
+TOP.Core.backend.dcache.dataArray_1_7[31:0]
+@1000200
+-DCache
 [pattern_trace] 1
 [pattern_trace] 0

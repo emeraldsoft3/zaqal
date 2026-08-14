@@ -6,10 +6,10 @@ import org.chipsalliance.cde.config.Parameters
 import zaqal._
 import zaqal.common._
 
-import zaqal.backend.RenameTable
-import zaqal.utility.SkidBuffer
 import zaqal.backend.issue._
-
+import zaqal.backend.rename._
+import zaqal.backend.exu._
+import zaqal.utility.SkidBuffer
 
 class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter {
   val io = IO(new Bundle {

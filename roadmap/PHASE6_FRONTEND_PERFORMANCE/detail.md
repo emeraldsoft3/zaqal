@@ -27,8 +27,8 @@ To achieve true XiangShan-level performance, the front-end must provide near-per
 ## Day 13-17: Memory Interface (Caches & uOp Cache)
 - [x] **Day 13**: **uOp Cache (L0 Decoded Cache)**: Implement decoded instruction cache to bypass decoders and increase fetch bandwidth (XiangShan parity).
 - [x] **Day 14-15**: **Instruction Cache (I-Cache)**: Replace the bypass model with a real L1-I with refill logic.
-- [ ] **Day 15.5**: **Codebase Organization & Refactoring**: Move cache modules (`ICache`, `UOpCache`, `DCache`) into a dedicated `zaqal.cache` package and begin modularizing `Backend` execution units to prepare for Phase 7 scaling.
-- [ ] **Day 16-17**: **Data Cache (D-Cache) & MSHRs**: Non-blocking L1-D with Miss Status Handling Registers (MSHRs) for true hit-under-miss support.
+- [x] **Day 15.5**: **Codebase Organization & Refactoring**: Move cache modules (`ICache`, `UOpCache`, `DCache`) into a dedicated `zaqal.cache` package and begin modularizing `Backend` execution units to prepare for Phase 7 scaling.
+- [x] **Day 16-17**: **Data Cache (D-Cache) & MSHRs**: Non-blocking L1-D with Miss Status Handling Registers (MSHRs) for true hit-under-miss support.
 - **Detailed Plan**: We will rip out the simple mock instruction memory and build a genuine, Set-Associative Level-1 Instruction Cache (L1-I) with cache-line refill logic from the L2/Main Memory. To further decouple fetch from decode, we will introduce a uOp Cache (L0 Decoded Cache) that caches already-decoded micro-operations, saving significant decoding power and increasing frontend bandwidth. For the Data Cache (L1-D), we will implement a non-blocking architecture using Miss Status Handling Registers (MSHRs). MSHRs allow the cache to continue serving new memory requests even while waiting for a previous cache miss to be fetched from main memory, unlocking the true potential of out-of-order execution (Hit-Under-Miss).
 - **XiangShan Study**: [icache/](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/frontend/icache/)
 

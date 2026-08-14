@@ -18,6 +18,7 @@ class FetchRequest(implicit val p: Parameters) extends Bundle with HasZaqalParam
   val prediction = new PredictionMeta
   val ftqPtr     = UInt(ftqPtrWidth.W) // Added to help IFU tag the packet
   val epoch      = Bool()    // Track valid fetch path
+  val ras_tos    = UInt(log2Up(rasEntries).W) // Snapshot of RAS Top-of-Stack
 }
 
 // Packet of instructions fetched from I-Cache

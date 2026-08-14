@@ -91,8 +91,8 @@ class BPU(implicit val p: Parameters) extends Module with HasZaqalParameter {
   
   val final_taken = Mux(uftb_hit, true.B, ftb_taken)
   
-  val ras_hit = enableBpuRas.B && ftb.io.hit && ftb.io.br_type === 2.U && ras.io.pop_valid_out
-  val ras_target = ras.io.pop_addr
+  val ras_hit = enableBpuRas.B && ftb.io.hit && ftb.io.br_type === 2.U && ras.io.spec_pop_valid_out
+  val ras_target = ras.io.spec_pop_addr
   
   val ittage_hit = enableBpuIttage.B && ittage.io.pred.hit
   val ittage_target = Mux(enableBpuIttage.B, ittage.io.pred.target, 0.U)
@@ -107,11 +107,16 @@ class BPU(implicit val p: Parameters) extends Module with HasZaqalParameter {
   val is_spec_call = ftb.io.hit && (ftb.io.br_type === 1.U) && final_taken
   val is_spec_ret  = ftb.io.hit && (ftb.io.br_type === 2.U) && final_taken
 
-  ras.io.push_valid := io.out.fire && is_spec_call
-  ras.io.push_addr  := s0_pc + (fetchWidth * 4).U
-  ras.io.pop_valid  := io.out.fire && is_spec_ret
+  ras.io.spec_push_valid := io.out.fire && is_spec_call
+  ras.io.spec_push_addr  := s0_pc + (fetchWidth * 4).U
+  ras.io.spec_pop_valid  := io.out.fire && is_spec_ret
   ras.io.restore_en := io.redirect.valid
   ras.io.restore_sp := redirect_meta.ras_sp
+  
+  // Tie off commit interfaces for now until ROB is implemented (Phase 7)
+  ras.io.commit_push_valid := false.B
+  ras.io.commit_push_addr  := 0.U
+  ras.io.commit_pop_valid  := false.B
 
   // --- UPDATE / TRAINING PATH ---
   val bpu_update_valid = io.redirect.valid || io.bpu_update.valid
@@ -253,7 +258,7 @@ class BPU(implicit val p: Parameters) extends Module with HasZaqalParameter {
     val new_meta = Wire(new BPUMetaEntry)
     new_meta.ghr                := Mux(do_non_spec_shift, Cat(ghr(126, 0), bpu_update_taken), ghr)
     new_meta.phr                := phr   // Snapshot current PHR
-    new_meta.ras_sp             := ras.io.sp // Snapshot current RAS pointer
+    new_meta.ras_sp             := ras.io.spec_sp // Snapshot current RAS pointer
     new_meta.ghr_spec_shifted   := has_spec_cond_br
     new_meta.tage_providerIdx   := tage.io.pred.providerIdx
     new_meta.tage_providerHit   := tage.io.pred.hit
@@ -280,6 +285,7 @@ class BPU(implicit val p: Parameters) extends Module with HasZaqalParameter {
   io.out.bits.prediction := meta
   io.out.bits.ftqPtr     := bpu_enq_ptr 
   io.out.bits.epoch      := epoch
+  io.out.bits.ras_tos    := ras.io.spec_sp
 
   when(io.out.fire && meta.taken) {
     printf(p"[BPU PREDICT] pc=${Hexadecimal(s0_pc)} -> target=${Hexadecimal(meta.target)} slot=${meta.slot}\n")
