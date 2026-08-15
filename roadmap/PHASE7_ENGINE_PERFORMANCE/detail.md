@@ -14,6 +14,7 @@ The goal of this phase is to turn the "Instructions-per-packet" into "Instructio
 - [ ] **Day 1-3**: **ROB Logic**: Implement the core buffer to track in-flight instructions.
 - [ ] **Day 4-5**: **Pointer Management**: Enqueue/Dequeue pointers for circular commitment.
 - [ ] **Day 6-8**: **Exception & Flush**: Precise exceptions and rollback state management.
+- [ ] **Day 8.5**: **RAS Deep Data Recovery Verification**: Now that the ROB is feeding the architectural commit signals, execute a deep-nested wrong-path pop assembly program to formally verify the 1-cycle data copy from `arch_stack` to `spec_stack` built in Phase 6.
 - **Detailed Plan**: The Reorder Buffer (ROB) is the backbone of out-of-order execution. It ensures that while instructions execute in any order as soon as their data is ready, they update the architectural state strictly in-order. We will build a massive circular buffer (e.g., 128+ entries). Instructions are allocated in the ROB at dispatch, and they graduate (commit) only when they reach the head of the ROB and have successfully executed without exceptions. If an exception occurs, the ROB acts as the rollback mechanism, flushing all younger speculative instructions.
 - **XiangShan Study**: [Rob.scala](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/backend/rob/Rob.scala)
 

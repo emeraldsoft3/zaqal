@@ -48,15 +48,25 @@ object ZaqalTest extends App {
     // --- MEMORY RESPONDER MODEL ---
     // The bare metal program to run (Replacing the mock ICache)
     val programMemory = Seq(
-      // Block 0x00 (Cache Line 0)
-      "h00000093".U(32.W), // 00: addi x1, x0, 0     (Base Address)
-      "h00300113".U(32.W), // 04: addi x2, x0, 3     (Loop Counter)
-      "h0020a023".U(32.W), // 08: sw x2, 0(x1)       (Store: D-Cache MISS, allocates MSHR)
-      "h0000a183".U(32.W), // 0C: lw x3, 0(x1)       (Load: D-Cache HIT to same address)
-      "h0040a203".U(32.W), // 10: lw x4, 4(x1)       (Load: D-Cache HIT to same cache line)
-      "h02008093".U(32.W), // 14: addi x1, x1, 32    (Increment address to NEXT cache line)
-      "hfff10113".U(32.W), // 18: addi x2, x2, -1    (Decrement counter)
-      "hfc011ee3".U(32.W)  // 1C: bne x2, x0, -20    (Loop back to 08 if counter != 0)
+      "h000080ef".U(32.W), // 00: jal x1, 0x10    (Pushes 0x04 to RAS)
+      "h00000013".U(32.W), // 04: nop             (Valid return address!)
+      "h00000013".U(32.W), // 08: nop
+      "h00000013".U(32.W), // 0C: nop
+      
+      "h00100113".U(32.W), // 10: addi x2, x0, 1
+      "h00210763".U(32.W), // 14: beq x2, x2, 0x30 (Target = 0x30, but predicted Not-Taken by default)
+      
+      // -- WRONG PATH (Speculative execution) --
+      "h000140ef".U(32.W), // 18: jal x1, 0x40    (Speculative Call! Pushes 0x1C to RAS, polluting it)
+      "h00000013".U(32.W), // 1C: nop
+      "h00000013".U(32.W), // 20: nop
+      "h00000013".U(32.W), // 24: nop
+      "h00000013".U(32.W), // 28: nop
+      "h00000013".U(32.W), // 2C: nop
+      
+      // -- CORRECT PATH --
+      "h00008067".U(32.W), // 30: jalr x0, 0(x1)  (The Real Return! Should pop 0x04 thanks to restore)
+      "h00000013".U(32.W)  // 34: nop
     ).padTo(1024, "h00000013".U(32.W))
 
     var memLatencyCounter = 0

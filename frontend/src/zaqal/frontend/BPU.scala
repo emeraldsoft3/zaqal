@@ -52,6 +52,7 @@ class BPU(implicit val p: Parameters) extends Module with HasZaqalParameter {
   val sc = Module(new SCPredictor)
   val ras = Module(new RAS)
   val uftb = Module(new uFTB) // Stage-0 Micro-FTB
+  val composer = Module(new BPUComposer) // The Tournament Meta-Predictor
 
   // BPU Shadow Pointer to track FTQ occupancy/index
   val bpu_enq_ptr = RegInit(0.U(ftqPtrWidth.W))
@@ -78,11 +79,16 @@ class BPU(implicit val p: Parameters) extends Module with HasZaqalParameter {
   sc.io.req_pc  := s0_pc
   sc.io.req_ghr := ghr
 
-  // Override FTB's conditional branch direction with TAGE, and override TAGE with SC if SC is strong
+  // Override FTB's conditional branch direction using the Composer (TAGE vs SC)
   val tage_pred_taken = Mux(enableBpuTage.B, tage.io.pred.taken, false.B)
-  val sc_pred_strong = Mux(enableBpuSc.B, sc.io.pred.strong, false.B)
   val sc_pred_taken = Mux(enableBpuSc.B, sc.io.pred.taken, false.B)
-  val tage_sc_taken = Mux(sc_pred_strong, sc_pred_taken, tage_pred_taken)
+  
+  composer.io.req_pc := s0_pc
+  composer.io.req_ghr := ghr
+  composer.io.tage_pred_taken := tage_pred_taken
+  composer.io.sc_pred_taken := sc_pred_taken
+  
+  val tage_sc_taken = composer.io.final_pred_taken
   val ftb_taken = Mux(ftb.io.hit && ftb.io.br_type === 0.U, tage_sc_taken, ftb.io.taken)
   
   // uFTB Zero-Bubble Override (uFTB only stores taken branches)
@@ -173,6 +179,16 @@ class BPU(implicit val p: Parameters) extends Module with HasZaqalParameter {
   sc.io.update_ghr   := bpu_update_meta.ghr
   sc.io.update_dir   := bpu_update_taken
   sc.io.update_sum   := bpu_update_meta.sc_sum
+
+  // Composer Update: Strictly for conditional branches
+  val tage_was_taken = bpu_update_meta.tage_providerCtr(tageCtrBits - 1)
+  val sc_was_taken = bpu_update_meta.sc_sum >= 0.S
+  composer.io.update_valid := sc.io.update_valid // same condition as SC
+  composer.io.update_pc := aligned_update_pc
+  composer.io.update_ghr := bpu_update_meta.ghr
+  composer.io.update_tage_pred := tage_was_taken
+  composer.io.update_sc_pred := sc_was_taken
+  composer.io.update_actual_dir := bpu_update_taken
 
   // --- FRONTEND CONTROL FLOW LOGIC ---
   def align(addr: UInt) = addr & (~((fetchWidth * 4) - 1).U(xLen.W))

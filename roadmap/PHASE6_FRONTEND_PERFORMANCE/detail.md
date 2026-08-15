@@ -33,8 +33,8 @@ To achieve true XiangShan-level performance, the front-end must provide near-per
 - **XiangShan Study**: [icache/](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/frontend/icache/)
 
 ## Day 18-20: Speculative State & Resilience
-- [ ] **Day 18-19**: **Speculative RAS Buffers**: Prevent Return Address Stack corruption on wrong-path calls.
-- [ ] **Day 20**: **BPU Composer**: Integrate all predictors into a single tournament-style BPU.
+- [x] **Day 18-19**: **Speculative RAS Buffers**: Prevent Return Address Stack corruption on wrong-path calls.
+- [x] **Day 20**: **BPU Composer**: Integrate all predictors into a single tournament-style BPU.
 - **Detailed Plan**: When the core executes speculatively on the wrong path of a branch, it might execute `call` and `return` instructions that corrupt the Return Address Stack (RAS). We will build speculative RAS buffers to isolate these changes, applying them to the architectural RAS only when the branch commits. Finally, we will build a BPU Composer—a meta-predictor that dynamically learns whether the TAGE predictor or the Neural Predictor (SC) is more accurate for a specific branch, intelligently multiplexing between them to achieve peak IPC.
 
 ---
