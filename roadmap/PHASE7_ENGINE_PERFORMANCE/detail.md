@@ -11,7 +11,7 @@ The goal of this phase is to turn the "Instructions-per-packet" into "Instructio
 ---
 
 ## Day 1-8: Reorder Buffer (ROB) & Commit Logic
-- [ ] **Day 1-3**: **ROB Logic**: Implement the core buffer to track in-flight instructions.
+- [x] **Day 1-3**: **ROB Logic**: Implement the core buffer to track in-flight instructions.
 - [ ] **Day 4-5**: **Pointer Management**: Enqueue/Dequeue pointers for circular commitment.
 - [ ] **Day 6-8**: **Exception & Flush**: Precise exceptions and rollback state management.
 - [ ] **Day 8.5**: **RAS Deep Data Recovery Verification**: Now that the ROB is feeding the architectural commit signals, execute a deep-nested wrong-path pop assembly program to formally verify the 1-cycle data copy from `arch_stack` to `spec_stack` built in Phase 6.

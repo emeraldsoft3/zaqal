@@ -60,11 +60,12 @@ graph TD
     class ALU0,ALU1,LSU,DCache,FPU execute;
 
     subgraph REG [5. BACKEND: COMMIT & WAKEUP]
+        ROB[ROB: Reorder Buffer]
         RF[Integer RF: 7R / 5W]
         FPRF[Float RF: 4R / 3W]
         WU[Wakeup Bus: Dependency Broadcast]
     end
-    class RF,FPRF,WU regfile;
+    class ROB,RF,FPRF,WU regfile;
 
     %% Memory Connections
     DRAM <-->|Memory Bus Refills| ICache
@@ -82,6 +83,7 @@ graph TD
     RAT <--> SNPT
     RAT -->|Renamed Micro-ops| DISP
     DISP -->|Structural Check| BT
+    DISP -->|In-Order Enqueue| ROB
     BT -->|Speculative Queueing| intIq & memIq & fpIq
     
     %% Issue Connections
@@ -91,8 +93,10 @@ graph TD
     LSU <-->|Data Load/Store Requests| DCache
     fpIq -->|Deq 0| FPU
 
-    %% Wakeup Broadcasts
+    %% Wakeup Broadcasts & Writebacks
     ALU0 & ALU1 & LSU & FPU -->|Write Register & Broadcast| WU
+    ALU0 & ALU1 & LSU & FPU -->|Out-of-Order Writeback| ROB
+    ROB -->|In-Order Commit / Flush| RF & FPRF & FTQ
     WU -->|Clear Dependents| intIq & memIq & fpIq
     WU -->|Clear Busy State| BT
 ```
@@ -214,3 +218,15 @@ graph TD
   * `TOP.Core.backend.exec.regFile.io_wen_0` (Integer write enable)
   * `TOP.Core.backend.exec.io_wakeup_0_valid` (Wakeup bus valid)
   * `TOP.Core.backend.exec.io_wakeup_0_pdest[8:0]` (Destination physical register index broadcast)
+
+---
+
+### ROB: Reorder Buffer
+* **Role**: Tracks the lifecycle of every in-flight instruction. Ensures that while instructions execute out-of-order, they commit their results to the architectural state strictly in-order. Acts as the primary rollback mechanism on branch mispredictions or exceptions.
+* **Size**: 128 entries circular queue.
+* **Input**: Enqueue requests from Dispatch, writeback completion signals from Execution units.
+* **Output**: In-order commit signals to Register Files, or flush/redirect signals to the Frontend FTQ.
+* **GTKWave Signals to Watch**:
+  * `TOP.Core.backend.rob.enqPtr[6:0]` (Pointer allocating new instructions)
+  * `TOP.Core.backend.rob.deqPtr[6:0]` (Pointer graduating finished instructions)
+  * `TOP.Core.backend.rob.io_commits_commitValid` (Architectural graduation signal)
