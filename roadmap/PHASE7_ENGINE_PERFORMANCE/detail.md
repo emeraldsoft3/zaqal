@@ -12,22 +12,24 @@ The goal of this phase is to turn the "Instructions-per-packet" into "Instructio
 
 ## Day 1-8: Reorder Buffer (ROB) & Commit Logic
 - [x] **Day 1-3**: **ROB Logic**: Implement the core buffer to track in-flight instructions.
-- [ ] **Day 4-5**: **Pointer Management**: Enqueue/Dequeue pointers for circular commitment.
-- [ ] **Day 6-8**: **Exception & Flush**: Precise exceptions and rollback state management.
+- [x] **Day 4-5**: **Pointer Management**: Enqueue/Dequeue pointers for circular commitment.
+- [x] **Day 6-8**: **Exception & Flush**: Precise exceptions and rollback state management.
 - [ ] **Day 8.5**: **RAS Deep Data Recovery Verification**: Now that the ROB is feeding the architectural commit signals, execute a deep-nested wrong-path pop assembly program to formally verify the 1-cycle data copy from `arch_stack` to `spec_stack` built in Phase 6.
 - **Detailed Plan**: The Reorder Buffer (ROB) is the backbone of out-of-order execution. It ensures that while instructions execute in any order as soon as their data is ready, they update the architectural state strictly in-order. We will build a massive circular buffer (e.g., 128+ entries). Instructions are allocated in the ROB at dispatch, and they graduate (commit) only when they reach the head of the ROB and have successfully executed without exceptions. If an exception occurs, the ROB acts as the rollback mechanism, flushing all younger speculative instructions.
 - **XiangShan Study**: [Rob.scala](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/backend/rob/Rob.scala)
 
 ## Day 9-15: Register Renaming, Cache & Snapshots
-- [ ] **Day 9-11**: **Rename Alias Table (RAT)**: Map logical registers to physical ones.
-- [ ] **Day 11.5**: **Checkpoint Array (Snapshots)**: Implement 1-cycle RAT/FreeList state recovery for branch mispredicts (XiangShan parity).
-- [ ] **Day 12-13**: **Physical Register File (PRF)**: High-bandwidth multi-port RF.
+- [x] **Day 9-11**: **Rename Alias Table (RAT)**: Map logical registers to physical ones. *(Completed in Phase 4)*
+- [x] **Day 11.5**: **Checkpoint Array (Snapshots)**: Implement 1-cycle RAT/FreeList state recovery for branch mispredicts (XiangShan parity). *(Completed in Phase 4)*
+- [x] **Day 12-13**: **Physical Register File (PRF)**: High-bandwidth multi-port RF. *(Completed in Phase 4)*
+- [ ] **Day 13.5**: **RAT/PRF Commit Wiring**: Wire the ROB's `io.commits` port into the RAT and FreeList to safely recycle physical registers upon graduation. *(Nuance Fix)*
 - [ ] **Day 14-15**: **Register Cache (RC)**: Reduce PRF read latency to improve $F_{max}$.
 - **Detailed Plan**: We will separate the architectural registers from the Physical Register File (PRF). The RAT will dynamically map the 32 logical RISC-V registers to a much larger pool of physical registers (e.g., 160+), entirely eliminating Write-After-Write (WAW) and Write-After-Read (WAR) false dependencies. We will also implement a Checkpoint Array, taking micro-architectural snapshots of the RAT at every branch, enabling instantaneous 1-cycle rollback upon misprediction. To alleviate PRF read bottlenecks, we will introduce a Register Cache to hold recently written values. Since the bypass network, wakeup buses, and checkpoint arrays scale quadratically with issue width, we will run the 14nm logic synthesis and P&R toolchain on the backend block to verify that these structures do not degrade our 1.0–1.5 GHz $F_{max}$ target.
 - **XiangShan Study**: [RenameTable.scala](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/backend/rename/RenameTable.scala)
 
 ## Day 16-25: Issue Queues & LSQ (The Schedulers)
-- [ ] **Day 16-18**: **Distributed Issue Queues**: Parallel schedulers for ALU, Mem, and Branch.
+- [x] **Day 16-18**: **Distributed Issue Queues**: Parallel schedulers for ALU, Mem, and Branch. *(Completed in Phase 4)*
+- [ ] **Day 18.5**: **robIdx Propagation**: Update `DecodedMicroOp` and Issue Queues/Execute stage to carry the `robIdx` and output it to the ROB's `io.exuWriteback` port. *(Nuance Fix)*
 - [ ] **Day 19-21**: **Load/Store Queues (LSQ)**: Handle memory dependencies out-of-order.
 - [ ] **Day 22-24**: **Memory Disambiguation**: Speculative loads and store-to-load forwarding.
 - [ ] **Day 25**: **Memory Dependence Predictor (MDP)**: Implement Store Sets (SSIT/LFST) or Wait Table to predict load/store collisions and avoid costly memory violation flushes (XiangShan parity).

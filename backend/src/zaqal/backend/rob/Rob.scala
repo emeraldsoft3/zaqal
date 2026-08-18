@@ -11,6 +11,7 @@ class Rob(implicit val p: Parameters) extends Module with HasZaqalParameter {
     val enq = Vec(decodeWidth, Flipped(Decoupled(new DecodedMicroOp)))
     val exuWriteback = Vec(6, Flipped(ValidIO(new ExuOutput)))
     val commits = Output(new RobCommitIO)
+    val flushOut = Output(Valid(new BPURedirect))
     val robFull = Output(Bool())
     val headNotReady = Output(Bool())
     val cpu_halt = Output(Bool())
@@ -61,6 +62,13 @@ class Rob(implicit val p: Parameters) extends Module with HasZaqalParameter {
       entry.stdWritebacked := false.B
       entry.needFlush := false.B
       entry.exceptionVec := 0.U
+      
+      // Day 6-8: Flush Recovery Metadata
+      entry.pc := io.enq(i).bits.uop.pc
+      entry.ftqPtr := io.enq(i).bits.uop.ftqPtr
+      entry.is_cfi := io.enq(i).bits.decode.is_branch || io.enq(i).bits.decode.is_jal || io.enq(i).bits.decode.is_jalr
+      entry.is_jal := io.enq(i).bits.decode.is_jal
+      entry.is_jalr := io.enq(i).bits.decode.is_jalr
     }
   }
   
@@ -80,7 +88,34 @@ class Rob(implicit val p: Parameters) extends Module with HasZaqalParameter {
   }
 
   // -------------------------------------------------------------
-  // 3. In-Order Commit (Graduation) Logic
+  // 3. Exception & Flush Logic (Day 6-8)
+  // -------------------------------------------------------------
+  val headEntry = robEntries(deqPtr)
+  val headHasException = headEntry.valid && headEntry.stdWritebacked && (headEntry.exceptionVec =/= 0.U)
+
+  io.flushOut.valid := headHasException
+  io.flushOut.bits.target := 0.U // Handled downstream by resolution logic
+  io.flushOut.bits.epoch := 0.U 
+  io.flushOut.bits.is_exception := true.B
+  io.flushOut.bits.exc_cause := headEntry.exceptionVec
+  io.flushOut.bits.snapshotIdx := 0.U // Recover RAT state
+  io.flushOut.bits.pc := headEntry.pc
+  io.flushOut.bits.taken := false.B
+  io.flushOut.bits.is_cfi := headEntry.is_cfi
+  io.flushOut.bits.is_jal := headEntry.is_jal
+  io.flushOut.bits.is_jalr := headEntry.is_jalr
+  io.flushOut.bits.ftqPtr := headEntry.ftqPtr
+
+  // If the head throws an exception, instantly wipe the entire ROB pipeline
+  when(headHasException) {
+    enqPtr := deqPtr // Dump all speculative entries by snapping enqPtr to deqPtr
+    for (i <- 0 until robSize) {
+      robEntries(i).valid := false.B
+    }
+  }
+
+  // -------------------------------------------------------------
+  // 4. In-Order Commit (Graduation) Logic
   // -------------------------------------------------------------
   val commitValidThisLine = Wire(Vec(decodeWidth, Bool()))
   val walkDeqPtrs = Wire(Vec(decodeWidth, UInt(log2Up(robSize).W)))
@@ -89,17 +124,21 @@ class Rob(implicit val p: Parameters) extends Module with HasZaqalParameter {
     walkDeqPtrs(i) := walkDeqPtrs(i-1) + 1.U
   }
 
-  // Block commits if an older instruction hasn't committed or hit an exception
-  var blockCommit = false.B
+  // Cascade commit block signal to prevent out-of-order retirement
+  val blockCommitCascade = Wire(Vec(decodeWidth, Bool()))
+  
   for (i <- 0 until decodeWidth) {
     val entry = robEntries(walkDeqPtrs(i))
     val isReadyToCommit = entry.valid && entry.stdWritebacked && (entry.exceptionVec === 0.U)
     
-    commitValidThisLine(i) := isReadyToCommit && !blockCommit && (elementsInRob > i.U)
-    
-    when (!isReadyToCommit || entry.exceptionVec =/= 0.U) {
-      blockCommit = true.B
+    // An instruction is blocked if an older instruction in the bundle couldn't commit, or if the head had an exception
+    if (i == 0) {
+      blockCommitCascade(i) := !isReadyToCommit || headHasException
+    } else {
+      blockCommitCascade(i) := blockCommitCascade(i-1) || !isReadyToCommit || headHasException
     }
+    
+    commitValidThisLine(i) := isReadyToCommit && (if (i == 0) !headHasException else !blockCommitCascade(i-1)) && (elementsInRob > i.U)
 
     io.commits.commitValid(i) := commitValidThisLine(i)
     io.commits.info(i).commit_v := entry.valid
@@ -113,7 +152,8 @@ class Rob(implicit val p: Parameters) extends Module with HasZaqalParameter {
   }
 
   val commitCount = PopCount(commitValidThisLine)
-  when (commitCount > 0.U) {
+  // Only advance the deqPtr if we aren't currently flushing
+  when (commitCount > 0.U && !headHasException) {
     deqPtr := deqPtr + commitCount
   }
 

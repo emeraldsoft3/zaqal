@@ -29,6 +29,13 @@ object RobBundles {
     val stdWritebacked = Bool()
     val needFlush = Bool()
     val exceptionVec = UInt(16.W)
+    
+    // Day 6-8: Flush Recovery Metadata
+    val pc = UInt(64.W) // xLen
+    val ftqPtr = UInt(6.W) // ftqPtrWidth
+    val is_cfi = Bool()
+    val is_jal = Bool()
+    val is_jalr = Bool()
   }
 
   class RobCommitEntryBundle(implicit p: Parameters) extends Bundle {
