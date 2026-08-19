@@ -14,6 +14,7 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
     val fp_in = Flipped(Decoupled(new DecodedMicroOp))
     val redirect = Output(new BPURedirect)
     val bpu_update = Output(new BPUUpdate)
+    val exuWriteback = Output(Vec(6, Valid(new ExuOutput)))
     val debug_cycle = Input(UInt(64.W))
     val debug_regs = Output(Vec(phyRegs, UInt(xLen.W)))
     val debug_fp_regs = Output(Vec(phyRegs, UInt(xLen.W)))
@@ -671,4 +672,48 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
 
   io.debug_regs := regFile.io.debug_regs
   io.debug_fp_regs := fpRegFile.io.debug_regs
+
+  // ---------------- ROB WRITEBACK ----------------
+  for (i <- 0 until 6) {
+    io.exuWriteback(i).valid := false.B
+    io.exuWriteback(i).bits.robIdx := 0.U
+    io.exuWriteback(i).bits.data := 0.U
+    io.exuWriteback(i).bits.exceptionVec := 0.U
+  }
+
+  // ALU 0
+  val wb0_raw_valid = exe_val0 && (!exe_is_div_op0 && !exe_is_mul_op0)
+  io.exuWriteback(0).valid := wb0_raw_valid
+  io.exuWriteback(0).bits.robIdx := exe_uop0.robIdx
+  io.exuWriteback(0).bits.data := Mux(exe_is_link0, exe_link_addr0, alu(0).io.result)
+  io.exuWriteback(0).bits.exceptionVec := Mux(bru(0).io.exc_valid, bru(0).io.exc_cause, 0.U)
+
+  // ALU 1
+  val wb1_raw_valid = exe_val1 && (!exe_is_div_op1 && !exe_is_mul_op1)
+  io.exuWriteback(1).valid := wb1_raw_valid
+  io.exuWriteback(1).bits.robIdx := exe_uop1.robIdx
+  io.exuWriteback(1).bits.data := Mux(exe_is_link1, exe_link_addr1, alu(1).io.result)
+  io.exuWriteback(1).bits.exceptionVec := Mux(bru(1).io.exc_valid, bru(1).io.exc_cause, 0.U)
+
+  // DIV
+  // We need the robIdx of the division instruction. Since it's multi-cycle, latch it!
+  val div_robIdx_latch = RegInit(0.U(log2Up(128).W))
+  when(exe_val0 && exe_is_div_op0) { div_robIdx_latch := exe_uop0.robIdx }
+  when(exe_val1 && exe_is_div_op1) { div_robIdx_latch := exe_uop1.robIdx }
+  io.exuWriteback(2).valid := div.io.done
+  io.exuWriteback(2).bits.robIdx := div_robIdx_latch
+
+  // LSU
+  io.exuWriteback(3).valid := r_agu_val
+  io.exuWriteback(3).bits.robIdx := r_agu_uop.robIdx
+  
+  // FP
+  io.exuWriteback(4).valid := exe_valFp
+  io.exuWriteback(4).bits.robIdx := exe_uopFp.robIdx
+  
+  // MUL (Wait! MUL is pipelined, so we need to track robIdx through the pipeline)
+  val r_mul_robIdx = RegNext(Mux(exe_is_mul_op0, exe_uop0.robIdx, exe_uop1.robIdx), 0.U)
+  val r2_mul_robIdx = RegNext(r_mul_robIdx, 0.U)
+  io.exuWriteback(5).valid := r2_mul_val
+  io.exuWriteback(5).bits.robIdx := r2_mul_robIdx
 }

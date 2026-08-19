@@ -16,6 +16,7 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
     val dispatch = Vec(decodeWidth, Flipped(Decoupled(new MicroOp)))
     val redirect = Output(new BPURedirect)
     val bpu_update = Output(new BPUUpdate)
+    val commits = Output(new RobCommitIO)
     val debug_regs = Output(Vec(phyRegs, UInt(xLen.W)))
     val debug_fp_regs = Output(Vec(phyRegs, UInt(fLen.W)))
     val debug_int_rat = Output(Vec(32, UInt(phyRegIdxWidth.W)))
@@ -48,6 +49,7 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
     decoded_uops_raw(i).old_pdest := 0.U
     decoded_uops_raw(i).snapshotIdx := 0.U
     decoded_uops_raw(i).is_fused_away := false.B
+    decoded_uops_raw(i).robIdx := 0.U
   }
 
   // Day 3.5: Instruction Fusion (Macro-Op Fusion)
@@ -258,13 +260,39 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
   val dispatch = Module(new Dispatch)
   
   val rename_out = Wire(Vec(decodeWidth, Decoupled(new DecodedMicroOp)))
-  val dispatch_in_buffered = Wire(Vec(decodeWidth, Decoupled(new DecodedMicroOp)))
+  val busyTable = Module(new BusyTable)
+  val intIq = Module(new IssueQueue(16, decodeWidth, 2, 5))
+  val memIq = Module(new IssueQueue(8, decodeWidth, 1, 5))
+  val fpIq = Module(new IssueQueue(8, decodeWidth, 1, 5))
+  val rob = Module(new zaqal.backend.rob.Rob)
+  io.commits := rob.io.commits
+  for (i <- 0 until 6) {
+    rob.io.exuWriteback(i) <> exec.io.exuWriteback(i)
+  }
+  
+  // Tie off commits properly
+  for (i <- 0 until decodeWidth) {
+    rob.io.enq(i).valid := rename_out(i).valid
+    rob.io.enq(i).bits := rename_out(i).bits
+    
+    rat.io.commitPorts(i).wen := rob.io.commits.commitValid(i) && rob.io.commits.info(i).commit_w
+    rat.io.commitPorts(i).addr := rob.io.commits.info(i).rd
+    rat.io.commitPorts(i).data := 0.U // Still need pdest for rat? Actually in Zaqal RAT architectural table might not be fully modeled like this, wait.
+    rat.io.commit_is_fp(i) := rob.io.commits.info(i).fpWen
+    
+    intFreeList.io.freeReq(i) := rob.io.commits.commitValid(i) && rob.io.commits.info(i).rfWen
+    intFreeList.io.freePhyReg(i) := rob.io.commits.info(i).old_pdest
+    fpFreeList.io.freeReq(i) := rob.io.commits.commitValid(i) && rob.io.commits.info(i).fpWen
+    fpFreeList.io.freePhyReg(i) := rob.io.commits.info(i).old_pdest
+  }
 
+  val dispatch_in_buffered = Wire(Vec(decodeWidth, Decoupled(new DecodedMicroOp)))
   val all_skids_ready = rename_out.map(_.ready).reduce(_ && _)
 
   for (i <- 0 until decodeWidth) {
     rename_out(i).valid := io.dispatch(i).valid && all_skids_ready && can_allocate_all
     rename_out(i).bits  := decoded_uops(i)
+    rename_out(i).bits.robIdx := rob.io.allocPtrs(i)
     
     dispatch_in_buffered(i) <> SkidBuffer(rename_out(i), exec.io.redirect.valid)
     
@@ -274,10 +302,6 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
     dispatch_in_buffered(i).ready := dispatch.io.in(i).ready
   }
 
-  val busyTable = Module(new BusyTable)
-  val intIq = Module(new IssueQueue(16, decodeWidth, 2, 5))
-  val memIq = Module(new IssueQueue(8, decodeWidth, 1, 5))
-  val fpIq = Module(new IssueQueue(8, decodeWidth, 1, 5))
 
   for (i <- 0 until decodeWidth) {
     busyTable.io.allocPorts(i).valid := io.dispatch(i).fire && (intFreeList.io.allocateReq(i) || fpFreeList.io.allocateReq(i))

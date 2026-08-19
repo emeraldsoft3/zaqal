@@ -58,6 +58,7 @@ class Core(implicit val p: Parameters) extends Module with HasZaqalParameter {
   }
   frontend.io.redirect := backend.io.redirect
   frontend.io.bpu_update := backend.io.bpu_update
+  frontend.io.commits := backend.io.commits
   backend.io.debug_cycle := cycle_reg
   io.mem_d <> backend.io.mem_d
   

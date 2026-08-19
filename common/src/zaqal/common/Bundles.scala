@@ -258,6 +258,7 @@ class DecodedMicroOp(implicit val p: Parameters) extends Bundle with HasZaqalPar
   // Speculative State Snapshot ID
   val snapshotIdx = UInt(log2Up(renameSnapshotNum).W)
   val is_fused_away = Bool()
+  val robIdx = UInt(log2Up(128).W)
 }
 
 // Redirect signal from Backend to Frontend
@@ -306,4 +307,57 @@ class PipelineFlushBus(implicit val p: Parameters) extends Bundle with HasZaqalP
 class WakeupBus(implicit val p: Parameters) extends Bundle with HasZaqalParameter {
   val valid = Bool()
   val pdest = UInt(phyRegIdxWidth.W)
+}
+
+class ExuOutput(implicit val p: Parameters) extends Bundle with HasZaqalParameter {
+  val robIdx = UInt(log2Up(128).W) // robSize
+  val data = UInt(64.W) // xLen
+  val exceptionVec = UInt(16.W)
+}
+
+class RobCommitEntryBundle(implicit val p: Parameters) extends Bundle with HasZaqalParameter {
+  val walk_v = Bool()
+  val commit_v = Bool()
+  val commit_w = Bool()
+  val interrupt_safe = Bool()
+  val rfWen = Bool()
+  val fpWen = Bool()
+  val needFlush = Bool()
+  val is_call = Bool()
+  val is_ret = Bool()
+  val target = UInt(64.W)
+  val old_pdest = UInt(7.W)
+  val rd = UInt(5.W)
+}
+
+class RobCommitIO(implicit val p: Parameters) extends Bundle with HasZaqalParameter {
+  val commitValid = Vec(6, Output(Bool())) // decodeWidth
+  val info = Vec(6, Output(new RobCommitEntryBundle))
+}
+
+class RobEntryBundle(implicit val p: Parameters) extends Bundle with HasZaqalParameter {
+  val vls = Bool()
+  val interrupt_safe = Bool()
+  val fpWen = Bool()
+  val rfWen = Bool()
+  val wflags = Bool()
+  val isRVC = Bool()
+  val valid = Bool()
+  val fflags = UInt(5.W)
+  val mmio = Bool()
+  val stdWritebacked = Bool()
+  val needFlush = Bool()
+  val exceptionVec = UInt(16.W)
+  
+  // Day 6-8: Flush Recovery Metadata
+  val pc = UInt(64.W) // xLen
+  val target = UInt(64.W)
+  val old_pdest = UInt(7.W) // phyRegIdxWidth
+  val rd = UInt(5.W) // logicalRegIdxWidth
+  val ftqPtr = UInt(6.W) // ftqPtrWidth
+  val is_cfi = Bool()
+  val is_jal = Bool()
+  val is_jalr = Bool()
+  val is_call = Bool()
+  val is_ret = Bool()
 }

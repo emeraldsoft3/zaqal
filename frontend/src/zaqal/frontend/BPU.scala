@@ -31,6 +31,7 @@ class BPU(implicit val p: Parameters) extends Module with HasZaqalParameter {
   val io = IO(new Bundle {
     val redirect   = Input(new BPURedirect)
     val bpu_update = Input(new BPUUpdate)
+    val commits    = Input(new RobCommitIO)
     val out        = Decoupled(new FetchRequest)
   })
 
@@ -119,10 +120,15 @@ class BPU(implicit val p: Parameters) extends Module with HasZaqalParameter {
   ras.io.restore_en := io.redirect.valid
   ras.io.restore_sp := redirect_meta.ras_sp
   
-  // Tie off commit interfaces for now until ROB is implemented (Phase 7)
-  ras.io.commit_push_valid := false.B
-  ras.io.commit_push_addr  := 0.U
-  ras.io.commit_pop_valid  := false.B
+  // Use the commit signals for RAS architectural state
+  // We assume the oldest committed branch from lane 0 is used to update the RAS
+  // In a super-scalar processor, we might need a more complex priority encoder.
+  val commit_is_call = io.commits.commitValid(0) && io.commits.info(0).is_call
+  val commit_is_ret  = io.commits.commitValid(0) && io.commits.info(0).is_ret
+
+  ras.io.commit_push_valid := commit_is_call
+  ras.io.commit_push_addr  := io.commits.info(0).target
+  ras.io.commit_pop_valid  := commit_is_ret
 
   // --- UPDATE / TRAINING PATH ---
   val bpu_update_valid = io.redirect.valid || io.bpu_update.valid

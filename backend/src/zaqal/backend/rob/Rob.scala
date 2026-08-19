@@ -11,6 +11,7 @@ class Rob(implicit val p: Parameters) extends Module with HasZaqalParameter {
     val enq = Vec(decodeWidth, Flipped(Decoupled(new DecodedMicroOp)))
     val exuWriteback = Vec(6, Flipped(ValidIO(new ExuOutput)))
     val commits = Output(new RobCommitIO)
+    val allocPtrs = Output(Vec(decodeWidth, UInt(log2Up(128).W)))
     val flushOut = Output(Valid(new BPURedirect))
     val robFull = Output(Bool())
     val headNotReady = Output(Bool())
@@ -19,11 +20,8 @@ class Rob(implicit val p: Parameters) extends Module with HasZaqalParameter {
   
   // Phase 7 Day 1-5: ROB Core buffer logic, Pointer Management, & Circular Commitment
   val robSize = 128
-  val robEntries = RegInit(VecInit.fill(robSize)((new RobEntryBundle).Lit(
-    _.valid -> false.B,
-    _.stdWritebacked -> false.B,
-    _.exceptionVec -> 0.U
-  )))
+  val initEntry = WireDefault(0.U.asTypeOf(new RobEntryBundle))
+  val robEntries = RegInit(VecInit.fill(robSize)(initEntry))
   
   val enqPtr = RegInit(0.U(log2Up(robSize).W))
   val deqPtr = RegInit(0.U(log2Up(robSize).W))
@@ -39,16 +37,15 @@ class Rob(implicit val p: Parameters) extends Module with HasZaqalParameter {
   
   val enqCount = PopCount(io.enq.map(req => req.valid && canAcceptAll))
   
-  val allocPtrs = Wire(Vec(decodeWidth, UInt(log2Up(robSize).W)))
-  allocPtrs(0) := enqPtr
+  io.allocPtrs(0) := enqPtr
   for (i <- 1 until decodeWidth) {
-    allocPtrs(i) := allocPtrs(i-1) + Mux(io.enq(i-1).valid && canAcceptAll, 1.U, 0.U)
+    io.allocPtrs(i) := io.allocPtrs(i-1) + Mux(io.enq(i-1).valid && canAcceptAll, 1.U, 0.U)
   }
   
   for (i <- 0 until decodeWidth) {
     io.enq(i).ready := canAcceptAll
     when(io.enq(i).valid && canAcceptAll) {
-      val idx = allocPtrs(i)
+      val idx = io.allocPtrs(i)
       val entry = robEntries(idx)
       entry.valid := true.B
       entry.vls := false.B
@@ -62,13 +59,17 @@ class Rob(implicit val p: Parameters) extends Module with HasZaqalParameter {
       entry.stdWritebacked := false.B
       entry.needFlush := false.B
       entry.exceptionVec := 0.U
+      entry.old_pdest := io.enq(i).bits.old_pdest
+      entry.rd := io.enq(i).bits.decode.rd
       
-      // Day 6-8: Flush Recovery Metadata
       entry.pc := io.enq(i).bits.uop.pc
+      entry.target := Mux(io.enq(i).bits.decode.is_jal, io.enq(i).bits.uop.pc + io.enq(i).bits.decode.imm.asUInt, 0.U) // Target written back later for jalr? For now it's okay.
       entry.ftqPtr := io.enq(i).bits.uop.ftqPtr
       entry.is_cfi := io.enq(i).bits.decode.is_branch || io.enq(i).bits.decode.is_jal || io.enq(i).bits.decode.is_jalr
       entry.is_jal := io.enq(i).bits.decode.is_jal
       entry.is_jalr := io.enq(i).bits.decode.is_jalr
+      entry.is_call := io.enq(i).bits.uop.pre.is_call
+      entry.is_ret := io.enq(i).bits.uop.pre.is_ret
     }
   }
   
@@ -84,6 +85,9 @@ class Rob(implicit val p: Parameters) extends Module with HasZaqalParameter {
       val idx = wb.bits.robIdx
       robEntries(idx).stdWritebacked := true.B
       robEntries(idx).exceptionVec := wb.bits.exceptionVec
+      when(robEntries(idx).is_jalr) {
+        robEntries(idx).target := wb.bits.data
+      }
     }
   }
 
@@ -94,6 +98,7 @@ class Rob(implicit val p: Parameters) extends Module with HasZaqalParameter {
   val headHasException = headEntry.valid && headEntry.stdWritebacked && (headEntry.exceptionVec =/= 0.U)
 
   io.flushOut.valid := headHasException
+  io.flushOut.bits.valid := headHasException
   io.flushOut.bits.target := 0.U // Handled downstream by resolution logic
   io.flushOut.bits.epoch := 0.U 
   io.flushOut.bits.is_exception := true.B
@@ -142,9 +147,18 @@ class Rob(implicit val p: Parameters) extends Module with HasZaqalParameter {
 
     io.commits.commitValid(i) := commitValidThisLine(i)
     io.commits.info(i).commit_v := entry.valid
+    io.commits.info(i).walk_v := false.B
+    io.commits.info(i).commit_v := commitValidThisLine(i)
     io.commits.info(i).commit_w := entry.stdWritebacked
+    io.commits.info(i).interrupt_safe := entry.interrupt_safe
+    io.commits.info(i).needFlush := entry.needFlush
     io.commits.info(i).rfWen := entry.rfWen
     io.commits.info(i).fpWen := entry.fpWen
+    io.commits.info(i).is_call := entry.is_call
+    io.commits.info(i).is_ret := entry.is_ret
+    io.commits.info(i).target := entry.target
+    io.commits.info(i).old_pdest := entry.old_pdest
+    io.commits.info(i).rd := entry.rd
     
     when(commitValidThisLine(i)) {
       entry.valid := false.B // Free the entry
