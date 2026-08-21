@@ -115,7 +115,8 @@ class BPU(implicit val p: Parameters) extends Module with HasZaqalParameter {
   val is_spec_ret  = ftb.io.hit && (ftb.io.br_type === 2.U) && final_taken
 
   ras.io.spec_push_valid := io.out.fire && is_spec_call
-  ras.io.spec_push_addr  := s0_pc + (fetchWidth * 4).U
+  // Return address is exact instruction boundary: block PC + (slot * 4) + 4
+  ras.io.spec_push_addr  := s0_pc + (ftb.io.slot * 4.U) + 4.U
   ras.io.spec_pop_valid  := io.out.fire && is_spec_ret
   ras.io.restore_en := io.redirect.valid
   ras.io.restore_sp := redirect_meta.ras_sp
@@ -127,7 +128,8 @@ class BPU(implicit val p: Parameters) extends Module with HasZaqalParameter {
   val commit_is_ret  = io.commits.commitValid(0) && io.commits.info(0).is_ret
 
   ras.io.commit_push_valid := commit_is_call
-  ras.io.commit_push_addr  := io.commits.info(0).target
+  // Push return address (PC + 4) instead of branch target
+  ras.io.commit_push_addr  := io.commits.info(0).pc + 4.U
   ras.io.commit_pop_valid  := commit_is_ret
 
   // --- UPDATE / TRAINING PATH ---

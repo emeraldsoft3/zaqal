@@ -325,8 +325,9 @@ class RobCommitEntryBundle(implicit val p: Parameters) extends Bundle with HasZa
   val needFlush = Bool()
   val is_call = Bool()
   val is_ret = Bool()
-  val target = UInt(64.W)
+  val pc = UInt(64.W)
   val old_pdest = UInt(7.W)
+  val pdest = UInt(7.W)
   val rd = UInt(5.W)
 }
 
@@ -349,10 +350,10 @@ class RobEntryBundle(implicit val p: Parameters) extends Bundle with HasZaqalPar
   val needFlush = Bool()
   val exceptionVec = UInt(16.W)
   
-  // Day 6-8: Flush Recovery Metadata
   val pc = UInt(64.W) // xLen
   val target = UInt(64.W)
   val old_pdest = UInt(7.W) // phyRegIdxWidth
+  val pdest = UInt(7.W)
   val rd = UInt(5.W) // logicalRegIdxWidth
   val ftqPtr = UInt(6.W) // ftqPtrWidth
   val is_cfi = Bool()

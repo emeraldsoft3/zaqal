@@ -277,7 +277,7 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
     
     rat.io.commitPorts(i).wen := rob.io.commits.commitValid(i) && rob.io.commits.info(i).commit_w
     rat.io.commitPorts(i).addr := rob.io.commits.info(i).rd
-    rat.io.commitPorts(i).data := 0.U // Still need pdest for rat? Actually in Zaqal RAT architectural table might not be fully modeled like this, wait.
+    rat.io.commitPorts(i).data := rob.io.commits.info(i).pdest
     rat.io.commit_is_fp(i) := rob.io.commits.info(i).fpWen
     
     intFreeList.io.freeReq(i) := rob.io.commits.commitValid(i) && rob.io.commits.info(i).rfWen

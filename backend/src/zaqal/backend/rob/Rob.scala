@@ -60,6 +60,7 @@ class Rob(implicit val p: Parameters) extends Module with HasZaqalParameter {
       entry.needFlush := false.B
       entry.exceptionVec := 0.U
       entry.old_pdest := io.enq(i).bits.old_pdest
+      entry.pdest := io.enq(i).bits.pdest
       entry.rd := io.enq(i).bits.decode.rd
       
       entry.pc := io.enq(i).bits.uop.pc
@@ -157,7 +158,9 @@ class Rob(implicit val p: Parameters) extends Module with HasZaqalParameter {
     io.commits.info(i).is_call := entry.is_call
     io.commits.info(i).is_ret := entry.is_ret
     io.commits.info(i).target := entry.target
+    io.commits.info(i).pc := entry.pc
     io.commits.info(i).old_pdest := entry.old_pdest
+    io.commits.info(i).pdest := entry.pdest
     io.commits.info(i).rd := entry.rd
     
     when(commitValidThisLine(i)) {
