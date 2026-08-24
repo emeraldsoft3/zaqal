@@ -275,6 +275,7 @@ class BPURedirect(implicit val p: Parameters) extends Bundle with HasZaqalParame
   val is_jal       = Bool()
   val is_jalr      = Bool()
   val ftqPtr       = UInt(ftqPtrWidth.W)
+  val robIdx       = UInt(log2Up(128).W)
 }
 
 // Non-flushing BPU Training signal from Backend to Frontend
@@ -287,6 +288,7 @@ class BPUUpdate(implicit val p: Parameters) extends Bundle with HasZaqalParamete
   val is_jal = Bool()
   val is_jalr= Bool()
   val ftqPtr = UInt(ftqPtrWidth.W)
+  val robIdx = UInt(log2Up(128).W)
 }
 
 object Causes {
@@ -326,6 +328,7 @@ class RobCommitEntryBundle(implicit val p: Parameters) extends Bundle with HasZa
   val is_call = Bool()
   val is_ret = Bool()
   val pc = UInt(64.W)
+  val target = UInt(64.W)
   val old_pdest = UInt(7.W)
   val pdest = UInt(7.W)
   val rd = UInt(5.W)

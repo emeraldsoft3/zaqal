@@ -92,6 +92,7 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   io.redirect.is_jal := false.B
   io.redirect.is_jalr := false.B
   io.redirect.ftqPtr := 0.U
+  io.redirect.robIdx := 0.U
 
   io.bpu_update.valid := false.B
   io.bpu_update.pc := 0.U
@@ -101,6 +102,7 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   io.bpu_update.is_jal := false.B
   io.bpu_update.is_jalr := false.B
   io.bpu_update.ftqPtr := 0.U
+  io.bpu_update.robIdx := 0.U
   
   fcsr.io.csr_addr  := 0.U
   fcsr.io.csr_wen   := false.B
@@ -418,6 +420,7 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
     io.redirect.is_jal       := Mux(lane0_is_older, exe_dec0.is_jal, exe_dec1.is_jal)
     io.redirect.is_jalr      := Mux(lane0_is_older, exe_dec0.is_jalr, exe_dec1.is_jalr)
     io.redirect.ftqPtr       := Mux(lane0_is_older, exe_uop_raw0.ftqPtr, exe_uop_raw1.ftqPtr)
+    io.redirect.robIdx       := Mux(lane0_is_older, exe_uop0.robIdx, exe_uop1.robIdx)
   } .elsewhen(r0_valid) {
     io.redirect.valid := true.B
     io.redirect.target := bru(0).io.target
@@ -431,6 +434,7 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
     io.redirect.is_jal       := exe_dec0.is_jal
     io.redirect.is_jalr      := exe_dec0.is_jalr
     io.redirect.ftqPtr       := exe_uop_raw0.ftqPtr
+    io.redirect.robIdx       := exe_uop0.robIdx
   } .elsewhen(r1_valid) {
     io.redirect.valid := true.B
     io.redirect.target := bru(1).io.target
@@ -444,6 +448,7 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
     io.redirect.is_jal       := exe_dec1.is_jal
     io.redirect.is_jalr      := exe_dec1.is_jalr
     io.redirect.ftqPtr       := exe_uop_raw1.ftqPtr
+    io.redirect.robIdx       := exe_uop1.robIdx
   }
 
   // Non-Flushing BPU Update (Trains FTB and GHR for executed branches without flushing pipeline)
@@ -462,6 +467,7 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
     io.bpu_update.is_jal := exe_dec0.is_jal
     io.bpu_update.is_jalr:= exe_dec0.is_jalr
     io.bpu_update.ftqPtr := exe_uop_raw0.ftqPtr
+    io.bpu_update.robIdx := exe_uop0.robIdx
   } .elsewhen(update1_valid) {
     io.bpu_update.valid  := true.B
     io.bpu_update.pc     := exe_uop_raw1.pc
@@ -471,6 +477,7 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
     io.bpu_update.is_jal := exe_dec1.is_jal
     io.bpu_update.is_jalr:= exe_dec1.is_jalr
     io.bpu_update.ftqPtr := exe_uop_raw1.ftqPtr
+    io.bpu_update.robIdx := exe_uop1.robIdx
   }
 
   // Writebacks and latch registers

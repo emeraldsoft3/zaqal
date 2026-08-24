@@ -48,14 +48,14 @@ object ZaqalTest extends App {
     // --- MEMORY RESPONDER MODEL ---
     // The bare metal program to run (Replacing the mock ICache)
     val programMemory = Seq(
-      "h014000ef".U(32.W), // 00: jal x1, 0x14    (Correct push 1, pushes 0x04 to RAS)
-      "h00000013".U(32.W), // 04: nop             (Target of correct pop 1)
+      "h014002ef".U(32.W), // 00: jal x5, 0x14    (Correct push 1, pushes 0x04 to RAS. Save in x5)
+      "h0000006f".U(32.W), // 04: j 0             (Target of correct pop 1 - END OF PROGRAM LOOP)
       "h00000013".U(32.W), // 08: nop
       "h00000013".U(32.W), // 0C: nop
       "h00000013".U(32.W), // 10: nop
       
-      "h014000ef".U(32.W), // 14: jal x1, 0x28    (Correct push 2, pushes 0x18 to RAS)
-      "h00008067".U(32.W), // 18: jalr x0, 0(x1)  (Correct pop 1, should jump back to 0x04)
+      "h014000ef".U(32.W), // 14: jal x1, 0x28    (Correct push 2, pushes 0x18 to RAS. Save in x1)
+      "h00028067".U(32.W), // 18: jalr x0, 0(x5)  (Correct pop 1, should jump back to 0x04 using x5)
       "h00000013".U(32.W), // 1C: nop
       "h00000013".U(32.W), // 20: nop
       "h00000013".U(32.W), // 24: nop

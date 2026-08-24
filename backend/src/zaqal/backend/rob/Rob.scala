@@ -12,6 +12,7 @@ class Rob(implicit val p: Parameters) extends Module with HasZaqalParameter {
     val exuWriteback = Vec(6, Flipped(ValidIO(new ExuOutput)))
     val commits = Output(new RobCommitIO)
     val allocPtrs = Output(Vec(decodeWidth, UInt(log2Up(128).W)))
+    val bpu_redirect = Input(new BPURedirect)
     val flushOut = Output(Valid(new BPURedirect))
     val robFull = Output(Bool())
     val headNotReady = Output(Bool())
@@ -26,12 +27,15 @@ class Rob(implicit val p: Parameters) extends Module with HasZaqalParameter {
   val enqPtr = RegInit(0.U(log2Up(robSize).W))
   val deqPtr = RegInit(0.U(log2Up(robSize).W))
 
-  val isEmpty = enqPtr === deqPtr
+  val maybeFull = RegInit(false.B)
   
-  // -------------------------------------------------------------
-  // 1. Enqueue (Dispatch) Logic
-  // -------------------------------------------------------------
-  val elementsInRob = enqPtr - deqPtr
+  val isEmpty = (enqPtr === deqPtr) && !maybeFull
+  val isFull  = (enqPtr === deqPtr) && maybeFull
+  
+  val elementsInRob = Mux(isFull, robSize.U,
+                      Mux(enqPtr >= deqPtr, enqPtr - deqPtr,
+                          robSize.U - (deqPtr - enqPtr)))
+                          
   val spaceAvailable = robSize.U - elementsInRob
   val canAcceptAll = spaceAvailable >= decodeWidth.U
   
@@ -111,6 +115,7 @@ class Rob(implicit val p: Parameters) extends Module with HasZaqalParameter {
   io.flushOut.bits.is_jal := headEntry.is_jal
   io.flushOut.bits.is_jalr := headEntry.is_jalr
   io.flushOut.bits.ftqPtr := headEntry.ftqPtr
+  io.flushOut.bits.robIdx := deqPtr
 
   // If the head throws an exception, instantly wipe the entire ROB pipeline
   when(headHasException) {
@@ -118,6 +123,18 @@ class Rob(implicit val p: Parameters) extends Module with HasZaqalParameter {
     for (i <- 0 until robSize) {
       robEntries(i).valid := false.B
     }
+  } .elsewhen(io.bpu_redirect.valid && !io.bpu_redirect.is_exception) {
+    // Flush branch misprediction
+    enqPtr := io.bpu_redirect.robIdx + 1.U
+    for (i <- 0 until robSize) {
+      val d_i = i.U - deqPtr
+      val d_r = io.bpu_redirect.robIdx - deqPtr
+      val d_e = enqPtr - deqPtr
+      when(d_i > d_r && d_i < d_e) {
+        robEntries(i).valid := false.B
+      }
+    }
+    maybeFull := false.B // A flush always frees up space
   }
 
   // -------------------------------------------------------------
@@ -172,6 +189,14 @@ class Rob(implicit val p: Parameters) extends Module with HasZaqalParameter {
   // Only advance the deqPtr if we aren't currently flushing
   when (commitCount > 0.U && !headHasException) {
     deqPtr := deqPtr + commitCount
+  }
+  
+  when(headHasException) {
+    maybeFull := false.B
+  } .elsewhen (enqCount > 0.U && commitCount === 0.U) {
+    maybeFull := true.B
+  } .elsewhen (commitCount > 0.U && enqCount === 0.U) {
+    maybeFull := false.B
   }
 
   io.robFull := !canAcceptAll

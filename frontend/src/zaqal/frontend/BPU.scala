@@ -122,14 +122,18 @@ class BPU(implicit val p: Parameters) extends Module with HasZaqalParameter {
   ras.io.restore_sp := redirect_meta.ras_sp
   
   // Use the commit signals for RAS architectural state
-  // We assume the oldest committed branch from lane 0 is used to update the RAS
-  // In a super-scalar processor, we might need a more complex priority encoder.
-  val commit_is_call = io.commits.commitValid(0) && io.commits.info(0).is_call
-  val commit_is_ret  = io.commits.commitValid(0) && io.commits.info(0).is_ret
+  // In a super-scalar processor, we must check all commit slots
+  val commit_calls = (0 until 6).map(i => io.commits.commitValid(i) && io.commits.info(i).is_call)
+  val commit_rets  = (0 until 6).map(i => io.commits.commitValid(i) && io.commits.info(i).is_ret)
+  
+  val commit_is_call = commit_calls.reduce(_ || _)
+  val commit_is_ret  = commit_rets.reduce(_ || _)
+  
+  val call_idx = PriorityMux(commit_calls, (0 until 6).map(_.U))
 
   ras.io.commit_push_valid := commit_is_call
   // Push return address (PC + 4) instead of branch target
-  ras.io.commit_push_addr  := io.commits.info(0).pc + 4.U
+  ras.io.commit_push_addr  := io.commits.info(call_idx).pc + 4.U
   ras.io.commit_pop_valid  := commit_is_ret
 
   // --- UPDATE / TRAINING PATH ---

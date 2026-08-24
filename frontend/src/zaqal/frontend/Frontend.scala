@@ -166,6 +166,7 @@ class Frontend(implicit val p: Parameters) extends Module with HasZaqalParameter
   bpu.io.redirect.is_jal       := io.redirect.is_jal
   bpu.io.redirect.is_jalr      := io.redirect.is_jalr
   bpu.io.redirect.ftqPtr       := io.redirect.ftqPtr
+  bpu.io.redirect.robIdx       := io.redirect.robIdx
 
   bpu.io.bpu_update := io.bpu_update
   bpu.io.commits := io.commits

@@ -266,6 +266,7 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
   val fpIq = Module(new IssueQueue(8, decodeWidth, 1, 5))
   val rob = Module(new zaqal.backend.rob.Rob)
   io.commits := rob.io.commits
+  rob.io.bpu_redirect := exec.io.redirect
   for (i <- 0 until 6) {
     rob.io.exuWriteback(i) <> exec.io.exuWriteback(i)
   }
