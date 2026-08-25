@@ -19,26 +19,40 @@ class IFU(implicit val p: Parameters) extends Module with HasZaqalParameter {
   val raw_bits = io.insts_in.asUInt
 
   val packet = Wire(new FetchPacket)
-  packet.mask        := io.fetch_req.bits.mask
   packet.prediction  := io.fetch_req.bits.prediction
   packet.ftqPtr      := io.fetch_req.bits.ftqPtr
   packet.epoch       := io.fetch_req.bits.epoch
 
+  val pc_offset = io.fetch_req.bits.pc(4, 1)
+
+  val is_rvc = Wire(Vec(predictWidth, Bool()))
+  val mask_reg = Wire(Vec(predictWidth, Bool()))
+
   for (i <- 0 until predictWidth) {
-    val inst_window = if (i == predictWidth - 1) {
-      Cat(0.U(16.W), raw_bits((fetchWidth * 32) - 1, (fetchWidth * 32) - 16))
-    } else {
-      raw_bits((i * 16) + 31, i * 16)
-    }
+    val parcel_idx = pc_offset + i.U
+    val shift_amt = parcel_idx * 16.U
+    
+    val inst_window = Mux(parcel_idx >= 16.U, "h00000013".U(32.W), (raw_bits >> shift_amt)(31, 0))
+    
     predecoders(i).io.inst := inst_window
     packet.instructions(i) := inst_window
-    packet.pre_decoded(i) := predecoders(i).io.out
+    packet.pre_decoded(i)  := predecoders(i).io.out
     
-    // NEW: Vectorized metadata for Superscalar tracking
     packet.pc(i)             := io.fetch_req.bits.pc + (i * 2).U
-    packet.exception_type(i) := 0.U // Default: No Exception
-    packet.debug_seqNum(i)   := 0.U // Placeholder for retirement tracking
+    packet.exception_type(i) := 0.U
+    packet.debug_seqNum(i)   := 0.U
+    
+    is_rvc(i) := predecoders(i).io.out.is_rvc
   }
+
+  mask_reg(0) := io.fetch_req.bits.mask(0) && (pc_offset < 16.U)
+  for (i <- 1 until predictWidth) {
+    val prev_was_rvc = mask_reg(i-1) && is_rvc(i-1)
+    val prev_was_32b = if (i >= 2) mask_reg(i-2) && !is_rvc(i-2) else false.B
+    mask_reg(i) := io.fetch_req.bits.mask(i) && (prev_was_rvc || prev_was_32b) && (pc_offset + i.U < 16.U)
+  }
+  
+  packet.mask := mask_reg.asUInt
 
   // Pass through the handshake
   io.toIbuffer.valid := io.fetch_req.valid

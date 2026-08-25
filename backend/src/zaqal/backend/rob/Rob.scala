@@ -193,9 +193,11 @@ class Rob(implicit val p: Parameters) extends Module with HasZaqalParameter {
   
   when(headHasException) {
     maybeFull := false.B
-  } .elsewhen (enqCount > 0.U && commitCount === 0.U) {
+  } .elsewhen(io.bpu_redirect.valid && !io.bpu_redirect.is_exception) {
+    maybeFull := false.B // Flush drains the ROB
+  } .elsewhen (enqCount > commitCount) {
     maybeFull := true.B
-  } .elsewhen (commitCount > 0.U && enqCount === 0.U) {
+  } .elsewhen (commitCount > enqCount) {
     maybeFull := false.B
   }
 
