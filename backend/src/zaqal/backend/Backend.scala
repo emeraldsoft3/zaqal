@@ -21,6 +21,9 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
     val debug_fp_regs = Output(Vec(phyRegs, UInt(fLen.W)))
     val debug_int_rat = Output(Vec(32, UInt(phyRegIdxWidth.W)))
     val debug_fp_rat  = Output(Vec(32, UInt(phyRegIdxWidth.W)))
+    val disp0_valid = Output(Bool())
+    val disp0_pc = Output(UInt(xLen.W))
+    val disp0_pdest = Output(UInt(phyRegIdxWidth.W))
     val debug_cycle = Input(UInt(64.W))
     val mem_d = new MemoryBus(xLen, 256)
   })
@@ -176,12 +179,8 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
   val can_allocate_all = intFreeList.io.canAllocate && fpFreeList.io.canAllocate
 
   val is_shadow_vec = Wire(Vec(decodeWidth, Bool()))
-  val is_val_inst_vec = Wire(Vec(decodeWidth, Bool()))
-  is_shadow_vec(0) := false.B
-  is_val_inst_vec(0) := true.B
-  for (j <- 1 until decodeWidth) {
-    is_shadow_vec(j) := is_val_inst_vec(j - 1) && !decoded_uops(j - 1).decode.is_rvc
-    is_val_inst_vec(j) := !is_shadow_vec(j)
+  for (j <- 0 until decodeWidth) {
+    is_shadow_vec(j) := false.B
   }
 
   for (i <- 0 until decodeWidth) {
@@ -410,6 +409,10 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
   io.debug_fp_regs := exec.io.debug_fp_regs
   io.debug_int_rat := rat.io.debug_int_rat
   io.debug_fp_rat  := rat.io.debug_fp_rat
+  
+  io.disp0_valid := io.dispatch(0).fire
+  io.disp0_pc := decoded_uops(0).uop.pc
+  io.disp0_pdest := intFreeList.io.allocatePhyReg(0)
   exec.io.debug_cycle := io.debug_cycle
 
   val dcache = Module(new DCache)

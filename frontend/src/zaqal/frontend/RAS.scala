@@ -36,10 +36,13 @@ class RAS(implicit val p: Parameters) extends Module with HasZaqalParameter {
   when(io.commit_push_valid && !io.commit_pop_valid) {
     arch_stack(arch_sp) := io.commit_push_addr
     arch_sp := arch_sp + 1.U
+    printf(p"RAS ARCH PUSH: addr=${Hexadecimal(io.commit_push_addr)} new_sp=${arch_sp + 1.U}\n")
   } .elsewhen(io.commit_pop_valid && !io.commit_push_valid) {
     arch_sp := arch_sp - 1.U
+    printf(p"RAS ARCH POP: new_sp=${arch_sp - 1.U}\n")
   } .elsewhen(io.commit_push_valid && io.commit_pop_valid) {
     arch_stack(arch_sp - 1.U) := io.commit_push_addr
+    printf(p"RAS ARCH PUSH+POP: addr=${Hexadecimal(io.commit_push_addr)} sp=${arch_sp}\n")
   }
 
   // 2. Speculative Stack Logic (Fast, can be corrupted)

@@ -182,6 +182,7 @@ class Rob(implicit val p: Parameters) extends Module with HasZaqalParameter {
     
     when(commitValidThisLine(i)) {
       entry.valid := false.B // Free the entry
+      printf(p"ROB COMMIT [Port $i]: pc=${Hexadecimal(entry.pc)} is_call=${entry.is_call} is_ret=${entry.is_ret}\n")
     }
   }
 

@@ -215,7 +215,7 @@ class BPU(implicit val p: Parameters) extends Module with HasZaqalParameter {
 
   when(is_new_redirect) {
     s0_pc    := align(io.redirect.target)
-    val redirect_mask = (Fill(predictWidth, 1.U(1.W)) << io.redirect.target(log2Up(fetchWidth * 4) - 1, 1))(predictWidth - 1, 0)
+    val redirect_mask = Fill(predictWidth, 1.U(1.W))
     mask_reg     := redirect_mask
     current_mask := redirect_mask
     epoch        := ~epoch // Sync with Backend's new color
@@ -223,9 +223,7 @@ class BPU(implicit val p: Parameters) extends Module with HasZaqalParameter {
   } .elsewhen(io.out.fire) {
     s0_pc := Mux(meta.taken, align(meta.target), s0_pc + (fetchWidth * 4).U)
     
-    val next_mask = Mux(meta.taken,
-                        (Fill(predictWidth, 1.U(1.W)) << meta.target(log2Up(fetchWidth * 4) - 1, 1))(predictWidth - 1, 0),
-                        Fill(predictWidth, 1.U(1.W)))
+    val next_mask = Fill(predictWidth, 1.U(1.W))
     mask_reg     := next_mask
     current_mask := mask_reg
   } .otherwise {
@@ -303,8 +301,16 @@ class BPU(implicit val p: Parameters) extends Module with HasZaqalParameter {
     meta_storage(bpu_enq_ptr)   := new_meta
   }
 
+  val exact_pc = RegInit("h8000_0000".U(xLen.W))
+  
+  when(is_new_redirect) {
+    exact_pc := io.redirect.target
+  } .elsewhen(io.out.fire) {
+    exact_pc := Mux(meta.taken, meta.target, s0_pc + (fetchWidth * 4).U)
+  }
+
   io.out.valid := !reset.asBool
-  io.out.bits.pc         := s0_pc
+  io.out.bits.pc         := exact_pc
   
   val mask_limit = Mux(meta.slot === (predictWidth - 1).U, (predictWidth - 1).U, meta.slot + 1.U)
   val taken_mask = (Fill(predictWidth, 1.U) >> ((predictWidth - 1).U - mask_limit))(predictWidth - 1, 0)
@@ -316,6 +322,6 @@ class BPU(implicit val p: Parameters) extends Module with HasZaqalParameter {
   io.out.bits.ras_tos    := ras.io.spec_sp
 
   when(io.out.fire && meta.taken) {
-    printf(p"[BPU PREDICT] pc=${Hexadecimal(s0_pc)} -> target=${Hexadecimal(meta.target)} slot=${meta.slot}\n")
+    printf(p"[BPU PREDICT] pc=${Hexadecimal(exact_pc)} -> target=${Hexadecimal(meta.target)} slot=${meta.slot}\n")
   }
 }

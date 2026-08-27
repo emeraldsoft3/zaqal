@@ -42,6 +42,9 @@ class Core(implicit val p: Parameters) extends Module with HasZaqalParameter {
     val fp_regs         = Output(Vec(phyRegs, UInt(fLen.W)))
     val debug_int_rat   = Output(Vec(32, UInt(phyRegIdxWidth.W)))
     val debug_fp_rat    = Output(Vec(32, UInt(phyRegIdxWidth.W)))
+    val disp0_valid     = Output(Bool())
+    val disp0_pc        = Output(UInt(xLen.W))
+    val disp0_pdest     = Output(UInt(phyRegIdxWidth.W))
   })) else None
 
   // Cycle Counter logic
@@ -91,6 +94,9 @@ class Core(implicit val p: Parameters) extends Module with HasZaqalParameter {
     d.fp_regs         := backend.io.debug_fp_regs
     d.debug_int_rat   := backend.io.debug_int_rat
     d.debug_fp_rat    := backend.io.debug_fp_rat
+    d.disp0_valid     := backend.io.disp0_valid
+    d.disp0_pc        := backend.io.disp0_pc
+    d.disp0_pdest     := backend.io.disp0_pdest
   } else {
     io.debug_sum.get := backend.io.debug_regs.reduce(_ ^ _) ^ backend.io.debug_fp_regs.reduce(_ ^ _) ^ frontend.io.debug_ftq_pc
   }

@@ -60,7 +60,7 @@ object ZaqalTest extends App {
       "h00000013".U(32.W), // 20: nop
       "h00000013".U(32.W), // 24: nop
       
-      "h00100113".U(32.W), // 28: addi x2, x0, 1
+      "h00200113".U(32.W), // 28: addi x2, x0, 2
       "h02210a63".U(32.W), // 2C: beq x2, x2, 0x60 (Branch target 0x60. Mispredicted Not-Taken, so falls through to 0x30)
       
       // -- WRONG PATH (Deep Nested Pops & Pushes) --
@@ -206,6 +206,15 @@ object ZaqalTest extends App {
         // Remove from shadow map to show "EMPTY" in CSV
         shadowFTQ.remove(manualReadPtr)
         manualReadPtr = (manualReadPtr + 1) % params.ftqEntries
+      }
+
+      if (cycle >= resetCycles) {
+        val disp0_valid = dut.debug.get.disp0_valid.peek().litToBoolean
+        if (disp0_valid) {
+          val disp0_pc = dut.debug.get.disp0_pc.peek().litValue
+          val disp0_pdest = dut.debug.get.disp0_pdest.peek().litValue
+          println(f"Cycle $cycle: Dispatch 0 PC=0x$disp0_pc%08x PDEST=p$disp0_pdest")
+        }
       }
 
       // 5. Periodic Dump (Disabled for speed, uncomment if debugging FTQ)
