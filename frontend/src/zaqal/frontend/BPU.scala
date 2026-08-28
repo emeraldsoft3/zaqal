@@ -90,7 +90,12 @@ class BPU(implicit val p: Parameters) extends Module with HasZaqalParameter {
   composer.io.sc_pred_taken := sc_pred_taken
   
   val tage_sc_taken = composer.io.final_pred_taken
-  val ftb_taken = Mux(ftb.io.hit && ftb.io.br_type === 0.U, tage_sc_taken, ftb.io.taken)
+  
+  val blockOffsetBits = log2Ceil(fetchWidth * 4)
+  val pc_offset = s0_pc(blockOffsetBits - 1, 1)
+  val ftb_valid = ftb.io.hit && (ftb.io.slot >= pc_offset)
+  
+  val ftb_taken = Mux(ftb_valid && ftb.io.br_type === 0.U, tage_sc_taken, ftb.io.taken)
   
   // uFTB Zero-Bubble Override (uFTB only stores taken branches)
   val uftb_hit = uftb.io.pred_hit
@@ -98,25 +103,29 @@ class BPU(implicit val p: Parameters) extends Module with HasZaqalParameter {
   
   val final_taken = Mux(uftb_hit, true.B, ftb_taken)
   
-  val ras_hit = enableBpuRas.B && ftb.io.hit && ftb.io.br_type === 2.U && ras.io.spec_pop_valid_out
+  
+
+  val ras_hit = enableBpuRas.B && ftb.io.hit && ftb.io.br_type === 2.U && ras.io.spec_pop_valid_out && (ftb.io.slot >= pc_offset)
   val ras_target = ras.io.spec_pop_addr
   
   val ittage_hit = enableBpuIttage.B && ittage.io.pred.hit
   val ittage_target = Mux(enableBpuIttage.B, ittage.io.pred.target, 0.U)
   
+  
   val ftb_target = Mux(ras_hit, ras_target,
-                     Mux(ftb.io.hit && ftb.io.br_type === 2.U && ittage_hit, ittage_target,
+                     Mux(ftb_valid && ftb.io.br_type === 2.U && ittage_hit, ittage_target,
                      ftb.io.target))
 
   val final_target = Mux(uftb_hit, uftb_target, ftb_target)
 
   // Speculative RAS push & pop signals
-  val is_spec_call = ftb.io.hit && (ftb.io.br_type === 1.U) && final_taken
-  val is_spec_ret  = ftb.io.hit && (ftb.io.br_type === 2.U) && final_taken
+  val is_spec_call = ftb_valid && (ftb.io.br_type === 1.U) && final_taken
+  val is_spec_ret  = ftb_valid && (ftb.io.br_type === 2.U) && final_taken
 
   ras.io.spec_push_valid := io.out.fire && is_spec_call
   // Return address is exact instruction boundary: block PC + (slot * 4) + 4
-  ras.io.spec_push_addr  := s0_pc + (ftb.io.slot * 4.U) + 4.U
+  val actual_slot = Mux(ftb_valid, ftb.io.slot, pc_offset)
+  ras.io.spec_push_addr  := s0_pc + (actual_slot * 4.U) + 4.U
   ras.io.spec_pop_valid  := io.out.fire && is_spec_ret
   ras.io.restore_en := io.redirect.valid
   ras.io.restore_sp := redirect_meta.ras_sp
@@ -210,8 +219,11 @@ class BPU(implicit val p: Parameters) extends Module with HasZaqalParameter {
 
   val meta    = Wire(new PredictionMeta)
   meta.target := Mux(final_taken, final_target, s0_pc + (fetchWidth * 4).U)
-  meta.taken  := final_taken && current_mask(ftb.io.slot)
-  meta.slot   := ftb.io.slot
+  
+  // Calculate the relative index of the branch in the fetch packet
+  val rel_br_idx = Mux(ftb_valid, ftb.io.slot - pc_offset, 0.U)
+  meta.taken  := final_taken && (rel_br_idx < predictWidth.U) && current_mask(rel_br_idx)
+  meta.slot   := rel_br_idx
 
   when(is_new_redirect) {
     s0_pc    := align(io.redirect.target)
@@ -234,7 +246,7 @@ class BPU(implicit val p: Parameters) extends Module with HasZaqalParameter {
   val is_cond_redirect   = io.redirect.is_cfi && !io.redirect.is_jal && !io.redirect.is_jalr
   val restored_ghr       = Mux(is_cond_redirect, Cat(redirect_meta.ghr(126, 0), io.redirect.taken), redirect_meta.ghr)
   val spec_shift_val     = final_taken
-  val has_spec_cond_br   = ftb.io.hit && current_mask(ftb.io.slot) && (ftb.io.br_type === 0.U)
+  val has_spec_cond_br   = ftb_valid && current_mask(ftb.io.slot - pc_offset) && (ftb.io.br_type === 0.U)
   val do_non_spec_shift = io.bpu_update.valid && bpu_update_is_cfi && !bpu_update_is_jal && !bpu_update_is_jalr && !bpu_update_meta.ghr_spec_shifted && !io.redirect.valid
 
   when(io.redirect.valid) {
@@ -252,7 +264,7 @@ class BPU(implicit val p: Parameters) extends Module with HasZaqalParameter {
   // --- PHR UPDATE AND ROLLBACK ---
   // PHR is shifted on every taken JALR (indirect jump): shift in target[7:2] (6 bits)
   // On ANY redirect, restore the snapshotted PHR (or update it if the redirect was a JALR)
-  val is_spec_jalr = ftb.io.hit && ftb.io.br_type === 2.U && current_mask(ftb.io.slot) && final_taken
+  val is_spec_jalr = ftb_valid && ftb.io.br_type === 2.U && current_mask(ftb.io.slot - pc_offset) && final_taken
   val restored_phr = Mux(io.redirect.is_cfi && io.redirect.is_jalr,
                          Cat(redirect_meta.phr(25, 0), io.redirect.target(7, 2)),
                          redirect_meta.phr)
@@ -312,7 +324,9 @@ class BPU(implicit val p: Parameters) extends Module with HasZaqalParameter {
   io.out.valid := !reset.asBool
   io.out.bits.pc         := exact_pc
   
-  val mask_limit = Mux(meta.slot === (predictWidth - 1).U, (predictWidth - 1).U, meta.slot + 1.U)
+  // Use meta.slot directly since it is now the packet index
+  val rel_slot = Mux(meta.taken, meta.slot, 0.U)
+  val mask_limit = Mux(rel_slot >= (predictWidth - 1).U, (predictWidth - 1).U, rel_slot + 1.U)
   val taken_mask = (Fill(predictWidth, 1.U) >> ((predictWidth - 1).U - mask_limit))(predictWidth - 1, 0)
   io.out.bits.mask       := Mux(meta.taken, current_mask & taken_mask, current_mask)
   

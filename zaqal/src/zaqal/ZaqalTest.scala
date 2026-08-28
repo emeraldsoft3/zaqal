@@ -16,7 +16,7 @@ object ZaqalTest extends App {
   implicit val p = (new ZaqalConfig).alter((site, here, up) => {
     case ZaqalParamsKey => up(ZaqalParamsKey).copy(
       programFile = "programs/hex/rename_test.hex",
-      enableUOpCache = true
+      enableUOpCache = false
     )
   })
   val params = p(ZaqalParamsKey)
