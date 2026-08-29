@@ -242,18 +242,7 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
   intFreeList.io.doAllocate := bundle_fired
   fpFreeList.io.doAllocate  := bundle_fired
   
-  // Tie off commit ports and redirect for now
-  for (i <- 0 until decodeWidth) {
-    rat.io.commitPorts(i).wen := false.B
-    rat.io.commitPorts(i).addr := 0.U
-    rat.io.commitPorts(i).data := 0.U
-    rat.io.commit_is_fp(i) := false.B
-
-    intFreeList.io.freeReq(i) := false.B
-    intFreeList.io.freePhyReg(i) := 0.U
-    fpFreeList.io.freeReq(i) := false.B
-    fpFreeList.io.freePhyReg(i) := 0.U
-  }
+  // Commit ports and redirect are connected properly below
   val exec = Module(new Execute)
 
   val dispatch = Module(new Dispatch)

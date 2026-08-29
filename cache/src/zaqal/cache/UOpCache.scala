@@ -11,12 +11,12 @@ class UOpCacheReadReq(implicit val p: Parameters) extends Bundle with HasZaqalPa
 
 class UOpCacheReadResp(implicit val p: Parameters) extends Bundle with HasZaqalParameter {
   val hit = Bool()
-  val uops = Vec(fetchWidth, new MicroOp)
+  val uops = Vec(predictWidth, new MicroOp)
 }
 
 class UOpCacheWriteReq(implicit val p: Parameters) extends Bundle with HasZaqalParameter {
   val pc = UInt(xLen.W)
-  val uops = Vec(fetchWidth, new MicroOp)
+  val uops = Vec(predictWidth, new MicroOp)
 }
 
 class UOpCache(implicit val p: Parameters) extends Module with HasZaqalParameter {
@@ -34,7 +34,7 @@ class UOpCache(implicit val p: Parameters) extends Module with HasZaqalParameter
   // Set-Associative arrays: [Way][Set]
   val tags  = RegInit(VecInit.fill(uopCacheWays)(VecInit.fill(uopCacheSets)(0.U(xLen.W))))
   val valid = RegInit(VecInit.fill(uopCacheWays)(VecInit.fill(uopCacheSets)(false.B)))
-  val data  = Reg(Vec(uopCacheWays, Vec(uopCacheSets, Vec(fetchWidth, new MicroOp))))
+  val data  = Reg(Vec(uopCacheWays, Vec(uopCacheSets, Vec(predictWidth, new MicroOp))))
   
   // Simple FIFO/Round-Robin replacement state (one counter per set)
   val repl_way = RegInit(VecInit.fill(uopCacheSets)(0.U(log2Ceil(uopCacheWays).W)))

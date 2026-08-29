@@ -100,7 +100,7 @@ class Frontend(implicit val p: Parameters) extends Module with HasZaqalParameter
   // Populate uOp Cache on IFU packet dispatch
   uopCache.io.write.req.valid := ifu_skid.io.deq.valid && !is_valid_redirect
   uopCache.io.write.req.bits.pc := ifu_skid.io.deq.bits.pc(0)
-  for (i <- 0 until fetchWidth) {
+  for (i <- 0 until predictWidth) {
     uopCache.io.write.req.bits.uops(i).pc       := ifu_skid.io.deq.bits.pc(i)
     uopCache.io.write.req.bits.uops(i).inst_raw := ifu_skid.io.deq.bits.instructions(i)
     uopCache.io.write.req.bits.uops(i).pre      := ifu_skid.io.deq.bits.pre_decoded(i)
@@ -127,12 +127,12 @@ class Frontend(implicit val p: Parameters) extends Module with HasZaqalParameter
   for (i <- 0 until decodeWidth) {
     ibuf.io.out(i).ready := ibuf_out_ready(i) && !uop_hit
     
-    val uop_valid = uop_hit && (i.U < fetchWidth.U) // Forward all fetched uOps on hit
+    val uop_valid = uop_hit && (i.U < predictWidth.U) // Forward all fetched uOps on hit
     val ibuf_valid = ibuf.io.out(i).valid && !uop_hit
     
     ibuf_skids(i).io.enq.valid := (uop_valid || ibuf_valid) && ibuf_out_ready(i)
-    // Avoid out-of-bounds index if decodeWidth > fetchWidth
-    if (i < fetchWidth) {
+    // Avoid out-of-bounds index if decodeWidth > predictWidth
+    if (i < predictWidth) {
       ibuf_skids(i).io.enq.bits  := Mux(uop_hit, uopCache.io.read.resp.uops(i), ibuf.io.out(i).bits)
     } else {
       ibuf_skids(i).io.enq.bits  := ibuf.io.out(i).bits

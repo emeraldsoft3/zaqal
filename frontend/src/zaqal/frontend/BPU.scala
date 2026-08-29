@@ -91,8 +91,18 @@ class BPU(implicit val p: Parameters) extends Module with HasZaqalParameter {
   
   val tage_sc_taken = composer.io.final_pred_taken
   
+  val is_new_redirect = io.redirect.valid
+  val meta = Wire(new PredictionMeta)
+  val exact_pc = RegInit("h8000_0000".U(xLen.W))
+  
+  when(is_new_redirect) {
+    exact_pc := io.redirect.target
+  } .elsewhen(io.out.fire) {
+    exact_pc := Mux(meta.taken, meta.target, s0_pc + (fetchWidth * 4).U)
+  }
+
   val blockOffsetBits = log2Ceil(fetchWidth * 4)
-  val pc_offset = s0_pc(blockOffsetBits - 1, 1)
+  val pc_offset = exact_pc(blockOffsetBits - 1, 1)
   val ftb_valid = ftb.io.hit && (ftb.io.slot >= pc_offset)
   
   val ftb_taken = Mux(ftb_valid && ftb.io.br_type === 0.U, tage_sc_taken, ftb.io.taken)
@@ -215,9 +225,9 @@ class BPU(implicit val p: Parameters) extends Module with HasZaqalParameter {
   def align(addr: UInt) = addr & (~((fetchWidth * 4) - 1).U(xLen.W))
 
   val current_mask = Wire(UInt(predictWidth.W))
-  val is_new_redirect = io.redirect.valid
+  // is_new_redirect moved up
 
-  val meta    = Wire(new PredictionMeta)
+  // meta instantiated above
   meta.target := Mux(final_taken, final_target, s0_pc + (fetchWidth * 4).U)
   
   // Calculate the relative index of the branch in the fetch packet
@@ -313,14 +323,7 @@ class BPU(implicit val p: Parameters) extends Module with HasZaqalParameter {
     meta_storage(bpu_enq_ptr)   := new_meta
   }
 
-  val exact_pc = RegInit("h8000_0000".U(xLen.W))
-  
-  when(is_new_redirect) {
-    exact_pc := io.redirect.target
-  } .elsewhen(io.out.fire) {
-    exact_pc := Mux(meta.taken, meta.target, s0_pc + (fetchWidth * 4).U)
-  }
-
+  // exact_pc moved up
   io.out.valid := !reset.asBool
   io.out.bits.pc         := exact_pc
   
