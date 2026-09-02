@@ -20,7 +20,8 @@ class FPRegFile(val numReadPorts: Int = 4, val numWritePorts: Int = 3)(implicit 
   val regs = RegInit(VecInit(Seq.fill(phyRegs)(0.U(fLen.W))))
   
   for (i <- 0 until numReadPorts) {
-    io.rdata(i) := regs(io.raddr(i))
+    val delayed_raddr = RegNext(io.raddr(i))
+    io.rdata(i) := regs(delayed_raddr)
   }
 
   for (i <- 0 until numWritePorts) {

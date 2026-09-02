@@ -240,6 +240,7 @@ class MicroOp(implicit val p: Parameters) extends Bundle with HasZaqalParameter 
   val pre      = new PreDecodeSignals
   val ftqPtr   = UInt(ftqPtrWidth.W) // Track origin FTQ entry
   val is_predicted_taken = Bool()
+  val predicted_target = UInt(xLen.W)
   val epoch    = Bool()
 }
 

@@ -14,6 +14,7 @@ class BRU(implicit val p: Parameters) extends Module with HasZaqalParameter {
     val pc              = Input(UInt(xLen.W))
     val is_rvc          = Input(Bool())
     val pred_taken      = Input(Bool())
+    val pred_target     = Input(UInt(xLen.W))
     
     val taken           = Output(Bool())
     val mispredict      = Output(Bool())
@@ -60,7 +61,7 @@ class BRU(implicit val p: Parameters) extends Module with HasZaqalParameter {
                                         target_pc(1,0) =/= 0.U)
 
   io.taken      := actual_taken
-  io.mispredict := (actual_taken =/= io.pred_taken) || (io.pred_taken && !is_cfi) || is_misaligned
+  io.mispredict := (actual_taken =/= io.pred_taken) || (io.pred_taken && !is_cfi) || (actual_taken && redirect_target =/= io.pred_target) || is_misaligned
   io.target     := Mux(actual_taken, redirect_target, fallthrough_pc)
   io.exc_valid  := is_misaligned
   io.exc_cause  := 0.U // Fixed later

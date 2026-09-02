@@ -128,85 +128,138 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   val uopFp = io.fp_in.bits.uop
   val is_fp_wb_to_int_top = decFp.is_fmv_x_w || decFp.is_fcvt_f2i || decFp.is_feq || decFp.is_flt || decFp.is_fle || decFp.is_fclass
 
-  // Issue Queue ready signals driven by execution unit status
-  io.int_in(0).ready := Mux(is_div_op0, div.io.ready, true.B)
-  io.int_in(1).ready := Mux(is_div_op1, div.io.ready, true.B)
-  io.mem_in.ready := true.B
-  io.fp_in.ready := fpdiv.io.ready
+  // Issue Queue ready signals driven by execution unit status and Register Cache
+  val intRC = Module(new zaqal.backend.rename.RegisterCache(32, 7, 6))
+  val fpRC = Module(new zaqal.backend.rename.RegisterCache(32, 4, 3))
+
+  intRC.io.flush := io.redirect.valid
+  fpRC.io.flush := io.redirect.valid
+
+  for(i <- 0 until 6) {
+    intRC.io.wen(i) := r_regFile_wen(i)
+    intRC.io.waddr(i) := r_regFile_waddr(i)
+    intRC.io.wdata(i) := r_regFile_wdata(i)
+  }
+  
+  for(i <- 0 until 3) {
+    fpRC.io.wen(i) := false.B // Will be wired below properly
+    fpRC.io.waddr(i) := 0.U
+    fpRC.io.wdata(i) := 0.U
+  }
+
+  val wait_int0 = RegInit(false.B)
+  val hit_int0 = intRC.io.rhits(0) && intRC.io.rhits(1)
+  when(io.int_in(0).valid && !wait_int0 && !hit_int0) { wait_int0 := true.B } .otherwise { wait_int0 := false.B }
+  io.int_in(0).ready := Mux(is_div_op0, div.io.ready, true.B) && (hit_int0 || wait_int0)
+
+  val wait_int1 = RegInit(false.B)
+  val hit_int1 = intRC.io.rhits(2) && intRC.io.rhits(3)
+  when(io.int_in(1).valid && !wait_int1 && !hit_int1) { wait_int1 := true.B } .otherwise { wait_int1 := false.B }
+  io.int_in(1).ready := Mux(is_div_op1, div.io.ready, true.B) && (hit_int1 || wait_int1)
+
+  val wait_mem = RegInit(false.B)
+  val hit_mem = intRC.io.rhits(4) && intRC.io.rhits(5) && fpRC.io.rhits(3)
+  when(io.mem_in.valid && !wait_mem && !hit_mem) { wait_mem := true.B } .otherwise { wait_mem := false.B }
+  io.mem_in.ready := (hit_mem || wait_mem)
+
+  val wait_fp = RegInit(false.B)
+  val hit_fp = intRC.io.rhits(6) && fpRC.io.rhits(0) && fpRC.io.rhits(1) && fpRC.io.rhits(2)
+  when(io.fp_in.valid && !wait_fp && !hit_fp) { wait_fp := true.B } .otherwise { wait_fp := false.B }
+  io.fp_in.ready := fpdiv.io.ready && (hit_fp || wait_fp)
+
+  val rc_miss_stall_int0 = io.int_in(0).valid && !wait_int0 && !hit_int0
+  val rc_miss_stall_int1 = io.int_in(1).valid && !wait_int1 && !hit_int1
+  dontTouch(rc_miss_stall_int0)
+  dontTouch(rc_miss_stall_int1)
 
   // ---------------- READ-TO-EXECUTE PIPELINE REGISTERS ----------------
+  def is_younger_than_redirect(snapIdx: UInt): Bool = {
+    val deqPtr = io.snptDeqPtr
+    val restoreIdx = io.redirect.snapshotIdx
+    def circDist(ptr: UInt): UInt = Mux(ptr >= deqPtr, ptr - deqPtr, ptr + renameSnapshotNum.U - deqPtr)
+    circDist(snapIdx) >= circDist(restoreIdx)
+  }
+
   val exe_val0 = RegInit(false.B)
   val exe_uop0 = Reg(new DecodedMicroOp)
-  when(io.redirect.valid) {
+  val next_exe_val0 = Mux(io.int_in(0).ready, io.int_in(0).fire, exe_val0)
+  val next_exe_uop0 = Mux(io.int_in(0).ready, io.int_in(0).bits, exe_uop0)
+  when(io.redirect.valid && is_younger_than_redirect(next_exe_uop0.snapshotIdx)) {
     exe_val0 := false.B
-  } .elsewhen(io.int_in(0).ready) {
-    exe_val0 := io.int_in(0).fire
-    exe_uop0 := io.int_in(0).bits
+  } .otherwise {
+    exe_val0 := next_exe_val0
   }
+  when(io.int_in(0).ready) { exe_uop0 := io.int_in(0).bits }
 
   val exe_val1 = RegInit(false.B)
   val exe_uop1 = Reg(new DecodedMicroOp)
-  when(io.redirect.valid) {
+  val next_exe_val1 = Mux(io.int_in(1).ready, io.int_in(1).fire, exe_val1)
+  val next_exe_uop1 = Mux(io.int_in(1).ready, io.int_in(1).bits, exe_uop1)
+  when(io.redirect.valid && is_younger_than_redirect(next_exe_uop1.snapshotIdx)) {
     exe_val1 := false.B
-  } .elsewhen(io.int_in(1).ready) {
-    exe_val1 := io.int_in(1).fire
-    exe_uop1 := io.int_in(1).bits
+  } .otherwise {
+    exe_val1 := next_exe_val1
   }
+  when(io.int_in(1).ready) { exe_uop1 := io.int_in(1).bits }
 
   val exe_valMem = RegInit(false.B)
   val exe_uopMem = Reg(new DecodedMicroOp)
-  when(io.redirect.valid) {
+  val next_exe_valMem = Mux(io.mem_in.ready, io.mem_in.fire, exe_valMem)
+  val next_exe_uopMem = Mux(io.mem_in.ready, io.mem_in.bits, exe_uopMem)
+  when(io.redirect.valid && is_younger_than_redirect(next_exe_uopMem.snapshotIdx)) {
     exe_valMem := false.B
-  } .elsewhen(io.mem_in.ready) {
-    exe_valMem := io.mem_in.fire
-    exe_uopMem := io.mem_in.bits
+  } .otherwise {
+    exe_valMem := next_exe_valMem
   }
+  when(io.mem_in.ready) { exe_uopMem := io.mem_in.bits }
 
   val exe_valFp = RegInit(false.B)
   val exe_uopFp = Reg(new DecodedMicroOp)
-  when(io.redirect.valid) {
+  val next_exe_valFp = Mux(io.fp_in.ready, io.fp_in.fire, exe_valFp)
+  val next_exe_uopFp = Mux(io.fp_in.ready, io.fp_in.bits, exe_uopFp)
+  when(io.redirect.valid && is_younger_than_redirect(next_exe_uopFp.snapshotIdx)) {
     exe_valFp := false.B
-  } .elsewhen(io.fp_in.ready) {
-    exe_valFp := io.fp_in.fire
-    exe_uopFp := io.fp_in.bits
+  } .otherwise {
+    exe_valFp := next_exe_valFp
   }
+  when(io.fp_in.ready) { exe_uopFp := io.fp_in.bits }
 
   // ---------------- REGISTER FILE ACCESS (CYCLE 1: READ STAGE) ----------------
-  regFile.io.raddr(0) := io.int_in(0).bits.psrs1
-  regFile.io.raddr(1) := io.int_in(0).bits.psrs2
-  regFile.io.raddr(2) := io.int_in(1).bits.psrs1
-  regFile.io.raddr(3) := io.int_in(1).bits.psrs2
-  regFile.io.raddr(4) := io.mem_in.bits.psrs1
-  regFile.io.raddr(5) := io.mem_in.bits.psrs2
-  regFile.io.raddr(6) := io.fp_in.bits.psrs1
+  intRC.io.raddr(0) := io.int_in(0).bits.psrs1; regFile.io.raddr(0) := io.int_in(0).bits.psrs1
+  intRC.io.raddr(1) := io.int_in(0).bits.psrs2; regFile.io.raddr(1) := io.int_in(0).bits.psrs2
+  intRC.io.raddr(2) := io.int_in(1).bits.psrs1; regFile.io.raddr(2) := io.int_in(1).bits.psrs1
+  intRC.io.raddr(3) := io.int_in(1).bits.psrs2; regFile.io.raddr(3) := io.int_in(1).bits.psrs2
+  intRC.io.raddr(4) := io.mem_in.bits.psrs1;    regFile.io.raddr(4) := io.mem_in.bits.psrs1
+  intRC.io.raddr(5) := io.mem_in.bits.psrs2;    regFile.io.raddr(5) := io.mem_in.bits.psrs2
+  intRC.io.raddr(6) := io.fp_in.bits.psrs1;     regFile.io.raddr(6) := io.fp_in.bits.psrs1
 
-  fpRegFile.io.raddr(0) := io.fp_in.bits.psrs1
-  fpRegFile.io.raddr(1) := io.fp_in.bits.psrs2
-  fpRegFile.io.raddr(2) := io.fp_in.bits.psrs3
-  fpRegFile.io.raddr(3) := io.mem_in.bits.psrs2
+  fpRC.io.raddr(0) := io.fp_in.bits.psrs1;      fpRegFile.io.raddr(0) := io.fp_in.bits.psrs1
+  fpRC.io.raddr(1) := io.fp_in.bits.psrs2;      fpRegFile.io.raddr(1) := io.fp_in.bits.psrs2
+  fpRC.io.raddr(2) := io.fp_in.bits.psrs3;      fpRegFile.io.raddr(2) := io.fp_in.bits.psrs3
+  fpRC.io.raddr(3) := io.mem_in.bits.psrs2;     fpRegFile.io.raddr(3) := io.mem_in.bits.psrs2
 
   // Register File Read Data Registers (latched at end of Cycle 1)
   val r_regFile_rdata0 = Reg(UInt(xLen.W))
   val r_regFile_rdata1 = Reg(UInt(xLen.W))
   when(io.int_in(0).ready) {
-    r_regFile_rdata0 := regFile.io.rdata(0)
-    r_regFile_rdata1 := regFile.io.rdata(1)
+    r_regFile_rdata0 := Mux(hit_int0, intRC.io.rdata(0), regFile.io.rdata(0))
+    r_regFile_rdata1 := Mux(hit_int0, intRC.io.rdata(1), regFile.io.rdata(1))
   }
 
   val r_regFile_rdata2 = Reg(UInt(xLen.W))
   val r_regFile_rdata3 = Reg(UInt(xLen.W))
   when(io.int_in(1).ready) {
-    r_regFile_rdata2 := regFile.io.rdata(2)
-    r_regFile_rdata3 := regFile.io.rdata(3)
+    r_regFile_rdata2 := Mux(hit_int1, intRC.io.rdata(2), regFile.io.rdata(2))
+    r_regFile_rdata3 := Mux(hit_int1, intRC.io.rdata(3), regFile.io.rdata(3))
   }
 
   val r_regFile_rdata4 = Reg(UInt(xLen.W))
   val r_regFile_rdata5 = Reg(UInt(xLen.W))
   val r_fpRegFile_rdata3 = Reg(UInt(fLen.W))
   when(io.mem_in.ready) {
-    r_regFile_rdata4 := regFile.io.rdata(4)
-    r_regFile_rdata5 := regFile.io.rdata(5)
-    r_fpRegFile_rdata3 := fpRegFile.io.rdata(3)
+    r_regFile_rdata4 := Mux(hit_mem, intRC.io.rdata(4), regFile.io.rdata(4))
+    r_regFile_rdata5 := Mux(hit_mem, intRC.io.rdata(5), regFile.io.rdata(5))
+    r_fpRegFile_rdata3 := Mux(hit_mem, fpRC.io.rdata(3), fpRegFile.io.rdata(3))
   }
 
   val r_fpRegFile_rdata0 = Reg(UInt(fLen.W))
@@ -214,10 +267,10 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   val r_fpRegFile_rdata2 = Reg(UInt(fLen.W))
   val r_regFile_rdata6 = Reg(UInt(xLen.W))
   when(io.fp_in.ready) {
-    r_fpRegFile_rdata0 := fpRegFile.io.rdata(0)
-    r_fpRegFile_rdata1 := fpRegFile.io.rdata(1)
-    r_fpRegFile_rdata2 := fpRegFile.io.rdata(2)
-    r_regFile_rdata6 := regFile.io.rdata(6)
+    r_fpRegFile_rdata0 := Mux(hit_fp, fpRC.io.rdata(0), fpRegFile.io.rdata(0))
+    r_fpRegFile_rdata1 := Mux(hit_fp, fpRC.io.rdata(1), fpRegFile.io.rdata(1))
+    r_fpRegFile_rdata2 := Mux(hit_fp, fpRC.io.rdata(2), fpRegFile.io.rdata(2))
+    r_regFile_rdata6 := Mux(hit_fp, intRC.io.rdata(6), regFile.io.rdata(6))
   }
 
   // ---------------- BYPASS NETWORK DEFINITIONS (CYCLE 2: EXECUTE STAGE) ----------------
@@ -366,6 +419,7 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   bru(0).io.pc   := exe_uop_raw0.pc
   bru(0).io.is_rvc := exe_uop_raw0.pre.is_rvc
   bru(0).io.pred_taken := exe_uop_raw0.is_predicted_taken
+  bru(0).io.pred_target := exe_uop_raw0.predicted_target
   bru(0).io.dec  := exe_dec0
 
   // ---------------- INT 1 ----------------
@@ -383,6 +437,7 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   bru(1).io.pc   := exe_uop_raw1.pc
   bru(1).io.is_rvc := exe_uop_raw1.pre.is_rvc
   bru(1).io.pred_taken := exe_uop_raw1.is_predicted_taken
+  bru(1).io.pred_target := exe_uop_raw1.predicted_target
   bru(1).io.dec  := exe_dec1
 
   // Share Multiplier and Divider inputs
@@ -554,19 +609,18 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   tlb.io.vaddr := agu_vaddr
 
   // Latch inputs at the end of Cycle 2 into AGU-to-Cache pipeline registers
-  when(io.redirect.valid) {
+  val next_r_agu_val = exe_valMem
+  when(io.redirect.valid && is_younger_than_redirect(exe_uopMem.snapshotIdx)) {
     r_agu_val := false.B
   } .otherwise {
-    r_agu_val := exe_valMem
+    r_agu_val := next_r_agu_val
   }
 
-  when(!io.redirect.valid) {
-    r_agu_uop   := exe_uopMem
-    r_agu_vaddr := agu_vaddr
-    r_agu_paddr := tlb.io.paddr
-    r_agu_src2  := srcMem_2
-    r_agu_fsrc2 := fsrcMem_2
-  }
+  r_agu_uop   := exe_uopMem
+  r_agu_vaddr := agu_vaddr
+  r_agu_paddr := tlb.io.paddr
+  r_agu_src2  := srcMem_2
+  r_agu_fsrc2 := fsrcMem_2
 
   // ---------------- MEM (CACHE ACCESS STAGE - CYCLE 3) ----------------
   lsu.io.src1 := r_agu_paddr

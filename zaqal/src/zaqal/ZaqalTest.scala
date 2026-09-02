@@ -16,7 +16,7 @@ object ZaqalTest extends App {
   implicit val p = (new ZaqalConfig).alter((site, here, up) => {
     case ZaqalParamsKey => up(ZaqalParamsKey).copy(
       programFile = "programs/hex/rename_test.hex",
-      enableUOpCache = false
+      enableUOpCache = true
     )
   })
   val params = p(ZaqalParamsKey)
@@ -48,41 +48,48 @@ object ZaqalTest extends App {
     // --- MEMORY RESPONDER MODEL ---
     // The bare metal program to run (Replacing the mock ICache)
     val programMemory = Seq(
-      "h014002ef".U(32.W), // 00: jal x5, 0x14    (Correct push 1, pushes 0x04 to RAS. Save in x5)
-      "h0000006f".U(32.W), // 04: j 0             (Target of correct pop 1 - END OF PROGRAM LOOP)
-      "h00000013".U(32.W), // 08: nop
-      "h00000013".U(32.W), // 0C: nop
-      "h00000013".U(32.W), // 10: nop
+      "h00a00113".U(32.W), // 00: addi x2, x0, 10  (Write a new value to PRF and RC)
+      "h00110193".U(32.W), // 04: addi x3, x2, 1   (RC HIT! Should issue in 0 extra cycles)
       
-      "h014000ef".U(32.W), // 14: jal x1, 0x28    (Correct push 2, pushes 0x18 to RAS. Save in x1)
-      "h00028067".U(32.W), // 18: jalr x0, 0(x5)  (Correct pop 1, should jump back to 0x04 using x5)
-      "h00000013".U(32.W), // 1C: nop
-      "h00000013".U(32.W), // 20: nop
-      "h00000013".U(32.W), // 24: nop
+      // Flush the RC by writing to 32 other registers
+      "h00100213".U(32.W), // 08: addi x4, x0, 1
+      "h00100293".U(32.W), // 0C: addi x5, x0, 1
+      "h00100313".U(32.W), // 10: addi x6, x0, 1
+      "h00100393".U(32.W), // 14: addi x7, x0, 1
+      "h00100413".U(32.W), // 18: addi x8, x0, 1
+      "h00100493".U(32.W), // 1C: addi x9, x0, 1
+      "h00100513".U(32.W), // 20: addi x10, x0, 1
+      "h00100593".U(32.W), // 24: addi x11, x0, 1
+      "h00100613".U(32.W), // 28: addi x12, x0, 1
+      "h00100693".U(32.W), // 2C: addi x13, x0, 1
+      "h00100713".U(32.W), // 30: addi x14, x0, 1
+      "h00100793".U(32.W), // 34: addi x15, x0, 1
+      "h00100813".U(32.W), // 38: addi x16, x0, 1
+      "h00100893".U(32.W), // 3C: addi x17, x0, 1
+      "h00100913".U(32.W), // 40: addi x18, x0, 1
+      "h00100993".U(32.W), // 44: addi x19, x0, 1
+      "h00100a13".U(32.W), // 48: addi x20, x0, 1
+      "h00100a93".U(32.W), // 4C: addi x21, x0, 1
+      "h00100b13".U(32.W), // 50: addi x22, x0, 1
+      "h00100b93".U(32.W), // 54: addi x23, x0, 1
+      "h00100c13".U(32.W), // 58: addi x24, x0, 1
+      "h00100c93".U(32.W), // 5C: addi x25, x0, 1
+      "h00100d13".U(32.W), // 60: addi x26, x0, 1
+      "h00100d93".U(32.W), // 64: addi x27, x0, 1
+      "h00100e13".U(32.W), // 68: addi x28, x0, 1
+      "h00100e93".U(32.W), // 6C: addi x29, x0, 1
+      "h00100f13".U(32.W), // 70: addi x30, x0, 1
+      "h00100f93".U(32.W), // 74: addi x31, x0, 1
       
-      "h00200113".U(32.W), // 28: addi x2, x0, 2
-      "h02210a63".U(32.W), // 2C: beq x2, x2, 0x60 (Branch target 0x60. Mispredicted Not-Taken, so falls through to 0x30)
+      // Write a few more to guarantee the 32-entry Direct-Mapped RC wraps around and evicts x2's tag!
+      "h00100213".U(32.W), // 78: addi x4, x0, 1
+      "h00100293".U(32.W), // 7C: addi x5, x0, 1
+      "h00100313".U(32.W), // 80: addi x6, x0, 1
+      "h00100393".U(32.W), // 84: addi x7, x0, 1
+      "h00100413".U(32.W), // 88: addi x8, x0, 1
       
-      // -- WRONG PATH (Deep Nested Pops & Pushes) --
-      "h00008067".U(32.W), // 30: jalr x0, 0(x1)  (Wrong pop 1: consumes 0x18 from spec_stack)
-      "h00008067".U(32.W), // 34: jalr x0, 0(x1)  (Wrong pop 2: consumes 0x04 from spec_stack)
-      "h00008067".U(32.W), // 38: jalr x0, 0(x1)  (Wrong pop 3: underflow/consumes garbage)
-      "h014000ef".U(32.W), // 3C: jal x1, 0x50    (Wrong push 1: pushes 0x40 to spec_stack)
-      "h00000013".U(32.W), // 40: nop
-      "h00000013".U(32.W), // 44: nop
-      "h00000013".U(32.W), // 48: nop
-      "h00000013".U(32.W), // 4C: nop
-      
-      "h00008067".U(32.W), // 50: jalr x0, 0(x1)  (Wrong pop 4: consumes 0x40 from spec_stack)
-      "h00000013".U(32.W), // 54: nop
-      "h00000013".U(32.W), // 58: nop
-      "h00000013".U(32.W), // 5C: nop
-      
-      // -- CORRECT PATH (Branch resolves and redirects here) --
-      "h00008067".U(32.W), // 60: jalr x0, 0(x1)  (Correct pop 2: should pop 0x18 because spec_stack is restored from arch_stack!)
-      "h00000013".U(32.W), // 64: nop
-      "h00000013".U(32.W), // 68: nop
-      "h00000013".U(32.W)  // 6C: nop
+      "h00710193".U(32.W), // 8C: addi x3, x2, 7   (RC MISS! Should stall issue for 1 extra cycle)
+      "h0000006f".U(32.W)  // 90: j 0             (END OF PROGRAM LOOP)
     ).padTo(1024, "h00000013".U(32.W))
 
     var memLatencyCounter = 0

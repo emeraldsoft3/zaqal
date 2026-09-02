@@ -42,6 +42,7 @@ class IBUF(implicit val p: Parameters) extends Module with HasZaqalParameter {
         entry.ftqPtr   := io.inst_data.bits.ftqPtr
         entry.epoch    := io.inst_data.bits.epoch
         entry.is_predicted_taken := io.inst_data.bits.prediction.taken && (i.U === io.inst_data.bits.prediction.slot)
+        entry.predicted_target := io.inst_data.bits.prediction.target
         
         buffer(idx) := entry
         valid(idx) := true.B

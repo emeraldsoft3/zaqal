@@ -22,7 +22,8 @@ class RegFile(val numReadPorts: Int = 7, val numWritePorts: Int = 5)(implicit va
   io.debug_regs := regs
 
   for (i <- 0 until numReadPorts) {
-    io.rdata(i) := Mux(io.raddr(i) === 0.U, 0.U, regs(io.raddr(i)))
+    val delayed_raddr = RegNext(io.raddr(i))
+    io.rdata(i) := Mux(delayed_raddr === 0.U, 0.U, regs(delayed_raddr))
   }
 
   for (i <- 0 until numWritePorts) {

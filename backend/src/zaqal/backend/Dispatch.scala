@@ -31,12 +31,8 @@ class Dispatch(implicit val p: Parameters) extends Module with HasZaqalParameter
 
   // Shadow parcel logic (dynamic scanning based on RVC status)
   val is_shadow = Wire(Vec(decodeWidth, Bool()))
-  val is_val_inst = Wire(Vec(decodeWidth, Bool()))
-  is_shadow(0) := false.B
-  is_val_inst(0) := true.B
-  for (j <- 1 until decodeWidth) {
-    is_shadow(j) := is_val_inst(j - 1) && !io.in(j - 1).bits.decode.is_rvc
-    is_val_inst(j) := !is_shadow(j)
+  for (j <- 0 until decodeWidth) {
+    is_shadow(j) := false.B
   }
 
   // Capacity parameters for the current execution cluster

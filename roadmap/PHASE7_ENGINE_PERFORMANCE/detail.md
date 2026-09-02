@@ -14,7 +14,7 @@ The goal of this phase is to turn the "Instructions-per-packet" into "Instructio
 - [x] **Day 1-3**: **ROB Logic**: Implement the core buffer to track in-flight instructions.
 - [x] **Day 4-5**: **Pointer Management**: Enqueue/Dequeue pointers for circular commitment.
 - [x] **Day 6-8**: **Exception & Flush**: Precise exceptions and rollback state management.
-- [ ] **Day 8.5**: **RAS Deep Data Recovery Verification**: Now that the ROB is feeding the architectural commit signals, execute a deep-nested wrong-path pop assembly program to formally verify the 1-cycle data copy from `arch_stack` to `spec_stack` built in Phase 6.
+- [x] **Day 8.5**: **RAS Deep Data Recovery Verification**: Now that the ROB is feeding the architectural commit signals, execute a deep-nested wrong-path pop assembly program to formally verify the 1-cycle data copy from `arch_stack` to `spec_stack` built in Phase 6.
 - **Detailed Plan**: The Reorder Buffer (ROB) is the backbone of out-of-order execution. It ensures that while instructions execute in any order as soon as their data is ready, they update the architectural state strictly in-order. We will build a massive circular buffer (e.g., 128+ entries). Instructions are allocated in the ROB at dispatch, and they graduate (commit) only when they reach the head of the ROB and have successfully executed without exceptions. If an exception occurs, the ROB acts as the rollback mechanism, flushing all younger speculative instructions.
 - **XiangShan Study**: [Rob.scala](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/backend/rob/Rob.scala)
 
@@ -22,8 +22,8 @@ The goal of this phase is to turn the "Instructions-per-packet" into "Instructio
 - [x] **Day 9-11**: **Rename Alias Table (RAT)**: Map logical registers to physical ones. *(Completed in Phase 4)*
 - [x] **Day 11.5**: **Checkpoint Array (Snapshots)**: Implement 1-cycle RAT/FreeList state recovery for branch mispredicts (XiangShan parity). *(Completed in Phase 4)*
 - [x] **Day 12-13**: **Physical Register File (PRF)**: High-bandwidth multi-port RF. *(Completed in Phase 4)*
-- [ ] **Day 13.5**: **RAT/PRF Commit Wiring**: Wire the ROB's `io.commits` port into the RAT and FreeList to safely recycle physical registers upon graduation. *(Nuance Fix)*
-- [ ] **Day 14-15**: **Register Cache (RC)**: Reduce PRF read latency to improve $F_{max}$.
+- [x] **Day 13.5**: **RAT/PRF Commit Wiring**: Wire the ROB's `io.commits` port into the RAT and FreeList to safely recycle physical registers upon graduation. *(Nuance Fix)*
+- [x] **Day 14-15**: **Register Cache (RC)**: Reduce PRF read latency to improve $F_{max}$.
 - **Detailed Plan**: We will separate the architectural registers from the Physical Register File (PRF). The RAT will dynamically map the 32 logical RISC-V registers to a much larger pool of physical registers (e.g., 160+), entirely eliminating Write-After-Write (WAW) and Write-After-Read (WAR) false dependencies. We will also implement a Checkpoint Array, taking micro-architectural snapshots of the RAT at every branch, enabling instantaneous 1-cycle rollback upon misprediction. To alleviate PRF read bottlenecks, we will introduce a Register Cache to hold recently written values. Since the bypass network, wakeup buses, and checkpoint arrays scale quadratically with issue width, we will run the 14nm logic synthesis and P&R toolchain on the backend block to verify that these structures do not degrade our 1.0–1.5 GHz $F_{max}$ target.
 - **XiangShan Study**: [RenameTable.scala](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/backend/rename/RenameTable.scala)
 
@@ -68,6 +68,7 @@ To match the high-IPC processing power of XiangShan's Kunminghu core, Zaqal's ex
 
 ## Future Scope: Multi-Bit Branch Tagging (BRT) & Post-Parity Execution Optimizations
 - **Multi-Bit Branch Tagging (BRT)**: Replace the 1-bit `epoch` system with XiangShan's multi-bit `BranchTag` (BRT) arrays and redirection masks, allowing the core to track dozens of in-flight branches simultaneously and selectively flush independent execution paths with surgical precision.
+- **PRF Banking**: Divide the 160-entry Physical Register File into 4 interleaved physical SRAM banks (e.g., Bank 0 for p0, p4, p8; Bank 1 for p1, p5, p9) to dramatically reduce the number of read/write ports required per macro, shrinking physical area and improving timing closure.
 - **ALU/MDU Post-Parity Optimization**: Once functional parity with baseline XiangShan structures is verified, apply advanced microarchitectural updates for physical synthesis timing improvements:
   1. Consolidate separate Adder & Subtractor modules into a single shared Adder-Subtractor using conditional input inversion and carry-in control to reduce physical area.
   2. Implement a 3-stage pipelined multiplier to isolate the slow 128-bit Carry-Propagate Addition (CPA) into its own dedicated clock cycle.

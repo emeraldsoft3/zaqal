@@ -85,7 +85,7 @@ class FreeList(val numPhyRegs: Int, val numLogicalRegs: Int)(implicit val p: Par
   // 3. State Update
   when (io.redirect) {
     // Restore speculative state from architectural state or snapshot
-    val targetHeadPtr = Mux(io.useSnapshot, snapshots.io.snapshots(io.snptRestoreIdx), io.archHeadPtr)
+    val targetHeadPtr = Mux(io.useSnapshot, snapshots.io.snapshots(io.snptRestoreIdx), tailPtr)
     headPtr := targetHeadPtr
     // Recalculate freeCount based on distance between tailPtr and archHeadPtr
     val dist = Mux(tailPtr === targetHeadPtr,

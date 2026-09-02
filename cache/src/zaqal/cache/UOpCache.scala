@@ -9,14 +9,22 @@ class UOpCacheReadReq(implicit val p: Parameters) extends Bundle with HasZaqalPa
   val pc = UInt(xLen.W)
 }
 
+class UOpCacheData(implicit val p: Parameters) extends Bundle with HasZaqalParameter {
+  val pc           = Vec(predictWidth, UInt(xLen.W))
+  val instructions = Vec(predictWidth, UInt(instBits.W))
+  val pre_decoded  = Vec(predictWidth, new PreDecodeSignals)
+  val mask         = UInt(predictWidth.W)
+  val exception_type = Vec(predictWidth, UInt(2.W))
+}
+
 class UOpCacheReadResp(implicit val p: Parameters) extends Bundle with HasZaqalParameter {
   val hit = Bool()
-  val uops = Vec(predictWidth, new MicroOp)
+  val data = new UOpCacheData
 }
 
 class UOpCacheWriteReq(implicit val p: Parameters) extends Bundle with HasZaqalParameter {
   val pc = UInt(xLen.W)
-  val uops = Vec(predictWidth, new MicroOp)
+  val data = new UOpCacheData
 }
 
 class UOpCache(implicit val p: Parameters) extends Module with HasZaqalParameter {
@@ -34,7 +42,7 @@ class UOpCache(implicit val p: Parameters) extends Module with HasZaqalParameter
   // Set-Associative arrays: [Way][Set]
   val tags  = RegInit(VecInit.fill(uopCacheWays)(VecInit.fill(uopCacheSets)(0.U(xLen.W))))
   val valid = RegInit(VecInit.fill(uopCacheWays)(VecInit.fill(uopCacheSets)(false.B)))
-  val data  = Reg(Vec(uopCacheWays, Vec(uopCacheSets, Vec(predictWidth, new MicroOp))))
+  val data  = Reg(Vec(uopCacheWays, Vec(uopCacheSets, new UOpCacheData)))
   
   // Simple FIFO/Round-Robin replacement state (one counter per set)
   val repl_way = RegInit(VecInit.fill(uopCacheSets)(0.U(log2Ceil(uopCacheWays).W)))
@@ -55,7 +63,7 @@ class UOpCache(implicit val p: Parameters) extends Module with HasZaqalParameter
   val hitWay = OHToUInt(hits)
   
   io.read.resp.hit := io.read.req.valid && hit
-  io.read.resp.uops := data(hitWay)(readIdx)
+  io.read.resp.data := data(hitWay)(readIdx)
 
   // Write logic
   when(io.write.req.valid) {
@@ -68,7 +76,7 @@ class UOpCache(implicit val p: Parameters) extends Module with HasZaqalParameter
     
     tags(allocWay)(writeIdx) := io.write.req.bits.pc
     valid(allocWay)(writeIdx) := true.B
-    data(allocWay)(writeIdx) := io.write.req.bits.uops
+    data(allocWay)(writeIdx) := io.write.req.bits.data
     
     // Update replacement counter
     repl_way(writeIdx) := repl_way(writeIdx) + 1.U

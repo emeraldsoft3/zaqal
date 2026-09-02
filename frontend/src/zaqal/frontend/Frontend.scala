@@ -73,8 +73,21 @@ class Frontend(implicit val p: Parameters) extends Module with HasZaqalParameter
   // uOp Cache Hit Evaluation (Moved up for bypass)
   val uop_hit = uopCache.io.read.resp.hit && ftq_skid.io.deq.valid && enableUOpCache.B
   
-  // Lock-step Handshake: Fire only if both are ready (or if we hit in uOp cache and ibuf is ready)
-  ftq_skid.io.deq.ready := Mux(uop_hit, ibuf_out_ready(0), ifu.io.fetch_req.ready && icache.io.ready)
+  val uop_packet = Wire(new FetchPacket)
+  uop_packet.pc := uopCache.io.read.resp.data.pc
+  uop_packet.instructions := uopCache.io.read.resp.data.instructions
+  uop_packet.pre_decoded := uopCache.io.read.resp.data.pre_decoded
+  uop_packet.mask := uopCache.io.read.resp.data.mask
+  uop_packet.exception_type := uopCache.io.read.resp.data.exception_type
+  uop_packet.debug_seqNum := VecInit.fill(predictWidth)(0.U)
+  uop_packet.prediction := ftq_skid.io.deq.bits.prediction
+  uop_packet.ftqPtr := ftq_skid.io.deq.bits.ftqPtr
+  uop_packet.epoch := ftq_skid.io.deq.bits.epoch
+
+  val ifu_skid = Module(new SkidBuffer(new FetchPacket))
+
+  // Lock-step Handshake: Fire only if both are ready (or if we hit in uOp cache and ifu_skid is ready)
+  ftq_skid.io.deq.ready := Mux(uop_hit, ifu_skid.io.enq.ready, ifu.io.fetch_req.ready && icache.io.ready)
   ftq.io.toICache.ready := ftq_skid.io.deq.ready
 
   ifu.io.fetch_req.valid := ftq_skid.io.deq.valid && icache.io.ready && !uop_hit
@@ -87,8 +100,10 @@ class Frontend(implicit val p: Parameters) extends Module with HasZaqalParameter
   ifu.io.insts_in     := icache.io.insts
 
   // 4. IFU -> IBUF (Data Path - Buffered!)
-  val ifu_skid = Module(new SkidBuffer(new FetchPacket))
-  ifu_skid.io.enq <> ifu.io.toIbuffer
+  ifu_skid.io.enq.valid := ifu.io.toIbuffer.valid || uop_hit
+  ifu_skid.io.enq.bits := Mux(uop_hit, uop_packet, ifu.io.toIbuffer.bits)
+  ifu.io.toIbuffer.ready := ifu_skid.io.enq.ready && !uop_hit
+
   ifu_skid.io.flush := is_valid_redirect
   ibuf.io.inst_data <> ifu_skid.io.deq
 
@@ -98,16 +113,13 @@ class Frontend(implicit val p: Parameters) extends Module with HasZaqalParameter
   uopCache.io.flush := is_valid_redirect
 
   // Populate uOp Cache on IFU packet dispatch
-  uopCache.io.write.req.valid := ifu_skid.io.deq.valid && !is_valid_redirect
-  uopCache.io.write.req.bits.pc := ifu_skid.io.deq.bits.pc(0)
-  for (i <- 0 until predictWidth) {
-    uopCache.io.write.req.bits.uops(i).pc       := ifu_skid.io.deq.bits.pc(i)
-    uopCache.io.write.req.bits.uops(i).inst_raw := ifu_skid.io.deq.bits.instructions(i)
-    uopCache.io.write.req.bits.uops(i).pre      := ifu_skid.io.deq.bits.pre_decoded(i)
-    uopCache.io.write.req.bits.uops(i).ftqPtr   := ifu_skid.io.deq.bits.ftqPtr
-    uopCache.io.write.req.bits.uops(i).epoch    := ifu_skid.io.deq.bits.epoch
-    uopCache.io.write.req.bits.uops(i).is_predicted_taken := ifu_skid.io.deq.bits.prediction.taken && (i.U === ifu_skid.io.deq.bits.prediction.slot)
-  }
+  uopCache.io.write.req.valid := ifu.io.toIbuffer.valid && !is_valid_redirect
+  uopCache.io.write.req.bits.pc := ifu.io.toIbuffer.bits.pc(0)
+  uopCache.io.write.req.bits.data.pc := ifu.io.toIbuffer.bits.pc
+  uopCache.io.write.req.bits.data.instructions := ifu.io.toIbuffer.bits.instructions
+  uopCache.io.write.req.bits.data.pre_decoded := ifu.io.toIbuffer.bits.pre_decoded
+  uopCache.io.write.req.bits.data.mask := ifu.io.toIbuffer.bits.mask
+  uopCache.io.write.req.bits.data.exception_type := ifu.io.toIbuffer.bits.exception_type
 
   // Calculate Total Skid Buffer Occupancy
   val total_skid_occupancy = bpu_skid.io.occupancy +& ftq_skid.io.occupancy +& ifu_skid.io.occupancy
@@ -117,26 +129,15 @@ class Frontend(implicit val p: Parameters) extends Module with HasZaqalParameter
   ftq.io.redirect := io.redirect
 
   // 5. IBUF -> Backend (Dispatch Path - Pipelined Staging Boundary!)
-  // SkidBuffers and ibuf_out_ready are instantiated above to avoid forward references
-
   ibuf_out_ready(0) := ibuf_skids(0).io.enq.ready
   for (i <- 1 until decodeWidth) {
     ibuf_out_ready(i) := ibuf_out_ready(i - 1) && ibuf_skids(i).io.enq.ready
   }
 
   for (i <- 0 until decodeWidth) {
-    ibuf.io.out(i).ready := ibuf_out_ready(i) && !uop_hit
-    
-    val uop_valid = uop_hit && (i.U < predictWidth.U) // Forward all fetched uOps on hit
-    val ibuf_valid = ibuf.io.out(i).valid && !uop_hit
-    
-    ibuf_skids(i).io.enq.valid := (uop_valid || ibuf_valid) && ibuf_out_ready(i)
-    // Avoid out-of-bounds index if decodeWidth > predictWidth
-    if (i < predictWidth) {
-      ibuf_skids(i).io.enq.bits  := Mux(uop_hit, uopCache.io.read.resp.uops(i), ibuf.io.out(i).bits)
-    } else {
-      ibuf_skids(i).io.enq.bits  := ibuf.io.out(i).bits
-    }
+    ibuf.io.out(i).ready := ibuf_out_ready(i)
+    ibuf_skids(i).io.enq.valid := ibuf.io.out(i).valid && ibuf_out_ready(i)
+    ibuf_skids(i).io.enq.bits  := ibuf.io.out(i).bits
     ibuf_skids(i).io.flush     := is_valid_redirect
     io.dispatch(i) <> ibuf_skids(i).io.deq
   }

@@ -1,0 +1,22 @@
+[warn] frontend/src/zaqal/frontend/SC.scala 37:28: [W005] Dynamic index with width 4 is too narrow for Vec of size 64 (expected index width 6).
+[warn]   val req_row = weightTable(req_idx)
+[warn]                            ^
+[warn] frontend/src/zaqal/frontend/SC.scala 63:27: [W005] Dynamic index with width 4 is too narrow for Vec of size 64 (expected index width 6).
+[warn]     val bias = weightTable(upd_idx)(0)
+[warn]                           ^
+[warn] frontend/src/zaqal/frontend/SC.scala 64:16: [W005] Dynamic index with width 4 is too narrow for Vec of size 64 (expected index width 6).
+[warn]     weightTable(upd_idx)(0) := Mux(io.update_dir,
+[warn]                ^
+[warn] frontend/src/zaqal/frontend/SC.scala 70:26: [W005] Dynamic index with width 4 is too narrow for Vec of size 64 (expected index width 6).
+[warn]       val w = weightTable(upd_idx)(i+1)
+[warn]                          ^
+[warn] frontend/src/zaqal/frontend/SC.scala 72:18: [W005] Dynamic index with width 4 is too narrow for Vec of size 64 (expected index width 6).
+[warn]       weightTable(upd_idx)(i+1) := Mux(inc,
+[warn]                  ^
+[warn] backend/src/zaqal/backend/rename/FreeList.scala 65:37: [W004] Dynamic index with width 9 is too wide for Vec of size 160 (expected index width 8).
+[warn]     io.allocatePhyReg(i) := freeList(wrapAdd(headPtr, offset))
+[warn]                                     ^
+[warn] backend/src/zaqal/backend/rename/FreeList.scala 73:15: [W004] Dynamic index with width 9 is too wide for Vec of size 160 (expected index width 8).
+[warn]       freeList(wrapAdd(tailPtr, offset)) := io.freePhyReg(i)
+[warn]               ^
+[warn] There were 7 warning(s) during hardware elaboration.
