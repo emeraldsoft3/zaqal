@@ -9,7 +9,7 @@ import zaqal.common._
 class Rob(implicit val p: Parameters) extends Module with HasZaqalParameter {
   val io = IO(new Bundle {
     val enq = Vec(decodeWidth, Flipped(Decoupled(new DecodedMicroOp)))
-    val exuWriteback = Vec(6, Flipped(ValidIO(new ExuOutput)))
+    val exuWriteback = Vec(7, Flipped(ValidIO(new ExuOutput)))
     val commits = Output(new RobCommitIO)
     val allocPtrs = Output(Vec(decodeWidth, UInt(log2Up(128).W)))
     val bpu_redirect = Input(new BPURedirect)

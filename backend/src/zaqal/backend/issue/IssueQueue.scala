@@ -158,7 +158,7 @@ class IssueQueue(val numEntries: Int, val numEnq: Int, val numDeq: Int, val numW
       val dist_restore = circDist(io.redirect_restore_idx)
       val dist_enq     = circDist(enqPtr)
       val in_valid_window  = dist_snap < dist_enq
-      val entry_is_younger = in_valid_window && dist_snap >= dist_restore
+      val entry_is_younger = in_valid_window && dist_snap > dist_restore
       when (entries(i).valid) {
         printf(p"    Entry $i: pc=${Hexadecimal(entries(i).uop.uop.pc)} snapIdx=${entries(i).uop.snapshotIdx} is_younger=${entry_is_younger}\n")
       }

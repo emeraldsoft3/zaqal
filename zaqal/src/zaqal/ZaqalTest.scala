@@ -15,7 +15,7 @@ object ZaqalTest extends App {
 
   implicit val p = (new ZaqalConfig).alter((site, here, up) => {
     case ZaqalParamsKey => up(ZaqalParamsKey).copy(
-      programFile = "programs/hex/rename_test.hex",
+      programFile = "",
       enableUOpCache = true
     )
   })
@@ -46,50 +46,15 @@ object ZaqalTest extends App {
 
 
     // --- MEMORY RESPONDER MODEL ---
-    // The bare metal program to run (Replacing the mock ICache)
+    // The bare metal program to run (Testing FPDIV Writeback and ROB Integration)
     val programMemory = Seq(
-      "h00a00113".U(32.W), // 00: addi x2, x0, 10  (Write a new value to PRF and RC)
-      "h00110193".U(32.W), // 04: addi x3, x2, 1   (RC HIT! Should issue in 0 extra cycles)
-      
-      // Flush the RC by writing to 32 other registers
-      "h00100213".U(32.W), // 08: addi x4, x0, 1
-      "h00100293".U(32.W), // 0C: addi x5, x0, 1
-      "h00100313".U(32.W), // 10: addi x6, x0, 1
-      "h00100393".U(32.W), // 14: addi x7, x0, 1
-      "h00100413".U(32.W), // 18: addi x8, x0, 1
-      "h00100493".U(32.W), // 1C: addi x9, x0, 1
-      "h00100513".U(32.W), // 20: addi x10, x0, 1
-      "h00100593".U(32.W), // 24: addi x11, x0, 1
-      "h00100613".U(32.W), // 28: addi x12, x0, 1
-      "h00100693".U(32.W), // 2C: addi x13, x0, 1
-      "h00100713".U(32.W), // 30: addi x14, x0, 1
-      "h00100793".U(32.W), // 34: addi x15, x0, 1
-      "h00100813".U(32.W), // 38: addi x16, x0, 1
-      "h00100893".U(32.W), // 3C: addi x17, x0, 1
-      "h00100913".U(32.W), // 40: addi x18, x0, 1
-      "h00100993".U(32.W), // 44: addi x19, x0, 1
-      "h00100a13".U(32.W), // 48: addi x20, x0, 1
-      "h00100a93".U(32.W), // 4C: addi x21, x0, 1
-      "h00100b13".U(32.W), // 50: addi x22, x0, 1
-      "h00100b93".U(32.W), // 54: addi x23, x0, 1
-      "h00100c13".U(32.W), // 58: addi x24, x0, 1
-      "h00100c93".U(32.W), // 5C: addi x25, x0, 1
-      "h00100d13".U(32.W), // 60: addi x26, x0, 1
-      "h00100d93".U(32.W), // 64: addi x27, x0, 1
-      "h00100e13".U(32.W), // 68: addi x28, x0, 1
-      "h00100e93".U(32.W), // 6C: addi x29, x0, 1
-      "h00100f13".U(32.W), // 70: addi x30, x0, 1
-      "h00100f93".U(32.W), // 74: addi x31, x0, 1
-      
-      // Write a few more to guarantee the 32-entry Direct-Mapped RC wraps around and evicts x2's tag!
-      "h00100213".U(32.W), // 78: addi x4, x0, 1
-      "h00100293".U(32.W), // 7C: addi x5, x0, 1
-      "h00100313".U(32.W), // 80: addi x6, x0, 1
-      "h00100393".U(32.W), // 84: addi x7, x0, 1
-      "h00100413".U(32.W), // 88: addi x8, x0, 1
-      
-      "h00710193".U(32.W), // 8C: addi x3, x2, 7   (RC MISS! Should stall issue for 1 extra cycle)
-      "h0000006f".U(32.W)  // 90: j 0             (END OF PROGRAM LOOP)
+      "h01400093".U(32.W), // 00: addi x1, x0, 20 (changed from 10)
+      "h00200113".U(32.W), // 04: addi x2, x0, 2
+      "hf00080d3".U(32.W), // 08: fmv.w.x f1, x1
+      "hf0010153".U(32.W), // 0C: fmv.w.x f2, x2
+      "h182081d3".U(32.W), // 10: fdiv.s f3, f1, f2  <-- Multi-cycle FPDIV! Watch robIdx writeback here.
+      "h00118253".U(32.W), // 14: fadd.s f4, f3, f1  <-- Depends on FPDIV. Should stall issue until fdiv completes.
+      "h0000006f".U(32.W)  // 18: j 0                <-- Endless loop
     ).padTo(1024, "h00000013".U(32.W))
 
     var memLatencyCounter = 0

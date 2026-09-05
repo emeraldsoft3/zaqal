@@ -14,11 +14,11 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
     val fp_in = Flipped(Decoupled(new DecodedMicroOp))
     val redirect = Output(new BPURedirect)
     val bpu_update = Output(new BPUUpdate)
-    val exuWriteback = Output(Vec(6, Valid(new ExuOutput)))
+    val exuWriteback = Output(Vec(7, Valid(new ExuOutput)))
     val debug_cycle = Input(UInt(64.W))
     val debug_regs = Output(Vec(phyRegs, UInt(xLen.W)))
     val debug_fp_regs = Output(Vec(phyRegs, UInt(xLen.W)))
-    val wakeup = Vec(5, Output(new WakeupBus))
+    val wakeup = Vec(6, Output(new WakeupBus))
     val snptValids = Input(Vec(renameSnapshotNum, Bool()))
     val snptDeqPtr = Input(UInt(log2Up(renameSnapshotNum).W))
     val dcache_req = Decoupled(new Bundle {
@@ -79,7 +79,7 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   }
 
   for (i <- 0 until 3) { fpRegFile.io.wen(i) := false.B; fpRegFile.io.waddr(i) := 0.U; fpRegFile.io.wdata(i) := 0.U }
-  for (i <- 0 until 5) { io.wakeup(i).valid := false.B; io.wakeup(i).pdest := 0.U }
+  for (i <- 0 until 6) { io.wakeup(i).valid := false.B; io.wakeup(i).pdest := 0.U }
   io.redirect.valid := false.B
   io.redirect.target := 0.U
   io.redirect.epoch := 0.U
@@ -177,7 +177,7 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
     val deqPtr = io.snptDeqPtr
     val restoreIdx = io.redirect.snapshotIdx
     def circDist(ptr: UInt): UInt = Mux(ptr >= deqPtr, ptr - deqPtr, ptr + renameSnapshotNum.U - deqPtr)
-    circDist(snapIdx) >= circDist(restoreIdx)
+    circDist(snapIdx) > circDist(restoreIdx)
   }
 
   val exe_val0 = RegInit(false.B)
@@ -695,7 +695,8 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
       when(exe_is_fp_wb_to_fp) {
         fpRegFile.io.wen(0) := true.B
         fpRegFile.io.waddr(0) := exe_uopFp.pdest
-        fpRegFile.io.wdata(0) := fpmisc.io.result_fp
+        val is_fpu_op = exe_decFp.is_fadd || exe_decFp.is_fsub || exe_decFp.is_fmul || exe_decFp.is_fmadd
+        fpRegFile.io.wdata(0) := Mux(is_fpu_op, fpu.io.result, fpmisc.io.result_fp)
       }
       when(exe_is_fp_wb_to_int) {
         next_regFile_wen(4) := true.B
@@ -710,7 +711,7 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
     fcsr.io.csr_wdata := srcFp_1
   }
 
-  val wuFp_valid = io.fp_in.fire && io.fp_in.bits.pdest =/= 0.U && is_fp_wb_to_int
+  val wuFp_valid = io.fp_in.fire && io.fp_in.bits.pdest =/= 0.U && !decFp.is_fdiv && !decFp.is_fsqrt
   val r_wuFp_valid = RegNext(wuFp_valid, false.B)
   val r_wuFp_pdest = RegNext(io.fp_in.bits.pdest, 0.U)
   io.wakeup(4).valid := r_wuFp_valid
@@ -720,10 +721,13 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
     fpRegFile.io.wen(1) := true.B
     fpRegFile.io.waddr(1) := fpdiv_rd_latch
     fpRegFile.io.wdata(1) := fpdiv.io.result
-    // Wakeups for FP Regs are separate or we should put them on the wakeup bus if it's unified.
-    // Zaqal seems to only have integer wakeups right now since fp wakeups were combined previously.
-    // For now we don't wake up FP registers explicitly if they are always ready or handled in IQ.
   }
+  
+  val wuFpdiv_valid = fpdiv.io.done && fpdiv_rd_latch =/= 0.U
+  val r_wuFpdiv_valid = RegNext(wuFpdiv_valid, false.B)
+  val r_wuFpdiv_pdest = RegNext(fpdiv_rd_latch, 0.U)
+  io.wakeup(5).valid := r_wuFpdiv_valid
+  io.wakeup(5).pdest := r_wuFpdiv_pdest
 
   for (i <- 0 until 6) {
     when(regFile.io.wen(i) && regFile.io.waddr(i) =/= 0.U) {
@@ -735,7 +739,7 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   io.debug_fp_regs := fpRegFile.io.debug_regs
 
   // ---------------- ROB WRITEBACK ----------------
-  for (i <- 0 until 6) {
+  for (i <- 0 until 7) {
     io.exuWriteback(i).valid := false.B
     io.exuWriteback(i).bits.robIdx := 0.U
     io.exuWriteback(i).bits.data := 0.U
@@ -769,8 +773,15 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   io.exuWriteback(3).bits.robIdx := r_agu_uop.robIdx
   
   // FP
-  io.exuWriteback(4).valid := exe_valFp
+  val exe_is_fpdiv = exe_decFp.is_fdiv || exe_decFp.is_fsqrt
+  io.exuWriteback(4).valid := exe_valFp && !exe_is_fpdiv
   io.exuWriteback(4).bits.robIdx := exe_uopFp.robIdx
+  
+  // FPDIV (Multi-cycle)
+  val fpdiv_robIdx_latch = RegInit(0.U(log2Up(128).W))
+  when(exe_valFp && exe_is_fpdiv) { fpdiv_robIdx_latch := exe_uopFp.robIdx }
+  io.exuWriteback(6).valid := fpdiv.io.done
+  io.exuWriteback(6).bits.robIdx := fpdiv_robIdx_latch
   
   // MUL (Wait! MUL is pipelined, so we need to track robIdx through the pipeline)
   val r_mul_robIdx = RegNext(Mux(exe_is_mul_op0, exe_uop0.robIdx, exe_uop1.robIdx), 0.U)

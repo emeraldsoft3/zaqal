@@ -169,7 +169,7 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
     // Flush if: dist_i >= dist_restore AND dist_i < dist_enqPtr (valid window)
     val dist_enq = circDist(enqPtr)
     val in_valid_window = dist_i < dist_enq
-    val is_younger = in_valid_window && dist_i >= dist_restore
+    val is_younger = in_valid_window && dist_i > dist_restore
     val flush = redirect_valid && is_younger && rat.io.snptValids(i)
     rat.io.snptFlushVec(i) := flush
     intFreeList.io.snptFlushVec(i) := flush
@@ -248,14 +248,15 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
   val dispatch = Module(new Dispatch)
   
   val rename_out = Wire(Vec(decodeWidth, Decoupled(new DecodedMicroOp)))
-  val busyTable = Module(new BusyTable)
-  val intIq = Module(new IssueQueue(16, decodeWidth, 2, 5))
-  val memIq = Module(new IssueQueue(8, decodeWidth, 1, 5))
-  val fpIq = Module(new IssueQueue(8, decodeWidth, 1, 5))
+  val intBusyTable = Module(new BusyTable)
+  val fpBusyTable  = Module(new BusyTable)
+  val intIq = Module(new IssueQueue(16, decodeWidth, 2, 6))
+  val memIq = Module(new IssueQueue(8, decodeWidth, 1, 6))
+  val fpIq = Module(new IssueQueue(8, decodeWidth, 1, 6))
   val rob = Module(new zaqal.backend.rob.Rob)
   io.commits := rob.io.commits
   rob.io.bpu_redirect := exec.io.redirect
-  for (i <- 0 until 6) {
+  for (i <- 0 until 7) {
     rob.io.exuWriteback(i) <> exec.io.exuWriteback(i)
   }
   
@@ -293,50 +294,71 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
 
 
   for (i <- 0 until decodeWidth) {
-    busyTable.io.allocPorts(i).valid := io.dispatch(i).fire && (intFreeList.io.allocateReq(i) || fpFreeList.io.allocateReq(i))
-    busyTable.io.allocPorts(i).bits := decoded_uops(i).pdest
-
-    busyTable.io.readPorts(i)(0).addr := dispatch_in_buffered(i).bits.psrs1
-    busyTable.io.readPorts(i)(1).addr := dispatch_in_buffered(i).bits.psrs2
-    busyTable.io.readPorts(i)(2).addr := dispatch_in_buffered(i).bits.psrs3
-
-    intIq.io.rs1_ready_in(i) := busyTable.io.readPorts(i)(0).ready
-    intIq.io.rs2_ready_in(i) := busyTable.io.readPorts(i)(1).ready
-    intIq.io.rs3_ready_in(i) := busyTable.io.readPorts(i)(2).ready
+    val dec = decoded_uops(i).decode
     
-    memIq.io.rs1_ready_in(i) := busyTable.io.readPorts(i)(0).ready
-    memIq.io.rs2_ready_in(i) := busyTable.io.readPorts(i)(1).ready
-    memIq.io.rs3_ready_in(i) := busyTable.io.readPorts(i)(2).ready
+    intBusyTable.io.allocPorts(i).valid := io.dispatch(i).fire && intFreeList.io.allocateReq(i)
+    intBusyTable.io.allocPorts(i).bits  := decoded_uops(i).pdest
 
-    fpIq.io.rs1_ready_in(i) := busyTable.io.readPorts(i)(0).ready
-    fpIq.io.rs2_ready_in(i) := busyTable.io.readPorts(i)(1).ready
-    fpIq.io.rs3_ready_in(i) := busyTable.io.readPorts(i)(2).ready
+    fpBusyTable.io.allocPorts(i).valid := io.dispatch(i).fire && fpFreeList.io.allocateReq(i)
+    fpBusyTable.io.allocPorts(i).bits  := decoded_uops(i).pdest
+
+    intBusyTable.io.readPorts(i)(0).addr := dispatch_in_buffered(i).bits.psrs1
+    intBusyTable.io.readPorts(i)(1).addr := dispatch_in_buffered(i).bits.psrs2
+    intBusyTable.io.readPorts(i)(2).addr := dispatch_in_buffered(i).bits.psrs3
+
+    fpBusyTable.io.readPorts(i)(0).addr := dispatch_in_buffered(i).bits.psrs1
+    fpBusyTable.io.readPorts(i)(1).addr := dispatch_in_buffered(i).bits.psrs2
+    fpBusyTable.io.readPorts(i)(2).addr := dispatch_in_buffered(i).bits.psrs3
+
+    val r1_is_fp = dispatch_in_buffered(i).bits.decode.rs1_is_fp
+    val r2_is_fp = dispatch_in_buffered(i).bits.decode.rs2_is_fp
+    val r3_is_fp = dispatch_in_buffered(i).bits.decode.rs3_is_fp
+
+    intIq.io.rs1_ready_in(i) := Mux(r1_is_fp, fpBusyTable.io.readPorts(i)(0).ready, intBusyTable.io.readPorts(i)(0).ready)
+    intIq.io.rs2_ready_in(i) := Mux(r2_is_fp, fpBusyTable.io.readPorts(i)(1).ready, intBusyTable.io.readPorts(i)(1).ready)
+    intIq.io.rs3_ready_in(i) := Mux(r3_is_fp, fpBusyTable.io.readPorts(i)(2).ready, intBusyTable.io.readPorts(i)(2).ready)
+    
+    memIq.io.rs1_ready_in(i) := Mux(r1_is_fp, fpBusyTable.io.readPorts(i)(0).ready, intBusyTable.io.readPorts(i)(0).ready)
+    memIq.io.rs2_ready_in(i) := Mux(r2_is_fp, fpBusyTable.io.readPorts(i)(1).ready, intBusyTable.io.readPorts(i)(1).ready)
+    memIq.io.rs3_ready_in(i) := Mux(r3_is_fp, fpBusyTable.io.readPorts(i)(2).ready, intBusyTable.io.readPorts(i)(2).ready)
+
+    fpIq.io.rs1_ready_in(i) := Mux(r1_is_fp, fpBusyTable.io.readPorts(i)(0).ready, intBusyTable.io.readPorts(i)(0).ready)
+    fpIq.io.rs2_ready_in(i) := Mux(r2_is_fp, fpBusyTable.io.readPorts(i)(1).ready, intBusyTable.io.readPorts(i)(1).ready)
+    fpIq.io.rs3_ready_in(i) := Mux(r3_is_fp, fpBusyTable.io.readPorts(i)(2).ready, intBusyTable.io.readPorts(i)(2).ready)
   }
 
-  for (w <- 0 until 5) {
+  for (w <- 0 until 6) {
+    val is_fp_wakeup = (w == 4) || (w == 5) // Port 4 (FP normal) and Port 5 (FPDIV)
+    
     if (w == 3) {
       val reg_wakeup = Wire(new WakeupBus)
       reg_wakeup.valid := RegNext(exec.io.wakeup(w).valid, false.B)
       reg_wakeup.pdest := RegNext(exec.io.wakeup(w).pdest, 0.U)
 
-      busyTable.io.wakeupPorts(w).valid := reg_wakeup.valid
-      busyTable.io.wakeupPorts(w).bits  := reg_wakeup.pdest
+      intBusyTable.io.wakeupPorts(w).valid := !is_fp_wakeup.B && reg_wakeup.valid
+      intBusyTable.io.wakeupPorts(w).bits  := reg_wakeup.pdest
+      fpBusyTable.io.wakeupPorts(w).valid  := is_fp_wakeup.B && reg_wakeup.valid
+      fpBusyTable.io.wakeupPorts(w).bits   := reg_wakeup.pdest
       
-      intIq.io.wakeup(w) := exec.io.wakeup(w) // Keep it combinational for intIq load-to-branch zero stall
+      intIq.io.wakeup(w) := exec.io.wakeup(w)
       memIq.io.wakeup(w) := reg_wakeup
       fpIq.io.wakeup(w)  := reg_wakeup
     } else {
-      busyTable.io.wakeupPorts(w).valid := exec.io.wakeup(w).valid
-      busyTable.io.wakeupPorts(w).bits := exec.io.wakeup(w).pdest
+      intBusyTable.io.wakeupPorts(w).valid := !is_fp_wakeup.B && exec.io.wakeup(w).valid
+      intBusyTable.io.wakeupPorts(w).bits  := exec.io.wakeup(w).pdest
+      fpBusyTable.io.wakeupPorts(w).valid  := is_fp_wakeup.B && exec.io.wakeup(w).valid
+      fpBusyTable.io.wakeupPorts(w).bits   := exec.io.wakeup(w).pdest
       
       intIq.io.wakeup(w) := exec.io.wakeup(w)
       memIq.io.wakeup(w) := exec.io.wakeup(w)
       fpIq.io.wakeup(w)  := exec.io.wakeup(w)
     }
   }
-  for (w <- 5 until decodeWidth) {
-    busyTable.io.wakeupPorts(w).valid := false.B
-    busyTable.io.wakeupPorts(w).bits := 0.U
+  for (w <- 6 until decodeWidth) {
+    intBusyTable.io.wakeupPorts(w).valid := false.B
+    intBusyTable.io.wakeupPorts(w).bits := 0.U
+    fpBusyTable.io.wakeupPorts(w).valid := false.B
+    fpBusyTable.io.wakeupPorts(w).bits := 0.U
   }
 
   redirect_valid := exec.io.redirect.valid

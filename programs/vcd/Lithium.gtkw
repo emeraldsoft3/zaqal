@@ -1,25 +1,25 @@
 [*]
 [*] GTKWave Analyzer v3.3.111 (w)1999-2020 BSI
-[*] Wed Aug 26 06:36:13 2026
+[*] Sat Sep  5 11:02:02 2026
 [*]
 [dumpfile] "/home/emerald/zaqal/programs/vcd/Lithium.vcd"
-[dumpfile_mtime] "Tue Aug 25 12:30:49 2026"
-[dumpfile_size] 10461004
+[dumpfile_mtime] "Sat Sep  5 10:33:17 2026"
+[dumpfile_size] 15582632
 [savefile] "/home/emerald/zaqal/programs/vcd/Lithium.gtkw"
-[timestart] 325
+[timestart] 218
 [size] 1865 930
 [pos] -1 -1
-*-2.900000 447 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-2.900000 231 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] TOP.
 [treeopen] TOP.Core.
 [treeopen] TOP.Core.backend.
 [treeopen] TOP.Core.backend.dcache.
+[treeopen] TOP.Core.backend.exec.
 [treeopen] TOP.Core.backend.exec.bru_0.
 [treeopen] TOP.Core.backend.intFreeList.
 [treeopen] TOP.Core.backend.intIq.
 [treeopen] TOP.Core.backend.memIq.
 [treeopen] TOP.Core.backend.rat.intRat.
-[treeopen] TOP.Core.frontend.bpu.
 [treeopen] TOP.Core.frontend.bpu.tage.
 [treeopen] TOP.Core.frontend.ifu.
 [sst_width] 298
@@ -42,9 +42,6 @@ TOP.Core.frontend.bpu.io_out_bits_mask[15:0]
 TOP.Core.frontend.bpu.io_redirect_valid
 @22
 TOP.Core.frontend.bpu.io_redirect_target[63:0]
-@28
-TOP.Core.frontend.bpu.current_mask[15:0]
-@22
 TOP.Core.frontend.bpu.final_target[63:0]
 @28
 TOP.Core.frontend.bpu.bpu_update_is_cfi
@@ -389,7 +386,6 @@ TOP.Core.backend.intFreeList.io_freeReq_2
 TOP.Core.backend.intFreeList.io_freePhyReg_0[7:0]
 TOP.Core.backend.intFreeList.io_freePhyReg_1[7:0]
 TOP.Core.backend.intFreeList.io_freePhyReg_2[7:0]
-@23
 TOP.Core.backend.intFreeList.tailPtr[7:0]
 @1000200
 -freelist
@@ -628,8 +624,76 @@ TOP.Core.backend.exec.lsu.io_dec_is_lw
 TOP.debug_cycle_count[63:0]
 @200
 -RegFile
-@22
+@c00023
 +{TOP.Core.backend.exec.regFile.regs_32[63:0]} TOP.Core.backend.exec.regFile.regs_32[63:0]
+@29
+(0)TOP.Core.backend.exec.regFile.regs_32[63:0]
+(1)TOP.Core.backend.exec.regFile.regs_32[63:0]
+(2)TOP.Core.backend.exec.regFile.regs_32[63:0]
+(3)TOP.Core.backend.exec.regFile.regs_32[63:0]
+(4)TOP.Core.backend.exec.regFile.regs_32[63:0]
+(5)TOP.Core.backend.exec.regFile.regs_32[63:0]
+(6)TOP.Core.backend.exec.regFile.regs_32[63:0]
+(7)TOP.Core.backend.exec.regFile.regs_32[63:0]
+(8)TOP.Core.backend.exec.regFile.regs_32[63:0]
+(9)TOP.Core.backend.exec.regFile.regs_32[63:0]
+(10)TOP.Core.backend.exec.regFile.regs_32[63:0]
+(11)TOP.Core.backend.exec.regFile.regs_32[63:0]
+(12)TOP.Core.backend.exec.regFile.regs_32[63:0]
+(13)TOP.Core.backend.exec.regFile.regs_32[63:0]
+(14)TOP.Core.backend.exec.regFile.regs_32[63:0]
+(15)TOP.Core.backend.exec.regFile.regs_32[63:0]
+(16)TOP.Core.backend.exec.regFile.regs_32[63:0]
+(17)TOP.Core.backend.exec.regFile.regs_32[63:0]
+(18)TOP.Core.backend.exec.regFile.regs_32[63:0]
+(19)TOP.Core.backend.exec.regFile.regs_32[63:0]
+(20)TOP.Core.backend.exec.regFile.regs_32[63:0]
+(21)TOP.Core.backend.exec.regFile.regs_32[63:0]
+(22)TOP.Core.backend.exec.regFile.regs_32[63:0]
+(23)TOP.Core.backend.exec.regFile.regs_32[63:0]
+(24)TOP.Core.backend.exec.regFile.regs_32[63:0]
+(25)TOP.Core.backend.exec.regFile.regs_32[63:0]
+(26)TOP.Core.backend.exec.regFile.regs_32[63:0]
+(27)TOP.Core.backend.exec.regFile.regs_32[63:0]
+(28)TOP.Core.backend.exec.regFile.regs_32[63:0]
+(29)TOP.Core.backend.exec.regFile.regs_32[63:0]
+(30)TOP.Core.backend.exec.regFile.regs_32[63:0]
+(31)TOP.Core.backend.exec.regFile.regs_32[63:0]
+(32)TOP.Core.backend.exec.regFile.regs_32[63:0]
+(33)TOP.Core.backend.exec.regFile.regs_32[63:0]
+(34)TOP.Core.backend.exec.regFile.regs_32[63:0]
+(35)TOP.Core.backend.exec.regFile.regs_32[63:0]
+(36)TOP.Core.backend.exec.regFile.regs_32[63:0]
+(37)TOP.Core.backend.exec.regFile.regs_32[63:0]
+(38)TOP.Core.backend.exec.regFile.regs_32[63:0]
+(39)TOP.Core.backend.exec.regFile.regs_32[63:0]
+(40)TOP.Core.backend.exec.regFile.regs_32[63:0]
+(41)TOP.Core.backend.exec.regFile.regs_32[63:0]
+(42)TOP.Core.backend.exec.regFile.regs_32[63:0]
+(43)TOP.Core.backend.exec.regFile.regs_32[63:0]
+(44)TOP.Core.backend.exec.regFile.regs_32[63:0]
+(45)TOP.Core.backend.exec.regFile.regs_32[63:0]
+(46)TOP.Core.backend.exec.regFile.regs_32[63:0]
+(47)TOP.Core.backend.exec.regFile.regs_32[63:0]
+(48)TOP.Core.backend.exec.regFile.regs_32[63:0]
+(49)TOP.Core.backend.exec.regFile.regs_32[63:0]
+(50)TOP.Core.backend.exec.regFile.regs_32[63:0]
+(51)TOP.Core.backend.exec.regFile.regs_32[63:0]
+(52)TOP.Core.backend.exec.regFile.regs_32[63:0]
+(53)TOP.Core.backend.exec.regFile.regs_32[63:0]
+(54)TOP.Core.backend.exec.regFile.regs_32[63:0]
+(55)TOP.Core.backend.exec.regFile.regs_32[63:0]
+(56)TOP.Core.backend.exec.regFile.regs_32[63:0]
+(57)TOP.Core.backend.exec.regFile.regs_32[63:0]
+(58)TOP.Core.backend.exec.regFile.regs_32[63:0]
+(59)TOP.Core.backend.exec.regFile.regs_32[63:0]
+(60)TOP.Core.backend.exec.regFile.regs_32[63:0]
+(61)TOP.Core.backend.exec.regFile.regs_32[63:0]
+(62)TOP.Core.backend.exec.regFile.regs_32[63:0]
+(63)TOP.Core.backend.exec.regFile.regs_32[63:0]
+@1401201
+-group_end
+@22
 +{TOP.Core.backend.exec.regFile.regs_33[63:0]} TOP.Core.backend.exec.regFile.regs_33[63:0]
 TOP.Core.backend.exec.regFile.regs_34[63:0]
 +{TOP.Core.backend.exec.regFile.regs_35[63:0]} TOP.Core.backend.exec.regFile.regs_35[63:0]
@@ -773,6 +837,226 @@ TOP.Core.backend.exec.regFile.regs_99[63:0]
 TOP.Core.backend.exec.regFile.regs_100[63:0]
 @200
 -DMEM
+@800200
+-fpregs
+@24
+[color] 6
+TOP.debug_cycle_count[63:0]
+@22
+TOP.Core.backend.exec.fpRegFile.regs_0[63:0]
+@28
++{TOP.Core.backend.exec.io_fp_in_ready} TOP.Core.backend.exec.io_fp_in_ready
++{TOP.Core.backend.exec.io_fp_in_valid} TOP.Core.backend.exec.io_fp_in_valid
++{TOP.Core.backend.exec.exe_valFp} TOP.Core.backend.exec.exe_valFp
++{TOP.Core.backend.exec.fpRegFile.io_wen_0} TOP.Core.backend.exec.fpRegFile.io_wen_0
++{TOP.Core.backend.exec.fpRegFile.io_wen_1} TOP.Core.backend.exec.fpRegFile.io_wen_1
+@22
+TOP.Core.backend.exec.fpdiv_io_result[63:0]
+@24
++{TOP.Core.backend.exec.fpRC.io_raddr_0[7:0]} TOP.Core.backend.exec.fpRC.io_raddr_0[7:0]
+@22
++{TOP.Core.backend.exec.fpRC.io_raddr_1[7:0]} TOP.Core.backend.exec.fpRC.io_raddr_1[7:0]
+TOP.Core.backend.exec.fpRC.io_raddr_2[7:0]
+TOP.Core.backend.exec.fpRC.io_raddr_3[7:0]
+@28
++{TOP.Core.backend.exec.fpRC.io_rhits_0} TOP.Core.backend.exec.fpRC.io_rhits_0
+TOP.Core.backend.exec.fpRC.io_rhits_1
+TOP.Core.backend.exec.fpRC.io_rhits_2
+TOP.Core.backend.exec.fpRC.io_rhits_3
+@22
+TOP.Core.backend.exec.fpRegFile.regs_1[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_2[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_3[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_4[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_5[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_6[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_7[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_8[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_9[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_10[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_11[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_12[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_13[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_14[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_15[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_16[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_17[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_18[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_19[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_20[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_21[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_22[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_23[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_24[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_25[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_26[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_27[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_28[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_29[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_30[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_31[63:0]
++{TOP.Core.backend.exec.fpRegFile.regs_32[63:0]} TOP.Core.backend.exec.fpRegFile.regs_32[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_33[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_34[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_35[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_36[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_37[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_38[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_39[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_40[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_41[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_42[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_43[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_44[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_45[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_46[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_47[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_48[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_49[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_50[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_51[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_52[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_53[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_54[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_55[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_56[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_57[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_58[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_59[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_60[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_61[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_62[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_63[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_64[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_65[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_66[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_67[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_68[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_69[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_70[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_71[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_72[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_73[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_74[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_75[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_76[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_77[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_78[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_79[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_80[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_81[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_82[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_83[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_84[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_85[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_86[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_87[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_88[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_89[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_90[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_91[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_92[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_93[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_94[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_95[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_96[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_97[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_98[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_99[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_100[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_101[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_102[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_103[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_104[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_105[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_106[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_107[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_108[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_109[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_110[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_111[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_112[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_113[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_114[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_115[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_116[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_117[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_118[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_119[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_120[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_121[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_122[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_123[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_124[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_125[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_126[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_127[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_128[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_129[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_130[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_131[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_132[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_133[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_134[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_135[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_136[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_137[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_138[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_139[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_140[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_141[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_142[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_143[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_144[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_145[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_146[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_147[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_148[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_149[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_150[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_151[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_152[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_153[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_154[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_155[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_156[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_157[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_158[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_159[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_160[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_161[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_162[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_163[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_164[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_165[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_166[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_167[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_168[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_169[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_170[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_171[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_172[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_173[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_174[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_175[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_176[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_177[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_178[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_179[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_180[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_181[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_182[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_183[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_184[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_185[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_186[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_187[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_188[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_189[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_190[63:0]
+TOP.Core.backend.exec.fpRegFile.regs_191[63:0]
+@1000200
+-fpregs
 @c00200
 -DCache
 @24

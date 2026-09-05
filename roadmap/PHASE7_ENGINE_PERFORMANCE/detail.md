@@ -29,7 +29,7 @@ The goal of this phase is to turn the "Instructions-per-packet" into "Instructio
 
 ## Day 16-25: Issue Queues & LSQ (The Schedulers)
 - [x] **Day 16-18**: **Distributed Issue Queues**: Parallel schedulers for ALU, Mem, and Branch. *(Completed in Phase 4)*
-- [ ] **Day 18.5**: **robIdx Propagation**: Update `DecodedMicroOp` and Issue Queues/Execute stage to carry the `robIdx` and output it to the ROB's `io.exuWriteback` port. *(Nuance Fix)*
+- [x] **Day 18.5**: **robIdx Propagation**: Update `DecodedMicroOp` and Issue Queues/Execute stage to carry the `robIdx` and output it to the ROB's `io.exuWriteback` port. *(Nuance Fix)*
 - [ ] **Day 19-21**: **Load/Store Queues (LSQ)**: Handle memory dependencies out-of-order.
 - [ ] **Day 22-24**: **Memory Disambiguation**: Speculative loads and store-to-load forwarding.
 - [ ] **Day 25**: **Memory Dependence Predictor (MDP)**: Implement Store Sets (SSIT/LFST) or Wait Table to predict load/store collisions and avoid costly memory violation flushes (XiangShan parity).
