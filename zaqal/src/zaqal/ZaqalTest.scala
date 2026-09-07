@@ -48,13 +48,13 @@ object ZaqalTest extends App {
     // --- MEMORY RESPONDER MODEL ---
     // The bare metal program to run (Testing FPDIV Writeback and ROB Integration)
     val programMemory = Seq(
-      "h01400093".U(32.W), // 00: addi x1, x0, 20 (changed from 10)
-      "h00200113".U(32.W), // 04: addi x2, x0, 2
-      "hf00080d3".U(32.W), // 08: fmv.w.x f1, x1
-      "hf0010153".U(32.W), // 0C: fmv.w.x f2, x2
-      "h182081d3".U(32.W), // 10: fdiv.s f3, f1, f2  <-- Multi-cycle FPDIV! Watch robIdx writeback here.
-      "h00118253".U(32.W), // 14: fadd.s f4, f3, f1  <-- Depends on FPDIV. Should stall issue until fdiv completes.
-      "h0000006f".U(32.W)  // 18: j 0                <-- Endless loop
+      "h408000b7".U(32.W), // 00: lui x1, 0x40800   (x1 = 0x40800000 = 4.0 in IEEE-754 float)
+      "h40000137".U(32.W), // 04: lui x2, 0x40000   (x2 = 0x40000000 = 2.0 in IEEE-754 float)
+      "hf00080d3".U(32.W), // 08: fmv.w.x f1, x1    (f1 = 4.0)
+      "hf0010153".U(32.W), // 0C: fmv.w.x f2, x2    (f2 = 2.0)
+      "h182081d3".U(32.W), // 10: fdiv.s f3, f1, f2 (f3 = 4.0 / 2.0 = 2.0 = 0x40000000)
+      "h00118253".U(32.W), // 14: fadd.s f4, f3, f1 (f4 = 2.0 + 4.0 = 6.0 = 0x40c00000)
+      "h0000006f".U(32.W)  // 18: j 0               (Endless loop)
     ).padTo(1024, "h00000013".U(32.W))
 
     var memLatencyCounter = 0

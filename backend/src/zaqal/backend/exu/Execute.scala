@@ -162,8 +162,15 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   when(io.mem_in.valid && !wait_mem && !hit_mem) { wait_mem := true.B } .otherwise { wait_mem := false.B }
   io.mem_in.ready := (hit_mem || wait_mem)
 
+  val is_fp_int_src = decFp.is_fmv_w_x || decFp.is_fcvt_i2f
+  val is_fp_fma = decFp.is_fmadd || decFp.is_fmsub || decFp.is_fnmadd || decFp.is_fnmsub
+  val hit_fp0 = fpRC.io.rhits(0)
+  val hit_fp1 = fpRC.io.rhits(1)
+  val hit_fp2 = fpRC.io.rhits(2)
+  val hit_int6 = intRC.io.rhits(6)
+  val hit_fp = Mux(is_fp_int_src, hit_int6, Mux(is_fp_fma, hit_fp0 && hit_fp1 && hit_fp2, hit_fp0 && hit_fp1))
+
   val wait_fp = RegInit(false.B)
-  val hit_fp = intRC.io.rhits(6) && fpRC.io.rhits(0) && fpRC.io.rhits(1) && fpRC.io.rhits(2)
   when(io.fp_in.valid && !wait_fp && !hit_fp) { wait_fp := true.B } .otherwise { wait_fp := false.B }
   io.fp_in.ready := fpdiv.io.ready && (hit_fp || wait_fp)
 
@@ -182,7 +189,7 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
 
   val exe_val0 = RegInit(false.B)
   val exe_uop0 = Reg(new DecodedMicroOp)
-  val next_exe_val0 = Mux(io.int_in(0).ready, io.int_in(0).fire, exe_val0)
+  val next_exe_val0 = io.int_in(0).fire
   val next_exe_uop0 = Mux(io.int_in(0).ready, io.int_in(0).bits, exe_uop0)
   when(io.redirect.valid && is_younger_than_redirect(next_exe_uop0.snapshotIdx)) {
     exe_val0 := false.B
@@ -193,7 +200,7 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
 
   val exe_val1 = RegInit(false.B)
   val exe_uop1 = Reg(new DecodedMicroOp)
-  val next_exe_val1 = Mux(io.int_in(1).ready, io.int_in(1).fire, exe_val1)
+  val next_exe_val1 = io.int_in(1).fire
   val next_exe_uop1 = Mux(io.int_in(1).ready, io.int_in(1).bits, exe_uop1)
   when(io.redirect.valid && is_younger_than_redirect(next_exe_uop1.snapshotIdx)) {
     exe_val1 := false.B
@@ -204,7 +211,7 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
 
   val exe_valMem = RegInit(false.B)
   val exe_uopMem = Reg(new DecodedMicroOp)
-  val next_exe_valMem = Mux(io.mem_in.ready, io.mem_in.fire, exe_valMem)
+  val next_exe_valMem = io.mem_in.fire
   val next_exe_uopMem = Mux(io.mem_in.ready, io.mem_in.bits, exe_uopMem)
   when(io.redirect.valid && is_younger_than_redirect(next_exe_uopMem.snapshotIdx)) {
     exe_valMem := false.B
@@ -215,7 +222,7 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
 
   val exe_valFp = RegInit(false.B)
   val exe_uopFp = Reg(new DecodedMicroOp)
-  val next_exe_valFp = Mux(io.fp_in.ready, io.fp_in.fire, exe_valFp)
+  val next_exe_valFp = io.fp_in.fire
   val next_exe_uopFp = Mux(io.fp_in.ready, io.fp_in.bits, exe_uopFp)
   when(io.redirect.valid && is_younger_than_redirect(next_exe_uopFp.snapshotIdx)) {
     exe_valFp := false.B
@@ -267,10 +274,10 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   val r_fpRegFile_rdata2 = Reg(UInt(fLen.W))
   val r_regFile_rdata6 = Reg(UInt(xLen.W))
   when(io.fp_in.ready) {
-    r_fpRegFile_rdata0 := Mux(hit_fp, fpRC.io.rdata(0), fpRegFile.io.rdata(0))
-    r_fpRegFile_rdata1 := Mux(hit_fp, fpRC.io.rdata(1), fpRegFile.io.rdata(1))
-    r_fpRegFile_rdata2 := Mux(hit_fp, fpRC.io.rdata(2), fpRegFile.io.rdata(2))
-    r_regFile_rdata6 := Mux(hit_fp, intRC.io.rdata(6), regFile.io.rdata(6))
+    r_fpRegFile_rdata0 := Mux(hit_fp0, fpRC.io.rdata(0), fpRegFile.io.rdata(0))
+    r_fpRegFile_rdata1 := Mux(hit_fp1, fpRC.io.rdata(1), fpRegFile.io.rdata(1))
+    r_fpRegFile_rdata2 := Mux(hit_fp2, fpRC.io.rdata(2), fpRegFile.io.rdata(2))
+    r_regFile_rdata6 := Mux(hit_int6, intRC.io.rdata(6), regFile.io.rdata(6))
   }
 
   // ---------------- BYPASS NETWORK DEFINITIONS (CYCLE 2: EXECUTE STAGE) ----------------
@@ -728,6 +735,14 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   val r_wuFpdiv_pdest = RegNext(fpdiv_rd_latch, 0.U)
   io.wakeup(5).valid := r_wuFpdiv_valid
   io.wakeup(5).pdest := r_wuFpdiv_pdest
+
+  fpRC.io.wen(0)   := fpRegFile.io.wen(0)
+  fpRC.io.waddr(0) := fpRegFile.io.waddr(0)
+  fpRC.io.wdata(0) := fpRegFile.io.wdata(0)
+
+  fpRC.io.wen(1)   := fpRegFile.io.wen(1)
+  fpRC.io.waddr(1) := fpRegFile.io.waddr(1)
+  fpRC.io.wdata(1) := fpRegFile.io.wdata(1)
 
   for (i <- 0 until 6) {
     when(regFile.io.wen(i) && regFile.io.waddr(i) =/= 0.U) {
