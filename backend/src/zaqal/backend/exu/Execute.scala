@@ -31,6 +31,21 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
       val data = UInt(xLen.W)
       val load_id = UInt(6.W)
     }))
+
+    // LSQ Commit & Allocation Interfaces
+    val robCommits = Input(new RobCommitIO)
+    val robCommitIdx = Input(Vec(decodeWidth, UInt(log2Up(128).W)))
+    val robDeqPtr = Input(UInt(log2Up(128).W))
+    val sq_enq = Vec(decodeWidth, Flipped(Decoupled(new Bundle {
+      val robIdx = UInt(log2Up(128).W)
+      val snapshotIdx = UInt(log2Up(renameSnapshotNum).W)
+    })))
+    val lq_enq = Vec(decodeWidth, Flipped(Decoupled(new Bundle {
+      val robIdx = UInt(log2Up(128).W)
+      val snapshotIdx = UInt(log2Up(renameSnapshotNum).W)
+    })))
+    val sq_count = Output(UInt(5.W))
+    val lq_count = Output(UInt(5.W))
   })
 
   val alu  = Seq.fill(2)(Module(new ALU))
@@ -44,6 +59,36 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   val dmem = Module(new DataMem)
   val tlb  = Module(new FastTLB)
   val fcsr = Module(new FCSR)
+
+  // ---------------- LOAD / STORE QUEUES ----------------
+  val sq = Module(new zaqal.backend.lsu.StoreQueue(16))
+  val lq = Module(new zaqal.backend.lsu.LoadQueue(16))
+
+  sq.io.enq <> io.sq_enq
+  lq.io.enq <> io.lq_enq
+  io.sq_count := sq.io.count
+  io.lq_count := lq.io.count
+
+  sq.io.robHeadPtr := io.robDeqPtr
+  sq.io.snptDeqPtr := io.snptDeqPtr
+  lq.io.snptDeqPtr := io.snptDeqPtr
+
+  for (i <- 0 until decodeWidth) {
+    sq.io.commit.valid(i)  := io.robCommits.commitValid(i)
+    sq.io.commit.robIdx(i) := io.robCommitIdx(i)
+    lq.io.commit.valid(i)  := io.robCommits.commitValid(i)
+    lq.io.commit.robIdx(i) := io.robCommitIdx(i)
+  }
+
+  sq.io.redirect.valid        := io.redirect.valid
+  sq.io.redirect.is_exception := io.redirect.is_exception
+  sq.io.redirect.snapshotIdx  := io.redirect.snapshotIdx
+  sq.io.redirect.robIdx       := io.redirect.robIdx
+
+  lq.io.redirect.valid        := io.redirect.valid
+  lq.io.redirect.is_exception := io.redirect.is_exception
+  lq.io.redirect.snapshotIdx  := io.redirect.snapshotIdx
+  lq.io.redirect.robIdx       := io.redirect.robIdx
 
   // ---------------- AGU-TO-CACHE PIPELINE REGISTERS (MEM STAGE 2) ----------------
   val r_agu_val   = RegInit(false.B)
@@ -635,29 +680,83 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   lsu.io.imm  := 0.S
   lsu.io.dec  := r_agu_uop.decode
 
-  io.dcache_req.valid := r_agu_val && (r_agu_uop.decode.is_load || r_agu_uop.decode.is_store)
-  io.dcache_req.bits.addr := lsu.io.mem_addr
-  io.dcache_req.bits.data := lsu.io.mem_wdata
-  io.dcache_req.bits.is_write := lsu.io.mem_wen
+  // Update Store Queue for stores:
+  sq.io.write.valid  := r_agu_val && (r_agu_uop.decode.is_store || r_agu_uop.decode.is_fstore)
+  sq.io.write.robIdx := r_agu_uop.robIdx
+  sq.io.write.paddr  := lsu.io.mem_addr
+  sq.io.write.wmask  := lsu.io.mem_wmask
+  sq.io.write.wdata  := lsu.io.mem_wdata
+
+  // Update Load Queue for loads:
+  lq.io.exec_update.valid  := r_agu_val && (r_agu_uop.decode.is_load || r_agu_uop.decode.is_fload)
+  lq.io.exec_update.robIdx := r_agu_uop.robIdx
+  lq.io.exec_update.paddr  := lsu.io.mem_addr
+
+  // Store-to-Load Forwarding (STLF) Query:
+  val load_mask = MuxCase("h000f".U(16.W), Seq(
+    (r_agu_uop.decode.is_lb || r_agu_uop.decode.is_lbu) -> ("h0001".U(16.W) << lsu.io.mem_addr(2, 0)),
+    (r_agu_uop.decode.is_lh || r_agu_uop.decode.is_lhu) -> ("h0003".U(16.W) << lsu.io.mem_addr(2, 0)),
+    (r_agu_uop.decode.is_lw || r_agu_uop.decode.is_lwu || r_agu_uop.decode.is_flw) -> ("h000f".U(16.W) << lsu.io.mem_addr(2, 0)),
+    (r_agu_uop.decode.is_ld || r_agu_uop.decode.is_fld) -> ("h00ff".U(16.W) << lsu.io.mem_addr(2, 0))
+  ))
+
+  sq.io.stlf_query.valid  := r_agu_val && (r_agu_uop.decode.is_load || r_agu_uop.decode.is_fload)
+  sq.io.stlf_query.robIdx := r_agu_uop.robIdx
+  sq.io.stlf_query.paddr  := lsu.io.mem_addr
+  sq.io.stlf_query.mask   := load_mask
+
+  val stlf_hit = sq.io.stlf_resp.hit
+
+  when(r_agu_val && (r_agu_uop.decode.is_load || r_agu_uop.decode.is_fload)) {
+    printf(p"  [LSQ LOAD EXEC]: pc=${Hexadecimal(r_agu_uop.uop.pc)} paddr=${Hexadecimal(lsu.io.mem_addr)} stlf_hit=$stlf_hit at cycle=${io.debug_cycle}\n")
+  }
+  when(r_agu_val && (r_agu_uop.decode.is_store || r_agu_uop.decode.is_fstore)) {
+    printf(p"  [LSQ STORE EXEC]: pc=${Hexadecimal(r_agu_uop.uop.pc)} paddr=${Hexadecimal(lsu.io.mem_addr)} data=${Hexadecimal(lsu.io.mem_wdata(63,0))} at cycle=${io.debug_cycle}\n")
+  }
+  when(sq.io.drain.valid) {
+    printf(p"  [LSQ STORE DRAIN]: paddr=${Hexadecimal(sq.io.drain.paddr)} data=${Hexadecimal(sq.io.drain.wdata(63,0))} wmask=${Binary(sq.io.drain.wmask)} at cycle=${io.debug_cycle}\n")
+  }
+
+  // Memory read data: use forwarded data from Store Queue if hit, else read from DataMem
+  lsu.io.mem_data := Mux(stlf_hit, sq.io.stlf_resp.wdata, dmem.io.data)
+
+  // Write to DataMem / DCache strictly upon Store Queue commit drain:
+  dmem.io.addr  := Mux(sq.io.drain.valid, sq.io.drain.paddr, lsu.io.mem_addr)
+  dmem.io.wen   := sq.io.drain.valid
+  dmem.io.wmask := sq.io.drain.wmask
+  dmem.io.wdata := sq.io.drain.wdata
+  sq.io.drain_ready := true.B
+
+  io.dcache_req.valid := sq.io.drain.valid || (r_agu_val && r_agu_uop.decode.is_load && !stlf_hit)
+  io.dcache_req.bits.addr := Mux(sq.io.drain.valid, sq.io.drain.paddr, lsu.io.mem_addr)
+  io.dcache_req.bits.data := sq.io.drain.wdata
+  io.dcache_req.bits.is_write := sq.io.drain.valid
   io.dcache_req.bits.load_id := r_agu_uop.pdest
 
-  dmem.io.addr  := lsu.io.mem_addr
-  dmem.io.wen   := false.B
-  dmem.io.wmask := lsu.io.mem_wmask
-  dmem.io.wdata := lsu.io.mem_wdata
-  
-  // D-Cache Responses
   io.dcache_resp.ready := true.B
-  lsu.io.mem_data := io.dcache_resp.bits.data
+
+  // Load Writeback directly to PRF / Write-back Staging:
+  when(r_agu_val && r_agu_uop.pdest =/= 0.U) {
+    when(r_agu_uop.decode.is_load || r_agu_uop.decode.is_atomic) {
+      when(!r_agu_uop.decode.is_fload) {
+        next_regFile_wen(3)   := true.B
+        next_regFile_waddr(3) := r_agu_uop.pdest
+        next_regFile_wdata(3) := lsu.io.result
+      } .otherwise {
+        fpRegFile.io.wen(2)   := true.B
+        fpRegFile.io.waddr(2) := r_agu_uop.pdest
+        fpRegFile.io.wdata(2) := Cat("hffffffff".U(32.W), lsu.io.result(31, 0))
+        fpRC.io.wen(2)        := true.B
+        fpRC.io.waddr(2)      := r_agu_uop.pdest
+        fpRC.io.wdata(2)      := Cat("hffffffff".U(32.W), lsu.io.result(31, 0))
+      }
+    }
+  }
 
   when(io.dcache_resp.valid && io.dcache_resp.bits.load_id =/= 0.U) {
-    // Write-back directly to RegFile from DCache response (Load Miss Wakeup)
-    next_regFile_wen(3) := true.B
+    next_regFile_wen(3)   := true.B
     next_regFile_waddr(3) := io.dcache_resp.bits.load_id
-    next_regFile_wdata(3) := lsu.io.result // Assuming formatting logic in LSU
-    
-    // We would need to replay the formatting or format it here.
-    // For now, if DCache hits immediately, it's fine.
+    next_regFile_wdata(3) := lsu.io.result
   }
 
   // Wakeup delayed by 1 cycle (Only for non-memory or fast hits)

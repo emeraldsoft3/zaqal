@@ -45,8 +45,12 @@ graph TD
             Div[Divider]
         end
         subgraph Memory Cluster
-            LSU[LSU - Load Store Unit]
-            DMem[Data Memory]
+            AGU[AGU - Address Generation Unit]
+            SQ[Store Queue - 16 entries]
+            LQ[Load Queue - 16 entries]
+            STLF[Store-to-Load Forwarding CAM]
+            LSU[LSU - Formatting Unit]
+            DMem[Data Memory / L1 D-Cache]
         end
         subgraph Floating-Point Cluster
             FPU[FPU]
@@ -69,14 +73,19 @@ graph TD
     IFU -->|Predecoded FetchPacket| IBuf
     IBuf -->|6-Wide Instruction Bundle| Decoders
 
-    %% Decode & Rename Connections
+    %% Decode to Rename to Dispatch
     Decoders --> Fusion
-    Fusion -->|6 Decoded Ops| Rename
-    Rename <-->|Allocate pdest| FreeList
-    Rename <--> Snapshots
-    Rename -->|6 Renamed Ops w/ pdest| Disp
-    Disp --> Hazards
-    Hazards -->|Ready & Backpressured Ops| BusyTable
+    Fusion --> Rename
+    Rename --> Disp
+
+    %% Dispatch to Issue Queues & LSQ
+    Disp -->|ALU Micro-ops| intIq
+    Disp -->|Mem Micro-ops| memIq
+    Disp -->|Alloc Store| SQ
+    Disp -->|Alloc Load| LQ
+    Disp -->|FP Micro-ops| fpIq
+
+    %% BusyTable to Issue Queues
     BusyTable --> intIq
     BusyTable --> memIq
     BusyTable --> fpIq
@@ -88,8 +97,13 @@ graph TD
     intIq -->|Deq 1| Mul
     intIq -->|Deq 1| Div
 
-    memIq -->|Deq 0| LSU
-    LSU <--> DMem
+    memIq -->|Deq 0| AGU
+    AGU -->|Store Addr & Data| SQ
+    AGU -->|Load Addr Query| STLF
+    SQ -->|Forward Matching Store Data| STLF
+    STLF -->|Bypass / Memory Data| LSU
+    SQ -->|Commit Drain on Retirement| DMem
+    DMem -->|Cache Read Data| LSU
 
     fpIq -->|Deq 0| FPU
     fpIq -->|Deq 0| FPDiv

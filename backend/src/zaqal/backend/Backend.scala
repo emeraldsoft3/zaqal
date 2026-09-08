@@ -385,9 +385,24 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
     dispatch.io.aluOut(i).ready := intIq.io.enq(i).ready
     dispatch.io.bruOut(i).ready := intIq.io.enq(i).ready
 
-    memIq.io.enq(i).valid := dispatch.io.memOut(i).valid
+    val is_store = dispatch.io.memOut(i).bits.decode.is_store || dispatch.io.memOut(i).bits.decode.is_fstore
+    val is_load  = dispatch.io.memOut(i).bits.decode.is_load || dispatch.io.memOut(i).bits.decode.is_fload
+
+    exec.io.sq_enq(i).valid := dispatch.io.memOut(i).valid && is_store && memIq.io.enq(i).ready
+    exec.io.sq_enq(i).bits.robIdx := dispatch.io.memOut(i).bits.robIdx
+    exec.io.sq_enq(i).bits.snapshotIdx := dispatch.io.memOut(i).bits.snapshotIdx
+
+    exec.io.lq_enq(i).valid := dispatch.io.memOut(i).valid && is_load && memIq.io.enq(i).ready
+    exec.io.lq_enq(i).bits.robIdx := dispatch.io.memOut(i).bits.robIdx
+    exec.io.lq_enq(i).bits.snapshotIdx := dispatch.io.memOut(i).bits.snapshotIdx
+
+    val sq_ready = exec.io.sq_enq(i).ready
+    val lq_ready = exec.io.lq_enq(i).ready
+    val lsq_ready = Mux(is_store, sq_ready, Mux(is_load, lq_ready, true.B))
+
+    memIq.io.enq(i).valid := dispatch.io.memOut(i).valid && lsq_ready
     memIq.io.enq(i).bits := dispatch.io.memOut(i).bits
-    dispatch.io.memOut(i).ready := memIq.io.enq(i).ready
+    dispatch.io.memOut(i).ready := memIq.io.enq(i).ready && lsq_ready
 
     fpIq.io.enq(i).valid := dispatch.io.fpuOut(i).valid
     fpIq.io.enq(i).bits := dispatch.io.fpuOut(i).bits
@@ -395,9 +410,13 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
   }
 
   for (i <- 0 until decodeWidth) {
+    val is_store = dispatch.io.memOut(i).bits.decode.is_store || dispatch.io.memOut(i).bits.decode.is_fstore
+    val is_load  = dispatch.io.memOut(i).bits.decode.is_load || dispatch.io.memOut(i).bits.decode.is_fload
+    val lsq_ready = Mux(is_store, exec.io.sq_enq(i).ready, Mux(is_load, exec.io.lq_enq(i).ready, true.B))
+
     dispatch.io.aluReady(i) := intIq.io.enq(i).ready
     dispatch.io.bruReady(i) := intIq.io.enq(i).ready
-    dispatch.io.memReady(i) := memIq.io.enq(i).ready
+    dispatch.io.memReady(i) := memIq.io.enq(i).ready && lsq_ready
     dispatch.io.fpuReady(i) := fpIq.io.enq(i).ready
   }
 
@@ -407,6 +426,9 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
   exec.io.fp_in <> fpIq.io.deq(0)
   exec.io.snptValids := rat.io.snptValids
   exec.io.snptDeqPtr := rat.io.snptDeqPtr
+  exec.io.robCommits := rob.io.commits
+  exec.io.robCommitIdx := rob.io.commitRobIdx
+  exec.io.robDeqPtr := rob.io.robDeqPtr
 
   // Dispatch Ready Logic (Dynamic Backpressure) - Enforce lock-step dispatch
   for (i <- 0 until decodeWidth) {

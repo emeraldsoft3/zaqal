@@ -46,15 +46,15 @@ object ZaqalTest extends App {
 
 
     // --- MEMORY RESPONDER MODEL ---
-    // The bare metal program to run (Testing FPDIV Writeback and ROB Integration)
+    // Day 19-21: Load/Store Queues (LSQ) & Store-to-Load Forwarding (STLF) Test Program
     val programMemory = Seq(
-      "h408000b7".U(32.W), // 00: lui x1, 0x40800   (x1 = 0x40800000 = 4.0 in IEEE-754 float)
-      "h40000137".U(32.W), // 04: lui x2, 0x40000   (x2 = 0x40000000 = 2.0 in IEEE-754 float)
-      "hf00080d3".U(32.W), // 08: fmv.w.x f1, x1    (f1 = 4.0)
-      "hf0010153".U(32.W), // 0C: fmv.w.x f2, x2    (f2 = 2.0)
-      "h182081d3".U(32.W), // 10: fdiv.s f3, f1, f2 (f3 = 4.0 / 2.0 = 2.0 = 0x40000000)
-      "h00118253".U(32.W), // 14: fadd.s f4, f3, f1 (f4 = 2.0 + 4.0 = 6.0 = 0x40c00000)
-      "h0000006f".U(32.W)  // 18: j 0               (Endless loop)
+      "h01000093".U(32.W), // 00: addi x1, x0, 16    (x1 = 0x10, base memory address)
+      "h02a00113".U(32.W), // 04: addi x2, x0, 42    (x2 = 42 = 0x2a, store data)
+      "h02114633".U(32.W), // 08: div  x12, x2, x1   (Multi-cycle DIV blocks ROB head for ~35 cycles!)
+      "h0020a023".U(32.W), // 0C: sw   x2, 0(x1)     (Store 42 into 0(x1) -> Trapped in SQ while DIV blocks ROB!)
+      "h0000a183".U(32.W), // 10: lw   x3, 0(x1)     (Load from 0(x1) -> MUST FORWARD 42 from SQ via STLF!)
+      "h00a18213".U(32.W), // 14: addi x4, x3, 10    (x4 = 42 + 10 = 52 = 0x34, verifies forwarding!)
+      "h0000006f".U(32.W)  // 18: j 0                (Endless loop)
     ).padTo(1024, "h00000013".U(32.W))
 
     var memLatencyCounter = 0

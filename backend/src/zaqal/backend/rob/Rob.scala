@@ -11,6 +11,8 @@ class Rob(implicit val p: Parameters) extends Module with HasZaqalParameter {
     val enq = Vec(decodeWidth, Flipped(Decoupled(new DecodedMicroOp)))
     val exuWriteback = Vec(7, Flipped(ValidIO(new ExuOutput)))
     val commits = Output(new RobCommitIO)
+    val commitRobIdx = Output(Vec(decodeWidth, UInt(log2Up(128).W)))
+    val robDeqPtr = Output(UInt(log2Up(128).W))
     val allocPtrs = Output(Vec(decodeWidth, UInt(log2Up(128).W)))
     val bpu_redirect = Input(new BPURedirect)
     val flushOut = Output(Valid(new BPURedirect))
@@ -163,6 +165,7 @@ class Rob(implicit val p: Parameters) extends Module with HasZaqalParameter {
     
     commitValidThisLine(i) := isReadyToCommit && (if (i == 0) !headHasException else !blockCommitCascade(i-1)) && (elementsInRob > i.U)
 
+    io.commitRobIdx(i) := walkDeqPtrs(i)
     io.commits.commitValid(i) := commitValidThisLine(i)
     io.commits.info(i).commit_v := entry.valid
     io.commits.info(i).walk_v := false.B
@@ -202,6 +205,7 @@ class Rob(implicit val p: Parameters) extends Module with HasZaqalParameter {
     maybeFull := false.B
   }
 
+  io.robDeqPtr := deqPtr
   io.robFull := !canAcceptAll
   io.headNotReady := isEmpty
   io.cpu_halt := false.B
