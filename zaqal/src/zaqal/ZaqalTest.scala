@@ -46,15 +46,26 @@ object ZaqalTest extends App {
 
 
     // --- MEMORY RESPONDER MODEL ---
-    // Day 19-21: Load/Store Queues (LSQ) & Store-to-Load Forwarding (STLF) Test Program
+    // Day 25: Memory Dependence Predictor (MDP) Comprehensive Test Program:
+    // Tests out-of-order execution, RAW violation detection, Store Set training,
+    // selective load waiting for colliding load (0x18), and independent load execution (0x14).
     val programMemory = Seq(
-      "h01000093".U(32.W), // 00: addi x1, x0, 16    (x1 = 0x10, base memory address)
-      "h02a00113".U(32.W), // 04: addi x2, x0, 42    (x2 = 42 = 0x2a, store data)
-      "h02114633".U(32.W), // 08: div  x12, x2, x1   (Multi-cycle DIV blocks ROB head for ~35 cycles!)
-      "h0020a023".U(32.W), // 0C: sw   x2, 0(x1)     (Store 42 into 0(x1) -> Trapped in SQ while DIV blocks ROB!)
-      "h0000a183".U(32.W), // 10: lw   x3, 0(x1)     (Load from 0(x1) -> MUST FORWARD 42 from SQ via STLF!)
-      "h00a18213".U(32.W), // 14: addi x4, x3, 10    (x4 = 42 + 10 = 52 = 0x34, verifies forwarding!)
-      "h0000006f".U(32.W)  // 18: j 0                (Endless loop)
+      "h00200093".U(32.W), // 00: addi x1, x0, 2       (x1 = 2, divisor)
+      "h04000113".U(32.W), // 04: addi x2, x0, 64      (x2 = 64 = 0x40, store data)
+      "h00300513".U(32.W), // 08: addi x10, x0, 3      (x10 = 3, loop counter: 3 iterations)
+
+      // Loop Body (PC 0x0C):
+      "h021142b3".U(32.W), // 0C: div  x5, x2, x1      (Multi-cycle DIV takes ~35 cycles, delays store address!)
+      "h0022a023".U(32.W), // 10: sw   x2, 0(x5)       ([Store A]: Stalled in memIq waiting for x5=32!)
+      "h06402383".U(32.W), // 14: lw   x7, 100(x0)     ([Independent Load B]: Different addr! Executes freely, 0 wait!)
+      "h02002183".U(32.W), // 18: lw   x3, 32(x0)      ([Colliding Load A]: In Iter 1 violates; in Iter 2+ WAITS for Store A!)
+      "h00118213".U(32.W), // 1C: addi x4, x3, 1       (Accumulate data)
+      "hfff50513".U(32.W), // 20: addi x10, x10, -1    (Decrement loop counter)
+      "hfe0514e3".U(32.W), // 24: bne  x10, x0, loop   (Loop back to 0x0C while x10 != 0)
+
+      // Done:
+      "h00020593".U(32.W), // 28: addi x11, x4, 0      (x11 = final accumulated result: 64 + 1 = 65)
+      "h0000006f".U(32.W)  // 2C: j    2C              (Done trap)
     ).padTo(1024, "h00000013".U(32.W))
 
     var memLatencyCounter = 0

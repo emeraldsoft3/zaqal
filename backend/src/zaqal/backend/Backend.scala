@@ -37,8 +37,11 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
 
   // Instantiate Decoders
   val decoders = Seq.fill(decodeWidth)(Module(new Decoder))
-  val decoded_uops_raw = Wire(Vec(decodeWidth, new DecodedMicroOp))
+  // Memory Dependence Predictor (XiangShan Store Sets Parity: SSIT & LFST)
+  val storeSet = Module(new zaqal.backend.mdp.StoreSet)
+  storeSet.io.decode_pc := VecInit((0 until decodeWidth).map(i => io.dispatch(i).bits.pc))
 
+  val decoded_uops_raw = Wire(Vec(decodeWidth, new DecodedMicroOp))
   for (i <- 0 until decodeWidth) {
     decoders(i).io.inst := io.dispatch(i).bits.pre.expanded_inst
     decoded_uops_raw(i).uop    := io.dispatch(i).bits
@@ -53,6 +56,12 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
     decoded_uops_raw(i).snapshotIdx := 0.U
     decoded_uops_raw(i).is_fused_away := false.B
     decoded_uops_raw(i).robIdx := 0.U
+
+    // Memory Dependence Predictor SSIT Lookup
+    decoded_uops_raw(i).ssid          := storeSet.io.decode_ssit(i).ssid
+    decoded_uops_raw(i).ssid_valid    := storeSet.io.decode_ssit(i).valid
+    decoded_uops_raw(i).loadWaitBit   := false.B
+    decoded_uops_raw(i).waitForRobIdx := 0.U
   }
 
   // Day 3.5: Instruction Fusion (Macro-Op Fusion)
@@ -379,6 +388,17 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
   fpIq.io.redirect_enq_ptr := rat.io.snptEnqPtr
   fpIq.io.redirect_deq_ptr := rat.io.snptDeqPtr
 
+  intIq.io.store_resolved := 0.U.asTypeOf(Valid(UInt(log2Up(128).W)))
+  fpIq.io.store_resolved  := 0.U.asTypeOf(Valid(UInt(log2Up(128).W)))
+  memIq.io.store_resolved := exec.io.store_resolved
+
+  storeSet.io.store_resolved := exec.io.store_resolved
+  storeSet.io.redirect.valid := exec.io.redirect.valid
+  storeSet.io.redirect.is_exception := exec.io.redirect.is_exception
+  storeSet.io.redirect.robIdx := exec.io.redirect.robIdx
+  storeSet.io.robHeadPtr := rob.io.robDeqPtr
+  storeSet.io.update := exec.io.memPredUpdate
+
   for (i <- 0 until decodeWidth) {
     intIq.io.enq(i).valid := dispatch.io.aluOut(i).valid || dispatch.io.bruOut(i).valid
     intIq.io.enq(i).bits := Mux(dispatch.io.aluOut(i).valid, dispatch.io.aluOut(i).bits, dispatch.io.bruOut(i).bits)
@@ -388,6 +408,12 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
     val is_store = dispatch.io.memOut(i).bits.decode.is_store || dispatch.io.memOut(i).bits.decode.is_fstore
     val is_load  = dispatch.io.memOut(i).bits.decode.is_load || dispatch.io.memOut(i).bits.decode.is_fload
 
+    // Store Set LFST Query & Allocation
+    storeSet.io.dispatch_req(i).valid        := dispatch.io.memOut(i).valid && dispatch.io.memOut(i).bits.ssid_valid && (is_store || is_load)
+    storeSet.io.dispatch_req(i).bits.isStore := is_store
+    storeSet.io.dispatch_req(i).bits.ssid    := dispatch.io.memOut(i).bits.ssid
+    storeSet.io.dispatch_req(i).bits.robIdx  := dispatch.io.memOut(i).bits.robIdx
+
     exec.io.sq_enq(i).valid := dispatch.io.memOut(i).valid && is_store && memIq.io.enq(i).ready
     exec.io.sq_enq(i).bits.robIdx := dispatch.io.memOut(i).bits.robIdx
     exec.io.sq_enq(i).bits.snapshotIdx := dispatch.io.memOut(i).bits.snapshotIdx
@@ -395,13 +421,23 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
     exec.io.lq_enq(i).valid := dispatch.io.memOut(i).valid && is_load && memIq.io.enq(i).ready
     exec.io.lq_enq(i).bits.robIdx := dispatch.io.memOut(i).bits.robIdx
     exec.io.lq_enq(i).bits.snapshotIdx := dispatch.io.memOut(i).bits.snapshotIdx
+    exec.io.lq_enq(i).bits.pc := dispatch.io.memOut(i).bits.uop.pc
 
     val sq_ready = exec.io.sq_enq(i).ready
     val lq_ready = exec.io.lq_enq(i).ready
     val lsq_ready = Mux(is_store, sq_ready, Mux(is_load, lq_ready, true.B))
 
+    val mem_uop = WireInit(dispatch.io.memOut(i).bits)
+    when(is_load && dispatch.io.memOut(i).bits.ssid_valid) {
+      mem_uop.loadWaitBit   := storeSet.io.dispatch_resp(i).shouldWait
+      mem_uop.waitForRobIdx := storeSet.io.dispatch_resp(i).robIdx
+      when(storeSet.io.dispatch_resp(i).shouldWait) {
+        printf(p"  [MDP STORE SET HIT]: Load PC=${Hexadecimal(mem_uop.uop.pc)} SSID=${mem_uop.ssid} waiting for Store robIdx=${storeSet.io.dispatch_resp(i).robIdx} at cycle=${io.debug_cycle}\n")
+      }
+    }
+
     memIq.io.enq(i).valid := dispatch.io.memOut(i).valid && lsq_ready
-    memIq.io.enq(i).bits := dispatch.io.memOut(i).bits
+    memIq.io.enq(i).bits := mem_uop
     dispatch.io.memOut(i).ready := memIq.io.enq(i).ready && lsq_ready
 
     fpIq.io.enq(i).valid := dispatch.io.fpuOut(i).valid

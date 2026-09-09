@@ -53,7 +53,13 @@ case class ZaqalParams(
   // UOp Cache Parameters (XiangShan Parity)
   enableUOpCache: Boolean = true,
   uopCacheSets: Int = 64,
-  uopCacheWays: Int = 8
+  uopCacheWays: Int = 8,
+
+  // Memory Dependence Predictor (MDP) Parameters (XiangShan Store Sets Parity)
+  enableMdp: Boolean = true,
+  ssitEntries: Int = 256,
+  ssidWidth: Int = 6,
+  lfstEntries: Int = 64
 )
 
 // 2. Define the Field Key that CDE uses to locate ZaqalParams
@@ -109,6 +115,11 @@ trait HasZaqalParameter {
   def enableUOpCache = zP.enableUOpCache
   def uopCacheSets = zP.uopCacheSets
   def uopCacheWays = zP.uopCacheWays
+
+  def enableMdp = zP.enableMdp
+  def ssitEntries = zP.ssitEntries
+  def ssidWidth = zP.ssidWidth
+  def lfstEntries = zP.lfstEntries
 }
 
 // 4. Default configuration overlay

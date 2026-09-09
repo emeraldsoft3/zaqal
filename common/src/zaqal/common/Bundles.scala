@@ -260,6 +260,19 @@ class DecodedMicroOp(implicit val p: Parameters) extends Bundle with HasZaqalPar
   val snapshotIdx = UInt(log2Up(renameSnapshotNum).W)
   val is_fused_away = Bool()
   val robIdx = UInt(log2Up(128).W)
+
+  // Memory Dependence Prediction (XiangShan Store Sets Parity)
+  val ssid          = UInt(ssidWidth.W)
+  val ssid_valid    = Bool()
+  val loadWaitBit   = Bool()
+  val waitForRobIdx = UInt(log2Up(128).W)
+}
+
+// Bundle for load violation predictor updating (XiangShan Parity)
+class MemPredUpdateReq(implicit val p: Parameters) extends Bundle with HasZaqalParameter {
+  val valid = Bool()
+  val ldpc  = UInt(xLen.W)
+  val stpc  = UInt(xLen.W)
 }
 
 // Redirect signal from Backend to Frontend

@@ -18,6 +18,9 @@ class IssueQueue(val numEntries: Int, val numEnq: Int, val numDeq: Int, val numW
     val rs1_ready_in = Vec(numEnq, Input(Bool()))
     val rs2_ready_in = Vec(numEnq, Input(Bool()))
     val rs3_ready_in = Vec(numEnq, Input(Bool()))
+
+    // Store AGU resolution port (XiangShan Store Sets MDP)
+    val store_resolved = Input(Valid(UInt(log2Up(128).W)))
   })
 
   class IQEntry extends Bundle {
@@ -62,7 +65,7 @@ class IssueQueue(val numEntries: Int, val numEnq: Int, val numDeq: Int, val numW
       (i.U =/= j.U) && j_is_cfi && j_is_older
     }).asUInt.orR
 
-    can_issue(i) := entries(i).valid && woken_rs1(i) && woken_rs2(i) && woken_rs3(i) && !(is_cfi && has_older_cfi)
+    can_issue(i) := entries(i).valid && woken_rs1(i) && woken_rs2(i) && woken_rs3(i) && !entries(i).uop.loadWaitBit && !(is_cfi && has_older_cfi)
   }
 
   val ageDetector = Module(new AgeDetector(numEntries, numEnq, numDeq))
@@ -138,6 +141,15 @@ class IssueQueue(val numEntries: Int, val numEnq: Int, val numDeq: Int, val numW
             when (io.enq(e).bits.psrs3 === io.wakeup(w).pdest && io.enq(e).bits.psrs3 =/= 0.U) { entries(i).rs3_ready := true.B }
           }
         }
+      }
+    }
+  }
+
+  // Clear loadWaitBit when the store it is waiting for calculates its address
+  when (io.store_resolved.valid) {
+    for (i <- 0 until numEntries) {
+      when (entries(i).valid && entries(i).uop.loadWaitBit && (entries(i).uop.waitForRobIdx === io.store_resolved.bits)) {
+        entries(i).uop.loadWaitBit := false.B
       }
     }
   }

@@ -43,9 +43,14 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
     val lq_enq = Vec(decodeWidth, Flipped(Decoupled(new Bundle {
       val robIdx = UInt(log2Up(128).W)
       val snapshotIdx = UInt(log2Up(renameSnapshotNum).W)
+      val pc = UInt(xLen.W)
     })))
     val sq_count = Output(UInt(5.W))
     val lq_count = Output(UInt(5.W))
+
+    // XiangShan MDP Connections
+    val memPredUpdate = Output(new MemPredUpdateReq)
+    val store_resolved = Output(Valid(UInt(log2Up(128).W)))
   })
 
   val alu  = Seq.fill(2)(Module(new ALU))
@@ -72,6 +77,7 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   sq.io.robHeadPtr := io.robDeqPtr
   sq.io.snptDeqPtr := io.snptDeqPtr
   lq.io.snptDeqPtr := io.snptDeqPtr
+  lq.io.robHeadPtr := io.robDeqPtr
 
   for (i <- 0 until decodeWidth) {
     sq.io.commit.valid(i)  := io.robCommits.commitValid(i)
@@ -138,6 +144,12 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   io.redirect.is_jalr := false.B
   io.redirect.ftqPtr := 0.U
   io.redirect.robIdx := 0.U
+
+  io.memPredUpdate.valid := false.B
+  io.memPredUpdate.ldpc  := 0.U
+  io.memPredUpdate.stpc  := 0.U
+  io.store_resolved.valid := false.B
+  io.store_resolved.bits  := 0.U
 
   io.bpu_update.valid := false.B
   io.bpu_update.pc := 0.U
@@ -556,6 +568,27 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
     io.redirect.is_jalr      := exe_dec1.is_jalr
     io.redirect.ftqPtr       := exe_uop_raw1.ftqPtr
     io.redirect.robIdx       := exe_uop1.robIdx
+  } .elsewhen(lq.io.violation.valid && io.snptValids(lq.io.violation.snapshotIdx)) {
+    // Memory Ordering Violation (Replay Load & Younger Instructions)
+    io.redirect.valid := true.B
+    io.redirect.target := lq.io.violation.loadPC
+    io.redirect.epoch  := false.B
+    io.redirect.is_exception := false.B
+    io.redirect.exc_cause    := 0.U
+    io.redirect.snapshotIdx  := lq.io.violation.snapshotIdx
+    io.redirect.pc           := lq.io.violation.loadPC
+    io.redirect.taken        := false.B
+    io.redirect.is_cfi       := false.B
+    io.redirect.is_jal       := false.B
+    io.redirect.is_jalr      := false.B
+    io.redirect.ftqPtr       := 0.U
+    io.redirect.robIdx       := lq.io.violation.loadRobIdx
+
+    io.memPredUpdate.valid   := true.B
+    io.memPredUpdate.ldpc    := lq.io.violation.loadPC
+    io.memPredUpdate.stpc    := lq.io.violation.storePC
+
+    printf(p"  [MEM VIOLATION DETECTED]: Load PC=${Hexadecimal(lq.io.violation.loadPC)} robIdx=${lq.io.violation.loadRobIdx} collided with Store PC=${Hexadecimal(lq.io.violation.storePC)} -> Triggering Replay Redirect!\n")
   }
 
   // Non-Flushing BPU Update (Trains FTB and GHR for executed branches without flushing pipeline)
@@ -680,18 +713,6 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   lsu.io.imm  := 0.S
   lsu.io.dec  := r_agu_uop.decode
 
-  // Update Store Queue for stores:
-  sq.io.write.valid  := r_agu_val && (r_agu_uop.decode.is_store || r_agu_uop.decode.is_fstore)
-  sq.io.write.robIdx := r_agu_uop.robIdx
-  sq.io.write.paddr  := lsu.io.mem_addr
-  sq.io.write.wmask  := lsu.io.mem_wmask
-  sq.io.write.wdata  := lsu.io.mem_wdata
-
-  // Update Load Queue for loads:
-  lq.io.exec_update.valid  := r_agu_val && (r_agu_uop.decode.is_load || r_agu_uop.decode.is_fload)
-  lq.io.exec_update.robIdx := r_agu_uop.robIdx
-  lq.io.exec_update.paddr  := lsu.io.mem_addr
-
   // Store-to-Load Forwarding (STLF) Query:
   val load_mask = MuxCase("h000f".U(16.W), Seq(
     (r_agu_uop.decode.is_lb || r_agu_uop.decode.is_lbu) -> ("h0001".U(16.W) << lsu.io.mem_addr(2, 0)),
@@ -699,6 +720,31 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
     (r_agu_uop.decode.is_lw || r_agu_uop.decode.is_lwu || r_agu_uop.decode.is_flw) -> ("h000f".U(16.W) << lsu.io.mem_addr(2, 0)),
     (r_agu_uop.decode.is_ld || r_agu_uop.decode.is_fld) -> ("h00ff".U(16.W) << lsu.io.mem_addr(2, 0))
   ))
+
+  // Update Store Queue for stores:
+  sq.io.write.valid  := r_agu_val && (r_agu_uop.decode.is_store || r_agu_uop.decode.is_fstore)
+  sq.io.write.robIdx := r_agu_uop.robIdx
+  sq.io.write.paddr  := lsu.io.mem_addr
+  sq.io.write.wmask  := lsu.io.mem_wmask
+  sq.io.write.wdata  := lsu.io.mem_wdata
+
+  // Store Snoop into LoadQueue for Memory Violation Detection (XiangShan Parity)
+  lq.io.store_snoop.valid  := r_agu_val && (r_agu_uop.decode.is_store || r_agu_uop.decode.is_fstore)
+  lq.io.store_snoop.robIdx := r_agu_uop.robIdx
+  lq.io.store_snoop.paddr  := lsu.io.mem_addr
+  lq.io.store_snoop.mask   := lsu.io.mem_wmask
+  lq.io.store_snoop.pc     := r_agu_uop.uop.pc
+
+  // Signal Store Resolution to LFST and Issue Queue
+  io.store_resolved.valid  := r_agu_val && (r_agu_uop.decode.is_store || r_agu_uop.decode.is_fstore)
+  io.store_resolved.bits   := r_agu_uop.robIdx
+
+  // Update Load Queue for loads:
+  lq.io.exec_update.valid  := r_agu_val && (r_agu_uop.decode.is_load || r_agu_uop.decode.is_fload)
+  lq.io.exec_update.robIdx := r_agu_uop.robIdx
+  lq.io.exec_update.paddr  := lsu.io.mem_addr
+  lq.io.exec_update.mask   := load_mask
+  lq.io.exec_update.pc     := r_agu_uop.uop.pc
 
   sq.io.stlf_query.valid  := r_agu_val && (r_agu_uop.decode.is_load || r_agu_uop.decode.is_fload)
   sq.io.stlf_query.robIdx := r_agu_uop.robIdx
