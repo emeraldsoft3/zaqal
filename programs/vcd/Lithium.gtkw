@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.111 (w)1999-2020 BSI
-[*] Sat Sep  5 11:02:02 2026
+[*] Thu Sep 10 10:28:07 2026
 [*]
 [dumpfile] "/home/emerald/zaqal/programs/vcd/Lithium.vcd"
-[dumpfile_mtime] "Sat Sep  5 10:33:17 2026"
-[dumpfile_size] 15582632
+[dumpfile_mtime] "Thu Sep 10 08:33:42 2026"
+[dumpfile_size] 14315001
 [savefile] "/home/emerald/zaqal/programs/vcd/Lithium.gtkw"
-[timestart] 218
+[timestart] 0
 [size] 1865 930
 [pos] -1 -1
-*-2.900000 231 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-2.900000 189 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] TOP.
 [treeopen] TOP.Core.
 [treeopen] TOP.Core.backend.
@@ -20,6 +20,7 @@
 [treeopen] TOP.Core.backend.intIq.
 [treeopen] TOP.Core.backend.memIq.
 [treeopen] TOP.Core.backend.rat.intRat.
+[treeopen] TOP.Core.backend.storeSet.
 [treeopen] TOP.Core.frontend.bpu.tage.
 [treeopen] TOP.Core.frontend.ifu.
 [sst_width] 298
@@ -618,15 +619,50 @@ TOP.Core.backend.exec.lsu.addr_raw[63:0]
 TOP.Core.backend.exec.lsu.io_dec_is_lw
 @1000200
 -LSU
+@800200
+-lq
+@28
+TOP.Core.backend.exec.lq.io_violation_valid
+@22
+TOP.Core.backend.exec.lq.io_violation_storePC[63:0]
+TOP.Core.backend.exec.lq.io_violation_loadPC[63:0]
+@1000200
+-lq
+@28
+TOP.Core.backend.exec.io_redirect_valid
+TOP.Core.backend.exec.io_memPredUpdate_valid
+@1000200
 -Execute
+@28
+TOP.Core.backend.exec.lq_io_violation_valid
+TOP.Core.backend.exec.io_store_resolved_valid
+TOP.Core.backend.exec.sq_io_stlf_resp_hit
+@29
+TOP.Core.backend.memIq.entries_0_uop_loadWaitBit
+TOP.Core.backend.memIq.entries_1_uop_loadWaitBit
+TOP.Core.backend.memIq.entries_2_uop_loadWaitBit
+TOP.Core.backend.memIq.entries_3_uop_loadWaitBit
+@800200
+-storeset
+@28
+TOP.Core.backend.storeSet.ssit.valid_array_0
+TOP.Core.backend.storeSet.ssit.valid_array_1
+TOP.Core.backend.storeSet.ssit.valid_array_2
+@22
+TOP.Core.backend.storeSet.ssit.ssid_array_0[5:0]
+TOP.Core.backend.storeSet.ssit.ssid_array_1[5:0]
+@28
+TOP.Core.backend.storeSet.lfst.io_resp_0_shouldWait
+@1000200
+-storeset
 @24
 [color] 6
 TOP.debug_cycle_count[63:0]
 @200
 -RegFile
-@c00023
+@c00022
 +{TOP.Core.backend.exec.regFile.regs_32[63:0]} TOP.Core.backend.exec.regFile.regs_32[63:0]
-@29
+@28
 (0)TOP.Core.backend.exec.regFile.regs_32[63:0]
 (1)TOP.Core.backend.exec.regFile.regs_32[63:0]
 (2)TOP.Core.backend.exec.regFile.regs_32[63:0]
@@ -691,7 +727,7 @@ TOP.debug_cycle_count[63:0]
 (61)TOP.Core.backend.exec.regFile.regs_32[63:0]
 (62)TOP.Core.backend.exec.regFile.regs_32[63:0]
 (63)TOP.Core.backend.exec.regFile.regs_32[63:0]
-@1401201
+@1401200
 -group_end
 @22
 +{TOP.Core.backend.exec.regFile.regs_33[63:0]} TOP.Core.backend.exec.regFile.regs_33[63:0]
@@ -837,6 +873,12 @@ TOP.Core.backend.exec.regFile.regs_99[63:0]
 TOP.Core.backend.exec.regFile.regs_100[63:0]
 @200
 -DMEM
+@22
+TOP.Core.backend.exec.dmem.mem_0[63:0]
+TOP.Core.backend.exec.dmem.mem_1[63:0]
+TOP.Core.backend.exec.dmem.mem_2[63:0]
+TOP.Core.backend.exec.dmem.mem_3[63:0]
+TOP.Core.backend.exec.dmem.mem_4[63:0]
 @800200
 -fpregs
 @24
@@ -1057,7 +1099,7 @@ TOP.Core.backend.exec.fpRegFile.regs_190[63:0]
 TOP.Core.backend.exec.fpRegFile.regs_191[63:0]
 @1000200
 -fpregs
-@c00200
+@800200
 -DCache
 @24
 [color] 6
@@ -1065,34 +1107,20 @@ TOP.debug_cycle_count[63:0]
 @28
 +{TOP.Core.backend.dcache.io_req_valid} TOP.Core.backend.dcache.io_req_valid
 TOP.Core.backend.dcache.io_resp_valid
-@22
-TOP.Core.backend.dcache.io_mem_resp_bits_data[255:0]
-@28
 TOP.Core.backend.dcache.io_mem_resp_ready
 TOP.Core.backend.dcache.io_mem_resp_valid
 @22
 TOP.Core.backend.dcache.io_resp_bits_load_id[5:0]
-TOP.Core.backend.dcache.io_resp_bits_data[63:0]
 @28
 TOP.Core.backend.dcache.mshr.state[1:0]
 @22
-+{TOP.Core.backend.dcache.dataArray_0_0[31:0]} TOP.Core.backend.dcache.dataArray_0_0[31:0]
-+{TOP.Core.backend.dcache.dataArray_0_1[31:0]} TOP.Core.backend.dcache.dataArray_0_1[31:0]
-TOP.Core.backend.dcache.dataArray_0_2[31:0]
-TOP.Core.backend.dcache.dataArray_0_3[31:0]
-TOP.Core.backend.dcache.dataArray_0_4[31:0]
-TOP.Core.backend.dcache.dataArray_0_5[31:0]
-TOP.Core.backend.dcache.dataArray_0_6[31:0]
-TOP.Core.backend.dcache.dataArray_0_7[31:0]
-TOP.Core.backend.dcache.dataArray_1_0[31:0]
-TOP.Core.backend.dcache.dataArray_1_1[31:0]
-TOP.Core.backend.dcache.dataArray_1_2[31:0]
-TOP.Core.backend.dcache.dataArray_1_3[31:0]
-TOP.Core.backend.dcache.dataArray_1_4[31:0]
-TOP.Core.backend.dcache.dataArray_1_5[31:0]
-TOP.Core.backend.dcache.dataArray_1_6[31:0]
-TOP.Core.backend.dcache.dataArray_1_7[31:0]
-@1401200
+TOP.Core.backend.dcache.tagArray_0[52:0]
+TOP.Core.backend.dcache.tagArray_1[52:0]
+TOP.Core.backend.dcache.tagArray_2[52:0]
+TOP.Core.backend.dcache.tagArray_3[52:0]
+TOP.Core.backend.dcache.tagArray_4[52:0]
+TOP.Core.backend.dcache.tagArray_5[52:0]
+@1000200
 -DCache
 [pattern_trace] 1
 [pattern_trace] 0
