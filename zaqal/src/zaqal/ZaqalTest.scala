@@ -45,27 +45,23 @@ object ZaqalTest extends App {
     }
 
 
-    // --- MEMORY RESPONDER MODEL ---
-    // Day 25: Memory Dependence Predictor (MDP) Comprehensive Test Program:
-    // Tests out-of-order execution, RAW violation detection, Store Set training,
-    // selective load waiting for colliding load (0x18), and independent load execution (0x14).
+    // Day 25.5: RV64D (Double Precision FPU) Comprehensive Verification Program:
+    // Tests: fcvt.d.w, fadd.d, fmul.d, fmadd.d, fsub.d, fdiv.d, fsqrt.d, fcvt.s.d, fcvt.d.s, fmv.x.d
     val programMemory = Seq(
-      "h00200093".U(32.W), // 00: addi x1, x0, 2       (x1 = 2, divisor)
-      "h04000113".U(32.W), // 04: addi x2, x0, 64      (x2 = 64 = 0x40, store data)
-      "h00300513".U(32.W), // 08: addi x10, x0, 3      (x10 = 3, loop counter: 3 iterations)
-
-      // Loop Body (PC 0x0C):
-      "h021142b3".U(32.W), // 0C: div  x5, x2, x1      (Multi-cycle DIV takes ~35 cycles, delays store address!)
-      "h0022a023".U(32.W), // 10: sw   x2, 0(x5)       ([Store A]: Stalled in memIq waiting for x5=32!)
-      "h06402383".U(32.W), // 14: lw   x7, 100(x0)     ([Independent Load B]: Different addr! Executes freely, 0 wait!)
-      "h02002183".U(32.W), // 18: lw   x3, 32(x0)      ([Colliding Load A]: In Iter 1 violates; in Iter 2+ WAITS for Store A!)
-      "h00118213".U(32.W), // 1C: addi x4, x3, 1       (Accumulate data)
-      "hfff50513".U(32.W), // 20: addi x10, x10, -1    (Decrement loop counter)
-      "hfe0514e3".U(32.W), // 24: bne  x10, x0, loop   (Loop back to 0x0C while x10 != 0)
-
-      // Done:
-      "h00020593".U(32.W), // 28: addi x11, x4, 0      (x11 = final accumulated result: 64 + 1 = 65)
-      "h0000006f".U(32.W)  // 2C: j    2C              (Done trap)
+      "h00300093".U(32.W), // 00: addi    x1, x0, 3          (x1 = 3)
+      "h00200113".U(32.W), // 04: addi    x2, x0, 2          (x2 = 2)
+      "hd20080d3".U(32.W), // 08: fcvt.d.w f1, x1         (f1 = 3.0 = 0x4008000000000000)
+      "hd2010153".U(32.W), // 0C: fcvt.d.w f2, x2         (f2 = 2.0 = 0x4000000000000000)
+      "h022081d3".U(32.W), // 10: fadd.d  f3, f1, f2         (f3 = 3.0 + 2.0 = 5.0 = 0x4014000000000000)
+      "h12208253".U(32.W), // 14: fmul.d  f4, f1, f2         (f4 = 3.0 * 2.0 = 6.0 = 0x4018000000000000)
+      "h1a2082c3".U(32.W), // 18: fmadd.d f5, f1, f2, f3     (f5 = (3.0 * 2.0) + 5.0 = 11.0 = 0x4026000000000000)
+      "h0a128353".U(32.W), // 1C: fsub.d  f6, f5, f1         (f6 = 11.0 - 3.0 = 8.0 = 0x4020000000000000)
+      "h1a2303d3".U(32.W), // 20: fdiv.d  f7, f6, f2         (f7 = 8.0 / 2.0 = 4.0 = 0x4010000000000000)
+      "h5a038453".U(32.W), // 24: fsqrt.d f8, f7             (f8 = sqrt(4.0) = 2.0 = 0x4000000000000000)
+      "h421404d3".U(32.W), // 28: fcvt.s.d f9, f8         (f9 = 2.0f = NaN-boxed 0xffffffff40000000)
+      "h40048553".U(32.W), // 2C: fcvt.d.s f10, f9        (f10 = 2.0 = 0x4000000000000000)
+      "he2050653".U(32.W), // 30: fmv.x.d x12, f10           (x12 = 0x4000000000000000)
+      "h0000006f".U(32.W)  // 34: j       0x34               (infinite loop trap)
     ).padTo(1024, "h00000013".U(32.W))
 
     var memLatencyCounter = 0

@@ -14,43 +14,61 @@ class FPU(implicit val p: Parameters) extends Module with HasZaqalParameter {
     val result = Output(UInt(fLen.W))
   })
 
-  // --- 1. Architectural Operand Mapping (XiangShan/Rocket Style) ---
-  val rs1 = io.src1(31, 0)
-  val rs2 = Mux(io.dec.is_fadd || io.dec.is_fsub, "h3f800000".U, io.src2(31, 0)) // 1.0f for add/sub
-  val rs3 = Mux(io.dec.is_fmul, 0.U, 
-            Mux(io.dec.is_fadd || io.dec.is_fsub, io.src2(31, 0), io.src3(31, 0)))
+  val is_dp = io.dec.is_fp_double
 
-  // Unpack A, B, C
-  val sA = rs1(31); val eA = Cat(0.U(1.W), rs1(30, 23)).asSInt; val mA = Cat(eA =/= 0.S, rs1(22, 0))
-  val sB = rs2(31); val eB = Cat(0.U(1.W), rs2(30, 23)).asSInt; val mB = Cat(eB =/= 0.S, rs2(22, 0))
-  val sC = rs3(31); val eC = Cat(0.U(1.W), rs3(30, 23)).asSInt; val mC = Cat(eC =/= 0.S, rs3(22, 0))
+  // --- 1. Single Precision Operands Unpack ---
+  val rs1_sp = io.src1(31, 0)
+  val rs2_sp = Mux(io.dec.is_fadd || io.dec.is_fsub, "h3f800000".U(32.W), io.src2(31, 0)) // 1.0f
+  val rs3_sp = Mux(io.dec.is_fmul, 0.U(32.W), 
+               Mux(io.dec.is_fadd || io.dec.is_fsub, io.src2(31, 0), io.src3(31, 0)))
 
-  // --- 2. Multiply Stage (A * B) ---
-  val prod_m = mA * mB // 48-bit significand (bit 46 is the 1.x integer bit if normalized)
-  val prod_e = (eA + eB - 127.S)
-  val prod_s = sA ^ sB
+  val sA_sp = rs1_sp(31); val eA_sp = Cat(0.U(1.W), rs1_sp(30, 23)).asSInt; val mA_sp = Cat(eA_sp =/= 0.S, rs1_sp(22, 0))
+  val sB_sp = rs2_sp(31); val eB_sp = Cat(0.U(1.W), rs2_sp(30, 23)).asSInt; val mB_sp = Cat(eB_sp =/= 0.S, rs2_sp(22, 0))
+  val sC_sp = rs3_sp(31); val eC_sp = Cat(0.U(1.W), rs3_sp(30, 23)).asSInt; val mC_sp = Cat(eC_sp =/= 0.S, rs3_sp(22, 0))
 
-  // --- 3. Alignment Stage (Align C to Product) ---
-  // We use a wide internal format to handle alignment and normalization
-  // Bit 80 is our reference integer bit (scaled 2^80)
-  val prod_m_ext = Cat(0.U(1.W), prod_m, 0.U(33.W)) // 1 + 48 + 33 = 82 bits. Bit 46 becomes bit 79.
-                                                    // Wait, 46 + 33 = 79. Let's make it 80.
-  val prod_m_ext_80 = Cat(prod_m, 0.U(34.W))        // 48 + 34 = 82 bits. Bit 46 becomes bit 80.
-  val mC_ext_80     = Cat(mC,     0.U(57.W))        // 24 + 57 = 81 bits. Bit 23 becomes bit 80.
+  val prod_m_sp = mA_sp * mB_sp // 48-bit significand (bit 46 is integer bit)
+  val prod_e_sp = eA_sp + eB_sp - 127.S
 
-  val exp_diff = prod_e - eC.asSInt
-  val base_e = Mux(prod_e > eC.asSInt, prod_e, eC.asSInt)
+  // --- 2. Double Precision Operands Unpack ---
+  val rs1_dp = io.src1(63, 0)
+  val rs2_dp = Mux(io.dec.is_fadd || io.dec.is_fsub, "h3ff0000000000000".U(64.W), io.src2(63, 0)) // 1.0d
+  val rs3_dp = Mux(io.dec.is_fmul, 0.U(64.W),
+               Mux(io.dec.is_fadd || io.dec.is_fsub, io.src2(63, 0), io.src3(63, 0)))
 
-  // Align operands to the base exponent
-  // We'll use 128 bits for the shifted operands to be safe
-  val op1_wide = Mux(prod_e >= eC.asSInt, prod_m_ext_80 << 20, 
-                 Mux(exp_diff < -100.S, 0.U, (prod_m_ext_80 << 20) >> (-exp_diff).asUInt))
-  val op2_wide = Mux(eC.asSInt >= prod_e, mC_ext_80 << 20,
-                 Mux(exp_diff > 100.S, 0.U, (mC_ext_80 << 20) >> exp_diff.asUInt))
+  val sA_dp = rs1_dp(63); val eA_dp = Cat(0.U(1.W), rs1_dp(62, 52)).asSInt; val mA_dp = Cat(eA_dp =/= 0.S, rs1_dp(51, 0))
+  val sB_dp = rs2_dp(63); val eB_dp = Cat(0.U(1.W), rs2_dp(62, 52)).asSInt; val mB_dp = Cat(eB_dp =/= 0.S, rs2_dp(51, 0))
+  val sC_dp = rs3_dp(63); val eC_dp = Cat(0.U(1.W), rs3_dp(62, 52)).asSInt; val mC_dp = Cat(eC_dp =/= 0.S, rs3_dp(51, 0))
 
-  // --- Addition Stage ---
-  val effective_sub = prod_s ^ sC ^ io.dec.is_fsub
-  // Use 130-bit SInt to avoid overflow and sign issues
+  val prod_m_dp = mA_dp * mB_dp // 106-bit significand (bit 104 is integer bit)
+  val prod_e_dp = eA_dp + eB_dp - 1023.S
+
+  // --- 3. Unified Representation ---
+  val sA = Mux(is_dp, sA_dp, sA_sp)
+  val sB = Mux(is_dp, sB_dp, sB_sp)
+  val sC = Mux(is_dp, sC_dp, sC_sp)
+  val eC = Mux(is_dp, eC_dp, eC_sp)
+
+  val prod_m_unified = Mux(is_dp, prod_m_dp, Cat(prod_m_sp, 0.U(58.W))) // 106 bits, integer bit at 104
+  val prod_e = Mux(is_dp, prod_e_dp, prod_e_sp)
+  val mC_unified = Mux(is_dp, mC_dp, Cat(mC_sp, 0.U(29.W)))             // 53 bits, integer bit at 52
+
+  val prod_s   = sA ^ sB ^ (io.dec.is_fnmsub || io.dec.is_fnmadd)
+  val addend_s = sC ^ (io.dec.is_fsub || io.dec.is_fmsub || io.dec.is_fnmadd)
+
+  // --- 4. Alignment Stage ---
+  val prod_m_ext_80 = Cat(prod_m_unified, 0.U(60.W)) // 166 bits, bit 104 becomes 164
+  val mC_ext_80     = Cat(mC_unified,     0.U(112.W)) // 165 bits, bit 52 becomes 164
+
+  val exp_diff = prod_e - eC
+  val base_e = Mux(prod_e > eC, prod_e, eC)
+
+  val op1_wide = Mux(prod_e >= eC, prod_m_ext_80 << 20, 
+                 Mux(exp_diff < -150.S, 0.U, (prod_m_ext_80 << 20) >> (-exp_diff).asUInt))
+  val op2_wide = Mux(eC >= prod_e, mC_ext_80 << 20,
+                 Mux(exp_diff > 150.S, 0.U, (mC_ext_80 << 20) >> exp_diff.asUInt))
+
+  // --- 5. Addition Stage ---
+  val effective_sub = prod_s ^ addend_s
   val s_op1 = Cat(0.U(2.W), op1_wide).asSInt
   val s_op2 = Cat(0.U(2.W), op2_wide).asSInt
   
@@ -60,33 +78,32 @@ class FPU(implicit val p: Parameters) extends Module with HasZaqalParameter {
   val res_s = Mux(res_m_wide < 0.S, !prod_s, prod_s)
   val res_m_abs = res_m_wide.abs.asUInt
 
-  // --- 5. Normalization Stage ---
-  // Leading 1 should ideally be at bit 100 (which was bit 80 << 20)
-  val wide_abs = Cat(0.U(30.W), res_m_abs) // Padding to 128+ bits
-  val lzc = lzc_helper(wide_abs) 
-  val norm_m = (wide_abs(127, 0) << lzc) // Leading 1 at bit 127
+  // --- 6. Normalization Stage ---
+  // Integer bit was at 184 (164 + 20)
+  val wide_abs = res_m_abs.pad(256)               // 256 bits
+  val lzc = PriorityEncoder(Reverse(wide_abs))      // 0 to 255
+  val norm_m = (wide_abs << lzc)                   // Leading 1 at bit 255
   
-  // Adjust exponent: If bit 127 is the 1, original position was (127 - lzc)
-  // Target position was 100.
-  val exp_adj = (127.S - lzc.asSInt) - 100.S
+  val exp_adj = (255.S - lzc.asSInt) - 184.S
   val final_e_val = base_e + exp_adj
 
   // Special Zero Case Detection
   val final_is_zero = (res_m_abs === 0.U)
   val final_s = Mux(final_is_zero, 0.U, res_s)
-  val final_e = Mux(final_is_zero, 0.U, 
-                Mux(final_e_val > 254.S, 255.U, 
-                Mux(final_e_val < 0.S, 0.U, final_e_val(7, 0))))
-  val final_m = Mux(final_is_zero, 0.U, norm_m(126, 104)) // Extract 23 bits (127 implicit)
 
-  val res_f32 = Cat(final_s, final_e, final_m)
+  // Double precision result
+  val final_e_dp = Mux(final_is_zero, 0.U, 
+                   Mux(final_e_val > 2046.S, 2047.U, 
+                   Mux(final_e_val < 0.S, 0.U, final_e_val(10, 0))))
+  val final_m_dp = Mux(final_is_zero, 0.U, norm_m(254, 203)) // 52 bits
+  val res_f64    = Cat(final_s, final_e_dp, final_m_dp)
 
-  // Output selection and NaN-boxing
-  io.result := Cat("hffffffff".U(32.W), res_f32)
+  // Single precision result
+  val final_e_sp = Mux(final_is_zero, 0.U, 
+                   Mux(final_e_val > 254.S, 255.U, 
+                   Mux(final_e_val < 0.S, 0.U, final_e_val(7, 0))))
+  val final_m_sp = Mux(final_is_zero, 0.U, norm_m(254, 232)) // 23 bits
+  val res_f32    = Cat("hffffffff".U(32.W), final_s, final_e_sp, final_m_sp)
 
-  // Helper for LZC (Leading Zero Counter) on 128 bits
-  def lzc_helper(in: UInt): UInt = {
-    val padded = in(127, 0)
-    PriorityEncoder(Reverse(padded))
-  }
+  io.result := Mux(is_dp, res_f64, res_f32)
 }

@@ -66,15 +66,15 @@
   `endif // PRINTF_COND
 `endif // not def PRINTF_COND_
 
-module Adder(	// backend/src/zaqal/backend/fu/Adder.scala:8:7
-  input  [63:0] io_src1,	// backend/src/zaqal/backend/fu/Adder.scala:9:14
-                io_src2,	// backend/src/zaqal/backend/fu/Adder.scala:9:14
-  input         io_is_sub,	// backend/src/zaqal/backend/fu/Adder.scala:9:14
-                io_is_word,	// backend/src/zaqal/backend/fu/Adder.scala:9:14
-  output [63:0] io_result	// backend/src/zaqal/backend/fu/Adder.scala:9:14
+module Adder(	// backend/src/zaqal/backend/exu/Adder.scala:8:7
+  input  [63:0] io_src1,	// backend/src/zaqal/backend/exu/Adder.scala:9:14
+                io_src2,	// backend/src/zaqal/backend/exu/Adder.scala:9:14
+  input         io_is_sub,	// backend/src/zaqal/backend/exu/Adder.scala:9:14
+                io_is_word,	// backend/src/zaqal/backend/exu/Adder.scala:9:14
+  output [63:0] io_result	// backend/src/zaqal/backend/exu/Adder.scala:9:14
 );
 
-  wire [63:0] res = io_is_sub ? io_src1 - io_src2 : io_src1 + io_src2;	// backend/src/zaqal/backend/fu/Adder.scala:17:{16,36,55}
-  assign io_result = io_is_word ? {{32{res[31]}}, res[31:0]} : res;	// backend/src/zaqal/backend/fu/Adder.scala:8:7, :17:16, :20:{19,35,40,48,58}
+  wire [63:0] res = io_is_sub ? io_src1 - io_src2 : io_src1 + io_src2;	// backend/src/zaqal/backend/exu/Adder.scala:17:{16,36,55}
+  assign io_result = io_is_word ? {{32{res[31]}}, res[31:0]} : res;	// backend/src/zaqal/backend/exu/Adder.scala:8:7, :17:16, :20:{19,35,40,48,58}
 endmodule
 

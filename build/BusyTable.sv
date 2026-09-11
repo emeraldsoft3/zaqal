@@ -126,7 +126,9 @@ module BusyTable(	// backend/src/zaqal/backend/issue/BusyTable.scala:13:7
   input        io_wakeupPorts_3_valid,	// backend/src/zaqal/backend/issue/BusyTable.scala:14:14
   input  [7:0] io_wakeupPorts_3_bits,	// backend/src/zaqal/backend/issue/BusyTable.scala:14:14
   input        io_wakeupPorts_4_valid,	// backend/src/zaqal/backend/issue/BusyTable.scala:14:14
-  input  [7:0] io_wakeupPorts_4_bits	// backend/src/zaqal/backend/issue/BusyTable.scala:14:14
+  input  [7:0] io_wakeupPorts_4_bits,	// backend/src/zaqal/backend/issue/BusyTable.scala:14:14
+  input        io_wakeupPorts_5_valid,	// backend/src/zaqal/backend/issue/BusyTable.scala:14:14
+  input  [7:0] io_wakeupPorts_5_bits	// backend/src/zaqal/backend/issue/BusyTable.scala:14:14
 );
 
   reg  ready_table_0;	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28
@@ -331,1924 +333,2309 @@ module BusyTable(	// backend/src/zaqal/backend/issue/BusyTable.scala:13:7
   wire _GEN_6 = io_allocPorts_3_valid & (|io_allocPorts_3_bits);	// backend/src/zaqal/backend/issue/BusyTable.scala:35:{34,59}
   wire _GEN_7 = io_wakeupPorts_4_valid & (|io_wakeupPorts_4_bits);	// backend/src/zaqal/backend/issue/BusyTable.scala:32:{35,61}
   wire _GEN_8 = io_allocPorts_4_valid & (|io_allocPorts_4_bits);	// backend/src/zaqal/backend/issue/BusyTable.scala:35:{34,59}
-  wire _GEN_9 = io_allocPorts_5_valid & (|io_allocPorts_5_bits);	// backend/src/zaqal/backend/issue/BusyTable.scala:35:{34,59}
+  wire _GEN_9 = io_wakeupPorts_5_valid & (|io_wakeupPorts_5_bits);	// backend/src/zaqal/backend/issue/BusyTable.scala:32:{35,61}
+  wire _GEN_10 = io_allocPorts_5_valid & (|io_allocPorts_5_bits);	// backend/src/zaqal/backend/issue/BusyTable.scala:35:{34,59}
   wire next_ready_table_0 =
-    ~(_GEN_9 & ~(|io_allocPorts_5_bits) | _GEN_8 & ~(|io_allocPorts_4_bits))
-    & (_GEN_7 & ~(|io_wakeupPorts_4_bits) | ~(_GEN_6 & ~(|io_allocPorts_3_bits))
-       & (_GEN_5 & ~(|io_wakeupPorts_3_bits) | ~(_GEN_4 & ~(|io_allocPorts_2_bits))
-          & (_GEN_3 & ~(|io_wakeupPorts_2_bits) | ~(_GEN_2 & ~(|io_allocPorts_1_bits))
-             & (_GEN_1 & ~(|io_wakeupPorts_1_bits) | ~(_GEN_0 & ~(|io_allocPorts_0_bits))
-                & (_GEN & ~(|io_wakeupPorts_0_bits) | ready_table_0)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,61,70}, :33:48, :35:{34,59,68}, :36:47
+    ~(_GEN_10 & ~(|io_allocPorts_5_bits))
+    & (_GEN_9 & ~(|io_wakeupPorts_5_bits) | ~(_GEN_8 & ~(|io_allocPorts_4_bits))
+       & (_GEN_7 & ~(|io_wakeupPorts_4_bits) | ~(_GEN_6 & ~(|io_allocPorts_3_bits))
+          & (_GEN_5 & ~(|io_wakeupPorts_3_bits) | ~(_GEN_4 & ~(|io_allocPorts_2_bits))
+             & (_GEN_3 & ~(|io_wakeupPorts_2_bits) | ~(_GEN_2 & ~(|io_allocPorts_1_bits))
+                & (_GEN_1 & ~(|io_wakeupPorts_1_bits)
+                   | ~(_GEN_0 & ~(|io_allocPorts_0_bits))
+                   & (_GEN & ~(|io_wakeupPorts_0_bits) | ready_table_0))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,61,70}, :33:48, :35:{34,59,68}, :36:47
   wire next_ready_table_1 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h1 | _GEN_8 & io_allocPorts_4_bits == 8'h1)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h1 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h1)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h1
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h1)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h1
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h1)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h1
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h1)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h1 | ready_table_1)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h1)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h1 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h1)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h1
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h1)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h1
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h1)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h1
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h1)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h1
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h1)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h1 | ready_table_1))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_2 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h2 | _GEN_8 & io_allocPorts_4_bits == 8'h2)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h2 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h2)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h2
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h2)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h2
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h2)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h2
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h2)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h2 | ready_table_2)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h2)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h2 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h2)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h2
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h2)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h2
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h2)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h2
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h2)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h2
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h2)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h2 | ready_table_2))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_3 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h3 | _GEN_8 & io_allocPorts_4_bits == 8'h3)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h3 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h3)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h3
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h3)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h3
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h3)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h3
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h3)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h3 | ready_table_3)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h3)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h3 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h3)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h3
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h3)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h3
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h3)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h3
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h3)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h3
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h3)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h3 | ready_table_3))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_4 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h4 | _GEN_8 & io_allocPorts_4_bits == 8'h4)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h4 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h4)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h4
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h4)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h4
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h4)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h4
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h4)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h4 | ready_table_4)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h4)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h4 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h4)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h4
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h4)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h4
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h4)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h4
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h4)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h4
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h4)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h4 | ready_table_4))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_5 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h5 | _GEN_8 & io_allocPorts_4_bits == 8'h5)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h5 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h5)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h5
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h5)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h5
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h5)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h5
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h5)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h5 | ready_table_5)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h5)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h5 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h5)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h5
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h5)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h5
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h5)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h5
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h5)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h5
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h5)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h5 | ready_table_5))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_6 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h6 | _GEN_8 & io_allocPorts_4_bits == 8'h6)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h6 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h6)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h6
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h6)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h6
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h6)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h6
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h6)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h6 | ready_table_6)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h6)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h6 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h6)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h6
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h6)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h6
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h6)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h6
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h6)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h6
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h6)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h6 | ready_table_6))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_7 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h7 | _GEN_8 & io_allocPorts_4_bits == 8'h7)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h7 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h7)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h7
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h7)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h7
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h7)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h7
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h7)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h7 | ready_table_7)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h7)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h7 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h7)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h7
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h7)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h7
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h7)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h7
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h7)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h7
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h7)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h7 | ready_table_7))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_8 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h8 | _GEN_8 & io_allocPorts_4_bits == 8'h8)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h8 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h8)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h8
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h8)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h8
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h8)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h8
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h8)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h8 | ready_table_8)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h8)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h8 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h8)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h8
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h8)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h8
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h8)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h8
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h8)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h8
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h8)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h8 | ready_table_8))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_9 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h9 | _GEN_8 & io_allocPorts_4_bits == 8'h9)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h9 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h9)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h9
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h9)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h9
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h9)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h9
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h9)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h9 | ready_table_9)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h9)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h9 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h9)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h9
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h9)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h9
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h9)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h9
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h9)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h9
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h9)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h9 | ready_table_9))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_10 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'hA | _GEN_8 & io_allocPorts_4_bits == 8'hA)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'hA | ~(_GEN_6 & io_allocPorts_3_bits == 8'hA)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'hA
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'hA)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'hA
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'hA)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'hA
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'hA)
-                & (_GEN & io_wakeupPorts_0_bits == 8'hA | ready_table_10)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'hA)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'hA | ~(_GEN_8 & io_allocPorts_4_bits == 8'hA)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'hA
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'hA)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'hA
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'hA)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'hA
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'hA)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'hA
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'hA)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'hA | ready_table_10))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_11 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'hB | _GEN_8 & io_allocPorts_4_bits == 8'hB)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'hB | ~(_GEN_6 & io_allocPorts_3_bits == 8'hB)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'hB
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'hB)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'hB
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'hB)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'hB
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'hB)
-                & (_GEN & io_wakeupPorts_0_bits == 8'hB | ready_table_11)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'hB)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'hB | ~(_GEN_8 & io_allocPorts_4_bits == 8'hB)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'hB
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'hB)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'hB
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'hB)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'hB
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'hB)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'hB
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'hB)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'hB | ready_table_11))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_12 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'hC | _GEN_8 & io_allocPorts_4_bits == 8'hC)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'hC | ~(_GEN_6 & io_allocPorts_3_bits == 8'hC)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'hC
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'hC)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'hC
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'hC)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'hC
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'hC)
-                & (_GEN & io_wakeupPorts_0_bits == 8'hC | ready_table_12)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'hC)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'hC | ~(_GEN_8 & io_allocPorts_4_bits == 8'hC)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'hC
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'hC)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'hC
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'hC)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'hC
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'hC)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'hC
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'hC)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'hC | ready_table_12))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_13 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'hD | _GEN_8 & io_allocPorts_4_bits == 8'hD)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'hD | ~(_GEN_6 & io_allocPorts_3_bits == 8'hD)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'hD
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'hD)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'hD
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'hD)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'hD
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'hD)
-                & (_GEN & io_wakeupPorts_0_bits == 8'hD | ready_table_13)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'hD)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'hD | ~(_GEN_8 & io_allocPorts_4_bits == 8'hD)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'hD
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'hD)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'hD
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'hD)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'hD
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'hD)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'hD
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'hD)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'hD | ready_table_13))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_14 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'hE | _GEN_8 & io_allocPorts_4_bits == 8'hE)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'hE | ~(_GEN_6 & io_allocPorts_3_bits == 8'hE)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'hE
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'hE)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'hE
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'hE)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'hE
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'hE)
-                & (_GEN & io_wakeupPorts_0_bits == 8'hE | ready_table_14)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'hE)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'hE | ~(_GEN_8 & io_allocPorts_4_bits == 8'hE)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'hE
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'hE)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'hE
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'hE)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'hE
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'hE)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'hE
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'hE)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'hE | ready_table_14))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_15 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'hF | _GEN_8 & io_allocPorts_4_bits == 8'hF)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'hF | ~(_GEN_6 & io_allocPorts_3_bits == 8'hF)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'hF
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'hF)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'hF
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'hF)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'hF
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'hF)
-                & (_GEN & io_wakeupPorts_0_bits == 8'hF | ready_table_15)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'hF)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'hF | ~(_GEN_8 & io_allocPorts_4_bits == 8'hF)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'hF
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'hF)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'hF
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'hF)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'hF
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'hF)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'hF
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'hF)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'hF | ready_table_15))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_16 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h10 | _GEN_8 & io_allocPorts_4_bits == 8'h10)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h10 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h10)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h10
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h10)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h10
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h10)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h10
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h10)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h10 | ready_table_16)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h10)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h10 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h10)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h10
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h10)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h10
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h10)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h10
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h10)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h10
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h10)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h10 | ready_table_16))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_17 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h11 | _GEN_8 & io_allocPorts_4_bits == 8'h11)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h11 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h11)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h11
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h11)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h11
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h11)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h11
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h11)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h11 | ready_table_17)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h11)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h11 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h11)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h11
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h11)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h11
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h11)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h11
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h11)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h11
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h11)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h11 | ready_table_17))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_18 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h12 | _GEN_8 & io_allocPorts_4_bits == 8'h12)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h12 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h12)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h12
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h12)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h12
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h12)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h12
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h12)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h12 | ready_table_18)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h12)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h12 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h12)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h12
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h12)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h12
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h12)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h12
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h12)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h12
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h12)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h12 | ready_table_18))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_19 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h13 | _GEN_8 & io_allocPorts_4_bits == 8'h13)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h13 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h13)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h13
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h13)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h13
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h13)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h13
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h13)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h13 | ready_table_19)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h13)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h13 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h13)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h13
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h13)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h13
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h13)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h13
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h13)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h13
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h13)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h13 | ready_table_19))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_20 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h14 | _GEN_8 & io_allocPorts_4_bits == 8'h14)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h14 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h14)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h14
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h14)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h14
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h14)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h14
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h14)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h14 | ready_table_20)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h14)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h14 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h14)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h14
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h14)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h14
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h14)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h14
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h14)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h14
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h14)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h14 | ready_table_20))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_21 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h15 | _GEN_8 & io_allocPorts_4_bits == 8'h15)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h15 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h15)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h15
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h15)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h15
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h15)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h15
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h15)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h15 | ready_table_21)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h15)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h15 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h15)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h15
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h15)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h15
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h15)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h15
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h15)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h15
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h15)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h15 | ready_table_21))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_22 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h16 | _GEN_8 & io_allocPorts_4_bits == 8'h16)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h16 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h16)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h16
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h16)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h16
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h16)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h16
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h16)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h16 | ready_table_22)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h16)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h16 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h16)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h16
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h16)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h16
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h16)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h16
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h16)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h16
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h16)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h16 | ready_table_22))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_23 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h17 | _GEN_8 & io_allocPorts_4_bits == 8'h17)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h17 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h17)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h17
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h17)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h17
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h17)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h17
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h17)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h17 | ready_table_23)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h17)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h17 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h17)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h17
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h17)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h17
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h17)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h17
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h17)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h17
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h17)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h17 | ready_table_23))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_24 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h18 | _GEN_8 & io_allocPorts_4_bits == 8'h18)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h18 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h18)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h18
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h18)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h18
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h18)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h18
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h18)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h18 | ready_table_24)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h18)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h18 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h18)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h18
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h18)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h18
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h18)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h18
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h18)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h18
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h18)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h18 | ready_table_24))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_25 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h19 | _GEN_8 & io_allocPorts_4_bits == 8'h19)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h19 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h19)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h19
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h19)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h19
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h19)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h19
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h19)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h19 | ready_table_25)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h19)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h19 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h19)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h19
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h19)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h19
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h19)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h19
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h19)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h19
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h19)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h19 | ready_table_25))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_26 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h1A | _GEN_8 & io_allocPorts_4_bits == 8'h1A)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h1A | ~(_GEN_6 & io_allocPorts_3_bits == 8'h1A)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h1A
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h1A)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h1A
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h1A)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h1A
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h1A)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h1A | ready_table_26)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h1A)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h1A | ~(_GEN_8 & io_allocPorts_4_bits == 8'h1A)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h1A
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h1A)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h1A
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h1A)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h1A
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h1A)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h1A
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h1A)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h1A | ready_table_26))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_27 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h1B | _GEN_8 & io_allocPorts_4_bits == 8'h1B)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h1B | ~(_GEN_6 & io_allocPorts_3_bits == 8'h1B)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h1B
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h1B)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h1B
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h1B)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h1B
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h1B)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h1B | ready_table_27)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h1B)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h1B | ~(_GEN_8 & io_allocPorts_4_bits == 8'h1B)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h1B
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h1B)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h1B
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h1B)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h1B
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h1B)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h1B
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h1B)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h1B | ready_table_27))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_28 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h1C | _GEN_8 & io_allocPorts_4_bits == 8'h1C)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h1C | ~(_GEN_6 & io_allocPorts_3_bits == 8'h1C)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h1C
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h1C)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h1C
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h1C)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h1C
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h1C)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h1C | ready_table_28)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h1C)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h1C | ~(_GEN_8 & io_allocPorts_4_bits == 8'h1C)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h1C
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h1C)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h1C
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h1C)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h1C
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h1C)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h1C
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h1C)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h1C | ready_table_28))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_29 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h1D | _GEN_8 & io_allocPorts_4_bits == 8'h1D)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h1D | ~(_GEN_6 & io_allocPorts_3_bits == 8'h1D)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h1D
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h1D)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h1D
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h1D)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h1D
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h1D)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h1D | ready_table_29)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h1D)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h1D | ~(_GEN_8 & io_allocPorts_4_bits == 8'h1D)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h1D
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h1D)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h1D
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h1D)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h1D
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h1D)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h1D
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h1D)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h1D | ready_table_29))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_30 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h1E | _GEN_8 & io_allocPorts_4_bits == 8'h1E)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h1E | ~(_GEN_6 & io_allocPorts_3_bits == 8'h1E)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h1E
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h1E)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h1E
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h1E)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h1E
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h1E)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h1E | ready_table_30)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h1E)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h1E | ~(_GEN_8 & io_allocPorts_4_bits == 8'h1E)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h1E
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h1E)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h1E
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h1E)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h1E
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h1E)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h1E
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h1E)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h1E | ready_table_30))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_31 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h1F | _GEN_8 & io_allocPorts_4_bits == 8'h1F)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h1F | ~(_GEN_6 & io_allocPorts_3_bits == 8'h1F)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h1F
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h1F)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h1F
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h1F)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h1F
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h1F)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h1F | ready_table_31)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h1F)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h1F | ~(_GEN_8 & io_allocPorts_4_bits == 8'h1F)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h1F
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h1F)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h1F
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h1F)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h1F
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h1F)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h1F
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h1F)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h1F | ready_table_31))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_32 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h20 | _GEN_8 & io_allocPorts_4_bits == 8'h20)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h20 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h20)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h20
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h20)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h20
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h20)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h20
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h20)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h20 | ready_table_32)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h20)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h20 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h20)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h20
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h20)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h20
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h20)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h20
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h20)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h20
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h20)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h20 | ready_table_32))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_33 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h21 | _GEN_8 & io_allocPorts_4_bits == 8'h21)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h21 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h21)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h21
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h21)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h21
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h21)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h21
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h21)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h21 | ready_table_33)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h21)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h21 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h21)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h21
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h21)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h21
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h21)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h21
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h21)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h21
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h21)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h21 | ready_table_33))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_34 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h22 | _GEN_8 & io_allocPorts_4_bits == 8'h22)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h22 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h22)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h22
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h22)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h22
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h22)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h22
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h22)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h22 | ready_table_34)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h22)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h22 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h22)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h22
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h22)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h22
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h22)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h22
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h22)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h22
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h22)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h22 | ready_table_34))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_35 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h23 | _GEN_8 & io_allocPorts_4_bits == 8'h23)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h23 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h23)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h23
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h23)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h23
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h23)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h23
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h23)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h23 | ready_table_35)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h23)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h23 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h23)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h23
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h23)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h23
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h23)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h23
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h23)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h23
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h23)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h23 | ready_table_35))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_36 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h24 | _GEN_8 & io_allocPorts_4_bits == 8'h24)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h24 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h24)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h24
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h24)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h24
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h24)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h24
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h24)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h24 | ready_table_36)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h24)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h24 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h24)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h24
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h24)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h24
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h24)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h24
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h24)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h24
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h24)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h24 | ready_table_36))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_37 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h25 | _GEN_8 & io_allocPorts_4_bits == 8'h25)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h25 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h25)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h25
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h25)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h25
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h25)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h25
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h25)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h25 | ready_table_37)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h25)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h25 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h25)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h25
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h25)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h25
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h25)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h25
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h25)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h25
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h25)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h25 | ready_table_37))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_38 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h26 | _GEN_8 & io_allocPorts_4_bits == 8'h26)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h26 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h26)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h26
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h26)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h26
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h26)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h26
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h26)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h26 | ready_table_38)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h26)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h26 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h26)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h26
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h26)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h26
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h26)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h26
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h26)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h26
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h26)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h26 | ready_table_38))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_39 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h27 | _GEN_8 & io_allocPorts_4_bits == 8'h27)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h27 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h27)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h27
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h27)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h27
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h27)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h27
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h27)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h27 | ready_table_39)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h27)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h27 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h27)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h27
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h27)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h27
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h27)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h27
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h27)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h27
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h27)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h27 | ready_table_39))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_40 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h28 | _GEN_8 & io_allocPorts_4_bits == 8'h28)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h28 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h28)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h28
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h28)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h28
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h28)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h28
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h28)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h28 | ready_table_40)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h28)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h28 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h28)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h28
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h28)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h28
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h28)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h28
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h28)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h28
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h28)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h28 | ready_table_40))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_41 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h29 | _GEN_8 & io_allocPorts_4_bits == 8'h29)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h29 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h29)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h29
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h29)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h29
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h29)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h29
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h29)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h29 | ready_table_41)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h29)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h29 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h29)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h29
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h29)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h29
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h29)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h29
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h29)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h29
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h29)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h29 | ready_table_41))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_42 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h2A | _GEN_8 & io_allocPorts_4_bits == 8'h2A)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h2A | ~(_GEN_6 & io_allocPorts_3_bits == 8'h2A)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h2A
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h2A)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h2A
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h2A)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h2A
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h2A)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h2A | ready_table_42)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h2A)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h2A | ~(_GEN_8 & io_allocPorts_4_bits == 8'h2A)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h2A
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h2A)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h2A
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h2A)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h2A
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h2A)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h2A
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h2A)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h2A | ready_table_42))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_43 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h2B | _GEN_8 & io_allocPorts_4_bits == 8'h2B)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h2B | ~(_GEN_6 & io_allocPorts_3_bits == 8'h2B)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h2B
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h2B)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h2B
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h2B)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h2B
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h2B)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h2B | ready_table_43)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h2B)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h2B | ~(_GEN_8 & io_allocPorts_4_bits == 8'h2B)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h2B
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h2B)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h2B
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h2B)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h2B
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h2B)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h2B
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h2B)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h2B | ready_table_43))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_44 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h2C | _GEN_8 & io_allocPorts_4_bits == 8'h2C)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h2C | ~(_GEN_6 & io_allocPorts_3_bits == 8'h2C)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h2C
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h2C)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h2C
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h2C)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h2C
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h2C)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h2C | ready_table_44)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h2C)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h2C | ~(_GEN_8 & io_allocPorts_4_bits == 8'h2C)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h2C
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h2C)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h2C
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h2C)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h2C
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h2C)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h2C
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h2C)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h2C | ready_table_44))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_45 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h2D | _GEN_8 & io_allocPorts_4_bits == 8'h2D)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h2D | ~(_GEN_6 & io_allocPorts_3_bits == 8'h2D)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h2D
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h2D)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h2D
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h2D)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h2D
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h2D)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h2D | ready_table_45)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h2D)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h2D | ~(_GEN_8 & io_allocPorts_4_bits == 8'h2D)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h2D
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h2D)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h2D
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h2D)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h2D
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h2D)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h2D
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h2D)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h2D | ready_table_45))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_46 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h2E | _GEN_8 & io_allocPorts_4_bits == 8'h2E)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h2E | ~(_GEN_6 & io_allocPorts_3_bits == 8'h2E)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h2E
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h2E)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h2E
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h2E)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h2E
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h2E)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h2E | ready_table_46)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h2E)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h2E | ~(_GEN_8 & io_allocPorts_4_bits == 8'h2E)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h2E
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h2E)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h2E
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h2E)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h2E
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h2E)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h2E
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h2E)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h2E | ready_table_46))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_47 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h2F | _GEN_8 & io_allocPorts_4_bits == 8'h2F)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h2F | ~(_GEN_6 & io_allocPorts_3_bits == 8'h2F)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h2F
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h2F)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h2F
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h2F)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h2F
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h2F)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h2F | ready_table_47)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h2F)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h2F | ~(_GEN_8 & io_allocPorts_4_bits == 8'h2F)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h2F
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h2F)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h2F
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h2F)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h2F
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h2F)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h2F
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h2F)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h2F | ready_table_47))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_48 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h30 | _GEN_8 & io_allocPorts_4_bits == 8'h30)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h30 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h30)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h30
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h30)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h30
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h30)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h30
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h30)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h30 | ready_table_48)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h30)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h30 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h30)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h30
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h30)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h30
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h30)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h30
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h30)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h30
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h30)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h30 | ready_table_48))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_49 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h31 | _GEN_8 & io_allocPorts_4_bits == 8'h31)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h31 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h31)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h31
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h31)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h31
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h31)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h31
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h31)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h31 | ready_table_49)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h31)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h31 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h31)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h31
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h31)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h31
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h31)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h31
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h31)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h31
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h31)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h31 | ready_table_49))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_50 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h32 | _GEN_8 & io_allocPorts_4_bits == 8'h32)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h32 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h32)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h32
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h32)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h32
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h32)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h32
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h32)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h32 | ready_table_50)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h32)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h32 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h32)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h32
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h32)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h32
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h32)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h32
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h32)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h32
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h32)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h32 | ready_table_50))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_51 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h33 | _GEN_8 & io_allocPorts_4_bits == 8'h33)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h33 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h33)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h33
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h33)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h33
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h33)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h33
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h33)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h33 | ready_table_51)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h33)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h33 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h33)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h33
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h33)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h33
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h33)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h33
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h33)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h33
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h33)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h33 | ready_table_51))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_52 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h34 | _GEN_8 & io_allocPorts_4_bits == 8'h34)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h34 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h34)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h34
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h34)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h34
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h34)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h34
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h34)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h34 | ready_table_52)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h34)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h34 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h34)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h34
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h34)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h34
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h34)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h34
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h34)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h34
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h34)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h34 | ready_table_52))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_53 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h35 | _GEN_8 & io_allocPorts_4_bits == 8'h35)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h35 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h35)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h35
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h35)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h35
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h35)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h35
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h35)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h35 | ready_table_53)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h35)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h35 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h35)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h35
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h35)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h35
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h35)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h35
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h35)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h35
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h35)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h35 | ready_table_53))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_54 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h36 | _GEN_8 & io_allocPorts_4_bits == 8'h36)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h36 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h36)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h36
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h36)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h36
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h36)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h36
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h36)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h36 | ready_table_54)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h36)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h36 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h36)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h36
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h36)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h36
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h36)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h36
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h36)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h36
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h36)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h36 | ready_table_54))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_55 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h37 | _GEN_8 & io_allocPorts_4_bits == 8'h37)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h37 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h37)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h37
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h37)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h37
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h37)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h37
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h37)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h37 | ready_table_55)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h37)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h37 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h37)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h37
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h37)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h37
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h37)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h37
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h37)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h37
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h37)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h37 | ready_table_55))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_56 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h38 | _GEN_8 & io_allocPorts_4_bits == 8'h38)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h38 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h38)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h38
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h38)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h38
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h38)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h38
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h38)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h38 | ready_table_56)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h38)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h38 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h38)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h38
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h38)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h38
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h38)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h38
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h38)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h38
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h38)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h38 | ready_table_56))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_57 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h39 | _GEN_8 & io_allocPorts_4_bits == 8'h39)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h39 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h39)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h39
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h39)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h39
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h39)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h39
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h39)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h39 | ready_table_57)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h39)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h39 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h39)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h39
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h39)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h39
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h39)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h39
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h39)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h39
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h39)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h39 | ready_table_57))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_58 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h3A | _GEN_8 & io_allocPorts_4_bits == 8'h3A)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h3A | ~(_GEN_6 & io_allocPorts_3_bits == 8'h3A)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h3A
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h3A)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h3A
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h3A)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h3A
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h3A)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h3A | ready_table_58)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h3A)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h3A | ~(_GEN_8 & io_allocPorts_4_bits == 8'h3A)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h3A
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h3A)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h3A
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h3A)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h3A
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h3A)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h3A
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h3A)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h3A | ready_table_58))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_59 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h3B | _GEN_8 & io_allocPorts_4_bits == 8'h3B)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h3B | ~(_GEN_6 & io_allocPorts_3_bits == 8'h3B)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h3B
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h3B)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h3B
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h3B)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h3B
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h3B)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h3B | ready_table_59)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h3B)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h3B | ~(_GEN_8 & io_allocPorts_4_bits == 8'h3B)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h3B
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h3B)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h3B
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h3B)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h3B
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h3B)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h3B
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h3B)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h3B | ready_table_59))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_60 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h3C | _GEN_8 & io_allocPorts_4_bits == 8'h3C)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h3C | ~(_GEN_6 & io_allocPorts_3_bits == 8'h3C)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h3C
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h3C)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h3C
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h3C)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h3C
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h3C)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h3C | ready_table_60)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h3C)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h3C | ~(_GEN_8 & io_allocPorts_4_bits == 8'h3C)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h3C
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h3C)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h3C
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h3C)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h3C
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h3C)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h3C
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h3C)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h3C | ready_table_60))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_61 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h3D | _GEN_8 & io_allocPorts_4_bits == 8'h3D)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h3D | ~(_GEN_6 & io_allocPorts_3_bits == 8'h3D)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h3D
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h3D)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h3D
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h3D)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h3D
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h3D)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h3D | ready_table_61)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h3D)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h3D | ~(_GEN_8 & io_allocPorts_4_bits == 8'h3D)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h3D
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h3D)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h3D
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h3D)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h3D
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h3D)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h3D
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h3D)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h3D | ready_table_61))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_62 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h3E | _GEN_8 & io_allocPorts_4_bits == 8'h3E)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h3E | ~(_GEN_6 & io_allocPorts_3_bits == 8'h3E)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h3E
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h3E)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h3E
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h3E)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h3E
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h3E)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h3E | ready_table_62)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h3E)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h3E | ~(_GEN_8 & io_allocPorts_4_bits == 8'h3E)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h3E
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h3E)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h3E
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h3E)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h3E
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h3E)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h3E
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h3E)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h3E | ready_table_62))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_63 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h3F | _GEN_8 & io_allocPorts_4_bits == 8'h3F)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h3F | ~(_GEN_6 & io_allocPorts_3_bits == 8'h3F)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h3F
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h3F)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h3F
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h3F)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h3F
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h3F)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h3F | ready_table_63)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h3F)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h3F | ~(_GEN_8 & io_allocPorts_4_bits == 8'h3F)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h3F
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h3F)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h3F
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h3F)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h3F
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h3F)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h3F
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h3F)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h3F | ready_table_63))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_64 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h40 | _GEN_8 & io_allocPorts_4_bits == 8'h40)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h40 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h40)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h40
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h40)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h40
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h40)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h40
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h40)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h40 | ready_table_64)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h40)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h40 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h40)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h40
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h40)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h40
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h40)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h40
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h40)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h40
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h40)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h40 | ready_table_64))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_65 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h41 | _GEN_8 & io_allocPorts_4_bits == 8'h41)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h41 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h41)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h41
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h41)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h41
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h41)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h41
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h41)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h41 | ready_table_65)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h41)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h41 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h41)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h41
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h41)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h41
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h41)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h41
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h41)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h41
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h41)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h41 | ready_table_65))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_66 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h42 | _GEN_8 & io_allocPorts_4_bits == 8'h42)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h42 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h42)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h42
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h42)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h42
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h42)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h42
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h42)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h42 | ready_table_66)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h42)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h42 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h42)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h42
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h42)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h42
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h42)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h42
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h42)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h42
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h42)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h42 | ready_table_66))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_67 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h43 | _GEN_8 & io_allocPorts_4_bits == 8'h43)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h43 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h43)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h43
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h43)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h43
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h43)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h43
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h43)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h43 | ready_table_67)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h43)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h43 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h43)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h43
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h43)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h43
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h43)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h43
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h43)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h43
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h43)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h43 | ready_table_67))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_68 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h44 | _GEN_8 & io_allocPorts_4_bits == 8'h44)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h44 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h44)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h44
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h44)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h44
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h44)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h44
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h44)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h44 | ready_table_68)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h44)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h44 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h44)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h44
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h44)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h44
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h44)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h44
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h44)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h44
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h44)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h44 | ready_table_68))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_69 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h45 | _GEN_8 & io_allocPorts_4_bits == 8'h45)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h45 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h45)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h45
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h45)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h45
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h45)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h45
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h45)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h45 | ready_table_69)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h45)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h45 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h45)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h45
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h45)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h45
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h45)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h45
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h45)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h45
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h45)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h45 | ready_table_69))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_70 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h46 | _GEN_8 & io_allocPorts_4_bits == 8'h46)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h46 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h46)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h46
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h46)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h46
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h46)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h46
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h46)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h46 | ready_table_70)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h46)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h46 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h46)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h46
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h46)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h46
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h46)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h46
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h46)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h46
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h46)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h46 | ready_table_70))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_71 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h47 | _GEN_8 & io_allocPorts_4_bits == 8'h47)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h47 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h47)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h47
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h47)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h47
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h47)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h47
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h47)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h47 | ready_table_71)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h47)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h47 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h47)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h47
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h47)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h47
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h47)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h47
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h47)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h47
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h47)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h47 | ready_table_71))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_72 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h48 | _GEN_8 & io_allocPorts_4_bits == 8'h48)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h48 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h48)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h48
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h48)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h48
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h48)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h48
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h48)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h48 | ready_table_72)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h48)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h48 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h48)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h48
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h48)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h48
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h48)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h48
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h48)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h48
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h48)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h48 | ready_table_72))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_73 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h49 | _GEN_8 & io_allocPorts_4_bits == 8'h49)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h49 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h49)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h49
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h49)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h49
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h49)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h49
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h49)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h49 | ready_table_73)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h49)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h49 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h49)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h49
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h49)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h49
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h49)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h49
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h49)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h49
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h49)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h49 | ready_table_73))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_74 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h4A | _GEN_8 & io_allocPorts_4_bits == 8'h4A)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h4A | ~(_GEN_6 & io_allocPorts_3_bits == 8'h4A)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h4A
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h4A)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h4A
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h4A)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h4A
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h4A)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h4A | ready_table_74)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h4A)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h4A | ~(_GEN_8 & io_allocPorts_4_bits == 8'h4A)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h4A
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h4A)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h4A
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h4A)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h4A
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h4A)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h4A
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h4A)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h4A | ready_table_74))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_75 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h4B | _GEN_8 & io_allocPorts_4_bits == 8'h4B)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h4B | ~(_GEN_6 & io_allocPorts_3_bits == 8'h4B)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h4B
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h4B)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h4B
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h4B)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h4B
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h4B)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h4B | ready_table_75)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h4B)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h4B | ~(_GEN_8 & io_allocPorts_4_bits == 8'h4B)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h4B
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h4B)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h4B
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h4B)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h4B
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h4B)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h4B
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h4B)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h4B | ready_table_75))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_76 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h4C | _GEN_8 & io_allocPorts_4_bits == 8'h4C)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h4C | ~(_GEN_6 & io_allocPorts_3_bits == 8'h4C)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h4C
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h4C)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h4C
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h4C)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h4C
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h4C)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h4C | ready_table_76)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h4C)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h4C | ~(_GEN_8 & io_allocPorts_4_bits == 8'h4C)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h4C
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h4C)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h4C
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h4C)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h4C
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h4C)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h4C
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h4C)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h4C | ready_table_76))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_77 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h4D | _GEN_8 & io_allocPorts_4_bits == 8'h4D)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h4D | ~(_GEN_6 & io_allocPorts_3_bits == 8'h4D)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h4D
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h4D)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h4D
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h4D)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h4D
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h4D)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h4D | ready_table_77)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h4D)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h4D | ~(_GEN_8 & io_allocPorts_4_bits == 8'h4D)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h4D
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h4D)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h4D
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h4D)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h4D
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h4D)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h4D
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h4D)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h4D | ready_table_77))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_78 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h4E | _GEN_8 & io_allocPorts_4_bits == 8'h4E)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h4E | ~(_GEN_6 & io_allocPorts_3_bits == 8'h4E)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h4E
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h4E)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h4E
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h4E)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h4E
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h4E)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h4E | ready_table_78)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h4E)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h4E | ~(_GEN_8 & io_allocPorts_4_bits == 8'h4E)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h4E
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h4E)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h4E
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h4E)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h4E
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h4E)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h4E
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h4E)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h4E | ready_table_78))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_79 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h4F | _GEN_8 & io_allocPorts_4_bits == 8'h4F)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h4F | ~(_GEN_6 & io_allocPorts_3_bits == 8'h4F)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h4F
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h4F)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h4F
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h4F)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h4F
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h4F)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h4F | ready_table_79)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h4F)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h4F | ~(_GEN_8 & io_allocPorts_4_bits == 8'h4F)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h4F
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h4F)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h4F
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h4F)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h4F
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h4F)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h4F
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h4F)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h4F | ready_table_79))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_80 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h50 | _GEN_8 & io_allocPorts_4_bits == 8'h50)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h50 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h50)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h50
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h50)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h50
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h50)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h50
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h50)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h50 | ready_table_80)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h50)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h50 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h50)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h50
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h50)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h50
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h50)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h50
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h50)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h50
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h50)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h50 | ready_table_80))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_81 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h51 | _GEN_8 & io_allocPorts_4_bits == 8'h51)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h51 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h51)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h51
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h51)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h51
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h51)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h51
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h51)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h51 | ready_table_81)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h51)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h51 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h51)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h51
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h51)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h51
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h51)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h51
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h51)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h51
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h51)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h51 | ready_table_81))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_82 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h52 | _GEN_8 & io_allocPorts_4_bits == 8'h52)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h52 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h52)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h52
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h52)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h52
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h52)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h52
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h52)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h52 | ready_table_82)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h52)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h52 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h52)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h52
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h52)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h52
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h52)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h52
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h52)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h52
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h52)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h52 | ready_table_82))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_83 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h53 | _GEN_8 & io_allocPorts_4_bits == 8'h53)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h53 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h53)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h53
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h53)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h53
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h53)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h53
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h53)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h53 | ready_table_83)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h53)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h53 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h53)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h53
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h53)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h53
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h53)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h53
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h53)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h53
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h53)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h53 | ready_table_83))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_84 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h54 | _GEN_8 & io_allocPorts_4_bits == 8'h54)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h54 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h54)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h54
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h54)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h54
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h54)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h54
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h54)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h54 | ready_table_84)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h54)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h54 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h54)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h54
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h54)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h54
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h54)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h54
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h54)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h54
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h54)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h54 | ready_table_84))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_85 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h55 | _GEN_8 & io_allocPorts_4_bits == 8'h55)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h55 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h55)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h55
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h55)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h55
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h55)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h55
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h55)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h55 | ready_table_85)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h55)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h55 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h55)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h55
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h55)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h55
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h55)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h55
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h55)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h55
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h55)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h55 | ready_table_85))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_86 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h56 | _GEN_8 & io_allocPorts_4_bits == 8'h56)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h56 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h56)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h56
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h56)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h56
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h56)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h56
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h56)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h56 | ready_table_86)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h56)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h56 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h56)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h56
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h56)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h56
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h56)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h56
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h56)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h56
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h56)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h56 | ready_table_86))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_87 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h57 | _GEN_8 & io_allocPorts_4_bits == 8'h57)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h57 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h57)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h57
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h57)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h57
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h57)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h57
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h57)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h57 | ready_table_87)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h57)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h57 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h57)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h57
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h57)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h57
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h57)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h57
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h57)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h57
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h57)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h57 | ready_table_87))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_88 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h58 | _GEN_8 & io_allocPorts_4_bits == 8'h58)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h58 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h58)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h58
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h58)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h58
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h58)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h58
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h58)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h58 | ready_table_88)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h58)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h58 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h58)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h58
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h58)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h58
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h58)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h58
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h58)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h58
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h58)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h58 | ready_table_88))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_89 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h59 | _GEN_8 & io_allocPorts_4_bits == 8'h59)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h59 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h59)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h59
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h59)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h59
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h59)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h59
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h59)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h59 | ready_table_89)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h59)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h59 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h59)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h59
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h59)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h59
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h59)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h59
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h59)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h59
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h59)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h59 | ready_table_89))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_90 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h5A | _GEN_8 & io_allocPorts_4_bits == 8'h5A)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h5A | ~(_GEN_6 & io_allocPorts_3_bits == 8'h5A)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h5A
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h5A)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h5A
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h5A)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h5A
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h5A)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h5A | ready_table_90)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h5A)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h5A | ~(_GEN_8 & io_allocPorts_4_bits == 8'h5A)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h5A
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h5A)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h5A
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h5A)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h5A
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h5A)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h5A
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h5A)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h5A | ready_table_90))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_91 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h5B | _GEN_8 & io_allocPorts_4_bits == 8'h5B)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h5B | ~(_GEN_6 & io_allocPorts_3_bits == 8'h5B)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h5B
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h5B)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h5B
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h5B)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h5B
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h5B)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h5B | ready_table_91)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h5B)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h5B | ~(_GEN_8 & io_allocPorts_4_bits == 8'h5B)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h5B
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h5B)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h5B
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h5B)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h5B
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h5B)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h5B
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h5B)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h5B | ready_table_91))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_92 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h5C | _GEN_8 & io_allocPorts_4_bits == 8'h5C)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h5C | ~(_GEN_6 & io_allocPorts_3_bits == 8'h5C)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h5C
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h5C)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h5C
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h5C)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h5C
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h5C)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h5C | ready_table_92)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h5C)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h5C | ~(_GEN_8 & io_allocPorts_4_bits == 8'h5C)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h5C
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h5C)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h5C
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h5C)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h5C
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h5C)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h5C
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h5C)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h5C | ready_table_92))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_93 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h5D | _GEN_8 & io_allocPorts_4_bits == 8'h5D)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h5D | ~(_GEN_6 & io_allocPorts_3_bits == 8'h5D)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h5D
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h5D)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h5D
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h5D)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h5D
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h5D)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h5D | ready_table_93)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h5D)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h5D | ~(_GEN_8 & io_allocPorts_4_bits == 8'h5D)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h5D
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h5D)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h5D
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h5D)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h5D
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h5D)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h5D
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h5D)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h5D | ready_table_93))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_94 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h5E | _GEN_8 & io_allocPorts_4_bits == 8'h5E)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h5E | ~(_GEN_6 & io_allocPorts_3_bits == 8'h5E)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h5E
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h5E)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h5E
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h5E)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h5E
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h5E)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h5E | ready_table_94)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h5E)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h5E | ~(_GEN_8 & io_allocPorts_4_bits == 8'h5E)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h5E
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h5E)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h5E
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h5E)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h5E
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h5E)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h5E
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h5E)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h5E | ready_table_94))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_95 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h5F | _GEN_8 & io_allocPorts_4_bits == 8'h5F)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h5F | ~(_GEN_6 & io_allocPorts_3_bits == 8'h5F)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h5F
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h5F)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h5F
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h5F)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h5F
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h5F)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h5F | ready_table_95)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h5F)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h5F | ~(_GEN_8 & io_allocPorts_4_bits == 8'h5F)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h5F
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h5F)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h5F
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h5F)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h5F
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h5F)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h5F
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h5F)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h5F | ready_table_95))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_96 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h60 | _GEN_8 & io_allocPorts_4_bits == 8'h60)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h60 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h60)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h60
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h60)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h60
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h60)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h60
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h60)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h60 | ready_table_96)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h60)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h60 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h60)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h60
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h60)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h60
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h60)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h60
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h60)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h60
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h60)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h60 | ready_table_96))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_97 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h61 | _GEN_8 & io_allocPorts_4_bits == 8'h61)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h61 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h61)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h61
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h61)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h61
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h61)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h61
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h61)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h61 | ready_table_97)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h61)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h61 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h61)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h61
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h61)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h61
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h61)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h61
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h61)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h61
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h61)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h61 | ready_table_97))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_98 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h62 | _GEN_8 & io_allocPorts_4_bits == 8'h62)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h62 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h62)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h62
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h62)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h62
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h62)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h62
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h62)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h62 | ready_table_98)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h62)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h62 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h62)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h62
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h62)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h62
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h62)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h62
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h62)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h62
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h62)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h62 | ready_table_98))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_99 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h63 | _GEN_8 & io_allocPorts_4_bits == 8'h63)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h63 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h63)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h63
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h63)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h63
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h63)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h63
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h63)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h63 | ready_table_99)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h63)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h63 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h63)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h63
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h63)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h63
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h63)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h63
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h63)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h63
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h63)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h63 | ready_table_99))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_100 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h64 | _GEN_8 & io_allocPorts_4_bits == 8'h64)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h64 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h64)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h64
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h64)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h64
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h64)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h64
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h64)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h64 | ready_table_100)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h64)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h64 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h64)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h64
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h64)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h64
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h64)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h64
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h64)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h64
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h64)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h64 | ready_table_100))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_101 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h65 | _GEN_8 & io_allocPorts_4_bits == 8'h65)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h65 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h65)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h65
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h65)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h65
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h65)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h65
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h65)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h65 | ready_table_101)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h65)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h65 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h65)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h65
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h65)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h65
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h65)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h65
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h65)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h65
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h65)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h65 | ready_table_101))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_102 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h66 | _GEN_8 & io_allocPorts_4_bits == 8'h66)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h66 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h66)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h66
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h66)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h66
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h66)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h66
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h66)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h66 | ready_table_102)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h66)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h66 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h66)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h66
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h66)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h66
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h66)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h66
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h66)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h66
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h66)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h66 | ready_table_102))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_103 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h67 | _GEN_8 & io_allocPorts_4_bits == 8'h67)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h67 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h67)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h67
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h67)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h67
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h67)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h67
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h67)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h67 | ready_table_103)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h67)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h67 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h67)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h67
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h67)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h67
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h67)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h67
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h67)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h67
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h67)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h67 | ready_table_103))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_104 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h68 | _GEN_8 & io_allocPorts_4_bits == 8'h68)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h68 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h68)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h68
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h68)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h68
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h68)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h68
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h68)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h68 | ready_table_104)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h68)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h68 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h68)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h68
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h68)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h68
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h68)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h68
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h68)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h68
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h68)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h68 | ready_table_104))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_105 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h69 | _GEN_8 & io_allocPorts_4_bits == 8'h69)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h69 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h69)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h69
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h69)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h69
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h69)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h69
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h69)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h69 | ready_table_105)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h69)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h69 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h69)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h69
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h69)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h69
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h69)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h69
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h69)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h69
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h69)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h69 | ready_table_105))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_106 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h6A | _GEN_8 & io_allocPorts_4_bits == 8'h6A)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h6A | ~(_GEN_6 & io_allocPorts_3_bits == 8'h6A)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h6A
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h6A)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h6A
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h6A)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h6A
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h6A)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h6A | ready_table_106)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h6A)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h6A | ~(_GEN_8 & io_allocPorts_4_bits == 8'h6A)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h6A
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h6A)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h6A
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h6A)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h6A
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h6A)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h6A
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h6A)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h6A | ready_table_106))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_107 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h6B | _GEN_8 & io_allocPorts_4_bits == 8'h6B)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h6B | ~(_GEN_6 & io_allocPorts_3_bits == 8'h6B)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h6B
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h6B)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h6B
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h6B)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h6B
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h6B)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h6B | ready_table_107)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h6B)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h6B | ~(_GEN_8 & io_allocPorts_4_bits == 8'h6B)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h6B
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h6B)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h6B
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h6B)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h6B
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h6B)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h6B
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h6B)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h6B | ready_table_107))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_108 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h6C | _GEN_8 & io_allocPorts_4_bits == 8'h6C)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h6C | ~(_GEN_6 & io_allocPorts_3_bits == 8'h6C)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h6C
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h6C)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h6C
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h6C)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h6C
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h6C)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h6C | ready_table_108)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h6C)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h6C | ~(_GEN_8 & io_allocPorts_4_bits == 8'h6C)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h6C
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h6C)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h6C
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h6C)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h6C
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h6C)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h6C
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h6C)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h6C | ready_table_108))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_109 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h6D | _GEN_8 & io_allocPorts_4_bits == 8'h6D)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h6D | ~(_GEN_6 & io_allocPorts_3_bits == 8'h6D)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h6D
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h6D)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h6D
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h6D)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h6D
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h6D)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h6D | ready_table_109)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h6D)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h6D | ~(_GEN_8 & io_allocPorts_4_bits == 8'h6D)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h6D
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h6D)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h6D
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h6D)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h6D
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h6D)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h6D
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h6D)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h6D | ready_table_109))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_110 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h6E | _GEN_8 & io_allocPorts_4_bits == 8'h6E)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h6E | ~(_GEN_6 & io_allocPorts_3_bits == 8'h6E)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h6E
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h6E)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h6E
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h6E)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h6E
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h6E)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h6E | ready_table_110)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h6E)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h6E | ~(_GEN_8 & io_allocPorts_4_bits == 8'h6E)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h6E
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h6E)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h6E
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h6E)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h6E
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h6E)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h6E
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h6E)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h6E | ready_table_110))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_111 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h6F | _GEN_8 & io_allocPorts_4_bits == 8'h6F)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h6F | ~(_GEN_6 & io_allocPorts_3_bits == 8'h6F)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h6F
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h6F)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h6F
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h6F)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h6F
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h6F)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h6F | ready_table_111)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h6F)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h6F | ~(_GEN_8 & io_allocPorts_4_bits == 8'h6F)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h6F
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h6F)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h6F
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h6F)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h6F
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h6F)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h6F
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h6F)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h6F | ready_table_111))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_112 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h70 | _GEN_8 & io_allocPorts_4_bits == 8'h70)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h70 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h70)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h70
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h70)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h70
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h70)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h70
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h70)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h70 | ready_table_112)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h70)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h70 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h70)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h70
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h70)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h70
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h70)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h70
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h70)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h70
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h70)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h70 | ready_table_112))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_113 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h71 | _GEN_8 & io_allocPorts_4_bits == 8'h71)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h71 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h71)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h71
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h71)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h71
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h71)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h71
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h71)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h71 | ready_table_113)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h71)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h71 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h71)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h71
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h71)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h71
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h71)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h71
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h71)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h71
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h71)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h71 | ready_table_113))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_114 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h72 | _GEN_8 & io_allocPorts_4_bits == 8'h72)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h72 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h72)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h72
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h72)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h72
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h72)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h72
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h72)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h72 | ready_table_114)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h72)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h72 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h72)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h72
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h72)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h72
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h72)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h72
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h72)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h72
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h72)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h72 | ready_table_114))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_115 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h73 | _GEN_8 & io_allocPorts_4_bits == 8'h73)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h73 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h73)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h73
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h73)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h73
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h73)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h73
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h73)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h73 | ready_table_115)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h73)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h73 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h73)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h73
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h73)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h73
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h73)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h73
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h73)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h73
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h73)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h73 | ready_table_115))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_116 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h74 | _GEN_8 & io_allocPorts_4_bits == 8'h74)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h74 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h74)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h74
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h74)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h74
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h74)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h74
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h74)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h74 | ready_table_116)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h74)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h74 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h74)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h74
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h74)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h74
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h74)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h74
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h74)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h74
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h74)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h74 | ready_table_116))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_117 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h75 | _GEN_8 & io_allocPorts_4_bits == 8'h75)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h75 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h75)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h75
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h75)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h75
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h75)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h75
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h75)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h75 | ready_table_117)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h75)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h75 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h75)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h75
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h75)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h75
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h75)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h75
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h75)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h75
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h75)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h75 | ready_table_117))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_118 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h76 | _GEN_8 & io_allocPorts_4_bits == 8'h76)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h76 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h76)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h76
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h76)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h76
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h76)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h76
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h76)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h76 | ready_table_118)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h76)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h76 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h76)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h76
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h76)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h76
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h76)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h76
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h76)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h76
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h76)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h76 | ready_table_118))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_119 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h77 | _GEN_8 & io_allocPorts_4_bits == 8'h77)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h77 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h77)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h77
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h77)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h77
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h77)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h77
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h77)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h77 | ready_table_119)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h77)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h77 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h77)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h77
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h77)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h77
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h77)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h77
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h77)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h77
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h77)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h77 | ready_table_119))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_120 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h78 | _GEN_8 & io_allocPorts_4_bits == 8'h78)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h78 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h78)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h78
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h78)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h78
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h78)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h78
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h78)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h78 | ready_table_120)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h78)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h78 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h78)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h78
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h78)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h78
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h78)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h78
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h78)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h78
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h78)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h78 | ready_table_120))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_121 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h79 | _GEN_8 & io_allocPorts_4_bits == 8'h79)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h79 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h79)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h79
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h79)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h79
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h79)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h79
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h79)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h79 | ready_table_121)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h79)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h79 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h79)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h79
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h79)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h79
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h79)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h79
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h79)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h79
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h79)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h79 | ready_table_121))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_122 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h7A | _GEN_8 & io_allocPorts_4_bits == 8'h7A)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h7A | ~(_GEN_6 & io_allocPorts_3_bits == 8'h7A)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h7A
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h7A)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h7A
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h7A)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h7A
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h7A)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h7A | ready_table_122)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h7A)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h7A | ~(_GEN_8 & io_allocPorts_4_bits == 8'h7A)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h7A
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h7A)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h7A
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h7A)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h7A
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h7A)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h7A
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h7A)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h7A | ready_table_122))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_123 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h7B | _GEN_8 & io_allocPorts_4_bits == 8'h7B)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h7B | ~(_GEN_6 & io_allocPorts_3_bits == 8'h7B)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h7B
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h7B)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h7B
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h7B)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h7B
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h7B)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h7B | ready_table_123)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h7B)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h7B | ~(_GEN_8 & io_allocPorts_4_bits == 8'h7B)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h7B
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h7B)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h7B
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h7B)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h7B
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h7B)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h7B
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h7B)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h7B | ready_table_123))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_124 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h7C | _GEN_8 & io_allocPorts_4_bits == 8'h7C)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h7C | ~(_GEN_6 & io_allocPorts_3_bits == 8'h7C)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h7C
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h7C)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h7C
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h7C)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h7C
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h7C)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h7C | ready_table_124)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h7C)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h7C | ~(_GEN_8 & io_allocPorts_4_bits == 8'h7C)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h7C
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h7C)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h7C
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h7C)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h7C
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h7C)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h7C
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h7C)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h7C | ready_table_124))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_125 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h7D | _GEN_8 & io_allocPorts_4_bits == 8'h7D)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h7D | ~(_GEN_6 & io_allocPorts_3_bits == 8'h7D)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h7D
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h7D)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h7D
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h7D)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h7D
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h7D)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h7D | ready_table_125)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h7D)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h7D | ~(_GEN_8 & io_allocPorts_4_bits == 8'h7D)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h7D
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h7D)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h7D
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h7D)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h7D
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h7D)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h7D
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h7D)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h7D | ready_table_125))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_126 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h7E | _GEN_8 & io_allocPorts_4_bits == 8'h7E)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h7E | ~(_GEN_6 & io_allocPorts_3_bits == 8'h7E)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h7E
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h7E)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h7E
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h7E)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h7E
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h7E)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h7E | ready_table_126)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h7E)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h7E | ~(_GEN_8 & io_allocPorts_4_bits == 8'h7E)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h7E
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h7E)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h7E
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h7E)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h7E
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h7E)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h7E
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h7E)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h7E | ready_table_126))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_127 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h7F | _GEN_8 & io_allocPorts_4_bits == 8'h7F)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h7F | ~(_GEN_6 & io_allocPorts_3_bits == 8'h7F)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h7F
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h7F)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h7F
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h7F)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h7F
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h7F)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h7F | ready_table_127)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h7F)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h7F | ~(_GEN_8 & io_allocPorts_4_bits == 8'h7F)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h7F
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h7F)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h7F
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h7F)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h7F
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h7F)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h7F
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h7F)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h7F | ready_table_127))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_128 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h80 | _GEN_8 & io_allocPorts_4_bits == 8'h80)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h80 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h80)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h80
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h80)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h80
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h80)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h80
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h80)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h80 | ready_table_128)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h80)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h80 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h80)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h80
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h80)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h80
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h80)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h80
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h80)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h80
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h80)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h80 | ready_table_128))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_129 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h81 | _GEN_8 & io_allocPorts_4_bits == 8'h81)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h81 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h81)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h81
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h81)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h81
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h81)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h81
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h81)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h81 | ready_table_129)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h81)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h81 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h81)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h81
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h81)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h81
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h81)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h81
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h81)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h81
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h81)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h81 | ready_table_129))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_130 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h82 | _GEN_8 & io_allocPorts_4_bits == 8'h82)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h82 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h82)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h82
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h82)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h82
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h82)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h82
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h82)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h82 | ready_table_130)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h82)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h82 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h82)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h82
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h82)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h82
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h82)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h82
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h82)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h82
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h82)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h82 | ready_table_130))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_131 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h83 | _GEN_8 & io_allocPorts_4_bits == 8'h83)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h83 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h83)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h83
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h83)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h83
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h83)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h83
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h83)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h83 | ready_table_131)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h83)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h83 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h83)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h83
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h83)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h83
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h83)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h83
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h83)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h83
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h83)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h83 | ready_table_131))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_132 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h84 | _GEN_8 & io_allocPorts_4_bits == 8'h84)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h84 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h84)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h84
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h84)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h84
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h84)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h84
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h84)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h84 | ready_table_132)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h84)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h84 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h84)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h84
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h84)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h84
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h84)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h84
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h84)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h84
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h84)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h84 | ready_table_132))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_133 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h85 | _GEN_8 & io_allocPorts_4_bits == 8'h85)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h85 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h85)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h85
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h85)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h85
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h85)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h85
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h85)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h85 | ready_table_133)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h85)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h85 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h85)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h85
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h85)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h85
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h85)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h85
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h85)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h85
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h85)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h85 | ready_table_133))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_134 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h86 | _GEN_8 & io_allocPorts_4_bits == 8'h86)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h86 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h86)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h86
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h86)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h86
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h86)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h86
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h86)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h86 | ready_table_134)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h86)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h86 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h86)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h86
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h86)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h86
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h86)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h86
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h86)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h86
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h86)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h86 | ready_table_134))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_135 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h87 | _GEN_8 & io_allocPorts_4_bits == 8'h87)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h87 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h87)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h87
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h87)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h87
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h87)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h87
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h87)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h87 | ready_table_135)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h87)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h87 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h87)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h87
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h87)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h87
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h87)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h87
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h87)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h87
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h87)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h87 | ready_table_135))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_136 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h88 | _GEN_8 & io_allocPorts_4_bits == 8'h88)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h88 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h88)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h88
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h88)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h88
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h88)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h88
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h88)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h88 | ready_table_136)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h88)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h88 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h88)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h88
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h88)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h88
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h88)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h88
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h88)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h88
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h88)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h88 | ready_table_136))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_137 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h89 | _GEN_8 & io_allocPorts_4_bits == 8'h89)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h89 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h89)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h89
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h89)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h89
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h89)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h89
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h89)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h89 | ready_table_137)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h89)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h89 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h89)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h89
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h89)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h89
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h89)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h89
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h89)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h89
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h89)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h89 | ready_table_137))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_138 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h8A | _GEN_8 & io_allocPorts_4_bits == 8'h8A)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h8A | ~(_GEN_6 & io_allocPorts_3_bits == 8'h8A)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h8A
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h8A)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h8A
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h8A)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h8A
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h8A)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h8A | ready_table_138)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h8A)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h8A | ~(_GEN_8 & io_allocPorts_4_bits == 8'h8A)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h8A
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h8A)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h8A
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h8A)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h8A
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h8A)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h8A
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h8A)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h8A | ready_table_138))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_139 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h8B | _GEN_8 & io_allocPorts_4_bits == 8'h8B)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h8B | ~(_GEN_6 & io_allocPorts_3_bits == 8'h8B)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h8B
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h8B)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h8B
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h8B)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h8B
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h8B)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h8B | ready_table_139)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h8B)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h8B | ~(_GEN_8 & io_allocPorts_4_bits == 8'h8B)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h8B
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h8B)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h8B
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h8B)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h8B
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h8B)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h8B
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h8B)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h8B | ready_table_139))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_140 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h8C | _GEN_8 & io_allocPorts_4_bits == 8'h8C)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h8C | ~(_GEN_6 & io_allocPorts_3_bits == 8'h8C)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h8C
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h8C)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h8C
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h8C)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h8C
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h8C)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h8C | ready_table_140)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h8C)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h8C | ~(_GEN_8 & io_allocPorts_4_bits == 8'h8C)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h8C
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h8C)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h8C
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h8C)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h8C
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h8C)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h8C
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h8C)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h8C | ready_table_140))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_141 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h8D | _GEN_8 & io_allocPorts_4_bits == 8'h8D)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h8D | ~(_GEN_6 & io_allocPorts_3_bits == 8'h8D)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h8D
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h8D)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h8D
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h8D)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h8D
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h8D)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h8D | ready_table_141)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h8D)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h8D | ~(_GEN_8 & io_allocPorts_4_bits == 8'h8D)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h8D
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h8D)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h8D
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h8D)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h8D
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h8D)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h8D
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h8D)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h8D | ready_table_141))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_142 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h8E | _GEN_8 & io_allocPorts_4_bits == 8'h8E)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h8E | ~(_GEN_6 & io_allocPorts_3_bits == 8'h8E)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h8E
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h8E)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h8E
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h8E)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h8E
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h8E)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h8E | ready_table_142)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h8E)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h8E | ~(_GEN_8 & io_allocPorts_4_bits == 8'h8E)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h8E
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h8E)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h8E
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h8E)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h8E
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h8E)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h8E
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h8E)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h8E | ready_table_142))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_143 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h8F | _GEN_8 & io_allocPorts_4_bits == 8'h8F)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h8F | ~(_GEN_6 & io_allocPorts_3_bits == 8'h8F)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h8F
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h8F)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h8F
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h8F)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h8F
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h8F)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h8F | ready_table_143)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h8F)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h8F | ~(_GEN_8 & io_allocPorts_4_bits == 8'h8F)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h8F
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h8F)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h8F
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h8F)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h8F
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h8F)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h8F
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h8F)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h8F | ready_table_143))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_144 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h90 | _GEN_8 & io_allocPorts_4_bits == 8'h90)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h90 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h90)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h90
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h90)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h90
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h90)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h90
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h90)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h90 | ready_table_144)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h90)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h90 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h90)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h90
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h90)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h90
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h90)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h90
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h90)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h90
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h90)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h90 | ready_table_144))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_145 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h91 | _GEN_8 & io_allocPorts_4_bits == 8'h91)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h91 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h91)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h91
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h91)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h91
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h91)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h91
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h91)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h91 | ready_table_145)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h91)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h91 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h91)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h91
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h91)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h91
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h91)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h91
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h91)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h91
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h91)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h91 | ready_table_145))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_146 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h92 | _GEN_8 & io_allocPorts_4_bits == 8'h92)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h92 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h92)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h92
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h92)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h92
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h92)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h92
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h92)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h92 | ready_table_146)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h92)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h92 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h92)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h92
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h92)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h92
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h92)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h92
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h92)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h92
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h92)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h92 | ready_table_146))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_147 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h93 | _GEN_8 & io_allocPorts_4_bits == 8'h93)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h93 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h93)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h93
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h93)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h93
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h93)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h93
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h93)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h93 | ready_table_147)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h93)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h93 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h93)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h93
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h93)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h93
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h93)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h93
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h93)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h93
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h93)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h93 | ready_table_147))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_148 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h94 | _GEN_8 & io_allocPorts_4_bits == 8'h94)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h94 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h94)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h94
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h94)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h94
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h94)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h94
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h94)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h94 | ready_table_148)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h94)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h94 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h94)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h94
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h94)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h94
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h94)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h94
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h94)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h94
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h94)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h94 | ready_table_148))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_149 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h95 | _GEN_8 & io_allocPorts_4_bits == 8'h95)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h95 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h95)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h95
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h95)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h95
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h95)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h95
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h95)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h95 | ready_table_149)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h95)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h95 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h95)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h95
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h95)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h95
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h95)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h95
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h95)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h95
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h95)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h95 | ready_table_149))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_150 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h96 | _GEN_8 & io_allocPorts_4_bits == 8'h96)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h96 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h96)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h96
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h96)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h96
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h96)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h96
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h96)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h96 | ready_table_150)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h96)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h96 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h96)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h96
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h96)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h96
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h96)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h96
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h96)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h96
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h96)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h96 | ready_table_150))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_151 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h97 | _GEN_8 & io_allocPorts_4_bits == 8'h97)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h97 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h97)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h97
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h97)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h97
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h97)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h97
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h97)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h97 | ready_table_151)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h97)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h97 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h97)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h97
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h97)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h97
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h97)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h97
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h97)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h97
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h97)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h97 | ready_table_151))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_152 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h98 | _GEN_8 & io_allocPorts_4_bits == 8'h98)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h98 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h98)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h98
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h98)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h98
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h98)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h98
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h98)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h98 | ready_table_152)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h98)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h98 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h98)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h98
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h98)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h98
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h98)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h98
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h98)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h98
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h98)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h98 | ready_table_152))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_153 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h99 | _GEN_8 & io_allocPorts_4_bits == 8'h99)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h99 | ~(_GEN_6 & io_allocPorts_3_bits == 8'h99)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h99
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h99)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h99
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h99)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h99
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h99)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h99 | ready_table_153)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h99)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h99 | ~(_GEN_8 & io_allocPorts_4_bits == 8'h99)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h99
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h99)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h99
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h99)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h99
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h99)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h99
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h99)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h99 | ready_table_153))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_154 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h9A | _GEN_8 & io_allocPorts_4_bits == 8'h9A)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h9A | ~(_GEN_6 & io_allocPorts_3_bits == 8'h9A)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h9A
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h9A)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h9A
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h9A)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h9A
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h9A)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h9A | ready_table_154)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h9A)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h9A | ~(_GEN_8 & io_allocPorts_4_bits == 8'h9A)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h9A
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h9A)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h9A
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h9A)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h9A
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h9A)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h9A
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h9A)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h9A | ready_table_154))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_155 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h9B | _GEN_8 & io_allocPorts_4_bits == 8'h9B)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h9B | ~(_GEN_6 & io_allocPorts_3_bits == 8'h9B)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h9B
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h9B)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h9B
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h9B)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h9B
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h9B)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h9B | ready_table_155)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h9B)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h9B | ~(_GEN_8 & io_allocPorts_4_bits == 8'h9B)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h9B
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h9B)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h9B
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h9B)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h9B
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h9B)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h9B
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h9B)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h9B | ready_table_155))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_156 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h9C | _GEN_8 & io_allocPorts_4_bits == 8'h9C)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h9C | ~(_GEN_6 & io_allocPorts_3_bits == 8'h9C)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h9C
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h9C)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h9C
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h9C)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h9C
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h9C)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h9C | ready_table_156)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h9C)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h9C | ~(_GEN_8 & io_allocPorts_4_bits == 8'h9C)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h9C
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h9C)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h9C
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h9C)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h9C
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h9C)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h9C
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h9C)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h9C | ready_table_156))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_157 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h9D | _GEN_8 & io_allocPorts_4_bits == 8'h9D)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h9D | ~(_GEN_6 & io_allocPorts_3_bits == 8'h9D)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h9D
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h9D)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h9D
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h9D)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h9D
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h9D)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h9D | ready_table_157)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h9D)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h9D | ~(_GEN_8 & io_allocPorts_4_bits == 8'h9D)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h9D
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h9D)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h9D
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h9D)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h9D
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h9D)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h9D
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h9D)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h9D | ready_table_157))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_158 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h9E | _GEN_8 & io_allocPorts_4_bits == 8'h9E)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h9E | ~(_GEN_6 & io_allocPorts_3_bits == 8'h9E)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h9E
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h9E)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h9E
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h9E)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h9E
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h9E)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h9E | ready_table_158)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h9E)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h9E | ~(_GEN_8 & io_allocPorts_4_bits == 8'h9E)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h9E
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h9E)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h9E
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h9E)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h9E
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h9E)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h9E
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h9E)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h9E | ready_table_158))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_159 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'h9F | _GEN_8 & io_allocPorts_4_bits == 8'h9F)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'h9F | ~(_GEN_6 & io_allocPorts_3_bits == 8'h9F)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'h9F
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'h9F)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'h9F
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'h9F)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'h9F
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'h9F)
-                & (_GEN & io_wakeupPorts_0_bits == 8'h9F | ready_table_159)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'h9F)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'h9F | ~(_GEN_8 & io_allocPorts_4_bits == 8'h9F)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'h9F
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'h9F)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'h9F
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'h9F)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'h9F
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'h9F)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'h9F
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'h9F)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'h9F | ready_table_159))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_160 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'hA0 | _GEN_8 & io_allocPorts_4_bits == 8'hA0)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'hA0 | ~(_GEN_6 & io_allocPorts_3_bits == 8'hA0)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'hA0
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'hA0)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'hA0
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'hA0)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'hA0
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'hA0)
-                & (_GEN & io_wakeupPorts_0_bits == 8'hA0 | ready_table_160)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'hA0)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'hA0 | ~(_GEN_8 & io_allocPorts_4_bits == 8'hA0)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'hA0
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'hA0)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'hA0
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'hA0)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'hA0
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'hA0)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'hA0
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'hA0)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'hA0 | ready_table_160))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_161 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'hA1 | _GEN_8 & io_allocPorts_4_bits == 8'hA1)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'hA1 | ~(_GEN_6 & io_allocPorts_3_bits == 8'hA1)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'hA1
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'hA1)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'hA1
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'hA1)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'hA1
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'hA1)
-                & (_GEN & io_wakeupPorts_0_bits == 8'hA1 | ready_table_161)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'hA1)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'hA1 | ~(_GEN_8 & io_allocPorts_4_bits == 8'hA1)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'hA1
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'hA1)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'hA1
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'hA1)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'hA1
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'hA1)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'hA1
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'hA1)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'hA1 | ready_table_161))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_162 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'hA2 | _GEN_8 & io_allocPorts_4_bits == 8'hA2)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'hA2 | ~(_GEN_6 & io_allocPorts_3_bits == 8'hA2)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'hA2
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'hA2)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'hA2
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'hA2)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'hA2
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'hA2)
-                & (_GEN & io_wakeupPorts_0_bits == 8'hA2 | ready_table_162)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'hA2)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'hA2 | ~(_GEN_8 & io_allocPorts_4_bits == 8'hA2)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'hA2
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'hA2)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'hA2
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'hA2)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'hA2
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'hA2)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'hA2
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'hA2)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'hA2 | ready_table_162))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_163 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'hA3 | _GEN_8 & io_allocPorts_4_bits == 8'hA3)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'hA3 | ~(_GEN_6 & io_allocPorts_3_bits == 8'hA3)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'hA3
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'hA3)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'hA3
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'hA3)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'hA3
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'hA3)
-                & (_GEN & io_wakeupPorts_0_bits == 8'hA3 | ready_table_163)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'hA3)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'hA3 | ~(_GEN_8 & io_allocPorts_4_bits == 8'hA3)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'hA3
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'hA3)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'hA3
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'hA3)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'hA3
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'hA3)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'hA3
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'hA3)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'hA3 | ready_table_163))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_164 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'hA4 | _GEN_8 & io_allocPorts_4_bits == 8'hA4)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'hA4 | ~(_GEN_6 & io_allocPorts_3_bits == 8'hA4)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'hA4
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'hA4)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'hA4
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'hA4)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'hA4
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'hA4)
-                & (_GEN & io_wakeupPorts_0_bits == 8'hA4 | ready_table_164)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'hA4)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'hA4 | ~(_GEN_8 & io_allocPorts_4_bits == 8'hA4)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'hA4
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'hA4)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'hA4
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'hA4)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'hA4
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'hA4)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'hA4
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'hA4)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'hA4 | ready_table_164))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_165 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'hA5 | _GEN_8 & io_allocPorts_4_bits == 8'hA5)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'hA5 | ~(_GEN_6 & io_allocPorts_3_bits == 8'hA5)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'hA5
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'hA5)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'hA5
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'hA5)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'hA5
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'hA5)
-                & (_GEN & io_wakeupPorts_0_bits == 8'hA5 | ready_table_165)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'hA5)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'hA5 | ~(_GEN_8 & io_allocPorts_4_bits == 8'hA5)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'hA5
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'hA5)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'hA5
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'hA5)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'hA5
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'hA5)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'hA5
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'hA5)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'hA5 | ready_table_165))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_166 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'hA6 | _GEN_8 & io_allocPorts_4_bits == 8'hA6)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'hA6 | ~(_GEN_6 & io_allocPorts_3_bits == 8'hA6)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'hA6
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'hA6)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'hA6
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'hA6)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'hA6
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'hA6)
-                & (_GEN & io_wakeupPorts_0_bits == 8'hA6 | ready_table_166)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'hA6)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'hA6 | ~(_GEN_8 & io_allocPorts_4_bits == 8'hA6)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'hA6
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'hA6)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'hA6
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'hA6)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'hA6
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'hA6)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'hA6
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'hA6)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'hA6 | ready_table_166))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_167 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'hA7 | _GEN_8 & io_allocPorts_4_bits == 8'hA7)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'hA7 | ~(_GEN_6 & io_allocPorts_3_bits == 8'hA7)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'hA7
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'hA7)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'hA7
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'hA7)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'hA7
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'hA7)
-                & (_GEN & io_wakeupPorts_0_bits == 8'hA7 | ready_table_167)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'hA7)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'hA7 | ~(_GEN_8 & io_allocPorts_4_bits == 8'hA7)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'hA7
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'hA7)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'hA7
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'hA7)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'hA7
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'hA7)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'hA7
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'hA7)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'hA7 | ready_table_167))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_168 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'hA8 | _GEN_8 & io_allocPorts_4_bits == 8'hA8)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'hA8 | ~(_GEN_6 & io_allocPorts_3_bits == 8'hA8)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'hA8
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'hA8)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'hA8
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'hA8)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'hA8
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'hA8)
-                & (_GEN & io_wakeupPorts_0_bits == 8'hA8 | ready_table_168)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'hA8)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'hA8 | ~(_GEN_8 & io_allocPorts_4_bits == 8'hA8)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'hA8
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'hA8)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'hA8
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'hA8)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'hA8
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'hA8)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'hA8
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'hA8)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'hA8 | ready_table_168))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_169 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'hA9 | _GEN_8 & io_allocPorts_4_bits == 8'hA9)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'hA9 | ~(_GEN_6 & io_allocPorts_3_bits == 8'hA9)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'hA9
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'hA9)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'hA9
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'hA9)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'hA9
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'hA9)
-                & (_GEN & io_wakeupPorts_0_bits == 8'hA9 | ready_table_169)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'hA9)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'hA9 | ~(_GEN_8 & io_allocPorts_4_bits == 8'hA9)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'hA9
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'hA9)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'hA9
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'hA9)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'hA9
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'hA9)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'hA9
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'hA9)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'hA9 | ready_table_169))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_170 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'hAA | _GEN_8 & io_allocPorts_4_bits == 8'hAA)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'hAA | ~(_GEN_6 & io_allocPorts_3_bits == 8'hAA)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'hAA
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'hAA)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'hAA
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'hAA)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'hAA
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'hAA)
-                & (_GEN & io_wakeupPorts_0_bits == 8'hAA | ready_table_170)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'hAA)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'hAA | ~(_GEN_8 & io_allocPorts_4_bits == 8'hAA)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'hAA
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'hAA)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'hAA
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'hAA)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'hAA
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'hAA)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'hAA
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'hAA)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'hAA | ready_table_170))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_171 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'hAB | _GEN_8 & io_allocPorts_4_bits == 8'hAB)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'hAB | ~(_GEN_6 & io_allocPorts_3_bits == 8'hAB)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'hAB
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'hAB)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'hAB
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'hAB)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'hAB
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'hAB)
-                & (_GEN & io_wakeupPorts_0_bits == 8'hAB | ready_table_171)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'hAB)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'hAB | ~(_GEN_8 & io_allocPorts_4_bits == 8'hAB)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'hAB
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'hAB)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'hAB
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'hAB)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'hAB
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'hAB)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'hAB
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'hAB)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'hAB | ready_table_171))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_172 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'hAC | _GEN_8 & io_allocPorts_4_bits == 8'hAC)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'hAC | ~(_GEN_6 & io_allocPorts_3_bits == 8'hAC)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'hAC
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'hAC)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'hAC
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'hAC)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'hAC
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'hAC)
-                & (_GEN & io_wakeupPorts_0_bits == 8'hAC | ready_table_172)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'hAC)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'hAC | ~(_GEN_8 & io_allocPorts_4_bits == 8'hAC)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'hAC
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'hAC)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'hAC
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'hAC)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'hAC
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'hAC)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'hAC
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'hAC)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'hAC | ready_table_172))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_173 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'hAD | _GEN_8 & io_allocPorts_4_bits == 8'hAD)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'hAD | ~(_GEN_6 & io_allocPorts_3_bits == 8'hAD)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'hAD
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'hAD)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'hAD
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'hAD)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'hAD
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'hAD)
-                & (_GEN & io_wakeupPorts_0_bits == 8'hAD | ready_table_173)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'hAD)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'hAD | ~(_GEN_8 & io_allocPorts_4_bits == 8'hAD)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'hAD
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'hAD)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'hAD
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'hAD)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'hAD
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'hAD)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'hAD
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'hAD)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'hAD | ready_table_173))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_174 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'hAE | _GEN_8 & io_allocPorts_4_bits == 8'hAE)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'hAE | ~(_GEN_6 & io_allocPorts_3_bits == 8'hAE)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'hAE
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'hAE)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'hAE
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'hAE)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'hAE
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'hAE)
-                & (_GEN & io_wakeupPorts_0_bits == 8'hAE | ready_table_174)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'hAE)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'hAE | ~(_GEN_8 & io_allocPorts_4_bits == 8'hAE)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'hAE
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'hAE)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'hAE
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'hAE)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'hAE
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'hAE)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'hAE
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'hAE)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'hAE | ready_table_174))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_175 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'hAF | _GEN_8 & io_allocPorts_4_bits == 8'hAF)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'hAF | ~(_GEN_6 & io_allocPorts_3_bits == 8'hAF)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'hAF
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'hAF)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'hAF
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'hAF)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'hAF
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'hAF)
-                & (_GEN & io_wakeupPorts_0_bits == 8'hAF | ready_table_175)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'hAF)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'hAF | ~(_GEN_8 & io_allocPorts_4_bits == 8'hAF)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'hAF
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'hAF)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'hAF
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'hAF)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'hAF
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'hAF)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'hAF
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'hAF)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'hAF | ready_table_175))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_176 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'hB0 | _GEN_8 & io_allocPorts_4_bits == 8'hB0)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'hB0 | ~(_GEN_6 & io_allocPorts_3_bits == 8'hB0)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'hB0
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'hB0)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'hB0
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'hB0)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'hB0
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'hB0)
-                & (_GEN & io_wakeupPorts_0_bits == 8'hB0 | ready_table_176)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'hB0)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'hB0 | ~(_GEN_8 & io_allocPorts_4_bits == 8'hB0)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'hB0
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'hB0)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'hB0
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'hB0)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'hB0
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'hB0)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'hB0
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'hB0)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'hB0 | ready_table_176))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_177 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'hB1 | _GEN_8 & io_allocPorts_4_bits == 8'hB1)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'hB1 | ~(_GEN_6 & io_allocPorts_3_bits == 8'hB1)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'hB1
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'hB1)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'hB1
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'hB1)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'hB1
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'hB1)
-                & (_GEN & io_wakeupPorts_0_bits == 8'hB1 | ready_table_177)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'hB1)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'hB1 | ~(_GEN_8 & io_allocPorts_4_bits == 8'hB1)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'hB1
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'hB1)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'hB1
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'hB1)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'hB1
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'hB1)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'hB1
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'hB1)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'hB1 | ready_table_177))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_178 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'hB2 | _GEN_8 & io_allocPorts_4_bits == 8'hB2)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'hB2 | ~(_GEN_6 & io_allocPorts_3_bits == 8'hB2)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'hB2
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'hB2)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'hB2
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'hB2)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'hB2
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'hB2)
-                & (_GEN & io_wakeupPorts_0_bits == 8'hB2 | ready_table_178)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'hB2)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'hB2 | ~(_GEN_8 & io_allocPorts_4_bits == 8'hB2)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'hB2
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'hB2)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'hB2
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'hB2)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'hB2
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'hB2)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'hB2
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'hB2)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'hB2 | ready_table_178))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_179 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'hB3 | _GEN_8 & io_allocPorts_4_bits == 8'hB3)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'hB3 | ~(_GEN_6 & io_allocPorts_3_bits == 8'hB3)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'hB3
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'hB3)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'hB3
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'hB3)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'hB3
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'hB3)
-                & (_GEN & io_wakeupPorts_0_bits == 8'hB3 | ready_table_179)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'hB3)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'hB3 | ~(_GEN_8 & io_allocPorts_4_bits == 8'hB3)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'hB3
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'hB3)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'hB3
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'hB3)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'hB3
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'hB3)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'hB3
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'hB3)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'hB3 | ready_table_179))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_180 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'hB4 | _GEN_8 & io_allocPorts_4_bits == 8'hB4)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'hB4 | ~(_GEN_6 & io_allocPorts_3_bits == 8'hB4)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'hB4
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'hB4)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'hB4
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'hB4)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'hB4
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'hB4)
-                & (_GEN & io_wakeupPorts_0_bits == 8'hB4 | ready_table_180)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'hB4)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'hB4 | ~(_GEN_8 & io_allocPorts_4_bits == 8'hB4)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'hB4
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'hB4)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'hB4
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'hB4)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'hB4
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'hB4)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'hB4
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'hB4)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'hB4 | ready_table_180))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_181 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'hB5 | _GEN_8 & io_allocPorts_4_bits == 8'hB5)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'hB5 | ~(_GEN_6 & io_allocPorts_3_bits == 8'hB5)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'hB5
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'hB5)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'hB5
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'hB5)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'hB5
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'hB5)
-                & (_GEN & io_wakeupPorts_0_bits == 8'hB5 | ready_table_181)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'hB5)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'hB5 | ~(_GEN_8 & io_allocPorts_4_bits == 8'hB5)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'hB5
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'hB5)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'hB5
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'hB5)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'hB5
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'hB5)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'hB5
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'hB5)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'hB5 | ready_table_181))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_182 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'hB6 | _GEN_8 & io_allocPorts_4_bits == 8'hB6)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'hB6 | ~(_GEN_6 & io_allocPorts_3_bits == 8'hB6)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'hB6
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'hB6)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'hB6
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'hB6)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'hB6
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'hB6)
-                & (_GEN & io_wakeupPorts_0_bits == 8'hB6 | ready_table_182)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'hB6)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'hB6 | ~(_GEN_8 & io_allocPorts_4_bits == 8'hB6)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'hB6
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'hB6)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'hB6
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'hB6)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'hB6
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'hB6)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'hB6
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'hB6)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'hB6 | ready_table_182))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_183 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'hB7 | _GEN_8 & io_allocPorts_4_bits == 8'hB7)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'hB7 | ~(_GEN_6 & io_allocPorts_3_bits == 8'hB7)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'hB7
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'hB7)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'hB7
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'hB7)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'hB7
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'hB7)
-                & (_GEN & io_wakeupPorts_0_bits == 8'hB7 | ready_table_183)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'hB7)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'hB7 | ~(_GEN_8 & io_allocPorts_4_bits == 8'hB7)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'hB7
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'hB7)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'hB7
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'hB7)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'hB7
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'hB7)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'hB7
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'hB7)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'hB7 | ready_table_183))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_184 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'hB8 | _GEN_8 & io_allocPorts_4_bits == 8'hB8)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'hB8 | ~(_GEN_6 & io_allocPorts_3_bits == 8'hB8)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'hB8
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'hB8)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'hB8
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'hB8)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'hB8
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'hB8)
-                & (_GEN & io_wakeupPorts_0_bits == 8'hB8 | ready_table_184)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'hB8)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'hB8 | ~(_GEN_8 & io_allocPorts_4_bits == 8'hB8)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'hB8
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'hB8)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'hB8
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'hB8)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'hB8
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'hB8)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'hB8
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'hB8)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'hB8 | ready_table_184))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_185 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'hB9 | _GEN_8 & io_allocPorts_4_bits == 8'hB9)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'hB9 | ~(_GEN_6 & io_allocPorts_3_bits == 8'hB9)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'hB9
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'hB9)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'hB9
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'hB9)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'hB9
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'hB9)
-                & (_GEN & io_wakeupPorts_0_bits == 8'hB9 | ready_table_185)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'hB9)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'hB9 | ~(_GEN_8 & io_allocPorts_4_bits == 8'hB9)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'hB9
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'hB9)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'hB9
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'hB9)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'hB9
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'hB9)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'hB9
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'hB9)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'hB9 | ready_table_185))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_186 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'hBA | _GEN_8 & io_allocPorts_4_bits == 8'hBA)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'hBA | ~(_GEN_6 & io_allocPorts_3_bits == 8'hBA)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'hBA
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'hBA)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'hBA
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'hBA)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'hBA
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'hBA)
-                & (_GEN & io_wakeupPorts_0_bits == 8'hBA | ready_table_186)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'hBA)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'hBA | ~(_GEN_8 & io_allocPorts_4_bits == 8'hBA)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'hBA
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'hBA)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'hBA
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'hBA)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'hBA
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'hBA)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'hBA
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'hBA)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'hBA | ready_table_186))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_187 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'hBB | _GEN_8 & io_allocPorts_4_bits == 8'hBB)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'hBB | ~(_GEN_6 & io_allocPorts_3_bits == 8'hBB)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'hBB
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'hBB)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'hBB
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'hBB)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'hBB
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'hBB)
-                & (_GEN & io_wakeupPorts_0_bits == 8'hBB | ready_table_187)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'hBB)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'hBB | ~(_GEN_8 & io_allocPorts_4_bits == 8'hBB)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'hBB
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'hBB)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'hBB
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'hBB)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'hBB
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'hBB)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'hBB
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'hBB)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'hBB | ready_table_187))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_188 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'hBC | _GEN_8 & io_allocPorts_4_bits == 8'hBC)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'hBC | ~(_GEN_6 & io_allocPorts_3_bits == 8'hBC)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'hBC
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'hBC)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'hBC
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'hBC)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'hBC
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'hBC)
-                & (_GEN & io_wakeupPorts_0_bits == 8'hBC | ready_table_188)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'hBC)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'hBC | ~(_GEN_8 & io_allocPorts_4_bits == 8'hBC)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'hBC
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'hBC)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'hBC
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'hBC)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'hBC
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'hBC)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'hBC
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'hBC)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'hBC | ready_table_188))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_189 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'hBD | _GEN_8 & io_allocPorts_4_bits == 8'hBD)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'hBD | ~(_GEN_6 & io_allocPorts_3_bits == 8'hBD)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'hBD
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'hBD)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'hBD
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'hBD)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'hBD
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'hBD)
-                & (_GEN & io_wakeupPorts_0_bits == 8'hBD | ready_table_189)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'hBD)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'hBD | ~(_GEN_8 & io_allocPorts_4_bits == 8'hBD)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'hBD
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'hBD)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'hBD
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'hBD)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'hBD
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'hBD)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'hBD
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'hBD)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'hBD | ready_table_189))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_190 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'hBE | _GEN_8 & io_allocPorts_4_bits == 8'hBE)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'hBE | ~(_GEN_6 & io_allocPorts_3_bits == 8'hBE)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'hBE
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'hBE)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'hBE
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'hBE)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'hBE
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'hBE)
-                & (_GEN & io_wakeupPorts_0_bits == 8'hBE | ready_table_190)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'hBE)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'hBE | ~(_GEN_8 & io_allocPorts_4_bits == 8'hBE)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'hBE
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'hBE)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'hBE
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'hBE)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'hBE
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'hBE)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'hBE
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'hBE)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'hBE | ready_table_190))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   wire next_ready_table_191 =
-    ~(_GEN_9 & io_allocPorts_5_bits == 8'hBF | _GEN_8 & io_allocPorts_4_bits == 8'hBF)
-    & (_GEN_7 & io_wakeupPorts_4_bits == 8'hBF | ~(_GEN_6 & io_allocPorts_3_bits == 8'hBF)
-       & (_GEN_5 & io_wakeupPorts_3_bits == 8'hBF
-          | ~(_GEN_4 & io_allocPorts_2_bits == 8'hBF)
-          & (_GEN_3 & io_wakeupPorts_2_bits == 8'hBF
-             | ~(_GEN_2 & io_allocPorts_1_bits == 8'hBF)
-             & (_GEN_1 & io_wakeupPorts_1_bits == 8'hBF
-                | ~(_GEN_0 & io_allocPorts_0_bits == 8'hBF)
-                & (_GEN & io_wakeupPorts_0_bits == 8'hBF | ready_table_191)))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
+    ~(_GEN_10 & io_allocPorts_5_bits == 8'hBF)
+    & (_GEN_9 & io_wakeupPorts_5_bits == 8'hBF | ~(_GEN_8 & io_allocPorts_4_bits == 8'hBF)
+       & (_GEN_7 & io_wakeupPorts_4_bits == 8'hBF
+          | ~(_GEN_6 & io_allocPorts_3_bits == 8'hBF)
+          & (_GEN_5 & io_wakeupPorts_3_bits == 8'hBF
+             | ~(_GEN_4 & io_allocPorts_2_bits == 8'hBF)
+             & (_GEN_3 & io_wakeupPorts_2_bits == 8'hBF
+                | ~(_GEN_2 & io_allocPorts_1_bits == 8'hBF)
+                & (_GEN_1 & io_wakeupPorts_1_bits == 8'hBF
+                   | ~(_GEN_0 & io_allocPorts_0_bits == 8'hBF)
+                   & (_GEN & io_wakeupPorts_0_bits == 8'hBF | ready_table_191))))));	// backend/src/zaqal/backend/issue/BusyTable.scala:23:28, :28:25, :32:{35,70}, :33:48, :35:{34,68}, :36:47
   reg  casez_tmp;	// backend/src/zaqal/backend/issue/BusyTable.scala:45:38
   always_comb begin	// backend/src/zaqal/backend/issue/BusyTable.scala:45:38
     casez (io_readPorts_0_0_addr)	// backend/src/zaqal/backend/issue/BusyTable.scala:45:38

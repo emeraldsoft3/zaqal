@@ -200,6 +200,9 @@ module Decoder(	// backend/src/zaqal/backend/Decoder.scala:9:7
                 io_out_is_fsw,	// backend/src/zaqal/backend/Decoder.scala:10:14
                 io_out_is_fsd,	// backend/src/zaqal/backend/Decoder.scala:10:14
                 io_out_is_fmadd,	// backend/src/zaqal/backend/Decoder.scala:10:14
+                io_out_is_fmsub,	// backend/src/zaqal/backend/Decoder.scala:10:14
+                io_out_is_fnmsub,	// backend/src/zaqal/backend/Decoder.scala:10:14
+                io_out_is_fnmadd,	// backend/src/zaqal/backend/Decoder.scala:10:14
                 io_out_is_fadd,	// backend/src/zaqal/backend/Decoder.scala:10:14
                 io_out_is_fsub,	// backend/src/zaqal/backend/Decoder.scala:10:14
                 io_out_is_fmul,	// backend/src/zaqal/backend/Decoder.scala:10:14
@@ -211,6 +214,11 @@ module Decoder(	// backend/src/zaqal/backend/Decoder.scala:9:7
                 io_out_is_fcvt_i2f,	// backend/src/zaqal/backend/Decoder.scala:10:14
                 io_out_is_fmv_w_x,	// backend/src/zaqal/backend/Decoder.scala:10:14
                 io_out_is_fmv_x_w,	// backend/src/zaqal/backend/Decoder.scala:10:14
+                io_out_is_fmv_d_x,	// backend/src/zaqal/backend/Decoder.scala:10:14
+                io_out_is_fmv_x_d,	// backend/src/zaqal/backend/Decoder.scala:10:14
+                io_out_is_fcvt_s_d,	// backend/src/zaqal/backend/Decoder.scala:10:14
+                io_out_is_fcvt_d_s,	// backend/src/zaqal/backend/Decoder.scala:10:14
+                io_out_is_fp_double,	// backend/src/zaqal/backend/Decoder.scala:10:14
                 io_out_is_feq,	// backend/src/zaqal/backend/Decoder.scala:10:14
                 io_out_is_flt,	// backend/src/zaqal/backend/Decoder.scala:10:14
                 io_out_is_fle,	// backend/src/zaqal/backend/Decoder.scala:10:14
@@ -251,7 +259,6 @@ module Decoder(	// backend/src/zaqal/backend/Decoder.scala:9:7
   wire io_out_is_sc_0 = io_out_is_atomic_0 & io_inst[31:27] == 5'h3;	// backend/src/zaqal/backend/Decoder.scala:17:23, :126:22, :127:31, :128:{49,60}
   wire _io_out_is_sh3add_uw_T_3 = io_inst[31:25] == 7'h10;	// backend/src/zaqal/backend/Decoder.scala:17:23, :150:88
   wire is_zbb_op = _io_out_is_fclass_T_2 & io_inst[31:25] == 7'h30;	// backend/src/zaqal/backend/Decoder.scala:17:23, :37:58, :158:{45,65}
-  wire _io_out_is_clzw_T_2 = io_inst[24:20] == 5'h0;	// backend/src/zaqal/backend/Decoder.scala:21:24, :109:29, :160:78
   wire _io_out_is_ctzw_T_2 = io_inst[24:20] == 5'h1;	// backend/src/zaqal/backend/Decoder.scala:21:24, :135:61, :161:78
   wire _io_out_is_cpopw_T_2 = io_inst[24:20] == 5'h2;	// backend/src/zaqal/backend/Decoder.scala:21:24, :127:60, :162:78
   wire _io_out_is_sexth_T_3 = io_inst[31:25] == 7'h30;	// backend/src/zaqal/backend/Decoder.scala:17:23, :158:65, :171:86
@@ -261,10 +268,13 @@ module Decoder(	// backend/src/zaqal/backend/Decoder.scala:9:7
   wire _io_out_is_bext_T_3 = io_inst[31:25] == 7'h24;	// backend/src/zaqal/backend/Decoder.scala:17:23, :191:86
   wire is_fp_op = io_inst[6:0] == 7'h53;	// backend/src/zaqal/backend/Decoder.scala:15:23, :201:26
   wire io_out_is_fload_0 = io_inst[6:0] == 7'h7;	// backend/src/zaqal/backend/Decoder.scala:15:23, :205:31
+  wire io_out_is_fld_0 = io_out_is_fload_0 & _io_out_is_fsd_T;	// backend/src/zaqal/backend/Decoder.scala:42:59, :205:31, :207:39
   wire io_out_is_fstore_0 = io_inst[6:0] == 7'h27;	// backend/src/zaqal/backend/Decoder.scala:15:23, :209:31
+  wire io_out_is_fsd_0 = io_out_is_fstore_0 & _io_out_is_fsd_T;	// backend/src/zaqal/backend/Decoder.scala:42:59, :209:31, :211:40
   wire io_out_is_fmadd_0 = io_inst[6:0] == 7'h43;	// backend/src/zaqal/backend/Decoder.scala:15:23, :213:31
-  wire io_out_is_fnmsub = io_inst[6:0] == 7'h4B;	// backend/src/zaqal/backend/Decoder.scala:15:23, :215:31
-  wire io_out_is_fnmadd = io_inst[6:0] == 7'h4F;	// backend/src/zaqal/backend/Decoder.scala:15:23, :216:31
+  wire io_out_is_fmsub_0 = io_inst[6:0] == 7'h47;	// backend/src/zaqal/backend/Decoder.scala:15:23, :214:31
+  wire io_out_is_fnmsub_0 = io_inst[6:0] == 7'h4B;	// backend/src/zaqal/backend/Decoder.scala:15:23, :215:31
+  wire io_out_is_fnmadd_0 = io_inst[6:0] == 7'h4F;	// backend/src/zaqal/backend/Decoder.scala:15:23, :216:31
   wire io_out_is_fadd_0 = is_fp_op & io_inst[31:27] == 5'h0;	// backend/src/zaqal/backend/Decoder.scala:22:24, :109:29, :201:26, :218:{32,46}
   wire io_out_is_fsub_0 = is_fp_op & io_inst[31:27] == 5'h1;	// backend/src/zaqal/backend/Decoder.scala:22:24, :135:61, :201:26, :219:{32,46}
   wire io_out_is_fmul_0 = is_fp_op & io_inst[31:27] == 5'h2;	// backend/src/zaqal/backend/Decoder.scala:22:24, :127:60, :201:26, :220:{32,46}
@@ -273,28 +283,38 @@ module Decoder(	// backend/src/zaqal/backend/Decoder.scala:9:7
   wire io_out_is_fminmax_0 = is_fp_op & io_inst[31:27] == 5'h5;	// backend/src/zaqal/backend/Decoder.scala:22:24, :186:119, :201:26, :225:{33,47}
   wire io_out_is_fcvt_f2i_0 = is_fp_op & io_inst[31:27] == 5'h18;	// backend/src/zaqal/backend/Decoder.scala:22:24, :141:61, :201:26, :227:{34,48}
   wire io_out_is_fcvt_i2f_0 = is_fp_op & io_inst[31:27] == 5'h1A;	// backend/src/zaqal/backend/Decoder.scala:22:24, :196:95, :201:26, :228:{34,48}
-  wire io_out_is_fmv_w_x_0 = is_fp_op & io_inst[31:27] == 5'h1E & _io_out_is_fle_T_2;	// backend/src/zaqal/backend/Decoder.scala:22:24, :32:58, :201:26, :230:{47,63}
+  wire _io_out_is_fmv_d_x_T = io_inst[31:27] == 5'h1E;	// backend/src/zaqal/backend/Decoder.scala:22:24, :230:47
+  wire _io_out_is_fcvt_d_s_T_2 = io_inst[26:25] == 2'h0;	// backend/src/zaqal/backend/Decoder.scala:32:29, :203:26, :230:99
+  wire io_out_is_fmv_w_x_0 =
+    is_fp_op & _io_out_is_fmv_d_x_T & _io_out_is_fle_T_2 & _io_out_is_fcvt_d_s_T_2;	// backend/src/zaqal/backend/Decoder.scala:32:58, :201:26, :230:{47,88,99}
   wire _io_out_is_fclass_T = io_inst[31:27] == 5'h1C;	// backend/src/zaqal/backend/Decoder.scala:22:24, :142:61, :231:47
-  wire io_out_is_fmv_x_w_0 = is_fp_op & _io_out_is_fclass_T & _io_out_is_fle_T_2;	// backend/src/zaqal/backend/Decoder.scala:32:58, :201:26, :231:{47,63}
-  wire _io_out_is_fle_T = io_inst[31:27] == 5'h14;	// backend/src/zaqal/backend/Decoder.scala:22:24, :140:61, :234:46
-  wire io_out_is_feq_0 = is_fp_op & _io_out_is_fle_T & _io_out_is_feq_T_2;	// backend/src/zaqal/backend/Decoder.scala:41:59, :201:26, :234:{46,62}
-  wire io_out_is_flt_0 = is_fp_op & _io_out_is_fle_T & _io_out_is_fclass_T_2;	// backend/src/zaqal/backend/Decoder.scala:37:58, :201:26, :234:46, :235:62
-  wire io_out_is_fle_0 = is_fp_op & _io_out_is_fle_T & _io_out_is_fle_T_2;	// backend/src/zaqal/backend/Decoder.scala:32:58, :201:26, :234:46, :236:62
-  wire io_out_is_fclass_0 = is_fp_op & _io_out_is_fclass_T & _io_out_is_fclass_T_2;	// backend/src/zaqal/backend/Decoder.scala:37:58, :201:26, :231:47, :238:62
-  wire _is_fp_fma_T = io_out_is_fmadd_0 | io_inst[6:0] == 7'h47;	// backend/src/zaqal/backend/Decoder.scala:15:23, :213:31, :214:31, :260:33
-  wire any_fma = _is_fp_fma_T | io_out_is_fnmsub | io_out_is_fnmadd;	// backend/src/zaqal/backend/Decoder.scala:215:31, :216:31, :260:{33,72}
+  wire io_out_is_fmv_x_w_0 =
+    is_fp_op & _io_out_is_fclass_T & _io_out_is_fle_T_2 & _io_out_is_fcvt_d_s_T_2;	// backend/src/zaqal/backend/Decoder.scala:32:58, :201:26, :230:99, :231:{47,88}
+  wire _io_out_is_fp_double_T = io_inst[26:25] == 2'h1;	// backend/src/zaqal/backend/Decoder.scala:203:26, :232:99
+  wire io_out_is_fmv_d_x_0 =
+    is_fp_op & _io_out_is_fmv_d_x_T & _io_out_is_fle_T_2 & _io_out_is_fp_double_T;	// backend/src/zaqal/backend/Decoder.scala:32:58, :201:26, :230:47, :232:{88,99}
+  wire io_out_is_fmv_x_d_0 =
+    is_fp_op & _io_out_is_fclass_T & _io_out_is_fle_T_2 & _io_out_is_fp_double_T;	// backend/src/zaqal/backend/Decoder.scala:32:58, :201:26, :231:47, :232:99, :233:88
+  wire _io_out_is_fcvt_d_s_T = io_inst[31:27] == 5'h8;	// backend/src/zaqal/backend/Decoder.scala:22:24, :138:61, :236:48
+  wire _io_out_is_fle_T = io_inst[31:27] == 5'h14;	// backend/src/zaqal/backend/Decoder.scala:22:24, :140:61, :239:46
+  wire io_out_is_feq_0 = is_fp_op & _io_out_is_fle_T & _io_out_is_feq_T_2;	// backend/src/zaqal/backend/Decoder.scala:41:59, :201:26, :239:{46,62}
+  wire io_out_is_flt_0 = is_fp_op & _io_out_is_fle_T & _io_out_is_fclass_T_2;	// backend/src/zaqal/backend/Decoder.scala:37:58, :201:26, :239:46, :240:62
+  wire io_out_is_fle_0 = is_fp_op & _io_out_is_fle_T & _io_out_is_fle_T_2;	// backend/src/zaqal/backend/Decoder.scala:32:58, :201:26, :239:46, :241:62
+  wire io_out_is_fclass_0 = is_fp_op & _io_out_is_fclass_T & _io_out_is_fclass_T_2;	// backend/src/zaqal/backend/Decoder.scala:37:58, :201:26, :231:47, :243:62
+  wire _is_fp_fma_T = io_out_is_fmadd_0 | io_out_is_fmsub_0;	// backend/src/zaqal/backend/Decoder.scala:213:31, :214:31, :245:33
+  wire any_fma = _is_fp_fma_T | io_out_is_fnmsub_0 | io_out_is_fnmadd_0;	// backend/src/zaqal/backend/Decoder.scala:215:31, :216:31, :245:{33,72}
   wire fp_r_type =
     is_fp_op
     & (io_out_is_fadd_0 | io_out_is_fsub_0 | io_out_is_fmul_0 | io_out_is_fdiv_0
        | io_out_is_fsgnj_0 | io_out_is_fminmax_0 | io_out_is_feq_0 | io_out_is_flt_0
-       | io_out_is_fle_0);	// backend/src/zaqal/backend/Decoder.scala:201:26, :218:32, :219:32, :220:32, :221:32, :224:32, :225:33, :234:62, :235:62, :236:62, :261:28, :262:103
+       | io_out_is_fle_0);	// backend/src/zaqal/backend/Decoder.scala:201:26, :218:32, :219:32, :220:32, :221:32, :224:32, :225:33, :239:62, :240:62, :241:62, :268:28, :269:103
   assign io_out_is_rvc = io_inst[1:0] != 2'h3;	// backend/src/zaqal/backend/Decoder.scala:9:7, :31:{27,34}
-  assign io_out_rs1_use = ~(io_out_is_lui_0 | io_out_is_auipc_0 | io_out_is_jal_0);	// backend/src/zaqal/backend/Decoder.scala:9:7, :76:30, :77:30, :100:31, :276:{21,56}
+  assign io_out_rs1_use = ~(io_out_is_lui_0 | io_out_is_auipc_0 | io_out_is_jal_0);	// backend/src/zaqal/backend/Decoder.scala:9:7, :76:30, :77:30, :100:31, :283:{21,56}
   assign io_out_rs2_use =
     is_r_type | is_r_type_32 | io_out_is_branch_0 | io_out_is_store_0 | io_out_is_fstore_0
-    | io_out_is_atomic_0 & ~io_out_is_lr_0 | _is_fp_fma_T | io_out_is_fnmsub
-    | io_out_is_fnmadd | is_fp_op & fp_r_type;	// backend/src/zaqal/backend/Decoder.scala:9:7, :43:30, :61:29, :97:31, :119:30, :127:{31,49}, :144:76, :201:26, :209:31, :215:31, :216:31, :260:33, :261:28, :274:40, :277:{136,149}
-  assign io_out_rs3_use = any_fma;	// backend/src/zaqal/backend/Decoder.scala:9:7, :260:72
+    | io_out_is_atomic_0 & ~io_out_is_lr_0 | _is_fp_fma_T | io_out_is_fnmsub_0
+    | io_out_is_fnmadd_0 | is_fp_op & fp_r_type;	// backend/src/zaqal/backend/Decoder.scala:9:7, :43:30, :61:29, :97:31, :119:30, :127:{31,49}, :144:76, :201:26, :209:31, :215:31, :216:31, :245:33, :268:28, :281:40, :284:{136,149}
+  assign io_out_rs3_use = any_fma;	// backend/src/zaqal/backend/Decoder.scala:9:7, :245:72
   assign io_out_is_addi = _io_out_is_bexti_T & _io_out_is_fle_T_2;	// backend/src/zaqal/backend/Decoder.scala:9:7, :32:{29,47,58}
   assign io_out_is_add = is_r_type & _io_out_is_fle_T_2 & ~(|(io_inst[31:25]));	// backend/src/zaqal/backend/Decoder.scala:9:7, :17:23, :32:58, :43:30, :53:{72,83}
   assign io_out_is_mul = is_r_type & _io_out_is_fle_T_2 & _io_out_is_remuw_T_3;	// backend/src/zaqal/backend/Decoder.scala:9:7, :32:58, :43:30, :80:{74,85}
@@ -386,10 +406,10 @@ module Decoder(	// backend/src/zaqal/backend/Decoder.scala:9:7
   assign io_out_is_rorw = is_r_type_32 & _io_out_is_bexti_T_1 & _io_out_is_sexth_T_3;	// backend/src/zaqal/backend/Decoder.scala:9:7, :38:58, :61:29, :171:86, :175:75
   assign io_out_is_roriw =
     _io_out_is_roriw_T & _io_out_is_bexti_T_1 & io_inst[31:25] == 7'h30;	// backend/src/zaqal/backend/Decoder.scala:9:7, :17:23, :38:58, :69:30, :158:65, :176:{75,95}
-  assign io_out_is_clz = _io_out_is_bexti_T & is_zbb_op & _io_out_is_clzw_T_2;	// backend/src/zaqal/backend/Decoder.scala:9:7, :32:29, :158:45, :160:{63,78}
+  assign io_out_is_clz = _io_out_is_bexti_T & is_zbb_op & ~(|(io_inst[24:20]));	// backend/src/zaqal/backend/Decoder.scala:9:7, :21:24, :32:29, :158:45, :160:{63,78}
   assign io_out_is_ctz = _io_out_is_bexti_T & is_zbb_op & _io_out_is_ctzw_T_2;	// backend/src/zaqal/backend/Decoder.scala:9:7, :32:29, :158:45, :161:{63,78}
   assign io_out_is_cpop = _io_out_is_bexti_T & is_zbb_op & _io_out_is_cpopw_T_2;	// backend/src/zaqal/backend/Decoder.scala:9:7, :32:29, :158:45, :162:{63,78}
-  assign io_out_is_clzw = _io_out_is_roriw_T & is_zbb_op & _io_out_is_clzw_T_2;	// backend/src/zaqal/backend/Decoder.scala:9:7, :69:30, :158:45, :160:78, :163:63
+  assign io_out_is_clzw = _io_out_is_roriw_T & is_zbb_op & ~(|(io_inst[24:20]));	// backend/src/zaqal/backend/Decoder.scala:9:7, :21:24, :69:30, :158:45, :160:78, :163:63
   assign io_out_is_ctzw = _io_out_is_roriw_T & is_zbb_op & _io_out_is_ctzw_T_2;	// backend/src/zaqal/backend/Decoder.scala:9:7, :69:30, :158:45, :161:78, :164:63
   assign io_out_is_cpopw = _io_out_is_roriw_T & is_zbb_op & _io_out_is_cpopw_T_2;	// backend/src/zaqal/backend/Decoder.scala:9:7, :69:30, :158:45, :162:78, :165:63
   assign io_out_is_rev8 =
@@ -444,11 +464,14 @@ module Decoder(	// backend/src/zaqal/backend/Decoder.scala:9:7
   assign io_out_is_atomic = io_out_is_atomic_0;	// backend/src/zaqal/backend/Decoder.scala:9:7, :127:31
   assign io_out_is_fload = io_out_is_fload_0;	// backend/src/zaqal/backend/Decoder.scala:9:7, :205:31
   assign io_out_is_flw = io_out_is_fload_0 & _io_out_is_feq_T_2;	// backend/src/zaqal/backend/Decoder.scala:9:7, :41:59, :205:31, :206:39
-  assign io_out_is_fld = io_out_is_fload_0 & _io_out_is_fsd_T;	// backend/src/zaqal/backend/Decoder.scala:9:7, :42:59, :205:31, :207:39
+  assign io_out_is_fld = io_out_is_fld_0;	// backend/src/zaqal/backend/Decoder.scala:9:7, :207:39
   assign io_out_is_fstore = io_out_is_fstore_0;	// backend/src/zaqal/backend/Decoder.scala:9:7, :209:31
   assign io_out_is_fsw = io_out_is_fstore_0 & _io_out_is_feq_T_2;	// backend/src/zaqal/backend/Decoder.scala:9:7, :41:59, :209:31, :210:40
-  assign io_out_is_fsd = io_out_is_fstore_0 & _io_out_is_fsd_T;	// backend/src/zaqal/backend/Decoder.scala:9:7, :42:59, :209:31, :211:40
+  assign io_out_is_fsd = io_out_is_fsd_0;	// backend/src/zaqal/backend/Decoder.scala:9:7, :211:40
   assign io_out_is_fmadd = io_out_is_fmadd_0;	// backend/src/zaqal/backend/Decoder.scala:9:7, :213:31
+  assign io_out_is_fmsub = io_out_is_fmsub_0;	// backend/src/zaqal/backend/Decoder.scala:9:7, :214:31
+  assign io_out_is_fnmsub = io_out_is_fnmsub_0;	// backend/src/zaqal/backend/Decoder.scala:9:7, :215:31
+  assign io_out_is_fnmadd = io_out_is_fnmadd_0;	// backend/src/zaqal/backend/Decoder.scala:9:7, :216:31
   assign io_out_is_fadd = io_out_is_fadd_0;	// backend/src/zaqal/backend/Decoder.scala:9:7, :218:32
   assign io_out_is_fsub = io_out_is_fsub_0;	// backend/src/zaqal/backend/Decoder.scala:9:7, :219:32
   assign io_out_is_fmul = io_out_is_fmul_0;	// backend/src/zaqal/backend/Decoder.scala:9:7, :220:32
@@ -458,15 +481,23 @@ module Decoder(	// backend/src/zaqal/backend/Decoder.scala:9:7
   assign io_out_is_fminmax = io_out_is_fminmax_0;	// backend/src/zaqal/backend/Decoder.scala:9:7, :225:33
   assign io_out_is_fcvt_f2i = io_out_is_fcvt_f2i_0;	// backend/src/zaqal/backend/Decoder.scala:9:7, :227:34
   assign io_out_is_fcvt_i2f = io_out_is_fcvt_i2f_0;	// backend/src/zaqal/backend/Decoder.scala:9:7, :228:34
-  assign io_out_is_fmv_w_x = io_out_is_fmv_w_x_0;	// backend/src/zaqal/backend/Decoder.scala:9:7, :230:63
-  assign io_out_is_fmv_x_w = io_out_is_fmv_x_w_0;	// backend/src/zaqal/backend/Decoder.scala:9:7, :231:63
-  assign io_out_is_feq = io_out_is_feq_0;	// backend/src/zaqal/backend/Decoder.scala:9:7, :234:62
-  assign io_out_is_flt = io_out_is_flt_0;	// backend/src/zaqal/backend/Decoder.scala:9:7, :235:62
-  assign io_out_is_fle = io_out_is_fle_0;	// backend/src/zaqal/backend/Decoder.scala:9:7, :236:62
-  assign io_out_is_fclass = io_out_is_fclass_0;	// backend/src/zaqal/backend/Decoder.scala:9:7, :238:62
+  assign io_out_is_fmv_w_x = io_out_is_fmv_w_x_0;	// backend/src/zaqal/backend/Decoder.scala:9:7, :230:88
+  assign io_out_is_fmv_x_w = io_out_is_fmv_x_w_0;	// backend/src/zaqal/backend/Decoder.scala:9:7, :231:88
+  assign io_out_is_fmv_d_x = io_out_is_fmv_d_x_0;	// backend/src/zaqal/backend/Decoder.scala:9:7, :232:88
+  assign io_out_is_fmv_x_d = io_out_is_fmv_x_d_0;	// backend/src/zaqal/backend/Decoder.scala:9:7, :233:88
+  assign io_out_is_fcvt_s_d =
+    is_fp_op & _io_out_is_fcvt_d_s_T & _io_out_is_fp_double_T & io_inst[24:20] == 5'h1;	// backend/src/zaqal/backend/Decoder.scala:9:7, :21:24, :135:61, :201:26, :232:99, :236:{48,88,108}
+  assign io_out_is_fcvt_d_s =
+    is_fp_op & _io_out_is_fcvt_d_s_T & _io_out_is_fcvt_d_s_T_2 & ~(|(io_inst[24:20]));	// backend/src/zaqal/backend/Decoder.scala:9:7, :21:24, :160:78, :201:26, :230:99, :236:48, :237:{88,108}
+  assign io_out_is_fp_double =
+    _io_out_is_fp_double_T & (is_fp_op | any_fma) | io_out_is_fld_0 | io_out_is_fsd_0;	// backend/src/zaqal/backend/Decoder.scala:9:7, :201:26, :207:39, :211:40, :232:99, :245:72, :246:{46,59,89}
+  assign io_out_is_feq = io_out_is_feq_0;	// backend/src/zaqal/backend/Decoder.scala:9:7, :239:62
+  assign io_out_is_flt = io_out_is_flt_0;	// backend/src/zaqal/backend/Decoder.scala:9:7, :240:62
+  assign io_out_is_fle = io_out_is_fle_0;	// backend/src/zaqal/backend/Decoder.scala:9:7, :241:62
+  assign io_out_is_fclass = io_out_is_fclass_0;	// backend/src/zaqal/backend/Decoder.scala:9:7, :243:62
   assign io_out_is_fcsr_access =
     io_inst[6:0] == 7'h73
-    & (io_inst[31:20] == 12'h1 | io_inst[31:20] == 12'h2 | io_inst[31:20] == 12'h3);	// backend/src/zaqal/backend/Decoder.scala:9:7, :15:23, :24:22, :241:27, :243:{38,51,76,89,101}
+    & (io_inst[31:20] == 12'h1 | io_inst[31:20] == 12'h2 | io_inst[31:20] == 12'h3);	// backend/src/zaqal/backend/Decoder.scala:9:7, :15:23, :24:22, :249:27, :251:{38,51,76,89,101}
   assign io_out_rd = io_inst[11:7];	// backend/src/zaqal/backend/Decoder.scala:9:7, :19:24
   assign io_out_rs1 = io_inst[19:15];	// backend/src/zaqal/backend/Decoder.scala:9:7, :20:24
   assign io_out_rs2 = io_inst[24:20];	// backend/src/zaqal/backend/Decoder.scala:9:7, :21:24
@@ -482,14 +513,15 @@ module Decoder(	// backend/src/zaqal/backend/Decoder.scala:9:7
                  io_out_is_load_0 | io_out_is_fload_0 | io_out_is_lr_0
                  | ~(io_out_is_store_0 | io_out_is_fstore_0 | io_out_is_sc_0)
                    ? io_inst[31:20]
-                   : {io_inst[31:25], io_inst[11:7]}};	// backend/src/zaqal/backend/Decoder.scala:9:7, :17:23, :19:24, :24:22, :25:{18,26,39,51,68}, :26:{18,26}, :27:{39,56,69}, :51:18, :76:30, :77:30, :97:31, :100:31, :109:29, :119:30, :127:49, :128:49, :205:31, :209:31, :247:26, :248:16, :249:{29,49}, :250:16, :251:30, :252:16, :253:66, :254:16, :255:{51,68}, :256:16
+                   : {io_inst[31:25], io_inst[11:7]}};	// backend/src/zaqal/backend/Decoder.scala:9:7, :17:23, :19:24, :24:22, :25:{18,26,39,51,68}, :26:{18,26}, :27:{39,56,69}, :51:18, :76:30, :77:30, :97:31, :100:31, :109:29, :119:30, :127:49, :128:49, :205:31, :209:31, :255:26, :256:16, :257:{29,49}, :258:16, :259:30, :260:16, :261:66, :262:16, :263:{51,68}, :264:16
   assign io_out_rs1_is_fp =
-    is_fp_op & ~(io_out_is_fcvt_i2f_0 | io_out_is_fmv_w_x_0) | any_fma;	// backend/src/zaqal/backend/Decoder.scala:9:7, :201:26, :228:34, :230:63, :260:72, :264:{33,36,57,80}
-  assign io_out_rs2_is_fp = fp_r_type | any_fma | io_out_is_fstore_0;	// backend/src/zaqal/backend/Decoder.scala:9:7, :209:31, :260:72, :261:28, :265:44
-  assign io_out_rs3_is_fp = any_fma;	// backend/src/zaqal/backend/Decoder.scala:9:7, :260:72
+    is_fp_op & ~(io_out_is_fcvt_i2f_0 | io_out_is_fmv_w_x_0 | io_out_is_fmv_d_x_0)
+    | any_fma;	// backend/src/zaqal/backend/Decoder.scala:9:7, :201:26, :228:34, :230:88, :232:88, :245:72, :271:{33,36,78,101}
+  assign io_out_rs2_is_fp = fp_r_type | any_fma | io_out_is_fstore_0;	// backend/src/zaqal/backend/Decoder.scala:9:7, :209:31, :245:72, :268:28, :272:44
+  assign io_out_rs3_is_fp = any_fma;	// backend/src/zaqal/backend/Decoder.scala:9:7, :245:72
   assign io_out_rd_is_fp =
     io_out_is_fload_0 | any_fma | is_fp_op
-    & ~(io_out_is_fcvt_f2i_0 | io_out_is_fmv_x_w_0 | io_out_is_feq_0 | io_out_is_flt_0
-        | io_out_is_fle_0 | io_out_is_fclass_0);	// backend/src/zaqal/backend/Decoder.scala:9:7, :201:26, :205:31, :227:34, :231:63, :234:62, :235:62, :236:62, :238:62, :260:72, :267:{50,63,66}, :268:115
+    & ~(io_out_is_fcvt_f2i_0 | io_out_is_fmv_x_w_0 | io_out_is_fmv_x_d_0 | io_out_is_feq_0
+        | io_out_is_flt_0 | io_out_is_fle_0 | io_out_is_fclass_0);	// backend/src/zaqal/backend/Decoder.scala:9:7, :201:26, :205:31, :227:34, :231:88, :233:88, :239:62, :240:62, :241:62, :243:62, :245:72, :274:{50,63,66}, :275:115
 endmodule
 

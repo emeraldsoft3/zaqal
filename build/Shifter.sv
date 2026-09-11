@@ -66,37 +66,37 @@
   `endif // PRINTF_COND
 `endif // not def PRINTF_COND_
 
-module Shifter(	// backend/src/zaqal/backend/fu/Shifter.scala:8:7
-  input  [63:0] io_src1,	// backend/src/zaqal/backend/fu/Shifter.scala:9:14
-  input  [5:0]  io_shamt,	// backend/src/zaqal/backend/fu/Shifter.scala:9:14
-  input         io_is_sll,	// backend/src/zaqal/backend/fu/Shifter.scala:9:14
-                io_is_srl,	// backend/src/zaqal/backend/fu/Shifter.scala:9:14
-                io_is_sra,	// backend/src/zaqal/backend/fu/Shifter.scala:9:14
-                io_is_sllw,	// backend/src/zaqal/backend/fu/Shifter.scala:9:14
-                io_is_srlw,	// backend/src/zaqal/backend/fu/Shifter.scala:9:14
-                io_is_sraw,	// backend/src/zaqal/backend/fu/Shifter.scala:9:14
-                io_is_rol,	// backend/src/zaqal/backend/fu/Shifter.scala:9:14
-                io_is_ror,	// backend/src/zaqal/backend/fu/Shifter.scala:9:14
-                io_is_rori,	// backend/src/zaqal/backend/fu/Shifter.scala:9:14
-                io_is_rolw,	// backend/src/zaqal/backend/fu/Shifter.scala:9:14
-                io_is_rorw,	// backend/src/zaqal/backend/fu/Shifter.scala:9:14
-                io_is_roriw,	// backend/src/zaqal/backend/fu/Shifter.scala:9:14
-  output [63:0] io_result	// backend/src/zaqal/backend/fu/Shifter.scala:9:14
+module Shifter(	// backend/src/zaqal/backend/exu/Shifter.scala:8:7
+  input  [63:0] io_src1,	// backend/src/zaqal/backend/exu/Shifter.scala:9:14
+  input  [5:0]  io_shamt,	// backend/src/zaqal/backend/exu/Shifter.scala:9:14
+  input         io_is_sll,	// backend/src/zaqal/backend/exu/Shifter.scala:9:14
+                io_is_srl,	// backend/src/zaqal/backend/exu/Shifter.scala:9:14
+                io_is_sra,	// backend/src/zaqal/backend/exu/Shifter.scala:9:14
+                io_is_sllw,	// backend/src/zaqal/backend/exu/Shifter.scala:9:14
+                io_is_srlw,	// backend/src/zaqal/backend/exu/Shifter.scala:9:14
+                io_is_sraw,	// backend/src/zaqal/backend/exu/Shifter.scala:9:14
+                io_is_rol,	// backend/src/zaqal/backend/exu/Shifter.scala:9:14
+                io_is_ror,	// backend/src/zaqal/backend/exu/Shifter.scala:9:14
+                io_is_rori,	// backend/src/zaqal/backend/exu/Shifter.scala:9:14
+                io_is_rolw,	// backend/src/zaqal/backend/exu/Shifter.scala:9:14
+                io_is_rorw,	// backend/src/zaqal/backend/exu/Shifter.scala:9:14
+                io_is_roriw,	// backend/src/zaqal/backend/exu/Shifter.scala:9:14
+  output [63:0] io_result	// backend/src/zaqal/backend/exu/Shifter.scala:9:14
 );
 
-  wire [126:0] res_sll = {63'h0, io_src1} << io_shamt;	// backend/src/zaqal/backend/fu/Shifter.scala:28:25
-  wire [63:0]  _GEN = {58'h0, io_shamt};	// backend/src/zaqal/backend/fu/Shifter.scala:29:25
-  wire [63:0]  res_srl = io_src1 >> _GEN;	// backend/src/zaqal/backend/fu/Shifter.scala:29:25
-  wire [6:0]   _res_rol_T_1 = 7'h40 - {1'h0, io_shamt};	// backend/src/zaqal/backend/fu/Shifter.scala:31:59
-  wire [190:0] _res_ror_T_3 = {127'h0, io_src1} << _res_rol_T_1;	// backend/src/zaqal/backend/fu/Shifter.scala:31:{50,59}
-  wire [62:0]  _res_rolw_T = {31'h0, io_src1[31:0]} << io_shamt[4:0];	// backend/src/zaqal/backend/fu/Shifter.scala:35:26, :36:25, :37:26
-  wire [31:0]  _GEN_0 = {27'h0, io_shamt[4:0]};	// backend/src/zaqal/backend/fu/Shifter.scala:35:26, :38:25
-  wire [31:0]  res_srlw = io_src1[31:0] >> _GEN_0;	// backend/src/zaqal/backend/fu/Shifter.scala:36:25, :38:25
-  wire [31:0]  _res_sraw_T_1 = $signed($signed(io_src1[31:0]) >>> _GEN_0);	// backend/src/zaqal/backend/fu/Shifter.scala:36:25, :38:25, :39:33
-  wire [5:0]   _res_rolw_T_1 = 6'h20 - {1'h0, io_shamt[4:0]};	// backend/src/zaqal/backend/fu/Shifter.scala:31:59, :35:26, :40:57
-  wire [94:0]  _res_rorw_T_3 = {63'h0, io_src1[31:0]} << _res_rolw_T_1;	// backend/src/zaqal/backend/fu/Shifter.scala:28:25, :36:25, :40:{48,57}
-  wire [31:0]  res_rorw = res_srlw | _res_rorw_T_3[31:0];	// backend/src/zaqal/backend/fu/Shifter.scala:38:25, :40:{38,48}
-  wire [31:0]  _io_result_T_17 = _res_rolw_T[31:0] | io_src1[31:0] >> _res_rolw_T_1;	// backend/src/zaqal/backend/fu/Shifter.scala:36:25, :37:26, :40:57, :41:{38,48}
+  wire [126:0] res_sll = {63'h0, io_src1} << io_shamt;	// backend/src/zaqal/backend/exu/Shifter.scala:28:25
+  wire [63:0]  _GEN = {58'h0, io_shamt};	// backend/src/zaqal/backend/exu/Shifter.scala:29:25
+  wire [63:0]  res_srl = io_src1 >> _GEN;	// backend/src/zaqal/backend/exu/Shifter.scala:29:25
+  wire [6:0]   _res_rol_T_1 = 7'h40 - {1'h0, io_shamt};	// backend/src/zaqal/backend/exu/Shifter.scala:31:59
+  wire [190:0] _res_ror_T_3 = {127'h0, io_src1} << _res_rol_T_1;	// backend/src/zaqal/backend/exu/Shifter.scala:31:{50,59}
+  wire [62:0]  _res_rolw_T = {31'h0, io_src1[31:0]} << io_shamt[4:0];	// backend/src/zaqal/backend/exu/Shifter.scala:35:26, :36:25, :37:26
+  wire [31:0]  _GEN_0 = {27'h0, io_shamt[4:0]};	// backend/src/zaqal/backend/exu/Shifter.scala:35:26, :38:25
+  wire [31:0]  res_srlw = io_src1[31:0] >> _GEN_0;	// backend/src/zaqal/backend/exu/Shifter.scala:36:25, :38:25
+  wire [31:0]  _res_sraw_T_1 = $signed($signed(io_src1[31:0]) >>> _GEN_0);	// backend/src/zaqal/backend/exu/Shifter.scala:36:25, :38:25, :39:33
+  wire [5:0]   _res_rolw_T_1 = 6'h20 - {1'h0, io_shamt[4:0]};	// backend/src/zaqal/backend/exu/Shifter.scala:31:59, :35:26, :40:57
+  wire [94:0]  _res_rorw_T_3 = {63'h0, io_src1[31:0]} << _res_rolw_T_1;	// backend/src/zaqal/backend/exu/Shifter.scala:28:25, :36:25, :40:{48,57}
+  wire [31:0]  res_rorw = res_srlw | _res_rorw_T_3[31:0];	// backend/src/zaqal/backend/exu/Shifter.scala:38:25, :40:{38,48}
+  wire [31:0]  _io_result_T_17 = _res_rolw_T[31:0] | io_src1[31:0] >> _res_rolw_T_1;	// backend/src/zaqal/backend/exu/Shifter.scala:36:25, :37:26, :40:57, :41:{38,48}
   assign io_result =
     io_is_sll
       ? res_sll[63:0]
@@ -118,6 +118,6 @@ module Shifter(	// backend/src/zaqal/backend/fu/Shifter.scala:8:7
                                       ? {{32{res_rorw[31]}}, res_rorw}
                                       : io_is_rolw
                                           ? {{32{_io_result_T_17[31]}}, _io_result_T_17}
-                                          : 64'h0;	// backend/src/zaqal/backend/fu/Shifter.scala:8:7, :28:25, :29:25, :30:33, :31:{39,50,59}, :32:{39,50}, :37:{26,37}, :38:25, :39:{33,45}, :40:38, :41:38, :47:16, :49:{22,27,40}, :50:{22,27,40}, :51:{22,27,40}, :52:{17,39,44,57}, :53:{22,27,40}, src/main/scala/chisel3/util/Mux.scala:126:16
+                                          : 64'h0;	// backend/src/zaqal/backend/exu/Shifter.scala:8:7, :28:25, :29:25, :30:33, :31:{39,50,59}, :32:{39,50}, :37:{26,37}, :38:25, :39:{33,45}, :40:38, :41:38, :47:16, :49:{22,27,40}, :50:{22,27,40}, :51:{22,27,40}, :52:{17,39,44,57}, :53:{22,27,40}, src/main/scala/chisel3/util/Mux.scala:126:16
 endmodule
 

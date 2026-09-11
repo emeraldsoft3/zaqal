@@ -67,7 +67,7 @@
 `endif // not def PRINTF_COND_
 
 // VCS coverage exclude_file
-module baseTable_128x2(	// frontend/src/zaqal/frontend/Tage.scala:136:22
+module baseTable_128x2(	// frontend/src/zaqal/frontend/Tage.scala:131:22
   input  [6:0] R0_addr,
   input        R0_en,
                R0_clk,
@@ -82,24 +82,24 @@ module baseTable_128x2(	// frontend/src/zaqal/frontend/Tage.scala:136:22
   input  [1:0] W0_data
 );
 
-  reg [1:0] Memory[0:127];	// frontend/src/zaqal/frontend/Tage.scala:136:22
-  always @(posedge W0_clk) begin	// frontend/src/zaqal/frontend/Tage.scala:136:22
-    if (W0_en & 1'h1)	// frontend/src/zaqal/frontend/Tage.scala:136:22
-      Memory[W0_addr] <= W0_data;	// frontend/src/zaqal/frontend/Tage.scala:136:22
+  reg [1:0] Memory[0:127];	// frontend/src/zaqal/frontend/Tage.scala:131:22
+  always @(posedge W0_clk) begin	// frontend/src/zaqal/frontend/Tage.scala:131:22
+    if (W0_en & 1'h1)	// frontend/src/zaqal/frontend/Tage.scala:131:22
+      Memory[W0_addr] <= W0_data;	// frontend/src/zaqal/frontend/Tage.scala:131:22
   end // always @(posedge)
-  `ifdef ENABLE_INITIAL_MEM_	// frontend/src/zaqal/frontend/Tage.scala:136:22
-    reg [31:0] _RANDOM_MEM;	// frontend/src/zaqal/frontend/Tage.scala:136:22
-    initial begin	// frontend/src/zaqal/frontend/Tage.scala:136:22
-      `INIT_RANDOM_PROLOG_	// frontend/src/zaqal/frontend/Tage.scala:136:22
-      `ifdef RANDOMIZE_MEM_INIT	// frontend/src/zaqal/frontend/Tage.scala:136:22
+  `ifdef ENABLE_INITIAL_MEM_	// frontend/src/zaqal/frontend/Tage.scala:131:22
+    reg [31:0] _RANDOM_MEM;	// frontend/src/zaqal/frontend/Tage.scala:131:22
+    initial begin	// frontend/src/zaqal/frontend/Tage.scala:131:22
+      `INIT_RANDOM_PROLOG_	// frontend/src/zaqal/frontend/Tage.scala:131:22
+      `ifdef RANDOMIZE_MEM_INIT	// frontend/src/zaqal/frontend/Tage.scala:131:22
         for (logic [7:0] i = 8'h0; i < 8'h80; i += 8'h1) begin
-          _RANDOM_MEM = `RANDOM;	// frontend/src/zaqal/frontend/Tage.scala:136:22
-          Memory[i[6:0]] = _RANDOM_MEM[1:0];	// frontend/src/zaqal/frontend/Tage.scala:136:22
-        end	// frontend/src/zaqal/frontend/Tage.scala:136:22
+          _RANDOM_MEM = `RANDOM;	// frontend/src/zaqal/frontend/Tage.scala:131:22
+          Memory[i[6:0]] = _RANDOM_MEM[1:0];	// frontend/src/zaqal/frontend/Tage.scala:131:22
+        end	// frontend/src/zaqal/frontend/Tage.scala:131:22
       `endif // RANDOMIZE_MEM_INIT
     end // initial
   `endif // ENABLE_INITIAL_MEM_
-  assign R0_data = R0_en ? Memory[R0_addr] : 2'bx;	// frontend/src/zaqal/frontend/Tage.scala:136:22
-  assign R1_data = R1_en ? Memory[R1_addr] : 2'bx;	// frontend/src/zaqal/frontend/Tage.scala:136:22
+  assign R0_data = R0_en ? Memory[R0_addr] : 2'bx;	// frontend/src/zaqal/frontend/Tage.scala:131:22
+  assign R1_data = R1_en ? Memory[R1_addr] : 2'bx;	// frontend/src/zaqal/frontend/Tage.scala:131:22
 endmodule
 

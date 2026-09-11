@@ -1267,10 +1267,12 @@ module FTB(	// frontend/src/zaqal/frontend/FTB.scala:17:7
     endcase	// frontend/src/zaqal/frontend/FTB.scala:45:36, :54:39
   end // always_comb
   wire        hit = casez_tmp & casez_tmp_0 == io_req_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:46:34, :54:{25,39}
-  wire        _GEN = io_update_valid & io_update_is_cfi;	// frontend/src/zaqal/frontend/FTB.scala:66:24
+  wire        _GEN =
+    io_update_valid & io_update_is_cfi
+    & (io_update_taken | io_update_is_jal | io_update_is_jalr);	// frontend/src/zaqal/frontend/FTB.scala:66:{44,84}
   `ifndef SYNTHESIS	// frontend/src/zaqal/frontend/FTB.scala:76:11
     always @(posedge clock) begin	// frontend/src/zaqal/frontend/FTB.scala:76:11
-      if ((`PRINTF_COND_) & _GEN & ~reset)	// frontend/src/zaqal/frontend/FTB.scala:66:24, :76:11
+      if ((`PRINTF_COND_) & _GEN & ~reset)	// frontend/src/zaqal/frontend/FTB.scala:66:44, :76:11
         $fwrite(32'h80000002,
                 "[FTB UPDATE] pc=%x index=%d tag=%d offset=%d target=%x taken=%d\n",
                 io_update_pc, io_update_pc[10:5], io_update_pc[63:11], io_update_pc[4:1],
@@ -1278,70 +1280,70 @@ module FTB(	// frontend/src/zaqal/frontend/FTB.scala:17:7
     end // always @(posedge)
   `endif // not def SYNTHESIS
   wire [1:0]  new_entry_br_type = io_update_is_jalr ? 2'h2 : {1'h0, io_update_is_jal};	// frontend/src/zaqal/frontend/FTB.scala:42:66, :71:29
-  wire        _GEN_0 = _GEN & io_update_pc[10:5] == 6'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
-  wire        _GEN_1 = _GEN & io_update_pc[10:5] == 6'h1;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
-  wire        _GEN_2 = _GEN & io_update_pc[10:5] == 6'h2;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
-  wire        _GEN_3 = _GEN & io_update_pc[10:5] == 6'h3;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
-  wire        _GEN_4 = _GEN & io_update_pc[10:5] == 6'h4;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
-  wire        _GEN_5 = _GEN & io_update_pc[10:5] == 6'h5;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
-  wire        _GEN_6 = _GEN & io_update_pc[10:5] == 6'h6;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
-  wire        _GEN_7 = _GEN & io_update_pc[10:5] == 6'h7;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
-  wire        _GEN_8 = _GEN & io_update_pc[10:5] == 6'h8;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
-  wire        _GEN_9 = _GEN & io_update_pc[10:5] == 6'h9;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
-  wire        _GEN_10 = _GEN & io_update_pc[10:5] == 6'hA;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
-  wire        _GEN_11 = _GEN & io_update_pc[10:5] == 6'hB;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
-  wire        _GEN_12 = _GEN & io_update_pc[10:5] == 6'hC;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
-  wire        _GEN_13 = _GEN & io_update_pc[10:5] == 6'hD;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
-  wire        _GEN_14 = _GEN & io_update_pc[10:5] == 6'hE;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
-  wire        _GEN_15 = _GEN & io_update_pc[10:5] == 6'hF;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
-  wire        _GEN_16 = _GEN & io_update_pc[10:5] == 6'h10;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
-  wire        _GEN_17 = _GEN & io_update_pc[10:5] == 6'h11;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
-  wire        _GEN_18 = _GEN & io_update_pc[10:5] == 6'h12;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
-  wire        _GEN_19 = _GEN & io_update_pc[10:5] == 6'h13;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
-  wire        _GEN_20 = _GEN & io_update_pc[10:5] == 6'h14;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
-  wire        _GEN_21 = _GEN & io_update_pc[10:5] == 6'h15;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
-  wire        _GEN_22 = _GEN & io_update_pc[10:5] == 6'h16;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
-  wire        _GEN_23 = _GEN & io_update_pc[10:5] == 6'h17;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
-  wire        _GEN_24 = _GEN & io_update_pc[10:5] == 6'h18;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
-  wire        _GEN_25 = _GEN & io_update_pc[10:5] == 6'h19;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
-  wire        _GEN_26 = _GEN & io_update_pc[10:5] == 6'h1A;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
-  wire        _GEN_27 = _GEN & io_update_pc[10:5] == 6'h1B;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
-  wire        _GEN_28 = _GEN & io_update_pc[10:5] == 6'h1C;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
-  wire        _GEN_29 = _GEN & io_update_pc[10:5] == 6'h1D;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
-  wire        _GEN_30 = _GEN & io_update_pc[10:5] == 6'h1E;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
-  wire        _GEN_31 = _GEN & io_update_pc[10:5] == 6'h1F;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
-  wire        _GEN_32 = _GEN & io_update_pc[10:5] == 6'h20;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :56:49, :66:{24,45}, :75:27
-  wire        _GEN_33 = _GEN & io_update_pc[10:5] == 6'h21;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
-  wire        _GEN_34 = _GEN & io_update_pc[10:5] == 6'h22;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
-  wire        _GEN_35 = _GEN & io_update_pc[10:5] == 6'h23;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
-  wire        _GEN_36 = _GEN & io_update_pc[10:5] == 6'h24;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
-  wire        _GEN_37 = _GEN & io_update_pc[10:5] == 6'h25;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
-  wire        _GEN_38 = _GEN & io_update_pc[10:5] == 6'h26;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
-  wire        _GEN_39 = _GEN & io_update_pc[10:5] == 6'h27;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
-  wire        _GEN_40 = _GEN & io_update_pc[10:5] == 6'h28;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
-  wire        _GEN_41 = _GEN & io_update_pc[10:5] == 6'h29;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
-  wire        _GEN_42 = _GEN & io_update_pc[10:5] == 6'h2A;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
-  wire        _GEN_43 = _GEN & io_update_pc[10:5] == 6'h2B;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
-  wire        _GEN_44 = _GEN & io_update_pc[10:5] == 6'h2C;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
-  wire        _GEN_45 = _GEN & io_update_pc[10:5] == 6'h2D;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
-  wire        _GEN_46 = _GEN & io_update_pc[10:5] == 6'h2E;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
-  wire        _GEN_47 = _GEN & io_update_pc[10:5] == 6'h2F;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
-  wire        _GEN_48 = _GEN & io_update_pc[10:5] == 6'h30;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
-  wire        _GEN_49 = _GEN & io_update_pc[10:5] == 6'h31;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
-  wire        _GEN_50 = _GEN & io_update_pc[10:5] == 6'h32;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
-  wire        _GEN_51 = _GEN & io_update_pc[10:5] == 6'h33;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
-  wire        _GEN_52 = _GEN & io_update_pc[10:5] == 6'h34;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
-  wire        _GEN_53 = _GEN & io_update_pc[10:5] == 6'h35;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
-  wire        _GEN_54 = _GEN & io_update_pc[10:5] == 6'h36;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
-  wire        _GEN_55 = _GEN & io_update_pc[10:5] == 6'h37;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
-  wire        _GEN_56 = _GEN & io_update_pc[10:5] == 6'h38;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
-  wire        _GEN_57 = _GEN & io_update_pc[10:5] == 6'h39;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
-  wire        _GEN_58 = _GEN & io_update_pc[10:5] == 6'h3A;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
-  wire        _GEN_59 = _GEN & io_update_pc[10:5] == 6'h3B;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
-  wire        _GEN_60 = _GEN & io_update_pc[10:5] == 6'h3C;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
-  wire        _GEN_61 = _GEN & io_update_pc[10:5] == 6'h3D;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
-  wire        _GEN_62 = _GEN & io_update_pc[10:5] == 6'h3E;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
-  wire        _GEN_63 = _GEN & (&(io_update_pc[10:5]));	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{24,45}, :75:27
+  wire        _GEN_0 = _GEN & io_update_pc[10:5] == 6'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{44,107}, :75:27
+  wire        _GEN_1 = _GEN & io_update_pc[10:5] == 6'h1;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{44,107}, :75:27
+  wire        _GEN_2 = _GEN & io_update_pc[10:5] == 6'h2;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{44,107}, :75:27
+  wire        _GEN_3 = _GEN & io_update_pc[10:5] == 6'h3;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{44,107}, :75:27
+  wire        _GEN_4 = _GEN & io_update_pc[10:5] == 6'h4;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{44,107}, :75:27
+  wire        _GEN_5 = _GEN & io_update_pc[10:5] == 6'h5;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{44,107}, :75:27
+  wire        _GEN_6 = _GEN & io_update_pc[10:5] == 6'h6;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{44,107}, :75:27
+  wire        _GEN_7 = _GEN & io_update_pc[10:5] == 6'h7;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{44,107}, :75:27
+  wire        _GEN_8 = _GEN & io_update_pc[10:5] == 6'h8;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{44,107}, :75:27
+  wire        _GEN_9 = _GEN & io_update_pc[10:5] == 6'h9;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{44,107}, :75:27
+  wire        _GEN_10 = _GEN & io_update_pc[10:5] == 6'hA;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{44,107}, :75:27
+  wire        _GEN_11 = _GEN & io_update_pc[10:5] == 6'hB;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{44,107}, :75:27
+  wire        _GEN_12 = _GEN & io_update_pc[10:5] == 6'hC;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{44,107}, :75:27
+  wire        _GEN_13 = _GEN & io_update_pc[10:5] == 6'hD;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{44,107}, :75:27
+  wire        _GEN_14 = _GEN & io_update_pc[10:5] == 6'hE;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{44,107}, :75:27
+  wire        _GEN_15 = _GEN & io_update_pc[10:5] == 6'hF;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{44,107}, :75:27
+  wire        _GEN_16 = _GEN & io_update_pc[10:5] == 6'h10;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{44,107}, :75:27
+  wire        _GEN_17 = _GEN & io_update_pc[10:5] == 6'h11;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{44,107}, :75:27
+  wire        _GEN_18 = _GEN & io_update_pc[10:5] == 6'h12;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{44,107}, :75:27
+  wire        _GEN_19 = _GEN & io_update_pc[10:5] == 6'h13;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{44,107}, :75:27
+  wire        _GEN_20 = _GEN & io_update_pc[10:5] == 6'h14;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{44,107}, :75:27
+  wire        _GEN_21 = _GEN & io_update_pc[10:5] == 6'h15;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{44,107}, :75:27
+  wire        _GEN_22 = _GEN & io_update_pc[10:5] == 6'h16;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{44,107}, :75:27
+  wire        _GEN_23 = _GEN & io_update_pc[10:5] == 6'h17;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{44,107}, :75:27
+  wire        _GEN_24 = _GEN & io_update_pc[10:5] == 6'h18;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{44,107}, :75:27
+  wire        _GEN_25 = _GEN & io_update_pc[10:5] == 6'h19;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{44,107}, :75:27
+  wire        _GEN_26 = _GEN & io_update_pc[10:5] == 6'h1A;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{44,107}, :75:27
+  wire        _GEN_27 = _GEN & io_update_pc[10:5] == 6'h1B;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{44,107}, :75:27
+  wire        _GEN_28 = _GEN & io_update_pc[10:5] == 6'h1C;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{44,107}, :75:27
+  wire        _GEN_29 = _GEN & io_update_pc[10:5] == 6'h1D;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{44,107}, :75:27
+  wire        _GEN_30 = _GEN & io_update_pc[10:5] == 6'h1E;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{44,107}, :75:27
+  wire        _GEN_31 = _GEN & io_update_pc[10:5] == 6'h1F;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{44,107}, :75:27
+  wire        _GEN_32 = _GEN & io_update_pc[10:5] == 6'h20;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :56:49, :66:{44,107}, :75:27
+  wire        _GEN_33 = _GEN & io_update_pc[10:5] == 6'h21;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{44,107}, :75:27
+  wire        _GEN_34 = _GEN & io_update_pc[10:5] == 6'h22;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{44,107}, :75:27
+  wire        _GEN_35 = _GEN & io_update_pc[10:5] == 6'h23;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{44,107}, :75:27
+  wire        _GEN_36 = _GEN & io_update_pc[10:5] == 6'h24;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{44,107}, :75:27
+  wire        _GEN_37 = _GEN & io_update_pc[10:5] == 6'h25;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{44,107}, :75:27
+  wire        _GEN_38 = _GEN & io_update_pc[10:5] == 6'h26;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{44,107}, :75:27
+  wire        _GEN_39 = _GEN & io_update_pc[10:5] == 6'h27;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{44,107}, :75:27
+  wire        _GEN_40 = _GEN & io_update_pc[10:5] == 6'h28;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{44,107}, :75:27
+  wire        _GEN_41 = _GEN & io_update_pc[10:5] == 6'h29;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{44,107}, :75:27
+  wire        _GEN_42 = _GEN & io_update_pc[10:5] == 6'h2A;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{44,107}, :75:27
+  wire        _GEN_43 = _GEN & io_update_pc[10:5] == 6'h2B;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{44,107}, :75:27
+  wire        _GEN_44 = _GEN & io_update_pc[10:5] == 6'h2C;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{44,107}, :75:27
+  wire        _GEN_45 = _GEN & io_update_pc[10:5] == 6'h2D;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{44,107}, :75:27
+  wire        _GEN_46 = _GEN & io_update_pc[10:5] == 6'h2E;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{44,107}, :75:27
+  wire        _GEN_47 = _GEN & io_update_pc[10:5] == 6'h2F;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{44,107}, :75:27
+  wire        _GEN_48 = _GEN & io_update_pc[10:5] == 6'h30;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{44,107}, :75:27
+  wire        _GEN_49 = _GEN & io_update_pc[10:5] == 6'h31;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{44,107}, :75:27
+  wire        _GEN_50 = _GEN & io_update_pc[10:5] == 6'h32;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{44,107}, :75:27
+  wire        _GEN_51 = _GEN & io_update_pc[10:5] == 6'h33;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{44,107}, :75:27
+  wire        _GEN_52 = _GEN & io_update_pc[10:5] == 6'h34;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{44,107}, :75:27
+  wire        _GEN_53 = _GEN & io_update_pc[10:5] == 6'h35;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{44,107}, :75:27
+  wire        _GEN_54 = _GEN & io_update_pc[10:5] == 6'h36;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{44,107}, :75:27
+  wire        _GEN_55 = _GEN & io_update_pc[10:5] == 6'h37;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{44,107}, :75:27
+  wire        _GEN_56 = _GEN & io_update_pc[10:5] == 6'h38;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{44,107}, :75:27
+  wire        _GEN_57 = _GEN & io_update_pc[10:5] == 6'h39;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{44,107}, :75:27
+  wire        _GEN_58 = _GEN & io_update_pc[10:5] == 6'h3A;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{44,107}, :75:27
+  wire        _GEN_59 = _GEN & io_update_pc[10:5] == 6'h3B;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{44,107}, :75:27
+  wire        _GEN_60 = _GEN & io_update_pc[10:5] == 6'h3C;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{44,107}, :75:27
+  wire        _GEN_61 = _GEN & io_update_pc[10:5] == 6'h3D;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{44,107}, :75:27
+  wire        _GEN_62 = _GEN & io_update_pc[10:5] == 6'h3E;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{44,107}, :75:27
+  wire        _GEN_63 = _GEN & (&(io_update_pc[10:5]));	// frontend/src/zaqal/frontend/FTB.scala:42:24, :45:36, :66:{44,107}, :75:27
   always @(posedge clock) begin	// frontend/src/zaqal/frontend/FTB.scala:17:7
     if (reset) begin	// frontend/src/zaqal/frontend/FTB.scala:17:7
       entries_0_valid <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
@@ -1730,512 +1732,512 @@ module FTB(	// frontend/src/zaqal/frontend/FTB.scala:17:7
       entries_63_taken <= 1'h0;	// frontend/src/zaqal/frontend/FTB.scala:42:{24,66}
     end
     else begin	// frontend/src/zaqal/frontend/FTB.scala:17:7
-      entries_0_valid <= _GEN_0 | entries_0_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
-      if (_GEN_0) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      entries_0_valid <= _GEN_0 | entries_0_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
+      if (_GEN_0) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
         entries_0_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
         entries_0_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
         entries_0_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
         entries_0_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
         entries_0_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_1_valid <= _GEN_1 | entries_1_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
-      if (_GEN_1) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      entries_1_valid <= _GEN_1 | entries_1_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
+      if (_GEN_1) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
         entries_1_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
         entries_1_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
         entries_1_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
         entries_1_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
         entries_1_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_2_valid <= _GEN_2 | entries_2_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
-      if (_GEN_2) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      entries_2_valid <= _GEN_2 | entries_2_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
+      if (_GEN_2) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
         entries_2_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
         entries_2_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
         entries_2_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
         entries_2_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
         entries_2_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_3_valid <= _GEN_3 | entries_3_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
-      if (_GEN_3) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      entries_3_valid <= _GEN_3 | entries_3_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
+      if (_GEN_3) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
         entries_3_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
         entries_3_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
         entries_3_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
         entries_3_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
         entries_3_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_4_valid <= _GEN_4 | entries_4_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
-      if (_GEN_4) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      entries_4_valid <= _GEN_4 | entries_4_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
+      if (_GEN_4) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
         entries_4_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
         entries_4_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
         entries_4_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
         entries_4_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
         entries_4_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_5_valid <= _GEN_5 | entries_5_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
-      if (_GEN_5) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      entries_5_valid <= _GEN_5 | entries_5_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
+      if (_GEN_5) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
         entries_5_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
         entries_5_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
         entries_5_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
         entries_5_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
         entries_5_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_6_valid <= _GEN_6 | entries_6_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
-      if (_GEN_6) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      entries_6_valid <= _GEN_6 | entries_6_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
+      if (_GEN_6) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
         entries_6_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
         entries_6_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
         entries_6_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
         entries_6_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
         entries_6_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_7_valid <= _GEN_7 | entries_7_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
-      if (_GEN_7) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      entries_7_valid <= _GEN_7 | entries_7_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
+      if (_GEN_7) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
         entries_7_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
         entries_7_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
         entries_7_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
         entries_7_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
         entries_7_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_8_valid <= _GEN_8 | entries_8_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
-      if (_GEN_8) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      entries_8_valid <= _GEN_8 | entries_8_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
+      if (_GEN_8) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
         entries_8_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
         entries_8_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
         entries_8_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
         entries_8_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
         entries_8_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_9_valid <= _GEN_9 | entries_9_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
-      if (_GEN_9) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      entries_9_valid <= _GEN_9 | entries_9_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
+      if (_GEN_9) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
         entries_9_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
         entries_9_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
         entries_9_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
         entries_9_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
         entries_9_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_10_valid <= _GEN_10 | entries_10_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
-      if (_GEN_10) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      entries_10_valid <= _GEN_10 | entries_10_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
+      if (_GEN_10) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
         entries_10_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
         entries_10_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
         entries_10_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
         entries_10_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
         entries_10_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_11_valid <= _GEN_11 | entries_11_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
-      if (_GEN_11) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      entries_11_valid <= _GEN_11 | entries_11_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
+      if (_GEN_11) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
         entries_11_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
         entries_11_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
         entries_11_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
         entries_11_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
         entries_11_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_12_valid <= _GEN_12 | entries_12_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
-      if (_GEN_12) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      entries_12_valid <= _GEN_12 | entries_12_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
+      if (_GEN_12) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
         entries_12_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
         entries_12_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
         entries_12_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
         entries_12_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
         entries_12_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_13_valid <= _GEN_13 | entries_13_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
-      if (_GEN_13) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      entries_13_valid <= _GEN_13 | entries_13_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
+      if (_GEN_13) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
         entries_13_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
         entries_13_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
         entries_13_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
         entries_13_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
         entries_13_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_14_valid <= _GEN_14 | entries_14_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
-      if (_GEN_14) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      entries_14_valid <= _GEN_14 | entries_14_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
+      if (_GEN_14) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
         entries_14_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
         entries_14_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
         entries_14_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
         entries_14_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
         entries_14_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_15_valid <= _GEN_15 | entries_15_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
-      if (_GEN_15) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      entries_15_valid <= _GEN_15 | entries_15_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
+      if (_GEN_15) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
         entries_15_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
         entries_15_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
         entries_15_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
         entries_15_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
         entries_15_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_16_valid <= _GEN_16 | entries_16_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
-      if (_GEN_16) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      entries_16_valid <= _GEN_16 | entries_16_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
+      if (_GEN_16) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
         entries_16_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
         entries_16_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
         entries_16_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
         entries_16_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
         entries_16_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_17_valid <= _GEN_17 | entries_17_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
-      if (_GEN_17) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      entries_17_valid <= _GEN_17 | entries_17_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
+      if (_GEN_17) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
         entries_17_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
         entries_17_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
         entries_17_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
         entries_17_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
         entries_17_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_18_valid <= _GEN_18 | entries_18_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
-      if (_GEN_18) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      entries_18_valid <= _GEN_18 | entries_18_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
+      if (_GEN_18) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
         entries_18_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
         entries_18_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
         entries_18_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
         entries_18_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
         entries_18_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_19_valid <= _GEN_19 | entries_19_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
-      if (_GEN_19) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      entries_19_valid <= _GEN_19 | entries_19_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
+      if (_GEN_19) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
         entries_19_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
         entries_19_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
         entries_19_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
         entries_19_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
         entries_19_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_20_valid <= _GEN_20 | entries_20_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
-      if (_GEN_20) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      entries_20_valid <= _GEN_20 | entries_20_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
+      if (_GEN_20) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
         entries_20_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
         entries_20_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
         entries_20_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
         entries_20_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
         entries_20_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_21_valid <= _GEN_21 | entries_21_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
-      if (_GEN_21) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      entries_21_valid <= _GEN_21 | entries_21_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
+      if (_GEN_21) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
         entries_21_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
         entries_21_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
         entries_21_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
         entries_21_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
         entries_21_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_22_valid <= _GEN_22 | entries_22_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
-      if (_GEN_22) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      entries_22_valid <= _GEN_22 | entries_22_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
+      if (_GEN_22) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
         entries_22_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
         entries_22_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
         entries_22_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
         entries_22_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
         entries_22_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_23_valid <= _GEN_23 | entries_23_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
-      if (_GEN_23) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      entries_23_valid <= _GEN_23 | entries_23_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
+      if (_GEN_23) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
         entries_23_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
         entries_23_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
         entries_23_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
         entries_23_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
         entries_23_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_24_valid <= _GEN_24 | entries_24_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
-      if (_GEN_24) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      entries_24_valid <= _GEN_24 | entries_24_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
+      if (_GEN_24) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
         entries_24_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
         entries_24_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
         entries_24_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
         entries_24_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
         entries_24_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_25_valid <= _GEN_25 | entries_25_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
-      if (_GEN_25) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      entries_25_valid <= _GEN_25 | entries_25_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
+      if (_GEN_25) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
         entries_25_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
         entries_25_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
         entries_25_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
         entries_25_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
         entries_25_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_26_valid <= _GEN_26 | entries_26_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
-      if (_GEN_26) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      entries_26_valid <= _GEN_26 | entries_26_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
+      if (_GEN_26) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
         entries_26_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
         entries_26_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
         entries_26_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
         entries_26_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
         entries_26_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_27_valid <= _GEN_27 | entries_27_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
-      if (_GEN_27) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      entries_27_valid <= _GEN_27 | entries_27_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
+      if (_GEN_27) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
         entries_27_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
         entries_27_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
         entries_27_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
         entries_27_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
         entries_27_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_28_valid <= _GEN_28 | entries_28_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
-      if (_GEN_28) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      entries_28_valid <= _GEN_28 | entries_28_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
+      if (_GEN_28) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
         entries_28_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
         entries_28_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
         entries_28_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
         entries_28_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
         entries_28_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_29_valid <= _GEN_29 | entries_29_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
-      if (_GEN_29) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      entries_29_valid <= _GEN_29 | entries_29_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
+      if (_GEN_29) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
         entries_29_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
         entries_29_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
         entries_29_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
         entries_29_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
         entries_29_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_30_valid <= _GEN_30 | entries_30_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
-      if (_GEN_30) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      entries_30_valid <= _GEN_30 | entries_30_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
+      if (_GEN_30) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
         entries_30_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
         entries_30_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
         entries_30_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
         entries_30_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
         entries_30_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_31_valid <= _GEN_31 | entries_31_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
-      if (_GEN_31) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      entries_31_valid <= _GEN_31 | entries_31_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
+      if (_GEN_31) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
         entries_31_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
         entries_31_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
         entries_31_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
         entries_31_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
         entries_31_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_32_valid <= _GEN_32 | entries_32_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
-      if (_GEN_32) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      entries_32_valid <= _GEN_32 | entries_32_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
+      if (_GEN_32) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
         entries_32_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
         entries_32_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
         entries_32_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
         entries_32_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
         entries_32_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_33_valid <= _GEN_33 | entries_33_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
-      if (_GEN_33) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      entries_33_valid <= _GEN_33 | entries_33_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
+      if (_GEN_33) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
         entries_33_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
         entries_33_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
         entries_33_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
         entries_33_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
         entries_33_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_34_valid <= _GEN_34 | entries_34_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
-      if (_GEN_34) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      entries_34_valid <= _GEN_34 | entries_34_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
+      if (_GEN_34) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
         entries_34_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
         entries_34_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
         entries_34_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
         entries_34_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
         entries_34_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_35_valid <= _GEN_35 | entries_35_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
-      if (_GEN_35) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      entries_35_valid <= _GEN_35 | entries_35_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
+      if (_GEN_35) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
         entries_35_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
         entries_35_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
         entries_35_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
         entries_35_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
         entries_35_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_36_valid <= _GEN_36 | entries_36_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
-      if (_GEN_36) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      entries_36_valid <= _GEN_36 | entries_36_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
+      if (_GEN_36) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
         entries_36_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
         entries_36_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
         entries_36_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
         entries_36_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
         entries_36_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_37_valid <= _GEN_37 | entries_37_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
-      if (_GEN_37) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      entries_37_valid <= _GEN_37 | entries_37_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
+      if (_GEN_37) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
         entries_37_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
         entries_37_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
         entries_37_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
         entries_37_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
         entries_37_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_38_valid <= _GEN_38 | entries_38_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
-      if (_GEN_38) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      entries_38_valid <= _GEN_38 | entries_38_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
+      if (_GEN_38) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
         entries_38_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
         entries_38_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
         entries_38_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
         entries_38_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
         entries_38_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_39_valid <= _GEN_39 | entries_39_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
-      if (_GEN_39) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      entries_39_valid <= _GEN_39 | entries_39_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
+      if (_GEN_39) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
         entries_39_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
         entries_39_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
         entries_39_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
         entries_39_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
         entries_39_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_40_valid <= _GEN_40 | entries_40_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
-      if (_GEN_40) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      entries_40_valid <= _GEN_40 | entries_40_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
+      if (_GEN_40) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
         entries_40_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
         entries_40_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
         entries_40_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
         entries_40_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
         entries_40_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_41_valid <= _GEN_41 | entries_41_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
-      if (_GEN_41) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      entries_41_valid <= _GEN_41 | entries_41_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
+      if (_GEN_41) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
         entries_41_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
         entries_41_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
         entries_41_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
         entries_41_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
         entries_41_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_42_valid <= _GEN_42 | entries_42_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
-      if (_GEN_42) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      entries_42_valid <= _GEN_42 | entries_42_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
+      if (_GEN_42) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
         entries_42_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
         entries_42_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
         entries_42_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
         entries_42_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
         entries_42_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_43_valid <= _GEN_43 | entries_43_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
-      if (_GEN_43) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      entries_43_valid <= _GEN_43 | entries_43_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
+      if (_GEN_43) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
         entries_43_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
         entries_43_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
         entries_43_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
         entries_43_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
         entries_43_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_44_valid <= _GEN_44 | entries_44_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
-      if (_GEN_44) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      entries_44_valid <= _GEN_44 | entries_44_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
+      if (_GEN_44) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
         entries_44_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
         entries_44_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
         entries_44_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
         entries_44_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
         entries_44_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_45_valid <= _GEN_45 | entries_45_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
-      if (_GEN_45) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      entries_45_valid <= _GEN_45 | entries_45_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
+      if (_GEN_45) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
         entries_45_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
         entries_45_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
         entries_45_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
         entries_45_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
         entries_45_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_46_valid <= _GEN_46 | entries_46_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
-      if (_GEN_46) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      entries_46_valid <= _GEN_46 | entries_46_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
+      if (_GEN_46) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
         entries_46_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
         entries_46_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
         entries_46_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
         entries_46_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
         entries_46_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_47_valid <= _GEN_47 | entries_47_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
-      if (_GEN_47) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      entries_47_valid <= _GEN_47 | entries_47_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
+      if (_GEN_47) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
         entries_47_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
         entries_47_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
         entries_47_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
         entries_47_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
         entries_47_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_48_valid <= _GEN_48 | entries_48_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
-      if (_GEN_48) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      entries_48_valid <= _GEN_48 | entries_48_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
+      if (_GEN_48) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
         entries_48_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
         entries_48_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
         entries_48_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
         entries_48_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
         entries_48_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_49_valid <= _GEN_49 | entries_49_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
-      if (_GEN_49) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      entries_49_valid <= _GEN_49 | entries_49_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
+      if (_GEN_49) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
         entries_49_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
         entries_49_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
         entries_49_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
         entries_49_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
         entries_49_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_50_valid <= _GEN_50 | entries_50_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
-      if (_GEN_50) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      entries_50_valid <= _GEN_50 | entries_50_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
+      if (_GEN_50) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
         entries_50_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
         entries_50_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
         entries_50_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
         entries_50_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
         entries_50_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_51_valid <= _GEN_51 | entries_51_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
-      if (_GEN_51) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      entries_51_valid <= _GEN_51 | entries_51_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
+      if (_GEN_51) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
         entries_51_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
         entries_51_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
         entries_51_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
         entries_51_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
         entries_51_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_52_valid <= _GEN_52 | entries_52_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
-      if (_GEN_52) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      entries_52_valid <= _GEN_52 | entries_52_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
+      if (_GEN_52) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
         entries_52_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
         entries_52_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
         entries_52_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
         entries_52_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
         entries_52_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_53_valid <= _GEN_53 | entries_53_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
-      if (_GEN_53) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      entries_53_valid <= _GEN_53 | entries_53_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
+      if (_GEN_53) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
         entries_53_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
         entries_53_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
         entries_53_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
         entries_53_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
         entries_53_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_54_valid <= _GEN_54 | entries_54_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
-      if (_GEN_54) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      entries_54_valid <= _GEN_54 | entries_54_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
+      if (_GEN_54) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
         entries_54_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
         entries_54_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
         entries_54_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
         entries_54_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
         entries_54_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_55_valid <= _GEN_55 | entries_55_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
-      if (_GEN_55) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      entries_55_valid <= _GEN_55 | entries_55_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
+      if (_GEN_55) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
         entries_55_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
         entries_55_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
         entries_55_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
         entries_55_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
         entries_55_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_56_valid <= _GEN_56 | entries_56_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
-      if (_GEN_56) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      entries_56_valid <= _GEN_56 | entries_56_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
+      if (_GEN_56) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
         entries_56_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
         entries_56_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
         entries_56_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
         entries_56_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
         entries_56_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_57_valid <= _GEN_57 | entries_57_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
-      if (_GEN_57) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      entries_57_valid <= _GEN_57 | entries_57_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
+      if (_GEN_57) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
         entries_57_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
         entries_57_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
         entries_57_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
         entries_57_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
         entries_57_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_58_valid <= _GEN_58 | entries_58_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
-      if (_GEN_58) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      entries_58_valid <= _GEN_58 | entries_58_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
+      if (_GEN_58) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
         entries_58_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
         entries_58_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
         entries_58_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
         entries_58_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
         entries_58_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_59_valid <= _GEN_59 | entries_59_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
-      if (_GEN_59) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      entries_59_valid <= _GEN_59 | entries_59_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
+      if (_GEN_59) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
         entries_59_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
         entries_59_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
         entries_59_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
         entries_59_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
         entries_59_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_60_valid <= _GEN_60 | entries_60_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
-      if (_GEN_60) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      entries_60_valid <= _GEN_60 | entries_60_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
+      if (_GEN_60) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
         entries_60_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
         entries_60_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
         entries_60_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
         entries_60_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
         entries_60_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_61_valid <= _GEN_61 | entries_61_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
-      if (_GEN_61) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      entries_61_valid <= _GEN_61 | entries_61_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
+      if (_GEN_61) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
         entries_61_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
         entries_61_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
         entries_61_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
         entries_61_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
         entries_61_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_62_valid <= _GEN_62 | entries_62_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
-      if (_GEN_62) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      entries_62_valid <= _GEN_62 | entries_62_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
+      if (_GEN_62) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
         entries_62_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
         entries_62_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
         entries_62_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29
         entries_62_offset <= io_update_pc[4:1];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :47:37
         entries_62_taken <= io_update_taken;	// frontend/src/zaqal/frontend/FTB.scala:42:24
       end
-      entries_63_valid <= _GEN_63 | entries_63_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
-      if (_GEN_63) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:45, :75:27
+      entries_63_valid <= _GEN_63 | entries_63_valid;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
+      if (_GEN_63) begin	// frontend/src/zaqal/frontend/FTB.scala:42:24, :66:107, :75:27
         entries_63_tag <= io_update_pc[63:11];	// frontend/src/zaqal/frontend/FTB.scala:42:24, :46:34
         entries_63_target <= io_update_target;	// frontend/src/zaqal/frontend/FTB.scala:42:24
         entries_63_br_type <= new_entry_br_type;	// frontend/src/zaqal/frontend/FTB.scala:42:24, :71:29

@@ -66,187 +66,498 @@
   `endif // PRINTF_COND
 `endif // not def PRINTF_COND_
 
-module FPMisc(	// backend/src/zaqal/backend/fu/FPMisc.scala:8:7
-  input  [63:0] io_src1,	// backend/src/zaqal/backend/fu/FPMisc.scala:9:14
-                io_src2,	// backend/src/zaqal/backend/fu/FPMisc.scala:9:14
-                io_rs1_int,	// backend/src/zaqal/backend/fu/FPMisc.scala:9:14
-  input         io_dec_is_fsgnj,	// backend/src/zaqal/backend/fu/FPMisc.scala:9:14
-                io_dec_is_fminmax,	// backend/src/zaqal/backend/fu/FPMisc.scala:9:14
-                io_dec_is_fcvt_f2i,	// backend/src/zaqal/backend/fu/FPMisc.scala:9:14
-                io_dec_is_fcvt_i2f,	// backend/src/zaqal/backend/fu/FPMisc.scala:9:14
-                io_dec_is_fmv_w_x,	// backend/src/zaqal/backend/fu/FPMisc.scala:9:14
-                io_dec_is_fmv_x_w,	// backend/src/zaqal/backend/fu/FPMisc.scala:9:14
-                io_dec_is_feq,	// backend/src/zaqal/backend/fu/FPMisc.scala:9:14
-                io_dec_is_flt,	// backend/src/zaqal/backend/fu/FPMisc.scala:9:14
-                io_dec_is_fle,	// backend/src/zaqal/backend/fu/FPMisc.scala:9:14
-                io_dec_is_fclass,	// backend/src/zaqal/backend/fu/FPMisc.scala:9:14
-  input  [31:0] io_inst,	// backend/src/zaqal/backend/fu/FPMisc.scala:9:14
-  output [63:0] io_result_int,	// backend/src/zaqal/backend/fu/FPMisc.scala:9:14
-                io_result_fp	// backend/src/zaqal/backend/fu/FPMisc.scala:9:14
+module FPMisc(	// backend/src/zaqal/backend/exu/FPMisc.scala:8:7
+  input  [63:0] io_src1,	// backend/src/zaqal/backend/exu/FPMisc.scala:9:14
+                io_src2,	// backend/src/zaqal/backend/exu/FPMisc.scala:9:14
+                io_rs1_int,	// backend/src/zaqal/backend/exu/FPMisc.scala:9:14
+  input         io_dec_is_fsgnj,	// backend/src/zaqal/backend/exu/FPMisc.scala:9:14
+                io_dec_is_fminmax,	// backend/src/zaqal/backend/exu/FPMisc.scala:9:14
+                io_dec_is_fcvt_f2i,	// backend/src/zaqal/backend/exu/FPMisc.scala:9:14
+                io_dec_is_fcvt_i2f,	// backend/src/zaqal/backend/exu/FPMisc.scala:9:14
+                io_dec_is_fmv_w_x,	// backend/src/zaqal/backend/exu/FPMisc.scala:9:14
+                io_dec_is_fmv_x_w,	// backend/src/zaqal/backend/exu/FPMisc.scala:9:14
+                io_dec_is_fmv_d_x,	// backend/src/zaqal/backend/exu/FPMisc.scala:9:14
+                io_dec_is_fmv_x_d,	// backend/src/zaqal/backend/exu/FPMisc.scala:9:14
+                io_dec_is_fcvt_s_d,	// backend/src/zaqal/backend/exu/FPMisc.scala:9:14
+                io_dec_is_fcvt_d_s,	// backend/src/zaqal/backend/exu/FPMisc.scala:9:14
+                io_dec_is_fp_double,	// backend/src/zaqal/backend/exu/FPMisc.scala:9:14
+                io_dec_is_feq,	// backend/src/zaqal/backend/exu/FPMisc.scala:9:14
+                io_dec_is_flt,	// backend/src/zaqal/backend/exu/FPMisc.scala:9:14
+                io_dec_is_fle,	// backend/src/zaqal/backend/exu/FPMisc.scala:9:14
+                io_dec_is_fclass,	// backend/src/zaqal/backend/exu/FPMisc.scala:9:14
+  input  [31:0] io_inst,	// backend/src/zaqal/backend/exu/FPMisc.scala:9:14
+  output [63:0] io_result_int,	// backend/src/zaqal/backend/exu/FPMisc.scala:9:14
+                io_result_fp	// backend/src/zaqal/backend/exu/FPMisc.scala:9:14
 );
 
-  wire         classA_is_zero = ~(|(io_src1[30:23])) & ~(|(io_src1[22:0]));	// backend/src/zaqal/backend/fu/FPMisc.scala:21:19, :25:14, :26:14, :38:{26,35,41}
-  wire         classA_is_subnormal = ~(|(io_src1[30:23])) & (|(io_src1[22:0]));	// backend/src/zaqal/backend/fu/FPMisc.scala:21:19, :25:14, :26:14, :38:26, :39:{36,42}
-  wire         classA_is_inf = (&(io_src1[30:23])) & ~(|(io_src1[22:0]));	// backend/src/zaqal/backend/fu/FPMisc.scala:21:19, :25:14, :26:14, :38:41, :40:{26,37}
-  wire         classA_is_nan = (&(io_src1[30:23])) & (|(io_src1[22:0]));	// backend/src/zaqal/backend/fu/FPMisc.scala:21:19, :25:14, :26:14, :39:42, :40:26, :41:37
-  wire         classA_is_normal = (|(io_src1[30:23])) & io_src1[30:23] != 8'hFF;	// backend/src/zaqal/backend/fu/FPMisc.scala:21:19, :25:14, :40:26, :44:{26,33,39}
-  wire         _result_fp_wire_T = io_inst[14:12] == 3'h0;	// backend/src/zaqal/backend/fu/FPMisc.scala:63:23, :65:29
-  wire         is_nanA = (&(io_src1[30:23])) & (|(io_src1[22:0]));	// backend/src/zaqal/backend/fu/FPMisc.scala:21:19, :25:14, :26:14, :75:{21,32,39}
-  wire         is_nanB = (&(io_src2[30:23])) & (|(io_src2[22:0]));	// backend/src/zaqal/backend/fu/FPMisc.scala:22:19, :29:14, :30:14, :76:{21,32,39}
-  wire         raw_lt =
+  wire          classA_sp_is_zero = ~(|(io_src1[30:23])) & ~(|(io_src1[22:0]));	// backend/src/zaqal/backend/exu/FPMisc.scala:25:19, :29:14, :30:14, :54:{27,36,42}
+  wire          classA_sp_is_subnormal = ~(|(io_src1[30:23])) & (|(io_src1[22:0]));	// backend/src/zaqal/backend/exu/FPMisc.scala:25:19, :29:14, :30:14, :54:27, :55:{36,42}
+  wire          classA_sp_is_inf = (&(io_src1[30:23])) & ~(|(io_src1[22:0]));	// backend/src/zaqal/backend/exu/FPMisc.scala:25:19, :29:14, :30:14, :54:42, :56:{27,38}
+  wire          classA_sp_is_nan = (&(io_src1[30:23])) & (|(io_src1[22:0]));	// backend/src/zaqal/backend/exu/FPMisc.scala:25:19, :29:14, :30:14, :55:42, :56:27, :57:38
+  wire          classA_sp_is_normal = (|(io_src1[30:23])) & io_src1[30:23] != 8'hFF;	// backend/src/zaqal/backend/exu/FPMisc.scala:25:19, :29:14, :56:27, :60:{27,34,40}
+  wire          classA_dp_is_zero = ~(|(io_src1[62:52])) & ~(|(io_src1[51:0]));	// backend/src/zaqal/backend/exu/FPMisc.scala:41:20, :42:20, :81:{27,36,42}
+  wire          classA_dp_is_subnormal = ~(|(io_src1[62:52])) & (|(io_src1[51:0]));	// backend/src/zaqal/backend/exu/FPMisc.scala:41:20, :42:20, :81:27, :82:{36,42}
+  wire          classA_dp_is_inf = (&(io_src1[62:52])) & ~(|(io_src1[51:0]));	// backend/src/zaqal/backend/exu/FPMisc.scala:41:20, :42:20, :81:42, :83:{27,39}
+  wire          classA_dp_is_nan = (&(io_src1[62:52])) & (|(io_src1[51:0]));	// backend/src/zaqal/backend/exu/FPMisc.scala:41:20, :42:20, :82:42, :83:27, :84:39
+  wire          classA_dp_is_normal = (|(io_src1[62:52])) & io_src1[62:52] != 11'h7FF;	// backend/src/zaqal/backend/exu/FPMisc.scala:41:20, :83:27, :87:{27,34,40}
+  wire          _sel_dp_T = io_inst[14:12] == 3'h0;	// backend/src/zaqal/backend/exu/FPMisc.scala:21:23, :107:32
+  wire          _res_sgnj_dp_T_3 = io_inst[14:12] == 3'h1;	// backend/src/zaqal/backend/exu/FPMisc.scala:21:23, :108:32
+  wire          is_nanA_sp = (&(io_src1[30:23])) & (|(io_src1[22:0]));	// backend/src/zaqal/backend/exu/FPMisc.scala:25:19, :29:14, :30:14, :116:{24,35,42}
+  wire          is_nanB_sp = (&(io_src2[30:23])) & (|(io_src2[22:0]));	// backend/src/zaqal/backend/exu/FPMisc.scala:26:19, :33:14, :34:14, :117:{24,35,42}
+  wire          raw_lt_sp =
     io_src1[31] == io_src2[31]
       ? (io_src1[31] ? io_src2[30:0] < io_src1[30:0] : io_src1[30:0] < io_src2[30:0])
-      : io_src1[31];	// backend/src/zaqal/backend/fu/FPMisc.scala:21:19, :22:19, :24:14, :28:14, :81:{19,23}, :82:{19,27,36,41,63}
-  wire         raw_eq =
+      : io_src1[31];	// backend/src/zaqal/backend/exu/FPMisc.scala:25:19, :26:19, :28:14, :32:14, :119:{22,26,41,49,58,63,85}
+  wire          raw_eq_sp =
     io_src1[31:0] == io_src2[31:0] | ~(|(io_src1[30:23])) & ~(|(io_src1[22:0]))
-    & io_src2[30:23] == 8'h0 & io_src2[22:0] == 23'h0;	// backend/src/zaqal/backend/fu/FPMisc.scala:21:19, :22:19, :25:14, :26:14, :29:14, :30:14, :38:{26,41}, :78:{23,37,46,53,67}, :83:{20,28}, :112:18
-  wire [63:0]  result_fp_wire_abs_in =
-    io_inst[20] & io_rs1_int[63] ? 64'h0 - io_rs1_int : io_rs1_int;	// backend/src/zaqal/backend/fu/FPMisc.scala:105:{21,29,34,45}, :148:20, :152:17, :159:42
-  wire [7:0]   _GEN =
-    {{result_fp_wire_abs_in[11:8], result_fp_wire_abs_in[15:14]} & 6'h33, 2'h0}
-    | {result_fp_wire_abs_in[15:12], result_fp_wire_abs_in[19:16]} & 8'h33;	// backend/src/zaqal/backend/fu/FPMisc.scala:105:21, :108:{38,45}
-  wire [18:0]  _GEN_0 =
+    & io_src2[30:23] == 8'h0 & io_src2[22:0] == 23'h0;	// backend/src/zaqal/backend/exu/FPMisc.scala:25:19, :26:19, :29:14, :30:14, :33:14, :34:14, :54:{27,42}, :118:{26,40,49,56,70}, :120:{23,31}, :150:18, :229:32
+  wire          is_nanA_dp = (&(io_src1[62:52])) & (|(io_src1[51:0]));	// backend/src/zaqal/backend/exu/FPMisc.scala:41:20, :42:20, :125:{27,39,49}
+  wire          is_nanB_dp = (&(io_src2[62:52])) & (|(io_src2[51:0]));	// backend/src/zaqal/backend/exu/FPMisc.scala:45:20, :46:20, :126:{27,39,49}
+  wire          raw_lt_dp =
+    io_src1[63] == io_src2[63]
+      ? (io_src1[63] ? io_src2[62:0] < io_src1[62:0] : io_src1[62:0] < io_src2[62:0])
+      : io_src1[63];	// backend/src/zaqal/backend/exu/FPMisc.scala:40:20, :44:20, :128:{22,29,50,61,76,81,115}
+  wire          raw_eq_dp =
+    io_src1 == io_src2 | ~(|(io_src1[62:52])) & ~(|(io_src1[51:0]))
+    & io_src2[62:52] == 11'h0 & io_src2[51:0] == 52'h0;	// backend/src/zaqal/backend/exu/FPMisc.scala:41:20, :42:20, :45:20, :46:20, :81:{27,42}, :127:{29,46,55,65,82}, :129:{26,37}, :165:18, :246:20
+  wire [10:0]   _fcvt_s_d_res_new_e_T = io_src1[62:52] - 11'h380;	// backend/src/zaqal/backend/exu/FPMisc.scala:221:20, :226:21
+  wire [7:0]    _fcvt_d_s_res_e_T_2 = io_src1[30:23] - 8'h7F;	// backend/src/zaqal/backend/exu/FPMisc.scala:238:{20,36}
+  wire          _fcvt_d_s_res_is_inf_T_2 = io_src1[22:0] == 23'h0;	// backend/src/zaqal/backend/exu/FPMisc.scala:229:32, :239:20, :240:51
+  wire [63:0]   result_fp_wire_raw_in =
+    io_inst[21] ? io_rs1_int : {32'h0, io_rs1_int[31:0]};	// backend/src/zaqal/backend/exu/FPMisc.scala:22:26, :157:{21,47}, :231:20, :262:31
+  wire          result_fp_wire_is_neg =
+    ~(io_inst[20])
+    & (io_inst[21] ? result_fp_wire_raw_in[63] : result_fp_wire_raw_in[31]);	// backend/src/zaqal/backend/exu/FPMisc.scala:22:26, :157:21, :158:{25,31,45,57}, :261:{31,35}, :262:31
+  wire [63:0]   result_fp_wire_abs_in =
+    result_fp_wire_is_neg ? 64'h0 - result_fp_wire_raw_in : result_fp_wire_raw_in;	// backend/src/zaqal/backend/exu/FPMisc.scala:157:21, :158:25, :159:{21,31}, :231:27, :244:8
+  wire [15:0]   _GEN =
+    {{result_fp_wire_abs_in[23:16], result_fp_wire_abs_in[31:28]} & 12'hF0F, 4'h0}
+    | {result_fp_wire_abs_in[31:24], result_fp_wire_abs_in[39:32]} & 16'hF0F;	// backend/src/zaqal/backend/exu/FPMisc.scala:159:21, :162:38
+  wire [37:0]   _GEN_0 =
+    {result_fp_wire_abs_in[11:8],
+     result_fp_wire_abs_in[15:12],
+     result_fp_wire_abs_in[19:16],
+     _GEN,
+     result_fp_wire_abs_in[39:36],
+     result_fp_wire_abs_in[43:40],
+     result_fp_wire_abs_in[47:46]} & 38'h3333333333;	// backend/src/zaqal/backend/exu/FPMisc.scala:159:21, :162:38
+  wire [7:0]    _GEN_1 =
+    _GEN_0[37:30] | {result_fp_wire_abs_in[15:12], result_fp_wire_abs_in[19:16]} & 8'h33;	// backend/src/zaqal/backend/exu/FPMisc.scala:159:21, :162:38
+  wire [15:0]   _GEN_2 = _GEN_0[29:14] | _GEN & 16'h3333;	// backend/src/zaqal/backend/exu/FPMisc.scala:162:38
+  wire [1:0]    _GEN_3 = _GEN_0[11:10] | result_fp_wire_abs_in[37:36];	// backend/src/zaqal/backend/exu/FPMisc.scala:159:21, :162:38
+  wire [7:0]    _GEN_4 =
+    {_GEN_0[5:0], 2'h0} | {result_fp_wire_abs_in[47:44], result_fp_wire_abs_in[51:48]}
+    & 8'h33;	// backend/src/zaqal/backend/exu/FPMisc.scala:159:21, :162:38
+  wire [50:0]   _GEN_5 =
     {result_fp_wire_abs_in[5:4],
      result_fp_wire_abs_in[7:6],
      result_fp_wire_abs_in[9:8],
-     _GEN,
-     result_fp_wire_abs_in[19:18],
-     result_fp_wire_abs_in[21:20],
-     result_fp_wire_abs_in[23]} & 19'h55555;	// backend/src/zaqal/backend/fu/FPMisc.scala:105:21, :108:38
-  wire [3:0]   _GEN_1 =
-    _GEN_0[18:15] | {result_fp_wire_abs_in[7:6], result_fp_wire_abs_in[9:8]} & 4'h5;	// backend/src/zaqal/backend/fu/FPMisc.scala:105:21, :108:38
-  wire [7:0]   _GEN_2 = _GEN_0[14:7] | _GEN & 8'h55;	// backend/src/zaqal/backend/fu/FPMisc.scala:108:38
-  wire [3:0]   _GEN_3 =
-    {_GEN_0[2:0], 1'h0} | {result_fp_wire_abs_in[23:22], result_fp_wire_abs_in[25:24]}
-    & 4'h5;	// backend/src/zaqal/backend/fu/FPMisc.scala:105:21, :108:38
-  wire [4:0]   result_fp_wire_lzc =
-    result_fp_wire_abs_in[31]
+     _GEN_1,
+     _GEN_2,
+     _GEN[3:2],
+     _GEN_3,
+     result_fp_wire_abs_in[39:38],
+     result_fp_wire_abs_in[41:40],
+     _GEN_4,
+     result_fp_wire_abs_in[51:50],
+     result_fp_wire_abs_in[53:52],
+     result_fp_wire_abs_in[55]} & 51'h5555555555555;	// backend/src/zaqal/backend/exu/FPMisc.scala:159:21, :162:38
+  wire [3:0]    _GEN_6 =
+    _GEN_5[50:47] | {result_fp_wire_abs_in[7:6], result_fp_wire_abs_in[9:8]} & 4'h5;	// backend/src/zaqal/backend/exu/FPMisc.scala:159:21, :162:38
+  wire [7:0]    _GEN_7 = _GEN_5[46:39] | _GEN_1 & 8'h55;	// backend/src/zaqal/backend/exu/FPMisc.scala:162:38
+  wire [15:0]   _GEN_8 = _GEN_5[38:23] | _GEN_2 & 16'h5555;	// backend/src/zaqal/backend/exu/FPMisc.scala:162:38
+  wire [1:0]    _GEN_9 = {_GEN[3], 1'h0} | _GEN_3 & 2'h1;	// backend/src/zaqal/backend/exu/FPMisc.scala:162:38, :231:27
+  wire [3:0]    _GEN_10 =
+    _GEN_5[18:15] | {result_fp_wire_abs_in[39:38], result_fp_wire_abs_in[41:40]} & 4'h5;	// backend/src/zaqal/backend/exu/FPMisc.scala:159:21, :162:38
+  wire [7:0]    _GEN_11 = _GEN_5[14:7] | _GEN_4 & 8'h55;	// backend/src/zaqal/backend/exu/FPMisc.scala:162:38
+  wire [3:0]    _GEN_12 =
+    {_GEN_5[2:0], 1'h0} | {result_fp_wire_abs_in[55:54], result_fp_wire_abs_in[57:56]}
+    & 4'h5;	// backend/src/zaqal/backend/exu/FPMisc.scala:159:21, :162:38, :231:27
+  wire [5:0]    result_fp_wire_lzc =
+    result_fp_wire_abs_in[63]
+      ? 6'h0
+      : result_fp_wire_abs_in[62]
+          ? 6'h1
+          : result_fp_wire_abs_in[61]
+              ? 6'h2
+              : result_fp_wire_abs_in[60]
+                  ? 6'h3
+                  : result_fp_wire_abs_in[59]
+                      ? 6'h4
+                      : result_fp_wire_abs_in[58]
+                          ? 6'h5
+                          : result_fp_wire_abs_in[57]
+                              ? 6'h6
+                              : _GEN_12[0]
+                                  ? 6'h7
+                                  : _GEN_12[1]
+                                      ? 6'h8
+                                      : _GEN_12[2]
+                                          ? 6'h9
+                                          : _GEN_12[3]
+                                              ? 6'hA
+                                              : result_fp_wire_abs_in[52]
+                                                  ? 6'hB
+                                                  : result_fp_wire_abs_in[51]
+                                                      ? 6'hC
+                                                      : _GEN_5[5]
+                                                        | result_fp_wire_abs_in[50]
+                                                          ? 6'hD
+                                                          : _GEN_4[1]
+                                                              ? 6'hE
+                                                              : _GEN_11[0]
+                                                                  ? 6'hF
+                                                                  : _GEN_11[1]
+                                                                      ? 6'h10
+                                                                      : _GEN_11[2]
+                                                                          ? 6'h11
+                                                                          : _GEN_11[3]
+                                                                              ? 6'h12
+                                                                              : _GEN_11[4]
+                                                                                  ? 6'h13
+                                                                                  : _GEN_11[5]
+                                                                                      ? 6'h14
+                                                                                      : _GEN_11[6]
+                                                                                          ? 6'h15
+                                                                                          : _GEN_11[7]
+                                                                                              ? 6'h16
+                                                                                              : _GEN_10[0]
+                                                                                                  ? 6'h17
+                                                                                                  : _GEN_10[1]
+                                                                                                      ? 6'h18
+                                                                                                      : _GEN_10[2]
+                                                                                                          ? 6'h19
+                                                                                                          : _GEN_10[3]
+                                                                                                              ? 6'h1A
+                                                                                                              : _GEN_9[0]
+                                                                                                                  ? 6'h1B
+                                                                                                                  : _GEN_9[1]
+                                                                                                                      ? 6'h1C
+                                                                                                                      : _GEN_5[21]
+                                                                                                                        | _GEN[2]
+                                                                                                                          ? 6'h1D
+                                                                                                                          : _GEN_2[1]
+                                                                                                                              ? 6'h1E
+                                                                                                                              : _GEN_8[0]
+                                                                                                                                  ? 6'h1F
+                                                                                                                                  : _GEN_8[1]
+                                                                                                                                      ? 6'h20
+                                                                                                                                      : _GEN_8[2]
+                                                                                                                                          ? 6'h21
+                                                                                                                                          : _GEN_8[3]
+                                                                                                                                              ? 6'h22
+                                                                                                                                              : _GEN_8[4]
+                                                                                                                                                  ? 6'h23
+                                                                                                                                                  : _GEN_8[5]
+                                                                                                                                                      ? 6'h24
+                                                                                                                                                      : _GEN_8[6]
+                                                                                                                                                          ? 6'h25
+                                                                                                                                                          : _GEN_8[7]
+                                                                                                                                                              ? 6'h26
+                                                                                                                                                              : _GEN_8[8]
+                                                                                                                                                                  ? 6'h27
+                                                                                                                                                                  : _GEN_8[9]
+                                                                                                                                                                      ? 6'h28
+                                                                                                                                                                      : _GEN_8[10]
+                                                                                                                                                                          ? 6'h29
+                                                                                                                                                                          : _GEN_8[11]
+                                                                                                                                                                              ? 6'h2A
+                                                                                                                                                                              : _GEN_8[12]
+                                                                                                                                                                                  ? 6'h2B
+                                                                                                                                                                                  : _GEN_8[13]
+                                                                                                                                                                                      ? 6'h2C
+                                                                                                                                                                                      : _GEN_8[14]
+                                                                                                                                                                                          ? 6'h2D
+                                                                                                                                                                                          : _GEN_8[15]
+                                                                                                                                                                                              ? 6'h2E
+                                                                                                                                                                                              : _GEN_7[0]
+                                                                                                                                                                                                  ? 6'h2F
+                                                                                                                                                                                                  : _GEN_7[1]
+                                                                                                                                                                                                      ? 6'h30
+                                                                                                                                                                                                      : _GEN_7[2]
+                                                                                                                                                                                                          ? 6'h31
+                                                                                                                                                                                                          : _GEN_7[3]
+                                                                                                                                                                                                              ? 6'h32
+                                                                                                                                                                                                              : _GEN_7[4]
+                                                                                                                                                                                                                  ? 6'h33
+                                                                                                                                                                                                                  : _GEN_7[5]
+                                                                                                                                                                                                                      ? 6'h34
+                                                                                                                                                                                                                      : _GEN_7[6]
+                                                                                                                                                                                                                          ? 6'h35
+                                                                                                                                                                                                                          : _GEN_7[7]
+                                                                                                                                                                                                                              ? 6'h36
+                                                                                                                                                                                                                              : _GEN_6[0]
+                                                                                                                                                                                                                                  ? 6'h37
+                                                                                                                                                                                                                                  : _GEN_6[1]
+                                                                                                                                                                                                                                      ? 6'h38
+                                                                                                                                                                                                                                      : _GEN_6[2]
+                                                                                                                                                                                                                                          ? 6'h39
+                                                                                                                                                                                                                                          : _GEN_6[3]
+                                                                                                                                                                                                                                              ? 6'h3A
+                                                                                                                                                                                                                                              : result_fp_wire_abs_in[4]
+                                                                                                                                                                                                                                                  ? 6'h3B
+                                                                                                                                                                                                                                                  : result_fp_wire_abs_in[3]
+                                                                                                                                                                                                                                                      ? 6'h3C
+                                                                                                                                                                                                                                                      : result_fp_wire_abs_in[2]
+                                                                                                                                                                                                                                                          ? 6'h3D
+                                                                                                                                                                                                                                                          : {5'h1F,
+                                                                                                                                                                                                                                                             ~(result_fp_wire_abs_in[1])};	// backend/src/zaqal/backend/exu/FPMisc.scala:159:21, :162:38, :179:26, :208:24, src/main/scala/chisel3/util/Mux.scala:50:70, src/main/scala/chisel3/util/OneHot.scala:48:45
+  wire [126:0]  _result_fp_wire_norm_m_T =
+    {63'h0, result_fp_wire_abs_in} << result_fp_wire_lzc;	// backend/src/zaqal/backend/exu/FPMisc.scala:159:21, :163:26, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire [31:0]   result_fp_wire_abs_in_1 =
+    ~(io_inst[20]) & io_rs1_int[31] ? 32'h0 - io_rs1_int[31:0] : io_rs1_int[31:0];	// backend/src/zaqal/backend/exu/FPMisc.scala:22:26, :144:{21,29,34,41}, :157:47, :231:{20,27}, :261:{31,35}
+  wire [7:0]    _GEN_13 =
+    {{result_fp_wire_abs_in_1[11:8], result_fp_wire_abs_in_1[15:14]} & 6'h33, 2'h0}
+    | {result_fp_wire_abs_in_1[15:12], result_fp_wire_abs_in_1[19:16]} & 8'h33;	// backend/src/zaqal/backend/exu/FPMisc.scala:144:21, :147:38, :162:38, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire [18:0]   _GEN_14 =
+    {result_fp_wire_abs_in_1[5:4],
+     result_fp_wire_abs_in_1[7:6],
+     result_fp_wire_abs_in_1[9:8],
+     _GEN_13,
+     result_fp_wire_abs_in_1[19:18],
+     result_fp_wire_abs_in_1[21:20],
+     result_fp_wire_abs_in_1[23]} & 19'h55555;	// backend/src/zaqal/backend/exu/FPMisc.scala:144:21, :147:38
+  wire [3:0]    _GEN_15 =
+    _GEN_14[18:15] | {result_fp_wire_abs_in_1[7:6], result_fp_wire_abs_in_1[9:8]} & 4'h5;	// backend/src/zaqal/backend/exu/FPMisc.scala:144:21, :147:38, :162:38
+  wire [7:0]    _GEN_16 = _GEN_14[14:7] | _GEN_13 & 8'h55;	// backend/src/zaqal/backend/exu/FPMisc.scala:147:38, :162:38
+  wire [3:0]    _GEN_17 =
+    {_GEN_14[2:0], 1'h0}
+    | {result_fp_wire_abs_in_1[23:22], result_fp_wire_abs_in_1[25:24]} & 4'h5;	// backend/src/zaqal/backend/exu/FPMisc.scala:144:21, :147:38, :162:38, :231:27
+  wire [4:0]    result_fp_wire_lzc_1 =
+    result_fp_wire_abs_in_1[31]
       ? 5'h0
-      : result_fp_wire_abs_in[30]
+      : result_fp_wire_abs_in_1[30]
           ? 5'h1
-          : result_fp_wire_abs_in[29]
+          : result_fp_wire_abs_in_1[29]
               ? 5'h2
-              : result_fp_wire_abs_in[28]
+              : result_fp_wire_abs_in_1[28]
                   ? 5'h3
-                  : result_fp_wire_abs_in[27]
+                  : result_fp_wire_abs_in_1[27]
                       ? 5'h4
-                      : result_fp_wire_abs_in[26]
+                      : result_fp_wire_abs_in_1[26]
                           ? 5'h5
-                          : result_fp_wire_abs_in[25]
+                          : result_fp_wire_abs_in_1[25]
                               ? 5'h6
-                              : _GEN_3[0]
+                              : _GEN_17[0]
                                   ? 5'h7
-                                  : _GEN_3[1]
+                                  : _GEN_17[1]
                                       ? 5'h8
-                                      : _GEN_3[2]
+                                      : _GEN_17[2]
                                           ? 5'h9
-                                          : _GEN_3[3]
+                                          : _GEN_17[3]
                                               ? 5'hA
-                                              : result_fp_wire_abs_in[20]
+                                              : result_fp_wire_abs_in_1[20]
                                                   ? 5'hB
-                                                  : result_fp_wire_abs_in[19]
+                                                  : result_fp_wire_abs_in_1[19]
                                                       ? 5'hC
-                                                      : _GEN_0[5]
-                                                        | result_fp_wire_abs_in[18]
+                                                      : _GEN_14[5]
+                                                        | result_fp_wire_abs_in_1[18]
                                                           ? 5'hD
-                                                          : _GEN[1]
+                                                          : _GEN_13[1]
                                                               ? 5'hE
-                                                              : _GEN_2[0]
+                                                              : _GEN_16[0]
                                                                   ? 5'hF
-                                                                  : _GEN_2[1]
+                                                                  : _GEN_16[1]
                                                                       ? 5'h10
-                                                                      : _GEN_2[2]
+                                                                      : _GEN_16[2]
                                                                           ? 5'h11
-                                                                          : _GEN_2[3]
+                                                                          : _GEN_16[3]
                                                                               ? 5'h12
-                                                                              : _GEN_2[4]
+                                                                              : _GEN_16[4]
                                                                                   ? 5'h13
-                                                                                  : _GEN_2[5]
+                                                                                  : _GEN_16[5]
                                                                                       ? 5'h14
-                                                                                      : _GEN_2[6]
+                                                                                      : _GEN_16[6]
                                                                                           ? 5'h15
-                                                                                          : _GEN_2[7]
+                                                                                          : _GEN_16[7]
                                                                                               ? 5'h16
-                                                                                              : _GEN_1[0]
+                                                                                              : _GEN_15[0]
                                                                                                   ? 5'h17
-                                                                                                  : _GEN_1[1]
+                                                                                                  : _GEN_15[1]
                                                                                                       ? 5'h18
-                                                                                                      : _GEN_1[2]
+                                                                                                      : _GEN_15[2]
                                                                                                           ? 5'h19
-                                                                                                          : _GEN_1[3]
+                                                                                                          : _GEN_15[3]
                                                                                                               ? 5'h1A
-                                                                                                              : result_fp_wire_abs_in[4]
+                                                                                                              : result_fp_wire_abs_in_1[4]
                                                                                                                   ? 5'h1B
-                                                                                                                  : result_fp_wire_abs_in[3]
+                                                                                                                  : result_fp_wire_abs_in_1[3]
                                                                                                                       ? 5'h1C
-                                                                                                                      : result_fp_wire_abs_in[2]
+                                                                                                                      : result_fp_wire_abs_in_1[2]
                                                                                                                           ? 5'h1D
                                                                                                                           : {4'hF,
-                                                                                                                             ~(result_fp_wire_abs_in[1])};	// backend/src/zaqal/backend/fu/FPMisc.scala:105:21, :108:38, src/main/scala/chisel3/util/Mux.scala:50:70, src/main/scala/chisel3/util/OneHot.scala:48:45
-  wire [94:0]  _result_fp_wire_norm_m_T =
-    {31'h0, result_fp_wire_abs_in} << result_fp_wire_lzc;	// backend/src/zaqal/backend/fu/FPMisc.scala:105:21, :110:26, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire [7:0]   _io_result_int_e_T_2 = io_src1[30:23] - 8'h7F;	// backend/src/zaqal/backend/fu/FPMisc.scala:21:19, :25:14, :121:30
-  wire [278:0] _io_result_int_res_wide_T_5 =
-    {256'h1, io_src1[22:0]} << io_src1[30:23] + 8'h6A;	// backend/src/zaqal/backend/fu/FPMisc.scala:21:19, :25:14, :26:14, :131:{37,43}
-  wire [31:0]  io_result_int_res_wide =
-    $signed(_io_result_int_e_T_2) > 8'sh16
-      ? _io_result_int_res_wide_T_5[31:0]
-      : {8'h0, {1'h1, io_src1[22:0]} >> 8'h17 - _io_result_int_e_T_2};	// backend/src/zaqal/backend/fu/FPMisc.scala:21:19, :26:14, :43:40, :112:18, :121:30, :122:16, :131:{23,26,37,43,61,70}
+                                                                                                                             ~(result_fp_wire_abs_in_1[1])};	// backend/src/zaqal/backend/exu/FPMisc.scala:144:21, :147:38, src/main/scala/chisel3/util/Mux.scala:50:70, src/main/scala/chisel3/util/OneHot.scala:48:45
+  wire [62:0]   _result_fp_wire_norm_m_T_1 =
+    {31'h0, result_fp_wire_abs_in_1} << result_fp_wire_lzc_1;	// backend/src/zaqal/backend/exu/FPMisc.scala:144:21, :148:26, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire [10:0]   _result_int_wire_e_T_2 = io_src1[62:52] - 11'h3FF;	// backend/src/zaqal/backend/exu/FPMisc.scala:194:30, :221:20
+  wire [2099:0] _result_int_wire_res_wide_T_5 =
+    {2048'h1, io_src1[51:0]} << io_src1[62:52] + 11'h3CD;	// backend/src/zaqal/backend/exu/FPMisc.scala:200:{37,43}, :221:20, :222:20
+  wire [63:0]   result_int_wire_res_wide =
+    $signed(_result_int_wire_e_T_2) > 11'sh33
+      ? _result_int_wire_res_wide_T_5[63:0]
+      : {11'h0, {1'h1, io_src1[51:0]} >> 11'h34 - _result_int_wire_e_T_2};	// backend/src/zaqal/backend/exu/FPMisc.scala:59:41, :165:18, :194:30, :195:16, :200:{23,26,37,43,61,70}, :222:20
+  wire [63:0]   result_int_wire_res_signed =
+    io_src1[63] ? 64'h0 - result_int_wire_res_wide : result_int_wire_res_wide;	// backend/src/zaqal/backend/exu/FPMisc.scala:200:23, :201:{25,30}, :220:20, :231:27, :244:8
+  wire [63:0]   result_int_wire_max_int =
+    io_inst[21]
+      ? {io_inst[20], 63'h7FFFFFFFFFFFFFFF}
+      : {32'h0, io_inst[20], 31'h7FFFFFFF};	// backend/src/zaqal/backend/exu/FPMisc.scala:22:26, :203:{22,33}, :204:33, :231:20, :287:31, :288:31
+  wire [10:0]   _GEN_18 = {5'h0, io_inst[21], 5'h1E};	// backend/src/zaqal/backend/exu/FPMisc.scala:22:26, :208:24, :209:23, :288:31, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire [7:0]    _result_int_wire_e_T_6 = io_src1[30:23] - 8'h7F;	// backend/src/zaqal/backend/exu/FPMisc.scala:25:19, :29:14, :173:30
+  wire [278:0]  _result_int_wire_res_wide_T_16 =
+    {256'h1, io_src1[22:0]} << io_src1[30:23] + 8'h6A;	// backend/src/zaqal/backend/exu/FPMisc.scala:25:19, :29:14, :30:14, :179:{37,43}
+  wire [31:0]   result_int_wire_res_wide_1 =
+    $signed(_result_int_wire_e_T_6) > 8'sh16
+      ? _result_int_wire_res_wide_T_16[31:0]
+      : {8'h0, {1'h1, io_src1[22:0]} >> 8'h17 - _result_int_wire_e_T_6};	// backend/src/zaqal/backend/exu/FPMisc.scala:25:19, :30:14, :59:41, :150:18, :173:30, :174:16, :179:{23,26,37,43,61,70}
   assign io_result_int =
     io_dec_is_feq
-      ? {63'h0, raw_eq & ~is_nanA & ~is_nanB}
+      ? {63'h0,
+         io_dec_is_fp_double
+           ? raw_eq_dp & ~is_nanA_dp & ~is_nanB_dp
+           : raw_eq_sp & ~is_nanA_sp & ~is_nanB_sp}
       : io_dec_is_flt
-          ? {63'h0, raw_lt & ~is_nanA & ~is_nanB}
+          ? {63'h0,
+             io_dec_is_fp_double
+               ? raw_lt_dp & ~is_nanA_dp & ~is_nanB_dp
+               : raw_lt_sp & ~is_nanA_sp & ~is_nanB_sp}
           : io_dec_is_fle
-              ? {63'h0, (raw_lt | raw_eq) & ~is_nanA & ~is_nanB}
+              ? {63'h0,
+                 io_dec_is_fp_double
+                   ? (raw_lt_dp | raw_eq_dp) & ~is_nanA_dp & ~is_nanB_dp
+                   : (raw_lt_sp | raw_eq_sp) & ~is_nanA_sp & ~is_nanB_sp}
               : io_dec_is_fclass
                   ? {54'h0,
-                     classA_is_nan & io_src1[22],
-                     classA_is_nan & ~(io_src1[22]),
-                     ~(io_src1[31]) & classA_is_inf,
-                     ~(io_src1[31]) & classA_is_normal,
-                     ~(io_src1[31]) & classA_is_subnormal,
-                     ~(io_src1[31]) & classA_is_zero,
-                     io_src1[31] & classA_is_zero,
-                     io_src1[31] & classA_is_subnormal,
-                     io_src1[31] & classA_is_normal,
-                     io_src1[31] & classA_is_inf}
+                     io_dec_is_fp_double
+                       ? {classA_dp_is_nan & io_src1[51],
+                          classA_dp_is_nan & ~(io_src1[51]),
+                          ~(io_src1[63]) & classA_dp_is_inf,
+                          ~(io_src1[63]) & classA_dp_is_normal,
+                          ~(io_src1[63]) & classA_dp_is_subnormal,
+                          ~(io_src1[63]) & classA_dp_is_zero,
+                          io_src1[63] & classA_dp_is_zero,
+                          io_src1[63] & classA_dp_is_subnormal,
+                          io_src1[63] & classA_dp_is_normal,
+                          io_src1[63] & classA_dp_is_inf}
+                       : {classA_sp_is_nan & io_src1[22],
+                          classA_sp_is_nan & ~(io_src1[22]),
+                          ~(io_src1[31]) & classA_sp_is_inf,
+                          ~(io_src1[31]) & classA_sp_is_normal,
+                          ~(io_src1[31]) & classA_sp_is_subnormal,
+                          ~(io_src1[31]) & classA_sp_is_zero,
+                          io_src1[31] & classA_sp_is_zero,
+                          io_src1[31] & classA_sp_is_subnormal,
+                          io_src1[31] & classA_sp_is_normal,
+                          io_src1[31] & classA_sp_is_inf}}
                   : io_dec_is_fmv_x_w
                       ? {32'h0, io_src1[31:0]}
-                      : io_dec_is_fcvt_f2i
-                          ? {32'h0,
-                             (&(io_src1[30:23])) & (|(io_src1[22:0]))
-                               ? 32'h7FFFFFFF
-                               : (&(io_src1[30:23])) & ~(|(io_src1[22:0]))
-                                 | $signed(_io_result_int_e_T_2) > 8'sh1E
-                                 | _io_result_int_e_T_2 == 8'h1E
-                                 & (io_inst[20] | ~(io_src1[31]))
-                                   ? (io_src1[31]
-                                        ? {~(io_inst[20]), 31'h0}
-                                        : {io_inst[20], 31'h7FFFFFFF})
-                                   : io_src1[31]
-                                       ? 32'h0 - io_result_int_res_wide
-                                       : io_result_int_res_wide}
-                          : 64'h0;	// backend/src/zaqal/backend/fu/FPMisc.scala:8:7, :21:19, :24:14, :25:14, :26:14, :38:{35,41}, :39:36, :40:37, :41:37, :42:{30,35,40}, :43:30, :44:33, :49:{7,10}, :50:10, :51:10, :52:10, :53:9, :54:9, :55:9, :56:9, :75:32, :76:32, :81:{19,23}, :83:28, :85:{23,32,35}, :86:32, :87:{21,44}, :110:26, :121:30, :124:{29,40,53}, :125:{29,40,53}, :131:23, :133:{25,30}, :136:22, :137:22, :139:{23,37,46,58,61}, :141:8, :142:{8,20}, :143:8, :148:20, :151:35, :152:17, :164:23, :165:19, :166:30, :167:19, :168:30, :169:19, :170:33, :171:19, :172:34, :173:19, :174:35, :175:{19,33,37}
+                      : io_dec_is_fmv_x_d
+                          ? io_src1
+                          : io_dec_is_fcvt_f2i
+                              ? (io_dec_is_fp_double
+                                   ? ((&(io_src1[62:52])) & (|(io_src1[51:0]))
+                                        ? result_int_wire_max_int
+                                        : (&(io_src1[62:52])) & ~(|(io_src1[51:0]))
+                                          | $signed(_result_int_wire_e_T_2) > $signed(_GEN_18)
+                                          | _result_int_wire_e_T_2 == _GEN_18
+                                          & (io_inst[20] | ~(io_src1[63]))
+                                            ? (io_src1[63]
+                                                 ? (io_inst[21]
+                                                      ? {~(io_inst[20]), 63'h0}
+                                                      : io_inst[20]
+                                                          ? 64'h0
+                                                          : 64'hFFFFFFFF80000000)
+                                                 : result_int_wire_max_int)
+                                            : io_inst[21]
+                                                ? result_int_wire_res_signed
+                                                : {32'h0,
+                                                   result_int_wire_res_signed[31:0]})
+                                   : {32'h0,
+                                      (&(io_src1[30:23])) & (|(io_src1[22:0]))
+                                        ? 32'h7FFFFFFF
+                                        : (&(io_src1[30:23])) & ~(|(io_src1[22:0]))
+                                          | $signed(_result_int_wire_e_T_6) > 8'sh1E
+                                          | _result_int_wire_e_T_6 == 8'h1E
+                                          & (io_inst[20] | ~(io_src1[31]))
+                                            ? (io_src1[31]
+                                                 ? {~(io_inst[20]), 31'h0}
+                                                 : {io_inst[20], 31'h7FFFFFFF})
+                                            : io_src1[31]
+                                                ? 32'h0 - result_int_wire_res_wide_1
+                                                : result_int_wire_res_wide_1})
+                              : 64'h0;	// backend/src/zaqal/backend/exu/FPMisc.scala:8:7, :22:26, :25:19, :28:14, :29:14, :30:14, :40:20, :42:20, :54:{36,42}, :55:36, :56:38, :57:38, :58:{31,36,41}, :59:31, :60:34, :62:8, :65:{7,10}, :66:10, :67:10, :68:10, :69:9, :70:9, :71:9, :72:9, :81:36, :82:36, :83:39, :84:39, :85:{31,36,41}, :86:31, :87:34, :89:8, :92:{7,10}, :93:10, :94:10, :95:10, :96:9, :97:9, :98:9, :99:9, :116:35, :117:35, :119:{22,26}, :120:31, :121:{29,41,44}, :122:41, :123:{27,56}, :125:39, :126:39, :128:{22,29}, :129:37, :130:{29,41,44}, :131:41, :132:{27,56}, :148:26, :163:26, :173:30, :176:{29,40,53}, :177:{29,40,53}, :179:23, :180:{25,30}, :182:22, :183:22, :184:{23,37,46,58,61}, :186:8, :187:{8,20}, :188:8, :194:30, :197:{29,41,54}, :198:{29,41,54}, :201:25, :203:22, :204:33, :205:{22,33}, :206:33, :209:{23,42,56,68,71}, :210:{25,62}, :212:8, :213:{8,20}, :214:8, :220:20, :221:20, :222:20, :223:51, :231:{20,27}, :244:8, :252:36, :274:23, :275:{21,27}, :276:30, :277:{21,27}, :278:30, :279:{21,27}, :280:33, :281:{21,27}, :282:34, :283:21, :284:34, :285:21, :286:35, :287:{31,35}, :288:31, :289:{21,27}
   assign io_result_fp =
-    {32'hFFFFFFFF,
-     io_dec_is_fsgnj
-       ? {_result_fp_wire_T
-            ? io_src2[31]
-            : io_inst[14:12] == 3'h1 ? ~(io_src2[31]) : io_src1[31] ^ io_src2[31],
-          io_src1[30:0]}
-       : io_dec_is_fminmax
-           ? (is_nanA & is_nanB
-                ? 32'h7FC00000
-                : (_result_fp_wire_T
-                     ? is_nanA | ~(is_nanB | raw_lt)
-                     : is_nanA | ~(is_nanB | ~raw_lt))
-                    ? io_src2[31:0]
-                    : io_src1[31:0])
-           : io_dec_is_fcvt_i2f
-               ? {io_inst[20] & io_rs1_int[63],
-                  io_rs1_int == 64'h0 ? 8'h0 : 8'h9E - {3'h0, result_fp_wire_lzc},
-                  _result_fp_wire_norm_m_T[30:8]}
-               : io_dec_is_fmv_w_x ? io_rs1_int[31:0] : 32'h0};	// backend/src/zaqal/backend/fu/FPMisc.scala:8:7, :21:19, :22:19, :24:14, :28:14, :63:23, :65:{21,29,41,48}, :66:{21,29,41,42}, :67:{21,25}, :75:32, :76:32, :81:{19,23}, :91:{20,29}, :92:20, :93:20, :94:20, :95:20, :96:20, :97:20, :104:23, :105:34, :106:23, :108:38, :110:{26,35}, :112:{18,46}, :113:26, :115:8, :148:20, :151:35, :152:17, :154:25, :155:20, :156:34, :157:{20,26}, :158:35, :159:{20,42}, :160:34, :161:{20,33}, :179:22, src/main/scala/chisel3/util/Mux.scala:50:70
+    io_dec_is_fsgnj
+      ? (io_dec_is_fp_double
+           ? {_sel_dp_T
+                ? io_src2[63]
+                : _res_sgnj_dp_T_3 ? ~(io_src2[63]) : io_src1[63] ^ io_src2[63],
+              io_src1[62:0]}
+           : {32'hFFFFFFFF,
+              _sel_dp_T
+                ? io_src2[31]
+                : _res_sgnj_dp_T_3 ? ~(io_src2[31]) : io_src1[31] ^ io_src2[31],
+              io_src1[30:0]})
+      : io_dec_is_fminmax
+          ? (io_dec_is_fp_double
+               ? (is_nanA_dp & is_nanB_dp
+                    ? 64'h7FF8000000000000
+                    : (_sel_dp_T
+                         ? is_nanA_dp | ~(is_nanB_dp | raw_lt_dp)
+                         : is_nanA_dp | ~(is_nanB_dp | ~raw_lt_dp))
+                        ? io_src2
+                        : io_src1)
+               : {32'hFFFFFFFF,
+                  is_nanA_sp & is_nanB_sp
+                    ? 32'h7FC00000
+                    : (_sel_dp_T
+                         ? is_nanA_sp | ~(is_nanB_sp | raw_lt_sp)
+                         : is_nanA_sp | ~(is_nanB_sp | ~raw_lt_sp))
+                        ? io_src2[31:0]
+                        : io_src1[31:0]})
+          : io_dec_is_fcvt_i2f
+              ? (io_dec_is_fp_double
+                   ? {result_fp_wire_is_neg,
+                      result_fp_wire_abs_in == 64'h0
+                        ? 11'h0
+                        : 11'h43E - {5'h0, result_fp_wire_lzc},
+                      _result_fp_wire_norm_m_T[62:11]}
+                   : {32'hFFFFFFFF,
+                      ~(io_inst[20]) & io_rs1_int[31],
+                      io_rs1_int[31:0] == 32'h0
+                        ? 8'h0
+                        : 8'h9E - {3'h0, result_fp_wire_lzc_1},
+                      _result_fp_wire_norm_m_T_1[30:8]})
+              : io_dec_is_fmv_w_x
+                  ? {32'hFFFFFFFF, io_rs1_int[31:0]}
+                  : io_dec_is_fmv_d_x
+                      ? io_rs1_int
+                      : io_dec_is_fcvt_s_d
+                          ? {32'hFFFFFFFF,
+                             io_src1[62:52] == 11'h0 & ~(|(io_src1[51:0]))
+                               ? 32'h0
+                               : (&(io_src1[62:52])) & (|(io_src1[51:0]))
+                                   ? 32'h7FC00000
+                                   : (&(io_src1[62:52])) & ~(|(io_src1[51:0]))
+                                       ? {io_src1[63], 31'h7F800000}
+                                       : $signed(_fcvt_s_d_res_new_e_T) > 11'shFE
+                                           ? {io_src1[63], 31'h7F800000}
+                                           : $signed(_fcvt_s_d_res_new_e_T) < 11'sh1
+                                               ? 32'h0
+                                               : {io_src1[63],
+                                                  _fcvt_s_d_res_new_e_T[7:0],
+                                                  io_src1[51:29]}}
+                          : ~io_dec_is_fcvt_d_s | io_src1[30:23] == 8'h0
+                            & _fcvt_d_s_res_is_inf_T_2
+                              ? 64'h0
+                              : (&(io_src1[30:23])) & (|(io_src1[22:0]))
+                                  ? 64'h7FF8000000000000
+                                  : {io_src1[31],
+                                     (&(io_src1[30:23])) & _fcvt_d_s_res_is_inf_T_2
+                                       ? 63'h7FF0000000000000
+                                       : {{{3{_fcvt_d_s_res_e_T_2[7]}},
+                                           _fcvt_d_s_res_e_T_2} + 11'h3FF,
+                                          io_src1[22:0],
+                                          29'h0}};	// backend/src/zaqal/backend/exu/FPMisc.scala:8:7, :22:26, :25:19, :26:19, :28:14, :32:14, :40:20, :44:20, :107:{24,32,44,51}, :108:{24,32,44,45}, :109:{24,28}, :111:{24,44,57}, :112:{24,44,45}, :113:{24,31}, :116:35, :117:35, :119:{22,26}, :125:39, :126:39, :128:{22,29}, :135:{19,31,64,84,104}, :136:{19,64,84}, :138:{19,31,72,95,118}, :139:{19,72,95}, :143:30, :144:34, :145:23, :148:{26,33}, :150:{18,46}, :151:26, :157:47, :158:25, :159:21, :160:27, :163:{26,33}, :165:{18,47}, :166:26, :167:8, :220:20, :221:{20,36}, :222:20, :223:{36,45,51}, :224:{36,48,54}, :225:{36,48}, :226:21, :227:20, :228:20, :229:{20,32}, :230:{20,27,40}, :231:{20,27}, :232:{20,29,38}, :233:8, :237:20, :238:{20,36}, :239:20, :240:{36,45,51}, :241:{36,47,53}, :242:{36,47}, :243:22, :244:8, :245:8, :246:{8,20}, :247:8, :251:35, :254:25, :255:{20,26,50}, :256:34, :257:21, :258:21, :259:{20,26,45}, :260:35, :261:{31,35}, :263:{20,26,75}, :264:34, :265:{20,26,58}, :266:34, :267:20, :268:35, :269:20, :270:35, :271:20, src/main/scala/chisel3/util/Mux.scala:50:70
 endmodule
 

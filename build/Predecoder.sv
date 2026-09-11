@@ -69,17 +69,29 @@
 module Predecoder(	// frontend/src/zaqal/frontend/Predecoder.scala:9:7
   input  [31:0] io_inst,	// frontend/src/zaqal/frontend/Predecoder.scala:10:14
   output        io_out_is_rvc,	// frontend/src/zaqal/frontend/Predecoder.scala:10:14
+                io_out_is_cfi,	// frontend/src/zaqal/frontend/Predecoder.scala:10:14
+                io_out_is_call,	// frontend/src/zaqal/frontend/Predecoder.scala:10:14
+                io_out_is_ret,	// frontend/src/zaqal/frontend/Predecoder.scala:10:14
   output [31:0] io_out_expanded_inst	// frontend/src/zaqal/frontend/Predecoder.scala:10:14
 );
 
   wire [31:0] _rvc_expander_io_out;	// frontend/src/zaqal/frontend/Predecoder.scala:16:28
   wire        _rvc_expander_io_is_rvc;	// frontend/src/zaqal/frontend/Predecoder.scala:16:28
+  wire [31:0] expanded = _rvc_expander_io_is_rvc ? _rvc_expander_io_out : io_inst;	// frontend/src/zaqal/frontend/Predecoder.scala:16:28, :22:21
+  wire        is_jalr = expanded[6:0] == 7'h67;	// frontend/src/zaqal/frontend/Predecoder.scala:22:21, :26:24, :31:24
+  wire        _io_out_is_call_T = expanded[6:0] == 7'h6F | is_jalr;	// frontend/src/zaqal/frontend/Predecoder.scala:22:21, :26:24, :30:24, :31:24, :34:27
   RVCExpander rvc_expander (	// frontend/src/zaqal/frontend/Predecoder.scala:16:28
     .io_inst   (io_inst[15:0]),	// frontend/src/zaqal/frontend/Predecoder.scala:17:34
     .io_out    (_rvc_expander_io_out),
     .io_is_rvc (_rvc_expander_io_is_rvc)
   );
   assign io_out_is_rvc = _rvc_expander_io_is_rvc;	// frontend/src/zaqal/frontend/Predecoder.scala:9:7, :16:28
-  assign io_out_expanded_inst = _rvc_expander_io_is_rvc ? _rvc_expander_io_out : io_inst;	// frontend/src/zaqal/frontend/Predecoder.scala:9:7, :16:28, :22:21
+  assign io_out_is_cfi = _io_out_is_call_T | expanded[6:0] == 7'h63;	// frontend/src/zaqal/frontend/Predecoder.scala:9:7, :22:21, :26:24, :32:24, :34:{27,38}
+  assign io_out_is_call =
+    _io_out_is_call_T & (expanded[11:7] == 5'h1 | expanded[11:7] == 5'h5);	// frontend/src/zaqal/frontend/Predecoder.scala:9:7, :22:21, :27:24, :34:27, :37:{22,31,38}, :40:41
+  assign io_out_is_ret =
+    is_jalr & (expanded[19:15] == 5'h1 | expanded[19:15] == 5'h5)
+    & expanded[11:7] != expanded[19:15];	// frontend/src/zaqal/frontend/Predecoder.scala:9:7, :22:21, :27:24, :28:24, :31:24, :37:{22,38}, :38:{23,32,40}, :41:{41,48}
+  assign io_out_expanded_inst = expanded;	// frontend/src/zaqal/frontend/Predecoder.scala:9:7, :22:21
 endmodule
 

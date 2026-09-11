@@ -66,125 +66,125 @@
   `endif // PRINTF_COND
 `endif // not def PRINTF_COND_
 
-module TagePredictor(	// frontend/src/zaqal/frontend/Tage.scala:116:7
-  input          clock,	// frontend/src/zaqal/frontend/Tage.scala:116:7
-                 reset,	// frontend/src/zaqal/frontend/Tage.scala:116:7
-  input  [63:0]  io_req_pc,	// frontend/src/zaqal/frontend/Tage.scala:117:14
-  input  [127:0] io_req_ghr,	// frontend/src/zaqal/frontend/Tage.scala:117:14
-  output [1:0]   io_pred_providerIdx,	// frontend/src/zaqal/frontend/Tage.scala:117:14
-  output         io_pred_taken,	// frontend/src/zaqal/frontend/Tage.scala:117:14
-                 io_pred_altTaken,	// frontend/src/zaqal/frontend/Tage.scala:117:14
-  output [1:0]   io_pred_providerU,	// frontend/src/zaqal/frontend/Tage.scala:117:14
-  output [2:0]   io_pred_providerCtr,	// frontend/src/zaqal/frontend/Tage.scala:117:14
-  output         io_pred_hit,	// frontend/src/zaqal/frontend/Tage.scala:117:14
-  input          io_update_valid,	// frontend/src/zaqal/frontend/Tage.scala:117:14
-  input  [63:0]  io_update_pc,	// frontend/src/zaqal/frontend/Tage.scala:117:14
-  input  [127:0] io_update_ghr,	// frontend/src/zaqal/frontend/Tage.scala:117:14
-  input          io_update_dir,	// frontend/src/zaqal/frontend/Tage.scala:117:14
-  input  [1:0]   io_providerIdx,	// frontend/src/zaqal/frontend/Tage.scala:117:14
-  input          io_providerHit,	// frontend/src/zaqal/frontend/Tage.scala:117:14
-  input  [2:0]   io_providerCtr,	// frontend/src/zaqal/frontend/Tage.scala:117:14
-  input          io_altTaken,	// frontend/src/zaqal/frontend/Tage.scala:117:14
-  input  [1:0]   io_providerU	// frontend/src/zaqal/frontend/Tage.scala:117:14
+module TagePredictor(	// frontend/src/zaqal/frontend/Tage.scala:111:7
+  input          clock,	// frontend/src/zaqal/frontend/Tage.scala:111:7
+                 reset,	// frontend/src/zaqal/frontend/Tage.scala:111:7
+  input  [63:0]  io_req_pc,	// frontend/src/zaqal/frontend/Tage.scala:112:14
+  input  [127:0] io_req_ghr,	// frontend/src/zaqal/frontend/Tage.scala:112:14
+  output [1:0]   io_pred_providerIdx,	// frontend/src/zaqal/frontend/Tage.scala:112:14
+  output         io_pred_taken,	// frontend/src/zaqal/frontend/Tage.scala:112:14
+                 io_pred_altTaken,	// frontend/src/zaqal/frontend/Tage.scala:112:14
+  output [1:0]   io_pred_providerU,	// frontend/src/zaqal/frontend/Tage.scala:112:14
+  output [2:0]   io_pred_providerCtr,	// frontend/src/zaqal/frontend/Tage.scala:112:14
+  output         io_pred_hit,	// frontend/src/zaqal/frontend/Tage.scala:112:14
+  input          io_update_valid,	// frontend/src/zaqal/frontend/Tage.scala:112:14
+  input  [63:0]  io_update_pc,	// frontend/src/zaqal/frontend/Tage.scala:112:14
+  input  [127:0] io_update_ghr,	// frontend/src/zaqal/frontend/Tage.scala:112:14
+  input          io_update_dir,	// frontend/src/zaqal/frontend/Tage.scala:112:14
+  input  [1:0]   io_providerIdx,	// frontend/src/zaqal/frontend/Tage.scala:112:14
+  input          io_providerHit,	// frontend/src/zaqal/frontend/Tage.scala:112:14
+  input  [2:0]   io_providerCtr,	// frontend/src/zaqal/frontend/Tage.scala:112:14
+  input          io_altTaken,	// frontend/src/zaqal/frontend/Tage.scala:112:14
+  input  [1:0]   io_providerU	// frontend/src/zaqal/frontend/Tage.scala:112:14
 );
 
-  wire       _tables_3_io_hit;	// frontend/src/zaqal/frontend/Tage.scala:142:19
-  wire [2:0] _tables_3_io_ctr;	// frontend/src/zaqal/frontend/Tage.scala:142:19
-  wire [1:0] _tables_3_io_u;	// frontend/src/zaqal/frontend/Tage.scala:142:19
-  wire [1:0] _tables_3_io_update_u;	// frontend/src/zaqal/frontend/Tage.scala:142:19
-  wire       _tables_2_io_hit;	// frontend/src/zaqal/frontend/Tage.scala:142:19
-  wire [2:0] _tables_2_io_ctr;	// frontend/src/zaqal/frontend/Tage.scala:142:19
-  wire [1:0] _tables_2_io_u;	// frontend/src/zaqal/frontend/Tage.scala:142:19
-  wire [1:0] _tables_2_io_update_u;	// frontend/src/zaqal/frontend/Tage.scala:142:19
-  wire       _tables_1_io_hit;	// frontend/src/zaqal/frontend/Tage.scala:142:19
-  wire [2:0] _tables_1_io_ctr;	// frontend/src/zaqal/frontend/Tage.scala:142:19
-  wire [1:0] _tables_1_io_u;	// frontend/src/zaqal/frontend/Tage.scala:142:19
-  wire [1:0] _tables_1_io_update_u;	// frontend/src/zaqal/frontend/Tage.scala:142:19
-  wire       _tables_0_io_hit;	// frontend/src/zaqal/frontend/Tage.scala:142:19
-  wire [2:0] _tables_0_io_ctr;	// frontend/src/zaqal/frontend/Tage.scala:142:19
-  wire [1:0] _tables_0_io_u;	// frontend/src/zaqal/frontend/Tage.scala:142:19
-  wire [1:0] _tables_0_io_update_u;	// frontend/src/zaqal/frontend/Tage.scala:142:19
-  wire [1:0] _baseTable_ext_R0_data;	// frontend/src/zaqal/frontend/Tage.scala:136:22
-  wire [1:0] _baseTable_ext_R1_data;	// frontend/src/zaqal/frontend/Tage.scala:136:22
+  wire       _tables_3_io_hit;	// frontend/src/zaqal/frontend/Tage.scala:137:19
+  wire [2:0] _tables_3_io_ctr;	// frontend/src/zaqal/frontend/Tage.scala:137:19
+  wire [1:0] _tables_3_io_u;	// frontend/src/zaqal/frontend/Tage.scala:137:19
+  wire [1:0] _tables_3_io_update_u;	// frontend/src/zaqal/frontend/Tage.scala:137:19
+  wire       _tables_2_io_hit;	// frontend/src/zaqal/frontend/Tage.scala:137:19
+  wire [2:0] _tables_2_io_ctr;	// frontend/src/zaqal/frontend/Tage.scala:137:19
+  wire [1:0] _tables_2_io_u;	// frontend/src/zaqal/frontend/Tage.scala:137:19
+  wire [1:0] _tables_2_io_update_u;	// frontend/src/zaqal/frontend/Tage.scala:137:19
+  wire       _tables_1_io_hit;	// frontend/src/zaqal/frontend/Tage.scala:137:19
+  wire [2:0] _tables_1_io_ctr;	// frontend/src/zaqal/frontend/Tage.scala:137:19
+  wire [1:0] _tables_1_io_u;	// frontend/src/zaqal/frontend/Tage.scala:137:19
+  wire [1:0] _tables_1_io_update_u;	// frontend/src/zaqal/frontend/Tage.scala:137:19
+  wire       _tables_0_io_hit;	// frontend/src/zaqal/frontend/Tage.scala:137:19
+  wire [2:0] _tables_0_io_ctr;	// frontend/src/zaqal/frontend/Tage.scala:137:19
+  wire [1:0] _tables_0_io_u;	// frontend/src/zaqal/frontend/Tage.scala:137:19
+  wire [1:0] _tables_0_io_update_u;	// frontend/src/zaqal/frontend/Tage.scala:137:19
+  wire [1:0] _baseTable_ext_R0_data;	// frontend/src/zaqal/frontend/Tage.scala:131:22
+  wire [1:0] _baseTable_ext_R1_data;	// frontend/src/zaqal/frontend/Tage.scala:131:22
   wire [3:0] providerMask_enc =
     _tables_3_io_hit
       ? 4'h1
-      : _tables_2_io_hit ? 4'h2 : _tables_1_io_hit ? 4'h4 : {_tables_0_io_hit, 3'h0};	// frontend/src/zaqal/frontend/Tage.scala:142:19, :224:12, src/main/scala/chisel3/util/Mux.scala:50:70
+      : _tables_2_io_hit ? 4'h2 : _tables_1_io_hit ? 4'h4 : {_tables_0_io_hit, 3'h0};	// frontend/src/zaqal/frontend/Tage.scala:137:19, :219:12, src/main/scala/chisel3/util/Mux.scala:50:70
   wire [3:0] _hasProvider_T =
-    {_tables_3_io_hit, _tables_2_io_hit, _tables_1_io_hit, _tables_0_io_hit};	// frontend/src/zaqal/frontend/Tage.scala:142:19, :164:26
-  wire       altHits_0 = _tables_0_io_hit & ~(providerMask_enc[3]);	// frontend/src/zaqal/frontend/Tage.scala:142:19, :168:{27,30}, src/main/scala/chisel3/util/Mux.scala:50:70, src/main/scala/chisel3/util/OneHot.scala:83:30
-  wire       altHits_1 = _tables_1_io_hit & ~(providerMask_enc[2]);	// frontend/src/zaqal/frontend/Tage.scala:142:19, :168:{27,30}, src/main/scala/chisel3/util/Mux.scala:50:70, src/main/scala/chisel3/util/OneHot.scala:83:30
-  wire       altHits_2 = _tables_2_io_hit & ~(providerMask_enc[1]);	// frontend/src/zaqal/frontend/Tage.scala:142:19, :168:{27,30}, src/main/scala/chisel3/util/Mux.scala:50:70, src/main/scala/chisel3/util/OneHot.scala:83:30
-  wire       altHits_3 = _tables_3_io_hit & ~(providerMask_enc[0]);	// frontend/src/zaqal/frontend/Tage.scala:142:19, :168:{27,30}, src/main/scala/chisel3/util/Mux.scala:50:70, src/main/scala/chisel3/util/OneHot.scala:83:30
+    {_tables_3_io_hit, _tables_2_io_hit, _tables_1_io_hit, _tables_0_io_hit};	// frontend/src/zaqal/frontend/Tage.scala:137:19, :159:26
+  wire       altHits_0 = _tables_0_io_hit & ~(providerMask_enc[3]);	// frontend/src/zaqal/frontend/Tage.scala:137:19, :163:{27,30}, src/main/scala/chisel3/util/Mux.scala:50:70, src/main/scala/chisel3/util/OneHot.scala:83:30
+  wire       altHits_1 = _tables_1_io_hit & ~(providerMask_enc[2]);	// frontend/src/zaqal/frontend/Tage.scala:137:19, :163:{27,30}, src/main/scala/chisel3/util/Mux.scala:50:70, src/main/scala/chisel3/util/OneHot.scala:83:30
+  wire       altHits_2 = _tables_2_io_hit & ~(providerMask_enc[1]);	// frontend/src/zaqal/frontend/Tage.scala:137:19, :163:{27,30}, src/main/scala/chisel3/util/Mux.scala:50:70, src/main/scala/chisel3/util/OneHot.scala:83:30
+  wire       altHits_3 = _tables_3_io_hit & ~(providerMask_enc[0]);	// frontend/src/zaqal/frontend/Tage.scala:137:19, :163:{27,30}, src/main/scala/chisel3/util/Mux.scala:50:70, src/main/scala/chisel3/util/OneHot.scala:83:30
   wire [3:0] altMask_enc =
-    altHits_3 ? 4'h1 : altHits_2 ? 4'h2 : altHits_1 ? 4'h4 : {altHits_0, 3'h0};	// frontend/src/zaqal/frontend/Tage.scala:168:27, :224:12, src/main/scala/chisel3/util/Mux.scala:50:70
+    altHits_3 ? 4'h1 : altHits_2 ? 4'h2 : altHits_1 ? 4'h4 : {altHits_0, 3'h0};	// frontend/src/zaqal/frontend/Tage.scala:163:27, :219:12, src/main/scala/chisel3/util/Mux.scala:50:70
   wire [2:0] provider_ctr =
     (providerMask_enc[3] ? _tables_0_io_ctr : 3'h0)
     | (providerMask_enc[2] ? _tables_1_io_ctr : 3'h0)
     | (providerMask_enc[1] ? _tables_2_io_ctr : 3'h0)
-    | (providerMask_enc[0] ? _tables_3_io_ctr : 3'h0);	// frontend/src/zaqal/frontend/Tage.scala:142:19, :224:12, src/main/scala/chisel3/util/Mux.scala:30:73, :50:70, src/main/scala/chisel3/util/OneHot.scala:83:30
-  wire       _GEN = io_providerHit & io_providerCtr[2] != io_altTaken;	// frontend/src/zaqal/frontend/Tage.scala:202:39, :205:{25,43}
+    | (providerMask_enc[0] ? _tables_3_io_ctr : 3'h0);	// frontend/src/zaqal/frontend/Tage.scala:137:19, :219:12, src/main/scala/chisel3/util/Mux.scala:30:73, :50:70, src/main/scala/chisel3/util/OneHot.scala:83:30
+  wire       _GEN = io_providerHit & io_providerCtr[2] != io_altTaken;	// frontend/src/zaqal/frontend/Tage.scala:197:39, :200:{25,43}
   wire [1:0] new_u =
     io_providerCtr[2] == io_update_dir
       ? ((&io_providerU) ? 2'h3 : io_providerU + 2'h1)
-      : io_providerU == 2'h0 ? 2'h0 : io_providerU - 2'h1;	// frontend/src/zaqal/frontend/Tage.scala:202:39, :206:39, :207:22, :208:{12,26,53}, :209:{12,26,53}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire       _GEN_0 = io_providerIdx == 2'h0;	// frontend/src/zaqal/frontend/Tage.scala:212:30, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire       _GEN_1 = _GEN & _GEN_0;	// frontend/src/zaqal/frontend/Tage.scala:146:23, :205:{25,61}, :212:{30,39}
-  wire       _GEN_2 = io_update_valid & _GEN;	// frontend/src/zaqal/frontend/Tage.scala:154:15, :201:25, :205:{25,61}, :212:39
-  wire       _GEN_3 = io_providerIdx == 2'h1;	// frontend/src/zaqal/frontend/Tage.scala:212:30, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire       _GEN_4 = _GEN & _GEN_3;	// frontend/src/zaqal/frontend/Tage.scala:146:23, :205:{25,61}, :212:{30,39}
-  wire       _GEN_5 = io_providerIdx == 2'h2;	// frontend/src/zaqal/frontend/Tage.scala:212:30, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire       _GEN_6 = _GEN & _GEN_5;	// frontend/src/zaqal/frontend/Tage.scala:146:23, :205:{25,61}, :212:{30,39}
-  wire       _GEN_7 = _GEN & (&io_providerIdx);	// frontend/src/zaqal/frontend/Tage.scala:146:23, :205:{25,61}, :212:{30,39}
+      : io_providerU == 2'h0 ? 2'h0 : io_providerU - 2'h1;	// frontend/src/zaqal/frontend/Tage.scala:197:39, :201:39, :202:22, :203:{12,26,53}, :204:{12,26,53}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire       _GEN_0 = io_providerIdx == 2'h0;	// frontend/src/zaqal/frontend/Tage.scala:207:30, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire       _GEN_1 = _GEN & _GEN_0;	// frontend/src/zaqal/frontend/Tage.scala:141:23, :200:{25,61}, :207:{30,39}
+  wire       _GEN_2 = io_update_valid & _GEN;	// frontend/src/zaqal/frontend/Tage.scala:149:15, :196:25, :200:{25,61}, :207:39
+  wire       _GEN_3 = io_providerIdx == 2'h1;	// frontend/src/zaqal/frontend/Tage.scala:207:30, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire       _GEN_4 = _GEN & _GEN_3;	// frontend/src/zaqal/frontend/Tage.scala:141:23, :200:{25,61}, :207:{30,39}
+  wire       _GEN_5 = io_providerIdx == 2'h2;	// frontend/src/zaqal/frontend/Tage.scala:207:30, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire       _GEN_6 = _GEN & _GEN_5;	// frontend/src/zaqal/frontend/Tage.scala:141:23, :200:{25,61}, :207:{30,39}
+  wire       _GEN_7 = _GEN & (&io_providerIdx);	// frontend/src/zaqal/frontend/Tage.scala:141:23, :200:{25,61}, :207:{30,39}
   wire [2:0] new_ctr =
     io_update_dir
       ? ((&io_providerCtr) ? 3'h7 : io_providerCtr + 3'h1)
-      : io_providerCtr == 3'h0 ? 3'h0 : io_providerCtr - 3'h1;	// frontend/src/zaqal/frontend/Tage.scala:222:24, :223:{12,28,57}, :224:{12,28,57}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire       _GEN_8 = io_providerHit & _GEN_0;	// frontend/src/zaqal/frontend/Tage.scala:205:61, :212:30, :221:26, :227:39, :228:37
-  wire       _GEN_9 = io_update_valid & io_providerHit;	// frontend/src/zaqal/frontend/Tage.scala:155:17, :201:25, :221:26, :227:39
-  wire       _GEN_10 = io_providerHit & _GEN_3;	// frontend/src/zaqal/frontend/Tage.scala:205:61, :212:30, :221:26, :227:39, :228:37
-  wire       _GEN_11 = io_providerHit & _GEN_5;	// frontend/src/zaqal/frontend/Tage.scala:205:61, :212:30, :221:26, :227:39, :228:37
-  wire       _GEN_12 = io_providerHit & (&io_providerIdx);	// frontend/src/zaqal/frontend/Tage.scala:205:61, :212:30, :221:26, :227:39, :228:37
+      : io_providerCtr == 3'h0 ? 3'h0 : io_providerCtr - 3'h1;	// frontend/src/zaqal/frontend/Tage.scala:217:24, :218:{12,28,57}, :219:{12,28,57}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire       _GEN_8 = io_providerHit & _GEN_0;	// frontend/src/zaqal/frontend/Tage.scala:200:61, :207:30, :216:26, :222:39, :223:37
+  wire       _GEN_9 = io_update_valid & io_providerHit;	// frontend/src/zaqal/frontend/Tage.scala:150:17, :196:25, :216:26, :222:39
+  wire       _GEN_10 = io_providerHit & _GEN_3;	// frontend/src/zaqal/frontend/Tage.scala:200:61, :207:30, :216:26, :222:39, :223:37
+  wire       _GEN_11 = io_providerHit & _GEN_5;	// frontend/src/zaqal/frontend/Tage.scala:200:61, :207:30, :216:26, :222:39, :223:37
+  wire       _GEN_12 = io_providerHit & (&io_providerIdx);	// frontend/src/zaqal/frontend/Tage.scala:200:61, :207:30, :216:26, :222:39, :223:37
   wire       mispredict =
     ~io_providerHit & _baseTable_ext_R1_data[1] != io_update_dir | io_providerHit
-    & io_providerCtr[2] != io_update_dir;	// frontend/src/zaqal/frontend/Tage.scala:136:22, :139:29, :192:27, :202:39, :236:{39,54,74,93,111}
-  wire       eligible_0 = ~io_providerHit & _tables_0_io_update_u == 2'h0;	// frontend/src/zaqal/frontend/Tage.scala:142:19, :192:27, :243:{69,79}, src/main/scala/chisel3/util/Mux.scala:50:70
+    & io_providerCtr[2] != io_update_dir;	// frontend/src/zaqal/frontend/Tage.scala:131:22, :134:29, :187:27, :197:39, :231:{39,54,74,93,111}
+  wire       eligible_0 = ~io_providerHit & _tables_0_io_update_u == 2'h0;	// frontend/src/zaqal/frontend/Tage.scala:137:19, :187:27, :238:{69,79}, src/main/scala/chisel3/util/Mux.scala:50:70
   wire       eligible_1 =
-    (~io_providerHit | io_providerIdx == 2'h0) & _tables_1_io_update_u == 2'h0;	// frontend/src/zaqal/frontend/Tage.scala:142:19, :192:27, :245:{44,62,69,79}, src/main/scala/chisel3/util/Mux.scala:50:70
+    (~io_providerHit | io_providerIdx == 2'h0) & _tables_1_io_update_u == 2'h0;	// frontend/src/zaqal/frontend/Tage.scala:137:19, :187:27, :240:{44,62,69,79}, src/main/scala/chisel3/util/Mux.scala:50:70
   wire       eligible_2 =
-    (~io_providerHit | ~(io_providerIdx[1])) & _tables_2_io_update_u == 2'h0;	// frontend/src/zaqal/frontend/Tage.scala:142:19, :192:27, :245:{44,62,69,79}, src/main/scala/chisel3/util/Mux.scala:50:70
+    (~io_providerHit | ~(io_providerIdx[1])) & _tables_2_io_update_u == 2'h0;	// frontend/src/zaqal/frontend/Tage.scala:137:19, :187:27, :240:{44,62,69,79}, src/main/scala/chisel3/util/Mux.scala:50:70
   wire [3:0] _GEN_13 =
     {(~io_providerHit | io_providerIdx != 2'h3) & _tables_3_io_update_u == 2'h0,
      eligible_2,
      eligible_1,
-     eligible_0};	// frontend/src/zaqal/frontend/Tage.scala:142:19, :192:27, :243:69, :245:{44,62,69,79}, :249:21, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire [1:0] alloc_idx = eligible_0 ? 2'h0 : eligible_1 ? 2'h1 : {1'h1, ~eligible_2};	// frontend/src/zaqal/frontend/Tage.scala:116:7, :243:69, :245:69, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire       _GEN_14 = alloc_idx == 2'h0;	// frontend/src/zaqal/frontend/Tage.scala:253:26, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire       _GEN_15 = io_update_valid & mispredict;	// frontend/src/zaqal/frontend/Tage.scala:149:19, :201:25, :236:74, :237:22, :249:33
-  wire       _GEN_16 = _GEN_15 & (|_GEN_13);	// frontend/src/zaqal/frontend/Tage.scala:149:19, :201:25, :237:22, :249:{21,28,33}, :253:35
-  wire       _GEN_17 = alloc_idx == 2'h1;	// frontend/src/zaqal/frontend/Tage.scala:253:26, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire       _GEN_18 = alloc_idx == 2'h2;	// frontend/src/zaqal/frontend/Tage.scala:253:26, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire       _GEN_19 = ~io_providerHit | _GEN_0;	// frontend/src/zaqal/frontend/Tage.scala:192:27, :212:30, :261:32
-  wire       _GEN_20 = ~io_providerHit | ~(io_providerIdx[1]);	// frontend/src/zaqal/frontend/Tage.scala:192:27, :245:62, :261:{32,39}
-  wire       _GEN_21 = ~io_providerHit | io_providerIdx != 2'h3;	// frontend/src/zaqal/frontend/Tage.scala:192:27, :261:{32,39}, src/main/scala/chisel3/util/Mux.scala:50:70
-  baseTable_128x2 baseTable_ext (	// frontend/src/zaqal/frontend/Tage.scala:136:22
-    .R0_addr (io_update_pc[6:0]),	// frontend/src/zaqal/frontend/Tage.scala:190:32
-    .R0_en   (1'h1),	// frontend/src/zaqal/frontend/Tage.scala:116:7
+     eligible_0};	// frontend/src/zaqal/frontend/Tage.scala:137:19, :187:27, :238:69, :240:{44,62,69,79}, :244:21, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire [1:0] alloc_idx = eligible_0 ? 2'h0 : eligible_1 ? 2'h1 : {1'h1, ~eligible_2};	// frontend/src/zaqal/frontend/Tage.scala:111:7, :238:69, :240:69, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire       _GEN_14 = alloc_idx == 2'h0;	// frontend/src/zaqal/frontend/Tage.scala:248:26, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire       _GEN_15 = io_update_valid & mispredict;	// frontend/src/zaqal/frontend/Tage.scala:144:19, :196:25, :231:74, :232:22, :244:33
+  wire       _GEN_16 = _GEN_15 & (|_GEN_13);	// frontend/src/zaqal/frontend/Tage.scala:144:19, :196:25, :232:22, :244:{21,28,33}, :248:35
+  wire       _GEN_17 = alloc_idx == 2'h1;	// frontend/src/zaqal/frontend/Tage.scala:248:26, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire       _GEN_18 = alloc_idx == 2'h2;	// frontend/src/zaqal/frontend/Tage.scala:248:26, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire       _GEN_19 = ~io_providerHit | _GEN_0;	// frontend/src/zaqal/frontend/Tage.scala:187:27, :207:30, :256:32
+  wire       _GEN_20 = ~io_providerHit | ~(io_providerIdx[1]);	// frontend/src/zaqal/frontend/Tage.scala:187:27, :240:62, :256:{32,39}
+  wire       _GEN_21 = ~io_providerHit | io_providerIdx != 2'h3;	// frontend/src/zaqal/frontend/Tage.scala:187:27, :256:{32,39}, src/main/scala/chisel3/util/Mux.scala:50:70
+  baseTable_128x2 baseTable_ext (	// frontend/src/zaqal/frontend/Tage.scala:131:22
+    .R0_addr (io_update_pc[6:0]),	// frontend/src/zaqal/frontend/Tage.scala:185:32
+    .R0_en   (1'h1),	// frontend/src/zaqal/frontend/Tage.scala:111:7
     .R0_clk  (clock),
     .R0_data (_baseTable_ext_R0_data),
-    .R1_addr (io_req_pc[6:0]),	// frontend/src/zaqal/frontend/Tage.scala:137:31
-    .R1_en   (1'h1),	// frontend/src/zaqal/frontend/Tage.scala:116:7
+    .R1_addr (io_req_pc[6:0]),	// frontend/src/zaqal/frontend/Tage.scala:132:31
+    .R1_en   (1'h1),	// frontend/src/zaqal/frontend/Tage.scala:111:7
     .R1_clk  (clock),
     .R1_data (_baseTable_ext_R1_data),
-    .W0_addr (io_update_pc[6:0]),	// frontend/src/zaqal/frontend/Tage.scala:190:32
-    .W0_en   (io_update_valid & ~io_providerHit),	// frontend/src/zaqal/frontend/Tage.scala:192:{24,27}
+    .W0_addr (io_update_pc[6:0]),	// frontend/src/zaqal/frontend/Tage.scala:185:32
+    .W0_en   (io_update_valid & ~io_providerHit),	// frontend/src/zaqal/frontend/Tage.scala:187:{24,27}
     .W0_clk  (clock),
     .W0_data
       (io_update_dir
          ? ((&_baseTable_ext_R0_data) ? 2'h3 : _baseTable_ext_R0_data + 2'h1)
-         : _baseTable_ext_R0_data == 2'h0 ? 2'h0 : _baseTable_ext_R0_data - 2'h1)	// frontend/src/zaqal/frontend/Tage.scala:136:22, :193:27, :194:{10,22,47}, :195:{10,22,47}, src/main/scala/chisel3/util/Mux.scala:50:70
+         : _baseTable_ext_R0_data == 2'h0 ? 2'h0 : _baseTable_ext_R0_data - 2'h1)	// frontend/src/zaqal/frontend/Tage.scala:131:22, :188:27, :189:{10,22,47}, :190:{10,22,47}, src/main/scala/chisel3/util/Mux.scala:50:70
   );
-  TageTable tables_0 (	// frontend/src/zaqal/frontend/Tage.scala:142:19
+  TageTable tables_0 (	// frontend/src/zaqal/frontend/Tage.scala:137:19
     .clock           (clock),
     .reset           (reset),
     .io_req_pc       (io_req_pc),
@@ -196,19 +196,19 @@ module TagePredictor(	// frontend/src/zaqal/frontend/Tage.scala:116:7
       (io_update_valid
        & (mispredict
             ? ((|_GEN_13) ? _GEN_14 | _GEN_8 | _GEN_1 : ~io_providerHit | _GEN_8 | _GEN_1)
-            : _GEN_8 | _GEN_1)),	// frontend/src/zaqal/frontend/Tage.scala:146:23, :192:27, :201:25, :205:61, :212:39, :221:26, :227:39, :228:37, :236:74, :237:22, :249:{21,28,33}, :253:{26,35}, :254:39, :261:57, :262:39
+            : _GEN_8 | _GEN_1)),	// frontend/src/zaqal/frontend/Tage.scala:141:23, :187:27, :196:25, :200:61, :207:39, :216:26, :222:39, :223:37, :231:74, :232:22, :244:{21,28,33}, :248:{26,35}, :249:39, :256:57, :257:39
     .io_update_pc    (io_update_pc),
     .io_update_ghr   (io_update_ghr),
-    .io_allocate     (_GEN_16 & _GEN_14),	// frontend/src/zaqal/frontend/Tage.scala:149:19, :201:25, :237:22, :249:33, :253:{26,35}
+    .io_allocate     (_GEN_16 & _GEN_14),	// frontend/src/zaqal/frontend/Tage.scala:144:19, :196:25, :232:22, :244:33, :248:{26,35}
     .io_update_dir   (io_update_dir),
-    .io_decrement_u  (_GEN_15 & ~(|_GEN_13) & ~io_providerHit),	// frontend/src/zaqal/frontend/Tage.scala:149:19, :151:22, :192:27, :201:25, :237:22, :249:{21,28,33}, :261:57
-    .io_update_u_val (io_update_valid & _GEN & _GEN_0 ? new_u : 2'h0),	// frontend/src/zaqal/frontend/Tage.scala:152:23, :201:25, :205:{25,61}, :207:22, :212:{30,39}, :215:37, src/main/scala/chisel3/util/Mux.scala:50:70
-    .io_update_ctr   (io_update_valid & _GEN_8 ? new_ctr : 3'h0),	// frontend/src/zaqal/frontend/Tage.scala:153:21, :201:25, :205:61, :221:26, :222:24, :224:12, :227:39, :228:37, :230:35
-    .io_we_u         (_GEN_2 & _GEN_0),	// frontend/src/zaqal/frontend/Tage.scala:154:15, :201:25, :205:61, :212:{30,39}
-    .io_we_ctr       (_GEN_9 & _GEN_0),	// frontend/src/zaqal/frontend/Tage.scala:155:17, :201:25, :212:30, :221:26, :227:39
+    .io_decrement_u  (_GEN_15 & ~(|_GEN_13) & ~io_providerHit),	// frontend/src/zaqal/frontend/Tage.scala:144:19, :146:22, :187:27, :196:25, :232:22, :244:{21,28,33}, :256:57
+    .io_update_u_val (io_update_valid & _GEN & _GEN_0 ? new_u : 2'h0),	// frontend/src/zaqal/frontend/Tage.scala:147:23, :196:25, :200:{25,61}, :202:22, :207:{30,39}, :210:37, src/main/scala/chisel3/util/Mux.scala:50:70
+    .io_update_ctr   (io_update_valid & _GEN_8 ? new_ctr : 3'h0),	// frontend/src/zaqal/frontend/Tage.scala:148:21, :196:25, :200:61, :216:26, :217:24, :219:12, :222:39, :223:37, :225:35
+    .io_we_u         (_GEN_2 & _GEN_0),	// frontend/src/zaqal/frontend/Tage.scala:149:15, :196:25, :200:61, :207:{30,39}
+    .io_we_ctr       (_GEN_9 & _GEN_0),	// frontend/src/zaqal/frontend/Tage.scala:150:17, :196:25, :207:30, :216:26, :222:39
     .io_update_u     (_tables_0_io_update_u)
   );
-  TageTable_1 tables_1 (	// frontend/src/zaqal/frontend/Tage.scala:142:19
+  TageTable_1 tables_1 (	// frontend/src/zaqal/frontend/Tage.scala:137:19
     .clock           (clock),
     .reset           (reset),
     .io_req_pc       (io_req_pc),
@@ -220,19 +220,19 @@ module TagePredictor(	// frontend/src/zaqal/frontend/Tage.scala:116:7
       (io_update_valid
        & (mispredict
             ? ((|_GEN_13) ? _GEN_17 | _GEN_10 | _GEN_4 : _GEN_19 | _GEN_10 | _GEN_4)
-            : _GEN_10 | _GEN_4)),	// frontend/src/zaqal/frontend/Tage.scala:146:23, :201:25, :205:61, :212:39, :221:26, :227:39, :228:37, :236:74, :237:22, :249:{21,28,33}, :253:{26,35}, :254:39, :261:{32,57}, :262:39
+            : _GEN_10 | _GEN_4)),	// frontend/src/zaqal/frontend/Tage.scala:141:23, :196:25, :200:61, :207:39, :216:26, :222:39, :223:37, :231:74, :232:22, :244:{21,28,33}, :248:{26,35}, :249:39, :256:{32,57}, :257:39
     .io_update_pc    (io_update_pc),
     .io_update_ghr   (io_update_ghr),
-    .io_allocate     (_GEN_16 & _GEN_17),	// frontend/src/zaqal/frontend/Tage.scala:149:19, :201:25, :237:22, :249:33, :253:{26,35}
+    .io_allocate     (_GEN_16 & _GEN_17),	// frontend/src/zaqal/frontend/Tage.scala:144:19, :196:25, :232:22, :244:33, :248:{26,35}
     .io_update_dir   (io_update_dir),
-    .io_decrement_u  (_GEN_15 & ~(|_GEN_13) & _GEN_19),	// frontend/src/zaqal/frontend/Tage.scala:149:19, :151:22, :201:25, :237:22, :249:{21,28,33}, :261:{32,57}
-    .io_update_u_val (io_update_valid & _GEN & _GEN_3 ? new_u : 2'h0),	// frontend/src/zaqal/frontend/Tage.scala:152:23, :201:25, :205:{25,61}, :207:22, :212:{30,39}, :215:37, src/main/scala/chisel3/util/Mux.scala:50:70
-    .io_update_ctr   (io_update_valid & _GEN_10 ? new_ctr : 3'h0),	// frontend/src/zaqal/frontend/Tage.scala:153:21, :201:25, :205:61, :221:26, :222:24, :224:12, :227:39, :228:37, :230:35
-    .io_we_u         (_GEN_2 & _GEN_3),	// frontend/src/zaqal/frontend/Tage.scala:154:15, :201:25, :205:61, :212:{30,39}
-    .io_we_ctr       (_GEN_9 & _GEN_3),	// frontend/src/zaqal/frontend/Tage.scala:155:17, :201:25, :212:30, :221:26, :227:39
+    .io_decrement_u  (_GEN_15 & ~(|_GEN_13) & _GEN_19),	// frontend/src/zaqal/frontend/Tage.scala:144:19, :146:22, :196:25, :232:22, :244:{21,28,33}, :256:{32,57}
+    .io_update_u_val (io_update_valid & _GEN & _GEN_3 ? new_u : 2'h0),	// frontend/src/zaqal/frontend/Tage.scala:147:23, :196:25, :200:{25,61}, :202:22, :207:{30,39}, :210:37, src/main/scala/chisel3/util/Mux.scala:50:70
+    .io_update_ctr   (io_update_valid & _GEN_10 ? new_ctr : 3'h0),	// frontend/src/zaqal/frontend/Tage.scala:148:21, :196:25, :200:61, :216:26, :217:24, :219:12, :222:39, :223:37, :225:35
+    .io_we_u         (_GEN_2 & _GEN_3),	// frontend/src/zaqal/frontend/Tage.scala:149:15, :196:25, :200:61, :207:{30,39}
+    .io_we_ctr       (_GEN_9 & _GEN_3),	// frontend/src/zaqal/frontend/Tage.scala:150:17, :196:25, :207:30, :216:26, :222:39
     .io_update_u     (_tables_1_io_update_u)
   );
-  TageTable_2 tables_2 (	// frontend/src/zaqal/frontend/Tage.scala:142:19
+  TageTable_2 tables_2 (	// frontend/src/zaqal/frontend/Tage.scala:137:19
     .clock           (clock),
     .reset           (reset),
     .io_req_pc       (io_req_pc),
@@ -244,19 +244,19 @@ module TagePredictor(	// frontend/src/zaqal/frontend/Tage.scala:116:7
       (io_update_valid
        & (mispredict
             ? ((|_GEN_13) ? _GEN_18 | _GEN_11 | _GEN_6 : _GEN_20 | _GEN_11 | _GEN_6)
-            : _GEN_11 | _GEN_6)),	// frontend/src/zaqal/frontend/Tage.scala:146:23, :201:25, :205:61, :212:39, :221:26, :227:39, :228:37, :236:74, :237:22, :249:{21,28,33}, :253:{26,35}, :254:39, :261:{32,57}, :262:39
+            : _GEN_11 | _GEN_6)),	// frontend/src/zaqal/frontend/Tage.scala:141:23, :196:25, :200:61, :207:39, :216:26, :222:39, :223:37, :231:74, :232:22, :244:{21,28,33}, :248:{26,35}, :249:39, :256:{32,57}, :257:39
     .io_update_pc    (io_update_pc),
     .io_update_ghr   (io_update_ghr),
-    .io_allocate     (_GEN_16 & _GEN_18),	// frontend/src/zaqal/frontend/Tage.scala:149:19, :201:25, :237:22, :249:33, :253:{26,35}
+    .io_allocate     (_GEN_16 & _GEN_18),	// frontend/src/zaqal/frontend/Tage.scala:144:19, :196:25, :232:22, :244:33, :248:{26,35}
     .io_update_dir   (io_update_dir),
-    .io_decrement_u  (_GEN_15 & ~(|_GEN_13) & _GEN_20),	// frontend/src/zaqal/frontend/Tage.scala:149:19, :151:22, :201:25, :237:22, :249:{21,28,33}, :261:{32,57}
-    .io_update_u_val (io_update_valid & _GEN & _GEN_5 ? new_u : 2'h0),	// frontend/src/zaqal/frontend/Tage.scala:152:23, :201:25, :205:{25,61}, :207:22, :212:{30,39}, :215:37, src/main/scala/chisel3/util/Mux.scala:50:70
-    .io_update_ctr   (io_update_valid & _GEN_11 ? new_ctr : 3'h0),	// frontend/src/zaqal/frontend/Tage.scala:153:21, :201:25, :205:61, :221:26, :222:24, :224:12, :227:39, :228:37, :230:35
-    .io_we_u         (_GEN_2 & _GEN_5),	// frontend/src/zaqal/frontend/Tage.scala:154:15, :201:25, :205:61, :212:{30,39}
-    .io_we_ctr       (_GEN_9 & _GEN_5),	// frontend/src/zaqal/frontend/Tage.scala:155:17, :201:25, :212:30, :221:26, :227:39
+    .io_decrement_u  (_GEN_15 & ~(|_GEN_13) & _GEN_20),	// frontend/src/zaqal/frontend/Tage.scala:144:19, :146:22, :196:25, :232:22, :244:{21,28,33}, :256:{32,57}
+    .io_update_u_val (io_update_valid & _GEN & _GEN_5 ? new_u : 2'h0),	// frontend/src/zaqal/frontend/Tage.scala:147:23, :196:25, :200:{25,61}, :202:22, :207:{30,39}, :210:37, src/main/scala/chisel3/util/Mux.scala:50:70
+    .io_update_ctr   (io_update_valid & _GEN_11 ? new_ctr : 3'h0),	// frontend/src/zaqal/frontend/Tage.scala:148:21, :196:25, :200:61, :216:26, :217:24, :219:12, :222:39, :223:37, :225:35
+    .io_we_u         (_GEN_2 & _GEN_5),	// frontend/src/zaqal/frontend/Tage.scala:149:15, :196:25, :200:61, :207:{30,39}
+    .io_we_ctr       (_GEN_9 & _GEN_5),	// frontend/src/zaqal/frontend/Tage.scala:150:17, :196:25, :207:30, :216:26, :222:39
     .io_update_u     (_tables_2_io_update_u)
   );
-  TageTable_3 tables_3 (	// frontend/src/zaqal/frontend/Tage.scala:142:19
+  TageTable_3 tables_3 (	// frontend/src/zaqal/frontend/Tage.scala:137:19
     .clock           (clock),
     .reset           (reset),
     .io_req_pc       (io_req_pc),
@@ -268,33 +268,33 @@ module TagePredictor(	// frontend/src/zaqal/frontend/Tage.scala:116:7
       (io_update_valid
        & (mispredict
             ? ((|_GEN_13) ? (&alloc_idx) | _GEN_12 | _GEN_7 : _GEN_21 | _GEN_12 | _GEN_7)
-            : _GEN_12 | _GEN_7)),	// frontend/src/zaqal/frontend/Tage.scala:146:23, :201:25, :205:61, :212:39, :221:26, :227:39, :228:37, :236:74, :237:22, :249:{21,28,33}, :253:{26,35}, :254:39, :261:{32,57}, :262:39, src/main/scala/chisel3/util/Mux.scala:50:70
+            : _GEN_12 | _GEN_7)),	// frontend/src/zaqal/frontend/Tage.scala:141:23, :196:25, :200:61, :207:39, :216:26, :222:39, :223:37, :231:74, :232:22, :244:{21,28,33}, :248:{26,35}, :249:39, :256:{32,57}, :257:39, src/main/scala/chisel3/util/Mux.scala:50:70
     .io_update_pc    (io_update_pc),
     .io_update_ghr   (io_update_ghr),
-    .io_allocate     (_GEN_16 & (&alloc_idx)),	// frontend/src/zaqal/frontend/Tage.scala:149:19, :201:25, :237:22, :249:33, :253:{26,35}, src/main/scala/chisel3/util/Mux.scala:50:70
+    .io_allocate     (_GEN_16 & (&alloc_idx)),	// frontend/src/zaqal/frontend/Tage.scala:144:19, :196:25, :232:22, :244:33, :248:{26,35}, src/main/scala/chisel3/util/Mux.scala:50:70
     .io_update_dir   (io_update_dir),
-    .io_decrement_u  (_GEN_15 & ~(|_GEN_13) & _GEN_21),	// frontend/src/zaqal/frontend/Tage.scala:149:19, :151:22, :201:25, :237:22, :249:{21,28,33}, :261:{32,57}
-    .io_update_u_val (io_update_valid & _GEN & (&io_providerIdx) ? new_u : 2'h0),	// frontend/src/zaqal/frontend/Tage.scala:152:23, :201:25, :205:{25,61}, :207:22, :212:{30,39}, :215:37, src/main/scala/chisel3/util/Mux.scala:50:70
-    .io_update_ctr   (io_update_valid & _GEN_12 ? new_ctr : 3'h0),	// frontend/src/zaqal/frontend/Tage.scala:153:21, :201:25, :205:61, :221:26, :222:24, :224:12, :227:39, :228:37, :230:35
-    .io_we_u         (_GEN_2 & (&io_providerIdx)),	// frontend/src/zaqal/frontend/Tage.scala:154:15, :201:25, :205:61, :212:{30,39}
-    .io_we_ctr       (_GEN_9 & (&io_providerIdx)),	// frontend/src/zaqal/frontend/Tage.scala:155:17, :201:25, :212:30, :221:26, :227:39
+    .io_decrement_u  (_GEN_15 & ~(|_GEN_13) & _GEN_21),	// frontend/src/zaqal/frontend/Tage.scala:144:19, :146:22, :196:25, :232:22, :244:{21,28,33}, :256:{32,57}
+    .io_update_u_val (io_update_valid & _GEN & (&io_providerIdx) ? new_u : 2'h0),	// frontend/src/zaqal/frontend/Tage.scala:147:23, :196:25, :200:{25,61}, :202:22, :207:{30,39}, :210:37, src/main/scala/chisel3/util/Mux.scala:50:70
+    .io_update_ctr   (io_update_valid & _GEN_12 ? new_ctr : 3'h0),	// frontend/src/zaqal/frontend/Tage.scala:148:21, :196:25, :200:61, :216:26, :217:24, :219:12, :222:39, :223:37, :225:35
+    .io_we_u         (_GEN_2 & (&io_providerIdx)),	// frontend/src/zaqal/frontend/Tage.scala:149:15, :196:25, :200:61, :207:{30,39}
+    .io_we_ctr       (_GEN_9 & (&io_providerIdx)),	// frontend/src/zaqal/frontend/Tage.scala:150:17, :196:25, :207:30, :216:26, :222:39
     .io_update_u     (_tables_3_io_update_u)
   );
   assign io_pred_providerIdx =
     2'h3
-    - (_tables_3_io_hit ? 2'h0 : _tables_2_io_hit ? 2'h1 : {1'h1, ~_tables_1_io_hit});	// frontend/src/zaqal/frontend/Tage.scala:116:7, :142:19, :174:42, src/main/scala/chisel3/util/Mux.scala:50:70
-  assign io_pred_taken = (|_hasProvider_T) ? provider_ctr[2] : _baseTable_ext_R1_data[1];	// frontend/src/zaqal/frontend/Tage.scala:116:7, :136:22, :139:29, :164:{26,33}, :178:36, :184:23, src/main/scala/chisel3/util/Mux.scala:30:73
+    - (_tables_3_io_hit ? 2'h0 : _tables_2_io_hit ? 2'h1 : {1'h1, ~_tables_1_io_hit});	// frontend/src/zaqal/frontend/Tage.scala:111:7, :137:19, :169:42, src/main/scala/chisel3/util/Mux.scala:50:70
+  assign io_pred_taken = (|_hasProvider_T) ? provider_ctr[2] : _baseTable_ext_R1_data[1];	// frontend/src/zaqal/frontend/Tage.scala:111:7, :131:22, :134:29, :159:{26,33}, :173:36, :179:23, src/main/scala/chisel3/util/Mux.scala:30:73
   assign io_pred_altTaken =
     (|{altHits_3, altHits_2, altHits_1, altHits_0})
       ? altMask_enc[3] & _tables_0_io_ctr[2] | altMask_enc[2] & _tables_1_io_ctr[2]
         | altMask_enc[1] & _tables_2_io_ctr[2] | altMask_enc[0] & _tables_3_io_ctr[2]
-      : _baseTable_ext_R1_data[1];	// frontend/src/zaqal/frontend/Tage.scala:116:7, :136:22, :139:29, :142:19, :168:27, :171:{24,31}, :180:22, src/main/scala/chisel3/util/Mux.scala:30:73, :50:70, src/main/scala/chisel3/util/OneHot.scala:83:30
+      : _baseTable_ext_R1_data[1];	// frontend/src/zaqal/frontend/Tage.scala:111:7, :131:22, :134:29, :137:19, :163:27, :166:{24,31}, :175:22, src/main/scala/chisel3/util/Mux.scala:30:73, :50:70, src/main/scala/chisel3/util/OneHot.scala:83:30
   assign io_pred_providerU =
     (providerMask_enc[3] ? _tables_0_io_u : 2'h0)
     | (providerMask_enc[2] ? _tables_1_io_u : 2'h0)
     | (providerMask_enc[1] ? _tables_2_io_u : 2'h0)
-    | (providerMask_enc[0] ? _tables_3_io_u : 2'h0);	// frontend/src/zaqal/frontend/Tage.scala:116:7, :142:19, src/main/scala/chisel3/util/Mux.scala:30:73, :50:70, src/main/scala/chisel3/util/OneHot.scala:83:30
-  assign io_pred_providerCtr = provider_ctr;	// frontend/src/zaqal/frontend/Tage.scala:116:7, src/main/scala/chisel3/util/Mux.scala:30:73
-  assign io_pred_hit = |_hasProvider_T;	// frontend/src/zaqal/frontend/Tage.scala:116:7, :164:{26,33}
+    | (providerMask_enc[0] ? _tables_3_io_u : 2'h0);	// frontend/src/zaqal/frontend/Tage.scala:111:7, :137:19, src/main/scala/chisel3/util/Mux.scala:30:73, :50:70, src/main/scala/chisel3/util/OneHot.scala:83:30
+  assign io_pred_providerCtr = provider_ctr;	// frontend/src/zaqal/frontend/Tage.scala:111:7, src/main/scala/chisel3/util/Mux.scala:30:73
+  assign io_pred_hit = |_hasProvider_T;	// frontend/src/zaqal/frontend/Tage.scala:111:7, :159:{26,33}
 endmodule
 

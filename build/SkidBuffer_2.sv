@@ -71,795 +71,164 @@ module SkidBuffer_2(	// utility/src/zaqal/utility/Utility.scala:13:7
                 reset,	// utility/src/zaqal/utility/Utility.scala:13:7
   output        io_enq_ready,	// utility/src/zaqal/utility/Utility.scala:14:14
   input         io_enq_valid,	// utility/src/zaqal/utility/Utility.scala:14:14
-  input  [63:0] io_enq_bits_pc_0,	// utility/src/zaqal/utility/Utility.scala:14:14
-                io_enq_bits_pc_1,	// utility/src/zaqal/utility/Utility.scala:14:14
-                io_enq_bits_pc_2,	// utility/src/zaqal/utility/Utility.scala:14:14
-                io_enq_bits_pc_3,	// utility/src/zaqal/utility/Utility.scala:14:14
-                io_enq_bits_pc_4,	// utility/src/zaqal/utility/Utility.scala:14:14
-                io_enq_bits_pc_5,	// utility/src/zaqal/utility/Utility.scala:14:14
-                io_enq_bits_pc_6,	// utility/src/zaqal/utility/Utility.scala:14:14
-                io_enq_bits_pc_7,	// utility/src/zaqal/utility/Utility.scala:14:14
-                io_enq_bits_pc_8,	// utility/src/zaqal/utility/Utility.scala:14:14
-                io_enq_bits_pc_9,	// utility/src/zaqal/utility/Utility.scala:14:14
-                io_enq_bits_pc_10,	// utility/src/zaqal/utility/Utility.scala:14:14
-                io_enq_bits_pc_11,	// utility/src/zaqal/utility/Utility.scala:14:14
-                io_enq_bits_pc_12,	// utility/src/zaqal/utility/Utility.scala:14:14
-                io_enq_bits_pc_13,	// utility/src/zaqal/utility/Utility.scala:14:14
-                io_enq_bits_pc_14,	// utility/src/zaqal/utility/Utility.scala:14:14
-                io_enq_bits_pc_15,	// utility/src/zaqal/utility/Utility.scala:14:14
-  input  [31:0] io_enq_bits_instructions_0,	// utility/src/zaqal/utility/Utility.scala:14:14
-                io_enq_bits_instructions_1,	// utility/src/zaqal/utility/Utility.scala:14:14
-                io_enq_bits_instructions_2,	// utility/src/zaqal/utility/Utility.scala:14:14
-                io_enq_bits_instructions_3,	// utility/src/zaqal/utility/Utility.scala:14:14
-                io_enq_bits_instructions_4,	// utility/src/zaqal/utility/Utility.scala:14:14
-                io_enq_bits_instructions_5,	// utility/src/zaqal/utility/Utility.scala:14:14
-                io_enq_bits_instructions_6,	// utility/src/zaqal/utility/Utility.scala:14:14
-                io_enq_bits_instructions_7,	// utility/src/zaqal/utility/Utility.scala:14:14
-                io_enq_bits_instructions_8,	// utility/src/zaqal/utility/Utility.scala:14:14
-                io_enq_bits_instructions_9,	// utility/src/zaqal/utility/Utility.scala:14:14
-                io_enq_bits_instructions_10,	// utility/src/zaqal/utility/Utility.scala:14:14
-                io_enq_bits_instructions_11,	// utility/src/zaqal/utility/Utility.scala:14:14
-                io_enq_bits_instructions_12,	// utility/src/zaqal/utility/Utility.scala:14:14
-                io_enq_bits_instructions_13,	// utility/src/zaqal/utility/Utility.scala:14:14
-                io_enq_bits_instructions_14,	// utility/src/zaqal/utility/Utility.scala:14:14
-                io_enq_bits_instructions_15,	// utility/src/zaqal/utility/Utility.scala:14:14
-  input         io_enq_bits_pre_decoded_0_is_rvc,	// utility/src/zaqal/utility/Utility.scala:14:14
-  input  [31:0] io_enq_bits_pre_decoded_0_expanded_inst,	// utility/src/zaqal/utility/Utility.scala:14:14
-  input         io_enq_bits_pre_decoded_1_is_rvc,	// utility/src/zaqal/utility/Utility.scala:14:14
-  input  [31:0] io_enq_bits_pre_decoded_1_expanded_inst,	// utility/src/zaqal/utility/Utility.scala:14:14
-  input         io_enq_bits_pre_decoded_2_is_rvc,	// utility/src/zaqal/utility/Utility.scala:14:14
-  input  [31:0] io_enq_bits_pre_decoded_2_expanded_inst,	// utility/src/zaqal/utility/Utility.scala:14:14
-  input         io_enq_bits_pre_decoded_3_is_rvc,	// utility/src/zaqal/utility/Utility.scala:14:14
-  input  [31:0] io_enq_bits_pre_decoded_3_expanded_inst,	// utility/src/zaqal/utility/Utility.scala:14:14
-  input         io_enq_bits_pre_decoded_4_is_rvc,	// utility/src/zaqal/utility/Utility.scala:14:14
-  input  [31:0] io_enq_bits_pre_decoded_4_expanded_inst,	// utility/src/zaqal/utility/Utility.scala:14:14
-  input         io_enq_bits_pre_decoded_5_is_rvc,	// utility/src/zaqal/utility/Utility.scala:14:14
-  input  [31:0] io_enq_bits_pre_decoded_5_expanded_inst,	// utility/src/zaqal/utility/Utility.scala:14:14
-  input         io_enq_bits_pre_decoded_6_is_rvc,	// utility/src/zaqal/utility/Utility.scala:14:14
-  input  [31:0] io_enq_bits_pre_decoded_6_expanded_inst,	// utility/src/zaqal/utility/Utility.scala:14:14
-  input         io_enq_bits_pre_decoded_7_is_rvc,	// utility/src/zaqal/utility/Utility.scala:14:14
-  input  [31:0] io_enq_bits_pre_decoded_7_expanded_inst,	// utility/src/zaqal/utility/Utility.scala:14:14
-  input         io_enq_bits_pre_decoded_8_is_rvc,	// utility/src/zaqal/utility/Utility.scala:14:14
-  input  [31:0] io_enq_bits_pre_decoded_8_expanded_inst,	// utility/src/zaqal/utility/Utility.scala:14:14
-  input         io_enq_bits_pre_decoded_9_is_rvc,	// utility/src/zaqal/utility/Utility.scala:14:14
-  input  [31:0] io_enq_bits_pre_decoded_9_expanded_inst,	// utility/src/zaqal/utility/Utility.scala:14:14
-  input         io_enq_bits_pre_decoded_10_is_rvc,	// utility/src/zaqal/utility/Utility.scala:14:14
-  input  [31:0] io_enq_bits_pre_decoded_10_expanded_inst,	// utility/src/zaqal/utility/Utility.scala:14:14
-  input         io_enq_bits_pre_decoded_11_is_rvc,	// utility/src/zaqal/utility/Utility.scala:14:14
-  input  [31:0] io_enq_bits_pre_decoded_11_expanded_inst,	// utility/src/zaqal/utility/Utility.scala:14:14
-  input         io_enq_bits_pre_decoded_12_is_rvc,	// utility/src/zaqal/utility/Utility.scala:14:14
-  input  [31:0] io_enq_bits_pre_decoded_12_expanded_inst,	// utility/src/zaqal/utility/Utility.scala:14:14
-  input         io_enq_bits_pre_decoded_13_is_rvc,	// utility/src/zaqal/utility/Utility.scala:14:14
-  input  [31:0] io_enq_bits_pre_decoded_13_expanded_inst,	// utility/src/zaqal/utility/Utility.scala:14:14
-  input         io_enq_bits_pre_decoded_14_is_rvc,	// utility/src/zaqal/utility/Utility.scala:14:14
-  input  [31:0] io_enq_bits_pre_decoded_14_expanded_inst,	// utility/src/zaqal/utility/Utility.scala:14:14
-  input         io_enq_bits_pre_decoded_15_is_rvc,	// utility/src/zaqal/utility/Utility.scala:14:14
-  input  [31:0] io_enq_bits_pre_decoded_15_expanded_inst,	// utility/src/zaqal/utility/Utility.scala:14:14
-  input  [15:0] io_enq_bits_mask,	// utility/src/zaqal/utility/Utility.scala:14:14
-  input         io_enq_bits_prediction_taken,	// utility/src/zaqal/utility/Utility.scala:14:14
-  input  [3:0]  io_enq_bits_prediction_slot,	// utility/src/zaqal/utility/Utility.scala:14:14
+  input  [63:0] io_enq_bits_pc,	// utility/src/zaqal/utility/Utility.scala:14:14
+  input  [31:0] io_enq_bits_inst_raw,	// utility/src/zaqal/utility/Utility.scala:14:14
+  input         io_enq_bits_pre_is_rvc,	// utility/src/zaqal/utility/Utility.scala:14:14
+                io_enq_bits_pre_is_call,	// utility/src/zaqal/utility/Utility.scala:14:14
+                io_enq_bits_pre_is_ret,	// utility/src/zaqal/utility/Utility.scala:14:14
+  input  [31:0] io_enq_bits_pre_expanded_inst,	// utility/src/zaqal/utility/Utility.scala:14:14
   input  [5:0]  io_enq_bits_ftqPtr,	// utility/src/zaqal/utility/Utility.scala:14:14
+  input         io_enq_bits_is_predicted_taken,	// utility/src/zaqal/utility/Utility.scala:14:14
+  input  [63:0] io_enq_bits_predicted_target,	// utility/src/zaqal/utility/Utility.scala:14:14
   input         io_enq_bits_epoch,	// utility/src/zaqal/utility/Utility.scala:14:14
                 io_deq_ready,	// utility/src/zaqal/utility/Utility.scala:14:14
   output        io_deq_valid,	// utility/src/zaqal/utility/Utility.scala:14:14
-  output [63:0] io_deq_bits_pc_0,	// utility/src/zaqal/utility/Utility.scala:14:14
-                io_deq_bits_pc_1,	// utility/src/zaqal/utility/Utility.scala:14:14
-                io_deq_bits_pc_2,	// utility/src/zaqal/utility/Utility.scala:14:14
-                io_deq_bits_pc_3,	// utility/src/zaqal/utility/Utility.scala:14:14
-                io_deq_bits_pc_4,	// utility/src/zaqal/utility/Utility.scala:14:14
-                io_deq_bits_pc_5,	// utility/src/zaqal/utility/Utility.scala:14:14
-                io_deq_bits_pc_6,	// utility/src/zaqal/utility/Utility.scala:14:14
-                io_deq_bits_pc_7,	// utility/src/zaqal/utility/Utility.scala:14:14
-                io_deq_bits_pc_8,	// utility/src/zaqal/utility/Utility.scala:14:14
-                io_deq_bits_pc_9,	// utility/src/zaqal/utility/Utility.scala:14:14
-                io_deq_bits_pc_10,	// utility/src/zaqal/utility/Utility.scala:14:14
-                io_deq_bits_pc_11,	// utility/src/zaqal/utility/Utility.scala:14:14
-                io_deq_bits_pc_12,	// utility/src/zaqal/utility/Utility.scala:14:14
-                io_deq_bits_pc_13,	// utility/src/zaqal/utility/Utility.scala:14:14
-                io_deq_bits_pc_14,	// utility/src/zaqal/utility/Utility.scala:14:14
-                io_deq_bits_pc_15,	// utility/src/zaqal/utility/Utility.scala:14:14
-  output [31:0] io_deq_bits_instructions_0,	// utility/src/zaqal/utility/Utility.scala:14:14
-                io_deq_bits_instructions_1,	// utility/src/zaqal/utility/Utility.scala:14:14
-                io_deq_bits_instructions_2,	// utility/src/zaqal/utility/Utility.scala:14:14
-                io_deq_bits_instructions_3,	// utility/src/zaqal/utility/Utility.scala:14:14
-                io_deq_bits_instructions_4,	// utility/src/zaqal/utility/Utility.scala:14:14
-                io_deq_bits_instructions_5,	// utility/src/zaqal/utility/Utility.scala:14:14
-                io_deq_bits_instructions_6,	// utility/src/zaqal/utility/Utility.scala:14:14
-                io_deq_bits_instructions_7,	// utility/src/zaqal/utility/Utility.scala:14:14
-                io_deq_bits_instructions_8,	// utility/src/zaqal/utility/Utility.scala:14:14
-                io_deq_bits_instructions_9,	// utility/src/zaqal/utility/Utility.scala:14:14
-                io_deq_bits_instructions_10,	// utility/src/zaqal/utility/Utility.scala:14:14
-                io_deq_bits_instructions_11,	// utility/src/zaqal/utility/Utility.scala:14:14
-                io_deq_bits_instructions_12,	// utility/src/zaqal/utility/Utility.scala:14:14
-                io_deq_bits_instructions_13,	// utility/src/zaqal/utility/Utility.scala:14:14
-                io_deq_bits_instructions_14,	// utility/src/zaqal/utility/Utility.scala:14:14
-                io_deq_bits_instructions_15,	// utility/src/zaqal/utility/Utility.scala:14:14
-  output        io_deq_bits_pre_decoded_0_is_rvc,	// utility/src/zaqal/utility/Utility.scala:14:14
-  output [31:0] io_deq_bits_pre_decoded_0_expanded_inst,	// utility/src/zaqal/utility/Utility.scala:14:14
-  output        io_deq_bits_pre_decoded_1_is_rvc,	// utility/src/zaqal/utility/Utility.scala:14:14
-  output [31:0] io_deq_bits_pre_decoded_1_expanded_inst,	// utility/src/zaqal/utility/Utility.scala:14:14
-  output        io_deq_bits_pre_decoded_2_is_rvc,	// utility/src/zaqal/utility/Utility.scala:14:14
-  output [31:0] io_deq_bits_pre_decoded_2_expanded_inst,	// utility/src/zaqal/utility/Utility.scala:14:14
-  output        io_deq_bits_pre_decoded_3_is_rvc,	// utility/src/zaqal/utility/Utility.scala:14:14
-  output [31:0] io_deq_bits_pre_decoded_3_expanded_inst,	// utility/src/zaqal/utility/Utility.scala:14:14
-  output        io_deq_bits_pre_decoded_4_is_rvc,	// utility/src/zaqal/utility/Utility.scala:14:14
-  output [31:0] io_deq_bits_pre_decoded_4_expanded_inst,	// utility/src/zaqal/utility/Utility.scala:14:14
-  output        io_deq_bits_pre_decoded_5_is_rvc,	// utility/src/zaqal/utility/Utility.scala:14:14
-  output [31:0] io_deq_bits_pre_decoded_5_expanded_inst,	// utility/src/zaqal/utility/Utility.scala:14:14
-  output        io_deq_bits_pre_decoded_6_is_rvc,	// utility/src/zaqal/utility/Utility.scala:14:14
-  output [31:0] io_deq_bits_pre_decoded_6_expanded_inst,	// utility/src/zaqal/utility/Utility.scala:14:14
-  output        io_deq_bits_pre_decoded_7_is_rvc,	// utility/src/zaqal/utility/Utility.scala:14:14
-  output [31:0] io_deq_bits_pre_decoded_7_expanded_inst,	// utility/src/zaqal/utility/Utility.scala:14:14
-  output        io_deq_bits_pre_decoded_8_is_rvc,	// utility/src/zaqal/utility/Utility.scala:14:14
-  output [31:0] io_deq_bits_pre_decoded_8_expanded_inst,	// utility/src/zaqal/utility/Utility.scala:14:14
-  output        io_deq_bits_pre_decoded_9_is_rvc,	// utility/src/zaqal/utility/Utility.scala:14:14
-  output [31:0] io_deq_bits_pre_decoded_9_expanded_inst,	// utility/src/zaqal/utility/Utility.scala:14:14
-  output        io_deq_bits_pre_decoded_10_is_rvc,	// utility/src/zaqal/utility/Utility.scala:14:14
-  output [31:0] io_deq_bits_pre_decoded_10_expanded_inst,	// utility/src/zaqal/utility/Utility.scala:14:14
-  output        io_deq_bits_pre_decoded_11_is_rvc,	// utility/src/zaqal/utility/Utility.scala:14:14
-  output [31:0] io_deq_bits_pre_decoded_11_expanded_inst,	// utility/src/zaqal/utility/Utility.scala:14:14
-  output        io_deq_bits_pre_decoded_12_is_rvc,	// utility/src/zaqal/utility/Utility.scala:14:14
-  output [31:0] io_deq_bits_pre_decoded_12_expanded_inst,	// utility/src/zaqal/utility/Utility.scala:14:14
-  output        io_deq_bits_pre_decoded_13_is_rvc,	// utility/src/zaqal/utility/Utility.scala:14:14
-  output [31:0] io_deq_bits_pre_decoded_13_expanded_inst,	// utility/src/zaqal/utility/Utility.scala:14:14
-  output        io_deq_bits_pre_decoded_14_is_rvc,	// utility/src/zaqal/utility/Utility.scala:14:14
-  output [31:0] io_deq_bits_pre_decoded_14_expanded_inst,	// utility/src/zaqal/utility/Utility.scala:14:14
-  output        io_deq_bits_pre_decoded_15_is_rvc,	// utility/src/zaqal/utility/Utility.scala:14:14
-  output [31:0] io_deq_bits_pre_decoded_15_expanded_inst,	// utility/src/zaqal/utility/Utility.scala:14:14
-  output [15:0] io_deq_bits_mask,	// utility/src/zaqal/utility/Utility.scala:14:14
-  output        io_deq_bits_prediction_taken,	// utility/src/zaqal/utility/Utility.scala:14:14
-  output [3:0]  io_deq_bits_prediction_slot,	// utility/src/zaqal/utility/Utility.scala:14:14
+  output [63:0] io_deq_bits_pc,	// utility/src/zaqal/utility/Utility.scala:14:14
+  output [31:0] io_deq_bits_inst_raw,	// utility/src/zaqal/utility/Utility.scala:14:14
+  output        io_deq_bits_pre_is_rvc,	// utility/src/zaqal/utility/Utility.scala:14:14
+                io_deq_bits_pre_is_call,	// utility/src/zaqal/utility/Utility.scala:14:14
+                io_deq_bits_pre_is_ret,	// utility/src/zaqal/utility/Utility.scala:14:14
+  output [31:0] io_deq_bits_pre_expanded_inst,	// utility/src/zaqal/utility/Utility.scala:14:14
   output [5:0]  io_deq_bits_ftqPtr,	// utility/src/zaqal/utility/Utility.scala:14:14
+  output        io_deq_bits_is_predicted_taken,	// utility/src/zaqal/utility/Utility.scala:14:14
+  output [63:0] io_deq_bits_predicted_target,	// utility/src/zaqal/utility/Utility.scala:14:14
   output        io_deq_bits_epoch,	// utility/src/zaqal/utility/Utility.scala:14:14
   input         io_flush	// utility/src/zaqal/utility/Utility.scala:14:14
 );
 
-  reg  [63:0] slot0_data_pc_0;	// utility/src/zaqal/utility/Utility.scala:21:24
-  reg  [63:0] slot0_data_pc_1;	// utility/src/zaqal/utility/Utility.scala:21:24
-  reg  [63:0] slot0_data_pc_2;	// utility/src/zaqal/utility/Utility.scala:21:24
-  reg  [63:0] slot0_data_pc_3;	// utility/src/zaqal/utility/Utility.scala:21:24
-  reg  [63:0] slot0_data_pc_4;	// utility/src/zaqal/utility/Utility.scala:21:24
-  reg  [63:0] slot0_data_pc_5;	// utility/src/zaqal/utility/Utility.scala:21:24
-  reg  [63:0] slot0_data_pc_6;	// utility/src/zaqal/utility/Utility.scala:21:24
-  reg  [63:0] slot0_data_pc_7;	// utility/src/zaqal/utility/Utility.scala:21:24
-  reg  [63:0] slot0_data_pc_8;	// utility/src/zaqal/utility/Utility.scala:21:24
-  reg  [63:0] slot0_data_pc_9;	// utility/src/zaqal/utility/Utility.scala:21:24
-  reg  [63:0] slot0_data_pc_10;	// utility/src/zaqal/utility/Utility.scala:21:24
-  reg  [63:0] slot0_data_pc_11;	// utility/src/zaqal/utility/Utility.scala:21:24
-  reg  [63:0] slot0_data_pc_12;	// utility/src/zaqal/utility/Utility.scala:21:24
-  reg  [63:0] slot0_data_pc_13;	// utility/src/zaqal/utility/Utility.scala:21:24
-  reg  [63:0] slot0_data_pc_14;	// utility/src/zaqal/utility/Utility.scala:21:24
-  reg  [63:0] slot0_data_pc_15;	// utility/src/zaqal/utility/Utility.scala:21:24
-  reg  [31:0] slot0_data_instructions_0;	// utility/src/zaqal/utility/Utility.scala:21:24
-  reg  [31:0] slot0_data_instructions_1;	// utility/src/zaqal/utility/Utility.scala:21:24
-  reg  [31:0] slot0_data_instructions_2;	// utility/src/zaqal/utility/Utility.scala:21:24
-  reg  [31:0] slot0_data_instructions_3;	// utility/src/zaqal/utility/Utility.scala:21:24
-  reg  [31:0] slot0_data_instructions_4;	// utility/src/zaqal/utility/Utility.scala:21:24
-  reg  [31:0] slot0_data_instructions_5;	// utility/src/zaqal/utility/Utility.scala:21:24
-  reg  [31:0] slot0_data_instructions_6;	// utility/src/zaqal/utility/Utility.scala:21:24
-  reg  [31:0] slot0_data_instructions_7;	// utility/src/zaqal/utility/Utility.scala:21:24
-  reg  [31:0] slot0_data_instructions_8;	// utility/src/zaqal/utility/Utility.scala:21:24
-  reg  [31:0] slot0_data_instructions_9;	// utility/src/zaqal/utility/Utility.scala:21:24
-  reg  [31:0] slot0_data_instructions_10;	// utility/src/zaqal/utility/Utility.scala:21:24
-  reg  [31:0] slot0_data_instructions_11;	// utility/src/zaqal/utility/Utility.scala:21:24
-  reg  [31:0] slot0_data_instructions_12;	// utility/src/zaqal/utility/Utility.scala:21:24
-  reg  [31:0] slot0_data_instructions_13;	// utility/src/zaqal/utility/Utility.scala:21:24
-  reg  [31:0] slot0_data_instructions_14;	// utility/src/zaqal/utility/Utility.scala:21:24
-  reg  [31:0] slot0_data_instructions_15;	// utility/src/zaqal/utility/Utility.scala:21:24
-  reg         slot0_data_pre_decoded_0_is_rvc;	// utility/src/zaqal/utility/Utility.scala:21:24
-  reg  [31:0] slot0_data_pre_decoded_0_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:21:24
-  reg         slot0_data_pre_decoded_1_is_rvc;	// utility/src/zaqal/utility/Utility.scala:21:24
-  reg  [31:0] slot0_data_pre_decoded_1_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:21:24
-  reg         slot0_data_pre_decoded_2_is_rvc;	// utility/src/zaqal/utility/Utility.scala:21:24
-  reg  [31:0] slot0_data_pre_decoded_2_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:21:24
-  reg         slot0_data_pre_decoded_3_is_rvc;	// utility/src/zaqal/utility/Utility.scala:21:24
-  reg  [31:0] slot0_data_pre_decoded_3_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:21:24
-  reg         slot0_data_pre_decoded_4_is_rvc;	// utility/src/zaqal/utility/Utility.scala:21:24
-  reg  [31:0] slot0_data_pre_decoded_4_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:21:24
-  reg         slot0_data_pre_decoded_5_is_rvc;	// utility/src/zaqal/utility/Utility.scala:21:24
-  reg  [31:0] slot0_data_pre_decoded_5_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:21:24
-  reg         slot0_data_pre_decoded_6_is_rvc;	// utility/src/zaqal/utility/Utility.scala:21:24
-  reg  [31:0] slot0_data_pre_decoded_6_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:21:24
-  reg         slot0_data_pre_decoded_7_is_rvc;	// utility/src/zaqal/utility/Utility.scala:21:24
-  reg  [31:0] slot0_data_pre_decoded_7_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:21:24
-  reg         slot0_data_pre_decoded_8_is_rvc;	// utility/src/zaqal/utility/Utility.scala:21:24
-  reg  [31:0] slot0_data_pre_decoded_8_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:21:24
-  reg         slot0_data_pre_decoded_9_is_rvc;	// utility/src/zaqal/utility/Utility.scala:21:24
-  reg  [31:0] slot0_data_pre_decoded_9_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:21:24
-  reg         slot0_data_pre_decoded_10_is_rvc;	// utility/src/zaqal/utility/Utility.scala:21:24
-  reg  [31:0] slot0_data_pre_decoded_10_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:21:24
-  reg         slot0_data_pre_decoded_11_is_rvc;	// utility/src/zaqal/utility/Utility.scala:21:24
-  reg  [31:0] slot0_data_pre_decoded_11_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:21:24
-  reg         slot0_data_pre_decoded_12_is_rvc;	// utility/src/zaqal/utility/Utility.scala:21:24
-  reg  [31:0] slot0_data_pre_decoded_12_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:21:24
-  reg         slot0_data_pre_decoded_13_is_rvc;	// utility/src/zaqal/utility/Utility.scala:21:24
-  reg  [31:0] slot0_data_pre_decoded_13_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:21:24
-  reg         slot0_data_pre_decoded_14_is_rvc;	// utility/src/zaqal/utility/Utility.scala:21:24
-  reg  [31:0] slot0_data_pre_decoded_14_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:21:24
-  reg         slot0_data_pre_decoded_15_is_rvc;	// utility/src/zaqal/utility/Utility.scala:21:24
-  reg  [31:0] slot0_data_pre_decoded_15_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:21:24
-  reg  [15:0] slot0_data_mask;	// utility/src/zaqal/utility/Utility.scala:21:24
-  reg         slot0_data_prediction_taken;	// utility/src/zaqal/utility/Utility.scala:21:24
-  reg  [3:0]  slot0_data_prediction_slot;	// utility/src/zaqal/utility/Utility.scala:21:24
-  reg  [5:0]  slot0_data_ftqPtr;	// utility/src/zaqal/utility/Utility.scala:21:24
-  reg         slot0_data_epoch;	// utility/src/zaqal/utility/Utility.scala:21:24
-  reg         slot0_valid;	// utility/src/zaqal/utility/Utility.scala:22:28
-  reg  [63:0] slot1_data_pc_0;	// utility/src/zaqal/utility/Utility.scala:23:24
-  reg  [63:0] slot1_data_pc_1;	// utility/src/zaqal/utility/Utility.scala:23:24
-  reg  [63:0] slot1_data_pc_2;	// utility/src/zaqal/utility/Utility.scala:23:24
-  reg  [63:0] slot1_data_pc_3;	// utility/src/zaqal/utility/Utility.scala:23:24
-  reg  [63:0] slot1_data_pc_4;	// utility/src/zaqal/utility/Utility.scala:23:24
-  reg  [63:0] slot1_data_pc_5;	// utility/src/zaqal/utility/Utility.scala:23:24
-  reg  [63:0] slot1_data_pc_6;	// utility/src/zaqal/utility/Utility.scala:23:24
-  reg  [63:0] slot1_data_pc_7;	// utility/src/zaqal/utility/Utility.scala:23:24
-  reg  [63:0] slot1_data_pc_8;	// utility/src/zaqal/utility/Utility.scala:23:24
-  reg  [63:0] slot1_data_pc_9;	// utility/src/zaqal/utility/Utility.scala:23:24
-  reg  [63:0] slot1_data_pc_10;	// utility/src/zaqal/utility/Utility.scala:23:24
-  reg  [63:0] slot1_data_pc_11;	// utility/src/zaqal/utility/Utility.scala:23:24
-  reg  [63:0] slot1_data_pc_12;	// utility/src/zaqal/utility/Utility.scala:23:24
-  reg  [63:0] slot1_data_pc_13;	// utility/src/zaqal/utility/Utility.scala:23:24
-  reg  [63:0] slot1_data_pc_14;	// utility/src/zaqal/utility/Utility.scala:23:24
-  reg  [63:0] slot1_data_pc_15;	// utility/src/zaqal/utility/Utility.scala:23:24
-  reg  [31:0] slot1_data_instructions_0;	// utility/src/zaqal/utility/Utility.scala:23:24
-  reg  [31:0] slot1_data_instructions_1;	// utility/src/zaqal/utility/Utility.scala:23:24
-  reg  [31:0] slot1_data_instructions_2;	// utility/src/zaqal/utility/Utility.scala:23:24
-  reg  [31:0] slot1_data_instructions_3;	// utility/src/zaqal/utility/Utility.scala:23:24
-  reg  [31:0] slot1_data_instructions_4;	// utility/src/zaqal/utility/Utility.scala:23:24
-  reg  [31:0] slot1_data_instructions_5;	// utility/src/zaqal/utility/Utility.scala:23:24
-  reg  [31:0] slot1_data_instructions_6;	// utility/src/zaqal/utility/Utility.scala:23:24
-  reg  [31:0] slot1_data_instructions_7;	// utility/src/zaqal/utility/Utility.scala:23:24
-  reg  [31:0] slot1_data_instructions_8;	// utility/src/zaqal/utility/Utility.scala:23:24
-  reg  [31:0] slot1_data_instructions_9;	// utility/src/zaqal/utility/Utility.scala:23:24
-  reg  [31:0] slot1_data_instructions_10;	// utility/src/zaqal/utility/Utility.scala:23:24
-  reg  [31:0] slot1_data_instructions_11;	// utility/src/zaqal/utility/Utility.scala:23:24
-  reg  [31:0] slot1_data_instructions_12;	// utility/src/zaqal/utility/Utility.scala:23:24
-  reg  [31:0] slot1_data_instructions_13;	// utility/src/zaqal/utility/Utility.scala:23:24
-  reg  [31:0] slot1_data_instructions_14;	// utility/src/zaqal/utility/Utility.scala:23:24
-  reg  [31:0] slot1_data_instructions_15;	// utility/src/zaqal/utility/Utility.scala:23:24
-  reg         slot1_data_pre_decoded_0_is_rvc;	// utility/src/zaqal/utility/Utility.scala:23:24
-  reg  [31:0] slot1_data_pre_decoded_0_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:23:24
-  reg         slot1_data_pre_decoded_1_is_rvc;	// utility/src/zaqal/utility/Utility.scala:23:24
-  reg  [31:0] slot1_data_pre_decoded_1_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:23:24
-  reg         slot1_data_pre_decoded_2_is_rvc;	// utility/src/zaqal/utility/Utility.scala:23:24
-  reg  [31:0] slot1_data_pre_decoded_2_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:23:24
-  reg         slot1_data_pre_decoded_3_is_rvc;	// utility/src/zaqal/utility/Utility.scala:23:24
-  reg  [31:0] slot1_data_pre_decoded_3_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:23:24
-  reg         slot1_data_pre_decoded_4_is_rvc;	// utility/src/zaqal/utility/Utility.scala:23:24
-  reg  [31:0] slot1_data_pre_decoded_4_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:23:24
-  reg         slot1_data_pre_decoded_5_is_rvc;	// utility/src/zaqal/utility/Utility.scala:23:24
-  reg  [31:0] slot1_data_pre_decoded_5_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:23:24
-  reg         slot1_data_pre_decoded_6_is_rvc;	// utility/src/zaqal/utility/Utility.scala:23:24
-  reg  [31:0] slot1_data_pre_decoded_6_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:23:24
-  reg         slot1_data_pre_decoded_7_is_rvc;	// utility/src/zaqal/utility/Utility.scala:23:24
-  reg  [31:0] slot1_data_pre_decoded_7_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:23:24
-  reg         slot1_data_pre_decoded_8_is_rvc;	// utility/src/zaqal/utility/Utility.scala:23:24
-  reg  [31:0] slot1_data_pre_decoded_8_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:23:24
-  reg         slot1_data_pre_decoded_9_is_rvc;	// utility/src/zaqal/utility/Utility.scala:23:24
-  reg  [31:0] slot1_data_pre_decoded_9_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:23:24
-  reg         slot1_data_pre_decoded_10_is_rvc;	// utility/src/zaqal/utility/Utility.scala:23:24
-  reg  [31:0] slot1_data_pre_decoded_10_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:23:24
-  reg         slot1_data_pre_decoded_11_is_rvc;	// utility/src/zaqal/utility/Utility.scala:23:24
-  reg  [31:0] slot1_data_pre_decoded_11_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:23:24
-  reg         slot1_data_pre_decoded_12_is_rvc;	// utility/src/zaqal/utility/Utility.scala:23:24
-  reg  [31:0] slot1_data_pre_decoded_12_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:23:24
-  reg         slot1_data_pre_decoded_13_is_rvc;	// utility/src/zaqal/utility/Utility.scala:23:24
-  reg  [31:0] slot1_data_pre_decoded_13_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:23:24
-  reg         slot1_data_pre_decoded_14_is_rvc;	// utility/src/zaqal/utility/Utility.scala:23:24
-  reg  [31:0] slot1_data_pre_decoded_14_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:23:24
-  reg         slot1_data_pre_decoded_15_is_rvc;	// utility/src/zaqal/utility/Utility.scala:23:24
-  reg  [31:0] slot1_data_pre_decoded_15_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:23:24
-  reg  [15:0] slot1_data_mask;	// utility/src/zaqal/utility/Utility.scala:23:24
-  reg         slot1_data_prediction_taken;	// utility/src/zaqal/utility/Utility.scala:23:24
-  reg  [3:0]  slot1_data_prediction_slot;	// utility/src/zaqal/utility/Utility.scala:23:24
-  reg  [5:0]  slot1_data_ftqPtr;	// utility/src/zaqal/utility/Utility.scala:23:24
-  reg         slot1_data_epoch;	// utility/src/zaqal/utility/Utility.scala:23:24
-  reg         slot1_valid;	// utility/src/zaqal/utility/Utility.scala:24:28
-  wire        _GEN = ~slot1_valid & io_enq_valid;	// src/main/scala/chisel3/util/Decoupled.scala:51:35, utility/src/zaqal/utility/Utility.scala:24:28, :28:19
-  wire        _GEN_0 = ~slot0_valid | io_deq_ready & ~slot1_valid;	// utility/src/zaqal/utility/Utility.scala:22:28, :24:28, :28:19, :35:{13,26,43}
+  reg  [63:0] slot0_data_pc;	// utility/src/zaqal/utility/Utility.scala:22:24
+  reg  [31:0] slot0_data_inst_raw;	// utility/src/zaqal/utility/Utility.scala:22:24
+  reg         slot0_data_pre_is_rvc;	// utility/src/zaqal/utility/Utility.scala:22:24
+  reg         slot0_data_pre_is_call;	// utility/src/zaqal/utility/Utility.scala:22:24
+  reg         slot0_data_pre_is_ret;	// utility/src/zaqal/utility/Utility.scala:22:24
+  reg  [31:0] slot0_data_pre_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:22:24
+  reg  [5:0]  slot0_data_ftqPtr;	// utility/src/zaqal/utility/Utility.scala:22:24
+  reg         slot0_data_is_predicted_taken;	// utility/src/zaqal/utility/Utility.scala:22:24
+  reg  [63:0] slot0_data_predicted_target;	// utility/src/zaqal/utility/Utility.scala:22:24
+  reg         slot0_data_epoch;	// utility/src/zaqal/utility/Utility.scala:22:24
+  reg         slot0_valid;	// utility/src/zaqal/utility/Utility.scala:23:28
+  reg  [63:0] slot1_data_pc;	// utility/src/zaqal/utility/Utility.scala:24:24
+  reg  [31:0] slot1_data_inst_raw;	// utility/src/zaqal/utility/Utility.scala:24:24
+  reg         slot1_data_pre_is_rvc;	// utility/src/zaqal/utility/Utility.scala:24:24
+  reg         slot1_data_pre_is_call;	// utility/src/zaqal/utility/Utility.scala:24:24
+  reg         slot1_data_pre_is_ret;	// utility/src/zaqal/utility/Utility.scala:24:24
+  reg  [31:0] slot1_data_pre_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:24:24
+  reg  [5:0]  slot1_data_ftqPtr;	// utility/src/zaqal/utility/Utility.scala:24:24
+  reg         slot1_data_is_predicted_taken;	// utility/src/zaqal/utility/Utility.scala:24:24
+  reg  [63:0] slot1_data_predicted_target;	// utility/src/zaqal/utility/Utility.scala:24:24
+  reg         slot1_data_epoch;	// utility/src/zaqal/utility/Utility.scala:24:24
+  reg         slot1_valid;	// utility/src/zaqal/utility/Utility.scala:25:28
+  wire        _GEN = ~slot1_valid & io_enq_valid;	// src/main/scala/chisel3/util/Decoupled.scala:51:35, utility/src/zaqal/utility/Utility.scala:25:28, :32:19
+  wire        _GEN_0 = ~slot0_valid | io_deq_ready & ~slot1_valid;	// utility/src/zaqal/utility/Utility.scala:23:28, :25:28, :32:19, :39:{13,26,43}
   always @(posedge clock) begin	// utility/src/zaqal/utility/Utility.scala:13:7
     if (io_flush) begin	// utility/src/zaqal/utility/Utility.scala:14:14
     end
     else if (_GEN) begin	// src/main/scala/chisel3/util/Decoupled.scala:51:35
-      if (_GEN_0) begin	// utility/src/zaqal/utility/Utility.scala:35:26
-        slot0_data_pc_0 <= io_enq_bits_pc_0;	// utility/src/zaqal/utility/Utility.scala:21:24
-        slot0_data_pc_1 <= io_enq_bits_pc_1;	// utility/src/zaqal/utility/Utility.scala:21:24
-        slot0_data_pc_2 <= io_enq_bits_pc_2;	// utility/src/zaqal/utility/Utility.scala:21:24
-        slot0_data_pc_3 <= io_enq_bits_pc_3;	// utility/src/zaqal/utility/Utility.scala:21:24
-        slot0_data_pc_4 <= io_enq_bits_pc_4;	// utility/src/zaqal/utility/Utility.scala:21:24
-        slot0_data_pc_5 <= io_enq_bits_pc_5;	// utility/src/zaqal/utility/Utility.scala:21:24
-        slot0_data_pc_6 <= io_enq_bits_pc_6;	// utility/src/zaqal/utility/Utility.scala:21:24
-        slot0_data_pc_7 <= io_enq_bits_pc_7;	// utility/src/zaqal/utility/Utility.scala:21:24
-        slot0_data_pc_8 <= io_enq_bits_pc_8;	// utility/src/zaqal/utility/Utility.scala:21:24
-        slot0_data_pc_9 <= io_enq_bits_pc_9;	// utility/src/zaqal/utility/Utility.scala:21:24
-        slot0_data_pc_10 <= io_enq_bits_pc_10;	// utility/src/zaqal/utility/Utility.scala:21:24
-        slot0_data_pc_11 <= io_enq_bits_pc_11;	// utility/src/zaqal/utility/Utility.scala:21:24
-        slot0_data_pc_12 <= io_enq_bits_pc_12;	// utility/src/zaqal/utility/Utility.scala:21:24
-        slot0_data_pc_13 <= io_enq_bits_pc_13;	// utility/src/zaqal/utility/Utility.scala:21:24
-        slot0_data_pc_14 <= io_enq_bits_pc_14;	// utility/src/zaqal/utility/Utility.scala:21:24
-        slot0_data_pc_15 <= io_enq_bits_pc_15;	// utility/src/zaqal/utility/Utility.scala:21:24
-        slot0_data_instructions_0 <= io_enq_bits_instructions_0;	// utility/src/zaqal/utility/Utility.scala:21:24
-        slot0_data_instructions_1 <= io_enq_bits_instructions_1;	// utility/src/zaqal/utility/Utility.scala:21:24
-        slot0_data_instructions_2 <= io_enq_bits_instructions_2;	// utility/src/zaqal/utility/Utility.scala:21:24
-        slot0_data_instructions_3 <= io_enq_bits_instructions_3;	// utility/src/zaqal/utility/Utility.scala:21:24
-        slot0_data_instructions_4 <= io_enq_bits_instructions_4;	// utility/src/zaqal/utility/Utility.scala:21:24
-        slot0_data_instructions_5 <= io_enq_bits_instructions_5;	// utility/src/zaqal/utility/Utility.scala:21:24
-        slot0_data_instructions_6 <= io_enq_bits_instructions_6;	// utility/src/zaqal/utility/Utility.scala:21:24
-        slot0_data_instructions_7 <= io_enq_bits_instructions_7;	// utility/src/zaqal/utility/Utility.scala:21:24
-        slot0_data_instructions_8 <= io_enq_bits_instructions_8;	// utility/src/zaqal/utility/Utility.scala:21:24
-        slot0_data_instructions_9 <= io_enq_bits_instructions_9;	// utility/src/zaqal/utility/Utility.scala:21:24
-        slot0_data_instructions_10 <= io_enq_bits_instructions_10;	// utility/src/zaqal/utility/Utility.scala:21:24
-        slot0_data_instructions_11 <= io_enq_bits_instructions_11;	// utility/src/zaqal/utility/Utility.scala:21:24
-        slot0_data_instructions_12 <= io_enq_bits_instructions_12;	// utility/src/zaqal/utility/Utility.scala:21:24
-        slot0_data_instructions_13 <= io_enq_bits_instructions_13;	// utility/src/zaqal/utility/Utility.scala:21:24
-        slot0_data_instructions_14 <= io_enq_bits_instructions_14;	// utility/src/zaqal/utility/Utility.scala:21:24
-        slot0_data_instructions_15 <= io_enq_bits_instructions_15;	// utility/src/zaqal/utility/Utility.scala:21:24
-        slot0_data_pre_decoded_0_is_rvc <= io_enq_bits_pre_decoded_0_is_rvc;	// utility/src/zaqal/utility/Utility.scala:21:24
-        slot0_data_pre_decoded_0_expanded_inst <= io_enq_bits_pre_decoded_0_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:21:24
-        slot0_data_pre_decoded_1_is_rvc <= io_enq_bits_pre_decoded_1_is_rvc;	// utility/src/zaqal/utility/Utility.scala:21:24
-        slot0_data_pre_decoded_1_expanded_inst <= io_enq_bits_pre_decoded_1_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:21:24
-        slot0_data_pre_decoded_2_is_rvc <= io_enq_bits_pre_decoded_2_is_rvc;	// utility/src/zaqal/utility/Utility.scala:21:24
-        slot0_data_pre_decoded_2_expanded_inst <= io_enq_bits_pre_decoded_2_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:21:24
-        slot0_data_pre_decoded_3_is_rvc <= io_enq_bits_pre_decoded_3_is_rvc;	// utility/src/zaqal/utility/Utility.scala:21:24
-        slot0_data_pre_decoded_3_expanded_inst <= io_enq_bits_pre_decoded_3_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:21:24
-        slot0_data_pre_decoded_4_is_rvc <= io_enq_bits_pre_decoded_4_is_rvc;	// utility/src/zaqal/utility/Utility.scala:21:24
-        slot0_data_pre_decoded_4_expanded_inst <= io_enq_bits_pre_decoded_4_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:21:24
-        slot0_data_pre_decoded_5_is_rvc <= io_enq_bits_pre_decoded_5_is_rvc;	// utility/src/zaqal/utility/Utility.scala:21:24
-        slot0_data_pre_decoded_5_expanded_inst <= io_enq_bits_pre_decoded_5_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:21:24
-        slot0_data_pre_decoded_6_is_rvc <= io_enq_bits_pre_decoded_6_is_rvc;	// utility/src/zaqal/utility/Utility.scala:21:24
-        slot0_data_pre_decoded_6_expanded_inst <= io_enq_bits_pre_decoded_6_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:21:24
-        slot0_data_pre_decoded_7_is_rvc <= io_enq_bits_pre_decoded_7_is_rvc;	// utility/src/zaqal/utility/Utility.scala:21:24
-        slot0_data_pre_decoded_7_expanded_inst <= io_enq_bits_pre_decoded_7_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:21:24
-        slot0_data_pre_decoded_8_is_rvc <= io_enq_bits_pre_decoded_8_is_rvc;	// utility/src/zaqal/utility/Utility.scala:21:24
-        slot0_data_pre_decoded_8_expanded_inst <= io_enq_bits_pre_decoded_8_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:21:24
-        slot0_data_pre_decoded_9_is_rvc <= io_enq_bits_pre_decoded_9_is_rvc;	// utility/src/zaqal/utility/Utility.scala:21:24
-        slot0_data_pre_decoded_9_expanded_inst <= io_enq_bits_pre_decoded_9_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:21:24
-        slot0_data_pre_decoded_10_is_rvc <= io_enq_bits_pre_decoded_10_is_rvc;	// utility/src/zaqal/utility/Utility.scala:21:24
-        slot0_data_pre_decoded_10_expanded_inst <=
-          io_enq_bits_pre_decoded_10_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:21:24
-        slot0_data_pre_decoded_11_is_rvc <= io_enq_bits_pre_decoded_11_is_rvc;	// utility/src/zaqal/utility/Utility.scala:21:24
-        slot0_data_pre_decoded_11_expanded_inst <=
-          io_enq_bits_pre_decoded_11_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:21:24
-        slot0_data_pre_decoded_12_is_rvc <= io_enq_bits_pre_decoded_12_is_rvc;	// utility/src/zaqal/utility/Utility.scala:21:24
-        slot0_data_pre_decoded_12_expanded_inst <=
-          io_enq_bits_pre_decoded_12_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:21:24
-        slot0_data_pre_decoded_13_is_rvc <= io_enq_bits_pre_decoded_13_is_rvc;	// utility/src/zaqal/utility/Utility.scala:21:24
-        slot0_data_pre_decoded_13_expanded_inst <=
-          io_enq_bits_pre_decoded_13_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:21:24
-        slot0_data_pre_decoded_14_is_rvc <= io_enq_bits_pre_decoded_14_is_rvc;	// utility/src/zaqal/utility/Utility.scala:21:24
-        slot0_data_pre_decoded_14_expanded_inst <=
-          io_enq_bits_pre_decoded_14_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:21:24
-        slot0_data_pre_decoded_15_is_rvc <= io_enq_bits_pre_decoded_15_is_rvc;	// utility/src/zaqal/utility/Utility.scala:21:24
-        slot0_data_pre_decoded_15_expanded_inst <=
-          io_enq_bits_pre_decoded_15_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:21:24
-        slot0_data_mask <= io_enq_bits_mask;	// utility/src/zaqal/utility/Utility.scala:21:24
-        slot0_data_prediction_taken <= io_enq_bits_prediction_taken;	// utility/src/zaqal/utility/Utility.scala:21:24
-        slot0_data_prediction_slot <= io_enq_bits_prediction_slot;	// utility/src/zaqal/utility/Utility.scala:21:24
-        slot0_data_ftqPtr <= io_enq_bits_ftqPtr;	// utility/src/zaqal/utility/Utility.scala:21:24
-        slot0_data_epoch <= io_enq_bits_epoch;	// utility/src/zaqal/utility/Utility.scala:21:24
+      if (_GEN_0) begin	// utility/src/zaqal/utility/Utility.scala:39:26
+        slot0_data_pc <= io_enq_bits_pc;	// utility/src/zaqal/utility/Utility.scala:22:24
+        slot0_data_inst_raw <= io_enq_bits_inst_raw;	// utility/src/zaqal/utility/Utility.scala:22:24
+        slot0_data_pre_is_rvc <= io_enq_bits_pre_is_rvc;	// utility/src/zaqal/utility/Utility.scala:22:24
+        slot0_data_pre_is_call <= io_enq_bits_pre_is_call;	// utility/src/zaqal/utility/Utility.scala:22:24
+        slot0_data_pre_is_ret <= io_enq_bits_pre_is_ret;	// utility/src/zaqal/utility/Utility.scala:22:24
+        slot0_data_pre_expanded_inst <= io_enq_bits_pre_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:22:24
+        slot0_data_ftqPtr <= io_enq_bits_ftqPtr;	// utility/src/zaqal/utility/Utility.scala:22:24
+        slot0_data_is_predicted_taken <= io_enq_bits_is_predicted_taken;	// utility/src/zaqal/utility/Utility.scala:22:24
+        slot0_data_predicted_target <= io_enq_bits_predicted_target;	// utility/src/zaqal/utility/Utility.scala:22:24
+        slot0_data_epoch <= io_enq_bits_epoch;	// utility/src/zaqal/utility/Utility.scala:22:24
       end
     end
     else if (io_deq_ready) begin	// utility/src/zaqal/utility/Utility.scala:14:14
-      slot0_data_pc_0 <= slot1_data_pc_0;	// utility/src/zaqal/utility/Utility.scala:21:24, :23:24
-      slot0_data_pc_1 <= slot1_data_pc_1;	// utility/src/zaqal/utility/Utility.scala:21:24, :23:24
-      slot0_data_pc_2 <= slot1_data_pc_2;	// utility/src/zaqal/utility/Utility.scala:21:24, :23:24
-      slot0_data_pc_3 <= slot1_data_pc_3;	// utility/src/zaqal/utility/Utility.scala:21:24, :23:24
-      slot0_data_pc_4 <= slot1_data_pc_4;	// utility/src/zaqal/utility/Utility.scala:21:24, :23:24
-      slot0_data_pc_5 <= slot1_data_pc_5;	// utility/src/zaqal/utility/Utility.scala:21:24, :23:24
-      slot0_data_pc_6 <= slot1_data_pc_6;	// utility/src/zaqal/utility/Utility.scala:21:24, :23:24
-      slot0_data_pc_7 <= slot1_data_pc_7;	// utility/src/zaqal/utility/Utility.scala:21:24, :23:24
-      slot0_data_pc_8 <= slot1_data_pc_8;	// utility/src/zaqal/utility/Utility.scala:21:24, :23:24
-      slot0_data_pc_9 <= slot1_data_pc_9;	// utility/src/zaqal/utility/Utility.scala:21:24, :23:24
-      slot0_data_pc_10 <= slot1_data_pc_10;	// utility/src/zaqal/utility/Utility.scala:21:24, :23:24
-      slot0_data_pc_11 <= slot1_data_pc_11;	// utility/src/zaqal/utility/Utility.scala:21:24, :23:24
-      slot0_data_pc_12 <= slot1_data_pc_12;	// utility/src/zaqal/utility/Utility.scala:21:24, :23:24
-      slot0_data_pc_13 <= slot1_data_pc_13;	// utility/src/zaqal/utility/Utility.scala:21:24, :23:24
-      slot0_data_pc_14 <= slot1_data_pc_14;	// utility/src/zaqal/utility/Utility.scala:21:24, :23:24
-      slot0_data_pc_15 <= slot1_data_pc_15;	// utility/src/zaqal/utility/Utility.scala:21:24, :23:24
-      slot0_data_instructions_0 <= slot1_data_instructions_0;	// utility/src/zaqal/utility/Utility.scala:21:24, :23:24
-      slot0_data_instructions_1 <= slot1_data_instructions_1;	// utility/src/zaqal/utility/Utility.scala:21:24, :23:24
-      slot0_data_instructions_2 <= slot1_data_instructions_2;	// utility/src/zaqal/utility/Utility.scala:21:24, :23:24
-      slot0_data_instructions_3 <= slot1_data_instructions_3;	// utility/src/zaqal/utility/Utility.scala:21:24, :23:24
-      slot0_data_instructions_4 <= slot1_data_instructions_4;	// utility/src/zaqal/utility/Utility.scala:21:24, :23:24
-      slot0_data_instructions_5 <= slot1_data_instructions_5;	// utility/src/zaqal/utility/Utility.scala:21:24, :23:24
-      slot0_data_instructions_6 <= slot1_data_instructions_6;	// utility/src/zaqal/utility/Utility.scala:21:24, :23:24
-      slot0_data_instructions_7 <= slot1_data_instructions_7;	// utility/src/zaqal/utility/Utility.scala:21:24, :23:24
-      slot0_data_instructions_8 <= slot1_data_instructions_8;	// utility/src/zaqal/utility/Utility.scala:21:24, :23:24
-      slot0_data_instructions_9 <= slot1_data_instructions_9;	// utility/src/zaqal/utility/Utility.scala:21:24, :23:24
-      slot0_data_instructions_10 <= slot1_data_instructions_10;	// utility/src/zaqal/utility/Utility.scala:21:24, :23:24
-      slot0_data_instructions_11 <= slot1_data_instructions_11;	// utility/src/zaqal/utility/Utility.scala:21:24, :23:24
-      slot0_data_instructions_12 <= slot1_data_instructions_12;	// utility/src/zaqal/utility/Utility.scala:21:24, :23:24
-      slot0_data_instructions_13 <= slot1_data_instructions_13;	// utility/src/zaqal/utility/Utility.scala:21:24, :23:24
-      slot0_data_instructions_14 <= slot1_data_instructions_14;	// utility/src/zaqal/utility/Utility.scala:21:24, :23:24
-      slot0_data_instructions_15 <= slot1_data_instructions_15;	// utility/src/zaqal/utility/Utility.scala:21:24, :23:24
-      slot0_data_pre_decoded_0_is_rvc <= slot1_data_pre_decoded_0_is_rvc;	// utility/src/zaqal/utility/Utility.scala:21:24, :23:24
-      slot0_data_pre_decoded_0_expanded_inst <= slot1_data_pre_decoded_0_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:21:24, :23:24
-      slot0_data_pre_decoded_1_is_rvc <= slot1_data_pre_decoded_1_is_rvc;	// utility/src/zaqal/utility/Utility.scala:21:24, :23:24
-      slot0_data_pre_decoded_1_expanded_inst <= slot1_data_pre_decoded_1_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:21:24, :23:24
-      slot0_data_pre_decoded_2_is_rvc <= slot1_data_pre_decoded_2_is_rvc;	// utility/src/zaqal/utility/Utility.scala:21:24, :23:24
-      slot0_data_pre_decoded_2_expanded_inst <= slot1_data_pre_decoded_2_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:21:24, :23:24
-      slot0_data_pre_decoded_3_is_rvc <= slot1_data_pre_decoded_3_is_rvc;	// utility/src/zaqal/utility/Utility.scala:21:24, :23:24
-      slot0_data_pre_decoded_3_expanded_inst <= slot1_data_pre_decoded_3_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:21:24, :23:24
-      slot0_data_pre_decoded_4_is_rvc <= slot1_data_pre_decoded_4_is_rvc;	// utility/src/zaqal/utility/Utility.scala:21:24, :23:24
-      slot0_data_pre_decoded_4_expanded_inst <= slot1_data_pre_decoded_4_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:21:24, :23:24
-      slot0_data_pre_decoded_5_is_rvc <= slot1_data_pre_decoded_5_is_rvc;	// utility/src/zaqal/utility/Utility.scala:21:24, :23:24
-      slot0_data_pre_decoded_5_expanded_inst <= slot1_data_pre_decoded_5_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:21:24, :23:24
-      slot0_data_pre_decoded_6_is_rvc <= slot1_data_pre_decoded_6_is_rvc;	// utility/src/zaqal/utility/Utility.scala:21:24, :23:24
-      slot0_data_pre_decoded_6_expanded_inst <= slot1_data_pre_decoded_6_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:21:24, :23:24
-      slot0_data_pre_decoded_7_is_rvc <= slot1_data_pre_decoded_7_is_rvc;	// utility/src/zaqal/utility/Utility.scala:21:24, :23:24
-      slot0_data_pre_decoded_7_expanded_inst <= slot1_data_pre_decoded_7_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:21:24, :23:24
-      slot0_data_pre_decoded_8_is_rvc <= slot1_data_pre_decoded_8_is_rvc;	// utility/src/zaqal/utility/Utility.scala:21:24, :23:24
-      slot0_data_pre_decoded_8_expanded_inst <= slot1_data_pre_decoded_8_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:21:24, :23:24
-      slot0_data_pre_decoded_9_is_rvc <= slot1_data_pre_decoded_9_is_rvc;	// utility/src/zaqal/utility/Utility.scala:21:24, :23:24
-      slot0_data_pre_decoded_9_expanded_inst <= slot1_data_pre_decoded_9_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:21:24, :23:24
-      slot0_data_pre_decoded_10_is_rvc <= slot1_data_pre_decoded_10_is_rvc;	// utility/src/zaqal/utility/Utility.scala:21:24, :23:24
-      slot0_data_pre_decoded_10_expanded_inst <= slot1_data_pre_decoded_10_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:21:24, :23:24
-      slot0_data_pre_decoded_11_is_rvc <= slot1_data_pre_decoded_11_is_rvc;	// utility/src/zaqal/utility/Utility.scala:21:24, :23:24
-      slot0_data_pre_decoded_11_expanded_inst <= slot1_data_pre_decoded_11_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:21:24, :23:24
-      slot0_data_pre_decoded_12_is_rvc <= slot1_data_pre_decoded_12_is_rvc;	// utility/src/zaqal/utility/Utility.scala:21:24, :23:24
-      slot0_data_pre_decoded_12_expanded_inst <= slot1_data_pre_decoded_12_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:21:24, :23:24
-      slot0_data_pre_decoded_13_is_rvc <= slot1_data_pre_decoded_13_is_rvc;	// utility/src/zaqal/utility/Utility.scala:21:24, :23:24
-      slot0_data_pre_decoded_13_expanded_inst <= slot1_data_pre_decoded_13_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:21:24, :23:24
-      slot0_data_pre_decoded_14_is_rvc <= slot1_data_pre_decoded_14_is_rvc;	// utility/src/zaqal/utility/Utility.scala:21:24, :23:24
-      slot0_data_pre_decoded_14_expanded_inst <= slot1_data_pre_decoded_14_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:21:24, :23:24
-      slot0_data_pre_decoded_15_is_rvc <= slot1_data_pre_decoded_15_is_rvc;	// utility/src/zaqal/utility/Utility.scala:21:24, :23:24
-      slot0_data_pre_decoded_15_expanded_inst <= slot1_data_pre_decoded_15_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:21:24, :23:24
-      slot0_data_mask <= slot1_data_mask;	// utility/src/zaqal/utility/Utility.scala:21:24, :23:24
-      slot0_data_prediction_taken <= slot1_data_prediction_taken;	// utility/src/zaqal/utility/Utility.scala:21:24, :23:24
-      slot0_data_prediction_slot <= slot1_data_prediction_slot;	// utility/src/zaqal/utility/Utility.scala:21:24, :23:24
-      slot0_data_ftqPtr <= slot1_data_ftqPtr;	// utility/src/zaqal/utility/Utility.scala:21:24, :23:24
-      slot0_data_epoch <= slot1_data_epoch;	// utility/src/zaqal/utility/Utility.scala:21:24, :23:24
+      slot0_data_pc <= slot1_data_pc;	// utility/src/zaqal/utility/Utility.scala:22:24, :24:24
+      slot0_data_inst_raw <= slot1_data_inst_raw;	// utility/src/zaqal/utility/Utility.scala:22:24, :24:24
+      slot0_data_pre_is_rvc <= slot1_data_pre_is_rvc;	// utility/src/zaqal/utility/Utility.scala:22:24, :24:24
+      slot0_data_pre_is_call <= slot1_data_pre_is_call;	// utility/src/zaqal/utility/Utility.scala:22:24, :24:24
+      slot0_data_pre_is_ret <= slot1_data_pre_is_ret;	// utility/src/zaqal/utility/Utility.scala:22:24, :24:24
+      slot0_data_pre_expanded_inst <= slot1_data_pre_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:22:24, :24:24
+      slot0_data_ftqPtr <= slot1_data_ftqPtr;	// utility/src/zaqal/utility/Utility.scala:22:24, :24:24
+      slot0_data_is_predicted_taken <= slot1_data_is_predicted_taken;	// utility/src/zaqal/utility/Utility.scala:22:24, :24:24
+      slot0_data_predicted_target <= slot1_data_predicted_target;	// utility/src/zaqal/utility/Utility.scala:22:24, :24:24
+      slot0_data_epoch <= slot1_data_epoch;	// utility/src/zaqal/utility/Utility.scala:22:24, :24:24
     end
-    if (io_flush | ~_GEN | _GEN_0) begin	// src/main/scala/chisel3/util/Decoupled.scala:51:35, utility/src/zaqal/utility/Utility.scala:23:24, :30:19, :34:24, :35:{26,61}
+    if (io_flush | ~_GEN | _GEN_0) begin	// src/main/scala/chisel3/util/Decoupled.scala:51:35, utility/src/zaqal/utility/Utility.scala:24:24, :34:19, :38:24, :39:{26,61}
     end
-    else begin	// utility/src/zaqal/utility/Utility.scala:23:24, :30:19, :34:24
-      slot1_data_pc_0 <= io_enq_bits_pc_0;	// utility/src/zaqal/utility/Utility.scala:23:24
-      slot1_data_pc_1 <= io_enq_bits_pc_1;	// utility/src/zaqal/utility/Utility.scala:23:24
-      slot1_data_pc_2 <= io_enq_bits_pc_2;	// utility/src/zaqal/utility/Utility.scala:23:24
-      slot1_data_pc_3 <= io_enq_bits_pc_3;	// utility/src/zaqal/utility/Utility.scala:23:24
-      slot1_data_pc_4 <= io_enq_bits_pc_4;	// utility/src/zaqal/utility/Utility.scala:23:24
-      slot1_data_pc_5 <= io_enq_bits_pc_5;	// utility/src/zaqal/utility/Utility.scala:23:24
-      slot1_data_pc_6 <= io_enq_bits_pc_6;	// utility/src/zaqal/utility/Utility.scala:23:24
-      slot1_data_pc_7 <= io_enq_bits_pc_7;	// utility/src/zaqal/utility/Utility.scala:23:24
-      slot1_data_pc_8 <= io_enq_bits_pc_8;	// utility/src/zaqal/utility/Utility.scala:23:24
-      slot1_data_pc_9 <= io_enq_bits_pc_9;	// utility/src/zaqal/utility/Utility.scala:23:24
-      slot1_data_pc_10 <= io_enq_bits_pc_10;	// utility/src/zaqal/utility/Utility.scala:23:24
-      slot1_data_pc_11 <= io_enq_bits_pc_11;	// utility/src/zaqal/utility/Utility.scala:23:24
-      slot1_data_pc_12 <= io_enq_bits_pc_12;	// utility/src/zaqal/utility/Utility.scala:23:24
-      slot1_data_pc_13 <= io_enq_bits_pc_13;	// utility/src/zaqal/utility/Utility.scala:23:24
-      slot1_data_pc_14 <= io_enq_bits_pc_14;	// utility/src/zaqal/utility/Utility.scala:23:24
-      slot1_data_pc_15 <= io_enq_bits_pc_15;	// utility/src/zaqal/utility/Utility.scala:23:24
-      slot1_data_instructions_0 <= io_enq_bits_instructions_0;	// utility/src/zaqal/utility/Utility.scala:23:24
-      slot1_data_instructions_1 <= io_enq_bits_instructions_1;	// utility/src/zaqal/utility/Utility.scala:23:24
-      slot1_data_instructions_2 <= io_enq_bits_instructions_2;	// utility/src/zaqal/utility/Utility.scala:23:24
-      slot1_data_instructions_3 <= io_enq_bits_instructions_3;	// utility/src/zaqal/utility/Utility.scala:23:24
-      slot1_data_instructions_4 <= io_enq_bits_instructions_4;	// utility/src/zaqal/utility/Utility.scala:23:24
-      slot1_data_instructions_5 <= io_enq_bits_instructions_5;	// utility/src/zaqal/utility/Utility.scala:23:24
-      slot1_data_instructions_6 <= io_enq_bits_instructions_6;	// utility/src/zaqal/utility/Utility.scala:23:24
-      slot1_data_instructions_7 <= io_enq_bits_instructions_7;	// utility/src/zaqal/utility/Utility.scala:23:24
-      slot1_data_instructions_8 <= io_enq_bits_instructions_8;	// utility/src/zaqal/utility/Utility.scala:23:24
-      slot1_data_instructions_9 <= io_enq_bits_instructions_9;	// utility/src/zaqal/utility/Utility.scala:23:24
-      slot1_data_instructions_10 <= io_enq_bits_instructions_10;	// utility/src/zaqal/utility/Utility.scala:23:24
-      slot1_data_instructions_11 <= io_enq_bits_instructions_11;	// utility/src/zaqal/utility/Utility.scala:23:24
-      slot1_data_instructions_12 <= io_enq_bits_instructions_12;	// utility/src/zaqal/utility/Utility.scala:23:24
-      slot1_data_instructions_13 <= io_enq_bits_instructions_13;	// utility/src/zaqal/utility/Utility.scala:23:24
-      slot1_data_instructions_14 <= io_enq_bits_instructions_14;	// utility/src/zaqal/utility/Utility.scala:23:24
-      slot1_data_instructions_15 <= io_enq_bits_instructions_15;	// utility/src/zaqal/utility/Utility.scala:23:24
-      slot1_data_pre_decoded_0_is_rvc <= io_enq_bits_pre_decoded_0_is_rvc;	// utility/src/zaqal/utility/Utility.scala:23:24
-      slot1_data_pre_decoded_0_expanded_inst <= io_enq_bits_pre_decoded_0_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:23:24
-      slot1_data_pre_decoded_1_is_rvc <= io_enq_bits_pre_decoded_1_is_rvc;	// utility/src/zaqal/utility/Utility.scala:23:24
-      slot1_data_pre_decoded_1_expanded_inst <= io_enq_bits_pre_decoded_1_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:23:24
-      slot1_data_pre_decoded_2_is_rvc <= io_enq_bits_pre_decoded_2_is_rvc;	// utility/src/zaqal/utility/Utility.scala:23:24
-      slot1_data_pre_decoded_2_expanded_inst <= io_enq_bits_pre_decoded_2_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:23:24
-      slot1_data_pre_decoded_3_is_rvc <= io_enq_bits_pre_decoded_3_is_rvc;	// utility/src/zaqal/utility/Utility.scala:23:24
-      slot1_data_pre_decoded_3_expanded_inst <= io_enq_bits_pre_decoded_3_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:23:24
-      slot1_data_pre_decoded_4_is_rvc <= io_enq_bits_pre_decoded_4_is_rvc;	// utility/src/zaqal/utility/Utility.scala:23:24
-      slot1_data_pre_decoded_4_expanded_inst <= io_enq_bits_pre_decoded_4_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:23:24
-      slot1_data_pre_decoded_5_is_rvc <= io_enq_bits_pre_decoded_5_is_rvc;	// utility/src/zaqal/utility/Utility.scala:23:24
-      slot1_data_pre_decoded_5_expanded_inst <= io_enq_bits_pre_decoded_5_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:23:24
-      slot1_data_pre_decoded_6_is_rvc <= io_enq_bits_pre_decoded_6_is_rvc;	// utility/src/zaqal/utility/Utility.scala:23:24
-      slot1_data_pre_decoded_6_expanded_inst <= io_enq_bits_pre_decoded_6_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:23:24
-      slot1_data_pre_decoded_7_is_rvc <= io_enq_bits_pre_decoded_7_is_rvc;	// utility/src/zaqal/utility/Utility.scala:23:24
-      slot1_data_pre_decoded_7_expanded_inst <= io_enq_bits_pre_decoded_7_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:23:24
-      slot1_data_pre_decoded_8_is_rvc <= io_enq_bits_pre_decoded_8_is_rvc;	// utility/src/zaqal/utility/Utility.scala:23:24
-      slot1_data_pre_decoded_8_expanded_inst <= io_enq_bits_pre_decoded_8_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:23:24
-      slot1_data_pre_decoded_9_is_rvc <= io_enq_bits_pre_decoded_9_is_rvc;	// utility/src/zaqal/utility/Utility.scala:23:24
-      slot1_data_pre_decoded_9_expanded_inst <= io_enq_bits_pre_decoded_9_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:23:24
-      slot1_data_pre_decoded_10_is_rvc <= io_enq_bits_pre_decoded_10_is_rvc;	// utility/src/zaqal/utility/Utility.scala:23:24
-      slot1_data_pre_decoded_10_expanded_inst <= io_enq_bits_pre_decoded_10_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:23:24
-      slot1_data_pre_decoded_11_is_rvc <= io_enq_bits_pre_decoded_11_is_rvc;	// utility/src/zaqal/utility/Utility.scala:23:24
-      slot1_data_pre_decoded_11_expanded_inst <= io_enq_bits_pre_decoded_11_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:23:24
-      slot1_data_pre_decoded_12_is_rvc <= io_enq_bits_pre_decoded_12_is_rvc;	// utility/src/zaqal/utility/Utility.scala:23:24
-      slot1_data_pre_decoded_12_expanded_inst <= io_enq_bits_pre_decoded_12_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:23:24
-      slot1_data_pre_decoded_13_is_rvc <= io_enq_bits_pre_decoded_13_is_rvc;	// utility/src/zaqal/utility/Utility.scala:23:24
-      slot1_data_pre_decoded_13_expanded_inst <= io_enq_bits_pre_decoded_13_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:23:24
-      slot1_data_pre_decoded_14_is_rvc <= io_enq_bits_pre_decoded_14_is_rvc;	// utility/src/zaqal/utility/Utility.scala:23:24
-      slot1_data_pre_decoded_14_expanded_inst <= io_enq_bits_pre_decoded_14_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:23:24
-      slot1_data_pre_decoded_15_is_rvc <= io_enq_bits_pre_decoded_15_is_rvc;	// utility/src/zaqal/utility/Utility.scala:23:24
-      slot1_data_pre_decoded_15_expanded_inst <= io_enq_bits_pre_decoded_15_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:23:24
-      slot1_data_mask <= io_enq_bits_mask;	// utility/src/zaqal/utility/Utility.scala:23:24
-      slot1_data_prediction_taken <= io_enq_bits_prediction_taken;	// utility/src/zaqal/utility/Utility.scala:23:24
-      slot1_data_prediction_slot <= io_enq_bits_prediction_slot;	// utility/src/zaqal/utility/Utility.scala:23:24
-      slot1_data_ftqPtr <= io_enq_bits_ftqPtr;	// utility/src/zaqal/utility/Utility.scala:23:24
-      slot1_data_epoch <= io_enq_bits_epoch;	// utility/src/zaqal/utility/Utility.scala:23:24
+    else begin	// utility/src/zaqal/utility/Utility.scala:24:24, :34:19, :38:24
+      slot1_data_pc <= io_enq_bits_pc;	// utility/src/zaqal/utility/Utility.scala:24:24
+      slot1_data_inst_raw <= io_enq_bits_inst_raw;	// utility/src/zaqal/utility/Utility.scala:24:24
+      slot1_data_pre_is_rvc <= io_enq_bits_pre_is_rvc;	// utility/src/zaqal/utility/Utility.scala:24:24
+      slot1_data_pre_is_call <= io_enq_bits_pre_is_call;	// utility/src/zaqal/utility/Utility.scala:24:24
+      slot1_data_pre_is_ret <= io_enq_bits_pre_is_ret;	// utility/src/zaqal/utility/Utility.scala:24:24
+      slot1_data_pre_expanded_inst <= io_enq_bits_pre_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:24:24
+      slot1_data_ftqPtr <= io_enq_bits_ftqPtr;	// utility/src/zaqal/utility/Utility.scala:24:24
+      slot1_data_is_predicted_taken <= io_enq_bits_is_predicted_taken;	// utility/src/zaqal/utility/Utility.scala:24:24
+      slot1_data_predicted_target <= io_enq_bits_predicted_target;	// utility/src/zaqal/utility/Utility.scala:24:24
+      slot1_data_epoch <= io_enq_bits_epoch;	// utility/src/zaqal/utility/Utility.scala:24:24
     end
     if (reset) begin	// utility/src/zaqal/utility/Utility.scala:13:7
-      slot0_valid <= 1'h0;	// utility/src/zaqal/utility/Utility.scala:22:28
-      slot1_valid <= 1'h0;	// utility/src/zaqal/utility/Utility.scala:22:28, :24:28
+      slot0_valid <= 1'h0;	// utility/src/zaqal/utility/Utility.scala:23:28
+      slot1_valid <= 1'h0;	// utility/src/zaqal/utility/Utility.scala:23:28, :25:28
     end
     else begin	// utility/src/zaqal/utility/Utility.scala:13:7
       slot0_valid <=
         ~io_flush
-        & (_GEN ? _GEN_0 | slot0_valid : io_deq_ready ? slot1_valid : slot0_valid);	// src/main/scala/chisel3/util/Decoupled.scala:51:35, utility/src/zaqal/utility/Utility.scala:22:28, :24:28, :30:19, :31:17, :34:24, :35:{26,61}, :38:21, :44:32, :47:19
+        & (_GEN ? _GEN_0 | slot0_valid : io_deq_ready ? slot1_valid : slot0_valid);	// src/main/scala/chisel3/util/Decoupled.scala:51:35, utility/src/zaqal/utility/Utility.scala:23:28, :25:28, :34:19, :35:17, :38:24, :39:{26,61}, :42:21, :48:32, :51:19
       slot1_valid <=
-        ~io_flush & (_GEN ? ~_GEN_0 | slot1_valid : ~io_deq_ready & slot1_valid);	// src/main/scala/chisel3/util/Decoupled.scala:51:35, utility/src/zaqal/utility/Utility.scala:24:28, :30:19, :31:17, :32:17, :34:24, :35:{26,61}, :42:21, :44:32, :48:19
+        ~io_flush & (_GEN ? ~_GEN_0 | slot1_valid : ~io_deq_ready & slot1_valid);	// src/main/scala/chisel3/util/Decoupled.scala:51:35, utility/src/zaqal/utility/Utility.scala:25:28, :34:19, :35:17, :36:17, :38:24, :39:{26,61}, :46:21, :48:32, :52:19
     end
   end // always @(posedge)
   `ifdef ENABLE_INITIAL_REG_	// utility/src/zaqal/utility/Utility.scala:13:7
     `ifdef FIRRTL_BEFORE_INITIAL	// utility/src/zaqal/utility/Utility.scala:13:7
       `FIRRTL_BEFORE_INITIAL	// utility/src/zaqal/utility/Utility.scala:13:7
     `endif // FIRRTL_BEFORE_INITIAL
-    logic [31:0] _RANDOM[0:201];	// utility/src/zaqal/utility/Utility.scala:13:7
+    logic [31:0] _RANDOM[0:12];	// utility/src/zaqal/utility/Utility.scala:13:7
     initial begin	// utility/src/zaqal/utility/Utility.scala:13:7
       `ifdef INIT_RANDOM_PROLOG_	// utility/src/zaqal/utility/Utility.scala:13:7
         `INIT_RANDOM_PROLOG_	// utility/src/zaqal/utility/Utility.scala:13:7
       `endif // INIT_RANDOM_PROLOG_
       `ifdef RANDOMIZE_REG_INIT	// utility/src/zaqal/utility/Utility.scala:13:7
-        for (logic [7:0] i = 8'h0; i < 8'hCA; i += 8'h1) begin
+        for (logic [3:0] i = 4'h0; i < 4'hD; i += 4'h1) begin
           _RANDOM[i] = `RANDOM;	// utility/src/zaqal/utility/Utility.scala:13:7
         end	// utility/src/zaqal/utility/Utility.scala:13:7
-        slot0_data_pc_0 = {_RANDOM[8'h0], _RANDOM[8'h1]};	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-        slot0_data_pc_1 = {_RANDOM[8'h2], _RANDOM[8'h3]};	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-        slot0_data_pc_2 = {_RANDOM[8'h4], _RANDOM[8'h5]};	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-        slot0_data_pc_3 = {_RANDOM[8'h6], _RANDOM[8'h7]};	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-        slot0_data_pc_4 = {_RANDOM[8'h8], _RANDOM[8'h9]};	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-        slot0_data_pc_5 = {_RANDOM[8'hA], _RANDOM[8'hB]};	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-        slot0_data_pc_6 = {_RANDOM[8'hC], _RANDOM[8'hD]};	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-        slot0_data_pc_7 = {_RANDOM[8'hE], _RANDOM[8'hF]};	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-        slot0_data_pc_8 = {_RANDOM[8'h10], _RANDOM[8'h11]};	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-        slot0_data_pc_9 = {_RANDOM[8'h12], _RANDOM[8'h13]};	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-        slot0_data_pc_10 = {_RANDOM[8'h14], _RANDOM[8'h15]};	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-        slot0_data_pc_11 = {_RANDOM[8'h16], _RANDOM[8'h17]};	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-        slot0_data_pc_12 = {_RANDOM[8'h18], _RANDOM[8'h19]};	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-        slot0_data_pc_13 = {_RANDOM[8'h1A], _RANDOM[8'h1B]};	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-        slot0_data_pc_14 = {_RANDOM[8'h1C], _RANDOM[8'h1D]};	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-        slot0_data_pc_15 = {_RANDOM[8'h1E], _RANDOM[8'h1F]};	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-        slot0_data_instructions_0 = _RANDOM[8'h20];	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-        slot0_data_instructions_1 = _RANDOM[8'h21];	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-        slot0_data_instructions_2 = _RANDOM[8'h22];	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-        slot0_data_instructions_3 = _RANDOM[8'h23];	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-        slot0_data_instructions_4 = _RANDOM[8'h24];	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-        slot0_data_instructions_5 = _RANDOM[8'h25];	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-        slot0_data_instructions_6 = _RANDOM[8'h26];	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-        slot0_data_instructions_7 = _RANDOM[8'h27];	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-        slot0_data_instructions_8 = _RANDOM[8'h28];	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-        slot0_data_instructions_9 = _RANDOM[8'h29];	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-        slot0_data_instructions_10 = _RANDOM[8'h2A];	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-        slot0_data_instructions_11 = _RANDOM[8'h2B];	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-        slot0_data_instructions_12 = _RANDOM[8'h2C];	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-        slot0_data_instructions_13 = _RANDOM[8'h2D];	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-        slot0_data_instructions_14 = _RANDOM[8'h2E];	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-        slot0_data_instructions_15 = _RANDOM[8'h2F];	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-        slot0_data_pre_decoded_0_is_rvc = _RANDOM[8'h30][0];	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-        slot0_data_pre_decoded_0_expanded_inst =
-          {_RANDOM[8'h30][31:2], _RANDOM[8'h31][1:0]};	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-        slot0_data_pre_decoded_1_is_rvc = _RANDOM[8'h31][2];	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-        slot0_data_pre_decoded_1_expanded_inst =
-          {_RANDOM[8'h31][31:4], _RANDOM[8'h32][3:0]};	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-        slot0_data_pre_decoded_2_is_rvc = _RANDOM[8'h32][4];	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-        slot0_data_pre_decoded_2_expanded_inst =
-          {_RANDOM[8'h32][31:6], _RANDOM[8'h33][5:0]};	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-        slot0_data_pre_decoded_3_is_rvc = _RANDOM[8'h33][6];	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-        slot0_data_pre_decoded_3_expanded_inst =
-          {_RANDOM[8'h33][31:8], _RANDOM[8'h34][7:0]};	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-        slot0_data_pre_decoded_4_is_rvc = _RANDOM[8'h34][8];	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-        slot0_data_pre_decoded_4_expanded_inst =
-          {_RANDOM[8'h34][31:10], _RANDOM[8'h35][9:0]};	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-        slot0_data_pre_decoded_5_is_rvc = _RANDOM[8'h35][10];	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-        slot0_data_pre_decoded_5_expanded_inst =
-          {_RANDOM[8'h35][31:12], _RANDOM[8'h36][11:0]};	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-        slot0_data_pre_decoded_6_is_rvc = _RANDOM[8'h36][12];	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-        slot0_data_pre_decoded_6_expanded_inst =
-          {_RANDOM[8'h36][31:14], _RANDOM[8'h37][13:0]};	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-        slot0_data_pre_decoded_7_is_rvc = _RANDOM[8'h37][14];	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-        slot0_data_pre_decoded_7_expanded_inst =
-          {_RANDOM[8'h37][31:16], _RANDOM[8'h38][15:0]};	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-        slot0_data_pre_decoded_8_is_rvc = _RANDOM[8'h38][16];	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-        slot0_data_pre_decoded_8_expanded_inst =
-          {_RANDOM[8'h38][31:18], _RANDOM[8'h39][17:0]};	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-        slot0_data_pre_decoded_9_is_rvc = _RANDOM[8'h39][18];	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-        slot0_data_pre_decoded_9_expanded_inst =
-          {_RANDOM[8'h39][31:20], _RANDOM[8'h3A][19:0]};	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-        slot0_data_pre_decoded_10_is_rvc = _RANDOM[8'h3A][20];	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-        slot0_data_pre_decoded_10_expanded_inst =
-          {_RANDOM[8'h3A][31:22], _RANDOM[8'h3B][21:0]};	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-        slot0_data_pre_decoded_11_is_rvc = _RANDOM[8'h3B][22];	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-        slot0_data_pre_decoded_11_expanded_inst =
-          {_RANDOM[8'h3B][31:24], _RANDOM[8'h3C][23:0]};	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-        slot0_data_pre_decoded_12_is_rvc = _RANDOM[8'h3C][24];	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-        slot0_data_pre_decoded_12_expanded_inst =
-          {_RANDOM[8'h3C][31:26], _RANDOM[8'h3D][25:0]};	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-        slot0_data_pre_decoded_13_is_rvc = _RANDOM[8'h3D][26];	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-        slot0_data_pre_decoded_13_expanded_inst =
-          {_RANDOM[8'h3D][31:28], _RANDOM[8'h3E][27:0]};	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-        slot0_data_pre_decoded_14_is_rvc = _RANDOM[8'h3E][28];	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-        slot0_data_pre_decoded_14_expanded_inst =
-          {_RANDOM[8'h3E][31:30], _RANDOM[8'h3F][29:0]};	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-        slot0_data_pre_decoded_15_is_rvc = _RANDOM[8'h3F][30];	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-        slot0_data_pre_decoded_15_expanded_inst = _RANDOM[8'h40];	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-        slot0_data_mask = _RANDOM[8'h41][15:0];	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-        slot0_data_prediction_taken = _RANDOM[8'h64][16];	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-        slot0_data_prediction_slot = _RANDOM[8'h64][20:17];	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-        slot0_data_ftqPtr = _RANDOM[8'h64][26:21];	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-        slot0_data_epoch = _RANDOM[8'h64][27];	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-        slot0_valid = _RANDOM[8'h64][28];	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24, :22:28
-        slot1_data_pc_0 = {_RANDOM[8'h64][31:29], _RANDOM[8'h65], _RANDOM[8'h66][28:0]};	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24, :23:24
-        slot1_data_pc_1 = {_RANDOM[8'h66][31:29], _RANDOM[8'h67], _RANDOM[8'h68][28:0]};	// utility/src/zaqal/utility/Utility.scala:13:7, :23:24
-        slot1_data_pc_2 = {_RANDOM[8'h68][31:29], _RANDOM[8'h69], _RANDOM[8'h6A][28:0]};	// utility/src/zaqal/utility/Utility.scala:13:7, :23:24
-        slot1_data_pc_3 = {_RANDOM[8'h6A][31:29], _RANDOM[8'h6B], _RANDOM[8'h6C][28:0]};	// utility/src/zaqal/utility/Utility.scala:13:7, :23:24
-        slot1_data_pc_4 = {_RANDOM[8'h6C][31:29], _RANDOM[8'h6D], _RANDOM[8'h6E][28:0]};	// utility/src/zaqal/utility/Utility.scala:13:7, :23:24
-        slot1_data_pc_5 = {_RANDOM[8'h6E][31:29], _RANDOM[8'h6F], _RANDOM[8'h70][28:0]};	// utility/src/zaqal/utility/Utility.scala:13:7, :23:24
-        slot1_data_pc_6 = {_RANDOM[8'h70][31:29], _RANDOM[8'h71], _RANDOM[8'h72][28:0]};	// utility/src/zaqal/utility/Utility.scala:13:7, :23:24
-        slot1_data_pc_7 = {_RANDOM[8'h72][31:29], _RANDOM[8'h73], _RANDOM[8'h74][28:0]};	// utility/src/zaqal/utility/Utility.scala:13:7, :23:24
-        slot1_data_pc_8 = {_RANDOM[8'h74][31:29], _RANDOM[8'h75], _RANDOM[8'h76][28:0]};	// utility/src/zaqal/utility/Utility.scala:13:7, :23:24
-        slot1_data_pc_9 = {_RANDOM[8'h76][31:29], _RANDOM[8'h77], _RANDOM[8'h78][28:0]};	// utility/src/zaqal/utility/Utility.scala:13:7, :23:24
-        slot1_data_pc_10 = {_RANDOM[8'h78][31:29], _RANDOM[8'h79], _RANDOM[8'h7A][28:0]};	// utility/src/zaqal/utility/Utility.scala:13:7, :23:24
-        slot1_data_pc_11 = {_RANDOM[8'h7A][31:29], _RANDOM[8'h7B], _RANDOM[8'h7C][28:0]};	// utility/src/zaqal/utility/Utility.scala:13:7, :23:24
-        slot1_data_pc_12 = {_RANDOM[8'h7C][31:29], _RANDOM[8'h7D], _RANDOM[8'h7E][28:0]};	// utility/src/zaqal/utility/Utility.scala:13:7, :23:24
-        slot1_data_pc_13 = {_RANDOM[8'h7E][31:29], _RANDOM[8'h7F], _RANDOM[8'h80][28:0]};	// utility/src/zaqal/utility/Utility.scala:13:7, :23:24
-        slot1_data_pc_14 = {_RANDOM[8'h80][31:29], _RANDOM[8'h81], _RANDOM[8'h82][28:0]};	// utility/src/zaqal/utility/Utility.scala:13:7, :23:24
-        slot1_data_pc_15 = {_RANDOM[8'h82][31:29], _RANDOM[8'h83], _RANDOM[8'h84][28:0]};	// utility/src/zaqal/utility/Utility.scala:13:7, :23:24
-        slot1_data_instructions_0 = {_RANDOM[8'h84][31:29], _RANDOM[8'h85][28:0]};	// utility/src/zaqal/utility/Utility.scala:13:7, :23:24
-        slot1_data_instructions_1 = {_RANDOM[8'h85][31:29], _RANDOM[8'h86][28:0]};	// utility/src/zaqal/utility/Utility.scala:13:7, :23:24
-        slot1_data_instructions_2 = {_RANDOM[8'h86][31:29], _RANDOM[8'h87][28:0]};	// utility/src/zaqal/utility/Utility.scala:13:7, :23:24
-        slot1_data_instructions_3 = {_RANDOM[8'h87][31:29], _RANDOM[8'h88][28:0]};	// utility/src/zaqal/utility/Utility.scala:13:7, :23:24
-        slot1_data_instructions_4 = {_RANDOM[8'h88][31:29], _RANDOM[8'h89][28:0]};	// utility/src/zaqal/utility/Utility.scala:13:7, :23:24
-        slot1_data_instructions_5 = {_RANDOM[8'h89][31:29], _RANDOM[8'h8A][28:0]};	// utility/src/zaqal/utility/Utility.scala:13:7, :23:24
-        slot1_data_instructions_6 = {_RANDOM[8'h8A][31:29], _RANDOM[8'h8B][28:0]};	// utility/src/zaqal/utility/Utility.scala:13:7, :23:24
-        slot1_data_instructions_7 = {_RANDOM[8'h8B][31:29], _RANDOM[8'h8C][28:0]};	// utility/src/zaqal/utility/Utility.scala:13:7, :23:24
-        slot1_data_instructions_8 = {_RANDOM[8'h8C][31:29], _RANDOM[8'h8D][28:0]};	// utility/src/zaqal/utility/Utility.scala:13:7, :23:24
-        slot1_data_instructions_9 = {_RANDOM[8'h8D][31:29], _RANDOM[8'h8E][28:0]};	// utility/src/zaqal/utility/Utility.scala:13:7, :23:24
-        slot1_data_instructions_10 = {_RANDOM[8'h8E][31:29], _RANDOM[8'h8F][28:0]};	// utility/src/zaqal/utility/Utility.scala:13:7, :23:24
-        slot1_data_instructions_11 = {_RANDOM[8'h8F][31:29], _RANDOM[8'h90][28:0]};	// utility/src/zaqal/utility/Utility.scala:13:7, :23:24
-        slot1_data_instructions_12 = {_RANDOM[8'h90][31:29], _RANDOM[8'h91][28:0]};	// utility/src/zaqal/utility/Utility.scala:13:7, :23:24
-        slot1_data_instructions_13 = {_RANDOM[8'h91][31:29], _RANDOM[8'h92][28:0]};	// utility/src/zaqal/utility/Utility.scala:13:7, :23:24
-        slot1_data_instructions_14 = {_RANDOM[8'h92][31:29], _RANDOM[8'h93][28:0]};	// utility/src/zaqal/utility/Utility.scala:13:7, :23:24
-        slot1_data_instructions_15 = {_RANDOM[8'h93][31:29], _RANDOM[8'h94][28:0]};	// utility/src/zaqal/utility/Utility.scala:13:7, :23:24
-        slot1_data_pre_decoded_0_is_rvc = _RANDOM[8'h94][29];	// utility/src/zaqal/utility/Utility.scala:13:7, :23:24
-        slot1_data_pre_decoded_0_expanded_inst =
-          {_RANDOM[8'h94][31], _RANDOM[8'h95][30:0]};	// utility/src/zaqal/utility/Utility.scala:13:7, :23:24
-        slot1_data_pre_decoded_1_is_rvc = _RANDOM[8'h95][31];	// utility/src/zaqal/utility/Utility.scala:13:7, :23:24
-        slot1_data_pre_decoded_1_expanded_inst =
-          {_RANDOM[8'h96][31:1], _RANDOM[8'h97][0]};	// utility/src/zaqal/utility/Utility.scala:13:7, :23:24
-        slot1_data_pre_decoded_2_is_rvc = _RANDOM[8'h97][1];	// utility/src/zaqal/utility/Utility.scala:13:7, :23:24
-        slot1_data_pre_decoded_2_expanded_inst =
-          {_RANDOM[8'h97][31:3], _RANDOM[8'h98][2:0]};	// utility/src/zaqal/utility/Utility.scala:13:7, :23:24
-        slot1_data_pre_decoded_3_is_rvc = _RANDOM[8'h98][3];	// utility/src/zaqal/utility/Utility.scala:13:7, :23:24
-        slot1_data_pre_decoded_3_expanded_inst =
-          {_RANDOM[8'h98][31:5], _RANDOM[8'h99][4:0]};	// utility/src/zaqal/utility/Utility.scala:13:7, :23:24
-        slot1_data_pre_decoded_4_is_rvc = _RANDOM[8'h99][5];	// utility/src/zaqal/utility/Utility.scala:13:7, :23:24
-        slot1_data_pre_decoded_4_expanded_inst =
-          {_RANDOM[8'h99][31:7], _RANDOM[8'h9A][6:0]};	// utility/src/zaqal/utility/Utility.scala:13:7, :23:24
-        slot1_data_pre_decoded_5_is_rvc = _RANDOM[8'h9A][7];	// utility/src/zaqal/utility/Utility.scala:13:7, :23:24
-        slot1_data_pre_decoded_5_expanded_inst =
-          {_RANDOM[8'h9A][31:9], _RANDOM[8'h9B][8:0]};	// utility/src/zaqal/utility/Utility.scala:13:7, :23:24
-        slot1_data_pre_decoded_6_is_rvc = _RANDOM[8'h9B][9];	// utility/src/zaqal/utility/Utility.scala:13:7, :23:24
-        slot1_data_pre_decoded_6_expanded_inst =
-          {_RANDOM[8'h9B][31:11], _RANDOM[8'h9C][10:0]};	// utility/src/zaqal/utility/Utility.scala:13:7, :23:24
-        slot1_data_pre_decoded_7_is_rvc = _RANDOM[8'h9C][11];	// utility/src/zaqal/utility/Utility.scala:13:7, :23:24
-        slot1_data_pre_decoded_7_expanded_inst =
-          {_RANDOM[8'h9C][31:13], _RANDOM[8'h9D][12:0]};	// utility/src/zaqal/utility/Utility.scala:13:7, :23:24
-        slot1_data_pre_decoded_8_is_rvc = _RANDOM[8'h9D][13];	// utility/src/zaqal/utility/Utility.scala:13:7, :23:24
-        slot1_data_pre_decoded_8_expanded_inst =
-          {_RANDOM[8'h9D][31:15], _RANDOM[8'h9E][14:0]};	// utility/src/zaqal/utility/Utility.scala:13:7, :23:24
-        slot1_data_pre_decoded_9_is_rvc = _RANDOM[8'h9E][15];	// utility/src/zaqal/utility/Utility.scala:13:7, :23:24
-        slot1_data_pre_decoded_9_expanded_inst =
-          {_RANDOM[8'h9E][31:17], _RANDOM[8'h9F][16:0]};	// utility/src/zaqal/utility/Utility.scala:13:7, :23:24
-        slot1_data_pre_decoded_10_is_rvc = _RANDOM[8'h9F][17];	// utility/src/zaqal/utility/Utility.scala:13:7, :23:24
-        slot1_data_pre_decoded_10_expanded_inst =
-          {_RANDOM[8'h9F][31:19], _RANDOM[8'hA0][18:0]};	// utility/src/zaqal/utility/Utility.scala:13:7, :23:24
-        slot1_data_pre_decoded_11_is_rvc = _RANDOM[8'hA0][19];	// utility/src/zaqal/utility/Utility.scala:13:7, :23:24
-        slot1_data_pre_decoded_11_expanded_inst =
-          {_RANDOM[8'hA0][31:21], _RANDOM[8'hA1][20:0]};	// utility/src/zaqal/utility/Utility.scala:13:7, :23:24
-        slot1_data_pre_decoded_12_is_rvc = _RANDOM[8'hA1][21];	// utility/src/zaqal/utility/Utility.scala:13:7, :23:24
-        slot1_data_pre_decoded_12_expanded_inst =
-          {_RANDOM[8'hA1][31:23], _RANDOM[8'hA2][22:0]};	// utility/src/zaqal/utility/Utility.scala:13:7, :23:24
-        slot1_data_pre_decoded_13_is_rvc = _RANDOM[8'hA2][23];	// utility/src/zaqal/utility/Utility.scala:13:7, :23:24
-        slot1_data_pre_decoded_13_expanded_inst =
-          {_RANDOM[8'hA2][31:25], _RANDOM[8'hA3][24:0]};	// utility/src/zaqal/utility/Utility.scala:13:7, :23:24
-        slot1_data_pre_decoded_14_is_rvc = _RANDOM[8'hA3][25];	// utility/src/zaqal/utility/Utility.scala:13:7, :23:24
-        slot1_data_pre_decoded_14_expanded_inst =
-          {_RANDOM[8'hA3][31:27], _RANDOM[8'hA4][26:0]};	// utility/src/zaqal/utility/Utility.scala:13:7, :23:24
-        slot1_data_pre_decoded_15_is_rvc = _RANDOM[8'hA4][27];	// utility/src/zaqal/utility/Utility.scala:13:7, :23:24
-        slot1_data_pre_decoded_15_expanded_inst =
-          {_RANDOM[8'hA4][31:29], _RANDOM[8'hA5][28:0]};	// utility/src/zaqal/utility/Utility.scala:13:7, :23:24
-        slot1_data_mask = {_RANDOM[8'hA5][31:29], _RANDOM[8'hA6][12:0]};	// utility/src/zaqal/utility/Utility.scala:13:7, :23:24
-        slot1_data_prediction_taken = _RANDOM[8'hC9][13];	// utility/src/zaqal/utility/Utility.scala:13:7, :23:24
-        slot1_data_prediction_slot = _RANDOM[8'hC9][17:14];	// utility/src/zaqal/utility/Utility.scala:13:7, :23:24
-        slot1_data_ftqPtr = _RANDOM[8'hC9][23:18];	// utility/src/zaqal/utility/Utility.scala:13:7, :23:24
-        slot1_data_epoch = _RANDOM[8'hC9][24];	// utility/src/zaqal/utility/Utility.scala:13:7, :23:24
-        slot1_valid = _RANDOM[8'hC9][25];	// utility/src/zaqal/utility/Utility.scala:13:7, :23:24, :24:28
+        slot0_data_pc = {_RANDOM[4'h0], _RANDOM[4'h1]};	// utility/src/zaqal/utility/Utility.scala:13:7, :22:24
+        slot0_data_inst_raw = _RANDOM[4'h2];	// utility/src/zaqal/utility/Utility.scala:13:7, :22:24
+        slot0_data_pre_is_rvc = _RANDOM[4'h3][0];	// utility/src/zaqal/utility/Utility.scala:13:7, :22:24
+        slot0_data_pre_is_call = _RANDOM[4'h3][2];	// utility/src/zaqal/utility/Utility.scala:13:7, :22:24
+        slot0_data_pre_is_ret = _RANDOM[4'h3][3];	// utility/src/zaqal/utility/Utility.scala:13:7, :22:24
+        slot0_data_pre_expanded_inst = {_RANDOM[4'h3][31:4], _RANDOM[4'h4][3:0]};	// utility/src/zaqal/utility/Utility.scala:13:7, :22:24
+        slot0_data_ftqPtr = _RANDOM[4'h4][9:4];	// utility/src/zaqal/utility/Utility.scala:13:7, :22:24
+        slot0_data_is_predicted_taken = _RANDOM[4'h4][10];	// utility/src/zaqal/utility/Utility.scala:13:7, :22:24
+        slot0_data_predicted_target =
+          {_RANDOM[4'h4][31:11], _RANDOM[4'h5], _RANDOM[4'h6][10:0]};	// utility/src/zaqal/utility/Utility.scala:13:7, :22:24
+        slot0_data_epoch = _RANDOM[4'h6][11];	// utility/src/zaqal/utility/Utility.scala:13:7, :22:24
+        slot0_valid = _RANDOM[4'h6][12];	// utility/src/zaqal/utility/Utility.scala:13:7, :22:24, :23:28
+        slot1_data_pc = {_RANDOM[4'h6][31:13], _RANDOM[4'h7], _RANDOM[4'h8][12:0]};	// utility/src/zaqal/utility/Utility.scala:13:7, :22:24, :24:24
+        slot1_data_inst_raw = {_RANDOM[4'h8][31:13], _RANDOM[4'h9][12:0]};	// utility/src/zaqal/utility/Utility.scala:13:7, :24:24
+        slot1_data_pre_is_rvc = _RANDOM[4'h9][13];	// utility/src/zaqal/utility/Utility.scala:13:7, :24:24
+        slot1_data_pre_is_call = _RANDOM[4'h9][15];	// utility/src/zaqal/utility/Utility.scala:13:7, :24:24
+        slot1_data_pre_is_ret = _RANDOM[4'h9][16];	// utility/src/zaqal/utility/Utility.scala:13:7, :24:24
+        slot1_data_pre_expanded_inst = {_RANDOM[4'h9][31:17], _RANDOM[4'hA][16:0]};	// utility/src/zaqal/utility/Utility.scala:13:7, :24:24
+        slot1_data_ftqPtr = _RANDOM[4'hA][22:17];	// utility/src/zaqal/utility/Utility.scala:13:7, :24:24
+        slot1_data_is_predicted_taken = _RANDOM[4'hA][23];	// utility/src/zaqal/utility/Utility.scala:13:7, :24:24
+        slot1_data_predicted_target =
+          {_RANDOM[4'hA][31:24], _RANDOM[4'hB], _RANDOM[4'hC][23:0]};	// utility/src/zaqal/utility/Utility.scala:13:7, :24:24
+        slot1_data_epoch = _RANDOM[4'hC][24];	// utility/src/zaqal/utility/Utility.scala:13:7, :24:24
+        slot1_valid = _RANDOM[4'hC][25];	// utility/src/zaqal/utility/Utility.scala:13:7, :24:24, :25:28
       `endif // RANDOMIZE_REG_INIT
     end // initial
     `ifdef FIRRTL_AFTER_INITIAL	// utility/src/zaqal/utility/Utility.scala:13:7
       `FIRRTL_AFTER_INITIAL	// utility/src/zaqal/utility/Utility.scala:13:7
     `endif // FIRRTL_AFTER_INITIAL
   `endif // ENABLE_INITIAL_REG_
-  assign io_enq_ready = ~slot1_valid;	// utility/src/zaqal/utility/Utility.scala:13:7, :24:28, :28:19
-  assign io_deq_valid = slot0_valid;	// utility/src/zaqal/utility/Utility.scala:13:7, :22:28
-  assign io_deq_bits_pc_0 = slot0_data_pc_0;	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-  assign io_deq_bits_pc_1 = slot0_data_pc_1;	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-  assign io_deq_bits_pc_2 = slot0_data_pc_2;	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-  assign io_deq_bits_pc_3 = slot0_data_pc_3;	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-  assign io_deq_bits_pc_4 = slot0_data_pc_4;	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-  assign io_deq_bits_pc_5 = slot0_data_pc_5;	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-  assign io_deq_bits_pc_6 = slot0_data_pc_6;	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-  assign io_deq_bits_pc_7 = slot0_data_pc_7;	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-  assign io_deq_bits_pc_8 = slot0_data_pc_8;	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-  assign io_deq_bits_pc_9 = slot0_data_pc_9;	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-  assign io_deq_bits_pc_10 = slot0_data_pc_10;	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-  assign io_deq_bits_pc_11 = slot0_data_pc_11;	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-  assign io_deq_bits_pc_12 = slot0_data_pc_12;	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-  assign io_deq_bits_pc_13 = slot0_data_pc_13;	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-  assign io_deq_bits_pc_14 = slot0_data_pc_14;	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-  assign io_deq_bits_pc_15 = slot0_data_pc_15;	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-  assign io_deq_bits_instructions_0 = slot0_data_instructions_0;	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-  assign io_deq_bits_instructions_1 = slot0_data_instructions_1;	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-  assign io_deq_bits_instructions_2 = slot0_data_instructions_2;	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-  assign io_deq_bits_instructions_3 = slot0_data_instructions_3;	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-  assign io_deq_bits_instructions_4 = slot0_data_instructions_4;	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-  assign io_deq_bits_instructions_5 = slot0_data_instructions_5;	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-  assign io_deq_bits_instructions_6 = slot0_data_instructions_6;	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-  assign io_deq_bits_instructions_7 = slot0_data_instructions_7;	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-  assign io_deq_bits_instructions_8 = slot0_data_instructions_8;	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-  assign io_deq_bits_instructions_9 = slot0_data_instructions_9;	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-  assign io_deq_bits_instructions_10 = slot0_data_instructions_10;	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-  assign io_deq_bits_instructions_11 = slot0_data_instructions_11;	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-  assign io_deq_bits_instructions_12 = slot0_data_instructions_12;	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-  assign io_deq_bits_instructions_13 = slot0_data_instructions_13;	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-  assign io_deq_bits_instructions_14 = slot0_data_instructions_14;	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-  assign io_deq_bits_instructions_15 = slot0_data_instructions_15;	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-  assign io_deq_bits_pre_decoded_0_is_rvc = slot0_data_pre_decoded_0_is_rvc;	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-  assign io_deq_bits_pre_decoded_0_expanded_inst = slot0_data_pre_decoded_0_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-  assign io_deq_bits_pre_decoded_1_is_rvc = slot0_data_pre_decoded_1_is_rvc;	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-  assign io_deq_bits_pre_decoded_1_expanded_inst = slot0_data_pre_decoded_1_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-  assign io_deq_bits_pre_decoded_2_is_rvc = slot0_data_pre_decoded_2_is_rvc;	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-  assign io_deq_bits_pre_decoded_2_expanded_inst = slot0_data_pre_decoded_2_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-  assign io_deq_bits_pre_decoded_3_is_rvc = slot0_data_pre_decoded_3_is_rvc;	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-  assign io_deq_bits_pre_decoded_3_expanded_inst = slot0_data_pre_decoded_3_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-  assign io_deq_bits_pre_decoded_4_is_rvc = slot0_data_pre_decoded_4_is_rvc;	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-  assign io_deq_bits_pre_decoded_4_expanded_inst = slot0_data_pre_decoded_4_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-  assign io_deq_bits_pre_decoded_5_is_rvc = slot0_data_pre_decoded_5_is_rvc;	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-  assign io_deq_bits_pre_decoded_5_expanded_inst = slot0_data_pre_decoded_5_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-  assign io_deq_bits_pre_decoded_6_is_rvc = slot0_data_pre_decoded_6_is_rvc;	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-  assign io_deq_bits_pre_decoded_6_expanded_inst = slot0_data_pre_decoded_6_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-  assign io_deq_bits_pre_decoded_7_is_rvc = slot0_data_pre_decoded_7_is_rvc;	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-  assign io_deq_bits_pre_decoded_7_expanded_inst = slot0_data_pre_decoded_7_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-  assign io_deq_bits_pre_decoded_8_is_rvc = slot0_data_pre_decoded_8_is_rvc;	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-  assign io_deq_bits_pre_decoded_8_expanded_inst = slot0_data_pre_decoded_8_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-  assign io_deq_bits_pre_decoded_9_is_rvc = slot0_data_pre_decoded_9_is_rvc;	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-  assign io_deq_bits_pre_decoded_9_expanded_inst = slot0_data_pre_decoded_9_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-  assign io_deq_bits_pre_decoded_10_is_rvc = slot0_data_pre_decoded_10_is_rvc;	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-  assign io_deq_bits_pre_decoded_10_expanded_inst =
-    slot0_data_pre_decoded_10_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-  assign io_deq_bits_pre_decoded_11_is_rvc = slot0_data_pre_decoded_11_is_rvc;	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-  assign io_deq_bits_pre_decoded_11_expanded_inst =
-    slot0_data_pre_decoded_11_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-  assign io_deq_bits_pre_decoded_12_is_rvc = slot0_data_pre_decoded_12_is_rvc;	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-  assign io_deq_bits_pre_decoded_12_expanded_inst =
-    slot0_data_pre_decoded_12_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-  assign io_deq_bits_pre_decoded_13_is_rvc = slot0_data_pre_decoded_13_is_rvc;	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-  assign io_deq_bits_pre_decoded_13_expanded_inst =
-    slot0_data_pre_decoded_13_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-  assign io_deq_bits_pre_decoded_14_is_rvc = slot0_data_pre_decoded_14_is_rvc;	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-  assign io_deq_bits_pre_decoded_14_expanded_inst =
-    slot0_data_pre_decoded_14_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-  assign io_deq_bits_pre_decoded_15_is_rvc = slot0_data_pre_decoded_15_is_rvc;	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-  assign io_deq_bits_pre_decoded_15_expanded_inst =
-    slot0_data_pre_decoded_15_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-  assign io_deq_bits_mask = slot0_data_mask;	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-  assign io_deq_bits_prediction_taken = slot0_data_prediction_taken;	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-  assign io_deq_bits_prediction_slot = slot0_data_prediction_slot;	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-  assign io_deq_bits_ftqPtr = slot0_data_ftqPtr;	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-  assign io_deq_bits_epoch = slot0_data_epoch;	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
+  assign io_enq_ready = ~slot1_valid;	// utility/src/zaqal/utility/Utility.scala:13:7, :25:28, :32:19
+  assign io_deq_valid = slot0_valid;	// utility/src/zaqal/utility/Utility.scala:13:7, :23:28
+  assign io_deq_bits_pc = slot0_data_pc;	// utility/src/zaqal/utility/Utility.scala:13:7, :22:24
+  assign io_deq_bits_inst_raw = slot0_data_inst_raw;	// utility/src/zaqal/utility/Utility.scala:13:7, :22:24
+  assign io_deq_bits_pre_is_rvc = slot0_data_pre_is_rvc;	// utility/src/zaqal/utility/Utility.scala:13:7, :22:24
+  assign io_deq_bits_pre_is_call = slot0_data_pre_is_call;	// utility/src/zaqal/utility/Utility.scala:13:7, :22:24
+  assign io_deq_bits_pre_is_ret = slot0_data_pre_is_ret;	// utility/src/zaqal/utility/Utility.scala:13:7, :22:24
+  assign io_deq_bits_pre_expanded_inst = slot0_data_pre_expanded_inst;	// utility/src/zaqal/utility/Utility.scala:13:7, :22:24
+  assign io_deq_bits_ftqPtr = slot0_data_ftqPtr;	// utility/src/zaqal/utility/Utility.scala:13:7, :22:24
+  assign io_deq_bits_is_predicted_taken = slot0_data_is_predicted_taken;	// utility/src/zaqal/utility/Utility.scala:13:7, :22:24
+  assign io_deq_bits_predicted_target = slot0_data_predicted_target;	// utility/src/zaqal/utility/Utility.scala:13:7, :22:24
+  assign io_deq_bits_epoch = slot0_data_epoch;	// utility/src/zaqal/utility/Utility.scala:13:7, :22:24
 endmodule
 

@@ -66,70 +66,68 @@
   `endif // PRINTF_COND
 `endif // not def PRINTF_COND_
 
-module LSU(	// backend/src/zaqal/backend/fu/LSU.scala:8:7
-  input          clock,	// backend/src/zaqal/backend/fu/LSU.scala:8:7
-                 reset,	// backend/src/zaqal/backend/fu/LSU.scala:8:7
-  input  [63:0]  io_src1,	// backend/src/zaqal/backend/fu/LSU.scala:9:14
-                 io_src2,	// backend/src/zaqal/backend/fu/LSU.scala:9:14
-  input          io_dec_is_lb,	// backend/src/zaqal/backend/fu/LSU.scala:9:14
-                 io_dec_is_lh,	// backend/src/zaqal/backend/fu/LSU.scala:9:14
-                 io_dec_is_lw,	// backend/src/zaqal/backend/fu/LSU.scala:9:14
-                 io_dec_is_ld,	// backend/src/zaqal/backend/fu/LSU.scala:9:14
-                 io_dec_is_lbu,	// backend/src/zaqal/backend/fu/LSU.scala:9:14
-                 io_dec_is_lhu,	// backend/src/zaqal/backend/fu/LSU.scala:9:14
-                 io_dec_is_lwu,	// backend/src/zaqal/backend/fu/LSU.scala:9:14
-                 io_dec_is_sb,	// backend/src/zaqal/backend/fu/LSU.scala:9:14
-                 io_dec_is_sh,	// backend/src/zaqal/backend/fu/LSU.scala:9:14
-                 io_dec_is_sw,	// backend/src/zaqal/backend/fu/LSU.scala:9:14
-                 io_dec_is_sd,	// backend/src/zaqal/backend/fu/LSU.scala:9:14
-                 io_dec_is_store,	// backend/src/zaqal/backend/fu/LSU.scala:9:14
-                 io_dec_is_lr,	// backend/src/zaqal/backend/fu/LSU.scala:9:14
-                 io_dec_is_sc,	// backend/src/zaqal/backend/fu/LSU.scala:9:14
-                 io_dec_is_lr_w,	// backend/src/zaqal/backend/fu/LSU.scala:9:14
-                 io_dec_is_lr_d,	// backend/src/zaqal/backend/fu/LSU.scala:9:14
-                 io_dec_is_sc_w,	// backend/src/zaqal/backend/fu/LSU.scala:9:14
-                 io_dec_is_sc_d,	// backend/src/zaqal/backend/fu/LSU.scala:9:14
-                 io_dec_is_amoadd,	// backend/src/zaqal/backend/fu/LSU.scala:9:14
-                 io_dec_is_amoswap,	// backend/src/zaqal/backend/fu/LSU.scala:9:14
-                 io_dec_is_amoxor,	// backend/src/zaqal/backend/fu/LSU.scala:9:14
-                 io_dec_is_amoand,	// backend/src/zaqal/backend/fu/LSU.scala:9:14
-                 io_dec_is_amoor,	// backend/src/zaqal/backend/fu/LSU.scala:9:14
-                 io_dec_is_amomin,	// backend/src/zaqal/backend/fu/LSU.scala:9:14
-                 io_dec_is_amomax,	// backend/src/zaqal/backend/fu/LSU.scala:9:14
-                 io_dec_is_amominu,	// backend/src/zaqal/backend/fu/LSU.scala:9:14
-                 io_dec_is_amomaxu,	// backend/src/zaqal/backend/fu/LSU.scala:9:14
-                 io_dec_is_amo_w,	// backend/src/zaqal/backend/fu/LSU.scala:9:14
-                 io_dec_is_amo_d,	// backend/src/zaqal/backend/fu/LSU.scala:9:14
-                 io_dec_is_flw,	// backend/src/zaqal/backend/fu/LSU.scala:9:14
-                 io_dec_is_fld,	// backend/src/zaqal/backend/fu/LSU.scala:9:14
-                 io_dec_is_fstore,	// backend/src/zaqal/backend/fu/LSU.scala:9:14
-                 io_dec_is_fsw,	// backend/src/zaqal/backend/fu/LSU.scala:9:14
-                 io_dec_is_fsd,	// backend/src/zaqal/backend/fu/LSU.scala:9:14
-  output [63:0]  io_mem_addr,	// backend/src/zaqal/backend/fu/LSU.scala:9:14
-  input  [127:0] io_mem_data,	// backend/src/zaqal/backend/fu/LSU.scala:9:14
-  output         io_mem_wen,	// backend/src/zaqal/backend/fu/LSU.scala:9:14
-  output [15:0]  io_mem_wmask,	// backend/src/zaqal/backend/fu/LSU.scala:9:14
-  output [127:0] io_mem_wdata,	// backend/src/zaqal/backend/fu/LSU.scala:9:14
-  output [63:0]  io_result	// backend/src/zaqal/backend/fu/LSU.scala:9:14
+module LSU(	// backend/src/zaqal/backend/exu/LSU.scala:8:7
+  input          clock,	// backend/src/zaqal/backend/exu/LSU.scala:8:7
+                 reset,	// backend/src/zaqal/backend/exu/LSU.scala:8:7
+  input  [63:0]  io_src1,	// backend/src/zaqal/backend/exu/LSU.scala:9:14
+                 io_src2,	// backend/src/zaqal/backend/exu/LSU.scala:9:14
+  input          io_dec_is_lb,	// backend/src/zaqal/backend/exu/LSU.scala:9:14
+                 io_dec_is_lh,	// backend/src/zaqal/backend/exu/LSU.scala:9:14
+                 io_dec_is_lw,	// backend/src/zaqal/backend/exu/LSU.scala:9:14
+                 io_dec_is_ld,	// backend/src/zaqal/backend/exu/LSU.scala:9:14
+                 io_dec_is_lbu,	// backend/src/zaqal/backend/exu/LSU.scala:9:14
+                 io_dec_is_lhu,	// backend/src/zaqal/backend/exu/LSU.scala:9:14
+                 io_dec_is_lwu,	// backend/src/zaqal/backend/exu/LSU.scala:9:14
+                 io_dec_is_sb,	// backend/src/zaqal/backend/exu/LSU.scala:9:14
+                 io_dec_is_sh,	// backend/src/zaqal/backend/exu/LSU.scala:9:14
+                 io_dec_is_sw,	// backend/src/zaqal/backend/exu/LSU.scala:9:14
+                 io_dec_is_sd,	// backend/src/zaqal/backend/exu/LSU.scala:9:14
+                 io_dec_is_store,	// backend/src/zaqal/backend/exu/LSU.scala:9:14
+                 io_dec_is_lr,	// backend/src/zaqal/backend/exu/LSU.scala:9:14
+                 io_dec_is_sc,	// backend/src/zaqal/backend/exu/LSU.scala:9:14
+                 io_dec_is_lr_w,	// backend/src/zaqal/backend/exu/LSU.scala:9:14
+                 io_dec_is_lr_d,	// backend/src/zaqal/backend/exu/LSU.scala:9:14
+                 io_dec_is_sc_w,	// backend/src/zaqal/backend/exu/LSU.scala:9:14
+                 io_dec_is_sc_d,	// backend/src/zaqal/backend/exu/LSU.scala:9:14
+                 io_dec_is_amoadd,	// backend/src/zaqal/backend/exu/LSU.scala:9:14
+                 io_dec_is_amoswap,	// backend/src/zaqal/backend/exu/LSU.scala:9:14
+                 io_dec_is_amoxor,	// backend/src/zaqal/backend/exu/LSU.scala:9:14
+                 io_dec_is_amoand,	// backend/src/zaqal/backend/exu/LSU.scala:9:14
+                 io_dec_is_amoor,	// backend/src/zaqal/backend/exu/LSU.scala:9:14
+                 io_dec_is_amomin,	// backend/src/zaqal/backend/exu/LSU.scala:9:14
+                 io_dec_is_amomax,	// backend/src/zaqal/backend/exu/LSU.scala:9:14
+                 io_dec_is_amominu,	// backend/src/zaqal/backend/exu/LSU.scala:9:14
+                 io_dec_is_amomaxu,	// backend/src/zaqal/backend/exu/LSU.scala:9:14
+                 io_dec_is_amo_w,	// backend/src/zaqal/backend/exu/LSU.scala:9:14
+                 io_dec_is_amo_d,	// backend/src/zaqal/backend/exu/LSU.scala:9:14
+                 io_dec_is_flw,	// backend/src/zaqal/backend/exu/LSU.scala:9:14
+                 io_dec_is_fld,	// backend/src/zaqal/backend/exu/LSU.scala:9:14
+                 io_dec_is_fsw,	// backend/src/zaqal/backend/exu/LSU.scala:9:14
+                 io_dec_is_fsd,	// backend/src/zaqal/backend/exu/LSU.scala:9:14
+  output [63:0]  io_mem_addr,	// backend/src/zaqal/backend/exu/LSU.scala:9:14
+  input  [127:0] io_mem_data,	// backend/src/zaqal/backend/exu/LSU.scala:9:14
+  output [15:0]  io_mem_wmask,	// backend/src/zaqal/backend/exu/LSU.scala:9:14
+  output [127:0] io_mem_wdata,	// backend/src/zaqal/backend/exu/LSU.scala:9:14
+  output [63:0]  io_result	// backend/src/zaqal/backend/exu/LSU.scala:9:14
 );
 
-  reg          reserve_valid;	// backend/src/zaqal/backend/fu/LSU.scala:26:30
-  reg  [63:0]  reserve_addr;	// backend/src/zaqal/backend/fu/LSU.scala:27:30
-  wire [127:0] shifted_data = io_mem_data >> {122'h0, io_src1[2:0], 3'h0};	// backend/src/zaqal/backend/fu/LSU.scala:35:20, :38:{34,45}
-  wire [31:0]  _GEN = {32{shifted_data[31]}};	// backend/src/zaqal/backend/fu/LSU.scala:38:34, :51:42
-  wire [22:0]  _GEN_0 = {20'h0, io_src1[2:0]};	// backend/src/zaqal/backend/fu/LSU.scala:35:20, :85:30
-  wire [22:0]  _wmask_T = 23'h1 << _GEN_0;	// backend/src/zaqal/backend/fu/LSU.scala:85:30
-  wire [190:0] _GEN_1 = {185'h0, io_src1[2:0], 3'h0};	// backend/src/zaqal/backend/fu/LSU.scala:35:20, :38:45, :86:42
-  wire [190:0] _wdata_T_3 = {183'h0, io_src2[7:0]} << _GEN_1;	// backend/src/zaqal/backend/fu/LSU.scala:86:{21,42}
-  wire [22:0]  _wmask_T_1 = 23'h3 << _GEN_0;	// backend/src/zaqal/backend/fu/LSU.scala:85:30, :88:30
-  wire [190:0] _wdata_T_7 = {175'h0, io_src2[15:0]} << _GEN_1;	// backend/src/zaqal/backend/fu/LSU.scala:86:42, :89:{21,43}
-  wire         _GEN_2 = io_dec_is_sw | io_dec_is_sc_w | io_dec_is_fsw;	// backend/src/zaqal/backend/fu/LSU.scala:90:46
-  wire [22:0]  _wmask_T_2 = 23'hF << _GEN_0;	// backend/src/zaqal/backend/fu/LSU.scala:85:30, :91:30
-  wire [190:0] _wdata_T_11 = {159'h0, io_src2[31:0]} << _GEN_1;	// backend/src/zaqal/backend/fu/LSU.scala:86:42, :92:{21,43}
-  wire         _GEN_3 = io_dec_is_sd | io_dec_is_sc_d | io_dec_is_fsd;	// backend/src/zaqal/backend/fu/LSU.scala:93:46
-  wire [22:0]  _wmask_T_3 = 23'hFF << _GEN_0;	// backend/src/zaqal/backend/fu/LSU.scala:85:30, :94:30
-  wire [190:0] _wdata_T_15 = {127'h0, io_src2} << _GEN_1;	// backend/src/zaqal/backend/fu/LSU.scala:86:42, :95:43
-  wire [22:0]  _wmask_T_4 = 23'hF << _GEN_0;	// backend/src/zaqal/backend/fu/LSU.scala:85:30, :91:30, :121:30
+  reg          reserve_valid;	// backend/src/zaqal/backend/exu/LSU.scala:26:30
+  reg  [63:0]  reserve_addr;	// backend/src/zaqal/backend/exu/LSU.scala:27:30
+  wire [127:0] shifted_data = io_mem_data >> {122'h0, io_src1[2:0], 3'h0};	// backend/src/zaqal/backend/exu/LSU.scala:35:20, :38:{34,45}
+  wire [31:0]  _GEN = {32{shifted_data[31]}};	// backend/src/zaqal/backend/exu/LSU.scala:38:34, :51:42
+  wire [22:0]  _GEN_0 = {20'h0, io_src1[2:0]};	// backend/src/zaqal/backend/exu/LSU.scala:35:20, :85:30
+  wire [22:0]  _wmask_T = 23'h1 << _GEN_0;	// backend/src/zaqal/backend/exu/LSU.scala:85:30
+  wire [190:0] _GEN_1 = {185'h0, io_src1[2:0], 3'h0};	// backend/src/zaqal/backend/exu/LSU.scala:35:20, :38:45, :86:42
+  wire [190:0] _wdata_T_3 = {183'h0, io_src2[7:0]} << _GEN_1;	// backend/src/zaqal/backend/exu/LSU.scala:86:{21,42}
+  wire [22:0]  _wmask_T_1 = 23'h3 << _GEN_0;	// backend/src/zaqal/backend/exu/LSU.scala:85:30, :88:30
+  wire [190:0] _wdata_T_7 = {175'h0, io_src2[15:0]} << _GEN_1;	// backend/src/zaqal/backend/exu/LSU.scala:86:42, :89:{21,43}
+  wire         _GEN_2 = io_dec_is_sw | io_dec_is_sc_w | io_dec_is_fsw;	// backend/src/zaqal/backend/exu/LSU.scala:90:46
+  wire [22:0]  _wmask_T_2 = 23'hF << _GEN_0;	// backend/src/zaqal/backend/exu/LSU.scala:85:30, :91:30
+  wire [190:0] _wdata_T_11 = {159'h0, io_src2[31:0]} << _GEN_1;	// backend/src/zaqal/backend/exu/LSU.scala:86:42, :92:{21,43}
+  wire         _GEN_3 = io_dec_is_sd | io_dec_is_sc_d | io_dec_is_fsd;	// backend/src/zaqal/backend/exu/LSU.scala:93:46
+  wire [22:0]  _wmask_T_3 = 23'hFF << _GEN_0;	// backend/src/zaqal/backend/exu/LSU.scala:85:30, :94:30
+  wire [190:0] _wdata_T_15 = {127'h0, io_src2} << _GEN_1;	// backend/src/zaqal/backend/exu/LSU.scala:86:42, :95:43
+  wire [22:0]  _wmask_T_4 = 23'hF << _GEN_0;	// backend/src/zaqal/backend/exu/LSU.scala:85:30, :91:30, :121:30
   wire [190:0] _wdata_T_19 =
     {159'h0,
      io_dec_is_amoadd
@@ -158,8 +156,8 @@ module LSU(	// backend/src/zaqal/backend/fu/LSU.scala:8:7
                                        ? (shifted_data[31:0] > io_src2[31:0]
                                             ? shifted_data[31:0]
                                             : io_src2[31:0])
-                                       : 32'h0} << _GEN_1;	// backend/src/zaqal/backend/fu/LSU.scala:38:34, :86:42, :92:43, :99:{32,40}, :101:28, :109:33, :111:33, :112:33, :113:33, :114:{31,36}, :115:{31,36}, :116:{31,43}, :117:{31,43}, :122:42, src/main/scala/chisel3/util/Mux.scala:126:16
-  wire [22:0]  _wmask_T_5 = 23'hFF << _GEN_0;	// backend/src/zaqal/backend/fu/LSU.scala:85:30, :94:30, :139:30
+                                       : 32'h0} << _GEN_1;	// backend/src/zaqal/backend/exu/LSU.scala:38:34, :86:42, :92:43, :99:{32,40}, :101:28, :109:33, :111:33, :112:33, :113:33, :114:{31,36}, :115:{31,36}, :116:{31,43}, :117:{31,43}, :122:42, src/main/scala/chisel3/util/Mux.scala:126:16
+  wire [22:0]  _wmask_T_5 = 23'hFF << _GEN_0;	// backend/src/zaqal/backend/exu/LSU.scala:85:30, :94:30, :139:30
   wire [190:0] _wdata_T_23 =
     {127'h0,
      io_dec_is_amoadd
@@ -188,43 +186,40 @@ module LSU(	// backend/src/zaqal/backend/fu/LSU.scala:8:7
                                        ? (shifted_data[63:0] > io_src2
                                             ? shifted_data[63:0]
                                             : io_src2)
-                                       : 64'h0} << _GEN_1;	// backend/src/zaqal/backend/fu/LSU.scala:9:14, :38:34, :86:42, :95:43, :100:{32,40}, :127:33, :129:33, :130:33, :131:33, :132:{31,36}, :133:{31,36}, :134:{31,43}, :135:{31,43}, :140:42, src/main/scala/chisel3/util/Mux.scala:126:16
-  always @(posedge clock) begin	// backend/src/zaqal/backend/fu/LSU.scala:8:7
-    if (reset) begin	// backend/src/zaqal/backend/fu/LSU.scala:8:7
-      reserve_valid <= 1'h0;	// backend/src/zaqal/backend/fu/LSU.scala:26:30
-      reserve_addr <= 64'h0;	// backend/src/zaqal/backend/fu/LSU.scala:9:14, :27:30
+                                       : 64'h0} << _GEN_1;	// backend/src/zaqal/backend/exu/LSU.scala:9:14, :38:34, :86:42, :95:43, :100:{32,40}, :127:33, :129:33, :130:33, :131:33, :132:{31,36}, :133:{31,36}, :134:{31,43}, :135:{31,43}, :140:42, src/main/scala/chisel3/util/Mux.scala:126:16
+  always @(posedge clock) begin	// backend/src/zaqal/backend/exu/LSU.scala:8:7
+    if (reset) begin	// backend/src/zaqal/backend/exu/LSU.scala:8:7
+      reserve_valid <= 1'h0;	// backend/src/zaqal/backend/exu/LSU.scala:26:30
+      reserve_addr <= 64'h0;	// backend/src/zaqal/backend/exu/LSU.scala:9:14, :27:30
     end
-    else begin	// backend/src/zaqal/backend/fu/LSU.scala:8:7
-      reserve_valid <= io_dec_is_lr | ~(io_dec_is_sc | io_dec_is_store) & reserve_valid;	// backend/src/zaqal/backend/fu/LSU.scala:26:30, :69:22, :70:19, :72:{28,48}, :75:19
-      if (io_dec_is_lr)	// backend/src/zaqal/backend/fu/LSU.scala:9:14
-        reserve_addr <= io_src1;	// backend/src/zaqal/backend/fu/LSU.scala:27:30
+    else begin	// backend/src/zaqal/backend/exu/LSU.scala:8:7
+      reserve_valid <= io_dec_is_lr | ~(io_dec_is_sc | io_dec_is_store) & reserve_valid;	// backend/src/zaqal/backend/exu/LSU.scala:26:30, :69:22, :70:19, :72:{28,48}, :75:19
+      if (io_dec_is_lr)	// backend/src/zaqal/backend/exu/LSU.scala:9:14
+        reserve_addr <= io_src1;	// backend/src/zaqal/backend/exu/LSU.scala:27:30
     end
   end // always @(posedge)
-  `ifdef ENABLE_INITIAL_REG_	// backend/src/zaqal/backend/fu/LSU.scala:8:7
-    `ifdef FIRRTL_BEFORE_INITIAL	// backend/src/zaqal/backend/fu/LSU.scala:8:7
-      `FIRRTL_BEFORE_INITIAL	// backend/src/zaqal/backend/fu/LSU.scala:8:7
+  `ifdef ENABLE_INITIAL_REG_	// backend/src/zaqal/backend/exu/LSU.scala:8:7
+    `ifdef FIRRTL_BEFORE_INITIAL	// backend/src/zaqal/backend/exu/LSU.scala:8:7
+      `FIRRTL_BEFORE_INITIAL	// backend/src/zaqal/backend/exu/LSU.scala:8:7
     `endif // FIRRTL_BEFORE_INITIAL
-    logic [31:0] _RANDOM[0:2];	// backend/src/zaqal/backend/fu/LSU.scala:8:7
-    initial begin	// backend/src/zaqal/backend/fu/LSU.scala:8:7
-      `ifdef INIT_RANDOM_PROLOG_	// backend/src/zaqal/backend/fu/LSU.scala:8:7
-        `INIT_RANDOM_PROLOG_	// backend/src/zaqal/backend/fu/LSU.scala:8:7
+    logic [31:0] _RANDOM[0:2];	// backend/src/zaqal/backend/exu/LSU.scala:8:7
+    initial begin	// backend/src/zaqal/backend/exu/LSU.scala:8:7
+      `ifdef INIT_RANDOM_PROLOG_	// backend/src/zaqal/backend/exu/LSU.scala:8:7
+        `INIT_RANDOM_PROLOG_	// backend/src/zaqal/backend/exu/LSU.scala:8:7
       `endif // INIT_RANDOM_PROLOG_
-      `ifdef RANDOMIZE_REG_INIT	// backend/src/zaqal/backend/fu/LSU.scala:8:7
+      `ifdef RANDOMIZE_REG_INIT	// backend/src/zaqal/backend/exu/LSU.scala:8:7
         for (logic [1:0] i = 2'h0; i < 2'h3; i += 2'h1) begin
-          _RANDOM[i] = `RANDOM;	// backend/src/zaqal/backend/fu/LSU.scala:8:7
-        end	// backend/src/zaqal/backend/fu/LSU.scala:8:7
-        reserve_valid = _RANDOM[2'h0][0];	// backend/src/zaqal/backend/fu/LSU.scala:8:7, :26:30
-        reserve_addr = {_RANDOM[2'h0][31:1], _RANDOM[2'h1], _RANDOM[2'h2][0]};	// backend/src/zaqal/backend/fu/LSU.scala:8:7, :26:30, :27:30
+          _RANDOM[i] = `RANDOM;	// backend/src/zaqal/backend/exu/LSU.scala:8:7
+        end	// backend/src/zaqal/backend/exu/LSU.scala:8:7
+        reserve_valid = _RANDOM[2'h0][0];	// backend/src/zaqal/backend/exu/LSU.scala:8:7, :26:30
+        reserve_addr = {_RANDOM[2'h0][31:1], _RANDOM[2'h1], _RANDOM[2'h2][0]};	// backend/src/zaqal/backend/exu/LSU.scala:8:7, :26:30, :27:30
       `endif // RANDOMIZE_REG_INIT
     end // initial
-    `ifdef FIRRTL_AFTER_INITIAL	// backend/src/zaqal/backend/fu/LSU.scala:8:7
-      `FIRRTL_AFTER_INITIAL	// backend/src/zaqal/backend/fu/LSU.scala:8:7
+    `ifdef FIRRTL_AFTER_INITIAL	// backend/src/zaqal/backend/exu/LSU.scala:8:7
+      `FIRRTL_AFTER_INITIAL	// backend/src/zaqal/backend/exu/LSU.scala:8:7
     `endif // FIRRTL_AFTER_INITIAL
   `endif // ENABLE_INITIAL_REG_
-  assign io_mem_addr = io_src1;	// backend/src/zaqal/backend/fu/LSU.scala:8:7
-  assign io_mem_wen =
-    io_dec_is_store | io_dec_is_fstore | io_dec_is_sc & reserve_valid
-    & reserve_addr == io_src1 | io_dec_is_amo_w | io_dec_is_amo_d;	// backend/src/zaqal/backend/fu/LSU.scala:8:7, :26:30, :27:30, :82:{53,70}, :143:91
+  assign io_mem_addr = io_src1;	// backend/src/zaqal/backend/exu/LSU.scala:8:7
   assign io_mem_wmask =
     io_dec_is_amo_w
       ? _wmask_T_4[15:0]
@@ -234,7 +229,7 @@ module LSU(	// backend/src/zaqal/backend/fu/LSU.scala:8:7
               ? _wmask_T[15:0]
               : io_dec_is_sh
                   ? _wmask_T_1[15:0]
-                  : _GEN_2 ? _wmask_T_2[15:0] : _GEN_3 ? _wmask_T_3[15:0] : 16'h0;	// backend/src/zaqal/backend/fu/LSU.scala:8:7, :79:26, :84:22, :85:{11,30}, :87:29, :88:{11,30}, :90:{46,64}, :91:{11,30}, :93:{46,64}, :94:{11,30}, :105:25, :121:{11,30}, :123:32, :139:{11,30}
+                  : _GEN_2 ? _wmask_T_2[15:0] : _GEN_3 ? _wmask_T_3[15:0] : 16'h0;	// backend/src/zaqal/backend/exu/LSU.scala:8:7, :79:26, :84:22, :85:{11,30}, :87:29, :88:{11,30}, :90:{46,64}, :91:{11,30}, :93:{46,64}, :94:{11,30}, :105:25, :121:{11,30}, :123:32, :139:{11,30}
   assign io_mem_wdata =
     io_dec_is_amo_w
       ? _wdata_T_19[127:0]
@@ -244,7 +239,7 @@ module LSU(	// backend/src/zaqal/backend/fu/LSU.scala:8:7
               ? _wdata_T_3[127:0]
               : io_dec_is_sh
                   ? _wdata_T_7[127:0]
-                  : _GEN_2 ? _wdata_T_11[127:0] : _GEN_3 ? _wdata_T_15[127:0] : 128'h0;	// backend/src/zaqal/backend/fu/LSU.scala:8:7, :80:26, :84:22, :86:{11,42}, :87:29, :89:{11,43}, :90:{46,64}, :92:{11,43}, :93:{46,64}, :95:{11,43}, :105:25, :122:{11,42}, :123:32, :140:{11,42}
+                  : _GEN_2 ? _wdata_T_11[127:0] : _GEN_3 ? _wdata_T_15[127:0] : 128'h0;	// backend/src/zaqal/backend/exu/LSU.scala:8:7, :80:26, :84:22, :86:{11,42}, :87:29, :89:{11,43}, :90:{46,64}, :92:{11,43}, :93:{46,64}, :95:{11,43}, :105:25, :122:{11,42}, :123:32, :140:{11,42}
   assign io_result =
     io_dec_is_lb
       ? {{56{shifted_data[7]}}, shifted_data[7:0]}
@@ -264,6 +259,6 @@ module LSU(	// backend/src/zaqal/backend/fu/LSU.scala:8:7
                                   ? {63'h0, ~(reserve_valid & reserve_addr == io_src1)}
                                   : io_dec_is_amo_w
                                       ? {_GEN, shifted_data[31:0]}
-                                      : io_dec_is_amo_d ? shifted_data[63:0] : 64'h0;	// backend/src/zaqal/backend/fu/LSU.scala:8:7, :9:14, :26:30, :27:30, :38:34, :40:24, :42:22, :43:{9,24,41}, :44:30, :45:{9,24,34}, :46:29, :47:{9,24,42}, :48:30, :49:{9,24,35}, :50:{63,81}, :51:{9,24,42}, :52:30, :53:{9,24,35}, :54:{63,81}, :55:{9,24}, :56:29, :58:{33,50}, :59:{9,12}, :60:32, :61:{9,24,42}, :62:32, :63:{9,24}, src/main/scala/chisel3/util/Mux.scala:126:16
+                                      : io_dec_is_amo_d ? shifted_data[63:0] : 64'h0;	// backend/src/zaqal/backend/exu/LSU.scala:8:7, :9:14, :26:30, :27:30, :38:34, :40:24, :42:22, :43:{9,24,41}, :44:30, :45:{9,24,34}, :46:29, :47:{9,24,42}, :48:30, :49:{9,24,35}, :50:{63,81}, :51:{9,24,42}, :52:30, :53:{9,24,35}, :54:{63,81}, :55:{9,24}, :56:29, :58:{33,50}, :59:{9,12}, :60:32, :61:{9,24,42}, :62:32, :63:{9,24}, src/main/scala/chisel3/util/Mux.scala:126:16
 endmodule
 

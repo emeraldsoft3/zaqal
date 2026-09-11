@@ -66,96 +66,96 @@
   `endif // PRINTF_COND
 `endif // not def PRINTF_COND_
 
-module ALU(	// backend/src/zaqal/backend/fu/ALU.scala:9:7
-  input  [63:0] io_src1,	// backend/src/zaqal/backend/fu/ALU.scala:10:14
-                io_src2,	// backend/src/zaqal/backend/fu/ALU.scala:10:14
-                io_pc,	// backend/src/zaqal/backend/fu/ALU.scala:10:14
-  input         io_dec_is_addi,	// backend/src/zaqal/backend/fu/ALU.scala:10:14
-                io_dec_is_add,	// backend/src/zaqal/backend/fu/ALU.scala:10:14
-                io_dec_is_and,	// backend/src/zaqal/backend/fu/ALU.scala:10:14
-                io_dec_is_or,	// backend/src/zaqal/backend/fu/ALU.scala:10:14
-                io_dec_is_xor,	// backend/src/zaqal/backend/fu/ALU.scala:10:14
-                io_dec_is_andi,	// backend/src/zaqal/backend/fu/ALU.scala:10:14
-                io_dec_is_ori,	// backend/src/zaqal/backend/fu/ALU.scala:10:14
-                io_dec_is_xori,	// backend/src/zaqal/backend/fu/ALU.scala:10:14
-                io_dec_is_sll,	// backend/src/zaqal/backend/fu/ALU.scala:10:14
-                io_dec_is_srl,	// backend/src/zaqal/backend/fu/ALU.scala:10:14
-                io_dec_is_sra,	// backend/src/zaqal/backend/fu/ALU.scala:10:14
-                io_dec_is_sllw,	// backend/src/zaqal/backend/fu/ALU.scala:10:14
-                io_dec_is_srlw,	// backend/src/zaqal/backend/fu/ALU.scala:10:14
-                io_dec_is_sraw,	// backend/src/zaqal/backend/fu/ALU.scala:10:14
-                io_dec_is_slli,	// backend/src/zaqal/backend/fu/ALU.scala:10:14
-                io_dec_is_srli,	// backend/src/zaqal/backend/fu/ALU.scala:10:14
-                io_dec_is_srai,	// backend/src/zaqal/backend/fu/ALU.scala:10:14
-                io_dec_is_slliw,	// backend/src/zaqal/backend/fu/ALU.scala:10:14
-                io_dec_is_srliw,	// backend/src/zaqal/backend/fu/ALU.scala:10:14
-                io_dec_is_sraiw,	// backend/src/zaqal/backend/fu/ALU.scala:10:14
-                io_dec_is_slt,	// backend/src/zaqal/backend/fu/ALU.scala:10:14
-                io_dec_is_sltu,	// backend/src/zaqal/backend/fu/ALU.scala:10:14
-                io_dec_is_slti,	// backend/src/zaqal/backend/fu/ALU.scala:10:14
-                io_dec_is_sltiu,	// backend/src/zaqal/backend/fu/ALU.scala:10:14
-                io_dec_is_sub,	// backend/src/zaqal/backend/fu/ALU.scala:10:14
-                io_dec_is_addw,	// backend/src/zaqal/backend/fu/ALU.scala:10:14
-                io_dec_is_subw,	// backend/src/zaqal/backend/fu/ALU.scala:10:14
-                io_dec_is_addiw,	// backend/src/zaqal/backend/fu/ALU.scala:10:14
-                io_dec_is_lui,	// backend/src/zaqal/backend/fu/ALU.scala:10:14
-                io_dec_is_auipc,	// backend/src/zaqal/backend/fu/ALU.scala:10:14
-                io_dec_is_sh1add,	// backend/src/zaqal/backend/fu/ALU.scala:10:14
-                io_dec_is_sh2add,	// backend/src/zaqal/backend/fu/ALU.scala:10:14
-                io_dec_is_sh3add,	// backend/src/zaqal/backend/fu/ALU.scala:10:14
-                io_dec_is_sh1add_uw,	// backend/src/zaqal/backend/fu/ALU.scala:10:14
-                io_dec_is_sh2add_uw,	// backend/src/zaqal/backend/fu/ALU.scala:10:14
-                io_dec_is_sh3add_uw,	// backend/src/zaqal/backend/fu/ALU.scala:10:14
-                io_dec_is_andn,	// backend/src/zaqal/backend/fu/ALU.scala:10:14
-                io_dec_is_orn,	// backend/src/zaqal/backend/fu/ALU.scala:10:14
-                io_dec_is_xorn,	// backend/src/zaqal/backend/fu/ALU.scala:10:14
-                io_dec_is_rol,	// backend/src/zaqal/backend/fu/ALU.scala:10:14
-                io_dec_is_ror,	// backend/src/zaqal/backend/fu/ALU.scala:10:14
-                io_dec_is_rori,	// backend/src/zaqal/backend/fu/ALU.scala:10:14
-                io_dec_is_rolw,	// backend/src/zaqal/backend/fu/ALU.scala:10:14
-                io_dec_is_rorw,	// backend/src/zaqal/backend/fu/ALU.scala:10:14
-                io_dec_is_roriw,	// backend/src/zaqal/backend/fu/ALU.scala:10:14
-                io_dec_is_clz,	// backend/src/zaqal/backend/fu/ALU.scala:10:14
-                io_dec_is_ctz,	// backend/src/zaqal/backend/fu/ALU.scala:10:14
-                io_dec_is_cpop,	// backend/src/zaqal/backend/fu/ALU.scala:10:14
-                io_dec_is_clzw,	// backend/src/zaqal/backend/fu/ALU.scala:10:14
-                io_dec_is_ctzw,	// backend/src/zaqal/backend/fu/ALU.scala:10:14
-                io_dec_is_cpopw,	// backend/src/zaqal/backend/fu/ALU.scala:10:14
-                io_dec_is_rev8,	// backend/src/zaqal/backend/fu/ALU.scala:10:14
-                io_dec_is_orc_b,	// backend/src/zaqal/backend/fu/ALU.scala:10:14
-                io_dec_is_sextb,	// backend/src/zaqal/backend/fu/ALU.scala:10:14
-                io_dec_is_sexth,	// backend/src/zaqal/backend/fu/ALU.scala:10:14
-                io_dec_is_zexth,	// backend/src/zaqal/backend/fu/ALU.scala:10:14
-                io_dec_is_min,	// backend/src/zaqal/backend/fu/ALU.scala:10:14
-                io_dec_is_max,	// backend/src/zaqal/backend/fu/ALU.scala:10:14
-                io_dec_is_minu,	// backend/src/zaqal/backend/fu/ALU.scala:10:14
-                io_dec_is_maxu,	// backend/src/zaqal/backend/fu/ALU.scala:10:14
-                io_dec_is_bset,	// backend/src/zaqal/backend/fu/ALU.scala:10:14
-                io_dec_is_bseti,	// backend/src/zaqal/backend/fu/ALU.scala:10:14
-                io_dec_is_bclr,	// backend/src/zaqal/backend/fu/ALU.scala:10:14
-                io_dec_is_bclri,	// backend/src/zaqal/backend/fu/ALU.scala:10:14
-                io_dec_is_binv,	// backend/src/zaqal/backend/fu/ALU.scala:10:14
-                io_dec_is_binvi,	// backend/src/zaqal/backend/fu/ALU.scala:10:14
-                io_dec_is_bext,	// backend/src/zaqal/backend/fu/ALU.scala:10:14
-                io_dec_is_bexti,	// backend/src/zaqal/backend/fu/ALU.scala:10:14
-  output [63:0] io_result	// backend/src/zaqal/backend/fu/ALU.scala:10:14
+module ALU(	// backend/src/zaqal/backend/exu/ALU.scala:9:7
+  input  [63:0] io_src1,	// backend/src/zaqal/backend/exu/ALU.scala:10:14
+                io_src2,	// backend/src/zaqal/backend/exu/ALU.scala:10:14
+                io_pc,	// backend/src/zaqal/backend/exu/ALU.scala:10:14
+  input         io_dec_is_addi,	// backend/src/zaqal/backend/exu/ALU.scala:10:14
+                io_dec_is_add,	// backend/src/zaqal/backend/exu/ALU.scala:10:14
+                io_dec_is_and,	// backend/src/zaqal/backend/exu/ALU.scala:10:14
+                io_dec_is_or,	// backend/src/zaqal/backend/exu/ALU.scala:10:14
+                io_dec_is_xor,	// backend/src/zaqal/backend/exu/ALU.scala:10:14
+                io_dec_is_andi,	// backend/src/zaqal/backend/exu/ALU.scala:10:14
+                io_dec_is_ori,	// backend/src/zaqal/backend/exu/ALU.scala:10:14
+                io_dec_is_xori,	// backend/src/zaqal/backend/exu/ALU.scala:10:14
+                io_dec_is_sll,	// backend/src/zaqal/backend/exu/ALU.scala:10:14
+                io_dec_is_srl,	// backend/src/zaqal/backend/exu/ALU.scala:10:14
+                io_dec_is_sra,	// backend/src/zaqal/backend/exu/ALU.scala:10:14
+                io_dec_is_sllw,	// backend/src/zaqal/backend/exu/ALU.scala:10:14
+                io_dec_is_srlw,	// backend/src/zaqal/backend/exu/ALU.scala:10:14
+                io_dec_is_sraw,	// backend/src/zaqal/backend/exu/ALU.scala:10:14
+                io_dec_is_slli,	// backend/src/zaqal/backend/exu/ALU.scala:10:14
+                io_dec_is_srli,	// backend/src/zaqal/backend/exu/ALU.scala:10:14
+                io_dec_is_srai,	// backend/src/zaqal/backend/exu/ALU.scala:10:14
+                io_dec_is_slliw,	// backend/src/zaqal/backend/exu/ALU.scala:10:14
+                io_dec_is_srliw,	// backend/src/zaqal/backend/exu/ALU.scala:10:14
+                io_dec_is_sraiw,	// backend/src/zaqal/backend/exu/ALU.scala:10:14
+                io_dec_is_slt,	// backend/src/zaqal/backend/exu/ALU.scala:10:14
+                io_dec_is_sltu,	// backend/src/zaqal/backend/exu/ALU.scala:10:14
+                io_dec_is_slti,	// backend/src/zaqal/backend/exu/ALU.scala:10:14
+                io_dec_is_sltiu,	// backend/src/zaqal/backend/exu/ALU.scala:10:14
+                io_dec_is_sub,	// backend/src/zaqal/backend/exu/ALU.scala:10:14
+                io_dec_is_addw,	// backend/src/zaqal/backend/exu/ALU.scala:10:14
+                io_dec_is_subw,	// backend/src/zaqal/backend/exu/ALU.scala:10:14
+                io_dec_is_addiw,	// backend/src/zaqal/backend/exu/ALU.scala:10:14
+                io_dec_is_lui,	// backend/src/zaqal/backend/exu/ALU.scala:10:14
+                io_dec_is_auipc,	// backend/src/zaqal/backend/exu/ALU.scala:10:14
+                io_dec_is_sh1add,	// backend/src/zaqal/backend/exu/ALU.scala:10:14
+                io_dec_is_sh2add,	// backend/src/zaqal/backend/exu/ALU.scala:10:14
+                io_dec_is_sh3add,	// backend/src/zaqal/backend/exu/ALU.scala:10:14
+                io_dec_is_sh1add_uw,	// backend/src/zaqal/backend/exu/ALU.scala:10:14
+                io_dec_is_sh2add_uw,	// backend/src/zaqal/backend/exu/ALU.scala:10:14
+                io_dec_is_sh3add_uw,	// backend/src/zaqal/backend/exu/ALU.scala:10:14
+                io_dec_is_andn,	// backend/src/zaqal/backend/exu/ALU.scala:10:14
+                io_dec_is_orn,	// backend/src/zaqal/backend/exu/ALU.scala:10:14
+                io_dec_is_xorn,	// backend/src/zaqal/backend/exu/ALU.scala:10:14
+                io_dec_is_rol,	// backend/src/zaqal/backend/exu/ALU.scala:10:14
+                io_dec_is_ror,	// backend/src/zaqal/backend/exu/ALU.scala:10:14
+                io_dec_is_rori,	// backend/src/zaqal/backend/exu/ALU.scala:10:14
+                io_dec_is_rolw,	// backend/src/zaqal/backend/exu/ALU.scala:10:14
+                io_dec_is_rorw,	// backend/src/zaqal/backend/exu/ALU.scala:10:14
+                io_dec_is_roriw,	// backend/src/zaqal/backend/exu/ALU.scala:10:14
+                io_dec_is_clz,	// backend/src/zaqal/backend/exu/ALU.scala:10:14
+                io_dec_is_ctz,	// backend/src/zaqal/backend/exu/ALU.scala:10:14
+                io_dec_is_cpop,	// backend/src/zaqal/backend/exu/ALU.scala:10:14
+                io_dec_is_clzw,	// backend/src/zaqal/backend/exu/ALU.scala:10:14
+                io_dec_is_ctzw,	// backend/src/zaqal/backend/exu/ALU.scala:10:14
+                io_dec_is_cpopw,	// backend/src/zaqal/backend/exu/ALU.scala:10:14
+                io_dec_is_rev8,	// backend/src/zaqal/backend/exu/ALU.scala:10:14
+                io_dec_is_orc_b,	// backend/src/zaqal/backend/exu/ALU.scala:10:14
+                io_dec_is_sextb,	// backend/src/zaqal/backend/exu/ALU.scala:10:14
+                io_dec_is_sexth,	// backend/src/zaqal/backend/exu/ALU.scala:10:14
+                io_dec_is_zexth,	// backend/src/zaqal/backend/exu/ALU.scala:10:14
+                io_dec_is_min,	// backend/src/zaqal/backend/exu/ALU.scala:10:14
+                io_dec_is_max,	// backend/src/zaqal/backend/exu/ALU.scala:10:14
+                io_dec_is_minu,	// backend/src/zaqal/backend/exu/ALU.scala:10:14
+                io_dec_is_maxu,	// backend/src/zaqal/backend/exu/ALU.scala:10:14
+                io_dec_is_bset,	// backend/src/zaqal/backend/exu/ALU.scala:10:14
+                io_dec_is_bseti,	// backend/src/zaqal/backend/exu/ALU.scala:10:14
+                io_dec_is_bclr,	// backend/src/zaqal/backend/exu/ALU.scala:10:14
+                io_dec_is_bclri,	// backend/src/zaqal/backend/exu/ALU.scala:10:14
+                io_dec_is_binv,	// backend/src/zaqal/backend/exu/ALU.scala:10:14
+                io_dec_is_binvi,	// backend/src/zaqal/backend/exu/ALU.scala:10:14
+                io_dec_is_bext,	// backend/src/zaqal/backend/exu/ALU.scala:10:14
+                io_dec_is_bexti,	// backend/src/zaqal/backend/exu/ALU.scala:10:14
+  output [63:0] io_result	// backend/src/zaqal/backend/exu/ALU.scala:10:14
 );
 
-  wire [63:0] _bitmanip_io_result;	// backend/src/zaqal/backend/fu/ALU.scala:23:26
-  wire        _comparator_io_lt;	// backend/src/zaqal/backend/fu/ALU.scala:22:26
-  wire        _comparator_io_ltu;	// backend/src/zaqal/backend/fu/ALU.scala:22:26
-  wire [63:0] _shifter_io_result;	// backend/src/zaqal/backend/fu/ALU.scala:21:26
-  wire [63:0] _logical_io_result;	// backend/src/zaqal/backend/fu/ALU.scala:20:26
-  wire [63:0] _adder_io_result;	// backend/src/zaqal/backend/fu/ALU.scala:19:26
+  wire [63:0] _bitmanip_io_result;	// backend/src/zaqal/backend/exu/ALU.scala:23:26
+  wire        _comparator_io_lt;	// backend/src/zaqal/backend/exu/ALU.scala:22:26
+  wire        _comparator_io_ltu;	// backend/src/zaqal/backend/exu/ALU.scala:22:26
+  wire [63:0] _shifter_io_result;	// backend/src/zaqal/backend/exu/ALU.scala:21:26
+  wire [63:0] _logical_io_result;	// backend/src/zaqal/backend/exu/ALU.scala:20:26
+  wire [63:0] _adder_io_result;	// backend/src/zaqal/backend/exu/ALU.scala:19:26
   wire        is_zba =
     io_dec_is_sh1add | io_dec_is_sh2add | io_dec_is_sh3add | io_dec_is_sh1add_uw
-    | io_dec_is_sh2add_uw | io_dec_is_sh3add_uw;	// backend/src/zaqal/backend/fu/ALU.scala:27:59
+    | io_dec_is_sh2add_uw | io_dec_is_sh3add_uw;	// backend/src/zaqal/backend/exu/ALU.scala:27:59
   wire [63:0] zba_src1_base =
     io_dec_is_sh1add_uw | io_dec_is_sh2add_uw | io_dec_is_sh3add_uw
       ? {32'h0, io_src1[31:0]}
-      : io_src1;	// backend/src/zaqal/backend/fu/ALU.scala:29:{26,70}, :30:{30,49}
-  wire        _io_result_T_7 = io_dec_is_and | io_dec_is_andi;	// backend/src/zaqal/backend/fu/ALU.scala:47:40
-  Adder adder (	// backend/src/zaqal/backend/fu/ALU.scala:19:26
+      : io_src1;	// backend/src/zaqal/backend/exu/ALU.scala:29:{26,70}, :30:{30,49}
+  wire        _io_result_T_7 = io_dec_is_and | io_dec_is_andi;	// backend/src/zaqal/backend/exu/ALU.scala:47:40
+  Adder adder (	// backend/src/zaqal/backend/exu/ALU.scala:19:26
     .io_src1
       (is_zba
          ? (io_dec_is_sh1add | io_dec_is_sh1add_uw
@@ -165,32 +165,32 @@ module ALU(	// backend/src/zaqal/backend/fu/ALU.scala:9:7
                   : io_dec_is_sh3add | io_dec_is_sh3add_uw
                       ? {zba_src1_base[60:0], 3'h0}
                       : zba_src1_base)
-         : io_src1),	// backend/src/zaqal/backend/fu/ALU.scala:27:59, :29:26, :34:{23,65}, :35:{23,65}, :36:{23,65}, :40:26, src/main/scala/chisel3/util/Mux.scala:126:16
+         : io_src1),	// backend/src/zaqal/backend/exu/ALU.scala:27:59, :29:26, :34:{23,65}, :35:{23,65}, :36:{23,65}, :40:26, src/main/scala/chisel3/util/Mux.scala:126:16
     .io_src2    (io_src2),
-    .io_is_sub  (io_dec_is_sub | io_dec_is_subw),	// backend/src/zaqal/backend/fu/ALU.scala:42:37
-    .io_is_word (io_dec_is_addw | io_dec_is_subw | io_dec_is_addiw),	// backend/src/zaqal/backend/fu/ALU.scala:43:56
+    .io_is_sub  (io_dec_is_sub | io_dec_is_subw),	// backend/src/zaqal/backend/exu/ALU.scala:42:37
+    .io_is_word (io_dec_is_addw | io_dec_is_subw | io_dec_is_addiw),	// backend/src/zaqal/backend/exu/ALU.scala:43:56
     .io_result  (_adder_io_result)
   );
-  Logical logical (	// backend/src/zaqal/backend/fu/ALU.scala:20:26
+  Logical logical (	// backend/src/zaqal/backend/exu/ALU.scala:20:26
     .io_src1    (io_src1),
     .io_src2    (io_src2),
-    .io_is_and  (_io_result_T_7),	// backend/src/zaqal/backend/fu/ALU.scala:47:40
-    .io_is_or   (io_dec_is_or | io_dec_is_ori),	// backend/src/zaqal/backend/fu/ALU.scala:48:40
-    .io_is_xor  (io_dec_is_xor | io_dec_is_xori),	// backend/src/zaqal/backend/fu/ALU.scala:49:40
+    .io_is_and  (_io_result_T_7),	// backend/src/zaqal/backend/exu/ALU.scala:47:40
+    .io_is_or   (io_dec_is_or | io_dec_is_ori),	// backend/src/zaqal/backend/exu/ALU.scala:48:40
+    .io_is_xor  (io_dec_is_xor | io_dec_is_xori),	// backend/src/zaqal/backend/exu/ALU.scala:49:40
     .io_is_andn (io_dec_is_andn),
     .io_is_orn  (io_dec_is_orn),
     .io_is_xorn (io_dec_is_xorn),
     .io_result  (_logical_io_result)
   );
-  Shifter shifter (	// backend/src/zaqal/backend/fu/ALU.scala:21:26
+  Shifter shifter (	// backend/src/zaqal/backend/exu/ALU.scala:21:26
     .io_src1     (io_src1),
-    .io_shamt    (io_src2[5:0]),	// backend/src/zaqal/backend/fu/ALU.scala:55:31
-    .io_is_sll   (io_dec_is_sll | io_dec_is_slli),	// backend/src/zaqal/backend/fu/ALU.scala:56:39
-    .io_is_srl   (io_dec_is_srl | io_dec_is_srli),	// backend/src/zaqal/backend/fu/ALU.scala:57:39
-    .io_is_sra   (io_dec_is_sra | io_dec_is_srai),	// backend/src/zaqal/backend/fu/ALU.scala:58:39
-    .io_is_sllw  (io_dec_is_sllw | io_dec_is_slliw),	// backend/src/zaqal/backend/fu/ALU.scala:59:40
-    .io_is_srlw  (io_dec_is_srlw | io_dec_is_srliw),	// backend/src/zaqal/backend/fu/ALU.scala:60:40
-    .io_is_sraw  (io_dec_is_sraw | io_dec_is_sraiw),	// backend/src/zaqal/backend/fu/ALU.scala:61:40
+    .io_shamt    (io_src2[5:0]),	// backend/src/zaqal/backend/exu/ALU.scala:55:31
+    .io_is_sll   (io_dec_is_sll | io_dec_is_slli),	// backend/src/zaqal/backend/exu/ALU.scala:56:39
+    .io_is_srl   (io_dec_is_srl | io_dec_is_srli),	// backend/src/zaqal/backend/exu/ALU.scala:57:39
+    .io_is_sra   (io_dec_is_sra | io_dec_is_srai),	// backend/src/zaqal/backend/exu/ALU.scala:58:39
+    .io_is_sllw  (io_dec_is_sllw | io_dec_is_slliw),	// backend/src/zaqal/backend/exu/ALU.scala:59:40
+    .io_is_srlw  (io_dec_is_srlw | io_dec_is_srliw),	// backend/src/zaqal/backend/exu/ALU.scala:60:40
+    .io_is_sraw  (io_dec_is_sraw | io_dec_is_sraiw),	// backend/src/zaqal/backend/exu/ALU.scala:61:40
     .io_is_rol   (io_dec_is_rol),
     .io_is_ror   (io_dec_is_ror),
     .io_is_rori  (io_dec_is_rori),
@@ -199,14 +199,14 @@ module ALU(	// backend/src/zaqal/backend/fu/ALU.scala:9:7
     .io_is_roriw (io_dec_is_roriw),
     .io_result   (_shifter_io_result)
   );
-  Comparator comparator (	// backend/src/zaqal/backend/fu/ALU.scala:22:26
+  Comparator comparator (	// backend/src/zaqal/backend/exu/ALU.scala:22:26
     .io_src1 (io_src1),
     .io_src2 (io_src2),
     .io_eq   (/* unused */),
     .io_lt   (_comparator_io_lt),
     .io_ltu  (_comparator_io_ltu)
   );
-  Bitmanip bitmanip (	// backend/src/zaqal/backend/fu/ALU.scala:23:26
+  Bitmanip bitmanip (	// backend/src/zaqal/backend/exu/ALU.scala:23:26
     .io_src1     (io_src1),
     .io_src2     (io_src2),
     .io_is_clz   (io_dec_is_clz),
@@ -266,6 +266,6 @@ module ALU(	// backend/src/zaqal/backend/fu/ALU.scala:9:7
                                     | io_dec_is_bclri | io_dec_is_binv | io_dec_is_binvi
                                     | io_dec_is_bext | io_dec_is_bexti
                                       ? _bitmanip_io_result
-                                      : 64'h0;	// backend/src/zaqal/backend/fu/ALU.scala:9:7, :19:26, :20:26, :21:26, :22:26, :23:26, :27:59, :47:40, :103:39, :104:33, :109:38, :115:39, :116:20, :117:21, :125:77, src/main/scala/chisel3/util/Mux.scala:126:16
+                                      : 64'h0;	// backend/src/zaqal/backend/exu/ALU.scala:9:7, :19:26, :20:26, :21:26, :22:26, :23:26, :27:59, :47:40, :103:39, :104:33, :109:38, :115:39, :116:20, :117:21, :125:77, src/main/scala/chisel3/util/Mux.scala:126:16
 endmodule
 

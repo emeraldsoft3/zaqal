@@ -227,15 +227,23 @@ class Decoder(implicit val p: Parameters) extends Module with HasZaqalParameter 
   io.out.is_fcvt_f2i := is_fp_op && (fp_funct5 === "b11000".U)
   io.out.is_fcvt_i2f := is_fp_op && (fp_funct5 === "b11010".U)
   
-  io.out.is_fmv_w_x := is_fp_op && (fp_funct5 === "b11110".U) && (funct3 === "b000".U)
-  io.out.is_fmv_x_w := is_fp_op && (fp_funct5 === "b11100".U) && (funct3 === "b000".U)
-  io.out.is_fmv     := io.out.is_fmv_w_x || io.out.is_fmv_x_w
+  io.out.is_fmv_w_x := is_fp_op && (fp_funct5 === "b11110".U) && (funct3 === "b000".U) && (fp_fmt === "b00".U)
+  io.out.is_fmv_x_w := is_fp_op && (fp_funct5 === "b11100".U) && (funct3 === "b000".U) && (fp_fmt === "b00".U)
+  io.out.is_fmv_d_x := is_fp_op && (fp_funct5 === "b11110".U) && (funct3 === "b000".U) && (fp_fmt === "b01".U)
+  io.out.is_fmv_x_d := is_fp_op && (fp_funct5 === "b11100".U) && (funct3 === "b000".U) && (fp_fmt === "b01".U)
+  io.out.is_fmv     := io.out.is_fmv_w_x || io.out.is_fmv_x_w || io.out.is_fmv_d_x || io.out.is_fmv_x_d
+  
+  io.out.is_fcvt_s_d := is_fp_op && (fp_funct5 === "b01000".U) && (fp_fmt === "b01".U) && (io.inst(24, 20) === "b00001".U)
+  io.out.is_fcvt_d_s := is_fp_op && (fp_funct5 === "b01000".U) && (fp_fmt === "b00".U) && (io.inst(24, 20) === "b00000".U)
   
   io.out.is_feq    := is_fp_op && (fp_funct5 === "b10100".U) && (funct3 === "b010".U)
   io.out.is_flt    := is_fp_op && (fp_funct5 === "b10100".U) && (funct3 === "b001".U)
   io.out.is_fle    := is_fp_op && (fp_funct5 === "b10100".U) && (funct3 === "b000".U)
   
   io.out.is_fclass := is_fp_op && (fp_funct5 === "b11100".U) && (funct3 === "b001".U)
+
+  val any_fma = io.out.is_fmadd || io.out.is_fmsub || io.out.is_fnmsub || io.out.is_fnmadd
+  io.out.is_fp_double := (fp_fmt === "b01".U && (is_fp_op || any_fma)) || io.out.is_fld || io.out.is_fsd
 
   // System/CSR for FPU (Simplified)
   val is_system = (opcode === "b1110011".U)
@@ -257,14 +265,13 @@ class Decoder(implicit val p: Parameters) extends Module with HasZaqalParameter 
   }
 
   // Register Type Selection for Renaming
-  val any_fma = io.out.is_fmadd || io.out.is_fmsub || io.out.is_fnmsub || io.out.is_fnmadd
   val fp_r_type = is_fp_op && (io.out.is_fadd || io.out.is_fsub || io.out.is_fmul || io.out.is_fdiv || 
                                io.out.is_fsgnj || io.out.is_fminmax || io.out.is_feq || io.out.is_flt || io.out.is_fle)
 
-  io.out.rs1_is_fp := (is_fp_op && !(io.out.is_fcvt_i2f || io.out.is_fmv_w_x)) || any_fma
+  io.out.rs1_is_fp := (is_fp_op && !(io.out.is_fcvt_i2f || io.out.is_fmv_w_x || io.out.is_fmv_d_x)) || any_fma
   io.out.rs2_is_fp := fp_r_type || any_fma || io.out.is_fstore
   io.out.rs3_is_fp := any_fma
-  io.out.rd_is_fp  := io.out.is_fload || any_fma || (is_fp_op && !(io.out.is_fcvt_f2i || io.out.is_fmv_x_w || 
+  io.out.rd_is_fp  := io.out.is_fload || any_fma || (is_fp_op && !(io.out.is_fcvt_f2i || io.out.is_fmv_x_w || io.out.is_fmv_x_d || 
                                                                   io.out.is_feq || io.out.is_flt || io.out.is_fle || io.out.is_fclass))
 
   // Operand Usage Flags

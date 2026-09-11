@@ -87,118 +87,120 @@ module SkidBuffer(	// utility/src/zaqal/utility/Utility.scala:13:7
   output [3:0]  io_deq_bits_prediction_slot,	// utility/src/zaqal/utility/Utility.scala:14:14
   output [5:0]  io_deq_bits_ftqPtr,	// utility/src/zaqal/utility/Utility.scala:14:14
   output        io_deq_bits_epoch,	// utility/src/zaqal/utility/Utility.scala:14:14
-  input         io_flush	// utility/src/zaqal/utility/Utility.scala:14:14
+  input         io_flush,	// utility/src/zaqal/utility/Utility.scala:14:14
+  output [1:0]  io_occupancy	// utility/src/zaqal/utility/Utility.scala:14:14
 );
 
-  reg  [63:0] slot0_data_pc;	// utility/src/zaqal/utility/Utility.scala:21:24
-  reg  [15:0] slot0_data_mask;	// utility/src/zaqal/utility/Utility.scala:21:24
-  reg  [63:0] slot0_data_prediction_target;	// utility/src/zaqal/utility/Utility.scala:21:24
-  reg         slot0_data_prediction_taken;	// utility/src/zaqal/utility/Utility.scala:21:24
-  reg  [3:0]  slot0_data_prediction_slot;	// utility/src/zaqal/utility/Utility.scala:21:24
-  reg  [5:0]  slot0_data_ftqPtr;	// utility/src/zaqal/utility/Utility.scala:21:24
-  reg         slot0_data_epoch;	// utility/src/zaqal/utility/Utility.scala:21:24
-  reg         slot0_valid;	// utility/src/zaqal/utility/Utility.scala:22:28
-  reg  [63:0] slot1_data_pc;	// utility/src/zaqal/utility/Utility.scala:23:24
-  reg  [15:0] slot1_data_mask;	// utility/src/zaqal/utility/Utility.scala:23:24
-  reg  [63:0] slot1_data_prediction_target;	// utility/src/zaqal/utility/Utility.scala:23:24
-  reg         slot1_data_prediction_taken;	// utility/src/zaqal/utility/Utility.scala:23:24
-  reg  [3:0]  slot1_data_prediction_slot;	// utility/src/zaqal/utility/Utility.scala:23:24
-  reg  [5:0]  slot1_data_ftqPtr;	// utility/src/zaqal/utility/Utility.scala:23:24
-  reg         slot1_data_epoch;	// utility/src/zaqal/utility/Utility.scala:23:24
-  reg         slot1_valid;	// utility/src/zaqal/utility/Utility.scala:24:28
-  wire        _GEN = ~slot1_valid & io_enq_valid;	// src/main/scala/chisel3/util/Decoupled.scala:51:35, utility/src/zaqal/utility/Utility.scala:24:28, :28:19
-  wire        _GEN_0 = ~slot0_valid | io_deq_ready & ~slot1_valid;	// utility/src/zaqal/utility/Utility.scala:22:28, :24:28, :28:19, :35:{13,26,43}
+  reg  [63:0] slot0_data_pc;	// utility/src/zaqal/utility/Utility.scala:22:24
+  reg  [15:0] slot0_data_mask;	// utility/src/zaqal/utility/Utility.scala:22:24
+  reg  [63:0] slot0_data_prediction_target;	// utility/src/zaqal/utility/Utility.scala:22:24
+  reg         slot0_data_prediction_taken;	// utility/src/zaqal/utility/Utility.scala:22:24
+  reg  [3:0]  slot0_data_prediction_slot;	// utility/src/zaqal/utility/Utility.scala:22:24
+  reg  [5:0]  slot0_data_ftqPtr;	// utility/src/zaqal/utility/Utility.scala:22:24
+  reg         slot0_data_epoch;	// utility/src/zaqal/utility/Utility.scala:22:24
+  reg         slot0_valid;	// utility/src/zaqal/utility/Utility.scala:23:28
+  reg  [63:0] slot1_data_pc;	// utility/src/zaqal/utility/Utility.scala:24:24
+  reg  [15:0] slot1_data_mask;	// utility/src/zaqal/utility/Utility.scala:24:24
+  reg  [63:0] slot1_data_prediction_target;	// utility/src/zaqal/utility/Utility.scala:24:24
+  reg         slot1_data_prediction_taken;	// utility/src/zaqal/utility/Utility.scala:24:24
+  reg  [3:0]  slot1_data_prediction_slot;	// utility/src/zaqal/utility/Utility.scala:24:24
+  reg  [5:0]  slot1_data_ftqPtr;	// utility/src/zaqal/utility/Utility.scala:24:24
+  reg         slot1_data_epoch;	// utility/src/zaqal/utility/Utility.scala:24:24
+  reg         slot1_valid;	// utility/src/zaqal/utility/Utility.scala:25:28
+  wire        _GEN = ~slot1_valid & io_enq_valid;	// src/main/scala/chisel3/util/Decoupled.scala:51:35, utility/src/zaqal/utility/Utility.scala:25:28, :32:19
+  wire        _GEN_0 = ~slot0_valid | io_deq_ready & ~slot1_valid;	// utility/src/zaqal/utility/Utility.scala:23:28, :25:28, :32:19, :39:{13,26,43}
   always @(posedge clock) begin	// utility/src/zaqal/utility/Utility.scala:13:7
     if (io_flush) begin	// utility/src/zaqal/utility/Utility.scala:14:14
     end
     else if (_GEN) begin	// src/main/scala/chisel3/util/Decoupled.scala:51:35
-      if (_GEN_0) begin	// utility/src/zaqal/utility/Utility.scala:35:26
-        slot0_data_pc <= io_enq_bits_pc;	// utility/src/zaqal/utility/Utility.scala:21:24
-        slot0_data_mask <= io_enq_bits_mask;	// utility/src/zaqal/utility/Utility.scala:21:24
-        slot0_data_prediction_target <= io_enq_bits_prediction_target;	// utility/src/zaqal/utility/Utility.scala:21:24
-        slot0_data_prediction_taken <= io_enq_bits_prediction_taken;	// utility/src/zaqal/utility/Utility.scala:21:24
-        slot0_data_prediction_slot <= io_enq_bits_prediction_slot;	// utility/src/zaqal/utility/Utility.scala:21:24
-        slot0_data_ftqPtr <= io_enq_bits_ftqPtr;	// utility/src/zaqal/utility/Utility.scala:21:24
-        slot0_data_epoch <= io_enq_bits_epoch;	// utility/src/zaqal/utility/Utility.scala:21:24
+      if (_GEN_0) begin	// utility/src/zaqal/utility/Utility.scala:39:26
+        slot0_data_pc <= io_enq_bits_pc;	// utility/src/zaqal/utility/Utility.scala:22:24
+        slot0_data_mask <= io_enq_bits_mask;	// utility/src/zaqal/utility/Utility.scala:22:24
+        slot0_data_prediction_target <= io_enq_bits_prediction_target;	// utility/src/zaqal/utility/Utility.scala:22:24
+        slot0_data_prediction_taken <= io_enq_bits_prediction_taken;	// utility/src/zaqal/utility/Utility.scala:22:24
+        slot0_data_prediction_slot <= io_enq_bits_prediction_slot;	// utility/src/zaqal/utility/Utility.scala:22:24
+        slot0_data_ftqPtr <= io_enq_bits_ftqPtr;	// utility/src/zaqal/utility/Utility.scala:22:24
+        slot0_data_epoch <= io_enq_bits_epoch;	// utility/src/zaqal/utility/Utility.scala:22:24
       end
     end
     else if (io_deq_ready) begin	// utility/src/zaqal/utility/Utility.scala:14:14
-      slot0_data_pc <= slot1_data_pc;	// utility/src/zaqal/utility/Utility.scala:21:24, :23:24
-      slot0_data_mask <= slot1_data_mask;	// utility/src/zaqal/utility/Utility.scala:21:24, :23:24
-      slot0_data_prediction_target <= slot1_data_prediction_target;	// utility/src/zaqal/utility/Utility.scala:21:24, :23:24
-      slot0_data_prediction_taken <= slot1_data_prediction_taken;	// utility/src/zaqal/utility/Utility.scala:21:24, :23:24
-      slot0_data_prediction_slot <= slot1_data_prediction_slot;	// utility/src/zaqal/utility/Utility.scala:21:24, :23:24
-      slot0_data_ftqPtr <= slot1_data_ftqPtr;	// utility/src/zaqal/utility/Utility.scala:21:24, :23:24
-      slot0_data_epoch <= slot1_data_epoch;	// utility/src/zaqal/utility/Utility.scala:21:24, :23:24
+      slot0_data_pc <= slot1_data_pc;	// utility/src/zaqal/utility/Utility.scala:22:24, :24:24
+      slot0_data_mask <= slot1_data_mask;	// utility/src/zaqal/utility/Utility.scala:22:24, :24:24
+      slot0_data_prediction_target <= slot1_data_prediction_target;	// utility/src/zaqal/utility/Utility.scala:22:24, :24:24
+      slot0_data_prediction_taken <= slot1_data_prediction_taken;	// utility/src/zaqal/utility/Utility.scala:22:24, :24:24
+      slot0_data_prediction_slot <= slot1_data_prediction_slot;	// utility/src/zaqal/utility/Utility.scala:22:24, :24:24
+      slot0_data_ftqPtr <= slot1_data_ftqPtr;	// utility/src/zaqal/utility/Utility.scala:22:24, :24:24
+      slot0_data_epoch <= slot1_data_epoch;	// utility/src/zaqal/utility/Utility.scala:22:24, :24:24
     end
-    if (io_flush | ~_GEN | _GEN_0) begin	// src/main/scala/chisel3/util/Decoupled.scala:51:35, utility/src/zaqal/utility/Utility.scala:23:24, :30:19, :34:24, :35:{26,61}
+    if (io_flush | ~_GEN | _GEN_0) begin	// src/main/scala/chisel3/util/Decoupled.scala:51:35, utility/src/zaqal/utility/Utility.scala:24:24, :34:19, :38:24, :39:{26,61}
     end
-    else begin	// utility/src/zaqal/utility/Utility.scala:23:24, :30:19, :34:24
-      slot1_data_pc <= io_enq_bits_pc;	// utility/src/zaqal/utility/Utility.scala:23:24
-      slot1_data_mask <= io_enq_bits_mask;	// utility/src/zaqal/utility/Utility.scala:23:24
-      slot1_data_prediction_target <= io_enq_bits_prediction_target;	// utility/src/zaqal/utility/Utility.scala:23:24
-      slot1_data_prediction_taken <= io_enq_bits_prediction_taken;	// utility/src/zaqal/utility/Utility.scala:23:24
-      slot1_data_prediction_slot <= io_enq_bits_prediction_slot;	// utility/src/zaqal/utility/Utility.scala:23:24
-      slot1_data_ftqPtr <= io_enq_bits_ftqPtr;	// utility/src/zaqal/utility/Utility.scala:23:24
-      slot1_data_epoch <= io_enq_bits_epoch;	// utility/src/zaqal/utility/Utility.scala:23:24
+    else begin	// utility/src/zaqal/utility/Utility.scala:24:24, :34:19, :38:24
+      slot1_data_pc <= io_enq_bits_pc;	// utility/src/zaqal/utility/Utility.scala:24:24
+      slot1_data_mask <= io_enq_bits_mask;	// utility/src/zaqal/utility/Utility.scala:24:24
+      slot1_data_prediction_target <= io_enq_bits_prediction_target;	// utility/src/zaqal/utility/Utility.scala:24:24
+      slot1_data_prediction_taken <= io_enq_bits_prediction_taken;	// utility/src/zaqal/utility/Utility.scala:24:24
+      slot1_data_prediction_slot <= io_enq_bits_prediction_slot;	// utility/src/zaqal/utility/Utility.scala:24:24
+      slot1_data_ftqPtr <= io_enq_bits_ftqPtr;	// utility/src/zaqal/utility/Utility.scala:24:24
+      slot1_data_epoch <= io_enq_bits_epoch;	// utility/src/zaqal/utility/Utility.scala:24:24
     end
     if (reset) begin	// utility/src/zaqal/utility/Utility.scala:13:7
-      slot0_valid <= 1'h0;	// utility/src/zaqal/utility/Utility.scala:22:28
-      slot1_valid <= 1'h0;	// utility/src/zaqal/utility/Utility.scala:22:28, :24:28
+      slot0_valid <= 1'h0;	// utility/src/zaqal/utility/Utility.scala:23:28
+      slot1_valid <= 1'h0;	// utility/src/zaqal/utility/Utility.scala:23:28, :25:28
     end
     else begin	// utility/src/zaqal/utility/Utility.scala:13:7
       slot0_valid <=
         ~io_flush
-        & (_GEN ? _GEN_0 | slot0_valid : io_deq_ready ? slot1_valid : slot0_valid);	// src/main/scala/chisel3/util/Decoupled.scala:51:35, utility/src/zaqal/utility/Utility.scala:22:28, :24:28, :30:19, :31:17, :34:24, :35:{26,61}, :38:21, :44:32, :47:19
+        & (_GEN ? _GEN_0 | slot0_valid : io_deq_ready ? slot1_valid : slot0_valid);	// src/main/scala/chisel3/util/Decoupled.scala:51:35, utility/src/zaqal/utility/Utility.scala:23:28, :25:28, :34:19, :35:17, :38:24, :39:{26,61}, :42:21, :48:32, :51:19
       slot1_valid <=
-        ~io_flush & (_GEN ? ~_GEN_0 | slot1_valid : ~io_deq_ready & slot1_valid);	// src/main/scala/chisel3/util/Decoupled.scala:51:35, utility/src/zaqal/utility/Utility.scala:24:28, :30:19, :31:17, :32:17, :34:24, :35:{26,61}, :42:21, :44:32, :48:19
+        ~io_flush & (_GEN ? ~_GEN_0 | slot1_valid : ~io_deq_ready & slot1_valid);	// src/main/scala/chisel3/util/Decoupled.scala:51:35, utility/src/zaqal/utility/Utility.scala:25:28, :34:19, :35:17, :36:17, :38:24, :39:{26,61}, :46:21, :48:32, :52:19
     end
   end // always @(posedge)
   `ifdef ENABLE_INITIAL_REG_	// utility/src/zaqal/utility/Utility.scala:13:7
     `ifdef FIRRTL_BEFORE_INITIAL	// utility/src/zaqal/utility/Utility.scala:13:7
       `FIRRTL_BEFORE_INITIAL	// utility/src/zaqal/utility/Utility.scala:13:7
     `endif // FIRRTL_BEFORE_INITIAL
-    logic [31:0] _RANDOM[0:9];	// utility/src/zaqal/utility/Utility.scala:13:7
+    logic [31:0] _RANDOM[0:10];	// utility/src/zaqal/utility/Utility.scala:13:7
     initial begin	// utility/src/zaqal/utility/Utility.scala:13:7
       `ifdef INIT_RANDOM_PROLOG_	// utility/src/zaqal/utility/Utility.scala:13:7
         `INIT_RANDOM_PROLOG_	// utility/src/zaqal/utility/Utility.scala:13:7
       `endif // INIT_RANDOM_PROLOG_
       `ifdef RANDOMIZE_REG_INIT	// utility/src/zaqal/utility/Utility.scala:13:7
-        for (logic [3:0] i = 4'h0; i < 4'hA; i += 4'h1) begin
+        for (logic [3:0] i = 4'h0; i < 4'hB; i += 4'h1) begin
           _RANDOM[i] = `RANDOM;	// utility/src/zaqal/utility/Utility.scala:13:7
         end	// utility/src/zaqal/utility/Utility.scala:13:7
-        slot0_data_pc = {_RANDOM[4'h0], _RANDOM[4'h1]};	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-        slot0_data_mask = _RANDOM[4'h2][15:0];	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
+        slot0_data_pc = {_RANDOM[4'h0], _RANDOM[4'h1]};	// utility/src/zaqal/utility/Utility.scala:13:7, :22:24
+        slot0_data_mask = _RANDOM[4'h2][15:0];	// utility/src/zaqal/utility/Utility.scala:13:7, :22:24
         slot0_data_prediction_target =
-          {_RANDOM[4'h2][31:16], _RANDOM[4'h3], _RANDOM[4'h4][15:0]};	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-        slot0_data_prediction_taken = _RANDOM[4'h4][16];	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-        slot0_data_prediction_slot = _RANDOM[4'h4][20:17];	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-        slot0_data_ftqPtr = _RANDOM[4'h4][26:21];	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-        slot0_data_epoch = _RANDOM[4'h4][27];	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-        slot0_valid = _RANDOM[4'h4][28];	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24, :22:28
-        slot1_data_pc = {_RANDOM[4'h4][31:29], _RANDOM[4'h5], _RANDOM[4'h6][28:0]};	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24, :23:24
-        slot1_data_mask = {_RANDOM[4'h6][31:29], _RANDOM[4'h7][12:0]};	// utility/src/zaqal/utility/Utility.scala:13:7, :23:24
+          {_RANDOM[4'h2][31:16], _RANDOM[4'h3], _RANDOM[4'h4][15:0]};	// utility/src/zaqal/utility/Utility.scala:13:7, :22:24
+        slot0_data_prediction_taken = _RANDOM[4'h4][16];	// utility/src/zaqal/utility/Utility.scala:13:7, :22:24
+        slot0_data_prediction_slot = _RANDOM[4'h4][20:17];	// utility/src/zaqal/utility/Utility.scala:13:7, :22:24
+        slot0_data_ftqPtr = _RANDOM[4'h4][26:21];	// utility/src/zaqal/utility/Utility.scala:13:7, :22:24
+        slot0_data_epoch = _RANDOM[4'h4][27];	// utility/src/zaqal/utility/Utility.scala:13:7, :22:24
+        slot0_valid = _RANDOM[4'h5][0];	// utility/src/zaqal/utility/Utility.scala:13:7, :23:28
+        slot1_data_pc = {_RANDOM[4'h5][31:1], _RANDOM[4'h6], _RANDOM[4'h7][0]};	// utility/src/zaqal/utility/Utility.scala:13:7, :23:28, :24:24
+        slot1_data_mask = _RANDOM[4'h7][16:1];	// utility/src/zaqal/utility/Utility.scala:13:7, :24:24
         slot1_data_prediction_target =
-          {_RANDOM[4'h7][31:13], _RANDOM[4'h8], _RANDOM[4'h9][12:0]};	// utility/src/zaqal/utility/Utility.scala:13:7, :23:24
-        slot1_data_prediction_taken = _RANDOM[4'h9][13];	// utility/src/zaqal/utility/Utility.scala:13:7, :23:24
-        slot1_data_prediction_slot = _RANDOM[4'h9][17:14];	// utility/src/zaqal/utility/Utility.scala:13:7, :23:24
-        slot1_data_ftqPtr = _RANDOM[4'h9][23:18];	// utility/src/zaqal/utility/Utility.scala:13:7, :23:24
-        slot1_data_epoch = _RANDOM[4'h9][24];	// utility/src/zaqal/utility/Utility.scala:13:7, :23:24
-        slot1_valid = _RANDOM[4'h9][25];	// utility/src/zaqal/utility/Utility.scala:13:7, :23:24, :24:28
+          {_RANDOM[4'h7][31:17], _RANDOM[4'h8], _RANDOM[4'h9][16:0]};	// utility/src/zaqal/utility/Utility.scala:13:7, :24:24
+        slot1_data_prediction_taken = _RANDOM[4'h9][17];	// utility/src/zaqal/utility/Utility.scala:13:7, :24:24
+        slot1_data_prediction_slot = _RANDOM[4'h9][21:18];	// utility/src/zaqal/utility/Utility.scala:13:7, :24:24
+        slot1_data_ftqPtr = _RANDOM[4'h9][27:22];	// utility/src/zaqal/utility/Utility.scala:13:7, :24:24
+        slot1_data_epoch = _RANDOM[4'h9][28];	// utility/src/zaqal/utility/Utility.scala:13:7, :24:24
+        slot1_valid = _RANDOM[4'hA][1];	// utility/src/zaqal/utility/Utility.scala:13:7, :25:28
       `endif // RANDOMIZE_REG_INIT
     end // initial
     `ifdef FIRRTL_AFTER_INITIAL	// utility/src/zaqal/utility/Utility.scala:13:7
       `FIRRTL_AFTER_INITIAL	// utility/src/zaqal/utility/Utility.scala:13:7
     `endif // FIRRTL_AFTER_INITIAL
   `endif // ENABLE_INITIAL_REG_
-  assign io_enq_ready = ~slot1_valid;	// utility/src/zaqal/utility/Utility.scala:13:7, :24:28, :28:19
-  assign io_deq_valid = slot0_valid;	// utility/src/zaqal/utility/Utility.scala:13:7, :22:28
-  assign io_deq_bits_pc = slot0_data_pc;	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-  assign io_deq_bits_mask = slot0_data_mask;	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-  assign io_deq_bits_prediction_target = slot0_data_prediction_target;	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-  assign io_deq_bits_prediction_taken = slot0_data_prediction_taken;	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-  assign io_deq_bits_prediction_slot = slot0_data_prediction_slot;	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-  assign io_deq_bits_ftqPtr = slot0_data_ftqPtr;	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
-  assign io_deq_bits_epoch = slot0_data_epoch;	// utility/src/zaqal/utility/Utility.scala:13:7, :21:24
+  assign io_enq_ready = ~slot1_valid;	// utility/src/zaqal/utility/Utility.scala:13:7, :25:28, :32:19
+  assign io_deq_valid = slot0_valid;	// utility/src/zaqal/utility/Utility.scala:13:7, :23:28
+  assign io_deq_bits_pc = slot0_data_pc;	// utility/src/zaqal/utility/Utility.scala:13:7, :22:24
+  assign io_deq_bits_mask = slot0_data_mask;	// utility/src/zaqal/utility/Utility.scala:13:7, :22:24
+  assign io_deq_bits_prediction_target = slot0_data_prediction_target;	// utility/src/zaqal/utility/Utility.scala:13:7, :22:24
+  assign io_deq_bits_prediction_taken = slot0_data_prediction_taken;	// utility/src/zaqal/utility/Utility.scala:13:7, :22:24
+  assign io_deq_bits_prediction_slot = slot0_data_prediction_slot;	// utility/src/zaqal/utility/Utility.scala:13:7, :22:24
+  assign io_deq_bits_ftqPtr = slot0_data_ftqPtr;	// utility/src/zaqal/utility/Utility.scala:13:7, :22:24
+  assign io_deq_bits_epoch = slot0_data_epoch;	// utility/src/zaqal/utility/Utility.scala:13:7, :22:24
+  assign io_occupancy = {1'h0, slot0_valid} + {1'h0, slot1_valid};	// utility/src/zaqal/utility/Utility.scala:13:7, :23:28, :25:28, :28:38
 endmodule
 

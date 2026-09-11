@@ -66,38 +66,38 @@
   `endif // PRINTF_COND
 `endif // not def PRINTF_COND_
 
-module Bitmanip(	// backend/src/zaqal/backend/fu/Bitmanip.scala:8:7
-  input  [63:0] io_src1,	// backend/src/zaqal/backend/fu/Bitmanip.scala:9:14
-                io_src2,	// backend/src/zaqal/backend/fu/Bitmanip.scala:9:14
-  input         io_is_clz,	// backend/src/zaqal/backend/fu/Bitmanip.scala:9:14
-                io_is_ctz,	// backend/src/zaqal/backend/fu/Bitmanip.scala:9:14
-                io_is_cpop,	// backend/src/zaqal/backend/fu/Bitmanip.scala:9:14
-                io_is_clzw,	// backend/src/zaqal/backend/fu/Bitmanip.scala:9:14
-                io_is_ctzw,	// backend/src/zaqal/backend/fu/Bitmanip.scala:9:14
-                io_is_cpopw,	// backend/src/zaqal/backend/fu/Bitmanip.scala:9:14
-                io_is_rev8,	// backend/src/zaqal/backend/fu/Bitmanip.scala:9:14
-                io_is_orc_b,	// backend/src/zaqal/backend/fu/Bitmanip.scala:9:14
-                io_is_sextb,	// backend/src/zaqal/backend/fu/Bitmanip.scala:9:14
-                io_is_sexth,	// backend/src/zaqal/backend/fu/Bitmanip.scala:9:14
-                io_is_zexth,	// backend/src/zaqal/backend/fu/Bitmanip.scala:9:14
-                io_is_min,	// backend/src/zaqal/backend/fu/Bitmanip.scala:9:14
-                io_is_max,	// backend/src/zaqal/backend/fu/Bitmanip.scala:9:14
-                io_is_minu,	// backend/src/zaqal/backend/fu/Bitmanip.scala:9:14
-                io_is_maxu,	// backend/src/zaqal/backend/fu/Bitmanip.scala:9:14
-                io_is_bset,	// backend/src/zaqal/backend/fu/Bitmanip.scala:9:14
-                io_is_bseti,	// backend/src/zaqal/backend/fu/Bitmanip.scala:9:14
-                io_is_bclr,	// backend/src/zaqal/backend/fu/Bitmanip.scala:9:14
-                io_is_bclri,	// backend/src/zaqal/backend/fu/Bitmanip.scala:9:14
-                io_is_binv,	// backend/src/zaqal/backend/fu/Bitmanip.scala:9:14
-                io_is_binvi,	// backend/src/zaqal/backend/fu/Bitmanip.scala:9:14
-                io_is_bext,	// backend/src/zaqal/backend/fu/Bitmanip.scala:9:14
-                io_is_bexti,	// backend/src/zaqal/backend/fu/Bitmanip.scala:9:14
-  output [63:0] io_result	// backend/src/zaqal/backend/fu/Bitmanip.scala:9:14
+module Bitmanip(	// backend/src/zaqal/backend/exu/Bitmanip.scala:8:7
+  input  [63:0] io_src1,	// backend/src/zaqal/backend/exu/Bitmanip.scala:9:14
+                io_src2,	// backend/src/zaqal/backend/exu/Bitmanip.scala:9:14
+  input         io_is_clz,	// backend/src/zaqal/backend/exu/Bitmanip.scala:9:14
+                io_is_ctz,	// backend/src/zaqal/backend/exu/Bitmanip.scala:9:14
+                io_is_cpop,	// backend/src/zaqal/backend/exu/Bitmanip.scala:9:14
+                io_is_clzw,	// backend/src/zaqal/backend/exu/Bitmanip.scala:9:14
+                io_is_ctzw,	// backend/src/zaqal/backend/exu/Bitmanip.scala:9:14
+                io_is_cpopw,	// backend/src/zaqal/backend/exu/Bitmanip.scala:9:14
+                io_is_rev8,	// backend/src/zaqal/backend/exu/Bitmanip.scala:9:14
+                io_is_orc_b,	// backend/src/zaqal/backend/exu/Bitmanip.scala:9:14
+                io_is_sextb,	// backend/src/zaqal/backend/exu/Bitmanip.scala:9:14
+                io_is_sexth,	// backend/src/zaqal/backend/exu/Bitmanip.scala:9:14
+                io_is_zexth,	// backend/src/zaqal/backend/exu/Bitmanip.scala:9:14
+                io_is_min,	// backend/src/zaqal/backend/exu/Bitmanip.scala:9:14
+                io_is_max,	// backend/src/zaqal/backend/exu/Bitmanip.scala:9:14
+                io_is_minu,	// backend/src/zaqal/backend/exu/Bitmanip.scala:9:14
+                io_is_maxu,	// backend/src/zaqal/backend/exu/Bitmanip.scala:9:14
+                io_is_bset,	// backend/src/zaqal/backend/exu/Bitmanip.scala:9:14
+                io_is_bseti,	// backend/src/zaqal/backend/exu/Bitmanip.scala:9:14
+                io_is_bclr,	// backend/src/zaqal/backend/exu/Bitmanip.scala:9:14
+                io_is_bclri,	// backend/src/zaqal/backend/exu/Bitmanip.scala:9:14
+                io_is_binv,	// backend/src/zaqal/backend/exu/Bitmanip.scala:9:14
+                io_is_binvi,	// backend/src/zaqal/backend/exu/Bitmanip.scala:9:14
+                io_is_bext,	// backend/src/zaqal/backend/exu/Bitmanip.scala:9:14
+                io_is_bexti,	// backend/src/zaqal/backend/exu/Bitmanip.scala:9:14
+  output [63:0] io_result	// backend/src/zaqal/backend/exu/Bitmanip.scala:9:14
 );
 
   wire [15:0] _GEN =
     {{io_src1[23:16], io_src1[31:28]} & 12'hF0F, 4'h0} | {io_src1[31:24], io_src1[39:32]}
-    & 16'hF0F;	// backend/src/zaqal/backend/fu/Bitmanip.scala:39:57
+    & 16'hF0F;	// backend/src/zaqal/backend/exu/Bitmanip.scala:39:57
   wire [37:0] _GEN_0 =
     {io_src1[11:8],
      io_src1[15:12],
@@ -105,12 +105,12 @@ module Bitmanip(	// backend/src/zaqal/backend/fu/Bitmanip.scala:8:7
      _GEN,
      io_src1[39:36],
      io_src1[43:40],
-     io_src1[47:46]} & 38'h3333333333;	// backend/src/zaqal/backend/fu/Bitmanip.scala:39:57
-  wire [7:0]  _GEN_1 = {io_src1[15:12], io_src1[19:16]} & 8'h33;	// backend/src/zaqal/backend/fu/Bitmanip.scala:39:57
-  wire [7:0]  _GEN_2 = _GEN_0[37:30] | _GEN_1;	// backend/src/zaqal/backend/fu/Bitmanip.scala:39:57
-  wire [15:0] _GEN_3 = _GEN_0[29:14] | _GEN & 16'h3333;	// backend/src/zaqal/backend/fu/Bitmanip.scala:39:57
-  wire [1:0]  _GEN_4 = _GEN_0[11:10] | io_src1[37:36];	// backend/src/zaqal/backend/fu/Bitmanip.scala:39:57
-  wire [7:0]  _GEN_5 = {_GEN_0[5:0], 2'h0} | {io_src1[47:44], io_src1[51:48]} & 8'h33;	// backend/src/zaqal/backend/fu/Bitmanip.scala:39:57
+     io_src1[47:46]} & 38'h3333333333;	// backend/src/zaqal/backend/exu/Bitmanip.scala:39:57
+  wire [7:0]  _GEN_1 = {io_src1[15:12], io_src1[19:16]} & 8'h33;	// backend/src/zaqal/backend/exu/Bitmanip.scala:39:57
+  wire [7:0]  _GEN_2 = _GEN_0[37:30] | _GEN_1;	// backend/src/zaqal/backend/exu/Bitmanip.scala:39:57
+  wire [15:0] _GEN_3 = _GEN_0[29:14] | _GEN & 16'h3333;	// backend/src/zaqal/backend/exu/Bitmanip.scala:39:57
+  wire [1:0]  _GEN_4 = _GEN_0[11:10] | io_src1[37:36];	// backend/src/zaqal/backend/exu/Bitmanip.scala:39:57
+  wire [7:0]  _GEN_5 = {_GEN_0[5:0], 2'h0} | {io_src1[47:44], io_src1[51:48]} & 8'h33;	// backend/src/zaqal/backend/exu/Bitmanip.scala:39:57
   wire [50:0] _GEN_6 =
     {io_src1[5:4],
      io_src1[7:6],
@@ -124,16 +124,16 @@ module Bitmanip(	// backend/src/zaqal/backend/fu/Bitmanip.scala:8:7
      _GEN_5,
      io_src1[51:50],
      io_src1[53:52],
-     io_src1[55]} & 51'h5555555555555;	// backend/src/zaqal/backend/fu/Bitmanip.scala:39:57
-  wire [3:0]  _GEN_7 = {io_src1[7:6], io_src1[9:8]} & 4'h5;	// backend/src/zaqal/backend/fu/Bitmanip.scala:39:57
-  wire [3:0]  _GEN_8 = _GEN_6[50:47] | _GEN_7;	// backend/src/zaqal/backend/fu/Bitmanip.scala:39:57
-  wire [7:0]  _GEN_9 = _GEN_6[46:39] | _GEN_2 & 8'h55;	// backend/src/zaqal/backend/fu/Bitmanip.scala:39:57
-  wire [15:0] _GEN_10 = _GEN_6[38:23] | _GEN_3 & 16'h5555;	// backend/src/zaqal/backend/fu/Bitmanip.scala:39:57
-  wire [1:0]  _GEN_11 = {_GEN[3], 1'h0} | _GEN_4 & 2'h1;	// backend/src/zaqal/backend/fu/Bitmanip.scala:39:57
-  wire [3:0]  _GEN_12 = _GEN_6[18:15] | {io_src1[39:38], io_src1[41:40]} & 4'h5;	// backend/src/zaqal/backend/fu/Bitmanip.scala:39:57
-  wire [7:0]  _GEN_13 = _GEN_6[14:7] | _GEN_5 & 8'h55;	// backend/src/zaqal/backend/fu/Bitmanip.scala:39:57
-  wire [3:0]  _GEN_14 = {_GEN_6[2:0], 1'h0} | {io_src1[55:54], io_src1[57:56]} & 4'h5;	// backend/src/zaqal/backend/fu/Bitmanip.scala:39:57
-  wire [7:0]  _GEN_15 = {{io_src1[11:8], io_src1[15:14]} & 6'h33, 2'h0} | _GEN_1;	// backend/src/zaqal/backend/fu/Bitmanip.scala:39:57, :45:57, src/main/scala/chisel3/util/Mux.scala:50:70
+     io_src1[55]} & 51'h5555555555555;	// backend/src/zaqal/backend/exu/Bitmanip.scala:39:57
+  wire [3:0]  _GEN_7 = {io_src1[7:6], io_src1[9:8]} & 4'h5;	// backend/src/zaqal/backend/exu/Bitmanip.scala:39:57
+  wire [3:0]  _GEN_8 = _GEN_6[50:47] | _GEN_7;	// backend/src/zaqal/backend/exu/Bitmanip.scala:39:57
+  wire [7:0]  _GEN_9 = _GEN_6[46:39] | _GEN_2 & 8'h55;	// backend/src/zaqal/backend/exu/Bitmanip.scala:39:57
+  wire [15:0] _GEN_10 = _GEN_6[38:23] | _GEN_3 & 16'h5555;	// backend/src/zaqal/backend/exu/Bitmanip.scala:39:57
+  wire [1:0]  _GEN_11 = {_GEN[3], 1'h0} | _GEN_4 & 2'h1;	// backend/src/zaqal/backend/exu/Bitmanip.scala:39:57
+  wire [3:0]  _GEN_12 = _GEN_6[18:15] | {io_src1[39:38], io_src1[41:40]} & 4'h5;	// backend/src/zaqal/backend/exu/Bitmanip.scala:39:57
+  wire [7:0]  _GEN_13 = _GEN_6[14:7] | _GEN_5 & 8'h55;	// backend/src/zaqal/backend/exu/Bitmanip.scala:39:57
+  wire [3:0]  _GEN_14 = {_GEN_6[2:0], 1'h0} | {io_src1[55:54], io_src1[57:56]} & 4'h5;	// backend/src/zaqal/backend/exu/Bitmanip.scala:39:57
+  wire [7:0]  _GEN_15 = {{io_src1[11:8], io_src1[15:14]} & 6'h33, 2'h0} | _GEN_1;	// backend/src/zaqal/backend/exu/Bitmanip.scala:39:57, :45:57, src/main/scala/chisel3/util/Mux.scala:50:70
   wire [18:0] _GEN_16 =
     {io_src1[5:4],
      io_src1[7:6],
@@ -141,13 +141,13 @@ module Bitmanip(	// backend/src/zaqal/backend/fu/Bitmanip.scala:8:7
      _GEN_15,
      io_src1[19:18],
      io_src1[21:20],
-     io_src1[23]} & 19'h55555;	// backend/src/zaqal/backend/fu/Bitmanip.scala:39:57, :45:57
-  wire [3:0]  _GEN_17 = _GEN_16[18:15] | _GEN_7;	// backend/src/zaqal/backend/fu/Bitmanip.scala:39:57, :45:57
-  wire [7:0]  _GEN_18 = _GEN_16[14:7] | _GEN_15 & 8'h55;	// backend/src/zaqal/backend/fu/Bitmanip.scala:39:57, :45:57
-  wire [3:0]  _GEN_19 = {_GEN_16[2:0], 1'h0} | {io_src1[23:22], io_src1[25:24]} & 4'h5;	// backend/src/zaqal/backend/fu/Bitmanip.scala:39:57, :45:57
-  wire [63:0] _GEN_20 = {58'h0, io_src2[5:0]};	// backend/src/zaqal/backend/fu/Bitmanip.scala:62:22, :63:33
-  wire [63:0] _binv_res_T = 64'h1 << _GEN_20;	// backend/src/zaqal/backend/fu/Bitmanip.scala:63:33
-  wire [63:0] _bext_res_T = io_src1 >> _GEN_20;	// backend/src/zaqal/backend/fu/Bitmanip.scala:63:33, :66:27
+     io_src1[23]} & 19'h55555;	// backend/src/zaqal/backend/exu/Bitmanip.scala:39:57, :45:57
+  wire [3:0]  _GEN_17 = _GEN_16[18:15] | _GEN_7;	// backend/src/zaqal/backend/exu/Bitmanip.scala:39:57, :45:57
+  wire [7:0]  _GEN_18 = _GEN_16[14:7] | _GEN_15 & 8'h55;	// backend/src/zaqal/backend/exu/Bitmanip.scala:39:57, :45:57
+  wire [3:0]  _GEN_19 = {_GEN_16[2:0], 1'h0} | {io_src1[23:22], io_src1[25:24]} & 4'h5;	// backend/src/zaqal/backend/exu/Bitmanip.scala:39:57, :45:57
+  wire [63:0] _GEN_20 = {58'h0, io_src2[5:0]};	// backend/src/zaqal/backend/exu/Bitmanip.scala:62:22, :63:33
+  wire [63:0] _binv_res_T = 64'h1 << _GEN_20;	// backend/src/zaqal/backend/exu/Bitmanip.scala:63:33
+  wire [63:0] _bext_res_T = io_src1 >> _GEN_20;	// backend/src/zaqal/backend/exu/Bitmanip.scala:63:33, :66:27
   wire [63:0] _io_result_T_19 =
     io_is_clzw
       ? {58'h0,
@@ -355,7 +355,7 @@ module Bitmanip(	// backend/src/zaqal/backend/fu/Bitmanip.scala:8:7
                                                               : io_is_bext | io_is_bexti
                                                                   ? {63'h0,
                                                                      _bext_res_T[0]}
-                                                                  : 64'h0;	// backend/src/zaqal/backend/fu/Bitmanip.scala:39:57, :45:{21,29,57}, :46:21, :47:26, :50:58, :51:{22,56,80}, :52:{22,27,54}, :53:{22,27}, :54:22, :56:{21,37}, :57:{21,37}, :58:{21,30}, :59:{21,30}, :63:{26,33}, :64:{26,28}, :65:26, :66:{27,37}, :84:17, :85:17, :86:17, :87:17, src/main/scala/chisel3/util/Mux.scala:50:70, :126:16, src/main/scala/chisel3/util/OneHot.scala:48:45
+                                                                  : 64'h0;	// backend/src/zaqal/backend/exu/Bitmanip.scala:39:57, :45:{21,29,57}, :46:21, :47:26, :50:58, :51:{22,56,80}, :52:{22,27,54}, :53:{22,27}, :54:22, :56:{21,37}, :57:{21,37}, :58:{21,30}, :59:{21,30}, :63:{26,33}, :64:{26,28}, :65:26, :66:{27,37}, :84:17, :85:17, :86:17, :87:17, src/main/scala/chisel3/util/Mux.scala:50:70, :126:16, src/main/scala/chisel3/util/OneHot.scala:48:45
   wire [63:0] _io_result_T_21 =
     io_is_ctz
       ? {57'h0,
@@ -553,7 +553,7 @@ module Bitmanip(	// backend/src/zaqal/backend/fu/Bitmanip.scala:8:7
                                  {1'h0, {1'h0, io_src1[60]} + {1'h0, io_src1[61]}}
                                    + {1'h0,
                                       {1'h0, io_src1[62]} + {1'h0, io_src1[63]}}}}}}}
-          : _io_result_T_19;	// backend/src/zaqal/backend/fu/Bitmanip.scala:39:{20,29,57}, :40:20, :41:25, src/main/scala/chisel3/util/Mux.scala:50:70, :126:16, src/main/scala/chisel3/util/OneHot.scala:48:45
+          : _io_result_T_19;	// backend/src/zaqal/backend/exu/Bitmanip.scala:39:{20,29,57}, :40:20, :41:25, src/main/scala/chisel3/util/Mux.scala:50:70, :126:16, src/main/scala/chisel3/util/OneHot.scala:48:45
   assign io_result =
     io_is_clz
       ? {57'h0,
@@ -687,6 +687,6 @@ module Bitmanip(	// backend/src/zaqal/backend/fu/Bitmanip.scala:8:7
                                                                                                                                                                                                                                                                     : {5'h1F,
                                                                                                                                                                                                                                                                        ~(io_src1[1])}}
            : 7'h40}
-      : _io_result_T_21;	// backend/src/zaqal/backend/fu/Bitmanip.scala:8:7, :39:{20,29,57}, src/main/scala/chisel3/util/Mux.scala:50:70, :126:16, src/main/scala/chisel3/util/OneHot.scala:48:45
+      : _io_result_T_21;	// backend/src/zaqal/backend/exu/Bitmanip.scala:8:7, :39:{20,29,57}, src/main/scala/chisel3/util/Mux.scala:50:70, :126:16, src/main/scala/chisel3/util/OneHot.scala:48:45
 endmodule
 

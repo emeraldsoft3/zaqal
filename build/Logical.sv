@@ -66,16 +66,16 @@
   `endif // PRINTF_COND
 `endif // not def PRINTF_COND_
 
-module Logical(	// backend/src/zaqal/backend/fu/Logical.scala:8:7
-  input  [63:0] io_src1,	// backend/src/zaqal/backend/fu/Logical.scala:9:14
-                io_src2,	// backend/src/zaqal/backend/fu/Logical.scala:9:14
-  input         io_is_and,	// backend/src/zaqal/backend/fu/Logical.scala:9:14
-                io_is_or,	// backend/src/zaqal/backend/fu/Logical.scala:9:14
-                io_is_xor,	// backend/src/zaqal/backend/fu/Logical.scala:9:14
-                io_is_andn,	// backend/src/zaqal/backend/fu/Logical.scala:9:14
-                io_is_orn,	// backend/src/zaqal/backend/fu/Logical.scala:9:14
-                io_is_xorn,	// backend/src/zaqal/backend/fu/Logical.scala:9:14
-  output [63:0] io_result	// backend/src/zaqal/backend/fu/Logical.scala:9:14
+module Logical(	// backend/src/zaqal/backend/exu/Logical.scala:8:7
+  input  [63:0] io_src1,	// backend/src/zaqal/backend/exu/Logical.scala:9:14
+                io_src2,	// backend/src/zaqal/backend/exu/Logical.scala:9:14
+  input         io_is_and,	// backend/src/zaqal/backend/exu/Logical.scala:9:14
+                io_is_or,	// backend/src/zaqal/backend/exu/Logical.scala:9:14
+                io_is_xor,	// backend/src/zaqal/backend/exu/Logical.scala:9:14
+                io_is_andn,	// backend/src/zaqal/backend/exu/Logical.scala:9:14
+                io_is_orn,	// backend/src/zaqal/backend/exu/Logical.scala:9:14
+                io_is_xorn,	// backend/src/zaqal/backend/exu/Logical.scala:9:14
+  output [63:0] io_result	// backend/src/zaqal/backend/exu/Logical.scala:9:14
 );
 
   assign io_result =
@@ -89,6 +89,6 @@ module Logical(	// backend/src/zaqal/backend/fu/Logical.scala:8:7
                   ? io_src1 & ~io_src2
                   : io_is_orn
                       ? io_src1 | ~io_src2
-                      : io_is_xorn ? io_src1 ^ ~io_src2 : 64'h0;	// backend/src/zaqal/backend/fu/Logical.scala:8:7, :21:26, :22:26, :23:26, :24:{26,28}, :25:26, :26:26, src/main/scala/chisel3/util/Mux.scala:126:16
+                      : io_is_xorn ? io_src1 ^ ~io_src2 : 64'h0;	// backend/src/zaqal/backend/exu/Logical.scala:8:7, :21:26, :22:26, :23:26, :24:{26,28}, :25:26, :26:26, src/main/scala/chisel3/util/Mux.scala:126:16
 endmodule
 

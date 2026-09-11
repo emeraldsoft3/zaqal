@@ -66,16 +66,16 @@
   `endif // PRINTF_COND
 `endif // not def PRINTF_COND_
 
-module Comparator(	// backend/src/zaqal/backend/fu/Comparator.scala:8:7
-  input  [63:0] io_src1,	// backend/src/zaqal/backend/fu/Comparator.scala:9:14
-                io_src2,	// backend/src/zaqal/backend/fu/Comparator.scala:9:14
-  output        io_eq,	// backend/src/zaqal/backend/fu/Comparator.scala:9:14
-                io_lt,	// backend/src/zaqal/backend/fu/Comparator.scala:9:14
-                io_ltu	// backend/src/zaqal/backend/fu/Comparator.scala:9:14
+module Comparator(	// backend/src/zaqal/backend/exu/Comparator.scala:8:7
+  input  [63:0] io_src1,	// backend/src/zaqal/backend/exu/Comparator.scala:9:14
+                io_src2,	// backend/src/zaqal/backend/exu/Comparator.scala:9:14
+  output        io_eq,	// backend/src/zaqal/backend/exu/Comparator.scala:9:14
+                io_lt,	// backend/src/zaqal/backend/exu/Comparator.scala:9:14
+                io_ltu	// backend/src/zaqal/backend/exu/Comparator.scala:9:14
 );
 
-  assign io_eq = io_src1 == io_src2;	// backend/src/zaqal/backend/fu/Comparator.scala:8:7, :17:21
-  assign io_lt = $signed(io_src1) < $signed(io_src2);	// backend/src/zaqal/backend/fu/Comparator.scala:8:7, :18:28
-  assign io_ltu = io_src1 < io_src2;	// backend/src/zaqal/backend/fu/Comparator.scala:8:7, :19:21
+  assign io_eq = io_src1 == io_src2;	// backend/src/zaqal/backend/exu/Comparator.scala:8:7, :17:21
+  assign io_lt = $signed(io_src1) < $signed(io_src2);	// backend/src/zaqal/backend/exu/Comparator.scala:8:7, :18:28
+  assign io_ltu = io_src1 < io_src2;	// backend/src/zaqal/backend/exu/Comparator.scala:8:7, :19:21
 endmodule
 

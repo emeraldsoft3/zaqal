@@ -219,7 +219,7 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   when(io.mem_in.valid && !wait_mem && !hit_mem) { wait_mem := true.B } .otherwise { wait_mem := false.B }
   io.mem_in.ready := (hit_mem || wait_mem)
 
-  val is_fp_int_src = decFp.is_fmv_w_x || decFp.is_fcvt_i2f
+  val is_fp_int_src = decFp.is_fmv_w_x || decFp.is_fmv_d_x || decFp.is_fcvt_i2f
   val is_fp_fma = decFp.is_fmadd || decFp.is_fmsub || decFp.is_fnmadd || decFp.is_fnmsub
   val hit_fp0 = fpRC.io.rhits(0)
   val hit_fp1 = fpRC.io.rhits(1)
@@ -789,12 +789,13 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
         next_regFile_waddr(3) := r_agu_uop.pdest
         next_regFile_wdata(3) := lsu.io.result
       } .otherwise {
+        val fload_data = Mux(r_agu_uop.decode.is_fld, lsu.io.result(63, 0), Cat("hffffffff".U(32.W), lsu.io.result(31, 0)))
         fpRegFile.io.wen(2)   := true.B
         fpRegFile.io.waddr(2) := r_agu_uop.pdest
-        fpRegFile.io.wdata(2) := Cat("hffffffff".U(32.W), lsu.io.result(31, 0))
+        fpRegFile.io.wdata(2) := fload_data
         fpRC.io.wen(2)        := true.B
         fpRC.io.waddr(2)      := r_agu_uop.pdest
-        fpRC.io.wdata(2)      := Cat("hffffffff".U(32.W), lsu.io.result(31, 0))
+        fpRC.io.wdata(2)      := fload_data
       }
     }
   }
@@ -838,16 +839,19 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   fpmisc.io.inst := exe_uop_rawFp.inst_raw
 
   val exe_is_fp_wb_to_fp = exe_decFp.is_fadd || exe_decFp.is_fsub || exe_decFp.is_fmul || exe_decFp.is_fmadd ||
-                           exe_decFp.is_fmv_w_x || exe_decFp.is_fcvt_i2f || exe_decFp.is_fsgnj || exe_decFp.is_fminmax
-  val exe_is_fp_wb_to_int = exe_decFp.is_fmv_x_w || exe_decFp.is_fcvt_f2i || exe_decFp.is_feq || exe_decFp.is_flt || exe_decFp.is_fle || exe_decFp.is_fclass
-  val is_fp_wb_to_int = decFp.is_fmv_x_w || decFp.is_fcvt_f2i || decFp.is_feq || decFp.is_flt || decFp.is_fle || decFp.is_fclass
+                           exe_decFp.is_fmsub || exe_decFp.is_fnmsub || exe_decFp.is_fnmadd ||
+                           exe_decFp.is_fmv_w_x || exe_decFp.is_fmv_d_x || exe_decFp.is_fcvt_i2f ||
+                           exe_decFp.is_fsgnj || exe_decFp.is_fminmax || exe_decFp.is_fcvt_s_d || exe_decFp.is_fcvt_d_s
+  val exe_is_fp_wb_to_int = exe_decFp.is_fmv_x_w || exe_decFp.is_fmv_x_d || exe_decFp.is_fcvt_f2i || exe_decFp.is_feq || exe_decFp.is_flt || exe_decFp.is_fle || exe_decFp.is_fclass
+  val is_fp_wb_to_int = decFp.is_fmv_x_w || decFp.is_fmv_x_d || decFp.is_fcvt_f2i || decFp.is_feq || decFp.is_flt || decFp.is_fle || decFp.is_fclass
 
   when(exe_valFp) {
     when(exe_uopFp.pdest =/= 0.U) {
       when(exe_is_fp_wb_to_fp) {
         fpRegFile.io.wen(0) := true.B
         fpRegFile.io.waddr(0) := exe_uopFp.pdest
-        val is_fpu_op = exe_decFp.is_fadd || exe_decFp.is_fsub || exe_decFp.is_fmul || exe_decFp.is_fmadd
+        val is_fpu_op = exe_decFp.is_fadd || exe_decFp.is_fsub || exe_decFp.is_fmul || exe_decFp.is_fmadd ||
+                        exe_decFp.is_fmsub || exe_decFp.is_fnmsub || exe_decFp.is_fnmadd
         fpRegFile.io.wdata(0) := Mux(is_fpu_op, fpu.io.result, fpmisc.io.result_fp)
       }
       when(exe_is_fp_wb_to_int) {
