@@ -106,6 +106,8 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
 
   val div_rd_latch = RegInit(0.U(phyRegIdxWidth.W))
   val fpdiv_rd_latch = RegInit(0.U(phyRegIdxWidth.W))
+  val div_snap_latch = RegInit(0.U(log2Up(renameSnapshotNum).W))
+  val fpdiv_snap_latch = RegInit(0.U(log2Up(renameSnapshotNum).W))
 
   val regFile = Module(new RegFile(7, 6))
   val fpRegFile = Module(new FPRegFile(4, 3))
@@ -513,7 +515,9 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   div.io.src2 := Mux(exe_is_div_op0, src0_2, src1_2)
   div.io.dec  := Mux(exe_is_div_op0, exe_dec0, exe_dec1)
   div.io.fire := Mux(exe_is_div_op0, exe_val0, exe_val1)
-  div.io.flush := io.redirect.valid
+  val div_is_younger = is_younger_than_redirect(div_snap_latch)
+  div.io.flush := io.redirect.valid && (io.redirect.is_exception || div_is_younger)
+  when(div.io.flush) { div_rd_latch := 0.U }
 
   // Age-Priority Redirect/Flush Filter
   val r0_snap = exe_uop0.snapshotIdx
@@ -627,7 +631,10 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
       next_regFile_waddr(0) := exe_uop0.pdest
       next_regFile_wdata(0) := Mux(exe_is_link0, exe_link_addr0, exe_result0)
     }
-    when(exe_is_div_op0) { div_rd_latch := exe_uop0.pdest }
+    when(exe_is_div_op0) {
+      div_rd_latch := exe_uop0.pdest
+      div_snap_latch := exe_uop0.snapshotIdx
+    }
   }
 
   // Pipelined wakeup logic for Lane 0 (non-MUL wakes up 1 cycle after fire; MUL wakes up 2 cycles after fire)
@@ -649,7 +656,10 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
       next_regFile_waddr(1) := exe_uop1.pdest
       next_regFile_wdata(1) := Mux(exe_is_link1, exe_link_addr1, exe_result1)
     }
-    when(exe_is_div_op1) { div_rd_latch := exe_uop1.pdest }
+    when(exe_is_div_op1) {
+      div_rd_latch := exe_uop1.pdest
+      div_snap_latch := exe_uop1.snapshotIdx
+    }
   }
 
   // Pipelined wakeup logic for Lane 1 (non-MUL wakes up 1 cycle after fire; MUL wakes up 2 cycles after fire)
@@ -830,7 +840,9 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   fpdiv.io.src2 := fsrc2
   fpdiv.io.dec  := exe_decFp
   fpdiv.io.fire := exe_valFp && (exe_decFp.is_fdiv || exe_decFp.is_fsqrt)
-  fpdiv.io.flush := io.redirect.valid
+  val fpdiv_is_younger = is_younger_than_redirect(fpdiv_snap_latch)
+  fpdiv.io.flush := io.redirect.valid && (io.redirect.is_exception || fpdiv_is_younger)
+  when(fpdiv.io.flush) { fpdiv_rd_latch := 0.U }
 
   fpmisc.io.src1 := fsrc1
   fpmisc.io.src2 := fsrc2
@@ -860,7 +872,10 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
         next_regFile_wdata(4) := fpmisc.io.result_int
       }
     }
-    when(exe_decFp.is_fdiv || exe_decFp.is_fsqrt) { fpdiv_rd_latch := exe_uopFp.pdest }
+    when(exe_decFp.is_fdiv || exe_decFp.is_fsqrt) {
+      fpdiv_rd_latch := exe_uopFp.pdest
+      fpdiv_snap_latch := exe_uopFp.snapshotIdx
+    }
 
     fcsr.io.csr_addr  := exe_uop_rawFp.inst_raw(31, 20)
     fcsr.io.csr_wen   := false.B

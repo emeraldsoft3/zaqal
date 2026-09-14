@@ -29,14 +29,15 @@ class FPDivider(implicit val p: Parameters) extends Module with HasZaqalParamete
   val res_e       = RegInit(0.S(12.W))
   val res_m       = RegInit(0.U(52.W))
 
-  // Division Registers (Restoring Divider)
-  val div_reg     = RegInit(0.U(120.W))
-  val divisor     = RegInit(0.U(64.W))
+  // Restoring Divider Registers
+  val rem_reg     = RegInit(0.U(56.W))
+  val divisor     = RegInit(0.U(56.W))
+  val quo_reg     = RegInit(0.U(56.W))
 
   // Square Root Registers
-  val bit_reg     = RegInit(0.U(110.W))
-  val D_reg       = RegInit(0.U(110.W))
-  val Q_reg       = RegInit(0.U(110.W))
+  val bit_reg     = RegInit(0.U(108.W))
+  val D_reg       = RegInit(0.U(108.W))
+  val Q_reg       = RegInit(0.U(108.W))
 
   io.ready := (state === s_idle)
   io.done  := (state === s_done)
@@ -86,9 +87,9 @@ class FPDivider(implicit val p: Parameters) extends Module with HasZaqalParamete
             val eA_unbiased = (eA_dp - 1023.S(32.W)).asSInt
             val is_odd = eA_unbiased(0)
             
-            D_reg := Mux(is_odd, Cat(0.U(3.W), mA_dp, 0.U(54.W)), Cat(0.U(4.W), mA_dp, 0.U(53.W)))
-            Q_reg := 0.U
-            bit_reg := 1.U(110.W) << 106.U
+            D_reg   := Mux(is_odd, (mA_dp << 53.U).pad(108), (mA_dp << 52.U).pad(108))
+            Q_reg   := 0.U
+            bit_reg := 1.U(108.W) << 104.U
             
             res_s := sA_dp
             res_e := (eA_unbiased >> 1).asSInt + 1023.S(32.W)
@@ -96,9 +97,9 @@ class FPDivider(implicit val p: Parameters) extends Module with HasZaqalParamete
             val eA_unbiased = (eA_sp - 127.S(32.W)).asSInt
             val is_odd = eA_unbiased(0)
             
-            D_reg := Mux(is_odd, Cat(0.U(62.W), mA_sp << 24.U), Cat(0.U(62.W), mA_sp << 23.U))
-            Q_reg := 0.U
-            bit_reg := 1.U(110.W) << 46.U
+            D_reg   := Mux(is_odd, (mA_sp << 24.U).pad(108), (mA_sp << 23.U).pad(108))
+            Q_reg   := 0.U
+            bit_reg := 1.U(108.W) << 46.U
             
             res_s := sA_sp
             res_e := (eA_unbiased >> 1).asSInt + 127.S(32.W)
@@ -106,19 +107,19 @@ class FPDivider(implicit val p: Parameters) extends Module with HasZaqalParamete
           state := s_busy
         } .otherwise { // FDIV
           when(is_dp) {
-            res_s := sA_dp ^ sB_dp
-            res_e := (eA_dp - eB_dp) + 1023.S(32.W)
-            
-            div_reg := Cat(0.U(67.W), mA_dp)
-            divisor := Cat(0.U(11.W), mB_dp)
-            count := 109.U // 53 cycles shift mA + 56 cycles precision
+            res_s   := sA_dp ^ sB_dp
+            res_e   := (eA_dp - eB_dp) + 1023.S(32.W)
+            rem_reg := mA_dp.pad(56)
+            divisor := mB_dp.pad(56)
+            quo_reg := 0.U
+            count   := 54.U
           } .otherwise {
-            res_s := sA_sp ^ sB_sp
-            res_e := (eA_sp - eB_sp) + 127.S(32.W)
-            
-            div_reg := Cat(0.U(96.W), mA_sp)
-            divisor := Cat(0.U(40.W), mB_sp)
-            count := 51.U // 24 cycles shift mA + 27 cycles precision
+            res_s   := sA_sp ^ sB_sp
+            res_e   := (eA_sp - eB_sp) + 127.S(32.W)
+            rem_reg := mA_sp.pad(56)
+            divisor := mB_sp.pad(56)
+            quo_reg := 0.U
+            count   := 25.U
           }
           state := s_busy
         }
@@ -144,33 +145,28 @@ class FPDivider(implicit val p: Parameters) extends Module with HasZaqalParamete
           }
         }
       } .otherwise { // FDIV
-        when(count =/= 0.U) {
-          val next_div_reg = Cat(div_reg(118, 0), 0.U(1.W))
-          val rem = next_div_reg(119, 56)
-          val quo = next_div_reg(55, 0)
+        val rem_ge_div = rem_reg >= divisor
+        rem_reg := Mux(rem_ge_div, ((rem_reg - divisor) << 1.U)(55, 0), (rem_reg << 1.U)(55, 0))
+        quo_reg := Cat(quo_reg(54, 0), rem_ge_div)
 
-          when(rem >= divisor) {
-            div_reg := Cat(rem - divisor, quo | 1.U)
-          } .otherwise {
-            div_reg := next_div_reg
-          }
+        when(count =/= 0.U) {
           count := count - 1.U
         } .otherwise {
           state := s_done
           when(is_dp_reg) {
-            val q_raw = div_reg(56, 0)
-            when(q_raw(56)) {
-              res_m := q_raw(55, 4)
+            val bit53 = quo_reg(53)
+            when(bit53) {
+              res_m := quo_reg(52, 1)
             } .otherwise {
-              res_m := q_raw(54, 3)
+              res_m := quo_reg(51, 0)
               res_e := res_e - 1.S
             }
           } .otherwise {
-            val q_raw = div_reg(27, 0)
-            when(q_raw(27)) {
-              res_m := Cat(0.U(29.W), q_raw(26, 4))
+            val bit24 = quo_reg(24)
+            when(bit24) {
+              res_m := Cat(0.U(29.W), quo_reg(23, 1))
             } .otherwise {
-              res_m := Cat(0.U(29.W), q_raw(25, 3))
+              res_m := Cat(0.U(29.W), quo_reg(22, 0))
               res_e := res_e - 1.S
             }
           }
