@@ -64,52 +64,22 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
     decoded_uops_raw(i).waitForRobIdx := 0.U
   }
 
-  // Day 3.5: Instruction Fusion (Macro-Op Fusion)
-  // Detect fusion between Port 0 and Port 1 (standard for RVC or user-requested alignment)
-  val decoded_uops = Wire(Vec(decodeWidth, new DecodedMicroOp))
+  // Day 25.8: Advanced Micro-op Fusion (Dedicated XiangShan-Parity FusionDecoder)
+  val fusionDecoder = Module(new zaqal.backend.decode.FusionDecoder(decodeWidth))
+  fusionDecoder.io.in := decoded_uops_raw
   for (i <- 0 until decodeWidth) {
-    decoded_uops(i) := decoded_uops_raw(i)
+    fusionDecoder.io.dispatch_valid(i) := io.dispatch(i).valid
   }
 
-  val is_fused_with_next = WireInit(false.B)
-  val u0_raw = decoded_uops_raw(0)
-  
-  // Select the next actual instruction (skip the shadow parcel if u0 is 32-bit)
-  val u1_raw = Mux(u0_raw.decode.is_rvc, decoded_uops_raw(1), decoded_uops_raw(2))
+  val decoded_uops = Wire(Vec(decodeWidth, new DecodedMicroOp))
+  val is_fused_away_vec = Wire(Vec(decodeWidth, Bool()))
+  val is_fused_pair = Wire(Vec(decodeWidth, Bool()))
 
-  // 1. LUI/AUIPC + ADDI Fusion
-  val can_fuse_lui_addi = (u0_raw.decode.is_lui || u0_raw.decode.is_auipc) && 
-                          u1_raw.decode.is_addi && 
-                          (u0_raw.decode.rd === u1_raw.decode.rs1) && (u0_raw.decode.rd === u1_raw.decode.rd) &&
-                          (u0_raw.decode.rd =/= 0.U) && io.dispatch(0).valid && 
-                          Mux(u0_raw.decode.is_rvc, io.dispatch(1).valid, io.dispatch(2).valid)
-
-  // 2. Load + ADDI Fusion (LW + ADDI)
-  val can_fuse_load_alu = u0_raw.decode.is_load && 
-                          u1_raw.decode.is_addi && 
-                          (u0_raw.decode.rd === u1_raw.decode.rs1) && (u0_raw.decode.rd === u1_raw.decode.rd) &&
-                          (u0_raw.decode.rd =/= 0.U) && io.dispatch(0).valid && 
-                          Mux(u0_raw.decode.is_rvc, io.dispatch(1).valid, io.dispatch(2).valid)
-
-  // 3. ADDI + Store Fusion (ADDI + SW)
-  val can_fuse_alu_store = u0_raw.decode.is_addi && 
-                           u1_raw.decode.is_store && 
-                           (u0_raw.decode.rd === u1_raw.decode.rs2) &&
-                           (u0_raw.decode.rd =/= 0.U) && io.dispatch(0).valid && 
-                           Mux(u0_raw.decode.is_rvc, io.dispatch(1).valid, io.dispatch(2).valid)
-
-  // Use Mux for fusion assignments to avoid scope escape issues
-  val fuse_any = can_fuse_lui_addi || can_fuse_load_alu || can_fuse_alu_store
-  is_fused_with_next := fuse_any
-  
-  decoded_uops(0).decode.is_fused := fuse_any
-  decoded_uops(0).decode.is_fused_lui_addi := can_fuse_lui_addi
-  decoded_uops(0).decode.is_fused_load_alu := can_fuse_load_alu
-  decoded_uops(0).decode.is_fused_alu_store := can_fuse_alu_store
-  
-  decoded_uops(0).decode.imm := Mux(can_fuse_lui_addi, (u0_raw.decode.imm + u1_raw.decode.imm), u0_raw.decode.imm)
-  decoded_uops(0).decode.fused_imm := Mux(can_fuse_load_alu || can_fuse_alu_store, u1_raw.decode.imm, 0.S)
-  decoded_uops(0).decode.rs2 := Mux(can_fuse_alu_store, u1_raw.decode.rs1, u0_raw.decode.rs2)
+  for (i <- 0 until decodeWidth) {
+    decoded_uops(i) := fusionDecoder.io.out(i)
+    is_fused_away_vec(i) := fusionDecoder.io.clear(i)
+    is_fused_pair(i) := fusionDecoder.io.is_fused_pair(i)
+  }
 
   // Day 4: Register Renaming (Map Table)
   val rat = Module(new RenameTableWrapper)
@@ -204,7 +174,7 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
     
     // 2. Allocate Pdest if the instruction writes to a register
     // Mark the next instruction as fused away if fusion happened
-    val is_fused_away = Mux(u0_raw.decode.is_rvc, i.U === 1.U, i.U === 2.U) && is_fused_with_next
+    val is_fused_away = is_fused_away_vec(i)
     
     // Identify shadow parcel slots (second half of a 32-bit instruction)
     val is_shadow = is_shadow_vec(i)
@@ -239,8 +209,10 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
       when(rf_wen || fp_wen) {
         printf(p"lrd=${dec.rd}->pdest=${decoded_uops(i).pdest} (old=${decoded_uops(i).old_pdest})")
       }
-      when(i.U === 0.U && is_fused_with_next) {
-        printf(" [FUSING WITH NEXT: u1_pc=%x u1_inst=%x]", u0_raw.uop.pc, u1_raw.uop.inst_raw)
+      if (i < decodeWidth - 1) {
+        when(is_fused_pair(i)) {
+          printf(p" [FUSING WITH NEXT: uop_pc=${Hexadecimal(decoded_uops(i).uop.pc)} next_pc=${Hexadecimal(decoded_uops_raw(i+1).uop.pc)}]")
+        }
       }
       printf("\n")
     }
@@ -271,7 +243,7 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
   
   // Tie off commits properly
   for (i <- 0 until decodeWidth) {
-    rob.io.enq(i).valid := rename_out(i).valid
+    rob.io.enq(i).valid := rename_out(i).valid && !decoded_uops(i).is_fused_away && !is_shadow_vec(i)
     rob.io.enq(i).bits := rename_out(i).bits
     
     rat.io.commitPorts(i).wen := rob.io.commits.commitValid(i) && rob.io.commits.info(i).commit_w

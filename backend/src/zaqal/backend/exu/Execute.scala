@@ -378,7 +378,17 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
 
   val wb3_valid = r_agu_val && r_agu_uop.pdest =/= 0.U && !r_agu_uop.decode.is_fload && (r_agu_uop.decode.is_load || r_agu_uop.decode.is_atomic)
   val wb3_pdest = r_agu_uop.pdest
-  val wb3_data  = lsu.io.result
+  val raw_ld_data = lsu.io.result
+  val fused_alu_res = MuxLookup(r_agu_uop.decode.fused_alu_op, raw_ld_data)(Seq(
+    0.U -> (raw_ld_data.asSInt + r_agu_uop.decode.fused_imm).asUInt,               // ADDI
+    1.U -> (raw_ld_data & r_agu_uop.decode.fused_imm.asUInt),                       // ANDI
+    2.U -> (raw_ld_data | r_agu_uop.decode.fused_imm.asUInt),                       // ORI
+    3.U -> (raw_ld_data ^ r_agu_uop.decode.fused_imm.asUInt),                       // XORI
+    4.U -> (raw_ld_data << r_agu_uop.decode.fused_imm(5, 0)),                       // SLLI
+    5.U -> (raw_ld_data >> r_agu_uop.decode.fused_imm(5, 0)),                       // SRLI
+    6.U -> (raw_ld_data.asSInt >> r_agu_uop.decode.fused_imm(5, 0)).asUInt          // SRAI
+  ))
+  val wb3_data  = Mux(r_agu_uop.decode.is_fused_load_alu, fused_alu_res, raw_ld_data)
 
   val wb4_valid = exe_valFp && exe_uopFp.pdest =/= 0.U && exe_is_fp_wb_to_int_top
   val wb4_pdest = exe_uopFp.pdest
@@ -475,7 +485,7 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   val src0_2 = bypass(exe_uop0.psrs2, r_regFile_rdata1)
 
   alu(0).io.src1 := src0_1
-  alu(0).io.src2 := Mux(exe_dec0.is_fused_lui_addi, (exe_dec0.imm + exe_uop_raw0.pc.asSInt).asUInt,
+  alu(0).io.src2 := Mux(exe_dec0.is_fused_lui_addi, exe_dec0.imm.asUInt,
                  Mux(!exe_dec0.rs2_use, exe_dec0.imm.asUInt, src0_2))
   alu(0).io.pc   := exe_uop_raw0.pc
   alu(0).io.dec  := exe_dec0
@@ -493,7 +503,7 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   val src1_2 = bypass(exe_uop1.psrs2, r_regFile_rdata3)
 
   alu(1).io.src1 := src1_1
-  alu(1).io.src2 := Mux(exe_dec1.is_fused_lui_addi, (exe_dec1.imm + exe_uop_raw1.pc.asSInt).asUInt,
+  alu(1).io.src2 := Mux(exe_dec1.is_fused_lui_addi, exe_dec1.imm.asUInt,
                  Mux(!exe_dec1.rs2_use, exe_dec1.imm.asUInt, src1_2))
   alu(1).io.pc   := exe_uop_raw1.pc
   alu(1).io.dec  := exe_dec1
@@ -797,7 +807,7 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
       when(!r_agu_uop.decode.is_fload) {
         next_regFile_wen(3)   := true.B
         next_regFile_waddr(3) := r_agu_uop.pdest
-        next_regFile_wdata(3) := lsu.io.result
+        next_regFile_wdata(3) := wb3_data
       } .otherwise {
         val fload_data = Mux(r_agu_uop.decode.is_fld, lsu.io.result(63, 0), Cat("hffffffff".U(32.W), lsu.io.result(31, 0)))
         fpRegFile.io.wen(2)   := true.B
@@ -813,7 +823,7 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   when(io.dcache_resp.valid && io.dcache_resp.bits.load_id =/= 0.U) {
     next_regFile_wen(3)   := true.B
     next_regFile_waddr(3) := io.dcache_resp.bits.load_id
-    next_regFile_wdata(3) := lsu.io.result
+    next_regFile_wdata(3) := wb3_data
   }
 
   // Wakeup delayed by 1 cycle (Only for non-memory or fast hits)
@@ -950,6 +960,7 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   // LSU
   io.exuWriteback(3).valid := r_agu_val
   io.exuWriteback(3).bits.robIdx := r_agu_uop.robIdx
+  io.exuWriteback(3).bits.data := wb3_data
   
   // FP
   val exe_is_fpdiv = exe_decFp.is_fdiv || exe_decFp.is_fsqrt

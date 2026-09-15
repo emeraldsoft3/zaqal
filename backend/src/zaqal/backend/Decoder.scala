@@ -47,6 +47,8 @@ class Decoder(implicit val p: Parameters) extends Module with HasZaqalParameter 
   io.out.is_fused_load_alu := false.B
   io.out.is_fused_alu_store := false.B
   io.out.fused_imm := 0.S
+  io.out.fused_alu_op := 0.U
+  io.out.fused_type := FusionType.NONE
 
   io.out.imm     := i_imm
 

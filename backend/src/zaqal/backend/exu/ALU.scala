@@ -23,17 +23,24 @@ class ALU(implicit val p: Parameters) extends Module with HasZaqalParameter {
   val bitmanip   = Module(new Bitmanip)
 
   // Zba — Address Generation combinational logic (reusing main adder)
+  val is_fused_sh = io.dec.fused_type === FusionType.SH1ADD ||
+                    io.dec.fused_type === FusionType.SH2ADD ||
+                    io.dec.fused_type === FusionType.SH3ADD ||
+                    io.dec.fused_type === FusionType.SH4ADD
+
   val is_zba = io.dec.is_sh1add || io.dec.is_sh2add || io.dec.is_sh3add ||
-               io.dec.is_sh1add_uw || io.dec.is_sh2add_uw || io.dec.is_sh3add_uw
+               io.dec.is_sh1add_uw || io.dec.is_sh2add_uw || io.dec.is_sh3add_uw ||
+               is_fused_sh
 
   val zba_src1_base = Mux(io.dec.is_sh1add_uw || io.dec.is_sh2add_uw || io.dec.is_sh3add_uw,
                           Cat(0.U(32.W), io.src1(31, 0)),
                           io.src1)
 
   val zba_src1_shifted = MuxCase(zba_src1_base, Seq(
-    (io.dec.is_sh1add || io.dec.is_sh1add_uw) -> (zba_src1_base << 1),
-    (io.dec.is_sh2add || io.dec.is_sh2add_uw) -> (zba_src1_base << 2),
-    (io.dec.is_sh3add || io.dec.is_sh3add_uw) -> (zba_src1_base << 3)
+    (io.dec.is_sh1add || io.dec.is_sh1add_uw || io.dec.fused_type === FusionType.SH1ADD) -> (zba_src1_base << 1),
+    (io.dec.is_sh2add || io.dec.is_sh2add_uw || io.dec.fused_type === FusionType.SH2ADD) -> (zba_src1_base << 2),
+    (io.dec.is_sh3add || io.dec.is_sh3add_uw || io.dec.fused_type === FusionType.SH3ADD) -> (zba_src1_base << 3),
+    (io.dec.fused_type === FusionType.SH4ADD)                                              -> (zba_src1_base << 4)
   ))
 
   // 2. Wiring
@@ -124,5 +131,24 @@ class ALU(implicit val p: Parameters) extends Module with HasZaqalParameter {
      io.dec.is_maxu || io.dec.is_bset || io.dec.is_bseti || io.dec.is_bclr ||
      io.dec.is_bclri || io.dec.is_binv || io.dec.is_binvi || io.dec.is_bext ||
      io.dec.is_bexti) -> bitmanip.io.result,
+    // XiangShan Parity Fused Micro-Ops
+    (io.dec.fused_type === FusionType.ZEXTW)     -> Cat(0.U(32.W), io.src1(31, 0)),
+    (io.dec.fused_type === FusionType.ZEXTH)     -> Cat(0.U(48.W), io.src1(15, 0)),
+    (io.dec.fused_type === FusionType.SEXTH)     -> Cat(Fill(48, io.src1(15)), io.src1(15, 0)),
+    (io.dec.fused_type === FusionType.BYTE2)     -> Cat(0.U(56.W), (io.src1 >> 8.U)(7, 0)),
+    (io.dec.fused_type === FusionType.LOGIC_LSB) -> (logical.io.result & 1.U),
+    (io.dec.fused_type === FusionType.ADD_LSB)   -> (adder.io.result & 1.U),
+    (io.dec.fused_type === FusionType.ADD_BYTE)  -> (adder.io.result & 0xFF.U),
+    (io.dec.fused_type === FusionType.LUI32)     -> io.src2,
+    (io.dec.fused_type === FusionType.LUI32W)    -> Cat(Fill(32, io.src2(31)), io.src2(31, 0)),
+    (io.dec.fused_type === FusionType.SR29ADD)   -> ((io.src1 >> 29.U) + io.src2),
+    (io.dec.fused_type === FusionType.SR30ADD)   -> ((io.src1 >> 30.U) + io.src2),
+    (io.dec.fused_type === FusionType.SR31ADD)   -> ((io.src1 >> 31.U) + io.src2),
+    (io.dec.fused_type === FusionType.SR32ADD)   -> ((io.src1 >> 32.U) + io.src2),
+    (io.dec.fused_type === FusionType.SZEWL1)    -> Cat(0.U(31.W), io.src1(31, 0), 0.U(1.W)),
+    (io.dec.fused_type === FusionType.SZEWL2)    -> Cat(0.U(30.W), io.src1(31, 0), 0.U(2.W)),
+    (io.dec.fused_type === FusionType.SZEWL3)    -> Cat(0.U(29.W), io.src1(31, 0), 0.U(3.W)),
+    (io.dec.fused_type === FusionType.ODDADD)    -> ((io.src1 & 1.U) + io.src2),
+    (io.dec.fused_type === FusionType.ODDADDW)   -> Cat(Fill(32, ((io.src1 & 1.U) + io.src2)(31)), ((io.src1 & 1.U) + io.src2)(31, 0))
   ))
 }

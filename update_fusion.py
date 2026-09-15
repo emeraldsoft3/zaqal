@@ -1,0 +1,53 @@
+with open(/home/emerald/zaqal/common/src/zaqal/common/Bundles.scala, r) as f:
+    c = f.read()
+
+old_fusion = "object FusionType {
+  val NONE        = 0.U(5.W)
+  val LUI32       = 1.U(5.W)
+  val LUI32W      = 2.U(5.W)
+  val SH1ADD      = 3.U(5.W)
+  val SH2ADD      = 4.U(5.W)
+  val SH3ADD      = 5.U(5.W)
+  val SH4ADD      = 6.U(5.W)
+  val ZEXTW       = 7.U(5.W)
+  val ZEXTH       = 8.U(5.W)
+  val SEXTH       = 9.U(5.W)
+  val BYTE2       = 10.U(5.W)
+  val LOGIC_LSB   = 11.U(5.W)
+  val ADD_LSB     = 12.U(5.W)
+  val ADD_BYTE    = 13.U(5.W)
+  val CMP_BRANCH  = 14.U(5.W)
+  val LOAD_ALU    = 15.U(5.W)
+  val ALU_STORE   = 16.U(5.W)
+}"
+
+new_fusion = "object FusionType {
+  val NONE        = 0.U(5.W)
+  val LUI32       = 1.U(5.W)
+  val LUI32W      = 2.U(5.W)
+  val SH1ADD      = 3.U(5.W)
+  val SH2ADD      = 4.U(5.W)
+  val SH3ADD      = 5.U(5.W)
+  val SH4ADD      = 6.U(5.W)
+  val ZEXTW       = 7.U(5.W)
+  val ZEXTH       = 8.U(5.W)
+  val SEXTH       = 9.U(5.W)
+  val BYTE2       = 10.U(5.W)
+  val LOGIC_LSB   = 11.U(5.W)
+  val ADD_LSB     = 12.U(5.W)
+  val ADD_BYTE    = 13.U(5.W)
+  val CMP_BRANCH  = 14.U(5.W)
+  val LOAD_ALU    = 15.U(5.W)
+  val ALU_STORE   = 16.U(5.W)
+  val SR29ADD     = 17.U(5.W)
+  val SR30ADD     = 18.U(5.W)
+  val SR31ADD     = 19.U(5.W)
+  val SR32ADD     = 20.U(5.W)
+  val SZEWL1      = 21.U(5.W)
+  val SZEWL2      = 22.U(5.W)
+  val SZEWL3      = 23.U(5.W)
+  val ODDADD      = 24.U(5.W)
+  val ODDADDW     = 25.U(5.W)
+}"
+
+assert old_fusion in c, old_fusion
