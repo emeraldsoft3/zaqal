@@ -174,7 +174,7 @@ class FusionDecoder(val fusionWidth: Int = 6)(implicit val p: Parameters) extend
       val fuse_any = can_fuse_lui_addi || can_fuse_shxadd || can_fuse_zextw || can_fuse_zexth || can_fuse_sexth ||
                      can_fuse_byte2 || can_fuse_logic_lsb || can_fuse_add_lsb || can_fuse_add_byte ||
                      can_fuse_srxadd || can_fuse_szewl || can_fuse_oddadd || can_fuse_oddaddw ||
-                     can_fuse_cmp_branch || can_fuse_load_alu || can_fuse_alu_store
+                     can_fuse_cmp_branch || can_fuse_load_alu
 
       val can_fuse_here = !clear_vec(i) && fuse_any
 
@@ -185,7 +185,6 @@ class FusionDecoder(val fusionWidth: Int = 6)(implicit val p: Parameters) extend
         io.out(i).decode.is_fused := true.B
         io.out(i).decode.is_fused_lui_addi := can_fuse_lui_addi
         io.out(i).decode.is_fused_load_alu := can_fuse_load_alu
-        io.out(i).decode.is_fused_alu_store := can_fuse_alu_store
         io.out(i).decode.fused_alu_op := alu_op
 
         when(can_fuse_lui_addi) {
@@ -193,27 +192,34 @@ class FusionDecoder(val fusionWidth: Int = 6)(implicit val p: Parameters) extend
           io.out(i).decode.fused_imm := unext.decode.imm
           io.out(i).decode.fused_type := Mux(unext.decode.is_addiw, FusionType.LUI32W, FusionType.LUI32)
         } .elsewhen(can_fuse_shxadd) {
+          io.out(i).decode.is_slli := false.B
+          io.out(i).decode.is_add := true.B
           io.out(i).decode.rs1 := ui.decode.rs1
           io.out(i).decode.rs2 := shx_rs2
           io.out(i).decode.rs2_use := true.B
           io.out(i).decode.rd := unext.decode.rd
           io.out(i).decode.fused_type := shx_fused_type
         } .elsewhen(can_fuse_zextw) {
+          io.out(i).decode.is_slli := false.B
           io.out(i).decode.rs1 := ui.decode.rs1
           io.out(i).decode.rs2_use := false.B
           io.out(i).decode.rd := unext.decode.rd
           io.out(i).decode.fused_type := FusionType.ZEXTW
         } .elsewhen(can_fuse_zexth) {
+          io.out(i).decode.is_slli := false.B
+          io.out(i).decode.is_slliw := false.B
           io.out(i).decode.rs1 := ui.decode.rs1
           io.out(i).decode.rs2_use := false.B
           io.out(i).decode.rd := unext.decode.rd
           io.out(i).decode.fused_type := FusionType.ZEXTH
         } .elsewhen(can_fuse_sexth) {
+          io.out(i).decode.is_slliw := false.B
           io.out(i).decode.rs1 := ui.decode.rs1
           io.out(i).decode.rs2_use := false.B
           io.out(i).decode.rd := unext.decode.rd
           io.out(i).decode.fused_type := FusionType.SEXTH
         } .elsewhen(can_fuse_byte2) {
+          io.out(i).decode.is_srli := false.B
           io.out(i).decode.rs1 := ui.decode.rs1
           io.out(i).decode.rs2_use := false.B
           io.out(i).decode.rd := unext.decode.rd
@@ -237,23 +243,30 @@ class FusionDecoder(val fusionWidth: Int = 6)(implicit val p: Parameters) extend
           io.out(i).decode.rd := unext.decode.rd
           io.out(i).decode.fused_type := FusionType.ADD_BYTE
         } .elsewhen(can_fuse_srxadd) {
+          io.out(i).decode.is_srli := false.B
+          io.out(i).decode.is_add := true.B
           io.out(i).decode.rs1 := ui.decode.rs1
           io.out(i).decode.rs2 := srx_rs2
           io.out(i).decode.rs2_use := true.B
           io.out(i).decode.rd := unext.decode.rd
           io.out(i).decode.fused_type := srx_fused_type
         } .elsewhen(can_fuse_szewl) {
+          io.out(i).decode.is_slli := false.B
           io.out(i).decode.rs1 := ui.decode.rs1
           io.out(i).decode.rs2_use := false.B
           io.out(i).decode.rd := unext.decode.rd
           io.out(i).decode.fused_type := szewl_fused_type
         } .elsewhen(can_fuse_oddadd) {
+          io.out(i).decode.is_andi := false.B
+          io.out(i).decode.is_add := true.B
           io.out(i).decode.rs1 := ui.decode.rs1
           io.out(i).decode.rs2 := odd_rs2
           io.out(i).decode.rs2_use := true.B
           io.out(i).decode.rd := unext.decode.rd
           io.out(i).decode.fused_type := FusionType.ODDADD
         } .elsewhen(can_fuse_oddaddw) {
+          io.out(i).decode.is_andi := false.B
+          io.out(i).decode.is_addw := true.B
           io.out(i).decode.rs1 := ui.decode.rs1
           io.out(i).decode.rs2 := odd_rs2
           io.out(i).decode.rs2_use := true.B
@@ -277,10 +290,6 @@ class FusionDecoder(val fusionWidth: Int = 6)(implicit val p: Parameters) extend
         } .elsewhen(can_fuse_load_alu) {
           io.out(i).decode.fused_imm := unext.decode.imm
           io.out(i).decode.fused_type := FusionType.LOAD_ALU
-        } .elsewhen(can_fuse_alu_store) {
-          io.out(i).decode.fused_imm := unext.decode.imm
-          io.out(i).decode.rs2 := unext.decode.rs1
-          io.out(i).decode.fused_type := FusionType.ALU_STORE
         }
       }
     }
