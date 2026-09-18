@@ -102,8 +102,32 @@ object ZaqalTest extends App {
       "h001e7e93".U(32.W), // 88 [Slot 4]: andi x29, x28, 1
       "h003e8ebb".U(32.W), // 8C [Slot 5]: addw x29, x29, x3         (Fused ODDADDW: x29 = (x28 & 1) + 5 = 5 = 0x05)
 
-      // --- PACKET 6 (PC 0x90) ---
-      "h0000006f".U(32.W)  // 90: j    0x90                         (infinite loop trap)
+      // --- PACKET 6 (PC 0x90 - 0xA4): Parallel 4-ALU Execution ---
+      "h00100393".U(32.W), // 90 [Slot 0]: addi x7,  x0, 1            (ALU 0: x7  = 1)
+      "h00200613".U(32.W), // 94 [Slot 1]: addi x12, x0, 2            (ALU 1: x12 = 2)
+      "h00300693".U(32.W), // 98 [Slot 2]: addi x13, x0, 3            (ALU 2: x13 = 3)
+      "h00400713".U(32.W), // 9C [Slot 3]: addi x14, x0, 4            (ALU 3: x14 = 4)
+      "h00000013".U(32.W), // A0 [Slot 4]: nop
+      "h00000013".U(32.W), // A4 [Slot 5]: nop
+
+      // --- PACKET 7 (PC 0xA8 - 0xBC): Dual Multipliers & Dual Dividers ---
+      "h02310ab3".U(32.W), // A8 [Slot 0]: mul  x21, x2, x3           (MDU 0: x21 = 10 * 5 = 50 = 0x32)
+      "h02410bb3".U(32.W), // AC [Slot 1]: mul  x23, x2, x4           (MDU 1: x23 = 10 * 25 = 250 = 0xFA)
+      "h02324c33".U(32.W), // B0 [Slot 2]: div  x24, x4, x3           (MDU 0: x24 = 25 / 5 = 5 = 0x05)
+      "h023d4f33".U(32.W), // B4 [Slot 3]: div  x30, x26, x3          (MDU 1: x30 = 15 / 5 = 3 = 0x03)
+      "h00000013".U(32.W), // B8 [Slot 4]: nop
+      "h00000013".U(32.W), // BC [Slot 5]: nop
+
+      // --- PACKET 8 (PC 0xC0 - 0xD4): LSU Concurrent Store & Load ---
+      "h01592223".U(32.W), // C0 [Slot 0]: sw   x21, 4(x18)           (LSU 2: Mem[260] = 50 = 0x32)
+      "h00492f83".U(32.W), // C4 [Slot 1]: lw   x31, 4(x18)           (LSU 0/1: x31 = Mem[260] = 50 = 0x32)
+      "h00000013".U(32.W), // C8 [Slot 2]: nop
+      "h00000013".U(32.W), // CC [Slot 3]: nop
+      "h00000013".U(32.W), // D0 [Slot 4]: nop
+      "h00000013".U(32.W), // D4 [Slot 5]: nop
+
+      // --- PACKET 9 (PC 0xD8) ---
+      "h0000006f".U(32.W)  // D8: j    0xD8                         (infinite loop trap)
     ).padTo(1024, "h00000013".U(32.W))
 
     var memLatencyCounter = 0

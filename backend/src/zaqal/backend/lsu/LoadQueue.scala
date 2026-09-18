@@ -25,14 +25,14 @@ class LoadQueue(val numEntries: Int = 16)(implicit val p: Parameters) extends Mo
     })))
     val count       = Output(UInt((log2Up(numEntries) + 1).W))
 
-    // 2. Execution Update (from Load AGU in Execute stage)
-    val exec_update = Input(new Bundle {
+    // 2. Execution Update (from Load AGUs in Execute stage)
+    val exec_update = Vec(2, Input(new Bundle {
       val valid   = Bool()
       val robIdx  = UInt(log2Up(128).W)
       val paddr   = UInt(xLen.W)
       val mask    = UInt(16.W)
       val pc      = UInt(xLen.W)
-    })
+    }))
 
     // 3. Store Execution Snoop Interface (Memory Violation Detection)
     val store_snoop = Input(new Bundle {
@@ -122,13 +122,15 @@ class LoadQueue(val numEntries: Int = 16)(implicit val p: Parameters) extends Mo
   enqPtr := enqPtr + totalEnq
 
   // 2. Execution Update
-  when(io.exec_update.valid) {
-    for (i <- 0 until numEntries) {
-      when(entries(i).valid && entries(i).robIdx === io.exec_update.robIdx) {
-        entries(i).executed := true.B
-        entries(i).paddr    := io.exec_update.paddr
-        entries(i).mask     := io.exec_update.mask
-        entries(i).pc       := io.exec_update.pc
+  for (u <- 0 until 2) {
+    when(io.exec_update(u).valid) {
+      for (i <- 0 until numEntries) {
+        when(entries(i).valid && entries(i).robIdx === io.exec_update(u).robIdx) {
+          entries(i).executed := true.B
+          entries(i).paddr    := io.exec_update(u).paddr
+          entries(i).mask     := io.exec_update(u).mask
+          entries(i).pc       := io.exec_update(u).pc
+        }
       }
     }
   }

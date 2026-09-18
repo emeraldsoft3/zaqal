@@ -42,11 +42,15 @@ class IssueQueue(val numEntries: Int, val numEnq: Int, val numDeq: Int, val numW
     woken_rs2(i) := entries(i).rs2_ready
     woken_rs3(i) := entries(i).rs3_ready
 
+    val r1_is_fp = entries(i).uop.decode.rs1_is_fp
+    val r2_is_fp = entries(i).uop.decode.rs2_is_fp
+    val r3_is_fp = entries(i).uop.decode.rs3_is_fp
+
     for (w <- 0 until numWakeup) {
       when (io.wakeup(w).valid) {
-        when (entries(i).uop.psrs1 === io.wakeup(w).pdest && entries(i).uop.psrs1 =/= 0.U) { woken_rs1(i) := true.B }
-        when (entries(i).uop.psrs2 === io.wakeup(w).pdest && entries(i).uop.psrs2 =/= 0.U) { woken_rs2(i) := true.B }
-        when (entries(i).uop.psrs3 === io.wakeup(w).pdest && entries(i).uop.psrs3 =/= 0.U) { woken_rs3(i) := true.B }
+        when (entries(i).uop.psrs1 === io.wakeup(w).pdest && entries(i).uop.psrs1 =/= 0.U && io.wakeup(w).is_fp === r1_is_fp) { woken_rs1(i) := true.B }
+        when (entries(i).uop.psrs2 === io.wakeup(w).pdest && entries(i).uop.psrs2 =/= 0.U && io.wakeup(w).is_fp === r2_is_fp) { woken_rs2(i) := true.B }
+        when (entries(i).uop.psrs3 === io.wakeup(w).pdest && entries(i).uop.psrs3 =/= 0.U && io.wakeup(w).is_fp === r3_is_fp) { woken_rs3(i) := true.B }
       }
     }
   }

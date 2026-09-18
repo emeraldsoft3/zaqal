@@ -148,7 +148,7 @@ object MDPTest extends App {
     dut.io.redirect.valid.poke(false.B)
     dut.io.commit.valid.foreach(_.poke(false.B))
     dut.io.store_snoop.valid.poke(false.B)
-    dut.io.exec_update.valid.poke(false.B)
+    dut.io.exec_update.foreach(_.valid.poke(false.B))
     dut.io.enq.foreach(_.valid.poke(false.B))
     dut.clock.step(1)
 
@@ -161,13 +161,13 @@ object MDPTest extends App {
     dut.io.enq(0).valid.poke(false.B)
 
     // 2. Load executes prematurely at AGU: paddr=0x80000040, mask=0x000F
-    dut.io.exec_update.valid.poke(true.B)
-    dut.io.exec_update.robIdx.poke(20.U)
-    dut.io.exec_update.paddr.poke("h80000040".U)
-    dut.io.exec_update.mask.poke("h000F".U)
-    dut.io.exec_update.pc.poke("h80001000".U)
+    dut.io.exec_update(0).valid.poke(true.B)
+    dut.io.exec_update(0).robIdx.poke(20.U)
+    dut.io.exec_update(0).paddr.poke("h80000040".U)
+    dut.io.exec_update(0).mask.poke("h000F".U)
+    dut.io.exec_update(0).pc.poke("h80001000".U)
     dut.clock.step(1)
-    dut.io.exec_update.valid.poke(false.B)
+    dut.io.exec_update(0).valid.poke(false.B)
 
     // 3. Older Store (robIdx=10, pc=0x80002000) calculates its address: paddr=0x80000040, mask=0x000F
     // This is an out-of-order RAW violation!

@@ -360,6 +360,7 @@ class PipelineFlushBus(implicit val p: Parameters) extends Bundle with HasZaqalP
 class WakeupBus(implicit val p: Parameters) extends Bundle with HasZaqalParameter {
   val valid = Bool()
   val pdest = UInt(phyRegIdxWidth.W)
+  val is_fp = Bool()
 }
 
 class ExuOutput(implicit val p: Parameters) extends Bundle with HasZaqalParameter {

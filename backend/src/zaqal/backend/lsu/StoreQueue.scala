@@ -36,18 +36,18 @@ class StoreQueue(val numEntries: Int = 16)(implicit val p: Parameters) extends M
       val wdata   = UInt((xLen * 2).W)
     })
 
-    // 3. Store-to-Load Forwarding (STLF) Query (from Load AGU)
-    val stlf_query = Input(new Bundle {
+    // 3. Store-to-Load Forwarding (STLF) Query (from Load AGUs)
+    val stlf_query = Vec(2, Input(new Bundle {
       val valid   = Bool()
       val robIdx  = UInt(log2Up(128).W)
       val paddr   = UInt(xLen.W)
       val mask    = UInt(16.W)
-    })
-    val stlf_resp = Output(new Bundle {
+    }))
+    val stlf_resp = Vec(2, Output(new Bundle {
       val hit     = Bool()
       val wdata   = UInt((xLen * 2).W)
       val wmask   = UInt(16.W)
-    })
+    }))
 
     // 4. Commit Interface (from ROB)
     val commit = Input(new Bundle {
@@ -147,29 +147,31 @@ class StoreQueue(val numEntries: Int = 16)(implicit val p: Parameters) extends M
   }
 
   // ---------------- 3. STORE-TO-LOAD FORWARDING (STLF) ----------------
-  val match_valids = Wire(Vec(numEntries, Bool()))
+  for (q <- 0 until 2) {
+    val match_valids = Wire(Vec(numEntries, Bool()))
 
-  for (i <- 0 until numEntries) {
-    val e = entries(i)
-    val is_older = e.valid && e.addr_valid && isOlderInRob(e.robIdx, io.stlf_query.robIdx, io.robHeadPtr)
-    val addr_match = (e.paddr(xLen - 1, 3) === io.stlf_query.paddr(xLen - 1, 3))
-    val mask_overlap = (e.wmask & io.stlf_query.mask) =/= 0.U
+    for (i <- 0 until numEntries) {
+      val e = entries(i)
+      val is_older = e.valid && e.addr_valid && isOlderInRob(e.robIdx, io.stlf_query(q).robIdx, io.robHeadPtr)
+      val addr_match = (e.paddr(xLen - 1, 3) === io.stlf_query(q).paddr(xLen - 1, 3))
+      val mask_overlap = (e.wmask & io.stlf_query(q).mask) =/= 0.U
 
-    match_valids(i) := io.stlf_query.valid && is_older && addr_match && mask_overlap && e.data_valid
-  }
-
-  val has_match = match_valids.asUInt.orR
-  val best_match_idx = WireDefault(0.U(log2Up(numEntries).W))
-
-  for (i <- 0 until numEntries) {
-    when(match_valids(i)) {
-      best_match_idx := i.U
+      match_valids(i) := io.stlf_query(q).valid && is_older && addr_match && mask_overlap && e.data_valid
     }
-  }
 
-  io.stlf_resp.hit   := has_match
-  io.stlf_resp.wdata := entries(best_match_idx).wdata
-  io.stlf_resp.wmask := entries(best_match_idx).wmask
+    val has_match = match_valids.asUInt.orR
+    val best_match_idx = WireDefault(0.U(log2Up(numEntries).W))
+
+    for (i <- 0 until numEntries) {
+      when(match_valids(i)) {
+        best_match_idx := i.U
+      }
+    }
+
+    io.stlf_resp(q).hit   := has_match
+    io.stlf_resp(q).wdata := entries(best_match_idx).wdata
+    io.stlf_resp(q).wmask := entries(best_match_idx).wmask
+  }
 
   // ---------------- 4. COMMIT MARKING (FROM ROB) ----------------
   for (c <- 0 until decodeWidth) {

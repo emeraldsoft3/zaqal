@@ -1,12 +1,12 @@
 [*]
 [*] GTKWave Analyzer v3.3.111 (w)1999-2020 BSI
-[*] Wed Sep 16 07:16:44 2026
+[*] Fri Sep 18 04:15:09 2026
 [*]
 [dumpfile] "/home/emerald/zaqal/programs/vcd/Lithium.vcd"
-[dumpfile_mtime] "Tue Sep 15 08:42:42 2026"
-[dumpfile_size] 16681257
+[dumpfile_mtime] "Wed Sep 16 09:49:29 2026"
+[dumpfile_size] 16678323
 [savefile] "/home/emerald/zaqal/programs/vcd/Lithium.gtkw"
-[timestart] 542
+[timestart] 214
 [size] 1865 930
 [pos] -1 -1
 *-2.900000 723 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
@@ -19,7 +19,6 @@
 [treeopen] TOP.Core.backend.intIq.
 [treeopen] TOP.Core.backend.memIq.
 [treeopen] TOP.Core.backend.rat.intRat.
-[treeopen] TOP.Core.backend.storeSet.
 [treeopen] TOP.Core.frontend.bpu.tage.
 [treeopen] TOP.Core.frontend.ifu.
 [sst_width] 298
@@ -327,7 +326,7 @@ TOP.Core.frontend.ibuf.io_inst_data_bits_instructions_14[31:0]
 TOP.Core.frontend.ibuf.io_inst_data_bits_instructions_15[31:0]
 @1401200
 -IBUF
-@c00200
+@800200
 -Decoders
 @22
 +{TOP.Core.backend.decoders_0_io_inst[31:0]} TOP.Core.backend.decoders_0_io_inst[31:0]
@@ -336,13 +335,13 @@ TOP.Core.backend.decoders_2_io_inst[31:0]
 TOP.Core.backend.decoders_3_io_inst[31:0]
 TOP.Core.backend.decoders_4_io_inst[31:0]
 TOP.Core.backend.decoders_5_io_inst[31:0]
-@1401200
+@1000200
 -Decoders
 @800200
 -RAT
 @24
 TOP.Core.backend.rat.intRat.snapshots.clock
-@800200
+@c00200
 -curr_spec_table
 @24
 TOP.Core.backend.rat.intRat.curr_spec_table_1_0[7:0]
@@ -373,8 +372,9 @@ TOP.Core.backend.rat.intRat.curr_spec_table_1_19[7:0]
 TOP.Core.backend.rat.intRat.curr_spec_table_1_20[7:0]
 TOP.Core.backend.rat.intRat.curr_spec_table_1_21[7:0]
 TOP.Core.backend.rat.intRat.curr_spec_table_1_22[7:0]
-@1000200
+@1401200
 -curr_spec_table
+@1000200
 -RAT
 @c00200
 -freelist
@@ -675,6 +675,37 @@ TOP.Core.backend.exec.io_wakeup_5_valid
 -wake_up
 @1401200
 -Execute
+@800200
+-Fusion
+@28
+TOP.Core.backend.fusionDecoder.io_is_fused_pair_0
+TOP.Core.backend.fusionDecoder.io_is_fused_pair_1
+TOP.Core.backend.fusionDecoder.io_is_fused_pair_2
+TOP.Core.backend.fusionDecoder.io_is_fused_pair_3
+TOP.Core.backend.fusionDecoder.io_is_fused_pair_4
+TOP.Core.backend.fusionDecoder.io_clear_1
+TOP.Core.backend.fusionDecoder.io_clear_2
+TOP.Core.backend.fusionDecoder.io_clear_3
+TOP.Core.backend.fusionDecoder.io_clear_4
+TOP.Core.backend.fusionDecoder.io_clear_5
+@22
+TOP.Core.backend.fusionDecoder.io_out_0_decode_fused_type[4:0]
+TOP.Core.backend.fusionDecoder.io_out_1_decode_fused_type[4:0]
+TOP.Core.backend.fusionDecoder.io_out_2_decode_fused_type[4:0]
+TOP.Core.backend.fusionDecoder.io_out_3_decode_fused_type[4:0]
+TOP.Core.backend.fusionDecoder.io_out_4_decode_fused_type[4:0]
+@28
+TOP.Core.backend.is_fused_away_vec_1
+TOP.Core.backend.is_fused_away_vec_2
+TOP.Core.backend.is_fused_away_vec_3
+TOP.Core.backend.is_fused_away_vec_4
+TOP.Core.backend.is_fused_away_vec_5
+TOP.Core.backend.rob.io_enq_0_valid
+TOP.Core.backend.rob.io_enq_1_valid
+@29
+TOP.Core.backend.rob.io_enq_2_valid
+@1000200
+-Fusion
 @c00200
 -memiq
 @28
@@ -781,7 +812,7 @@ TOP.debug_cycle_count[63:0]
 (61)TOP.Core.backend.exec.regFile.regs_32[63:0]
 (62)TOP.Core.backend.exec.regFile.regs_32[63:0]
 (63)TOP.Core.backend.exec.regFile.regs_32[63:0]
-@1401204
+@1401200
 -group_end
 @24
 +{TOP.Core.backend.exec.regFile.regs_33[63:0]} TOP.Core.backend.exec.regFile.regs_33[63:0]
@@ -855,7 +886,7 @@ TOP.Core.backend.exec.regFile.regs_34[63:0]
 (61)TOP.Core.backend.exec.regFile.regs_37[63:0]
 (62)TOP.Core.backend.exec.regFile.regs_37[63:0]
 (63)TOP.Core.backend.exec.regFile.regs_37[63:0]
-@1401204
+@1401200
 -group_end
 @22
 +{TOP.Core.backend.exec.regFile.regs_38[63:0]} TOP.Core.backend.exec.regFile.regs_38[63:0]
@@ -869,9 +900,7 @@ TOP.Core.backend.exec.regFile.regs_43[63:0]
 TOP.Core.backend.exec.regFile.regs_45[63:0]
 @22
 TOP.Core.backend.exec.regFile.regs_46[63:0]
-@23
 TOP.Core.backend.exec.regFile.regs_47[63:0]
-@22
 +{TOP.Core.backend.exec.regFile.regs_48[63:0]} TOP.Core.backend.exec.regFile.regs_48[63:0]
 TOP.Core.backend.exec.regFile.regs_49[63:0]
 TOP.Core.backend.exec.regFile.regs_50[63:0]

@@ -6,10 +6,10 @@ import org.chipsalliance.cde.config.Parameters
 import zaqal.backend.rob.RobBundles._
 import zaqal.common._
 
-class Rob(implicit val p: Parameters) extends Module with HasZaqalParameter {
+class Rob(val numWb: Int = 14)(implicit val p: Parameters) extends Module with HasZaqalParameter {
   val io = IO(new Bundle {
     val enq = Vec(decodeWidth, Flipped(Decoupled(new DecodedMicroOp)))
-    val exuWriteback = Vec(7, Flipped(ValidIO(new ExuOutput)))
+    val exuWriteback = Vec(numWb, Flipped(ValidIO(new ExuOutput)))
     val commits = Output(new RobCommitIO)
     val commitRobIdx = Output(Vec(decodeWidth, UInt(log2Up(128).W)))
     val robDeqPtr = Output(UInt(log2Up(128).W))

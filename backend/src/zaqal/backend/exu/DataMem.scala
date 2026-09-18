@@ -7,6 +7,8 @@ import zaqal.common._
 
 class DataMem(implicit val p: Parameters) extends Module with HasZaqalParameter {
   val io = IO(new Bundle {
+    val raddr = Vec(2, Input(UInt(xLen.W)))
+    val rdata = Vec(2, Output(UInt((xLen * 2).W)))
     val addr  = Input(UInt(xLen.W))
     val data  = Output(UInt((xLen * 2).W)) // Returns 128-bit window
     
@@ -23,13 +25,15 @@ class DataMem(implicit val p: Parameters) extends Module with HasZaqalParameter 
     "h706050403020100F".U  // 0x18: Offset test
   ).padTo(64, 0.U)))
 
+  for (p <- 0 until 2) {
+    val idx = io.raddr(p)(8, 3)
+    val idx_next = idx + 1.U
+    io.rdata(p) := Cat(mem(idx_next), mem(idx))
+  }
+
   // Basic address decoding (ignoring higher bits for now)
   // We divide by 8 because the Vec is indexed by Doubleword (64-bit)
   val index = io.addr(8, 3) 
-  
-  // Read 128-bit window (current + next word)
-  // We handle the wrap-around case by padding the memory or checking bounds.
-  // For simplicity, we assume we don't go out of bounds of the 64-entry vec.
   val index_next = index + 1.U
   io.data := Cat(mem(index_next), mem(index))
 

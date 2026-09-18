@@ -229,15 +229,15 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
   val dispatch = Module(new Dispatch)
   
   val rename_out = Wire(Vec(decodeWidth, Decoupled(new DecodedMicroOp)))
-  val intBusyTable = Module(new BusyTable)
-  val fpBusyTable  = Module(new BusyTable)
-  val intIq = Module(new IssueQueue(16, decodeWidth, 2, 6))
-  val memIq = Module(new IssueQueue(8, decodeWidth, 1, 6))
-  val fpIq = Module(new IssueQueue(8, decodeWidth, 1, 6))
-  val rob = Module(new zaqal.backend.rob.Rob)
+  val intBusyTable = Module(new BusyTable(numWakeup = 14))
+  val fpBusyTable  = Module(new BusyTable(numWakeup = 14))
+  val intIq = Module(new IssueQueue(16, decodeWidth, 4, 14))
+  val memIq = Module(new IssueQueue(16, decodeWidth, 3, 14))
+  val fpIq = Module(new IssueQueue(16, decodeWidth, 4, 14))
+  val rob = Module(new zaqal.backend.rob.Rob(numWb = 14))
   io.commits := rob.io.commits
   rob.io.bpu_redirect := exec.io.redirect
-  for (i <- 0 until 7) {
+  for (i <- 0 until 14) {
     rob.io.exuWriteback(i) <> exec.io.exuWriteback(i)
   }
   
@@ -308,38 +308,16 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
     fpIq.io.rs3_ready_in(i) := Mux(r3_is_fp, fpBusyTable.io.readPorts(i)(2).ready, intBusyTable.io.readPorts(i)(2).ready)
   }
 
-  for (w <- 0 until 6) {
-    val is_fp_wakeup = (w == 4) || (w == 5) // Port 4 (FP normal) and Port 5 (FPDIV)
+  for (w <- 0 until 14) {
+    val wu = exec.io.wakeup(w)
+    intBusyTable.io.wakeupPorts(w).valid := !wu.is_fp && wu.valid
+    intBusyTable.io.wakeupPorts(w).bits  := wu.pdest
+    fpBusyTable.io.wakeupPorts(w).valid  := wu.is_fp && wu.valid
+    fpBusyTable.io.wakeupPorts(w).bits   := wu.pdest
     
-    if (w == 3) {
-      val reg_wakeup = Wire(new WakeupBus)
-      reg_wakeup.valid := RegNext(exec.io.wakeup(w).valid, false.B)
-      reg_wakeup.pdest := RegNext(exec.io.wakeup(w).pdest, 0.U)
-
-      intBusyTable.io.wakeupPorts(w).valid := !is_fp_wakeup.B && reg_wakeup.valid
-      intBusyTable.io.wakeupPorts(w).bits  := reg_wakeup.pdest
-      fpBusyTable.io.wakeupPorts(w).valid  := is_fp_wakeup.B && reg_wakeup.valid
-      fpBusyTable.io.wakeupPorts(w).bits   := reg_wakeup.pdest
-      
-      intIq.io.wakeup(w) := exec.io.wakeup(w)
-      memIq.io.wakeup(w) := reg_wakeup
-      fpIq.io.wakeup(w)  := reg_wakeup
-    } else {
-      intBusyTable.io.wakeupPorts(w).valid := !is_fp_wakeup.B && exec.io.wakeup(w).valid
-      intBusyTable.io.wakeupPorts(w).bits  := exec.io.wakeup(w).pdest
-      fpBusyTable.io.wakeupPorts(w).valid  := is_fp_wakeup.B && exec.io.wakeup(w).valid
-      fpBusyTable.io.wakeupPorts(w).bits   := exec.io.wakeup(w).pdest
-      
-      intIq.io.wakeup(w) := exec.io.wakeup(w)
-      memIq.io.wakeup(w) := exec.io.wakeup(w)
-      fpIq.io.wakeup(w)  := exec.io.wakeup(w)
-    }
-  }
-  for (w <- 6 until decodeWidth) {
-    intBusyTable.io.wakeupPorts(w).valid := false.B
-    intBusyTable.io.wakeupPorts(w).bits := 0.U
-    fpBusyTable.io.wakeupPorts(w).valid := false.B
-    fpBusyTable.io.wakeupPorts(w).bits := 0.U
+    intIq.io.wakeup(w) := wu
+    memIq.io.wakeup(w) := wu
+    fpIq.io.wakeup(w)  := wu
   }
 
   redirect_valid := exec.io.redirect.valid
@@ -428,10 +406,15 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
     dispatch.io.fpuReady(i) := fpIq.io.enq(i).ready
   }
 
-  exec.io.int_in(0) <> intIq.io.deq(0)
-  exec.io.int_in(1) <> intIq.io.deq(1)
-  exec.io.mem_in <> memIq.io.deq(0)
-  exec.io.fp_in <> fpIq.io.deq(0)
+  for (i <- 0 until 4) {
+    exec.io.int_in(i) <> intIq.io.deq(i)
+  }
+  for (i <- 0 until 3) {
+    exec.io.mem_in(i) <> memIq.io.deq(i)
+  }
+  for (i <- 0 until 4) {
+    exec.io.fp_in(i) <> fpIq.io.deq(i)
+  }
   exec.io.snptValids := rat.io.snptValids
   exec.io.snptDeqPtr := rat.io.snptDeqPtr
   exec.io.robCommits := rob.io.commits
