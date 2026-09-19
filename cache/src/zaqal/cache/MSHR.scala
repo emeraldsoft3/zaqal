@@ -10,6 +10,7 @@ class MSHR(implicit val p: Parameters) extends Module with HasZaqalParameter {
     val alloc = Flipped(Decoupled(new Bundle {
       val addr = UInt(xLen.W)
       val load_id = UInt(6.W) // ID of the load instruction
+      val is_prefetch = Bool()
     }))
     val mem_req = Decoupled(new MemoryBusReq(xLen))
     val mem_resp = Flipped(Decoupled(new MemoryBusResp(256)))
@@ -17,6 +18,7 @@ class MSHR(implicit val p: Parameters) extends Module with HasZaqalParameter {
       val addr = UInt(xLen.W)
       val data = UInt(256.W) // Full cache line
       val load_id = UInt(6.W)
+      val is_prefetch = Bool()
     })
   })
 
@@ -25,6 +27,7 @@ class MSHR(implicit val p: Parameters) extends Module with HasZaqalParameter {
 
   val reqAddr = Reg(UInt(xLen.W))
   val reqLoadId = Reg(UInt(6.W))
+  val reqIsPrefetch = RegInit(false.B)
   val refillData = Reg(UInt(256.W))
 
   // Allocation
@@ -32,6 +35,7 @@ class MSHR(implicit val p: Parameters) extends Module with HasZaqalParameter {
   when(io.alloc.fire) {
     reqAddr := io.alloc.bits.addr
     reqLoadId := io.alloc.bits.load_id
+    reqIsPrefetch := io.alloc.bits.is_prefetch
     state := s_WAIT_MEM
   }
 
@@ -42,7 +46,7 @@ class MSHR(implicit val p: Parameters) extends Module with HasZaqalParameter {
   io.mem_req.bits.isWrite := false.B
   
   when(io.mem_req.fire) {
-    // Already sent to memory, just wait for response (in reality, mem_req could be decoupled from WAIT_MEM)
+    // Already sent to memory, just wait for response
   }
 
   // Memory Response
@@ -57,6 +61,7 @@ class MSHR(implicit val p: Parameters) extends Module with HasZaqalParameter {
   io.refill_out.bits.addr := reqAddr
   io.refill_out.bits.data := refillData
   io.refill_out.bits.load_id := reqLoadId
+  io.refill_out.bits.is_prefetch := reqIsPrefetch
 
   when(io.refill_out.fire) {
     state := s_IDLE

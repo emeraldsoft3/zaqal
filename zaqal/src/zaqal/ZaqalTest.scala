@@ -45,89 +45,66 @@ object ZaqalTest extends App {
     }
 
 
-    // Day 25.8: Full XiangShan-Parity Micro-op Fusion Comprehensive Verification Program
-    // 6-wide aligned packets guarantee intra-packet pair fusion:
-    // Packet 0 (00-14): LUI32 (0-1), SH1ADD (4-5)
-    // Packet 1 (18-2C): SH2ADD (0-1), SH3ADD (2-3)
-    // Packet 2 (30-44): ZEXT.W (0-1), BYTE2 (2-3)
-    // Packet 3 (48-5C): ADD_BYTE (0-1), SW (store 42 to Mem[256])
-    // Packet 4 (60-74): LOAD_ALU (0-1), SR32ADD (2-3), SZEWL1 (4-5)
-    // Packet 5 (78-8C): ODDADD (1-2), ODDADDW (4-5)
+    // Day 26-28: Hardware Stride & Stream Prefetcher Verification Program
+    // Accesses sequential/constant-stride memory blocks (cache line size = 32 bytes):
+    // Packet 0 (00-14): Initialize base pointer (x1 = 256 = 0x100) & Load 0 (Addr 256)
+    // Packet 1 (18-2C): Load 1 (Addr 288 = 256 + 32) -> Triggers Stream/Stride prefetcher!
+    // Packet 2 (30-44): Load 2 (Addr 320 = 256 + 64) -> Lookahead Prefetch fills L1 Cache!
+    // Packet 3 (48-5C): Load 3 (Addr 352 = 256 + 96) -> L1 Cache HIT! (Zero stall cycles!)
+    // Packet 4 (60-74): Load 4 (Addr 384 = 256 + 128)-> L1 Cache HIT!
+    // Packet 5 (78-8C): Load 5 (Addr 416 = 256 + 160)-> L1 Cache HIT!
+    // Packet 6 (90-A4): Trap infinite loop (j .)
     val programMemory = Seq(
-      // --- PACKET 0 (PC 0x00 - 0x14) ---
-      "h123450b7".U(32.W), // 00 [Slot 0]: lui  x1, 0x12345
-      "h67808093".U(32.W), // 04 [Slot 1]: addi x1, x1, 0x678        (Fused LUI32: x1 = 0x12345678)
-      "h00a00113".U(32.W), // 08 [Slot 2]: addi x2, x0, 10           (x2 = 10)
-      "h00500193".U(32.W), // 0C [Slot 3]: addi x3, x0, 5            (x3 = 5)
-      "h00111213".U(32.W), // 10 [Slot 4]: slli x4, x2, 1
-      "h00320233".U(32.W), // 14 [Slot 5]: add  x4, x4, x3           (Fused SH1ADD: x4 = 25 = 0x19)
+      // --- PACKET 0 (PC 0x00 - 0x14): Base Address Init & Load 0 ---
+      "h10000093".U(32.W), // 00 [Slot 0]: addi x1, x0, 256         (x1 = 256 = 0x100 base)
+      "h0000a103".U(32.W), // 04 [Slot 1]: lw   x2, 0(x1)           (LSU: Load from Mem[256] -> Misses, fetches line)
+      "h00000013".U(32.W), // 08 [Slot 2]: nop
+      "h00000013".U(32.W), // 0C [Slot 3]: nop
+      "h00000013".U(32.W), // 10 [Slot 4]: nop
+      "h00000013".U(32.W), // 14 [Slot 5]: nop
 
-      // --- PACKET 1 (PC 0x18 - 0x2C) ---
-      "h00211293".U(32.W), // 18 [Slot 0]: slli x5, x2, 2
-      "h003282b3".U(32.W), // 1C [Slot 1]: add  x5, x5, x3           (Fused SH2ADD: x5 = 45 = 0x2D)
-      "h00311313".U(32.W), // 20 [Slot 2]: slli x6, x2, 3
-      "h00330333".U(32.W), // 24 [Slot 3]: add  x6, x6, x3           (Fused SH3ADD: x6 = 85 = 0x55)
-      "hfff00413".U(32.W), // 28 [Slot 4]: addi x8, x0, -1           (x8 = 0xFFFFFFFFFFFFFFFF)
-      "h00000013".U(32.W), // 2C [Slot 5]: nop                       (Padding for alignment)
+      // --- PACKET 1 (PC 0x18 - 0x2C): Load 1 (Next Sequential Block) ---
+      "h0200a183".U(32.W), // 18 [Slot 0]: lw   x3, 32(x1)          (LSU: Load from Mem[288] -> Stream Prefetch Triggered!)
+      "h00000013".U(32.W), // 1C [Slot 1]: nop
+      "h00000013".U(32.W), // 20 [Slot 2]: nop
+      "h00000013".U(32.W), // 24 [Slot 3]: nop
+      "h00000013".U(32.W), // 28 [Slot 4]: nop
+      "h00000013".U(32.W), // 2C [Slot 5]: nop
 
-      // --- PACKET 2 (PC 0x30 - 0x44) ---
-      "h02041493".U(32.W), // 30 [Slot 0]: slli x9, x8, 32
-      "h0204d493".U(32.W), // 34 [Slot 1]: srli x9, x9, 32           (Fused ZEXT.W: x9 = 0x00000000FFFFFFFF)
-      "h0080d593".U(32.W), // 38 [Slot 2]: srli x11, x1, 8
-      "h0ff5f593".U(32.W), // 3C [Slot 3]: andi x11, x11, 255        (Fused BYTE2: x11 = 0x56)
-      "h0c800793".U(32.W), // 40 [Slot 4]: addi x15, x0, 200         (x15 = 200)
-      "h06400813".U(32.W), // 44 [Slot 5]: addi x16, x0, 100         (x16 = 100)
+      // --- PACKET 2 (PC 0x30 - 0x44): Load 2 ---
+      "h0400a203".U(32.W), // 30 [Slot 0]: lw   x4, 64(x1)          (LSU: Load from Mem[320])
+      "h00000013".U(32.W), // 34 [Slot 1]: nop
+      "h00000013".U(32.W), // 38 [Slot 2]: nop
+      "h00000013".U(32.W), // 3C [Slot 3]: nop
+      "h00000013".U(32.W), // 40 [Slot 4]: nop
+      "h00000013".U(32.W), // 44 [Slot 5]: nop
 
-      // --- PACKET 3 (PC 0x48 - 0x5C) ---
-      "h010788b3".U(32.W), // 48 [Slot 0]: add  x17, x15, x16
-      "h0ff8f8b3".U(32.W), // 4C [Slot 1]: andi x17, x17, 255        (Fused ADD_BYTE: x17 = 44 = 0x2C)
-      "h10000913".U(32.W), // 50 [Slot 2]: addi x18, x0, 256         (x18 = 256)
-      "h02a00993".U(32.W), // 54 [Slot 3]: addi x19, x0, 42          (x19 = 42)
-      "h01392023".U(32.W), // 58 [Slot 4]: sw   x19, 0(x18)          (Mem[256] = 42)
-      "h00000013".U(32.W), // 5C [Slot 5]: nop                       (Padding for alignment)
+      // --- PACKET 3 (PC 0x48 - 0x5C): Load 3 (Prefetched!) ---
+      "h0600a283".U(32.W), // 48 [Slot 0]: lw   x5, 96(x1)          (LSU: Load from Mem[352] -> L1 CACHE HIT from Prefetch!)
+      "h00000013".U(32.W), // 4C [Slot 1]: nop
+      "h00000013".U(32.W), // 50 [Slot 2]: nop
+      "h00000013".U(32.W), // 54 [Slot 3]: nop
+      "h00000013".U(32.W), // 58 [Slot 4]: nop
+      "h00000013".U(32.W), // 5C [Slot 5]: nop
 
-      // --- PACKET 4 (PC 0x60 - 0x74) ---
-      "h00092a03".U(32.W), // 60 [Slot 0]: lw   x20, 0(x18)
-      "h00aa0a13".U(32.W), // 64 [Slot 1]: addi x20, x20, 10         (Fused LOAD_ALU: x20 = 42 + 10 = 52 = 0x34)
-      "h02045b13".U(32.W), // 68 [Slot 2]: srli x22, x8, 32
-      "h003b0b33".U(32.W), // 6C [Slot 3]: add  x22, x22, x3         (Fused SR32ADD: x22 = (x8 >> 32) + x3 = 0x100000004)
-      "h02011c93".U(32.W), // 70 [Slot 4]: slli x25, x2, 32
-      "h01fcdc93".U(32.W), // 74 [Slot 5]: srli x25, x25, 31         (Fused SZEWL1: x25 = (10(31,0) << 1) = 20 = 0x14)
+      // --- PACKET 4 (PC 0x60 - 0x74): Load 4 (Prefetched!) ---
+      "h0800a303".U(32.W), // 60 [Slot 0]: lw   x6, 128(x1)         (LSU: Load from Mem[384] -> L1 CACHE HIT from Prefetch!)
+      "h00000013".U(32.W), // 64 [Slot 1]: nop
+      "h00000013".U(32.W), // 68 [Slot 2]: nop
+      "h00000013".U(32.W), // 6C [Slot 3]: nop
+      "h00000013".U(32.W), // 70 [Slot 4]: nop
+      "h00000013".U(32.W), // 74 [Slot 5]: nop
 
-      // --- PACKET 5 (PC 0x78 - 0x8C) ---
-      "h00f00d13".U(32.W), // 78 [Slot 0]: addi x26, x0, 15          (x26 = 15, odd)
-      "h001d7d93".U(32.W), // 7C [Slot 1]: andi x27, x26, 1
-      "h003d8db3".U(32.W), // 80 [Slot 2]: add  x27, x27, x3         (Fused ODDADD: x27 = (x26 & 1) + 5 = 6 = 0x06)
-      "h01800e13".U(32.W), // 84 [Slot 3]: addi x28, x0, 24          (x28 = 24, even)
-      "h001e7e93".U(32.W), // 88 [Slot 4]: andi x29, x28, 1
-      "h003e8ebb".U(32.W), // 8C [Slot 5]: addw x29, x29, x3         (Fused ODDADDW: x29 = (x28 & 1) + 5 = 5 = 0x05)
+      // --- PACKET 5 (PC 0x78 - 0x8C): Load 5 (Prefetched!) ---
+      "h0a00a383".U(32.W), // 78 [Slot 0]: lw   x7, 160(x1)         (LSU: Load from Mem[416] -> L1 CACHE HIT from Prefetch!)
+      "h00000013".U(32.W), // 7C [Slot 1]: nop
+      "h00000013".U(32.W), // 80 [Slot 2]: nop
+      "h00000013".U(32.W), // 84 [Slot 3]: nop
+      "h00000013".U(32.W), // 88 [Slot 4]: nop
+      "h00000013".U(32.W), // 8C [Slot 5]: nop
 
-      // --- PACKET 6 (PC 0x90 - 0xA4): Parallel 4-ALU Execution ---
-      "h00100393".U(32.W), // 90 [Slot 0]: addi x7,  x0, 1            (ALU 0: x7  = 1)
-      "h00200613".U(32.W), // 94 [Slot 1]: addi x12, x0, 2            (ALU 1: x12 = 2)
-      "h00300693".U(32.W), // 98 [Slot 2]: addi x13, x0, 3            (ALU 2: x13 = 3)
-      "h00400713".U(32.W), // 9C [Slot 3]: addi x14, x0, 4            (ALU 3: x14 = 4)
-      "h00000013".U(32.W), // A0 [Slot 4]: nop
-      "h00000013".U(32.W), // A4 [Slot 5]: nop
-
-      // --- PACKET 7 (PC 0xA8 - 0xBC): Dual Multipliers & Dual Dividers ---
-      "h02310ab3".U(32.W), // A8 [Slot 0]: mul  x21, x2, x3           (MDU 0: x21 = 10 * 5 = 50 = 0x32)
-      "h02410bb3".U(32.W), // AC [Slot 1]: mul  x23, x2, x4           (MDU 1: x23 = 10 * 25 = 250 = 0xFA)
-      "h02324c33".U(32.W), // B0 [Slot 2]: div  x24, x4, x3           (MDU 0: x24 = 25 / 5 = 5 = 0x05)
-      "h023d4f33".U(32.W), // B4 [Slot 3]: div  x30, x26, x3          (MDU 1: x30 = 15 / 5 = 3 = 0x03)
-      "h00000013".U(32.W), // B8 [Slot 4]: nop
-      "h00000013".U(32.W), // BC [Slot 5]: nop
-
-      // --- PACKET 8 (PC 0xC0 - 0xD4): LSU Concurrent Store & Load ---
-      "h01592223".U(32.W), // C0 [Slot 0]: sw   x21, 4(x18)           (LSU 2: Mem[260] = 50 = 0x32)
-      "h00492f83".U(32.W), // C4 [Slot 1]: lw   x31, 4(x18)           (LSU 0/1: x31 = Mem[260] = 50 = 0x32)
-      "h00000013".U(32.W), // C8 [Slot 2]: nop
-      "h00000013".U(32.W), // CC [Slot 3]: nop
-      "h00000013".U(32.W), // D0 [Slot 4]: nop
-      "h00000013".U(32.W), // D4 [Slot 5]: nop
-
-      // --- PACKET 9 (PC 0xD8) ---
-      "h0000006f".U(32.W)  // D8: j    0xD8                         (infinite loop trap)
+      // --- PACKET 6 (PC 0x90): Infinite Loop Trap ---
+      "h0000006f".U(32.W)  // 90: j    0x90                         (infinite loop trap)
     ).padTo(1024, "h00000013".U(32.W))
 
     var memLatencyCounter = 0
@@ -206,6 +183,7 @@ object ZaqalTest extends App {
           dmemHandlingRequest = true
           dmemLatencyCounter = 50 // 50 cycles for data miss too
           dmemRequestedAddr = dut.io.mem_d.req.bits.addr.peek().litValue.toLong
+          println(f"Cycle $cycle%4d: [D-Cache / MSHR Bus Request] Addr = 0x$dmemRequestedAddr%08x")
         }
 
         if (dmemHandlingRequest) {
@@ -218,6 +196,7 @@ object ZaqalTest extends App {
             dut.io.mem_d.resp.bits.last.poke(true.B)
 
             if (dut.io.mem_d.resp.ready.peek().litToBoolean) {
+              println(f"Cycle $cycle%4d: [D-Cache / MSHR Bus Response] Fulfilled Addr = 0x$dmemRequestedAddr%08x")
               dmemHandlingRequest = false
             }
           }

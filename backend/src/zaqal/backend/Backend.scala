@@ -442,5 +442,7 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
   val dcache = Module(new DCache)
   dcache.io.req <> exec.io.dcache_req
   exec.io.dcache_resp <> dcache.io.resp
+  dcache.io.pf_train := exec.io.pf_train
+  dcache.io.flush := io.redirect.valid
   io.mem_d <> dcache.io.mem
 }

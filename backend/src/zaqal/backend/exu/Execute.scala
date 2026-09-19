@@ -33,6 +33,7 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
       val data = UInt(xLen.W)
       val load_id = UInt(6.W)
     }))
+    val pf_train = Output(Valid(new zaqal.cache.prefetch.L1PrefetchTrainBundle(xLen)))
 
     // LSQ Commit & Allocation Interfaces
     val robCommits = Input(new RobCommitIO)
@@ -854,6 +855,10 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   io.dcache_req.bits.is_write := sq.io.drain.valid
   io.dcache_req.bits.load_id := r_agu_uop(0).pdest
   io.dcache_resp.ready := true.B
+
+  io.pf_train.valid := r_agu_val(0) && (r_agu_uop(0).decode.is_load || r_agu_uop(0).decode.is_fload)
+  io.pf_train.bits.pc := r_agu_uop(0).uop.pc
+  io.pf_train.bits.addr := lsu(0).io.mem_addr
 
   when(io.dcache_resp.valid && io.dcache_resp.bits.load_id =/= 0.U) {
     next_regFile_wen(4)   := true.B

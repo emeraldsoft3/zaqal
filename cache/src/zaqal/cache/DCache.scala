@@ -4,6 +4,7 @@ import chisel3._
 import chisel3.util._
 import org.chipsalliance.cde.config.Parameters
 import zaqal.common._
+import zaqal.cache.prefetch._
 
 class DCache(implicit val p: Parameters) extends Module with HasZaqalParameter {
   val io = IO(new Bundle {
@@ -18,6 +19,8 @@ class DCache(implicit val p: Parameters) extends Module with HasZaqalParameter {
       val load_id = UInt(6.W)
     })
     val mem = new MemoryBus(xLen, 256)
+    val pf_train = Flipped(Valid(new L1PrefetchTrainBundle(xLen)))
+    val flush = Input(Bool())
   })
 
   // Basic Cache Parameters (Direct Mapped for simplicity initially)
@@ -30,12 +33,12 @@ class DCache(implicit val p: Parameters) extends Module with HasZaqalParameter {
   val tagArray = RegInit(VecInit(Seq.fill(numSets)(0.U((xLen - lineBits - blockOffsetBits).W))))
   val dataArray = RegInit(VecInit(Seq.fill(numSets)(VecInit(Seq.fill(8)(0.U(32.W))))))
 
-  // Decode Address
+  // Decode Demand Address
   val reqIndex = io.req.bits.addr(lineBits + blockOffsetBits - 1, blockOffsetBits)
   val reqTag = io.req.bits.addr(xLen - 1, lineBits + blockOffsetBits)
   val reqWordOffset = io.req.bits.addr(blockOffsetBits - 1, 2)
 
-  // Hit Logic
+  // Hit Logic for Demand Access
   val isHit = validArray(reqIndex) && (tagArray(reqIndex) === reqTag)
   
   // MSHR Integration
@@ -43,17 +46,30 @@ class DCache(implicit val p: Parameters) extends Module with HasZaqalParameter {
   mshr.io.mem_req <> io.mem.req
   mshr.io.mem_resp <> io.mem.resp
 
+  // Prefetcher Integration
+  val prefetcher = Module(new L1Prefetcher)
+  prefetcher.io.train := io.pf_train
+  prefetcher.io.flush := io.flush
+
+  val pfAddr = prefetcher.io.prefetch_req.bits.addr
+  val pfIndex = pfAddr(lineBits + blockOffsetBits - 1, blockOffsetBits)
+  val pfTag = pfAddr(xLen - 1, lineBits + blockOffsetBits)
+  val isPfHit = validArray(pfIndex) && (tagArray(pfIndex) === pfTag)
+
   // Defaults
   io.req.ready := false.B
   io.resp.valid := false.B
   io.resp.bits.data := 0.U
   io.resp.bits.load_id := 0.U
+  prefetcher.io.prefetch_req.ready := false.B
+
   mshr.io.alloc.valid := false.B
   mshr.io.alloc.bits.addr := io.req.bits.addr
   mshr.io.alloc.bits.load_id := io.req.bits.load_id
+  mshr.io.alloc.bits.is_prefetch := false.B
   mshr.io.refill_out.ready := true.B
 
-  // Pipeline Logic
+  // Demand Request has highest priority
   when(io.req.valid) {
     when(isHit) {
       io.req.ready := true.B
@@ -69,6 +85,26 @@ class DCache(implicit val p: Parameters) extends Module with HasZaqalParameter {
       // Miss - Allocate MSHR
       io.req.ready := mshr.io.alloc.ready
       mshr.io.alloc.valid := true.B
+      mshr.io.alloc.bits.addr := io.req.bits.addr
+      mshr.io.alloc.bits.load_id := io.req.bits.load_id
+      mshr.io.alloc.bits.is_prefetch := false.B
+    }
+  } .otherwise {
+    // Non-blocking Prefetch Handling when cache pipeline is idle
+    when(prefetcher.io.prefetch_req.valid) {
+      when(isPfHit) {
+        // Cache line already present, consume prefetch request
+        prefetcher.io.prefetch_req.ready := true.B
+      } .otherwise {
+        // Allocate MSHR for prefetch if idle
+        when(mshr.io.alloc.ready) {
+          prefetcher.io.prefetch_req.ready := true.B
+          mshr.io.alloc.valid := true.B
+          mshr.io.alloc.bits.addr := pfAddr
+          mshr.io.alloc.bits.load_id := 0.U
+          mshr.io.alloc.bits.is_prefetch := true.B
+        }
+      }
     }
   }
 
@@ -85,10 +121,12 @@ class DCache(implicit val p: Parameters) extends Module with HasZaqalParameter {
       dataArray(refillIndex)(i) := mshr.io.refill_out.bits.data((i + 1) * 32 - 1, i * 32)
     }
 
-    // Wakeup LSU via resp
-    io.resp.valid := true.B
-    val wordOffset = mshr.io.refill_out.bits.addr(blockOffsetBits - 1, 2)
-    io.resp.bits.data := mshr.io.refill_out.bits.data >> (wordOffset * 32.U)
-    io.resp.bits.load_id := mshr.io.refill_out.bits.load_id
+    // Wakeup LSU via resp only for demand misses (not speculative prefetches)
+    when(!mshr.io.refill_out.bits.is_prefetch) {
+      io.resp.valid := true.B
+      val wordOffset = mshr.io.refill_out.bits.addr(blockOffsetBits - 1, 2)
+      io.resp.bits.data := mshr.io.refill_out.bits.data >> (wordOffset * 32.U)
+      io.resp.bits.load_id := mshr.io.refill_out.bits.load_id
+    }
   }
 }

@@ -50,7 +50,7 @@ To match the high-IPC processing power of XiangShan's Kunminghu core, Zaqal's ex
 
 
 ## Day 26-35: Intelligent Memory Prefetching (L1-D Hidden Power)
-- [ ] **Day 26-28**: **Stride & Stream Prefetchers**: Detect constant patterns in memory.
+- [x] **Day 26-28**: **Stride & Stream Prefetchers**: Detect constant patterns in memory.
 - [ ] **Day 29-31**: **Spatial Memory Streaming (SMS)**: Handle irregular spatially-local accesses.
 - [ ] **Day 32-33**: **Frontend Data Prefetcher (FDP)**: Use branch signals to warm up the cache.
 - [ ] **Day 34-35**: **Prefetch Coordination**: Throttling for bus congestion and L2-cache interaction.
