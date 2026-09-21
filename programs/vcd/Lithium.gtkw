@@ -1,18 +1,20 @@
 [*]
 [*] GTKWave Analyzer v3.3.111 (w)1999-2020 BSI
-[*] Fri Sep 18 04:15:09 2026
+[*] Mon Sep 21 05:24:33 2026
 [*]
 [dumpfile] "/home/emerald/zaqal/programs/vcd/Lithium.vcd"
-[dumpfile_mtime] "Wed Sep 16 09:49:29 2026"
-[dumpfile_size] 16678323
+[dumpfile_mtime] "Sat Sep 19 11:50:52 2026"
+[dumpfile_size] 17224658
 [savefile] "/home/emerald/zaqal/programs/vcd/Lithium.gtkw"
-[timestart] 214
+[timestart] 0
 [size] 1865 930
 [pos] -1 -1
-*-2.900000 723 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-2.900000 240 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] TOP.
 [treeopen] TOP.Core.
 [treeopen] TOP.Core.backend.
+[treeopen] TOP.Core.backend.dcache.
+[treeopen] TOP.Core.backend.dcache.prefetcher.
 [treeopen] TOP.Core.backend.exec.
 [treeopen] TOP.Core.backend.exec.bru_0.
 [treeopen] TOP.Core.backend.intFreeList.
@@ -614,16 +616,8 @@ TOP.Core.backend.exec.alu_0.io_pc[63:0]
 TOP.Core.backend.exec.alu_1.io_pc[63:0]
 @200
 -div
-@28
-TOP.Core.backend.exec.div.io_done
 @c00200
 -LSU
-@22
-TOP.Core.backend.exec.lsu.addr[63:0]
-TOP.Core.backend.exec.lsu.addr_raw[63:0]
-@28
-+{TOP.Core.backend.exec.lsu.io_dec_is_sw} TOP.Core.backend.exec.lsu.io_dec_is_sw
-TOP.Core.backend.exec.lsu.io_dec_is_lw
 @1401200
 -LSU
 @c00200
@@ -702,7 +696,6 @@ TOP.Core.backend.is_fused_away_vec_4
 TOP.Core.backend.is_fused_away_vec_5
 TOP.Core.backend.rob.io_enq_0_valid
 TOP.Core.backend.rob.io_enq_1_valid
-@29
 TOP.Core.backend.rob.io_enq_2_valid
 @1000200
 -Fusion
@@ -740,6 +733,18 @@ TOP.Core.backend.storeSet.ssit.ssid_array_1[5:0]
 TOP.Core.backend.storeSet.lfst.io_resp_0_shouldWait
 @1401200
 -storeset
+@800200
+-Dcache
+@28
+TOP.Core.backend.dcache.prefetcher.io_train_valid
+@22
+TOP.Core.backend.dcache.prefetcher.io_train_bits_addr[63:0]
+@28
+TOP.Core.backend.dcache.mshr.io_alloc_valid
+@29
+TOP.Core.backend.dcache.isHit
+@1000200
+-Dcache
 @24
 [color] 6
 TOP.debug_cycle_count[63:0]
@@ -1045,9 +1050,6 @@ TOP.debug_cycle_count[63:0]
 @22
 TOP.Core.backend.exec.fpRegFile.regs_0[63:0]
 @28
-+{TOP.Core.backend.exec.io_fp_in_ready} TOP.Core.backend.exec.io_fp_in_ready
-+{TOP.Core.backend.exec.io_fp_in_valid} TOP.Core.backend.exec.io_fp_in_valid
-+{TOP.Core.backend.exec.exe_valFp} TOP.Core.backend.exec.exe_valFp
 +{TOP.Core.backend.exec.fpRegFile.io_wen_0} TOP.Core.backend.exec.fpRegFile.io_wen_0
 +{TOP.Core.backend.exec.fpRegFile.io_wen_1} TOP.Core.backend.exec.fpRegFile.io_wen_1
 @22

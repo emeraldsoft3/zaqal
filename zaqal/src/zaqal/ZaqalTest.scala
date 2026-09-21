@@ -45,66 +45,75 @@ object ZaqalTest extends App {
     }
 
 
-    // Day 26-28: Hardware Stride & Stream Prefetcher Verification Program
-    // Accesses sequential/constant-stride memory blocks (cache line size = 32 bytes):
-    // Packet 0 (00-14): Initialize base pointer (x1 = 256 = 0x100) & Load 0 (Addr 256)
-    // Packet 1 (18-2C): Load 1 (Addr 288 = 256 + 32) -> Triggers Stream/Stride prefetcher!
-    // Packet 2 (30-44): Load 2 (Addr 320 = 256 + 64) -> Lookahead Prefetch fills L1 Cache!
-    // Packet 3 (48-5C): Load 3 (Addr 352 = 256 + 96) -> L1 Cache HIT! (Zero stall cycles!)
-    // Packet 4 (60-74): Load 4 (Addr 384 = 256 + 128)-> L1 Cache HIT!
-    // Packet 5 (78-8C): Load 5 (Addr 416 = 256 + 160)-> L1 Cache HIT!
-    // Packet 6 (90-A4): Trap infinite loop (j .)
+    // Day 29-31: Spatial Memory Streaming (SMS) Prefetcher Verification Program (Option C)
+    // - Region 0: Base pointer x1 = 0. Reads pre-initialized DataMem test values into PRF!
+    //   Touches Block 0 (offset 0), Block 5 (offset 160), Block 7 (offset 224).
+    //   AGT tracks footprint bitmask: {0, 5, 7} for PC 0x04.
+    // - Eviction Phase: Touches 8 distinct 1KB regions (2048, 3072, 4096, 5120, 6144, 7168, 8192, 9216).
+    //   This causes AGT round-robin eviction, writing back Region 0's footprint to PHT!
+    // - Region 1: Base pointer x6 = 1024 (0x400).
+    //   Load at PC 0x04 (or same hashed PC) immediately triggers SMS prefetch!
+    //   SMS recalls footprint and prefetches Block 5 (0x4A0) and Block 7 (0x4E0)!
     val programMemory = Seq(
-      // --- PACKET 0 (PC 0x00 - 0x14): Base Address Init & Load 0 ---
-      "h10000093".U(32.W), // 00 [Slot 0]: addi x1, x0, 256         (x1 = 256 = 0x100 base)
-      "h0000a103".U(32.W), // 04 [Slot 1]: lw   x2, 0(x1)           (LSU: Load from Mem[256] -> Misses, fetches line)
-      "h00000013".U(32.W), // 08 [Slot 2]: nop
-      "h00000013".U(32.W), // 0C [Slot 3]: nop
-      "h00000013".U(32.W), // 10 [Slot 4]: nop
+      // --- PACKET 0 (PC 0x00 - 0x14): Base Address Init & Region 0 Training ---
+      "h00000093".U(32.W), // 00 [Slot 0]: addi x1, x0, 0            (x1 = 0, Option C base)
+      "h0000b103".U(32.W), // 04 [Slot 1]: ld   x2, 0(x1)            (Block 0 -> loads 0xAABBCCDD11223344, trigger PC!)
+      "h0080b183".U(32.W), // 08 [Slot 2]: ld   x3, 8(x1)            (Block 0 -> loads 0x5566778899AABBCC)
+      "h0a00b203".U(32.W), // 0C [Slot 3]: ld   x4, 160(x1)          (Block 5 -> touches offset 160)
+      "h0e00b283".U(32.W), // 10 [Slot 4]: ld   x5, 224(x1)          (Block 7 -> touches offset 224)
       "h00000013".U(32.W), // 14 [Slot 5]: nop
 
-      // --- PACKET 1 (PC 0x18 - 0x2C): Load 1 (Next Sequential Block) ---
-      "h0200a183".U(32.W), // 18 [Slot 0]: lw   x3, 32(x1)          (LSU: Load from Mem[288] -> Stream Prefetch Triggered!)
-      "h00000013".U(32.W), // 1C [Slot 1]: nop
-      "h00000013".U(32.W), // 20 [Slot 2]: nop
-      "h00000013".U(32.W), // 24 [Slot 3]: nop
+      // --- PACKET 1 (PC 0x18 - 0x2C): AGT Eviction Dummy 1 & 2 ---
+      "h80000313".U(32.W), // 18 [Slot 0]: addi x6, x0, 2048         (Region 2)
+      "h00033383".U(32.W), // 1C [Slot 1]: ld   x7, 0(x6)
+      "hc0000313".U(32.W), // 20 [Slot 2]: addi x6, x0, -1024        (or 3072)
+      "h00033383".U(32.W), // 24 [Slot 3]: ld   x7, 0(x6)
       "h00000013".U(32.W), // 28 [Slot 4]: nop
       "h00000013".U(32.W), // 2C [Slot 5]: nop
 
-      // --- PACKET 2 (PC 0x30 - 0x44): Load 2 ---
-      "h0400a203".U(32.W), // 30 [Slot 0]: lw   x4, 64(x1)          (LSU: Load from Mem[320])
-      "h00000013".U(32.W), // 34 [Slot 1]: nop
-      "h00000013".U(32.W), // 38 [Slot 2]: nop
-      "h00000013".U(32.W), // 3C [Slot 3]: nop
-      "h00000013".U(32.W), // 40 [Slot 4]: nop
-      "h00000013".U(32.W), // 44 [Slot 5]: nop
+      // --- PACKET 2 (PC 0x30 - 0x44): AGT Eviction Dummy 3 & 4 ---
+      "h00200313".U(32.W), // 30 [Slot 0]: addi x6, x0, 2            
+      "h00c31313".U(32.W), // 34 [Slot 1]: slli x6, x6, 12           (x6 = 8192)
+      "h00033383".U(32.W), // 38 [Slot 2]: ld   x7, 0(x6)
+      "h00300313".U(32.W), // 3C [Slot 3]: addi x6, x0, 3
+      "h00c31313".U(32.W), // 40 [Slot 4]: slli x6, x6, 12           (x6 = 12288)
+      "h00033383".U(32.W), // 44 [Slot 5]: ld   x7, 0(x6)
 
-      // --- PACKET 3 (PC 0x48 - 0x5C): Load 3 (Prefetched!) ---
-      "h0600a283".U(32.W), // 48 [Slot 0]: lw   x5, 96(x1)          (LSU: Load from Mem[352] -> L1 CACHE HIT from Prefetch!)
-      "h00000013".U(32.W), // 4C [Slot 1]: nop
-      "h00000013".U(32.W), // 50 [Slot 2]: nop
-      "h00000013".U(32.W), // 54 [Slot 3]: nop
-      "h00000013".U(32.W), // 58 [Slot 4]: nop
-      "h00000013".U(32.W), // 5C [Slot 5]: nop
+      // --- PACKET 3 (PC 0x48 - 0x5C): AGT Eviction Dummy 5 & 6 ---
+      "h00400313".U(32.W), // 48 [Slot 0]: addi x6, x0, 4
+      "h00c31313".U(32.W), // 4C [Slot 1]: slli x6, x6, 12           (x6 = 16384)
+      "h00033383".U(32.W), // 50 [Slot 2]: ld   x7, 0(x6)
+      "h00500313".U(32.W), // 54 [Slot 3]: addi x6, x0, 5
+      "h00c31313".U(32.W), // 58 [Slot 4]: slli x6, x6, 12           (x6 = 20480)
+      "h00033383".U(32.W), // 5C [Slot 5]: ld   x7, 0(x6)
 
-      // --- PACKET 4 (PC 0x60 - 0x74): Load 4 (Prefetched!) ---
-      "h0800a303".U(32.W), // 60 [Slot 0]: lw   x6, 128(x1)         (LSU: Load from Mem[384] -> L1 CACHE HIT from Prefetch!)
-      "h00000013".U(32.W), // 64 [Slot 1]: nop
-      "h00000013".U(32.W), // 68 [Slot 2]: nop
-      "h00000013".U(32.W), // 6C [Slot 3]: nop
-      "h00000013".U(32.W), // 70 [Slot 4]: nop
-      "h00000013".U(32.W), // 74 [Slot 5]: nop
+      // --- PACKET 4 (PC 0x60 - 0x74): AGT Eviction Dummy 7 & 8 ---
+      "h00600313".U(32.W), // 60 [Slot 0]: addi x6, x0, 6
+      "h00c31313".U(32.W), // 64 [Slot 1]: slli x6, x6, 12           (x6 = 24576)
+      "h00033383".U(32.W), // 68 [Slot 2]: ld   x7, 0(x6)
+      "h00700313".U(32.W), // 6C [Slot 3]: addi x6, x0, 7
+      "h00c31313".U(32.W), // 70 [Slot 4]: slli x6, x6, 12           (x6 = 28672 -> Evicts Region 0 to PHT!)
+      "h00033383".U(32.W), // 74 [Slot 5]: ld   x7, 0(x6)
 
-      // --- PACKET 5 (PC 0x78 - 0x8C): Load 5 (Prefetched!) ---
-      "h0a00a383".U(32.W), // 78 [Slot 0]: lw   x7, 160(x1)         (LSU: Load from Mem[416] -> L1 CACHE HIT from Prefetch!)
+      // --- PACKET 5 (PC 0x78 - 0x8C): Set New Base (Region 1 = 1024) and Trigger PC ---
+      "h40000313".U(32.W), // 78 [Slot 0]: addi x6, x0, 1024         (x6 = 1024 = 0x400)
       "h00000013".U(32.W), // 7C [Slot 1]: nop
       "h00000013".U(32.W), // 80 [Slot 2]: nop
       "h00000013".U(32.W), // 84 [Slot 3]: nop
       "h00000013".U(32.W), // 88 [Slot 4]: nop
       "h00000013".U(32.W), // 8C [Slot 5]: nop
 
-      // --- PACKET 6 (PC 0x90): Infinite Loop Trap ---
-      "h0000006f".U(32.W)  // 90: j    0x90                         (infinite loop trap)
+      // --- PACKET 6 (PC 0x90 - 0xA4): Region 1 Recall & SMS Prefetch ---
+      // Note: We loop back to PC 0x00 with x1 = 1024 so PC 0x04 triggers PHT match!
+      "h00030093".U(32.W), // 90 [Slot 0]: addi x1, x6, 0            (x1 = 1024)
+      "h00000313".U(32.W), // 94 [Slot 1]: addi x6, x0, 0            (clear x6 so loop runs once)
+      "hf6dff06f".U(32.W), // 98 [Slot 2]: jal  x0, -148             (jump to PC 0x04! Trigger PC matches!)
+      "h00000013".U(32.W), // 9C [Slot 3]: nop
+      "h00000013".U(32.W), // A0 [Slot 4]: nop
+      "h00000013".U(32.W), // A4 [Slot 5]: nop
+
+      // --- PACKET 7 (PC 0xA8): Infinite Loop Trap ---
+      "h0000006f".U(32.W)  // A8: j    0xA8
     ).padTo(1024, "h00000013".U(32.W))
 
     var memLatencyCounter = 0
