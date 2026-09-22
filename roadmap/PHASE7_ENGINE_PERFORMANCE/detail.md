@@ -52,7 +52,7 @@ To match the high-IPC processing power of XiangShan's Kunminghu core, Zaqal's ex
 ## Day 26-35: Intelligent Memory Prefetching (L1-D Hidden Power)
 - [x] **Day 26-28**: **Stride & Stream Prefetchers**: Detect constant patterns in memory.
 - [x] **Day 29-31**: **Spatial Memory Streaming (SMS)**: Handle irregular spatially-local accesses.
-- [ ] **Day 32-33**: **Frontend Data Prefetcher (FDP)**: Use branch signals to warm up the cache.
+- [x] **Day 32-33**: **Frontend Data Prefetcher (FDP)**: Use branch signals to warm up the cache.
 - [ ] **Day 34-35**: **Prefetch Coordination**: Throttling for bus congestion and L2-cache interaction.
 - **Detailed Plan**: Modern cores mask memory latency by predicting what data will be needed next. We will build hardware prefetchers that monitor the memory addresses requested by the LSQ. The Stride Prefetcher will detect sequential access patterns (like looping over an array) and fetch the data into the cache before the processor even asks for it. The Spatial Memory Streaming (SMS) prefetcher will learn irregular spatial footprints in memory blocks. A prefetch coordinator will manage these requests to ensure they don't saturate the memory bus and degrade actual demand-load performance.
 - **XiangShan Study**: [prefetch/](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/mem/prefetch/)

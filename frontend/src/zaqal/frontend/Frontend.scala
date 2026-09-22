@@ -15,6 +15,7 @@ class Frontend(implicit val p: Parameters) extends Module with HasZaqalParameter
     val commits      = Input(new RobCommitIO)
     val dispatch     = Vec(decodeWidth, Decoupled(new MicroOp)) // Output to Backend (6-wide)
     val mem          = new MemoryBus(xLen, instBits * fetchWidth) // Connects to L1 I-Cache
+    val branch_signal = Output(Valid(new BranchPredictionBus))
     
     // Backend access to FTQ (XiangShan style)
     val ftq_read_ptr  = Input(UInt(ftqPtrWidth.W))
@@ -61,6 +62,12 @@ class Frontend(implicit val p: Parameters) extends Module with HasZaqalParameter
   bpu_skid.io.deq.ready       := ftq.io.fromBpu.ready
   ftq.io.fromBpu.bits         := bpu_skid.io.deq.bits
   ftq.io.fromBpu.bits.epoch    := fetch_epoch
+
+  // Early branch prediction broadcast to Backend / FDP
+  io.branch_signal.valid       := bpu_skid.io.deq.fire && bpu_skid.io.deq.bits.prediction.taken && !is_valid_redirect
+  io.branch_signal.bits.pc     := bpu_skid.io.deq.bits.pc
+  io.branch_signal.bits.target := bpu_skid.io.deq.bits.prediction.target
+  io.branch_signal.bits.taken  := bpu_skid.io.deq.bits.prediction.taken
 
   // 2. FTQ -> IFU and ICache (Fetch Request Path - Buffered!)
   val ftq_skid  = Module(new SkidBuffer(new FetchRequest))

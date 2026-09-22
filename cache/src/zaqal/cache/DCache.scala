@@ -20,6 +20,7 @@ class DCache(implicit val p: Parameters) extends Module with HasZaqalParameter {
     })
     val mem = new MemoryBus(xLen, 256)
     val pf_train = Flipped(Valid(new L1PrefetchTrainBundle(xLen)))
+    val branch_signal = Input(Valid(new BranchPredictionBus))
     val flush = Input(Bool())
   })
 
@@ -49,6 +50,7 @@ class DCache(implicit val p: Parameters) extends Module with HasZaqalParameter {
   // Prefetcher Integration
   val prefetcher = Module(new L1Prefetcher)
   prefetcher.io.train := io.pf_train
+  prefetcher.io.branch_signal := io.branch_signal
   prefetcher.io.flush := io.flush
 
   val pfAddr = prefetcher.io.prefetch_req.bits.addr

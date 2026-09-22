@@ -12,18 +12,29 @@ class L1PrefetchTrainBundle(val xLen: Int) extends Bundle {
 
 class L1Prefetcher(implicit val p: Parameters) extends Module with HasZaqalParameter {
   val io = IO(new Bundle {
-    val train        = Flipped(Valid(new L1PrefetchTrainBundle(xLen)))
-    val prefetch_req = Decoupled(new PrefetchReqBundle(xLen))
-    val flush        = Input(Bool())
+    val train         = Flipped(Valid(new L1PrefetchTrainBundle(xLen)))
+    val branch_signal = Input(Valid(new BranchPredictionBus))
+    val prefetch_req  = Decoupled(new PrefetchReqBundle(xLen))
+    val flush         = Input(Bool())
   })
 
+  val fdpPrefetcher    = Module(new FDPrefetcher(numEntries = 16))
   val stridePrefetcher = Module(new StridePrefetcher(numEntries = 16, lookaheadBlocks = 2))
   val streamPrefetcher = Module(new StreamPrefetcher(numStreams = 8, lookaheadBlocks = 2))
   val smsPrefetcher    = Module(new SMSPrefetcher(numAGT = 8, numPHT = 32))
 
+  fdpPrefetcher.io.flush    := io.flush
   stridePrefetcher.io.flush := io.flush
   streamPrefetcher.io.flush := io.flush
   smsPrefetcher.io.flush    := io.flush
+
+  // Connect frontend branch signals to FDP
+  fdpPrefetcher.io.branch_signal := io.branch_signal
+
+  // Train FDP prefetcher
+  fdpPrefetcher.io.train.valid     := io.train.valid
+  fdpPrefetcher.io.train.bits.pc   := io.train.bits.pc
+  fdpPrefetcher.io.train.bits.addr := io.train.bits.addr
 
   // Train stride prefetcher
   stridePrefetcher.io.train.valid     := io.train.valid
@@ -39,15 +50,17 @@ class L1Prefetcher(implicit val p: Parameters) extends Module with HasZaqalParam
   smsPrefetcher.io.train.bits.pc      := io.train.bits.pc
   smsPrefetcher.io.train.bits.addr    := io.train.bits.addr
 
-  // Arbiter: Stream and SMS take priority over Stride (matches XiangShan Kunminghu policy)
+  // Arbiter: FDP (Earliest Frontend lookahead), Stream, and SMS take priority over Stride
+  val fdpReq    = fdpPrefetcher.io.prefetch_req
   val streamReq = streamPrefetcher.io.prefetch_req
   val smsReq    = smsPrefetcher.io.prefetch_req
   val strideReq = stridePrefetcher.io.prefetch_req
 
-  val arbValid = streamReq.valid || smsReq.valid || strideReq.valid
+  val arbValid = fdpReq.valid || streamReq.valid || smsReq.valid || strideReq.valid
   val arbBits  = Wire(new PrefetchReqBundle(xLen))
-  arbBits := Mux(streamReq.valid, streamReq.bits,
-             Mux(smsReq.valid, smsReq.bits, strideReq.bits))
+  arbBits := Mux(fdpReq.valid, fdpReq.bits,
+             Mux(streamReq.valid, streamReq.bits,
+             Mux(smsReq.valid, smsReq.bits, strideReq.bits)))
 
   // Recent prefetch filter (suppress back-to-back duplicate requests to the same cache block)
   val lastPfAddr = RegInit(0.U(xLen.W))

@@ -132,6 +132,10 @@ object PrefetcherTest extends App {
   RawTester.test(new L1Prefetcher()) { dut =>
     dut.io.flush.poke(false.B)
     dut.io.train.valid.poke(false.B)
+    dut.io.branch_signal.valid.poke(false.B)
+    dut.io.branch_signal.bits.pc.poke(0.U)
+    dut.io.branch_signal.bits.target.poke(0.U)
+    dut.io.branch_signal.bits.taken.poke(false.B)
     dut.io.prefetch_req.ready.poke(true.B)
     dut.clock.step(1)
 

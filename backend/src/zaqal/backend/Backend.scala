@@ -26,6 +26,7 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
     val disp0_pdest = Output(UInt(phyRegIdxWidth.W))
     val debug_cycle = Input(UInt(64.W))
     val mem_d = new MemoryBus(xLen, 256)
+    val branch_signal = Input(Valid(new BranchPredictionBus))
   })
 
   import zaqal.cache.DCache
@@ -443,6 +444,7 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
   dcache.io.req <> exec.io.dcache_req
   exec.io.dcache_resp <> dcache.io.resp
   dcache.io.pf_train := exec.io.pf_train
+  dcache.io.branch_signal := io.branch_signal
   dcache.io.flush := io.redirect.valid
   io.mem_d <> dcache.io.mem
 }
