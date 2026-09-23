@@ -181,4 +181,5 @@ class SMSPrefetcher(val numAGT: Int = 8, val numPHT: Int = 32)(implicit val p: P
   io.prefetch_req.valid := pfValidReg
   io.prefetch_req.bits.addr := pfAddrReg
   io.prefetch_req.bits.confidence := pfOutConf
+  io.prefetch_req.bits.sink_is_l2 := false.B
 }

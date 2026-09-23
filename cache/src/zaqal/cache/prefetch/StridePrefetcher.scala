@@ -13,6 +13,7 @@ class StrideTrainBundle(val xLen: Int) extends Bundle {
 class PrefetchReqBundle(val xLen: Int) extends Bundle {
   val addr       = UInt(xLen.W)
   val confidence = UInt(2.W)
+  val sink_is_l2 = Bool()
 }
 
 class StrideMetaBundle(val tagBits: Int, val xLen: Int) extends Bundle {
@@ -113,4 +114,5 @@ class StridePrefetcher(val numEntries: Int = 16, val lookaheadBlocks: Int = 2)(i
   io.prefetch_req.valid := pfValidReg
   io.prefetch_req.bits.addr := pfAddrReg
   io.prefetch_req.bits.confidence := pfConfReg
+  io.prefetch_req.bits.sink_is_l2 := false.B
 }

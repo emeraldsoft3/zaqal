@@ -101,6 +101,9 @@ object FDPrefetcherTest extends App {
     dut.io.branch_signal.bits.pc.poke(0.U)
     dut.io.branch_signal.bits.target.poke(0.U)
     dut.io.branch_signal.bits.taken.poke(false.B)
+    dut.io.mshr_busy.poke(false.B)
+    dut.io.bus_ready.poke(true.B)
+    dut.io.demand_miss_active.poke(false.B)
     dut.io.prefetch_req.ready.poke(false.B) // Hold queue deq until verified
     dut.clock.step(1)
 

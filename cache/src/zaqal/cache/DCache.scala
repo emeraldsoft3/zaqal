@@ -51,6 +51,9 @@ class DCache(implicit val p: Parameters) extends Module with HasZaqalParameter {
   val prefetcher = Module(new L1Prefetcher)
   prefetcher.io.train := io.pf_train
   prefetcher.io.branch_signal := io.branch_signal
+  prefetcher.io.mshr_busy := !mshr.io.alloc.ready
+  prefetcher.io.bus_ready := io.mem.req.ready
+  prefetcher.io.demand_miss_active := io.req.valid && !isHit
   prefetcher.io.flush := io.flush
 
   val pfAddr = prefetcher.io.prefetch_req.bits.addr
@@ -69,6 +72,7 @@ class DCache(implicit val p: Parameters) extends Module with HasZaqalParameter {
   mshr.io.alloc.bits.addr := io.req.bits.addr
   mshr.io.alloc.bits.load_id := io.req.bits.load_id
   mshr.io.alloc.bits.is_prefetch := false.B
+  mshr.io.alloc.bits.sink_is_l2 := false.B
   mshr.io.refill_out.ready := true.B
 
   // Demand Request has highest priority
@@ -90,6 +94,7 @@ class DCache(implicit val p: Parameters) extends Module with HasZaqalParameter {
       mshr.io.alloc.bits.addr := io.req.bits.addr
       mshr.io.alloc.bits.load_id := io.req.bits.load_id
       mshr.io.alloc.bits.is_prefetch := false.B
+      mshr.io.alloc.bits.sink_is_l2 := false.B
     }
   } .otherwise {
     // Non-blocking Prefetch Handling when cache pipeline is idle
@@ -105,6 +110,7 @@ class DCache(implicit val p: Parameters) extends Module with HasZaqalParameter {
           mshr.io.alloc.bits.addr := pfAddr
           mshr.io.alloc.bits.load_id := 0.U
           mshr.io.alloc.bits.is_prefetch := true.B
+          mshr.io.alloc.bits.sink_is_l2 := prefetcher.io.prefetch_req.bits.sink_is_l2
         }
       }
     }
@@ -115,12 +121,15 @@ class DCache(implicit val p: Parameters) extends Module with HasZaqalParameter {
     val refillIndex = mshr.io.refill_out.bits.addr(lineBits + blockOffsetBits - 1, blockOffsetBits)
     val refillTag = mshr.io.refill_out.bits.addr(xLen - 1, lineBits + blockOffsetBits)
     
-    validArray(refillIndex) := true.B
-    tagArray(refillIndex) := refillTag
-    dirtyArray(refillIndex) := false.B
-    
-    for (i <- 0 until 8) {
-      dataArray(refillIndex)(i) := mshr.io.refill_out.bits.data((i + 1) * 32 - 1, i * 32)
+    // Only fill L1-D data array if request was not directed to L2 only
+    when(!mshr.io.refill_out.bits.sink_is_l2) {
+      validArray(refillIndex) := true.B
+      tagArray(refillIndex) := refillTag
+      dirtyArray(refillIndex) := false.B
+      
+      for (i <- 0 until 8) {
+        dataArray(refillIndex)(i) := mshr.io.refill_out.bits.data((i + 1) * 32 - 1, i * 32)
+      }
     }
 
     // Wakeup LSU via resp only for demand misses (not speculative prefetches)

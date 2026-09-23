@@ -170,4 +170,5 @@ class FDPrefetcher(val numEntries: Int = 16)(implicit val p: Parameters)
   io.prefetch_req.valid           := pfValidReg && !io.flush
   io.prefetch_req.bits.addr       := pfAddrReg
   io.prefetch_req.bits.confidence := pfConfReg
+  io.prefetch_req.bits.sink_is_l2 := false.B
 }

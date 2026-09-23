@@ -12,10 +12,16 @@ class L1PrefetchTrainBundle(val xLen: Int) extends Bundle {
 
 class L1Prefetcher(implicit val p: Parameters) extends Module with HasZaqalParameter {
   val io = IO(new Bundle {
-    val train         = Flipped(Valid(new L1PrefetchTrainBundle(xLen)))
-    val branch_signal = Input(Valid(new BranchPredictionBus))
-    val prefetch_req  = Decoupled(new PrefetchReqBundle(xLen))
-    val flush         = Input(Bool())
+    val train              = Flipped(Valid(new L1PrefetchTrainBundle(xLen)))
+    val branch_signal      = Input(Valid(new BranchPredictionBus))
+    val prefetch_req       = Decoupled(new PrefetchReqBundle(xLen))
+    val mshr_busy          = Input(Bool())
+    val bus_ready          = Input(Bool())
+    val demand_miss_active = Input(Bool())
+    val flush              = Input(Bool())
+
+    // Telemetry & Debug
+    val throttle_state     = Output(UInt(2.W))
   })
 
   val fdpPrefetcher    = Module(new FDPrefetcher(numEntries = 16))
@@ -50,34 +56,24 @@ class L1Prefetcher(implicit val p: Parameters) extends Module with HasZaqalParam
   smsPrefetcher.io.train.bits.pc      := io.train.bits.pc
   smsPrefetcher.io.train.bits.addr    := io.train.bits.addr
 
-  // Arbiter: FDP (Earliest Frontend lookahead), Stream, and SMS take priority over Stride
-  val fdpReq    = fdpPrefetcher.io.prefetch_req
-  val streamReq = streamPrefetcher.io.prefetch_req
-  val smsReq    = smsPrefetcher.io.prefetch_req
-  val strideReq = stridePrefetcher.io.prefetch_req
+  // Day 34-35: Prefetch Coordinator & Throttling Controller
+  val coordinator = Module(new PrefetchCoordinator)
+  coordinator.io.in_fdp    := fdpPrefetcher.io.prefetch_req
+  coordinator.io.in_stream := streamPrefetcher.io.prefetch_req
+  coordinator.io.in_sms    := smsPrefetcher.io.prefetch_req
+  coordinator.io.in_stride := stridePrefetcher.io.prefetch_req
 
-  val arbValid = fdpReq.valid || streamReq.valid || smsReq.valid || strideReq.valid
-  val arbBits  = Wire(new PrefetchReqBundle(xLen))
-  arbBits := Mux(fdpReq.valid, fdpReq.bits,
-             Mux(streamReq.valid, streamReq.bits,
-             Mux(smsReq.valid, smsReq.bits, strideReq.bits)))
+  coordinator.io.mshr_busy          := io.mshr_busy
+  coordinator.io.bus_ready          := io.bus_ready
+  coordinator.io.demand_miss_active := io.demand_miss_active
+  coordinator.io.flush              := io.flush
 
-  // Recent prefetch filter (suppress back-to-back duplicate requests to the same cache block)
-  val lastPfAddr = RegInit(0.U(xLen.W))
-  val isDuplicate = (arbBits.addr === lastPfAddr)
-  val filteredValid = arbValid && !isDuplicate
-
-  when(filteredValid) {
-    lastPfAddr := arbBits.addr
-  }
-  when(io.flush) {
-    lastPfAddr := 0.U
-  }
+  io.throttle_state := coordinator.io.throttle_state
 
   // 8-entry FIFO queue to buffer multi-block prefetch bursts
   val pfQueue = Module(new Queue(new PrefetchReqBundle(xLen), entries = 8))
-  pfQueue.io.enq.valid := filteredValid
-  pfQueue.io.enq.bits  := arbBits
+  pfQueue.io.enq.valid := coordinator.io.out_req.valid
+  pfQueue.io.enq.bits  := coordinator.io.out_req.bits
 
   io.prefetch_req <> pfQueue.io.deq
 }

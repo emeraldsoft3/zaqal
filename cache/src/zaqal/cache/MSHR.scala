@@ -11,6 +11,7 @@ class MSHR(implicit val p: Parameters) extends Module with HasZaqalParameter {
       val addr = UInt(xLen.W)
       val load_id = UInt(6.W) // ID of the load instruction
       val is_prefetch = Bool()
+      val sink_is_l2 = Bool()
     }))
     val mem_req = Decoupled(new MemoryBusReq(xLen))
     val mem_resp = Flipped(Decoupled(new MemoryBusResp(256)))
@@ -19,6 +20,7 @@ class MSHR(implicit val p: Parameters) extends Module with HasZaqalParameter {
       val data = UInt(256.W) // Full cache line
       val load_id = UInt(6.W)
       val is_prefetch = Bool()
+      val sink_is_l2 = Bool()
     })
   })
 
@@ -28,6 +30,7 @@ class MSHR(implicit val p: Parameters) extends Module with HasZaqalParameter {
   val reqAddr = Reg(UInt(xLen.W))
   val reqLoadId = Reg(UInt(6.W))
   val reqIsPrefetch = RegInit(false.B)
+  val reqSinkIsL2 = RegInit(false.B)
   val refillData = Reg(UInt(256.W))
 
   // Allocation
@@ -36,6 +39,7 @@ class MSHR(implicit val p: Parameters) extends Module with HasZaqalParameter {
     reqAddr := io.alloc.bits.addr
     reqLoadId := io.alloc.bits.load_id
     reqIsPrefetch := io.alloc.bits.is_prefetch
+    reqSinkIsL2 := io.alloc.bits.sink_is_l2
     state := s_WAIT_MEM
   }
 
@@ -62,6 +66,7 @@ class MSHR(implicit val p: Parameters) extends Module with HasZaqalParameter {
   io.refill_out.bits.data := refillData
   io.refill_out.bits.load_id := reqLoadId
   io.refill_out.bits.is_prefetch := reqIsPrefetch
+  io.refill_out.bits.sink_is_l2 := reqSinkIsL2
 
   when(io.refill_out.fire) {
     state := s_IDLE

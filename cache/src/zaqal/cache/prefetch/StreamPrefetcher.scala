@@ -124,4 +124,5 @@ class StreamPrefetcher(val numStreams: Int = 8, val lookaheadBlocks: Int = 2)(im
   io.prefetch_req.valid := pfValidReg
   io.prefetch_req.bits.addr := pfAddrReg
   io.prefetch_req.bits.confidence := pfConfReg
+  io.prefetch_req.bits.sink_is_l2 := false.B
 }

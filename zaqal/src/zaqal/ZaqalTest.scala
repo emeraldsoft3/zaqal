@@ -46,21 +46,20 @@ object ZaqalTest extends App {
 
 
     // =========================================================================
-    // Day 32-33: Frontend Data Prefetcher (FDP) Verification Program
-    // - Base pointer x1 = 0x400 (1024).
-    // - Loop counter x6 = 4.
+    // Day 34-35: Prefetch Coordination & Throttling Verification Program
+    // - Coordinated prefetch hierarchy: FDP, SMS, Stream, and Stride.
+    // - Base pointer x1 = 0x400 (1024), loop counter x6 = 4.
     // - Loop Body (PC 0x18 - 0x24):
     //     0x18 [Slot 0]: ld   x2, 0(x1)         (Load data block from address in x1)
     //     0x1C [Slot 1]: addi x1, x1, 64        (Advance by stride +64 bytes = 2 blocks)
     //     0x20 [Slot 2]: addi x6, x6, -1        (Decrement loop counter)
     //     0x24 [Slot 3]: bne  x6, x0, -12       (Branch back to 0x18!)
-    // - Iteration 0: Base address 0x400 trained into FDP BDT.
-    // - Iteration 1: Address 0x440 trained, stride +64 detected (Conf = 1).
-    // - Iteration 2: Address 0x480 trained, stride +64 confirmed (Conf = 2).
-    // - Iteration 3: Frontend BPU predicts bne taken back to 0x18.
-    //   => FDP IMMEDIATELY triggers L1-D prefetch for Block 0x4C0!
-    //   => L1-D MSHR initiates line fill 15-20 cycles ahead of load arrival!
-    // - Exit: Loop finishes when x6 = 0, falls through to trap at PC 0x30.
+    // - Prefetch Coordinator Behavior:
+    //   * Demand Miss: State = RED (2) -> All prefetches frozen to prioritize load.
+    //   * MSHR Busy / Bus Congestion: State = YELLOW (1) -> Low confidence dropped,
+    //     speculative requests routed to L2 (sink_is_l2 = true).
+    //   * Bus / MSHR Idle: State = GREEN (0) -> High-speed L1-D warming.
+    //   * Cross-prefetcher duplicate addresses filtered by 4-entry CAM.
     // =========================================================================
     val programMemory = Seq(
       // --- PACKET 0 (PC 0x00 - 0x14): Base Address Init & Loop Counter Setup ---
