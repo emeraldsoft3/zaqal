@@ -46,41 +46,39 @@ object ZaqalTest extends App {
 
 
     // =========================================================================
-    // Day 34-35: Prefetch Coordination & Throttling Verification Program
-    // - Coordinated prefetch hierarchy: FDP, SMS, Stream, and Stride.
-    // - Base pointer x1 = 0x400 (1024), loop counter x6 = 4.
-    // - Loop Body (PC 0x18 - 0x24):
-    //     0x18 [Slot 0]: ld   x2, 0(x1)         (Load data block from address in x1)
-    //     0x1C [Slot 1]: addi x1, x1, 64        (Advance by stride +64 bytes = 2 blocks)
-    //     0x20 [Slot 2]: addi x6, x6, -1        (Decrement loop counter)
-    //     0x24 [Slot 3]: bne  x6, x0, -12       (Branch back to 0x18!)
-    // - Prefetch Coordinator Behavior:
-    //   * Demand Miss: State = RED (2) -> All prefetches frozen to prioritize load.
-    //   * MSHR Busy / Bus Congestion: State = YELLOW (1) -> Low confidence dropped,
-    //     speculative requests routed to L2 (sink_is_l2 = true).
-    //   * Bus / MSHR Idle: State = GREEN (0) -> High-speed L1-D warming.
-    //   * Cross-prefetcher duplicate addresses filtered by 4-entry CAM.
+    // Day 38-39: OoO Critical-Path Verification Program:
+    // - Tree-Based Store-to-Load Forwarding (STLF):
+    //     0x18 [Slot 0]: sd   x6, 0(x1)         (Store loop counter x6 to address in x1)
+    //     0x1C [Slot 1]: ld   x2, 0(x1)         (Tree-based STLF Matcher: loads x6 from StoreQueue!)
+    // - One-Hot Mux1H RAT Snapshot Restoration & Misprediction Recovery:
+    //     0x20 [Slot 2]: addi x1, x1, 64        (Advance base pointer)
+    //     0x24 [Slot 3]: addi x6, x6, -1        (Decrement loop counter)
+    //     0x28 [Slot 4]: bne  x6, x0, -16       (Loop branch: creates & restores RAT snapshots!)
+    //     0x2C [Slot 5]: nop
+    // - Loop Exit:
+    //     0x30 [Slot 0]: addi x8, x2, 1000      (Uses forwarded STLF data: 1 + 1000 = 1001)
+    //     0x34 [Slot 1]: jal  x0, 0             (Trap loop)
     // =========================================================================
     val programMemory = Seq(
       // --- PACKET 0 (PC 0x00 - 0x14): Base Address Init & Loop Counter Setup ---
       "h40000093".U(32.W), // 00 [Slot 0]: addi x1, x0, 1024        (x1 = 1024 = 0x400)
       "h00400313".U(32.W), // 04 [Slot 1]: addi x6, x0, 4           (x6 = 4 loop iterations)
-      "h00000013".U(32.W), // 08 [Slot 2]: nop
+      "h06300393".U(32.W), // 08 [Slot 2]: addi x7, x0, 99          (x7 = 99 marker)
       "h00000013".U(32.W), // 0C [Slot 3]: nop
       "h00000013".U(32.W), // 10 [Slot 4]: nop
       "h00000013".U(32.W), // 14 [Slot 5]: nop
 
-      // --- PACKET 1 (PC 0x18 - 0x2C): FDP Branch Loop Body ---
-      "h0000b103".U(32.W), // 18 [Slot 0]: ld   x2, 0(x1)           (Target of loop branch! Load data)
-      "h04008093".U(32.W), // 1C [Slot 1]: addi x1, x1, 64         (Stride = +64 bytes)
-      "hfff30313".U(32.W), // 20 [Slot 2]: addi x6, x6, -1         (Decrement loop counter)
-      "hfe031ae3".U(32.W), // 24 [Slot 3]: bne  x6, x0, -12        (Branch to 0x18!)
-      "h00000013".U(32.W), // 28 [Slot 4]: nop
+      // --- PACKET 1 (PC 0x18 - 0x2C): STLF + Branch Snapshot Loop Body ---
+      "h0060b023".U(32.W), // 18 [Slot 0]: sd   x6, 0(x1)           (Store x6 to address in x1)
+      "h0000b103".U(32.W), // 1C [Slot 1]: ld   x2, 0(x1)           (Tree STLF Forwarding: matches sd!)
+      "h04008093".U(32.W), // 20 [Slot 2]: addi x1, x1, 64         (Advance pointer: Stride = +64)
+      "hfff30313".U(32.W), // 24 [Slot 3]: addi x6, x6, -1         (Decrement loop counter)
+      "hfe0318e3".U(32.W), // 28 [Slot 4]: bne  x6, x0, -16        (Branch to 0x18: RAT snapshot check)
       "h00000013".U(32.W), // 2C [Slot 5]: nop
 
       // --- PACKET 2 (PC 0x30 - 0x44): Loop Exit & Infinite Loop Trap ---
-      "h0000006f".U(32.W), // 30 [Slot 0]: jal  x0, 0              (Trap loop)
-      "h00000013".U(32.W), // 34 [Slot 1]: nop
+      "h3e810413".U(32.W), // 30 [Slot 0]: addi x8, x2, 1000        (Uses forwarded result)
+      "h0000006f".U(32.W), // 34 [Slot 1]: jal  x0, 0              (Trap loop)
       "h00000013".U(32.W), // 38 [Slot 2]: nop
       "h00000013".U(32.W), // 3C [Slot 3]: nop
       "h00000013".U(32.W), // 40 [Slot 4]: nop

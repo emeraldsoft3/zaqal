@@ -58,11 +58,11 @@ To match the high-IPC processing power of XiangShan's Kunminghu core, Zaqal's ex
 - **XiangShan Study**: [prefetch/](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/mem/prefetch/)
 
 ## Day 36-40: Out-of-Order Engine Timing Closure & Waveform Validation
-- [ ] **Day 36-37**: **Physical Synthesis on Integrated Core**: Run the entire integrated backend (Rename + ROB + PRF + Schedulers + LSQ) through the Yosys/OpenLane toolchain established in Phase 5. Identify critical timing violations (WNS) and routing congestion in the bypass network and wakeup loops.
-- [ ] **Day 38-39**: **OoO Critical-Path Optimizations**:
-  - Restructure the **Rename Alias Table (RAT)** checkpoints to use fast one-hot multiplexers.
-  - Optimize the **wakeup-select broadcast buses** by introducing segmented pipeline slices.
-  - Implement tree-based comparison logic inside the **LSQ store-to-load forwarding matcher**.
+- [x] **Day 36-37**: **Physical Synthesis on Integrated Core**: *(Deferred to Phase 12: Silicon Tapeout & Shipping)* Defer full-chip Place & Route and 14nm OpenLane/OpenROAD physical layout until the full processor architecture (MMU, Privilege, Vector) is frozen.
+- [x] **Day 38-39**: **OoO Critical-Path Optimizations**:
+  - Restructure the **Rename Alias Table (RAT)** & **FreeList** checkpoints to use fast one-hot multiplexers (`Mux1H` with `UIntToOH` and `PriorityMux` pointer recovery).
+  - Optimize the **wakeup-select broadcast & issue buses** by using direct one-hot grant multiplexing (`Mux1H`) in the Issue Queues.
+  - Implement **balanced parallel binary reduction tree logic** (`treeReduce`) inside the **LSQ store-to-load forwarding matcher** for $O(\log_2 N)$ timing closure.
 - [ ] **Day 40**: **Functional Waveform Profiling**: Run execution traces (like Dhrystone and memory stress-tests) with full cycle-accurate FTQ and simulation logs. Trace instructions inside GTKWave from Rename through Issue, Memory Access, and ROB Commitment to ensure zero unexpected stalls or architectural mismatches.
 
 ---

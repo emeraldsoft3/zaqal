@@ -23,8 +23,9 @@ This roadmap outlines the journey to transform Zaqal from a simple prototype int
 | **[Phase 7](./PHASE7_ENGINE_PERFORMANCE/detail.md)** | **Out-of-Order Engine** | Days 96-135 | [ ] | ROB, Issue Queues, LSQ. |
 | **[Phase 8](./PHASE8_SYSTEM_PRIVILEGE/detail.md)** | **System & Linux Boot** | Days 136-155 | [ ] | Supervisor Mode & Sv39 MMU. |
 | **[Phase 9](./PHASE9_VECTOR_ISA/detail.md)** | **AI & Vector ISA** | Days 156-180 | [ ] | Matrix/AMX & Vector Units. |
-| **[Phase 10](./PHASE10_VERIFICATION_SOC/detail.md)** | **SoC & Tapeout** | Days 181-195 | [ ] | Difftest & Silicon Readiness. |
-| **[Phase 11](./PHASE11_MULTI_CORE_COHERENCE/detail.md)** | **Multi-Hart & Coherence** | Day 196+ | [ ] | TileLink/CHI, L3 Cache, Coherence. |
+| **[Phase 10](./PHASE10_MULTI_CORE_COHERENCE/detail.md)** | **Multi-Hart & Coherence** | Days 181-195 | [ ] | TileLink/CHI, L3 Cache, Coherence. |
+| **[Phase 11](./PHASE11_SUBSYSTEM_VERIFICATION/detail.md)** | **Subsystem Verification Matrix** | Days 196-215 | [ ] | Pre-tapeout Module Isolation & Subsystem Stress. |
+| **[Phase 12](./PHASE12_SOC_TAPE_OUT_SHIPPING/detail.md)** | **SoC, Silicon Sign-off & Shipping** | Days 216+ | [ ] | Difftest, 14nm P&R Sign-off, Tapeout & Linux Boot. |
 
 ---
 

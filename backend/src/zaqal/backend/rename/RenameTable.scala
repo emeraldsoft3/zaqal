@@ -86,9 +86,15 @@ class RenameTable(val numLogicalRegs: Int, val isFP: Boolean = false)(implicit v
   io.snptDeqPtr := snapshots.io.deqPtr
   io.snptValids := snapshots.io.valids
 
-  // State Update
+  // State Update with Fast One-Hot Multiplexing (Mux1H)
+  val restoreOH = UIntToOH(io.snptRestoreIdx, renameSnapshotNum)
+  val restoredSnapshot = Wire(Vec(numLogicalRegs, UInt(phyRegIdxWidth.W)))
+  for (r <- 0 until numLogicalRegs) {
+    restoredSnapshot(r) := Mux1H(restoreOH, snapshots.io.snapshots.map(_(r)))
+  }
+
   when (io.redirect) {
-    spec_table := Mux(io.useSnapshot, snapshots.io.snapshots(io.snptRestoreIdx), arch_table)
+    spec_table := Mux(io.useSnapshot, restoredSnapshot, arch_table)
   } .otherwise {
     spec_table := curr_spec_table(decodeWidth)
   }

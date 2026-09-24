@@ -74,8 +74,6 @@ class SnapshotGenerator[T <: Data](dataType: T)(implicit val p: Parameters) exte
       qualified(i) := snptValids(last) && (!snptValids(thiz) || io.flushVec(thiz))
     }
     
-    val defaultVal = candidates(renameSnapshotNum - 1)
-    val muxCases = qualified.zip(candidates).dropRight(1).map { case (q, c) => q -> c }
-    snptEnqPtr := MuxCase(defaultVal, muxCases)
+    snptEnqPtr := PriorityMux(qualified, candidates)
   }
 }

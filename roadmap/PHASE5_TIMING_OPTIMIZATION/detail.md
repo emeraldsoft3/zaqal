@@ -45,15 +45,7 @@ Our primary goal is to target a **14nm process node** (using predictive standard
 - **Detailed Plan**: Memory operations require calculating an address (Base + Offset), translating it (TLB), and accessing the D-Cache, all within tight timing margins. We will optimize this by splitting address generation (AGU) and cache access into separate pipeline stages. We will also implement fast-path TLB lookups to ensure the address translation doesn't delay the cache hit/miss determination.
 - **XiangShan Study**: [LoadUnit.scala](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/mem/pipeline/LoadUnit.scala) - *Study the load request pipeline.*
 
-## Day 8: Physical Synthesis & Critical Path Analysis (Static Timing)
-- [ ] Set up a physical synthesis and Place & Route (P&R) toolchain using Yosys and OpenROAD/OpenLane (targeting 14nm standard cells).
-- **Detailed Plan**: We will run the Chisel-generated Verilog through logic synthesis (Yosys / Synopsys Design Compiler) and physical Place & Route (OpenROAD / Cadence Innovus) with a 14nm PDK model. We will perform Static Timing Analysis (STA) on the resulting routed netlist to calculate the actual wire RC parasitics. This will generate a precise report of the Worst Negative Slack (WNS) and identify the critical paths where physical wire length or gate delays are limiting $F_{max}$.
-
-## Day 9: Logic Restructuring & Delay Balancing
-- [ ] Rewrite complex Muxes, priority encoders, and arithmetic paths to use tree-based logic.
-- **Detailed Plan**: Based on the STA reports, we will refactor the slowest physical paths. Long combinatorial chains (e.g., in multiplexers or priority encoders) will be restructured into parallel tree-based reductions. We will also optimize arithmetic units by reusing shared adders/shifters to reduce gate depth and alleviate physical routing congestion.
-
-## Day 10: Retiming & Final Optimization
-- [ ] Use Chisel's `RegNext` and skid buffers strategically to balance pipeline stages.
-- **Detailed Plan**: Retiming involves shifting flip-flop boundaries across combinatorial logic. Using STA feedback, we will insert staging registers (`RegNext` or skid buffers) at the exact boundaries where wire delays are high. This balances clock cycle distribution across all pipeline stages.
+## Day 8-10: Physical Synthesis & Sign-off (Deferred to Phase 12: Silicon Tapeout & Shipping)
+- [x] **Microarchitectural Pre-optimizations**: Tree-based Mux/STLF reductions, skid buffers, and bypass network staging integrated directly into RTL (completed in Phase 7).
+- [ ] **Full-Chip Physical Synthesis & P&R**: *(Deferred to Phase 12)* Full logic synthesis, clock-tree synthesis (CTS), and Place & Route targeting 14nm standard cells will be executed during the dedicated silicon tapeout sign-off phase once all ISA features and modules are finalized.
 - **Goal**: Achieve a target virtual frequency $F_{max}$ of **1.0 GHz to 1.5 GHz** (matching physical XiangShan/SiFive parity on a 14nm process node).

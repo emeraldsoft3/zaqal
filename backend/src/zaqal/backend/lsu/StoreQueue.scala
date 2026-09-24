@@ -147,30 +147,56 @@ class StoreQueue(val numEntries: Int = 16)(implicit val p: Parameters) extends M
   }
 
   // ---------------- 3. STORE-TO-LOAD FORWARDING (STLF) ----------------
-  for (q <- 0 until 2) {
-    val match_valids = Wire(Vec(numEntries, Bool()))
+  // Tree-based STLF Matcher: Parallel binary tournament reduction tree
+  // Determines the youngest matching store older than the load in O(log2 N) gate levels.
+  class StlfCandidate extends Bundle {
+    val valid  = Bool()
+    val robIdx = UInt(log2Up(128).W)
+    val wdata  = UInt((xLen * 2).W)
+    val wmask  = UInt(16.W)
+  }
 
-    for (i <- 0 until numEntries) {
+  def treeReduce[T](s: Seq[T])(op: (T, T) => T): T = {
+    require(s.nonEmpty, "Cannot reduce empty sequence")
+    if (s.length == 1) s.head
+    else {
+      val pairs = s.grouped(2).map {
+        case Seq(a, b) => op(a, b)
+        case Seq(a)    => a
+      }.toSeq
+      treeReduce(pairs)(op)
+    }
+  }
+
+  for (q <- 0 until 2) {
+    val leaves = (0 until numEntries).map { i =>
       val e = entries(i)
       val is_older = e.valid && e.addr_valid && isOlderInRob(e.robIdx, io.stlf_query(q).robIdx, io.robHeadPtr)
       val addr_match = (e.paddr(xLen - 1, 3) === io.stlf_query(q).paddr(xLen - 1, 3))
       val mask_overlap = (e.wmask & io.stlf_query(q).mask) =/= 0.U
 
-      match_valids(i) := io.stlf_query(q).valid && is_older && addr_match && mask_overlap && e.data_valid
+      val cand = Wire(new StlfCandidate)
+      cand.valid  := io.stlf_query(q).valid && is_older && addr_match && mask_overlap && e.data_valid
+      cand.robIdx := e.robIdx
+      cand.wdata  := e.wdata
+      cand.wmask  := e.wmask
+      cand
     }
 
-    val has_match = match_valids.asUInt.orR
-    val best_match_idx = WireDefault(0.U(log2Up(numEntries).W))
+    val winner = treeReduce(leaves)((a, b) => {
+      val res = Wire(new StlfCandidate)
+      val b_is_younger = isOlderInRob(a.robIdx, b.robIdx, io.robHeadPtr)
+      val pick_b = !a.valid || (b.valid && b_is_younger)
+      res.valid  := a.valid || b.valid
+      res.robIdx := Mux(pick_b, b.robIdx, a.robIdx)
+      res.wdata  := Mux(pick_b, b.wdata, a.wdata)
+      res.wmask  := Mux(pick_b, b.wmask, a.wmask)
+      res
+    })
 
-    for (i <- 0 until numEntries) {
-      when(match_valids(i)) {
-        best_match_idx := i.U
-      }
-    }
-
-    io.stlf_resp(q).hit   := has_match
-    io.stlf_resp(q).wdata := entries(best_match_idx).wdata
-    io.stlf_resp(q).wmask := entries(best_match_idx).wmask
+    io.stlf_resp(q).hit   := winner.valid
+    io.stlf_resp(q).wdata := winner.wdata
+    io.stlf_resp(q).wmask := winner.wmask
   }
 
   // ---------------- 4. COMMIT MARKING (FROM ROB) ----------------

@@ -86,7 +86,7 @@ class IssueQueue(val numEntries: Int, val numEnq: Int, val numDeq: Int, val numW
     val issue_valid = issue_onehot(k).orR
 
     io.deq(k).valid := issue_valid
-    io.deq(k).bits := entries(issue_idx).uop
+    io.deq(k).bits := Mux1H(issue_onehot(k), entries.map(_.uop))
     
     val deq_fire = io.deq(k).valid && io.deq(k).ready
     when (deq_fire) {

@@ -52,7 +52,7 @@ class FreeList(val numPhyRegs: Int, val numLogicalRegs: Int)(implicit val p: Par
 
   def wrapAdd(ptr: UInt, add: UInt): UInt = {
     val next = ptr +& add
-    Mux(next >= size.U, next - size.U, next)
+    Mux(next >= size.U, next - size.U, next)(log2Up(size) - 1, 0)
   }
 
   // 1. Speculative Allocation
@@ -82,10 +82,12 @@ class FreeList(val numPhyRegs: Int, val numLogicalRegs: Int)(implicit val p: Par
   snapshots.io.redirect := io.redirect && io.useSnapshot
   snapshots.io.flushVec := io.snptFlushVec
 
-  // 3. State Update
+  // 3. State Update with Fast One-Hot Multiplexing (Mux1H)
   when (io.redirect) {
     // Restore speculative state from architectural state or snapshot
-    val targetHeadPtr = Mux(io.useSnapshot, snapshots.io.snapshots(io.snptRestoreIdx), tailPtr)
+    val restoreOH = UIntToOH(io.snptRestoreIdx, renameSnapshotNum)
+    val restoredHeadPtr = Mux1H(restoreOH, snapshots.io.snapshots)
+    val targetHeadPtr = Mux(io.useSnapshot, restoredHeadPtr, tailPtr)
     headPtr := targetHeadPtr
     // Recalculate freeCount based on distance between tailPtr and archHeadPtr
     val dist = Mux(tailPtr === targetHeadPtr,
