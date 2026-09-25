@@ -63,7 +63,7 @@ To match the high-IPC processing power of XiangShan's Kunminghu core, Zaqal's ex
   - Restructure the **Rename Alias Table (RAT)** & **FreeList** checkpoints to use fast one-hot multiplexers (`Mux1H` with `UIntToOH` and `PriorityMux` pointer recovery).
   - Optimize the **wakeup-select broadcast & issue buses** by using direct one-hot grant multiplexing (`Mux1H`) in the Issue Queues.
   - Implement **balanced parallel binary reduction tree logic** (`treeReduce`) inside the **LSQ store-to-load forwarding matcher** for $O(\log_2 N)$ timing closure.
-- [ ] **Day 40**: **Functional Waveform Profiling**: Run execution traces (like Dhrystone and memory stress-tests) with full cycle-accurate FTQ and simulation logs. Trace instructions inside GTKWave from Rename through Issue, Memory Access, and ROB Commitment to ensure zero unexpected stalls or architectural mismatches.
+- [x] **Day 40**: **Functional Waveform Profiling**: Run execution traces (like Dhrystone and memory stress-tests) with full cycle-accurate FTQ and simulation logs. Trace instructions inside GTKWave from Rename through Issue, Memory Access, and ROB Commitment to ensure zero unexpected stalls or architectural mismatches. *(Completed: Full-core Verilator simulation, FTQ dump, STLF tree forwarding, 1-cycle RAT snapshot recovery, prefetcher suite, and Bitmanip verified. Detailed in docs/DAY40_FUNCTIONAL_WAVEFORM_PROFILING_REPORT.md)*
 
 ---
 

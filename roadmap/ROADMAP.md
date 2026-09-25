@@ -20,7 +20,7 @@ This roadmap outlines the journey to transform Zaqal from a simple prototype int
 | **[Phase 4](./PHASE4_SUPERSCALAR_DISPATCH/detail.md)** | **Superscalar Dispatch** | Days 43-60 | [ ] | 1-wide to 6-wide (Rename/RAT). |
 | **[Phase 5](./PHASE5_TIMING_OPTIMIZATION/detail.md)** | **Timing & Pipelining** | Days 61-75 | [ ] | High Frequency Optimization. |
 | **[Phase 6](./PHASE6_FRONTEND_PERFORMANCE/detail.md)** | **Advanced Front-end** | Days 76-95 | [ ] | **Neural BPU** & High-perf Caches. |
-| **[Phase 7](./PHASE7_ENGINE_PERFORMANCE/detail.md)** | **Out-of-Order Engine** | Days 96-135 | [ ] | ROB, Issue Queues, LSQ. |
+| **[Phase 7](./PHASE7_ENGINE_PERFORMANCE/detail.md)** | **Out-of-Order Engine** | Days 96-135 | **[COMPLETE]** | ROB, Issue Queues, LSQ. |
 | **[Phase 8](./PHASE8_SYSTEM_PRIVILEGE/detail.md)** | **System & Linux Boot** | Days 136-155 | [ ] | Supervisor Mode & Sv39 MMU. |
 | **[Phase 9](./PHASE9_VECTOR_ISA/detail.md)** | **AI & Vector ISA** | Days 156-180 | [ ] | Matrix/AMX & Vector Units. |
 | **[Phase 10](./PHASE10_MULTI_CORE_COHERENCE/detail.md)** | **Multi-Hart & Coherence** | Days 181-195 | [ ] | TileLink/CHI, L3 Cache, Coherence. |
