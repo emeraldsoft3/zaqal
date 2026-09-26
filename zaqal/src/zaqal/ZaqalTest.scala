@@ -46,39 +46,37 @@ object ZaqalTest extends App {
 
 
     // =========================================================================
-    // Day 38-39: OoO Critical-Path Verification Program:
-    // - Tree-Based Store-to-Load Forwarding (STLF):
-    //     0x18 [Slot 0]: sd   x6, 0(x1)         (Store loop counter x6 to address in x1)
-    //     0x1C [Slot 1]: ld   x2, 0(x1)         (Tree-based STLF Matcher: loads x6 from StoreQueue!)
-    // - One-Hot Mux1H RAT Snapshot Restoration & Misprediction Recovery:
-    //     0x20 [Slot 2]: addi x1, x1, 64        (Advance base pointer)
-    //     0x24 [Slot 3]: addi x6, x6, -1        (Decrement loop counter)
-    //     0x28 [Slot 4]: bne  x6, x0, -16       (Loop branch: creates & restores RAT snapshots!)
-    //     0x2C [Slot 5]: nop
-    // - Loop Exit:
-    //     0x30 [Slot 0]: addi x8, x2, 1000      (Uses forwarded STLF data: 1 + 1000 = 1001)
-    //     0x34 [Slot 1]: jal  x0, 0             (Trap loop)
+    // Test Case 1: Wrong-Path Speculative CSR Squash Verification Program
+    // - 0x00 [Slot 0]: addi  x2, x0, 1024       (x2 = 1024 = 0x400 payload)
+    // - 0x04 [Slot 1]: addi  x4, x0, 1          (x4 = 1 for condition)
+    // - 0x08 [Slot 2]: bne   x4, x0, 16         (Branch to 0x18 - TAKEN!)
+    // - 0x0C [Slot 3]: csrrw x1, 0x340, x2      [SPECULATIVE WRONG-PATH]: MUST BE SQUASHED!
+    // - 0x10 [Slot 4]: addi  x8, x0, 999        [SPECULATIVE WRONG-PATH]: marker 999
+    // - 0x14 [Slot 5]: nop
+    // - 0x18 [Slot 0]: addi  x7, x0, 77         [CORRECT PATH]: x7 = 77 (arrival marker)
+    // - 0x1C [Slot 1]: csrrw x9, 0x340, x0      [CORRECT PATH]: read mscratch into x9 (MUST BE 0!)
+    // - 0x20 [Slot 2]: jal   x0, 0              (Self-loop trap)
     // =========================================================================
     val programMemory = Seq(
-      // --- PACKET 0 (PC 0x00 - 0x14): Base Address Init & Loop Counter Setup ---
-      "h40000093".U(32.W), // 00 [Slot 0]: addi x1, x0, 1024        (x1 = 1024 = 0x400)
-      "h00400313".U(32.W), // 04 [Slot 1]: addi x6, x0, 4           (x6 = 4 loop iterations)
-      "h06300393".U(32.W), // 08 [Slot 2]: addi x7, x0, 99          (x7 = 99 marker)
-      "h00000013".U(32.W), // 0C [Slot 3]: nop
-      "h00000013".U(32.W), // 10 [Slot 4]: nop
+      // --- PACKET 0 (PC 0x00 - 0x14): Branch & Speculative CSR Attempt ---
+      "h40000113".U(32.W), // 00 [Slot 0]: addi  x2, x0, 1024       (x2 = 1024 = 0x400)
+      "h00100213".U(32.W), // 04 [Slot 1]: addi  x4, x0, 1          (x4 = 1)
+      "h00021863".U(32.W), // 08 [Slot 2]: bne   x4, x0, 16         (Taken branch to 0x18)
+      "h340110f3".U(32.W), // 0C [Slot 3]: csrrw x1, 0x340, x2      (SPECULATIVE: mscratch write)
+      "h3e700413".U(32.W), // 10 [Slot 4]: addi  x8, x0, 999        (SPECULATIVE: x8 = 999)
       "h00000013".U(32.W), // 14 [Slot 5]: nop
 
-      // --- PACKET 1 (PC 0x18 - 0x2C): STLF + Branch Snapshot Loop Body ---
-      "h0060b023".U(32.W), // 18 [Slot 0]: sd   x6, 0(x1)           (Store x6 to address in x1)
-      "h0000b103".U(32.W), // 1C [Slot 1]: ld   x2, 0(x1)           (Tree STLF Forwarding: matches sd!)
-      "h04008093".U(32.W), // 20 [Slot 2]: addi x1, x1, 64         (Advance pointer: Stride = +64)
-      "hfff30313".U(32.W), // 24 [Slot 3]: addi x6, x6, -1         (Decrement loop counter)
-      "hfe0318e3".U(32.W), // 28 [Slot 4]: bne  x6, x0, -16        (Branch to 0x18: RAT snapshot check)
+      // --- PACKET 1 (PC 0x18 - 0x2C): Correct Branch Target Path ---
+      "h04d00393".U(32.W), // 18 [Slot 0]: addi  x7, x0, 77         (x7 = 77 arrival marker)
+      "h340014f3".U(32.W), // 1C [Slot 1]: csrrw x9, 0x340, x0      (x9 := mscratch, MUST BE 0!)
+      "h0000006f".U(32.W), // 20 [Slot 2]: jal   x0, 0              (Trap loop)
+      "h00000013".U(32.W), // 24 [Slot 3]: nop
+      "h00000013".U(32.W), // 28 [Slot 4]: nop
       "h00000013".U(32.W), // 2C [Slot 5]: nop
 
-      // --- PACKET 2 (PC 0x30 - 0x44): Loop Exit & Infinite Loop Trap ---
-      "h3e810413".U(32.W), // 30 [Slot 0]: addi x8, x2, 1000        (Uses forwarded result)
-      "h0000006f".U(32.W), // 34 [Slot 1]: jal  x0, 0              (Trap loop)
+      // --- PACKET 2 (PC 0x30 - 0x44): NOP Padding ---
+      "h00000013".U(32.W), // 30 [Slot 0]: nop
+      "h0000006f".U(32.W), // 34 [Slot 1]: jal   x0, 0              (Trap loop)
       "h00000013".U(32.W), // 38 [Slot 2]: nop
       "h00000013".U(32.W), // 3C [Slot 3]: nop
       "h00000013".U(32.W), // 40 [Slot 4]: nop

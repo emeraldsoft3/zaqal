@@ -53,7 +53,7 @@ class Dispatch(implicit val p: Parameters) extends Module with HasZaqalParameter
     val dec = io.in(i).bits.decode
     val is_mem = dec.is_load || dec.is_store || dec.is_fload || dec.is_fstore || dec.is_atomic
     val is_bru = dec.is_branch || dec.is_jal || dec.is_jalr
-    val is_fpu = (dec.rd_is_fp || dec.rs1_is_fp || dec.rs2_is_fp || dec.rs3_is_fp || dec.is_fcsr_access) && !is_mem
+    val is_fpu = (dec.rd_is_fp || dec.rs1_is_fp || dec.rs2_is_fp || dec.rs3_is_fp) && !is_mem && !dec.is_csr
     val is_alu = !is_mem && !is_bru && !is_fpu
 
     val active = io.in(i).valid && !is_shadow(i) && !io.is_fused_away(i)
@@ -100,7 +100,7 @@ class Dispatch(implicit val p: Parameters) extends Module with HasZaqalParameter
     val dec = io.in(i).bits.decode
     val is_mem_op = dec.is_load || dec.is_store || dec.is_fload || dec.is_fstore || dec.is_atomic
     val is_bru_op = dec.is_branch || dec.is_jal || dec.is_jalr
-    val is_fpu_op = (dec.rd_is_fp || dec.rs1_is_fp || dec.rs2_is_fp || dec.rs3_is_fp || dec.is_fcsr_access) && !is_mem_op
+    val is_fpu_op = (dec.rd_is_fp || dec.rs1_is_fp || dec.rs2_is_fp || dec.rs3_is_fp) && !is_mem_op && !dec.is_csr
     val is_alu_op = !is_mem_op && !is_bru_op && !is_fpu_op
 
     // Port readiness calculation including structural hazard checks
@@ -133,7 +133,7 @@ class Dispatch(implicit val p: Parameters) extends Module with HasZaqalParameter
     
     val is_mem_op = dec.is_load || dec.is_store || dec.is_fload || dec.is_fstore || dec.is_atomic
     val is_bru_op = dec.is_branch || dec.is_jal || dec.is_jalr
-    val is_fpu_op = (dec.rd_is_fp || dec.rs1_is_fp || dec.rs2_is_fp || dec.rs3_is_fp || dec.is_fcsr_access) && !is_mem_op
+    val is_fpu_op = (dec.rd_is_fp || dec.rs1_is_fp || dec.rs2_is_fp || dec.rs3_is_fp) && !is_mem_op && !dec.is_csr
     val is_alu_op = !is_mem_op && !is_bru_op && !is_fpu_op
 
     val active = io.in(i).valid && !is_shadow(i) && !io.is_fused_away(i)

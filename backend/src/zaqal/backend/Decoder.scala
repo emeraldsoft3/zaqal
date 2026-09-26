@@ -247,14 +247,22 @@ class Decoder(implicit val p: Parameters) extends Module with HasZaqalParameter 
   val any_fma = io.out.is_fmadd || io.out.is_fmsub || io.out.is_fnmsub || io.out.is_fnmadd
   io.out.is_fp_double := (fp_fmt === "b01".U && (is_fp_op || any_fma)) || io.out.is_fld || io.out.is_fsd
 
-  // System/CSR for FPU (Simplified)
+  // System/CSR Decoding
   val is_system = (opcode === "b1110011".U)
   val csr_addr  = io.inst(31, 20)
-  io.out.is_fcsr_access := is_system && (csr_addr === "h001".U || csr_addr === "h002".U || csr_addr === "h003".U)
+  val is_csr_op = is_system && (funct3 =/= 0.U)
+  val is_csr_imm_op = is_system && funct3(2)
 
+  io.out.is_fcsr_access := is_system && (csr_addr === "h001".U || csr_addr === "h002".U || csr_addr === "h003".U)
+  io.out.is_csr         := is_csr_op
+  io.out.is_csr_imm     := is_csr_imm_op
+  io.out.csr_cmd        := funct3
+  io.out.csr_addr       := csr_addr
 
   // Select immediate based on instruction type
-  when(io.out.is_branch) {
+  when(io.out.is_csr && io.out.is_csr_imm) {
+    io.out.imm := Cat(0.U((xLen - 5).W), io.inst(19, 15)).asSInt // 5-bit zero-extended zimm
+  } .elsewhen(io.out.is_branch) {
     io.out.imm := b_imm
   } .elsewhen(io.out.is_lui || io.out.is_auipc) {
     io.out.imm := u_imm
@@ -282,7 +290,7 @@ class Decoder(implicit val p: Parameters) extends Module with HasZaqalParameter 
   val is_fp_fma = io.out.is_fmadd || io.out.is_fmsub || io.out.is_fnmsub || io.out.is_fnmadd
   val is_atomic_rs2 = io.out.is_atomic && !io.out.is_lr
 
-  io.out.rs1_use := !(io.out.is_lui || io.out.is_auipc || io.out.is_jal)
-  io.out.rs2_use := is_r_type || is_r_type_32 || io.out.is_branch || io.out.is_store || io.out.is_fstore || is_atomic_rs2 || is_fp_fma || (is_fp_op && fp_r_type)
+  io.out.rs1_use := Mux(io.out.is_csr, !io.out.is_csr_imm, !(io.out.is_lui || io.out.is_auipc || io.out.is_jal))
+  io.out.rs2_use := !io.out.is_csr && (is_r_type || is_r_type_32 || io.out.is_branch || io.out.is_store || io.out.is_fstore || is_atomic_rs2 || is_fp_fma || (is_fp_op && fp_r_type))
   io.out.rs3_use := any_fma
 }

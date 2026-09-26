@@ -216,6 +216,10 @@ class DecodeSignals(implicit val p: Parameters) extends Bundle with HasZaqalPara
   val is_fle      = Bool()
   val is_fclass   = Bool()
   val is_fcsr_access = Bool()
+  val is_csr         = Bool()
+  val is_csr_imm     = Bool()
+  val csr_cmd        = UInt(3.W)
+  val csr_addr       = UInt(12.W)
 
   val rd      = UInt(5.W)
   val rs1     = UInt(5.W)

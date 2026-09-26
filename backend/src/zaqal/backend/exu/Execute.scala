@@ -67,7 +67,7 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   val fpmisc = Seq.fill(2)(Module(new FPMisc))
   val dmem = Module(new DataMem)
   val tlb  = Seq.fill(3)(Module(new FastTLB))
-  val fcsr = Module(new FCSR)
+  val csr  = Module(new zaqal.backend.csr.CSRFile)
 
   // ---------------- LOAD / STORE QUEUES ----------------
   val sq = Module(new zaqal.backend.lsu.StoreQueue(16))
@@ -198,11 +198,6 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   io.bpu_update.ftqPtr := 0.U
   io.bpu_update.robIdx := 0.U
   
-  fcsr.io.csr_addr  := 0.U
-  fcsr.io.csr_wen   := false.B
-  fcsr.io.csr_wdata := 0.U
-  fcsr.io.set_flags := false.B
-  fcsr.io.flags_to_set := 0.U
 
   // ---------------- READ STAGE (CYCLE 1) DEFINITIONS ----------------
   val decInt = (0 until 4).map(i => io.int_in(i).bits.decode)
@@ -376,7 +371,8 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
 
   wb_alu_val(0)  := exe_val_int(0) && exe_uop_int(0).pdest =/= 0.U && !exe_is_div_op0 && ((!exe_dec_int(0).is_branch) || exe_is_link0)
   wb_alu_dest(0) := exe_uop_int(0).pdest
-  wb_alu_data(0) := Mux(exe_is_link0, exe_link_addr0, alu(0).io.result)
+  wb_alu_data(0) := Mux(exe_is_link0, exe_link_addr0,
+                    Mux(exe_dec_int(0).is_csr, csr.io.csr_rdata, alu(0).io.result))
 
   wb_alu_val(1)  := exe_val_int(1) && exe_uop_int(1).pdest =/= 0.U && !exe_is_div_op1 && ((!exe_dec_int(1).is_branch) || exe_is_link1)
   wb_alu_dest(1) := exe_uop_int(1).pdest
@@ -527,6 +523,14 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
     alu(i).io.dec  := exe_dec_int(i)
   }
 
+  // ---------------- CSR EXECUTION (LANE 0) ----------------
+  csr.io.csr_addr  := exe_dec_int(0).csr_addr
+  csr.io.csr_cmd   := exe_dec_int(0).csr_cmd
+  csr.io.csr_wdata := Mux(exe_dec_int(0).is_csr_imm, exe_dec_int(0).imm.asUInt, src_int_1(0))
+  csr.io.csr_wen   := exe_val_int(0) && exe_dec_int(0).is_csr
+  csr.io.set_flags := false.B
+  csr.io.flags_to_set := 0.U
+
   // BRUs on Lane 0 and Lane 1
   for (i <- 0 until 2) {
     bru(i).io.src1 := src_int_1(i)
@@ -625,6 +629,20 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
     io.memPredUpdate.valid   := true.B
     io.memPredUpdate.ldpc    := lq.io.violation.loadPC
     io.memPredUpdate.stpc    := lq.io.violation.storePC
+  } .elsewhen(csr.io.flush_pipe) {
+    io.redirect.valid := true.B
+    io.redirect.target := exe_uop_raw_int(0).pc + Mux(exe_uop_raw_int(0).pre.is_rvc, 2.U, 4.U)
+    io.redirect.epoch  := exe_uop_raw_int(0).epoch
+    io.redirect.is_exception := false.B
+    io.redirect.exc_cause    := 0.U
+    io.redirect.snapshotIdx  := r0_snap
+    io.redirect.pc           := exe_uop_raw_int(0).pc
+    io.redirect.taken        := false.B
+    io.redirect.is_cfi       := false.B
+    io.redirect.is_jal       := false.B
+    io.redirect.is_jalr      := false.B
+    io.redirect.ftqPtr       := exe_uop_raw_int(0).ftqPtr
+    io.redirect.robIdx       := exe_uop_int(0).robIdx
   }
 
   // Non-Flushing BPU Update
