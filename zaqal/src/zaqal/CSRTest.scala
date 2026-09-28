@@ -17,8 +17,18 @@ object CSRTest extends App {
 
     dut.clock.setTimeout(0)
 
+    dut.io.trap_in.valid.poke(false.B)
+    dut.io.trap_in.epc.poke(0.U)
+    dut.io.trap_in.cause.poke(0.U)
+    dut.io.trap_in.tval.poke(0.U)
+    dut.io.mret_valid.poke(false.B)
+    dut.io.sret_valid.poke(false.B)
+
     // Helper to perform a CSR access
     def csrAccess(addr: UInt, cmd: Int, wdata: BigInt, wen: Boolean): (BigInt, Boolean, Boolean) = {
+      dut.io.trap_in.valid.poke(false.B)
+      dut.io.mret_valid.poke(false.B)
+      dut.io.sret_valid.poke(false.B)
       dut.io.csr_addr.poke(addr)
       dut.io.csr_cmd.poke(cmd.U)
       dut.io.csr_wdata.poke(wdata.U)
@@ -138,8 +148,101 @@ object CSRTest extends App {
       "MISA must report full RV64GC with Supervisor & User support!")
     println(f"  -> MISA reports RV64IMAFDC + S + U (0x$misaRead%016x): PASS")
 
+    // -----------------------------------------------------------------------
+    // Test 7: Privilege Transition M -> U via MRET (Day 4-5)
+    // -----------------------------------------------------------------------
+    println("\n[Test 7] Testing MRET Privilege Transition (Machine -> User)...")
+    assert(dut.io.priv_mode.peek().litValue == PrivMode.M.litValue, "Initial mode must be M")
+
+    // Setup mstatus.MPP = U (0) and mepc = 0x80002000
+    csrAccess(CSRAddr.mstatus, 1, 0, true) // MPP = 0
+    csrAccess(CSRAddr.mepc, 1, BigInt("80002000", 16), true)
+
+    // Execute MRET
+    dut.io.csr_wen.poke(false.B)
+    dut.io.csr_cmd.poke(0.U)
+    dut.io.mret_valid.poke(true.B)
+    dut.clock.step(1)
+    dut.io.mret_valid.poke(false.B)
+
+    // Verify priv_mode transitioned to U (0)
+    val privAfterMret = dut.io.priv_mode.peek().litValue
+    assert(privAfterMret == PrivMode.U.litValue, s"Expected priv_mode=U (0), got $privAfterMret")
+    println("  -> MRET successfully transitioned CPU to User mode (priv_mode = 0): PASS")
+
+    // -----------------------------------------------------------------------
+    // Test 8: Privilege Protection in User Mode (Day 4-5)
+    // -----------------------------------------------------------------------
+    println("\n[Test 8] Testing Privilege Protection in User Mode...")
+    // In User mode, accessing Machine CSR (mscratch: 0x340) or Supervisor CSR (satp: 0x180) must be ILLEGAL!
+    dut.io.csr_addr.poke(CSRAddr.mscratch)
+    dut.io.csr_cmd.poke(1.U)
+    dut.io.csr_wen.poke(true.B)
+    dut.io.csr_wdata.poke(0x123.U)
+    assert(dut.io.is_illegal.peek().litToBoolean, "User mode access to mscratch must be illegal!")
+
+    dut.io.csr_addr.poke(CSRAddr.satp)
+    assert(dut.io.is_illegal.peek().litToBoolean, "User mode access to satp must be illegal!")
+    println("  -> User mode illegal CSR accesses correctly rejected: PASS")
+
+    // -----------------------------------------------------------------------
+    // Test 9: Privilege Escalation via ECALL (User -> Machine) (Day 4-5)
+    // -----------------------------------------------------------------------
+    println("\n[Test 9] Testing ECALL Trap Entry (User -> Machine Mode)...")
+    // Trigger ECALL from User mode (Cause 8 = User ECALL, PC = 0x80002010)
+    dut.io.csr_wen.poke(false.B)
+    dut.io.csr_cmd.poke(0.U)
+    dut.io.trap_in.valid.poke(true.B)
+    dut.io.trap_in.epc.poke(BigInt("80002010", 16).U)
+    dut.io.trap_in.cause.poke(8.U) // User ECALL
+    dut.io.trap_in.tval.poke(0.U)
+    dut.clock.step(1)
+    dut.io.trap_in.valid.poke(false.B)
+
+    // Priv mode should escalate back to M (3)
+    val privAfterTrap = dut.io.priv_mode.peek().litValue
+    assert(privAfterTrap == PrivMode.M.litValue, s"Expected priv_mode=M (3), got $privAfterTrap")
+
+    // mepc should record 0x80002010, mcause should record 8
+    val (mepcRead, _, _) = csrAccess(CSRAddr.mepc, 1, 0, false)
+    val (mcauseRead, _, _) = csrAccess(CSRAddr.mcause, 1, 0, false)
+    assert(mepcRead == BigInt("80002010", 16), f"Expected mepc=0x80002010, got 0x$mepcRead%08x")
+    assert(mcauseRead == 8, s"Expected mcause=8, got $mcauseRead")
+    println("  -> ECALL correctly escalated privilege to M-mode, mepc=0x80002010, mcause=8: PASS")
+
+    // -----------------------------------------------------------------------
+    // Test 10: Exception Delegation to Supervisor Mode (medeleg) (Day 4-5)
+    // -----------------------------------------------------------------------
+    println("\n[Test 10] Testing Exception Delegation (medeleg)...")
+    // Delegate User ECALL (bit 8) to Supervisor mode via medeleg
+    csrAccess(CSRAddr.medeleg, 1, BigInt(1 << 8), true)
+
+    // Drop back to User mode via MRET
+    csrAccess(CSRAddr.mstatus, 1, 0, true) // MPP = U
+    dut.io.mret_valid.poke(true.B)
+    dut.clock.step(1)
+    dut.io.mret_valid.poke(false.B)
+    assert(dut.io.priv_mode.peek().litValue == PrivMode.U.litValue)
+
+    // Trigger User ECALL (Cause 8) again
+    dut.io.trap_in.valid.poke(true.B)
+    dut.io.trap_in.epc.poke(BigInt("80003000", 16).U)
+    dut.io.trap_in.cause.poke(8.U)
+    dut.io.trap_in.tval.poke(0.U)
+    dut.clock.step(1)
+    dut.io.trap_in.valid.poke(false.B)
+
+    // With bit 8 set in medeleg, privilege should escalate to Supervisor mode (S = 1)!
+    val privDelegated = dut.io.priv_mode.peek().litValue
+    assert(privDelegated == PrivMode.S.litValue, s"Expected priv_mode=S (1), got $privDelegated")
+    val (sepcRead, _, _) = csrAccess(CSRAddr.sepc, 1, 0, false)
+    val (scauseRead, _, _) = csrAccess(CSRAddr.scause, 1, 0, false)
+    assert(sepcRead == BigInt("80003000", 16), f"Expected sepc=0x80003000, got 0x$sepcRead%08x")
+    assert(scauseRead == 8, s"Expected scause=8, got $scauseRead")
+    println("  -> Exception successfully delegated to Supervisor Mode (priv_mode=1, sepc=0x80003000, scause=8): PASS")
+
     println("\n==================================================")
-    println("  ALL DAY 1-3 CSR IMPLEMENTATION TESTS PASSED!    ")
+    println("  ALL DAY 1-5 PRIVILEGE & CSR TESTS PASSED!       ")
     println("==================================================")
   }
 }

@@ -46,39 +46,53 @@ object ZaqalTest extends App {
 
 
     // =========================================================================
-    // Test Case 1: Wrong-Path Speculative CSR Squash Verification Program
-    // - 0x00 [Slot 0]: addi  x2, x0, 1024       (x2 = 1024 = 0x400 payload)
-    // - 0x04 [Slot 1]: addi  x4, x0, 1          (x4 = 1 for condition)
-    // - 0x08 [Slot 2]: bne   x4, x0, 16         (Branch to 0x18 - TAKEN!)
-    // - 0x0C [Slot 3]: csrrw x1, 0x340, x2      [SPECULATIVE WRONG-PATH]: MUST BE SQUASHED!
-    // - 0x10 [Slot 4]: addi  x8, x0, 999        [SPECULATIVE WRONG-PATH]: marker 999
-    // - 0x14 [Slot 5]: nop
-    // - 0x18 [Slot 0]: addi  x7, x0, 77         [CORRECT PATH]: x7 = 77 (arrival marker)
-    // - 0x1C [Slot 1]: csrrw x9, 0x340, x0      [CORRECT PATH]: read mscratch into x9 (MUST BE 0!)
-    // - 0x20 [Slot 2]: jal   x0, 0              (Self-loop trap)
+    // DAY 4-5 TEST PROGRAM: PRIVILEGE LEVEL SWITCHING (M -> U -> M via MRET & ECALL)
+    // =========================================================================
+    // Program Flow:
+    // Packet 0 (PC 0x00 - 0x14) [Machine Mode]:
+    // - 0x00 [Slot 0]: addi  x1, x0, 0x30       (x1 = 0x30 = trap handler address)
+    // - 0x04 [Slot 1]: csrrw x0, 0x305, x1      (mtvec := 0x30)
+    // - 0x08 [Slot 2]: addi  x2, x0, 0x18       (x2 = 0x18 = user mode code address)
+    // - 0x0C [Slot 3]: csrrw x0, 0x341, x2      (mepc := 0x18)
+    // - 0x10 [Slot 4]: csrrw x0, 0x300, x0      (mstatus := 0, clears MPP to User Mode 0)
+    // - 0x14 [Slot 5]: mret                     (Drops privilege to U-mode, jumps to mepc 0x18!)
+    //
+    // Packet 1 (PC 0x18 - 0x2C) [User Mode]:
+    // - 0x18 [Slot 0]: addi  x4, x0, 42         [EXECUTED IN USER MODE]: x4 = 42
+    // - 0x1C [Slot 1]: ecall                    [TRAP]: User ECALL (cause 8), escalates back to M-mode at mtvec (0x30)!
+    // - 0x20 [Slot 2]: nop                      [SPECULATIVE in Packet 1, FLUSHED by trap redirect]
+    // - 0x24 [Slot 3]: nop
+    // - 0x28 [Slot 4]: nop
+    // - 0x2C [Slot 5]: nop
+    //
+    // Packet 2 (PC 0x30 - 0x44) [Machine Mode Trap Handler]:
+    // - 0x30 [Slot 0]: addi  x7, x0, 88         [RE-ENTERED MACHINE MODE]: x7 = 88 (SUCCESS FLAG)
+    // - 0x34 [Slot 1]: csrrw x8, 0x342, x0      (Read mcause into x8: MUST BE 8!)
+    // - 0x38 [Slot 2]: csrrw x9, 0x341, x0      (Read mepc into x9: MUST BE 0x1C!)
+    // - 0x3C [Slot 3]: jal   x0, 0              (Self-loop completion trap)
     // =========================================================================
     val programMemory = Seq(
-      // --- PACKET 0 (PC 0x00 - 0x14): Branch & Speculative CSR Attempt ---
-      "h40000113".U(32.W), // 00 [Slot 0]: addi  x2, x0, 1024       (x2 = 1024 = 0x400)
-      "h00100213".U(32.W), // 04 [Slot 1]: addi  x4, x0, 1          (x4 = 1)
-      "h00021863".U(32.W), // 08 [Slot 2]: bne   x4, x0, 16         (Taken branch to 0x18)
-      "h340110f3".U(32.W), // 0C [Slot 3]: csrrw x1, 0x340, x2      (SPECULATIVE: mscratch write)
-      "h3e700413".U(32.W), // 10 [Slot 4]: addi  x8, x0, 999        (SPECULATIVE: x8 = 999)
-      "h00000013".U(32.W), // 14 [Slot 5]: nop
+      // --- PACKET 0 (PC 0x00 - 0x14): Machine Mode Setup & MRET ---
+      "h03000093".U(32.W), // 00 [Slot 0]: addi  x1, x0, 0x30       (mtvec target = 0x30)
+      "h30509073".U(32.W), // 04 [Slot 1]: csrrw x0, 0x305, x1      (mtvec := 0x30)
+      "h01800113".U(32.W), // 08 [Slot 2]: addi  x2, x0, 0x18       (mepc target = 0x18)
+      "h34111073".U(32.W), // 0C [Slot 3]: csrrw x0, 0x341, x2      (mepc := 0x18)
+      "h30001073".U(32.W), // 10 [Slot 4]: csrrw x0, 0x300, x0      (mstatus := 0, MPP = 0 for U-mode)
+      "h30200073".U(32.W), // 14 [Slot 5]: mret                     (Drops priv to U-mode, jumps to 0x18)
 
-      // --- PACKET 1 (PC 0x18 - 0x2C): Correct Branch Target Path ---
-      "h04d00393".U(32.W), // 18 [Slot 0]: addi  x7, x0, 77         (x7 = 77 arrival marker)
-      "h340014f3".U(32.W), // 1C [Slot 1]: csrrw x9, 0x340, x0      (x9 := mscratch, MUST BE 0!)
-      "h0000006f".U(32.W), // 20 [Slot 2]: jal   x0, 0              (Trap loop)
+      // --- PACKET 1 (PC 0x18 - 0x2C): User Mode Execution & ECALL ---
+      "h02a00213".U(32.W), // 18 [Slot 0]: addi  x4, x0, 42         (Executes in U-mode: x4 = 42)
+      "h00000073".U(32.W), // 1C [Slot 1]: ecall                    (Trap: User ECALL, jumps to mtvec 0x30)
+      "h00000013".U(32.W), // 20 [Slot 2]: nop                      (Speculative, flushed)
       "h00000013".U(32.W), // 24 [Slot 3]: nop
       "h00000013".U(32.W), // 28 [Slot 4]: nop
       "h00000013".U(32.W), // 2C [Slot 5]: nop
 
-      // --- PACKET 2 (PC 0x30 - 0x44): NOP Padding ---
-      "h00000013".U(32.W), // 30 [Slot 0]: nop
-      "h0000006f".U(32.W), // 34 [Slot 1]: jal   x0, 0              (Trap loop)
-      "h00000013".U(32.W), // 38 [Slot 2]: nop
-      "h00000013".U(32.W), // 3C [Slot 3]: nop
+      // --- PACKET 2 (PC 0x30 - 0x44): Machine Mode Trap Handler ---
+      "h05800393".U(32.W), // 30 [Slot 0]: addi  x7, x0, 88         (Handler: x7 = 88)
+      "h34201473".U(32.W), // 34 [Slot 1]: csrrw x8, 0x342, x0      (Read mcause into x8: expected 8)
+      "h341014f3".U(32.W), // 38 [Slot 2]: csrrw x9, 0x341, x0      (Read mepc into x9: expected 0x1C)
+      "h0000006f".U(32.W), // 3C [Slot 3]: jal   x0, 0              (Done loop)
       "h00000013".U(32.W), // 40 [Slot 4]: nop
       "h00000013".U(32.W)  // 44 [Slot 5]: nop
     ).padTo(1024, "h00000013".U(32.W))

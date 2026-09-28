@@ -523,13 +523,27 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
     alu(i).io.dec  := exe_dec_int(i)
   }
 
-  // ---------------- CSR EXECUTION (LANE 0) ----------------
+  // ---------------- CSR & SYSTEM TRAP/RET EXECUTION (LANE 0) ----------------
+  val is_ecall = exe_val_int(0) && exe_dec_int(0).is_ecall
+  val is_mret  = exe_val_int(0) && exe_dec_int(0).is_mret
+  val is_sret  = exe_val_int(0) && exe_dec_int(0).is_sret
+
+  val ecall_cause = Mux(csr.io.priv_mode === zaqal.backend.csr.PrivMode.U, 8.U,
+                    Mux(csr.io.priv_mode === zaqal.backend.csr.PrivMode.S, 9.U, 11.U))
+
   csr.io.csr_addr  := exe_dec_int(0).csr_addr
   csr.io.csr_cmd   := exe_dec_int(0).csr_cmd
   csr.io.csr_wdata := Mux(exe_dec_int(0).is_csr_imm, exe_dec_int(0).imm.asUInt, src_int_1(0))
   csr.io.csr_wen   := exe_val_int(0) && exe_dec_int(0).is_csr
   csr.io.set_flags := false.B
   csr.io.flags_to_set := 0.U
+
+  csr.io.trap_in.valid := is_ecall
+  csr.io.trap_in.epc   := exe_uop_raw_int(0).pc
+  csr.io.trap_in.cause := ecall_cause
+  csr.io.trap_in.tval  := 0.U
+  csr.io.mret_valid    := is_mret
+  csr.io.sret_valid    := is_sret
 
   // BRUs on Lane 0 and Lane 1
   for (i <- 0 until 2) {
@@ -632,6 +646,48 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   } .elsewhen(csr.io.flush_pipe) {
     io.redirect.valid := true.B
     io.redirect.target := exe_uop_raw_int(0).pc + Mux(exe_uop_raw_int(0).pre.is_rvc, 2.U, 4.U)
+    io.redirect.epoch  := exe_uop_raw_int(0).epoch
+    io.redirect.is_exception := false.B
+    io.redirect.exc_cause    := 0.U
+    io.redirect.snapshotIdx  := r0_snap
+    io.redirect.pc           := exe_uop_raw_int(0).pc
+    io.redirect.taken        := false.B
+    io.redirect.is_cfi       := false.B
+    io.redirect.is_jal       := false.B
+    io.redirect.is_jalr      := false.B
+    io.redirect.ftqPtr       := exe_uop_raw_int(0).ftqPtr
+    io.redirect.robIdx       := exe_uop_int(0).robIdx
+  } .elsewhen(is_ecall) {
+    io.redirect.valid := true.B
+    io.redirect.target := csr.io.trap_target
+    io.redirect.epoch  := exe_uop_raw_int(0).epoch
+    io.redirect.is_exception := false.B
+    io.redirect.exc_cause    := ecall_cause
+    io.redirect.snapshotIdx  := r0_snap
+    io.redirect.pc           := exe_uop_raw_int(0).pc
+    io.redirect.taken        := false.B
+    io.redirect.is_cfi       := false.B
+    io.redirect.is_jal       := false.B
+    io.redirect.is_jalr      := false.B
+    io.redirect.ftqPtr       := exe_uop_raw_int(0).ftqPtr
+    io.redirect.robIdx       := exe_uop_int(0).robIdx
+  } .elsewhen(is_mret) {
+    io.redirect.valid := true.B
+    io.redirect.target := csr.io.mepc_val
+    io.redirect.epoch  := exe_uop_raw_int(0).epoch
+    io.redirect.is_exception := false.B
+    io.redirect.exc_cause    := 0.U
+    io.redirect.snapshotIdx  := r0_snap
+    io.redirect.pc           := exe_uop_raw_int(0).pc
+    io.redirect.taken        := false.B
+    io.redirect.is_cfi       := false.B
+    io.redirect.is_jal       := false.B
+    io.redirect.is_jalr      := false.B
+    io.redirect.ftqPtr       := exe_uop_raw_int(0).ftqPtr
+    io.redirect.robIdx       := exe_uop_int(0).robIdx
+  } .elsewhen(is_sret) {
+    io.redirect.valid := true.B
+    io.redirect.target := csr.io.sepc_val
     io.redirect.epoch  := exe_uop_raw_int(0).epoch
     io.redirect.is_exception := false.B
     io.redirect.exc_cause    := 0.U

@@ -64,6 +64,19 @@ class CSRFile(implicit val p: Parameters) extends Module with HasZaqalParameter 
     val is_illegal   = Output(Bool())
     val flush_pipe   = Output(Bool()) // Asserted on state-mutating writes
 
+    // Trap & Privilege Control Interface
+    val trap_in      = Input(new Bundle {
+      val valid = Bool()
+      val epc   = UInt(xLen.W)
+      val cause = UInt(xLen.W)
+      val tval  = UInt(xLen.W)
+    })
+    val mret_valid   = Input(Bool())
+    val sret_valid   = Input(Bool())
+    val trap_target  = Output(UInt(xLen.W))
+    val mepc_val     = Output(UInt(xLen.W))
+    val sepc_val     = Output(UInt(xLen.W))
+
     // FPU Interface
     val frm          = Output(UInt(3.W))
     val set_flags    = Input(Bool())
@@ -228,15 +241,40 @@ class CSRFile(implicit val p: Parameters) extends Module with HasZaqalParameter 
   io.csr_rdata := rdata
 
   // =========================================================================
+  // Trap Vector & Exception Delegation Logic
+  // =========================================================================
+  def getTrapVector(tvec: UInt, cause: UInt): UInt = {
+    val is_int = cause(xLen - 1)
+    val c_code = cause(xLen - 2, 0)
+    val base   = Cat(tvec(xLen - 1, 2), 0.U(2.W))
+    val mode   = tvec(1, 0)
+    Mux(mode === 1.U && is_int, base + (c_code << 2), base)
+  }
+
+  val is_interrupt  = io.trap_in.cause(xLen - 1)
+  val cause_code    = io.trap_in.cause(xLen - 2, 0)
+  val cause_idx     = cause_code(5, 0)
+  val delegate_to_s = (priv_mode < PrivMode.M) &&
+    Mux(is_interrupt, r_mideleg(cause_idx),
+                      r_medeleg(cause_idx))
+
+  io.trap_target := Mux(delegate_to_s, getTrapVector(r_stvec, io.trap_in.cause),
+                                       getTrapVector(r_mtvec, io.trap_in.cause))
+  io.mepc_val := r_mepc
+  io.sepc_val := r_sepc
+
+  // =========================================================================
   // Privilege & Access Permission Check
   // =========================================================================
   val required_priv = io.csr_addr(9, 8)
   val is_read_only  = io.csr_addr(11, 10) === "b11".U
 
   // Read-only CSRs fail if written. Otherwise check required privilege.
-  val is_illegal_priv = priv_mode < required_priv
+  val is_illegal_priv     = (io.csr_wen || io.csr_cmd =/= 0.U) && (priv_mode < required_priv)
   val is_illegal_ro_write = io.csr_wen && is_read_only
-  io.is_illegal := is_illegal_priv || is_illegal_ro_write
+  val is_illegal_ret      = (io.mret_valid && priv_mode < PrivMode.M) ||
+                            (io.sret_valid && priv_mode < PrivMode.S)
+  io.is_illegal := is_illegal_priv || is_illegal_ro_write || is_illegal_ret
 
   // =========================================================================
   // CSR Write & Atomic Modification Logic
@@ -260,7 +298,38 @@ class CSRFile(implicit val p: Parameters) extends Module with HasZaqalParameter 
                      (io.csr_addr === CSRAddr.sstatus)
   io.flush_pipe := do_write && is_flush_csr
 
-  when(do_write) {
+  // =========================================================================
+  // State Transitions: Trap Entry, xRET, and CSR Writes
+  // =========================================================================
+  when(io.trap_in.valid) {
+    when(delegate_to_s) {
+      r_sepc         := io.trap_in.epc
+      r_scause       := io.trap_in.cause
+      r_stval        := io.trap_in.tval
+      r_mstatus_spp  := priv_mode(0)
+      r_mstatus_spie := r_mstatus_sie
+      r_mstatus_sie  := false.B
+      priv_mode      := PrivMode.S
+    } .otherwise {
+      r_mepc         := io.trap_in.epc
+      r_mcause       := io.trap_in.cause
+      r_mtval        := io.trap_in.tval
+      r_mstatus_mpp  := priv_mode
+      r_mstatus_mpie := r_mstatus_mie
+      r_mstatus_mie  := false.B
+      priv_mode      := PrivMode.M
+    }
+  } .elsewhen(io.mret_valid && priv_mode >= PrivMode.M) {
+    priv_mode      := r_mstatus_mpp
+    r_mstatus_mie  := r_mstatus_mpie
+    r_mstatus_mpie := true.B
+    r_mstatus_mpp  := PrivMode.U
+  } .elsewhen(io.sret_valid && priv_mode >= PrivMode.S) {
+    priv_mode      := Cat(0.U(1.W), r_mstatus_spp)
+    r_mstatus_sie  := r_mstatus_spie
+    r_mstatus_spie := true.B
+    r_mstatus_spp  := 0.U
+  } .elsewhen(do_write) {
     switch(io.csr_addr) {
       // User / FPU
       is(CSRAddr.fflags)   { r_fflags := wdata_eff(4, 0); r_mstatus_fs := 3.U }

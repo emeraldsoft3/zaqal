@@ -77,10 +77,21 @@ class IssueQueue(val numEntries: Int, val numEnq: Int, val numDeq: Int, val numW
   for (e <- 0 until numEnq) enq_onehot(e) := 0.U
   ageDetector.io.enq := enq_onehot
 
+  val sys_mask = VecInit((0 until numEntries).map { i =>
+    entries(i).valid && (
+      entries(i).uop.decode.is_csr ||
+      entries(i).uop.decode.is_ecall ||
+      entries(i).uop.decode.is_ebreak ||
+      entries(i).uop.decode.is_mret ||
+      entries(i).uop.decode.is_sret ||
+      entries(i).uop.decode.is_wfi
+    )
+  }).asUInt
+
   var current_can_issue = can_issue.asUInt
   val issue_onehot = Wire(Vec(numDeq, UInt(numEntries.W)))
   for (k <- 0 until numDeq) {
-    ageDetector.io.canIssue(k) := current_can_issue
+    ageDetector.io.canIssue(k) := (if (k == 0) current_can_issue else current_can_issue & ~sys_mask)
     issue_onehot(k) := ageDetector.io.out(k)
     val issue_idx = OHToUInt(issue_onehot(k))
     val issue_valid = issue_onehot(k).orR
