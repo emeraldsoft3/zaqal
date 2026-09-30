@@ -9,6 +9,7 @@ class AgeDetector(numEntries: Int, numEnq: Int, numDeq: Int)(implicit p: Paramet
     val enq = Vec(numEnq, Input(UInt(numEntries.W)))
     val canIssue = Vec(numDeq, Input(UInt(numEntries.W)))
     val out = Vec(numDeq, Output(UInt(numEntries.W)))
+    val isOlder = Output(Vec(numEntries, Vec(numEntries, Bool())))
   })
 
   // age(i)(j): true if entry i is older than entry j
@@ -63,5 +64,11 @@ class AgeDetector(numEntries: Int, numEnq: Int, numDeq: Int)(implicit p: Paramet
 
   io.out.zip(io.canIssue).foreach { case (out, canIssue) =>
     out := getOldestCanIssue(get_age, canIssue)
+  }
+
+  for (i <- 0 until numEntries) {
+    for (j <- 0 until numEntries) {
+      io.isOlder(i)(j) := get_age(i, j)
+    }
   }
 }

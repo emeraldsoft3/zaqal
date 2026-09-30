@@ -524,12 +524,15 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   }
 
   // ---------------- CSR & SYSTEM TRAP/RET EXECUTION (LANE 0) ----------------
-  val is_ecall = exe_val_int(0) && exe_dec_int(0).is_ecall
-  val is_mret  = exe_val_int(0) && exe_dec_int(0).is_mret
-  val is_sret  = exe_val_int(0) && exe_dec_int(0).is_sret
+  val is_ecall   = exe_val_int(0) && exe_dec_int(0).is_ecall
+  val is_mret    = exe_val_int(0) && exe_dec_int(0).is_mret
+  val is_sret    = exe_val_int(0) && exe_dec_int(0).is_sret
+  val is_illegal = exe_val_int(0) && csr.io.is_illegal
 
   val ecall_cause = Mux(csr.io.priv_mode === zaqal.backend.csr.PrivMode.U, 8.U,
                     Mux(csr.io.priv_mode === zaqal.backend.csr.PrivMode.S, 9.U, 11.U))
+  val trap_cause  = Mux(is_illegal, 2.U, ecall_cause)
+  val trap_valid  = is_ecall || is_illegal
 
   csr.io.csr_addr  := exe_dec_int(0).csr_addr
   csr.io.csr_cmd   := exe_dec_int(0).csr_cmd
@@ -538,10 +541,10 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   csr.io.set_flags := false.B
   csr.io.flags_to_set := 0.U
 
-  csr.io.trap_in.valid := is_ecall
+  csr.io.trap_in.valid := trap_valid
   csr.io.trap_in.epc   := exe_uop_raw_int(0).pc
-  csr.io.trap_in.cause := ecall_cause
-  csr.io.trap_in.tval  := 0.U
+  csr.io.trap_in.cause := trap_cause
+  csr.io.trap_in.tval  := Mux(is_illegal, exe_uop_raw_int(0).inst_raw, 0.U)
   csr.io.mret_valid    := is_mret
   csr.io.sret_valid    := is_sret
 
@@ -647,7 +650,7 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
     io.redirect.valid := true.B
     io.redirect.target := exe_uop_raw_int(0).pc + Mux(exe_uop_raw_int(0).pre.is_rvc, 2.U, 4.U)
     io.redirect.epoch  := exe_uop_raw_int(0).epoch
-    io.redirect.is_exception := false.B
+    io.redirect.is_exception := true.B
     io.redirect.exc_cause    := 0.U
     io.redirect.snapshotIdx  := r0_snap
     io.redirect.pc           := exe_uop_raw_int(0).pc
@@ -657,12 +660,12 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
     io.redirect.is_jalr      := false.B
     io.redirect.ftqPtr       := exe_uop_raw_int(0).ftqPtr
     io.redirect.robIdx       := exe_uop_int(0).robIdx
-  } .elsewhen(is_ecall) {
+  } .elsewhen(trap_valid) {
     io.redirect.valid := true.B
     io.redirect.target := csr.io.trap_target
     io.redirect.epoch  := exe_uop_raw_int(0).epoch
-    io.redirect.is_exception := false.B
-    io.redirect.exc_cause    := ecall_cause
+    io.redirect.is_exception := true.B
+    io.redirect.exc_cause    := trap_cause
     io.redirect.snapshotIdx  := r0_snap
     io.redirect.pc           := exe_uop_raw_int(0).pc
     io.redirect.taken        := false.B
@@ -675,7 +678,7 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
     io.redirect.valid := true.B
     io.redirect.target := csr.io.mepc_val
     io.redirect.epoch  := exe_uop_raw_int(0).epoch
-    io.redirect.is_exception := false.B
+    io.redirect.is_exception := true.B
     io.redirect.exc_cause    := 0.U
     io.redirect.snapshotIdx  := r0_snap
     io.redirect.pc           := exe_uop_raw_int(0).pc
@@ -689,7 +692,7 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
     io.redirect.valid := true.B
     io.redirect.target := csr.io.sepc_val
     io.redirect.epoch  := exe_uop_raw_int(0).epoch
-    io.redirect.is_exception := false.B
+    io.redirect.is_exception := true.B
     io.redirect.exc_cause    := 0.U
     io.redirect.snapshotIdx  := r0_snap
     io.redirect.pc           := exe_uop_raw_int(0).pc

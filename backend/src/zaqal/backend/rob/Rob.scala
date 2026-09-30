@@ -125,8 +125,8 @@ class Rob(val numWb: Int = 14)(implicit val p: Parameters) extends Module with H
     for (i <- 0 until robSize) {
       robEntries(i).valid := false.B
     }
-  } .elsewhen(io.bpu_redirect.valid && !io.bpu_redirect.is_exception) {
-    // Flush branch misprediction
+  } .elsewhen(io.bpu_redirect.valid) {
+    // Flush branch misprediction or EXU pipeline redirect
     enqPtr := io.bpu_redirect.robIdx + 1.U
     for (i <- 0 until robSize) {
       val d_i = i.U - deqPtr

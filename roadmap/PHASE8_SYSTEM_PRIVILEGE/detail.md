@@ -5,13 +5,13 @@ To run an Operating System, we need "Privilege Mode" and "Address Translation."
 ## Goal: Supervisor Mode & Virtual Memory Support
 
 ## Day 1-3: CSR Implementation
-- [ ] Implement Control and Status Registers (CSRs) for Machine and Supervisor modes.
+- [x] Implement Control and Status Registers (CSRs) for Machine and Supervisor modes.
 - **Detailed Plan**: Linux and other operating systems require a rich set of architectural registers to control the CPU's state. We will build the Control and Status Register (CSR) file, encompassing registers like `mstatus`, `sstatus`, `mepc`, `sepc`, `stvec`, and `satp`. This involves creating a specialized execution unit (CSR Unit) that can safely read and write these registers while ensuring pipeline synchronization, as CSR writes often change the global state of the processor and require a pipeline flush.
 - **XiangShan Study**: [CSR.scala](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/backend/fu/CSR.scala) - *See how CSRs are managed.*
 
 ## Day 4-5: Privilege Levels & Trap Handling
-- [ ] Implement switching between M, S, and U modes.
-- [ ] Handle exceptions, interrupts, and environment calls (ecall).
+- [x] Implement switching between M, S, and U modes.
+- [x] Handle exceptions, interrupts, and environment calls (ecall).
 - **Detailed Plan**: We must enforce security by isolating applications (User Mode) from the operating system (Supervisor Mode) and firmware (Machine Mode). We will implement hardware trap generation logic. When an illegal instruction, memory fault, or `ecall` occurs, the core must instantly halt execution, save the current PC to the appropriate exception program counter (`mepc`/`sepc`), elevate the privilege level, and jump to the trap vector address defined in `mtvec` or `stvec`.
 - **XiangShan Study**: [ExceptionGen.scala](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/backend/rob/ExceptionGen.scala) - *How exceptions are tracked for state recovery.*
 
@@ -44,7 +44,7 @@ To run an Operating System, we need "Privilege Mode" and "Address Translation."
 
 ## Linux Readiness Checklist
 - [x] **RV64I/M/A/F/D** (The "G" extension).
-- [ ] **Supervisor Mode** (S-mode).
+- [x] **Supervisor Mode** (S-mode).
 - [ ] **Sv39/48 MMU**.
 - [ ] **Timer Interrupts** for context switching.
 - [ ] **32-bit Compatibility Mode** (mstatus.UXL).

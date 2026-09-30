@@ -47,7 +47,7 @@ class Frontend(implicit val p: Parameters) extends Module with HasZaqalParameter
 
   // Epoch Check Reg
   val fetch_epoch = RegInit(false.B)
-  val is_valid_redirect = io.redirect.valid && (io.redirect.epoch === fetch_epoch)
+  val is_valid_redirect = io.redirect.valid && (io.redirect.is_exception || (io.redirect.epoch === fetch_epoch))
 
   when(is_valid_redirect) {
     fetch_epoch := ~fetch_epoch
@@ -134,6 +134,7 @@ class Frontend(implicit val p: Parameters) extends Module with HasZaqalParameter
 
   // Wiring Redirect to FTQ for Dynamic Rollback
   ftq.io.redirect := io.redirect
+  ftq.io.redirect.valid := is_valid_redirect
 
   // 5. IBUF -> Backend (Dispatch Path - Pipelined Staging Boundary!)
   ibuf_out_ready(0) := ibuf_skids(0).io.enq.ready
@@ -152,11 +153,6 @@ class Frontend(implicit val p: Parameters) extends Module with HasZaqalParameter
   // 5. Backend -> FTQ (Metadata Read)
   ftq.io.readPtr := io.ftq_read_ptr
   io.ftq_read_data := ftq.io.readData
-
-  // Epoch Check Logic
-  when(is_valid_redirect) {
-    fetch_epoch := ~fetch_epoch
-  }
 
   // Handlers for Redirects (Branch Mispredictions)
   ftq.io.flush := is_valid_redirect

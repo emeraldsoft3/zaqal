@@ -236,6 +236,9 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
   val memIq = Module(new IssueQueue(16, decodeWidth, 3, 14))
   val fpIq = Module(new IssueQueue(16, decodeWidth, 4, 14))
   val rob = Module(new zaqal.backend.rob.Rob(numWb = 14))
+  intIq.io.robDeqPtr := rob.io.robDeqPtr
+  memIq.io.robDeqPtr := rob.io.robDeqPtr
+  fpIq.io.robDeqPtr  := rob.io.robDeqPtr
   io.commits := rob.io.commits
   rob.io.bpu_redirect := exec.io.redirect
   for (i <- 0 until 14) {
@@ -328,16 +331,22 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
   intIq.io.redirect_restore_idx := restore_idx
   intIq.io.redirect_enq_ptr := rat.io.snptEnqPtr
   intIq.io.redirect_deq_ptr := rat.io.snptDeqPtr
+  intIq.io.redirect_is_exception := exec.io.redirect.is_exception
+  intIq.io.redirect_robIdx := exec.io.redirect.robIdx
 
   memIq.io.redirect_valid := redirect_valid
   memIq.io.redirect_restore_idx := restore_idx
   memIq.io.redirect_enq_ptr := rat.io.snptEnqPtr
   memIq.io.redirect_deq_ptr := rat.io.snptDeqPtr
+  memIq.io.redirect_is_exception := exec.io.redirect.is_exception
+  memIq.io.redirect_robIdx := exec.io.redirect.robIdx
 
   fpIq.io.redirect_valid := redirect_valid
   fpIq.io.redirect_restore_idx := restore_idx
   fpIq.io.redirect_enq_ptr := rat.io.snptEnqPtr
   fpIq.io.redirect_deq_ptr := rat.io.snptDeqPtr
+  fpIq.io.redirect_is_exception := exec.io.redirect.is_exception
+  fpIq.io.redirect_robIdx := exec.io.redirect.robIdx
 
   intIq.io.store_resolved := 0.U.asTypeOf(Valid(UInt(log2Up(128).W)))
   fpIq.io.store_resolved  := 0.U.asTypeOf(Valid(UInt(log2Up(128).W)))

@@ -48,53 +48,70 @@ object ZaqalTest extends App {
     // =========================================================================
     // DAY 4-5 TEST PROGRAM: PRIVILEGE LEVEL SWITCHING (M -> U -> M via MRET & ECALL)
     // =========================================================================
-    // Program Flow:
-    // Packet 0 (PC 0x00 - 0x14) [Machine Mode]:
-    // - 0x00 [Slot 0]: addi  x1, x0, 0x30       (x1 = 0x30 = trap handler address)
-    // - 0x04 [Slot 1]: csrrw x0, 0x305, x1      (mtvec := 0x30)
-    // - 0x08 [Slot 2]: addi  x2, x0, 0x18       (x2 = 0x18 = user mode code address)
-    // - 0x0C [Slot 3]: csrrw x0, 0x341, x2      (mepc := 0x18)
-    // - 0x10 [Slot 4]: csrrw x0, 0x300, x0      (mstatus := 0, clears MPP to User Mode 0)
-    // - 0x14 [Slot 5]: mret                     (Drops privilege to U-mode, jumps to mepc 0x18!)
+    // DAY 4-5 TEST PROGRAM: ILLEGAL INSTRUCTION TRAP (U-MODE PRIVILEGE VIOLATION)
+    // =========================================================================
+    // Block-Aligned Fetch Structure (32-byte / 8-instruction fetch blocks):
     //
-    // Packet 1 (PC 0x18 - 0x2C) [User Mode]:
-    // - 0x18 [Slot 0]: addi  x4, x0, 42         [EXECUTED IN USER MODE]: x4 = 42
-    // - 0x1C [Slot 1]: ecall                    [TRAP]: User ECALL (cause 8), escalates back to M-mode at mtvec (0x30)!
-    // - 0x20 [Slot 2]: nop                      [SPECULATIVE in Packet 1, FLUSHED by trap redirect]
-    // - 0x24 [Slot 3]: nop
-    // - 0x28 [Slot 4]: nop
-    // - 0x2C [Slot 5]: nop
+    // Block 0 (PC 0x80000000 - 0x8000001C) [Machine Mode Setup & MRET]:
+    // - 0x00: auipc x1, 0              (x1 = 0x80000000 = PC base)
+    // - 0x04: addi  x2, x1, 0x20       (x2 = 0x80000020 = user mode entry PC)
+    // - 0x08: csrrw x0, 0x341, x2      (mepc := 0x80000020)
+    // - 0x0C: addi  x3, x1, 0x40       (x3 = 0x80000040 = trap handler PC)
+    // - 0x10: csrrw x0, 0x305, x3      (mtvec := 0x80000040)
+    // - 0x14: csrrw x0, 0x300, x0      (mstatus := 0, clears MPP to User Mode 0)
+    // - 0x18: mret                     (Drops priv to U-mode: 3 -> 0, jumps to mepc 0x80000020!)
+    // - 0x1C: nop
     //
-    // Packet 2 (PC 0x30 - 0x44) [Machine Mode Trap Handler]:
-    // - 0x30 [Slot 0]: addi  x7, x0, 88         [RE-ENTERED MACHINE MODE]: x7 = 88 (SUCCESS FLAG)
-    // - 0x34 [Slot 1]: csrrw x8, 0x342, x0      (Read mcause into x8: MUST BE 8!)
-    // - 0x38 [Slot 2]: csrrw x9, 0x341, x0      (Read mepc into x9: MUST BE 0x1C!)
-    // - 0x3C [Slot 3]: jal   x0, 0              (Self-loop completion trap)
+    // Block 1 (PC 0x80000020 - 0x8000003C) [User Mode Execution with Illegal CSR Access]:
+    // - 0x20: addi  x4, x0, 42         [EXECUTED IN USER MODE]: x4 = 42
+    // - 0x24: csrrw x5, 0x300, x0      [ILLEGAL IN U-MODE]: Access mstatus from U-mode! Traps with cause 2!
+    // - 0x28: addi  x6, x0, 999        [ANNULLED / SKIPPED]: Younger instruction must NEVER execute!
+    // - 0x2C: nop
+    // - 0x30: nop
+    // - 0x34: nop
+    // - 0x38: nop
+    // - 0x3C: nop
+    //
+    // Block 2 (PC 0x80000040 - 0x8000005C) [Machine Mode Trap Handler]:
+    // - 0x40: addi  x7, x0, 88         [RE-ENTERED MACHINE MODE]: x7 = 88 (SUCCESS FLAG)
+    // - 0x44: csrrw x8, 0x342, x0      (Read mcause into x8: MUST BE 2 for Illegal Instruction!)
+    // - 0x48: csrrw x9, 0x341, x0      (Read mepc into x9: MUST BE 0x80000024 pointing to illegal csrrw!)
+    // - 0x4C: jal   x0, 0              (Self-loop completion trap)
+    // - 0x50: nop
+    // - 0x54: nop
+    // - 0x58: nop
+    // - 0x5C: nop
     // =========================================================================
     val programMemory = Seq(
-      // --- PACKET 0 (PC 0x00 - 0x14): Machine Mode Setup & MRET ---
-      "h03000093".U(32.W), // 00 [Slot 0]: addi  x1, x0, 0x30       (mtvec target = 0x30)
-      "h30509073".U(32.W), // 04 [Slot 1]: csrrw x0, 0x305, x1      (mtvec := 0x30)
-      "h01800113".U(32.W), // 08 [Slot 2]: addi  x2, x0, 0x18       (mepc target = 0x18)
-      "h34111073".U(32.W), // 0C [Slot 3]: csrrw x0, 0x341, x2      (mepc := 0x18)
-      "h30001073".U(32.W), // 10 [Slot 4]: csrrw x0, 0x300, x0      (mstatus := 0, MPP = 0 for U-mode)
-      "h30200073".U(32.W), // 14 [Slot 5]: mret                     (Drops priv to U-mode, jumps to 0x18)
+      // --- BLOCK 0 (PC 0x80000000 - 0x8000001C): Machine Mode Setup & MRET ---
+      "h00000097".U(32.W), // 00 [Word 0]: auipc x1, 0              (x1 = 0x80000000)
+      "h02008113".U(32.W), // 04 [Word 1]: addi  x2, x1, 0x20       (x2 = 0x80000020, user entry)
+      "h34111073".U(32.W), // 08 [Word 2]: csrrw x0, 0x341, x2      (mepc := 0x80000020)
+      "h04008193".U(32.W), // 0C [Word 3]: addi  x3, x1, 0x40       (x3 = 0x80000040, handler)
+      "h30519073".U(32.W), // 10 [Word 4]: csrrw x0, 0x305, x3      (mtvec := 0x80000040)
+      "h30001073".U(32.W), // 14 [Word 5]: csrrw x0, 0x300, x0      (mstatus := 0, MPP = 0 for U-mode)
+      "h30200073".U(32.W), // 18 [Word 6]: mret                     (Drops priv to U-mode, jumps to 0x80000020)
+      "h00000013".U(32.W), // 1C [Word 7]: nop
 
-      // --- PACKET 1 (PC 0x18 - 0x2C): User Mode Execution & ECALL ---
-      "h02a00213".U(32.W), // 18 [Slot 0]: addi  x4, x0, 42         (Executes in U-mode: x4 = 42)
-      "h00000073".U(32.W), // 1C [Slot 1]: ecall                    (Trap: User ECALL, jumps to mtvec 0x30)
-      "h00000013".U(32.W), // 20 [Slot 2]: nop                      (Speculative, flushed)
-      "h00000013".U(32.W), // 24 [Slot 3]: nop
-      "h00000013".U(32.W), // 28 [Slot 4]: nop
-      "h00000013".U(32.W), // 2C [Slot 5]: nop
+      // --- BLOCK 1 (PC 0x80000020 - 0x8000003C): User Mode Execution & Illegal Trap ---
+      "h02a00213".U(32.W), // 20 [Word 0]: addi  x4, x0, 42         (Executes in U-mode: x4 = 42)
+      "h300012f3".U(32.W), // 24 [Word 1]: csrrw x5, 0x300, x0      (ILLEGAL in U-mode: traps to mtvec 0x80000040 with cause 2!)
+      "h3e700313".U(32.W), // 28 [Word 2]: addi  x6, x0, 999        (Must be discarded/never execute!)
+      "h00000013".U(32.W), // 2C [Word 3]: nop
+      "h00000013".U(32.W), // 30 [Word 4]: nop
+      "h00000013".U(32.W), // 34 [Word 5]: nop
+      "h00000013".U(32.W), // 38 [Word 6]: nop
+      "h00000013".U(32.W), // 3C [Word 7]: nop
 
-      // --- PACKET 2 (PC 0x30 - 0x44): Machine Mode Trap Handler ---
-      "h05800393".U(32.W), // 30 [Slot 0]: addi  x7, x0, 88         (Handler: x7 = 88)
-      "h34201473".U(32.W), // 34 [Slot 1]: csrrw x8, 0x342, x0      (Read mcause into x8: expected 8)
-      "h341014f3".U(32.W), // 38 [Slot 2]: csrrw x9, 0x341, x0      (Read mepc into x9: expected 0x1C)
-      "h0000006f".U(32.W), // 3C [Slot 3]: jal   x0, 0              (Done loop)
-      "h00000013".U(32.W), // 40 [Slot 4]: nop
-      "h00000013".U(32.W)  // 44 [Slot 5]: nop
+      // --- BLOCK 2 (PC 0x80000040 - 0x8000005C): Machine Mode Trap Handler ---
+      "h05800393".U(32.W), // 40 [Word 0]: addi  x7, x0, 88         (Handler: x7 = 88)
+      "h34201473".U(32.W), // 44 [Word 1]: csrrw x8, 0x342, x0      (Read mcause into x8: expected 2)
+      "h341014f3".U(32.W), // 48 [Word 2]: csrrw x9, 0x341, x0      (Read mepc into x9: expected 0x80000024)
+      "h0000006f".U(32.W), // 4C [Word 3]: jal   x0, 0              (Done loop)
+      "h00000013".U(32.W), // 50 [Word 4]: nop
+      "h00000013".U(32.W), // 54 [Word 5]: nop
+      "h00000013".U(32.W), // 58 [Word 6]: nop
+      "h00000013".U(32.W)  // 5C [Word 7]: nop
     ).padTo(1024, "h00000013".U(32.W))
 
     var memLatencyCounter = 0

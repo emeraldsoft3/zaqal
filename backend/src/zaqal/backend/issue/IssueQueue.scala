@@ -14,6 +14,8 @@ class IssueQueue(val numEntries: Int, val numEnq: Int, val numDeq: Int, val numW
     val redirect_restore_idx = Input(UInt(log2Up(renameSnapshotNum).W))
     val redirect_enq_ptr = Input(UInt(log2Up(renameSnapshotNum).W))
     val redirect_deq_ptr = Input(UInt(log2Up(renameSnapshotNum).W))
+    val redirect_is_exception = Input(Bool())
+    val redirect_robIdx = Input(UInt(log2Up(128).W))
     
     val rs1_ready_in = Vec(numEnq, Input(Bool()))
     val rs2_ready_in = Vec(numEnq, Input(Bool()))
@@ -21,6 +23,7 @@ class IssueQueue(val numEntries: Int, val numEnq: Int, val numDeq: Int, val numW
 
     // Store AGU resolution port (XiangShan Store Sets MDP)
     val store_resolved = Input(Valid(UInt(log2Up(128).W)))
+    val robDeqPtr = Input(UInt(log2Up(128).W))
   })
 
   class IQEntry extends Bundle {
@@ -55,6 +58,24 @@ class IssueQueue(val numEntries: Int, val numEnq: Int, val numDeq: Int, val numW
     }
   }
 
+  val ageDetector = Module(new AgeDetector(numEntries, numEnq, numDeq))
+  val enq_onehot = Wire(Vec(numEnq, UInt(numEntries.W)))
+  for (e <- 0 until numEnq) enq_onehot(e) := 0.U
+  ageDetector.io.enq := enq_onehot
+
+  val is_sys = VecInit((0 until numEntries).map { i =>
+    entries(i).valid && (
+      entries(i).uop.decode.is_csr ||
+      entries(i).uop.decode.is_ecall ||
+      entries(i).uop.decode.is_ebreak ||
+      entries(i).uop.decode.is_mret ||
+      entries(i).uop.decode.is_sret ||
+      entries(i).uop.decode.is_wfi
+    )
+  })
+
+  def robDist(idx: UInt): UInt = Mux(idx >= io.robDeqPtr, idx - io.robDeqPtr, idx + 128.U - io.robDeqPtr)
+
   val can_issue = Wire(Vec(numEntries, Bool()))
   for (i <- 0 until numEntries) {
     val is_cfi = entries(i).uop.decode.is_branch || entries(i).uop.decode.is_jal || entries(i).uop.decode.is_jalr
@@ -69,24 +90,23 @@ class IssueQueue(val numEntries: Int, val numEnq: Int, val numDeq: Int, val numW
       (i.U =/= j.U) && j_is_cfi && j_is_older
     }).asUInt.orR
 
-    can_issue(i) := entries(i).valid && woken_rs1(i) && woken_rs2(i) && woken_rs3(i) && !entries(i).uop.loadWaitBit && !(is_cfi && has_older_cfi)
+    // A system instruction is only allowed to issue when it reaches the head of the ROB
+    val sys_at_rob_head = entries(i).uop.robIdx === io.robDeqPtr
+    val sys_can_issue = !is_sys(i) || sys_at_rob_head
+
+    // No younger instruction can issue ahead of an older system instruction in the ROB
+    val has_older_sys = VecInit((0 until numEntries).map { j =>
+      entries(j).valid && is_sys(j) && (i.U =/= j.U) && (robDist(entries(j).uop.robIdx) < robDist(entries(i).uop.robIdx))
+    }).asUInt.orR
+
+    can_issue(i) := entries(i).valid && woken_rs1(i) && woken_rs2(i) && woken_rs3(i) &&
+                    !entries(i).uop.loadWaitBit &&
+                    !(is_cfi && has_older_cfi) &&
+                    sys_can_issue &&
+                    !has_older_sys
   }
 
-  val ageDetector = Module(new AgeDetector(numEntries, numEnq, numDeq))
-  val enq_onehot = Wire(Vec(numEnq, UInt(numEntries.W)))
-  for (e <- 0 until numEnq) enq_onehot(e) := 0.U
-  ageDetector.io.enq := enq_onehot
-
-  val sys_mask = VecInit((0 until numEntries).map { i =>
-    entries(i).valid && (
-      entries(i).uop.decode.is_csr ||
-      entries(i).uop.decode.is_ecall ||
-      entries(i).uop.decode.is_ebreak ||
-      entries(i).uop.decode.is_mret ||
-      entries(i).uop.decode.is_sret ||
-      entries(i).uop.decode.is_wfi
-    )
-  }).asUInt
+  val sys_mask = is_sys.asUInt
 
   var current_can_issue = can_issue.asUInt
   val issue_onehot = Wire(Vec(numDeq, UInt(numEntries.W)))
@@ -185,7 +205,10 @@ class IssueQueue(val numEntries: Int, val numEnq: Int, val numDeq: Int, val numW
       val dist_restore = circDist(io.redirect_restore_idx)
       val dist_enq     = circDist(enqPtr)
       val in_valid_window  = dist_snap < dist_enq
-      val entry_is_younger = in_valid_window && dist_snap > dist_restore
+      val entry_is_younger = Mux(io.redirect_is_exception,
+        robDist(entries(i).uop.robIdx) > robDist(io.redirect_robIdx),
+        in_valid_window && dist_snap > dist_restore
+      )
       when (entries(i).valid) {
         printf(p"    Entry $i: pc=${Hexadecimal(entries(i).uop.uop.pc)} snapIdx=${entries(i).uop.snapshotIdx} is_younger=${entry_is_younger}\n")
       }
