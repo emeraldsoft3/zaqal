@@ -16,7 +16,7 @@ To run an Operating System, we need "Privilege Mode" and "Address Translation."
 - **XiangShan Study**: [ExceptionGen.scala](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/backend/rob/ExceptionGen.scala) - *How exceptions are tracked for state recovery.*
 
 ## Day 6-7: PMP & PMA
-- [ ] Implement Physical Memory Protection (PMP) and Physical Memory Attributes (PMA).
+- [x] Implement Physical Memory Protection (PMP) and Physical Memory Attributes (PMA).
 - **Detailed Plan**: Firmware (Machine mode) uses Physical Memory Protection (PMP) to enforce sandbox restrictions, preventing the OS or applications from accessing protected hardware ranges. Physical Memory Attributes (PMA) define whether memory regions are cacheable, executable, or memory-mapped I/O (MMIO). We will integrate these access control checks directly into the instruction fetch and load/store paths, raising access fault exceptions immediately upon violation.
 - **XiangShan Study**: [PMP.scala](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/backend/fu/PMP.scala) and [PMA.scala](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/backend/fu/PMA.scala).
 

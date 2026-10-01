@@ -6,6 +6,7 @@ import org.chipsalliance.cde.config.Parameters
 import zaqal._
 import zaqal.common._
 import zaqal.backend._
+import zaqal.backend.csr._
 
 class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter {
   val io = IO(new Bundle {
@@ -523,16 +524,57 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
     alu(i).io.dec  := exe_dec_int(i)
   }
 
+  // ---------------- PMP & PMA ACCESS PROTECTION ----------------
+  val is_store_agu = Wire(Vec(3, Bool()))
+  val is_load_agu  = Wire(Vec(3, Bool()))
+  val store_pmp_fault = Wire(Vec(3, Bool()))
+  val load_pmp_fault  = Wire(Vec(3, Bool()))
+
+  val pmp_mem_checker = Seq.fill(3)(Module(new PMPChecker(16)))
+
+  for (i <- 0 until 3) {
+    is_store_agu(i) := r_agu_val(i) && (r_agu_uop(i).decode.is_store || r_agu_uop(i).decode.is_fstore)
+    is_load_agu(i)  := r_agu_val(i) && (r_agu_uop(i).decode.is_load || r_agu_uop(i).decode.is_fload)
+
+    pmp_mem_checker(i).io.addr        := r_agu_paddr(i)
+    pmp_mem_checker(i).io.access_type := Mux(is_store_agu(i), PMPAccessType.STORE, PMPAccessType.LOAD)
+    pmp_mem_checker(i).io.priv_mode   := csr.io.priv_mode
+    pmp_mem_checker(i).io.pmpcfg      := csr.io.pmpcfg_out
+    pmp_mem_checker(i).io.pmpaddr     := csr.io.pmpaddr_out
+
+    store_pmp_fault(i) := is_store_agu(i) && pmp_mem_checker(i).io.fault
+    load_pmp_fault(i)  := is_load_agu(i) && pmp_mem_checker(i).io.fault
+  }
+
+  val is_store_pmp_fault = store_pmp_fault.asUInt.orR
+  val is_load_pmp_fault  = load_pmp_fault.asUInt.orR
+  val is_mem_fault       = is_store_pmp_fault || is_load_pmp_fault
+
+  val fault_store_idx = PriorityEncoder(store_pmp_fault.asUInt)
+  val fault_load_idx  = PriorityEncoder(load_pmp_fault.asUInt)
+  val fault_mem_idx   = Mux(is_store_pmp_fault, fault_store_idx, fault_load_idx)
+
   // ---------------- CSR & SYSTEM TRAP/RET EXECUTION (LANE 0) ----------------
   val is_ecall   = exe_val_int(0) && exe_dec_int(0).is_ecall
   val is_mret    = exe_val_int(0) && exe_dec_int(0).is_mret
   val is_sret    = exe_val_int(0) && exe_dec_int(0).is_sret
   val is_illegal = exe_val_int(0) && csr.io.is_illegal
+  val is_int_trap = is_ecall || is_illegal
 
   val ecall_cause = Mux(csr.io.priv_mode === zaqal.backend.csr.PrivMode.U, 8.U,
                     Mux(csr.io.priv_mode === zaqal.backend.csr.PrivMode.S, 9.U, 11.U))
-  val trap_cause  = Mux(is_illegal, 2.U, ecall_cause)
-  val trap_valid  = is_ecall || is_illegal
+  val int_trap_cause = Mux(is_illegal, 2.U, ecall_cause)
+  val mem_trap_cause = Mux(is_store_pmp_fault, 7.U, 5.U) // 7: Store Access Fault, 5: Load Access Fault
+
+  val trap_cause  = Mux(is_int_trap, int_trap_cause, mem_trap_cause)
+  val trap_valid  = is_int_trap || is_mem_fault
+
+  val mem_fault_pc    = r_agu_uop(fault_mem_idx).uop.pc
+  val mem_fault_paddr = r_agu_paddr(fault_mem_idx)
+  val mem_fault_epoch = r_agu_uop(fault_mem_idx).uop.epoch
+  val mem_fault_snap  = r_agu_uop(fault_mem_idx).snapshotIdx
+  val mem_fault_ftq   = r_agu_uop(fault_mem_idx).uop.ftqPtr
+  val mem_fault_rob   = r_agu_uop(fault_mem_idx).robIdx
 
   csr.io.csr_addr  := exe_dec_int(0).csr_addr
   csr.io.csr_cmd   := exe_dec_int(0).csr_cmd
@@ -542,9 +584,9 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   csr.io.flags_to_set := 0.U
 
   csr.io.trap_in.valid := trap_valid
-  csr.io.trap_in.epc   := exe_uop_raw_int(0).pc
+  csr.io.trap_in.epc   := Mux(is_int_trap, exe_uop_raw_int(0).pc, mem_fault_pc)
   csr.io.trap_in.cause := trap_cause
-  csr.io.trap_in.tval  := Mux(is_illegal, exe_uop_raw_int(0).inst_raw, 0.U)
+  csr.io.trap_in.tval  := Mux(is_int_trap, Mux(is_illegal, exe_uop_raw_int(0).inst_raw, 0.U), mem_fault_paddr)
   csr.io.mret_valid    := is_mret
   csr.io.sret_valid    := is_sret
 
@@ -663,17 +705,17 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   } .elsewhen(trap_valid) {
     io.redirect.valid := true.B
     io.redirect.target := csr.io.trap_target
-    io.redirect.epoch  := exe_uop_raw_int(0).epoch
+    io.redirect.epoch  := Mux(is_int_trap, exe_uop_raw_int(0).epoch, mem_fault_epoch)
     io.redirect.is_exception := true.B
     io.redirect.exc_cause    := trap_cause
-    io.redirect.snapshotIdx  := r0_snap
-    io.redirect.pc           := exe_uop_raw_int(0).pc
+    io.redirect.snapshotIdx  := Mux(is_int_trap, r0_snap, mem_fault_snap)
+    io.redirect.pc           := Mux(is_int_trap, exe_uop_raw_int(0).pc, mem_fault_pc)
     io.redirect.taken        := false.B
     io.redirect.is_cfi       := false.B
     io.redirect.is_jal       := false.B
     io.redirect.is_jalr      := false.B
-    io.redirect.ftqPtr       := exe_uop_raw_int(0).ftqPtr
-    io.redirect.robIdx       := exe_uop_int(0).robIdx
+    io.redirect.ftqPtr       := Mux(is_int_trap, exe_uop_raw_int(0).ftqPtr, mem_fault_ftq)
+    io.redirect.robIdx       := Mux(is_int_trap, exe_uop_int(0).robIdx, mem_fault_rob)
   } .elsewhen(is_mret) {
     io.redirect.valid := true.B
     io.redirect.target := csr.io.mepc_val
@@ -866,7 +908,8 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
     lsu(i).io.mem_data := Mux(stlf_hit, sq.io.stlf_resp(i).wdata, dmem.io.rdata(i))
 
     // Writeback to PRF / Write-back Staging (Port 4 for LSU 0, Port 5 for LSU 1)
-    when(r_agu_val(i) && r_agu_uop(i).pdest =/= 0.U) {
+    val is_this_ld_fault = load_pmp_fault(i)
+    when(r_agu_val(i) && r_agu_uop(i).pdest =/= 0.U && !is_this_ld_fault) {
       when(r_agu_uop(i).decode.is_load || r_agu_uop(i).decode.is_atomic) {
         when(!r_agu_uop(i).decode.is_fload) {
           next_regFile_wen(4 + i)   := true.B
@@ -902,20 +945,27 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   lsu(2).io.dec  := r_agu_uop(2).decode
   lsu(2).io.mem_data := 0.U
 
-  sq.io.write.valid  := r_agu_val(2) && (r_agu_uop(2).decode.is_store || r_agu_uop(2).decode.is_fstore)
-  sq.io.write.robIdx := r_agu_uop(2).robIdx
-  sq.io.write.paddr  := lsu(2).io.mem_addr
-  sq.io.write.wmask  := lsu(2).io.mem_wmask
-  sq.io.write.wdata  := lsu(2).io.mem_wdata
+  val active_store_port = PriorityEncoder(is_store_agu.asUInt)
+  val has_active_store  = is_store_agu.asUInt.orR
 
-  lq.io.store_snoop.valid  := r_agu_val(2) && (r_agu_uop(2).decode.is_store || r_agu_uop(2).decode.is_fstore)
-  lq.io.store_snoop.robIdx := r_agu_uop(2).robIdx
-  lq.io.store_snoop.paddr  := lsu(2).io.mem_addr
-  lq.io.store_snoop.mask   := lsu(2).io.mem_wmask
-  lq.io.store_snoop.pc     := r_agu_uop(2).uop.pc
+  val lsu_mem_addr  = VecInit(lsu.map(_.io.mem_addr))
+  val lsu_mem_wmask = VecInit(lsu.map(_.io.mem_wmask))
+  val lsu_mem_wdata = VecInit(lsu.map(_.io.mem_wdata))
 
-  io.store_resolved.valid  := r_agu_val(2) && (r_agu_uop(2).decode.is_store || r_agu_uop(2).decode.is_fstore)
-  io.store_resolved.bits   := r_agu_uop(2).robIdx
+  sq.io.write.valid  := has_active_store && !is_store_pmp_fault
+  sq.io.write.robIdx := r_agu_uop(active_store_port).robIdx
+  sq.io.write.paddr  := lsu_mem_addr(active_store_port)
+  sq.io.write.wmask  := lsu_mem_wmask(active_store_port)
+  sq.io.write.wdata  := lsu_mem_wdata(active_store_port)
+
+  lq.io.store_snoop.valid  := has_active_store && !is_store_pmp_fault
+  lq.io.store_snoop.robIdx := r_agu_uop(active_store_port).robIdx
+  lq.io.store_snoop.paddr  := lsu_mem_addr(active_store_port)
+  lq.io.store_snoop.mask   := lsu_mem_wmask(active_store_port)
+  lq.io.store_snoop.pc     := r_agu_uop(active_store_port).uop.pc
+
+  io.store_resolved.valid  := has_active_store && !is_store_pmp_fault
+  io.store_resolved.bits   := r_agu_uop(active_store_port).robIdx
 
   // DataMem connections
   dmem.io.raddr(0) := lsu(0).io.mem_addr
@@ -1084,11 +1134,13 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
     io.exuWriteback(4 + i).valid := r_agu_val(i)
     io.exuWriteback(4 + i).bits.robIdx := r_agu_uop(i).robIdx
     io.exuWriteback(4 + i).bits.data := wb_ld_data(i)
+    io.exuWriteback(4 + i).bits.exceptionVec := Mux(store_pmp_fault(i), 7.U, Mux(load_pmp_fault(i), 5.U, 0.U))
   }
 
   // LSU 2 (Store pipe, Port 6)
   io.exuWriteback(6).valid := r_agu_val(2)
   io.exuWriteback(6).bits.robIdx := r_agu_uop(2).robIdx
+  io.exuWriteback(6).bits.exceptionVec := Mux(store_pmp_fault(2), 7.U, Mux(load_pmp_fault(2), 5.U, 0.U))
 
   // Dividers 0 & 1 (Ports 7, 8)
   for (i <- 0 until 2) {

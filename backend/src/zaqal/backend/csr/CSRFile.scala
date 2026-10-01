@@ -45,6 +45,26 @@ object CSRAddr {
   val mhartid   = "hf14".U(12.W)
   val mcycle    = "hb00".U(12.W)
   val minstret  = "hb02".U(12.W)
+
+  // Physical Memory Protection (PMP)
+  val pmpcfg0   = "h3a0".U(12.W)
+  val pmpcfg2   = "h3a2".U(12.W)
+  val pmpaddr0  = "h3b0".U(12.W)
+  val pmpaddr1  = "h3b1".U(12.W)
+  val pmpaddr2  = "h3b2".U(12.W)
+  val pmpaddr3  = "h3b3".U(12.W)
+  val pmpaddr4  = "h3b4".U(12.W)
+  val pmpaddr5  = "h3b5".U(12.W)
+  val pmpaddr6  = "h3b6".U(12.W)
+  val pmpaddr7  = "h3b7".U(12.W)
+  val pmpaddr8  = "h3b8".U(12.W)
+  val pmpaddr9  = "h3b9".U(12.W)
+  val pmpaddr10 = "h3ba".U(12.W)
+  val pmpaddr11 = "h3bb".U(12.W)
+  val pmpaddr12 = "h3bc".U(12.W)
+  val pmpaddr13 = "h3bd".U(12.W)
+  val pmpaddr14 = "h3be".U(12.W)
+  val pmpaddr15 = "h3bf".U(12.W)
 }
 
 object PrivMode {
@@ -91,6 +111,10 @@ class CSRFile(implicit val p: Parameters) extends Module with HasZaqalParameter 
     val mstatus_val  = Output(UInt(xLen.W))
     val stvec_val    = Output(UInt(xLen.W))
     val mtvec_val    = Output(UInt(xLen.W))
+
+    // PMP Architectural Outputs
+    val pmpcfg_out   = Output(Vec(16, new PMPConfig))
+    val pmpaddr_out  = Output(Vec(16, UInt(xLen.W)))
   })
 
   // =========================================================================
@@ -177,6 +201,10 @@ class CSRFile(implicit val p: Parameters) extends Module with HasZaqalParameter 
   // Virtual Memory: satp (MODE 63:60, ASID 59:44, PPN 43:0)
   val r_satp = RegInit(0.U(xLen.W))
 
+  // Physical Memory Protection Registers (16 entries)
+  val r_pmpcfg  = RegInit(VecInit(Seq.fill(16)(0.U.asTypeOf(new PMPConfig))))
+  val r_pmpaddr = RegInit(VecInit(Seq.fill(16)(0.U(xLen.W))))
+
   // FPU Registers
   val r_frm    = RegInit(0.U(3.W))
   val r_fflags = RegInit(0.U(5.W))
@@ -236,6 +264,26 @@ class CSRFile(implicit val p: Parameters) extends Module with HasZaqalParameter 
     is(CSRAddr.mhartid)   { rdata := 0.U }
     is(CSRAddr.mcycle)    { rdata := r_mcycle }
     is(CSRAddr.minstret)  { rdata := r_minstret }
+
+    // Physical Memory Protection CSRs
+    is(CSRAddr.pmpcfg0)   { rdata := Cat((0 until 8).reverse.map(i => r_pmpcfg(i).asUInt)) }
+    is(CSRAddr.pmpcfg2)   { rdata := Cat((8 until 16).reverse.map(i => r_pmpcfg(i).asUInt)) }
+    is(CSRAddr.pmpaddr0)  { rdata := r_pmpaddr(0) }
+    is(CSRAddr.pmpaddr1)  { rdata := r_pmpaddr(1) }
+    is(CSRAddr.pmpaddr2)  { rdata := r_pmpaddr(2) }
+    is(CSRAddr.pmpaddr3)  { rdata := r_pmpaddr(3) }
+    is(CSRAddr.pmpaddr4)  { rdata := r_pmpaddr(4) }
+    is(CSRAddr.pmpaddr5)  { rdata := r_pmpaddr(5) }
+    is(CSRAddr.pmpaddr6)  { rdata := r_pmpaddr(6) }
+    is(CSRAddr.pmpaddr7)  { rdata := r_pmpaddr(7) }
+    is(CSRAddr.pmpaddr8)  { rdata := r_pmpaddr(8) }
+    is(CSRAddr.pmpaddr9)  { rdata := r_pmpaddr(9) }
+    is(CSRAddr.pmpaddr10) { rdata := r_pmpaddr(10) }
+    is(CSRAddr.pmpaddr11) { rdata := r_pmpaddr(11) }
+    is(CSRAddr.pmpaddr12) { rdata := r_pmpaddr(12) }
+    is(CSRAddr.pmpaddr13) { rdata := r_pmpaddr(13) }
+    is(CSRAddr.pmpaddr14) { rdata := r_pmpaddr(14) }
+    is(CSRAddr.pmpaddr15) { rdata := r_pmpaddr(15) }
   }
 
   io.csr_rdata := rdata
@@ -295,7 +343,10 @@ class CSRFile(implicit val p: Parameters) extends Module with HasZaqalParameter 
   // State-mutating writes that require refetch / pipeline flush
   val is_flush_csr = (io.csr_addr === CSRAddr.satp) ||
                      (io.csr_addr === CSRAddr.mstatus) ||
-                     (io.csr_addr === CSRAddr.sstatus)
+                     (io.csr_addr === CSRAddr.sstatus) ||
+                     (io.csr_addr === CSRAddr.pmpcfg0) ||
+                     (io.csr_addr === CSRAddr.pmpcfg2) ||
+                     (io.csr_addr >= CSRAddr.pmpaddr0 && io.csr_addr <= CSRAddr.pmpaddr15)
   io.flush_pipe := do_write && is_flush_csr
 
   // =========================================================================
@@ -377,6 +428,38 @@ class CSRFile(implicit val p: Parameters) extends Module with HasZaqalParameter 
       is(CSRAddr.mip)      { r_mip := wdata_eff }
       is(CSRAddr.mcycle)   { r_mcycle := wdata_eff }
       is(CSRAddr.minstret) { r_minstret := wdata_eff }
+
+      // Physical Memory Protection Writes (respecting lock bit L)
+      is(CSRAddr.pmpcfg0) {
+        for (i <- 0 until 8) {
+          when(!r_pmpcfg(i).l) {
+            r_pmpcfg(i) := wdata_eff(i * 8 + 7, i * 8).asTypeOf(new PMPConfig)
+          }
+        }
+      }
+      is(CSRAddr.pmpcfg2) {
+        for (i <- 8 until 16) {
+          when(!r_pmpcfg(i).l) {
+            r_pmpcfg(i) := wdata_eff((i - 8) * 8 + 7, (i - 8) * 8).asTypeOf(new PMPConfig)
+          }
+        }
+      }
+      is(CSRAddr.pmpaddr0)  { when(!r_pmpcfg(0).l)  { r_pmpaddr(0)  := wdata_eff } }
+      is(CSRAddr.pmpaddr1)  { when(!r_pmpcfg(1).l)  { r_pmpaddr(1)  := wdata_eff } }
+      is(CSRAddr.pmpaddr2)  { when(!r_pmpcfg(2).l)  { r_pmpaddr(2)  := wdata_eff } }
+      is(CSRAddr.pmpaddr3)  { when(!r_pmpcfg(3).l)  { r_pmpaddr(3)  := wdata_eff } }
+      is(CSRAddr.pmpaddr4)  { when(!r_pmpcfg(4).l)  { r_pmpaddr(4)  := wdata_eff } }
+      is(CSRAddr.pmpaddr5)  { when(!r_pmpcfg(5).l)  { r_pmpaddr(5)  := wdata_eff } }
+      is(CSRAddr.pmpaddr6)  { when(!r_pmpcfg(6).l)  { r_pmpaddr(6)  := wdata_eff } }
+      is(CSRAddr.pmpaddr7)  { when(!r_pmpcfg(7).l)  { r_pmpaddr(7)  := wdata_eff } }
+      is(CSRAddr.pmpaddr8)  { when(!r_pmpcfg(8).l)  { r_pmpaddr(8)  := wdata_eff } }
+      is(CSRAddr.pmpaddr9)  { when(!r_pmpcfg(9).l)  { r_pmpaddr(9)  := wdata_eff } }
+      is(CSRAddr.pmpaddr10) { when(!r_pmpcfg(10).l) { r_pmpaddr(10) := wdata_eff } }
+      is(CSRAddr.pmpaddr11) { when(!r_pmpcfg(11).l) { r_pmpaddr(11) := wdata_eff } }
+      is(CSRAddr.pmpaddr12) { when(!r_pmpcfg(12).l) { r_pmpaddr(12) := wdata_eff } }
+      is(CSRAddr.pmpaddr13) { when(!r_pmpcfg(13).l) { r_pmpaddr(13) := wdata_eff } }
+      is(CSRAddr.pmpaddr14) { when(!r_pmpcfg(14).l) { r_pmpaddr(14) := wdata_eff } }
+      is(CSRAddr.pmpaddr15) { when(!r_pmpcfg(15).l) { r_pmpaddr(15) := wdata_eff } }
     }
   }
 
@@ -392,4 +475,6 @@ class CSRFile(implicit val p: Parameters) extends Module with HasZaqalParameter 
   io.mstatus_val := mstatus
   io.stvec_val   := r_stvec
   io.mtvec_val   := r_mtvec
+  io.pmpcfg_out  := r_pmpcfg
+  io.pmpaddr_out := r_pmpaddr
 }
