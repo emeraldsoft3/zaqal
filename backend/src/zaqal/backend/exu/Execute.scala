@@ -69,6 +69,7 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   val dmem = Module(new DataMem)
   val tlb  = Seq.fill(3)(Module(new FastTLB))
   val csr  = Module(new zaqal.backend.csr.CSRFile)
+  val ptw  = Module(new zaqal.backend.mmu.PageTableWalker)
 
   // ---------------- LOAD / STORE QUEUES ----------------
   val sq = Module(new zaqal.backend.lsu.StoreQueue(16))
@@ -876,6 +877,38 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
     r_agu_paddr(i) := tlb(i).io.paddr
     r_agu_src2(i)  := src_mem_2(i)
     r_agu_fsrc2(i) := fsrc_mem_2(i)
+  }
+
+  // ---------------- PAGE TABLE WALKER (PTW) CONNECTIONS ----------------
+  ptw.io.satp_mode   := csr.io.satp_mode
+  ptw.io.satp_asid   := csr.io.satp_asid
+  ptw.io.satp_ppn    := csr.io.satp_ppn
+  ptw.io.sstatus_sum := csr.io.mstatus_val(18)
+  ptw.io.sstatus_mxr := csr.io.mstatus_val(19)
+  ptw.io.priv_mode   := csr.io.priv_mode
+  ptw.io.pmpcfg      := csr.io.pmpcfg_out
+  ptw.io.pmpaddr     := csr.io.pmpaddr_out
+  ptw.io.flush       := io.redirect.valid
+
+  // PTW Memory access directly backed by DataMem
+  dmem.io.ptw_raddr     := ptw.io.mem_req.bits
+  ptw.io.mem_req.ready  := true.B
+  ptw.io.mem_resp.valid := RegNext(ptw.io.mem_req.valid, false.B)
+  ptw.io.mem_resp.bits  := RegNext(dmem.io.ptw_rdata, 0.U)
+
+  // PTW Request from LSU Miss on Lane 0
+  val tlb_miss_lane0 = r_agu_val(0) && !tlb(0).io.hit && (csr.io.satp_mode === 8.U)
+  ptw.io.req.valid            := tlb_miss_lane0
+  ptw.io.req.bits.vaddr       := r_agu_vaddr(0)
+  ptw.io.req.bits.access_type := Mux(r_agu_uop(0).decode.is_store, zaqal.backend.mmu.PTWAccessType.STORE, zaqal.backend.mmu.PTWAccessType.LOAD)
+  ptw.io.req.bits.priv_mode   := csr.io.priv_mode
+
+  // FastTLB Refill from PTW
+  for (i <- 0 until 3) {
+    tlb(i).io.refill.valid    := ptw.io.resp.valid && !ptw.io.resp.bits.page_fault && !ptw.io.resp.bits.access_fault
+    tlb(i).io.refill.bits.vpn := ptw.io.resp.bits.vaddr(xLen - 1, 12)
+    tlb(i).io.refill.bits.ppn := ptw.io.resp.bits.paddr(xLen - 1, 12)
+    tlb(i).io.flush           := io.redirect.valid
   }
 
   // MEM (CACHE ACCESS STAGE - CYCLE 3)

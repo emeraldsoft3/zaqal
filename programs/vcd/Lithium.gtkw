@@ -1,12 +1,12 @@
 [*]
 [*] GTKWave Analyzer v3.3.111 (w)1999-2020 BSI
-[*] Thu Oct  1 08:21:19 2026
+[*] Fri Oct  2 08:58:38 2026
 [*]
 [dumpfile] "/home/emerald/zaqal/programs/vcd/Lithium.vcd"
-[dumpfile_mtime] "Thu Oct  1 07:02:49 2026"
-[dumpfile_size] 17784483
+[dumpfile_mtime] "Fri Oct  2 08:03:07 2026"
+[dumpfile_size] 14894132
 [savefile] "/home/emerald/zaqal/programs/vcd/Lithium.gtkw"
-[timestart] 86
+[timestart] 0
 [size] 1865 930
 [pos] -1 -1
 *-2.900000 677 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
@@ -768,6 +768,12 @@ TOP.Core.backend.dcache.mshr.io_alloc_valid
 TOP.Core.backend.dcache.isHit
 @1401200
 -Dcache
+@800201
+-PTW
+@29
+TOP.Core.backend.exec.ptw.state[2:0]
+@1000201
+-PTW
 @24
 [color] 6
 TOP.debug_cycle_count[63:0]

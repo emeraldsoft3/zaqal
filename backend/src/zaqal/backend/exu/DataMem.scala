@@ -15,11 +15,16 @@ class DataMem(implicit val p: Parameters) extends Module with HasZaqalParameter 
     val wen   = Input(Bool())
     val wmask = Input(UInt(16.W))          // 16-bit strobe for 128 bits
     val wdata = Input(UInt((xLen * 2).W))
+
+    // Dedicated Page Table Walker Read Port
+    val ptw_raddr = Input(UInt(xLen.W))
+    val ptw_rdata = Output(UInt(64.W))
   })
 
   // Memory now uses RegInit to allow persistent writes
+  // mem(0) initialized as Sv39 Level 2 1GB Gigapage Leaf PTE (PPN=0x80000, D=1, A=1, U=1, X=1, W=1, R=1, V=1)
   val mem = RegInit(VecInit(Seq(
-    "hAABBCCDD11223344".U, // 0x00: Distinct bytes
+    "h00000000200000DF".U, // 0x00: Sv39 1GB Root Leaf PTE for VPN[2]=0 -> PA 0x80000000
     "h5566778899AABBCC".U, // 0x08: Distinct bytes
     "hFFEEDDCCBBAA9988".U, // 0x10: MSB set (0xFF)
     "h706050403020100F".U  // 0x18: Offset test
@@ -36,6 +41,9 @@ class DataMem(implicit val p: Parameters) extends Module with HasZaqalParameter 
   val index = io.addr(8, 3) 
   val index_next = index + 1.U
   io.data := Cat(mem(index_next), mem(index))
+
+  // Dedicated PTW port read
+  io.ptw_rdata := mem(io.ptw_raddr(8, 3))
 
   // Masked Write Implementation (16-bit)
   val bitMask = Cat(Seq.tabulate(16)(i => Fill(8, io.wmask(i))).reverse)

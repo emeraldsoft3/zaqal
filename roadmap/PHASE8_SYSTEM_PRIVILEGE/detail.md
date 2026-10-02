@@ -26,7 +26,7 @@ To run an Operating System, we need "Privilege Mode" and "Address Translation."
 - **XiangShan Study**: [TLB.scala](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/cache/mmu/TLB.scala) - *Study the TLB architecture.*
 
 ## Day 11-13: Page Table Walker
-- [ ] Implement a hardware walker for Sv39 page tables.
+- [x] Implement a hardware walker for Sv39 page tables.
 - **Detailed Plan**: When a TLB miss occurs, the processor must traverse the Page Tables located in main memory to find the translation. We will implement a hardware Page Table Walker (PTW) compliant with the RISC-V Sv39 standard (3-level radix tree). The PTW is a complex finite state machine that automatically performs memory loads, walking down the page table directory hierarchy, checking access permissions at each level, and refilling the TLB upon success or raising a page fault exception on failure.
 - **XiangShan Study**: [PageTableWalker.scala](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/cache/mmu/PageTableWalker.scala) - *Study the state machine for page walking.*
 
