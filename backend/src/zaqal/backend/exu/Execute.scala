@@ -888,7 +888,7 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   ptw.io.priv_mode   := csr.io.priv_mode
   ptw.io.pmpcfg      := csr.io.pmpcfg_out
   ptw.io.pmpaddr     := csr.io.pmpaddr_out
-  ptw.io.flush       := io.redirect.valid
+  ptw.io.flush       := io.redirect.valid && io.redirect.is_exception
 
   // PTW Memory access directly backed by DataMem
   dmem.io.ptw_raddr     := ptw.io.mem_req.bits
@@ -908,7 +908,7 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
     tlb(i).io.refill.valid    := ptw.io.resp.valid && !ptw.io.resp.bits.page_fault && !ptw.io.resp.bits.access_fault
     tlb(i).io.refill.bits.vpn := ptw.io.resp.bits.vaddr(xLen - 1, 12)
     tlb(i).io.refill.bits.ppn := ptw.io.resp.bits.paddr(xLen - 1, 12)
-    tlb(i).io.flush           := io.redirect.valid
+    tlb(i).io.flush           := io.redirect.valid && io.redirect.is_exception
   }
 
   // MEM (CACHE ACCESS STAGE - CYCLE 3)

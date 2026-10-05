@@ -21,29 +21,34 @@ class DataMem(implicit val p: Parameters) extends Module with HasZaqalParameter 
     val ptw_rdata = Output(UInt(64.W))
   })
 
-  // Memory now uses RegInit to allow persistent writes
-  // mem(0) initialized as Sv39 Level 2 1GB Gigapage Leaf PTE (PPN=0x80000, D=1, A=1, U=1, X=1, W=1, R=1, V=1)
-  val mem = RegInit(VecInit(Seq(
-    "h00000000200000DF".U, // 0x00: Sv39 1GB Root Leaf PTE for VPN[2]=0 -> PA 0x80000000
-    "h5566778899AABBCC".U, // 0x08: Distinct bytes
-    "hFFEEDDCCBBAA9988".U, // 0x10: MSB set (0xFF)
-    "h706050403020100F".U  // 0x18: Offset test
-  ).padTo(64, 0.U)))
+  // Memory uses RegInit to allow persistent writes
+  // mem has 1024 entries (8KB) to support multi-level page tables:
+  // Page 0 (0x0000 - 0x0FF8): Root Level 2 Page Table (PPN=0)
+  // Page 1 (0x1000 - 0x1FF8): Level 1 Page Table (PPN=1)
+  val memInit = Seq.tabulate(1024) { i =>
+    if (i == 0) "h00000000200000DF".U(64.W)       // 0x0000: Sv39 1GB Root Leaf PTE for VPN[2]=0 -> PA 0x80000000 (Test 1)
+    else if (i == 1) "h0000000000000401".U(64.W) // 0x0008: Sv39 Level 2 Pointer PTE for VPN[2]=1 -> Points to Level 1 table at PPN=1 (0x1000) (Test 2)
+    else if (i == 2) "hFFEEDDCCBBAA9988".U(64.W) // 0x0010: Test 1 loaded data (at PA 0x80000010)
+    else if (i == 3) "h706050403020100F".U(64.W) // 0x0018: Offset test
+    else if (i == 4) "h1122334455667788".U(64.W) // 0x0020: Test 2 loaded data (at PA 0x80000020)
+    else if (i == 513) "h00000000200000DF".U(64.W) // 0x1008: Sv39 Level 1 2MB Megapage Leaf PTE for VPN[1]=1 -> PA 0x80000000 (Test 2)
+    else 0.U(64.W)
+  }
+  val mem = RegInit(VecInit(memInit))
 
   for (p <- 0 until 2) {
-    val idx = io.raddr(p)(8, 3)
-    val idx_next = idx + 1.U
+    val idx = io.raddr(p)(12, 3)
+    val idx_next = Mux(idx === 1023.U, 0.U, idx + 1.U)
     io.rdata(p) := Cat(mem(idx_next), mem(idx))
   }
 
-  // Basic address decoding (ignoring higher bits for now)
-  // We divide by 8 because the Vec is indexed by Doubleword (64-bit)
-  val index = io.addr(8, 3) 
-  val index_next = index + 1.U
+  // Basic address decoding using bits (12, 3) for 1024 doubleword capacity (8KB)
+  val index = io.addr(12, 3) 
+  val index_next = Mux(index === 1023.U, 0.U, index + 1.U)
   io.data := Cat(mem(index_next), mem(index))
 
   // Dedicated PTW port read
-  io.ptw_rdata := mem(io.ptw_raddr(8, 3))
+  io.ptw_rdata := mem(io.ptw_raddr(12, 3))
 
   // Masked Write Implementation (16-bit)
   val bitMask = Cat(Seq.tabulate(16)(i => Fill(8, io.wmask(i))).reverse)

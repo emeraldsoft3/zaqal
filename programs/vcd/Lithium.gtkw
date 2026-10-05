@@ -1,12 +1,12 @@
 [*]
 [*] GTKWave Analyzer v3.3.111 (w)1999-2020 BSI
-[*] Fri Oct  2 08:58:38 2026
+[*] Mon Oct  5 05:02:50 2026
 [*]
 [dumpfile] "/home/emerald/zaqal/programs/vcd/Lithium.vcd"
 [dumpfile_mtime] "Fri Oct  2 08:03:07 2026"
 [dumpfile_size] 14894132
 [savefile] "/home/emerald/zaqal/programs/vcd/Lithium.gtkw"
-[timestart] 0
+[timestart] 368
 [size] 1865 930
 [pos] -1 -1
 *-2.900000 677 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
@@ -17,6 +17,7 @@
 [treeopen] TOP.Core.backend.dcache.prefetcher.
 [treeopen] TOP.Core.backend.exec.
 [treeopen] TOP.Core.backend.exec.bru_0.
+[treeopen] TOP.Core.backend.exec.ptw.
 [treeopen] TOP.Core.backend.intFreeList.
 [treeopen] TOP.Core.backend.intIq.
 [treeopen] TOP.Core.backend.memIq.
@@ -34,7 +35,7 @@
 +{TOP.Core.cycle_reg[63:0]} TOP.Core.cycle_reg[63:0]
 @28
 TOP.Core.frontend.bpu.io_redirect_valid
-@800200
+@c00200
 -CSR
 @28
 TOP.Core.backend.exec.csr.io_priv_mode[1:0]
@@ -56,9 +57,9 @@ TOP.Core.backend.exec.csr.io_trap_in_valid
 +{TOP.Core.backend.exec.csr.io_trap_in_cause[63:0]} TOP.Core.backend.exec.csr.io_trap_in_cause[63:0]
 TOP.Core.backend.exec.csr.r_mcause[63:0]
 +{TOP.Core.backend.exec.csr.r_mepc[63:0]} TOP.Core.backend.exec.csr.r_mepc[63:0]
-@1000200
+@1401200
 -CSR
-@800200
+@c00200
 -BPU
 @22
 +{TOP.Core.frontend.bpu.s0_pc[63:0]} TOP.Core.frontend.bpu.s0_pc[63:0]
@@ -74,7 +75,7 @@ TOP.Core.frontend.bpu.bpu_update_is_jal
 TOP.Core.frontend.bpu.bpu_update_is_jalr
 TOP.Core.frontend.bpu.bpu_update_taken
 TOP.Core.frontend.bpu.final_taken
-@1000200
+@1401200
 -BPU
 @c00200
 -ftb
@@ -740,7 +741,7 @@ TOP.Core.backend.memIq.entries_6_uop_uop_pc[63:0]
 TOP.Core.backend.memIq.entries_7_uop_uop_pc[63:0]
 @1401200
 -memiq
-@800200
+@c00200
 -storeset
 @28
 TOP.Core.backend.storeSet.ssit.valid_array_0
@@ -755,7 +756,7 @@ TOP.Core.backend.storeSet.ssit.ssid_array_1[5:0]
 @28
 TOP.Core.backend.storeSet.lfst.io_resp_0_shouldWait
 +{TOP.Core.backend.exec.sq.io_write_valid} TOP.Core.backend.exec.sq.io_write_valid
-@1000200
+@1401200
 -storeset
 @c00200
 -Dcache
@@ -768,11 +769,18 @@ TOP.Core.backend.dcache.mshr.io_alloc_valid
 TOP.Core.backend.dcache.isHit
 @1401200
 -Dcache
-@800201
+@800200
 -PTW
-@29
+@28
 TOP.Core.backend.exec.ptw.state[2:0]
-@1000201
+TOP.Core.backend.exec.ptw.curr_level[1:0]
+@22
++{TOP.Core.backend.exec.ptw.pte_reg[63:0]} TOP.Core.backend.exec.ptw.pte_reg[63:0]
+@28
+TOP.Core.backend.exec.ptw.io_resp_valid
+@23
+TOP.Core.backend.exec.ptw.translated_paddr[63:0]
+@1000200
 -PTW
 @24
 [color] 6

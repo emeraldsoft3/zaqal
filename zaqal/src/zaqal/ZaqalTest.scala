@@ -87,15 +87,25 @@ object ZaqalTest extends App {
       "h00000013".U(32.W), // 18 [Word 6]: nop
       "h00000013".U(32.W), // 1C [Word 7]: nop
 
-      // --- BLOCK 1 (PC 0x80000020 - 0x8000003C): Virtual Memory Access & PTW Refill ---
-      "h01003283".U(32.W), // 20 [Word 0]: ld    x5, 0x10(x0)       (Triggers TLB Miss -> Hardware PTW Refills TLB -> Loads data!)
-      "h04d00393".U(32.W), // 24 [Word 1]: addi  x7, x0, 77         (SUCCESS FLAG: x7 = 77 / 0x4D)
-      "h0000006f".U(32.W), // 28 [Word 2]: jal   x0, 0              (Done loop)
-      "h00000013".U(32.W), // 2C [Word 3]: nop
-      "h00000013".U(32.W), // 30 [Word 4]: nop
-      "h00000013".U(32.W), // 34 [Word 5]: nop
-      "h00000013".U(32.W), // 38 [Word 6]: nop
-      "h00000013".U(32.W)  // 3C [Word 7]: nop
+      // --- BLOCK 1 (PC 0x80000020 - 0x8000003C): 2MB Virtual Memory Access & 2-Level PTW Refill ---
+      "h40200237".U(32.W), // 20 [Word 0]: lui   x4, 0x40200        (x4 = 0x40200000, preparing vaddr with VPN[2]=1, VPN[1]=1)
+      "h02023283".U(32.W), // 24 [Word 1]: ld    x5, 0x20(x4)       (Cold Access -> vaddr = 0x40200020 -> 2-Level Sv39 PTW Traversal!)
+      "h00100513".U(32.W), // 28 [Word 2]: addi  x10, x0, 1         (Delay cycle for 2-level PTW FSM walk)
+      "h00150513".U(32.W), // 2C [Word 3]: addi  x10, x10, 1        (Delay cycle)
+      "h00150513".U(32.W), // 30 [Word 4]: addi  x10, x10, 1        (Delay cycle)
+      "h00150513".U(32.W), // 34 [Word 5]: addi  x10, x10, 1        (Delay cycle)
+      "h00150513".U(32.W), // 38 [Word 6]: addi  x10, x10, 1        (Delay cycle)
+      "h00150513".U(32.W), // 3C [Word 7]: addi  x10, x10, 1        (Delay cycle)
+
+      // --- BLOCK 2 (PC 0x80000040 - 0x8000005C): Post-Refill 2MB TLB Hit Access ---
+      "h02023303".U(32.W), // 40 [Word 0]: ld    x6, 0x20(x4)       (WARM ACCESS -> 2MB TLB HIT! io_hit=1, io_paddr=0x80000020!)
+      "h04d00393".U(32.W), // 44 [Word 1]: addi  x7, x0, 77         (SUCCESS FLAG: x7 = 77 / 0x4D)
+      "h0000006f".U(32.W), // 48 [Word 2]: jal   x0, 0              (Done loop)
+      "h00000013".U(32.W), // 4C [Word 3]: nop
+      "h00000013".U(32.W), // 50 [Word 4]: nop
+      "h00000013".U(32.W), // 54 [Word 5]: nop
+      "h00000013".U(32.W), // 58 [Word 6]: nop
+      "h00000013".U(32.W)  // 5C [Word 7]: nop
     ).padTo(1024, "h00000013".U(32.W))
 
     var memLatencyCounter = 0

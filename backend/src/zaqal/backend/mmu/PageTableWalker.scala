@@ -243,7 +243,7 @@ class PageTableWalker(implicit val p: Parameters) extends Module with HasZaqalPa
         // 2. Privilege protection check
         val priv_fault = Mux(req_priv_mode === PrivMode.U,
           !pte_u,                   // User mode cannot access supervisor pages (U=0)
-          pte_u && !io.sstatus_sum  // Supervisor cannot access user pages (U=1) unless SUM=1
+          Mux(req_priv_mode === PrivMode.M, false.B, pte_u && !io.sstatus_sum) // Supervisor cannot access user pages unless SUM=1
         )
 
         // 3. Access permission check
