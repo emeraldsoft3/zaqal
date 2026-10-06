@@ -46,7 +46,7 @@ object ZaqalTest extends App {
 
 
     // =========================================================================
-    // DAY 11-13 TEST PROGRAM 1: HARDWARE SV39 PAGE TABLE WALKER (1GB GIGAPAGE WALK & REFILL)
+    // DAY 11-13 TEST PROGRAM 6: HARDWARE SV39 PERMISSION VIOLATION (EXECUTE-ONLY PAGE LOAD)
     // =========================================================================
     // Block-Aligned Fetch Structure (32-byte / 8-instruction fetch blocks):
     //
@@ -60,21 +60,26 @@ object ZaqalTest extends App {
     // - 0x18: nop
     // - 0x1C: nop
     //
-    // Block 1 (PC 0x80000020 - 0x8000003C) [Virtual Memory Access & TLB Refill]:
-    // - 0x20: ld    x5, 0x10(x0)       [TLB MISS ON VADDR 0x10]:
+    // Block 1 (PC 0x80000020 - 0x8000003C) [Pipeline Stabilization NOP Cushion]:
+    // - 8x NOP (allows csrrw satp to fully commit without speculative memory requests)
+    //
+    // Block 2 (PC 0x80000040 - 0x8000005C) [Execute-Only Virtual Access & Permission Fault]:
+    // - 0x40: lui   x4, 0x40600        (x4 = 0x40600000, preparing vaddr with VPN[2]=1, VPN[1]=3)
+    // - 0x44: ld    x5, 0x10(x4)       [TLB MISS ON EXECUTE-ONLY VADDR 0x40600010]:
     //                                  Hardware Page Table Walker activates!
-    //                                  Traverses Root Page Table (satp.PPN 0x80000),
-    //                                  Finds Leaf PTE at mem(0), verifies permissions,
-    //                                  Refills FastTLB (VPN 0 -> PPN 0x80000),
-    //                                  Translates vaddr 0x10 -> paddr 0x80000010,
-    //                                  Loads mem(2) = 0xFFEEDDCCBBAA9988 into x5!
-    // - 0x24: addi  x7, x0, 77         (SUCCESS FLAG: x7 = 77 / 0x4D)
-    // - 0x28: jal   x0, 0              (Done loop)
-    // - 0x2C: nop
-    // - 0x30: nop
-    // - 0x34: nop
-    // - 0x38: nop
-    // - 0x3C: nop
+    //                                  Step 1: Reads Root Table (Level 2) at 0x08 -> Pointer to L1 (PPN=1)
+    //                                  Step 2: Reads L1 Table (Level 1) at 0x1018 -> Returns 0x0000000020000059!
+    //                                  PTE has R=0, X=1 (Execute-Only Page).
+    //                                  Load access without MXR violates permissions!
+    //                                  PTW transitions to s_FAULT (State 7)!
+    //                                  Asserts io.resp.bits.page_fault = 1, fault_cause = 13 (Load Page Fault)!
+    //                                  FastTLB refill is suppressed (io_refill_valid = 0)!
+    // - 0x48..0x5C: 6x Delay addi instructions
+    //
+    // Block 3 (PC 0x80000060 - 0x8000007C) [End of Test]:
+    // - 0x60: addi  x7, x0, 77         (SUCCESS FLAG: x7 = 77 / 0x4D)
+    // - 0x64: jal   x0, 0              (Done loop)
+    // - 0x68..0x7C: 6x NOPs
     // =========================================================================
     val programMemory = Seq(
       // --- BLOCK 0 (PC 0x80000000 - 0x8000001C): Machine Mode Setup satp for Sv39 ---
@@ -87,25 +92,35 @@ object ZaqalTest extends App {
       "h00000013".U(32.W), // 18 [Word 6]: nop
       "h00000013".U(32.W), // 1C [Word 7]: nop
 
-      // --- BLOCK 1 (PC 0x80000020 - 0x8000003C): 2MB Virtual Memory Access & 2-Level PTW Refill ---
-      "h40200237".U(32.W), // 20 [Word 0]: lui   x4, 0x40200        (x4 = 0x40200000, preparing vaddr with VPN[2]=1, VPN[1]=1)
-      "h02023283".U(32.W), // 24 [Word 1]: ld    x5, 0x20(x4)       (Cold Access -> vaddr = 0x40200020 -> 2-Level Sv39 PTW Traversal!)
-      "h00100513".U(32.W), // 28 [Word 2]: addi  x10, x0, 1         (Delay cycle for 2-level PTW FSM walk)
-      "h00150513".U(32.W), // 2C [Word 3]: addi  x10, x10, 1        (Delay cycle)
-      "h00150513".U(32.W), // 30 [Word 4]: addi  x10, x10, 1        (Delay cycle)
-      "h00150513".U(32.W), // 34 [Word 5]: addi  x10, x10, 1        (Delay cycle)
-      "h00150513".U(32.W), // 38 [Word 6]: addi  x10, x10, 1        (Delay cycle)
-      "h00150513".U(32.W), // 3C [Word 7]: addi  x10, x10, 1        (Delay cycle)
+      // --- BLOCK 1 (PC 0x80000020 - 0x8000003C): Pipeline Stabilization (NOP Cushion) ---
+      "h00000013".U(32.W), // 20: nop (Allows satp CSR write to fully commit and retire)
+      "h00000013".U(32.W), // 24: nop
+      "h00000013".U(32.W), // 28: nop
+      "h00000013".U(32.W), // 2C: nop
+      "h00000013".U(32.W), // 30: nop
+      "h00000013".U(32.W), // 34: nop
+      "h00000013".U(32.W), // 38: nop
+      "h00000013".U(32.W), // 3C: nop
 
-      // --- BLOCK 2 (PC 0x80000040 - 0x8000005C): Post-Refill 2MB TLB Hit Access ---
-      "h02023303".U(32.W), // 40 [Word 0]: ld    x6, 0x20(x4)       (WARM ACCESS -> 2MB TLB HIT! io_hit=1, io_paddr=0x80000020!)
-      "h04d00393".U(32.W), // 44 [Word 1]: addi  x7, x0, 77         (SUCCESS FLAG: x7 = 77 / 0x4D)
-      "h0000006f".U(32.W), // 48 [Word 2]: jal   x0, 0              (Done loop)
-      "h00000013".U(32.W), // 4C [Word 3]: nop
-      "h00000013".U(32.W), // 50 [Word 4]: nop
-      "h00000013".U(32.W), // 54 [Word 5]: nop
-      "h00000013".U(32.W), // 58 [Word 6]: nop
-      "h00000013".U(32.W)  // 5C [Word 7]: nop
+      // --- BLOCK 2 (PC 0x80000040 - 0x8000005C): Execute-Only Virtual Access & Permission Fault ---
+      "h40600237".U(32.W), // 40 [Word 0]: lui   x4, 0x40600        (x4 = 0x40600000, preparing vaddr with VPN[2]=1, VPN[1]=3)
+      "h01023283".U(32.W), // 44 [Word 1]: ld    x5, 0x10(x4)       (Cold Access -> vaddr = 0x40600010 -> EXECUTE-ONLY PERMISSION FAULT!)
+      "h00100513".U(32.W), // 48 [Word 2]: addi  x10, x0, 1         (Delay cycle for PTW FSM fault detection)
+      "h00150513".U(32.W), // 4C [Word 3]: addi  x10, x10, 1        (Delay cycle)
+      "h00150513".U(32.W), // 50 [Word 4]: addi  x10, x10, 1        (Delay cycle)
+      "h00150513".U(32.W), // 54 [Word 5]: addi  x10, x10, 1        (Delay cycle)
+      "h00150513".U(32.W), // 58 [Word 6]: addi  x10, x10, 1        (Delay cycle)
+      "h00150513".U(32.W), // 5C [Word 7]: addi  x10, x10, 1        (Delay cycle)
+
+      // --- BLOCK 3 (PC 0x80000060 - 0x8000007C): End of Test ---
+      "h04d00393".U(32.W), // 60 [Word 0]: addi  x7, x0, 77         (SUCCESS FLAG: x7 = 77 / 0x4D)
+      "h0000006f".U(32.W), // 64 [Word 1]: jal   x0, 0              (Done loop)
+      "h00000013".U(32.W), // 68 [Word 2]: nop
+      "h00000013".U(32.W), // 6C [Word 3]: nop
+      "h00000013".U(32.W), // 70 [Word 4]: nop
+      "h00000013".U(32.W), // 74 [Word 5]: nop
+      "h00000013".U(32.W), // 78 [Word 6]: nop
+      "h00000013".U(32.W)  // 7C [Word 7]: nop
     ).padTo(1024, "h00000013".U(32.W))
 
     var memLatencyCounter = 0
