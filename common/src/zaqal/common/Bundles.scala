@@ -225,6 +225,7 @@ class DecodeSignals(implicit val p: Parameters) extends Bundle with HasZaqalPara
   val is_mret        = Bool()
   val is_sret        = Bool()
   val is_wfi         = Bool()
+  val is_sfence_vma  = Bool()
 
   val rd      = UInt(5.W)
   val rs1     = UInt(5.W)

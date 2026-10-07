@@ -559,6 +559,7 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   val is_ecall   = exe_val_int(0) && exe_dec_int(0).is_ecall
   val is_mret    = exe_val_int(0) && exe_dec_int(0).is_mret
   val is_sret    = exe_val_int(0) && exe_dec_int(0).is_sret
+  val is_sfence_vma = exe_val_int(0) && exe_dec_int(0).is_sfence_vma
   val is_illegal = exe_val_int(0) && csr.io.is_illegal
   val is_int_trap = is_ecall || is_illegal
 
@@ -745,6 +746,20 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
     io.redirect.is_jalr      := false.B
     io.redirect.ftqPtr       := exe_uop_raw_int(0).ftqPtr
     io.redirect.robIdx       := exe_uop_int(0).robIdx
+  } .elsewhen(is_sfence_vma) {
+    io.redirect.valid := true.B
+    io.redirect.target := exe_uop_raw_int(0).pc + Mux(exe_uop_raw_int(0).pre.is_rvc, 2.U, 4.U)
+    io.redirect.epoch  := exe_uop_raw_int(0).epoch
+    io.redirect.is_exception := true.B
+    io.redirect.exc_cause    := 0.U
+    io.redirect.snapshotIdx  := r0_snap
+    io.redirect.pc           := exe_uop_raw_int(0).pc
+    io.redirect.taken        := false.B
+    io.redirect.is_cfi       := false.B
+    io.redirect.is_jal       := false.B
+    io.redirect.is_jalr      := false.B
+    io.redirect.ftqPtr       := exe_uop_raw_int(0).ftqPtr
+    io.redirect.robIdx       := exe_uop_int(0).robIdx
   }
 
   // Non-Flushing BPU Update
@@ -888,7 +903,7 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   ptw.io.priv_mode   := csr.io.priv_mode
   ptw.io.pmpcfg      := csr.io.pmpcfg_out
   ptw.io.pmpaddr     := csr.io.pmpaddr_out
-  ptw.io.flush       := io.redirect.valid && io.redirect.is_exception
+  ptw.io.flush       := (io.redirect.valid && io.redirect.is_exception) || is_sfence_vma
 
   // PTW Memory access directly backed by DataMem
   dmem.io.ptw_raddr     := ptw.io.mem_req.bits
@@ -908,7 +923,7 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
     tlb(i).io.refill.valid    := ptw.io.resp.valid && !ptw.io.resp.bits.page_fault && !ptw.io.resp.bits.access_fault
     tlb(i).io.refill.bits.vpn := ptw.io.resp.bits.vaddr(xLen - 1, 12)
     tlb(i).io.refill.bits.ppn := ptw.io.resp.bits.paddr(xLen - 1, 12)
-    tlb(i).io.flush           := io.redirect.valid && io.redirect.is_exception
+    tlb(i).io.flush           := (io.redirect.valid && io.redirect.is_exception) || is_sfence_vma
   }
 
   // MEM (CACHE ACCESS STAGE - CYCLE 3)

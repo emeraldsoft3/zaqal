@@ -21,7 +21,7 @@ To run an Operating System, we need "Privilege Mode" and "Address Translation."
 - **XiangShan Study**: [PMP.scala](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/backend/fu/PMP.scala) and [PMA.scala](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/backend/fu/PMA.scala).
 
 ## Day 8-10: TLB (Translation Lookaside Buffer)
-- [ ] Build the TLB for fast virtual-to-physical address translation.
+- [x] Build the TLB for fast virtual-to-physical address translation.
 - **Detailed Plan**: Modern operating systems use virtual memory. Every single memory access (both instruction fetches and data loads/stores) must be translated from a Virtual Address to a Physical Address. Since reading page tables from memory is incredibly slow, we will build a Translation Lookaside Buffer (TLB)—a fast associative cache that stores recent address translations. We will implement separate L1 I-TLB and D-TLB, backed by a unified L2 TLB for high performance.
 - **XiangShan Study**: [TLB.scala](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/cache/mmu/TLB.scala) - *Study the TLB architecture.*
 
@@ -45,6 +45,6 @@ To run an Operating System, we need "Privilege Mode" and "Address Translation."
 ## Linux Readiness Checklist
 - [x] **RV64I/M/A/F/D** (The "G" extension).
 - [x] **Supervisor Mode** (S-mode).
-- [ ] **Sv39/48 MMU**.
+- [x] **Sv39/48 MMU**.
 - [ ] **Timer Interrupts** for context switching.
 - [ ] **32-bit Compatibility Mode** (mstatus.UXL).

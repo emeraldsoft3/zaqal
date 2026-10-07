@@ -258,6 +258,7 @@ class Decoder(implicit val p: Parameters) extends Module with HasZaqalParameter 
   io.out.is_mret   := is_system && (funct3 === 0.U) && (csr_addr === "h302".U)
   io.out.is_sret   := is_system && (funct3 === 0.U) && (csr_addr === "h102".U)
   io.out.is_wfi    := is_system && (funct3 === 0.U) && (csr_addr === "h105".U)
+  io.out.is_sfence_vma := is_system && (funct3 === 0.U) && (io.inst(31, 25) === "b0001001".U)
 
   io.out.is_fcsr_access := is_system && (csr_addr === "h001".U || csr_addr === "h002".U || csr_addr === "h003".U)
   io.out.is_csr         := is_csr_op

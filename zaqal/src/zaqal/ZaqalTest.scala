@@ -46,7 +46,7 @@ object ZaqalTest extends App {
 
 
     // =========================================================================
-    // DAY 11-13 TEST PROGRAM 6: HARDWARE SV39 PERMISSION VIOLATION (EXECUTE-ONLY PAGE LOAD)
+    // DAY 8-10 / 11-13 TEST: SFENCE.VMA (TLB INVALIDATION & RE-WALK VERIFICATION)
     // =========================================================================
     // Block-Aligned Fetch Structure (32-byte / 8-instruction fetch blocks):
     //
@@ -63,23 +63,20 @@ object ZaqalTest extends App {
     // Block 1 (PC 0x80000020 - 0x8000003C) [Pipeline Stabilization NOP Cushion]:
     // - 8x NOP (allows csrrw satp to fully commit without speculative memory requests)
     //
-    // Block 2 (PC 0x80000040 - 0x8000005C) [Execute-Only Virtual Access & Permission Fault]:
-    // - 0x40: lui   x4, 0x40600        (x4 = 0x40600000, preparing vaddr with VPN[2]=1, VPN[1]=3)
-    // - 0x44: ld    x5, 0x10(x4)       [TLB MISS ON EXECUTE-ONLY VADDR 0x40600010]:
-    //                                  Hardware Page Table Walker activates!
-    //                                  Step 1: Reads Root Table (Level 2) at 0x08 -> Pointer to L1 (PPN=1)
-    //                                  Step 2: Reads L1 Table (Level 1) at 0x1018 -> Returns 0x0000000020000059!
-    //                                  PTE has R=0, X=1 (Execute-Only Page).
-    //                                  Load access without MXR violates permissions!
-    //                                  PTW transitions to s_FAULT (State 7)!
-    //                                  Asserts io.resp.bits.page_fault = 1, fault_cause = 13 (Load Page Fault)!
-    //                                  FastTLB refill is suppressed (io_refill_valid = 0)!
-    // - 0x48..0x5C: 6x Delay addi instructions
+    // Block 2 (PC 0x80000040 - 0x8000005C) [Cold Miss & Initial TLB Refill]:
+    // - 0x40: ld    x5, 0x10(x0)       [COLD MISS]: Hardware PTW refills TLB 0!
+    // - 0x44..0x5C: 7x Delay addi instructions
     //
-    // Block 3 (PC 0x80000060 - 0x8000007C) [End of Test]:
-    // - 0x60: addi  x7, x0, 77         (SUCCESS FLAG: x7 = 77 / 0x4D)
-    // - 0x64: jal   x0, 0              (Done loop)
-    // - 0x68..0x7C: 6x NOPs
+    // Block 3 (PC 0x80000060 - 0x8000007C) [Warm Hit & sfence.vma Invalidation]:
+    // - 0x60: ld    x6, 0x10(x0)       [WARM HIT!]: io_hit = 1, io_paddr = 0x80000010!
+    // - 0x64: sfence.vma x0, x0        [SFENCE.VMA]: Flushes all TLB entries! Valid bits -> 0!
+    // - 0x68..0x7C: 6x Delay addi instructions
+    //
+    // Block 4 (PC 0x80000080 - 0x8000009C) [Post-Flush Cold Miss & Re-Walk]:
+    // - 0x80: ld    x7, 0x10(x0)       [COLD MISS AGAIN!]: TLB entry was flushed! PTW walks again!
+    // - 0x84: addi  x28, x0, 77        (SUCCESS FLAG: x28 = 77 / 0x4D)
+    // - 0x88: jal   x0, 0              (Done loop)
+    // - 0x8C..0x9C: 5x NOPs
     // =========================================================================
     val programMemory = Seq(
       // --- BLOCK 0 (PC 0x80000000 - 0x8000001C): Machine Mode Setup satp for Sv39 ---
@@ -102,25 +99,35 @@ object ZaqalTest extends App {
       "h00000013".U(32.W), // 38: nop
       "h00000013".U(32.W), // 3C: nop
 
-      // --- BLOCK 2 (PC 0x80000040 - 0x8000005C): Execute-Only Virtual Access & Permission Fault ---
-      "h40600237".U(32.W), // 40 [Word 0]: lui   x4, 0x40600        (x4 = 0x40600000, preparing vaddr with VPN[2]=1, VPN[1]=3)
-      "h01023283".U(32.W), // 44 [Word 1]: ld    x5, 0x10(x4)       (Cold Access -> vaddr = 0x40600010 -> EXECUTE-ONLY PERMISSION FAULT!)
-      "h00100513".U(32.W), // 48 [Word 2]: addi  x10, x0, 1         (Delay cycle for PTW FSM fault detection)
+      // --- BLOCK 2 (PC 0x80000040 - 0x8000005C): Cold Miss & Initial Refill ---
+      "h01003283".U(32.W), // 40 [Word 0]: ld    x5, 0x10(x0)       (Cold Miss -> Hardware PTW Refills TLB!)
+      "h00100513".U(32.W), // 44 [Word 1]: addi  x10, x0, 1         (Delay cycle for PTW FSM walk)
+      "h00150513".U(32.W), // 48 [Word 2]: addi  x10, x10, 1        (Delay cycle)
       "h00150513".U(32.W), // 4C [Word 3]: addi  x10, x10, 1        (Delay cycle)
       "h00150513".U(32.W), // 50 [Word 4]: addi  x10, x10, 1        (Delay cycle)
       "h00150513".U(32.W), // 54 [Word 5]: addi  x10, x10, 1        (Delay cycle)
       "h00150513".U(32.W), // 58 [Word 6]: addi  x10, x10, 1        (Delay cycle)
       "h00150513".U(32.W), // 5C [Word 7]: addi  x10, x10, 1        (Delay cycle)
 
-      // --- BLOCK 3 (PC 0x80000060 - 0x8000007C): End of Test ---
-      "h04d00393".U(32.W), // 60 [Word 0]: addi  x7, x0, 77         (SUCCESS FLAG: x7 = 77 / 0x4D)
-      "h0000006f".U(32.W), // 64 [Word 1]: jal   x0, 0              (Done loop)
-      "h00000013".U(32.W), // 68 [Word 2]: nop
-      "h00000013".U(32.W), // 6C [Word 3]: nop
-      "h00000013".U(32.W), // 70 [Word 4]: nop
-      "h00000013".U(32.W), // 74 [Word 5]: nop
-      "h00000013".U(32.W), // 78 [Word 6]: nop
-      "h00000013".U(32.W)  // 7C [Word 7]: nop
+      // --- BLOCK 3 (PC 0x80000060 - 0x8000007C): Warm Hit & sfence.vma Flush ---
+      "h01003303".U(32.W), // 60 [Word 0]: ld    x6, 0x10(x0)       (WARM HIT! io_hit=1, io_paddr=0x80000010!)
+      "h12000073".U(32.W), // 64 [Word 1]: sfence.vma x0, x0        (SFENCE.VMA -> FLUSHES ALL TLB ENTRIES!)
+      "h00100513".U(32.W), // 68 [Word 2]: addi  x10, x0, 1         (Delay cycle)
+      "h00150513".U(32.W), // 6C [Word 3]: addi  x10, x10, 1        (Delay cycle)
+      "h00150513".U(32.W), // 70 [Word 4]: addi  x10, x10, 1        (Delay cycle)
+      "h00150513".U(32.W), // 74 [Word 5]: addi  x10, x10, 1        (Delay cycle)
+      "h00150513".U(32.W), // 78 [Word 6]: addi  x10, x10, 1        (Delay cycle)
+      "h00150513".U(32.W), // 7C [Word 7]: addi  x10, x10, 1        (Delay cycle)
+
+      // --- BLOCK 4 (PC 0x80000080 - 0x8000009C): Post-Flush Cold Miss & Re-Walk ---
+      "h01003383".U(32.W), // 80 [Word 0]: ld    x7, 0x10(x0)       (COLD MISS AGAIN! io_hit=0! Forced Re-Walk!)
+      "h04d00e13".U(32.W), // 84 [Word 1]: addi  x28, x0, 77        (SUCCESS FLAG: x28 = 77 / 0x4D)
+      "h0000006f".U(32.W), // 88 [Word 2]: jal   x0, 0              (Done loop)
+      "h00000013".U(32.W), // 8C [Word 3]: nop
+      "h00000013".U(32.W), // 90 [Word 4]: nop
+      "h00000013".U(32.W), // 94 [Word 5]: nop
+      "h00000013".U(32.W), // 98 [Word 6]: nop
+      "h00000013".U(32.W)  // 9C [Word 7]: nop
     ).padTo(1024, "h00000013".U(32.W))
 
     var memLatencyCounter = 0
