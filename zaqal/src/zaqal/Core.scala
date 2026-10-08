@@ -18,6 +18,10 @@ class Core(implicit val p: Parameters) extends Module with HasZaqalParameter {
     // External Memory Bus (For top-level testing)
     val mem = new MemoryBus(xLen, instBits * fetchWidth)
     val mem_d = new MemoryBus(xLen, 256)
+
+    // UART Console Port (Day 14-16)
+    val uart_tx_valid = Output(Bool())
+    val uart_tx_char  = Output(UInt(8.W))
   })
 
   val debug = if (enableDebugPorts) Some(IO(new Bundle {
@@ -67,6 +71,8 @@ class Core(implicit val p: Parameters) extends Module with HasZaqalParameter {
   io.mem_d <> backend.io.mem_d
   
   io.mem <> frontend.io.mem
+  io.uart_tx_valid := backend.io.uart_tx_valid
+  io.uart_tx_char  := backend.io.uart_tx_char
 
   // Metadata access (XiangShan style) - Tie off for now
   frontend.io.ftq_read_ptr := 0.U 

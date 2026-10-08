@@ -31,8 +31,8 @@ To run an Operating System, we need "Privilege Mode" and "Address Translation."
 - **XiangShan Study**: [PageTableWalker.scala](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/cache/mmu/PageTableWalker.scala) - *Study the state machine for page walking.*
 
 ## Day 14-16: System Integration (SBI & UART)
-- [ ] **SBI (Supervisor Binary Interface)**: Support for OpenSBI or similar firmware.
-- [ ] **UART/Console**: Basic serial output to see the "Linux Banner."
+- [x] **SBI (Supervisor Binary Interface)**: Support for OpenSBI or similar firmware.
+- [x] **UART/Console**: Basic serial output to see the "Linux Banner."
 - **Detailed Plan**: To boot Linux, the hardware must provide a standard interface for the OS to communicate with the firmware. We will ensure compatibility with OpenSBI, the industry-standard RISC-V boot firmware. We will also integrate a Universal Asynchronous Receiver-Transmitter (UART) peripheral mapped to physical memory space. This will allow the core to transmit and receive characters over a serial interface, providing the critical console output needed to witness the Linux boot sequence.
 
 ## Day 17-20: Advanced Interrupts (PLIC/CLINT)

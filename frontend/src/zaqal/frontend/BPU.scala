@@ -237,7 +237,9 @@ class BPU(implicit val p: Parameters) extends Module with HasZaqalParameter {
 
   when(is_new_redirect) {
     s0_pc    := align(io.redirect.target)
-    val redirect_mask = Fill(predictWidth, 1.U(1.W))
+    val slot_shift = if (hasCExtension) 1 else 2
+    val target_slot = io.redirect.target(log2Ceil(fetchWidth * 4) - 1, slot_shift)
+    val redirect_mask = (Fill(predictWidth, 1.U(1.W)) << target_slot)(predictWidth - 1, 0)
     mask_reg     := redirect_mask
     current_mask := redirect_mask
     epoch        := ~epoch // Sync with Backend's new color
@@ -245,7 +247,10 @@ class BPU(implicit val p: Parameters) extends Module with HasZaqalParameter {
   } .elsewhen(io.out.fire) {
     s0_pc := Mux(meta.taken, align(meta.target), s0_pc + (fetchWidth * 4).U)
     
-    val next_mask = Fill(predictWidth, 1.U(1.W))
+    val slot_shift = if (hasCExtension) 1 else 2
+    val branch_slot = meta.target(log2Ceil(fetchWidth * 4) - 1, slot_shift)
+    val branch_mask = (Fill(predictWidth, 1.U(1.W)) << branch_slot)(predictWidth - 1, 0)
+    val next_mask = Mux(meta.taken, branch_mask, Fill(predictWidth, 1.U(1.W)))
     mask_reg     := next_mask
     current_mask := mask_reg
   } .otherwise {
@@ -325,7 +330,7 @@ class BPU(implicit val p: Parameters) extends Module with HasZaqalParameter {
 
   // exact_pc moved up
   io.out.valid := !reset.asBool
-  io.out.bits.pc         := exact_pc
+  io.out.bits.pc         := s0_pc
   
   // Use meta.slot directly since it is now the packet index
   val rel_slot = Mux(meta.taken, meta.slot, 0.U)

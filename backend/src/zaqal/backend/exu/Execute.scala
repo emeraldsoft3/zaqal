@@ -55,6 +55,10 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
     // XiangShan MDP Connections
     val memPredUpdate = Output(new MemPredUpdateReq)
     val store_resolved = Output(Valid(UInt(log2Up(128).W)))
+
+    // UART Console Ports (Day 14-16)
+    val uart_tx_valid = Output(Bool())
+    val uart_tx_char  = Output(UInt(8.W))
   })
 
   // ---------------- EXECUTION UNITS (KUNMINGHU PARITY) ----------------
@@ -560,7 +564,7 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   val is_mret    = exe_val_int(0) && exe_dec_int(0).is_mret
   val is_sret    = exe_val_int(0) && exe_dec_int(0).is_sret
   val is_sfence_vma = exe_val_int(0) && exe_dec_int(0).is_sfence_vma
-  val is_illegal = exe_val_int(0) && csr.io.is_illegal
+  val is_illegal = exe_val_int(0) && (exe_dec_int(0).is_csr || exe_dec_int(0).is_mret || exe_dec_int(0).is_sret) && csr.io.is_illegal
   val is_int_trap = is_ecall || is_illegal
 
   val ecall_cause = Mux(csr.io.priv_mode === zaqal.backend.csr.PrivMode.U, 8.U,
@@ -579,7 +583,7 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   val mem_fault_rob   = r_agu_uop(fault_mem_idx).robIdx
 
   csr.io.csr_addr  := exe_dec_int(0).csr_addr
-  csr.io.csr_cmd   := exe_dec_int(0).csr_cmd
+  csr.io.csr_cmd   := Mux(exe_dec_int(0).is_csr, exe_dec_int(0).csr_cmd, 0.U)
   csr.io.csr_wdata := Mux(exe_dec_int(0).is_csr_imm, exe_dec_int(0).imm.asUInt, src_int_1(0))
   csr.io.csr_wen   := exe_val_int(0) && exe_dec_int(0).is_csr
   csr.io.set_flags := false.B
@@ -1023,6 +1027,9 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   dmem.io.wmask := sq.io.drain.wmask
   dmem.io.wdata := sq.io.drain.wdata
   sq.io.drain_ready := true.B
+
+  io.uart_tx_valid := dmem.io.uart_tx_valid
+  io.uart_tx_char  := dmem.io.uart_tx_char
 
   io.dcache_req.valid := sq.io.drain.valid || (r_agu_val(0) && r_agu_uop(0).decode.is_load && !sq.io.stlf_resp(0).hit)
   io.dcache_req.bits.addr := Mux(sq.io.drain.valid, sq.io.drain.paddr, lsu(0).io.mem_addr)

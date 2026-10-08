@@ -19,7 +19,40 @@ class DataMem(implicit val p: Parameters) extends Module with HasZaqalParameter 
     // Dedicated Page Table Walker Read Port
     val ptw_raddr = Input(UInt(xLen.W))
     val ptw_rdata = Output(UInt(64.W))
+
+    // UART 16550 Serial Console Ports (Day 14-16)
+    val uart_tx_valid = Output(Bool())
+    val uart_tx_char  = Output(UInt(8.W))
   })
+
+  // =========================================================================
+  // UART 16550 Serial Peripheral (MMIO Base 0x10000000 - 0x100000FF)
+  // =========================================================================
+  val r_uart_ier = RegInit(0.U(8.W))
+  val r_uart_lcr = RegInit("h03".U(8.W))
+  val r_uart_mcr = RegInit(0.U(8.W))
+  val r_uart_scr = RegInit(0.U(8.W))
+
+  val is_uart_write = io.wen && (io.addr >= "h10000000".U && io.addr < "h10000100".U)
+  val uart_w_offset = io.addr(7, 0)
+  val uart_w_lane   = io.addr(2, 0)
+  val uart_w_byte   = (io.wdata >> (uart_w_lane << 3))(7, 0)
+
+  val uart_tx_fire  = is_uart_write && (uart_w_offset === 0.U)
+  io.uart_tx_valid  := uart_tx_fire
+  io.uart_tx_char   := uart_w_byte
+
+  when(is_uart_write) {
+    switch(uart_w_offset) {
+      is(0.U) {
+        printf("[UART CONSOLE]: %c (ASCII 0x%x)\n", uart_w_byte, uart_w_byte)
+      }
+      is(1.U) { r_uart_ier := uart_w_byte }
+      is(3.U) { r_uart_lcr := uart_w_byte }
+      is(4.U) { r_uart_mcr := uart_w_byte }
+      is(7.U) { r_uart_scr := uart_w_byte }
+    }
+  }
 
   // Memory uses RegInit to allow persistent writes
   // mem has 2048 entries (16KB) to support 3-level page tables:
@@ -42,9 +75,24 @@ class DataMem(implicit val p: Parameters) extends Module with HasZaqalParameter 
   val mem = RegInit(VecInit(memInit))
 
   for (p <- 0 until 2) {
+    val is_uart_read = io.raddr(p) >= "h10000000".U && io.raddr(p) < "h10000100".U
+    val uart_r_offset = io.raddr(p)(7, 0)
+    val uart_r_byte = MuxLookup(uart_r_offset, 0.U(8.W))(Seq(
+      0.U -> 0.U(8.W),     // RBR (empty)
+      1.U -> r_uart_ier,   // IER
+      2.U -> "h01".U(8.W), // IIR (no interrupt)
+      3.U -> r_uart_lcr,   // LCR
+      4.U -> r_uart_mcr,   // MCR
+      5.U -> "h60".U(8.W), // LSR (0x60 = TEMT | THRE: Transmitter Empty and Ready)
+      7.U -> r_uart_scr    // SCR
+    ))
+    val uart_r_data = (uart_r_byte.pad(128)) << (io.raddr(p)(2, 0) << 3)
+
     val idx = io.raddr(p)(13, 3)
     val idx_next = Mux(idx === 2047.U, 0.U, idx + 1.U)
-    io.rdata(p) := Cat(mem(idx_next), mem(idx))
+    val sram_r_data = Cat(mem(idx_next), mem(idx))
+
+    io.rdata(p) := Mux(is_uart_read, uart_r_data, sram_r_data)
   }
 
   // Basic address decoding using bits (13, 3) for 2048 doubleword capacity (16KB)
@@ -55,10 +103,10 @@ class DataMem(implicit val p: Parameters) extends Module with HasZaqalParameter 
   // Dedicated PTW port read
   io.ptw_rdata := mem(io.ptw_raddr(13, 3))
 
-  // Masked Write Implementation (16-bit)
+  // Masked Write Implementation (16-bit) - Protected against MMIO address space
   val bitMask = Cat(Seq.tabulate(16)(i => Fill(8, io.wmask(i))).reverse)
   
-  when(io.wen) {
+  when(io.wen && !is_uart_write) {
     val fullData = (io.data & ~bitMask) | (io.wdata & bitMask)
     mem(index)      := fullData(63, 0)
     mem(index_next) := fullData(127, 64)

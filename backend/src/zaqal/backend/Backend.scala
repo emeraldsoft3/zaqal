@@ -27,6 +27,8 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
     val debug_cycle = Input(UInt(64.W))
     val mem_d = new MemoryBus(xLen, 256)
     val branch_signal = Input(Valid(new BranchPredictionBus))
+    val uart_tx_valid = Output(Bool())
+    val uart_tx_char  = Output(UInt(8.W))
   })
 
   import zaqal.cache.DCache
@@ -123,16 +125,18 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
   val redirect_valid = Wire(Bool())
   val restore_idx = Wire(UInt(log2Up(renameSnapshotNum).W))
 
+  val use_snapshot = Wire(Bool())
+
   rat.io.redirect := redirect_valid
-  rat.io.useSnapshot := true.B
+  rat.io.useSnapshot := use_snapshot
   rat.io.snptRestoreIdx := restore_idx
 
   intFreeList.io.redirect := redirect_valid
-  intFreeList.io.useSnapshot := true.B
+  intFreeList.io.useSnapshot := use_snapshot
   intFreeList.io.snptRestoreIdx := restore_idx
 
   fpFreeList.io.redirect := redirect_valid
-  fpFreeList.io.useSnapshot := true.B
+  fpFreeList.io.useSnapshot := use_snapshot
   fpFreeList.io.snptRestoreIdx := restore_idx
 
   // Compute younger snapshot flush mask using circular distance from deqPtr.
@@ -326,6 +330,7 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
 
   redirect_valid := exec.io.redirect.valid
   restore_idx := exec.io.redirect.snapshotIdx
+  use_snapshot := !exec.io.redirect.is_exception
 
   intIq.io.redirect_valid := redirect_valid
   intIq.io.redirect_restore_idx := restore_idx
@@ -448,6 +453,8 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
   io.disp0_pc := decoded_uops(0).uop.pc
   io.disp0_pdest := intFreeList.io.allocatePhyReg(0)
   exec.io.debug_cycle := io.debug_cycle
+  io.uart_tx_valid := exec.io.uart_tx_valid
+  io.uart_tx_char  := exec.io.uart_tx_char
 
   val dcache = Module(new DCache)
   dcache.io.req <> exec.io.dcache_req

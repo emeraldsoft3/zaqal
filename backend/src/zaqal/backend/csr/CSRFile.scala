@@ -342,8 +342,6 @@ class CSRFile(implicit val p: Parameters) extends Module with HasZaqalParameter 
 
   // State-mutating writes that require refetch / pipeline flush
   val is_flush_csr = (io.csr_addr === CSRAddr.satp) ||
-                     (io.csr_addr === CSRAddr.mstatus) ||
-                     (io.csr_addr === CSRAddr.sstatus) ||
                      (io.csr_addr === CSRAddr.pmpcfg0) ||
                      (io.csr_addr === CSRAddr.pmpcfg2) ||
                      (io.csr_addr >= CSRAddr.pmpaddr0 && io.csr_addr <= CSRAddr.pmpaddr15)
