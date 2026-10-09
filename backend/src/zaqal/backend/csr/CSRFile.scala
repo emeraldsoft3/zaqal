@@ -115,6 +115,14 @@ class CSRFile(implicit val p: Parameters) extends Module with HasZaqalParameter 
     // PMP Architectural Outputs
     val pmpcfg_out   = Output(Vec(16, new PMPConfig))
     val pmpaddr_out  = Output(Vec(16, UInt(xLen.W)))
+
+    // Hardware Interrupt Lines (CLINT & PLIC - Day 17-20)
+    val clint_mtip   = Input(Bool())
+    val clint_msip   = Input(Bool())
+    val plic_meip    = Input(Bool())
+    val plic_seip    = Input(Bool())
+    val interrupt_pending = Output(Bool())
+    val interrupt_cause   = Output(UInt(xLen.W))
   })
 
   // =========================================================================
@@ -222,6 +230,49 @@ class CSRFile(implicit val p: Parameters) extends Module with HasZaqalParameter 
   }
 
   // =========================================================================
+  // Asynchronous Hardware Interrupt Evaluation (Day 17-20)
+  // =========================================================================
+  val mip_wire = Cat(
+    r_mip(63, 12),
+    (r_mip(11) | io.plic_meip),       // 11: MEIP
+    r_mip(10),
+    (r_mip(9) | io.plic_seip),        // 9: SEIP
+    r_mip(8),
+    (r_mip(7) | io.clint_mtip),       // 7: MTIP
+    r_mip(6),
+    r_mip(5),                         // 5: STIP
+    r_mip(4),
+    (r_mip(3) | io.clint_msip),       // 3: MSIP
+    r_mip(2, 0)
+  )
+
+  val m_int_global_en = (priv_mode < PrivMode.M) || (priv_mode === PrivMode.M && r_mstatus_mie)
+  val m_cand = (mip_wire & r_mie & ~r_mideleg) & Fill(xLen, m_int_global_en)
+
+  val s_int_global_en = (priv_mode < PrivMode.S) || (priv_mode === PrivMode.S && r_mstatus_sie)
+  val s_cand = (mip_wire & r_mie & r_mideleg) & Fill(xLen, s_int_global_en)
+
+  val int_cause = WireDefault(0.U(xLen.W))
+  val int_msb = 1.U(1.W) ## 0.U((xLen - 1).W)
+
+  when(m_cand(11)) {
+    int_cause := int_msb | 11.U // Machine External Interrupt
+  } .elsewhen(m_cand(3)) {
+    int_cause := int_msb | 3.U  // Machine Software Interrupt
+  } .elsewhen(m_cand(7)) {
+    int_cause := int_msb | 7.U  // Machine Timer Interrupt
+  } .elsewhen(s_cand(9)) {
+    int_cause := int_msb | 9.U  // Supervisor External Interrupt
+  } .elsewhen(s_cand(1)) {
+    int_cause := int_msb | 1.U  // Supervisor Software Interrupt
+  } .elsewhen(s_cand(5)) {
+    int_cause := int_msb | 5.U  // Supervisor Timer Interrupt
+  }
+
+  io.interrupt_pending := (m_cand =/= 0.U) || (s_cand =/= 0.U)
+  io.interrupt_cause   := int_cause
+
+  // =========================================================================
   // CSR Read Multiplexer
   // =========================================================================
   val rdata = WireDefault(0.U(xLen.W))
@@ -243,7 +294,7 @@ class CSRFile(implicit val p: Parameters) extends Module with HasZaqalParameter 
     is(CSRAddr.sepc)      { rdata := r_sepc }
     is(CSRAddr.scause)    { rdata := r_scause }
     is(CSRAddr.stval)     { rdata := r_stval }
-    is(CSRAddr.sip)       { rdata := r_mip & r_mideleg }
+    is(CSRAddr.sip)       { rdata := mip_wire & r_mideleg }
     is(CSRAddr.satp)      { rdata := r_satp }
 
     // Machine Mode
@@ -257,7 +308,7 @@ class CSRFile(implicit val p: Parameters) extends Module with HasZaqalParameter 
     is(CSRAddr.mepc)      { rdata := r_mepc }
     is(CSRAddr.mcause)    { rdata := r_mcause }
     is(CSRAddr.mtval)     { rdata := r_mtval }
-    is(CSRAddr.mip)       { rdata := r_mip }
+    is(CSRAddr.mip)       { rdata := mip_wire }
     is(CSRAddr.mvendorid) { rdata := 0.U }
     is(CSRAddr.marchid)   { rdata := 0.U }
     is(CSRAddr.mimpid)    { rdata := 0.U }
@@ -460,6 +511,8 @@ class CSRFile(implicit val p: Parameters) extends Module with HasZaqalParameter 
       is(CSRAddr.pmpaddr15) { when(!r_pmpcfg(15).l) { r_pmpaddr(15) := wdata_eff } }
     }
   }
+
+
 
   // =========================================================================
   // Global Hardware Export Outputs

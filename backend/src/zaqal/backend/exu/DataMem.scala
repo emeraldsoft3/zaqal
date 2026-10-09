@@ -4,6 +4,7 @@ import chisel3._
 import chisel3.util._
 import org.chipsalliance.cde.config.Parameters
 import zaqal.common._
+import zaqal.backend.devices.{CLINT, PLIC}
 
 class DataMem(implicit val p: Parameters) extends Module with HasZaqalParameter {
   val io = IO(new Bundle {
@@ -23,7 +24,36 @@ class DataMem(implicit val p: Parameters) extends Module with HasZaqalParameter 
     // UART 16550 Serial Console Ports (Day 14-16)
     val uart_tx_valid = Output(Bool())
     val uart_tx_char  = Output(UInt(8.W))
+
+    // Hardware Interrupt Lines (CLINT & PLIC - Day 17-20)
+    val clint_mtip   = Output(Bool())
+    val clint_msip   = Output(Bool())
+    val plic_meip    = Output(Bool())
+    val plic_seip    = Output(Bool())
+    val plic_ext_irq = Input(UInt(32.W))
   })
+
+  // =========================================================================
+  // Peripherals: CLINT and PLIC (Day 17-20)
+  // =========================================================================
+  val clint = Module(new CLINT)
+  val plic  = Module(new PLIC(32))
+
+  plic.io.external_sources := io.plic_ext_irq
+  io.clint_mtip := clint.io.mtip
+  io.clint_msip := clint.io.msip
+  io.plic_meip  := plic.io.meip
+  io.plic_seip  := plic.io.seip
+
+  clint.io.wen   := io.wen
+  clint.io.waddr := io.addr
+  clint.io.wdata := io.wdata
+  clint.io.wmask := io.wmask
+
+  plic.io.wen   := io.wen
+  plic.io.waddr := io.addr
+  plic.io.wdata := io.wdata
+  plic.io.wmask := io.wmask
 
   // =========================================================================
   // UART 16550 Serial Peripheral (MMIO Base 0x10000000 - 0x100000FF)
@@ -75,7 +105,13 @@ class DataMem(implicit val p: Parameters) extends Module with HasZaqalParameter 
   val mem = RegInit(VecInit(memInit))
 
   for (p <- 0 until 2) {
-    val is_uart_read = io.raddr(p) >= "h10000000".U && io.raddr(p) < "h10000100".U
+    clint.io.raddr(p) := io.raddr(p)
+    plic.io.raddr(p)  := io.raddr(p)
+
+    val is_uart_read  = io.raddr(p) >= "h10000000".U && io.raddr(p) < "h10000100".U
+    val is_clint_read = clint.io.rvalid(p)
+    val is_plic_read  = plic.io.rvalid(p)
+
     val uart_r_offset = io.raddr(p)(7, 0)
     val uart_r_byte = MuxLookup(uart_r_offset, 0.U(8.W))(Seq(
       0.U -> 0.U(8.W),     // RBR (empty)
@@ -92,7 +128,9 @@ class DataMem(implicit val p: Parameters) extends Module with HasZaqalParameter 
     val idx_next = Mux(idx === 2047.U, 0.U, idx + 1.U)
     val sram_r_data = Cat(mem(idx_next), mem(idx))
 
-    io.rdata(p) := Mux(is_uart_read, uart_r_data, sram_r_data)
+    io.rdata(p) := Mux(is_uart_read, uart_r_data,
+                   Mux(is_clint_read, clint.io.rdata(p),
+                   Mux(is_plic_read,  plic.io.rdata(p), sram_r_data)))
   }
 
   // Basic address decoding using bits (13, 3) for 2048 doubleword capacity (16KB)
@@ -105,8 +143,11 @@ class DataMem(implicit val p: Parameters) extends Module with HasZaqalParameter 
 
   // Masked Write Implementation (16-bit) - Protected against MMIO address space
   val bitMask = Cat(Seq.tabulate(16)(i => Fill(8, io.wmask(i))).reverse)
+  val is_mmio_write = is_uart_write || 
+                      (io.addr >= "h02000000".U && io.addr < "h02010000".U) || 
+                      (io.addr >= "h0C000000".U && io.addr < "h0C400000".U)
   
-  when(io.wen && !is_uart_write) {
+  when(io.wen && !is_mmio_write) {
     val fullData = (io.data & ~bitMask) | (io.wdata & bitMask)
     mem(index)      := fullData(63, 0)
     mem(index_next) := fullData(127, 64)

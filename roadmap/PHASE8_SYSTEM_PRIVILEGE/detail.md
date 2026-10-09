@@ -36,8 +36,8 @@ To run an Operating System, we need "Privilege Mode" and "Address Translation."
 - **Detailed Plan**: To boot Linux, the hardware must provide a standard interface for the OS to communicate with the firmware. We will ensure compatibility with OpenSBI, the industry-standard RISC-V boot firmware. We will also integrate a Universal Asynchronous Receiver-Transmitter (UART) peripheral mapped to physical memory space. This will allow the core to transmit and receive characters over a serial interface, providing the critical console output needed to witness the Linux boot sequence.
 
 ## Day 17-20: Advanced Interrupts (PLIC/CLINT)
-- [ ] **PLIC**: Platform-Level Interrupt Controller for external device interrupts.
-- [ ] **CLINT**: Core-Local Interruptor for timer and software interrupts (MTIME).
+- [x] **PLIC**: Platform-Level Interrupt Controller for external device interrupts.
+- [x] **CLINT**: Core-Local Interruptor for timer and software interrupts (MTIME).
 - **Detailed Plan**: The OS relies on timer interrupts for context switching between threads, and external interrupts for handling hardware devices (like keyboards or disk drives). We will integrate a Core-Local Interruptor (CLINT) providing the `mtime` and `mtimecmp` registers for highly accurate timer traps. We will also build a Platform-Level Interrupt Controller (PLIC) capable of prioritizing and routing dozens of external device interrupts to the core's trap handler.
 
 ---
@@ -46,5 +46,5 @@ To run an Operating System, we need "Privilege Mode" and "Address Translation."
 - [x] **RV64I/M/A/F/D** (The "G" extension).
 - [x] **Supervisor Mode** (S-mode).
 - [x] **Sv39/48 MMU**.
-- [ ] **Timer Interrupts** for context switching.
+- [x] **Timer Interrupts** for context switching.
 - [ ] **32-bit Compatibility Mode** (mstatus.UXL).

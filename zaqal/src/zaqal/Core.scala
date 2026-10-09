@@ -22,6 +22,11 @@ class Core(implicit val p: Parameters) extends Module with HasZaqalParameter {
     // UART Console Port (Day 14-16)
     val uart_tx_valid = Output(Bool())
     val uart_tx_char  = Output(UInt(8.W))
+
+    // Hardware Interrupt Lines (CLINT & PLIC - Day 17-20)
+    val plic_ext_irq  = Input(UInt(32.W))
+    val clint_mtip    = Output(Bool())
+    val plic_meip     = Output(Bool())
   })
 
   val debug = if (enableDebugPorts) Some(IO(new Bundle {
@@ -73,6 +78,9 @@ class Core(implicit val p: Parameters) extends Module with HasZaqalParameter {
   io.mem <> frontend.io.mem
   io.uart_tx_valid := backend.io.uart_tx_valid
   io.uart_tx_char  := backend.io.uart_tx_char
+  backend.io.plic_ext_irq := io.plic_ext_irq
+  io.clint_mtip    := backend.io.clint_mtip
+  io.plic_meip     := backend.io.plic_meip
 
   // Metadata access (XiangShan style) - Tie off for now
   frontend.io.ftq_read_ptr := 0.U 

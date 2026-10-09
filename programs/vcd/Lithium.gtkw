@@ -1,12 +1,12 @@
 [*]
 [*] GTKWave Analyzer v3.3.111 (w)1999-2020 BSI
-[*] Thu Oct  8 13:27:14 2026
+[*] Fri Oct  9 13:08:45 2026
 [*]
 [dumpfile] "/home/emerald/zaqal/programs/vcd/Lithium.vcd"
-[dumpfile_mtime] "Thu Oct  8 13:14:20 2026"
-[dumpfile_size] 15280357
+[dumpfile_mtime] "Fri Oct  9 11:39:05 2026"
+[dumpfile_size] 15648964
 [savefile] "/home/emerald/zaqal/programs/vcd/Lithium.gtkw"
-[timestart] 262
+[timestart] 278
 [size] 1865 930
 [pos] -1 -1
 *-2.900000 1615 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
@@ -14,9 +14,9 @@
 [treeopen] TOP.Core.
 [treeopen] TOP.Core.backend.
 [treeopen] TOP.Core.backend.dcache.
-[treeopen] TOP.Core.backend.dcache.prefetcher.
 [treeopen] TOP.Core.backend.exec.
 [treeopen] TOP.Core.backend.exec.bru_0.
+[treeopen] TOP.Core.backend.exec.dmem.
 [treeopen] TOP.Core.backend.exec.ptw.
 [treeopen] TOP.Core.backend.intFreeList.
 [treeopen] TOP.Core.backend.intIq.
@@ -47,11 +47,9 @@ TOP.Core.io_uart_tx_char[7:0]
 -CSR
 @28
 TOP.Core.backend.exec.csr.io_priv_mode[1:0]
-TOP.Core.backend.exec.csr.io_mret_valid
 TOP.Core.backend.exec.csr.io_trap_in_valid
 @22
 +{TOP.Core.backend.exec.csr.io_trap_in_cause[63:0]} TOP.Core.backend.exec.csr.io_trap_in_cause[63:0]
-+{TOP.Core.backend.exec.csr.r_mepc[63:0]} TOP.Core.backend.exec.csr.r_mepc[63:0]
 +{TOP.Core.backend.exec.csr.r_mcause[63:0]} TOP.Core.backend.exec.csr.r_mcause[63:0]
 @28
 TOP.Core.backend.exec.csr.r_mstatus_mpp[1:0]
@@ -60,11 +58,16 @@ TOP.Core.backend.exec.csr.r_mstatus_mpp[1:0]
 TOP.Core.backend.exec.csr.r_pmpaddr_0[63:0]
 @28
 +{TOP.Core.backend.exec.is_store_pmp_fault} TOP.Core.backend.exec.is_store_pmp_fault
-TOP.Core.backend.exec.csr.io_trap_in_valid
 @22
-+{TOP.Core.backend.exec.csr.io_trap_in_cause[63:0]} TOP.Core.backend.exec.csr.io_trap_in_cause[63:0]
 TOP.Core.backend.exec.csr.r_mcause[63:0]
+@29
+TOP.Core.backend.exec.csr.io_mret_valid
+@22
 +{TOP.Core.backend.exec.csr.r_mepc[63:0]} TOP.Core.backend.exec.csr.r_mepc[63:0]
++{TOP.Core.backend.exec.csr.io_trap_in_cause[63:0]} TOP.Core.backend.exec.csr.io_trap_in_cause[63:0]
+@28
+TOP.Core.backend.exec.csr.io_trap_in_valid
+TOP.Core.backend.exec.csr.io_clint_mtip
 @1000200
 -CSR
 @c00200
@@ -777,7 +780,7 @@ TOP.Core.backend.dcache.mshr.io_alloc_valid
 TOP.Core.backend.dcache.isHit
 @1401200
 -Dcache
-@800200
+@c00200
 -PTW
 @28
 TOP.Core.backend.exec.ptw.state[2:0]
@@ -788,19 +791,19 @@ TOP.Core.backend.exec.ptw.curr_level[1:0]
 TOP.Core.backend.exec.ptw.io_resp_valid
 @22
 TOP.Core.backend.exec.ptw.translated_paddr[63:0]
-@1000200
+@1401200
 -PTW
 @24
 [color] 6
 TOP.debug_cycle_count[63:0]
-@800200
+@c00200
 -TLB_0
 @22
 TOP.Core.backend.exec.tlb_0.io_vaddr[63:0]
 @28
 TOP.Core.backend.exec.tlb_0.io_refill_valid
 TOP.Core.backend.exec.tlb_0.io_hit
-@1000200
+@1401200
 -TLB_0
 @200
 -RegFile
@@ -966,7 +969,7 @@ TOP.Core.backend.exec.regFile.regs_34[63:0]
 +{TOP.Core.backend.exec.regFile.regs_41[63:0]} TOP.Core.backend.exec.regFile.regs_41[63:0]
 @24
 +{TOP.Core.backend.exec.regFile.regs_42[63:0]} TOP.Core.backend.exec.regFile.regs_42[63:0]
-@23
+@22
 TOP.Core.backend.exec.regFile.regs_43[63:0]
 @24
 +{TOP.Core.backend.exec.regFile.regs_44[63:0]} TOP.Core.backend.exec.regFile.regs_44[63:0]
@@ -1110,6 +1113,13 @@ TOP.Core.backend.exec.dmem.mem_6[63:0]
 TOP.Core.backend.exec.dmem.mem_7[63:0]
 TOP.Core.backend.exec.dmem.mem_8[63:0]
 TOP.Core.backend.exec.dmem.mem_9[63:0]
+@800200
+-CLINT
+@22
+TOP.Core.backend.exec.dmem.clint.r_mtime[63:0]
+TOP.Core.backend.exec.dmem.clint.r_mtimecmp[63:0]
+@1000200
+-CLINT
 @c00200
 -fpregs
 @24

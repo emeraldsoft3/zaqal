@@ -126,17 +126,27 @@ class Rob(val numWb: Int = 14)(implicit val p: Parameters) extends Module with H
       robEntries(i).valid := false.B
     }
   } .elsewhen(io.bpu_redirect.valid) {
-    // Flush branch misprediction or EXU pipeline redirect
-    enqPtr := io.bpu_redirect.robIdx + 1.U
-    for (i <- 0 until robSize) {
-      val d_i = i.U - deqPtr
-      val d_r = io.bpu_redirect.robIdx - deqPtr
-      val d_e = enqPtr - deqPtr
-      when(d_i > d_r && d_i < d_e) {
+    when(io.bpu_redirect.is_exception) {
+      // Full pipeline flush on Exception / Trap / Interrupt / MRET
+      enqPtr := 0.U
+      deqPtr := 0.U
+      for (i <- 0 until robSize) {
         robEntries(i).valid := false.B
       }
+      maybeFull := false.B
+    } .otherwise {
+      // Flush branch misprediction: only younger speculative entries
+      enqPtr := io.bpu_redirect.robIdx + 1.U
+      for (i <- 0 until robSize) {
+        val d_i = i.U - deqPtr
+        val d_r = io.bpu_redirect.robIdx - deqPtr
+        val d_e = enqPtr - deqPtr
+        when(d_i > d_r && d_i < d_e) {
+          robEntries(i).valid := false.B
+        }
+      }
+      maybeFull := false.B // A flush always frees up space
     }
-    maybeFull := false.B // A flush always frees up space
   }
 
   // -------------------------------------------------------------

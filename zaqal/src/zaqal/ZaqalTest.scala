@@ -46,77 +46,79 @@ object ZaqalTest extends App {
 
 
     // =========================================================================
-    // DAY 14-16 TEST: SYSTEM INTEGRATION (OPENSBI & UART 16550 CONSOLE)
+    // DAY 17-20 TEST: CLINT TIMER INTERRUPT & MID-PROGRAM HARDWARE PREEMPTION
     // =========================================================================
     // Flow:
-    // 1. Core resets in M-mode (Machine mode, priv_mode = 3).
-    // 2. OpenSBI Firmware Setup (Block 0 & Block 1):
-    //    - Sets mtvec = 0x80000080 (M-mode OpenSBI Trap Handler)
-    //    - Sets mstatus.MPP = 1 (Supervisor Mode)
-    //    - Sets mepc = 0x80000040 (S-mode OS Kernel Entry)
-    //    - Executes mret -> drops into S-mode (priv_mode = 1) at 0x80000040!
-    // 3. S-mode OS Kernel (Block 2):
-    //    - Prepares SBI call: a7 = 1 (sbi_console_putchar), a0 = 'H' (0x48)
-    //    - Executes ecall -> traps to M-mode OpenSBI handler (mcause = 9)!
-    //    - After mret resumes at 0x8000004C:
-    //    - Prepares second SBI call: a7 = 1, a0 = 'I' (0x49)
-    //    - Executes ecall -> traps to M-mode OpenSBI handler!
-    //    - Sets success flag x28 = 0x77 and halts.
-    // 4. OpenSBI Trap Handler (Block 4 at 0x80000080):
-    //    - Writes a0 to UART 16550 MMIO THR register at 0x10000000
-    //    - Advances mepc += 4
-    //    - Executes mret -> returns to S-mode OS Kernel!
+    // 1. Core starts in M-mode.
+    // 2. Setup (Block 0 & Block 1):
+    //    - Sets mtvec = 0x80000080 (Trap Handler Vector)
+    //    - Programs CLINT mtimecmp (0x02004000) = 80 cycles
+    //    - Enables mie.MTIE (bit 7)
+    //    - Enables mstatus.MIE (bit 3)
+    // 3. Workload Loop (Block 1):
+    //    - Executes infinite counter increment: x10 = x10 + 1; j loop
+    // 4. Hardware Preemption:
+    //    - When mtime >= 80, CLINT asserts mtip wire directly into CSRFile.
+    //    - CSRFile arbitrates Machine Timer Interrupt (mcause = 0x8000000000000007).
+    //    - Execute stage preempts the loop, snapshots mepc, and redirects to mtvec!
+    // 5. Interrupt Handler (Block 4 at 0x80000080):
+    //    - Writes 'T' (0x54) to UART 16550 THR (0x10000000)
+    //    - Sets preemption verification flag x29 = 0xAA
+    //    - Pushes mtimecmp far into future (0xFFFFFFFFFFFFFFFF)
+    //    - Executes mret -> returns to mepc and restores mstatus.MIE!
+    // 6. Resumption:
+    //    - The counting loop resumes seamlessly, incrementing x10!
     // =========================================================================
     val programMemory = Seq(
-      // --- BLOCK 0 (PC 0x80000000 - 0x8000001C): OpenSBI Trap Vector & S-Mode Target Setup ---
+      // --- BLOCK 0 (PC 0x80000000 - 0x8000001C): Setup Trap Vector mtvec = 0x80000080 ---
       "h00000297".U(32.W), // 00 [Word 0]: auipc x5, 0              (x5 = 0x80000000)
-      "h08028293".U(32.W), // 04 [Word 1]: addi  x5, x5, 0x80       (x5 = 0x80000080 = OpenSBI Trap Handler)
+      "h08028293".U(32.W), // 04 [Word 1]: addi  x5, x5, 0x80       (x5 = 0x80000080 = Trap Handler)
       "h30529073".U(32.W), // 08 [Word 2]: csrrw x0, 0x305, x5      (mtvec := 0x80000080)
-      "h00100313".U(32.W), // 0C [Word 3]: addi  x6, x0, 1          (x6 = 1)
-      "h00b31313".U(32.W), // 10 [Word 4]: slli  x6, x6, 11         (x6 = 0x800: mstatus.MPP = 1 for S-Mode)
-      "h30031073".U(32.W), // 14 [Word 5]: csrrw x0, 0x300, x6      (mstatus := 0x800: Set MPP to S-Mode)
-      "h00000397".U(32.W), // 18 [Word 6]: auipc x7, 0              (x7 = 0x80000018)
-      "h02838393".U(32.W), // 1C [Word 7]: addi  x7, x7, 0x28       (x7 = 0x80000040 = OS Kernel S-mode entry)
+      "h00000013".U(32.W), // 0C [Word 3]: nop
+      "h00000013".U(32.W), // 10 [Word 4]: nop
+      "h00000013".U(32.W), // 14 [Word 5]: nop
+      "h00000013".U(32.W), // 18 [Word 6]: nop
+      "h00000013".U(32.W), // 1C [Word 7]: nop
 
-      // --- BLOCK 1 (PC 0x80000020 - 0x8000003C): Enter S-mode via mret ---
-      "h34139073".U(32.W), // 20 [Word 0]: csrrw x0, 0x341, x7      (mepc := 0x80000040)
-      "h00000013".U(32.W), // 24 [Word 1]: nop
-      "h00000013".U(32.W), // 28 [Word 2]: nop
+      // --- BLOCK 1 (PC 0x80000020 - 0x8000003C): Program CLINT mtimecmp ---
+      "h02004337".U(32.W), // 20 [Word 0]: lui   x6, 0x02004        (x6 = 0x02004000 = CLINT mtimecmp)
+      "h15e00393".U(32.W), // 24 [Word 1]: addi  x7, x0, 350        (x7 = 350 cycles threshold)
+      "h00733023".U(32.W), // 28 [Word 2]: sd    x7, 0(x6)          (CLINT mtimecmp := 150)
       "h00000013".U(32.W), // 2C [Word 3]: nop
-      "h30200073".U(32.W), // 30 [Word 4]: mret                     (DROP TO S-MODE! PC jumps to 0x80000040!)
+      "h00000013".U(32.W), // 30 [Word 4]: nop
       "h00000013".U(32.W), // 34 [Word 5]: nop
       "h00000013".U(32.W), // 38 [Word 6]: nop
       "h00000013".U(32.W), // 3C [Word 7]: nop
 
-      // --- BLOCK 2 (PC 0x80000040 - 0x8000005C): S-Mode OS Kernel (SBI ecall calls) ---
-      "h00100893".U(32.W), // 40 [Word 0]: addi  x17, x0, 1         (a7 = 1: sbi_console_putchar)
-      "h04800513".U(32.W), // 44 [Word 1]: addi  x10, x0, 0x48      (a0 = 'H' = 0x48)
-      "h00000073".U(32.W), // 48 [Word 2]: ecall                    (TRAP TO M-MODE! mcause=9, mepc=0x80000048)
-      "h00100893".U(32.W), // 4C [Word 3]: addi  x17, x0, 1         (a7 = 1: sbi_console_putchar)
-      "h04900513".U(32.W), // 50 [Word 4]: addi  x10, x0, 0x49      (a0 = 'I' = 0x49)
-      "h00000073".U(32.W), // 54 [Word 5]: ecall                    (TRAP TO M-MODE! mcause=9, mepc=0x80000054)
-      "h07700e13".U(32.W), // 58 [Word 6]: addi  x28, x0, 0x77      (SUCCESS FLAG: x28 = 0x77 = 119)
-      "h0000006f".U(32.W), // 5C [Word 7]: jal   x0, 0              (Done spin loop)
+      // --- BLOCK 2 (PC 0x80000040 - 0x8000005C): Enable MTIE & MIE ---
+      "h08000413".U(32.W), // 40 [Word 0]: addi  x8, x0, 0x80       (x8 = 0x80 = MTIE)
+      "h30441073".U(32.W), // 44 [Word 1]: csrrw x0, 0x304, x8      (mie := 0x80)
+      "h00800493".U(32.W), // 48 [Word 2]: addi  x9, x0, 0x08       (x9 = 0x08 = MIE)
+      "h30049073".U(32.W), // 4C [Word 3]: csrrw x0, 0x300, x9      (mstatus := 0x08: Interrupts enabled!)
+      "h00000013".U(32.W), // 50 [Word 4]: nop
+      "h00000013".U(32.W), // 54 [Word 5]: nop
+      "h00000013".U(32.W), // 58 [Word 6]: nop
+      "h00000013".U(32.W), // 5C [Word 7]: nop
 
-      // --- BLOCK 3 (PC 0x80000060 - 0x8000007C): Padding / NOPs ---
-      "h00000013".U(32.W), // 60: nop
-      "h00000013".U(32.W), // 64: nop
-      "h00000013".U(32.W), // 68: nop
-      "h00000013".U(32.W), // 6C: nop
-      "h00000013".U(32.W), // 70: nop
-      "h00000013".U(32.W), // 74: nop
-      "h00000013".U(32.W), // 78: nop
-      "h00000013".U(32.W), // 7C: nop
+      // --- BLOCK 3 (PC 0x80000060 - 0x8000007C): Workload Loop (To be Preempted!) ---
+      "h00150513".U(32.W), // 60 [Word 0]: addi  x10, x10, 1        (counter++)
+      "hffdff06f".U(32.W), // 64 [Word 1]: jal   x0, -4             (loop to 0x60)
+      "h00000013".U(32.W), // 68 [Word 2]: nop
+      "h00000013".U(32.W), // 6C [Word 3]: nop
+      "h00000013".U(32.W), // 70 [Word 4]: nop
+      "h00000013".U(32.W), // 74 [Word 5]: nop
+      "h00000013".U(32.W), // 78 [Word 6]: nop
+      "h00000013".U(32.W), // 7C [Word 7]: nop
 
-      // --- BLOCK 4 (PC 0x80000080 - 0x8000009C): OpenSBI Trap Handler in M-mode ---
-      "h100002b7".U(32.W), // 80 [Word 0]: lui   x5, 0x10000        (t0 = 0x10000000 = UART 16550 Base)
-      "h00a28023".U(32.W), // 84 [Word 1]: sb    x10, 0(x5)         (UART THR := a0: Transmit Character!)
-      "h34102373".U(32.W), // 88 [Word 2]: csrrw x6, 0x341, x0      (t1 = mepc: read ecall PC)
-      "h00430313".U(32.W), // 8C [Word 3]: addi  x6, x6, 4          (t1 = t1 + 4: advance past ecall)
-      "h34131073".U(32.W), // 90 [Word 4]: csrrw x0, 0x341, x6      (mepc := t1: update mepc)
-      "h00000013".U(32.W), // 94 [Word 5]: nop
-      "h00000013".U(32.W), // 98 [Word 6]: nop
-      "h30200073".U(32.W)  // 9C [Word 7]: mret                     (RETURN TO S-MODE! Resumes at mepc)
+      // --- BLOCK 4 (PC 0x80000080 - 0x8000009C): Trap Handler in M-mode ---
+      "h100002b7".U(32.W), // 80 [Word 0]: lui   x5, 0x10000        (x5 = 0x10000000 = UART Base)
+      "h05400e93".U(32.W), // 84 [Word 1]: addi  x29, x0, 0x54      (x29 = 'T' = 0x54)
+      "h01d28023".U(32.W), // 88 [Word 2]: sb    x29, 0(x5)         (UART THR := 'T': Print to console!)
+      "h0aa00e93".U(32.W), // 8C [Word 3]: addi  x29, x0, 0xaa      (SUCCESS FLAG: x29 := 0xAA)
+      "h02004337".U(32.W), // 90 [Word 4]: lui   x6, 0x02004        (x6 = 0x02004000 = mtimecmp)
+      "hfff00393".U(32.W), // 94 [Word 5]: addi  x7, x0, -1         (x7 = 0xFFFFFFFFFFFFFFFF)
+      "h00733023".U(32.W), // 98 [Word 6]: sd    x7, 0(x6)          (CLINT mtimecmp := max: disarm timer)
+      "h30200073".U(32.W)  // 9C [Word 7]: mret                     (RESUME INTERRUPTED WORKLOAD LOOP AT mepc!)
     ).padTo(1024, "h00000013".U(32.W))
 
     var memLatencyCounter = 0
@@ -134,6 +136,7 @@ object ZaqalTest extends App {
     for (cycle <- 0 until maxCycles) {
       // 1. Apply Reset
       dut.reset.poke((cycle < resetCycles).B)
+      dut.io.plic_ext_irq.poke(0.U)
       
       val flush = dut.debug.get.ftq_flush.peek().litToBoolean
 

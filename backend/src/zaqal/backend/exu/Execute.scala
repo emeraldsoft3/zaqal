@@ -59,6 +59,11 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
     // UART Console Ports (Day 14-16)
     val uart_tx_valid = Output(Bool())
     val uart_tx_char  = Output(UInt(8.W))
+
+    // Hardware Interrupt Lines (CLINT & PLIC - Day 17-20)
+    val plic_ext_irq  = Input(UInt(32.W))
+    val clint_mtip    = Output(Bool())
+    val plic_meip     = Output(Bool())
   })
 
   // ---------------- EXECUTION UNITS (KUNMINGHU PARITY) ----------------
@@ -370,27 +375,33 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   val exe_is_link1   = exe_dec_int(1).is_jal || exe_dec_int(1).is_jalr
   val exe_link_addr1 = exe_uop_raw_int(1).pc + Mux(exe_uop_raw_int(1).pre.is_rvc, 2.U, 4.U)
 
+  // Asynchronous Hardware Interrupt Detection (Day 17-20)
+  val has_mret_early = VecInit((0 until 4).map(i => exe_val_int(i) && exe_dec_int(i).is_mret)).asUInt.orR
+  val has_sret_early = VecInit((0 until 4).map(i => exe_val_int(i) && exe_dec_int(i).is_sret)).asUInt.orR
+  val is_async_interrupt = csr.io.interrupt_pending && exe_val_int(0) && !has_mret_early && !has_sret_early
+
   // Combinational ALU writeback signals
   val wb_alu_val  = Wire(Vec(4, Bool()))
   val wb_alu_dest = Wire(Vec(4, UInt(phyRegIdxWidth.W)))
   val wb_alu_data = Wire(Vec(4, UInt(xLen.W)))
 
-  wb_alu_val(0)  := exe_val_int(0) && exe_uop_int(0).pdest =/= 0.U && !exe_is_div_op0 && ((!exe_dec_int(0).is_branch) || exe_is_link0)
+  wb_alu_val(0)  := exe_val_int(0) && exe_uop_int(0).pdest =/= 0.U && !exe_is_div_op0 && ((!exe_dec_int(0).is_branch) || exe_is_link0) && !is_async_interrupt
   wb_alu_dest(0) := exe_uop_int(0).pdest
   wb_alu_data(0) := Mux(exe_is_link0, exe_link_addr0,
                     Mux(exe_dec_int(0).is_csr, csr.io.csr_rdata, alu(0).io.result))
 
   wb_alu_val(1)  := exe_val_int(1) && exe_uop_int(1).pdest =/= 0.U && !exe_is_div_op1 && ((!exe_dec_int(1).is_branch) || exe_is_link1)
   wb_alu_dest(1) := exe_uop_int(1).pdest
-  wb_alu_data(1) := Mux(exe_is_link1, exe_link_addr1, alu(1).io.result)
+  wb_alu_data(1) := Mux(exe_is_link1, exe_link_addr1,
+                    Mux(exe_dec_int(1).is_csr, csr.io.csr_rdata, alu(1).io.result))
 
   wb_alu_val(2)  := exe_val_int(2) && exe_uop_int(2).pdest =/= 0.U && !exe_dec_int(2).is_branch
   wb_alu_dest(2) := exe_uop_int(2).pdest
-  wb_alu_data(2) := alu(2).io.result
+  wb_alu_data(2) := Mux(exe_dec_int(2).is_csr, csr.io.csr_rdata, alu(2).io.result)
 
   wb_alu_val(3)  := exe_val_int(3) && exe_uop_int(3).pdest =/= 0.U && !exe_dec_int(3).is_branch
   wb_alu_dest(3) := exe_uop_int(3).pdest
-  wb_alu_data(3) := alu(3).io.result
+  wb_alu_data(3) := Mux(exe_dec_int(3).is_csr, csr.io.csr_rdata, alu(3).io.result)
 
   // Dividers done signals
   val wb_div_val  = VecInit(div(0).io.done && div_rd_latch(0) =/= 0.U, div(1).io.done && div_rd_latch(1) =/= 0.U)
@@ -559,21 +570,38 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   val fault_load_idx  = PriorityEncoder(load_pmp_fault.asUInt)
   val fault_mem_idx   = Mux(is_store_pmp_fault, fault_store_idx, fault_load_idx)
 
-  // ---------------- CSR & SYSTEM TRAP/RET EXECUTION (LANE 0) ----------------
-  val is_ecall   = exe_val_int(0) && exe_dec_int(0).is_ecall
-  val is_mret    = exe_val_int(0) && exe_dec_int(0).is_mret
-  val is_sret    = exe_val_int(0) && exe_dec_int(0).is_sret
+  // ---------------- CSR & SYSTEM TRAP/RET EXECUTION ----------------
+  val has_csr    = VecInit((0 until 4).map(i => exe_val_int(i) && exe_dec_int(i).is_csr)).asUInt.orR
+  val csr_lane   = PriorityEncoder(VecInit((0 until 4).map(i => exe_val_int(i) && exe_dec_int(i).is_csr)))
+
+  val has_ecall  = VecInit((0 until 4).map(i => exe_val_int(i) && exe_dec_int(i).is_ecall)).asUInt.orR
+  val ecall_lane = PriorityEncoder(VecInit((0 until 4).map(i => exe_val_int(i) && exe_dec_int(i).is_ecall)))
+
+  val has_mret   = VecInit((0 until 4).map(i => exe_val_int(i) && exe_dec_int(i).is_mret)).asUInt.orR
+  val mret_lane  = PriorityEncoder(VecInit((0 until 4).map(i => exe_val_int(i) && exe_dec_int(i).is_mret)))
+
+  val has_sret   = VecInit((0 until 4).map(i => exe_val_int(i) && exe_dec_int(i).is_sret)).asUInt.orR
+  val sret_lane  = PriorityEncoder(VecInit((0 until 4).map(i => exe_val_int(i) && exe_dec_int(i).is_sret)))
+
+  val is_ecall      = has_ecall
+  val is_mret       = has_mret
+  val is_sret       = has_sret
   val is_sfence_vma = exe_val_int(0) && exe_dec_int(0).is_sfence_vma
-  val is_illegal = exe_val_int(0) && (exe_dec_int(0).is_csr || exe_dec_int(0).is_mret || exe_dec_int(0).is_sret) && csr.io.is_illegal
-  val is_int_trap = is_ecall || is_illegal
+  val is_illegal    = has_csr && csr.io.is_illegal
+  val is_int_trap   = is_ecall || is_illegal
+
+  val sys_lane = Mux(has_ecall, ecall_lane,
+                 Mux(has_mret,  mret_lane,
+                 Mux(has_sret,  sret_lane, csr_lane)))
 
   val ecall_cause = Mux(csr.io.priv_mode === zaqal.backend.csr.PrivMode.U, 8.U,
                     Mux(csr.io.priv_mode === zaqal.backend.csr.PrivMode.S, 9.U, 11.U))
   val int_trap_cause = Mux(is_illegal, 2.U, ecall_cause)
   val mem_trap_cause = Mux(is_store_pmp_fault, 7.U, 5.U) // 7: Store Access Fault, 5: Load Access Fault
 
-  val trap_cause  = Mux(is_int_trap, int_trap_cause, mem_trap_cause)
-  val trap_valid  = is_int_trap || is_mem_fault
+  val trap_cause  = Mux(is_async_interrupt, csr.io.interrupt_cause,
+                    Mux(is_int_trap, int_trap_cause, mem_trap_cause))
+  val trap_valid  = is_async_interrupt || is_int_trap || is_mem_fault
 
   val mem_fault_pc    = r_agu_uop(fault_mem_idx).uop.pc
   val mem_fault_paddr = r_agu_paddr(fault_mem_idx)
@@ -582,19 +610,32 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   val mem_fault_ftq   = r_agu_uop(fault_mem_idx).uop.ftqPtr
   val mem_fault_rob   = r_agu_uop(fault_mem_idx).robIdx
 
-  csr.io.csr_addr  := exe_dec_int(0).csr_addr
-  csr.io.csr_cmd   := Mux(exe_dec_int(0).is_csr, exe_dec_int(0).csr_cmd, 0.U)
-  csr.io.csr_wdata := Mux(exe_dec_int(0).is_csr_imm, exe_dec_int(0).imm.asUInt, src_int_1(0))
-  csr.io.csr_wen   := exe_val_int(0) && exe_dec_int(0).is_csr
+  val int_csr_addr = VecInit(exe_dec_int.map(_.csr_addr))
+  val int_csr_cmd  = VecInit(exe_dec_int.map(_.csr_cmd))
+  val int_csr_imm  = VecInit(exe_dec_int.map(_.is_csr_imm))
+  val int_imm      = VecInit(exe_dec_int.map(_.imm.asUInt))
+  val int_pc       = VecInit(exe_uop_raw_int.map(_.pc))
+  val int_raw      = VecInit(exe_uop_raw_int.map(_.inst_raw))
+  val int_epoch    = VecInit(exe_uop_raw_int.map(_.epoch))
+  val int_snap     = VecInit(exe_uop_int.map(_.snapshotIdx))
+  val int_ftq      = VecInit(exe_uop_raw_int.map(_.ftqPtr))
+  val int_rob      = VecInit(exe_uop_int.map(_.robIdx))
+
+  csr.io.csr_addr  := int_csr_addr(csr_lane)
+  csr.io.csr_cmd   := Mux(has_csr, int_csr_cmd(csr_lane), 0.U)
+  csr.io.csr_wdata := Mux(int_csr_imm(csr_lane), int_imm(csr_lane), src_int_1(csr_lane))
+  csr.io.csr_wen   := has_csr && !is_async_interrupt
   csr.io.set_flags := false.B
   csr.io.flags_to_set := 0.U
 
   csr.io.trap_in.valid := trap_valid
-  csr.io.trap_in.epc   := Mux(is_int_trap, exe_uop_raw_int(0).pc, mem_fault_pc)
+  csr.io.trap_in.epc   := Mux(is_async_interrupt, int_pc(0),
+                          Mux(is_int_trap, int_pc(sys_lane), mem_fault_pc))
   csr.io.trap_in.cause := trap_cause
-  csr.io.trap_in.tval  := Mux(is_int_trap, Mux(is_illegal, exe_uop_raw_int(0).inst_raw, 0.U), mem_fault_paddr)
-  csr.io.mret_valid    := is_mret
-  csr.io.sret_valid    := is_sret
+  csr.io.trap_in.tval  := Mux(is_async_interrupt, 0.U,
+                          Mux(is_int_trap, Mux(is_illegal, int_raw(sys_lane), 0.U), mem_fault_paddr))
+  csr.io.mret_valid    := is_mret && !is_async_interrupt
+  csr.io.sret_valid    := is_sret && !is_async_interrupt
 
   // BRUs on Lane 0 and Lane 1
   for (i <- 0 until 2) {
@@ -711,43 +752,48 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   } .elsewhen(trap_valid) {
     io.redirect.valid := true.B
     io.redirect.target := csr.io.trap_target
-    io.redirect.epoch  := Mux(is_int_trap, exe_uop_raw_int(0).epoch, mem_fault_epoch)
+    io.redirect.epoch  := Mux(is_async_interrupt, int_epoch(0),
+                          Mux(is_int_trap, int_epoch(sys_lane), mem_fault_epoch))
     io.redirect.is_exception := true.B
     io.redirect.exc_cause    := trap_cause
-    io.redirect.snapshotIdx  := Mux(is_int_trap, r0_snap, mem_fault_snap)
-    io.redirect.pc           := Mux(is_int_trap, exe_uop_raw_int(0).pc, mem_fault_pc)
+    io.redirect.snapshotIdx  := Mux(is_async_interrupt, r0_snap,
+                                Mux(is_int_trap, int_snap(sys_lane), mem_fault_snap))
+    io.redirect.pc           := Mux(is_async_interrupt, int_pc(0),
+                                Mux(is_int_trap, int_pc(sys_lane), mem_fault_pc))
     io.redirect.taken        := false.B
     io.redirect.is_cfi       := false.B
     io.redirect.is_jal       := false.B
     io.redirect.is_jalr      := false.B
-    io.redirect.ftqPtr       := Mux(is_int_trap, exe_uop_raw_int(0).ftqPtr, mem_fault_ftq)
-    io.redirect.robIdx       := Mux(is_int_trap, exe_uop_int(0).robIdx, mem_fault_rob)
+    io.redirect.ftqPtr       := Mux(is_async_interrupt, int_ftq(0),
+                                Mux(is_int_trap, int_ftq(sys_lane), mem_fault_ftq))
+    io.redirect.robIdx       := Mux(is_async_interrupt, int_rob(0),
+                                Mux(is_int_trap, int_rob(sys_lane), mem_fault_rob))
   } .elsewhen(is_mret) {
     io.redirect.valid := true.B
     io.redirect.target := csr.io.mepc_val
-    io.redirect.epoch  := exe_uop_raw_int(0).epoch
-    io.redirect.is_exception := true.B
+    io.redirect.epoch  := int_epoch(mret_lane)
+    io.redirect.is_exception := false.B
     io.redirect.exc_cause    := 0.U
-    io.redirect.snapshotIdx  := r0_snap
-    io.redirect.pc           := exe_uop_raw_int(0).pc
-    io.redirect.taken        := false.B
-    io.redirect.is_cfi       := false.B
+    io.redirect.snapshotIdx  := int_snap(mret_lane)
+    io.redirect.pc           := int_pc(mret_lane)
+    io.redirect.taken        := true.B
+    io.redirect.is_cfi       := true.B
     io.redirect.is_jal       := false.B
-    io.redirect.is_jalr      := false.B
-    io.redirect.ftqPtr       := exe_uop_raw_int(0).ftqPtr
-    io.redirect.robIdx       := exe_uop_int(0).robIdx
+    io.redirect.is_jalr      := true.B
+    io.redirect.ftqPtr       := int_ftq(mret_lane)
+    io.redirect.robIdx       := int_rob(mret_lane)
   } .elsewhen(is_sret) {
     io.redirect.valid := true.B
     io.redirect.target := csr.io.sepc_val
     io.redirect.epoch  := exe_uop_raw_int(0).epoch
-    io.redirect.is_exception := true.B
+    io.redirect.is_exception := false.B
     io.redirect.exc_cause    := 0.U
     io.redirect.snapshotIdx  := r0_snap
     io.redirect.pc           := exe_uop_raw_int(0).pc
-    io.redirect.taken        := false.B
-    io.redirect.is_cfi       := false.B
+    io.redirect.taken        := true.B
+    io.redirect.is_cfi       := true.B
     io.redirect.is_jal       := false.B
-    io.redirect.is_jalr      := false.B
+    io.redirect.is_jalr      := true.B
     io.redirect.ftqPtr       := exe_uop_raw_int(0).ftqPtr
     io.redirect.robIdx       := exe_uop_int(0).robIdx
   } .elsewhen(is_sfence_vma) {
@@ -1031,6 +1077,15 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   io.uart_tx_valid := dmem.io.uart_tx_valid
   io.uart_tx_char  := dmem.io.uart_tx_char
 
+  // CLINT & PLIC Interrupt Notification Wiring (Day 17-20)
+  dmem.io.plic_ext_irq := io.plic_ext_irq
+  csr.io.clint_mtip    := dmem.io.clint_mtip
+  csr.io.clint_msip    := dmem.io.clint_msip
+  csr.io.plic_meip     := dmem.io.plic_meip
+  csr.io.plic_seip     := dmem.io.plic_seip
+  io.clint_mtip        := dmem.io.clint_mtip
+  io.plic_meip         := dmem.io.plic_meip
+
   io.dcache_req.valid := sq.io.drain.valid || (r_agu_val(0) && r_agu_uop(0).decode.is_load && !sq.io.stlf_resp(0).hit)
   io.dcache_req.bits.addr := Mux(sq.io.drain.valid, sq.io.drain.paddr, lsu(0).io.mem_addr)
   io.dcache_req.bits.data := sq.io.drain.wdata
@@ -1176,7 +1231,7 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
     val is_link = if (i == 0) exe_is_link0 else if (i == 1) exe_is_link1 else false.B
     val link_addr = if (i == 0) exe_link_addr0 else if (i == 1) exe_link_addr1 else 0.U
 
-    io.exuWriteback(i).valid := exe_val_int(i) && !is_div && !is_mul
+    io.exuWriteback(i).valid := exe_val_int(i) && !is_div && !is_mul && (if (i == 0) !is_async_interrupt else true.B)
     io.exuWriteback(i).bits.robIdx := exe_uop_int(i).robIdx
     io.exuWriteback(i).bits.data   := Mux(is_link, link_addr, alu(i).io.result)
     if (i < 2) {

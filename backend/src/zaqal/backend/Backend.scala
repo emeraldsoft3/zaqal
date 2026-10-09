@@ -29,6 +29,9 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
     val branch_signal = Input(Valid(new BranchPredictionBus))
     val uart_tx_valid = Output(Bool())
     val uart_tx_char  = Output(UInt(8.W))
+    val plic_ext_irq  = Input(UInt(32.W))
+    val clint_mtip    = Output(Bool())
+    val plic_meip     = Output(Bool())
   })
 
   import zaqal.cache.DCache
@@ -455,6 +458,9 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
   exec.io.debug_cycle := io.debug_cycle
   io.uart_tx_valid := exec.io.uart_tx_valid
   io.uart_tx_char  := exec.io.uart_tx_char
+  exec.io.plic_ext_irq := io.plic_ext_irq
+  io.clint_mtip := exec.io.clint_mtip
+  io.plic_meip  := exec.io.plic_meip
 
   val dcache = Module(new DCache)
   dcache.io.req <> exec.io.dcache_req
