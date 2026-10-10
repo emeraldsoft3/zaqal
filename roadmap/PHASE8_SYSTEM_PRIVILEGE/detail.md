@@ -47,4 +47,4 @@ To run an Operating System, we need "Privilege Mode" and "Address Translation."
 - [x] **Supervisor Mode** (S-mode).
 - [x] **Sv39/48 MMU**.
 - [x] **Timer Interrupts** for context switching.
-- [ ] **32-bit Compatibility Mode** (mstatus.UXL).
+- [x] **32-bit Compatibility Mode** (mstatus.UXL).

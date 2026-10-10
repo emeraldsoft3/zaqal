@@ -119,6 +119,37 @@ object CSRTest extends App {
     println("  -> sstatus write accurately updated mstatus (SIE=1, SPIE=1): PASS")
 
     // -----------------------------------------------------------------------
+    // Test 4b: 32-bit Compatibility Mode / XLEN Fields (mstatus.UXL, mstatus.SXL, sstatus.UXL)
+    // -----------------------------------------------------------------------
+    println("\n[Test 4b] Testing 32-bit Compatibility Mode / XLEN Fields (SXL & UXL)...")
+    val (mstatusInit, _, _) = csrAccess(CSRAddr.mstatus, 1, 0, false)
+    val (sstatusInit, _, _) = csrAccess(CSRAddr.sstatus, 1, 0, false)
+
+    val mstatusSXL = (mstatusInit >> 34) & 3
+    val mstatusUXL = (mstatusInit >> 32) & 3
+    val sstatusUXL = (sstatusInit >> 32) & 3
+
+    assert(mstatusSXL == 2, s"Expected mstatus.SXL = 2 (RV64), got $mstatusSXL")
+    assert(mstatusUXL == 2, s"Expected mstatus.UXL = 2 (RV64), got $mstatusUXL")
+    assert(sstatusUXL == 2, s"Expected sstatus.UXL = 2 (RV64), got $sstatusUXL")
+    println(f"  -> Initial XLEN fields verified: mstatus.SXL=$mstatusSXL, mstatus.UXL=$mstatusUXL, sstatus.UXL=$sstatusUXL: PASS")
+
+    // Attempt to write RV32 (1) into UXL/SXL via mstatus (bits 35:32)
+    val attemptVal = (BigInt(1) << 34) | (BigInt(1) << 32)
+    csrAccess(CSRAddr.mstatus, 1, attemptVal, true)
+    val (mstatusAfterWrite, _, _) = csrAccess(CSRAddr.mstatus, 1, 0, false)
+    val (sstatusAfterWrite, _, _) = csrAccess(CSRAddr.sstatus, 1, 0, false)
+
+    val sxlAfter = (mstatusAfterWrite >> 34) & 3
+    val uxlAfter = (mstatusAfterWrite >> 32) & 3
+    val sstatusUxlAfter = (sstatusAfterWrite >> 32) & 3
+
+    assert(sxlAfter == 2, s"mstatus.SXL must remain 2 (WARL read-only in pure RV64), got $sxlAfter")
+    assert(uxlAfter == 2, s"mstatus.UXL must remain 2 (WARL read-only in pure RV64), got $uxlAfter")
+    assert(sstatusUxlAfter == 2, s"sstatus.UXL must remain 2 (WARL read-only in pure RV64), got $sstatusUxlAfter")
+    println("  -> WARL read-only hardwire verified: SXL and UXL cannot be overwritten: PASS")
+
+    // -----------------------------------------------------------------------
     // Test 5: Trap Vectors (mtvec: 0x305 & stvec: 0x105)
     // -----------------------------------------------------------------------
     println("\n[Test 5] Testing mtvec (0x305) and stvec (0x105)...")

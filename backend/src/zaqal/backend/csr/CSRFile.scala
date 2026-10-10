@@ -139,10 +139,18 @@ class CSRFile(implicit val p: Parameters) extends Module with HasZaqalParameter 
   val r_mstatus_spp  = RegInit(0.U(1.W))
   val r_mstatus_fs   = RegInit(1.U(2.W)) // 1 = Initial (FPU on)
 
+  // 32-bit Compatibility Mode / XLEN fields (WARL: hardwired to 64-bit for pure RV64 system)
+  // 1 = RV32, 2 = RV64, 3 = RV128
+  val sxl_val = 2.U(2.W)
+  val uxl_val = 2.U(2.W)
+
   val mstatus_sd = (r_mstatus_fs === 3.U)
   val mstatus = Cat(
     mstatus_sd.asUInt,            // 63: SD
-    0.U((63 - 15).W),             // 62:15
+    0.U(27.W),                    // 62:36: WPRI
+    sxl_val,                      // 35:34: SXL (Supervisor XLEN = 64)
+    uxl_val,                      // 33:32: UXL (User XLEN = 64)
+    0.U(17.W),                    // 31:15: WPRI
     r_mstatus_fs,                 // 14:13: FS
     r_mstatus_mpp,                // 12:11: MPP
     0.U(2.W),                     // 10:9
@@ -157,18 +165,20 @@ class CSRFile(implicit val p: Parameters) extends Module with HasZaqalParameter 
     0.U(1.W)                      // 0
   )
 
-  // Supervisor Status Shadow Mask (SIE, SPIE, SPP, FS, SD)
+  // Supervisor Status Shadow Mask (SIE, SPIE, SPP, FS, SD, UXL)
   val sstatus = Cat(
-    mstatus_sd.asUInt,
-    0.U((63 - 15).W),
-    r_mstatus_fs,
-    0.U(4.W),
-    r_mstatus_spp,
-    0.U(2.W),
-    r_mstatus_spie.asUInt,
-    0.U(3.W),
-    r_mstatus_sie.asUInt,
-    0.U(1.W)
+    mstatus_sd.asUInt,            // 63: SD
+    0.U(29.W),                    // 62:34: WPRI
+    uxl_val,                      // 33:32: UXL (User XLEN = 64)
+    0.U(17.W),                    // 31:15: WPRI
+    r_mstatus_fs,                 // 14:13: FS
+    0.U(4.W),                     // 12:9: WPRI
+    r_mstatus_spp,                // 8: SPP
+    0.U(2.W),                     // 7:6: WPRI
+    r_mstatus_spie.asUInt,        // 5: SPIE
+    0.U(3.W),                     // 4:2: WPRI
+    r_mstatus_sie.asUInt,         // 1: SIE
+    0.U(1.W)                      // 0
   )
 
   // MISA: RV64GC (Base I + M, A, F, D, C, S, U)

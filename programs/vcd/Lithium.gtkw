@@ -1,12 +1,12 @@
 [*]
 [*] GTKWave Analyzer v3.3.111 (w)1999-2020 BSI
-[*] Fri Oct  9 13:08:45 2026
+[*] Sat Oct 10 10:43:04 2026
 [*]
 [dumpfile] "/home/emerald/zaqal/programs/vcd/Lithium.vcd"
-[dumpfile_mtime] "Fri Oct  9 11:39:05 2026"
-[dumpfile_size] 15648964
+[dumpfile_mtime] "Sat Oct 10 08:39:29 2026"
+[dumpfile_size] 15649022
 [savefile] "/home/emerald/zaqal/programs/vcd/Lithium.gtkw"
-[timestart] 278
+[timestart] 0
 [size] 1865 930
 [pos] -1 -1
 *-2.900000 1615 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
@@ -60,7 +60,7 @@ TOP.Core.backend.exec.csr.r_pmpaddr_0[63:0]
 +{TOP.Core.backend.exec.is_store_pmp_fault} TOP.Core.backend.exec.is_store_pmp_fault
 @22
 TOP.Core.backend.exec.csr.r_mcause[63:0]
-@29
+@28
 TOP.Core.backend.exec.csr.io_mret_valid
 @22
 +{TOP.Core.backend.exec.csr.r_mepc[63:0]} TOP.Core.backend.exec.csr.r_mepc[63:0]
@@ -68,6 +68,10 @@ TOP.Core.backend.exec.csr.io_mret_valid
 @28
 TOP.Core.backend.exec.csr.io_trap_in_valid
 TOP.Core.backend.exec.csr.io_clint_mtip
+@22
+TOP.Core.backend.exec.csr.io_mstatus_val[63:0]
+@23
+TOP.Core.backend.exec.csr.io_csr_rdata[63:0]
 @1000200
 -CSR
 @c00200
