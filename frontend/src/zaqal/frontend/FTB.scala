@@ -73,6 +73,6 @@ class FTB(implicit val p: Parameters) extends Module with HasZaqalParameter {
     new_entry.taken   := io.update_taken
     
     entries(update_index) := new_entry
-    printf(p"[FTB UPDATE] pc=${Hexadecimal(io.update_pc)} index=$update_index tag=$update_tag offset=$update_offset target=${Hexadecimal(io.update_target)} taken=${io.update_taken}\n")
+    // printf(p"[FTB UPDATE] pc=${Hexadecimal(io.update_pc)} index=$update_index tag=$update_tag offset=$update_offset target=${Hexadecimal(io.update_target)} taken=${io.update_taken}\n")
   }
 }

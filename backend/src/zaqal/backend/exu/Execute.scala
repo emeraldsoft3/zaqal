@@ -79,6 +79,7 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   val tlb  = Seq.fill(3)(Module(new FastTLB))
   val csr  = Module(new zaqal.backend.csr.CSRFile)
   val ptw  = Module(new zaqal.backend.mmu.PageTableWalker)
+  val amx  = Module(new zaqal.backend.fu.amx.AMXUnit)
 
   // ---------------- LOAD / STORE QUEUES ----------------
   val sq = Module(new zaqal.backend.lsu.StoreQueue(16))
@@ -230,7 +231,8 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
     hit_int(i) := intRC.io.rhits(i * 2) && intRC.io.rhits(i * 2 + 1)
     when(io.int_in(i).valid && !wait_int(i) && !hit_int(i)) { wait_int(i) := true.B } .otherwise { wait_int(i) := false.B }
   }
-  io.int_in(0).ready := Mux(is_div_op0, div(0).io.ready, true.B) && (hit_int(0) || wait_int(0))
+  val is_amx_0 = decInt(0).is_amx
+  io.int_in(0).ready := Mux(is_amx_0, amx.io.cmd_ready, Mux(is_div_op0, div(0).io.ready, true.B)) && (hit_int(0) || wait_int(0))
   io.int_in(1).ready := Mux(is_div_op1, div(1).io.ready, true.B) && (hit_int(1) || wait_int(1))
   io.int_in(2).ready := (hit_int(2) || wait_int(2))
   io.int_in(3).ready := (hit_int(3) || wait_int(3))
@@ -1086,6 +1088,36 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   io.clint_mtip        := dmem.io.clint_mtip
   io.plic_meip         := dmem.io.plic_meip
 
+  // AMX Dedicated Memory & Execution Connections (Phase 9)
+  dmem.io.amx_raddr := amx.io.mem_raddr
+  amx.io.mem_rdata  := dmem.io.amx_rdata
+  dmem.io.amx_wen   := amx.io.mem_wen
+  dmem.io.amx_waddr := amx.io.mem_waddr
+  dmem.io.amx_wdata := amx.io.mem_wdata
+
+  // Trigger AMX command when Lane 0 executes an AMX custom instruction
+  amx.io.cmd_valid := exe_val_int(0) && exe_dec_int(0).is_amx
+  amx.io.cmd_op    := Mux(exe_dec_int(0).is_tzero, zaqal.backend.fu.amx.AMXOp.TZERO,
+                      Mux(exe_dec_int(0).is_tcfg,  zaqal.backend.fu.amx.AMXOp.TCFG,
+                      Mux(exe_dec_int(0).is_tld,   zaqal.backend.fu.amx.AMXOp.TLD,
+                                                   zaqal.backend.fu.amx.AMXOp.TST)))
+  amx.io.tdest     := exe_dec_int(0).amx_tdest
+  amx.io.rs1_val   := src_int_1(0)
+  amx.io.rs2_val   := src_int_2(0)
+
+  // Track multicycle AMX streaming load/store in-flight state
+  val amx_inflight = RegInit(false.B)
+  val amx_rob_idx  = RegInit(0.U(log2Up(128).W))
+  val is_amx_stream0 = exe_dec_int(0).is_tld || exe_dec_int(0).is_tst
+
+  when(exe_val_int(0) && is_amx_stream0) {
+    amx_inflight := true.B
+    amx_rob_idx  := exe_uop_int(0).robIdx
+  }
+  when(amx.io.done) {
+    amx_inflight := false.B
+  }
+
   io.dcache_req.valid := sq.io.drain.valid || (r_agu_val(0) && r_agu_uop(0).decode.is_load && !sq.io.stlf_resp(0).hit)
   io.dcache_req.bits.addr := Mux(sq.io.drain.valid, sq.io.drain.paddr, lsu(0).io.mem_addr)
   io.dcache_req.bits.data := sq.io.drain.wdata
@@ -1231,8 +1263,11 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
     val is_link = if (i == 0) exe_is_link0 else if (i == 1) exe_is_link1 else false.B
     val link_addr = if (i == 0) exe_link_addr0 else if (i == 1) exe_link_addr1 else 0.U
 
-    io.exuWriteback(i).valid := exe_val_int(i) && !is_div && !is_mul && (if (i == 0) !is_async_interrupt else true.B)
-    io.exuWriteback(i).bits.robIdx := exe_uop_int(i).robIdx
+    val is_amx_stream = if (i == 0) is_amx_stream0 else false.B
+    val wb_val_int = exe_val_int(i) && !is_div && !is_mul && !is_amx_stream && (if (i == 0) !is_async_interrupt else true.B)
+
+    io.exuWriteback(i).valid := (if (i == 0) (wb_val_int || (amx.io.done && amx_inflight)) else wb_val_int)
+    io.exuWriteback(i).bits.robIdx := (if (i == 0) Mux(amx.io.done && amx_inflight, amx_rob_idx, exe_uop_int(i).robIdx) else exe_uop_int(i).robIdx)
     io.exuWriteback(i).bits.data   := Mux(is_link, link_addr, alu(i).io.result)
     if (i < 2) {
       io.exuWriteback(i).bits.exceptionVec := Mux(bru(i).io.exc_valid, bru(i).io.exc_cause, 0.U)

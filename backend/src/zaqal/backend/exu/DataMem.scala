@@ -21,6 +21,13 @@ class DataMem(implicit val p: Parameters) extends Module with HasZaqalParameter 
     val ptw_raddr = Input(UInt(xLen.W))
     val ptw_rdata = Output(UInt(64.W))
 
+    // Dedicated AMX 2D Tile Streaming Memory Ports (Phase 9)
+    val amx_raddr = Input(UInt(xLen.W))
+    val amx_rdata = Output(UInt(128.W))
+    val amx_wen   = Input(Bool())
+    val amx_waddr = Input(UInt(xLen.W))
+    val amx_wdata = Input(UInt(128.W))
+
     // UART 16550 Serial Console Ports (Day 14-16)
     val uart_tx_valid = Output(Bool())
     val uart_tx_char  = Output(UInt(8.W))
@@ -152,8 +159,21 @@ class DataMem(implicit val p: Parameters) extends Module with HasZaqalParameter 
     mem(index)      := fullData(63, 0)
     mem(index_next) := fullData(127, 64)
     
-    printf(p"DATA MEM WRITE: addr=${Hexadecimal(io.addr)} index=$index wmask=${Binary(io.wmask)}\n")
-    printf(p"                index=${index} data=${Hexadecimal(fullData(63,0))}\n")
-    printf(p"                index=${index_next} data=${Hexadecimal(fullData(127,64))}\n")
+    // printf(p"DATA MEM WRITE: addr=${Hexadecimal(io.addr)} index=$index wmask=${Binary(io.wmask)}\n")
+    // printf(p"                index=${index} data=${Hexadecimal(fullData(63,0))}\n")
+    // printf(p"                index=${index_next} data=${Hexadecimal(fullData(127,64))}\n")
+  }
+
+  // Dedicated AMX Port Read (128-bit)
+  val amx_r_idx = io.amx_raddr(13, 3)
+  val amx_r_idx_next = Mux(amx_r_idx === 2047.U, 0.U, amx_r_idx + 1.U)
+  io.amx_rdata := Cat(mem(amx_r_idx_next), mem(amx_r_idx))
+
+  // Dedicated AMX Port Write (128-bit)
+  when(io.amx_wen) {
+    val amx_w_idx = io.amx_waddr(13, 3)
+    val amx_w_idx_next = Mux(amx_w_idx === 2047.U, 0.U, amx_w_idx + 1.U)
+    mem(amx_w_idx)      := io.amx_wdata(63, 0)
+    mem(amx_w_idx_next) := io.amx_wdata(127, 64)
   }
 }

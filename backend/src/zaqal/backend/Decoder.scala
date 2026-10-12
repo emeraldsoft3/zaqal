@@ -297,7 +297,19 @@ class Decoder(implicit val p: Parameters) extends Module with HasZaqalParameter 
   val is_fp_fma = io.out.is_fmadd || io.out.is_fmsub || io.out.is_fnmsub || io.out.is_fnmadd
   val is_atomic_rs2 = io.out.is_atomic && !io.out.is_lr
 
-  io.out.rs1_use := Mux(io.out.is_csr, !io.out.is_csr_imm, !(io.out.is_lui || io.out.is_auipc || io.out.is_jal))
-  io.out.rs2_use := !io.out.is_csr && (is_r_type || is_r_type_32 || io.out.is_branch || io.out.is_store || io.out.is_fstore || is_atomic_rs2 || is_fp_fma || (is_fp_op && fp_r_type))
+  // AMX Matrix Instructions (custom-0: opcode 0x0B = "b0001011")
+  val is_custom0 = (opcode === "b0001011".U)
+  io.out.is_tzero  := is_custom0 && (funct3 === "b000".U)
+  io.out.is_tcfg   := is_custom0 && (funct3 === "b001".U)
+  io.out.is_tld    := is_custom0 && (funct3 === "b010".U)
+  io.out.is_tst    := is_custom0 && (funct3 === "b011".U)
+  io.out.is_amx    := is_custom0
+  io.out.amx_tdest := io.inst(9, 7) // Tile index T0-T7
+
+  val is_amx_rs1 = io.out.is_tcfg || io.out.is_tld || io.out.is_tst
+  val is_amx_rs2 = io.out.is_tld || io.out.is_tst
+
+  io.out.rs1_use := Mux(io.out.is_csr, !io.out.is_csr_imm, Mux(is_custom0, is_amx_rs1, !(io.out.is_lui || io.out.is_auipc || io.out.is_jal)))
+  io.out.rs2_use := Mux(is_custom0, is_amx_rs2, !io.out.is_csr && (is_r_type || is_r_type_32 || io.out.is_branch || io.out.is_store || io.out.is_fstore || is_atomic_rs2 || is_fp_fma || (is_fp_op && fp_r_type)))
   io.out.rs3_use := any_fma
 }

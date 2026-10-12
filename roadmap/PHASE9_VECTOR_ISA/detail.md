@@ -4,9 +4,10 @@ Zaqal differentiates itself by integrating high-performance 2D matrix operations
 
 ## Goal: Matrix Acceleration & Standard Vector (RVV 1.0)
 
-## Day 1-5: Matrix Functional Unit (AMX) - Foundation
-- [ ] **Hardware Architecture**: Define the 2D "Tile" registers for AMX.
-- [ ] **Matrix Load/Store**: Implement specialized instructions to load 2D sub-matrices.
+## Day 1-5: Matrix Functional Unit (AMX) - Foundation **[COMPLETE]**
+- [x] **Hardware Architecture**: Define the 2D "Tile" registers for AMX (`T0`-`T7`, 16 rows x 16 cols x 8-bit, 256 bytes per tile, 2 KB total).
+- [x] **Matrix Load/Store**: Implement specialized instructions to load/store 2D sub-matrices (`TLD`, `TST`), single-cycle reset (`TZERO`), and configuration (`TCFG`).
+- [x] **Integration & Verification**: Full out-of-order execution integration via Port 0 issue queue serialization, memory streaming handshake with `DataMem`, verified with both isolated unit tests (`AMXTest.scala`) and full top-level processor simulation (`ZaqalTest.scala`, `Lithium.vcd`).
 - **Detailed Plan**: To accelerate AI workloads, traditional 1D vector processing is inefficient. We will introduce a novel Matrix Functional Unit (AMX) inspired by Apple and Intel architectures. We will define large, 2-dimensional "Tile" architectural registers inside the core that can hold sub-matrices (e.g., 16x16 blocks of 8-bit integers). We will create custom load and store instructions capable of streaming massive continuous chunks of memory directly into these 2D Tile registers, utilizing the full bandwidth of the memory bus.
 
 ## Day 6-12: The Matrix Engine (GEMM Acceleration)

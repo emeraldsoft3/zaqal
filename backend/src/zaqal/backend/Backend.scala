@@ -210,20 +210,20 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
     decoded_uops(i).snapshotIdx := wrapAdd(rat.io.snptEnqPtr, Mux(slot_is_younger_than_branch, 1.U, 0.U))
     decoded_uops(i).is_fused_away := is_fused_away
     
-    // Debug Print for Rename
-    when(io.dispatch(i).valid) {
-      printf(p"CORE RENAME [Cycle ${io.debug_cycle}] [Port $i]: pc=${Hexadecimal(decoded_uops(i).uop.pc)} inst=${Hexadecimal(decoded_uops(i).uop.inst_raw)} ")
-      printf(p"lrs1=${dec.rs1}->prs1=${decoded_uops(i).psrs1} lrs2=${dec.rs2}->prs2=${decoded_uops(i).psrs2} ")
-      when(rf_wen || fp_wen) {
-        printf(p"lrd=${dec.rd}->pdest=${decoded_uops(i).pdest} (old=${decoded_uops(i).old_pdest})")
-      }
-      if (i < decodeWidth - 1) {
-        when(is_fused_pair(i)) {
-          printf(p" [FUSING WITH NEXT: uop_pc=${Hexadecimal(decoded_uops(i).uop.pc)} next_pc=${Hexadecimal(decoded_uops_raw(i+1).uop.pc)}]")
-        }
-      }
-      printf("\n")
-    }
+    // Debug Print for Rename (disabled for quiet, fast simulation)
+    // when(io.dispatch(i).valid) {
+    //   printf(p"CORE RENAME [Cycle ${io.debug_cycle}] [Port $i]: pc=${Hexadecimal(decoded_uops(i).uop.pc)} inst=${Hexadecimal(decoded_uops(i).uop.inst_raw)} ")
+    //   printf(p"lrs1=${dec.rs1}->prs1=${decoded_uops(i).psrs1} lrs2=${dec.rs2}->prs2=${decoded_uops(i).psrs2} ")
+    //   when(rf_wen || fp_wen) {
+    //     printf(p"lrd=${dec.rd}->pdest=${decoded_uops(i).pdest} (old=${decoded_uops(i).old_pdest})")
+    //   }
+    //   if (i < decodeWidth - 1) {
+    //     when(is_fused_pair(i)) {
+    //       printf(p" [FUSING WITH NEXT: uop_pc=${Hexadecimal(decoded_uops(i).uop.pc)} next_pc=${Hexadecimal(decoded_uops_raw(i+1).uop.pc)}]")
+    //     }
+    //   }
+    //   printf("\n")
+    // }
   }
 
   // Update FreeList doAllocate based on whether any instruction in the bundle fired

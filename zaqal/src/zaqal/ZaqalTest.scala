@@ -48,77 +48,42 @@ object ZaqalTest extends App {
     // =========================================================================
     // DAY 17-20 TEST: CLINT TIMER INTERRUPT & MID-PROGRAM HARDWARE PREEMPTION
     // =========================================================================
+    // PHASE 9 (DAY 1-5): AMX MATRIX FUNCTIONAL UNIT STREAMING TEST
+    // =========================================================================
     // Flow:
-    // 1. Core starts in M-mode.
-    // 2. Setup (Block 0 & Block 1):
-    //    - Sets mtvec = 0x80000080 (Trap Handler Vector)
-    //    - Programs CLINT mtimecmp (0x02004000) = 80 cycles
-    //    - Enables mie.MTIE (bit 7)
-    //    - Enables mstatus.MIE (bit 3)
-    // 3. Workload Loop (Block 1):
-    //    - Executes infinite counter increment: x10 = x10 + 1; j loop
-    // 4. Hardware Preemption:
-    //    - When mtime >= 80, CLINT asserts mtip wire directly into CSRFile.
-    //    - CSRFile arbitrates Machine Timer Interrupt (mcause = 0x8000000000000007).
-    //    - Execute stage preempts the loop, snapshots mepc, and redirects to mtvec!
-    // 5. Interrupt Handler (Block 4 at 0x80000080):
-    //    - Writes 'T' (0x54) to UART 16550 THR (0x10000000)
-    //    - Sets preemption verification flag x29 = 0xAA
-    //    - Pushes mtimecmp far into future (0xFFFFFFFFFFFFFFFF)
-    //    - Executes mret -> returns to mepc and restores mstatus.MIE!
-    // 6. Resumption:
-    //    - The counting loop resumes seamlessly, incrementing x10!
+    // 1. Setup registers:
+    //    - x1 = 16 (0x10): row stride = 16 bytes (128-bit memory bus width)
+    //    - x2 = 0x0010: base memory address with pre-populated matrix test data
+    //    - x3 = 0x0200: store target base memory address
+    // 2. AMX Instructions:
+    //    - TCFG  x1           (0x0000900B): Configure 16x16 tile dimensions
+    //    - TZERO T0           (0x0000000B): Fast 1-cycle reset of Tile T0 to 0
+    //    - TLD   T0, x2, x1   (0x0011200B): Stream 2D sub-matrix from memory into T0!
+    //    - TST   T0, x3, x1   (0x0011B00B): Stream 2D matrix from T0 back to memory!
+    // 3. Status flag:
+    //    - x29 = 0xAA (Success completion flag)
+    // 4. Infinite loop to allow pipeline to settle
     // =========================================================================
     val programMemory = Seq(
-      // --- BLOCK 0 (PC 0x80000000 - 0x8000001C): Setup Trap Vector mtvec = 0x80000080 ---
-      "h00000297".U(32.W), // 00 [Word 0]: auipc x5, 0              (x5 = 0x80000000)
-      "h08028293".U(32.W), // 04 [Word 1]: addi  x5, x5, 0x80       (x5 = 0x80000080 = Trap Handler)
-      "h30529073".U(32.W), // 08 [Word 2]: csrrw x0, 0x305, x5      (mtvec := 0x80000080)
-      "h00000013".U(32.W), // 0C [Word 3]: nop
-      "h00000013".U(32.W), // 10 [Word 4]: nop
-      "h00000013".U(32.W), // 14 [Word 5]: nop
-      "h00000013".U(32.W), // 18 [Word 6]: nop
-      "h00000013".U(32.W), // 1C [Word 7]: nop
+      // --- BLOCK 0 (PC 0x80000000 - 0x8000001C): Setup & AMX Instructions ---
+      "h01000093".U(32.W), // 00 [Word 0]: addi  x1, x0, 16        (stride = 16 bytes = 128 bits)
+      "h01000113".U(32.W), // 04 [Word 1]: addi  x2, x0, 0x10      (base read addr = 0x10)
+      "h20000193".U(32.W), // 08 [Word 2]: addi  x3, x0, 0x200     (base write addr = 0x200)
+      "h0000900b".U(32.W), // 0C [Word 3]: tcfg  x1                (AMX TCFG: configure 16x16 tiles)
+      "h0000000b".U(32.W), // 10 [Word 4]: tzero t0                (AMX TZERO: clear Tile T0)
+      "h0011200b".U(32.W), // 14 [Word 5]: tld   t0, x2, x1        (AMX TLD: load 2D sub-matrix into T0)
+      "h0011b00b".U(32.W), // 18 [Word 6]: tst   t0, x3, x1        (AMX TST: store 2D matrix back to 0x200)
+      "h0aa00e93".U(32.W), // 1C [Word 7]: addi  x29, x0, 0xaa     (Flag: x29 := 0xAA)
 
-      // --- BLOCK 1 (PC 0x80000020 - 0x8000003C): Program CLINT mtimecmp ---
-      "h02004337".U(32.W), // 20 [Word 0]: lui   x6, 0x02004        (x6 = 0x02004000 = CLINT mtimecmp)
-      "h15e00393".U(32.W), // 24 [Word 1]: addi  x7, x0, 350        (x7 = 350 cycles threshold)
-      "h00733023".U(32.W), // 28 [Word 2]: sd    x7, 0(x6)          (CLINT mtimecmp := 150)
+      // --- BLOCK 1 (PC 0x80000020 - 0x8000003C): Settle Loop ---
+      "h00000013".U(32.W), // 20 [Word 0]: nop
+      "hffdff06f".U(32.W), // 24 [Word 1]: jal   x0, -4            (loop at 0x24)
+      "h00000013".U(32.W), // 28 [Word 2]: nop
       "h00000013".U(32.W), // 2C [Word 3]: nop
       "h00000013".U(32.W), // 30 [Word 4]: nop
       "h00000013".U(32.W), // 34 [Word 5]: nop
       "h00000013".U(32.W), // 38 [Word 6]: nop
-      "h00000013".U(32.W), // 3C [Word 7]: nop
-
-      // --- BLOCK 2 (PC 0x80000040 - 0x8000005C): Enable MTIE & MIE ---
-      "h08000413".U(32.W), // 40 [Word 0]: addi  x8, x0, 0x80       (x8 = 0x80 = MTIE)
-      "h30441073".U(32.W), // 44 [Word 1]: csrrw x0, 0x304, x8      (mie := 0x80)
-      "h00800493".U(32.W), // 48 [Word 2]: addi  x9, x0, 0x08       (x9 = 0x08 = MIE)
-      "h30049073".U(32.W), // 4C [Word 3]: csrrw x0, 0x300, x9      (mstatus := 0x08: Interrupts enabled!)
-      "h00000013".U(32.W), // 50 [Word 4]: nop
-      "h00000013".U(32.W), // 54 [Word 5]: nop
-      "h00000013".U(32.W), // 58 [Word 6]: nop
-      "h00000013".U(32.W), // 5C [Word 7]: nop
-
-      // --- BLOCK 3 (PC 0x80000060 - 0x8000007C): Workload Loop (To be Preempted!) ---
-      "h00150513".U(32.W), // 60 [Word 0]: addi  x10, x10, 1        (counter++)
-      "hffdff06f".U(32.W), // 64 [Word 1]: jal   x0, -4             (loop to 0x60)
-      "h00000013".U(32.W), // 68 [Word 2]: nop
-      "h00000013".U(32.W), // 6C [Word 3]: nop
-      "h00000013".U(32.W), // 70 [Word 4]: nop
-      "h00000013".U(32.W), // 74 [Word 5]: nop
-      "h00000013".U(32.W), // 78 [Word 6]: nop
-      "h00000013".U(32.W), // 7C [Word 7]: nop
-
-      // --- BLOCK 4 (PC 0x80000080 - 0x8000009C): Trap Handler in M-mode ---
-      "h100002b7".U(32.W), // 80 [Word 0]: lui   x5, 0x10000        (x5 = 0x10000000 = UART Base)
-      "h05400e93".U(32.W), // 84 [Word 1]: addi  x29, x0, 0x54      (x29 = 'T' = 0x54)
-      "h01d28023".U(32.W), // 88 [Word 2]: sb    x29, 0(x5)         (UART THR := 'T': Print to console!)
-      "h0aa00e93".U(32.W), // 8C [Word 3]: addi  x29, x0, 0xaa      (SUCCESS FLAG: x29 := 0xAA)
-      "h02004337".U(32.W), // 90 [Word 4]: lui   x6, 0x02004        (x6 = 0x02004000 = mtimecmp)
-      "hfff00393".U(32.W), // 94 [Word 5]: addi  x7, x0, -1         (x7 = 0xFFFFFFFFFFFFFFFF)
-      "h00733023".U(32.W), // 98 [Word 6]: sd    x7, 0(x6)          (CLINT mtimecmp := max: disarm timer)
-      "h30200073".U(32.W)  // 9C [Word 7]: mret                     (RESUME INTERRUPTED WORKLOAD LOOP AT mepc!)
+      "h00000013".U(32.W)  // 3C [Word 7]: nop
     ).padTo(1024, "h00000013".U(32.W))
 
     var memLatencyCounter = 0
@@ -198,7 +163,7 @@ object ZaqalTest extends App {
           dmemHandlingRequest = true
           dmemLatencyCounter = 50 // 50 cycles for data miss too
           dmemRequestedAddr = dut.io.mem_d.req.bits.addr.peek().litValue.toLong
-          println(f"Cycle $cycle%4d: [D-Cache / MSHR Bus Request] Addr = 0x$dmemRequestedAddr%08x")
+          // println(f"Cycle $cycle%4d: [D-Cache / MSHR Bus Request] Addr = 0x$dmemRequestedAddr%08x")
         }
 
         if (dmemHandlingRequest) {
@@ -211,7 +176,7 @@ object ZaqalTest extends App {
             dut.io.mem_d.resp.bits.last.poke(true.B)
 
             if (dut.io.mem_d.resp.ready.peek().litToBoolean) {
-              println(f"Cycle $cycle%4d: [D-Cache / MSHR Bus Response] Fulfilled Addr = 0x$dmemRequestedAddr%08x")
+              // println(f"Cycle $cycle%4d: [D-Cache / MSHR Bus Response] Fulfilled Addr = 0x$dmemRequestedAddr%08x")
               dmemHandlingRequest = false
             }
           }
@@ -252,7 +217,7 @@ object ZaqalTest extends App {
         if (disp0_valid) {
           val disp0_pc = dut.debug.get.disp0_pc.peek().litValue
           val disp0_pdest = dut.debug.get.disp0_pdest.peek().litValue
-          println(f"Cycle $cycle: Dispatch 0 PC=0x$disp0_pc%08x PDEST=p$disp0_pdest")
+          // println(f"Cycle $cycle: Dispatch 0 PC=0x$disp0_pc%08x PDEST=p$disp0_pdest")
         }
 
         val uartValid = dut.io.uart_tx_valid.peek().litToBoolean

@@ -266,14 +266,14 @@ class BPU(implicit val p: Parameters) extends Module with HasZaqalParameter {
 
   when(io.redirect.valid) {
     ghr := restored_ghr
-    printf(p"[BPU GHR RESTORE] ghr=${Hexadecimal(restored_ghr)} redirect_pc=${Hexadecimal(io.redirect.pc)} target=${Hexadecimal(io.redirect.target)}\n")
+    // printf(p"[BPU GHR RESTORE] ghr=${Hexadecimal(restored_ghr)} redirect_pc=${Hexadecimal(io.redirect.pc)} target=${Hexadecimal(io.redirect.target)}\n")
   } .elsewhen(do_non_spec_shift) {
     val non_spec_ghr = Cat(ghr(126, 0), bpu_update_taken)
     ghr := non_spec_ghr
-    printf(p"[BPU GHR NON-SPEC SHIFT] ghr=${Hexadecimal(non_spec_ghr)} pc=${Hexadecimal(bpu_update_pc)} val=$bpu_update_taken\n")
+    // printf(p"[BPU GHR NON-SPEC SHIFT] ghr=${Hexadecimal(non_spec_ghr)} pc=${Hexadecimal(bpu_update_pc)} val=$bpu_update_taken\n")
   } .elsewhen(io.out.fire && has_spec_cond_br) {
     ghr := Cat(ghr(126, 0), spec_shift_val)
-    printf(p"[BPU GHR SPEC SHIFT] ghr=${Hexadecimal(Cat(ghr(126, 0), spec_shift_val))} s0_pc=${Hexadecimal(s0_pc)} val=$spec_shift_val\n")
+    // printf(p"[BPU GHR SPEC SHIFT] ghr=${Hexadecimal(Cat(ghr(126, 0), spec_shift_val))} s0_pc=${Hexadecimal(s0_pc)} val=$spec_shift_val\n")
   }
 
   // --- PHR UPDATE AND ROLLBACK ---
@@ -343,7 +343,7 @@ class BPU(implicit val p: Parameters) extends Module with HasZaqalParameter {
   io.out.bits.epoch      := epoch
   io.out.bits.ras_tos    := ras.io.spec_sp
 
-  when(io.out.fire && meta.taken) {
-    printf(p"[BPU PREDICT] pc=${Hexadecimal(exact_pc)} -> target=${Hexadecimal(meta.target)} slot=${meta.slot}\n")
-  }
+  // when(io.out.fire && meta.taken) {
+  //   printf(p"[BPU PREDICT] pc=${Hexadecimal(exact_pc)} -> target=${Hexadecimal(meta.target)} slot=${meta.slot}\n")
+  // }
 }

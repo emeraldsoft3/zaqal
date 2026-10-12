@@ -59,7 +59,14 @@ case class ZaqalParams(
   enableMdp: Boolean = true,
   ssitEntries: Int = 256,
   ssidWidth: Int = 6,
-  lfstEntries: Int = 64
+  lfstEntries: Int = 64,
+
+  // AMX (Matrix Functional Unit) Parameters
+  enableAmx: Boolean = true,
+  amxNumTiles: Int = 8,
+  amxTileRows: Int = 16,
+  amxTileCols: Int = 16,
+  amxRowBytes: Int = 16
 )
 
 // 2. Define the Field Key that CDE uses to locate ZaqalParams
@@ -120,6 +127,12 @@ trait HasZaqalParameter {
   def ssitEntries = zP.ssitEntries
   def ssidWidth = zP.ssidWidth
   def lfstEntries = zP.lfstEntries
+
+  def enableAmx = zP.enableAmx
+  def amxNumTiles = zP.amxNumTiles
+  def amxTileRows = zP.amxTileRows
+  def amxTileCols = zP.amxTileCols
+  def amxRowBytes = zP.amxRowBytes
 }
 
 // 4. Default configuration overlay

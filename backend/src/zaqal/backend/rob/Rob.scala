@@ -195,7 +195,7 @@ class Rob(val numWb: Int = 14)(implicit val p: Parameters) extends Module with H
     
     when(commitValidThisLine(i)) {
       entry.valid := false.B // Free the entry
-      printf(p"ROB COMMIT [Port $i]: pc=${Hexadecimal(entry.pc)} is_call=${entry.is_call} is_ret=${entry.is_ret}\n")
+      // printf(p"ROB COMMIT [Port $i]: pc=${Hexadecimal(entry.pc)} is_call=${entry.is_call} is_ret=${entry.is_ret}\n")
     }
   }
 
