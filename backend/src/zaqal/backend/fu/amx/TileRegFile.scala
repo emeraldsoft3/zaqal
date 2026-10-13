@@ -37,11 +37,13 @@ class TileRegFile(implicit val p: Parameters) extends Module with HasZaqalParame
     val zero_en    = Input(Bool())
     val zero_tile  = Input(UInt(3.W))
 
-    // 2D Matrix Read Ports for Future MMA Core (Day 6-12)
+    // 2D Matrix Read Ports for MMA Core (Day 6-12)
     val mma_tile_a   = Input(UInt(3.W))
     val mma_tile_b   = Input(UInt(3.W))
+    val mma_tile_c   = Input(UInt(3.W))
     val mma_matrix_a = Output(Vec(16, UInt(128.W)))
     val mma_matrix_b = Output(Vec(16, UInt(128.W)))
+    val mma_matrix_c = Output(Vec(16, UInt(128.W)))
 
     // Debug Ports for Simulation & GTKWave Waveform Observation
     val debug_tile0_row0 = Output(UInt(128.W))
@@ -67,10 +69,11 @@ class TileRegFile(implicit val p: Parameters) extends Module with HasZaqalParame
     tiles(io.wtile)(io.wrow) := io.wdata
   }
 
-  // 3. Dual 2D Matrix Outputs for MMA
+  // 3. 2D Matrix Outputs for MMA (A, B, and initial Accumulator C)
   for (r <- 0 until 16) {
     io.mma_matrix_a(r) := tiles(io.mma_tile_a)(r)
     io.mma_matrix_b(r) := tiles(io.mma_tile_b)(r)
+    io.mma_matrix_c(r) := tiles(io.mma_tile_c)(r)
   }
 
   // 4. Debug Inspection Wires (for GTKWave)

@@ -48,39 +48,44 @@ object ZaqalTest extends App {
     // =========================================================================
     // DAY 17-20 TEST: CLINT TIMER INTERRUPT & MID-PROGRAM HARDWARE PREEMPTION
     // =========================================================================
-    // PHASE 9 (DAY 1-5): AMX MATRIX FUNCTIONAL UNIT STREAMING TEST
+    // PHASE 9 (DAY 6-12): GEMM ACCELERATION TEST (C += A * B)
     // =========================================================================
     // Flow:
     // 1. Setup registers:
     //    - x1 = 16 (0x10): row stride = 16 bytes (128-bit memory bus width)
-    //    - x2 = 0x0010: base memory address with pre-populated matrix test data
-    //    - x3 = 0x0200: store target base memory address
-    // 2. AMX Instructions:
-    //    - TCFG  x1           (0x0000900B): Configure 16x16 tile dimensions
-    //    - TZERO T0           (0x0000000B): Fast 1-cycle reset of Tile T0 to 0
-    //    - TLD   T0, x2, x1   (0x0011200B): Stream 2D sub-matrix from memory into T0!
-    //    - TST   T0, x3, x1   (0x0011B00B): Stream 2D matrix from T0 back to memory!
-    // 3. Status flag:
-    //    - x29 = 0xAA (Success completion flag)
-    // 4. Infinite loop to allow pipeline to settle
+    //    - x2 = 0x0010: Matrix A base address in DataMem
+    //    - x4 = 0x0020: Matrix B base address in DataMem
+    //    - x6 = 0x0600: Matrix C result target address in DataMem
+    // 2. Matrix Configuration & Tile Setup:
+    //    - TCFG     x1            (0x0000900B): Configure 16x16 tile dimensions
+    //    - TZERO    T0            (0x0000000B): Clear Accumulator Tile T0 (C = 0)
+    //    - TLD      T1, x2, x1    (0x0011208B): Load 16x16 Matrix A into Tile T1
+    //    - TLD      T2, x4, x1    (0x0012210B): Load 16x16 Matrix B into Tile T2
+    // 3. Matrix Multiply-Accumulate Execution:
+    //    - TMMA.I8  T0, T1, T2    (0x0020C00B): Execute C += A * B via hardware MMA Engine!
+    // 4. Store Result Matrix C to Memory:
+    //    - TST      T0, x6, x1    (0x0013300B): Stream 2D GEMM result matrix T0 to 0x0600!
+    // 5. Completion Flag:
+    //    - x29 = 0xEE (Day 6-12 GEMM Test Completion Flag)
+    // 6. Settle loop
     // =========================================================================
     val programMemory = Seq(
-      // --- BLOCK 0 (PC 0x80000000 - 0x8000001C): Setup & AMX Instructions ---
-      "h01000093".U(32.W), // 00 [Word 0]: addi  x1, x0, 16        (stride = 16 bytes = 128 bits)
-      "h01000113".U(32.W), // 04 [Word 1]: addi  x2, x0, 0x10      (base read addr = 0x10)
-      "h20000193".U(32.W), // 08 [Word 2]: addi  x3, x0, 0x200     (base write addr = 0x200)
-      "h0000900b".U(32.W), // 0C [Word 3]: tcfg  x1                (AMX TCFG: configure 16x16 tiles)
-      "h0000000b".U(32.W), // 10 [Word 4]: tzero t0                (AMX TZERO: clear Tile T0)
-      "h0011200b".U(32.W), // 14 [Word 5]: tld   t0, x2, x1        (AMX TLD: load 2D sub-matrix into T0)
-      "h0011b00b".U(32.W), // 18 [Word 6]: tst   t0, x3, x1        (AMX TST: store 2D matrix back to 0x200)
-      "h0aa00e93".U(32.W), // 1C [Word 7]: addi  x29, x0, 0xaa     (Flag: x29 := 0xAA)
+      // --- BLOCK 0 (PC 0x80000000 - 0x8000001C): Setup & Matrix Loads ---
+      "h01000093".U(32.W), // 00 [Word 0]: addi    x1, x0, 16        (stride = 16 bytes = 128 bits)
+      "h01000113".U(32.W), // 04 [Word 1]: addi    x2, x0, 0x10      (Matrix A addr = 0x10)
+      "h02000213".U(32.W), // 08 [Word 2]: addi    x4, x0, 0x20      (Matrix B addr = 0x20)
+      "h60000313".U(32.W), // 0C [Word 3]: addi    x6, x0, 0x600     (Matrix C write addr = 0x600)
+      "h0000900b".U(32.W), // 10 [Word 4]: tcfg    x1                (AMX TCFG: configure 16x16 tiles)
+      "h0000000b".U(32.W), // 14 [Word 5]: tzero   t0                (AMX TZERO: clear Accumulator T0)
+      "h0011208b".U(32.W), // 18 [Word 6]: tld     t1, x2, x1        (AMX TLD: load Matrix A into T1)
+      "h0012210b".U(32.W), // 1C [Word 7]: tld     t2, x4, x1        (AMX TLD: load Matrix B into T2)
 
-      // --- BLOCK 1 (PC 0x80000020 - 0x8000003C): Settle Loop ---
-      "h00000013".U(32.W), // 20 [Word 0]: nop
-      "hffdff06f".U(32.W), // 24 [Word 1]: jal   x0, -4            (loop at 0x24)
-      "h00000013".U(32.W), // 28 [Word 2]: nop
+      // --- BLOCK 1 (PC 0x80000020 - 0x8000003C): Hardware GEMM & Matrix Store ---
+      "h0020c00b".U(32.W), // 20 [Word 0]: tmma.i8 t0, t1, t2        (AMX MMA: T0 += T1 * T2!)
+      "h0013300b".U(32.W), // 24 [Word 1]: tst     t0, x6, x1        (AMX TST: store Result T0 to 0x600)
+      "h0ee00e93".U(32.W), // 28 [Word 2]: addi    x29, x0, 0xee     (Flag: x29 := 0xEE)
       "h00000013".U(32.W), // 2C [Word 3]: nop
-      "h00000013".U(32.W), // 30 [Word 4]: nop
+      "hffdff06f".U(32.W), // 30 [Word 4]: jal     x0, -4            (loop at 0x30)
       "h00000013".U(32.W), // 34 [Word 5]: nop
       "h00000013".U(32.W), // 38 [Word 6]: nop
       "h00000013".U(32.W)  // 3C [Word 7]: nop

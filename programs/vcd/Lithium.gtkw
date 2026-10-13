@@ -1,19 +1,18 @@
 [*]
 [*] GTKWave Analyzer v3.3.111 (w)1999-2020 BSI
-[*] Mon Oct 12 12:11:40 2026
+[*] Tue Oct 13 05:47:50 2026
 [*]
 [dumpfile] "/home/emerald/zaqal/programs/vcd/Lithium.vcd"
 [dumpfile_mtime] "Mon Oct 12 10:47:49 2026"
 [dumpfile_size] 19018550
 [savefile] "/home/emerald/zaqal/programs/vcd/Lithium.gtkw"
-[timestart] 290
+[timestart] 318
 [size] 1865 930
 [pos] -1 -1
-*-2.900000 225 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-2.900000 324 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] TOP.
 [treeopen] TOP.Core.
 [treeopen] TOP.Core.backend.
-[treeopen] TOP.Core.backend.dcache.
 [treeopen] TOP.Core.backend.exec.
 [treeopen] TOP.Core.backend.exec.amx.
 [treeopen] TOP.Core.backend.exec.bru_0.
@@ -801,8 +800,12 @@ TOP.debug_cycle_count[63:0]
 TOP.Core.backend.exec.amx.io_cmd_valid
 TOP.Core.backend.exec.amx.io_cmd_op[2:0]
 TOP.Core.backend.exec.amx.io_tdest[2:0]
+TOP.Core.backend.exec.amx.io_tsrc1[2:0]
+TOP.Core.backend.exec.amx.io_tsrc2[2:0]
 @24
 TOP.Core.backend.exec.amx.state[2:0]
+TOP.Core.backend.exec.amx.mma.state[1:0]
+TOP.Core.backend.exec.amx.mma.r_step[4:0]
 @22
 +{TOP.Core.backend.exec.amx.r_rows[4:0]} TOP.Core.backend.exec.amx.r_rows[4:0]
 +{TOP.Core.backend.exec.amx_io_mem_wdata[127:0]} TOP.Core.backend.exec.amx_io_mem_wdata[127:0]
@@ -814,12 +817,9 @@ TOP.Core.backend.exec.amx.r_stride[63:0]
 TOP.Core.backend.exec.amx.r_row[3:0]
 TOP.Core.backend.exec.amx.trf.tiles_0_0[127:0]
 TOP.Core.backend.exec.amx.trf.tiles_0_1[127:0]
-TOP.Core.backend.exec.amx.trf.tiles_0_2[127:0]
-TOP.Core.backend.exec.amx.trf.tiles_0_3[127:0]
-TOP.Core.backend.exec.amx.trf.tiles_0_4[127:0]
 TOP.Core.backend.exec.amx.trf.tiles_1_0[127:0]
-@23
 TOP.Core.backend.exec.amx.trf.tiles_1_1[127:0]
+TOP.Core.backend.exec.amx.trf.tiles_2_0[127:0]
 @1000200
 -amx
 @c00200
@@ -833,6 +833,18 @@ TOP.Core.backend.exec.tlb_0.io_hit
 -TLB_0
 @200
 -RegFile
+@22
+TOP.Core.backend.exec.regFile.regs_0[63:0]
+TOP.Core.backend.exec.regFile.regs_1[63:0]
+TOP.Core.backend.exec.regFile.regs_2[63:0]
+TOP.Core.backend.exec.regFile.regs_3[63:0]
+TOP.Core.backend.exec.regFile.regs_4[63:0]
+TOP.Core.backend.exec.regFile.regs_5[63:0]
+TOP.Core.backend.exec.regFile.regs_6[63:0]
+TOP.Core.backend.exec.regFile.regs_7[63:0]
+TOP.Core.backend.exec.regFile.regs_27[63:0]
+TOP.Core.backend.exec.regFile.regs_28[63:0]
+TOP.Core.backend.exec.regFile.regs_29[63:0]
 @c00024
 +{TOP.Core.backend.exec.regFile.regs_32[63:0]} TOP.Core.backend.exec.regFile.regs_32[63:0]
 @28
@@ -903,17 +915,6 @@ TOP.Core.backend.exec.tlb_0.io_hit
 @1401200
 -group_end
 @22
-TOP.Core.backend.exec.regFile.regs_0[63:0]
-TOP.Core.backend.exec.regFile.regs_1[63:0]
-TOP.Core.backend.exec.regFile.regs_2[63:0]
-TOP.Core.backend.exec.regFile.regs_3[63:0]
-TOP.Core.backend.exec.regFile.regs_4[63:0]
-TOP.Core.backend.exec.regFile.regs_5[63:0]
-TOP.Core.backend.exec.regFile.regs_6[63:0]
-TOP.Core.backend.exec.regFile.regs_7[63:0]
-TOP.Core.backend.exec.regFile.regs_27[63:0]
-TOP.Core.backend.exec.regFile.regs_28[63:0]
-TOP.Core.backend.exec.regFile.regs_29[63:0]
 +{TOP.Core.backend.exec.regFile.regs_33[63:0]} TOP.Core.backend.exec.regFile.regs_33[63:0]
 TOP.Core.backend.exec.regFile.regs_34[63:0]
 +{TOP.Core.backend.exec.regFile.regs_35[63:0]} TOP.Core.backend.exec.regFile.regs_35[63:0]
@@ -1132,7 +1133,7 @@ TOP.Core.backend.exec.regFile.regs_100[63:0]
 @22
 TOP.Core.backend.exec.dmem.mem_1[63:0]
 TOP.Core.backend.exec.dmem.mem_2[63:0]
-TOP.Core.backend.exec.dmem.mem_3[63:0]
++{TOP.Core.backend.exec.dmem.mem_3[63:0]} TOP.Core.backend.exec.dmem.mem_3[63:0]
 TOP.Core.backend.exec.dmem.mem_4[63:0]
 TOP.Core.backend.exec.dmem.mem_5[63:0]
 TOP.Core.backend.exec.dmem.mem_6[63:0]

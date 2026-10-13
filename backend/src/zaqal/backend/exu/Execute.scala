@@ -1097,20 +1097,26 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
 
   // Trigger AMX command when Lane 0 executes an AMX custom instruction
   amx.io.cmd_valid := exe_val_int(0) && exe_dec_int(0).is_amx
-  amx.io.cmd_op    := Mux(exe_dec_int(0).is_tzero, zaqal.backend.fu.amx.AMXOp.TZERO,
-                      Mux(exe_dec_int(0).is_tcfg,  zaqal.backend.fu.amx.AMXOp.TCFG,
-                      Mux(exe_dec_int(0).is_tld,   zaqal.backend.fu.amx.AMXOp.TLD,
-                                                   zaqal.backend.fu.amx.AMXOp.TST)))
+  amx.io.cmd_op    := Mux(exe_dec_int(0).is_tzero,     zaqal.backend.fu.amx.AMXOp.TZERO,
+                      Mux(exe_dec_int(0).is_tcfg,      zaqal.backend.fu.amx.AMXOp.TCFG,
+                      Mux(exe_dec_int(0).is_tld,       zaqal.backend.fu.amx.AMXOp.TLD,
+                      Mux(exe_dec_int(0).is_tst,       zaqal.backend.fu.amx.AMXOp.TST,
+                      Mux(exe_dec_int(0).is_tmma_i8,   zaqal.backend.fu.amx.AMXOp.TMMA_I8,
+                      Mux(exe_dec_int(0).is_tmma_bf16, zaqal.backend.fu.amx.AMXOp.TMMA_BF16,
+                                                       zaqal.backend.fu.amx.AMXOp.TMMA_FP32))))))
   amx.io.tdest     := exe_dec_int(0).amx_tdest
+  amx.io.tsrc1     := exe_dec_int(0).amx_tsrc1
+  amx.io.tsrc2     := exe_dec_int(0).amx_tsrc2
   amx.io.rs1_val   := src_int_1(0)
   amx.io.rs2_val   := src_int_2(0)
 
-  // Track multicycle AMX streaming load/store in-flight state
+  // Track multicycle AMX in-flight state (TLD, TST, TMMA)
   val amx_inflight = RegInit(false.B)
   val amx_rob_idx  = RegInit(0.U(log2Up(128).W))
-  val is_amx_stream0 = exe_dec_int(0).is_tld || exe_dec_int(0).is_tst
+  val is_amx_multi0 = exe_dec_int(0).is_tld || exe_dec_int(0).is_tst ||
+                      exe_dec_int(0).is_tmma_i8 || exe_dec_int(0).is_tmma_bf16 || exe_dec_int(0).is_tmma_fp32
 
-  when(exe_val_int(0) && is_amx_stream0) {
+  when(exe_val_int(0) && is_amx_multi0) {
     amx_inflight := true.B
     amx_rob_idx  := exe_uop_int(0).robIdx
   }
@@ -1263,8 +1269,8 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
     val is_link = if (i == 0) exe_is_link0 else if (i == 1) exe_is_link1 else false.B
     val link_addr = if (i == 0) exe_link_addr0 else if (i == 1) exe_link_addr1 else 0.U
 
-    val is_amx_stream = if (i == 0) is_amx_stream0 else false.B
-    val wb_val_int = exe_val_int(i) && !is_div && !is_mul && !is_amx_stream && (if (i == 0) !is_async_interrupt else true.B)
+    val is_amx_multi = if (i == 0) is_amx_multi0 else false.B
+    val wb_val_int = exe_val_int(i) && !is_div && !is_mul && !is_amx_multi && (if (i == 0) !is_async_interrupt else true.B)
 
     io.exuWriteback(i).valid := (if (i == 0) (wb_val_int || (amx.io.done && amx_inflight)) else wb_val_int)
     io.exuWriteback(i).bits.robIdx := (if (i == 0) Mux(amx.io.done && amx_inflight, amx_rob_idx, exe_uop_int(i).robIdx) else exe_uop_int(i).robIdx)

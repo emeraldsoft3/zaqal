@@ -249,12 +249,17 @@ class DecodeSignals(implicit val p: Parameters) extends Bundle with HasZaqalPara
   val rd_is_fp  = Bool()
 
   // AMX Matrix Functional Unit (Phase 9)
-  val is_amx     = Bool()
-  val is_tcfg    = Bool()
-  val is_tzero   = Bool()
-  val is_tld     = Bool()
-  val is_tst     = Bool()
-  val amx_tdest  = UInt(3.W)
+  val is_amx       = Bool()
+  val is_tcfg      = Bool()
+  val is_tzero     = Bool()
+  val is_tld       = Bool()
+  val is_tst       = Bool()
+  val is_tmma_i8   = Bool()
+  val is_tmma_bf16 = Bool()
+  val is_tmma_fp32 = Bool()
+  val amx_tdest    = UInt(3.W)
+  val amx_tsrc1    = UInt(3.W)
+  val amx_tsrc2    = UInt(3.W)
 }
 
 object FusionType {

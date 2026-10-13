@@ -6,25 +6,30 @@ import org.chipsalliance.cde.config.Parameters
 import zaqal.common._
 
 object AMXOp {
-  val TZERO = 0.U(3.W) // Clear Tile
-  val TCFG  = 1.U(3.W) // Configure Tile Dimensions (Rows & Cols)
-  val TLD   = 2.U(3.W) // 2D Strided Matrix Load
-  val TST   = 3.U(3.W) // 2D Strided Matrix Store
+  val TZERO     = 0.U(3.W) // Clear Tile
+  val TCFG      = 1.U(3.W) // Configure Tile Dimensions (Rows & Cols)
+  val TLD       = 2.U(3.W) // 2D Strided Matrix Load
+  val TST       = 3.U(3.W) // 2D Strided Matrix Store
+  val TMMA_I8   = 4.U(3.W) // INT8 Matrix Multiply-Accumulate (C += A * B)
+  val TMMA_BF16 = 5.U(3.W) // BF16 Matrix Multiply-Accumulate (C += A * B)
+  val TMMA_FP32 = 6.U(3.W) // FP32 Matrix Multiply-Accumulate (C += A * B)
 }
 
 /**
- * AMX Matrix Functional Unit (Foundation)
+ * AMX Matrix Functional Unit (Phase 9, Day 6-12)
  * 
- * Manages 2D Tile Architectural Registers and executes high-bandwidth
- * 2D strided sub-matrix streaming loads and stores directly between memory
- * and Tile registers (T0-T7).
+ * Manages 2D Tile Architectural Registers (T0-T7), high-bandwidth
+ * 2D strided sub-matrix memory streaming (TLD/TST), and accelerates
+ * multi-precision 2D GEMM via dedicated hardware MMA Engine.
  */
 class AMXUnit(implicit val p: Parameters) extends Module with HasZaqalParameter {
   val io = IO(new Bundle {
     // Command Interface from Execution Pipeline
     val cmd_valid = Input(Bool())
     val cmd_op    = Input(UInt(3.W))    // AMXOp
-    val tdest     = Input(UInt(3.W))    // Tile index 0-7
+    val tdest     = Input(UInt(3.W))    // Tile index 0-7 (Destination / C)
+    val tsrc1     = Input(UInt(3.W))    // Tile index 0-7 (Source A)
+    val tsrc2     = Input(UInt(3.W))    // Tile index 0-7 (Source B)
     val rs1_val   = Input(UInt(xLen.W)) // Base address (or Config in TCFG)
     val rs2_val   = Input(UInt(xLen.W)) // Row Stride in bytes
     val cmd_ready = Output(Bool())
@@ -53,31 +58,45 @@ class AMXUnit(implicit val p: Parameters) extends Module with HasZaqalParameter 
   })
 
   val trf = Module(new TileRegFile)
+  val mma = Module(new MMAEngine)
 
   // Configuration Registers (default 16 rows x 16 cols)
   val r_rows = RegInit(16.U(5.W))
   val r_cols = RegInit(16.U(5.W))
 
-  // Streaming State Tracking
-  val s_idle :: s_load_req :: s_load_latch :: s_store_req :: s_done :: Nil = Enum(5)
+  // State Tracking
+  val s_idle :: s_load_req :: s_load_latch :: s_store_req :: s_mma_compute :: s_done :: Nil = Enum(6)
   val state = RegInit(s_idle)
 
   val r_tile   = RegInit(0.U(3.W))
+  val r_tile_a = RegInit(0.U(3.W))
+  val r_tile_b = RegInit(0.U(3.W))
   val r_base   = RegInit(0.U(xLen.W))
   val r_stride = RegInit(0.U(xLen.W))
   val r_row    = RegInit(0.U(4.W))
 
-  // Default TRF inputs
-  trf.io.wen        := false.B
-  trf.io.wtile      := r_tile
-  trf.io.wrow       := r_row
-  trf.io.wdata      := io.mem_rdata
+  // Connect TileRegFile 2D read ports to MMAEngine
+  trf.io.mma_tile_a := r_tile_a
+  trf.io.mma_tile_b := r_tile_b
+  trf.io.mma_tile_c := r_tile
+  mma.io.matrix_a   := trf.io.mma_matrix_a
+  mma.io.matrix_b   := trf.io.mma_matrix_b
+  mma.io.matrix_c   := trf.io.mma_matrix_c
+  mma.io.active_rows:= r_rows
+
+  // Default MMA inputs
+  mma.io.start := false.B
+  mma.io.prec  := MMAPrecision.INT8
+
+  // Default TRF inputs (Muxed between Load stream, Zeroing, and MMA writeback)
+  trf.io.wen        := mma.io.write_en
+  trf.io.wtile      := Mux(mma.io.write_en, r_tile, r_tile)
+  trf.io.wrow       := Mux(mma.io.write_en, mma.io.write_row, r_row)
+  trf.io.wdata      := Mux(mma.io.write_en, mma.io.write_data, io.mem_rdata)
   trf.io.rtile      := r_tile
   trf.io.rrow       := r_row
   trf.io.zero_en    := false.B
   trf.io.zero_tile  := io.tdest
-  trf.io.mma_tile_a := 0.U
-  trf.io.mma_tile_b := 0.U
 
   // Default Memory outputs
   io.mem_raddr := r_base + (r_row * r_stride)
@@ -90,12 +109,20 @@ class AMXUnit(implicit val p: Parameters) extends Module with HasZaqalParameter 
   io.busy      := (state =/= s_idle) && (state =/= s_done)
   io.done      := (state === s_done)
 
+  def startMMA(prec: UInt): Unit = {
+    r_tile    := io.tdest
+    r_tile_a  := io.tsrc1
+    r_tile_b  := io.tsrc2
+    mma.io.start := true.B
+    mma.io.prec  := prec
+    state := s_mma_compute
+  }
+
   switch(state) {
     is(s_idle) {
       when(io.cmd_valid) {
         switch(io.cmd_op) {
           is(AMXOp.TCFG) {
-            // rs1_val[15:8] = rows (1-16), rs1_val[7:0] = cols (1-16)
             val new_rows = Mux(io.rs1_val(15, 8) === 0.U, 16.U, Mux(io.rs1_val(15, 8) > 16.U, 16.U, io.rs1_val(15, 8)))
             val new_cols = Mux(io.rs1_val(7, 0) === 0.U, 16.U, Mux(io.rs1_val(7, 0) > 16.U, 16.U, io.rs1_val(7, 0)))
             r_rows := new_rows
@@ -110,7 +137,7 @@ class AMXUnit(implicit val p: Parameters) extends Module with HasZaqalParameter 
           is(AMXOp.TLD) {
             r_tile   := io.tdest
             r_base   := io.rs1_val
-            r_stride := Mux(io.rs2_val === 0.U, 16.U, io.rs2_val) // Default stride is 16 bytes
+            r_stride := Mux(io.rs2_val === 0.U, 16.U, io.rs2_val)
             r_row    := 0.U
             state    := s_load_req
           }
@@ -121,17 +148,18 @@ class AMXUnit(implicit val p: Parameters) extends Module with HasZaqalParameter 
             r_row    := 0.U
             state    := s_store_req
           }
+          is(AMXOp.TMMA_I8)   { startMMA(MMAPrecision.INT8) }
+          is(AMXOp.TMMA_BF16) { startMMA(MMAPrecision.BF16) }
+          is(AMXOp.TMMA_FP32) { startMMA(MMAPrecision.FP32) }
         }
       }
     }
 
     is(s_load_req) {
-      // Present memory address, data available in next cycle
       state := s_load_latch
     }
 
     is(s_load_latch) {
-      // Latch memory read data into current tile row
       trf.io.wen   := true.B
       trf.io.wtile := r_tile
       trf.io.wrow  := r_row
@@ -146,7 +174,6 @@ class AMXUnit(implicit val p: Parameters) extends Module with HasZaqalParameter 
     }
 
     is(s_store_req) {
-      // Present memory write address and tile row read data
       trf.io.rtile := r_tile
       trf.io.rrow  := r_row
       io.mem_wen   := true.B
@@ -159,6 +186,12 @@ class AMXUnit(implicit val p: Parameters) extends Module with HasZaqalParameter 
       }.otherwise {
         r_row := r_row + 1.U
         state := s_store_req
+      }
+    }
+
+    is(s_mma_compute) {
+      when(mma.io.done) {
+        state := s_done
       }
     }
 
@@ -191,6 +224,9 @@ class AMXUnit(implicit val p: Parameters) extends Module with HasZaqalParameter 
             r_row    := 0.U
             state    := s_store_req
           }
+          is(AMXOp.TMMA_I8)   { startMMA(MMAPrecision.INT8) }
+          is(AMXOp.TMMA_BF16) { startMMA(MMAPrecision.BF16) }
+          is(AMXOp.TMMA_FP32) { startMMA(MMAPrecision.FP32) }
         }
       }.otherwise {
         state := s_idle

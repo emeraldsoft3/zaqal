@@ -299,12 +299,17 @@ class Decoder(implicit val p: Parameters) extends Module with HasZaqalParameter 
 
   // AMX Matrix Instructions (custom-0: opcode 0x0B = "b0001011")
   val is_custom0 = (opcode === "b0001011".U)
-  io.out.is_tzero  := is_custom0 && (funct3 === "b000".U)
-  io.out.is_tcfg   := is_custom0 && (funct3 === "b001".U)
-  io.out.is_tld    := is_custom0 && (funct3 === "b010".U)
-  io.out.is_tst    := is_custom0 && (funct3 === "b011".U)
-  io.out.is_amx    := is_custom0
-  io.out.amx_tdest := io.inst(9, 7) // Tile index T0-T7
+  io.out.is_tzero    := is_custom0 && (funct3 === "b000".U)
+  io.out.is_tcfg     := is_custom0 && (funct3 === "b001".U)
+  io.out.is_tld      := is_custom0 && (funct3 === "b010".U)
+  io.out.is_tst      := is_custom0 && (funct3 === "b011".U)
+  io.out.is_tmma_i8  := is_custom0 && (funct3 === "b100".U)
+  io.out.is_tmma_bf16:= is_custom0 && (funct3 === "b101".U)
+  io.out.is_tmma_fp32:= is_custom0 && (funct3 === "b110".U)
+  io.out.is_amx      := is_custom0
+  io.out.amx_tdest   := io.inst(9, 7)   // Tile index T0-T7 (Destination / Accumulator C)
+  io.out.amx_tsrc1   := io.inst(17, 15) // Tile index T0-T7 (Source Tile A)
+  io.out.amx_tsrc2   := io.inst(22, 20) // Tile index T0-T7 (Source Tile B)
 
   val is_amx_rs1 = io.out.is_tcfg || io.out.is_tld || io.out.is_tst
   val is_amx_rs2 = io.out.is_tld || io.out.is_tst
