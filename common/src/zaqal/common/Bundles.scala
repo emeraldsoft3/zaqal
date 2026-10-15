@@ -260,6 +260,17 @@ class DecodeSignals(implicit val p: Parameters) extends Bundle with HasZaqalPara
   val amx_tdest    = UInt(3.W)
   val amx_tsrc1    = UInt(3.W)
   val amx_tsrc2    = UInt(3.W)
+
+  // RVV 1.0 Vector Extension (Phase 9, Day 13-17)
+  val is_vsetvli   = Bool()
+  val is_vsetivli  = Bool()
+  val is_vsetvl    = Bool()
+  val is_vset      = Bool()
+  val vec_vs1      = UInt(5.W)
+  val vec_vs2      = UInt(5.W)
+  val vec_vd       = UInt(5.W)
+  val vec_vm       = Bool()
+  val vec_zimm     = UInt(11.W)
 }
 
 object FusionType {

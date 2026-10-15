@@ -48,44 +48,52 @@ object ZaqalTest extends App {
     // =========================================================================
     // DAY 17-20 TEST: CLINT TIMER INTERRUPT & MID-PROGRAM HARDWARE PREEMPTION
     // =========================================================================
-    // PHASE 9 (DAY 6-12): GEMM ACCELERATION TEST (C += A * B)
+    // PHASE 9 (DAY 13-17): VECTOR REGISTER FILE (VRF) & LMUL / RVV 1.0 TEST
     // =========================================================================
     // Flow:
-    // 1. Setup registers:
-    //    - x1 = 16 (0x10): row stride = 16 bytes (128-bit memory bus width)
-    //    - x2 = 0x0010: Matrix A base address in DataMem
-    //    - x4 = 0x0020: Matrix B base address in DataMem
-    //    - x6 = 0x0600: Matrix C result target address in DataMem
-    // 2. Matrix Configuration & Tile Setup:
-    //    - TCFG     x1            (0x0000900B): Configure 16x16 tile dimensions
-    //    - TZERO    T0            (0x0000000B): Clear Accumulator Tile T0 (C = 0)
-    //    - TLD      T1, x2, x1    (0x0011208B): Load 16x16 Matrix A into Tile T1
-    //    - TLD      T2, x4, x1    (0x0012210B): Load 16x16 Matrix B into Tile T2
-    // 3. Matrix Multiply-Accumulate Execution:
-    //    - TMMA.I8  T0, T1, T2    (0x0020C00B): Execute C += A * B via hardware MMA Engine!
-    // 4. Store Result Matrix C to Memory:
-    //    - TST      T0, x6, x1    (0x0013300B): Stream 2D GEMM result matrix T0 to 0x0600!
-    // 5. Completion Flag:
-    //    - x29 = 0xEE (Day 6-12 GEMM Test Completion Flag)
-    // 6. Settle loop
+    // 1. Read constant Vector Length in Bytes (VLENB = VLEN / 8 = 128 / 8 = 16):
+    //    - CSRR     x10, vlenb           (0xC2202573) -> Expect x10 == 16 (0x10)
+    // 2. Configure Vector State: SEW=32-bit (e32), LMUL=1 (m1), ta, ma:
+    //    - VSETVLI  x11, x0, e32, m1, ta, ma (0x0D0075D7)
+    //      * VLMAX = (128 / 32) * 1 = 4 elements
+    //      * rs1 == x0, rd != x0 -> AVL = VLMAX
+    //      * Expect x11 == 4, vtype == 0xD0
+    // 3. Configure Vector State: SEW=32-bit (e32), LMUL=2 (m2) [Grouping 2 vregs]:
+    //    - VSETVLI  x12, x0, e32, m2, ta, ma (0x0D107657)
+    //      * VLMAX = (128 / 32) * 2 = 8 elements
+    //      * Expect x12 == 8, vtype == 0xD1
+    // 4. Configure Vector State: SEW=8-bit (e8), LMUL=8 (m8) [Grouping 8 vregs]:
+    //    - VSETVLI  x13, x0, e8, m8, ta, ma (0x0C3076D7)
+    //      * VLMAX = (128 / 8) * 8 = 128 elements (0x80)
+    //      * Expect x13 == 128 (0x80), vtype == 0xC3
+    // 5. Configure with Immediate AVL via VSETIVLI:
+    //    - VSETIVLI x14, 10, e16, m1, ta, ma (0xCC857757)
+    //      * SEW=16-bit, LMUL=1 -> VLMAX = (128 / 16) * 1 = 8 elements
+    //      * Requested AVL = 10 -> Clamped to min(10, 8) = 8
+    //      * Expect x14 == 8
+    // 6. Direct CSR Read of architectural vl:
+    //    - CSRR     x15, vl              (0xC20027F3) -> Expect x15 == 8
+    // 7. Completion Flag:
+    //    - x29 = 0xF1 (Day 13-17 VRF & LMUL Test Completion Flag)
+    // 8. Settle loop
     // =========================================================================
     val programMemory = Seq(
-      // --- BLOCK 0 (PC 0x80000000 - 0x8000001C): Setup & Matrix Loads ---
-      "h01000093".U(32.W), // 00 [Word 0]: addi    x1, x0, 16        (stride = 16 bytes = 128 bits)
-      "h01000113".U(32.W), // 04 [Word 1]: addi    x2, x0, 0x10      (Matrix A addr = 0x10)
-      "h02000213".U(32.W), // 08 [Word 2]: addi    x4, x0, 0x20      (Matrix B addr = 0x20)
-      "h60000313".U(32.W), // 0C [Word 3]: addi    x6, x0, 0x600     (Matrix C write addr = 0x600)
-      "h0000900b".U(32.W), // 10 [Word 4]: tcfg    x1                (AMX TCFG: configure 16x16 tiles)
-      "h0000000b".U(32.W), // 14 [Word 5]: tzero   t0                (AMX TZERO: clear Accumulator T0)
-      "h0011208b".U(32.W), // 18 [Word 6]: tld     t1, x2, x1        (AMX TLD: load Matrix A into T1)
-      "h0012210b".U(32.W), // 1C [Word 7]: tld     t2, x4, x1        (AMX TLD: load Matrix B into T2)
+      // --- BLOCK 0 (PC 0x80000000 - 0x8000001C): VLENB & VSETVLI Tests ---
+      "hc2202573".U(32.W), // 00 [Word 0]: csrr     x10, vlenb          (expect x10 = 16 = 0x10)
+      "h0d0075d7".U(32.W), // 04 [Word 1]: vsetvli  x11, x0, 0x0D0      (e32, m1 -> expect x11 = 4)
+      "h0d107657".U(32.W), // 08 [Word 2]: vsetvli  x12, x0, 0x0D1      (e32, m2 -> expect x12 = 8)
+      "h0c3076d7".U(32.W), // 0C [Word 3]: vsetvli  x13, x0, 0x0C3      (e8,  m8 -> expect x13 = 128 = 0x80)
+      "hcc857757".U(32.W), // 10 [Word 4]: vsetivli x14, 10, 0x0C8      (AVL=10, e16, m1 -> VLMAX=8 -> expect x14 = 8)
+      "hc20027f3".U(32.W), // 14 [Word 5]: csrr     x15, vl             (read CSR vl -> expect x15 = 8)
+      "h0f100e93".U(32.W), // 18 [Word 6]: addi     x29, x0, 0xf1       (PASS Flag: x29 := 0xF1)
+      "h00000013".U(32.W), // 1C [Word 7]: nop
 
-      // --- BLOCK 1 (PC 0x80000020 - 0x8000003C): Hardware GEMM & Matrix Store ---
-      "h0020c00b".U(32.W), // 20 [Word 0]: tmma.i8 t0, t1, t2        (AMX MMA: T0 += T1 * T2!)
-      "h0013300b".U(32.W), // 24 [Word 1]: tst     t0, x6, x1        (AMX TST: store Result T0 to 0x600)
-      "h0ee00e93".U(32.W), // 28 [Word 2]: addi    x29, x0, 0xee     (Flag: x29 := 0xEE)
+      // --- BLOCK 1 (PC 0x80000020 - 0x8000003C): Loop & NOPs ---
+      "hffdff06f".U(32.W), // 20 [Word 0]: jal      x0, -4              (settle loop at 0x20)
+      "h00000013".U(32.W), // 24 [Word 1]: nop
+      "h00000013".U(32.W), // 28 [Word 2]: nop
       "h00000013".U(32.W), // 2C [Word 3]: nop
-      "hffdff06f".U(32.W), // 30 [Word 4]: jal     x0, -4            (loop at 0x30)
+      "h00000013".U(32.W), // 30 [Word 4]: nop
       "h00000013".U(32.W), // 34 [Word 5]: nop
       "h00000013".U(32.W), // 38 [Word 6]: nop
       "h00000013".U(32.W)  // 3C [Word 7]: nop
@@ -267,6 +275,16 @@ object ZaqalTest extends App {
     for (i <- 0 until params.phyRegs) {
       val regVal = dut.debug.get.fp_regs(i).peek().litValue
       println(f"pf$i%02d: 0x$regVal%016x")
+    }
+
+    println("--- Final Vector Architecture State (RVV 1.0) ---")
+    val v_vl = dut.debug.get.vec_vl.peek().litValue
+    val v_vtype = dut.debug.get.vec_vtype.peek().litValue
+    println(f"VL: 0x$v_vl%016x (Dec: $v_vl)")
+    println(f"VTYPE: 0x$v_vtype%016x (vill=${v_vtype >> 63}, vsew=${(v_vtype >> 3) & 7}, vlmul=${v_vtype & 7})")
+    for (i <- 0 until 32) {
+      val vVal = dut.debug.get.vregs(i).peek().litValue
+      println(f"v$i%02d: 0x$vVal%032x")
     }
   }
 

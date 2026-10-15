@@ -64,6 +64,11 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
     val plic_ext_irq  = Input(UInt(32.W))
     val clint_mtip    = Output(Bool())
     val plic_meip     = Output(Bool())
+
+    // Vector Observability & State (RVV 1.0 - Day 13-17)
+    val debug_vregs   = Output(Vec(32, UInt(vLen.W)))
+    val vec_vl        = Output(UInt(xLen.W))
+    val vec_vtype     = Output(UInt(xLen.W))
   })
 
   // ---------------- EXECUTION UNITS (KUNMINGHU PARITY) ----------------
@@ -80,6 +85,8 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   val csr  = Module(new zaqal.backend.csr.CSRFile)
   val ptw  = Module(new zaqal.backend.mmu.PageTableWalker)
   val amx  = Module(new zaqal.backend.fu.amx.AMXUnit)
+  val vrf  = Module(new zaqal.backend.fu.vector.VectorRegFile)
+  val vcfg = Module(new zaqal.backend.fu.vector.VConfigUnit)
 
   // ---------------- LOAD / STORE QUEUES ----------------
   val sq = Module(new zaqal.backend.lsu.StoreQueue(16))
@@ -390,7 +397,8 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   wb_alu_val(0)  := exe_val_int(0) && exe_uop_int(0).pdest =/= 0.U && !exe_is_div_op0 && ((!exe_dec_int(0).is_branch) || exe_is_link0) && !is_async_interrupt
   wb_alu_dest(0) := exe_uop_int(0).pdest
   wb_alu_data(0) := Mux(exe_is_link0, exe_link_addr0,
-                    Mux(exe_dec_int(0).is_csr, csr.io.csr_rdata, alu(0).io.result))
+                    Mux(exe_dec_int(0).is_vset, vcfg.io.vl_out,
+                    Mux(exe_dec_int(0).is_csr, csr.io.csr_rdata, alu(0).io.result)))
 
   wb_alu_val(1)  := exe_val_int(1) && exe_uop_int(1).pdest =/= 0.U && !exe_is_div_op1 && ((!exe_dec_int(1).is_branch) || exe_is_link1)
   wb_alu_dest(1) := exe_uop_int(1).pdest
@@ -541,6 +549,33 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
     alu(i).io.pc   := exe_uop_raw_int(i).pc
     alu(i).io.dec  := exe_dec_int(i)
   }
+
+  // ---------------- VECTOR CONFIGURATION & VRF (RVV 1.0 - Day 13-17) ----------------
+  vcfg.io.valid       := exe_val_int(0) && exe_dec_int(0).is_vset
+  vcfg.io.is_vsetvli  := exe_dec_int(0).is_vsetvli
+  vcfg.io.is_vsetivli := exe_dec_int(0).is_vsetivli
+  vcfg.io.is_vsetvl   := exe_dec_int(0).is_vsetvl
+  vcfg.io.rd_idx      := exe_dec_int(0).rd
+  vcfg.io.rs1_idx     := exe_dec_int(0).rs1
+  vcfg.io.rs1_val     := src_int_1(0)
+  vcfg.io.rs2_val     := src_int_2(0)
+  vcfg.io.zimm        := exe_dec_int(0).vec_zimm
+
+  csr.io.vec_vl_upd    := exe_val_int(0) && exe_dec_int(0).is_vset
+  csr.io.vec_vl_val    := vcfg.io.vl_out
+  csr.io.vec_vtype_val := vcfg.io.vtype_out
+
+  vrf.io.raddr1 := exe_dec_int(0).vec_vs1
+  vrf.io.raddr2 := exe_dec_int(0).vec_vs2
+  vrf.io.raddr3 := exe_dec_int(0).vec_vd
+  vrf.io.wen    := false.B
+  vrf.io.waddr  := 0.U
+  vrf.io.wdata  := 0.U
+  vrf.io.wmask  := 0.U
+
+  io.debug_vregs := vrf.io.debug_vregs
+  io.vec_vl      := csr.io.vec_vl
+  io.vec_vtype   := csr.io.vec_vtype
 
   // ---------------- PMP & PMA ACCESS PROTECTION ----------------
   val is_store_agu = Wire(Vec(3, Bool()))
@@ -851,7 +886,9 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
       when(exe_uop_int(i).pdest =/= 0.U && !is_div_op && !is_mul_op) {
         next_regFile_wen(i)   := (!exe_dec_int(i).is_branch) || is_link
         next_regFile_waddr(i) := exe_uop_int(i).pdest
-        next_regFile_wdata(i) := Mux(is_link, link_addr, alu(i).io.result)
+        next_regFile_wdata(i) := Mux(is_link, link_addr,
+                                 Mux(exe_dec_int(i).is_vset, vcfg.io.vl_out,
+                                 Mux(exe_dec_int(i).is_csr, csr.io.csr_rdata, alu(i).io.result)))
       }
       if (i < 2) {
         when(is_div_op) {
@@ -1274,7 +1311,9 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
 
     io.exuWriteback(i).valid := (if (i == 0) (wb_val_int || (amx.io.done && amx_inflight)) else wb_val_int)
     io.exuWriteback(i).bits.robIdx := (if (i == 0) Mux(amx.io.done && amx_inflight, amx_rob_idx, exe_uop_int(i).robIdx) else exe_uop_int(i).robIdx)
-    io.exuWriteback(i).bits.data   := Mux(is_link, link_addr, alu(i).io.result)
+    io.exuWriteback(i).bits.data   := Mux(is_link, link_addr,
+                                      Mux(exe_dec_int(i).is_vset, vcfg.io.vl_out,
+                                      Mux(exe_dec_int(i).is_csr, csr.io.csr_rdata, alu(i).io.result)))
     if (i < 2) {
       io.exuWriteback(i).bits.exceptionVec := Mux(bru(i).io.exc_valid, bru(i).io.exc_cause, 0.U)
     }

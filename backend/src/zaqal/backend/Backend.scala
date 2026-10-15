@@ -32,6 +32,11 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
     val plic_ext_irq  = Input(UInt(32.W))
     val clint_mtip    = Output(Bool())
     val plic_meip     = Output(Bool())
+
+    // Vector Observability & State (RVV 1.0 - Day 13-17)
+    val debug_vregs   = Output(Vec(32, UInt(vLen.W)))
+    val vec_vl        = Output(UInt(xLen.W))
+    val vec_vtype     = Output(UInt(xLen.W))
   })
 
   import zaqal.cache.DCache
@@ -461,6 +466,11 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
   exec.io.plic_ext_irq := io.plic_ext_irq
   io.clint_mtip := exec.io.clint_mtip
   io.plic_meip  := exec.io.plic_meip
+
+  // Vector Observability & State (RVV 1.0 - Day 13-17)
+  io.debug_vregs := exec.io.debug_vregs
+  io.vec_vl      := exec.io.vec_vl
+  io.vec_vtype   := exec.io.vec_vtype
 
   val dcache = Module(new DCache)
   dcache.io.req <> exec.io.dcache_req

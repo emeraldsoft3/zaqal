@@ -65,6 +65,15 @@ object CSRAddr {
   val pmpaddr13 = "h3bd".U(12.W)
   val pmpaddr14 = "h3be".U(12.W)
   val pmpaddr15 = "h3bf".U(12.W)
+
+  // Standard RVV 1.0 Vector CSRs (Day 13-17)
+  val vstart    = "h008".U(12.W)
+  val vxsat     = "h009".U(12.W)
+  val vxrm      = "h00a".U(12.W)
+  val vcsr      = "h00f".U(12.W)
+  val vl        = "hc20".U(12.W)
+  val vtype     = "hc21".U(12.W)
+  val vlenb     = "hc22".U(12.W)
 }
 
 object PrivMode {
@@ -123,12 +132,36 @@ class CSRFile(implicit val p: Parameters) extends Module with HasZaqalParameter 
     val plic_seip    = Input(Bool())
     val interrupt_pending = Output(Bool())
     val interrupt_cause   = Output(UInt(xLen.W))
+
+    // Vector Control Interface (RVV 1.0 - Day 13-17)
+    val vec_vl_upd    = Input(Bool())
+    val vec_vl_val    = Input(UInt(xLen.W))
+    val vec_vtype_val = Input(UInt(xLen.W))
+    val vec_vl        = Output(UInt(xLen.W))
+    val vec_vtype     = Output(UInt(xLen.W))
+    val vec_vlenb     = Output(UInt(xLen.W))
   })
 
   // =========================================================================
   // Architectural State Registers
   // =========================================================================
   val priv_mode = RegInit(PrivMode.M) // Resets into Machine mode
+
+  // RVV 1.0 Architectural State Registers
+  val r_vstart = RegInit(0.U(xLen.W))
+  val r_vxsat  = RegInit(0.U(1.W))
+  val r_vxrm   = RegInit(0.U(2.W))
+  val r_vl     = RegInit(0.U(xLen.W))
+  val r_vtype  = RegInit(Cat(1.U(1.W), 0.U((xLen - 1).W))) // vill = 1 on reset
+
+  when(io.vec_vl_upd) {
+    r_vl    := io.vec_vl_val
+    r_vtype := io.vec_vtype_val
+  }
+
+  io.vec_vl    := r_vl
+  io.vec_vtype := r_vtype
+  io.vec_vlenb := vLenB.U(xLen.W)
 
   // Machine Status: FS=1 (Initial), MPP=Machine (3)
   val r_mstatus_mie  = RegInit(false.B)
@@ -288,10 +321,17 @@ class CSRFile(implicit val p: Parameters) extends Module with HasZaqalParameter 
   val rdata = WireDefault(0.U(xLen.W))
 
   switch(io.csr_addr) {
-    // User / Floating Point
+    // User / Floating Point & Vector
     is(CSRAddr.fflags)    { rdata := r_fflags }
     is(CSRAddr.frm)       { rdata := r_frm }
     is(CSRAddr.fcsr)      { rdata := Cat(r_frm, r_fflags) }
+    is(CSRAddr.vstart)    { rdata := r_vstart }
+    is(CSRAddr.vxsat)     { rdata := r_vxsat }
+    is(CSRAddr.vxrm)      { rdata := r_vxrm }
+    is(CSRAddr.vcsr)      { rdata := Cat(r_vxrm, r_vxsat) }
+    is(CSRAddr.vl)        { rdata := r_vl }
+    is(CSRAddr.vtype)     { rdata := r_vtype }
+    is(CSRAddr.vlenb)     { rdata := vLenB.U(xLen.W) }
     is(CSRAddr.cycle)     { rdata := r_mcycle }
     is(CSRAddr.time)      { rdata := r_mcycle }
     is(CSRAddr.instret)   { rdata := r_minstret }
@@ -373,19 +413,6 @@ class CSRFile(implicit val p: Parameters) extends Module with HasZaqalParameter 
   io.sepc_val := r_sepc
 
   // =========================================================================
-  // Privilege & Access Permission Check
-  // =========================================================================
-  val required_priv = io.csr_addr(9, 8)
-  val is_read_only  = io.csr_addr(11, 10) === "b11".U
-
-  // Read-only CSRs fail if written. Otherwise check required privilege.
-  val is_illegal_priv     = (io.csr_wen || io.csr_cmd =/= 0.U) && (priv_mode < required_priv)
-  val is_illegal_ro_write = io.csr_wen && is_read_only
-  val is_illegal_ret      = (io.mret_valid && priv_mode < PrivMode.M) ||
-                            (io.sret_valid && priv_mode < PrivMode.S)
-  io.is_illegal := is_illegal_priv || is_illegal_ro_write || is_illegal_ret
-
-  // =========================================================================
   // CSR Write & Atomic Modification Logic
   // =========================================================================
   // cmd: 1=RW, 2=RS (Set), 3=RC (Clear), 5=RWI, 6=RSI, 7=RCI
@@ -399,7 +426,22 @@ class CSRFile(implicit val p: Parameters) extends Module with HasZaqalParameter 
 
   // For RS/RC with rs1=0, write is suppressed (pure read)
   val write_suppressed = (is_set || is_clear) && (io.csr_wdata === 0.U)
-  val do_write = io.csr_wen && !write_suppressed && !io.is_illegal
+  val is_writing       = io.csr_wen && !write_suppressed
+
+  // =========================================================================
+  // Privilege & Access Permission Check
+  // =========================================================================
+  val required_priv = io.csr_addr(9, 8)
+  val is_read_only  = io.csr_addr(11, 10) === "b11".U
+
+  // Read-only CSRs fail if written. Otherwise check required privilege.
+  val is_illegal_priv     = (is_writing || io.csr_cmd =/= 0.U) && (priv_mode < required_priv)
+  val is_illegal_ro_write = is_writing && is_read_only
+  val is_illegal_ret      = (io.mret_valid && priv_mode < PrivMode.M) ||
+                            (io.sret_valid && priv_mode < PrivMode.S)
+  io.is_illegal := is_illegal_priv || is_illegal_ro_write || is_illegal_ret
+
+  val do_write = is_writing && !io.is_illegal
 
   // State-mutating writes that require refetch / pipeline flush
   val is_flush_csr = (io.csr_addr === CSRAddr.satp) ||
@@ -441,13 +483,20 @@ class CSRFile(implicit val p: Parameters) extends Module with HasZaqalParameter 
     r_mstatus_spp  := 0.U
   } .elsewhen(do_write) {
     switch(io.csr_addr) {
-      // User / FPU
+      // User / FPU & Vector
       is(CSRAddr.fflags)   { r_fflags := wdata_eff(4, 0); r_mstatus_fs := 3.U }
       is(CSRAddr.frm)      { r_frm    := wdata_eff(2, 0); r_mstatus_fs := 3.U }
       is(CSRAddr.fcsr)     {
         r_frm    := wdata_eff(7, 5)
         r_fflags := wdata_eff(4, 0)
         r_mstatus_fs := 3.U
+      }
+      is(CSRAddr.vstart)   { r_vstart := wdata_eff }
+      is(CSRAddr.vxsat)    { r_vxsat  := wdata_eff(0) }
+      is(CSRAddr.vxrm)     { r_vxrm   := wdata_eff(1, 0) }
+      is(CSRAddr.vcsr)     {
+        r_vxrm  := wdata_eff(2, 1)
+        r_vxsat := wdata_eff(0)
       }
 
       // Supervisor CSRs

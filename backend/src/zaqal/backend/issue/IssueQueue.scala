@@ -72,7 +72,8 @@ class IssueQueue(val numEntries: Int, val numEnq: Int, val numDeq: Int, val numW
       entries(i).uop.decode.is_sret ||
       entries(i).uop.decode.is_wfi ||
       entries(i).uop.decode.is_sfence_vma ||
-      entries(i).uop.decode.is_amx
+      entries(i).uop.decode.is_amx ||
+      entries(i).uop.decode.is_vset
     )
   })
 

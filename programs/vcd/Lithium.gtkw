@@ -822,6 +822,23 @@ TOP.Core.backend.exec.amx.trf.tiles_1_1[127:0]
 TOP.Core.backend.exec.amx.trf.tiles_2_0[127:0]
 @1000200
 -amx
+@800200
+-vector (RVV 1.0)
+@28
+TOP.Core.backend.exec.vcfg.io_valid
+TOP.Core.backend.exec.vcfg.io_is_vill
+@22
+TOP.Core.backend.exec.vcfg.io_vlmax[63:0]
+TOP.Core.backend.exec.vcfg.io_vl_out[63:0]
+TOP.Core.debug_vec_vl[63:0]
+TOP.Core.debug_vec_vtype[63:0]
+TOP.Core.backend.exec.csr.r_vl[63:0]
+TOP.Core.backend.exec.csr.r_vtype[63:0]
+TOP.Core.debug_vregs_0[127:0]
+TOP.Core.debug_vregs_1[127:0]
+TOP.Core.debug_vregs_2[127:0]
+@1000200
+-vector (RVV 1.0)
 @c00200
 -TLB_0
 @22

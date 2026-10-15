@@ -54,6 +54,11 @@ class Core(implicit val p: Parameters) extends Module with HasZaqalParameter {
     val disp0_valid     = Output(Bool())
     val disp0_pc        = Output(UInt(xLen.W))
     val disp0_pdest     = Output(UInt(phyRegIdxWidth.W))
+
+    // Vector Observability & State (RVV 1.0 - Day 13-17)
+    val vregs           = Output(Vec(32, UInt(vLen.W)))
+    val vec_vl          = Output(UInt(xLen.W))
+    val vec_vtype       = Output(UInt(xLen.W))
   })) else None
 
   // Cycle Counter logic
@@ -112,6 +117,11 @@ class Core(implicit val p: Parameters) extends Module with HasZaqalParameter {
     d.disp0_valid     := backend.io.disp0_valid
     d.disp0_pc        := backend.io.disp0_pc
     d.disp0_pdest     := backend.io.disp0_pdest
+
+    // Vector Observability & State (RVV 1.0 - Day 13-17)
+    d.vregs           := backend.io.debug_vregs
+    d.vec_vl          := backend.io.vec_vl
+    d.vec_vtype       := backend.io.vec_vtype
   } else {
     io.debug_sum.get := backend.io.debug_regs.reduce(_ ^ _) ^ backend.io.debug_fp_regs.reduce(_ ^ _) ^ frontend.io.debug_ftq_pc
   }

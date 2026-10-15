@@ -66,7 +66,12 @@ case class ZaqalParams(
   amxNumTiles: Int = 8,
   amxTileRows: Int = 16,
   amxTileCols: Int = 16,
-  amxRowBytes: Int = 16
+  amxRowBytes: Int = 16,
+
+  // RVV 1.0 (RISC-V Vector Extension) Parameters (Day 13-17)
+  enableRvv: Boolean = true,
+  vLen: Int = 128,       // Hardware Vector Register Length in bits (128, 256, 512)
+  numVRegs: Int = 32     // 32 Architectural Vector Registers (v0-v31)
 )
 
 // 2. Define the Field Key that CDE uses to locate ZaqalParams
@@ -133,6 +138,12 @@ trait HasZaqalParameter {
   def amxTileRows = zP.amxTileRows
   def amxTileCols = zP.amxTileCols
   def amxRowBytes = zP.amxRowBytes
+
+  // RVV 1.0 Getters
+  def enableRvv = zP.enableRvv
+  def vLen = zP.vLen
+  def vLenB = zP.vLen / 8
+  def numVRegs = zP.numVRegs
 }
 
 // 4. Default configuration overlay

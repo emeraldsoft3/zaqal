@@ -311,10 +311,26 @@ class Decoder(implicit val p: Parameters) extends Module with HasZaqalParameter 
   io.out.amx_tsrc1   := io.inst(17, 15) // Tile index T0-T7 (Source Tile A)
   io.out.amx_tsrc2   := io.inst(22, 20) // Tile index T0-T7 (Source Tile B)
 
+  // RVV 1.0 Vector Extension (Phase 9, Day 13-17)
+  val is_op_v = (opcode === "b1010111".U)
+  io.out.is_vsetvli  := is_op_v && (funct3 === "b111".U) && !io.inst(31)
+  io.out.is_vsetivli := is_op_v && (funct3 === "b111".U) && io.inst(31) && io.inst(30)
+  io.out.is_vsetvl   := is_op_v && (funct3 === "b111".U) && io.inst(31) && !io.inst(30)
+  io.out.is_vset     := is_op_v && (funct3 === "b111".U)
+
+  io.out.vec_vs1  := io.inst(19, 15)
+  io.out.vec_vs2  := io.inst(24, 20)
+  io.out.vec_vd   := io.inst(11, 7)
+  io.out.vec_vm   := io.inst(25)
+  io.out.vec_zimm := io.inst(30, 20)
+
   val is_amx_rs1 = io.out.is_tcfg || io.out.is_tld || io.out.is_tst
   val is_amx_rs2 = io.out.is_tld || io.out.is_tst
 
-  io.out.rs1_use := Mux(io.out.is_csr, !io.out.is_csr_imm, Mux(is_custom0, is_amx_rs1, !(io.out.is_lui || io.out.is_auipc || io.out.is_jal)))
-  io.out.rs2_use := Mux(is_custom0, is_amx_rs2, !io.out.is_csr && (is_r_type || is_r_type_32 || io.out.is_branch || io.out.is_store || io.out.is_fstore || is_atomic_rs2 || is_fp_fma || (is_fp_op && fp_r_type)))
+  val is_vec_rs1 = io.out.is_vsetvli || io.out.is_vsetvl
+  val is_vec_rs2 = io.out.is_vsetvl
+
+  io.out.rs1_use := Mux(io.out.is_csr, !io.out.is_csr_imm, Mux(is_custom0, is_amx_rs1, Mux(is_op_v, is_vec_rs1, !(io.out.is_lui || io.out.is_auipc || io.out.is_jal))))
+  io.out.rs2_use := Mux(is_custom0, is_amx_rs2, Mux(is_op_v, is_vec_rs2, !io.out.is_csr && (is_r_type || is_r_type_32 || io.out.is_branch || io.out.is_store || io.out.is_fstore || is_atomic_rs2 || is_fp_fma || (is_fp_op && fp_r_type))))
   io.out.rs3_use := any_fma
 }
