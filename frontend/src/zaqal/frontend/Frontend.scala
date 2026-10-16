@@ -51,7 +51,7 @@ class Frontend(implicit val p: Parameters) extends Module with HasZaqalParameter
 
   when(is_valid_redirect) {
     fetch_epoch := ~fetch_epoch
-    printf(p"FRONTEND FLUSH: epoch=$fetch_epoch io.redirect.target=${Hexadecimal(io.redirect.target)}\n")
+    // printf(p"FRONTEND FLUSH: epoch=$fetch_epoch io.redirect.target=${Hexadecimal(io.redirect.target)}\n")
   }
   
   // 1. BPU -> FTQ (Prediction Path - Buffered!)

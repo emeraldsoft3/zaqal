@@ -56,8 +56,9 @@ class Rob(val numWb: Int = 14)(implicit val p: Parameters) extends Module with H
       entry.valid := true.B
       entry.vls := false.B
       entry.interrupt_safe := true.B
+      entry.vecWen := io.enq(i).bits.decode.rd_is_vec
       entry.fpWen := io.enq(i).bits.decode.rd_is_fp
-      entry.rfWen := (io.enq(i).bits.decode.rd =/= 0.U) && !io.enq(i).bits.decode.rd_is_fp
+      entry.rfWen := (io.enq(i).bits.decode.rd =/= 0.U) && !io.enq(i).bits.decode.rd_is_fp && !io.enq(i).bits.decode.rd_is_vec
       entry.wflags := false.B
       entry.isRVC := io.enq(i).bits.decode.is_rvc
       entry.fflags := 0.U
@@ -185,6 +186,7 @@ class Rob(val numWb: Int = 14)(implicit val p: Parameters) extends Module with H
     io.commits.info(i).needFlush := entry.needFlush
     io.commits.info(i).rfWen := entry.rfWen
     io.commits.info(i).fpWen := entry.fpWen
+    io.commits.info(i).vecWen := entry.vecWen
     io.commits.info(i).is_call := entry.is_call
     io.commits.info(i).is_ret := entry.is_ret
     io.commits.info(i).target := entry.target

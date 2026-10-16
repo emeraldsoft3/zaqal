@@ -49,7 +49,12 @@ To achieve world-class performance, Zaqal must eventually implement these critic
 - [ ] **Instruction Buffer (IBuffer)** with banked parallel dequeue.
 
 ### Execution Engine
-- [/] **Rename Stage** (Map Table + Free List) - *Target: 192 Physical Registers (Kunminghu Parity).*
+- [/] **Rename Stage** (Map Table + Free List) - *Target: 192 Physical Integer Registers, 128 Physical Vector Registers (XiangShan Kunminghu Parity).*
+- [ ] **Vector Out-of-Order Engine (XiangShan Parity)**:
+  - [ ] **Vector Rename Table (VRAT)**: 32 architectural to 128 physical vector registers (pv0-pv127) with snapshot checkpoints.
+  - [ ] **Decoupled Vector Dispatch Queue (VDQ)**: Isolates multicycle vector operations from scalar dispatch pipeline.
+  - [ ] **Vector Issue Queue (VIQ)**: Out-of-order wake-up tracking vector physical registers with dual-scoreboard sync.
+  - [ ] **Vector Physical Register File (VPRF)**: 128-entry x 128-bit storage with banked multi-port access.
 - [ ] **Reorder Buffer (ROB)** for in-order commitment.
 - [ ] **Physical Register File (PRF)** with Register Cache.
 - [ ] **Distributed Issue Queues** (Separate queues for ALU, MEM, etc.).

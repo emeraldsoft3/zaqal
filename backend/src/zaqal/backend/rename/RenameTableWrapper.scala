@@ -9,8 +9,9 @@ class RenameTableWrapper(implicit val p: Parameters) extends Module with HasZaqa
   val io = IO(new Bundle {
     val dec = Vec(decodeWidth, Input(new DecodeSignals))
     val renamePorts = Vec(decodeWidth, Input(new RatWritePort)) // Logical addr + Physical data
-    val commitPorts = Vec(decodeWidth, Input(new RatWritePort)) // Note: Needs rd_is_fp flag eventually
-    val commit_is_fp = Vec(decodeWidth, Input(Bool()))         // Temporary flag for commit
+    val commitPorts = Vec(decodeWidth, Input(new RatWritePort))
+    val commit_is_fp  = Vec(decodeWidth, Input(Bool()))
+    val commit_is_vec = Vec(decodeWidth, Input(Bool()))
     val redirect = Input(Bool())
     
     // Outputs to Backend/Dispatch
@@ -33,15 +34,20 @@ class RenameTableWrapper(implicit val p: Parameters) extends Module with HasZaqa
     // Debug
     val debug_int_rat = Output(Vec(32, UInt(phyRegIdxWidth.W)))
     val debug_fp_rat  = Output(Vec(32, UInt(phyRegIdxWidth.W)))
+    val debug_vec_rat = Output(Vec(numVRegs, UInt(phyRegIdxWidth.W)))
   })
 
-  val intRat = Module(new RenameTable(32, isFP = false))
-  val fpRat  = Module(new RenameTable(32, isFP = true))
+  val intRat = Module(new RenameTable(32, isFP = false, isVec = false))
+  val fpRat  = Module(new RenameTable(32, isFP = true,  isVec = false))
+  val vecRat = Module(new RenameTable(numVRegs, isFP = false, isVec = true))
 
   intRat.io.redirect := io.redirect
   fpRat.io.redirect  := io.redirect
+  vecRat.io.redirect := io.redirect
+
   intRat.io.useSnapshot := io.useSnapshot
   fpRat.io.useSnapshot  := io.useSnapshot
+  vecRat.io.useSnapshot := io.useSnapshot
 
   intRat.io.snptEnq := io.snptEnq
   intRat.io.snptEnqIdx := io.snptEnqIdx
@@ -54,6 +60,12 @@ class RenameTableWrapper(implicit val p: Parameters) extends Module with HasZaqa
   fpRat.io.snptDeq := io.snptDeq
   fpRat.io.snptFlushVec := io.snptFlushVec
   fpRat.io.snptRestoreIdx := io.snptRestoreIdx
+
+  vecRat.io.snptEnq := io.snptEnq
+  vecRat.io.snptEnqIdx := io.snptEnqIdx
+  vecRat.io.snptDeq := io.snptDeq
+  vecRat.io.snptFlushVec := io.snptFlushVec
+  vecRat.io.snptRestoreIdx := io.snptRestoreIdx
 
   io.snptEnqPtr := intRat.io.snptEnqPtr
   io.snptDeqPtr := intRat.io.snptDeqPtr
@@ -69,12 +81,19 @@ class RenameTableWrapper(implicit val p: Parameters) extends Module with HasZaqa
     fpRat.io.readPorts(i)(1).addr := io.dec(i).rs2
     fpRat.io.readPorts(i)(2).addr := io.dec(i).rs3
 
-    io.psrs1(i) := Mux(io.dec(i).rs1_use, Mux(io.dec(i).rs1_is_fp, fpRat.io.readPorts(i)(0).data, intRat.io.readPorts(i)(0).data), 0.U)
-    io.psrs2(i) := Mux(io.dec(i).rs2_use, Mux(io.dec(i).rs2_is_fp, fpRat.io.readPorts(i)(1).data, intRat.io.readPorts(i)(1).data), 0.U)
-    io.psrs3(i) := Mux(io.dec(i).rs3_use, Mux(io.dec(i).rs3_is_fp, fpRat.io.readPorts(i)(2).data, intRat.io.readPorts(i)(2).data), 0.U)
+    vecRat.io.readPorts(i)(0).addr := io.dec(i).rs1
+    vecRat.io.readPorts(i)(1).addr := io.dec(i).rs2
+    vecRat.io.readPorts(i)(2).addr := io.dec(i).rs3
+
+    io.psrs1(i) := Mux(io.dec(i).rs1_is_vec, vecRat.io.readPorts(i)(0).data,
+                   Mux(io.dec(i).rs1_use, Mux(io.dec(i).rs1_is_fp, fpRat.io.readPorts(i)(0).data, intRat.io.readPorts(i)(0).data), 0.U))
+    io.psrs2(i) := Mux(io.dec(i).rs2_is_vec, vecRat.io.readPorts(i)(1).data,
+                   Mux(io.dec(i).rs2_use, Mux(io.dec(i).rs2_is_fp, fpRat.io.readPorts(i)(1).data, intRat.io.readPorts(i)(1).data), 0.U))
+    io.psrs3(i) := Mux(io.dec(i).rs3_is_vec, vecRat.io.readPorts(i)(2).data,
+                   Mux(io.dec(i).rs3_use, Mux(io.dec(i).rs3_is_fp, fpRat.io.readPorts(i)(2).data, intRat.io.readPorts(i)(2).data), 0.U))
 
     // 2. Route Rename Ports (Speculative Update)
-    intRat.io.renamePorts(i).wen  := io.renamePorts(i).wen && !io.dec(i).rd_is_fp
+    intRat.io.renamePorts(i).wen  := io.renamePorts(i).wen && !io.dec(i).rd_is_fp && !io.dec(i).rd_is_vec
     intRat.io.renamePorts(i).addr := io.renamePorts(i).addr
     intRat.io.renamePorts(i).data := io.renamePorts(i).data
 
@@ -82,18 +101,28 @@ class RenameTableWrapper(implicit val p: Parameters) extends Module with HasZaqa
     fpRat.io.renamePorts(i).addr  := io.renamePorts(i).addr
     fpRat.io.renamePorts(i).data  := io.renamePorts(i).data
 
-    io.old_pdest(i) := Mux(io.dec(i).rd_is_fp, fpRat.io.old_pdest(i), intRat.io.old_pdest(i))
+    vecRat.io.renamePorts(i).wen  := io.renamePorts(i).wen && io.dec(i).rd_is_vec
+    vecRat.io.renamePorts(i).addr := io.renamePorts(i).addr
+    vecRat.io.renamePorts(i).data := io.renamePorts(i).data
+
+    io.old_pdest(i) := Mux(io.dec(i).rd_is_vec, vecRat.io.old_pdest(i),
+                       Mux(io.dec(i).rd_is_fp, fpRat.io.old_pdest(i), intRat.io.old_pdest(i)))
 
     // 3. Route Commit Ports (Architectural Update)
-    intRat.io.commitPorts(i).wen  := io.commitPorts(i).wen && !io.commit_is_fp(i)
+    intRat.io.commitPorts(i).wen  := io.commitPorts(i).wen && !io.commit_is_fp(i) && !io.commit_is_vec(i)
     intRat.io.commitPorts(i).addr := io.commitPorts(i).addr
     intRat.io.commitPorts(i).data := io.commitPorts(i).data
 
     fpRat.io.commitPorts(i).wen   := io.commitPorts(i).wen && io.commit_is_fp(i)
     fpRat.io.commitPorts(i).addr  := io.commitPorts(i).addr
     fpRat.io.commitPorts(i).data  := io.commitPorts(i).data
+
+    vecRat.io.commitPorts(i).wen  := io.commitPorts(i).wen && io.commit_is_vec(i)
+    vecRat.io.commitPorts(i).addr := io.commitPorts(i).addr
+    vecRat.io.commitPorts(i).data := io.commitPorts(i).data
   }
 
   io.debug_int_rat := intRat.io.debug_rat
   io.debug_fp_rat  := fpRat.io.debug_rat
+  io.debug_vec_rat := vecRat.io.debug_rat
 }

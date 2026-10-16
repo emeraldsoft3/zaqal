@@ -18,12 +18,14 @@ class Dispatch(implicit val p: Parameters) extends Module with HasZaqalParameter
     val memOut = Vec(decodeWidth, Decoupled(new DecodedMicroOp))
     val bruOut = Vec(decodeWidth, Decoupled(new DecodedMicroOp))
     val fpuOut = Vec(decodeWidth, Decoupled(new DecodedMicroOp))
+    val vecOut = Vec(decodeWidth, Decoupled(new DecodedMicroOp))
     
     // Structural Hazard/Ready signals from target queues/functional units
     val aluReady = Input(Vec(decodeWidth, Bool()))
     val memReady = Input(Vec(decodeWidth, Bool()))
     val bruReady = Input(Vec(decodeWidth, Bool()))
     val fpuReady = Input(Vec(decodeWidth, Bool()))
+    val vecReady = Input(Vec(decodeWidth, Bool()))
   })
 
   // 1. Port Target Decoding & Classification for each lane
@@ -47,20 +49,23 @@ class Dispatch(implicit val p: Parameters) extends Module with HasZaqalParameter
   val req_mem = Wire(Vec(decodeWidth, Bool()))
   val req_bru = Wire(Vec(decodeWidth, Bool()))
   val req_fpu = Wire(Vec(decodeWidth, Bool()))
+  val req_vec = Wire(Vec(decodeWidth, Bool()))
   val req_any = Wire(Vec(decodeWidth, Bool()))
 
   for (i <- 0 until decodeWidth) {
     val dec = io.in(i).bits.decode
-    val is_mem = dec.is_load || dec.is_store || dec.is_fload || dec.is_fstore || dec.is_atomic
+    val is_vec = dec.is_vec_arith || dec.is_vec_mem || dec.is_vset
+    val is_mem = (dec.is_load || dec.is_store || dec.is_fload || dec.is_fstore || dec.is_atomic) && !is_vec
     val is_bru = dec.is_branch || dec.is_jal || dec.is_jalr
-    val is_fpu = (dec.rd_is_fp || dec.rs1_is_fp || dec.rs2_is_fp || dec.rs3_is_fp) && !is_mem && !dec.is_csr
-    val is_alu = !is_mem && !is_bru && !is_fpu
+    val is_fpu = (dec.rd_is_fp || dec.rs1_is_fp || dec.rs2_is_fp || dec.rs3_is_fp) && !is_mem && !is_vec && !dec.is_csr
+    val is_alu = !is_mem && !is_bru && !is_fpu && !is_vec
 
     val active = io.in(i).valid && !is_shadow(i) && !io.is_fused_away(i)
     req_alu(i) := active && is_alu
     req_mem(i) := active && is_mem
     req_bru(i) := active && is_bru
     req_fpu(i) := active && is_fpu
+    req_vec(i) := active && is_vec
     req_any(i) := active
   }
 
@@ -98,17 +103,19 @@ class Dispatch(implicit val p: Parameters) extends Module with HasZaqalParameter
 
   for (i <- 0 until decodeWidth) {
     val dec = io.in(i).bits.decode
-    val is_mem_op = dec.is_load || dec.is_store || dec.is_fload || dec.is_fstore || dec.is_atomic
+    val is_vec_op = dec.is_vec_arith || dec.is_vec_mem || dec.is_vset
+    val is_mem_op = (dec.is_load || dec.is_store || dec.is_fload || dec.is_fstore || dec.is_atomic) && !is_vec_op
     val is_bru_op = dec.is_branch || dec.is_jal || dec.is_jalr
-    val is_fpu_op = (dec.rd_is_fp || dec.rs1_is_fp || dec.rs2_is_fp || dec.rs3_is_fp) && !is_mem_op && !dec.is_csr
-    val is_alu_op = !is_mem_op && !is_bru_op && !is_fpu_op
+    val is_fpu_op = (dec.rd_is_fp || dec.rs1_is_fp || dec.rs2_is_fp || dec.rs3_is_fp) && !is_mem_op && !is_vec_op && !dec.is_csr
+    val is_alu_op = !is_mem_op && !is_bru_op && !is_fpu_op && !is_vec_op
 
     // Port readiness calculation including structural hazard checks
     port_ready(i) := !io.in(i).valid || is_shadow(i) || io.is_fused_away(i) || (MuxCase(false.B, Seq(
       is_alu_op -> io.aluReady(i),
       is_mem_op -> io.memReady(i),
       is_bru_op -> io.bruReady(i),
-      is_fpu_op -> io.fpuReady(i)
+      is_fpu_op -> io.fpuReady(i),
+      is_vec_op -> io.vecReady(i)
     )) && !hazard_detected(i))
   }
 
@@ -131,10 +138,11 @@ class Dispatch(implicit val p: Parameters) extends Module with HasZaqalParameter
   for (i <- 0 until decodeWidth) {
     val dec = io.in(i).bits.decode
     
-    val is_mem_op = dec.is_load || dec.is_store || dec.is_fload || dec.is_fstore || dec.is_atomic
+    val is_vec_op = dec.is_vec_arith || dec.is_vec_mem || dec.is_vset
+    val is_mem_op = (dec.is_load || dec.is_store || dec.is_fload || dec.is_fstore || dec.is_atomic) && !is_vec_op
     val is_bru_op = dec.is_branch || dec.is_jal || dec.is_jalr
-    val is_fpu_op = (dec.rd_is_fp || dec.rs1_is_fp || dec.rs2_is_fp || dec.rs3_is_fp) && !is_mem_op && !dec.is_csr
-    val is_alu_op = !is_mem_op && !is_bru_op && !is_fpu_op
+    val is_fpu_op = (dec.rd_is_fp || dec.rs1_is_fp || dec.rs2_is_fp || dec.rs3_is_fp) && !is_mem_op && !is_vec_op && !dec.is_csr
+    val is_alu_op = !is_mem_op && !is_bru_op && !is_fpu_op && !is_vec_op
 
     val active = io.in(i).valid && !is_shadow(i) && !io.is_fused_away(i)
 
@@ -153,6 +161,10 @@ class Dispatch(implicit val p: Parameters) extends Module with HasZaqalParameter
     // FPU Output Port Routing
     io.fpuOut(i).valid := active && io.in(i).ready && is_fpu_op
     io.fpuOut(i).bits  := io.in(i).bits
+
+    // VEC Output Port Routing
+    io.vecOut(i).valid := active && io.in(i).ready && is_vec_op
+    io.vecOut(i).bits  := io.in(i).bits
     
     // Debug output prints for active dispatch decisions
     when(io.in(i).valid && io.in(i).ready) {
@@ -161,6 +173,7 @@ class Dispatch(implicit val p: Parameters) extends Module with HasZaqalParameter
       // when(is_mem_op) { printf("MEM") }
       // when(is_bru_op) { printf("BRU") }
       // when(is_fpu_op) { printf("FPU") }
+      // when(is_vec_op) { printf("VEC") }
       // printf("]\n")
     }
   }

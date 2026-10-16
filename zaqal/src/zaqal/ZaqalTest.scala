@@ -48,51 +48,49 @@ object ZaqalTest extends App {
     // =========================================================================
     // DAY 17-20 TEST: CLINT TIMER INTERRUPT & MID-PROGRAM HARDWARE PREEMPTION
     // =========================================================================
-    // PHASE 9 (DAY 13-17): VECTOR REGISTER FILE (VRF) & LMUL / RVV 1.0 TEST
+    // DAY 21-25 TEST: VECTOR OUT-OF-ORDER INTEGRATION (RENAME & DISPATCH)
     // =========================================================================
-    // Flow:
-    // 1. Read constant Vector Length in Bytes (VLENB = VLEN / 8 = 128 / 8 = 16):
-    //    - CSRR     x10, vlenb           (0xC2202573) -> Expect x10 == 16 (0x10)
-    // 2. Configure Vector State: SEW=32-bit (e32), LMUL=1 (m1), ta, ma:
-    //    - VSETVLI  x11, x0, e32, m1, ta, ma (0x0D0075D7)
-    //      * VLMAX = (128 / 32) * 1 = 4 elements
-    //      * rs1 == x0, rd != x0 -> AVL = VLMAX
-    //      * Expect x11 == 4, vtype == 0xD0
-    // 3. Configure Vector State: SEW=32-bit (e32), LMUL=2 (m2) [Grouping 2 vregs]:
-    //    - VSETVLI  x12, x0, e32, m2, ta, ma (0x0D107657)
-    //      * VLMAX = (128 / 32) * 2 = 8 elements
-    //      * Expect x12 == 8, vtype == 0xD1
-    // 4. Configure Vector State: SEW=8-bit (e8), LMUL=8 (m8) [Grouping 8 vregs]:
-    //    - VSETVLI  x13, x0, e8, m8, ta, ma (0x0C3076D7)
-    //      * VLMAX = (128 / 8) * 8 = 128 elements (0x80)
-    //      * Expect x13 == 128 (0x80), vtype == 0xC3
-    // 5. Configure with Immediate AVL via VSETIVLI:
-    //    - VSETIVLI x14, 10, e16, m1, ta, ma (0xCC857757)
-    //      * SEW=16-bit, LMUL=1 -> VLMAX = (128 / 16) * 1 = 8 elements
-    //      * Requested AVL = 10 -> Clamped to min(10, 8) = 8
-    //      * Expect x14 == 8
-    // 6. Direct CSR Read of architectural vl:
-    //    - CSRR     x15, vl              (0xC20027F3) -> Expect x15 == 8
-    // 7. Completion Flag:
-    //    - x29 = 0xF1 (Day 13-17 VRF & LMUL Test Completion Flag)
-    // 8. Settle loop
+    // Verification Flow:
+    // 1. Setup base memory address:
+    //    - addi       x1,  x0, 0x10        (base load address = 0x0010)
+    // 2. Configure vector state: e32, m1 -> VLMAX = (128/32)*1 = 4 elements:
+    //    - vsetvli    x11, x0, 0x0D0       (SEW=32-bit, LMUL=1 -> x11 := 4)
+    // 3. Unit-Stride Vector Load:
+    //    - vle32.v    v1, (x1)             (v1 allocated physical register pv32)
+    // 4. Vector-Immediate Arithmetic:
+    //    - vadd.vi    v2, v1, 10           (v2 allocated physical register pv33)
+    // 5. WAW Hazard & Vector Renaming Test:
+    //    - Overwrite v1 with new result! Tests Vector Rename Table (VRAT) mapping:
+    //    - vadd.vi    v1, v2, 5            (v1 remapped to new physical register pv34!)
+    // 6. Vector-Scalar Arithmetic reading remapped v1:
+    //    - addi       x2, x0, 2            (scalar multiplier = 2)
+    //    - vmul.vx    v3, v1, x2           (v3 reads new v1 (pv34), allocated pv35)
+    // 7. Decoupled Vector Dispatch & Parallel Scalar Execution:
+    //    - While vector operations stream, scalar integer pipeline executes concurrently:
+    //    - addi       x20, x0, 100         (x20 := 100)
+    //    - addi       x21, x0, 200         (x21 := 200)
+    //    - add        x22, x20, x21        (x22 := 300 = 0x12c)
+    // 8. Day 21-25 PASS Flag:
+    //    - addi       x29, x0, 0x25        (PASS Flag: x29 := 0x25)
+    // 9. Settle loop:
+    //    - jal        x0, -4
     // =========================================================================
     val programMemory = Seq(
-      // --- BLOCK 0 (PC 0x80000000 - 0x8000001C): VLENB & VSETVLI Tests ---
-      "hc2202573".U(32.W), // 00 [Word 0]: csrr     x10, vlenb          (expect x10 = 16 = 0x10)
-      "h0d0075d7".U(32.W), // 04 [Word 1]: vsetvli  x11, x0, 0x0D0      (e32, m1 -> expect x11 = 4)
-      "h0d107657".U(32.W), // 08 [Word 2]: vsetvli  x12, x0, 0x0D1      (e32, m2 -> expect x12 = 8)
-      "h0c3076d7".U(32.W), // 0C [Word 3]: vsetvli  x13, x0, 0x0C3      (e8,  m8 -> expect x13 = 128 = 0x80)
-      "hcc857757".U(32.W), // 10 [Word 4]: vsetivli x14, 10, 0x0C8      (AVL=10, e16, m1 -> VLMAX=8 -> expect x14 = 8)
-      "hc20027f3".U(32.W), // 14 [Word 5]: csrr     x15, vl             (read CSR vl -> expect x15 = 8)
-      "h0f100e93".U(32.W), // 18 [Word 6]: addi     x29, x0, 0xf1       (PASS Flag: x29 := 0xF1)
-      "h00000013".U(32.W), // 1C [Word 7]: nop
+      // --- BLOCK 0 (PC 0x80000000 - 0x8000001C) ---
+      "h01000093".U(32.W), // 00 [Word 0]: addi     x1,  x0, 0x10        (load base = 0x10)
+      "h0d0075d7".U(32.W), // 04 [Word 1]: vsetvli  x11, x0, 0x0D0       (e32, m1 -> vl = 4)
+      "h0200e087".U(32.W), // 08 [Word 2]: vle32.v  v1, (x1)             (load 4 words to v1 -> pv32)
+      "h02153157".U(32.W), // 0C [Word 3]: vadd.vi  v2, v1, 10           (v2 := v1 + 10 -> pv33)
+      "h0222b0d7".U(32.W), // 10 [Word 4]: vadd.vi  v1, v2, 5            (WAW! v1 remapped -> pv34)
+      "h00200113".U(32.W), // 14 [Word 5]: addi     x2, x0, 2            (scalar mult = 2)
+      "h961141d7".U(32.W), // 18 [Word 6]: vmul.vx  v3, v1, x2           (v3 := v1 * 2 -> pv35)
+      "h06400a13".U(32.W), // 1C [Word 7]: addi     x20, x0, 100         (scalar execution)
 
-      // --- BLOCK 1 (PC 0x80000020 - 0x8000003C): Loop & NOPs ---
-      "hffdff06f".U(32.W), // 20 [Word 0]: jal      x0, -4              (settle loop at 0x20)
-      "h00000013".U(32.W), // 24 [Word 1]: nop
-      "h00000013".U(32.W), // 28 [Word 2]: nop
-      "h00000013".U(32.W), // 2C [Word 3]: nop
+      // --- BLOCK 1 (PC 0x80000020 - 0x8000003C) ---
+      "h0c800a93".U(32.W), // 20 [Word 0]: addi     x21, x0, 200         (scalar execution)
+      "h015a0b33".U(32.W), // 24 [Word 1]: add      x22, x20, x21        (scalar x22 := 300)
+      "h02500e93".U(32.W), // 28 [Word 2]: addi     x29, x0, 0x25        (Day 21-25 PASS Flag: 0x25)
+      "hffdff06f".U(32.W), // 2C [Word 3]: jal      x0, -4               (settle loop)
       "h00000013".U(32.W), // 30 [Word 4]: nop
       "h00000013".U(32.W), // 34 [Word 5]: nop
       "h00000013".U(32.W), // 38 [Word 6]: nop
@@ -277,14 +275,15 @@ object ZaqalTest extends App {
       println(f"pf$i%02d: 0x$regVal%016x")
     }
 
-    println("--- Final Vector Architecture State (RVV 1.0) ---")
+    println("--- Final Vector Architecture State (RVV 1.0 - VRAT Renamed) ---")
     val v_vl = dut.debug.get.vec_vl.peek().litValue
     val v_vtype = dut.debug.get.vec_vtype.peek().litValue
     println(f"VL: 0x$v_vl%016x (Dec: $v_vl)")
     println(f"VTYPE: 0x$v_vtype%016x (vill=${v_vtype >> 63}, vsew=${(v_vtype >> 3) & 7}, vlmul=${v_vtype & 7})")
     for (i <- 0 until 32) {
+      val pRegIdx = dut.debug.get.debug_vec_rat(i).peek().litValue.toInt
       val vVal = dut.debug.get.vregs(i).peek().litValue
-      println(f"v$i%02d: 0x$vVal%032x")
+      println(f"v$i%02d (maps to pv$pRegIdx%02d): 0x$vVal%032x")
     }
   }
 

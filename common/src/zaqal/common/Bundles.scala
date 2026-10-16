@@ -247,6 +247,10 @@ class DecodeSignals(implicit val p: Parameters) extends Bundle with HasZaqalPara
   val rs2_is_fp = Bool()
   val rs3_is_fp = Bool()
   val rd_is_fp  = Bool()
+  val rs1_is_vec = Bool()
+  val rs2_is_vec = Bool()
+  val rs3_is_vec = Bool()
+  val rd_is_vec  = Bool()
 
   // AMX Matrix Functional Unit (Phase 9)
   val is_amx       = Bool()
@@ -271,6 +275,18 @@ class DecodeSignals(implicit val p: Parameters) extends Bundle with HasZaqalPara
   val vec_vd       = UInt(5.W)
   val vec_vm       = Bool()
   val vec_zimm     = UInt(11.W)
+
+  // RVV 1.0 Vector Arithmetic & Memory (Phase 9, Day 18-20)
+  val is_vec_arith   = Bool()
+  val is_vec_load    = Bool()
+  val is_vec_store   = Bool()
+  val is_vec_mem     = Bool()
+  val is_vec_strided = Bool()
+  val vec_funct3     = UInt(3.W)
+  val vec_funct6     = UInt(6.W)
+  val vec_simm5      = SInt(5.W)
+  val vec_mop        = UInt(2.W)
+  val vec_width      = UInt(3.W)
 }
 
 object FusionType {
@@ -410,6 +426,7 @@ class RobCommitEntryBundle(implicit val p: Parameters) extends Bundle with HasZa
   val interrupt_safe = Bool()
   val rfWen = Bool()
   val fpWen = Bool()
+  val vecWen = Bool()
   val needFlush = Bool()
   val is_call = Bool()
   val is_ret = Bool()
@@ -430,6 +447,7 @@ class RobEntryBundle(implicit val p: Parameters) extends Bundle with HasZaqalPar
   val interrupt_safe = Bool()
   val fpWen = Bool()
   val rfWen = Bool()
+  val vecWen = Bool()
   val wflags = Bool()
   val isRVC = Bool()
   val valid = Bool()

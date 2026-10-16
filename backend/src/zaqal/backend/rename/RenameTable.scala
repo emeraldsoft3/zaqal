@@ -16,7 +16,7 @@ class RatWritePort(implicit val p: Parameters) extends Bundle with HasZaqalParam
   val data = UInt(phyRegIdxWidth.W)
 }
 
-class RenameTable(val numLogicalRegs: Int, val isFP: Boolean = false)(implicit val p: Parameters) extends Module with HasZaqalParameter {
+class RenameTable(val numLogicalRegs: Int, val isFP: Boolean = false, val isVec: Boolean = false)(implicit val p: Parameters) extends Module with HasZaqalParameter {
   val io = IO(new Bundle {
     val readPorts   = Vec(decodeWidth, Vec(3, new RatReadPort))
     val renamePorts = Vec(decodeWidth, Input(new RatWritePort))
@@ -55,7 +55,7 @@ class RenameTable(val numLogicalRegs: Int, val isFP: Boolean = false)(implicit v
   for (i <- 0 until decodeWidth) {
     // Read source registers (rs1, rs2, rs3)
     // Intra-bundle bypassing: rs uses the latest mapping from previous instructions in the same bundle
-    if (isFP) {
+    if (isFP || isVec) {
       io.readPorts(i)(0).data := curr_spec_table(i)(io.readPorts(i)(0).addr)
       io.readPorts(i)(1).data := curr_spec_table(i)(io.readPorts(i)(1).addr)
       io.readPorts(i)(2).data := curr_spec_table(i)(io.readPorts(i)(2).addr)
@@ -70,7 +70,7 @@ class RenameTable(val numLogicalRegs: Int, val isFP: Boolean = false)(implicit v
     
     // Update for next instruction in the same bundle
     curr_spec_table(i+1) := curr_spec_table(i)
-    val wen = if (isFP) io.renamePorts(i).wen else io.renamePorts(i).wen && io.renamePorts(i).addr =/= 0.U
+    val wen = if (isFP || isVec) io.renamePorts(i).wen else io.renamePorts(i).wen && io.renamePorts(i).addr =/= 0.U
     when (wen) {
       curr_spec_table(i+1)(io.renamePorts(i).addr) := io.renamePorts(i).data
     }
@@ -101,7 +101,7 @@ class RenameTable(val numLogicalRegs: Int, val isFP: Boolean = false)(implicit v
 
   // 2. Commit Stage (Architectural)
   for (i <- 0 until decodeWidth) {
-    val wen = if (isFP) io.commitPorts(i).wen else io.commitPorts(i).wen && io.commitPorts(i).addr =/= 0.U
+    val wen = if (isFP || isVec) io.commitPorts(i).wen else io.commitPorts(i).wen && io.commitPorts(i).addr =/= 0.U
     when (wen) {
       arch_table(io.commitPorts(i).addr) := io.commitPorts(i).data
     }

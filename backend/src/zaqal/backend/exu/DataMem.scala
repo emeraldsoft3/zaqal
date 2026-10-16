@@ -28,6 +28,14 @@ class DataMem(implicit val p: Parameters) extends Module with HasZaqalParameter 
     val amx_waddr = Input(UInt(xLen.W))
     val amx_wdata = Input(UInt(128.W))
 
+    // Dedicated Vector Memory Ports (Phase 9, Day 18-20)
+    val vec_raddr = Input(UInt(xLen.W))
+    val vec_rdata = Output(UInt(128.W))
+    val vec_wen   = Input(Bool())
+    val vec_waddr = Input(UInt(xLen.W))
+    val vec_wdata = Input(UInt(128.W))
+    val vec_wmask = Input(UInt(16.W))
+
     // UART 16550 Serial Console Ports (Day 14-16)
     val uart_tx_valid = Output(Bool())
     val uart_tx_char  = Output(UInt(8.W))
@@ -175,5 +183,23 @@ class DataMem(implicit val p: Parameters) extends Module with HasZaqalParameter 
     val amx_w_idx_next = Mux(amx_w_idx === 2047.U, 0.U, amx_w_idx + 1.U)
     mem(amx_w_idx)      := io.amx_wdata(63, 0)
     mem(amx_w_idx_next) := io.amx_wdata(127, 64)
+  }
+
+  // Dedicated Vector Port Read (128-bit)
+  val vec_r_idx = io.vec_raddr(13, 3)
+  val vec_r_idx_next = Mux(vec_r_idx === 2047.U, 0.U, vec_r_idx + 1.U)
+  io.vec_rdata := Cat(mem(vec_r_idx_next), mem(vec_r_idx))
+
+  // Dedicated Vector Port Write (128-bit with byte write mask)
+  when(io.vec_wen) {
+    val vec_w_idx = io.vec_waddr(13, 3)
+    val vec_w_idx_next = Mux(vec_w_idx === 2047.U, 0.U, vec_w_idx + 1.U)
+    val cur_low  = mem(vec_w_idx)
+    val cur_high = mem(vec_w_idx_next)
+    val cur_full = Cat(cur_high, cur_low)
+    val bitMask_vec = Cat(Seq.tabulate(16)(i => Fill(8, io.vec_wmask(i))).reverse)
+    val fullData_vec = (cur_full & ~bitMask_vec) | (io.vec_wdata & bitMask_vec)
+    mem(vec_w_idx)      := fullData_vec(63, 0)
+    mem(vec_w_idx_next) := fullData_vec(127, 64)
   }
 }

@@ -71,7 +71,8 @@ case class ZaqalParams(
   // RVV 1.0 (RISC-V Vector Extension) Parameters (Day 13-17)
   enableRvv: Boolean = true,
   vLen: Int = 128,       // Hardware Vector Register Length in bits (128, 256, 512)
-  numVRegs: Int = 32     // 32 Architectural Vector Registers (v0-v31)
+  numVRegs: Int = 32,    // 32 Architectural Vector Registers (v0-v31)
+  vecPhyRegs: Int = 128  // 128 Physical Vector Registers (XiangShan Kunminghu Parity)
 )
 
 // 2. Define the Field Key that CDE uses to locate ZaqalParams
@@ -144,6 +145,8 @@ trait HasZaqalParameter {
   def vLen = zP.vLen
   def vLenB = zP.vLen / 8
   def numVRegs = zP.numVRegs
+  def vecPhyRegs = zP.vecPhyRegs
+  def vecPhyRegIdxWidth = log2Up(vecPhyRegs)
 }
 
 // 4. Default configuration overlay

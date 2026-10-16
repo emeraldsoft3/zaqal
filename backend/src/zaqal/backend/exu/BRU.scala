@@ -67,6 +67,6 @@ class BRU(implicit val p: Parameters) extends Module with HasZaqalParameter {
   io.exc_cause  := 0.U // Fixed later
 
   when(io.mispredict && is_cfi) {
-    printf(p"[BRU REDIRECT] pc=${Hexadecimal(io.pc)} target=${Hexadecimal(io.target)} actual_taken=$actual_taken is_rvc=${io.is_rvc}\n")
+    // printf(p"[BRU REDIRECT] pc=${Hexadecimal(io.pc)} target=${Hexadecimal(io.target)} actual_taken=$actual_taken is_rvc=${io.is_rvc}\n")
   }
 }

@@ -19,7 +19,7 @@ class Decoder(implicit val p: Parameters) extends Module with HasZaqalParameter 
   io.out.rd  := io.inst(11, 7)
   io.out.rs1 := io.inst(19, 15)
   io.out.rs2 := io.inst(24, 20)
-  io.out.rs3 := io.inst(31, 27)
+  io.out.rs3 := Mux(io.out.is_vec_store, io.inst(11, 7), Mux(io.out.is_vec_arith && !io.out.vec_vm, 0.U, io.inst(31, 27)))
   // RISC-V immediate extraction
   val i_imm = io.inst(31, 20).asSInt
   val b_imm = Cat(io.inst(31), io.inst(7), io.inst(30, 25), io.inst(11, 8), 0.U(1.W)).asSInt
@@ -204,11 +204,11 @@ class Decoder(implicit val p: Parameters) extends Module with HasZaqalParameter 
   val fp_funct5 = io.inst(31, 27)
   val fp_fmt    = io.inst(26, 25) // 00=S, 01=D
   
-  io.out.is_fload  := (opcode === "b0000111".U)
+  io.out.is_fload  := (opcode === "b0000111".U) && (funct3 === "b010".U || funct3 === "b011".U)
   io.out.is_flw    := io.out.is_fload && (funct3 === "b010".U)
   io.out.is_fld    := io.out.is_fload && (funct3 === "b011".U)
   
-  io.out.is_fstore := (opcode === "b0100111".U)
+  io.out.is_fstore := (opcode === "b0100111".U) && (funct3 === "b010".U || funct3 === "b011".U)
   io.out.is_fsw    := io.out.is_fstore && (funct3 === "b010".U)
   io.out.is_fsd    := io.out.is_fstore && (funct3 === "b011".U)
   
@@ -311,12 +311,25 @@ class Decoder(implicit val p: Parameters) extends Module with HasZaqalParameter 
   io.out.amx_tsrc1   := io.inst(17, 15) // Tile index T0-T7 (Source Tile A)
   io.out.amx_tsrc2   := io.inst(22, 20) // Tile index T0-T7 (Source Tile B)
 
-  // RVV 1.0 Vector Extension (Phase 9, Day 13-17)
+  // RVV 1.0 Vector Extension (Phase 9, Day 13-20)
   val is_op_v = (opcode === "b1010111".U)
   io.out.is_vsetvli  := is_op_v && (funct3 === "b111".U) && !io.inst(31)
   io.out.is_vsetivli := is_op_v && (funct3 === "b111".U) && io.inst(31) && io.inst(30)
   io.out.is_vsetvl   := is_op_v && (funct3 === "b111".U) && io.inst(31) && !io.inst(30)
   io.out.is_vset     := is_op_v && (funct3 === "b111".U)
+
+  io.out.is_vec_arith   := is_op_v && (funct3 =/= "b111".U)
+  val is_vec_ld_op      = (opcode === "b0000111".U) && (funct3 === "b000".U || funct3(2) === 1.U)
+  val is_vec_st_op      = (opcode === "b0100111".U) && (funct3 === "b000".U || funct3(2) === 1.U)
+  io.out.is_vec_load    := is_vec_ld_op
+  io.out.is_vec_store   := is_vec_st_op
+  io.out.is_vec_mem     := is_vec_ld_op || is_vec_st_op
+  io.out.is_vec_strided := (is_vec_ld_op || is_vec_st_op) && (io.inst(27, 26) === "b10".U)
+  io.out.vec_funct3     := funct3
+  io.out.vec_funct6     := io.inst(31, 26)
+  io.out.vec_simm5      := io.inst(19, 15).asSInt
+  io.out.vec_mop        := io.inst(27, 26)
+  io.out.vec_width      := funct3
 
   io.out.vec_vs1  := io.inst(19, 15)
   io.out.vec_vs2  := io.inst(24, 20)
@@ -327,10 +340,16 @@ class Decoder(implicit val p: Parameters) extends Module with HasZaqalParameter 
   val is_amx_rs1 = io.out.is_tcfg || io.out.is_tld || io.out.is_tst
   val is_amx_rs2 = io.out.is_tld || io.out.is_tst
 
-  val is_vec_rs1 = io.out.is_vsetvli || io.out.is_vsetvl
-  val is_vec_rs2 = io.out.is_vsetvl
+  val is_vec_rs1 = io.out.is_vsetvli || io.out.is_vsetvl || io.out.is_vec_arith || io.out.is_vec_mem
+  val is_vec_rs2 = io.out.is_vsetvl || (io.out.is_vec_mem && io.out.is_vec_strided) || io.out.is_vec_arith
 
-  io.out.rs1_use := Mux(io.out.is_csr, !io.out.is_csr_imm, Mux(is_custom0, is_amx_rs1, Mux(is_op_v, is_vec_rs1, !(io.out.is_lui || io.out.is_auipc || io.out.is_jal))))
-  io.out.rs2_use := Mux(is_custom0, is_amx_rs2, Mux(is_op_v, is_vec_rs2, !io.out.is_csr && (is_r_type || is_r_type_32 || io.out.is_branch || io.out.is_store || io.out.is_fstore || is_atomic_rs2 || is_fp_fma || (is_fp_op && fp_r_type))))
-  io.out.rs3_use := any_fma
+  io.out.rs1_use := Mux(io.out.is_csr, !io.out.is_csr_imm, Mux(is_custom0, is_amx_rs1, Mux(is_op_v || io.out.is_vec_mem, is_vec_rs1, !(io.out.is_lui || io.out.is_auipc || io.out.is_jal))))
+  io.out.rs2_use := Mux(is_custom0, is_amx_rs2, Mux(is_op_v || io.out.is_vec_mem, is_vec_rs2, !io.out.is_csr && (is_r_type || is_r_type_32 || io.out.is_branch || io.out.is_store || io.out.is_fstore || is_atomic_rs2 || is_fp_fma || (is_fp_op && fp_r_type))))
+  io.out.rs3_use := any_fma || (io.out.is_vec_arith && !io.out.vec_vm) || io.out.is_vec_store
+
+  // Vector Register Types for Rename
+  io.out.rs1_is_vec := io.out.is_vec_arith && (funct3 === 0.U || funct3 === 1.U || funct3 === 2.U)
+  io.out.rs2_is_vec := io.out.is_vec_arith
+  io.out.rs3_is_vec := (io.out.is_vec_arith && !io.out.vec_vm) || io.out.is_vec_store
+  io.out.rd_is_vec  := io.out.is_vec_arith || io.out.is_vec_load
 }

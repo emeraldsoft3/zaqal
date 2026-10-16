@@ -33,8 +33,9 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
     val clint_mtip    = Output(Bool())
     val plic_meip     = Output(Bool())
 
-    // Vector Observability & State (RVV 1.0 - Day 13-17)
+    // Vector Observability & State (RVV 1.0 - Day 13-25)
     val debug_vregs   = Output(Vec(32, UInt(vLen.W)))
+    val debug_vec_rat = Output(Vec(32, UInt(phyRegIdxWidth.W)))
     val vec_vl        = Output(UInt(xLen.W))
     val vec_vtype     = Output(UInt(xLen.W))
   })
@@ -98,6 +99,7 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
   // Day 5: Free List Management
   val intFreeList = Module(new FreeList(phyRegs, logicalRegs))
   val fpFreeList  = Module(new FreeList(phyRegs, logicalRegs))
+  val vecFreeList = Module(new FreeList(vecPhyRegs, numVRegs))
 
   // Tie off redirect and archHeadPtr for now
   intFreeList.io.archHeadPtr := 0.U
@@ -105,6 +107,9 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
 
   fpFreeList.io.archHeadPtr := 0.U
   fpFreeList.io.doAllocate := false.B
+
+  vecFreeList.io.archHeadPtr := 0.U
+  vecFreeList.io.doAllocate := false.B
 
   // Define has_branch and branch_slot
   val branch_mask = Wire(Vec(decodeWidth, Bool()))
@@ -129,6 +134,10 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
   fpFreeList.io.snptEnqIdx := branch_slot + 1.U
   fpFreeList.io.snptDeq := false.B
 
+  vecFreeList.io.snptEnq := is_branch_op
+  vecFreeList.io.snptEnqIdx := branch_slot + 1.U
+  vecFreeList.io.snptDeq := false.B
+
   // Wires for Execute redirection feedback
   val redirect_valid = Wire(Bool())
   val restore_idx = Wire(UInt(log2Up(renameSnapshotNum).W))
@@ -146,6 +155,10 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
   fpFreeList.io.redirect := redirect_valid
   fpFreeList.io.useSnapshot := use_snapshot
   fpFreeList.io.snptRestoreIdx := restore_idx
+
+  vecFreeList.io.redirect := redirect_valid
+  vecFreeList.io.useSnapshot := use_snapshot
+  vecFreeList.io.snptRestoreIdx := restore_idx
 
   // Compute younger snapshot flush mask using circular distance from deqPtr.
   // This correctly handles wrap-around (e.g. restore_idx=5, enqPtr=0).
@@ -166,9 +179,10 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
     rat.io.snptFlushVec(i) := flush
     intFreeList.io.snptFlushVec(i) := flush
     fpFreeList.io.snptFlushVec(i) := flush
+    vecFreeList.io.snptFlushVec(i) := flush
   }
 
-  val can_allocate_all = intFreeList.io.canAllocate && fpFreeList.io.canAllocate
+  val can_allocate_all = intFreeList.io.canAllocate && fpFreeList.io.canAllocate && vecFreeList.io.canAllocate
 
   val is_shadow_vec = Wire(Vec(decodeWidth, Bool()))
   for (j <- 0 until decodeWidth) {
@@ -192,21 +206,25 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
     // Identify shadow parcel slots (second half of a 32-bit instruction)
     val is_shadow = is_shadow_vec(i)
 
-    val rf_wen = dec.rd =/= 0.U && !dec.rd_is_fp && !dec.is_branch && !dec.is_store && !dec.is_fstore && !dec.is_atomic && !is_fused_away && !is_shadow
+    val rf_wen = dec.rd =/= 0.U && !dec.rd_is_fp && !dec.rd_is_vec && !dec.is_branch && !dec.is_store && !dec.is_fstore && !dec.is_atomic && !dec.is_amx && !is_fused_away && !is_shadow
     val fp_wen = dec.rd_is_fp && !dec.is_branch && !dec.is_store && !dec.is_fstore && !dec.is_atomic && !is_fused_away && !is_shadow
+    val vec_wen = dec.rd_is_vec && !dec.is_branch && !dec.is_store && !dec.is_fstore && !dec.is_atomic && !is_fused_away && !is_shadow
 
     intFreeList.io.allocateReq(i) := rf_wen && io.dispatch(i).valid
     intFreeList.io.allocateFire(i) := rf_wen && io.dispatch(i).fire
     fpFreeList.io.allocateReq(i)  := fp_wen && io.dispatch(i).valid
     fpFreeList.io.allocateFire(i) := fp_wen && io.dispatch(i).fire
+    vecFreeList.io.allocateReq(i) := vec_wen && io.dispatch(i).valid
+    vecFreeList.io.allocateFire(i) := vec_wen && io.dispatch(i).fire
 
     decoded_uops(i).pdest := MuxCase(0.U, Seq(
       intFreeList.io.allocateReq(i) -> intFreeList.io.allocatePhyReg(i),
-      fpFreeList.io.allocateReq(i)  -> fpFreeList.io.allocatePhyReg(i)
+      fpFreeList.io.allocateReq(i)  -> fpFreeList.io.allocatePhyReg(i),
+      vecFreeList.io.allocateReq(i) -> vecFreeList.io.allocatePhyReg(i)
     ))
 
     // 3. Connect Rename Ports
-    rat.io.renamePorts(i).wen  := io.dispatch(i).fire && (rf_wen || fp_wen)
+    rat.io.renamePorts(i).wen  := io.dispatch(i).fire && (rf_wen || fp_wen || vec_wen)
     rat.io.renamePorts(i).addr := dec.rd
     rat.io.renamePorts(i).data := decoded_uops(i).pdest
     
@@ -219,7 +237,7 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
     // when(io.dispatch(i).valid) {
     //   printf(p"CORE RENAME [Cycle ${io.debug_cycle}] [Port $i]: pc=${Hexadecimal(decoded_uops(i).uop.pc)} inst=${Hexadecimal(decoded_uops(i).uop.inst_raw)} ")
     //   printf(p"lrs1=${dec.rs1}->prs1=${decoded_uops(i).psrs1} lrs2=${dec.rs2}->prs2=${decoded_uops(i).psrs2} ")
-    //   when(rf_wen || fp_wen) {
+    //   when(rf_wen || fp_wen || vec_wen) {
     //     printf(p"lrd=${dec.rd}->pdest=${decoded_uops(i).pdest} (old=${decoded_uops(i).old_pdest})")
     //   }
     //   if (i < decodeWidth - 1) {
@@ -235,6 +253,7 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
   val bundle_fired = io.dispatch.map(_.fire).reduce(_ || _)
   intFreeList.io.doAllocate := bundle_fired
   fpFreeList.io.doAllocate  := bundle_fired
+  vecFreeList.io.doAllocate := bundle_fired
   
   // Commit ports and redirect are connected properly below
   val exec = Module(new Execute)
@@ -266,11 +285,14 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
     rat.io.commitPorts(i).addr := rob.io.commits.info(i).rd
     rat.io.commitPorts(i).data := rob.io.commits.info(i).pdest
     rat.io.commit_is_fp(i) := rob.io.commits.info(i).fpWen
+    rat.io.commit_is_vec(i) := rob.io.commits.info(i).vecWen
     
     intFreeList.io.freeReq(i) := rob.io.commits.commitValid(i) && rob.io.commits.info(i).rfWen
     intFreeList.io.freePhyReg(i) := rob.io.commits.info(i).old_pdest
     fpFreeList.io.freeReq(i) := rob.io.commits.commitValid(i) && rob.io.commits.info(i).fpWen
     fpFreeList.io.freePhyReg(i) := rob.io.commits.info(i).old_pdest
+    vecFreeList.io.freeReq(i) := rob.io.commits.commitValid(i) && rob.io.commits.info(i).vecWen
+    vecFreeList.io.freePhyReg(i) := rob.io.commits.info(i).old_pdest
   }
 
   val dispatch_in_buffered = Wire(Vec(decodeWidth, Decoupled(new DecodedMicroOp)))
@@ -405,7 +427,7 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
       mem_uop.loadWaitBit   := storeSet.io.dispatch_resp(i).shouldWait
       mem_uop.waitForRobIdx := storeSet.io.dispatch_resp(i).robIdx
       when(storeSet.io.dispatch_resp(i).shouldWait) {
-        printf(p"  [MDP STORE SET HIT]: Load PC=${Hexadecimal(mem_uop.uop.pc)} SSID=${mem_uop.ssid} waiting for Store robIdx=${storeSet.io.dispatch_resp(i).robIdx} at cycle=${io.debug_cycle}\n")
+        // printf(p"  [MDP STORE SET HIT]: Load PC=${Hexadecimal(mem_uop.uop.pc)} SSID=${mem_uop.ssid} waiting for Store robIdx=${storeSet.io.dispatch_resp(i).robIdx} at cycle=${io.debug_cycle}\n")
       }
     }
 
@@ -416,6 +438,16 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
     fpIq.io.enq(i).valid := dispatch.io.fpuOut(i).valid
     fpIq.io.enq(i).bits := dispatch.io.fpuOut(i).bits
     dispatch.io.fpuOut(i).ready := fpIq.io.enq(i).ready
+  }
+
+  val vecDispatchQueue = Module(new zaqal.backend.dispatch.VectorDispatchQueue(numEntries = 16))
+  vecDispatchQueue.io.redirect_valid        := redirect_valid
+  vecDispatchQueue.io.redirect_is_exception := exec.io.redirect.is_exception
+  vecDispatchQueue.io.redirect_robIdx       := exec.io.redirect.robIdx
+
+  for (i <- 0 until decodeWidth) {
+    vecDispatchQueue.io.enq(i) <> dispatch.io.vecOut(i)
+    dispatch.io.vecReady(i)    := vecDispatchQueue.io.enq(i).ready
   }
 
   for (i <- 0 until decodeWidth) {
@@ -429,7 +461,12 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
     dispatch.io.fpuReady(i) := fpIq.io.enq(i).ready
   }
 
-  for (i <- 0 until 4) {
+  val int0_arb = Module(new Arbiter(new DecodedMicroOp, 2))
+  int0_arb.io.in(0) <> vecDispatchQueue.io.deq
+  int0_arb.io.in(1) <> intIq.io.deq(0)
+
+  exec.io.int_in(0) <> int0_arb.io.out
+  for (i <- 1 until 4) {
     exec.io.int_in(i) <> intIq.io.deq(i)
   }
   for (i <- 0 until 3) {
@@ -443,6 +480,7 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
   exec.io.robCommits := rob.io.commits
   exec.io.robCommitIdx := rob.io.commitRobIdx
   exec.io.robDeqPtr := rob.io.robDeqPtr
+  exec.io.debug_vec_rat := rat.io.debug_vec_rat
 
   // Dispatch Ready Logic (Dynamic Backpressure) - Enforce lock-step dispatch
   for (i <- 0 until decodeWidth) {
@@ -471,6 +509,7 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
   io.debug_vregs := exec.io.debug_vregs
   io.vec_vl      := exec.io.vec_vl
   io.vec_vtype   := exec.io.vec_vtype
+  io.debug_vec_rat := rat.io.debug_vec_rat
 
   val dcache = Module(new DCache)
   dcache.io.req <> exec.io.dcache_req

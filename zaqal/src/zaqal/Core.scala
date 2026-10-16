@@ -55,8 +55,9 @@ class Core(implicit val p: Parameters) extends Module with HasZaqalParameter {
     val disp0_pc        = Output(UInt(xLen.W))
     val disp0_pdest     = Output(UInt(phyRegIdxWidth.W))
 
-    // Vector Observability & State (RVV 1.0 - Day 13-17)
+    // Vector Observability & State (RVV 1.0 - Day 13-25)
     val vregs           = Output(Vec(32, UInt(vLen.W)))
+    val debug_vec_rat   = Output(Vec(32, UInt(phyRegIdxWidth.W)))
     val vec_vl          = Output(UInt(xLen.W))
     val vec_vtype       = Output(UInt(xLen.W))
   })) else None
@@ -118,8 +119,9 @@ class Core(implicit val p: Parameters) extends Module with HasZaqalParameter {
     d.disp0_pc        := backend.io.disp0_pc
     d.disp0_pdest     := backend.io.disp0_pdest
 
-    // Vector Observability & State (RVV 1.0 - Day 13-17)
+    // Vector Observability & State (RVV 1.0 - Day 13-25)
     d.vregs           := backend.io.debug_vregs
+    d.debug_vec_rat   := backend.io.debug_vec_rat
     d.vec_vl          := backend.io.vec_vl
     d.vec_vtype       := backend.io.vec_vtype
   } else {

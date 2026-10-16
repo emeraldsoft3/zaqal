@@ -65,8 +65,9 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
     val clint_mtip    = Output(Bool())
     val plic_meip     = Output(Bool())
 
-    // Vector Observability & State (RVV 1.0 - Day 13-17)
+    // Vector Observability & State (RVV 1.0 - Day 13-25)
     val debug_vregs   = Output(Vec(32, UInt(vLen.W)))
+    val debug_vec_rat = Input(Vec(numVRegs, UInt(phyRegIdxWidth.W)))
     val vec_vl        = Output(UInt(xLen.W))
     val vec_vtype     = Output(UInt(xLen.W))
   })
@@ -87,6 +88,8 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   val amx  = Module(new zaqal.backend.fu.amx.AMXUnit)
   val vrf  = Module(new zaqal.backend.fu.vector.VectorRegFile)
   val vcfg = Module(new zaqal.backend.fu.vector.VConfigUnit)
+  val valu = Module(new zaqal.backend.fu.vector.VectorAlu)
+  val vlsu = Module(new zaqal.backend.fu.vector.VectorLSU)
 
   // ---------------- LOAD / STORE QUEUES ----------------
   val sq = Module(new zaqal.backend.lsu.StoreQueue(16))
@@ -398,7 +401,8 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   wb_alu_dest(0) := exe_uop_int(0).pdest
   wb_alu_data(0) := Mux(exe_is_link0, exe_link_addr0,
                     Mux(exe_dec_int(0).is_vset, vcfg.io.vl_out,
-                    Mux(exe_dec_int(0).is_csr, csr.io.csr_rdata, alu(0).io.result)))
+                    Mux(exe_dec_int(0).is_vec_arith && valu.io.is_reduction, valu.io.red_scalar,
+                    Mux(exe_dec_int(0).is_csr, csr.io.csr_rdata, alu(0).io.result))))
 
   wb_alu_val(1)  := exe_val_int(1) && exe_uop_int(1).pdest =/= 0.U && !exe_is_div_op1 && ((!exe_dec_int(1).is_branch) || exe_is_link1)
   wb_alu_dest(1) := exe_uop_int(1).pdest
@@ -550,7 +554,7 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
     alu(i).io.dec  := exe_dec_int(i)
   }
 
-  // ---------------- VECTOR CONFIGURATION & VRF (RVV 1.0 - Day 13-17) ----------------
+  // ---------------- VECTOR CONFIGURATION, ARITHMETIC & VRF (RVV 1.0 - Day 13-20) ----------------
   vcfg.io.valid       := exe_val_int(0) && exe_dec_int(0).is_vset
   vcfg.io.is_vsetvli  := exe_dec_int(0).is_vsetvli
   vcfg.io.is_vsetivli := exe_dec_int(0).is_vsetivli
@@ -565,13 +569,74 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   csr.io.vec_vl_val    := vcfg.io.vl_out
   csr.io.vec_vtype_val := vcfg.io.vtype_out
 
-  vrf.io.raddr1 := exe_dec_int(0).vec_vs1
-  vrf.io.raddr2 := exe_dec_int(0).vec_vs2
-  vrf.io.raddr3 := exe_dec_int(0).vec_vd
-  vrf.io.wen    := false.B
-  vrf.io.waddr  := 0.U
-  vrf.io.wdata  := 0.U
-  vrf.io.wmask  := 0.U
+  vrf.io.raddr1 := Mux(exe_dec_int(0).rs1_is_vec, exe_uop_int(0).psrs1, exe_dec_int(0).vec_vs1)
+  vrf.io.raddr2 := Mux(exe_dec_int(0).rs2_is_vec, exe_uop_int(0).psrs2, exe_dec_int(0).vec_vs2)
+  vrf.io.raddr3 := Mux(exe_dec_int(0).rd_is_vec, exe_uop_int(0).old_pdest, exe_dec_int(0).vec_vd)
+  vrf.io.mask_raddr := Mux(exe_dec_int(0).rs3_is_vec, exe_uop_int(0).psrs3, 0.U)
+  vrf.io.debug_vec_rat := io.debug_vec_rat
+
+  // Vector ALU Connections (Day 18-20)
+  val is_vec_arith0 = exe_val_int(0) && exe_dec_int(0).is_vec_arith
+  valu.io.valid    := is_vec_arith0
+  valu.io.funct3   := exe_dec_int(0).vec_funct3
+  valu.io.funct6   := exe_dec_int(0).vec_funct6
+  valu.io.vm       := exe_dec_int(0).vec_vm
+  valu.io.simm5    := exe_dec_int(0).vec_simm5
+  valu.io.rs1_val  := src_int_1(0)
+  valu.io.fs1_val  := 0.U(64.W)
+  valu.io.vs1_val  := vrf.io.rdata1
+  valu.io.vs2_val  := vrf.io.rdata2
+  valu.io.old_vd   := vrf.io.rdata3
+  valu.io.mask_v0  := vrf.io.mask_v0
+  valu.io.vsew     := csr.io.vec_vtype(5, 3)
+  valu.io.vta      := csr.io.vec_vtype(6)
+  valu.io.vma      := csr.io.vec_vtype(7)
+  valu.io.vl       := csr.io.vec_vl
+
+  // Vector LSU Connections (Day 18-20)
+  val is_vec_mem0   = exe_val_int(0) && exe_dec_int(0).is_vec_mem
+  val is_vec_ld0    = exe_val_int(0) && exe_dec_int(0).is_vec_load
+  val is_vec_st0    = exe_val_int(0) && exe_dec_int(0).is_vec_store
+
+  vlsu.io.valid      := is_vec_mem0
+  vlsu.io.is_load    := is_vec_ld0
+  vlsu.io.is_store   := is_vec_st0
+  vlsu.io.is_strided := exe_dec_int(0).is_vec_strided
+  vlsu.io.elem_width := exe_dec_int(0).vec_width
+  vlsu.io.rs1_base   := src_int_1(0)
+  vlsu.io.rs2_stride := src_int_2(0)
+  vlsu.io.vs3_data   := vrf.io.rdata3
+  vlsu.io.old_vd     := vrf.io.rdata3
+  vlsu.io.mask_v0    := vrf.io.mask_v0
+  vlsu.io.vm         := exe_dec_int(0).vec_vm
+  vlsu.io.vl         := csr.io.vec_vl
+  vlsu.io.vsew       := csr.io.vec_vtype(5, 3)
+
+  dmem.io.vec_raddr  := vlsu.io.mem_raddr
+  vlsu.io.mem_rdata  := dmem.io.vec_rdata
+  dmem.io.vec_wen    := vlsu.io.mem_wen
+  dmem.io.vec_waddr  := vlsu.io.mem_waddr
+  dmem.io.vec_wdata  := vlsu.io.mem_wdata
+  dmem.io.vec_wmask  := vlsu.io.mem_wmask
+
+  // VRF Write Port Multiplexing
+  vrf.io.wen   := is_vec_arith0 || (is_vec_ld0 && vlsu.io.done)
+  vrf.io.waddr := Mux(exe_dec_int(0).rd_is_vec, exe_uop_int(0).pdest, exe_dec_int(0).vec_vd)
+  vrf.io.wdata := Mux(is_vec_arith0, valu.io.wdata, vlsu.io.vd_wdata)
+  vrf.io.wmask := Mux(is_vec_arith0, valu.io.wmask, vlsu.io.vd_wmask)
+
+  // Track multicycle strided vector operations
+  val vec_inflight = RegInit(false.B)
+  val vec_rob_idx  = RegInit(0.U(log2Up(128).W))
+  val is_vec_multi0 = exe_dec_int(0).is_vec_strided
+
+  when(exe_val_int(0) && is_vec_multi0) {
+    vec_inflight := true.B
+    vec_rob_idx  := exe_uop_int(0).robIdx
+  }
+  when(vlsu.io.done) {
+    vec_inflight := false.B
+  }
 
   io.debug_vregs := vrf.io.debug_vregs
   io.vec_vl      := csr.io.vec_vl
@@ -888,7 +953,8 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
         next_regFile_waddr(i) := exe_uop_int(i).pdest
         next_regFile_wdata(i) := Mux(is_link, link_addr,
                                  Mux(exe_dec_int(i).is_vset, vcfg.io.vl_out,
-                                 Mux(exe_dec_int(i).is_csr, csr.io.csr_rdata, alu(i).io.result)))
+                                 Mux(exe_dec_int(i).is_vec_arith && valu.io.is_reduction, valu.io.red_scalar,
+                                 Mux(exe_dec_int(i).is_csr, csr.io.csr_rdata, alu(i).io.result))))
       }
       if (i < 2) {
         when(is_div_op) {
@@ -1307,13 +1373,15 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
     val link_addr = if (i == 0) exe_link_addr0 else if (i == 1) exe_link_addr1 else 0.U
 
     val is_amx_multi = if (i == 0) is_amx_multi0 else false.B
-    val wb_val_int = exe_val_int(i) && !is_div && !is_mul && !is_amx_multi && (if (i == 0) !is_async_interrupt else true.B)
+    val is_vec_multi = if (i == 0) is_vec_multi0 else false.B
+    val wb_val_int = exe_val_int(i) && !is_div && !is_mul && !is_amx_multi && !is_vec_multi && (if (i == 0) !is_async_interrupt else true.B)
 
-    io.exuWriteback(i).valid := (if (i == 0) (wb_val_int || (amx.io.done && amx_inflight)) else wb_val_int)
-    io.exuWriteback(i).bits.robIdx := (if (i == 0) Mux(amx.io.done && amx_inflight, amx_rob_idx, exe_uop_int(i).robIdx) else exe_uop_int(i).robIdx)
+    io.exuWriteback(i).valid := (if (i == 0) (wb_val_int || (amx.io.done && amx_inflight) || (vlsu.io.done && vec_inflight)) else wb_val_int)
+    io.exuWriteback(i).bits.robIdx := (if (i == 0) Mux(vlsu.io.done && vec_inflight, vec_rob_idx, Mux(amx.io.done && amx_inflight, amx_rob_idx, exe_uop_int(i).robIdx)) else exe_uop_int(i).robIdx)
     io.exuWriteback(i).bits.data   := Mux(is_link, link_addr,
                                       Mux(exe_dec_int(i).is_vset, vcfg.io.vl_out,
-                                      Mux(exe_dec_int(i).is_csr, csr.io.csr_rdata, alu(i).io.result)))
+                                      Mux(exe_dec_int(i).is_vec_arith && valu.io.is_reduction, valu.io.red_scalar,
+                                      Mux(exe_dec_int(i).is_csr, csr.io.csr_rdata, alu(i).io.result))))
     if (i < 2) {
       io.exuWriteback(i).bits.exceptionVec := Mux(bru(i).io.exc_valid, bru(i).io.exc_cause, 0.U)
     }

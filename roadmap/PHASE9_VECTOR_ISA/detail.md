@@ -25,15 +25,19 @@ Zaqal differentiates itself by integrating high-performance 2D matrix operations
 - **Detailed Plan**: Alongside matrix math, we will fully implement the official RISC-V Vector Extension (RVV 1.0). This requires building a massive Vector Register File (VRF) with configurable widths (VLEN). We will implement the complex RVV state configuration registers (`vtype`, `vl`), which dynamically adjust the vector length and data element widths (e.g., configuring the registers to hold 32-bit floats vs 8-bit integers). We will also support LMUL (Length Multiplier), allowing the architecture to logically group multiple vector registers together to operate on immensely long data vectors.
 - **XiangShan Study**: [Bundles.scala](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/backend/fu/vector/Bundles.scala)
 
-## Day 18-20: Vector Arithmetic & Memory
-- [ ] Implement standard vector-integer and vector-float operations.
-- [ ] Implement Unit-Stride and Strided vector loads.
+## Day 18-20: Vector Arithmetic & Memory **[COMPLETE]**
+- [x] Implement standard vector-integer and vector-float operations.
+- [x] Implement Unit-Stride and Strided vector loads.
+- [x] Implement Vector Execution Unit (`VectorAlu.scala`) with dynamic SEW (8, 16, 32, 64-bit) and reductions (`vredsum.vs`).
+- [x] Implement Vector Load/Store Unit (`VectorLSU.scala`) and 128-bit streaming DataMem interface.
+- [x] Full top-level processor simulation verification in `ZaqalTest.scala` and `Lithium.vcd`.
 - **Detailed Plan**: We will build the Vector Execution Units to perform SIMD (Single Instruction, Multiple Data) arithmetic. This includes vectorized add, multiply, divide, and complex floating-point vector reductions. For the memory interface, we will implement the complex Vector Load/Store unit, supporting Unit-Stride (contiguous memory blocks), Strided (jumping by fixed offsets, great for image processing), and Indexed/Scatter-Gather operations (loading scattered elements based on an array of indices).
 - **XiangShan Study**: [VIPU.scala](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/backend/fu/vector/VIPU.scala) and [Mgu.scala](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/backend/fu/vector/Mgu.scala)
 
 ## Day 21-25: Vector Out-of-Order Integration (Rename & Dispatch)
-- [ ] **Vector Rename Table (Vector RAT)**: Implement renaming logic for vector registers `v0`-`v31` mapping to vector physical registers.
-- [ ] **Vector Dispatch Queue**: Implement a decoupled queue to route vector instructions to dedicated Vector Issue Queues (VIQ).
-- **Detailed Plan**: To enable full out-of-order execution for vector operations, we must rename vector registers. We will design a Vector Rename Table (VRAT) and a Vector Free List to track vector physical registers. To prevent long-latency vector operations from clogging the main scalar dispatch pipeline, we will implement a dedicated Vector Dispatch Queue. This queue buffers renamed vector micro-ops and dispatches them to separate Vector Issue Queues (VIQs), allowing scalar instructions to bypass stalled vector instructions and execute out-of-order.
-- **XiangShan Study**: [VectorRenameTable.scala](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/backend/rename/VectorRenameTable.scala)
-
+- [ ] **Vector Rename Table (Vector RAT)**: Implement renaming logic for vector registers 0-31 mapping to 128 vector physical registers (pv0-pv127, XiangShan Kunminghu Parity).
+- [ ] **Vector Free List (VFreeList)**: Track 96 free vector physical registers with snapshot checkpoints and ROB retirement recovery.
+- [ ] **Vector Dispatch Queue (VDQ)**: Implement a decoupled queue buffering renamed vector micro-ops to prevent multicycle vector stalls from blocking scalar dispatch.
+- [ ] **Vector Issue Queue (VIQ)**: Out-of-order vector issue queue with dual-scoreboard wakeups (scalar base registers + vector source registers).
+- **Detailed Plan**: To enable full out-of-order execution for vector operations, we must rename vector registers. We will design a Vector Rename Table (VRAT) and a Vector Free List to track 128 vector physical registers (matching XiangShan's VfPhyRegs Kunminghu parity). To prevent long-latency vector operations from clogging the main scalar dispatch pipeline, we will implement a dedicated Vector Dispatch Queue. This queue buffers renamed vector micro-ops and dispatches them to separate Vector Issue Queues (VIQs), allowing scalar instructions to bypass stalled vector instructions and execute out-of-order.
+- **XiangShan Parity & Study**: [RenameTable.scala](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/backend/rename/RenameTable.scala) (Reg_V, Reg_V0, Reg_Vl), [Rename.scala](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/backend/rename/Rename.scala) (ecFreeList with VfPhyRegs = 128-160), and [NewDispatch.scala](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/backend/dispatch/NewDispatch.scala) (ecBusyTable).
