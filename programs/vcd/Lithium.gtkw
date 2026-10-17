@@ -1,12 +1,12 @@
 [*]
 [*] GTKWave Analyzer v3.3.111 (w)1999-2020 BSI
-[*] Fri Oct 16 07:37:52 2026
+[*] Sat Oct 17 08:25:53 2026
 [*]
 [dumpfile] "/home/emerald/zaqal/programs/vcd/Lithium.vcd"
-[dumpfile_mtime] "Fri Oct 16 05:45:34 2026"
-[dumpfile_size] 22372650
+[dumpfile_mtime] "Fri Oct 16 15:03:15 2026"
+[dumpfile_size] 24546851
 [savefile] "/home/emerald/zaqal/programs/vcd/Lithium.gtkw"
-[timestart] 336
+[timestart] 216
 [size] 1865 930
 [pos] -1 -1
 *-2.900000 267 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
@@ -21,6 +21,7 @@
 [treeopen] TOP.Core.backend.intFreeList.
 [treeopen] TOP.Core.backend.intIq.
 [treeopen] TOP.Core.backend.memIq.
+[treeopen] TOP.Core.backend.rat.
 [treeopen] TOP.Core.backend.rat.intRat.
 [treeopen] TOP.Core.frontend.bpu.tage.
 [treeopen] TOP.Core.frontend.ifu.
@@ -46,20 +47,7 @@ TOP.Core.backend_io_debug_vregs_1[127:0]
 TOP.Core.backend_io_debug_vregs_2[127:0]
 TOP.Core.backend_io_debug_vregs_3[127:0]
 TOP.Core.backend_io_debug_vregs_4[127:0]
-@23
 TOP.Core.backend_io_debug_vregs_5[127:0]
-@800200
--VECTOR_OOO
-@28
-TOP.Core.backend.vecDispatchQueue.io_deq_valid
-@22
-TOP.Core.backend.vecDispatchQueue.countReg[4:0]
-TOP.Core.backend.vecFreeList.headPtr[6:0]
-TOP.Core.backend.rat.vecRat.spec_table_1[7:0]
-TOP.Core.backend.rat.vecRat.spec_table_2[7:0]
-TOP.Core.backend.rat.vecRat.spec_table_3[7:0]
-@1000200
--VECTOR_OOO
 @1000200
 -CORE
 @800200
@@ -397,7 +385,7 @@ TOP.Core.backend.decoders_4_io_inst[31:0]
 TOP.Core.backend.decoders_5_io_inst[31:0]
 @1401200
 -Decoders
-@c00200
+@800200
 -RAT
 @24
 TOP.Core.backend.rat.intRat.snapshots.clock
@@ -434,6 +422,15 @@ TOP.Core.backend.rat.intRat.curr_spec_table_1_21[7:0]
 TOP.Core.backend.rat.intRat.curr_spec_table_1_22[7:0]
 @1401200
 -curr_spec_table
+@800200
+-VecRAT
+@22
+TOP.Core.backend.rat.vecRat.spec_table_1[7:0]
+TOP.Core.backend.rat.vecRat.spec_table_2[7:0]
+TOP.Core.backend.rat.vecRat.spec_table_3[7:0]
+TOP.Core.backend.rat.vecRat.spec_table_4[7:0]
+@1000200
+-VecRAT
 -RAT
 @c00200
 -freelist
@@ -494,6 +491,12 @@ TOP.Core.backend.rob.robEntries_1_old_pdest[6:0]
 TOP.Core.backend.rob.robEntries_2_old_pdest[6:0]
 @1401200
 -ROB
+@800201
+-Vec Dispatch
+@23
+TOP.Core.backend.vecDispatchQueue.headPtr[3:0]
+@1000201
+-Vec Dispatch
 @c00200
 -Execute
 @200

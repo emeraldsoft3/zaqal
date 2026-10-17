@@ -22,7 +22,7 @@ This roadmap outlines the journey to transform Zaqal from a simple prototype int
 | **[Phase 6](./PHASE6_FRONTEND_PERFORMANCE/detail.md)** | **Advanced Front-end** | Days 76-95 | [ ] | **Neural BPU** & High-perf Caches. |
 | **[Phase 7](./PHASE7_ENGINE_PERFORMANCE/detail.md)** | **Out-of-Order Engine** | Days 96-135 | **[COMPLETE]** | ROB, Issue Queues, LSQ. |
 | **[Phase 8](./PHASE8_SYSTEM_PRIVILEGE/detail.md)** | **System & Linux Boot** | Days 136-155 | **[COMPLETE]** | Supervisor Mode & Sv39 MMU. |
-| **[Phase 9](./PHASE9_VECTOR_ISA/detail.md)** | **AI & Vector ISA** | Days 156-180 | [ ] | Matrix/AMX & Vector Units. |
+| **[Phase 9](./PHASE9_VECTOR_ISA/detail.md)** | **AI & Vector ISA** | Days 156-180 | **[COMPLETE]** | Matrix/AMX & Vector Units. |
 | **[Phase 10](./PHASE10_MULTI_CORE_COHERENCE/detail.md)** | **Multi-Hart & Coherence** | Days 181-195 | [ ] | TileLink/CHI, L3 Cache, Coherence. |
 | **[Phase 11](./PHASE11_SUBSYSTEM_VERIFICATION/detail.md)** | **Subsystem Verification Matrix** | Days 196-215 | [ ] | Pre-tapeout Module Isolation & Subsystem Stress. |
 | **[Phase 12](./PHASE12_SOC_TAPE_OUT_SHIPPING/detail.md)** | **SoC, Silicon Sign-off & Shipping** | Days 216+ | [ ] | Difftest, 14nm P&R Sign-off, Tapeout & Linux Boot. |
@@ -50,11 +50,11 @@ To achieve world-class performance, Zaqal must eventually implement these critic
 
 ### Execution Engine
 - [/] **Rename Stage** (Map Table + Free List) - *Target: 192 Physical Integer Registers, 128 Physical Vector Registers (XiangShan Kunminghu Parity).*
-- [ ] **Vector Out-of-Order Engine (XiangShan Parity)**:
-  - [ ] **Vector Rename Table (VRAT)**: 32 architectural to 128 physical vector registers (pv0-pv127) with snapshot checkpoints.
-  - [ ] **Decoupled Vector Dispatch Queue (VDQ)**: Isolates multicycle vector operations from scalar dispatch pipeline.
-  - [ ] **Vector Issue Queue (VIQ)**: Out-of-order wake-up tracking vector physical registers with dual-scoreboard sync.
-  - [ ] **Vector Physical Register File (VPRF)**: 128-entry x 128-bit storage with banked multi-port access.
+- [x] **Vector Out-of-Order Engine (XiangShan Parity)**:
+  - [x] **Vector Rename Table (VRAT)**: 32 architectural to 128 physical vector registers (pv0-pv127) with snapshot checkpoints.
+  - [x] **Decoupled Vector Dispatch Queue (VDQ)**: Isolates multicycle vector operations from scalar dispatch pipeline.
+  - [x] **Vector Issue Queue (VIQ)**: Out-of-order wake-up tracking vector physical registers with dual-scoreboard sync.
+  - [x] **Vector Physical Register File (VPRF)**: 128-entry x 128-bit storage with banked multi-port access.
 - [ ] **Reorder Buffer (ROB)** for in-order commitment.
 - [ ] **Physical Register File (PRF)** with Register Cache.
 - [ ] **Distributed Issue Queues** (Separate queues for ALU, MEM, etc.).

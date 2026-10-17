@@ -46,55 +46,56 @@ object ZaqalTest extends App {
 
 
     // =========================================================================
-    // DAY 17-20 TEST: CLINT TIMER INTERRUPT & MID-PROGRAM HARDWARE PREEMPTION
-    // =========================================================================
-    // DAY 21-25 TEST: VECTOR OUT-OF-ORDER INTEGRATION (RENAME & DISPATCH)
+    // DAY 21-25 TEST 3: SPECULATIVE VECTOR RENAMING, BRANCH MISPREDICTION
+    //                   CHECKPOINT RECOVERY & FREELIST ROLLBACK
     // =========================================================================
     // Verification Flow:
-    // 1. Setup base memory address:
+    // 1. Setup base memory address & scalar factor:
     //    - addi       x1,  x0, 0x10        (base load address = 0x0010)
+    //    - addi       x2,  x0, 2           (scalar multiplier = 2)
     // 2. Configure vector state: e32, m1 -> VLMAX = (128/32)*1 = 4 elements:
     //    - vsetvli    x11, x0, 0x0D0       (SEW=32-bit, LMUL=1 -> x11 := 4)
-    // 3. Unit-Stride Vector Load:
-    //    - vle32.v    v1, (x1)             (v1 allocated physical register pv32)
-    // 4. Vector-Immediate Arithmetic:
-    //    - vadd.vi    v2, v1, 10           (v2 allocated physical register pv33)
-    // 5. WAW Hazard & Vector Renaming Test:
-    //    - Overwrite v1 with new result! Tests Vector Rename Table (VRAT) mapping:
-    //    - vadd.vi    v1, v2, 5            (v1 remapped to new physical register pv34!)
-    // 6. Vector-Scalar Arithmetic reading remapped v1:
-    //    - addi       x2, x0, 2            (scalar multiplier = 2)
-    //    - vmul.vx    v3, v1, x2           (v3 reads new v1 (pv34), allocated pv35)
-    // 7. Decoupled Vector Dispatch & Parallel Scalar Execution:
-    //    - While vector operations stream, scalar integer pipeline executes concurrently:
-    //    - addi       x20, x0, 100         (x20 := 100)
-    //    - addi       x21, x0, 200         (x21 := 200)
-    //    - add        x22, x20, x21        (x22 := 300 = 0x12c)
-    // 8. Day 21-25 PASS Flag:
-    //    - addi       x29, x0, 0x25        (PASS Flag: x29 := 0x25)
-    // 9. Settle loop:
-    //    - jal        x0, -4
+    // 3. Producer: Unit-Stride Vector Load:
+    //    - vle32.v    v1, (x1)             (v1 allocated pv32)
+    // 4. Pre-Branch Valid Vector Math:
+    //    - vadd.vi    v2, v1, 10           (v2 allocated pv33 := v1 + 10)
+    // 5. Conditional Branch (Taken to Recovery Target PC 0x80000030):
+    //    - addi       x5,  x0, 1           (x5 := 1)
+    //    - bne        x5,  x0, 0x18        (Taken to PC 0x80000030! Cold BPU predicts NOT TAKEN)
+    // 6. Speculative Poison Path (MUST BE SQUASHED & ROLLED BACK):
+    //    - vadd.vi    v1, v2, 15           (Speculative poison: v1 remapped to pv34)
+    //    - vadd.vi    v2, v1, 15           (Speculative poison: v2 remapped to pv35)
+    //    - addi       x20, x0, 999         (Speculative poison scalar: x20 := 999)
+    //    - nop
+    //    - nop
+    // 7. Architectural Recovery Path (PC 0x80000030):
+    //    - Evaluates using rolled-back architectural vector registers:
+    //    - vmul.vx    v3, v2, x2           (v3 := v2 * 2 reading restored pv33, NOT poisoned pv35!)
+    //    - addi       x25, x0, 88          (x25 := 88)
+    //    - addi       x29, x0, 0x27        (Day 21-25 Test 3 PASS Flag: 0x27 = 39)
+    // 8. Settle loop:
+    //    - jal        x0, 0
     // =========================================================================
     val programMemory = Seq(
       // --- BLOCK 0 (PC 0x80000000 - 0x8000001C) ---
       "h01000093".U(32.W), // 00 [Word 0]: addi     x1,  x0, 0x10        (load base = 0x10)
-      "h0d0075d7".U(32.W), // 04 [Word 1]: vsetvli  x11, x0, 0x0D0       (e32, m1 -> vl = 4)
-      "h0200e087".U(32.W), // 08 [Word 2]: vle32.v  v1, (x1)             (load 4 words to v1 -> pv32)
-      "h02153157".U(32.W), // 0C [Word 3]: vadd.vi  v2, v1, 10           (v2 := v1 + 10 -> pv33)
-      "h0222b0d7".U(32.W), // 10 [Word 4]: vadd.vi  v1, v2, 5            (WAW! v1 remapped -> pv34)
-      "h00200113".U(32.W), // 14 [Word 5]: addi     x2, x0, 2            (scalar mult = 2)
-      "h961141d7".U(32.W), // 18 [Word 6]: vmul.vx  v3, v1, x2           (v3 := v1 * 2 -> pv35)
-      "h06400a13".U(32.W), // 1C [Word 7]: addi     x20, x0, 100         (scalar execution)
+      "h00200113".U(32.W), // 04 [Word 1]: addi     x2,  x0, 2           (scalar factor = 2)
+      "h0d0075d7".U(32.W), // 08 [Word 2]: vsetvli  x11, x0, 0x0D0       (e32, m1 -> vl = 4)
+      "h0200e087".U(32.W), // 0C [Word 3]: vle32.v  v1, (x1)             (v1 := mem[0x10] -> pv32)
+      "h02153157".U(32.W), // 10 [Word 4]: vadd.vi  v2, v1, 10           (v2 := v1 + 10 -> pv33)
+      "h00100293".U(32.W), // 14 [Word 5]: addi     x5,  x0, 1           (branch condition x5 = 1)
+      "h00029c63".U(32.W), // 18 [Word 6]: bne      x5,  x0, 24          (branch taken to PC 0x80000030!)
+      "h0227b0d7".U(32.W), // 1C [Word 7]: vadd.vi  v1, v2, 15           (SPECULATIVE POISON 1: pv34)
 
       // --- BLOCK 1 (PC 0x80000020 - 0x8000003C) ---
-      "h0c800a93".U(32.W), // 20 [Word 0]: addi     x21, x0, 200         (scalar execution)
-      "h015a0b33".U(32.W), // 24 [Word 1]: add      x22, x20, x21        (scalar x22 := 300)
-      "h02500e93".U(32.W), // 28 [Word 2]: addi     x29, x0, 0x25        (Day 21-25 PASS Flag: 0x25)
-      "hffdff06f".U(32.W), // 2C [Word 3]: jal      x0, -4               (settle loop)
-      "h00000013".U(32.W), // 30 [Word 4]: nop
-      "h00000013".U(32.W), // 34 [Word 5]: nop
-      "h00000013".U(32.W), // 38 [Word 6]: nop
-      "h00000013".U(32.W)  // 3C [Word 7]: nop
+      "h0217b157".U(32.W), // 20 [Word 0]: vadd.vi  v2, v1, 15           (SPECULATIVE POISON 2: pv35)
+      "h3e700a13".U(32.W), // 24 [Word 1]: addi     x20, x0, 999         (SPECULATIVE POISON SCALAR)
+      "h00000013".U(32.W), // 28 [Word 2]: nop
+      "h00000013".U(32.W), // 2C [Word 3]: nop
+      "h962161d7".U(32.W), // 30 [Word 4]: vmul.vx  v3, v2, x2           (RECOVERY TARGET: v3 := v2 * 2)
+      "h05800c93".U(32.W), // 34 [Word 5]: addi     x25, x0, 88          (scalar x25 := 88)
+      "h02700e93".U(32.W), // 38 [Word 6]: addi     x29, x0, 0x27        (Day 21-25 Test 3 PASS Flag: 0x27)
+      "h0000006f".U(32.W)  // 3C [Word 7]: jal      x0, 0                (settle loop to self)
     ).padTo(1024, "h00000013".U(32.W))
 
     var memLatencyCounter = 0

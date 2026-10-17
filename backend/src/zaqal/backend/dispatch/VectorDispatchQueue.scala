@@ -87,10 +87,18 @@ class VectorDispatchQueue(val numEntries: Int = 16)(implicit val p: Parameters) 
     tailPtr := (tailPtr + totalEnq) % numEntries.U
   }
 
-  // Update occupancy counter
-  countReg := countReg + totalEnq - Mux(do_deq, 1.U, 0.U)
-
   // 3. Redirection & Flush Logic
+  val squashed = Wire(Vec(numEntries, Bool()))
+  for (i <- 0 until numEntries) {
+    val entry = entries(i)
+    val entry_is_younger = (entry.uop.robIdx > io.redirect_robIdx)
+    squashed(i) := io.redirect_valid && !io.redirect_is_exception && entry.valid && entry_is_younger
+    when(squashed(i)) {
+      entries(i).valid := false.B
+    }
+  }
+  val numSquashed = PopCount(squashed)
+
   when(io.redirect_valid) {
     when(io.redirect_is_exception) {
       // Full flush on exception
@@ -102,13 +110,11 @@ class VectorDispatchQueue(val numEntries: Int = 16)(implicit val p: Parameters) 
       countReg := 0.U
     } .otherwise {
       // Squash younger instructions on branch mispredict
-      for (i <- 0 until numEntries) {
-        val entry = entries(i)
-        val entry_is_younger = (entry.uop.robIdx > io.redirect_robIdx)
-        when(entry.valid && entry_is_younger) {
-          entries(i).valid := false.B
-        }
-      }
+      val nextTail = Mux(tailPtr >= numSquashed, tailPtr - numSquashed, (numEntries.U + tailPtr) - numSquashed)
+      tailPtr  := nextTail
+      countReg := countReg + totalEnq - Mux(do_deq, 1.U, 0.U) - numSquashed
     }
+  } .otherwise {
+    countReg := countReg + totalEnq - Mux(do_deq, 1.U, 0.U)
   }
 }

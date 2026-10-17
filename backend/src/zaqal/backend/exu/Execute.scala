@@ -397,23 +397,23 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   val wb_alu_dest = Wire(Vec(4, UInt(phyRegIdxWidth.W)))
   val wb_alu_data = Wire(Vec(4, UInt(xLen.W)))
 
-  wb_alu_val(0)  := exe_val_int(0) && exe_uop_int(0).pdest =/= 0.U && !exe_is_div_op0 && ((!exe_dec_int(0).is_branch) || exe_is_link0) && !is_async_interrupt
+  wb_alu_val(0)  := exe_val_int(0) && exe_uop_int(0).pdest =/= 0.U && !exe_is_div_op0 && ((!exe_dec_int(0).is_branch) || exe_is_link0) && !is_async_interrupt && !exe_dec_int(0).rd_is_vec && !exe_dec_int(0).rd_is_fp
   wb_alu_dest(0) := exe_uop_int(0).pdest
   wb_alu_data(0) := Mux(exe_is_link0, exe_link_addr0,
                     Mux(exe_dec_int(0).is_vset, vcfg.io.vl_out,
                     Mux(exe_dec_int(0).is_vec_arith && valu.io.is_reduction, valu.io.red_scalar,
                     Mux(exe_dec_int(0).is_csr, csr.io.csr_rdata, alu(0).io.result))))
 
-  wb_alu_val(1)  := exe_val_int(1) && exe_uop_int(1).pdest =/= 0.U && !exe_is_div_op1 && ((!exe_dec_int(1).is_branch) || exe_is_link1)
+  wb_alu_val(1)  := exe_val_int(1) && exe_uop_int(1).pdest =/= 0.U && !exe_is_div_op1 && ((!exe_dec_int(1).is_branch) || exe_is_link1) && !exe_dec_int(1).rd_is_vec && !exe_dec_int(1).rd_is_fp
   wb_alu_dest(1) := exe_uop_int(1).pdest
   wb_alu_data(1) := Mux(exe_is_link1, exe_link_addr1,
                     Mux(exe_dec_int(1).is_csr, csr.io.csr_rdata, alu(1).io.result))
 
-  wb_alu_val(2)  := exe_val_int(2) && exe_uop_int(2).pdest =/= 0.U && !exe_dec_int(2).is_branch
+  wb_alu_val(2)  := exe_val_int(2) && exe_uop_int(2).pdest =/= 0.U && !exe_dec_int(2).is_branch && !exe_dec_int(2).rd_is_vec && !exe_dec_int(2).rd_is_fp
   wb_alu_dest(2) := exe_uop_int(2).pdest
   wb_alu_data(2) := Mux(exe_dec_int(2).is_csr, csr.io.csr_rdata, alu(2).io.result)
 
-  wb_alu_val(3)  := exe_val_int(3) && exe_uop_int(3).pdest =/= 0.U && !exe_dec_int(3).is_branch
+  wb_alu_val(3)  := exe_val_int(3) && exe_uop_int(3).pdest =/= 0.U && !exe_dec_int(3).is_branch && !exe_dec_int(3).rd_is_vec && !exe_dec_int(3).rd_is_fp
   wb_alu_dest(3) := exe_uop_int(3).pdest
   wb_alu_data(3) := Mux(exe_dec_int(3).is_csr, csr.io.csr_rdata, alu(3).io.result)
 
@@ -948,7 +948,7 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
       val is_link   = if (i == 0) exe_is_link0   else if (i == 1) exe_is_link1   else false.B
       val link_addr = if (i == 0) exe_link_addr0 else if (i == 1) exe_link_addr1 else 0.U
 
-      when(exe_uop_int(i).pdest =/= 0.U && !is_div_op && !is_mul_op) {
+      when(exe_uop_int(i).pdest =/= 0.U && !is_div_op && !is_mul_op && !exe_dec_int(i).rd_is_vec && !exe_dec_int(i).rd_is_fp) {
         next_regFile_wen(i)   := (!exe_dec_int(i).is_branch) || is_link
         next_regFile_waddr(i) := exe_uop_int(i).pdest
         next_regFile_wdata(i) := Mux(is_link, link_addr,
@@ -989,7 +989,7 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
     val is_div_op = if (i == 0) is_div_op0 else is_div_op1
     val is_mul_op = if (i == 0) is_mul_op0 else is_mul_op1
 
-    val wu_val_raw = io.int_in(i).fire && io.int_in(i).bits.pdest =/= 0.U && !is_div_op && !is_mul_op
+    val wu_val_raw = io.int_in(i).fire && io.int_in(i).bits.pdest =/= 0.U && !is_div_op && !is_mul_op && !decInt(i).rd_is_vec && !decInt(i).rd_is_fp
     val r_wu_val   = RegNext(wu_val_raw, false.B)
     val r_wu_pdest = RegNext(io.int_in(i).bits.pdest, 0.U)
 
@@ -1005,7 +1005,7 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
 
   // Wakeup for ALU 2 and ALU 3
   for (i <- 2 until 4) {
-    val wu_raw = io.int_in(i).fire && io.int_in(i).bits.pdest =/= 0.U && !decInt(i).is_branch
+    val wu_raw = io.int_in(i).fire && io.int_in(i).bits.pdest =/= 0.U && !decInt(i).is_branch && !decInt(i).rd_is_vec && !decInt(i).rd_is_fp
     val r_wu_val = RegNext(wu_raw, false.B)
     val r_wu_pdest = RegNext(io.int_in(i).bits.pdest, 0.U)
     io.wakeup(i).valid := r_wu_val

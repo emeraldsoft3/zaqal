@@ -1,4 +1,4 @@
-# Phase 11: Multi-Hart & Coherence
+# Phase 10: Multi-Hart & Coherence
 
 This phase focuses on scaling Zaqal from a single-core processor to a multi-core System-on-Chip (SoC) with cache coherence.
 
