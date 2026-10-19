@@ -250,29 +250,25 @@ object ZaqalTest extends App {
           dut.io.tl_d.b.bits.source.poke(0.U)
           dut.io.tl_d.b.bits.address.poke(0x1000.U)
 
-          if (dut.io.tl_d.b.ready.peek().litToBoolean) {
+          if (dut.io.tl_d.b.ready.peek().litToBoolean && !probeAckDataSeen) {
             probeBlockCount += 1
             println(f"Cycle $cycle%3d: >>> [BUS -> CORE CHAN B] Injecting ProbeBlock: Param = toB (Downgrade Exclusive -> Shared)")
-            probeStage = 2
+          }
+
+          if (dut.io.tl_d.c.valid.peek().litToBoolean) {
+            val cOp   = dut.io.tl_d.c.bits.opcode.peek().litValue.toInt
+            val cData = dut.io.tl_d.c.bits.data.peek().litValue
+            if (cOp == 5 && !probeAckDataSeen) { // ProbeAckData
+              probeAckDataSeen = true
+              println(f"Cycle $cycle%3d: <<< [CORE -> BUS CHAN C] Core Returns ProbeAckData! Dirty Cache Line Flushed = 0x$cData%x")
+              probeStage = 2 // Settle cycle to let dirtyArray := false commit to flip-flops
+            }
           }
         }
 
-        // Monitor Channel C for Probe Responses
-        if (dut.io.tl_d.c.valid.peek().litToBoolean) {
-          val cOp   = dut.io.tl_d.c.bits.opcode.peek().litValue.toInt
-          val cData = dut.io.tl_d.c.bits.data.peek().litValue
-
-          if (cOp == 5 && !probeAckDataSeen) { // ProbeAckData
-            probeAckDataSeen = true
-            println(f"Cycle $cycle%3d: <<< [CORE -> BUS CHAN C] Core Returns ProbeAckData! Dirty Cache Line Flushed = 0x$cData%x")
-            probeStage = 3
-          }
-
-          if (cOp == 4 && probeStage == 4 && !probeAckSeen) { // ProbeAck
-            probeAckSeen = true
-            println(f"Cycle $cycle%3d: <<< [CORE -> BUS CHAN C] Core Returns ProbeAck! Clean Cache Line Successfully Invalidated")
-            probeStage = 5 // Coherence probing complete! Core will now execute lw and miss!
-          }
+        // Settle cycle between probes: allow flip-flops (dirtyArray/stateArray) to latch updated values
+        if (probeStage == 2 && cycle > 72) {
+          probeStage = 3
         }
 
         // Probe 2: Invalidate Cache Line (toN) -> Expect ProbeAck
@@ -284,10 +280,18 @@ object ZaqalTest extends App {
           dut.io.tl_d.b.bits.source.poke(0.U)
           dut.io.tl_d.b.bits.address.poke(0x1000.U)
 
-          if (dut.io.tl_d.b.ready.peek().litToBoolean) {
+          if (dut.io.tl_d.b.ready.peek().litToBoolean && !probeAckSeen) {
             probeBlockCount += 1
             println(f"Cycle $cycle%3d: >>> [BUS -> CORE CHAN B] Injecting ProbeBlock: Param = toN (Invalidate Line)")
-            probeStage = 4
+          }
+
+          if (dut.io.tl_d.c.valid.peek().litToBoolean) {
+            val cOp = dut.io.tl_d.c.bits.opcode.peek().litValue.toInt
+            if (cOp == 4 && !probeAckSeen) { // ProbeAck
+              probeAckSeen = true
+              println(f"Cycle $cycle%3d: <<< [CORE -> BUS CHAN C] Core Returns ProbeAck! Clean Cache Line Successfully Invalidated")
+              probeStage = 5 // Coherence probing complete! Core will now execute lw and miss!
+            }
           }
         }
       }
