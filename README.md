@@ -3,7 +3,7 @@
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 [![ISA](https://img.shields.io/badge/ISA-RV64GCBK%20+%20RVV%201.0%20+%20AMX-green.svg)](https://riscv.org/)
 [![Hardware HDL](https://img.shields.io/badge/HDL-Chisel%20%2F%20Scala-orange.svg)](https://www.chisel-lang.org/)
-[![Status](https://img.shields.io/badge/Status-Phase%2010%20(Multi--Core%20Coherence)-brightgreen.svg)](roadmap/ROADMAP.md)
+[![Status](https://img.shields.io/badge/Status-Phase%2010%20(Multi--Core%20Coherence)-brightgreen.svg)](roadmap/PHASE10_MULTI_CORE_COHERENCE/detail.md)
 
 **Zaqal** is an open-source, high-performance, **6-wide superscalar, out-of-order (OoO) 64-bit RISC-V processor core** implemented in Chisel. 
 
@@ -44,7 +44,36 @@ Development is driven by a comprehensive, 12-phase engineering roadmap. Every ph
 | **[Phase 11](roadmap/PHASE11_SUBSYSTEM_VERIFICATION/detail.md)** | **Subsystem Verification** | Pre-tapeout module isolation, randomized stress tests, formal assertions. | Planned |
 | **[Phase 12](roadmap/PHASE12_SOC_TAPE_OUT_SHIPPING/detail.md)** | **SoC Sign-off & Shipping** | Full SoC integration, Difftest co-simulation, P&R sign-off, Linux boot. | Planned |
 
-*For the complete checklist and architectural design forks, see [`roadmap/ROADMAP.md`](roadmap/ROADMAP.md).*
+### 🎯 XiangShan Parity Feature Checklist
+
+* **Frontend Architecture**:
+  * [x] **Skid Buffers (Register Slices)**: Elastic pipeline stage decoupling.
+  * [x] **Fetch Target Queue (FTQ)**: Deep pointer-based skidding with state snapshots.
+  * [x] **Fetch Target Buffer (FTB)**: Cached target addresses and instruction boundaries.
+  * [x] **uFTB (Micro Fetch Target Buffer)**: Stage-0 (`s0_uFTB`) fast zero-bubble target predictor.
+  * [x] **TAGE & ITTAGE**: Tagged geometric conditional and indirect branch target predictors.
+  * [x] **Neural BPU (Statistical Corrector / SC)**: Perceptron weight tables for hard branches.
+  * [x] **Return Address Stack (RAS)**: Speculative 16-entry call/return predictor with repair buffers.
+  * [x] **Branch Checkpointing**: Snapshot GHR/PHR/RAS in FTQ for 1-cycle rollback on mispredicts.
+  * [x] **Decoded uOp Cache (L0)**: Decoded micro-op buffer bypassing fetch/decode.
+
+* **Execution & Out-of-Order Engine**:
+  * [x] **6-Wide Superscalar Dispatch**: Parallel instruction routing and bundle steering.
+  * [x] **Physical Register File (PRF) & RAT**: Dynamic integer renaming with FreeList tracking.
+  * [x] **128-Entry Reorder Buffer (ROB)**: Speculative execution with precise in-order retirement.
+  * [x] **Distributed Issue Queues**: Decoupled queues for scalar ALU, memory, and vector ops.
+
+* **Vector & AI Coprocessor**:
+  * [x] **RVV 1.0 Vector Engine**: Dynamic `vtype`/`vl` management, SEW (8/16/32/64), LMUL (1/2/4/8).
+  * [x] **Vector Rename & FreeList**: 128 physical vector registers (`pv0`–`pv127`, XiangShan Kunminghu parity).
+  * [x] **Decoupled Vector Dispatch Queue (VDQ)** & **Vector Issue Queue (VIQ)**.
+  * [x] **AMX 2D Matrix Engine**: 8 Tile registers (`tmm0`–`tmm7`), 2D systolic INT8/BF16 GEMM.
+
+* **Memory & Privilege Subsystem**:
+  * [x] **Privileged Architecture**: Machine (M-mode) and Supervisor (S-mode) with full CSR state (`CSRFile.scala`), Clint timer, and PLIC.
+  * [x] **Virtual Memory (Sv39)**: Hardware Page Table Walker (PTW) with multi-level TLB.
+  * [x] **Non-blocking L1 D-Cache**: MSHR hit-under-miss concurrency and Store Buffer.
+  * [/] **Multi-Core Interconnect**: 5-Channel TileLink-C (`Acquire`/`Grant`, `Probe`/`Release` coherence).
 
 ---
 
