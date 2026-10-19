@@ -17,13 +17,13 @@ This roadmap outlines the journey to transform Zaqal from a simple prototype int
 | **[Phase 1](./PHASE1_INTEGER_ISA/detail.md)** | **Base Integer ALU** | Days 1-4 | **[COMPLETE]** | Mastery of RV64I calculations. |
 | **[Phase 2](./PHASE2_BRANCHING_MISPREDICT/detail.md)** | **Branching & Mispredict** | Days 5-10 | **[COMPLETE]** | Control Flow & Pipeline Integrity. |
 | **[Phase 3](./PHASE3_MEMORY_EXTENSIONS/detail.md)** | **Memory & Build Refactor** | Days 11-42 | **[COMPLETE]** | Mill Build, Utilities, G-extension. |
-| **[Phase 4](./PHASE4_SUPERSCALAR_DISPATCH/detail.md)** | **Superscalar Dispatch** | Days 43-60 | [ ] | 1-wide to 6-wide (Rename/RAT). |
-| **[Phase 5](./PHASE5_TIMING_OPTIMIZATION/detail.md)** | **Timing & Pipelining** | Days 61-75 | [ ] | High Frequency Optimization. |
-| **[Phase 6](./PHASE6_FRONTEND_PERFORMANCE/detail.md)** | **Advanced Front-end** | Days 76-95 | [ ] | **Neural BPU** & High-perf Caches. |
+| **[Phase 4](./PHASE4_SUPERSCALAR_DISPATCH/detail.md)** | **Superscalar Dispatch** | Days 43-60 | **[COMPLETE]** | 1-wide to 6-wide (Rename/RAT). |
+| **[Phase 5](./PHASE5_TIMING_OPTIMIZATION/detail.md)** | **Timing & Pipelining** | Days 61-75 | **[COMPLETE]** | High Frequency Optimization. |
+| **[Phase 6](./PHASE6_FRONTEND_PERFORMANCE/detail.md)** | **Advanced Front-end** | Days 76-95 | **[COMPLETE]** | **Neural BPU** & High-perf Caches. |
 | **[Phase 7](./PHASE7_ENGINE_PERFORMANCE/detail.md)** | **Out-of-Order Engine** | Days 96-135 | **[COMPLETE]** | ROB, Issue Queues, LSQ. |
 | **[Phase 8](./PHASE8_SYSTEM_PRIVILEGE/detail.md)** | **System & Linux Boot** | Days 136-155 | **[COMPLETE]** | Supervisor Mode & Sv39 MMU. |
 | **[Phase 9](./PHASE9_VECTOR_ISA/detail.md)** | **AI & Vector ISA** | Days 156-180 | **[COMPLETE]** | Matrix/AMX & Vector Units. |
-| **[Phase 10](./PHASE10_MULTI_CORE_COHERENCE/detail.md)** | **Multi-Hart & Coherence** | Days 181-195 | [ ] | TileLink/CHI, L3 Cache, Coherence. |
+| **[Phase 10](./PHASE10_MULTI_CORE_COHERENCE/detail.md)** | **Multi-Hart & Coherence** | Days 181-195 | **[/] [IN PROGRESS]** | TileLink/CHI, L3 Cache, Coherence. |
 | **[Phase 11](./PHASE11_SUBSYSTEM_VERIFICATION/detail.md)** | **Subsystem Verification Matrix** | Days 196-215 | [ ] | Pre-tapeout Module Isolation & Subsystem Stress. |
 | **[Phase 12](./PHASE12_SOC_TAPE_OUT_SHIPPING/detail.md)** | **SoC, Silicon Sign-off & Shipping** | Days 216+ | [ ] | Difftest, 14nm P&R Sign-off, Tapeout & Linux Boot. |
 
@@ -55,9 +55,9 @@ To achieve world-class performance, Zaqal must eventually implement these critic
   - [x] **Decoupled Vector Dispatch Queue (VDQ)**: Isolates multicycle vector operations from scalar dispatch pipeline.
   - [x] **Vector Issue Queue (VIQ)**: Out-of-order wake-up tracking vector physical registers with dual-scoreboard sync.
   - [x] **Vector Physical Register File (VPRF)**: 128-entry x 128-bit storage with banked multi-port access.
-- [ ] **Reorder Buffer (ROB)** for in-order commitment.
-- [ ] **Physical Register File (PRF)** with Register Cache.
-- [ ] **Distributed Issue Queues** (Separate queues for ALU, MEM, etc.).
+- [x] **Reorder Buffer (ROB)** for in-order commitment (128-entry speculative commit with precise exceptions).
+- [x] **Physical Register File (PRF)** with Register Renaming & FreeList management.
+- [x] **Distributed Issue Queues** (Dedicated scalar ALU/BRU, Memory, and Vector issue queues).
   - *Target Execution Units (XiangShan Kunminghu Parity):*
     - **4 ALUs** (Integer Arithmetic & Logical)
     - **2 MDUs** (Integer Multiplication/Division)
@@ -70,8 +70,8 @@ To achieve world-class performance, Zaqal must eventually implement these critic
 ### Memory & System
 - [ ] **Advanced Load/Store Unit** (Memory Disambiguation, Speculative Loads).
 - [ ] **Intelligent Prefetchers** (Stride, Spatial, Stream).
-- [ ] **Privilege Levels** (M, S, U) & Sv39 MMU.
-- [ ] **AMX Matrix Unit** (2D Tile acceleration for AI).
+- [x] **Privilege Levels** (M, S modes), Trap redirection, CSRs, and Sv39 MMU Page Table Walker.
+- [x] **AMX Matrix Unit** (2D Systolic Tile acceleration for INT8/BF16 GEMM with 8 Tile registers).
 
 ---
 

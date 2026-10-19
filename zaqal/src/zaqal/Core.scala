@@ -10,14 +10,17 @@ import zaqal.backend.Backend
 import zaqal.utility.SkidBuffer
 
 
-class Core(implicit val p: Parameters) extends Module with HasZaqalParameter {
+class Core(val hartId: Int = 0)(implicit val p: Parameters) extends Module with HasZaqalParameter {
   val io = IO(new Bundle {
     val success   = Output(Bool())
     val debug_sum = if (!enableDebugPorts) Some(Output(UInt(xLen.W))) else None
     
-    // External Memory Bus (For top-level testing)
+    // External Memory Bus (For instruction fetch)
     val mem = new MemoryBus(xLen, instBits * fetchWidth)
     val mem_d = new MemoryBus(xLen, 256)
+
+    // Coherent TileLink-C Interface (Phase 10 Multi-Core Bus)
+    val tl_d = new TLBundle(tlBundleParams)
 
     // UART Console Port (Day 14-16)
     val uart_tx_valid = Output(Bool())
@@ -80,6 +83,7 @@ class Core(implicit val p: Parameters) extends Module with HasZaqalParameter {
   backend.io.branch_signal := frontend.io.branch_signal
   backend.io.debug_cycle := cycle_reg
   io.mem_d <> backend.io.mem_d
+  io.tl_d  <> backend.io.tl_d
   
   io.mem <> frontend.io.mem
   io.uart_tx_valid := backend.io.uart_tx_valid

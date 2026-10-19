@@ -26,6 +26,7 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
     val disp0_pdest = Output(UInt(phyRegIdxWidth.W))
     val debug_cycle = Input(UInt(64.W))
     val mem_d = new MemoryBus(xLen, 256)
+    val tl_d  = new TLBundle(tlBundleParams)
     val branch_signal = Input(Valid(new BranchPredictionBus))
     val uart_tx_valid = Output(Bool())
     val uart_tx_char  = Output(UInt(8.W))
@@ -518,4 +519,5 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
   dcache.io.branch_signal := io.branch_signal
   dcache.io.flush := io.redirect.valid
   io.mem_d <> dcache.io.mem
+  io.tl_d  <> dcache.io.tl
 }

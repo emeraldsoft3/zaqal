@@ -3,5 +3,10 @@ target/
 test_run_dir/
 .bsp/
 .metals/
-*.gtkw
+*.log
+*.txt
+*.csv
 *.vcd
+*.gtkw
+!programs/vcd/Lithium.vcd
+!programs/vcd/Lithium.gtkw

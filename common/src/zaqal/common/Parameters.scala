@@ -72,7 +72,14 @@ case class ZaqalParams(
   enableRvv: Boolean = true,
   vLen: Int = 128,       // Hardware Vector Register Length in bits (128, 256, 512)
   numVRegs: Int = 32,    // 32 Architectural Vector Registers (v0-v31)
-  vecPhyRegs: Int = 128  // 128 Physical Vector Registers (XiangShan Kunminghu Parity)
+  vecPhyRegs: Int = 128, // 128 Physical Vector Registers (XiangShan Kunminghu Parity)
+
+  // TileLink-C (Coherent Interconnect) Parameters (Phase 10 Day 1-3)
+  tlDataBits: Int = 256,
+  tlBlockBytes: Int = 32,
+  tlSourceBits: Int = 6,
+  tlSinkBits: Int = 6,
+  tlSizeBits: Int = 4
 )
 
 // 2. Define the Field Key that CDE uses to locate ZaqalParams
@@ -147,6 +154,20 @@ trait HasZaqalParameter {
   def numVRegs = zP.numVRegs
   def vecPhyRegs = zP.vecPhyRegs
   def vecPhyRegIdxWidth = log2Up(vecPhyRegs)
+
+  // TileLink-C Getters
+  def tlDataBits = zP.tlDataBits
+  def tlBlockBytes = zP.tlBlockBytes
+  def tlSourceBits = zP.tlSourceBits
+  def tlSinkBits = zP.tlSinkBits
+  def tlSizeBits = zP.tlSizeBits
+  def tlBundleParams = TLBundleParameters(
+    addrBits = xLen,
+    dataBits = tlDataBits,
+    sourceBits = tlSourceBits,
+    sinkBits = tlSinkBits,
+    sizeBits = tlSizeBits
+  )
 }
 
 // 4. Default configuration overlay

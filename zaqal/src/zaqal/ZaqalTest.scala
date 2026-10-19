@@ -1,6 +1,7 @@
 package zaqal
 
 import zaqal.common._
+import zaqal.cache._
 
 import chisel3._
 import chiseltest._
@@ -8,6 +9,30 @@ import java.io.{File, PrintWriter}
 import java.nio.file.{Files, StandardCopyOption}
 
 import chiseltest.simulator.VerilatorBackendAnnotation
+
+// ============================================================================
+// Phase 10: Multi-Hart & Coherence - Day 1-3 Verification Test
+// ============================================================================
+// Verification Flow:
+// 1. Program Execution on Zaqal Core:
+//    - addi  x1,  x0, 0x1000       (base shared memory address = 0x1000)
+//    - addi  x2,  x0, 0x42         (data value to store = 0x42)
+// 2. TileLink Channel A AcquireBlock (Store Miss):
+//    - sw    x2,  0(x1)            (triggers Store Miss -> AcquireBlock NtoT on Channel A)
+// 3. TileLink Channel D & E Handshake:
+//    - Hub responds with GrantData (toT) on Channel D
+//    - Core acknowledges with GrantAck on Channel E, marks cache line DIRTY
+// 4. External Coherence Probe (Channel B -> Channel C):
+//    - Hub injects ProbeBlock (toB) -> Core returns dirty data via ProbeAckData
+//    - Hub injects ProbeBlock (toN) -> Core invalidates cache line and returns ProbeAck
+// 5. Post-Invalidation Load Miss (Channel A):
+//    - lw    x3,  0(x1)            (Cache line was invalidated, so lw MUST MISS!)
+//    - Core issues AcquireBlock (NtoB) on Channel A
+//    - Hub returns GrantData with updated coherent value (0x99)
+// 6. Architectural PASS Check:
+//    - addi  x29, x3, 0            (x29 := 0x99 = 153 -> PASS flag!)
+//    - jal   x0, 0                 (settle loop)
+// ============================================================================
 
 object ZaqalTest extends App {
   val vcdPath = "programs/vcd"
@@ -21,280 +46,300 @@ object ZaqalTest extends App {
   })
   val params = p(ZaqalParamsKey)
 
-  // Use the native Verilator backend for 100x speedup with VCD generation
   RawTester.test(new Core(), Seq(VerilatorBackendAnnotation, WriteVcdAnnotation)) { dut =>
-    println("--- Starting ZAQAL Agile V1.0 Simulation ---")
+    println("================================================================================")
+    println("--- Starting ZAQAL Phase 10: TileLink-C Core & Bus Verification ---")
+    println("================================================================================")
     dut.clock.setTimeout(0)
-    
-    // --- CSV SETUP ---
+
     val csvFile = new PrintWriter(new File("ftq_dump.csv"))
-    csvFile.println(s"Cycle,Slot,BasePC,Mask,${(0 until params.fetchWidth).map(i => s"Inst$i").mkString(",")},PredTarget,PredTaken,PredSlot") 
-    csvFile.flush() 
-
-    // The Shadow FTQ is our software model of the hardware warehouse
-    val shadowFTQ = scala.collection.mutable.Map[Int, String]()
-    var manualWritePtr = 0
-    var manualReadPtr = 0 
-    
-    def dumpToCSV(currentCycle: Int): Unit = {
-      for (slot <- 0 until params.ftqEntries) {
-        val data = shadowFTQ.getOrElse(slot, s"EMPTY,EMPTY,${(0 until params.fetchWidth).map(_ => "0x0").mkString(",")},0x0,false,0")
-        csvFile.println(s"$currentCycle,$slot,$data")
-      }
-      csvFile.flush() 
-    }
-
+    csvFile.println(s"Cycle,Slot,BasePC,Mask,${(0 until params.fetchWidth).map(i => s"Inst$i").mkString(",")},PredTarget,PredTaken,PredSlot")
+    csvFile.flush()
 
     // =========================================================================
-    // DAY 21-25 TEST 3: SPECULATIVE VECTOR RENAMING, BRANCH MISPREDICTION
-    //                   CHECKPOINT RECOVERY & FREELIST ROLLBACK
-    // =========================================================================
-    // Verification Flow:
-    // 1. Setup base memory address & scalar factor:
-    //    - addi       x1,  x0, 0x10        (base load address = 0x0010)
-    //    - addi       x2,  x0, 2           (scalar multiplier = 2)
-    // 2. Configure vector state: e32, m1 -> VLMAX = (128/32)*1 = 4 elements:
-    //    - vsetvli    x11, x0, 0x0D0       (SEW=32-bit, LMUL=1 -> x11 := 4)
-    // 3. Producer: Unit-Stride Vector Load:
-    //    - vle32.v    v1, (x1)             (v1 allocated pv32)
-    // 4. Pre-Branch Valid Vector Math:
-    //    - vadd.vi    v2, v1, 10           (v2 allocated pv33 := v1 + 10)
-    // 5. Conditional Branch (Taken to Recovery Target PC 0x80000030):
-    //    - addi       x5,  x0, 1           (x5 := 1)
-    //    - bne        x5,  x0, 0x18        (Taken to PC 0x80000030! Cold BPU predicts NOT TAKEN)
-    // 6. Speculative Poison Path (MUST BE SQUASHED & ROLLED BACK):
-    //    - vadd.vi    v1, v2, 15           (Speculative poison: v1 remapped to pv34)
-    //    - vadd.vi    v2, v1, 15           (Speculative poison: v2 remapped to pv35)
-    //    - addi       x20, x0, 999         (Speculative poison scalar: x20 := 999)
-    //    - nop
-    //    - nop
-    // 7. Architectural Recovery Path (PC 0x80000030):
-    //    - Evaluates using rolled-back architectural vector registers:
-    //    - vmul.vx    v3, v2, x2           (v3 := v2 * 2 reading restored pv33, NOT poisoned pv35!)
-    //    - addi       x25, x0, 88          (x25 := 88)
-    //    - addi       x29, x0, 0x27        (Day 21-25 Test 3 PASS Flag: 0x27 = 39)
-    // 8. Settle loop:
-    //    - jal        x0, 0
+    // RISC-V ASSEMBLY PROGRAM MEMORY
     // =========================================================================
     val programMemory = Seq(
       // --- BLOCK 0 (PC 0x80000000 - 0x8000001C) ---
-      "h01000093".U(32.W), // 00 [Word 0]: addi     x1,  x0, 0x10        (load base = 0x10)
-      "h00200113".U(32.W), // 04 [Word 1]: addi     x2,  x0, 2           (scalar factor = 2)
-      "h0d0075d7".U(32.W), // 08 [Word 2]: vsetvli  x11, x0, 0x0D0       (e32, m1 -> vl = 4)
-      "h0200e087".U(32.W), // 0C [Word 3]: vle32.v  v1, (x1)             (v1 := mem[0x10] -> pv32)
-      "h02153157".U(32.W), // 10 [Word 4]: vadd.vi  v2, v1, 10           (v2 := v1 + 10 -> pv33)
-      "h00100293".U(32.W), // 14 [Word 5]: addi     x5,  x0, 1           (branch condition x5 = 1)
-      "h00029c63".U(32.W), // 18 [Word 6]: bne      x5,  x0, 24          (branch taken to PC 0x80000030!)
-      "h0227b0d7".U(32.W), // 1C [Word 7]: vadd.vi  v1, v2, 15           (SPECULATIVE POISON 1: pv34)
+      "h000010b7".U(32.W), // 00 [Word 0]: lui      x1,  1            (x1 := 0x1000 base address)
+      "h04200113".U(32.W), // 04 [Word 1]: addi     x2,  x0, 0x42     (x2 := 0x42 store data)
+      "h0020a023".U(32.W), // 08 [Word 2]: sw       x2,  0(x1)        (Store: TileLink AcquireBlock NtoT!)
+      "h00000013".U(32.W), // 0C [Word 3]: nop
+      "h00000013".U(32.W), // 10 [Word 4]: nop
+      "h00000013".U(32.W), // 14 [Word 5]: nop
+      "h00000013".U(32.W), // 18 [Word 6]: nop
+      "h00000013".U(32.W), // 1C [Word 7]: nop
 
       // --- BLOCK 1 (PC 0x80000020 - 0x8000003C) ---
-      "h0217b157".U(32.W), // 20 [Word 0]: vadd.vi  v2, v1, 15           (SPECULATIVE POISON 2: pv35)
-      "h3e700a13".U(32.W), // 24 [Word 1]: addi     x20, x0, 999         (SPECULATIVE POISON SCALAR)
+      "h0000a183".U(32.W), // 20 [Word 0]: lw       x3,  0(x1)        (Load: Post-Probe miss -> AcquireBlock NtoB!)
+      "h00018e93".U(32.W), // 24 [Word 1]: addi     x29, x3, 0        (PASS Flag x29 := x3)
       "h00000013".U(32.W), // 28 [Word 2]: nop
       "h00000013".U(32.W), // 2C [Word 3]: nop
-      "h962161d7".U(32.W), // 30 [Word 4]: vmul.vx  v3, v2, x2           (RECOVERY TARGET: v3 := v2 * 2)
-      "h05800c93".U(32.W), // 34 [Word 5]: addi     x25, x0, 88          (scalar x25 := 88)
-      "h02700e93".U(32.W), // 38 [Word 6]: addi     x29, x0, 0x27        (Day 21-25 Test 3 PASS Flag: 0x27)
-      "h0000006f".U(32.W)  // 3C [Word 7]: jal      x0, 0                (settle loop to self)
+      "h00000013".U(32.W), // 30 [Word 4]: nop
+      "h00000013".U(32.W), // 34 [Word 5]: nop
+      "h00000013".U(32.W), // 38 [Word 6]: nop
+      "h0000006f".U(32.W)  // 3C [Word 7]: jal      x0, 0             (settle loop to self)
     ).padTo(1024, "h00000013".U(32.W))
 
-    var memLatencyCounter = 0
-    var memHandlingRequest = false
-    var memRequestedAddr = 0L
-
-    var dmemLatencyCounter = 0
-    var dmemHandlingRequest = false
-    var dmemRequestedAddr = 0L
-
-    // --- MAIN SIMULATION LOOP ---
+    // Simulation State
     val resetCycles = 5
-    val maxCycles = 1000
-    
+    val maxCycles   = 300
+
+    var memHandlingRequest = false
+    var memRequestedAddr   = 0L
+
+    var storeAcquireSeen = false
+    var storeGrantSent   = false
+    var storeAckReceived = false
+
+    var probeStage       = 0 // 0: wait, 1: send toB, 2: wait ackData, 3: send toN, 4: wait ack, 5: done
+    var probeBlockCount  = 0
+    var probeAckDataSeen = false
+    var probeAckSeen     = false
+
+    var loadAcquireSeen  = false
+    var loadGrantSent    = false
+
+    val coherentNewValue = 0x99L // New value to supply when Core re-loads post-probe
+
     for (cycle <- 0 until maxCycles) {
-      // 1. Apply Reset
       dut.reset.poke((cycle < resetCycles).B)
       dut.io.plic_ext_irq.poke(0.U)
-      
-      val flush = dut.debug.get.ftq_flush.peek().litToBoolean
 
-      // 2. Handle Flush (Clear our software model)
-      if (flush) {
-        // flush logic...
-      }
+      // Defaults
+      dut.io.mem.req.ready.poke(true.B)
+      dut.io.mem.resp.valid.poke(false.B)
+      dut.io.mem.resp.bits.data.poke(0.U)
+      dut.io.mem.resp.bits.last.poke(false.B)
 
-      // 3. Memory Responder Logic (TileLink/AXI mock)
+      dut.io.mem_d.req.ready.poke(true.B)
+      dut.io.mem_d.resp.valid.poke(false.B)
+      dut.io.mem_d.resp.bits.data.poke(0.U)
+      dut.io.mem_d.resp.bits.last.poke(false.B)
+
+      dut.io.tl_d.a.ready.poke(true.B)
+      dut.io.tl_d.b.valid.poke(false.B)
+      dut.io.tl_d.b.bits.opcode.poke(0.U)
+      dut.io.tl_d.b.bits.param.poke(0.U)
+      dut.io.tl_d.b.bits.size.poke(0.U)
+      dut.io.tl_d.b.bits.source.poke(0.U)
+      dut.io.tl_d.b.bits.address.poke(0.U)
+      dut.io.tl_d.b.bits.mask.poke(0.U)
+      dut.io.tl_d.b.bits.data.poke(0.U)
+      dut.io.tl_d.b.bits.corrupt.poke(false.B)
+
+      dut.io.tl_d.c.ready.poke(true.B)
+
+      dut.io.tl_d.d.valid.poke(false.B)
+      dut.io.tl_d.d.bits.opcode.poke(0.U)
+      dut.io.tl_d.d.bits.param.poke(0.U)
+      dut.io.tl_d.d.bits.size.poke(0.U)
+      dut.io.tl_d.d.bits.source.poke(0.U)
+      dut.io.tl_d.d.bits.sink.poke(0.U)
+      dut.io.tl_d.d.bits.denied.poke(false.B)
+      dut.io.tl_d.d.bits.data.poke(0.U)
+      dut.io.tl_d.d.bits.corrupt.poke(false.B)
+
+      dut.io.tl_d.e.ready.poke(true.B)
+
       if (cycle >= resetCycles) {
-        // Read requests from the Core's L1 cache
-        dut.io.mem.req.ready.poke(true.B) // We are always ready to accept a request
-        
+        // ---------------------------------------------------------------------
+        // 1. Instruction Memory Responder (L1-I Frontend Fetch)
+        // ---------------------------------------------------------------------
         if (dut.io.mem.req.valid.peek().litToBoolean && !memHandlingRequest) {
           memHandlingRequest = true
-          memLatencyCounter = 50 // Simulate 50 cycles of DRAM latency!
           memRequestedAddr = dut.io.mem.req.bits.addr.peek().litValue.toLong
         }
 
-        // Countdown latency
         if (memHandlingRequest) {
-          if (memLatencyCounter > 0) {
-            memLatencyCounter -= 1
-            dut.io.mem.resp.valid.poke(false.B)
-          } else {
-            // Latency is over, send the data back!
-            dut.io.mem.resp.valid.poke(true.B)
-            
-            // Build the 256-bit (8 instruction) response block
-            val relativeWordAddr = ((memRequestedAddr - 0x80000000L) / 4).toInt
-            var respData = BigInt(0)
-            for (i <- 0 until params.fetchWidth) {
-              val inst = if (relativeWordAddr >= 0 && relativeWordAddr + i < programMemory.length) {
-                programMemory(relativeWordAddr + i).litValue
-              } else {
-                BigInt(0x00000013) // NOP
-              }
-              respData = respData | (inst << (i * 32))
+          dut.io.mem.resp.valid.poke(true.B)
+          val relativeWordAddr = ((memRequestedAddr - 0x80000000L) / 4).toInt
+          var respData = BigInt(0)
+          for (i <- 0 until params.fetchWidth) {
+            val inst = if (relativeWordAddr >= 0 && relativeWordAddr + i < programMemory.length) {
+              programMemory(relativeWordAddr + i).litValue
+            } else {
+              BigInt(0x00000013)
             }
-            dut.io.mem.resp.bits.data.poke(respData.U)
-            dut.io.mem.resp.bits.last.poke(true.B)
-
-            // If the core accepted the response, end the transaction
-            if (dut.io.mem.resp.ready.peek().litToBoolean) {
-              memHandlingRequest = false
-            }
+            respData = respData | (inst << (i * 32))
           }
-        } else {
-          dut.io.mem.resp.valid.poke(false.B)
-        }
-      } // End of Memory Responder
+          dut.io.mem.resp.bits.data.poke(respData.U)
+          dut.io.mem.resp.bits.last.poke(true.B)
 
-      // D-Cache Memory Responder Logic
-
-      if (cycle >= resetCycles) {
-        dut.io.mem_d.req.ready.poke(true.B)
-        
-        if (dut.io.mem_d.req.valid.peek().litToBoolean && !dmemHandlingRequest) {
-          dmemHandlingRequest = true
-          dmemLatencyCounter = 50 // 50 cycles for data miss too
-          dmemRequestedAddr = dut.io.mem_d.req.bits.addr.peek().litValue.toLong
-          // println(f"Cycle $cycle%4d: [D-Cache / MSHR Bus Request] Addr = 0x$dmemRequestedAddr%08x")
-        }
-
-        if (dmemHandlingRequest) {
-          if (dmemLatencyCounter > 0) {
-            dmemLatencyCounter -= 1
-            dut.io.mem_d.resp.valid.poke(false.B)
-          } else {
-            dut.io.mem_d.resp.valid.poke(true.B)
-            dut.io.mem_d.resp.bits.data.poke(BigInt("DEADBEEFCAFEBABE", 16).U) // Return some dummy memory data
-            dut.io.mem_d.resp.bits.last.poke(true.B)
-
-            if (dut.io.mem_d.resp.ready.peek().litToBoolean) {
-              // println(f"Cycle $cycle%4d: [D-Cache / MSHR Bus Response] Fulfilled Addr = 0x$dmemRequestedAddr%08x")
-              dmemHandlingRequest = false
-            }
+          if (dut.io.mem.resp.ready.peek().litToBoolean) {
+            memHandlingRequest = false
           }
-        } else {
-          dut.io.mem_d.resp.valid.poke(false.B)
-        }
-      }
-
-      // 4. Capture ENQUEUE (Frontend -> FTQ)
-      val enqValid = dut.debug.get.ftq_valid.peek().litToBoolean
-      val enqReady = dut.debug.get.ftq_ready.peek().litToBoolean
-
-      if (enqValid && enqReady && !flush && cycle >= resetCycles) {
-        val pc    = dut.debug.get.ftq_pc.peek().litValue
-        val mask  = dut.debug.get.ftq_mask.peek().litValue
-        val insts = (0 until params.fetchWidth).map(i => f"0x${dut.debug.get.ftq_insts(i).peek().litValue}%08x").mkString(",")
-        val pTarget = dut.debug.get.ftq_pred_target.peek().litValue
-        val pTaken  = dut.debug.get.ftq_pred_taken.peek().litToBoolean
-        val pSlot   = dut.debug.get.ftq_pred_slot.peek().litValue
-        
-        shadowFTQ(manualWritePtr) = f"0x$pc%08x,${mask.toString(2)},$insts,0x$pTarget%08x,$pTaken,$pSlot"
-        manualWritePtr = (manualWritePtr + 1) % params.ftqEntries
-      }
-
-      // 4. Capture DEQUEUE (FTQ -> Backend)
-      // This is the new logic to see the Backend "eating" instructions
-      val deqValid = dut.debug.get.ftq_valid_out.peek().litToBoolean // You may need to expose this in Core
-      val deqReady = dut.debug.get.ftq_ready_out.peek().litToBoolean 
-
-      if (deqValid && deqReady && !flush && cycle >= resetCycles) {
-        // Remove from shadow map to show "EMPTY" in CSV
-        shadowFTQ.remove(manualReadPtr)
-        manualReadPtr = (manualReadPtr + 1) % params.ftqEntries
-      }
-
-      if (cycle >= resetCycles) {
-        val disp0_valid = dut.debug.get.disp0_valid.peek().litToBoolean
-        if (disp0_valid) {
-          val disp0_pc = dut.debug.get.disp0_pc.peek().litValue
-          val disp0_pdest = dut.debug.get.disp0_pdest.peek().litValue
-          // println(f"Cycle $cycle: Dispatch 0 PC=0x$disp0_pc%08x PDEST=p$disp0_pdest")
         }
 
-        val uartValid = dut.io.uart_tx_valid.peek().litToBoolean
-        if (uartValid) {
-          val charByte = dut.io.uart_tx_char.peek().litValue.toInt
-          println(f"Cycle $cycle%4d: >>> [UART SERIAL CONSOLE TX]: '${charByte.toChar}' (0x$charByte%02X) <<<")
+        // ---------------------------------------------------------------------
+        // 2. TileLink Channel A: Monitor Core Acquires (Store Miss / Load Miss)
+        // ---------------------------------------------------------------------
+        if (dut.io.tl_d.a.valid.peek().litToBoolean) {
+          val op   = dut.io.tl_d.a.bits.opcode.peek().litValue.toInt
+          val prm  = dut.io.tl_d.a.bits.param.peek().litValue.toInt
+          val addr = dut.io.tl_d.a.bits.address.peek().litValue.toLong
+
+          if (op == 6 && prm == 1 && !storeAcquireSeen) { // AcquireBlock NtoT (Store Miss)
+            storeAcquireSeen = true
+            println(f"Cycle $cycle%3d: [TILELINK CHAN A] Core Emits AcquireBlock: Opcode = $op (AcquireBlock), Param = $prm (NtoT Exclusive), Addr = 0x$addr%08x")
+          }
+
+          if (op == 6 && prm == 0 && probeStage == 5 && !loadAcquireSeen) { // AcquireBlock NtoB (Post-Probe Load Miss)
+            loadAcquireSeen = true
+            println(f"Cycle $cycle%3d: [TILELINK CHAN A] Core Emits Post-Probe Load AcquireBlock: Opcode = $op (AcquireBlock), Param = $prm (NtoB Shared), Addr = 0x$addr%08x")
+          }
+        }
+
+        // ---------------------------------------------------------------------
+        // 3. TileLink Channel D: Respond with GrantData
+        // ---------------------------------------------------------------------
+        if (storeAcquireSeen && !storeGrantSent) {
+          dut.io.tl_d.d.valid.poke(true.B)
+          dut.io.tl_d.d.bits.opcode.poke(TLMessages.GrantData)
+          dut.io.tl_d.d.bits.param.poke(TLPermissions.toT) // Exclusive permission
+          dut.io.tl_d.d.bits.size.poke(5.U)
+          dut.io.tl_d.d.bits.source.poke(0.U)
+          dut.io.tl_d.d.bits.sink.poke(0.U)
+          dut.io.tl_d.d.bits.data.poke(0.U)
+
+          if (dut.io.tl_d.d.ready.peek().litToBoolean) {
+            storeGrantSent = true
+            println(f"Cycle $cycle%3d: [TILELINK CHAN D] Bus Responds with GrantData (toT Exclusive Permission Granted)")
+          }
+        }
+
+        if (loadAcquireSeen && !loadGrantSent) {
+          dut.io.tl_d.d.valid.poke(true.B)
+          dut.io.tl_d.d.bits.opcode.poke(TLMessages.GrantData)
+          dut.io.tl_d.d.bits.param.poke(TLPermissions.toB) // Shared permission
+          dut.io.tl_d.d.bits.size.poke(5.U)
+          dut.io.tl_d.d.bits.source.poke(0.U)
+          dut.io.tl_d.d.bits.sink.poke(1.U)
+          dut.io.tl_d.d.bits.data.poke(BigInt(coherentNewValue).U) // Supply new value 0x99!
+
+          if (dut.io.tl_d.d.ready.peek().litToBoolean) {
+            loadGrantSent = true
+            println(f"Cycle $cycle%3d: [TILELINK CHAN D] Bus Responds with GrantData (Supplying Coherent New Value 0x$coherentNewValue%02x)")
+          }
+        }
+
+        // ---------------------------------------------------------------------
+        // 4. TileLink Channel E: Receive GrantAck from Core
+        // ---------------------------------------------------------------------
+        if (dut.io.tl_d.e.valid.peek().litToBoolean) {
+          val sink = dut.io.tl_d.e.bits.sink.peek().litValue.toInt
+          if (sink == 0 && !storeAckReceived) {
+            storeAckReceived = true
+            println(f"Cycle $cycle%3d: [TILELINK CHAN E] Core Emits GrantAck (Sink = $sink) -> Exclusive Store Line Installed & Marked Dirty!")
+            probeStage = 1 // Ready to test coherence probes!
+          }
+          if (sink == 1) {
+            println(f"Cycle $cycle%3d: [TILELINK CHAN E] Core Emits GrantAck (Sink = $sink) -> Coherent Refill Completed!")
+          }
+        }
+
+        // ---------------------------------------------------------------------
+        // 5. TileLink Channel B & C: External Coherence Probes
+        // ---------------------------------------------------------------------
+        // Probe 1: Downgrade to Shared (toB) -> Expect ProbeAckData with dirty line!
+        if (probeStage == 1 && cycle > 70) {
+          dut.io.tl_d.b.valid.poke(true.B)
+          dut.io.tl_d.b.bits.opcode.poke(TLMessages.ProbeBlock)
+          dut.io.tl_d.b.bits.param.poke(TLPermissions.toB) // Downgrade to Shared
+          dut.io.tl_d.b.bits.size.poke(5.U)
+          dut.io.tl_d.b.bits.source.poke(0.U)
+          dut.io.tl_d.b.bits.address.poke(0x1000.U)
+
+          if (dut.io.tl_d.b.ready.peek().litToBoolean) {
+            probeBlockCount += 1
+            println(f"Cycle $cycle%3d: >>> [BUS -> CORE CHAN B] Injecting ProbeBlock: Param = toB (Downgrade Exclusive -> Shared)")
+            probeStage = 2
+          }
+        }
+
+        // Monitor Channel C for Probe Responses
+        if (dut.io.tl_d.c.valid.peek().litToBoolean) {
+          val cOp   = dut.io.tl_d.c.bits.opcode.peek().litValue.toInt
+          val cData = dut.io.tl_d.c.bits.data.peek().litValue
+
+          if (cOp == 5 && !probeAckDataSeen) { // ProbeAckData
+            probeAckDataSeen = true
+            println(f"Cycle $cycle%3d: <<< [CORE -> BUS CHAN C] Core Returns ProbeAckData! Dirty Cache Line Flushed = 0x$cData%x")
+            probeStage = 3
+          }
+
+          if (cOp == 4 && probeStage == 4 && !probeAckSeen) { // ProbeAck
+            probeAckSeen = true
+            println(f"Cycle $cycle%3d: <<< [CORE -> BUS CHAN C] Core Returns ProbeAck! Clean Cache Line Successfully Invalidated")
+            probeStage = 5 // Coherence probing complete! Core will now execute lw and miss!
+          }
+        }
+
+        // Probe 2: Invalidate Cache Line (toN) -> Expect ProbeAck
+        if (probeStage == 3) {
+          dut.io.tl_d.b.valid.poke(true.B)
+          dut.io.tl_d.b.bits.opcode.poke(TLMessages.ProbeBlock)
+          dut.io.tl_d.b.bits.param.poke(TLPermissions.toN) // Invalidate
+          dut.io.tl_d.b.bits.size.poke(5.U)
+          dut.io.tl_d.b.bits.source.poke(0.U)
+          dut.io.tl_d.b.bits.address.poke(0x1000.U)
+
+          if (dut.io.tl_d.b.ready.peek().litToBoolean) {
+            probeBlockCount += 1
+            println(f"Cycle $cycle%3d: >>> [BUS -> CORE CHAN B] Injecting ProbeBlock: Param = toN (Invalidate Line)")
+            probeStage = 4
+          }
         }
       }
-
-      // 5. Periodic Dump (Disabled for speed, uncomment if debugging FTQ)
-      // if (cycle >= 5 && cycle <= 800) {
-      //   dumpToCSV(cycle)
-      // }
 
       dut.clock.step(1)
     }
 
-    csvFile.close() 
-    println(s"--- Simulation Finished. CSV generated: ftq_dump.csv ---")
-    
-    println("--- Final Logical Integer Register State (Architectural / Speculative RAT) ---")
-    for (i <- 0 until 32) {
-      val pRegIdx = dut.debug.get.debug_int_rat(i).peek().litValue.toInt
-      val regVal = if (i == 0) BigInt(0) else dut.debug.get.regs(pRegIdx).peek().litValue
-      println(f"x$i%02d (maps to p$pRegIdx%02d): 0x$regVal%016x")
-    }
+    // -------------------------------------------------------------------------
+    // 6. Verify Architectural Registers & Coherence Protocol Invariants
+    // -------------------------------------------------------------------------
+    println("================================================================================")
+    println("--- SIMULATION COMPLETE: VERIFYING REGISTER FILE & TILELINK PROTOCOL ---")
+    println(f"  [1] Core Channel A Store AcquireBlock (NtoT):    $storeAcquireSeen")
+    println(f"  [2] Bus Channel D Store GrantData (toT):         $storeGrantSent")
+    println(f"  [3] Core Channel E Store GrantAck:               $storeAckReceived")
+    println(f"  [4] Bus Channel B Probes Injected:               $probeBlockCount (toB downgrade + toN invalidate)")
+    println(f"  [5] Core Channel C ProbeAckData (Dirty Flush):   $probeAckDataSeen")
+    println(f"  [6] Core Channel C ProbeAck (Clean Invalidate):  $probeAckSeen")
+    println(f"  [7] Core Channel A Post-Probe Load Miss (NtoB):  $loadAcquireSeen")
+    println(f"  [8] Bus Channel D Load GrantData (0x99):         $loadGrantSent")
 
-    println("--- Final Logical FP Register State (Architectural / Speculative RAT) ---")
-    for (i <- 0 until 32) {
-      val pRegIdx = dut.debug.get.debug_fp_rat(i).peek().litValue.toInt
-      val regVal = dut.debug.get.fp_regs(pRegIdx).peek().litValue
-      println(f"f$i%02d (maps to pf$pRegIdx%02d): 0x$regVal%016x")
-    }
+    // Check register x29 via debug RAT / PRF
+    val ratX29Phy = dut.debug.get.debug_int_rat(29).peek().litValue.toInt
+    val regX29Val = dut.debug.get.regs(ratX29Phy).peek().litValue.toLong
+    println(f"  [9] Register x29 Value:                          0x$regX29Val%02x (Expected = 0x$coherentNewValue%02x)")
+    println("================================================================================")
 
-    println("--- Final Physical Register State ---")
-    for (i <- 0 until params.phyRegs) {
-      val regVal = dut.debug.get.regs(i).peek().litValue
-      println(f"p$i%02d: 0x$regVal%016x")
-    }
+    assert(storeAcquireSeen, "Core must issue Channel A AcquireBlock (NtoT) for store miss")
+    assert(storeAckReceived, "Core must complete Channel E GrantAck for store line installation")
+    assert(probeAckDataSeen, "Core must flush modified dirty line via Channel C ProbeAckData upon toB probe")
+    assert(probeAckSeen,     "Core must invalidate line and confirm via Channel C ProbeAck upon toN probe")
+    assert(loadAcquireSeen,  "Core must miss and issue Channel A AcquireBlock after probe invalidation")
+    assert(regX29Val == coherentNewValue, f"Register x29 must contain the coherent new value 0x$coherentNewValue%02x (Got: 0x$regX29Val%02x)")
 
-    println("--- Final Physical FP Register State ---")
-    for (i <- 0 until params.phyRegs) {
-      val regVal = dut.debug.get.fp_regs(i).peek().litValue
-      println(f"pf$i%02d: 0x$regVal%016x")
-    }
+    println("\n>>> [PASS] PHASE 10 DAY 1-3 TILELINK-C RISC-V CORE VERIFICATION TEST PASSED! <<<\n")
 
-    println("--- Final Vector Architecture State (RVV 1.0 - VRAT Renamed) ---")
-    val v_vl = dut.debug.get.vec_vl.peek().litValue
-    val v_vtype = dut.debug.get.vec_vtype.peek().litValue
-    println(f"VL: 0x$v_vl%016x (Dec: $v_vl)")
-    println(f"VTYPE: 0x$v_vtype%016x (vill=${v_vtype >> 63}, vsew=${(v_vtype >> 3) & 7}, vlmul=${v_vtype & 7})")
-    for (i <- 0 until 32) {
-      val pRegIdx = dut.debug.get.debug_vec_rat(i).peek().litValue.toInt
-      val vVal = dut.debug.get.vregs(i).peek().litValue
-      println(f"v$i%02d (maps to pv$pRegIdx%02d): 0x$vVal%032x")
-    }
-  }
-
-  // --- VCD CLEANUP LOGIC ---
-  val targetVcd = new File("programs/vcd/Lithium.vcd")
-  val testRunDir = new File("test_run_dir")
-  if (testRunDir.exists()) {
-    val vcdFiles = testRunDir.listFiles().filter(_.isDirectory).flatMap(_.listFiles()).filter(_.getName.endsWith(".vcd"))
-    if (vcdFiles.nonEmpty) {
-      Files.copy(vcdFiles.sortBy(_.lastModified()).last.toPath, targetVcd.toPath, StandardCopyOption.REPLACE_EXISTING)
+    try {
+      val testDir = new File("test_run_dir")
+      if (testDir.exists()) {
+        def findVcdFiles(dir: File): Seq[File] = {
+          val files = Option(dir.listFiles()).getOrElse(Array.empty)
+          files.filter(_.getName.endsWith(".vcd")) ++ files.filter(_.isDirectory).flatMap(findVcdFiles)
+        }
+        val vcdFiles = findVcdFiles(testDir)
+        if (vcdFiles.nonEmpty) {
+          val latestVcd = vcdFiles.maxBy(_.lastModified())
+          Files.copy(latestVcd.toPath, new File("programs/vcd/Lithium.vcd").toPath, StandardCopyOption.REPLACE_EXISTING)
+          println(s"Saved waveform from ${latestVcd.getPath} to programs/vcd/Lithium.vcd")
+        }
+      }
+    } catch {
+      case e: Exception => println(s"Notice: could not copy vcd: ${e.getMessage}")
     }
   }
 }
