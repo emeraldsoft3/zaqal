@@ -64,14 +64,14 @@ object ZaqalTest extends App {
       "h000010b7".U(32.W), // 00 [Word 0]: lui      x1,  1            (x1 := 0x1000 base address)
       "h04200113".U(32.W), // 04 [Word 1]: addi     x2,  x0, 0x42     (x2 := 0x42 store data)
       "h0020a023".U(32.W), // 08 [Word 2]: sw       x2,  0(x1)        (Store: TileLink AcquireBlock NtoT!)
-      "h00000013".U(32.W), // 0C [Word 3]: nop
-      "h00000013".U(32.W), // 10 [Word 4]: nop
-      "h00000013".U(32.W), // 14 [Word 5]: nop
+      "h01900213".U(32.W), // 0C [Word 3]: addi     x4,  x0, 25       (Wait loop counter: x4 := 25)
+      "hfff20213".U(32.W), // 10 [Word 4]: addi     x4,  x4, -1       (Loop decrement: x4 := x4 - 1)
+      "hfe021ee3".U(32.W), // 14 [Word 5]: bne      x4,  x0, -4       (Branch back to Word 4 while x4 != 0)
       "h00000013".U(32.W), // 18 [Word 6]: nop
       "h00000013".U(32.W), // 1C [Word 7]: nop
 
       // --- BLOCK 1 (PC 0x80000020 - 0x8000003C) ---
-      "h0000a183".U(32.W), // 20 [Word 0]: lw       x3,  0(x1)        (Load: Post-Probe miss -> AcquireBlock NtoB!)
+      "h0000a183".U(32.W), // 20 [Word 0]: lw       x3,  0(x1)        (Post-Probe load: line is invalidated, so MUST MISS!)
       "h00018e93".U(32.W), // 24 [Word 1]: addi     x29, x3, 0        (PASS Flag x29 := x3)
       "h00000013".U(32.W), // 28 [Word 2]: nop
       "h00000013".U(32.W), // 2C [Word 3]: nop
@@ -242,7 +242,7 @@ object ZaqalTest extends App {
         // 5. TileLink Channel B & C: External Coherence Probes
         // ---------------------------------------------------------------------
         // Probe 1: Downgrade to Shared (toB) -> Expect ProbeAckData with dirty line!
-        if (probeStage == 1 && cycle > 70) {
+        if (probeStage == 1 && cycle > 35) {
           dut.io.tl_d.b.valid.poke(true.B)
           dut.io.tl_d.b.bits.opcode.poke(TLMessages.ProbeBlock)
           dut.io.tl_d.b.bits.param.poke(TLPermissions.toB) // Downgrade to Shared
@@ -267,7 +267,7 @@ object ZaqalTest extends App {
         }
 
         // Settle cycle between probes: allow flip-flops (dirtyArray/stateArray) to latch updated values
-        if (probeStage == 2 && cycle > 72) {
+        if (probeStage == 2 && cycle > 37) {
           probeStage = 3
         }
 

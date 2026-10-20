@@ -1241,7 +1241,7 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   when(io.dcache_resp.valid && io.dcache_resp.bits.load_id =/= 0.U) {
     next_regFile_wen(4)   := true.B
     next_regFile_waddr(4) := io.dcache_resp.bits.load_id
-    next_regFile_wdata(4) := wb_ld_data(0)
+    next_regFile_wdata(4) := io.dcache_resp.bits.data
   }
 
   // ---------------- FP EXECUTION (FPU 0..3) ----------------

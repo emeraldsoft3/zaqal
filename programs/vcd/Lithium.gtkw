@@ -1,12 +1,12 @@
 [*]
 [*] GTKWave Analyzer v3.3.111 (w)1999-2020 BSI
-[*] Sat Oct 17 08:25:53 2026
+[*] Tue Oct 20 11:30:28 2026
 [*]
 [dumpfile] "/home/emerald/zaqal/programs/vcd/Lithium.vcd"
-[dumpfile_mtime] "Fri Oct 16 15:03:15 2026"
-[dumpfile_size] 24546851
+[dumpfile_mtime] "Tue Oct 20 10:32:22 2026"
+[dumpfile_size] 21778681
 [savefile] "/home/emerald/zaqal/programs/vcd/Lithium.gtkw"
-[timestart] 216
+[timestart] 65
 [size] 1865 930
 [pos] -1 -1
 *-2.900000 267 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
@@ -36,7 +36,7 @@
 +{TOP.Core.cycle_reg[63:0]} TOP.Core.cycle_reg[63:0]
 @28
 TOP.Core.frontend.bpu.io_redirect_valid
-@800200
+@c00200
 -CORE
 @28
 TOP.Core.io_uart_tx_valid
@@ -48,12 +48,51 @@ TOP.Core.backend_io_debug_vregs_2[127:0]
 TOP.Core.backend_io_debug_vregs_3[127:0]
 TOP.Core.backend_io_debug_vregs_4[127:0]
 TOP.Core.backend_io_debug_vregs_5[127:0]
-@1000200
+@1401200
 -CORE
 @800200
--CSR
+-Tilelink
 @28
+TOP.io_tl_d_a_valid
+TOP.io_tl_d_a_bits_opcode[2:0]
+TOP.io_tl_d_a_bits_param[2:0]
+@22
+TOP.io_tl_d_a_bits_address[63:0]
+@28
+TOP.io_tl_d_d_valid
+@22
+TOP.io_tl_d_d_bits_sink[5:0]
+@28
+TOP.io_tl_d_d_bits_param[2:0]
+TOP.io_tl_d_d_bits_opcode[2:0]
+@22
+TOP.io_tl_d_d_bits_data[255:0]
+TOP.io_tl_d_e_bits_sink[5:0]
+@28
+TOP.io_tl_d_e_ready
+TOP.io_tl_d_e_valid
+@22
+TOP.io_tl_d_b_bits_address[63:0]
+TOP.io_tl_d_b_bits_data[255:0]
+@28
+TOP.io_tl_d_b_bits_opcode[2:0]
+@22
+TOP.io_tl_d_c_bits_address[63:0]
+TOP.io_tl_d_c_bits_data[255:0]
+@29
+TOP.io_tl_d_c_bits_param[2:0]
+@1000200
+-Tilelink
+@c00200
+-CSR
+@800028
 TOP.Core.backend.exec.csr.io_priv_mode[1:0]
+@28
+(0)TOP.Core.backend.exec.csr.io_priv_mode[1:0]
+(1)TOP.Core.backend.exec.csr.io_priv_mode[1:0]
+@1001200
+-group_end
+@28
 TOP.Core.backend.exec.csr.io_trap_in_valid
 @22
 +{TOP.Core.backend.exec.csr.io_trap_in_cause[63:0]} TOP.Core.backend.exec.csr.io_trap_in_cause[63:0]
@@ -78,7 +117,7 @@ TOP.Core.backend.exec.csr.io_clint_mtip
 @22
 TOP.Core.backend.exec.csr.io_mstatus_val[63:0]
 TOP.Core.backend.exec.csr.io_csr_rdata[63:0]
-@1000200
+@1401200
 -CSR
 @c00200
 -BPU
@@ -491,11 +530,11 @@ TOP.Core.backend.rob.robEntries_1_old_pdest[6:0]
 TOP.Core.backend.rob.robEntries_2_old_pdest[6:0]
 @1401200
 -ROB
-@800201
+@800200
 -Vec Dispatch
-@23
+@22
 TOP.Core.backend.vecDispatchQueue.headPtr[3:0]
-@1000201
+@1000200
 -Vec Dispatch
 @c00200
 -Execute
@@ -796,7 +835,6 @@ TOP.Core.backend.dcache.prefetcher.io_train_valid
 @22
 TOP.Core.backend.dcache.prefetcher.io_train_bits_addr[63:0]
 @28
-TOP.Core.backend.dcache.mshr.io_alloc_valid
 TOP.Core.backend.dcache.isHit
 @1401200
 -Dcache
@@ -1409,13 +1447,8 @@ TOP.debug_cycle_count[63:0]
 @28
 +{TOP.Core.backend.dcache.io_req_valid} TOP.Core.backend.dcache.io_req_valid
 TOP.Core.backend.dcache.io_resp_valid
-TOP.Core.backend.dcache.io_mem_resp_ready
-TOP.Core.backend.dcache.io_mem_resp_valid
 @22
 TOP.Core.backend.dcache.io_resp_bits_load_id[5:0]
-@28
-TOP.Core.backend.dcache.mshr.state[1:0]
-@22
 TOP.Core.backend.dcache.tagArray_0[52:0]
 TOP.Core.backend.dcache.tagArray_1[52:0]
 TOP.Core.backend.dcache.tagArray_2[52:0]

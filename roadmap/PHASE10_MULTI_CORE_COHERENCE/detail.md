@@ -3,8 +3,8 @@
 This phase focuses on scaling Zaqal from a single-core processor to a multi-core System-on-Chip (SoC) with cache coherence.
 
 ## Day 1-3: TileLink/CHI Bus Implementation
-- [ ] Implement a coherent bus protocol (inspired by XiangShan's use of TileLink or CHI).
-- [ ] Support for Acquire/Release and Probe/Grant transactions.
+- [x] Implement a coherent bus protocol (inspired by XiangShan's use of TileLink or CHI).
+- [x] Support for Acquire/Release and Probe/Grant transactions.
 - **Detailed Plan**: Scaling to multiple cores requires a specialized interconnect that supports caching. Standard AXI4 is insufficient because it lacks coherence primitives. We will transition the top-level core interface to a coherent protocol like TileLink or AMBA CHI. This requires implementing a complex set of channels to handle memory requests (Acquire), data writebacks (Release), and most importantly, external coherence invalidations sent from the bus back to the core (Probes).
 
 ## Day 4-7: L2 & L3 Cache Coherence
