@@ -82,7 +82,7 @@ object PrivMode {
   val M = 3.U(2.W) // Machine mode
 }
 
-class CSRFile(implicit val p: Parameters) extends Module with HasZaqalParameter {
+class CSRFile(val hartId: Int = 0)(implicit val p: Parameters) extends Module with HasZaqalParameter {
   val io = IO(new Bundle {
     // Instruction Execution Interface
     val csr_addr     = Input(UInt(12.W))
@@ -362,7 +362,7 @@ class CSRFile(implicit val p: Parameters) extends Module with HasZaqalParameter 
     is(CSRAddr.mvendorid) { rdata := 0.U }
     is(CSRAddr.marchid)   { rdata := 0.U }
     is(CSRAddr.mimpid)    { rdata := 0.U }
-    is(CSRAddr.mhartid)   { rdata := 0.U }
+    is(CSRAddr.mhartid)   { rdata := hartId.U }
     is(CSRAddr.mcycle)    { rdata := r_mcycle }
     is(CSRAddr.minstret)  { rdata := r_minstret }
 

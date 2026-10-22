@@ -11,7 +11,7 @@ import zaqal.backend.rename._
 import zaqal.backend.exu._
 import zaqal.utility.SkidBuffer
 
-class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter {
+class Backend(val hartId: Int = 0)(implicit val p: Parameters) extends Module with HasZaqalParameter {
   val io = IO(new Bundle {
     val dispatch = Vec(decodeWidth, Flipped(Decoupled(new MicroOp)))
     val redirect = Output(new BPURedirect)
@@ -257,7 +257,7 @@ class Backend(implicit val p: Parameters) extends Module with HasZaqalParameter 
   vecFreeList.io.doAllocate := bundle_fired
   
   // Commit ports and redirect are connected properly below
-  val exec = Module(new Execute)
+  val exec = Module(new Execute(hartId))
 
   val dispatch = Module(new Dispatch)
   

@@ -8,7 +8,7 @@ import zaqal.common._
 import zaqal.backend._
 import zaqal.backend.csr._
 
-class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter {
+class Execute(val hartId: Int = 0)(implicit val p: Parameters) extends Module with HasZaqalParameter {
   val io = IO(new Bundle {
     // Kunminghu Parity Execution Queue Interfaces
     val int_in = Vec(4, Flipped(Decoupled(new DecodedMicroOp)))
@@ -83,7 +83,7 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   val fpmisc = Seq.fill(2)(Module(new FPMisc))
   val dmem = Module(new DataMem)
   val tlb  = Seq.fill(3)(Module(new FastTLB))
-  val csr  = Module(new zaqal.backend.csr.CSRFile)
+  val csr  = Module(new zaqal.backend.csr.CSRFile(hartId))
   val ptw  = Module(new zaqal.backend.mmu.PageTableWalker)
   val amx  = Module(new zaqal.backend.fu.amx.AMXUnit)
   val vrf  = Module(new zaqal.backend.fu.vector.VectorRegFile)
@@ -512,6 +512,7 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
   case class BypassChannel(valid: Bool, pdest: UInt, data: UInt)
 
   val bypassChannels = Seq(
+    BypassChannel(io.dcache_resp.valid && io.dcache_resp.bits.load_id =/= 0.U, io.dcache_resp.bits.load_id, io.dcache_resp.bits.data),
     BypassChannel(wb_ld_val(0), wb_ld_dest(0), wb_ld_data(0)),
     BypassChannel(wb_ld_val(1), wb_ld_dest(1), wb_ld_data(1)),
     BypassChannel(r_wb_alu_val(0), r_wb_alu_dest(0), r_wb_alu_data(0)),
@@ -1115,9 +1116,11 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
     when(r_agu_val(i) && r_agu_uop(i).pdest =/= 0.U && !is_this_ld_fault) {
       when(r_agu_uop(i).decode.is_load || r_agu_uop(i).decode.is_atomic) {
         when(!r_agu_uop(i).decode.is_fload) {
-          next_regFile_wen(4 + i)   := true.B
-          next_regFile_waddr(4 + i) := r_agu_uop(i).pdest
-          next_regFile_wdata(4 + i) := wb_ld_data(i)
+          if (i != 0) {
+            next_regFile_wen(4 + i)   := true.B
+            next_regFile_waddr(4 + i) := r_agu_uop(i).pdest
+            next_regFile_wdata(4 + i) := wb_ld_data(i)
+          }
         } .otherwise {
           val fload_data = Mux(r_agu_uop(i).decode.is_fld, lsu(i).io.result(63, 0), Cat("hffffffff".U(32.W), lsu(i).io.result(31, 0)))
           fpRegFile.io.wen(4 + i)   := true.B
@@ -1136,8 +1139,9 @@ class Execute(implicit val p: Parameters) extends Module with HasZaqalParameter 
     val r_wu_mem_pdest = RegNext(io.mem_in(i).bits.pdest, 0.U)
     val r_wu_mem_fload = RegNext(decMem(i).is_fload, false.B)
 
-    io.wakeup(4 + i).valid := r_wu_mem_val || (i == 0).B && (io.dcache_resp.valid && io.dcache_resp.bits.load_id =/= 0.U)
-    io.wakeup(4 + i).pdest := Mux((i == 0).B && io.dcache_resp.valid, io.dcache_resp.bits.load_id, r_wu_mem_pdest)
+    val dcache_wu_val = io.dcache_resp.valid && io.dcache_resp.bits.load_id =/= 0.U
+    io.wakeup(4 + i).valid := (if (i == 0) dcache_wu_val else r_wu_mem_val)
+    io.wakeup(4 + i).pdest := (if (i == 0) io.dcache_resp.bits.load_id else r_wu_mem_pdest)
     io.wakeup(4 + i).is_fp := r_wu_mem_fload
   }
 

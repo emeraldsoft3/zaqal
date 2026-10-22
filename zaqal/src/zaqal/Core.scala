@@ -71,7 +71,7 @@ class Core(val hartId: Int = 0)(implicit val p: Parameters) extends Module with 
 
   // 1. Instantiate the Modules
   val frontend = Module(new Frontend)
-  val backend  = Module(new Backend)
+  val backend  = Module(new Backend(hartId))
 
   // 2. Connect Frontend to Backend (Buffered Dispatch!)
   for (i <- 0 until decodeWidth) {

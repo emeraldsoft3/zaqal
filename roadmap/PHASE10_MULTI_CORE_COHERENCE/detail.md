@@ -8,8 +8,8 @@ This phase focuses on scaling Zaqal from a single-core processor to a multi-core
 - **Detailed Plan**: Scaling to multiple cores requires a specialized interconnect that supports caching. Standard AXI4 is insufficient because it lacks coherence primitives. We will transition the top-level core interface to a coherent protocol like TileLink or AMBA CHI. This requires implementing a complex set of channels to handle memory requests (Acquire), data writebacks (Release), and most importantly, external coherence invalidations sent from the bus back to the core (Probes).
 
 ## Day 4-7: L2 & L3 Cache Coherence
-- [ ] Implement an Inclusive L2 cache with hardware coherence (MESI/MOESI).
-- [ ] Implement a shared L3 cache for multi-cluster support.
+- [x] Implement an Inclusive L2 cache with hardware coherence (MESI/MOESI).
+- [x] Implement a shared L3 cache for multi-cluster support.
 - **Detailed Plan**: When multiple cores read and write to the same memory, they must stay perfectly synchronized. We will build an inclusive L2 Cache that acts as the coherence serialization point. We will implement the MESI (Modified, Exclusive, Shared, Invalid) or MOESI hardware directory protocol. The L2 cache will track which L1 caches hold specific memory lines. If Core A writes to a variable that Core B is holding, the L2 cache will automatically generate Probe transactions to invalidate the stale data in Core B's L1 cache, ensuring strict cache coherence without software intervention.
 
 ## Day 8-12: Multi-Hart Boot & Synchronization
