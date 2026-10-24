@@ -34,6 +34,8 @@ class Execute(val hartId: Int = 0)(implicit val p: Parameters) extends Module wi
       val data = UInt(xLen.W)
       val load_id = UInt(6.W)
     }))
+    val snoop_probe_valid = Input(Bool())
+    val snoop_probe_addr  = Input(UInt(xLen.W))
     val pf_train = Output(Valid(new zaqal.cache.prefetch.L1PrefetchTrainBundle(xLen)))
 
     // LSQ Commit & Allocation Interfaces
@@ -1082,6 +1084,11 @@ class Execute(val hartId: Int = 0)(implicit val p: Parameters) extends Module wi
     tlb(i).io.flush           := (io.redirect.valid && io.redirect.is_exception) || is_sfence_vma
   }
 
+  for (i <- 0 until 3) {
+    lsu(i).io.snoop_probe_valid := io.snoop_probe_valid
+    lsu(i).io.snoop_probe_addr  := io.snoop_probe_addr
+  }
+
   // MEM (CACHE ACCESS STAGE - CYCLE 3)
   // LSU 0 & LSU 1 (Load pipes)
   for (i <- 0 until 2) {
@@ -1181,7 +1188,7 @@ class Execute(val hartId: Int = 0)(implicit val p: Parameters) extends Module wi
   dmem.io.wen   := sq.io.drain.valid
   dmem.io.wmask := sq.io.drain.wmask
   dmem.io.wdata := sq.io.drain.wdata
-  sq.io.drain_ready := true.B
+  sq.io.drain_ready := io.dcache_req.ready
 
   io.uart_tx_valid := dmem.io.uart_tx_valid
   io.uart_tx_char  := dmem.io.uart_tx_char
@@ -1231,11 +1238,17 @@ class Execute(val hartId: Int = 0)(implicit val p: Parameters) extends Module wi
     amx_inflight := false.B
   }
 
-  io.dcache_req.valid := sq.io.drain.valid || (r_agu_val(0) && r_agu_uop(0).decode.is_load && !sq.io.stlf_resp(0).hit)
-  io.dcache_req.bits.addr := Mux(sq.io.drain.valid, sq.io.drain.paddr, lsu(0).io.mem_addr)
+  val load_req_0 = r_agu_val(0) && (r_agu_uop(0).decode.is_load || r_agu_uop(0).decode.is_fload) && !sq.io.stlf_resp(0).hit
+  val load_req_1 = r_agu_val(1) && (r_agu_uop(1).decode.is_load || r_agu_uop(1).decode.is_fload) && !sq.io.stlf_resp(1).hit
+  val has_load_req = load_req_0 || load_req_1
+  val chosen_load_addr = Mux(load_req_0, lsu(0).io.mem_addr, lsu(1).io.mem_addr)
+  val chosen_load_pdest = Mux(load_req_0, r_agu_uop(0).pdest, r_agu_uop(1).pdest)
+
+  io.dcache_req.valid := sq.io.drain.valid || has_load_req
+  io.dcache_req.bits.addr := Mux(sq.io.drain.valid, sq.io.drain.paddr, chosen_load_addr)
   io.dcache_req.bits.data := sq.io.drain.wdata
   io.dcache_req.bits.is_write := sq.io.drain.valid
-  io.dcache_req.bits.load_id := r_agu_uop(0).pdest
+  io.dcache_req.bits.load_id := Mux(sq.io.drain.valid, 0.U, chosen_load_pdest)
   io.dcache_resp.ready := true.B
 
   io.pf_train.valid := r_agu_val(0) && (r_agu_uop(0).decode.is_load || r_agu_uop(0).decode.is_fload)

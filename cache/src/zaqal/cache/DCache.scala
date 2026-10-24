@@ -38,6 +38,10 @@ class DCache(implicit val p: Parameters) extends Module with HasZaqalParameter {
     val pf_train = Flipped(Valid(new L1PrefetchTrainBundle(xLen)))
     val branch_signal = Input(Valid(new BranchPredictionBus))
     val flush = Input(Bool())
+
+    // LR/SC Reservation Invalidation Probe Interface
+    val snoop_probe_valid = Output(Bool())
+    val snoop_probe_addr  = Output(UInt(xLen.W))
   })
 
   // Basic Cache Parameters (Direct Mapped 64 sets, 32 bytes/line = 256 bits = 4 x 64-bit doublewords)
@@ -202,6 +206,9 @@ class DCache(implicit val p: Parameters) extends Module with HasZaqalParameter {
   val isProbeHit   = validArray(probeIndex) && (tagArray(probeIndex) === probeTag)
   val isProbeDirty = dirtyArray(probeIndex)
   val probeData    = Cat((0 until 4).reverse.map(i => dataArray(probeIndex)(i)))
+
+  io.snoop_probe_valid := io.tl.b.valid
+  io.snoop_probe_addr  := io.tl.b.bits.address
 
   io.tl.b.ready := io.tl.c.ready
   io.tl.c.valid := io.tl.b.valid

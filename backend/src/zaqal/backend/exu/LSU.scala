@@ -20,6 +20,10 @@ class LSU(implicit val p: Parameters) extends Module with HasZaqalParameter {
     val mem_wdata = Output(UInt((xLen * 2).W))
 
     val result   = Output(UInt(xLen.W)) // Extended data for WB
+
+    // Coherence Snoop Invalidation for LR/SC
+    val snoop_probe_valid = Input(Bool())
+    val snoop_probe_addr  = Input(UInt(xLen.W))
   })
 
   // Reservation state
@@ -66,7 +70,9 @@ class LSU(implicit val p: Parameters) extends Module with HasZaqalParameter {
   io.result := res
   
   // LR/SC State Updates
-  when(io.dec.is_lr) {
+  when(io.snoop_probe_valid && reserve_valid && (reserve_addr(xLen - 1, 5) === io.snoop_probe_addr(xLen - 1, 5))) {
+    reserve_valid := false.B
+  } .elsewhen(io.dec.is_lr) {
     reserve_valid := true.B
     reserve_addr  := addr
   } .elsewhen(io.dec.is_sc || io.dec.is_store) {

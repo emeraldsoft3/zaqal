@@ -515,6 +515,8 @@ class Backend(val hartId: Int = 0)(implicit val p: Parameters) extends Module wi
   val dcache = Module(new DCache)
   dcache.io.req <> exec.io.dcache_req
   exec.io.dcache_resp <> dcache.io.resp
+  exec.io.snoop_probe_valid := dcache.io.snoop_probe_valid
+  exec.io.snoop_probe_addr  := dcache.io.snoop_probe_addr
   dcache.io.pf_train := exec.io.pf_train
   dcache.io.branch_signal := io.branch_signal
   dcache.io.flush := io.redirect.valid
