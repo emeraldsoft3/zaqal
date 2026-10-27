@@ -288,11 +288,16 @@ class DualCoreTop(implicit val p: Parameters) extends Module with HasZaqalParame
     val c1_d_opcode    = Output(UInt(3.W))
     val c1_d_data      = Output(UInt(tlDataBits.W))
     val c1_e_valid     = Output(Bool())
+    val debug_cycle    = Output(UInt(64.W))
   })
 
   // 1. Instantiate the Two Complete Out-of-Order RISC-V Cores
   val core0 = Module(new Core(hartId = 0))
   val core1 = Module(new Core(hartId = 1))
+
+  val cycle_reg = RegInit(0.U(64.W))
+  cycle_reg := cycle_reg + 1.U
+  io.debug_cycle := cycle_reg
 
   // 2. Instantiate Inclusive L2 Cache and Shared L3 Cache
   val l2 = Module(new L2Cache(nClients = 2, nSets = 32, nWays = 4))

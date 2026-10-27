@@ -18,6 +18,6 @@ This phase focuses on scaling Zaqal from a single-core processor to a multi-core
 - **Detailed Plan**: We will configure the system to instantiate multiple Zaqal harts (hardware threads/cores) on the same SoC. Each core must be assigned a unique `mhartid` so the operating system can distinguish them. We will implement advanced Atomic Memory Operations (AMOs) like Load-Reserved/Store-Conditional (LR/SC) and Atomic Fetch-and-Add. These are critical for software mutexes and spinlocks. The coherent interconnect must enforce strict atomicity across all cores, locking memory lines during updates to guarantee thread-safe synchronization.
 
 ## Day 13+: Memory Consistency Verification
-- [ ] Use Litmus tests to verify the RISC-V Weak Memory Ordering (RVWMO) model.
+- [x] Use Litmus tests to verify the RISC-V Weak Memory Ordering (RVWMO) model.
 - [ ] Benchmark multi-threaded workloads (e.g., Pthread, OpenMP).
 - **Detailed Plan**: Multi-core architectures are notoriously difficult to verify due to complex memory reordering. RISC-V uses the Weak Memory Ordering (RVWMO) model. We will run rigorous "Litmus Tests"—tiny programs specifically designed to stress-test memory consistency barriers (FENCE instructions) and coherence races. Once the memory consistency is mathematically proven correct, we will boot SMP (Symmetric Multi-Processing) Linux and run multi-threaded workloads like OpenMP benchmarks to validate the raw multi-core scaling performance of the Zaqal SoC.

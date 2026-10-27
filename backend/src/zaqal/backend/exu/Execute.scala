@@ -1244,11 +1244,27 @@ class Execute(val hartId: Int = 0)(implicit val p: Parameters) extends Module wi
   val chosen_load_addr = Mux(load_req_0, lsu(0).io.mem_addr, lsu(1).io.mem_addr)
   val chosen_load_pdest = Mux(load_req_0, r_agu_uop(0).pdest, r_agu_uop(1).pdest)
 
-  io.dcache_req.valid := sq.io.drain.valid || has_load_req
-  io.dcache_req.bits.addr := Mux(sq.io.drain.valid, sq.io.drain.paddr, chosen_load_addr)
-  io.dcache_req.bits.data := sq.io.drain.wdata
-  io.dcache_req.bits.is_write := sq.io.drain.valid
-  io.dcache_req.bits.load_id := Mux(sq.io.drain.valid, 0.U, chosen_load_pdest)
+  val load_q = Module(new Queue(chiselTypeOf(io.dcache_req.bits), entries = 8, flow = true))
+  load_q.io.enq.valid := has_load_req
+  load_q.io.enq.bits.addr := chosen_load_addr
+  load_q.io.enq.bits.data := 0.U
+  load_q.io.enq.bits.is_write := false.B
+  load_q.io.enq.bits.load_id := chosen_load_pdest
+
+  when(sq.io.drain.valid) {
+    io.dcache_req.valid := true.B
+    io.dcache_req.bits.addr := sq.io.drain.paddr
+    io.dcache_req.bits.data := sq.io.drain.wdata
+    io.dcache_req.bits.is_write := true.B
+    io.dcache_req.bits.load_id := 0.U
+    sq.io.drain_ready := io.dcache_req.ready
+    load_q.io.deq.ready := false.B
+  } .otherwise {
+    io.dcache_req.valid := load_q.io.deq.valid
+    io.dcache_req.bits := load_q.io.deq.bits
+    sq.io.drain_ready := false.B
+    load_q.io.deq.ready := io.dcache_req.ready
+  }
   io.dcache_resp.ready := true.B
 
   io.pf_train.valid := r_agu_val(0) && (r_agu_uop(0).decode.is_load || r_agu_uop(0).decode.is_fload)
