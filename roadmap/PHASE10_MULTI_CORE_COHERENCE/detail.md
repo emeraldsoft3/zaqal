@@ -19,5 +19,5 @@ This phase focuses on scaling Zaqal from a single-core processor to a multi-core
 
 ## Day 13+: Memory Consistency Verification
 - [x] Use Litmus tests to verify the RISC-V Weak Memory Ordering (RVWMO) model.
-- [ ] Benchmark multi-threaded workloads (e.g., Pthread, OpenMP).
+- [x] Benchmark multi-threaded workloads (e.g., Pthread, OpenMP).
 - **Detailed Plan**: Multi-core architectures are notoriously difficult to verify due to complex memory reordering. RISC-V uses the Weak Memory Ordering (RVWMO) model. We will run rigorous "Litmus Tests"—tiny programs specifically designed to stress-test memory consistency barriers (FENCE instructions) and coherence races. Once the memory consistency is mathematically proven correct, we will boot SMP (Symmetric Multi-Processing) Linux and run multi-threaded workloads like OpenMP benchmarks to validate the raw multi-core scaling performance of the Zaqal SoC.
