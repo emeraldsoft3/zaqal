@@ -1,0 +1,10126 @@
+// Verilated -*- C++ -*-
+// DESCRIPTION: Verilator output: Design implementation internals
+// See VCore.h for the primary calling header
+
+#include "VCore__pch.h"
+#include "VCore___024root.h"
+
+VL_INLINE_OPT void VCore___024root___nba_sequent__TOP__15(VCore___024root* vlSelf) {
+    VL_DEBUG_IF(VL_DBG_MSGF("+    VCore___024root___nba_sequent__TOP__15\n"); );
+    VCore__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
+    auto& vlSelfRef = std::ref(*vlSelf).get();
+    // Body
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8904) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_41_pre_decoded_12_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_6));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_41_pre_decoded_13_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_6 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_41_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_41_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8774) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_41_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_41_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_41_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8773) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_40_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_40_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_40_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8663) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_60_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_60_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8643) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_40_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_40_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_40_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8691) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_23_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_23_pre_decoded_9_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_23_pre_decoded_8_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8641) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_38_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_38_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_38_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8975) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_48_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8933) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_6_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_6_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8983) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_56_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_56_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_56_instructions_15 
+            = VL_SHIFTR_III(32,32,32, vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7, 0x10U);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8958) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_31_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8912) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_49_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_49_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_49_instructions_15 
+            = VL_SHIFTR_III(32,32,32, vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7, 0x10U);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_49_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8980) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_53_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_53_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8937) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_10_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_10_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_10_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8938) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_11_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_11_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8925) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_62_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_62_pre_decoded_7_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8589) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_51_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_51_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_51_pre_decoded_7_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8812) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_14_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_14_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8419) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_4_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_4_pre_decoded_9_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_4_pre_decoded_4_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8837) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_39_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_39_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_39_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8863) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_0_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_0_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_0_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8775) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_42_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_42_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_42_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_42_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8863) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_0_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_0_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_0_pre_decoded_7_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8772) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_39_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_39_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_39_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_39_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8879) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_16_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8888) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_25_instructions_10 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_25_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_25_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_25_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_25_pre_decoded_7_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8813) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_15_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_15_instructions_6 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_15_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_15_pre_decoded_4_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8838) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_40_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_40_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_40_instructions_6 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_40_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_40_pre_decoded_4_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8853) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_55_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_55_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_55_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_55_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_55_pre_decoded_9_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_55_pre_decoded_5_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8864) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_1_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_1_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_1_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_1_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_1_instructions_6 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_1_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8930) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_3_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_3_instructions_14 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_3_pre_decoded_9_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8421) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_5_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_5_pre_decoded_9_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8890) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_27_instructions_10 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_27_instructions_14 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_27_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_27_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_27_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_27_instructions_6 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_27_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8894) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_31_instructions_10 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_31_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_31_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_31_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8895) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_32_instructions_10 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_32_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_32_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_32_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8901) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_38_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_38_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8921) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_58_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_58_instructions_10 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_58_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_58_pre_decoded_7_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_58_pre_decoded_5_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_58_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8901) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_38_instructions_14 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8906) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_43_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_43_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8967) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_40_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_40_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_40_instructions_10 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_40_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_40_instructions_6 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_40_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8955) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_28_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_28_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_28_instructions_14 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_28_pre_decoded_7_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8910) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_47_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_47_instructions_15 
+            = VL_SHIFTR_III(32,32,32, vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7, 0x10U);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8775) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_42_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8772) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_39_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8771) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_38_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_38_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_38_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_38_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_38_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_38_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8968) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_41_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_41_instructions_10 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_41_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_41_instructions_14 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_41_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8916) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_53_instructions_10 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_53_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8917) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_54_instructions_10 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_54_pre_decoded_9_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_54_instructions_6 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_54_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8918) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_55_instructions_10 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_55_instructions_14 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_55_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_55_instructions_6 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_55_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8924) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_61_instructions_10 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_61_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_61_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8955) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_28_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8664) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_61_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_61_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_61_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_61_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_61_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8697) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_29_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_29_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_29_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_29_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_29_pre_decoded_6_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8664) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_61_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8946) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_19_instructions_10 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_19_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_19_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8930) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_3_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8900) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_37_pre_decoded_12_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_6));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_37_pre_decoded_13_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_6 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_37_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_37_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_37_instructions_14 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_37_instructions_15 
+            = VL_SHIFTR_III(32,32,32, vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7, 0x10U);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_37_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_37_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8923) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_60_instructions_10 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_60_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_60_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_60_pre_decoded_3_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8421) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_5_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8920) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_57_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_57_instructions_10 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_57_pre_decoded_9_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_57_pre_decoded_8_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8954) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_27_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_27_instructions_14 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8941) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_14_instructions_10 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8932) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_5_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8822) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_24_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_24_pre_decoded_8_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_24_instructions_6 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8941) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_14_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_14_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8823) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_25_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8584) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_46_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8966) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_39_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_39_instructions_10 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_39_pre_decoded_8_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_39_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8584) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_46_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8823) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_25_instructions_6 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8976) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_49_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_49_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8977) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_50_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_50_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8927) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_0_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_0_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_0_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_0_instructions_6 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8942) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_15_instructions_10 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_15_instructions_6 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_15_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_15_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8841) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_43_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_43_pre_decoded_7_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8867) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_4_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8584) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_46_pre_decoded_4_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8733) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_0_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_0_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_0_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8584) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_46_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_46_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_46_pre_decoded_3_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8867) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_4_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8509) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_49_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_49_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8867) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_4_pre_decoded_7_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8763) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_30_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_30_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_30_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_30_instructions_6 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_30_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8483) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_36_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_36_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_36_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8889) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_26_instructions_10 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8852) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_54_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_54_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8513) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_51_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_51_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_51_instructions_6 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8852) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_54_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_54_pre_decoded_9_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_54_pre_decoded_4_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_54_pre_decoded_5_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8776) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_43_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_43_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_43_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_43_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8889) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_26_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8892) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_29_instructions_10 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8956) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_29_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_29_pre_decoded_9_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8779) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_46_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_46_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_46_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_46_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_46_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8892) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_29_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8485) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_37_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_37_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_37_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_37_pre_decoded_7_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8533) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_61_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8525) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_57_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_57_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_57_pre_decoded_9_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_57_pre_decoded_6_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_57_instructions_6 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8485) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_37_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8778) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_45_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8892) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_29_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8889) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_26_instructions_14 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_26_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_26_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8778) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_45_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_45_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_45_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_45_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8889) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_26_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8777) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_44_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_44_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_44_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_44_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_44_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8889) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_26_instructions_6 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8892) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_29_pre_decoded_8_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_29_pre_decoded_9_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_29_pre_decoded_7_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8889) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_26_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8953) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_26_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_26_instructions_14 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_26_pre_decoded_8_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8527) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_58_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8907) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_44_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8898) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_35_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8939) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_12_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_12_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8889) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_26_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8505) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_47_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_47_pre_decoded_6_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_47_instructions_6 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8637) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_34_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_34_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8505) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_47_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8907) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_44_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_44_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8570) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_32_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_32_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_32_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_32_pre_decoded_9_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_32_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8907) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_44_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_44_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8567) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_29_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_29_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_29_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8909) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_46_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_46_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8417) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_3_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_3_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8909) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_46_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8913) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_50_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_50_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_50_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_50_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8914) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_51_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_51_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_51_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8898) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_35_pre_decoded_8_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8978) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_51_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_51_instructions_14 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_51_instructions_15 
+            = VL_SHIFTR_III(32,32,32, vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7, 0x10U);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8898) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_35_instructions_6 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8965) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_38_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_38_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8988) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_61_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8694) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_26_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_26_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_26_instructions_14 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_26_pre_decoded_8_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_26_pre_decoded_7_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_26_instructions_6 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_26_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8988) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_61_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_61_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8989) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_62_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_62_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_62_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8988) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_61_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8965) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_38_pre_decoded_6_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_38_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8902) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_39_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_39_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_39_pre_decoded_9_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8914) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_51_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_51_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8990) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_63_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_63_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_63_instructions_14 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_63_instructions_15 
+            = VL_SHIFTR_III(32,32,32, vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7, 0x10U);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8449) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_19_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8990) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_63_pre_decoded_9_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8546) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_8_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_8_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_8_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8990) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_63_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8536) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_63_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_63_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_63_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_63_pre_decoded_4_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8939) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_12_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8990) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_63_pre_decoded_7_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8943) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_16_instructions_10 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_16_instructions_14 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_16_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8638) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_35_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_35_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_35_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8990) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_63_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8786) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_53_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_53_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8785) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_52_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_52_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8784) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_51_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_51_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8943) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_16_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8944) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_17_instructions_10 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8783) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_50_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8776) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_43_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8783) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_50_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_50_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8782) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_49_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_49_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8777) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_44_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8782) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_49_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8781) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_48_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_48_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_48_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8557) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_19_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_19_pre_decoded_9_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8778) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_45_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8708) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_40_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_40_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8944) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_17_instructions_14 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_17_pre_decoded_9_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8770) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_37_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8944) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_17_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_17_pre_decoded_3_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8765) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_32_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_32_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8779) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_46_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8764) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_31_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_31_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_31_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8770) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_37_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_37_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8762) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_29_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_29_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_29_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_29_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_29_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_29_instructions_6 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8722) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_54_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_54_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_54_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_54_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_54_pre_decoded_7_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8762) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_29_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8761) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_28_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_28_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_28_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_28_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_28_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_28_pre_decoded_4_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_28_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8760) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_27_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_27_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_27_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_27_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_27_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_27_pre_decoded_4_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8762) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_29_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8944) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_17_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8720) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_52_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_52_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_52_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_52_pre_decoded_9_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8718) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_50_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_50_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_50_pre_decoded_9_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_50_instructions_6 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8948) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_21_instructions_10 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8770) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_37_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8718) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_50_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8760) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_27_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8770) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_37_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_37_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8783) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_50_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8948) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_21_pre_decoded_9_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8720) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_52_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8948) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_21_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_21_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8949) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_22_instructions_10 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_22_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_22_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_22_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8689) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_21_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_21_pre_decoded_7_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8903) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_40_pre_decoded_12_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_6));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8668) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_0_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_0_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_0_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_0_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8903) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_40_pre_decoded_13_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_6 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_40_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_40_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8665) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_62_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_62_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_62_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8903) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_40_pre_decoded_9_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8689) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_21_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8965) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_38_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8638) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_35_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8968) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_41_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8451) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_20_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8961) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_34_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_34_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_34_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8565) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_27_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8574) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_36_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_36_pre_decoded_9_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8565) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_27_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_27_pre_decoded_9_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_27_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_27_pre_decoded_7_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8574) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_36_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8565) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_27_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8988) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_61_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8989) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_62_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8990) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_63_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8757) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_24_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8604) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_1_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_1_instructions_6 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8757) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_24_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_24_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_24_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8756) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_23_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_23_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_23_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8507) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_48_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8756) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_23_pre_decoded_7_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8636) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_33_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_33_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8974) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_47_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8507) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_48_pre_decoded_8_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8974) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_47_instructions_10 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8757) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_24_instructions_14 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8639) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_36_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_36_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_36_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8757) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_24_pre_decoded_7_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8600) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_62_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_62_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_62_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8708) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_40_pre_decoded_3_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8695) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_27_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_27_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8519) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_54_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_54_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8695) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_27_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_27_instructions_6 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8548) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_10_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8611) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_8_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_8_pre_decoded_9_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_8_pre_decoded_4_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8548) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_10_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8695) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_27_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8620) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_17_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_17_instructions_6 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_17_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8969) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_42_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_42_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_42_instructions_10 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_42_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_42_instructions_14 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8789) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_56_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_56_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_56_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8969) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_42_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_42_pre_decoded_7_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8562) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_24_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8811) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_13_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8956) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_29_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8811) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_13_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8511) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_50_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_50_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_50_pre_decoded_7_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8919) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_56_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8755) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_22_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8919) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_56_instructions_10 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_56_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_56_instructions_14 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8519) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_54_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8431) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_10_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_10_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8919) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_56_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8443) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_16_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_16_instructions_6 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_16_pre_decoded_7_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8919) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_56_instructions_6 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8755) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_22_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_22_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_22_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8919) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_56_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_56_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8755) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_22_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8953) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_26_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8547) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_9_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_9_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8695) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_27_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8758) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_25_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8662) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_59_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_59_pre_decoded_8_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8758) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_25_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_25_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8587) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_49_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8758) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_25_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_25_instructions_14 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_25_pre_decoded_4_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8945) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_18_instructions_10 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_18_pre_decoded_8_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_18_pre_decoded_4_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8970) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_43_instructions_10 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8817) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_19_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8662) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_59_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8766) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_33_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_33_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8817) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_19_pre_decoded_8_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_19_pre_decoded_9_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_19_pre_decoded_7_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8971) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_44_instructions_10 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8899) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_36_pre_decoded_13_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_6 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8971) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_44_instructions_15 
+            = VL_SHIFTR_III(32,32,32, vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7, 0x10U);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8899) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_36_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_36_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_36_instructions_14 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8766) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_33_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8899) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_36_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_36_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_36_instructions_6 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8971) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_44_pre_decoded_9_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_44_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_44_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_44_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8739) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_6_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_6_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_6_instructions_14 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_6_pre_decoded_3_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8578) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_40_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_40_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8721) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_53_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_53_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_53_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_53_pre_decoded_9_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_53_pre_decoded_7_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_53_instructions_6 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8739) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_6_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8836) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_38_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_38_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8928) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_1_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_1_instructions_14 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_1_instructions_6 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_1_pre_decoded_5_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8978) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_51_pre_decoded_3_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8677) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_9_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_9_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8840) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_42_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8677) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_9_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8676) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_8_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_8_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8842) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_44_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8861) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_63_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_63_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_63_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_63_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8699) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_31_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_31_pre_decoded_4_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_31_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8552) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_14_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_14_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_14_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8753) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_20_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_20_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8699) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_31_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8723) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_55_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_55_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_55_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_55_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_55_pre_decoded_9_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_55_pre_decoded_6_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_55_pre_decoded_4_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8699) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_31_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8752) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_19_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8603) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_0_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8601) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_63_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_63_instructions_6 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8790) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_57_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8563) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_25_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8564) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_26_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_26_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8606) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_3_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_3_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_3_pre_decoded_8_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8563) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_25_pre_decoded_8_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8564) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_26_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8523) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_56_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8752) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_19_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8605) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_2_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8796) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_63_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_63_pre_decoded_8_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8606) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_3_pre_decoded_9_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8523) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_56_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8796) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_63_instructions_6 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8605) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_2_pre_decoded_8_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8798) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_0_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_0_pre_decoded_8_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_0_pre_decoded_9_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8605) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_2_instructions_6 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8798) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_0_instructions_6 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8751) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_18_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8750) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_17_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8749) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_16_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8431) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_10_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8751) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_18_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8523) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_56_pre_decoded_9_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_56_instructions_6 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_56_pre_decoded_6_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8640) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_37_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_37_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_37_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_37_instructions_6 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_37_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8928) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_1_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8703) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_35_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_35_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8707) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_39_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_39_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_39_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8703) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_35_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_35_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8523) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_56_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8451) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_20_pre_decoded_3_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8548) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_10_pre_decoded_3_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8562) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_24_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8866) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_3_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8588) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_50_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8730) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_62_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8564) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_26_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_26_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8585) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_47_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8563) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_25_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_25_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8588) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_50_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8433) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_11_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_11_instructions_14 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8590) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_52_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_52_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8662) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_59_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8788) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_55_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8590) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_52_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8585) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_47_pre_decoded_4_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8549) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_11_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_11_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8554) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_16_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8549) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_11_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8527) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_58_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8433) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_11_instructions_6 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8788) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_55_instructions_6 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8433) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_11_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8599) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_61_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_61_pre_decoded_8_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8788) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_55_pre_decoded_6_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_55_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_55_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8599) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_61_pre_decoded_7_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_61_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8527) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_58_pre_decoded_1_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8554) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_16_pre_decoded_8_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_16_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_16_instructions_6 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8590) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_52_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8587) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_49_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8588) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_50_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8587) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_49_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8585) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_47_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8730) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_62_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8554) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_16_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8780) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_47_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_47_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8552) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_14_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_14_pre_decoded_3_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8730) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_62_instructions_6 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8599) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_61_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8730) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_62_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8780) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_47_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_47_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8554) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_16_pre_decoded_3_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8780) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_47_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8541) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_3_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_3_pre_decoded_7_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8717) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_49_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_49_pre_decoded_7_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_49_instructions_6 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_49_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8541) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_3_instructions_6 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_3_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8697) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_29_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8411) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_0_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8556) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_18_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_18_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_18_pre_decoded_7_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_18_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_18_pre_decoded_4_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8707) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_39_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8449) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_19_pre_decoded_3_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_19_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8728) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_60_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8731) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_63_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8728) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_60_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_60_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8868) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_5_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8728) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_60_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_60_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8868) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_5_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8734) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_1_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_1_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8651) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_48_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8887) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_24_instructions_10 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8724) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_56_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_56_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_56_pre_decoded_4_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8887) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_24_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_24_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8651) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_48_pre_decoded_1_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8972) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_45_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8669) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_1_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_1_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_1_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8891) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_28_instructions_10 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_28_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8712) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_44_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8715) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_47_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_47_pre_decoded_8_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_47_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_47_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8714) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_46_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_46_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_46_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8712) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_44_pre_decoded_3_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_44_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_44_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8893) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_30_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8811) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_13_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_13_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8817) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_19_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_19_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8822) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_24_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8823) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_25_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8893) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_30_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8836) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_38_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_38_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_38_pre_decoded_1_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8840) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_42_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8878) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_15_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8840) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_42_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8878) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_15_pre_decoded_9_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8841) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_43_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_43_pre_decoded_1_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8878) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_15_pre_decoded_5_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8842) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_44_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_44_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8852) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_54_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8861) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_63_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_63_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_63_pre_decoded_1_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8866) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_3_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_3_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8867) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_4_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_4_pre_decoded_1_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8868) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_5_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8903) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_40_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8868) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_5_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8780) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_47_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8878) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_15_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8899) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_36_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8878) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_15_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8887) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_24_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8893) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_30_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_30_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8891) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_28_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8915) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_52_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_52_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8887) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_24_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_24_pre_decoded_1_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8891) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_28_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8892) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_29_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_29_pre_decoded_1_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8893) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_30_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8898) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_35_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8899) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_36_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8900) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_37_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8902) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_39_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8903) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_40_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8920) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_57_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8927) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_0_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8928) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_1_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8932) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_5_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8787) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_54_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_54_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8962) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_35_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8945) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_18_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8411) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_0_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8947) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_20_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_20_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_20_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_20_pre_decoded_7_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_20_pre_decoded_3_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_20_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_20_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8706) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_38_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_38_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8705) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_37_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_37_instructions_6 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_37_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8947) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_20_pre_decoded_1_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8962) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_35_pre_decoded_3_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_35_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8953) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_26_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8954) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_27_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8956) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_29_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8961) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_34_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_34_pre_decoded_0_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8966) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_39_pre_decoded_1_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8969) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_42_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_42_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8970) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_43_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8971) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_44_pre_decoded_1_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8972) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_45_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_45_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_45_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8769) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_36_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_36_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_36_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_36_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8972) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_45_pre_decoded_1_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8768) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_35_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_35_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_35_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_35_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8973) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_46_instructions_10 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8767) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_34_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_34_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_34_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_34_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8973) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_46_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_46_instructions_15 
+            = VL_SHIFTR_III(32,32,32, vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7, 0x10U);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_46_pre_decoded_8_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_46_pre_decoded_3_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_46_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_46_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8769) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_36_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8973) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_46_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8974) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_47_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_47_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8976) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_49_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8977) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_50_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8769) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_36_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8978) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_51_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8469) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_29_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_29_pre_decoded_9_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_29_pre_decoded_7_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8787) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_54_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_54_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8719) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_51_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_51_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8787) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_54_pc_6 
+            = (0xcULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8786) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_53_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_53_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_53_pc_6 
+            = (0xcULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8719) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_51_pre_decoded_8_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_51_pre_decoded_7_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8785) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_52_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_52_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_52_pc_6 
+            = (0xcULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_52_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_52_pc_3 
+            = (6ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_52_pc_1 
+            = (2ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8784) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_51_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_51_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8749) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_16_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8750) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_17_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8784) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_51_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_51_pc_6 
+            = (0xcULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_51_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8754) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_21_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8751) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_18_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8752) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_19_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8784) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_51_pc_1 
+            = (2ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8753) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_20_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8754) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_21_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8783) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_50_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_50_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8765) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_32_pre_decoded_0_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8764) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_31_pre_decoded_0_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8754) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_21_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_21_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8783) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_50_pc_13 
+            = (0x1aULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8748) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_15_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8749) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_16_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8748) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_15_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8783) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_50_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8750) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_17_pre_decoded_1_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8747) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_14_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_14_pre_decoded_7_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8750) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_17_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8747) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_14_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8751) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_18_pre_decoded_1_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_18_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8746) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_13_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_13_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_13_pre_decoded_7_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_13_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8687) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_19_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_19_instructions_14 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_19_pre_decoded_8_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8746) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_13_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8745) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_12_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8766) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_33_pre_decoded_0_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8752) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_19_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8783) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_50_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_50_pc_6 
+            = (0xcULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8753) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_20_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8745) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_12_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8767) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_34_pre_decoded_0_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8783) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_50_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8782) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_49_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8754) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_21_pre_decoded_1_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8597) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_59_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_59_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8757) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_24_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8782) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_49_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8768) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_35_pre_decoded_0_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8745) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_12_pre_decoded_8_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8756) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_23_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8755) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_22_pre_decoded_1_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8745) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_12_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8744) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_11_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_11_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_11_pre_decoded_8_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8743) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_10_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_10_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8744) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_11_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8597) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_59_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8598) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_60_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_60_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8791) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_58_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_58_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_58_pre_decoded_8_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8745) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_12_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8734) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_1_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8743) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_10_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8791) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_58_pre_decoded_9_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8782) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_49_pc_13 
+            = (0x1aULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8791) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_58_pre_decoded_7_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8782) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_49_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8759) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_26_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8576) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_38_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8758) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_25_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8576) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_38_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_38_instructions_6 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8759) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_26_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_26_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_26_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8742) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_9_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_9_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_9_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8759) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_26_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_26_pre_decoded_4_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_26_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_26_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8782) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_49_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_49_pc_6 
+            = (0xcULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_49_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8769) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_36_pre_decoded_0_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8781) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_48_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8429) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_9_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8781) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_48_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_48_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8741) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_8_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_8_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_8_pre_decoded_3_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_8_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8781) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_48_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8740) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_7_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8781) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_48_pc_6 
+            = (0xcULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8780) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_47_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_47_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8740) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_7_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_7_instructions_14 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_7_pre_decoded_3_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_7_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8780) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_47_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_47_pc_9 
+            = (0x12ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_47_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_47_pc_6 
+            = (0xcULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8693) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_25_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_25_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_25_pre_decoded_9_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8780) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_47_pc_3 
+            = (6ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8738) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_5_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_5_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8779) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_46_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_46_pc_13 
+            = (0x1aULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8738) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_5_pre_decoded_3_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8737) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_4_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8581) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_43_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8738) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_5_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_5_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8779) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_46_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_46_pc_9 
+            = (0x12ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_46_pc_6 
+            = (0xcULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_46_pc_5 
+            = (0xaULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_46_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8737) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_4_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8687) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_19_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8737) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_4_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8779) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_46_pc_3 
+            = (6ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_46_pc_2 
+            = (4ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_46_pc_1 
+            = (2ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8686) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_18_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8734) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_1_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8698) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_30_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_30_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_30_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_30_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_30_pre_decoded_9_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_30_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_30_pre_decoded_6_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_30_pre_decoded_4_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8779) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_46_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8686) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_18_pre_decoded_8_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8507) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_48_pre_decoded_1_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8778) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_45_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_45_pc_13 
+            = (0x1aULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_45_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8686) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_18_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_18_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8683) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_15_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_15_pre_decoded_3_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_15_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_15_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8778) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_45_pc_9 
+            = (0x12ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_45_pc_6 
+            = (0xcULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_45_pc_5 
+            = (0xaULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8680) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_12_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8778) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_45_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8680) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_12_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8778) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_45_pc_3 
+            = (6ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_45_pc_2 
+            = (4ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_45_pc_1 
+            = (2ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_45_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8679) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_11_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8777) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_44_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8679) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_11_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8777) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_44_pc_13 
+            = (0x1aULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8481) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_35_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_35_pre_decoded_8_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_35_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_35_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_35_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8777) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_44_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8669) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_1_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8777) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_44_pc_9 
+            = (0x12ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_44_pc_6 
+            = (0xcULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_44_pc_5 
+            = (0xaULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_44_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8531) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_60_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_60_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_60_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_60_pre_decoded_4_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8777) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_44_pc_3 
+            = (6ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_44_pc_2 
+            = (4ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_44_pc_1 
+            = (2ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_44_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8481) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_35_pre_decoded_1_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8776) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_43_pc_13 
+            = (0x1aULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_43_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_43_pc_5 
+            = (0xaULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8666) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_63_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8469) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_29_pre_decoded_3_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8666) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_63_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_63_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8692) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_24_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_24_pre_decoded_8_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_24_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8776) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_43_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8666) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_63_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8776) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_43_pc_2 
+            = (4ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8698) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_30_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8665) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_62_pre_decoded_0_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8429) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_9_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8469) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_29_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8675) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_7_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8531) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_60_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8668) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_0_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8665) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_62_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8692) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_24_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8666) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_63_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8776) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_43_pc_1 
+            = (2ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8666) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_63_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8776) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_43_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8692) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_24_pre_decoded_1_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8636) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_33_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8511) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_50_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8669) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_1_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8639) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_36_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8675) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_7_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8770) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_37_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_37_pc_9 
+            = (0x12ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_37_pc_6 
+            = (0xcULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_37_pc_3 
+            = (6ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8769) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_36_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_36_pc_13 
+            = (0x1aULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_36_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_36_pc_9 
+            = (0x12ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_36_pc_6 
+            = (0xcULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8675) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_7_instructions_6 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8769) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_36_pc_5 
+            = (0xaULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_36_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_36_pc_3 
+            = (6ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8674) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_6_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8769) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_36_pc_2 
+            = (4ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_36_pc_1 
+            = (2ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_36_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8674) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_6_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8768) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_35_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8674) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_6_instructions_14 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8673) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_5_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_5_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8674) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_6_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_6_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8768) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_35_pc_13 
+            = (0x1aULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_35_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_35_pc_9 
+            = (0x12ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_35_pc_6 
+            = (0xcULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_35_pc_5 
+            = (0xaULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_35_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_35_pc_3 
+            = (6ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_35_pc_2 
+            = (4ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_35_pc_1 
+            = (2ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_35_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8767) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_34_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_34_pc_13 
+            = (0x1aULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_34_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8673) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_5_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8767) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_34_pc_9 
+            = (0x12ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8672) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_4_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8767) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_34_pc_6 
+            = (0xcULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8642) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_39_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_39_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8767) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_34_pc_5 
+            = (0xaULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_34_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8523) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_56_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8642) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_39_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8640) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_37_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8642) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_39_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_39_instructions_6 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_39_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_39_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8767) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_34_pc_3 
+            = (6ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_34_pc_2 
+            = (4ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8672) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_4_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8767) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_34_pc_1 
+            = (2ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8642) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_39_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_39_pre_decoded_1_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8767) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_34_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8766) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_33_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8433) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_11_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8766) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_33_pc_13 
+            = (0x1aULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_33_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8658) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_55_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8661) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_58_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8766) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_33_pc_9 
+            = (0x12ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_33_pc_6 
+            = (0xcULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8661) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_58_pre_decoded_9_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_58_pre_decoded_8_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8658) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_55_pre_decoded_8_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8766) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_33_pc_5 
+            = (0xaULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_33_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_33_pc_3 
+            = (6ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_33_pc_2 
+            = (4ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_33_pc_1 
+            = (2ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_33_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8661) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_58_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8765) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_32_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_32_pc_13 
+            = (0x1aULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_32_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8655) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_52_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8553) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_15_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_15_instructions_6 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8658) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_55_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8553) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_15_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8657) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_54_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8765) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_32_pc_9 
+            = (0x12ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8707) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_39_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8657) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_54_pre_decoded_8_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8717) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_49_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8556) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_18_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8727) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_59_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_59_pre_decoded_0_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8721) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_53_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8723) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_55_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8717) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_49_pre_decoded_1_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8729) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_61_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_61_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_61_instructions_6 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_61_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_61_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8719) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_51_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8547) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_9_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8719) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_51_pre_decoded_1_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8553) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_15_pre_decoded_3_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_15_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8765) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_32_pc_6 
+            = (0xcULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8411) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_0_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8578) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_40_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8657) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_54_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8661) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_58_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8583) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_45_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_45_pre_decoded_9_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8601) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_63_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8603) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_0_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8605) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_2_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8606) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_3_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8583) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_45_pre_decoded_5_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8598) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_60_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_60_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8597) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_59_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8796) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_63_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8798) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_0_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8790) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_57_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_57_pre_decoded_1_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8791) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_58_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8583) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_45_pre_decoded_3_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8791) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_58_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8597) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_59_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_59_pre_decoded_1_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8583) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_45_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8576) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_38_pre_decoded_3_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_38_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8711) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_43_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_43_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8713) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_45_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_45_pre_decoded_3_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_45_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_45_pre_decoded_0_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8541) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_3_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8711) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_43_pre_decoded_3_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_43_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8661) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_58_pre_decoded_0_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8657) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_54_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8443) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_16_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8765) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_32_pc_5 
+            = (0xaULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_32_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_32_pc_3 
+            = (6ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8656) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_53_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_53_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_53_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8765) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_32_pc_2 
+            = (4ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_32_pc_1 
+            = (2ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_32_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8655) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_52_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_52_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8653) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_50_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8655) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_52_pre_decoded_1_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8764) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_31_pc_13 
+            = (0x1aULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_31_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_31_pc_5 
+            = (0xaULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_31_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_31_pc_2 
+            = (4ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_31_pc_1 
+            = (2ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_31_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8763) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_30_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_30_pc_12 
+            = (0x18ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_30_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8653) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_50_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8763) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_30_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_30_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_30_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_30_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8762) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_29_pc_14 
+            = (0x1cULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_29_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_29_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_29_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_29_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8761) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_28_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_28_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_28_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8760) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_27_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_27_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_27_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8759) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_26_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8652) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_49_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_49_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8759) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_26_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8652) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_49_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8759) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_26_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_26_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_26_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8758) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_25_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_25_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_25_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_25_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_25_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8757) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_24_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_24_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_24_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8756) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_23_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_23_pc_12 
+            = (0x18ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_23_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_23_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_23_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8755) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_22_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_22_pc_14 
+            = (0x1cULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_22_pc_12 
+            = (0x18ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8754) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_21_pc_14 
+            = (0x1cULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8753) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_20_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_20_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_20_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8647) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_44_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8753) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_20_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_20_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8752) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_19_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8647) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_44_instructions_6 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8752) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_19_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_19_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_19_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_19_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8751) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_18_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8647) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_44_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8751) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_18_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_18_pc_8 
+            = (0x10ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8750) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_17_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_17_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_17_pc_8 
+            = (0x10ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8749) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_16_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_16_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_16_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_16_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_16_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8748) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_15_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_15_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_15_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_15_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_15_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8747) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_14_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_14_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_14_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_14_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_14_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8746) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_13_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_13_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_13_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_13_pc_6 
+            = (0xcULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_13_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_13_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8704) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_36_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_36_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8630) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_27_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8704) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_36_instructions_6 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_36_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8745) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_12_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_12_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_12_pc_6 
+            = (0xcULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8744) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_11_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_11_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_11_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8743) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_10_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8742) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_9_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_9_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8741) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_8_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8740) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_7_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_7_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8630) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_27_pre_decoded_9_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_27_pre_decoded_5_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_27_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8738) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_5_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_5_pc_6 
+            = (0xcULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8737) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_4_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_4_pc_6 
+            = (0xcULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_4_pc_3 
+            = (6ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_4_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8627) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_24_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8702) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_34_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_34_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8734) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_1_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8702) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_34_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8734) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_1_pc_9 
+            = (0x12ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_1_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_1_pc_6 
+            = (0xcULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_1_pc_3 
+            = (6ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_1_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8627) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_24_instructions_14 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_24_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8571) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_33_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_33_pre_decoded_9_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_33_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8627) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_24_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_24_pre_decoded_1_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8733) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_0_pc_13 
+            = (0x1aULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_0_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_0_pc_5 
+            = (0xaULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_0_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_0_pc_2 
+            = (4ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_0_pc_1 
+            = (2ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_0_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8513) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_51_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_51_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8633) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_30_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8684) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_16_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_16_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8696) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_28_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_28_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_28_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_28_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_28_pre_decoded_6_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8633) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_30_pre_decoded_8_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_30_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_30_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_30_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_30_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_30_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8687) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_19_pc_14 
+            = (0x1cULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_19_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_19_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_19_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_19_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8509) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_49_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_49_pc_14 
+            = (0x1cULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_49_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8632) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_29_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8509) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_49_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8632) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_29_pre_decoded_8_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_29_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_29_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_29_pc_12 
+            = (0x18ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_29_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_29_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_29_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8686) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_18_pc_12 
+            = (0x18ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_18_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8507) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_48_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_48_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_48_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_48_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8628) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_25_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_25_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_25_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8507) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_48_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8683) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_15_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_15_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8702) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_34_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8487) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_38_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_38_pre_decoded_6_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_38_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8628) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_25_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_25_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_25_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8682) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_14_instructions_14 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_14_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_14_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_14_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8625) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_22_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_22_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8680) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_12_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_12_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8922) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_59_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_59_pre_decoded_9_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8625) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_22_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_22_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_22_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_22_pc_9 
+            = (0x12ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_22_pc_6 
+            = (0xcULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_22_pc_5 
+            = (0xaULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_22_pc_2 
+            = (4ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_22_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8679) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_11_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_11_pc_13 
+            = (0x1aULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_11_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_11_pc_3 
+            = (6ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_11_pc_1 
+            = (2ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_11_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8493) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_41_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_41_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_41_pre_decoded_3_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_41_pre_decoded_0_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_41_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_41_pc_3 
+            = (6ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8623) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_20_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8493) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_41_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8623) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_20_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_20_pc_3 
+            = (6ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8675) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_7_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_7_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8485) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_37_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_37_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_37_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_37_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8674) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_6_pc_14 
+            = (0x1cULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_6_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_6_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8483) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_36_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_36_pc_14 
+            = (0x1cULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_36_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_36_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8673) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_5_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_5_pc_12 
+            = (0x18ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_5_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_5_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_5_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8481) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_35_pc_12 
+            = (0x18ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_35_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8672) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_4_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_4_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_4_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_4_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_4_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8922) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_59_pre_decoded_6_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_59_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_59_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_59_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_59_pre_decoded_1_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8515) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_52_instructions_14 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_52_pre_decoded_9_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_52_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8475) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_32_instructions_14 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_32_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_32_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_32_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8669) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_1_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8515) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_52_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8668) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_0_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_0_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8666) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_63_pc_9 
+            = (0x12ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_63_pc_6 
+            = (0xcULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_63_pc_5 
+            = (0xaULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_63_pc_2 
+            = (4ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8469) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_29_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_29_pc_13 
+            = (0x1aULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_29_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_29_pc_1 
+            = (2ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8665) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_62_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8695) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_27_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_27_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8525) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_57_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_57_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_57_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8638) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_35_pc_14 
+            = (0x1cULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_35_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8688) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_20_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_20_pre_decoded_9_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8919) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_56_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8692) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_24_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_24_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_24_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_24_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8519) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_54_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_54_pc_12 
+            = (0x18ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_54_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_54_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8688) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_20_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8636) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_33_pc_12 
+            = (0x18ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_33_pc_8 
+            = (0x10ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8688) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_20_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8915) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_52_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_52_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_52_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8511) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_50_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8634) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_31_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_31_pre_decoded_8_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_31_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_31_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_31_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8443) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_16_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8639) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_36_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8688) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_20_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8521) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_55_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_55_pre_decoded_8_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_55_pre_decoded_7_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_55_pre_decoded_3_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_55_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_55_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_55_pc_9 
+            = (0x12ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_55_pc_5 
+            = (0xaULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8659) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_56_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_56_pre_decoded_8_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_56_pre_decoded_7_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_56_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_56_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_56_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_56_pc_13 
+            = (0x1aULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_56_pc_3 
+            = (6ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_56_pc_1 
+            = (2ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8979) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_52_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_52_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_52_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8533) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_61_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_61_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8631) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_28_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_28_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_28_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_28_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_28_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8577) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_39_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_39_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_39_pc_14 
+            = (0x1cULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_39_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8693) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_25_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_25_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_25_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8685) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_17_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_17_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_17_instructions_14 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_17_instructions_6 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_17_pre_decoded_1_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_17_pc_14 
+            = (0x1cULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_17_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_17_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_17_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8505) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_47_pc_14 
+            = (0x1cULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_47_pc_12 
+            = (0x18ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_47_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8678) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_10_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_10_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_10_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8652) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_49_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_49_pc_14 
+            = (0x1cULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_49_pc_12 
+            = (0x18ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_49_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_49_pc_8 
+            = (0x10ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_49_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8441) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_15_pre_decoded_10_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_15_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_15_pre_decoded_4_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_15_pre_decoded_1_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_15_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_15_pc_14 
+            = (0x1cULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_15_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_15_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_15_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8637) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_34_pc_12 
+            = (0x18ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8624) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_21_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_21_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_21_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_21_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_21_pc_12 
+            = (0x18ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_21_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_21_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8570) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_32_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_32_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8567) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_29_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8435) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_12_instructions_14 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_12_instructions_6 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_12_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_12_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_12_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8649) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_46_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_46_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_46_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_46_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_46_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8731) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_63_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8642) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_39_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8696) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_28_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_28_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_28_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_28_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8908) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_45_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_45_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_45_pre_decoded_5_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_45_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_45_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_45_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8684) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_16_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_16_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_16_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_16_pc_14 
+            = (0x1cULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8627) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_24_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_24_pc_12 
+            = (0x18ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8417) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_3_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_3_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_3_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_3_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_3_pc_14 
+            = (0x1cULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8523) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_56_pc_12 
+            = (0x18ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_56_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8640) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_37_pc_8 
+            = (0x10ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_37_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_37_pc_14 
+            = (0x1cULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8694) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_26_pc_12 
+            = (0x18ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_26_pc_14 
+            = (0x1cULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_26_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8655) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_52_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_52_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_52_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8529) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_59_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_59_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8630) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_27_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_27_pc_6 
+            = (0xcULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8423) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_6_instructions_14 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_6_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_6_pc_13 
+            = (0x1aULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8451) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_20_pc_2 
+            = (4ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_20_pc_3 
+            = (6ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8531) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_60_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_60_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_60_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8698) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_30_pc_1 
+            = (2ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_30_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_30_pc_13 
+            = (0x1aULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8429) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_9_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_9_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_9_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8535) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_62_pre_decoded_11_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_5 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_62_pre_decoded_7_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_62_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_62_pre_decoded_0_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_62_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_62_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_62_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_62_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_62_pc_14 
+            = (0x1cULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8934) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_7_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8646) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_43_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_43_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_43_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_43_pc_12 
+            = (0x18ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_43_pc_14 
+            = (0x1cULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8431) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_10_pc_12 
+            = (0x18ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8536) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_63_pc_8 
+            = (0x10ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_63_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_63_pc_14 
+            = (0x1cULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8647) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_44_pc_12 
+            = (0x18ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_44_pc_14 
+            = (0x1cULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_44_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8415) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_2_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_2_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8433) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_11_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8415) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_2_pre_decoded_8_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_2_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8648) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_45_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_45_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_45_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_45_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_45_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8702) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_34_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_34_pc_6 
+            = (0xcULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_34_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_34_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8415) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_2_pc_6 
+            = (0xcULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_2_pc_2 
+            = (4ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8445) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_17_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_17_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_17_pc_12 
+            = (0x18ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8447) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_18_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_18_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_18_pre_decoded_8_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_18_instructions_6 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_18_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8650) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_47_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_47_instructions_6 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_47_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_47_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_47_pre_decoded_1_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_47_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_47_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8653) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_50_pc_3 
+            = (6ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_50_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8654) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_51_instructions_14 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_51_pc_3 
+            = (6ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8656) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_53_pc_2 
+            = (4ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_53_pc_5 
+            = (0xaULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_53_pc_6 
+            = (0xcULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8657) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_54_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_54_pc_1 
+            = (2ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_54_pc_2 
+            = (4ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_54_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_54_pc_5 
+            = (0xaULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_54_pc_6 
+            = (0xcULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_54_pc_9 
+            = (0x12ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8465) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_27_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8658) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_55_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_55_pc_1 
+            = (2ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_55_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_55_pc_9 
+            = (0x12ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_55_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_55_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_55_pc_13 
+            = (0x1aULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_55_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8465) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_27_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_27_pre_decoded_8_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_27_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8661) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_58_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8662) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_59_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_59_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8704) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_36_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_36_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_36_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8541) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_3_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_3_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_3_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_3_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_3_pc_12 
+            = (0x18ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_3_pc_14 
+            = (0x1cULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_3_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8705) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_37_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_37_pc_12 
+            = (0x18ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_37_pc_14 
+            = (0x1cULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8581) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_43_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8706) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_38_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_38_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_38_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_38_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_38_pc_12 
+            = (0x18ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_38_pc_14 
+            = (0x1cULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_38_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8543) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_5_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_5_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_5_pre_decoded_1_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_5_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_5_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_5_pc_8 
+            = (0x10ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_5_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_5_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8707) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_39_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_39_pc_12 
+            = (0x18ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_39_pc_14 
+            = (0x1cULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8803) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_5_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_5_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_5_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8708) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_40_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_40_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_40_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_40_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_40_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8803) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_5_pre_decoded_9_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_5_pre_decoded_4_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_5_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8818) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_20_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8546) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_8_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_8_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8818) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_20_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_20_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_20_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8547) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_9_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_9_pc_1 
+            = (2ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_9_pc_6 
+            = (0xcULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_9_pc_13 
+            = (0x1aULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8711) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_43_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8548) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_10_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8712) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_44_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8549) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_11_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8713) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_45_pc_3 
+            = (6ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_45_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8550) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_12_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_12_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_12_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_12_pc_3 
+            = (6ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8714) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_46_pc_2 
+            = (4ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_46_pc_5 
+            = (0xaULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_46_pc_6 
+            = (0xcULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8571) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_33_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8714) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_46_pc_9 
+            = (0x12ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8571) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_33_pre_decoded_1_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8819) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_21_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_21_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8569) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_31_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_31_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8566) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_28_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8819) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_21_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8824) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_26_instructions_15 
+            = VL_SHIFTR_III(32,32,32, vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7, 0x10U);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_26_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8828) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_30_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_30_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_30_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_30_pre_decoded_9_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_30_pre_decoded_5_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8715) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_47_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_47_pc_1 
+            = (2ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_47_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_47_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_47_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_47_pc_13 
+            = (0x1aULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8552) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_14_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_14_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8832) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_34_instructions_15 
+            = VL_SHIFTR_III(32,32,32, vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7, 0x10U);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_34_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8553) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_15_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_15_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_15_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_15_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8717) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_49_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_49_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_49_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_49_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_49_pc_12 
+            = (0x18ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_49_pc_14 
+            = (0x1cULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_49_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8554) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_16_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_16_pc_12 
+            = (0x18ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_16_pc_14 
+            = (0x1cULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8718) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_50_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_50_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_50_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_50_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_50_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8832) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_34_pre_decoded_0_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8833) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_35_instructions_15 
+            = VL_SHIFTR_III(32,32,32, vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7, 0x10U);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_35_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8843) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_45_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_45_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_45_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_45_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8719) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_51_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_51_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_51_pc_8 
+            = (0x10ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_51_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_51_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8556) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_18_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_18_pc_12 
+            = (0x18ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_18_pc_14 
+            = (0x1cULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8720) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_52_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_52_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_52_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_52_pc_12 
+            = (0x18ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_52_pc_14 
+            = (0x1cULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8557) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_19_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_19_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_19_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_19_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8566) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_28_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_28_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8721) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_53_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8558) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_20_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8566) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_28_pre_decoded_1_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8558) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_20_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_20_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8722) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_54_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_54_pc_3 
+            = (6ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_54_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8844) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_46_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_46_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_46_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_46_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8723) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_55_pc_1 
+            = (2ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_55_pc_6 
+            = (0xcULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8724) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_56_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8849) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_51_instructions_15 
+            = VL_SHIFTR_III(32,32,32, vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7, 0x10U);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_51_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8562) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_24_pc_3 
+            = (6ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_24_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8850) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_52_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8563) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_25_pc_2 
+            = (4ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_25_pc_5 
+            = (0xaULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_25_pc_6 
+            = (0xcULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_25_pc_9 
+            = (0x12ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8727) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_59_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_59_pc_1 
+            = (2ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_59_pc_2 
+            = (4ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_59_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_59_pc_5 
+            = (0xaULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_59_pc_6 
+            = (0xcULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_59_pc_9 
+            = (0x12ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_59_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_59_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_59_pc_13 
+            = (0x1aULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8564) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_26_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_26_pc_1 
+            = (2ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_26_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_26_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_26_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_26_pc_13 
+            = (0x1aULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8728) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_60_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_60_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8565) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_27_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_27_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8729) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_61_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_61_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_61_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_61_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8566) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_28_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_28_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_28_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_28_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_28_pc_12 
+            = (0x18ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_28_pc_14 
+            = (0x1cULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8730) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_62_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_62_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_62_pc_12 
+            = (0x18ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_62_pc_14 
+            = (0x1cULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8850) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_52_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8854) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_56_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_56_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_56_pre_decoded_5_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8855) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_57_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8569) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_31_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_31_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_31_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8571) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_33_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_33_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_33_pc_8 
+            = (0x10ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_33_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8855) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_57_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_57_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_57_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8574) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_36_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_36_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_36_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_36_pc_12 
+            = (0x18ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_36_pc_14 
+            = (0x1cULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_36_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8855) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_57_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8856) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_58_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_58_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_58_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8576) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_38_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_38_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_38_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8578) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_40_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_40_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8856) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_58_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_58_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8857) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_59_instructions_15 
+            = VL_SHIFTR_III(32,32,32, vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7, 0x10U);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_59_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_59_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_59_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_59_pre_decoded_0_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8858) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_60_instructions_15 
+            = VL_SHIFTR_III(32,32,32, vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7, 0x10U);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8581) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_43_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_43_pc_1 
+            = (2ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_43_pc_6 
+            = (0xcULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_43_pc_13 
+            = (0x1aULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8858) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_60_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8411) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_0_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_0_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8583) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_45_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_45_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8585) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_47_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8860) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_62_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_62_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8587) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_49_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_49_pc_1 
+            = (2ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_49_pc_2 
+            = (4ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_49_pc_3 
+            = (6ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_49_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_49_pc_5 
+            = (0xaULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_49_pc_6 
+            = (0xcULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_49_pc_9 
+            = (0x12ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_49_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_49_pc_13 
+            = (0x1aULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8588) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_50_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_50_pc_1 
+            = (2ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_50_pc_2 
+            = (4ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_50_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_50_pc_5 
+            = (0xaULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_50_pc_6 
+            = (0xcULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_50_pc_9 
+            = (0x12ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_50_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_50_pc_13 
+            = (0x1aULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8590) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_52_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_52_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8591) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_53_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_53_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_53_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_53_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_53_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8592) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_54_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_54_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_54_instructions_6 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_54_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_54_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_54_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_54_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_54_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_54_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8860) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_62_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_62_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_62_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8865) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_2_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_2_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_2_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_2_instructions_6 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_2_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8870) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_7_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_7_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_7_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_7_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8871) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_8_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_8_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_8_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8597) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_59_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_59_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_59_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_59_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_59_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8598) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_60_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_60_pc_8 
+            = (0x10ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_60_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_60_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8599) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_61_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_61_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_61_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8600) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_62_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_62_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_62_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8601) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_63_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8603) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_0_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_0_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8604) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_1_pc_3 
+            = (6ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_1_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_1_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_1_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_1_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8605) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_2_pc_3 
+            = (6ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_2_pc_6 
+            = (0xcULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_2_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8606) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_3_pc_3 
+            = (6ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_3_pc_6 
+            = (0xcULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_3_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8607) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_4_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_4_pre_decoded_9_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_4_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_4_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_4_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8872) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_9_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_9_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8873) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_10_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_10_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8611) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_8_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8873) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_10_pre_decoded_8_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_10_instructions_6 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8613) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_10_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_10_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_10_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_10_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_10_pc_1 
+            = (2ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_10_pc_2 
+            = (4ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_10_pc_3 
+            = (6ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_10_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_10_pc_5 
+            = (0xaULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_10_pc_6 
+            = (0xcULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_10_pc_9 
+            = (0x12ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_10_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_10_pc_13 
+            = (0x1aULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8873) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_10_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8874) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_11_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_11_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_11_instructions_6 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_11_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_11_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8875) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_12_instructions_14 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_12_instructions_15 
+            = VL_SHIFTR_III(32,32,32, vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7, 0x10U);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_12_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_12_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8876) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_13_instructions_14 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_13_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_13_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_13_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8883) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_20_instructions_15 
+            = VL_SHIFTR_III(32,32,32, vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7, 0x10U);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8884) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_21_instructions_15 
+            = VL_SHIFTR_III(32,32,32, vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7, 0x10U);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_21_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8929) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_2_instructions_14 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_2_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8984) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_57_instructions_14 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_57_instructions_15 
+            = VL_SHIFTR_III(32,32,32, vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7, 0x10U);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8620) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_17_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_17_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_17_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_17_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_17_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_17_pc_12 
+            = (0x18ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_17_pc_14 
+            = (0x1cULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8788) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_55_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_55_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_55_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_55_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_55_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8789) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_56_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_56_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8790) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_57_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_57_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_57_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_57_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_57_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8791) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_58_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_58_pc_8 
+            = (0x10ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_58_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_58_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8792) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_59_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_59_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_59_pre_decoded_7_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_59_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_59_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_59_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_59_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_59_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8793) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_60_pre_decoded_14_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_60_pre_decoded_15_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_60_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_60_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_60_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_60_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_60_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8984) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_57_pre_decoded_3_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_57_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8987) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_60_instructions_14 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_60_instructions_15 
+            = VL_SHIFTR_III(32,32,32, vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_7, 0x10U);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8690) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_22_pre_decoded_9_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8796) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_63_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_63_pc_1 
+            = (2ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_63_pc_3 
+            = (6ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_63_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_63_pc_13 
+            = (0x1aULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_63_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8798) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_0_pc_1 
+            = (2ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_0_pc_3 
+            = (6ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_0_pc_6 
+            = (0xcULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8690) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_22_pre_decoded_8_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_22_pre_decoded_7_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_22_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_22_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8660) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_57_pre_decoded_9_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_57_pre_decoded_8_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_57_pre_decoded_7_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_57_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_57_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_57_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_57_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_57_pc_13 
+            = (0x1aULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8635) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_32_pre_decoded_8_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8575) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_37_pre_decoded_8_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_37_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_37_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_37_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_37_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8501) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_45_pre_decoded_8_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_45_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_45_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_45_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_45_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_45_pc_1 
+            = (2ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_45_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8572) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_34_pre_decoded_9_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_34_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_34_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_34_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_34_pc_12 
+            = (0x18ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_34_pc_14 
+            = (0x1cULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8479) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_34_pre_decoded_9_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_34_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_34_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_34_pc_8 
+            = (0x10ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_34_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8477) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_33_pre_decoded_9_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_33_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_33_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_33_pc_13 
+            = (0x1aULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_33_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_33_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_33_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8413) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_1_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_1_pc_14 
+            = (0x1cULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_1_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_1_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_1_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_1_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8540) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_2_pre_decoded_9_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_2_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_2_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_2_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_2_pc_12 
+            = (0x18ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_2_pc_1 
+            = (2ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_2_pc_13 
+            = (0x1aULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_2_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8940) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_13_pre_decoded_9_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_13_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_13_pre_decoded_3_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_13_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_13_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8931) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_4_pre_decoded_8_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_4_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8491) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_40_pre_decoded_8_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_40_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_40_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_40_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8539) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_1_pre_decoded_8_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_1_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8621) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_18_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_18_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_18_pre_decoded_3_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_18_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8573) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_35_pre_decoded_8_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_35_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_35_pre_decoded_4_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_35_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_35_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_35_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8503) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_46_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_46_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_46_pre_decoded_4_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_46_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_46_pre_decoded_1_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_46_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8911) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_48_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_48_pre_decoded_1_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_48_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_48_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8700) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_32_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_32_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_32_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_32_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_32_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_32_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_32_pc_12 
+            = (0x18ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8439) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_14_pre_decoded_9_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_14_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_14_pre_decoded_1_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_14_pc_14 
+            = (0x1cULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8593) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_55_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_55_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_55_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_55_pre_decoded_1_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_55_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_55_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_55_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_55_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8596) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_58_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_58_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_58_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_58_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8610) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_7_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_7_pre_decoded_4_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_7_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8614) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_11_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_11_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_11_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_11_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_11_pc_1 
+            = (2ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_11_pc_2 
+            = (4ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_11_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_11_pc_5 
+            = (0xaULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_11_pc_6 
+            = (0xcULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_11_pc_9 
+            = (0x12ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_11_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_11_pc_13 
+            = (0x1aULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8618) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_15_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_15_instructions_6 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_15_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_15_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_15_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_15_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_15_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_15_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_15_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8799) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_1_pre_decoded_8_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_1_pre_decoded_9_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_1_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_1_pc_6 
+            = (0xcULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_1_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8807) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_9_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_9_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_9_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_9_pre_decoded_0_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8826) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_28_pre_decoded_9_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_28_pre_decoded_5_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_28_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8827) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_29_pre_decoded_9_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_29_pre_decoded_4_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_29_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8839) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_41_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_41_instructions_6 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_41_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8847) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_49_pre_decoded_8_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_49_instructions_6 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_49_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8851) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_53_pre_decoded_9_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_53_pre_decoded_5_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_53_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8869) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_6_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_6_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8877) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_14_pre_decoded_9_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_14_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8881) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_18_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_18_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_18_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8882) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_19_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_19_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8935) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_8_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_8_pre_decoded_7_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_8_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8936) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_9_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_9_pre_decoded_6_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_9_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_9_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_9_pre_decoded_0_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8960) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_33_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_33_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8964) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_37_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_37_pre_decoded_4_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_37_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_37_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_37_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8985) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_58_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_58_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8986) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_59_instructions_8 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_4;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_59_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_59_pre_decoded_0_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8716) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_48_pre_decoded_7_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_48_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_48_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_48_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8427) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_8_pre_decoded_6_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_8_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8489) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_39_pre_decoded_6_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_39_pre_decoded_5_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_39_pre_decoded_4_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_39_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8957) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_30_pre_decoded_6_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_30_pre_decoded_5_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_30_pre_decoded_4_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_30_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_30_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8555) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_17_pre_decoded_7_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_17_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_17_pre_decoded_4_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_17_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_17_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_17_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_17_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_17_pc_12 
+            = (0x18ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_17_pc_14 
+            = (0x1cULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_17_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8463) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_26_pre_decoded_6_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8437) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_13_pre_decoded_6_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_13_pre_decoded_7_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_13_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_13_pre_decoded_1_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_13_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_13_pc_1 
+            = (2ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_13_pc_13 
+            = (0x1aULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_13_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8497) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_43_instructions_6 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_43_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_43_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_43_pc_12 
+            = (0x18ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_43_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_43_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8701) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_33_instructions_6 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_33_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_33_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_33_pc_12 
+            = (0x18ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_33_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8538) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_0_instructions_6 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_0_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_0_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_0_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_0_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8542) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_4_instructions_6 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_4_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_4_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_4_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_4_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_4_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_4_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8545) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_7_instructions_6 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_7_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_7_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_7_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8568) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_30_instructions_6 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_30_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_30_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_30_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_30_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_30_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_30_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8579) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_41_instructions_6 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_41_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_41_pc_3 
+            = (6ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_41_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_41_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_41_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8580) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_42_instructions_6 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_42_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_42_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_42_pc_6 
+            = (0xcULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_42_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8594) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_56_instructions_6 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_56_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_56_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_56_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_56_pc_12 
+            = (0x18ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_56_pc_14 
+            = (0x1cULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8595) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_57_instructions_6 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_57_pre_decoded_6_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_57_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_57_pre_decoded_4_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_57_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_57_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_57_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_57_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_57_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_57_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8794) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_61_instructions_6 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_61_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_61_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_61_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8814) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_16_instructions_6 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_16_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_16_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8848) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_50_instructions_6 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_3;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_50_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_50_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8644) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_41_pre_decoded_4_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_41_pc_5 
+            = (0xaULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_41_pc_9 
+            = (0x12ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8629) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_26_pre_decoded_5_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_26_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_26_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_26_pc_8 
+            = (0x10ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_26_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8622) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_19_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8681) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_13_pre_decoded_4_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_13_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_13_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_13_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8425) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_7_pre_decoded_4_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_7_pre_decoded_3_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_7_pc_6 
+            = (0xcULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8981) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_54_pre_decoded_5_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_54_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_54_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8453) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_21_pre_decoded_4_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_21_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_21_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_21_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_21_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8457) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_23_pre_decoded_4_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_23_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_23_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_23_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_23_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_23_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_23_pc_14 
+            = (0x1cULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8459) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_24_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_24_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_24_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_24_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8461) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_25_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_25_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_25_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_25_pc_1 
+            = (2ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_25_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_25_pc_13 
+            = (0x1aULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_25_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8544) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_6_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_6_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_6_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_6_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_6_pc_12 
+            = (0x18ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_6_pc_14 
+            = (0x1cULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8551) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_13_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_13_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_13_pre_decoded_0_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_13_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_13_pc_1 
+            = (2ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_13_pc_2 
+            = (4ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_13_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_13_pc_5 
+            = (0xaULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_13_pc_6 
+            = (0xcULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_13_pc_9 
+            = (0x12ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_13_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_13_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_13_pc_13 
+            = (0x1aULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8609) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_6_pre_decoded_5_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_6_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_6_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_6_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8616) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_13_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_13_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_13_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_13_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8617) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_14_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_14_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_14_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_14_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8804) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_6_pre_decoded_4_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8809) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_11_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_11_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8810) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_12_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_12_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_12_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8829) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_31_pre_decoded_5_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8834) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_36_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_36_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8835) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_37_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_37_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_37_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8859) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_61_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_61_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_61_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8885) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_22_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_22_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_22_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8886) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_23_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_23_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8963) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_36_instructions_4 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_2;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_36_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8709) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_41_pre_decoded_3_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_41_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_41_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_41_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8517) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_53_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8499) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_44_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_44_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_44_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_44_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8626) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_23_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_23_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_23_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8473) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_31_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_31_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_31_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8471) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_30_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_30_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_30_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8467) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_28_pre_decoded_3_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_28_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_28_pc_3 
+            = (6ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8905) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_42_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_42_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8455) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_22_pre_decoded_3_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_22_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_22_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_22_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_22_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8645) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_42_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_42_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8926) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_63_pre_decoded_3_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1 
+                            >> 0x10U)));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_63_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8561) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_23_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_23_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_23_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8725) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_57_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_57_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8726) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_58_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_58_pc_3 
+            = (6ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8586) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_48_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_48_pre_decoded_0_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0));
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_48_pc_3 
+            = (6ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_48_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8612) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_9_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_9_pc_3 
+            = (6ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_9_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8805) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_7_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8806) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_8_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_8_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8815) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_17_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8830) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_32_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8831) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_33_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_33_pre_decoded_2_is_rvc 
+            = (3U != (3U & vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8897) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_34_pre_decoded_3_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8959) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_32_instructions_2 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_1;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8736) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_3_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_3_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_3_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_3_pc_6 
+            = (0xcULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_3_pc_3 
+            = (6ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_3_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8735) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_2_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_2_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_2_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_2_pc_6 
+            = (0xcULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_2_pc_3 
+            = (6ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_2_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8495) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_42_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_42_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_42_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_0_42_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8671) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_3_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_3_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_3_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8670) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_2_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_2_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_2_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_2_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8710) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_42_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_42_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_42_pc_1 
+            = (2ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_3_42_pc_13 
+            = (0x1aULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8559) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_21_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_21_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_21_pc_1 
+            = (2ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_21_pc_6 
+            = (0xcULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_21_pc_13 
+            = (0x1aULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8560) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_22_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8582) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_44_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_1_44_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8608) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_5_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_5_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_5_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8800) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_2_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_2_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_2_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8801) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_3_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_3_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_3_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8802) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_4_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_4_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8816) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_18_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_18_pre_decoded_1_is_rvc 
+            = (3U != (3U & (vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0 
+                            >> 0x10U)));
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8820) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_22_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8825) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_27_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8845) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_47_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8896) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_33_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8951) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_24_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8952) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_25_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8982) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_55_instructions_0 
+            = vlSelfRef.Core__DOT__frontend__DOT___icache_io_insts_0;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8619) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_16_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_16_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_16_pc_12 
+            = (0x18ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_2_16_pc_14 
+            = (0x1cULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8795) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_62_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_62_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_4_62_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+}
+
+VL_INLINE_OPT void VCore___024root___nba_sequent__TOP__16(VCore___024root* vlSelf) {
+    VL_DEBUG_IF(VL_DBG_MSGF("+    VCore___024root___nba_sequent__TOP__16\n"); );
+    VCore__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
+    auto& vlSelfRef = std::ref(*vlSelf).get();
+    // Body
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8802) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_4_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8804) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_6_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8805) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_7_pc_3 
+            = (6ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_7_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8806) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_8_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_8_pc_1 
+            = (2ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_8_pc_2 
+            = (4ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_8_pc_3 
+            = (6ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_8_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_8_pc_5 
+            = (0xaULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_8_pc_6 
+            = (0xcULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_8_pc_9 
+            = (0x12ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_8_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_8_pc_13 
+            = (0x1aULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8807) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_9_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_9_pc_1 
+            = (2ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_9_pc_2 
+            = (4ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_9_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_9_pc_5 
+            = (0xaULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_9_pc_6 
+            = (0xcULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_9_pc_9 
+            = (0x12ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_9_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_9_pc_13 
+            = (0x1aULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8809) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_11_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8810) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_12_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8811) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_13_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_13_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_13_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_13_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8812) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_14_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_14_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_14_pc_12 
+            = (0x18ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_14_pc_14 
+            = (0x1cULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8813) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_15_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_15_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_15_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_15_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_15_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_15_pc_12 
+            = (0x18ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_15_pc_14 
+            = (0x1cULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8814) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_16_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_16_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_16_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_16_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8815) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_17_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_17_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8816) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_18_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_18_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_18_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_18_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8817) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_19_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_19_pc_8 
+            = (0x10ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_19_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_19_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8818) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_20_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_20_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_20_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8819) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_21_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_21_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_21_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_21_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8820) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_22_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_22_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8821) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_23_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_23_pc_3 
+            = (6ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_23_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_23_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8822) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_24_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_24_pc_1 
+            = (2ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_24_pc_3 
+            = (6ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_24_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_24_pc_13 
+            = (0x1aULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8823) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_25_pc_3 
+            = (6ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_25_pc_6 
+            = (0xcULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_25_pc_13 
+            = (0x1aULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_25_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8824) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_26_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_26_pc_6 
+            = (0xcULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_26_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8825) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_27_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8826) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_28_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8827) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_29_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8829) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_31_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8830) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_32_pc_3 
+            = (6ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_32_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8831) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_33_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_33_pc_1 
+            = (2ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_33_pc_2 
+            = (4ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_33_pc_3 
+            = (6ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_33_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_33_pc_5 
+            = (0xaULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_33_pc_6 
+            = (0xcULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_33_pc_9 
+            = (0x12ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_33_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_33_pc_13 
+            = (0x1aULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8832) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_34_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_34_pc_1 
+            = (2ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_34_pc_2 
+            = (4ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_34_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_34_pc_5 
+            = (0xaULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_34_pc_6 
+            = (0xcULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_34_pc_9 
+            = (0x12ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_34_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_34_pc_13 
+            = (0x1aULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8834) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_36_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8835) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_37_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8836) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_38_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_38_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_38_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_38_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8837) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_39_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_39_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_39_pc_12 
+            = (0x18ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_39_pc_14 
+            = (0x1cULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8838) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_40_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_40_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_40_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_40_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_40_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_40_pc_12 
+            = (0x18ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_40_pc_14 
+            = (0x1cULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8839) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_41_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_41_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_41_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_41_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8840) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_42_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_42_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_42_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_42_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8841) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_43_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_43_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_43_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_43_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8842) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_44_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_44_pc_8 
+            = (0x10ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_44_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_44_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8843) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_45_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_45_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_45_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8844) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_46_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_46_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_46_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_46_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8845) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_47_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8846) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_48_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_48_pc_3 
+            = (6ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_48_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_48_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8847) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_49_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_49_pc_1 
+            = (2ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_49_pc_6 
+            = (0xcULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_49_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_49_pc_13 
+            = (0x1aULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8848) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_50_pc_6 
+            = (0xcULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_50_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8849) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_51_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_51_pc_6 
+            = (0xcULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_51_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8850) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_52_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8853) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_55_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8854) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_56_pc_3 
+            = (6ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_56_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8855) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_57_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_57_pc_1 
+            = (2ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_57_pc_2 
+            = (4ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_57_pc_3 
+            = (6ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_57_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_57_pc_5 
+            = (0xaULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_57_pc_6 
+            = (0xcULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_57_pc_9 
+            = (0x12ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_57_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_57_pc_13 
+            = (0x1aULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8856) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_58_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_58_pc_1 
+            = (2ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_58_pc_2 
+            = (4ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_58_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_58_pc_5 
+            = (0xaULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_58_pc_6 
+            = (0xcULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_58_pc_9 
+            = (0x12ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_58_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_58_pc_13 
+            = (0x1aULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8859) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_61_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8860) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_62_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8861) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_63_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_63_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_63_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_5_63_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8863) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_0_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_0_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_0_pc_12 
+            = (0x18ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_0_pc_14 
+            = (0x1cULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8864) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_1_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_1_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_1_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_1_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_1_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_1_pc_12 
+            = (0x18ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_1_pc_14 
+            = (0x1cULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8865) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_2_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_2_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8866) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_3_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_3_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_3_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_3_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8867) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_4_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_4_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_4_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_4_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8868) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_5_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_5_pc_8 
+            = (0x10ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_5_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_5_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8869) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_6_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8870) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_7_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_7_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8871) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_8_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_8_pc_3 
+            = (6ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_8_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8872) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_9_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_9_pc_3 
+            = (6ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_9_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_9_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_9_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8873) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_10_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_10_pc_6 
+            = (0xcULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_10_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_10_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8874) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_11_pc_6 
+            = (0xcULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8875) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_12_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_12_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8876) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_13_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8877) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_14_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8878) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_15_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8879) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_16_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8880) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_17_pc_3 
+            = (6ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_17_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8881) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_18_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_18_pc_1 
+            = (2ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_18_pc_2 
+            = (4ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_18_pc_3 
+            = (6ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_18_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_18_pc_5 
+            = (0xaULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_18_pc_6 
+            = (0xcULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_18_pc_9 
+            = (0x12ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_18_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_18_pc_13 
+            = (0x1aULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8882) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_19_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_19_pc_1 
+            = (2ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_19_pc_2 
+            = (4ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_19_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_19_pc_5 
+            = (0xaULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_19_pc_6 
+            = (0xcULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_19_pc_9 
+            = (0x12ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_19_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_19_pc_13 
+            = (0x1aULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8883) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_20_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8884) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_21_pc_3 
+            = (6ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_21_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8885) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_22_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_22_pc_1 
+            = (2ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_22_pc_2 
+            = (4ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_22_pc_3 
+            = (6ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_22_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_22_pc_5 
+            = (0xaULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_22_pc_6 
+            = (0xcULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_22_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_22_pc_9 
+            = (0x12ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_22_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_22_pc_13 
+            = (0x1aULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8886) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_23_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_23_pc_1 
+            = (2ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_23_pc_2 
+            = (4ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_23_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_23_pc_5 
+            = (0xaULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_23_pc_6 
+            = (0xcULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_23_pc_9 
+            = (0x12ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_23_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_23_pc_13 
+            = (0x1aULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_23_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8887) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_24_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_24_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_24_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_24_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8888) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_25_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_25_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_25_pc_12 
+            = (0x18ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_25_pc_14 
+            = (0x1cULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8889) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_26_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_26_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_26_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_26_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_26_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8890) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_27_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_27_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8891) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_28_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_28_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_28_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_28_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8892) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_29_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_29_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_29_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_29_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8893) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_30_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_30_pc_8 
+            = (0x10ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_30_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_30_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8894) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_31_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_31_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8895) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_32_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_32_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8896) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_33_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_33_pc_3 
+            = (6ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_33_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_33_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_33_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8897) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_34_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_34_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8898) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_35_pc_6 
+            = (0xcULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_35_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8899) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_36_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8900) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_37_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_37_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8901) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_38_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8902) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_39_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8903) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_40_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8904) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_41_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8906) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_43_pc_3 
+            = (6ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_43_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8907) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_44_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_44_pc_1 
+            = (2ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_44_pc_2 
+            = (4ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_44_pc_3 
+            = (6ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_44_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_44_pc_5 
+            = (0xaULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_44_pc_6 
+            = (0xcULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_44_pc_9 
+            = (0x12ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_44_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_44_pc_13 
+            = (0x1aULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8909) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_46_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_46_pc_1 
+            = (2ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_46_pc_2 
+            = (4ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_46_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_46_pc_5 
+            = (0xaULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_46_pc_6 
+            = (0xcULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_46_pc_9 
+            = (0x12ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_46_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_46_pc_13 
+            = (0x1aULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8910) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_47_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8912) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_49_pc_3 
+            = (6ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_49_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8913) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_50_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_50_pc_1 
+            = (2ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_50_pc_2 
+            = (4ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_50_pc_3 
+            = (6ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_50_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_50_pc_5 
+            = (0xaULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_50_pc_6 
+            = (0xcULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_50_pc_9 
+            = (0x12ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_50_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_50_pc_13 
+            = (0x1aULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_50_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8914) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_51_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_51_pc_1 
+            = (2ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_51_pc_2 
+            = (4ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_51_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_51_pc_5 
+            = (0xaULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_51_pc_6 
+            = (0xcULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_51_pc_9 
+            = (0x12ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_51_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_51_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_51_pc_13 
+            = (0x1aULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_51_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8916) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_53_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_53_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_53_pc_12 
+            = (0x18ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_53_pc_14 
+            = (0x1cULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8917) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_54_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_54_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_54_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_54_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_54_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_54_pc_12 
+            = (0x18ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_54_pc_14 
+            = (0x1cULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8918) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_55_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_55_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_55_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8919) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_56_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8920) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_57_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_57_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_57_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_57_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_57_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8921) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_58_pc_12 
+            = (0x18ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_58_pc_14 
+            = (0x1cULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_58_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8922) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_59_pc_8 
+            = (0x10ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_59_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_59_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8923) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_60_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_60_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_60_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8924) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_61_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_61_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_61_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8925) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_62_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_62_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8926) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_63_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_63_pc_1 
+            = (2ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_63_pc_3 
+            = (6ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_63_pc_6 
+            = (0xcULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_63_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_6_63_pc_13 
+            = (0x1aULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8927) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_0_pc_1 
+            = (2ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_0_pc_6 
+            = (0xcULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_0_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_0_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_0_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8928) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_1_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_1_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8929) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_2_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8931) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_4_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_4_pc_1 
+            = (2ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_4_pc_13 
+            = (0x1aULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_4_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8932) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_5_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_5_pc_1 
+            = (2ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_5_pc_13 
+            = (0x1aULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_5_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8935) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_8_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_8_pc_1 
+            = (2ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_8_pc_2 
+            = (4ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_8_pc_3 
+            = (6ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_8_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_8_pc_5 
+            = (0xaULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_8_pc_6 
+            = (0xcULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_8_pc_9 
+            = (0x12ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_8_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_8_pc_13 
+            = (0x1aULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_8_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8936) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_9_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_9_pc_1 
+            = (2ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_9_pc_2 
+            = (4ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_9_pc_3 
+            = (6ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_9_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_9_pc_5 
+            = (0xaULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_9_pc_6 
+            = (0xcULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_9_pc_9 
+            = (0x12ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_9_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_9_pc_13 
+            = (0x1aULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_9_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8939) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_12_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_12_pc_1 
+            = (2ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_12_pc_2 
+            = (4ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_12_pc_3 
+            = (6ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_12_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_12_pc_5 
+            = (0xaULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_12_pc_6 
+            = (0xcULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_12_pc_9 
+            = (0x12ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_12_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_12_pc_13 
+            = (0x1aULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_12_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8940) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_13_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_13_pc_1 
+            = (2ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_13_pc_2 
+            = (4ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_13_pc_3 
+            = (6ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_13_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_13_pc_5 
+            = (0xaULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_13_pc_6 
+            = (0xcULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_13_pc_9 
+            = (0x12ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_13_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_13_pc_13 
+            = (0x1aULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_13_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8941) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_14_pc_12 
+            = (0x18ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_14_pc_14 
+            = (0x1cULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_14_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8942) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_15_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_15_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_15_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_15_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_15_pc_12 
+            = (0x18ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_15_pc_14 
+            = (0x1cULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_15_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8943) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_16_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_16_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_16_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_16_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_16_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8944) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_17_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_17_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_17_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8945) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_18_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_18_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_18_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8946) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_19_pc_12 
+            = (0x18ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_19_pc_14 
+            = (0x1cULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_19_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8947) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_20_pc_8 
+            = (0x10ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_20_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_20_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8948) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_21_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_21_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_21_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8949) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_22_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_22_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_22_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8950) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_23_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_23_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8951) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_24_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_24_pc_1 
+            = (2ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_24_pc_6 
+            = (0xcULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_24_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_24_pc_13 
+            = (0x1aULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_24_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8952) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_25_pc_6 
+            = (0xcULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_25_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_25_pc_13 
+            = (0x1aULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8953) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_26_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8954) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_27_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8956) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_29_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_29_pc_1 
+            = (2ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_29_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_29_pc_13 
+            = (0x1aULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8957) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_30_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_30_pc_1 
+            = (2ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_30_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_30_pc_13 
+            = (0x1aULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8959) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_32_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_32_pc_1 
+            = (2ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_32_pc_2 
+            = (4ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_32_pc_3 
+            = (6ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_32_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_32_pc_5 
+            = (0xaULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_32_pc_6 
+            = (0xcULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_32_pc_9 
+            = (0x12ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_32_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_32_pc_13 
+            = (0x1aULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_32_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8960) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_33_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_33_pc_1 
+            = (2ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_33_pc_2 
+            = (4ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_33_pc_3 
+            = (6ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_33_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_33_pc_5 
+            = (0xaULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_33_pc_6 
+            = (0xcULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_33_pc_9 
+            = (0x12ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_33_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_33_pc_13 
+            = (0x1aULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_33_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8964) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_37_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_37_pc_1 
+            = (2ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_37_pc_2 
+            = (4ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_37_pc_3 
+            = (6ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_37_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_37_pc_5 
+            = (0xaULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_37_pc_6 
+            = (0xcULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_37_pc_9 
+            = (0x12ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_37_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_37_pc_13 
+            = (0x1aULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_37_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8965) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_38_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_38_pc_1 
+            = (2ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_38_pc_2 
+            = (4ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_38_pc_3 
+            = (6ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_38_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_38_pc_5 
+            = (0xaULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_38_pc_6 
+            = (0xcULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_38_pc_9 
+            = (0x12ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_38_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_38_pc_13 
+            = (0x1aULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_38_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8966) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_39_pc_12 
+            = (0x18ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_39_pc_14 
+            = (0x1cULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_39_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8967) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_40_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_40_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_40_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_40_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_40_pc_12 
+            = (0x18ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_40_pc_14 
+            = (0x1cULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_40_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8968) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_41_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_41_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_41_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_41_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_41_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8969) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_42_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_42_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_42_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_42_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_42_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8970) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_43_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_43_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_43_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8971) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_44_pc_12 
+            = (0x18ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_44_pc_14 
+            = (0x1cULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_44_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8972) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_45_pc_8 
+            = (0x10ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_45_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_45_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8973) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_46_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_46_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_46_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_46_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_46_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8974) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_47_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_47_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_47_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_47_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_47_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8975) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_48_pc_3 
+            = (6ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_48_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8976) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_49_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_49_pc_1 
+            = (2ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_49_pc_6 
+            = (0xcULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_49_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_49_pc_13 
+            = (0x1aULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_49_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8977) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_50_pc_7 
+            = (0xeULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8978) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_51_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8980) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_53_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_53_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8981) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_54_pc_1 
+            = (2ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_54_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_54_pc_13 
+            = (0x1aULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8982) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_55_pc_1 
+            = (2ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_55_pc_11 
+            = (0x16ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_55_pc_13 
+            = (0x1aULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8984) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_57_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_57_pc_1 
+            = (2ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_57_pc_2 
+            = (4ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_57_pc_3 
+            = (6ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_57_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_57_pc_5 
+            = (0xaULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_57_pc_6 
+            = (0xcULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_57_pc_9 
+            = (0x12ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_57_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_57_pc_13 
+            = (0x1aULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_57_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8985) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_58_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_58_pc_1 
+            = (2ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_58_pc_2 
+            = (4ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_58_pc_3 
+            = (6ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_58_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_58_pc_5 
+            = (0xaULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_58_pc_6 
+            = (0xcULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_58_pc_9 
+            = (0x12ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_58_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_58_pc_13 
+            = (0x1aULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_58_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8989) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_62_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_62_pc_1 
+            = (2ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_62_pc_2 
+            = (4ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_62_pc_3 
+            = (6ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_62_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_62_pc_5 
+            = (0xaULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_62_pc_6 
+            = (0xcULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_62_pc_9 
+            = (0x12ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_62_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_62_pc_13 
+            = (0x1aULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_62_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+    if (vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT___GEN_8990) {
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_63_pc_0 
+            = vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc;
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_63_pc_1 
+            = (2ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_63_pc_2 
+            = (4ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_63_pc_3 
+            = (6ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_63_pc_4 
+            = (8ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_63_pc_5 
+            = (0xaULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_63_pc_6 
+            = (0xcULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_63_pc_9 
+            = (0x12ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_63_pc_10 
+            = (0x14ULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_63_pc_13 
+            = (0x1aULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+        vlSelfRef.Core__DOT__frontend__DOT__uopCache__DOT__data_7_63_pc_15 
+            = (0x1eULL + vlSelfRef.Core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc);
+    }
+}

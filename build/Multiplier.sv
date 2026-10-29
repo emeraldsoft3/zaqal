@@ -116,13 +116,13 @@ module Multiplier(	// backend/src/zaqal/backend/exu/Multiplier.scala:8:7
     `ifdef FIRRTL_BEFORE_INITIAL	// backend/src/zaqal/backend/exu/Multiplier.scala:8:7
       `FIRRTL_BEFORE_INITIAL	// backend/src/zaqal/backend/exu/Multiplier.scala:8:7
     `endif // FIRRTL_BEFORE_INITIAL
-    logic [31:0] _RANDOM[0:27];	// backend/src/zaqal/backend/exu/Multiplier.scala:8:7
+    logic [31:0] _RANDOM[0:30];	// backend/src/zaqal/backend/exu/Multiplier.scala:8:7
     initial begin	// backend/src/zaqal/backend/exu/Multiplier.scala:8:7
       `ifdef INIT_RANDOM_PROLOG_	// backend/src/zaqal/backend/exu/Multiplier.scala:8:7
         `INIT_RANDOM_PROLOG_	// backend/src/zaqal/backend/exu/Multiplier.scala:8:7
       `endif // INIT_RANDOM_PROLOG_
       `ifdef RANDOMIZE_REG_INIT	// backend/src/zaqal/backend/exu/Multiplier.scala:8:7
-        for (logic [4:0] i = 5'h0; i < 5'h1C; i += 5'h1) begin
+        for (logic [4:0] i = 5'h0; i < 5'h1F; i += 5'h1) begin
           _RANDOM[i] = `RANDOM;	// backend/src/zaqal/backend/exu/Multiplier.scala:8:7
         end	// backend/src/zaqal/backend/exu/Multiplier.scala:8:7
         r_src1 = {_RANDOM[5'h0], _RANDOM[5'h1]};	// backend/src/zaqal/backend/exu/Multiplier.scala:8:7, :17:23
@@ -133,29 +133,29 @@ module Multiplier(	// backend/src/zaqal/backend/exu/Multiplier.scala:8:7
         r_dec_is_mulhu = _RANDOM[5'h4][9];	// backend/src/zaqal/backend/exu/Multiplier.scala:8:7, :19:19
         r_dec_is_mulw = _RANDOM[5'h4][10];	// backend/src/zaqal/backend/exu/Multiplier.scala:8:7, :19:19
         r_full_mul_ss =
-          {_RANDOM[5'hD][31:25],
-           _RANDOM[5'hE],
-           _RANDOM[5'hF],
-           _RANDOM[5'h10],
-           _RANDOM[5'h11][24:0]};	// backend/src/zaqal/backend/exu/Multiplier.scala:8:7, :33:30
-        r_full_mul_uu =
-          {_RANDOM[5'h11][31:25],
+          {_RANDOM[5'h11][31:4],
            _RANDOM[5'h12],
            _RANDOM[5'h13],
            _RANDOM[5'h14],
-           _RANDOM[5'h15][24:0]};	// backend/src/zaqal/backend/exu/Multiplier.scala:8:7, :33:30, :34:30
-        r_full_mul_hsu =
-          {_RANDOM[5'h15][31:25],
+           _RANDOM[5'h15][3:0]};	// backend/src/zaqal/backend/exu/Multiplier.scala:8:7, :33:30
+        r_full_mul_uu =
+          {_RANDOM[5'h15][31:4],
            _RANDOM[5'h16],
            _RANDOM[5'h17],
            _RANDOM[5'h18],
-           _RANDOM[5'h19][25:0]};	// backend/src/zaqal/backend/exu/Multiplier.scala:8:7, :34:30, :35:31
-        r_mulw_res = {_RANDOM[5'h19][31:26], _RANDOM[5'h1A][25:0]};	// backend/src/zaqal/backend/exu/Multiplier.scala:8:7, :35:31, :36:27
-        r_dec_stage2_is_mul = _RANDOM[5'h1B][0];	// backend/src/zaqal/backend/exu/Multiplier.scala:8:7, :37:29
-        r_dec_stage2_is_mulh = _RANDOM[5'h1B][1];	// backend/src/zaqal/backend/exu/Multiplier.scala:8:7, :37:29
-        r_dec_stage2_is_mulhsu = _RANDOM[5'h1B][2];	// backend/src/zaqal/backend/exu/Multiplier.scala:8:7, :37:29
-        r_dec_stage2_is_mulhu = _RANDOM[5'h1B][3];	// backend/src/zaqal/backend/exu/Multiplier.scala:8:7, :37:29
-        r_dec_stage2_is_mulw = _RANDOM[5'h1B][4];	// backend/src/zaqal/backend/exu/Multiplier.scala:8:7, :37:29
+           _RANDOM[5'h19][3:0]};	// backend/src/zaqal/backend/exu/Multiplier.scala:8:7, :33:30, :34:30
+        r_full_mul_hsu =
+          {_RANDOM[5'h19][31:4],
+           _RANDOM[5'h1A],
+           _RANDOM[5'h1B],
+           _RANDOM[5'h1C],
+           _RANDOM[5'h1D][4:0]};	// backend/src/zaqal/backend/exu/Multiplier.scala:8:7, :34:30, :35:31
+        r_mulw_res = {_RANDOM[5'h1D][31:5], _RANDOM[5'h1E][4:0]};	// backend/src/zaqal/backend/exu/Multiplier.scala:8:7, :35:31, :36:27
+        r_dec_stage2_is_mul = _RANDOM[5'h1E][11];	// backend/src/zaqal/backend/exu/Multiplier.scala:8:7, :36:27, :37:29
+        r_dec_stage2_is_mulh = _RANDOM[5'h1E][12];	// backend/src/zaqal/backend/exu/Multiplier.scala:8:7, :36:27, :37:29
+        r_dec_stage2_is_mulhsu = _RANDOM[5'h1E][13];	// backend/src/zaqal/backend/exu/Multiplier.scala:8:7, :36:27, :37:29
+        r_dec_stage2_is_mulhu = _RANDOM[5'h1E][14];	// backend/src/zaqal/backend/exu/Multiplier.scala:8:7, :36:27, :37:29
+        r_dec_stage2_is_mulw = _RANDOM[5'h1E][15];	// backend/src/zaqal/backend/exu/Multiplier.scala:8:7, :36:27, :37:29
       `endif // RANDOMIZE_REG_INIT
     end // initial
     `ifdef FIRRTL_AFTER_INITIAL	// backend/src/zaqal/backend/exu/Multiplier.scala:8:7

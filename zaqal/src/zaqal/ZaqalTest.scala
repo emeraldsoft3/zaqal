@@ -41,7 +41,8 @@ object ZaqalTest extends App {
   implicit val p = (new ZaqalConfig).alter((site, here, up) => {
     case ZaqalParamsKey => up(ZaqalParamsKey).copy(
       programFile = "",
-      enableUOpCache = true
+      enableUOpCache = true,
+      enableDifftest = false
     )
   })
   val params = p(ZaqalParamsKey)

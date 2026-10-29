@@ -88,100 +88,102 @@ module FPDivider(	// backend/src/zaqal/backend/exu/FPDivider.scala:8:7
   reg          res_s;	// backend/src/zaqal/backend/exu/FPDivider.scala:28:28
   reg  [11:0]  res_e;	// backend/src/zaqal/backend/exu/FPDivider.scala:29:28
   reg  [51:0]  res_m;	// backend/src/zaqal/backend/exu/FPDivider.scala:30:28
-  reg  [119:0] div_reg;	// backend/src/zaqal/backend/exu/FPDivider.scala:33:28
-  reg  [63:0]  divisor;	// backend/src/zaqal/backend/exu/FPDivider.scala:34:28
-  reg  [109:0] bit_reg;	// backend/src/zaqal/backend/exu/FPDivider.scala:37:28
-  reg  [109:0] D_reg;	// backend/src/zaqal/backend/exu/FPDivider.scala:38:28
-  reg  [109:0] Q_reg;	// backend/src/zaqal/backend/exu/FPDivider.scala:39:28
-  wire         _final_e_sp_T_1 = $signed(res_e) < 12'sh0;	// backend/src/zaqal/backend/exu/FPDivider.scala:29:28, :46:30
-  wire [109:0] _GEN = {1'h0, Q_reg[109:1]};	// backend/src/zaqal/backend/exu/FPDivider.scala:39:28, :46:30, :133:{29,37}
-  wire [109:0] _D_reg_T_8 = Q_reg + bit_reg;	// backend/src/zaqal/backend/exu/FPDivider.scala:37:28, :39:28, :131:31
-  wire         _GEN_0 = D_reg >= _D_reg_T_8;	// backend/src/zaqal/backend/exu/FPDivider.scala:38:28, :131:{22,31}
-  wire [12:0]  _eA_unbiased_T = {2'h0, io_src1[62:52]} - 13'h3FF;	// backend/src/zaqal/backend/exu/FPDivider.scala:22:22, :77:42, :86:38
-  wire [12:0]  _eA_unbiased_T_2 = {5'h0, io_src1[30:23]} - 13'h7F;	// backend/src/zaqal/backend/exu/FPDivider.scala:8:7, :68:42, :96:38
-  wire         _GEN_1 = io_fire & (io_dec_is_fdiv | io_dec_is_fsqrt) & ~io_flush;	// backend/src/zaqal/backend/exu/FPDivider.scala:62:{31,43,46}
-  wire         _GEN_2 = ~(|state) & _GEN_1;	// backend/src/zaqal/backend/exu/FPDivider.scala:22:22, :25:28, :41:22, :56:17, :62:{43,57}, :63:21
-  wire         _GEN_3 = state == 2'h1;	// backend/src/zaqal/backend/exu/FPDivider.scala:22:22, :56:17, :166:30
-  wire         _GEN_4 = ~_GEN_3 | is_sqrt_reg | ~(|count);	// backend/src/zaqal/backend/exu/FPDivider.scala:25:28, :27:28, :33:28, :56:17, :129:25, :147:{20,29}
-  wire         _GEN_5 = ~_GEN_1 | io_dec_is_fsqrt;	// backend/src/zaqal/backend/exu/FPDivider.scala:33:28, :62:{43,57}, :84:23
-  wire [8:0]   _res_e_T_14 = {1'h0, io_src1[30:23]} - {1'h0, io_src2[30:23]};	// backend/src/zaqal/backend/exu/FPDivider.scala:46:30, :68:42, :72:42, :117:29
+  reg  [55:0]  rem_reg;	// backend/src/zaqal/backend/exu/FPDivider.scala:33:28
+  reg  [55:0]  divisor;	// backend/src/zaqal/backend/exu/FPDivider.scala:34:28
+  reg  [55:0]  quo_reg;	// backend/src/zaqal/backend/exu/FPDivider.scala:35:28
+  reg  [107:0] bit_reg;	// backend/src/zaqal/backend/exu/FPDivider.scala:38:28
+  reg  [107:0] D_reg;	// backend/src/zaqal/backend/exu/FPDivider.scala:39:28
+  reg  [107:0] Q_reg;	// backend/src/zaqal/backend/exu/FPDivider.scala:40:28
+  wire         _final_e_sp_T_1 = $signed(res_e) < 12'sh0;	// backend/src/zaqal/backend/exu/FPDivider.scala:29:28, :47:30
+  wire         rem_ge_div = rem_reg >= divisor;	// backend/src/zaqal/backend/exu/FPDivider.scala:33:28, :34:28, :148:34
+  wire [107:0] _GEN = {1'h0, Q_reg[107:1]};	// backend/src/zaqal/backend/exu/FPDivider.scala:40:28, :47:30, :134:{29,37}
+  wire [107:0] _D_reg_T_8 = Q_reg + bit_reg;	// backend/src/zaqal/backend/exu/FPDivider.scala:38:28, :40:28, :132:31
+  wire         _GEN_0 = D_reg >= _D_reg_T_8;	// backend/src/zaqal/backend/exu/FPDivider.scala:39:28, :132:{22,31}
+  wire [12:0]  _eA_unbiased_T = {2'h0, io_src1[62:52]} - 13'h3FF;	// backend/src/zaqal/backend/exu/FPDivider.scala:22:22, :78:42, :87:38
+  wire [12:0]  _eA_unbiased_T_2 = {5'h0, io_src1[30:23]} - 13'h7F;	// backend/src/zaqal/backend/exu/FPDivider.scala:8:7, :69:42, :97:38
+  wire         _GEN_1 = io_fire & (io_dec_is_fdiv | io_dec_is_fsqrt) & ~io_flush;	// backend/src/zaqal/backend/exu/FPDivider.scala:63:{31,43,46}
+  wire         _GEN_2 = ~(|state) & _GEN_1;	// backend/src/zaqal/backend/exu/FPDivider.scala:22:22, :25:28, :42:22, :57:17, :63:{43,57}, :64:21
+  wire         _GEN_3 = state == 2'h1;	// backend/src/zaqal/backend/exu/FPDivider.scala:22:22, :57:17, :162:30
+  wire         _GEN_4 = ~_GEN_1 | io_dec_is_fsqrt;	// backend/src/zaqal/backend/exu/FPDivider.scala:33:28, :63:{43,57}, :85:23
+  wire [8:0]   _res_e_T_14 = {1'h0, io_src1[30:23]} - {1'h0, io_src2[30:23]};	// backend/src/zaqal/backend/exu/FPDivider.scala:47:30, :69:42, :73:42, :118:31
   always @(posedge clock) begin	// backend/src/zaqal/backend/exu/FPDivider.scala:8:7
     if (reset) begin	// backend/src/zaqal/backend/exu/FPDivider.scala:8:7
       state <= 2'h0;	// backend/src/zaqal/backend/exu/FPDivider.scala:22:22
-      is_sqrt_reg <= 1'h0;	// backend/src/zaqal/backend/exu/FPDivider.scala:25:28, :46:30
-      is_dp_reg <= 1'h0;	// backend/src/zaqal/backend/exu/FPDivider.scala:26:28, :46:30
+      is_sqrt_reg <= 1'h0;	// backend/src/zaqal/backend/exu/FPDivider.scala:25:28, :47:30
+      is_dp_reg <= 1'h0;	// backend/src/zaqal/backend/exu/FPDivider.scala:26:28, :47:30
       count <= 8'h0;	// backend/src/zaqal/backend/exu/FPDivider.scala:27:28
-      res_s <= 1'h0;	// backend/src/zaqal/backend/exu/FPDivider.scala:28:28, :46:30
+      res_s <= 1'h0;	// backend/src/zaqal/backend/exu/FPDivider.scala:28:28, :47:30
       res_e <= 12'h0;	// backend/src/zaqal/backend/exu/FPDivider.scala:29:28
       res_m <= 52'h0;	// backend/src/zaqal/backend/exu/FPDivider.scala:30:28
-      div_reg <= 120'h0;	// backend/src/zaqal/backend/exu/FPDivider.scala:33:28
-      divisor <= 64'h0;	// backend/src/zaqal/backend/exu/FPDivider.scala:34:28
-      bit_reg <= 110'h0;	// backend/src/zaqal/backend/exu/FPDivider.scala:37:28
-      D_reg <= 110'h0;	// backend/src/zaqal/backend/exu/FPDivider.scala:37:28, :38:28
-      Q_reg <= 110'h0;	// backend/src/zaqal/backend/exu/FPDivider.scala:37:28, :39:28
+      rem_reg <= 56'h0;	// backend/src/zaqal/backend/exu/FPDivider.scala:33:28
+      divisor <= 56'h0;	// backend/src/zaqal/backend/exu/FPDivider.scala:33:28, :34:28
+      quo_reg <= 56'h0;	// backend/src/zaqal/backend/exu/FPDivider.scala:33:28, :35:28
+      bit_reg <= 108'h0;	// backend/src/zaqal/backend/exu/FPDivider.scala:38:28
+      D_reg <= 108'h0;	// backend/src/zaqal/backend/exu/FPDivider.scala:38:28, :39:28
+      Q_reg <= 108'h0;	// backend/src/zaqal/backend/exu/FPDivider.scala:38:28, :40:28
     end
     else begin	// backend/src/zaqal/backend/exu/FPDivider.scala:8:7
       if (io_flush)	// backend/src/zaqal/backend/exu/FPDivider.scala:9:14
         state <= 2'h0;	// backend/src/zaqal/backend/exu/FPDivider.scala:22:22
-      else if (|state) begin	// backend/src/zaqal/backend/exu/FPDivider.scala:22:22, :41:22
-        if (_GEN_3) begin	// backend/src/zaqal/backend/exu/FPDivider.scala:56:17
-          if (is_sqrt_reg ? (|bit_reg) : (|count)) begin	// backend/src/zaqal/backend/exu/FPDivider.scala:22:22, :25:28, :27:28, :37:28, :129:25, :130:{22,31}, :139:17, :147:{20,29}, :159:17
+      else if (|state) begin	// backend/src/zaqal/backend/exu/FPDivider.scala:22:22, :42:22
+        if (_GEN_3) begin	// backend/src/zaqal/backend/exu/FPDivider.scala:57:17
+          if (is_sqrt_reg ? (|bit_reg) : (|count)) begin	// backend/src/zaqal/backend/exu/FPDivider.scala:22:22, :25:28, :27:28, :38:28, :130:25, :131:{22,31}, :140:17, :152:{20,29}, :155:17
           end
-          else	// backend/src/zaqal/backend/exu/FPDivider.scala:22:22, :129:25, :130:31, :139:17, :147:29, :159:17
-            state <= 2'h2;	// backend/src/zaqal/backend/exu/FPDivider.scala:22:22, :42:22
+          else	// backend/src/zaqal/backend/exu/FPDivider.scala:22:22, :130:25, :131:31, :140:17, :152:29, :155:17
+            state <= 2'h2;	// backend/src/zaqal/backend/exu/FPDivider.scala:22:22, :43:22
         end
-        else if (state == 2'h2)	// backend/src/zaqal/backend/exu/FPDivider.scala:22:22, :42:22, :56:17
+        else if (state == 2'h2)	// backend/src/zaqal/backend/exu/FPDivider.scala:22:22, :43:22, :57:17
           state <= 2'h0;	// backend/src/zaqal/backend/exu/FPDivider.scala:22:22
       end
-      else if (_GEN_1)	// backend/src/zaqal/backend/exu/FPDivider.scala:62:43
-        state <= 2'h1;	// backend/src/zaqal/backend/exu/FPDivider.scala:22:22, :166:30
-      if (_GEN_2) begin	// backend/src/zaqal/backend/exu/FPDivider.scala:25:28, :56:17, :62:57, :63:21
+      else if (_GEN_1)	// backend/src/zaqal/backend/exu/FPDivider.scala:63:43
+        state <= 2'h1;	// backend/src/zaqal/backend/exu/FPDivider.scala:22:22, :162:30
+      if (_GEN_2) begin	// backend/src/zaqal/backend/exu/FPDivider.scala:25:28, :57:17, :63:57, :64:21
         is_sqrt_reg <= io_dec_is_fsqrt;	// backend/src/zaqal/backend/exu/FPDivider.scala:25:28
         is_dp_reg <= io_dec_is_fp_double;	// backend/src/zaqal/backend/exu/FPDivider.scala:26:28
         res_s <=
           io_dec_is_fsqrt
             ? (io_dec_is_fp_double ? io_src1[63] : io_src1[31])
-            : io_dec_is_fp_double ? io_src1[63] ^ io_src2[63] : io_src1[31] ^ io_src2[31];	// backend/src/zaqal/backend/exu/FPDivider.scala:28:28, :67:28, :71:28, :76:28, :80:28, :84:23, :85:23, :93:19, :103:19, :108:23, :109:{19,28}, :116:{19,28}
+            : io_dec_is_fp_double ? io_src1[63] ^ io_src2[63] : io_src1[31] ^ io_src2[31];	// backend/src/zaqal/backend/exu/FPDivider.scala:28:28, :68:28, :72:28, :77:28, :81:28, :85:23, :86:23, :94:19, :104:19, :109:23, :110:{21,30}, :117:{21,30}
       end
-      if (|state) begin	// backend/src/zaqal/backend/exu/FPDivider.scala:22:22, :41:22
-        if (_GEN_4) begin	// backend/src/zaqal/backend/exu/FPDivider.scala:27:28, :33:28, :56:17, :129:25
+      if (|state) begin	// backend/src/zaqal/backend/exu/FPDivider.scala:22:22, :42:22
+        if (~_GEN_3 | is_sqrt_reg | ~(|count)) begin	// backend/src/zaqal/backend/exu/FPDivider.scala:25:28, :27:28, :33:28, :57:17, :130:25, :152:{20,29}
         end
-        else	// backend/src/zaqal/backend/exu/FPDivider.scala:27:28, :56:17, :129:25
-          count <= count - 8'h1;	// backend/src/zaqal/backend/exu/FPDivider.scala:27:28, :157:26
-        if (~_GEN_3 | is_sqrt_reg | (|count)) begin	// backend/src/zaqal/backend/exu/FPDivider.scala:25:28, :27:28, :29:28, :33:28, :56:17, :129:25, :147:20
+        else	// backend/src/zaqal/backend/exu/FPDivider.scala:27:28, :57:17, :130:25
+          count <= count - 8'h1;	// backend/src/zaqal/backend/exu/FPDivider.scala:27:28, :153:26
+        if (~_GEN_3 | is_sqrt_reg | (|count)) begin	// backend/src/zaqal/backend/exu/FPDivider.scala:25:28, :27:28, :29:28, :33:28, :57:17, :130:25, :152:20
         end
         else if (is_dp_reg) begin	// backend/src/zaqal/backend/exu/FPDivider.scala:26:28
-          if (div_reg[56]) begin	// backend/src/zaqal/backend/exu/FPDivider.scala:33:28, :161:32, :162:23
+          if (quo_reg[53]) begin	// backend/src/zaqal/backend/exu/FPDivider.scala:35:28, :157:32
           end
-          else	// backend/src/zaqal/backend/exu/FPDivider.scala:161:32, :162:23
-            res_e <= res_e - 12'h1;	// backend/src/zaqal/backend/exu/FPDivider.scala:29:28, :166:30
+          else	// backend/src/zaqal/backend/exu/FPDivider.scala:157:32
+            res_e <= res_e - 12'h1;	// backend/src/zaqal/backend/exu/FPDivider.scala:29:28, :162:30
         end
-        else if (div_reg[27]) begin	// backend/src/zaqal/backend/exu/FPDivider.scala:33:28, :169:32, :170:23
+        else if (quo_reg[24]) begin	// backend/src/zaqal/backend/exu/FPDivider.scala:35:28, :165:32
         end
-        else	// backend/src/zaqal/backend/exu/FPDivider.scala:169:32, :170:23
-          res_e <= res_e - 12'h1;	// backend/src/zaqal/backend/exu/FPDivider.scala:29:28, :174:30
-        if (_GEN_4) begin	// backend/src/zaqal/backend/exu/FPDivider.scala:33:28, :56:17, :129:25
+        else	// backend/src/zaqal/backend/exu/FPDivider.scala:165:32
+          res_e <= res_e - 12'h1;	// backend/src/zaqal/backend/exu/FPDivider.scala:29:28, :170:30
+        if (~_GEN_3 | is_sqrt_reg) begin	// backend/src/zaqal/backend/exu/FPDivider.scala:25:28, :33:28, :35:28, :57:17, :130:25
         end
-        else if (div_reg[118:55] >= divisor)	// backend/src/zaqal/backend/exu/FPDivider.scala:33:28, :34:28, :149:33, :152:20
-          div_reg <= {div_reg[118:55] - divisor, div_reg[54:0], 1'h1};	// backend/src/zaqal/backend/exu/FPDivider.scala:33:28, :34:28, :133:29, :149:33, :150:33, :153:{27,32,47}
-        else	// backend/src/zaqal/backend/exu/FPDivider.scala:152:20
-          div_reg <= {div_reg[118:0], 1'h0};	// backend/src/zaqal/backend/exu/FPDivider.scala:33:28, :46:30, :148:{33,41}
-        if (_GEN_3 & is_sqrt_reg & (|bit_reg)) begin	// backend/src/zaqal/backend/exu/FPDivider.scala:25:28, :37:28, :39:28, :56:17, :129:25, :130:{22,31}, :131:42
-          bit_reg <= {2'h0, bit_reg[109:2]};	// backend/src/zaqal/backend/exu/FPDivider.scala:22:22, :37:28, :42:22, :137:30
-          if (_GEN_0)	// backend/src/zaqal/backend/exu/FPDivider.scala:131:22
-            Q_reg <= _GEN + bit_reg;	// backend/src/zaqal/backend/exu/FPDivider.scala:37:28, :39:28, :133:{29,37}
-          else	// backend/src/zaqal/backend/exu/FPDivider.scala:131:22
-            Q_reg <= _GEN;	// backend/src/zaqal/backend/exu/FPDivider.scala:39:28, :133:{29,37}
+        else begin	// backend/src/zaqal/backend/exu/FPDivider.scala:35:28, :57:17, :130:25
+          rem_reg <= {rem_ge_div ? rem_reg[54:0] - divisor[54:0] : rem_reg[54:0], 1'h0};	// backend/src/zaqal/backend/exu/FPDivider.scala:33:28, :34:28, :47:30, :148:34, :149:{23,46}
+          quo_reg <= {quo_reg[54:0], rem_ge_div};	// backend/src/zaqal/backend/exu/FPDivider.scala:35:28, :148:34, :150:{23,31}
         end
-        if (_GEN_3 & is_sqrt_reg & (|bit_reg) & _GEN_0)	// backend/src/zaqal/backend/exu/FPDivider.scala:25:28, :37:28, :38:28, :56:17, :129:25, :130:{22,31}, :131:{22,42}, :132:19
-          D_reg <= D_reg - _D_reg_T_8;	// backend/src/zaqal/backend/exu/FPDivider.scala:38:28, :131:31, :132:28
+        if (_GEN_3 & is_sqrt_reg & (|bit_reg)) begin	// backend/src/zaqal/backend/exu/FPDivider.scala:25:28, :38:28, :40:28, :57:17, :130:25, :131:{22,31}, :132:42
+          bit_reg <= {2'h0, bit_reg[107:2]};	// backend/src/zaqal/backend/exu/FPDivider.scala:22:22, :38:28, :43:22, :138:30
+          if (_GEN_0)	// backend/src/zaqal/backend/exu/FPDivider.scala:132:22
+            Q_reg <= _GEN + bit_reg;	// backend/src/zaqal/backend/exu/FPDivider.scala:38:28, :40:28, :134:{29,37}
+          else	// backend/src/zaqal/backend/exu/FPDivider.scala:132:22
+            Q_reg <= _GEN;	// backend/src/zaqal/backend/exu/FPDivider.scala:40:28, :134:{29,37}
+        end
+        if (_GEN_3 & is_sqrt_reg & (|bit_reg) & _GEN_0)	// backend/src/zaqal/backend/exu/FPDivider.scala:25:28, :38:28, :39:28, :57:17, :130:25, :131:{22,31}, :132:{22,42}, :133:19
+          D_reg <= D_reg - _D_reg_T_8;	// backend/src/zaqal/backend/exu/FPDivider.scala:39:28, :132:31, :133:28
       end
-      else begin	// backend/src/zaqal/backend/exu/FPDivider.scala:41:22
-        if (_GEN_5) begin	// backend/src/zaqal/backend/exu/FPDivider.scala:27:28, :33:28, :62:57, :84:23
+      else begin	// backend/src/zaqal/backend/exu/FPDivider.scala:42:22
+        if (_GEN_4) begin	// backend/src/zaqal/backend/exu/FPDivider.scala:27:28, :33:28, :63:57, :85:23
         end
-        else	// backend/src/zaqal/backend/exu/FPDivider.scala:27:28, :62:57, :84:23
-          count <= io_dec_is_fp_double ? 8'h6D : 8'h33;	// backend/src/zaqal/backend/exu/FPDivider.scala:27:28, :108:23, :114:19, :121:19
-        if (_GEN_1)	// backend/src/zaqal/backend/exu/FPDivider.scala:62:43
+        else	// backend/src/zaqal/backend/exu/FPDivider.scala:27:28, :63:57, :85:23
+          count <= io_dec_is_fp_double ? 8'h36 : 8'h19;	// backend/src/zaqal/backend/exu/FPDivider.scala:27:28, :109:23, :115:21, :122:21
+        if (_GEN_1)	// backend/src/zaqal/backend/exu/FPDivider.scala:63:43
           res_e <=
             io_dec_is_fsqrt
               ? (io_dec_is_fp_double
@@ -189,60 +191,61 @@ module FPDivider(	// backend/src/zaqal/backend/exu/FPDivider.scala:8:7
                    : _eA_unbiased_T_2[12:1] + 12'h7F)
               : io_dec_is_fp_double
                   ? {1'h0, io_src1[62:52]} - {1'h0, io_src2[62:52]} + 12'h3FF
-                  : {{3{_res_e_T_14[8]}}, _res_e_T_14} + 12'h7F;	// backend/src/zaqal/backend/exu/FPDivider.scala:29:28, :46:30, :77:42, :81:42, :84:23, :85:23, :86:38, :94:{19,48}, :96:38, :104:{19,48}, :108:23, :110:{19,29,38}, :117:{19,29,38}
-        if (_GEN_5) begin	// backend/src/zaqal/backend/exu/FPDivider.scala:33:28, :62:57, :84:23
+                  : {{3{_res_e_T_14[8]}}, _res_e_T_14} + 12'h7F;	// backend/src/zaqal/backend/exu/FPDivider.scala:29:28, :47:30, :78:42, :82:42, :85:23, :86:23, :87:38, :95:{19,48}, :97:38, :105:{19,48}, :109:23, :111:{21,31,40}, :118:{21,31,40}
+        if (_GEN_4) begin	// backend/src/zaqal/backend/exu/FPDivider.scala:33:28, :35:28, :63:57, :85:23
         end
-        else	// backend/src/zaqal/backend/exu/FPDivider.scala:33:28, :62:57, :84:23
-          div_reg <=
+        else begin	// backend/src/zaqal/backend/exu/FPDivider.scala:35:28, :63:57, :85:23
+          rem_reg <=
             io_dec_is_fp_double
-              ? {67'h0, |(io_src1[62:52]), io_src1[51:0]}
-              : {96'h0, |(io_src1[30:23]), io_src1[22:0]};	// backend/src/zaqal/backend/exu/FPDivider.scala:33:28, :68:{24,42,52}, :69:{31,47}, :77:{24,42,52}, :78:{31,47}, :108:23, :112:{21,27}, :119:{21,27}
-        if (_GEN_1 & io_dec_is_fsqrt) begin	// backend/src/zaqal/backend/exu/FPDivider.scala:38:28, :62:{43,57}, :84:23, :85:23
+              ? {3'h0, |(io_src1[62:52]), io_src1[51:0]}
+              : {32'h0, |(io_src1[30:23]), io_src1[22:0]};	// backend/src/zaqal/backend/exu/FPDivider.scala:33:28, :69:{24,42,52}, :70:{31,47}, :78:{24,42,52}, :79:{31,47}, :109:23, :112:{21,33}, :119:{21,33}
+          quo_reg <= 56'h0;	// backend/src/zaqal/backend/exu/FPDivider.scala:33:28, :35:28
+        end
+        if (_GEN_1 & io_dec_is_fsqrt) begin	// backend/src/zaqal/backend/exu/FPDivider.scala:39:28, :63:{43,57}, :85:23, :86:23
           bit_reg <=
-            io_dec_is_fp_double ? 110'h400000000000000000000000000 : 110'h400000000000;	// backend/src/zaqal/backend/exu/FPDivider.scala:37:28, :85:23, :91:21, :101:21
+            io_dec_is_fp_double ? 108'h100000000000000000000000000 : 108'h400000000000;	// backend/src/zaqal/backend/exu/FPDivider.scala:38:28, :86:23, :92:21, :102:21
           D_reg <=
             io_dec_is_fp_double
               ? (_eA_unbiased_T[0]
-                   ? {3'h0, |(io_src1[62:52]), io_src1[51:0], 54'h0}
-                   : {4'h0, |(io_src1[62:52]), io_src1[51:0], 53'h0})
-              : {55'h0,
-                 _eA_unbiased_T_2[0]
-                   ? {7'h0, |(io_src1[30:23]), io_src1[22:0], 24'h0}
-                   : {8'h0, |(io_src1[30:23]), io_src1[22:0], 23'h0}};	// backend/src/zaqal/backend/exu/FPDivider.scala:27:28, :38:28, :68:{24,42,52}, :69:{31,47}, :77:{24,42,52}, :78:{31,47}, :85:23, :86:38, :87:37, :89:{19,25,37,70}, :96:38, :97:37, :99:{19,25,37,55,68,86}
-          Q_reg <= 110'h0;	// backend/src/zaqal/backend/exu/FPDivider.scala:37:28, :39:28
+                   ? {2'h0, |(io_src1[62:52]), io_src1[51:0], 53'h0}
+                   : {3'h0, |(io_src1[62:52]), io_src1[51:0], 52'h0})
+              : _eA_unbiased_T_2[0]
+                  ? {60'h0, |(io_src1[30:23]), io_src1[22:0], 24'h0}
+                  : {61'h0, |(io_src1[30:23]), io_src1[22:0], 23'h0};	// backend/src/zaqal/backend/exu/FPDivider.scala:22:22, :30:28, :39:28, :69:{24,42,52}, :70:{31,47}, :78:{24,42,52}, :79:{31,47}, :86:23, :87:38, :88:37, :90:{21,27,43,69}, :97:38, :98:37, :100:{21,27,43,55,69,81}, :112:33
+          Q_reg <= 108'h0;	// backend/src/zaqal/backend/exu/FPDivider.scala:38:28, :40:28
         end
       end
-      if ((|state) & _GEN_3) begin	// backend/src/zaqal/backend/exu/FPDivider.scala:22:22, :30:28, :41:22, :56:17
+      if ((|state) & _GEN_3) begin	// backend/src/zaqal/backend/exu/FPDivider.scala:22:22, :30:28, :42:22, :57:17
         if (is_sqrt_reg) begin	// backend/src/zaqal/backend/exu/FPDivider.scala:25:28
-          if (~(|bit_reg))	// backend/src/zaqal/backend/exu/FPDivider.scala:37:28, :130:22
-            res_m <= is_dp_reg ? Q_reg[51:0] : {29'h0, Q_reg[22:0]};	// backend/src/zaqal/backend/exu/FPDivider.scala:26:28, :30:28, :39:28, :140:27, :141:{19,27}, :143:{19,25,42}
+          if (~(|bit_reg))	// backend/src/zaqal/backend/exu/FPDivider.scala:38:28, :131:22
+            res_m <= is_dp_reg ? Q_reg[51:0] : {29'h0, Q_reg[22:0]};	// backend/src/zaqal/backend/exu/FPDivider.scala:26:28, :30:28, :40:28, :141:27, :142:{19,27}, :144:{19,25,42}
         end
-        else if (~(|count))	// backend/src/zaqal/backend/exu/FPDivider.scala:27:28, :33:28, :129:25, :147:{20,29}
+        else if (~(|count))	// backend/src/zaqal/backend/exu/FPDivider.scala:27:28, :130:25, :152:{20,29}
           res_m <=
             is_dp_reg
-              ? (div_reg[56] ? div_reg[55:4] : div_reg[54:3])
-              : {29'h0, div_reg[27] ? div_reg[26:4] : div_reg[25:3]};	// backend/src/zaqal/backend/exu/FPDivider.scala:26:28, :30:28, :33:28, :143:25, :160:27, :161:32, :162:{23,29}, :163:{21,29}, :165:{21,29}, :169:32, :170:{23,29}, :171:{21,27,44}, :173:{21,27,44}
+              ? (quo_reg[53] ? quo_reg[52:1] : quo_reg[51:0])
+              : {29'h0, quo_reg[24] ? quo_reg[23:1] : quo_reg[22:0]};	// backend/src/zaqal/backend/exu/FPDivider.scala:26:28, :30:28, :35:28, :144:25, :156:27, :157:32, :158:25, :159:{21,31}, :161:{21,31}, :165:32, :166:25, :167:{21,27,46}, :169:{21,27,46}
       end
-      if (~_GEN_2 | io_dec_is_fsqrt) begin	// backend/src/zaqal/backend/exu/FPDivider.scala:25:28, :34:28, :56:17, :62:57, :63:21, :84:23
+      if (~_GEN_2 | io_dec_is_fsqrt) begin	// backend/src/zaqal/backend/exu/FPDivider.scala:25:28, :34:28, :57:17, :63:57, :64:21, :85:23
       end
-      else	// backend/src/zaqal/backend/exu/FPDivider.scala:34:28, :56:17, :62:57, :84:23
+      else	// backend/src/zaqal/backend/exu/FPDivider.scala:34:28, :57:17, :63:57, :85:23
         divisor <=
           io_dec_is_fp_double
-            ? {11'h0, |(io_src2[62:52]), io_src2[51:0]}
-            : {40'h0, |(io_src2[30:23]), io_src2[22:0]};	// backend/src/zaqal/backend/exu/FPDivider.scala:34:28, :72:{24,42,52}, :73:{31,47}, :81:{24,42,52}, :82:{31,47}, :108:23, :113:{21,27}, :120:{21,27}
+            ? {3'h0, |(io_src2[62:52]), io_src2[51:0]}
+            : {32'h0, |(io_src2[30:23]), io_src2[22:0]};	// backend/src/zaqal/backend/exu/FPDivider.scala:34:28, :73:{24,42,52}, :74:{31,47}, :82:{24,42,52}, :83:{31,47}, :109:23, :112:33, :113:{21,33}, :119:33, :120:{21,33}
     end
   end // always @(posedge)
   `ifdef ENABLE_INITIAL_REG_	// backend/src/zaqal/backend/exu/FPDivider.scala:8:7
     `ifdef FIRRTL_BEFORE_INITIAL	// backend/src/zaqal/backend/exu/FPDivider.scala:8:7
       `FIRRTL_BEFORE_INITIAL	// backend/src/zaqal/backend/exu/FPDivider.scala:8:7
     `endif // FIRRTL_BEFORE_INITIAL
-    logic [31:0] _RANDOM[0:18];	// backend/src/zaqal/backend/exu/FPDivider.scala:8:7
+    logic [31:0] _RANDOM[0:17];	// backend/src/zaqal/backend/exu/FPDivider.scala:8:7
     initial begin	// backend/src/zaqal/backend/exu/FPDivider.scala:8:7
       `ifdef INIT_RANDOM_PROLOG_	// backend/src/zaqal/backend/exu/FPDivider.scala:8:7
         `INIT_RANDOM_PROLOG_	// backend/src/zaqal/backend/exu/FPDivider.scala:8:7
       `endif // INIT_RANDOM_PROLOG_
       `ifdef RANDOMIZE_REG_INIT	// backend/src/zaqal/backend/exu/FPDivider.scala:8:7
-        for (logic [4:0] i = 5'h0; i < 5'h13; i += 5'h1) begin
+        for (logic [4:0] i = 5'h0; i < 5'h12; i += 5'h1) begin
           _RANDOM[i] = `RANDOM;	// backend/src/zaqal/backend/exu/FPDivider.scala:8:7
         end	// backend/src/zaqal/backend/exu/FPDivider.scala:8:7
         state = _RANDOM[5'h0][1:0];	// backend/src/zaqal/backend/exu/FPDivider.scala:8:7, :22:22
@@ -252,37 +255,32 @@ module FPDivider(	// backend/src/zaqal/backend/exu/FPDivider.scala:8:7
         res_s = _RANDOM[5'h0][12];	// backend/src/zaqal/backend/exu/FPDivider.scala:8:7, :22:22, :28:28
         res_e = _RANDOM[5'h0][24:13];	// backend/src/zaqal/backend/exu/FPDivider.scala:8:7, :22:22, :29:28
         res_m = {_RANDOM[5'h0][31:25], _RANDOM[5'h1], _RANDOM[5'h2][12:0]};	// backend/src/zaqal/backend/exu/FPDivider.scala:8:7, :22:22, :30:28
-        div_reg =
-          {_RANDOM[5'h2][31:13],
-           _RANDOM[5'h3],
-           _RANDOM[5'h4],
-           _RANDOM[5'h5],
-           _RANDOM[5'h6][4:0]};	// backend/src/zaqal/backend/exu/FPDivider.scala:8:7, :30:28, :33:28
-        divisor = {_RANDOM[5'h6][31:5], _RANDOM[5'h7], _RANDOM[5'h8][4:0]};	// backend/src/zaqal/backend/exu/FPDivider.scala:8:7, :33:28, :34:28
+        rem_reg = {_RANDOM[5'h2][31:13], _RANDOM[5'h3], _RANDOM[5'h4][4:0]};	// backend/src/zaqal/backend/exu/FPDivider.scala:8:7, :30:28, :33:28
+        divisor = {_RANDOM[5'h4][31:5], _RANDOM[5'h5][28:0]};	// backend/src/zaqal/backend/exu/FPDivider.scala:8:7, :33:28, :34:28
+        quo_reg = {_RANDOM[5'h5][31:29], _RANDOM[5'h6], _RANDOM[5'h7][20:0]};	// backend/src/zaqal/backend/exu/FPDivider.scala:8:7, :34:28, :35:28
         bit_reg =
-          {_RANDOM[5'h8][31:5], _RANDOM[5'h9], _RANDOM[5'hA], _RANDOM[5'hB][18:0]};	// backend/src/zaqal/backend/exu/FPDivider.scala:8:7, :34:28, :37:28
-        D_reg =
-          {_RANDOM[5'hB][31:19],
-           _RANDOM[5'hC],
-           _RANDOM[5'hD],
-           _RANDOM[5'hE],
-           _RANDOM[5'hF][0]};	// backend/src/zaqal/backend/exu/FPDivider.scala:8:7, :37:28, :38:28
+          {_RANDOM[5'h7][31:21],
+           _RANDOM[5'h8],
+           _RANDOM[5'h9],
+           _RANDOM[5'hA],
+           _RANDOM[5'hB][0]};	// backend/src/zaqal/backend/exu/FPDivider.scala:8:7, :35:28, :38:28
+        D_reg = {_RANDOM[5'hB][31:1], _RANDOM[5'hC], _RANDOM[5'hD], _RANDOM[5'hE][12:0]};	// backend/src/zaqal/backend/exu/FPDivider.scala:8:7, :38:28, :39:28
         Q_reg =
-          {_RANDOM[5'hF][31:1], _RANDOM[5'h10], _RANDOM[5'h11], _RANDOM[5'h12][14:0]};	// backend/src/zaqal/backend/exu/FPDivider.scala:8:7, :38:28, :39:28
+          {_RANDOM[5'hE][31:13], _RANDOM[5'hF], _RANDOM[5'h10], _RANDOM[5'h11][24:0]};	// backend/src/zaqal/backend/exu/FPDivider.scala:8:7, :39:28, :40:28
       `endif // RANDOMIZE_REG_INIT
     end // initial
     `ifdef FIRRTL_AFTER_INITIAL	// backend/src/zaqal/backend/exu/FPDivider.scala:8:7
       `FIRRTL_AFTER_INITIAL	// backend/src/zaqal/backend/exu/FPDivider.scala:8:7
     `endif // FIRRTL_AFTER_INITIAL
   `endif // ENABLE_INITIAL_REG_
-  assign io_ready = ~(|state);	// backend/src/zaqal/backend/exu/FPDivider.scala:8:7, :22:22, :41:22
+  assign io_ready = ~(|state);	// backend/src/zaqal/backend/exu/FPDivider.scala:8:7, :22:22, :42:22
   assign io_result =
     is_dp_reg
       ? {res_s, res_e == 12'h7FF ? 11'h7FF : _final_e_sp_T_1 ? 11'h0 : res_e[10:0], res_m}
       : {32'hFFFFFFFF,
          res_s,
          $signed(res_e) > 12'shFE ? 8'hFF : _final_e_sp_T_1 ? 8'h0 : res_e[7:0],
-         res_m[22:0]};	// backend/src/zaqal/backend/exu/FPDivider.scala:8:7, :26:28, :27:28, :28:28, :29:28, :30:28, :45:{23,30}, :46:{23,30,47}, :47:23, :49:{23,30}, :50:{23,47}, :51:48, :52:26, :54:19, :113:27
-  assign io_done = state == 2'h2;	// backend/src/zaqal/backend/exu/FPDivider.scala:8:7, :22:22, :42:22
+         res_m[22:0]};	// backend/src/zaqal/backend/exu/FPDivider.scala:8:7, :26:28, :27:28, :28:28, :29:28, :30:28, :46:{23,30}, :47:{23,30,47}, :48:23, :50:{23,30}, :51:{23,47}, :52:48, :53:26, :55:19
+  assign io_done = state == 2'h2;	// backend/src/zaqal/backend/exu/FPDivider.scala:8:7, :22:22, :43:22
 endmodule
 

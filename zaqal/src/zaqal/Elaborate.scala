@@ -11,6 +11,6 @@ object Elaborate extends App {
   ChiselStage.emitSystemVerilogFile(
     new Core(),
     Array("--target-dir", "build", "--split-verilog"),
-    firtoolOpts = Array("--lowering-options=disallowLocalVariables,disallowPackedArrays")
+    firtoolOpts = Array("--lowering-options=disallowLocalVariables")
   )
 }

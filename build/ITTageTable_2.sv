@@ -85,216 +85,148 @@ module ITTageTable_2(	// frontend/src/zaqal/frontend/ITTAGE.scala:23:7
   output [1:0]  io_update_u	// frontend/src/zaqal/frontend/ITTAGE.scala:24:14
 );
 
-  wire [1:0] _us_ext_R1_data;	// frontend/src/zaqal/frontend/ITTAGE.scala:68:20
-  wire [7:0] _tags_ext_R0_data;	// frontend/src/zaqal/frontend/ITTAGE.scala:66:20
-  wire [5:0] _idx_fh_T_3 =
+  wire [1:0]  _us_ext_R1_data;	// frontend/src/zaqal/frontend/ITTAGE.scala:68:20
+  wire [7:0]  _tags_ext_R0_data;	// frontend/src/zaqal/frontend/ITTAGE.scala:66:20
+  wire [5:0]  _idx_fh_T_3 =
     io_req_phr[5:0] ^ io_req_phr[11:6] ^ io_req_phr[17:12] ^ io_req_phr[23:18]
     ^ io_req_phr[29:24];	// frontend/src/zaqal/frontend/ITTAGE.scala:53:10, :55:20
-  wire [5:0] req_idx =
+  wire [5:0]  req_idx =
     io_req_pc[5:0] ^ {_idx_fh_T_3[5:2], _idx_fh_T_3[1:0] ^ io_req_phr[31:30]};	// frontend/src/zaqal/frontend/ITTAGE.scala:53:10, :55:20, :62:{27,47}
-  reg        valids_0;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
-  reg        valids_1;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
-  reg        valids_2;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
-  reg        valids_3;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
-  reg        valids_4;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
-  reg        valids_5;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
-  reg        valids_6;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
-  reg        valids_7;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
-  reg        valids_8;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
-  reg        valids_9;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
-  reg        valids_10;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
-  reg        valids_11;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
-  reg        valids_12;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
-  reg        valids_13;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
-  reg        valids_14;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
-  reg        valids_15;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
-  reg        valids_16;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
-  reg        valids_17;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
-  reg        valids_18;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
-  reg        valids_19;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
-  reg        valids_20;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
-  reg        valids_21;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
-  reg        valids_22;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
-  reg        valids_23;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
-  reg        valids_24;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
-  reg        valids_25;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
-  reg        valids_26;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
-  reg        valids_27;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
-  reg        valids_28;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
-  reg        valids_29;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
-  reg        valids_30;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
-  reg        valids_31;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
-  reg        valids_32;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
-  reg        valids_33;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
-  reg        valids_34;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
-  reg        valids_35;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
-  reg        valids_36;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
-  reg        valids_37;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
-  reg        valids_38;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
-  reg        valids_39;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
-  reg        valids_40;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
-  reg        valids_41;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
-  reg        valids_42;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
-  reg        valids_43;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
-  reg        valids_44;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
-  reg        valids_45;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
-  reg        valids_46;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
-  reg        valids_47;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
-  reg        valids_48;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
-  reg        valids_49;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
-  reg        valids_50;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
-  reg        valids_51;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
-  reg        valids_52;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
-  reg        valids_53;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
-  reg        valids_54;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
-  reg        valids_55;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
-  reg        valids_56;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
-  reg        valids_57;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
-  reg        valids_58;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
-  reg        valids_59;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
-  reg        valids_60;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
-  reg        valids_61;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
-  reg        valids_62;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
-  reg        valids_63;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
-  wire [5:0] _u_idx_fh_T_3 =
+  reg         valids_0;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
+  reg         valids_1;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
+  reg         valids_2;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
+  reg         valids_3;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
+  reg         valids_4;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
+  reg         valids_5;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
+  reg         valids_6;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
+  reg         valids_7;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
+  reg         valids_8;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
+  reg         valids_9;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
+  reg         valids_10;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
+  reg         valids_11;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
+  reg         valids_12;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
+  reg         valids_13;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
+  reg         valids_14;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
+  reg         valids_15;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
+  reg         valids_16;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
+  reg         valids_17;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
+  reg         valids_18;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
+  reg         valids_19;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
+  reg         valids_20;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
+  reg         valids_21;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
+  reg         valids_22;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
+  reg         valids_23;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
+  reg         valids_24;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
+  reg         valids_25;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
+  reg         valids_26;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
+  reg         valids_27;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
+  reg         valids_28;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
+  reg         valids_29;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
+  reg         valids_30;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
+  reg         valids_31;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
+  reg         valids_32;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
+  reg         valids_33;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
+  reg         valids_34;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
+  reg         valids_35;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
+  reg         valids_36;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
+  reg         valids_37;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
+  reg         valids_38;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
+  reg         valids_39;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
+  reg         valids_40;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
+  reg         valids_41;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
+  reg         valids_42;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
+  reg         valids_43;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
+  reg         valids_44;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
+  reg         valids_45;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
+  reg         valids_46;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
+  reg         valids_47;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
+  reg         valids_48;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
+  reg         valids_49;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
+  reg         valids_50;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
+  reg         valids_51;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
+  reg         valids_52;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
+  reg         valids_53;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
+  reg         valids_54;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
+  reg         valids_55;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
+  reg         valids_56;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
+  reg         valids_57;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
+  reg         valids_58;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
+  reg         valids_59;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
+  reg         valids_60;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
+  reg         valids_61;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
+  reg         valids_62;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
+  reg         valids_63;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24
+  wire [5:0]  _u_idx_fh_T_3 =
     io_update_phr[5:0] ^ io_update_phr[11:6] ^ io_update_phr[17:12] ^ io_update_phr[23:18]
     ^ io_update_phr[29:24];	// frontend/src/zaqal/frontend/ITTAGE.scala:53:10, :55:20
-  wire [5:0] u_idx =
+  wire [5:0]  u_idx =
     io_update_pc[5:0] ^ {_u_idx_fh_T_3[5:2], _u_idx_fh_T_3[1:0] ^ io_update_phr[31:30]};	// frontend/src/zaqal/frontend/ITTAGE.scala:53:10, :55:20, :79:{31,51}
-  reg        casez_tmp;	// frontend/src/zaqal/frontend/ITTAGE.scala:82:24
-  always_comb begin	// frontend/src/zaqal/frontend/ITTAGE.scala:82:24
-    casez (req_idx)	// frontend/src/zaqal/frontend/ITTAGE.scala:62:47, :82:24
-      6'b000000:
-        casez_tmp = valids_0;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24, :82:24
-      6'b000001:
-        casez_tmp = valids_1;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24, :82:24
-      6'b000010:
-        casez_tmp = valids_2;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24, :82:24
-      6'b000011:
-        casez_tmp = valids_3;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24, :82:24
-      6'b000100:
-        casez_tmp = valids_4;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24, :82:24
-      6'b000101:
-        casez_tmp = valids_5;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24, :82:24
-      6'b000110:
-        casez_tmp = valids_6;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24, :82:24
-      6'b000111:
-        casez_tmp = valids_7;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24, :82:24
-      6'b001000:
-        casez_tmp = valids_8;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24, :82:24
-      6'b001001:
-        casez_tmp = valids_9;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24, :82:24
-      6'b001010:
-        casez_tmp = valids_10;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24, :82:24
-      6'b001011:
-        casez_tmp = valids_11;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24, :82:24
-      6'b001100:
-        casez_tmp = valids_12;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24, :82:24
-      6'b001101:
-        casez_tmp = valids_13;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24, :82:24
-      6'b001110:
-        casez_tmp = valids_14;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24, :82:24
-      6'b001111:
-        casez_tmp = valids_15;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24, :82:24
-      6'b010000:
-        casez_tmp = valids_16;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24, :82:24
-      6'b010001:
-        casez_tmp = valids_17;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24, :82:24
-      6'b010010:
-        casez_tmp = valids_18;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24, :82:24
-      6'b010011:
-        casez_tmp = valids_19;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24, :82:24
-      6'b010100:
-        casez_tmp = valids_20;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24, :82:24
-      6'b010101:
-        casez_tmp = valids_21;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24, :82:24
-      6'b010110:
-        casez_tmp = valids_22;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24, :82:24
-      6'b010111:
-        casez_tmp = valids_23;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24, :82:24
-      6'b011000:
-        casez_tmp = valids_24;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24, :82:24
-      6'b011001:
-        casez_tmp = valids_25;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24, :82:24
-      6'b011010:
-        casez_tmp = valids_26;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24, :82:24
-      6'b011011:
-        casez_tmp = valids_27;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24, :82:24
-      6'b011100:
-        casez_tmp = valids_28;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24, :82:24
-      6'b011101:
-        casez_tmp = valids_29;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24, :82:24
-      6'b011110:
-        casez_tmp = valids_30;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24, :82:24
-      6'b011111:
-        casez_tmp = valids_31;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24, :82:24
-      6'b100000:
-        casez_tmp = valids_32;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24, :82:24
-      6'b100001:
-        casez_tmp = valids_33;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24, :82:24
-      6'b100010:
-        casez_tmp = valids_34;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24, :82:24
-      6'b100011:
-        casez_tmp = valids_35;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24, :82:24
-      6'b100100:
-        casez_tmp = valids_36;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24, :82:24
-      6'b100101:
-        casez_tmp = valids_37;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24, :82:24
-      6'b100110:
-        casez_tmp = valids_38;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24, :82:24
-      6'b100111:
-        casez_tmp = valids_39;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24, :82:24
-      6'b101000:
-        casez_tmp = valids_40;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24, :82:24
-      6'b101001:
-        casez_tmp = valids_41;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24, :82:24
-      6'b101010:
-        casez_tmp = valids_42;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24, :82:24
-      6'b101011:
-        casez_tmp = valids_43;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24, :82:24
-      6'b101100:
-        casez_tmp = valids_44;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24, :82:24
-      6'b101101:
-        casez_tmp = valids_45;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24, :82:24
-      6'b101110:
-        casez_tmp = valids_46;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24, :82:24
-      6'b101111:
-        casez_tmp = valids_47;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24, :82:24
-      6'b110000:
-        casez_tmp = valids_48;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24, :82:24
-      6'b110001:
-        casez_tmp = valids_49;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24, :82:24
-      6'b110010:
-        casez_tmp = valids_50;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24, :82:24
-      6'b110011:
-        casez_tmp = valids_51;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24, :82:24
-      6'b110100:
-        casez_tmp = valids_52;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24, :82:24
-      6'b110101:
-        casez_tmp = valids_53;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24, :82:24
-      6'b110110:
-        casez_tmp = valids_54;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24, :82:24
-      6'b110111:
-        casez_tmp = valids_55;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24, :82:24
-      6'b111000:
-        casez_tmp = valids_56;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24, :82:24
-      6'b111001:
-        casez_tmp = valids_57;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24, :82:24
-      6'b111010:
-        casez_tmp = valids_58;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24, :82:24
-      6'b111011:
-        casez_tmp = valids_59;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24, :82:24
-      6'b111100:
-        casez_tmp = valids_60;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24, :82:24
-      6'b111101:
-        casez_tmp = valids_61;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24, :82:24
-      6'b111110:
-        casez_tmp = valids_62;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24, :82:24
-      default:
-        casez_tmp = valids_63;	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24, :82:24
-    endcase	// frontend/src/zaqal/frontend/ITTAGE.scala:62:47, :82:24
-  end // always_comb
-  wire       _GEN = io_update_valid & io_allocate;	// frontend/src/zaqal/frontend/ITTAGE.scala:66:20, :88:25, :89:23
+  wire [63:0] _GEN =
+    {{valids_63},
+     {valids_62},
+     {valids_61},
+     {valids_60},
+     {valids_59},
+     {valids_58},
+     {valids_57},
+     {valids_56},
+     {valids_55},
+     {valids_54},
+     {valids_53},
+     {valids_52},
+     {valids_51},
+     {valids_50},
+     {valids_49},
+     {valids_48},
+     {valids_47},
+     {valids_46},
+     {valids_45},
+     {valids_44},
+     {valids_43},
+     {valids_42},
+     {valids_41},
+     {valids_40},
+     {valids_39},
+     {valids_38},
+     {valids_37},
+     {valids_36},
+     {valids_35},
+     {valids_34},
+     {valids_33},
+     {valids_32},
+     {valids_31},
+     {valids_30},
+     {valids_29},
+     {valids_28},
+     {valids_27},
+     {valids_26},
+     {valids_25},
+     {valids_24},
+     {valids_23},
+     {valids_22},
+     {valids_21},
+     {valids_20},
+     {valids_19},
+     {valids_18},
+     {valids_17},
+     {valids_16},
+     {valids_15},
+     {valids_14},
+     {valids_13},
+     {valids_12},
+     {valids_11},
+     {valids_10},
+     {valids_9},
+     {valids_8},
+     {valids_7},
+     {valids_6},
+     {valids_5},
+     {valids_4},
+     {valids_3},
+     {valids_2},
+     {valids_1},
+     {valids_0}};	// frontend/src/zaqal/frontend/ITTAGE.scala:69:24, :82:24
+  wire        _GEN_0 = io_update_valid & io_allocate;	// frontend/src/zaqal/frontend/ITTAGE.scala:66:20, :88:25, :89:23
   always @(posedge clock) begin	// frontend/src/zaqal/frontend/ITTAGE.scala:23:7
     if (reset) begin	// frontend/src/zaqal/frontend/ITTAGE.scala:23:7
       valids_0 <= 1'h0;	// frontend/src/zaqal/frontend/ITTAGE.scala:23:7, :69:24
@@ -518,7 +450,7 @@ module ITTageTable_2(	// frontend/src/zaqal/frontend/ITTAGE.scala:23:7
     .R0_clk  (clock),
     .R0_data (_tags_ext_R0_data),
     .W0_addr (u_idx),	// frontend/src/zaqal/frontend/ITTAGE.scala:79:51
-    .W0_en   (_GEN),	// frontend/src/zaqal/frontend/ITTAGE.scala:66:20, :88:25, :89:23
+    .W0_en   (_GEN_0),	// frontend/src/zaqal/frontend/ITTAGE.scala:66:20, :88:25, :89:23
     .W0_clk  (clock),
     .W0_data
       (io_update_pc[7:0] ^ io_update_phr[7:0] ^ io_update_phr[15:8] ^ io_update_phr[23:16]
@@ -530,7 +462,7 @@ module ITTageTable_2(	// frontend/src/zaqal/frontend/ITTAGE.scala:23:7
     .R0_clk  (clock),
     .R0_data (io_target),
     .W0_addr (u_idx),	// frontend/src/zaqal/frontend/ITTAGE.scala:79:51
-    .W0_en   (_GEN),	// frontend/src/zaqal/frontend/ITTAGE.scala:66:20, :88:25, :89:23
+    .W0_en   (_GEN_0),	// frontend/src/zaqal/frontend/ITTAGE.scala:66:20, :88:25, :89:23
     .W0_clk  (clock),
     .W0_data (io_update_target)
   );
@@ -556,13 +488,13 @@ module ITTageTable_2(	// frontend/src/zaqal/frontend/ITTAGE.scala:23:7
     .W1_clk  (clock),
     .W1_data (_us_ext_R1_data - 2'h1),	// frontend/src/zaqal/frontend/ITTAGE.scala:68:20, :98:30
     .W2_addr (u_idx),	// frontend/src/zaqal/frontend/ITTAGE.scala:79:51
-    .W2_en   (_GEN),	// frontend/src/zaqal/frontend/ITTAGE.scala:66:20, :88:25, :89:23
+    .W2_en   (_GEN_0),	// frontend/src/zaqal/frontend/ITTAGE.scala:66:20, :88:25, :89:23
     .W2_clk  (clock),
     .W2_data (2'h0)	// frontend/src/zaqal/frontend/ITTAGE.scala:23:7
   );
   assign io_hit =
-    casez_tmp
+    _GEN[req_idx]
     & _tags_ext_R0_data == (io_req_pc[7:0] ^ io_req_phr[7:0] ^ io_req_phr[15:8]
-                            ^ io_req_phr[23:16] ^ io_req_phr[31:24]);	// frontend/src/zaqal/frontend/ITTAGE.scala:23:7, :53:10, :63:{27,51}, :66:20, :82:{24,37}
+                            ^ io_req_phr[23:16] ^ io_req_phr[31:24]);	// frontend/src/zaqal/frontend/ITTAGE.scala:23:7, :53:10, :62:47, :63:{27,51}, :66:20, :82:{24,37}
 endmodule
 

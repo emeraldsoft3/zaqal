@@ -82,99 +82,64 @@ module RAS(	// frontend/src/zaqal/frontend/RAS.scala:8:7
   input  [3:0]  io_restore_sp	// frontend/src/zaqal/frontend/RAS.scala:9:14
 );
 
-  reg  [63:0] arch_stack_0;	// frontend/src/zaqal/frontend/RAS.scala:29:27
-  reg  [63:0] arch_stack_1;	// frontend/src/zaqal/frontend/RAS.scala:29:27
-  reg  [63:0] arch_stack_2;	// frontend/src/zaqal/frontend/RAS.scala:29:27
-  reg  [63:0] arch_stack_3;	// frontend/src/zaqal/frontend/RAS.scala:29:27
-  reg  [63:0] arch_stack_4;	// frontend/src/zaqal/frontend/RAS.scala:29:27
-  reg  [63:0] arch_stack_5;	// frontend/src/zaqal/frontend/RAS.scala:29:27
-  reg  [63:0] arch_stack_6;	// frontend/src/zaqal/frontend/RAS.scala:29:27
-  reg  [63:0] arch_stack_7;	// frontend/src/zaqal/frontend/RAS.scala:29:27
-  reg  [63:0] arch_stack_8;	// frontend/src/zaqal/frontend/RAS.scala:29:27
-  reg  [63:0] arch_stack_9;	// frontend/src/zaqal/frontend/RAS.scala:29:27
-  reg  [63:0] arch_stack_10;	// frontend/src/zaqal/frontend/RAS.scala:29:27
-  reg  [63:0] arch_stack_11;	// frontend/src/zaqal/frontend/RAS.scala:29:27
-  reg  [63:0] arch_stack_12;	// frontend/src/zaqal/frontend/RAS.scala:29:27
-  reg  [63:0] arch_stack_13;	// frontend/src/zaqal/frontend/RAS.scala:29:27
-  reg  [63:0] arch_stack_14;	// frontend/src/zaqal/frontend/RAS.scala:29:27
-  reg  [63:0] arch_stack_15;	// frontend/src/zaqal/frontend/RAS.scala:29:27
-  reg  [3:0]  arch_sp;	// frontend/src/zaqal/frontend/RAS.scala:30:27
-  reg  [63:0] spec_stack_0;	// frontend/src/zaqal/frontend/RAS.scala:32:27
-  reg  [63:0] spec_stack_1;	// frontend/src/zaqal/frontend/RAS.scala:32:27
-  reg  [63:0] spec_stack_2;	// frontend/src/zaqal/frontend/RAS.scala:32:27
-  reg  [63:0] spec_stack_3;	// frontend/src/zaqal/frontend/RAS.scala:32:27
-  reg  [63:0] spec_stack_4;	// frontend/src/zaqal/frontend/RAS.scala:32:27
-  reg  [63:0] spec_stack_5;	// frontend/src/zaqal/frontend/RAS.scala:32:27
-  reg  [63:0] spec_stack_6;	// frontend/src/zaqal/frontend/RAS.scala:32:27
-  reg  [63:0] spec_stack_7;	// frontend/src/zaqal/frontend/RAS.scala:32:27
-  reg  [63:0] spec_stack_8;	// frontend/src/zaqal/frontend/RAS.scala:32:27
-  reg  [63:0] spec_stack_9;	// frontend/src/zaqal/frontend/RAS.scala:32:27
-  reg  [63:0] spec_stack_10;	// frontend/src/zaqal/frontend/RAS.scala:32:27
-  reg  [63:0] spec_stack_11;	// frontend/src/zaqal/frontend/RAS.scala:32:27
-  reg  [63:0] spec_stack_12;	// frontend/src/zaqal/frontend/RAS.scala:32:27
-  reg  [63:0] spec_stack_13;	// frontend/src/zaqal/frontend/RAS.scala:32:27
-  reg  [63:0] spec_stack_14;	// frontend/src/zaqal/frontend/RAS.scala:32:27
-  reg  [63:0] spec_stack_15;	// frontend/src/zaqal/frontend/RAS.scala:32:27
-  reg  [3:0]  spec_sp;	// frontend/src/zaqal/frontend/RAS.scala:33:27
-  wire        _GEN = io_commit_push_valid & ~io_commit_pop_valid;	// frontend/src/zaqal/frontend/RAS.scala:36:{29,32}
-  wire [3:0]  _arch_sp_T = arch_sp + 4'h1;	// frontend/src/zaqal/frontend/RAS.scala:30:27, :37:25, :38:24
-  wire        _GEN_0 = io_commit_pop_valid & ~io_commit_push_valid;	// frontend/src/zaqal/frontend/RAS.scala:40:{35,38}
-  wire [3:0]  _arch_sp_T_2 = arch_sp - 4'h1;	// frontend/src/zaqal/frontend/RAS.scala:30:27, :41:24
-  wire        _GEN_1 = io_commit_push_valid & io_commit_pop_valid;	// frontend/src/zaqal/frontend/RAS.scala:43:36
-  `ifndef SYNTHESIS	// frontend/src/zaqal/frontend/RAS.scala:39:11
-    always @(posedge clock) begin	// frontend/src/zaqal/frontend/RAS.scala:39:11
-      if ((`PRINTF_COND_) & _GEN & ~reset)	// frontend/src/zaqal/frontend/RAS.scala:36:29, :39:11
-        $fwrite(32'h80000002, "RAS ARCH PUSH: addr=%x new_sp=%d\n", io_commit_push_addr,
-                _arch_sp_T);	// frontend/src/zaqal/frontend/RAS.scala:38:24, :39:11
-      if ((`PRINTF_COND_) & ~_GEN & _GEN_0 & ~reset)	// frontend/src/zaqal/frontend/RAS.scala:36:{29,54}, :39:11, :40:35, :42:11
-        $fwrite(32'h80000002, "RAS ARCH POP: new_sp=%d\n", _arch_sp_T_2);	// frontend/src/zaqal/frontend/RAS.scala:39:11, :41:24, :42:11
-      if ((`PRINTF_COND_) & ~_GEN & ~_GEN_0 & _GEN_1 & ~reset)	// frontend/src/zaqal/frontend/RAS.scala:36:{29,54}, :39:11, :40:{35,61}, :43:36, :45:11
-        $fwrite(32'h80000002, "RAS ARCH PUSH+POP: addr=%x sp=%d\n", io_commit_push_addr,
-                arch_sp);	// frontend/src/zaqal/frontend/RAS.scala:30:27, :39:11, :45:11
-    end // always @(posedge)
-  `endif // not def SYNTHESIS
-  reg  [63:0] casez_tmp;	// frontend/src/zaqal/frontend/RAS.scala:67:25
-  always_comb begin	// frontend/src/zaqal/frontend/RAS.scala:67:25
-    casez ((|spec_sp) ? spec_sp - 4'h1 : 4'hF)	// frontend/src/zaqal/frontend/RAS.scala:33:27, :37:25, :58:25, :66:{20,66}, :67:25
-      4'b0000:
-        casez_tmp = spec_stack_0;	// frontend/src/zaqal/frontend/RAS.scala:32:27, :67:25
-      4'b0001:
-        casez_tmp = spec_stack_1;	// frontend/src/zaqal/frontend/RAS.scala:32:27, :67:25
-      4'b0010:
-        casez_tmp = spec_stack_2;	// frontend/src/zaqal/frontend/RAS.scala:32:27, :67:25
-      4'b0011:
-        casez_tmp = spec_stack_3;	// frontend/src/zaqal/frontend/RAS.scala:32:27, :67:25
-      4'b0100:
-        casez_tmp = spec_stack_4;	// frontend/src/zaqal/frontend/RAS.scala:32:27, :67:25
-      4'b0101:
-        casez_tmp = spec_stack_5;	// frontend/src/zaqal/frontend/RAS.scala:32:27, :67:25
-      4'b0110:
-        casez_tmp = spec_stack_6;	// frontend/src/zaqal/frontend/RAS.scala:32:27, :67:25
-      4'b0111:
-        casez_tmp = spec_stack_7;	// frontend/src/zaqal/frontend/RAS.scala:32:27, :67:25
-      4'b1000:
-        casez_tmp = spec_stack_8;	// frontend/src/zaqal/frontend/RAS.scala:32:27, :67:25
-      4'b1001:
-        casez_tmp = spec_stack_9;	// frontend/src/zaqal/frontend/RAS.scala:32:27, :67:25
-      4'b1010:
-        casez_tmp = spec_stack_10;	// frontend/src/zaqal/frontend/RAS.scala:32:27, :67:25
-      4'b1011:
-        casez_tmp = spec_stack_11;	// frontend/src/zaqal/frontend/RAS.scala:32:27, :67:25
-      4'b1100:
-        casez_tmp = spec_stack_12;	// frontend/src/zaqal/frontend/RAS.scala:32:27, :67:25
-      4'b1101:
-        casez_tmp = spec_stack_13;	// frontend/src/zaqal/frontend/RAS.scala:32:27, :67:25
-      4'b1110:
-        casez_tmp = spec_stack_14;	// frontend/src/zaqal/frontend/RAS.scala:32:27, :67:25
-      default:
-        casez_tmp = spec_stack_15;	// frontend/src/zaqal/frontend/RAS.scala:32:27, :67:25
-    endcase	// frontend/src/zaqal/frontend/RAS.scala:33:27, :37:25, :58:25, :66:{20,66}, :67:25
-  end // always_comb
-  wire [3:0]  _GEN_2 = arch_sp - 4'h1;	// frontend/src/zaqal/frontend/RAS.scala:30:27, :44:24
-  wire        _GEN_3 = io_spec_push_valid & ~io_spec_pop_valid;	// frontend/src/zaqal/frontend/RAS.scala:57:{34,37}
-  wire        _GEN_4 = io_spec_pop_valid & ~io_spec_push_valid;	// frontend/src/zaqal/frontend/RAS.scala:60:{33,36}
-  wire        _GEN_5 = io_spec_push_valid & io_spec_pop_valid;	// frontend/src/zaqal/frontend/RAS.scala:62:34
-  wire [3:0]  _GEN_6 = spec_sp - 4'h1;	// frontend/src/zaqal/frontend/RAS.scala:33:27, :63:24
+  reg  [63:0]       arch_stack_0;	// frontend/src/zaqal/frontend/RAS.scala:29:27
+  reg  [63:0]       arch_stack_1;	// frontend/src/zaqal/frontend/RAS.scala:29:27
+  reg  [63:0]       arch_stack_2;	// frontend/src/zaqal/frontend/RAS.scala:29:27
+  reg  [63:0]       arch_stack_3;	// frontend/src/zaqal/frontend/RAS.scala:29:27
+  reg  [63:0]       arch_stack_4;	// frontend/src/zaqal/frontend/RAS.scala:29:27
+  reg  [63:0]       arch_stack_5;	// frontend/src/zaqal/frontend/RAS.scala:29:27
+  reg  [63:0]       arch_stack_6;	// frontend/src/zaqal/frontend/RAS.scala:29:27
+  reg  [63:0]       arch_stack_7;	// frontend/src/zaqal/frontend/RAS.scala:29:27
+  reg  [63:0]       arch_stack_8;	// frontend/src/zaqal/frontend/RAS.scala:29:27
+  reg  [63:0]       arch_stack_9;	// frontend/src/zaqal/frontend/RAS.scala:29:27
+  reg  [63:0]       arch_stack_10;	// frontend/src/zaqal/frontend/RAS.scala:29:27
+  reg  [63:0]       arch_stack_11;	// frontend/src/zaqal/frontend/RAS.scala:29:27
+  reg  [63:0]       arch_stack_12;	// frontend/src/zaqal/frontend/RAS.scala:29:27
+  reg  [63:0]       arch_stack_13;	// frontend/src/zaqal/frontend/RAS.scala:29:27
+  reg  [63:0]       arch_stack_14;	// frontend/src/zaqal/frontend/RAS.scala:29:27
+  reg  [63:0]       arch_stack_15;	// frontend/src/zaqal/frontend/RAS.scala:29:27
+  reg  [3:0]        arch_sp;	// frontend/src/zaqal/frontend/RAS.scala:30:27
+  reg  [63:0]       spec_stack_0;	// frontend/src/zaqal/frontend/RAS.scala:32:27
+  reg  [63:0]       spec_stack_1;	// frontend/src/zaqal/frontend/RAS.scala:32:27
+  reg  [63:0]       spec_stack_2;	// frontend/src/zaqal/frontend/RAS.scala:32:27
+  reg  [63:0]       spec_stack_3;	// frontend/src/zaqal/frontend/RAS.scala:32:27
+  reg  [63:0]       spec_stack_4;	// frontend/src/zaqal/frontend/RAS.scala:32:27
+  reg  [63:0]       spec_stack_5;	// frontend/src/zaqal/frontend/RAS.scala:32:27
+  reg  [63:0]       spec_stack_6;	// frontend/src/zaqal/frontend/RAS.scala:32:27
+  reg  [63:0]       spec_stack_7;	// frontend/src/zaqal/frontend/RAS.scala:32:27
+  reg  [63:0]       spec_stack_8;	// frontend/src/zaqal/frontend/RAS.scala:32:27
+  reg  [63:0]       spec_stack_9;	// frontend/src/zaqal/frontend/RAS.scala:32:27
+  reg  [63:0]       spec_stack_10;	// frontend/src/zaqal/frontend/RAS.scala:32:27
+  reg  [63:0]       spec_stack_11;	// frontend/src/zaqal/frontend/RAS.scala:32:27
+  reg  [63:0]       spec_stack_12;	// frontend/src/zaqal/frontend/RAS.scala:32:27
+  reg  [63:0]       spec_stack_13;	// frontend/src/zaqal/frontend/RAS.scala:32:27
+  reg  [63:0]       spec_stack_14;	// frontend/src/zaqal/frontend/RAS.scala:32:27
+  reg  [63:0]       spec_stack_15;	// frontend/src/zaqal/frontend/RAS.scala:32:27
+  reg  [3:0]        spec_sp;	// frontend/src/zaqal/frontend/RAS.scala:33:27
+  wire [15:0][63:0] _GEN =
+    {{spec_stack_15},
+     {spec_stack_14},
+     {spec_stack_13},
+     {spec_stack_12},
+     {spec_stack_11},
+     {spec_stack_10},
+     {spec_stack_9},
+     {spec_stack_8},
+     {spec_stack_7},
+     {spec_stack_6},
+     {spec_stack_5},
+     {spec_stack_4},
+     {spec_stack_3},
+     {spec_stack_2},
+     {spec_stack_1},
+     {spec_stack_0}};	// frontend/src/zaqal/frontend/RAS.scala:32:27, :67:25
+  wire              _GEN_0 = io_commit_pop_valid & ~io_commit_push_valid;	// frontend/src/zaqal/frontend/RAS.scala:40:{35,38}
+  wire              _GEN_1 = io_commit_push_valid & io_commit_pop_valid;	// frontend/src/zaqal/frontend/RAS.scala:43:36
+  wire [3:0]        _GEN_2 = arch_sp - 4'h1;	// frontend/src/zaqal/frontend/RAS.scala:30:27, :44:24
+  wire              _GEN_3 = io_spec_push_valid & ~io_spec_pop_valid;	// frontend/src/zaqal/frontend/RAS.scala:57:{34,37}
+  wire              _GEN_4 = io_spec_pop_valid & ~io_spec_push_valid;	// frontend/src/zaqal/frontend/RAS.scala:60:{33,36}
+  wire              _GEN_5 = io_spec_push_valid & io_spec_pop_valid;	// frontend/src/zaqal/frontend/RAS.scala:62:34
+  wire [3:0]        _GEN_6 = spec_sp - 4'h1;	// frontend/src/zaqal/frontend/RAS.scala:33:27, :63:24
   always @(posedge clock) begin	// frontend/src/zaqal/frontend/RAS.scala:8:7
     if (reset) begin	// frontend/src/zaqal/frontend/RAS.scala:8:7
       arch_stack_0 <= 64'h0;	// frontend/src/zaqal/frontend/RAS.scala:29:{27,35}
@@ -213,7 +178,7 @@ module RAS(	// frontend/src/zaqal/frontend/RAS.scala:8:7
       spec_sp <= 4'h0;	// frontend/src/zaqal/frontend/RAS.scala:30:27, :33:27
     end
     else begin	// frontend/src/zaqal/frontend/RAS.scala:8:7
-      if (_GEN) begin	// frontend/src/zaqal/frontend/RAS.scala:36:29
+      if (io_commit_push_valid & ~io_commit_pop_valid) begin	// frontend/src/zaqal/frontend/RAS.scala:36:{29,32}
         if (arch_sp == 4'h0)	// frontend/src/zaqal/frontend/RAS.scala:30:27, :37:25
           arch_stack_0 <= io_commit_push_addr;	// frontend/src/zaqal/frontend/RAS.scala:29:27
         if (arch_sp == 4'h1)	// frontend/src/zaqal/frontend/RAS.scala:30:27, :37:25
@@ -246,7 +211,7 @@ module RAS(	// frontend/src/zaqal/frontend/RAS.scala:8:7
           arch_stack_14 <= io_commit_push_addr;	// frontend/src/zaqal/frontend/RAS.scala:29:27
         if (&arch_sp)	// frontend/src/zaqal/frontend/RAS.scala:30:27, :37:25
           arch_stack_15 <= io_commit_push_addr;	// frontend/src/zaqal/frontend/RAS.scala:29:27
-        arch_sp <= _arch_sp_T;	// frontend/src/zaqal/frontend/RAS.scala:30:27, :38:24
+        arch_sp <= arch_sp + 4'h1;	// frontend/src/zaqal/frontend/RAS.scala:30:27, :37:25, :38:24
       end
       else begin	// frontend/src/zaqal/frontend/RAS.scala:36:29
         if (_GEN_0 | ~(_GEN_1 & _GEN_2 == 4'h0)) begin	// frontend/src/zaqal/frontend/RAS.scala:29:27, :30:27, :40:{35,61}, :43:{36,60}, :44:{24,31}
@@ -314,7 +279,7 @@ module RAS(	// frontend/src/zaqal/frontend/RAS.scala:8:7
         else	// frontend/src/zaqal/frontend/RAS.scala:29:27, :40:61, :43:60
           arch_stack_15 <= io_commit_push_addr;	// frontend/src/zaqal/frontend/RAS.scala:29:27
         if (_GEN_0)	// frontend/src/zaqal/frontend/RAS.scala:40:35
-          arch_sp <= _arch_sp_T_2;	// frontend/src/zaqal/frontend/RAS.scala:30:27, :41:24
+          arch_sp <= arch_sp - 4'h1;	// frontend/src/zaqal/frontend/RAS.scala:30:27, :41:24
       end
       if (io_restore_en) begin	// frontend/src/zaqal/frontend/RAS.scala:9:14
         spec_stack_0 <= arch_stack_0;	// frontend/src/zaqal/frontend/RAS.scala:29:27, :32:27
@@ -493,7 +458,7 @@ module RAS(	// frontend/src/zaqal/frontend/RAS.scala:8:7
       `FIRRTL_AFTER_INITIAL	// frontend/src/zaqal/frontend/RAS.scala:8:7
     `endif // FIRRTL_AFTER_INITIAL
   `endif // ENABLE_INITIAL_REG_
-  assign io_spec_pop_addr = casez_tmp;	// frontend/src/zaqal/frontend/RAS.scala:8:7, :67:25
+  assign io_spec_pop_addr = _GEN[(|spec_sp) ? spec_sp - 4'h1 : 4'hF];	// frontend/src/zaqal/frontend/RAS.scala:8:7, :33:27, :37:25, :58:25, :66:{20,66}, :67:25
   assign io_spec_pop_valid_out = |spec_sp;	// frontend/src/zaqal/frontend/RAS.scala:8:7, :33:27, :68:36
   assign io_spec_sp = spec_sp;	// frontend/src/zaqal/frontend/RAS.scala:8:7, :33:27
 endmodule

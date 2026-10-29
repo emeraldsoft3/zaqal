@@ -66,31 +66,100 @@
   `endif // PRINTF_COND
 `endif // not def PRINTF_COND_
 
-module FastTLB(	// backend/src/zaqal/backend/exu/FastTLB.scala:8:7
-  input  [63:0] io_vaddr,	// backend/src/zaqal/backend/exu/FastTLB.scala:9:14
-  output [63:0] io_paddr	// backend/src/zaqal/backend/exu/FastTLB.scala:9:14
+module FastTLB(	// backend/src/zaqal/backend/exu/FastTLB.scala:13:7
+  input         clock,	// backend/src/zaqal/backend/exu/FastTLB.scala:13:7
+                reset,	// backend/src/zaqal/backend/exu/FastTLB.scala:13:7
+  input  [63:0] io_vaddr,	// backend/src/zaqal/backend/exu/FastTLB.scala:14:14
+  output [63:0] io_paddr,	// backend/src/zaqal/backend/exu/FastTLB.scala:14:14
+  output        io_hit,	// backend/src/zaqal/backend/exu/FastTLB.scala:14:14
+  input         io_refill_valid,	// backend/src/zaqal/backend/exu/FastTLB.scala:14:14
+  input  [51:0] io_refill_bits_vpn,	// backend/src/zaqal/backend/exu/FastTLB.scala:14:14
+                io_refill_bits_ppn	// backend/src/zaqal/backend/exu/FastTLB.scala:14:14
 );
 
-  wire        _hits_T_1 = io_vaddr[63:12] == 52'h1000;	// backend/src/zaqal/backend/exu/FastTLB.scala:25:22, :31:21, :35:44
-  wire        _hits_T_2 = io_vaddr[63:12] == 52'h2000;	// backend/src/zaqal/backend/exu/FastTLB.scala:25:22, :31:21, :35:44
-  wire        _hits_T_3 = io_vaddr[63:12] == 52'h3000;	// backend/src/zaqal/backend/exu/FastTLB.scala:25:22, :31:21, :35:44
-  reg  [51:0] casez_tmp;	// backend/src/zaqal/backend/exu/FastTLB.scala:40:27
-  always_comb begin	// backend/src/zaqal/backend/exu/FastTLB.scala:40:27
-    casez ({|{_hits_T_3, _hits_T_2}, _hits_T_3 | _hits_T_1})	// backend/src/zaqal/backend/exu/FastTLB.scala:35:44, :40:27, src/main/scala/chisel3/util/OneHot.scala:30:18, :32:{10,14,28}
-      2'b00:
-        casez_tmp = 52'h80000;	// backend/src/zaqal/backend/exu/FastTLB.scala:40:27
-      2'b01:
-        casez_tmp = 52'h1000;	// backend/src/zaqal/backend/exu/FastTLB.scala:40:27
-      2'b10:
-        casez_tmp = 52'h2000;	// backend/src/zaqal/backend/exu/FastTLB.scala:40:27
-      default:
-        casez_tmp = 52'h3000;	// backend/src/zaqal/backend/exu/FastTLB.scala:40:27
-    endcase	// backend/src/zaqal/backend/exu/FastTLB.scala:35:44, :40:27, src/main/scala/chisel3/util/OneHot.scala:30:18, :32:{10,14,28}
-  end // always_comb
+  reg  [51:0]      tlb_0_vpn;	// backend/src/zaqal/backend/exu/FastTLB.scala:27:20
+  reg  [51:0]      tlb_0_ppn;	// backend/src/zaqal/backend/exu/FastTLB.scala:27:20
+  reg  [51:0]      tlb_1_vpn;	// backend/src/zaqal/backend/exu/FastTLB.scala:27:20
+  reg  [51:0]      tlb_1_ppn;	// backend/src/zaqal/backend/exu/FastTLB.scala:27:20
+  reg  [51:0]      tlb_2_vpn;	// backend/src/zaqal/backend/exu/FastTLB.scala:27:20
+  reg  [51:0]      tlb_2_ppn;	// backend/src/zaqal/backend/exu/FastTLB.scala:27:20
+  reg  [51:0]      tlb_3_vpn;	// backend/src/zaqal/backend/exu/FastTLB.scala:27:20
+  reg  [51:0]      tlb_3_ppn;	// backend/src/zaqal/backend/exu/FastTLB.scala:27:20
+  reg  [1:0]       repl_ptr;	// backend/src/zaqal/backend/exu/FastTLB.scala:41:25
+  wire             _hits_T_1 = tlb_1_vpn == io_vaddr[63:12];	// backend/src/zaqal/backend/exu/FastTLB.scala:27:20, :50:21, :54:44
+  wire             _hits_T_2 = tlb_2_vpn == io_vaddr[63:12];	// backend/src/zaqal/backend/exu/FastTLB.scala:27:20, :50:21, :54:44
+  wire             _hits_T_3 = tlb_3_vpn == io_vaddr[63:12];	// backend/src/zaqal/backend/exu/FastTLB.scala:27:20, :50:21, :54:44
+  wire             io_hit_0 =
+    tlb_0_vpn == io_vaddr[63:12] | _hits_T_1 | _hits_T_2 | _hits_T_3;	// backend/src/zaqal/backend/exu/FastTLB.scala:27:20, :50:21, :54:44, :56:27
+  wire [3:0][51:0] _GEN = {{tlb_3_ppn}, {tlb_2_ppn}, {tlb_1_ppn}, {tlb_0_ppn}};	// backend/src/zaqal/backend/exu/FastTLB.scala:27:20, :59:27
+  always @(posedge clock) begin	// backend/src/zaqal/backend/exu/FastTLB.scala:13:7
+    if (reset) begin	// backend/src/zaqal/backend/exu/FastTLB.scala:13:7
+      tlb_0_vpn <= 52'h80000;	// backend/src/zaqal/backend/exu/FastTLB.scala:27:20, :34:22
+      tlb_0_ppn <= 52'h80000;	// backend/src/zaqal/backend/exu/FastTLB.scala:27:20, :34:22
+      tlb_1_vpn <= 52'h1000;	// backend/src/zaqal/backend/exu/FastTLB.scala:27:20, :34:22
+      tlb_1_ppn <= 52'h1000;	// backend/src/zaqal/backend/exu/FastTLB.scala:27:20, :34:22
+      tlb_2_vpn <= 52'h2000;	// backend/src/zaqal/backend/exu/FastTLB.scala:27:20, :34:22
+      tlb_2_ppn <= 52'h2000;	// backend/src/zaqal/backend/exu/FastTLB.scala:27:20, :34:22
+      tlb_3_vpn <= 52'h3000;	// backend/src/zaqal/backend/exu/FastTLB.scala:27:20, :34:22
+      tlb_3_ppn <= 52'h3000;	// backend/src/zaqal/backend/exu/FastTLB.scala:27:20, :34:22
+      repl_ptr <= 2'h1;	// backend/src/zaqal/backend/exu/FastTLB.scala:41:25
+    end
+    else begin	// backend/src/zaqal/backend/exu/FastTLB.scala:13:7
+      if (io_refill_valid & repl_ptr == 2'h0) begin	// backend/src/zaqal/backend/exu/FastTLB.scala:27:20, :41:25, :43:25, :45:25
+        tlb_0_vpn <= io_refill_bits_vpn;	// backend/src/zaqal/backend/exu/FastTLB.scala:27:20
+        tlb_0_ppn <= io_refill_bits_ppn;	// backend/src/zaqal/backend/exu/FastTLB.scala:27:20
+      end
+      if (io_refill_valid & repl_ptr == 2'h1) begin	// backend/src/zaqal/backend/exu/FastTLB.scala:27:20, :41:25, :43:25, :45:25
+        tlb_1_vpn <= io_refill_bits_vpn;	// backend/src/zaqal/backend/exu/FastTLB.scala:27:20
+        tlb_1_ppn <= io_refill_bits_ppn;	// backend/src/zaqal/backend/exu/FastTLB.scala:27:20
+      end
+      if (io_refill_valid & repl_ptr == 2'h2) begin	// backend/src/zaqal/backend/exu/FastTLB.scala:27:20, :34:27, :41:25, :43:25, :45:25
+        tlb_2_vpn <= io_refill_bits_vpn;	// backend/src/zaqal/backend/exu/FastTLB.scala:27:20
+        tlb_2_ppn <= io_refill_bits_ppn;	// backend/src/zaqal/backend/exu/FastTLB.scala:27:20
+      end
+      if (io_refill_valid & (&repl_ptr)) begin	// backend/src/zaqal/backend/exu/FastTLB.scala:27:20, :41:25, :43:25, :45:25
+        tlb_3_vpn <= io_refill_bits_vpn;	// backend/src/zaqal/backend/exu/FastTLB.scala:27:20
+        tlb_3_ppn <= io_refill_bits_ppn;	// backend/src/zaqal/backend/exu/FastTLB.scala:27:20
+      end
+      if (io_refill_valid) begin	// backend/src/zaqal/backend/exu/FastTLB.scala:14:14
+        if (&repl_ptr)	// backend/src/zaqal/backend/exu/FastTLB.scala:41:25, :47:30
+          repl_ptr <= 2'h1;	// backend/src/zaqal/backend/exu/FastTLB.scala:41:25
+        else	// backend/src/zaqal/backend/exu/FastTLB.scala:47:30
+          repl_ptr <= repl_ptr + 2'h1;	// backend/src/zaqal/backend/exu/FastTLB.scala:41:25, :47:53
+      end
+    end
+  end // always @(posedge)
+  `ifdef ENABLE_INITIAL_REG_	// backend/src/zaqal/backend/exu/FastTLB.scala:13:7
+    `ifdef FIRRTL_BEFORE_INITIAL	// backend/src/zaqal/backend/exu/FastTLB.scala:13:7
+      `FIRRTL_BEFORE_INITIAL	// backend/src/zaqal/backend/exu/FastTLB.scala:13:7
+    `endif // FIRRTL_BEFORE_INITIAL
+    logic [31:0] _RANDOM[0:13];	// backend/src/zaqal/backend/exu/FastTLB.scala:13:7
+    initial begin	// backend/src/zaqal/backend/exu/FastTLB.scala:13:7
+      `ifdef INIT_RANDOM_PROLOG_	// backend/src/zaqal/backend/exu/FastTLB.scala:13:7
+        `INIT_RANDOM_PROLOG_	// backend/src/zaqal/backend/exu/FastTLB.scala:13:7
+      `endif // INIT_RANDOM_PROLOG_
+      `ifdef RANDOMIZE_REG_INIT	// backend/src/zaqal/backend/exu/FastTLB.scala:13:7
+        for (logic [3:0] i = 4'h0; i < 4'hE; i += 4'h1) begin
+          _RANDOM[i] = `RANDOM;	// backend/src/zaqal/backend/exu/FastTLB.scala:13:7
+        end	// backend/src/zaqal/backend/exu/FastTLB.scala:13:7
+        tlb_0_vpn = {_RANDOM[4'h0][31:1], _RANDOM[4'h1][20:0]};	// backend/src/zaqal/backend/exu/FastTLB.scala:13:7, :27:20
+        tlb_0_ppn = {_RANDOM[4'h1][31:21], _RANDOM[4'h2], _RANDOM[4'h3][8:0]};	// backend/src/zaqal/backend/exu/FastTLB.scala:13:7, :27:20
+        tlb_1_vpn = {_RANDOM[4'h3][31:10], _RANDOM[4'h4][29:0]};	// backend/src/zaqal/backend/exu/FastTLB.scala:13:7, :27:20
+        tlb_1_ppn = {_RANDOM[4'h4][31:30], _RANDOM[4'h5], _RANDOM[4'h6][17:0]};	// backend/src/zaqal/backend/exu/FastTLB.scala:13:7, :27:20
+        tlb_2_vpn = {_RANDOM[4'h6][31:19], _RANDOM[4'h7], _RANDOM[4'h8][6:0]};	// backend/src/zaqal/backend/exu/FastTLB.scala:13:7, :27:20
+        tlb_2_ppn = {_RANDOM[4'h8][31:7], _RANDOM[4'h9][26:0]};	// backend/src/zaqal/backend/exu/FastTLB.scala:13:7, :27:20
+        tlb_3_vpn = {_RANDOM[4'h9][31:28], _RANDOM[4'hA], _RANDOM[4'hB][15:0]};	// backend/src/zaqal/backend/exu/FastTLB.scala:13:7, :27:20
+        tlb_3_ppn = {_RANDOM[4'hB][31:16], _RANDOM[4'hC], _RANDOM[4'hD][3:0]};	// backend/src/zaqal/backend/exu/FastTLB.scala:13:7, :27:20
+        repl_ptr = _RANDOM[4'hD][5:4];	// backend/src/zaqal/backend/exu/FastTLB.scala:13:7, :27:20, :41:25
+      `endif // RANDOMIZE_REG_INIT
+    end // initial
+    `ifdef FIRRTL_AFTER_INITIAL	// backend/src/zaqal/backend/exu/FastTLB.scala:13:7
+      `FIRRTL_AFTER_INITIAL	// backend/src/zaqal/backend/exu/FastTLB.scala:13:7
+    `endif // FIRRTL_AFTER_INITIAL
+  `endif // ENABLE_INITIAL_REG_
   assign io_paddr =
-    {io_vaddr[63:12] == 52'h80000 | _hits_T_1 | _hits_T_2 | _hits_T_3
-       ? casez_tmp
-       : io_vaddr[63:12],
-     io_vaddr[11:0]};	// backend/src/zaqal/backend/exu/FastTLB.scala:8:7, :25:22, :31:21, :32:29, :35:44, :37:27, :40:27, :41:18
+    {io_hit_0 ? _GEN[{|{_hits_T_3, _hits_T_2}, _hits_T_3 | _hits_T_1}] : io_vaddr[63:12],
+     io_vaddr[11:0]};	// backend/src/zaqal/backend/exu/FastTLB.scala:13:7, :50:21, :51:29, :54:44, :56:27, :59:27, :60:18, src/main/scala/chisel3/util/OneHot.scala:30:18, :32:{10,14,28}
+  assign io_hit = io_hit_0;	// backend/src/zaqal/backend/exu/FastTLB.scala:13:7, :56:27
 endmodule
 

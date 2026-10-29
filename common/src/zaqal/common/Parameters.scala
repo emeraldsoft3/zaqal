@@ -21,6 +21,8 @@ case class ZaqalParams(
   renameSnapshotNum: Int = 256,
   ibufSize: Int = 48,
   enableDebugPorts: Boolean = true,
+  enableDifftest: Boolean = true,
+  enableFusion: Boolean = false,
   ftbEntries: Int = 64,
   
   // BPU Parameters
@@ -106,6 +108,8 @@ trait HasZaqalParameter {
   def renameSnapshotNum = zP.renameSnapshotNum
   def ibufSize = zP.ibufSize
   def enableDebugPorts = zP.enableDebugPorts
+  def enableDifftest = zP.enableDifftest
+  def enableFusion = zP.enableFusion
   def ftbEntries = zP.ftbEntries
   def phyRegIdxWidth = log2Up(phyRegs)
   def predictWidth = fetchWidth * (if (hasCExtension) 2 else 1)

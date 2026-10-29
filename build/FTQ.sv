@@ -113,1396 +113,920 @@ module FTQ(	// frontend/src/zaqal/frontend/FTQ.scala:9:7
   output [6:0]  io_occupancy	// frontend/src/zaqal/frontend/FTQ.scala:10:14
 );
 
-  reg  [63:0] ram_0_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [15:0] ram_0_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_0_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_0_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [3:0]  ram_0_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [5:0]  ram_0_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_0_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_1_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [15:0] ram_1_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_1_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_1_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [3:0]  ram_1_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [5:0]  ram_1_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_1_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_2_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [15:0] ram_2_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_2_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_2_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [3:0]  ram_2_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [5:0]  ram_2_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_2_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_3_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [15:0] ram_3_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_3_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_3_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [3:0]  ram_3_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [5:0]  ram_3_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_3_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_4_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [15:0] ram_4_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_4_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_4_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [3:0]  ram_4_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [5:0]  ram_4_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_4_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_5_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [15:0] ram_5_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_5_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_5_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [3:0]  ram_5_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [5:0]  ram_5_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_5_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_6_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [15:0] ram_6_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_6_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_6_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [3:0]  ram_6_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [5:0]  ram_6_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_6_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_7_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [15:0] ram_7_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_7_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_7_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [3:0]  ram_7_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [5:0]  ram_7_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_7_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_8_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [15:0] ram_8_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_8_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_8_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [3:0]  ram_8_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [5:0]  ram_8_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_8_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_9_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [15:0] ram_9_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_9_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_9_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [3:0]  ram_9_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [5:0]  ram_9_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_9_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_10_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [15:0] ram_10_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_10_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_10_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [3:0]  ram_10_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [5:0]  ram_10_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_10_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_11_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [15:0] ram_11_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_11_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_11_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [3:0]  ram_11_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [5:0]  ram_11_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_11_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_12_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [15:0] ram_12_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_12_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_12_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [3:0]  ram_12_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [5:0]  ram_12_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_12_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_13_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [15:0] ram_13_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_13_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_13_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [3:0]  ram_13_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [5:0]  ram_13_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_13_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_14_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [15:0] ram_14_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_14_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_14_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [3:0]  ram_14_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [5:0]  ram_14_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_14_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_15_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [15:0] ram_15_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_15_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_15_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [3:0]  ram_15_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [5:0]  ram_15_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_15_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_16_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [15:0] ram_16_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_16_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_16_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [3:0]  ram_16_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [5:0]  ram_16_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_16_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_17_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [15:0] ram_17_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_17_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_17_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [3:0]  ram_17_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [5:0]  ram_17_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_17_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_18_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [15:0] ram_18_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_18_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_18_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [3:0]  ram_18_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [5:0]  ram_18_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_18_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_19_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [15:0] ram_19_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_19_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_19_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [3:0]  ram_19_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [5:0]  ram_19_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_19_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_20_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [15:0] ram_20_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_20_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_20_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [3:0]  ram_20_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [5:0]  ram_20_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_20_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_21_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [15:0] ram_21_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_21_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_21_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [3:0]  ram_21_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [5:0]  ram_21_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_21_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_22_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [15:0] ram_22_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_22_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_22_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [3:0]  ram_22_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [5:0]  ram_22_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_22_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_23_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [15:0] ram_23_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_23_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_23_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [3:0]  ram_23_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [5:0]  ram_23_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_23_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_24_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [15:0] ram_24_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_24_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_24_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [3:0]  ram_24_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [5:0]  ram_24_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_24_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_25_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [15:0] ram_25_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_25_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_25_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [3:0]  ram_25_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [5:0]  ram_25_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_25_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_26_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [15:0] ram_26_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_26_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_26_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [3:0]  ram_26_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [5:0]  ram_26_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_26_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_27_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [15:0] ram_27_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_27_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_27_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [3:0]  ram_27_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [5:0]  ram_27_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_27_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_28_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [15:0] ram_28_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_28_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_28_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [3:0]  ram_28_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [5:0]  ram_28_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_28_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_29_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [15:0] ram_29_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_29_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_29_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [3:0]  ram_29_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [5:0]  ram_29_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_29_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_30_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [15:0] ram_30_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_30_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_30_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [3:0]  ram_30_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [5:0]  ram_30_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_30_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_31_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [15:0] ram_31_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_31_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_31_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [3:0]  ram_31_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [5:0]  ram_31_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_31_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_32_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [15:0] ram_32_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_32_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_32_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [3:0]  ram_32_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [5:0]  ram_32_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_32_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_33_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [15:0] ram_33_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_33_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_33_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [3:0]  ram_33_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [5:0]  ram_33_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_33_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_34_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [15:0] ram_34_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_34_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_34_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [3:0]  ram_34_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [5:0]  ram_34_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_34_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_35_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [15:0] ram_35_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_35_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_35_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [3:0]  ram_35_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [5:0]  ram_35_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_35_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_36_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [15:0] ram_36_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_36_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_36_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [3:0]  ram_36_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [5:0]  ram_36_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_36_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_37_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [15:0] ram_37_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_37_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_37_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [3:0]  ram_37_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [5:0]  ram_37_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_37_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_38_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [15:0] ram_38_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_38_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_38_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [3:0]  ram_38_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [5:0]  ram_38_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_38_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_39_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [15:0] ram_39_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_39_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_39_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [3:0]  ram_39_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [5:0]  ram_39_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_39_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_40_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [15:0] ram_40_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_40_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_40_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [3:0]  ram_40_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [5:0]  ram_40_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_40_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_41_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [15:0] ram_41_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_41_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_41_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [3:0]  ram_41_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [5:0]  ram_41_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_41_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_42_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [15:0] ram_42_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_42_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_42_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [3:0]  ram_42_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [5:0]  ram_42_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_42_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_43_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [15:0] ram_43_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_43_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_43_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [3:0]  ram_43_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [5:0]  ram_43_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_43_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_44_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [15:0] ram_44_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_44_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_44_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [3:0]  ram_44_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [5:0]  ram_44_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_44_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_45_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [15:0] ram_45_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_45_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_45_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [3:0]  ram_45_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [5:0]  ram_45_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_45_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_46_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [15:0] ram_46_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_46_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_46_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [3:0]  ram_46_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [5:0]  ram_46_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_46_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_47_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [15:0] ram_47_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_47_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_47_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [3:0]  ram_47_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [5:0]  ram_47_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_47_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_48_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [15:0] ram_48_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_48_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_48_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [3:0]  ram_48_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [5:0]  ram_48_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_48_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_49_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [15:0] ram_49_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_49_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_49_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [3:0]  ram_49_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [5:0]  ram_49_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_49_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_50_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [15:0] ram_50_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_50_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_50_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [3:0]  ram_50_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [5:0]  ram_50_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_50_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_51_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [15:0] ram_51_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_51_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_51_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [3:0]  ram_51_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [5:0]  ram_51_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_51_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_52_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [15:0] ram_52_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_52_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_52_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [3:0]  ram_52_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [5:0]  ram_52_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_52_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_53_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [15:0] ram_53_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_53_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_53_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [3:0]  ram_53_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [5:0]  ram_53_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_53_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_54_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [15:0] ram_54_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_54_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_54_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [3:0]  ram_54_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [5:0]  ram_54_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_54_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_55_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [15:0] ram_55_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_55_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_55_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [3:0]  ram_55_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [5:0]  ram_55_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_55_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_56_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [15:0] ram_56_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_56_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_56_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [3:0]  ram_56_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [5:0]  ram_56_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_56_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_57_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [15:0] ram_57_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_57_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_57_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [3:0]  ram_57_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [5:0]  ram_57_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_57_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_58_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [15:0] ram_58_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_58_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_58_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [3:0]  ram_58_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [5:0]  ram_58_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_58_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_59_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [15:0] ram_59_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_59_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_59_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [3:0]  ram_59_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [5:0]  ram_59_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_59_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_60_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [15:0] ram_60_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_60_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_60_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [3:0]  ram_60_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [5:0]  ram_60_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_60_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_61_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [15:0] ram_61_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_61_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_61_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [3:0]  ram_61_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [5:0]  ram_61_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_61_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_62_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [15:0] ram_62_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_62_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_62_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [3:0]  ram_62_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [5:0]  ram_62_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_62_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_63_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [15:0] ram_63_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [63:0] ram_63_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_63_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [3:0]  ram_63_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [5:0]  ram_63_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg         ram_63_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
-  reg  [5:0]  enqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:24:23
-  reg  [5:0]  deqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:25:23
-  reg  [6:0]  count;	// frontend/src/zaqal/frontend/FTQ.scala:26:23
-  wire [7:0]  effectiveOccupancy = {1'h0, count} + {4'h0, io_totalInFlight};	// frontend/src/zaqal/frontend/FTQ.scala:26:23, :28:34
-  wire        io_fromBpu_ready_0 = effectiveOccupancy[7:6] == 2'h0;	// frontend/src/zaqal/frontend/FTQ.scala:28:34, :29:34
-  reg  [63:0] casez_tmp;	// frontend/src/zaqal/frontend/FTQ.scala:45:18
-  always_comb begin	// frontend/src/zaqal/frontend/FTQ.scala:45:18
-    casez (deqPtr)	// frontend/src/zaqal/frontend/FTQ.scala:25:23, :45:18
-      6'b000000:
-        casez_tmp = ram_0_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b000001:
-        casez_tmp = ram_1_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b000010:
-        casez_tmp = ram_2_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b000011:
-        casez_tmp = ram_3_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b000100:
-        casez_tmp = ram_4_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b000101:
-        casez_tmp = ram_5_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b000110:
-        casez_tmp = ram_6_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b000111:
-        casez_tmp = ram_7_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b001000:
-        casez_tmp = ram_8_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b001001:
-        casez_tmp = ram_9_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b001010:
-        casez_tmp = ram_10_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b001011:
-        casez_tmp = ram_11_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b001100:
-        casez_tmp = ram_12_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b001101:
-        casez_tmp = ram_13_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b001110:
-        casez_tmp = ram_14_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b001111:
-        casez_tmp = ram_15_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b010000:
-        casez_tmp = ram_16_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b010001:
-        casez_tmp = ram_17_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b010010:
-        casez_tmp = ram_18_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b010011:
-        casez_tmp = ram_19_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b010100:
-        casez_tmp = ram_20_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b010101:
-        casez_tmp = ram_21_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b010110:
-        casez_tmp = ram_22_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b010111:
-        casez_tmp = ram_23_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b011000:
-        casez_tmp = ram_24_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b011001:
-        casez_tmp = ram_25_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b011010:
-        casez_tmp = ram_26_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b011011:
-        casez_tmp = ram_27_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b011100:
-        casez_tmp = ram_28_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b011101:
-        casez_tmp = ram_29_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b011110:
-        casez_tmp = ram_30_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b011111:
-        casez_tmp = ram_31_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b100000:
-        casez_tmp = ram_32_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b100001:
-        casez_tmp = ram_33_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b100010:
-        casez_tmp = ram_34_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b100011:
-        casez_tmp = ram_35_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b100100:
-        casez_tmp = ram_36_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b100101:
-        casez_tmp = ram_37_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b100110:
-        casez_tmp = ram_38_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b100111:
-        casez_tmp = ram_39_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b101000:
-        casez_tmp = ram_40_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b101001:
-        casez_tmp = ram_41_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b101010:
-        casez_tmp = ram_42_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b101011:
-        casez_tmp = ram_43_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b101100:
-        casez_tmp = ram_44_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b101101:
-        casez_tmp = ram_45_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b101110:
-        casez_tmp = ram_46_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b101111:
-        casez_tmp = ram_47_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b110000:
-        casez_tmp = ram_48_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b110001:
-        casez_tmp = ram_49_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b110010:
-        casez_tmp = ram_50_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b110011:
-        casez_tmp = ram_51_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b110100:
-        casez_tmp = ram_52_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b110101:
-        casez_tmp = ram_53_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b110110:
-        casez_tmp = ram_54_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b110111:
-        casez_tmp = ram_55_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b111000:
-        casez_tmp = ram_56_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b111001:
-        casez_tmp = ram_57_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b111010:
-        casez_tmp = ram_58_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b111011:
-        casez_tmp = ram_59_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b111100:
-        casez_tmp = ram_60_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b111101:
-        casez_tmp = ram_61_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b111110:
-        casez_tmp = ram_62_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      default:
-        casez_tmp = ram_63_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-    endcase	// frontend/src/zaqal/frontend/FTQ.scala:25:23, :45:18
-  end // always_comb
-  reg  [15:0] casez_tmp_0;	// frontend/src/zaqal/frontend/FTQ.scala:45:18
-  always_comb begin	// frontend/src/zaqal/frontend/FTQ.scala:45:18
-    casez (deqPtr)	// frontend/src/zaqal/frontend/FTQ.scala:25:23, :45:18
-      6'b000000:
-        casez_tmp_0 = ram_0_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b000001:
-        casez_tmp_0 = ram_1_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b000010:
-        casez_tmp_0 = ram_2_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b000011:
-        casez_tmp_0 = ram_3_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b000100:
-        casez_tmp_0 = ram_4_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b000101:
-        casez_tmp_0 = ram_5_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b000110:
-        casez_tmp_0 = ram_6_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b000111:
-        casez_tmp_0 = ram_7_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b001000:
-        casez_tmp_0 = ram_8_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b001001:
-        casez_tmp_0 = ram_9_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b001010:
-        casez_tmp_0 = ram_10_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b001011:
-        casez_tmp_0 = ram_11_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b001100:
-        casez_tmp_0 = ram_12_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b001101:
-        casez_tmp_0 = ram_13_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b001110:
-        casez_tmp_0 = ram_14_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b001111:
-        casez_tmp_0 = ram_15_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b010000:
-        casez_tmp_0 = ram_16_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b010001:
-        casez_tmp_0 = ram_17_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b010010:
-        casez_tmp_0 = ram_18_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b010011:
-        casez_tmp_0 = ram_19_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b010100:
-        casez_tmp_0 = ram_20_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b010101:
-        casez_tmp_0 = ram_21_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b010110:
-        casez_tmp_0 = ram_22_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b010111:
-        casez_tmp_0 = ram_23_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b011000:
-        casez_tmp_0 = ram_24_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b011001:
-        casez_tmp_0 = ram_25_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b011010:
-        casez_tmp_0 = ram_26_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b011011:
-        casez_tmp_0 = ram_27_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b011100:
-        casez_tmp_0 = ram_28_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b011101:
-        casez_tmp_0 = ram_29_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b011110:
-        casez_tmp_0 = ram_30_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b011111:
-        casez_tmp_0 = ram_31_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b100000:
-        casez_tmp_0 = ram_32_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b100001:
-        casez_tmp_0 = ram_33_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b100010:
-        casez_tmp_0 = ram_34_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b100011:
-        casez_tmp_0 = ram_35_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b100100:
-        casez_tmp_0 = ram_36_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b100101:
-        casez_tmp_0 = ram_37_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b100110:
-        casez_tmp_0 = ram_38_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b100111:
-        casez_tmp_0 = ram_39_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b101000:
-        casez_tmp_0 = ram_40_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b101001:
-        casez_tmp_0 = ram_41_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b101010:
-        casez_tmp_0 = ram_42_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b101011:
-        casez_tmp_0 = ram_43_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b101100:
-        casez_tmp_0 = ram_44_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b101101:
-        casez_tmp_0 = ram_45_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b101110:
-        casez_tmp_0 = ram_46_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b101111:
-        casez_tmp_0 = ram_47_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b110000:
-        casez_tmp_0 = ram_48_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b110001:
-        casez_tmp_0 = ram_49_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b110010:
-        casez_tmp_0 = ram_50_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b110011:
-        casez_tmp_0 = ram_51_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b110100:
-        casez_tmp_0 = ram_52_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b110101:
-        casez_tmp_0 = ram_53_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b110110:
-        casez_tmp_0 = ram_54_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b110111:
-        casez_tmp_0 = ram_55_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b111000:
-        casez_tmp_0 = ram_56_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b111001:
-        casez_tmp_0 = ram_57_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b111010:
-        casez_tmp_0 = ram_58_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b111011:
-        casez_tmp_0 = ram_59_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b111100:
-        casez_tmp_0 = ram_60_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b111101:
-        casez_tmp_0 = ram_61_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b111110:
-        casez_tmp_0 = ram_62_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      default:
-        casez_tmp_0 = ram_63_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-    endcase	// frontend/src/zaqal/frontend/FTQ.scala:25:23, :45:18
-  end // always_comb
-  reg  [63:0] casez_tmp_1;	// frontend/src/zaqal/frontend/FTQ.scala:45:18
-  always_comb begin	// frontend/src/zaqal/frontend/FTQ.scala:45:18
-    casez (deqPtr)	// frontend/src/zaqal/frontend/FTQ.scala:25:23, :45:18
-      6'b000000:
-        casez_tmp_1 = ram_0_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b000001:
-        casez_tmp_1 = ram_1_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b000010:
-        casez_tmp_1 = ram_2_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b000011:
-        casez_tmp_1 = ram_3_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b000100:
-        casez_tmp_1 = ram_4_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b000101:
-        casez_tmp_1 = ram_5_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b000110:
-        casez_tmp_1 = ram_6_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b000111:
-        casez_tmp_1 = ram_7_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b001000:
-        casez_tmp_1 = ram_8_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b001001:
-        casez_tmp_1 = ram_9_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b001010:
-        casez_tmp_1 = ram_10_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b001011:
-        casez_tmp_1 = ram_11_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b001100:
-        casez_tmp_1 = ram_12_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b001101:
-        casez_tmp_1 = ram_13_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b001110:
-        casez_tmp_1 = ram_14_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b001111:
-        casez_tmp_1 = ram_15_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b010000:
-        casez_tmp_1 = ram_16_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b010001:
-        casez_tmp_1 = ram_17_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b010010:
-        casez_tmp_1 = ram_18_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b010011:
-        casez_tmp_1 = ram_19_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b010100:
-        casez_tmp_1 = ram_20_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b010101:
-        casez_tmp_1 = ram_21_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b010110:
-        casez_tmp_1 = ram_22_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b010111:
-        casez_tmp_1 = ram_23_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b011000:
-        casez_tmp_1 = ram_24_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b011001:
-        casez_tmp_1 = ram_25_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b011010:
-        casez_tmp_1 = ram_26_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b011011:
-        casez_tmp_1 = ram_27_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b011100:
-        casez_tmp_1 = ram_28_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b011101:
-        casez_tmp_1 = ram_29_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b011110:
-        casez_tmp_1 = ram_30_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b011111:
-        casez_tmp_1 = ram_31_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b100000:
-        casez_tmp_1 = ram_32_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b100001:
-        casez_tmp_1 = ram_33_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b100010:
-        casez_tmp_1 = ram_34_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b100011:
-        casez_tmp_1 = ram_35_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b100100:
-        casez_tmp_1 = ram_36_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b100101:
-        casez_tmp_1 = ram_37_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b100110:
-        casez_tmp_1 = ram_38_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b100111:
-        casez_tmp_1 = ram_39_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b101000:
-        casez_tmp_1 = ram_40_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b101001:
-        casez_tmp_1 = ram_41_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b101010:
-        casez_tmp_1 = ram_42_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b101011:
-        casez_tmp_1 = ram_43_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b101100:
-        casez_tmp_1 = ram_44_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b101101:
-        casez_tmp_1 = ram_45_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b101110:
-        casez_tmp_1 = ram_46_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b101111:
-        casez_tmp_1 = ram_47_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b110000:
-        casez_tmp_1 = ram_48_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b110001:
-        casez_tmp_1 = ram_49_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b110010:
-        casez_tmp_1 = ram_50_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b110011:
-        casez_tmp_1 = ram_51_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b110100:
-        casez_tmp_1 = ram_52_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b110101:
-        casez_tmp_1 = ram_53_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b110110:
-        casez_tmp_1 = ram_54_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b110111:
-        casez_tmp_1 = ram_55_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b111000:
-        casez_tmp_1 = ram_56_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b111001:
-        casez_tmp_1 = ram_57_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b111010:
-        casez_tmp_1 = ram_58_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b111011:
-        casez_tmp_1 = ram_59_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b111100:
-        casez_tmp_1 = ram_60_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b111101:
-        casez_tmp_1 = ram_61_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b111110:
-        casez_tmp_1 = ram_62_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      default:
-        casez_tmp_1 = ram_63_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-    endcase	// frontend/src/zaqal/frontend/FTQ.scala:25:23, :45:18
-  end // always_comb
-  reg         casez_tmp_2;	// frontend/src/zaqal/frontend/FTQ.scala:45:18
-  always_comb begin	// frontend/src/zaqal/frontend/FTQ.scala:45:18
-    casez (deqPtr)	// frontend/src/zaqal/frontend/FTQ.scala:25:23, :45:18
-      6'b000000:
-        casez_tmp_2 = ram_0_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b000001:
-        casez_tmp_2 = ram_1_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b000010:
-        casez_tmp_2 = ram_2_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b000011:
-        casez_tmp_2 = ram_3_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b000100:
-        casez_tmp_2 = ram_4_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b000101:
-        casez_tmp_2 = ram_5_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b000110:
-        casez_tmp_2 = ram_6_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b000111:
-        casez_tmp_2 = ram_7_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b001000:
-        casez_tmp_2 = ram_8_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b001001:
-        casez_tmp_2 = ram_9_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b001010:
-        casez_tmp_2 = ram_10_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b001011:
-        casez_tmp_2 = ram_11_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b001100:
-        casez_tmp_2 = ram_12_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b001101:
-        casez_tmp_2 = ram_13_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b001110:
-        casez_tmp_2 = ram_14_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b001111:
-        casez_tmp_2 = ram_15_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b010000:
-        casez_tmp_2 = ram_16_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b010001:
-        casez_tmp_2 = ram_17_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b010010:
-        casez_tmp_2 = ram_18_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b010011:
-        casez_tmp_2 = ram_19_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b010100:
-        casez_tmp_2 = ram_20_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b010101:
-        casez_tmp_2 = ram_21_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b010110:
-        casez_tmp_2 = ram_22_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b010111:
-        casez_tmp_2 = ram_23_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b011000:
-        casez_tmp_2 = ram_24_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b011001:
-        casez_tmp_2 = ram_25_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b011010:
-        casez_tmp_2 = ram_26_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b011011:
-        casez_tmp_2 = ram_27_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b011100:
-        casez_tmp_2 = ram_28_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b011101:
-        casez_tmp_2 = ram_29_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b011110:
-        casez_tmp_2 = ram_30_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b011111:
-        casez_tmp_2 = ram_31_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b100000:
-        casez_tmp_2 = ram_32_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b100001:
-        casez_tmp_2 = ram_33_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b100010:
-        casez_tmp_2 = ram_34_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b100011:
-        casez_tmp_2 = ram_35_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b100100:
-        casez_tmp_2 = ram_36_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b100101:
-        casez_tmp_2 = ram_37_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b100110:
-        casez_tmp_2 = ram_38_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b100111:
-        casez_tmp_2 = ram_39_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b101000:
-        casez_tmp_2 = ram_40_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b101001:
-        casez_tmp_2 = ram_41_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b101010:
-        casez_tmp_2 = ram_42_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b101011:
-        casez_tmp_2 = ram_43_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b101100:
-        casez_tmp_2 = ram_44_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b101101:
-        casez_tmp_2 = ram_45_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b101110:
-        casez_tmp_2 = ram_46_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b101111:
-        casez_tmp_2 = ram_47_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b110000:
-        casez_tmp_2 = ram_48_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b110001:
-        casez_tmp_2 = ram_49_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b110010:
-        casez_tmp_2 = ram_50_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b110011:
-        casez_tmp_2 = ram_51_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b110100:
-        casez_tmp_2 = ram_52_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b110101:
-        casez_tmp_2 = ram_53_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b110110:
-        casez_tmp_2 = ram_54_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b110111:
-        casez_tmp_2 = ram_55_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b111000:
-        casez_tmp_2 = ram_56_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b111001:
-        casez_tmp_2 = ram_57_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b111010:
-        casez_tmp_2 = ram_58_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b111011:
-        casez_tmp_2 = ram_59_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b111100:
-        casez_tmp_2 = ram_60_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b111101:
-        casez_tmp_2 = ram_61_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b111110:
-        casez_tmp_2 = ram_62_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      default:
-        casez_tmp_2 = ram_63_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-    endcase	// frontend/src/zaqal/frontend/FTQ.scala:25:23, :45:18
-  end // always_comb
-  reg  [3:0]  casez_tmp_3;	// frontend/src/zaqal/frontend/FTQ.scala:45:18
-  always_comb begin	// frontend/src/zaqal/frontend/FTQ.scala:45:18
-    casez (deqPtr)	// frontend/src/zaqal/frontend/FTQ.scala:25:23, :45:18
-      6'b000000:
-        casez_tmp_3 = ram_0_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b000001:
-        casez_tmp_3 = ram_1_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b000010:
-        casez_tmp_3 = ram_2_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b000011:
-        casez_tmp_3 = ram_3_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b000100:
-        casez_tmp_3 = ram_4_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b000101:
-        casez_tmp_3 = ram_5_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b000110:
-        casez_tmp_3 = ram_6_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b000111:
-        casez_tmp_3 = ram_7_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b001000:
-        casez_tmp_3 = ram_8_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b001001:
-        casez_tmp_3 = ram_9_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b001010:
-        casez_tmp_3 = ram_10_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b001011:
-        casez_tmp_3 = ram_11_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b001100:
-        casez_tmp_3 = ram_12_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b001101:
-        casez_tmp_3 = ram_13_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b001110:
-        casez_tmp_3 = ram_14_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b001111:
-        casez_tmp_3 = ram_15_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b010000:
-        casez_tmp_3 = ram_16_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b010001:
-        casez_tmp_3 = ram_17_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b010010:
-        casez_tmp_3 = ram_18_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b010011:
-        casez_tmp_3 = ram_19_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b010100:
-        casez_tmp_3 = ram_20_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b010101:
-        casez_tmp_3 = ram_21_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b010110:
-        casez_tmp_3 = ram_22_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b010111:
-        casez_tmp_3 = ram_23_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b011000:
-        casez_tmp_3 = ram_24_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b011001:
-        casez_tmp_3 = ram_25_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b011010:
-        casez_tmp_3 = ram_26_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b011011:
-        casez_tmp_3 = ram_27_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b011100:
-        casez_tmp_3 = ram_28_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b011101:
-        casez_tmp_3 = ram_29_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b011110:
-        casez_tmp_3 = ram_30_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b011111:
-        casez_tmp_3 = ram_31_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b100000:
-        casez_tmp_3 = ram_32_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b100001:
-        casez_tmp_3 = ram_33_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b100010:
-        casez_tmp_3 = ram_34_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b100011:
-        casez_tmp_3 = ram_35_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b100100:
-        casez_tmp_3 = ram_36_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b100101:
-        casez_tmp_3 = ram_37_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b100110:
-        casez_tmp_3 = ram_38_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b100111:
-        casez_tmp_3 = ram_39_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b101000:
-        casez_tmp_3 = ram_40_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b101001:
-        casez_tmp_3 = ram_41_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b101010:
-        casez_tmp_3 = ram_42_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b101011:
-        casez_tmp_3 = ram_43_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b101100:
-        casez_tmp_3 = ram_44_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b101101:
-        casez_tmp_3 = ram_45_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b101110:
-        casez_tmp_3 = ram_46_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b101111:
-        casez_tmp_3 = ram_47_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b110000:
-        casez_tmp_3 = ram_48_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b110001:
-        casez_tmp_3 = ram_49_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b110010:
-        casez_tmp_3 = ram_50_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b110011:
-        casez_tmp_3 = ram_51_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b110100:
-        casez_tmp_3 = ram_52_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b110101:
-        casez_tmp_3 = ram_53_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b110110:
-        casez_tmp_3 = ram_54_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b110111:
-        casez_tmp_3 = ram_55_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b111000:
-        casez_tmp_3 = ram_56_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b111001:
-        casez_tmp_3 = ram_57_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b111010:
-        casez_tmp_3 = ram_58_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b111011:
-        casez_tmp_3 = ram_59_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b111100:
-        casez_tmp_3 = ram_60_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b111101:
-        casez_tmp_3 = ram_61_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b111110:
-        casez_tmp_3 = ram_62_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      default:
-        casez_tmp_3 = ram_63_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-    endcase	// frontend/src/zaqal/frontend/FTQ.scala:25:23, :45:18
-  end // always_comb
-  reg  [5:0]  casez_tmp_4;	// frontend/src/zaqal/frontend/FTQ.scala:45:18
-  always_comb begin	// frontend/src/zaqal/frontend/FTQ.scala:45:18
-    casez (deqPtr)	// frontend/src/zaqal/frontend/FTQ.scala:25:23, :45:18
-      6'b000000:
-        casez_tmp_4 = ram_0_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b000001:
-        casez_tmp_4 = ram_1_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b000010:
-        casez_tmp_4 = ram_2_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b000011:
-        casez_tmp_4 = ram_3_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b000100:
-        casez_tmp_4 = ram_4_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b000101:
-        casez_tmp_4 = ram_5_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b000110:
-        casez_tmp_4 = ram_6_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b000111:
-        casez_tmp_4 = ram_7_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b001000:
-        casez_tmp_4 = ram_8_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b001001:
-        casez_tmp_4 = ram_9_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b001010:
-        casez_tmp_4 = ram_10_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b001011:
-        casez_tmp_4 = ram_11_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b001100:
-        casez_tmp_4 = ram_12_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b001101:
-        casez_tmp_4 = ram_13_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b001110:
-        casez_tmp_4 = ram_14_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b001111:
-        casez_tmp_4 = ram_15_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b010000:
-        casez_tmp_4 = ram_16_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b010001:
-        casez_tmp_4 = ram_17_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b010010:
-        casez_tmp_4 = ram_18_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b010011:
-        casez_tmp_4 = ram_19_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b010100:
-        casez_tmp_4 = ram_20_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b010101:
-        casez_tmp_4 = ram_21_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b010110:
-        casez_tmp_4 = ram_22_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b010111:
-        casez_tmp_4 = ram_23_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b011000:
-        casez_tmp_4 = ram_24_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b011001:
-        casez_tmp_4 = ram_25_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b011010:
-        casez_tmp_4 = ram_26_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b011011:
-        casez_tmp_4 = ram_27_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b011100:
-        casez_tmp_4 = ram_28_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b011101:
-        casez_tmp_4 = ram_29_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b011110:
-        casez_tmp_4 = ram_30_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b011111:
-        casez_tmp_4 = ram_31_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b100000:
-        casez_tmp_4 = ram_32_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b100001:
-        casez_tmp_4 = ram_33_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b100010:
-        casez_tmp_4 = ram_34_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b100011:
-        casez_tmp_4 = ram_35_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b100100:
-        casez_tmp_4 = ram_36_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b100101:
-        casez_tmp_4 = ram_37_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b100110:
-        casez_tmp_4 = ram_38_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b100111:
-        casez_tmp_4 = ram_39_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b101000:
-        casez_tmp_4 = ram_40_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b101001:
-        casez_tmp_4 = ram_41_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b101010:
-        casez_tmp_4 = ram_42_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b101011:
-        casez_tmp_4 = ram_43_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b101100:
-        casez_tmp_4 = ram_44_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b101101:
-        casez_tmp_4 = ram_45_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b101110:
-        casez_tmp_4 = ram_46_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b101111:
-        casez_tmp_4 = ram_47_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b110000:
-        casez_tmp_4 = ram_48_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b110001:
-        casez_tmp_4 = ram_49_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b110010:
-        casez_tmp_4 = ram_50_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b110011:
-        casez_tmp_4 = ram_51_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b110100:
-        casez_tmp_4 = ram_52_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b110101:
-        casez_tmp_4 = ram_53_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b110110:
-        casez_tmp_4 = ram_54_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b110111:
-        casez_tmp_4 = ram_55_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b111000:
-        casez_tmp_4 = ram_56_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b111001:
-        casez_tmp_4 = ram_57_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b111010:
-        casez_tmp_4 = ram_58_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b111011:
-        casez_tmp_4 = ram_59_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b111100:
-        casez_tmp_4 = ram_60_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b111101:
-        casez_tmp_4 = ram_61_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b111110:
-        casez_tmp_4 = ram_62_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      default:
-        casez_tmp_4 = ram_63_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-    endcase	// frontend/src/zaqal/frontend/FTQ.scala:25:23, :45:18
-  end // always_comb
-  reg         casez_tmp_5;	// frontend/src/zaqal/frontend/FTQ.scala:45:18
-  always_comb begin	// frontend/src/zaqal/frontend/FTQ.scala:45:18
-    casez (deqPtr)	// frontend/src/zaqal/frontend/FTQ.scala:25:23, :45:18
-      6'b000000:
-        casez_tmp_5 = ram_0_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b000001:
-        casez_tmp_5 = ram_1_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b000010:
-        casez_tmp_5 = ram_2_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b000011:
-        casez_tmp_5 = ram_3_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b000100:
-        casez_tmp_5 = ram_4_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b000101:
-        casez_tmp_5 = ram_5_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b000110:
-        casez_tmp_5 = ram_6_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b000111:
-        casez_tmp_5 = ram_7_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b001000:
-        casez_tmp_5 = ram_8_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b001001:
-        casez_tmp_5 = ram_9_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b001010:
-        casez_tmp_5 = ram_10_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b001011:
-        casez_tmp_5 = ram_11_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b001100:
-        casez_tmp_5 = ram_12_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b001101:
-        casez_tmp_5 = ram_13_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b001110:
-        casez_tmp_5 = ram_14_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b001111:
-        casez_tmp_5 = ram_15_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b010000:
-        casez_tmp_5 = ram_16_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b010001:
-        casez_tmp_5 = ram_17_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b010010:
-        casez_tmp_5 = ram_18_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b010011:
-        casez_tmp_5 = ram_19_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b010100:
-        casez_tmp_5 = ram_20_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b010101:
-        casez_tmp_5 = ram_21_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b010110:
-        casez_tmp_5 = ram_22_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b010111:
-        casez_tmp_5 = ram_23_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b011000:
-        casez_tmp_5 = ram_24_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b011001:
-        casez_tmp_5 = ram_25_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b011010:
-        casez_tmp_5 = ram_26_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b011011:
-        casez_tmp_5 = ram_27_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b011100:
-        casez_tmp_5 = ram_28_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b011101:
-        casez_tmp_5 = ram_29_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b011110:
-        casez_tmp_5 = ram_30_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b011111:
-        casez_tmp_5 = ram_31_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b100000:
-        casez_tmp_5 = ram_32_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b100001:
-        casez_tmp_5 = ram_33_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b100010:
-        casez_tmp_5 = ram_34_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b100011:
-        casez_tmp_5 = ram_35_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b100100:
-        casez_tmp_5 = ram_36_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b100101:
-        casez_tmp_5 = ram_37_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b100110:
-        casez_tmp_5 = ram_38_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b100111:
-        casez_tmp_5 = ram_39_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b101000:
-        casez_tmp_5 = ram_40_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b101001:
-        casez_tmp_5 = ram_41_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b101010:
-        casez_tmp_5 = ram_42_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b101011:
-        casez_tmp_5 = ram_43_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b101100:
-        casez_tmp_5 = ram_44_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b101101:
-        casez_tmp_5 = ram_45_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b101110:
-        casez_tmp_5 = ram_46_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b101111:
-        casez_tmp_5 = ram_47_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b110000:
-        casez_tmp_5 = ram_48_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b110001:
-        casez_tmp_5 = ram_49_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b110010:
-        casez_tmp_5 = ram_50_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b110011:
-        casez_tmp_5 = ram_51_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b110100:
-        casez_tmp_5 = ram_52_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b110101:
-        casez_tmp_5 = ram_53_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b110110:
-        casez_tmp_5 = ram_54_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b110111:
-        casez_tmp_5 = ram_55_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b111000:
-        casez_tmp_5 = ram_56_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b111001:
-        casez_tmp_5 = ram_57_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b111010:
-        casez_tmp_5 = ram_58_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b111011:
-        casez_tmp_5 = ram_59_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b111100:
-        casez_tmp_5 = ram_60_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b111101:
-        casez_tmp_5 = ram_61_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      6'b111110:
-        casez_tmp_5 = ram_62_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-      default:
-        casez_tmp_5 = ram_63_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
-    endcase	// frontend/src/zaqal/frontend/FTQ.scala:25:23, :45:18
-  end // always_comb
-  wire [5:0]  _recoveryPtr_T = io_redirect_ftqPtr + 6'h1;	// frontend/src/zaqal/frontend/FTQ.scala:39:17, :70:42
-  wire        deq = io_toIfu_ready & (|count);	// frontend/src/zaqal/frontend/FTQ.scala:26:23, :30:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire        enq = io_fromBpu_ready_0 & io_fromBpu_valid;	// frontend/src/zaqal/frontend/FTQ.scala:29:34, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire        _GEN = enq & ~io_flush;	// frontend/src/zaqal/frontend/FTQ.scala:34:{24,27}, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  reg  [63:0]       ram_0_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [15:0]       ram_0_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_0_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_0_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [3:0]        ram_0_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [5:0]        ram_0_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_0_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_1_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [15:0]       ram_1_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_1_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_1_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [3:0]        ram_1_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [5:0]        ram_1_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_1_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_2_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [15:0]       ram_2_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_2_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_2_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [3:0]        ram_2_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [5:0]        ram_2_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_2_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_3_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [15:0]       ram_3_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_3_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_3_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [3:0]        ram_3_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [5:0]        ram_3_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_3_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_4_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [15:0]       ram_4_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_4_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_4_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [3:0]        ram_4_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [5:0]        ram_4_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_4_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_5_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [15:0]       ram_5_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_5_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_5_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [3:0]        ram_5_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [5:0]        ram_5_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_5_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_6_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [15:0]       ram_6_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_6_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_6_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [3:0]        ram_6_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [5:0]        ram_6_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_6_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_7_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [15:0]       ram_7_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_7_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_7_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [3:0]        ram_7_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [5:0]        ram_7_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_7_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_8_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [15:0]       ram_8_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_8_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_8_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [3:0]        ram_8_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [5:0]        ram_8_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_8_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_9_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [15:0]       ram_9_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_9_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_9_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [3:0]        ram_9_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [5:0]        ram_9_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_9_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_10_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [15:0]       ram_10_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_10_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_10_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [3:0]        ram_10_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [5:0]        ram_10_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_10_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_11_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [15:0]       ram_11_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_11_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_11_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [3:0]        ram_11_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [5:0]        ram_11_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_11_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_12_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [15:0]       ram_12_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_12_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_12_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [3:0]        ram_12_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [5:0]        ram_12_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_12_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_13_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [15:0]       ram_13_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_13_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_13_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [3:0]        ram_13_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [5:0]        ram_13_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_13_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_14_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [15:0]       ram_14_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_14_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_14_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [3:0]        ram_14_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [5:0]        ram_14_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_14_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_15_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [15:0]       ram_15_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_15_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_15_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [3:0]        ram_15_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [5:0]        ram_15_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_15_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_16_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [15:0]       ram_16_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_16_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_16_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [3:0]        ram_16_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [5:0]        ram_16_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_16_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_17_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [15:0]       ram_17_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_17_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_17_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [3:0]        ram_17_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [5:0]        ram_17_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_17_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_18_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [15:0]       ram_18_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_18_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_18_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [3:0]        ram_18_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [5:0]        ram_18_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_18_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_19_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [15:0]       ram_19_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_19_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_19_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [3:0]        ram_19_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [5:0]        ram_19_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_19_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_20_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [15:0]       ram_20_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_20_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_20_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [3:0]        ram_20_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [5:0]        ram_20_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_20_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_21_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [15:0]       ram_21_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_21_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_21_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [3:0]        ram_21_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [5:0]        ram_21_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_21_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_22_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [15:0]       ram_22_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_22_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_22_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [3:0]        ram_22_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [5:0]        ram_22_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_22_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_23_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [15:0]       ram_23_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_23_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_23_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [3:0]        ram_23_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [5:0]        ram_23_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_23_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_24_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [15:0]       ram_24_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_24_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_24_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [3:0]        ram_24_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [5:0]        ram_24_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_24_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_25_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [15:0]       ram_25_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_25_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_25_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [3:0]        ram_25_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [5:0]        ram_25_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_25_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_26_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [15:0]       ram_26_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_26_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_26_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [3:0]        ram_26_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [5:0]        ram_26_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_26_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_27_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [15:0]       ram_27_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_27_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_27_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [3:0]        ram_27_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [5:0]        ram_27_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_27_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_28_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [15:0]       ram_28_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_28_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_28_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [3:0]        ram_28_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [5:0]        ram_28_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_28_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_29_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [15:0]       ram_29_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_29_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_29_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [3:0]        ram_29_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [5:0]        ram_29_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_29_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_30_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [15:0]       ram_30_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_30_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_30_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [3:0]        ram_30_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [5:0]        ram_30_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_30_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_31_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [15:0]       ram_31_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_31_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_31_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [3:0]        ram_31_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [5:0]        ram_31_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_31_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_32_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [15:0]       ram_32_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_32_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_32_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [3:0]        ram_32_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [5:0]        ram_32_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_32_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_33_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [15:0]       ram_33_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_33_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_33_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [3:0]        ram_33_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [5:0]        ram_33_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_33_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_34_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [15:0]       ram_34_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_34_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_34_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [3:0]        ram_34_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [5:0]        ram_34_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_34_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_35_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [15:0]       ram_35_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_35_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_35_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [3:0]        ram_35_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [5:0]        ram_35_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_35_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_36_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [15:0]       ram_36_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_36_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_36_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [3:0]        ram_36_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [5:0]        ram_36_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_36_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_37_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [15:0]       ram_37_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_37_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_37_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [3:0]        ram_37_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [5:0]        ram_37_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_37_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_38_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [15:0]       ram_38_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_38_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_38_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [3:0]        ram_38_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [5:0]        ram_38_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_38_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_39_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [15:0]       ram_39_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_39_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_39_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [3:0]        ram_39_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [5:0]        ram_39_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_39_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_40_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [15:0]       ram_40_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_40_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_40_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [3:0]        ram_40_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [5:0]        ram_40_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_40_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_41_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [15:0]       ram_41_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_41_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_41_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [3:0]        ram_41_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [5:0]        ram_41_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_41_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_42_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [15:0]       ram_42_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_42_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_42_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [3:0]        ram_42_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [5:0]        ram_42_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_42_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_43_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [15:0]       ram_43_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_43_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_43_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [3:0]        ram_43_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [5:0]        ram_43_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_43_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_44_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [15:0]       ram_44_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_44_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_44_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [3:0]        ram_44_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [5:0]        ram_44_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_44_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_45_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [15:0]       ram_45_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_45_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_45_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [3:0]        ram_45_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [5:0]        ram_45_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_45_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_46_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [15:0]       ram_46_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_46_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_46_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [3:0]        ram_46_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [5:0]        ram_46_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_46_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_47_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [15:0]       ram_47_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_47_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_47_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [3:0]        ram_47_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [5:0]        ram_47_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_47_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_48_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [15:0]       ram_48_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_48_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_48_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [3:0]        ram_48_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [5:0]        ram_48_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_48_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_49_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [15:0]       ram_49_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_49_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_49_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [3:0]        ram_49_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [5:0]        ram_49_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_49_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_50_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [15:0]       ram_50_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_50_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_50_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [3:0]        ram_50_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [5:0]        ram_50_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_50_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_51_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [15:0]       ram_51_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_51_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_51_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [3:0]        ram_51_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [5:0]        ram_51_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_51_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_52_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [15:0]       ram_52_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_52_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_52_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [3:0]        ram_52_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [5:0]        ram_52_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_52_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_53_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [15:0]       ram_53_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_53_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_53_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [3:0]        ram_53_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [5:0]        ram_53_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_53_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_54_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [15:0]       ram_54_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_54_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_54_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [3:0]        ram_54_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [5:0]        ram_54_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_54_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_55_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [15:0]       ram_55_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_55_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_55_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [3:0]        ram_55_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [5:0]        ram_55_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_55_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_56_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [15:0]       ram_56_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_56_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_56_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [3:0]        ram_56_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [5:0]        ram_56_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_56_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_57_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [15:0]       ram_57_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_57_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_57_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [3:0]        ram_57_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [5:0]        ram_57_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_57_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_58_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [15:0]       ram_58_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_58_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_58_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [3:0]        ram_58_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [5:0]        ram_58_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_58_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_59_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [15:0]       ram_59_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_59_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_59_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [3:0]        ram_59_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [5:0]        ram_59_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_59_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_60_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [15:0]       ram_60_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_60_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_60_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [3:0]        ram_60_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [5:0]        ram_60_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_60_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_61_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [15:0]       ram_61_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_61_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_61_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [3:0]        ram_61_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [5:0]        ram_61_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_61_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_62_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [15:0]       ram_62_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_62_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_62_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [3:0]        ram_62_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [5:0]        ram_62_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_62_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_63_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [15:0]       ram_63_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [63:0]       ram_63_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_63_prediction_taken;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [3:0]        ram_63_prediction_slot;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [5:0]        ram_63_ftqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg               ram_63_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
+  reg  [5:0]        enqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:24:23
+  reg  [5:0]        deqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:25:23
+  reg  [6:0]        count;	// frontend/src/zaqal/frontend/FTQ.scala:26:23
+  wire [7:0]        effectiveOccupancy = {1'h0, count} + {4'h0, io_totalInFlight};	// frontend/src/zaqal/frontend/FTQ.scala:26:23, :28:34
+  wire              io_fromBpu_ready_0 = effectiveOccupancy[7:6] == 2'h0;	// frontend/src/zaqal/frontend/FTQ.scala:28:34, :29:34
+  wire [63:0][63:0] _GEN =
+    {{ram_63_pc},
+     {ram_62_pc},
+     {ram_61_pc},
+     {ram_60_pc},
+     {ram_59_pc},
+     {ram_58_pc},
+     {ram_57_pc},
+     {ram_56_pc},
+     {ram_55_pc},
+     {ram_54_pc},
+     {ram_53_pc},
+     {ram_52_pc},
+     {ram_51_pc},
+     {ram_50_pc},
+     {ram_49_pc},
+     {ram_48_pc},
+     {ram_47_pc},
+     {ram_46_pc},
+     {ram_45_pc},
+     {ram_44_pc},
+     {ram_43_pc},
+     {ram_42_pc},
+     {ram_41_pc},
+     {ram_40_pc},
+     {ram_39_pc},
+     {ram_38_pc},
+     {ram_37_pc},
+     {ram_36_pc},
+     {ram_35_pc},
+     {ram_34_pc},
+     {ram_33_pc},
+     {ram_32_pc},
+     {ram_31_pc},
+     {ram_30_pc},
+     {ram_29_pc},
+     {ram_28_pc},
+     {ram_27_pc},
+     {ram_26_pc},
+     {ram_25_pc},
+     {ram_24_pc},
+     {ram_23_pc},
+     {ram_22_pc},
+     {ram_21_pc},
+     {ram_20_pc},
+     {ram_19_pc},
+     {ram_18_pc},
+     {ram_17_pc},
+     {ram_16_pc},
+     {ram_15_pc},
+     {ram_14_pc},
+     {ram_13_pc},
+     {ram_12_pc},
+     {ram_11_pc},
+     {ram_10_pc},
+     {ram_9_pc},
+     {ram_8_pc},
+     {ram_7_pc},
+     {ram_6_pc},
+     {ram_5_pc},
+     {ram_4_pc},
+     {ram_3_pc},
+     {ram_2_pc},
+     {ram_1_pc},
+     {ram_0_pc}};	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
+  wire [63:0][15:0] _GEN_0 =
+    {{ram_63_mask},
+     {ram_62_mask},
+     {ram_61_mask},
+     {ram_60_mask},
+     {ram_59_mask},
+     {ram_58_mask},
+     {ram_57_mask},
+     {ram_56_mask},
+     {ram_55_mask},
+     {ram_54_mask},
+     {ram_53_mask},
+     {ram_52_mask},
+     {ram_51_mask},
+     {ram_50_mask},
+     {ram_49_mask},
+     {ram_48_mask},
+     {ram_47_mask},
+     {ram_46_mask},
+     {ram_45_mask},
+     {ram_44_mask},
+     {ram_43_mask},
+     {ram_42_mask},
+     {ram_41_mask},
+     {ram_40_mask},
+     {ram_39_mask},
+     {ram_38_mask},
+     {ram_37_mask},
+     {ram_36_mask},
+     {ram_35_mask},
+     {ram_34_mask},
+     {ram_33_mask},
+     {ram_32_mask},
+     {ram_31_mask},
+     {ram_30_mask},
+     {ram_29_mask},
+     {ram_28_mask},
+     {ram_27_mask},
+     {ram_26_mask},
+     {ram_25_mask},
+     {ram_24_mask},
+     {ram_23_mask},
+     {ram_22_mask},
+     {ram_21_mask},
+     {ram_20_mask},
+     {ram_19_mask},
+     {ram_18_mask},
+     {ram_17_mask},
+     {ram_16_mask},
+     {ram_15_mask},
+     {ram_14_mask},
+     {ram_13_mask},
+     {ram_12_mask},
+     {ram_11_mask},
+     {ram_10_mask},
+     {ram_9_mask},
+     {ram_8_mask},
+     {ram_7_mask},
+     {ram_6_mask},
+     {ram_5_mask},
+     {ram_4_mask},
+     {ram_3_mask},
+     {ram_2_mask},
+     {ram_1_mask},
+     {ram_0_mask}};	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
+  wire [63:0][63:0] _GEN_1 =
+    {{ram_63_prediction_target},
+     {ram_62_prediction_target},
+     {ram_61_prediction_target},
+     {ram_60_prediction_target},
+     {ram_59_prediction_target},
+     {ram_58_prediction_target},
+     {ram_57_prediction_target},
+     {ram_56_prediction_target},
+     {ram_55_prediction_target},
+     {ram_54_prediction_target},
+     {ram_53_prediction_target},
+     {ram_52_prediction_target},
+     {ram_51_prediction_target},
+     {ram_50_prediction_target},
+     {ram_49_prediction_target},
+     {ram_48_prediction_target},
+     {ram_47_prediction_target},
+     {ram_46_prediction_target},
+     {ram_45_prediction_target},
+     {ram_44_prediction_target},
+     {ram_43_prediction_target},
+     {ram_42_prediction_target},
+     {ram_41_prediction_target},
+     {ram_40_prediction_target},
+     {ram_39_prediction_target},
+     {ram_38_prediction_target},
+     {ram_37_prediction_target},
+     {ram_36_prediction_target},
+     {ram_35_prediction_target},
+     {ram_34_prediction_target},
+     {ram_33_prediction_target},
+     {ram_32_prediction_target},
+     {ram_31_prediction_target},
+     {ram_30_prediction_target},
+     {ram_29_prediction_target},
+     {ram_28_prediction_target},
+     {ram_27_prediction_target},
+     {ram_26_prediction_target},
+     {ram_25_prediction_target},
+     {ram_24_prediction_target},
+     {ram_23_prediction_target},
+     {ram_22_prediction_target},
+     {ram_21_prediction_target},
+     {ram_20_prediction_target},
+     {ram_19_prediction_target},
+     {ram_18_prediction_target},
+     {ram_17_prediction_target},
+     {ram_16_prediction_target},
+     {ram_15_prediction_target},
+     {ram_14_prediction_target},
+     {ram_13_prediction_target},
+     {ram_12_prediction_target},
+     {ram_11_prediction_target},
+     {ram_10_prediction_target},
+     {ram_9_prediction_target},
+     {ram_8_prediction_target},
+     {ram_7_prediction_target},
+     {ram_6_prediction_target},
+     {ram_5_prediction_target},
+     {ram_4_prediction_target},
+     {ram_3_prediction_target},
+     {ram_2_prediction_target},
+     {ram_1_prediction_target},
+     {ram_0_prediction_target}};	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
+  wire [63:0]       _GEN_2 =
+    {{ram_63_prediction_taken},
+     {ram_62_prediction_taken},
+     {ram_61_prediction_taken},
+     {ram_60_prediction_taken},
+     {ram_59_prediction_taken},
+     {ram_58_prediction_taken},
+     {ram_57_prediction_taken},
+     {ram_56_prediction_taken},
+     {ram_55_prediction_taken},
+     {ram_54_prediction_taken},
+     {ram_53_prediction_taken},
+     {ram_52_prediction_taken},
+     {ram_51_prediction_taken},
+     {ram_50_prediction_taken},
+     {ram_49_prediction_taken},
+     {ram_48_prediction_taken},
+     {ram_47_prediction_taken},
+     {ram_46_prediction_taken},
+     {ram_45_prediction_taken},
+     {ram_44_prediction_taken},
+     {ram_43_prediction_taken},
+     {ram_42_prediction_taken},
+     {ram_41_prediction_taken},
+     {ram_40_prediction_taken},
+     {ram_39_prediction_taken},
+     {ram_38_prediction_taken},
+     {ram_37_prediction_taken},
+     {ram_36_prediction_taken},
+     {ram_35_prediction_taken},
+     {ram_34_prediction_taken},
+     {ram_33_prediction_taken},
+     {ram_32_prediction_taken},
+     {ram_31_prediction_taken},
+     {ram_30_prediction_taken},
+     {ram_29_prediction_taken},
+     {ram_28_prediction_taken},
+     {ram_27_prediction_taken},
+     {ram_26_prediction_taken},
+     {ram_25_prediction_taken},
+     {ram_24_prediction_taken},
+     {ram_23_prediction_taken},
+     {ram_22_prediction_taken},
+     {ram_21_prediction_taken},
+     {ram_20_prediction_taken},
+     {ram_19_prediction_taken},
+     {ram_18_prediction_taken},
+     {ram_17_prediction_taken},
+     {ram_16_prediction_taken},
+     {ram_15_prediction_taken},
+     {ram_14_prediction_taken},
+     {ram_13_prediction_taken},
+     {ram_12_prediction_taken},
+     {ram_11_prediction_taken},
+     {ram_10_prediction_taken},
+     {ram_9_prediction_taken},
+     {ram_8_prediction_taken},
+     {ram_7_prediction_taken},
+     {ram_6_prediction_taken},
+     {ram_5_prediction_taken},
+     {ram_4_prediction_taken},
+     {ram_3_prediction_taken},
+     {ram_2_prediction_taken},
+     {ram_1_prediction_taken},
+     {ram_0_prediction_taken}};	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
+  wire [63:0][3:0]  _GEN_3 =
+    {{ram_63_prediction_slot},
+     {ram_62_prediction_slot},
+     {ram_61_prediction_slot},
+     {ram_60_prediction_slot},
+     {ram_59_prediction_slot},
+     {ram_58_prediction_slot},
+     {ram_57_prediction_slot},
+     {ram_56_prediction_slot},
+     {ram_55_prediction_slot},
+     {ram_54_prediction_slot},
+     {ram_53_prediction_slot},
+     {ram_52_prediction_slot},
+     {ram_51_prediction_slot},
+     {ram_50_prediction_slot},
+     {ram_49_prediction_slot},
+     {ram_48_prediction_slot},
+     {ram_47_prediction_slot},
+     {ram_46_prediction_slot},
+     {ram_45_prediction_slot},
+     {ram_44_prediction_slot},
+     {ram_43_prediction_slot},
+     {ram_42_prediction_slot},
+     {ram_41_prediction_slot},
+     {ram_40_prediction_slot},
+     {ram_39_prediction_slot},
+     {ram_38_prediction_slot},
+     {ram_37_prediction_slot},
+     {ram_36_prediction_slot},
+     {ram_35_prediction_slot},
+     {ram_34_prediction_slot},
+     {ram_33_prediction_slot},
+     {ram_32_prediction_slot},
+     {ram_31_prediction_slot},
+     {ram_30_prediction_slot},
+     {ram_29_prediction_slot},
+     {ram_28_prediction_slot},
+     {ram_27_prediction_slot},
+     {ram_26_prediction_slot},
+     {ram_25_prediction_slot},
+     {ram_24_prediction_slot},
+     {ram_23_prediction_slot},
+     {ram_22_prediction_slot},
+     {ram_21_prediction_slot},
+     {ram_20_prediction_slot},
+     {ram_19_prediction_slot},
+     {ram_18_prediction_slot},
+     {ram_17_prediction_slot},
+     {ram_16_prediction_slot},
+     {ram_15_prediction_slot},
+     {ram_14_prediction_slot},
+     {ram_13_prediction_slot},
+     {ram_12_prediction_slot},
+     {ram_11_prediction_slot},
+     {ram_10_prediction_slot},
+     {ram_9_prediction_slot},
+     {ram_8_prediction_slot},
+     {ram_7_prediction_slot},
+     {ram_6_prediction_slot},
+     {ram_5_prediction_slot},
+     {ram_4_prediction_slot},
+     {ram_3_prediction_slot},
+     {ram_2_prediction_slot},
+     {ram_1_prediction_slot},
+     {ram_0_prediction_slot}};	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
+  wire [63:0][5:0]  _GEN_4 =
+    {{ram_63_ftqPtr},
+     {ram_62_ftqPtr},
+     {ram_61_ftqPtr},
+     {ram_60_ftqPtr},
+     {ram_59_ftqPtr},
+     {ram_58_ftqPtr},
+     {ram_57_ftqPtr},
+     {ram_56_ftqPtr},
+     {ram_55_ftqPtr},
+     {ram_54_ftqPtr},
+     {ram_53_ftqPtr},
+     {ram_52_ftqPtr},
+     {ram_51_ftqPtr},
+     {ram_50_ftqPtr},
+     {ram_49_ftqPtr},
+     {ram_48_ftqPtr},
+     {ram_47_ftqPtr},
+     {ram_46_ftqPtr},
+     {ram_45_ftqPtr},
+     {ram_44_ftqPtr},
+     {ram_43_ftqPtr},
+     {ram_42_ftqPtr},
+     {ram_41_ftqPtr},
+     {ram_40_ftqPtr},
+     {ram_39_ftqPtr},
+     {ram_38_ftqPtr},
+     {ram_37_ftqPtr},
+     {ram_36_ftqPtr},
+     {ram_35_ftqPtr},
+     {ram_34_ftqPtr},
+     {ram_33_ftqPtr},
+     {ram_32_ftqPtr},
+     {ram_31_ftqPtr},
+     {ram_30_ftqPtr},
+     {ram_29_ftqPtr},
+     {ram_28_ftqPtr},
+     {ram_27_ftqPtr},
+     {ram_26_ftqPtr},
+     {ram_25_ftqPtr},
+     {ram_24_ftqPtr},
+     {ram_23_ftqPtr},
+     {ram_22_ftqPtr},
+     {ram_21_ftqPtr},
+     {ram_20_ftqPtr},
+     {ram_19_ftqPtr},
+     {ram_18_ftqPtr},
+     {ram_17_ftqPtr},
+     {ram_16_ftqPtr},
+     {ram_15_ftqPtr},
+     {ram_14_ftqPtr},
+     {ram_13_ftqPtr},
+     {ram_12_ftqPtr},
+     {ram_11_ftqPtr},
+     {ram_10_ftqPtr},
+     {ram_9_ftqPtr},
+     {ram_8_ftqPtr},
+     {ram_7_ftqPtr},
+     {ram_6_ftqPtr},
+     {ram_5_ftqPtr},
+     {ram_4_ftqPtr},
+     {ram_3_ftqPtr},
+     {ram_2_ftqPtr},
+     {ram_1_ftqPtr},
+     {ram_0_ftqPtr}};	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
+  wire [63:0]       _GEN_5 =
+    {{ram_63_epoch},
+     {ram_62_epoch},
+     {ram_61_epoch},
+     {ram_60_epoch},
+     {ram_59_epoch},
+     {ram_58_epoch},
+     {ram_57_epoch},
+     {ram_56_epoch},
+     {ram_55_epoch},
+     {ram_54_epoch},
+     {ram_53_epoch},
+     {ram_52_epoch},
+     {ram_51_epoch},
+     {ram_50_epoch},
+     {ram_49_epoch},
+     {ram_48_epoch},
+     {ram_47_epoch},
+     {ram_46_epoch},
+     {ram_45_epoch},
+     {ram_44_epoch},
+     {ram_43_epoch},
+     {ram_42_epoch},
+     {ram_41_epoch},
+     {ram_40_epoch},
+     {ram_39_epoch},
+     {ram_38_epoch},
+     {ram_37_epoch},
+     {ram_36_epoch},
+     {ram_35_epoch},
+     {ram_34_epoch},
+     {ram_33_epoch},
+     {ram_32_epoch},
+     {ram_31_epoch},
+     {ram_30_epoch},
+     {ram_29_epoch},
+     {ram_28_epoch},
+     {ram_27_epoch},
+     {ram_26_epoch},
+     {ram_25_epoch},
+     {ram_24_epoch},
+     {ram_23_epoch},
+     {ram_22_epoch},
+     {ram_21_epoch},
+     {ram_20_epoch},
+     {ram_19_epoch},
+     {ram_18_epoch},
+     {ram_17_epoch},
+     {ram_16_epoch},
+     {ram_15_epoch},
+     {ram_14_epoch},
+     {ram_13_epoch},
+     {ram_12_epoch},
+     {ram_11_epoch},
+     {ram_10_epoch},
+     {ram_9_epoch},
+     {ram_8_epoch},
+     {ram_7_epoch},
+     {ram_6_epoch},
+     {ram_5_epoch},
+     {ram_4_epoch},
+     {ram_3_epoch},
+     {ram_2_epoch},
+     {ram_1_epoch},
+     {ram_0_epoch}};	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :45:18
+  wire [5:0]        _recoveryPtr_T = io_redirect_ftqPtr + 6'h1;	// frontend/src/zaqal/frontend/FTQ.scala:39:17, :70:42
+  wire              deq = io_toIfu_ready & (|count);	// frontend/src/zaqal/frontend/FTQ.scala:26:23, :30:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              enq = io_fromBpu_ready_0 & io_fromBpu_valid;	// frontend/src/zaqal/frontend/FTQ.scala:29:34, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_6 = enq & ~io_flush;	// frontend/src/zaqal/frontend/FTQ.scala:34:{24,27}, src/main/scala/chisel3/util/Decoupled.scala:51:35
   always @(posedge clock) begin	// frontend/src/zaqal/frontend/FTQ.scala:9:7
-    if (_GEN & enqPtr == 6'h0) begin	// frontend/src/zaqal/frontend/FTQ.scala:10:14, :23:16, :24:23, :34:{24,38}, :39:17
+    if (_GEN_6 & enqPtr == 6'h0) begin	// frontend/src/zaqal/frontend/FTQ.scala:10:14, :23:16, :24:23, :34:{24,38}, :39:17
       ram_0_pc <= io_fromBpu_bits_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_0_mask <= io_fromBpu_bits_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_0_prediction_target <= io_fromBpu_bits_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
@@ -1511,7 +1035,7 @@ module FTQ(	// frontend/src/zaqal/frontend/FTQ.scala:9:7
       ram_0_ftqPtr <= enqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23
       ram_0_epoch <= io_fromBpu_bits_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
     end
-    if (_GEN & enqPtr == 6'h1) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
+    if (_GEN_6 & enqPtr == 6'h1) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
       ram_1_pc <= io_fromBpu_bits_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_1_mask <= io_fromBpu_bits_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_1_prediction_target <= io_fromBpu_bits_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
@@ -1520,7 +1044,7 @@ module FTQ(	// frontend/src/zaqal/frontend/FTQ.scala:9:7
       ram_1_ftqPtr <= enqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23
       ram_1_epoch <= io_fromBpu_bits_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
     end
-    if (_GEN & enqPtr == 6'h2) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
+    if (_GEN_6 & enqPtr == 6'h2) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
       ram_2_pc <= io_fromBpu_bits_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_2_mask <= io_fromBpu_bits_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_2_prediction_target <= io_fromBpu_bits_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
@@ -1529,7 +1053,7 @@ module FTQ(	// frontend/src/zaqal/frontend/FTQ.scala:9:7
       ram_2_ftqPtr <= enqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23
       ram_2_epoch <= io_fromBpu_bits_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
     end
-    if (_GEN & enqPtr == 6'h3) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
+    if (_GEN_6 & enqPtr == 6'h3) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
       ram_3_pc <= io_fromBpu_bits_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_3_mask <= io_fromBpu_bits_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_3_prediction_target <= io_fromBpu_bits_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
@@ -1538,7 +1062,7 @@ module FTQ(	// frontend/src/zaqal/frontend/FTQ.scala:9:7
       ram_3_ftqPtr <= enqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23
       ram_3_epoch <= io_fromBpu_bits_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
     end
-    if (_GEN & enqPtr == 6'h4) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
+    if (_GEN_6 & enqPtr == 6'h4) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
       ram_4_pc <= io_fromBpu_bits_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_4_mask <= io_fromBpu_bits_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_4_prediction_target <= io_fromBpu_bits_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
@@ -1547,7 +1071,7 @@ module FTQ(	// frontend/src/zaqal/frontend/FTQ.scala:9:7
       ram_4_ftqPtr <= enqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23
       ram_4_epoch <= io_fromBpu_bits_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
     end
-    if (_GEN & enqPtr == 6'h5) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
+    if (_GEN_6 & enqPtr == 6'h5) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
       ram_5_pc <= io_fromBpu_bits_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_5_mask <= io_fromBpu_bits_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_5_prediction_target <= io_fromBpu_bits_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
@@ -1556,7 +1080,7 @@ module FTQ(	// frontend/src/zaqal/frontend/FTQ.scala:9:7
       ram_5_ftqPtr <= enqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23
       ram_5_epoch <= io_fromBpu_bits_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
     end
-    if (_GEN & enqPtr == 6'h6) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
+    if (_GEN_6 & enqPtr == 6'h6) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
       ram_6_pc <= io_fromBpu_bits_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_6_mask <= io_fromBpu_bits_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_6_prediction_target <= io_fromBpu_bits_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
@@ -1565,7 +1089,7 @@ module FTQ(	// frontend/src/zaqal/frontend/FTQ.scala:9:7
       ram_6_ftqPtr <= enqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23
       ram_6_epoch <= io_fromBpu_bits_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
     end
-    if (_GEN & enqPtr == 6'h7) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
+    if (_GEN_6 & enqPtr == 6'h7) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
       ram_7_pc <= io_fromBpu_bits_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_7_mask <= io_fromBpu_bits_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_7_prediction_target <= io_fromBpu_bits_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
@@ -1574,7 +1098,7 @@ module FTQ(	// frontend/src/zaqal/frontend/FTQ.scala:9:7
       ram_7_ftqPtr <= enqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23
       ram_7_epoch <= io_fromBpu_bits_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
     end
-    if (_GEN & enqPtr == 6'h8) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
+    if (_GEN_6 & enqPtr == 6'h8) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
       ram_8_pc <= io_fromBpu_bits_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_8_mask <= io_fromBpu_bits_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_8_prediction_target <= io_fromBpu_bits_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
@@ -1583,7 +1107,7 @@ module FTQ(	// frontend/src/zaqal/frontend/FTQ.scala:9:7
       ram_8_ftqPtr <= enqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23
       ram_8_epoch <= io_fromBpu_bits_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
     end
-    if (_GEN & enqPtr == 6'h9) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
+    if (_GEN_6 & enqPtr == 6'h9) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
       ram_9_pc <= io_fromBpu_bits_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_9_mask <= io_fromBpu_bits_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_9_prediction_target <= io_fromBpu_bits_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
@@ -1592,7 +1116,7 @@ module FTQ(	// frontend/src/zaqal/frontend/FTQ.scala:9:7
       ram_9_ftqPtr <= enqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23
       ram_9_epoch <= io_fromBpu_bits_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
     end
-    if (_GEN & enqPtr == 6'hA) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
+    if (_GEN_6 & enqPtr == 6'hA) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
       ram_10_pc <= io_fromBpu_bits_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_10_mask <= io_fromBpu_bits_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_10_prediction_target <= io_fromBpu_bits_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
@@ -1601,7 +1125,7 @@ module FTQ(	// frontend/src/zaqal/frontend/FTQ.scala:9:7
       ram_10_ftqPtr <= enqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23
       ram_10_epoch <= io_fromBpu_bits_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
     end
-    if (_GEN & enqPtr == 6'hB) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
+    if (_GEN_6 & enqPtr == 6'hB) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
       ram_11_pc <= io_fromBpu_bits_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_11_mask <= io_fromBpu_bits_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_11_prediction_target <= io_fromBpu_bits_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
@@ -1610,7 +1134,7 @@ module FTQ(	// frontend/src/zaqal/frontend/FTQ.scala:9:7
       ram_11_ftqPtr <= enqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23
       ram_11_epoch <= io_fromBpu_bits_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
     end
-    if (_GEN & enqPtr == 6'hC) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
+    if (_GEN_6 & enqPtr == 6'hC) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
       ram_12_pc <= io_fromBpu_bits_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_12_mask <= io_fromBpu_bits_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_12_prediction_target <= io_fromBpu_bits_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
@@ -1619,7 +1143,7 @@ module FTQ(	// frontend/src/zaqal/frontend/FTQ.scala:9:7
       ram_12_ftqPtr <= enqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23
       ram_12_epoch <= io_fromBpu_bits_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
     end
-    if (_GEN & enqPtr == 6'hD) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
+    if (_GEN_6 & enqPtr == 6'hD) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
       ram_13_pc <= io_fromBpu_bits_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_13_mask <= io_fromBpu_bits_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_13_prediction_target <= io_fromBpu_bits_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
@@ -1628,7 +1152,7 @@ module FTQ(	// frontend/src/zaqal/frontend/FTQ.scala:9:7
       ram_13_ftqPtr <= enqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23
       ram_13_epoch <= io_fromBpu_bits_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
     end
-    if (_GEN & enqPtr == 6'hE) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
+    if (_GEN_6 & enqPtr == 6'hE) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
       ram_14_pc <= io_fromBpu_bits_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_14_mask <= io_fromBpu_bits_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_14_prediction_target <= io_fromBpu_bits_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
@@ -1637,7 +1161,7 @@ module FTQ(	// frontend/src/zaqal/frontend/FTQ.scala:9:7
       ram_14_ftqPtr <= enqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23
       ram_14_epoch <= io_fromBpu_bits_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
     end
-    if (_GEN & enqPtr == 6'hF) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
+    if (_GEN_6 & enqPtr == 6'hF) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
       ram_15_pc <= io_fromBpu_bits_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_15_mask <= io_fromBpu_bits_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_15_prediction_target <= io_fromBpu_bits_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
@@ -1646,7 +1170,7 @@ module FTQ(	// frontend/src/zaqal/frontend/FTQ.scala:9:7
       ram_15_ftqPtr <= enqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23
       ram_15_epoch <= io_fromBpu_bits_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
     end
-    if (_GEN & enqPtr == 6'h10) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
+    if (_GEN_6 & enqPtr == 6'h10) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
       ram_16_pc <= io_fromBpu_bits_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_16_mask <= io_fromBpu_bits_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_16_prediction_target <= io_fromBpu_bits_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
@@ -1655,7 +1179,7 @@ module FTQ(	// frontend/src/zaqal/frontend/FTQ.scala:9:7
       ram_16_ftqPtr <= enqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23
       ram_16_epoch <= io_fromBpu_bits_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
     end
-    if (_GEN & enqPtr == 6'h11) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
+    if (_GEN_6 & enqPtr == 6'h11) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
       ram_17_pc <= io_fromBpu_bits_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_17_mask <= io_fromBpu_bits_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_17_prediction_target <= io_fromBpu_bits_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
@@ -1664,7 +1188,7 @@ module FTQ(	// frontend/src/zaqal/frontend/FTQ.scala:9:7
       ram_17_ftqPtr <= enqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23
       ram_17_epoch <= io_fromBpu_bits_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
     end
-    if (_GEN & enqPtr == 6'h12) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
+    if (_GEN_6 & enqPtr == 6'h12) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
       ram_18_pc <= io_fromBpu_bits_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_18_mask <= io_fromBpu_bits_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_18_prediction_target <= io_fromBpu_bits_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
@@ -1673,7 +1197,7 @@ module FTQ(	// frontend/src/zaqal/frontend/FTQ.scala:9:7
       ram_18_ftqPtr <= enqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23
       ram_18_epoch <= io_fromBpu_bits_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
     end
-    if (_GEN & enqPtr == 6'h13) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
+    if (_GEN_6 & enqPtr == 6'h13) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
       ram_19_pc <= io_fromBpu_bits_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_19_mask <= io_fromBpu_bits_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_19_prediction_target <= io_fromBpu_bits_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
@@ -1682,7 +1206,7 @@ module FTQ(	// frontend/src/zaqal/frontend/FTQ.scala:9:7
       ram_19_ftqPtr <= enqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23
       ram_19_epoch <= io_fromBpu_bits_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
     end
-    if (_GEN & enqPtr == 6'h14) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
+    if (_GEN_6 & enqPtr == 6'h14) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
       ram_20_pc <= io_fromBpu_bits_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_20_mask <= io_fromBpu_bits_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_20_prediction_target <= io_fromBpu_bits_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
@@ -1691,7 +1215,7 @@ module FTQ(	// frontend/src/zaqal/frontend/FTQ.scala:9:7
       ram_20_ftqPtr <= enqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23
       ram_20_epoch <= io_fromBpu_bits_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
     end
-    if (_GEN & enqPtr == 6'h15) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
+    if (_GEN_6 & enqPtr == 6'h15) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
       ram_21_pc <= io_fromBpu_bits_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_21_mask <= io_fromBpu_bits_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_21_prediction_target <= io_fromBpu_bits_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
@@ -1700,7 +1224,7 @@ module FTQ(	// frontend/src/zaqal/frontend/FTQ.scala:9:7
       ram_21_ftqPtr <= enqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23
       ram_21_epoch <= io_fromBpu_bits_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
     end
-    if (_GEN & enqPtr == 6'h16) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
+    if (_GEN_6 & enqPtr == 6'h16) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
       ram_22_pc <= io_fromBpu_bits_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_22_mask <= io_fromBpu_bits_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_22_prediction_target <= io_fromBpu_bits_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
@@ -1709,7 +1233,7 @@ module FTQ(	// frontend/src/zaqal/frontend/FTQ.scala:9:7
       ram_22_ftqPtr <= enqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23
       ram_22_epoch <= io_fromBpu_bits_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
     end
-    if (_GEN & enqPtr == 6'h17) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
+    if (_GEN_6 & enqPtr == 6'h17) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
       ram_23_pc <= io_fromBpu_bits_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_23_mask <= io_fromBpu_bits_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_23_prediction_target <= io_fromBpu_bits_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
@@ -1718,7 +1242,7 @@ module FTQ(	// frontend/src/zaqal/frontend/FTQ.scala:9:7
       ram_23_ftqPtr <= enqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23
       ram_23_epoch <= io_fromBpu_bits_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
     end
-    if (_GEN & enqPtr == 6'h18) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
+    if (_GEN_6 & enqPtr == 6'h18) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
       ram_24_pc <= io_fromBpu_bits_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_24_mask <= io_fromBpu_bits_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_24_prediction_target <= io_fromBpu_bits_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
@@ -1727,7 +1251,7 @@ module FTQ(	// frontend/src/zaqal/frontend/FTQ.scala:9:7
       ram_24_ftqPtr <= enqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23
       ram_24_epoch <= io_fromBpu_bits_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
     end
-    if (_GEN & enqPtr == 6'h19) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
+    if (_GEN_6 & enqPtr == 6'h19) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
       ram_25_pc <= io_fromBpu_bits_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_25_mask <= io_fromBpu_bits_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_25_prediction_target <= io_fromBpu_bits_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
@@ -1736,7 +1260,7 @@ module FTQ(	// frontend/src/zaqal/frontend/FTQ.scala:9:7
       ram_25_ftqPtr <= enqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23
       ram_25_epoch <= io_fromBpu_bits_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
     end
-    if (_GEN & enqPtr == 6'h1A) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
+    if (_GEN_6 & enqPtr == 6'h1A) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
       ram_26_pc <= io_fromBpu_bits_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_26_mask <= io_fromBpu_bits_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_26_prediction_target <= io_fromBpu_bits_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
@@ -1745,7 +1269,7 @@ module FTQ(	// frontend/src/zaqal/frontend/FTQ.scala:9:7
       ram_26_ftqPtr <= enqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23
       ram_26_epoch <= io_fromBpu_bits_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
     end
-    if (_GEN & enqPtr == 6'h1B) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
+    if (_GEN_6 & enqPtr == 6'h1B) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
       ram_27_pc <= io_fromBpu_bits_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_27_mask <= io_fromBpu_bits_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_27_prediction_target <= io_fromBpu_bits_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
@@ -1754,7 +1278,7 @@ module FTQ(	// frontend/src/zaqal/frontend/FTQ.scala:9:7
       ram_27_ftqPtr <= enqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23
       ram_27_epoch <= io_fromBpu_bits_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
     end
-    if (_GEN & enqPtr == 6'h1C) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
+    if (_GEN_6 & enqPtr == 6'h1C) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
       ram_28_pc <= io_fromBpu_bits_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_28_mask <= io_fromBpu_bits_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_28_prediction_target <= io_fromBpu_bits_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
@@ -1763,7 +1287,7 @@ module FTQ(	// frontend/src/zaqal/frontend/FTQ.scala:9:7
       ram_28_ftqPtr <= enqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23
       ram_28_epoch <= io_fromBpu_bits_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
     end
-    if (_GEN & enqPtr == 6'h1D) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
+    if (_GEN_6 & enqPtr == 6'h1D) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
       ram_29_pc <= io_fromBpu_bits_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_29_mask <= io_fromBpu_bits_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_29_prediction_target <= io_fromBpu_bits_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
@@ -1772,7 +1296,7 @@ module FTQ(	// frontend/src/zaqal/frontend/FTQ.scala:9:7
       ram_29_ftqPtr <= enqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23
       ram_29_epoch <= io_fromBpu_bits_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
     end
-    if (_GEN & enqPtr == 6'h1E) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
+    if (_GEN_6 & enqPtr == 6'h1E) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
       ram_30_pc <= io_fromBpu_bits_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_30_mask <= io_fromBpu_bits_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_30_prediction_target <= io_fromBpu_bits_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
@@ -1781,7 +1305,7 @@ module FTQ(	// frontend/src/zaqal/frontend/FTQ.scala:9:7
       ram_30_ftqPtr <= enqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23
       ram_30_epoch <= io_fromBpu_bits_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
     end
-    if (_GEN & enqPtr == 6'h1F) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
+    if (_GEN_6 & enqPtr == 6'h1F) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
       ram_31_pc <= io_fromBpu_bits_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_31_mask <= io_fromBpu_bits_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_31_prediction_target <= io_fromBpu_bits_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
@@ -1790,7 +1314,7 @@ module FTQ(	// frontend/src/zaqal/frontend/FTQ.scala:9:7
       ram_31_ftqPtr <= enqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23
       ram_31_epoch <= io_fromBpu_bits_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
     end
-    if (_GEN & enqPtr == 6'h20) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
+    if (_GEN_6 & enqPtr == 6'h20) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
       ram_32_pc <= io_fromBpu_bits_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_32_mask <= io_fromBpu_bits_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_32_prediction_target <= io_fromBpu_bits_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
@@ -1799,7 +1323,7 @@ module FTQ(	// frontend/src/zaqal/frontend/FTQ.scala:9:7
       ram_32_ftqPtr <= enqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23
       ram_32_epoch <= io_fromBpu_bits_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
     end
-    if (_GEN & enqPtr == 6'h21) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
+    if (_GEN_6 & enqPtr == 6'h21) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
       ram_33_pc <= io_fromBpu_bits_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_33_mask <= io_fromBpu_bits_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_33_prediction_target <= io_fromBpu_bits_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
@@ -1808,7 +1332,7 @@ module FTQ(	// frontend/src/zaqal/frontend/FTQ.scala:9:7
       ram_33_ftqPtr <= enqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23
       ram_33_epoch <= io_fromBpu_bits_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
     end
-    if (_GEN & enqPtr == 6'h22) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
+    if (_GEN_6 & enqPtr == 6'h22) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
       ram_34_pc <= io_fromBpu_bits_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_34_mask <= io_fromBpu_bits_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_34_prediction_target <= io_fromBpu_bits_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
@@ -1817,7 +1341,7 @@ module FTQ(	// frontend/src/zaqal/frontend/FTQ.scala:9:7
       ram_34_ftqPtr <= enqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23
       ram_34_epoch <= io_fromBpu_bits_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
     end
-    if (_GEN & enqPtr == 6'h23) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
+    if (_GEN_6 & enqPtr == 6'h23) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
       ram_35_pc <= io_fromBpu_bits_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_35_mask <= io_fromBpu_bits_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_35_prediction_target <= io_fromBpu_bits_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
@@ -1826,7 +1350,7 @@ module FTQ(	// frontend/src/zaqal/frontend/FTQ.scala:9:7
       ram_35_ftqPtr <= enqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23
       ram_35_epoch <= io_fromBpu_bits_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
     end
-    if (_GEN & enqPtr == 6'h24) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
+    if (_GEN_6 & enqPtr == 6'h24) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
       ram_36_pc <= io_fromBpu_bits_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_36_mask <= io_fromBpu_bits_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_36_prediction_target <= io_fromBpu_bits_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
@@ -1835,7 +1359,7 @@ module FTQ(	// frontend/src/zaqal/frontend/FTQ.scala:9:7
       ram_36_ftqPtr <= enqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23
       ram_36_epoch <= io_fromBpu_bits_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
     end
-    if (_GEN & enqPtr == 6'h25) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
+    if (_GEN_6 & enqPtr == 6'h25) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
       ram_37_pc <= io_fromBpu_bits_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_37_mask <= io_fromBpu_bits_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_37_prediction_target <= io_fromBpu_bits_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
@@ -1844,7 +1368,7 @@ module FTQ(	// frontend/src/zaqal/frontend/FTQ.scala:9:7
       ram_37_ftqPtr <= enqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23
       ram_37_epoch <= io_fromBpu_bits_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
     end
-    if (_GEN & enqPtr == 6'h26) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
+    if (_GEN_6 & enqPtr == 6'h26) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
       ram_38_pc <= io_fromBpu_bits_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_38_mask <= io_fromBpu_bits_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_38_prediction_target <= io_fromBpu_bits_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
@@ -1853,7 +1377,7 @@ module FTQ(	// frontend/src/zaqal/frontend/FTQ.scala:9:7
       ram_38_ftqPtr <= enqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23
       ram_38_epoch <= io_fromBpu_bits_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
     end
-    if (_GEN & enqPtr == 6'h27) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
+    if (_GEN_6 & enqPtr == 6'h27) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
       ram_39_pc <= io_fromBpu_bits_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_39_mask <= io_fromBpu_bits_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_39_prediction_target <= io_fromBpu_bits_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
@@ -1862,7 +1386,7 @@ module FTQ(	// frontend/src/zaqal/frontend/FTQ.scala:9:7
       ram_39_ftqPtr <= enqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23
       ram_39_epoch <= io_fromBpu_bits_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
     end
-    if (_GEN & enqPtr == 6'h28) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
+    if (_GEN_6 & enqPtr == 6'h28) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
       ram_40_pc <= io_fromBpu_bits_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_40_mask <= io_fromBpu_bits_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_40_prediction_target <= io_fromBpu_bits_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
@@ -1871,7 +1395,7 @@ module FTQ(	// frontend/src/zaqal/frontend/FTQ.scala:9:7
       ram_40_ftqPtr <= enqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23
       ram_40_epoch <= io_fromBpu_bits_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
     end
-    if (_GEN & enqPtr == 6'h29) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
+    if (_GEN_6 & enqPtr == 6'h29) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
       ram_41_pc <= io_fromBpu_bits_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_41_mask <= io_fromBpu_bits_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_41_prediction_target <= io_fromBpu_bits_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
@@ -1880,7 +1404,7 @@ module FTQ(	// frontend/src/zaqal/frontend/FTQ.scala:9:7
       ram_41_ftqPtr <= enqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23
       ram_41_epoch <= io_fromBpu_bits_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
     end
-    if (_GEN & enqPtr == 6'h2A) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
+    if (_GEN_6 & enqPtr == 6'h2A) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
       ram_42_pc <= io_fromBpu_bits_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_42_mask <= io_fromBpu_bits_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_42_prediction_target <= io_fromBpu_bits_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
@@ -1889,7 +1413,7 @@ module FTQ(	// frontend/src/zaqal/frontend/FTQ.scala:9:7
       ram_42_ftqPtr <= enqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23
       ram_42_epoch <= io_fromBpu_bits_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
     end
-    if (_GEN & enqPtr == 6'h2B) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
+    if (_GEN_6 & enqPtr == 6'h2B) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
       ram_43_pc <= io_fromBpu_bits_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_43_mask <= io_fromBpu_bits_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_43_prediction_target <= io_fromBpu_bits_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
@@ -1898,7 +1422,7 @@ module FTQ(	// frontend/src/zaqal/frontend/FTQ.scala:9:7
       ram_43_ftqPtr <= enqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23
       ram_43_epoch <= io_fromBpu_bits_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
     end
-    if (_GEN & enqPtr == 6'h2C) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
+    if (_GEN_6 & enqPtr == 6'h2C) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
       ram_44_pc <= io_fromBpu_bits_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_44_mask <= io_fromBpu_bits_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_44_prediction_target <= io_fromBpu_bits_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
@@ -1907,7 +1431,7 @@ module FTQ(	// frontend/src/zaqal/frontend/FTQ.scala:9:7
       ram_44_ftqPtr <= enqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23
       ram_44_epoch <= io_fromBpu_bits_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
     end
-    if (_GEN & enqPtr == 6'h2D) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
+    if (_GEN_6 & enqPtr == 6'h2D) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
       ram_45_pc <= io_fromBpu_bits_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_45_mask <= io_fromBpu_bits_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_45_prediction_target <= io_fromBpu_bits_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
@@ -1916,7 +1440,7 @@ module FTQ(	// frontend/src/zaqal/frontend/FTQ.scala:9:7
       ram_45_ftqPtr <= enqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23
       ram_45_epoch <= io_fromBpu_bits_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
     end
-    if (_GEN & enqPtr == 6'h2E) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
+    if (_GEN_6 & enqPtr == 6'h2E) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
       ram_46_pc <= io_fromBpu_bits_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_46_mask <= io_fromBpu_bits_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_46_prediction_target <= io_fromBpu_bits_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
@@ -1925,7 +1449,7 @@ module FTQ(	// frontend/src/zaqal/frontend/FTQ.scala:9:7
       ram_46_ftqPtr <= enqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23
       ram_46_epoch <= io_fromBpu_bits_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
     end
-    if (_GEN & enqPtr == 6'h2F) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
+    if (_GEN_6 & enqPtr == 6'h2F) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
       ram_47_pc <= io_fromBpu_bits_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_47_mask <= io_fromBpu_bits_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_47_prediction_target <= io_fromBpu_bits_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
@@ -1934,7 +1458,7 @@ module FTQ(	// frontend/src/zaqal/frontend/FTQ.scala:9:7
       ram_47_ftqPtr <= enqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23
       ram_47_epoch <= io_fromBpu_bits_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
     end
-    if (_GEN & enqPtr == 6'h30) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
+    if (_GEN_6 & enqPtr == 6'h30) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
       ram_48_pc <= io_fromBpu_bits_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_48_mask <= io_fromBpu_bits_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_48_prediction_target <= io_fromBpu_bits_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
@@ -1943,7 +1467,7 @@ module FTQ(	// frontend/src/zaqal/frontend/FTQ.scala:9:7
       ram_48_ftqPtr <= enqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23
       ram_48_epoch <= io_fromBpu_bits_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
     end
-    if (_GEN & enqPtr == 6'h31) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
+    if (_GEN_6 & enqPtr == 6'h31) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
       ram_49_pc <= io_fromBpu_bits_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_49_mask <= io_fromBpu_bits_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_49_prediction_target <= io_fromBpu_bits_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
@@ -1952,7 +1476,7 @@ module FTQ(	// frontend/src/zaqal/frontend/FTQ.scala:9:7
       ram_49_ftqPtr <= enqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23
       ram_49_epoch <= io_fromBpu_bits_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
     end
-    if (_GEN & enqPtr == 6'h32) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
+    if (_GEN_6 & enqPtr == 6'h32) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
       ram_50_pc <= io_fromBpu_bits_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_50_mask <= io_fromBpu_bits_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_50_prediction_target <= io_fromBpu_bits_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
@@ -1961,7 +1485,7 @@ module FTQ(	// frontend/src/zaqal/frontend/FTQ.scala:9:7
       ram_50_ftqPtr <= enqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23
       ram_50_epoch <= io_fromBpu_bits_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
     end
-    if (_GEN & enqPtr == 6'h33) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
+    if (_GEN_6 & enqPtr == 6'h33) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
       ram_51_pc <= io_fromBpu_bits_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_51_mask <= io_fromBpu_bits_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_51_prediction_target <= io_fromBpu_bits_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
@@ -1970,7 +1494,7 @@ module FTQ(	// frontend/src/zaqal/frontend/FTQ.scala:9:7
       ram_51_ftqPtr <= enqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23
       ram_51_epoch <= io_fromBpu_bits_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
     end
-    if (_GEN & enqPtr == 6'h34) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
+    if (_GEN_6 & enqPtr == 6'h34) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
       ram_52_pc <= io_fromBpu_bits_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_52_mask <= io_fromBpu_bits_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_52_prediction_target <= io_fromBpu_bits_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
@@ -1979,7 +1503,7 @@ module FTQ(	// frontend/src/zaqal/frontend/FTQ.scala:9:7
       ram_52_ftqPtr <= enqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23
       ram_52_epoch <= io_fromBpu_bits_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
     end
-    if (_GEN & enqPtr == 6'h35) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
+    if (_GEN_6 & enqPtr == 6'h35) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
       ram_53_pc <= io_fromBpu_bits_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_53_mask <= io_fromBpu_bits_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_53_prediction_target <= io_fromBpu_bits_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
@@ -1988,7 +1512,7 @@ module FTQ(	// frontend/src/zaqal/frontend/FTQ.scala:9:7
       ram_53_ftqPtr <= enqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23
       ram_53_epoch <= io_fromBpu_bits_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
     end
-    if (_GEN & enqPtr == 6'h36) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
+    if (_GEN_6 & enqPtr == 6'h36) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
       ram_54_pc <= io_fromBpu_bits_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_54_mask <= io_fromBpu_bits_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_54_prediction_target <= io_fromBpu_bits_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
@@ -1997,7 +1521,7 @@ module FTQ(	// frontend/src/zaqal/frontend/FTQ.scala:9:7
       ram_54_ftqPtr <= enqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23
       ram_54_epoch <= io_fromBpu_bits_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
     end
-    if (_GEN & enqPtr == 6'h37) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
+    if (_GEN_6 & enqPtr == 6'h37) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
       ram_55_pc <= io_fromBpu_bits_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_55_mask <= io_fromBpu_bits_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_55_prediction_target <= io_fromBpu_bits_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
@@ -2006,7 +1530,7 @@ module FTQ(	// frontend/src/zaqal/frontend/FTQ.scala:9:7
       ram_55_ftqPtr <= enqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23
       ram_55_epoch <= io_fromBpu_bits_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
     end
-    if (_GEN & enqPtr == 6'h38) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
+    if (_GEN_6 & enqPtr == 6'h38) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
       ram_56_pc <= io_fromBpu_bits_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_56_mask <= io_fromBpu_bits_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_56_prediction_target <= io_fromBpu_bits_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
@@ -2015,7 +1539,7 @@ module FTQ(	// frontend/src/zaqal/frontend/FTQ.scala:9:7
       ram_56_ftqPtr <= enqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23
       ram_56_epoch <= io_fromBpu_bits_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
     end
-    if (_GEN & enqPtr == 6'h39) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
+    if (_GEN_6 & enqPtr == 6'h39) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
       ram_57_pc <= io_fromBpu_bits_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_57_mask <= io_fromBpu_bits_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_57_prediction_target <= io_fromBpu_bits_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
@@ -2024,7 +1548,7 @@ module FTQ(	// frontend/src/zaqal/frontend/FTQ.scala:9:7
       ram_57_ftqPtr <= enqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23
       ram_57_epoch <= io_fromBpu_bits_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
     end
-    if (_GEN & enqPtr == 6'h3A) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
+    if (_GEN_6 & enqPtr == 6'h3A) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
       ram_58_pc <= io_fromBpu_bits_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_58_mask <= io_fromBpu_bits_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_58_prediction_target <= io_fromBpu_bits_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
@@ -2033,7 +1557,7 @@ module FTQ(	// frontend/src/zaqal/frontend/FTQ.scala:9:7
       ram_58_ftqPtr <= enqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23
       ram_58_epoch <= io_fromBpu_bits_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
     end
-    if (_GEN & enqPtr == 6'h3B) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
+    if (_GEN_6 & enqPtr == 6'h3B) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
       ram_59_pc <= io_fromBpu_bits_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_59_mask <= io_fromBpu_bits_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_59_prediction_target <= io_fromBpu_bits_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
@@ -2042,7 +1566,7 @@ module FTQ(	// frontend/src/zaqal/frontend/FTQ.scala:9:7
       ram_59_ftqPtr <= enqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23
       ram_59_epoch <= io_fromBpu_bits_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
     end
-    if (_GEN & enqPtr == 6'h3C) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
+    if (_GEN_6 & enqPtr == 6'h3C) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
       ram_60_pc <= io_fromBpu_bits_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_60_mask <= io_fromBpu_bits_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_60_prediction_target <= io_fromBpu_bits_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
@@ -2051,7 +1575,7 @@ module FTQ(	// frontend/src/zaqal/frontend/FTQ.scala:9:7
       ram_60_ftqPtr <= enqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23
       ram_60_epoch <= io_fromBpu_bits_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
     end
-    if (_GEN & enqPtr == 6'h3D) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
+    if (_GEN_6 & enqPtr == 6'h3D) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
       ram_61_pc <= io_fromBpu_bits_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_61_mask <= io_fromBpu_bits_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_61_prediction_target <= io_fromBpu_bits_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
@@ -2060,7 +1584,7 @@ module FTQ(	// frontend/src/zaqal/frontend/FTQ.scala:9:7
       ram_61_ftqPtr <= enqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23
       ram_61_epoch <= io_fromBpu_bits_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
     end
-    if (_GEN & enqPtr == 6'h3E) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
+    if (_GEN_6 & enqPtr == 6'h3E) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
       ram_62_pc <= io_fromBpu_bits_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_62_mask <= io_fromBpu_bits_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_62_prediction_target <= io_fromBpu_bits_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
@@ -2069,7 +1593,7 @@ module FTQ(	// frontend/src/zaqal/frontend/FTQ.scala:9:7
       ram_62_ftqPtr <= enqPtr;	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23
       ram_62_epoch <= io_fromBpu_bits_epoch;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
     end
-    if (_GEN & (&enqPtr)) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
+    if (_GEN_6 & (&enqPtr)) begin	// frontend/src/zaqal/frontend/FTQ.scala:23:16, :24:23, :34:{24,38}, :39:17
       ram_63_pc <= io_fromBpu_bits_pc;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_63_mask <= io_fromBpu_bits_mask;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
       ram_63_prediction_target <= io_fromBpu_bits_prediction_target;	// frontend/src/zaqal/frontend/FTQ.scala:23:16
@@ -2093,7 +1617,7 @@ module FTQ(	// frontend/src/zaqal/frontend/FTQ.scala:9:7
         deqPtr <= 6'h0;	// frontend/src/zaqal/frontend/FTQ.scala:10:14, :25:23
       end
       else begin	// frontend/src/zaqal/frontend/FTQ.scala:10:14
-        if (_GEN)	// frontend/src/zaqal/frontend/FTQ.scala:34:24
+        if (_GEN_6)	// frontend/src/zaqal/frontend/FTQ.scala:34:24
           enqPtr <= enqPtr + 6'h1;	// frontend/src/zaqal/frontend/FTQ.scala:24:23, :39:17, :40:22
         if (deq)	// src/main/scala/chisel3/util/Decoupled.scala:51:35
           deqPtr <= deqPtr + 6'h1;	// frontend/src/zaqal/frontend/FTQ.scala:25:23, :39:17, :51:22
@@ -2642,13 +2166,13 @@ module FTQ(	// frontend/src/zaqal/frontend/FTQ.scala:9:7
   `endif // ENABLE_INITIAL_REG_
   assign io_fromBpu_ready = io_fromBpu_ready_0;	// frontend/src/zaqal/frontend/FTQ.scala:9:7, :29:34
   assign io_toIfu_valid = |count;	// frontend/src/zaqal/frontend/FTQ.scala:9:7, :26:23, :30:21
-  assign io_toIfu_bits_pc = casez_tmp;	// frontend/src/zaqal/frontend/FTQ.scala:9:7, :45:18
-  assign io_toIfu_bits_mask = casez_tmp_0;	// frontend/src/zaqal/frontend/FTQ.scala:9:7, :45:18
-  assign io_toIfu_bits_prediction_target = casez_tmp_1;	// frontend/src/zaqal/frontend/FTQ.scala:9:7, :45:18
-  assign io_toIfu_bits_prediction_taken = casez_tmp_2;	// frontend/src/zaqal/frontend/FTQ.scala:9:7, :45:18
-  assign io_toIfu_bits_prediction_slot = casez_tmp_3;	// frontend/src/zaqal/frontend/FTQ.scala:9:7, :45:18
-  assign io_toIfu_bits_ftqPtr = casez_tmp_4;	// frontend/src/zaqal/frontend/FTQ.scala:9:7, :45:18
-  assign io_toIfu_bits_epoch = casez_tmp_5;	// frontend/src/zaqal/frontend/FTQ.scala:9:7, :45:18
+  assign io_toIfu_bits_pc = _GEN[deqPtr];	// frontend/src/zaqal/frontend/FTQ.scala:9:7, :25:23, :45:18
+  assign io_toIfu_bits_mask = _GEN_0[deqPtr];	// frontend/src/zaqal/frontend/FTQ.scala:9:7, :25:23, :45:18
+  assign io_toIfu_bits_prediction_target = _GEN_1[deqPtr];	// frontend/src/zaqal/frontend/FTQ.scala:9:7, :25:23, :45:18
+  assign io_toIfu_bits_prediction_taken = _GEN_2[deqPtr];	// frontend/src/zaqal/frontend/FTQ.scala:9:7, :25:23, :45:18
+  assign io_toIfu_bits_prediction_slot = _GEN_3[deqPtr];	// frontend/src/zaqal/frontend/FTQ.scala:9:7, :25:23, :45:18
+  assign io_toIfu_bits_ftqPtr = _GEN_4[deqPtr];	// frontend/src/zaqal/frontend/FTQ.scala:9:7, :25:23, :45:18
+  assign io_toIfu_bits_epoch = _GEN_5[deqPtr];	// frontend/src/zaqal/frontend/FTQ.scala:9:7, :25:23, :45:18
   assign io_readData_pc_0 = ram_0_pc;	// frontend/src/zaqal/frontend/FTQ.scala:9:7, :23:16
   assign io_readData_pc_1 = ram_0_pc + 64'h2;	// frontend/src/zaqal/frontend/FTQ.scala:9:7, :23:16, :58:44
   assign io_readData_pc_2 = ram_0_pc + 64'h4;	// frontend/src/zaqal/frontend/FTQ.scala:9:7, :23:16, :58:44

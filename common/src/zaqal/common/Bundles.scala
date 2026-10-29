@@ -431,6 +431,10 @@ class RobCommitEntryBundle(implicit val p: Parameters) extends Bundle with HasZa
   val is_call = Bool()
   val is_ret = Bool()
   val pc = UInt(64.W)
+  val instr = UInt(32.W)
+  val data = UInt(64.W)
+  val isRVC = Bool()
+  val mmio = Bool()
   val target = UInt(64.W)
   val old_pdest = UInt(7.W)
   val pdest = UInt(7.W)
@@ -458,6 +462,8 @@ class RobEntryBundle(implicit val p: Parameters) extends Bundle with HasZaqalPar
   val exceptionVec = UInt(16.W)
   
   val pc = UInt(64.W) // xLen
+  val instr = UInt(32.W)
+  val wbData = UInt(64.W)
   val target = UInt(64.W)
   val old_pdest = UInt(7.W) // phyRegIdxWidth
   val pdest = UInt(7.W)

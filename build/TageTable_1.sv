@@ -87,402 +87,270 @@ module TageTable_1(	// frontend/src/zaqal/frontend/Tage.scala:24:7
   output [1:0]   io_update_u	// frontend/src/zaqal/frontend/Tage.scala:25:14
 );
 
-  wire [1:0] _us_ext_R1_data;	// frontend/src/zaqal/frontend/Tage.scala:68:15
-  wire [7:0] _tags_ext_R0_data;	// frontend/src/zaqal/frontend/Tage.scala:66:17
-  wire [6:0] req_idx =
+  wire [1:0]   _us_ext_R1_data;	// frontend/src/zaqal/frontend/Tage.scala:68:15
+  wire [7:0]   _tags_ext_R0_data;	// frontend/src/zaqal/frontend/Tage.scala:66:17
+  wire [6:0]   req_idx =
     io_req_pc[6:0] ^ {io_req_ghr[6:5], io_req_ghr[4:0] ^ io_req_ghr[11:7]};	// frontend/src/zaqal/frontend/Tage.scala:53:10, :55:20, :62:{27,47}
-  reg        valids_0;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_1;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_2;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_3;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_4;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_5;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_6;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_7;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_8;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_9;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_10;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_11;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_12;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_13;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_14;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_15;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_16;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_17;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_18;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_19;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_20;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_21;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_22;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_23;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_24;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_25;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_26;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_27;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_28;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_29;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_30;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_31;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_32;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_33;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_34;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_35;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_36;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_37;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_38;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_39;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_40;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_41;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_42;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_43;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_44;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_45;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_46;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_47;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_48;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_49;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_50;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_51;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_52;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_53;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_54;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_55;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_56;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_57;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_58;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_59;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_60;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_61;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_62;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_63;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_64;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_65;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_66;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_67;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_68;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_69;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_70;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_71;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_72;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_73;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_74;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_75;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_76;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_77;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_78;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_79;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_80;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_81;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_82;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_83;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_84;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_85;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_86;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_87;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_88;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_89;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_90;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_91;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_92;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_93;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_94;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_95;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_96;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_97;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_98;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_99;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_100;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_101;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_102;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_103;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_104;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_105;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_106;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_107;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_108;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_109;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_110;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_111;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_112;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_113;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_114;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_115;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_116;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_117;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_118;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_119;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_120;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_121;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_122;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_123;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_124;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_125;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_126;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  reg        valids_127;	// frontend/src/zaqal/frontend/Tage.scala:69:23
-  wire [6:0] u_idx =
+  reg          valids_0;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_1;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_2;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_3;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_4;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_5;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_6;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_7;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_8;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_9;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_10;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_11;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_12;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_13;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_14;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_15;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_16;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_17;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_18;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_19;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_20;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_21;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_22;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_23;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_24;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_25;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_26;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_27;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_28;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_29;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_30;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_31;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_32;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_33;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_34;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_35;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_36;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_37;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_38;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_39;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_40;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_41;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_42;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_43;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_44;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_45;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_46;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_47;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_48;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_49;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_50;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_51;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_52;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_53;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_54;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_55;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_56;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_57;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_58;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_59;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_60;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_61;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_62;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_63;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_64;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_65;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_66;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_67;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_68;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_69;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_70;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_71;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_72;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_73;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_74;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_75;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_76;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_77;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_78;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_79;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_80;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_81;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_82;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_83;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_84;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_85;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_86;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_87;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_88;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_89;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_90;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_91;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_92;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_93;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_94;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_95;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_96;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_97;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_98;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_99;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_100;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_101;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_102;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_103;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_104;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_105;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_106;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_107;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_108;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_109;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_110;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_111;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_112;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_113;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_114;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_115;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_116;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_117;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_118;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_119;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_120;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_121;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_122;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_123;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_124;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_125;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_126;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  reg          valids_127;	// frontend/src/zaqal/frontend/Tage.scala:69:23
+  wire [6:0]   u_idx =
     io_update_pc[6:0] ^ {io_update_ghr[6:5], io_update_ghr[4:0] ^ io_update_ghr[11:7]};	// frontend/src/zaqal/frontend/Tage.scala:53:10, :55:20, :79:{28,48}
-  reg        casez_tmp;	// frontend/src/zaqal/frontend/Tage.scala:82:24
-  always_comb begin	// frontend/src/zaqal/frontend/Tage.scala:82:24
-    casez (req_idx)	// frontend/src/zaqal/frontend/Tage.scala:62:47, :82:24
-      7'b0000000:
-        casez_tmp = valids_0;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b0000001:
-        casez_tmp = valids_1;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b0000010:
-        casez_tmp = valids_2;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b0000011:
-        casez_tmp = valids_3;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b0000100:
-        casez_tmp = valids_4;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b0000101:
-        casez_tmp = valids_5;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b0000110:
-        casez_tmp = valids_6;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b0000111:
-        casez_tmp = valids_7;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b0001000:
-        casez_tmp = valids_8;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b0001001:
-        casez_tmp = valids_9;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b0001010:
-        casez_tmp = valids_10;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b0001011:
-        casez_tmp = valids_11;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b0001100:
-        casez_tmp = valids_12;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b0001101:
-        casez_tmp = valids_13;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b0001110:
-        casez_tmp = valids_14;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b0001111:
-        casez_tmp = valids_15;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b0010000:
-        casez_tmp = valids_16;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b0010001:
-        casez_tmp = valids_17;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b0010010:
-        casez_tmp = valids_18;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b0010011:
-        casez_tmp = valids_19;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b0010100:
-        casez_tmp = valids_20;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b0010101:
-        casez_tmp = valids_21;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b0010110:
-        casez_tmp = valids_22;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b0010111:
-        casez_tmp = valids_23;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b0011000:
-        casez_tmp = valids_24;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b0011001:
-        casez_tmp = valids_25;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b0011010:
-        casez_tmp = valids_26;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b0011011:
-        casez_tmp = valids_27;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b0011100:
-        casez_tmp = valids_28;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b0011101:
-        casez_tmp = valids_29;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b0011110:
-        casez_tmp = valids_30;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b0011111:
-        casez_tmp = valids_31;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b0100000:
-        casez_tmp = valids_32;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b0100001:
-        casez_tmp = valids_33;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b0100010:
-        casez_tmp = valids_34;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b0100011:
-        casez_tmp = valids_35;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b0100100:
-        casez_tmp = valids_36;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b0100101:
-        casez_tmp = valids_37;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b0100110:
-        casez_tmp = valids_38;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b0100111:
-        casez_tmp = valids_39;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b0101000:
-        casez_tmp = valids_40;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b0101001:
-        casez_tmp = valids_41;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b0101010:
-        casez_tmp = valids_42;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b0101011:
-        casez_tmp = valids_43;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b0101100:
-        casez_tmp = valids_44;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b0101101:
-        casez_tmp = valids_45;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b0101110:
-        casez_tmp = valids_46;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b0101111:
-        casez_tmp = valids_47;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b0110000:
-        casez_tmp = valids_48;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b0110001:
-        casez_tmp = valids_49;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b0110010:
-        casez_tmp = valids_50;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b0110011:
-        casez_tmp = valids_51;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b0110100:
-        casez_tmp = valids_52;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b0110101:
-        casez_tmp = valids_53;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b0110110:
-        casez_tmp = valids_54;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b0110111:
-        casez_tmp = valids_55;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b0111000:
-        casez_tmp = valids_56;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b0111001:
-        casez_tmp = valids_57;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b0111010:
-        casez_tmp = valids_58;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b0111011:
-        casez_tmp = valids_59;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b0111100:
-        casez_tmp = valids_60;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b0111101:
-        casez_tmp = valids_61;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b0111110:
-        casez_tmp = valids_62;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b0111111:
-        casez_tmp = valids_63;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b1000000:
-        casez_tmp = valids_64;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b1000001:
-        casez_tmp = valids_65;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b1000010:
-        casez_tmp = valids_66;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b1000011:
-        casez_tmp = valids_67;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b1000100:
-        casez_tmp = valids_68;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b1000101:
-        casez_tmp = valids_69;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b1000110:
-        casez_tmp = valids_70;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b1000111:
-        casez_tmp = valids_71;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b1001000:
-        casez_tmp = valids_72;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b1001001:
-        casez_tmp = valids_73;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b1001010:
-        casez_tmp = valids_74;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b1001011:
-        casez_tmp = valids_75;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b1001100:
-        casez_tmp = valids_76;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b1001101:
-        casez_tmp = valids_77;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b1001110:
-        casez_tmp = valids_78;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b1001111:
-        casez_tmp = valids_79;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b1010000:
-        casez_tmp = valids_80;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b1010001:
-        casez_tmp = valids_81;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b1010010:
-        casez_tmp = valids_82;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b1010011:
-        casez_tmp = valids_83;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b1010100:
-        casez_tmp = valids_84;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b1010101:
-        casez_tmp = valids_85;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b1010110:
-        casez_tmp = valids_86;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b1010111:
-        casez_tmp = valids_87;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b1011000:
-        casez_tmp = valids_88;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b1011001:
-        casez_tmp = valids_89;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b1011010:
-        casez_tmp = valids_90;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b1011011:
-        casez_tmp = valids_91;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b1011100:
-        casez_tmp = valids_92;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b1011101:
-        casez_tmp = valids_93;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b1011110:
-        casez_tmp = valids_94;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b1011111:
-        casez_tmp = valids_95;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b1100000:
-        casez_tmp = valids_96;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b1100001:
-        casez_tmp = valids_97;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b1100010:
-        casez_tmp = valids_98;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b1100011:
-        casez_tmp = valids_99;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b1100100:
-        casez_tmp = valids_100;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b1100101:
-        casez_tmp = valids_101;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b1100110:
-        casez_tmp = valids_102;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b1100111:
-        casez_tmp = valids_103;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b1101000:
-        casez_tmp = valids_104;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b1101001:
-        casez_tmp = valids_105;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b1101010:
-        casez_tmp = valids_106;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b1101011:
-        casez_tmp = valids_107;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b1101100:
-        casez_tmp = valids_108;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b1101101:
-        casez_tmp = valids_109;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b1101110:
-        casez_tmp = valids_110;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b1101111:
-        casez_tmp = valids_111;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b1110000:
-        casez_tmp = valids_112;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b1110001:
-        casez_tmp = valids_113;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b1110010:
-        casez_tmp = valids_114;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b1110011:
-        casez_tmp = valids_115;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b1110100:
-        casez_tmp = valids_116;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b1110101:
-        casez_tmp = valids_117;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b1110110:
-        casez_tmp = valids_118;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b1110111:
-        casez_tmp = valids_119;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b1111000:
-        casez_tmp = valids_120;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b1111001:
-        casez_tmp = valids_121;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b1111010:
-        casez_tmp = valids_122;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b1111011:
-        casez_tmp = valids_123;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b1111100:
-        casez_tmp = valids_124;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b1111101:
-        casez_tmp = valids_125;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      7'b1111110:
-        casez_tmp = valids_126;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-      default:
-        casez_tmp = valids_127;	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
-    endcase	// frontend/src/zaqal/frontend/Tage.scala:62:47, :82:24
-  end // always_comb
-  wire       _GEN = io_update_valid & io_allocate;	// frontend/src/zaqal/frontend/Tage.scala:66:17, :88:25, :89:23
+  wire [127:0] _GEN =
+    {{valids_127},
+     {valids_126},
+     {valids_125},
+     {valids_124},
+     {valids_123},
+     {valids_122},
+     {valids_121},
+     {valids_120},
+     {valids_119},
+     {valids_118},
+     {valids_117},
+     {valids_116},
+     {valids_115},
+     {valids_114},
+     {valids_113},
+     {valids_112},
+     {valids_111},
+     {valids_110},
+     {valids_109},
+     {valids_108},
+     {valids_107},
+     {valids_106},
+     {valids_105},
+     {valids_104},
+     {valids_103},
+     {valids_102},
+     {valids_101},
+     {valids_100},
+     {valids_99},
+     {valids_98},
+     {valids_97},
+     {valids_96},
+     {valids_95},
+     {valids_94},
+     {valids_93},
+     {valids_92},
+     {valids_91},
+     {valids_90},
+     {valids_89},
+     {valids_88},
+     {valids_87},
+     {valids_86},
+     {valids_85},
+     {valids_84},
+     {valids_83},
+     {valids_82},
+     {valids_81},
+     {valids_80},
+     {valids_79},
+     {valids_78},
+     {valids_77},
+     {valids_76},
+     {valids_75},
+     {valids_74},
+     {valids_73},
+     {valids_72},
+     {valids_71},
+     {valids_70},
+     {valids_69},
+     {valids_68},
+     {valids_67},
+     {valids_66},
+     {valids_65},
+     {valids_64},
+     {valids_63},
+     {valids_62},
+     {valids_61},
+     {valids_60},
+     {valids_59},
+     {valids_58},
+     {valids_57},
+     {valids_56},
+     {valids_55},
+     {valids_54},
+     {valids_53},
+     {valids_52},
+     {valids_51},
+     {valids_50},
+     {valids_49},
+     {valids_48},
+     {valids_47},
+     {valids_46},
+     {valids_45},
+     {valids_44},
+     {valids_43},
+     {valids_42},
+     {valids_41},
+     {valids_40},
+     {valids_39},
+     {valids_38},
+     {valids_37},
+     {valids_36},
+     {valids_35},
+     {valids_34},
+     {valids_33},
+     {valids_32},
+     {valids_31},
+     {valids_30},
+     {valids_29},
+     {valids_28},
+     {valids_27},
+     {valids_26},
+     {valids_25},
+     {valids_24},
+     {valids_23},
+     {valids_22},
+     {valids_21},
+     {valids_20},
+     {valids_19},
+     {valids_18},
+     {valids_17},
+     {valids_16},
+     {valids_15},
+     {valids_14},
+     {valids_13},
+     {valids_12},
+     {valids_11},
+     {valids_10},
+     {valids_9},
+     {valids_8},
+     {valids_7},
+     {valids_6},
+     {valids_5},
+     {valids_4},
+     {valids_3},
+     {valids_2},
+     {valids_1},
+     {valids_0}};	// frontend/src/zaqal/frontend/Tage.scala:69:23, :82:24
+  wire         _GEN_0 = io_update_valid & io_allocate;	// frontend/src/zaqal/frontend/Tage.scala:66:17, :88:25, :89:23
   always @(posedge clock) begin	// frontend/src/zaqal/frontend/Tage.scala:24:7
     if (reset) begin	// frontend/src/zaqal/frontend/Tage.scala:24:7
       valids_0 <= 1'h0;	// frontend/src/zaqal/frontend/Tage.scala:24:7, :69:23
@@ -898,7 +766,7 @@ module TageTable_1(	// frontend/src/zaqal/frontend/Tage.scala:24:7
     .R0_clk  (clock),
     .R0_data (_tags_ext_R0_data),
     .W0_addr (u_idx),	// frontend/src/zaqal/frontend/Tage.scala:79:48
-    .W0_en   (_GEN),	// frontend/src/zaqal/frontend/Tage.scala:66:17, :88:25, :89:23
+    .W0_en   (_GEN_0),	// frontend/src/zaqal/frontend/Tage.scala:66:17, :88:25, :89:23
     .W0_clk  (clock),
     .W0_data
       (io_update_pc[7:0] ^ {io_update_ghr[7:4], io_update_ghr[3:0] ^ io_update_ghr[11:8]})	// frontend/src/zaqal/frontend/Tage.scala:53:10, :55:20, :80:{28,50}
@@ -913,7 +781,7 @@ module TageTable_1(	// frontend/src/zaqal/frontend/Tage.scala:24:7
     .W0_clk  (clock),
     .W0_data (io_update_ctr),
     .W1_addr (u_idx),	// frontend/src/zaqal/frontend/Tage.scala:79:48
-    .W1_en   (_GEN),	// frontend/src/zaqal/frontend/Tage.scala:66:17, :88:25, :89:23
+    .W1_en   (_GEN_0),	// frontend/src/zaqal/frontend/Tage.scala:66:17, :88:25, :89:23
     .W1_clk  (clock),
     .W1_data (io_update_dir ? 3'h4 : 3'h3)	// frontend/src/zaqal/frontend/Tage.scala:24:7, :92:25
   );
@@ -939,13 +807,13 @@ module TageTable_1(	// frontend/src/zaqal/frontend/Tage.scala:24:7
     .W1_clk  (clock),
     .W1_data (_us_ext_R1_data - 2'h1),	// frontend/src/zaqal/frontend/Tage.scala:68:15, :98:30
     .W2_addr (u_idx),	// frontend/src/zaqal/frontend/Tage.scala:79:48
-    .W2_en   (_GEN),	// frontend/src/zaqal/frontend/Tage.scala:66:17, :88:25, :89:23
+    .W2_en   (_GEN_0),	// frontend/src/zaqal/frontend/Tage.scala:66:17, :88:25, :89:23
     .W2_clk  (clock),
     .W2_data (2'h0)	// frontend/src/zaqal/frontend/Tage.scala:24:7
   );
   assign io_hit =
-    casez_tmp
+    _GEN[req_idx]
     & _tags_ext_R0_data == (io_req_pc[7:0]
-                            ^ {io_req_ghr[7:4], io_req_ghr[3:0] ^ io_req_ghr[11:8]});	// frontend/src/zaqal/frontend/Tage.scala:24:7, :53:10, :55:20, :63:{27,49}, :66:17, :82:{24,37}
+                            ^ {io_req_ghr[7:4], io_req_ghr[3:0] ^ io_req_ghr[11:8]});	// frontend/src/zaqal/frontend/Tage.scala:24:7, :53:10, :55:20, :62:47, :63:{27,49}, :66:17, :82:{24,37}
 endmodule
 

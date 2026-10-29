@@ -71,6 +71,8 @@ class Rob(val numWb: Int = 14)(implicit val p: Parameters) extends Module with H
       entry.rd := io.enq(i).bits.decode.rd
       
       entry.pc := io.enq(i).bits.uop.pc
+      entry.instr := io.enq(i).bits.uop.inst_raw
+      entry.wbData := 0.U
       entry.target := Mux(io.enq(i).bits.decode.is_jal, io.enq(i).bits.uop.pc + io.enq(i).bits.decode.imm.asUInt, 0.U) // Target written back later for jalr? For now it's okay.
       entry.ftqPtr := io.enq(i).bits.uop.ftqPtr
       entry.is_cfi := io.enq(i).bits.decode.is_branch || io.enq(i).bits.decode.is_jal || io.enq(i).bits.decode.is_jalr
@@ -92,6 +94,7 @@ class Rob(val numWb: Int = 14)(implicit val p: Parameters) extends Module with H
     when(wb.valid) {
       val idx = wb.bits.robIdx
       robEntries(idx).stdWritebacked := true.B
+      robEntries(idx).wbData := wb.bits.data
       robEntries(idx).exceptionVec := wb.bits.exceptionVec
       when(robEntries(idx).is_jalr) {
         robEntries(idx).target := wb.bits.data
@@ -191,6 +194,10 @@ class Rob(val numWb: Int = 14)(implicit val p: Parameters) extends Module with H
     io.commits.info(i).is_ret := entry.is_ret
     io.commits.info(i).target := entry.target
     io.commits.info(i).pc := entry.pc
+    io.commits.info(i).instr := entry.instr
+    io.commits.info(i).data := entry.wbData
+    io.commits.info(i).isRVC := entry.isRVC
+    io.commits.info(i).mmio := entry.mmio
     io.commits.info(i).old_pdest := entry.old_pdest
     io.commits.info(i).pdest := entry.pdest
     io.commits.info(i).rd := entry.rd
@@ -221,4 +228,35 @@ class Rob(val numWb: Int = 14)(implicit val p: Parameters) extends Module with H
   io.robFull := !canAcceptAll
   io.headNotReady := isEmpty
   io.cpu_halt := false.B
+
+  // -------------------------------------------------------------
+  // 5. Phase 12 Difftest Verification Hooks (DPI-C)
+  // -------------------------------------------------------------
+  if (enableDifftest) {
+    for (i <- 0 until decodeWidth) {
+      val entry = robEntries(walkDeqPtrs(i))
+      val dt = Module(new DifftestInstrCommit)
+      dt.io.clock  := clock
+      dt.io.coreid := 0.U
+      dt.io.index  := i.U
+      dt.io.valid  := commitValidThisLine(i)
+      dt.io.pc     := entry.pc
+      dt.io.instr  := entry.instr
+      dt.io.skip   := entry.mmio
+      dt.io.isRVC  := entry.isRVC
+      dt.io.rfwen  := entry.rfWen
+      dt.io.fpwen  := entry.fpWen
+      dt.io.vecwen := entry.vecWen
+      dt.io.wdest  := entry.rd
+      dt.io.data   := entry.wbData
+    }
+
+    val dtTrap = Module(new DifftestTrapEvent)
+    dtTrap.io.clock  := clock
+    dtTrap.io.coreid := 0.U
+    dtTrap.io.valid  := headHasException
+    dtTrap.io.code   := headEntry.exceptionVec(7, 0)
+    dtTrap.io.pc     := headEntry.pc
+    dtTrap.io.cycle  := 0.U
+  }
 }

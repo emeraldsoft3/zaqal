@@ -80,2610 +80,801 @@ module SCPredictor(	// frontend/src/zaqal/frontend/SC.scala:8:7
   input  [9:0]   io_update_sum	// frontend/src/zaqal/frontend/SC.scala:9:14
 );
 
-  reg  [5:0] weightTable_0_0;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_0_1;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_0_2;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_0_3;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_0_4;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_0_5;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_0_6;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_0_7;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_0_8;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_1_0;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_1_1;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_1_2;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_1_3;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_1_4;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_1_5;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_1_6;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_1_7;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_1_8;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_2_0;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_2_1;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_2_2;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_2_3;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_2_4;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_2_5;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_2_6;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_2_7;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_2_8;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_3_0;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_3_1;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_3_2;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_3_3;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_3_4;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_3_5;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_3_6;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_3_7;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_3_8;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_4_0;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_4_1;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_4_2;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_4_3;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_4_4;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_4_5;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_4_6;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_4_7;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_4_8;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_5_0;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_5_1;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_5_2;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_5_3;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_5_4;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_5_5;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_5_6;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_5_7;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_5_8;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_6_0;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_6_1;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_6_2;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_6_3;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_6_4;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_6_5;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_6_6;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_6_7;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_6_8;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_7_0;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_7_1;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_7_2;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_7_3;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_7_4;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_7_5;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_7_6;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_7_7;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_7_8;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_8_0;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_8_1;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_8_2;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_8_3;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_8_4;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_8_5;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_8_6;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_8_7;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_8_8;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_9_0;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_9_1;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_9_2;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_9_3;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_9_4;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_9_5;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_9_6;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_9_7;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_9_8;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_10_0;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_10_1;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_10_2;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_10_3;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_10_4;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_10_5;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_10_6;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_10_7;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_10_8;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_11_0;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_11_1;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_11_2;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_11_3;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_11_4;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_11_5;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_11_6;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_11_7;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_11_8;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_12_0;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_12_1;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_12_2;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_12_3;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_12_4;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_12_5;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_12_6;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_12_7;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_12_8;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_13_0;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_13_1;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_13_2;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_13_3;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_13_4;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_13_5;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_13_6;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_13_7;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_13_8;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_14_0;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_14_1;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_14_2;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_14_3;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_14_4;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_14_5;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_14_6;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_14_7;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_14_8;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_15_0;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_15_1;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_15_2;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_15_3;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_15_4;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_15_5;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_15_6;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_15_7;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  reg  [5:0] weightTable_15_8;	// frontend/src/zaqal/frontend/SC.scala:33:28
-  wire [5:0] _GEN = {2'h0, io_req_pc[5:2] ^ io_req_pc[9:6]};	// frontend/src/zaqal/frontend/SC.scala:36:{27,35,46}, :40:10
-  reg  [5:0] casez_tmp;	// frontend/src/zaqal/frontend/SC.scala:40:10
-  always_comb begin	// frontend/src/zaqal/frontend/SC.scala:40:10
-    casez (_GEN)	// frontend/src/zaqal/frontend/SC.scala:40:10
-      6'b000000:
-        casez_tmp = weightTable_0_0;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000001:
-        casez_tmp = weightTable_1_0;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000010:
-        casez_tmp = weightTable_2_0;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000011:
-        casez_tmp = weightTable_3_0;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000100:
-        casez_tmp = weightTable_4_0;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000101:
-        casez_tmp = weightTable_5_0;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000110:
-        casez_tmp = weightTable_6_0;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000111:
-        casez_tmp = weightTable_7_0;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001000:
-        casez_tmp = weightTable_8_0;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001001:
-        casez_tmp = weightTable_9_0;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001010:
-        casez_tmp = weightTable_10_0;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001011:
-        casez_tmp = weightTable_11_0;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001100:
-        casez_tmp = weightTable_12_0;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001101:
-        casez_tmp = weightTable_13_0;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001110:
-        casez_tmp = weightTable_14_0;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001111:
-        casez_tmp = weightTable_15_0;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b010000:
-        casez_tmp = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010001:
-        casez_tmp = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010010:
-        casez_tmp = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010011:
-        casez_tmp = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010100:
-        casez_tmp = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010101:
-        casez_tmp = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010110:
-        casez_tmp = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010111:
-        casez_tmp = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011000:
-        casez_tmp = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011001:
-        casez_tmp = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011010:
-        casez_tmp = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011011:
-        casez_tmp = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011100:
-        casez_tmp = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011101:
-        casez_tmp = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011110:
-        casez_tmp = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011111:
-        casez_tmp = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100000:
-        casez_tmp = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100001:
-        casez_tmp = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100010:
-        casez_tmp = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100011:
-        casez_tmp = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100100:
-        casez_tmp = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100101:
-        casez_tmp = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100110:
-        casez_tmp = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100111:
-        casez_tmp = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101000:
-        casez_tmp = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101001:
-        casez_tmp = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101010:
-        casez_tmp = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101011:
-        casez_tmp = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101100:
-        casez_tmp = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101101:
-        casez_tmp = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101110:
-        casez_tmp = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101111:
-        casez_tmp = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110000:
-        casez_tmp = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110001:
-        casez_tmp = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110010:
-        casez_tmp = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110011:
-        casez_tmp = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110100:
-        casez_tmp = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110101:
-        casez_tmp = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110110:
-        casez_tmp = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110111:
-        casez_tmp = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111000:
-        casez_tmp = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111001:
-        casez_tmp = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111010:
-        casez_tmp = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111011:
-        casez_tmp = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111100:
-        casez_tmp = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111101:
-        casez_tmp = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111110:
-        casez_tmp = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      default:
-        casez_tmp = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-    endcase	// frontend/src/zaqal/frontend/SC.scala:40:10
-  end // always_comb
-  reg  [5:0] casez_tmp_0;	// frontend/src/zaqal/frontend/SC.scala:40:10
-  always_comb begin	// frontend/src/zaqal/frontend/SC.scala:40:10
-    casez (_GEN)	// frontend/src/zaqal/frontend/SC.scala:40:10
-      6'b000000:
-        casez_tmp_0 = weightTable_0_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000001:
-        casez_tmp_0 = weightTable_1_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000010:
-        casez_tmp_0 = weightTable_2_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000011:
-        casez_tmp_0 = weightTable_3_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000100:
-        casez_tmp_0 = weightTable_4_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000101:
-        casez_tmp_0 = weightTable_5_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000110:
-        casez_tmp_0 = weightTable_6_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000111:
-        casez_tmp_0 = weightTable_7_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001000:
-        casez_tmp_0 = weightTable_8_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001001:
-        casez_tmp_0 = weightTable_9_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001010:
-        casez_tmp_0 = weightTable_10_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001011:
-        casez_tmp_0 = weightTable_11_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001100:
-        casez_tmp_0 = weightTable_12_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001101:
-        casez_tmp_0 = weightTable_13_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001110:
-        casez_tmp_0 = weightTable_14_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001111:
-        casez_tmp_0 = weightTable_15_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b010000:
-        casez_tmp_0 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010001:
-        casez_tmp_0 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010010:
-        casez_tmp_0 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010011:
-        casez_tmp_0 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010100:
-        casez_tmp_0 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010101:
-        casez_tmp_0 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010110:
-        casez_tmp_0 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010111:
-        casez_tmp_0 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011000:
-        casez_tmp_0 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011001:
-        casez_tmp_0 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011010:
-        casez_tmp_0 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011011:
-        casez_tmp_0 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011100:
-        casez_tmp_0 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011101:
-        casez_tmp_0 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011110:
-        casez_tmp_0 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011111:
-        casez_tmp_0 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100000:
-        casez_tmp_0 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100001:
-        casez_tmp_0 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100010:
-        casez_tmp_0 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100011:
-        casez_tmp_0 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100100:
-        casez_tmp_0 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100101:
-        casez_tmp_0 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100110:
-        casez_tmp_0 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100111:
-        casez_tmp_0 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101000:
-        casez_tmp_0 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101001:
-        casez_tmp_0 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101010:
-        casez_tmp_0 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101011:
-        casez_tmp_0 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101100:
-        casez_tmp_0 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101101:
-        casez_tmp_0 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101110:
-        casez_tmp_0 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101111:
-        casez_tmp_0 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110000:
-        casez_tmp_0 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110001:
-        casez_tmp_0 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110010:
-        casez_tmp_0 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110011:
-        casez_tmp_0 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110100:
-        casez_tmp_0 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110101:
-        casez_tmp_0 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110110:
-        casez_tmp_0 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110111:
-        casez_tmp_0 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111000:
-        casez_tmp_0 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111001:
-        casez_tmp_0 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111010:
-        casez_tmp_0 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111011:
-        casez_tmp_0 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111100:
-        casez_tmp_0 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111101:
-        casez_tmp_0 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111110:
-        casez_tmp_0 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      default:
-        casez_tmp_0 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-    endcase	// frontend/src/zaqal/frontend/SC.scala:40:10
-  end // always_comb
-  reg  [5:0] casez_tmp_1;	// frontend/src/zaqal/frontend/SC.scala:40:10
-  always_comb begin	// frontend/src/zaqal/frontend/SC.scala:40:10
-    casez (_GEN)	// frontend/src/zaqal/frontend/SC.scala:40:10
-      6'b000000:
-        casez_tmp_1 = weightTable_0_2;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000001:
-        casez_tmp_1 = weightTable_1_2;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000010:
-        casez_tmp_1 = weightTable_2_2;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000011:
-        casez_tmp_1 = weightTable_3_2;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000100:
-        casez_tmp_1 = weightTable_4_2;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000101:
-        casez_tmp_1 = weightTable_5_2;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000110:
-        casez_tmp_1 = weightTable_6_2;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000111:
-        casez_tmp_1 = weightTable_7_2;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001000:
-        casez_tmp_1 = weightTable_8_2;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001001:
-        casez_tmp_1 = weightTable_9_2;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001010:
-        casez_tmp_1 = weightTable_10_2;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001011:
-        casez_tmp_1 = weightTable_11_2;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001100:
-        casez_tmp_1 = weightTable_12_2;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001101:
-        casez_tmp_1 = weightTable_13_2;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001110:
-        casez_tmp_1 = weightTable_14_2;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001111:
-        casez_tmp_1 = weightTable_15_2;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b010000:
-        casez_tmp_1 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010001:
-        casez_tmp_1 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010010:
-        casez_tmp_1 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010011:
-        casez_tmp_1 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010100:
-        casez_tmp_1 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010101:
-        casez_tmp_1 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010110:
-        casez_tmp_1 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010111:
-        casez_tmp_1 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011000:
-        casez_tmp_1 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011001:
-        casez_tmp_1 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011010:
-        casez_tmp_1 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011011:
-        casez_tmp_1 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011100:
-        casez_tmp_1 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011101:
-        casez_tmp_1 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011110:
-        casez_tmp_1 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011111:
-        casez_tmp_1 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100000:
-        casez_tmp_1 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100001:
-        casez_tmp_1 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100010:
-        casez_tmp_1 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100011:
-        casez_tmp_1 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100100:
-        casez_tmp_1 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100101:
-        casez_tmp_1 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100110:
-        casez_tmp_1 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100111:
-        casez_tmp_1 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101000:
-        casez_tmp_1 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101001:
-        casez_tmp_1 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101010:
-        casez_tmp_1 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101011:
-        casez_tmp_1 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101100:
-        casez_tmp_1 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101101:
-        casez_tmp_1 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101110:
-        casez_tmp_1 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101111:
-        casez_tmp_1 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110000:
-        casez_tmp_1 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110001:
-        casez_tmp_1 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110010:
-        casez_tmp_1 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110011:
-        casez_tmp_1 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110100:
-        casez_tmp_1 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110101:
-        casez_tmp_1 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110110:
-        casez_tmp_1 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110111:
-        casez_tmp_1 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111000:
-        casez_tmp_1 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111001:
-        casez_tmp_1 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111010:
-        casez_tmp_1 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111011:
-        casez_tmp_1 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111100:
-        casez_tmp_1 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111101:
-        casez_tmp_1 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111110:
-        casez_tmp_1 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      default:
-        casez_tmp_1 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-    endcase	// frontend/src/zaqal/frontend/SC.scala:40:10
-  end // always_comb
-  reg  [5:0] casez_tmp_2;	// frontend/src/zaqal/frontend/SC.scala:40:10
-  always_comb begin	// frontend/src/zaqal/frontend/SC.scala:40:10
-    casez (_GEN)	// frontend/src/zaqal/frontend/SC.scala:40:10
-      6'b000000:
-        casez_tmp_2 = weightTable_0_3;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000001:
-        casez_tmp_2 = weightTable_1_3;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000010:
-        casez_tmp_2 = weightTable_2_3;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000011:
-        casez_tmp_2 = weightTable_3_3;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000100:
-        casez_tmp_2 = weightTable_4_3;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000101:
-        casez_tmp_2 = weightTable_5_3;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000110:
-        casez_tmp_2 = weightTable_6_3;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000111:
-        casez_tmp_2 = weightTable_7_3;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001000:
-        casez_tmp_2 = weightTable_8_3;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001001:
-        casez_tmp_2 = weightTable_9_3;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001010:
-        casez_tmp_2 = weightTable_10_3;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001011:
-        casez_tmp_2 = weightTable_11_3;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001100:
-        casez_tmp_2 = weightTable_12_3;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001101:
-        casez_tmp_2 = weightTable_13_3;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001110:
-        casez_tmp_2 = weightTable_14_3;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001111:
-        casez_tmp_2 = weightTable_15_3;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b010000:
-        casez_tmp_2 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010001:
-        casez_tmp_2 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010010:
-        casez_tmp_2 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010011:
-        casez_tmp_2 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010100:
-        casez_tmp_2 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010101:
-        casez_tmp_2 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010110:
-        casez_tmp_2 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010111:
-        casez_tmp_2 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011000:
-        casez_tmp_2 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011001:
-        casez_tmp_2 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011010:
-        casez_tmp_2 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011011:
-        casez_tmp_2 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011100:
-        casez_tmp_2 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011101:
-        casez_tmp_2 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011110:
-        casez_tmp_2 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011111:
-        casez_tmp_2 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100000:
-        casez_tmp_2 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100001:
-        casez_tmp_2 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100010:
-        casez_tmp_2 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100011:
-        casez_tmp_2 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100100:
-        casez_tmp_2 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100101:
-        casez_tmp_2 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100110:
-        casez_tmp_2 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100111:
-        casez_tmp_2 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101000:
-        casez_tmp_2 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101001:
-        casez_tmp_2 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101010:
-        casez_tmp_2 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101011:
-        casez_tmp_2 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101100:
-        casez_tmp_2 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101101:
-        casez_tmp_2 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101110:
-        casez_tmp_2 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101111:
-        casez_tmp_2 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110000:
-        casez_tmp_2 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110001:
-        casez_tmp_2 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110010:
-        casez_tmp_2 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110011:
-        casez_tmp_2 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110100:
-        casez_tmp_2 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110101:
-        casez_tmp_2 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110110:
-        casez_tmp_2 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110111:
-        casez_tmp_2 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111000:
-        casez_tmp_2 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111001:
-        casez_tmp_2 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111010:
-        casez_tmp_2 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111011:
-        casez_tmp_2 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111100:
-        casez_tmp_2 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111101:
-        casez_tmp_2 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111110:
-        casez_tmp_2 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      default:
-        casez_tmp_2 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-    endcase	// frontend/src/zaqal/frontend/SC.scala:40:10
-  end // always_comb
-  reg  [5:0] casez_tmp_3;	// frontend/src/zaqal/frontend/SC.scala:40:10
-  always_comb begin	// frontend/src/zaqal/frontend/SC.scala:40:10
-    casez (_GEN)	// frontend/src/zaqal/frontend/SC.scala:40:10
-      6'b000000:
-        casez_tmp_3 = weightTable_0_4;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000001:
-        casez_tmp_3 = weightTable_1_4;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000010:
-        casez_tmp_3 = weightTable_2_4;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000011:
-        casez_tmp_3 = weightTable_3_4;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000100:
-        casez_tmp_3 = weightTable_4_4;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000101:
-        casez_tmp_3 = weightTable_5_4;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000110:
-        casez_tmp_3 = weightTable_6_4;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000111:
-        casez_tmp_3 = weightTable_7_4;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001000:
-        casez_tmp_3 = weightTable_8_4;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001001:
-        casez_tmp_3 = weightTable_9_4;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001010:
-        casez_tmp_3 = weightTable_10_4;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001011:
-        casez_tmp_3 = weightTable_11_4;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001100:
-        casez_tmp_3 = weightTable_12_4;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001101:
-        casez_tmp_3 = weightTable_13_4;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001110:
-        casez_tmp_3 = weightTable_14_4;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001111:
-        casez_tmp_3 = weightTable_15_4;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b010000:
-        casez_tmp_3 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010001:
-        casez_tmp_3 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010010:
-        casez_tmp_3 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010011:
-        casez_tmp_3 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010100:
-        casez_tmp_3 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010101:
-        casez_tmp_3 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010110:
-        casez_tmp_3 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010111:
-        casez_tmp_3 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011000:
-        casez_tmp_3 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011001:
-        casez_tmp_3 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011010:
-        casez_tmp_3 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011011:
-        casez_tmp_3 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011100:
-        casez_tmp_3 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011101:
-        casez_tmp_3 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011110:
-        casez_tmp_3 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011111:
-        casez_tmp_3 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100000:
-        casez_tmp_3 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100001:
-        casez_tmp_3 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100010:
-        casez_tmp_3 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100011:
-        casez_tmp_3 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100100:
-        casez_tmp_3 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100101:
-        casez_tmp_3 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100110:
-        casez_tmp_3 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100111:
-        casez_tmp_3 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101000:
-        casez_tmp_3 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101001:
-        casez_tmp_3 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101010:
-        casez_tmp_3 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101011:
-        casez_tmp_3 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101100:
-        casez_tmp_3 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101101:
-        casez_tmp_3 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101110:
-        casez_tmp_3 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101111:
-        casez_tmp_3 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110000:
-        casez_tmp_3 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110001:
-        casez_tmp_3 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110010:
-        casez_tmp_3 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110011:
-        casez_tmp_3 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110100:
-        casez_tmp_3 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110101:
-        casez_tmp_3 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110110:
-        casez_tmp_3 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110111:
-        casez_tmp_3 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111000:
-        casez_tmp_3 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111001:
-        casez_tmp_3 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111010:
-        casez_tmp_3 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111011:
-        casez_tmp_3 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111100:
-        casez_tmp_3 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111101:
-        casez_tmp_3 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111110:
-        casez_tmp_3 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      default:
-        casez_tmp_3 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-    endcase	// frontend/src/zaqal/frontend/SC.scala:40:10
-  end // always_comb
-  reg  [5:0] casez_tmp_4;	// frontend/src/zaqal/frontend/SC.scala:40:10
-  always_comb begin	// frontend/src/zaqal/frontend/SC.scala:40:10
-    casez (_GEN)	// frontend/src/zaqal/frontend/SC.scala:40:10
-      6'b000000:
-        casez_tmp_4 = weightTable_0_5;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000001:
-        casez_tmp_4 = weightTable_1_5;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000010:
-        casez_tmp_4 = weightTable_2_5;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000011:
-        casez_tmp_4 = weightTable_3_5;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000100:
-        casez_tmp_4 = weightTable_4_5;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000101:
-        casez_tmp_4 = weightTable_5_5;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000110:
-        casez_tmp_4 = weightTable_6_5;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000111:
-        casez_tmp_4 = weightTable_7_5;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001000:
-        casez_tmp_4 = weightTable_8_5;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001001:
-        casez_tmp_4 = weightTable_9_5;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001010:
-        casez_tmp_4 = weightTable_10_5;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001011:
-        casez_tmp_4 = weightTable_11_5;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001100:
-        casez_tmp_4 = weightTable_12_5;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001101:
-        casez_tmp_4 = weightTable_13_5;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001110:
-        casez_tmp_4 = weightTable_14_5;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001111:
-        casez_tmp_4 = weightTable_15_5;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b010000:
-        casez_tmp_4 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010001:
-        casez_tmp_4 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010010:
-        casez_tmp_4 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010011:
-        casez_tmp_4 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010100:
-        casez_tmp_4 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010101:
-        casez_tmp_4 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010110:
-        casez_tmp_4 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010111:
-        casez_tmp_4 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011000:
-        casez_tmp_4 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011001:
-        casez_tmp_4 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011010:
-        casez_tmp_4 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011011:
-        casez_tmp_4 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011100:
-        casez_tmp_4 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011101:
-        casez_tmp_4 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011110:
-        casez_tmp_4 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011111:
-        casez_tmp_4 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100000:
-        casez_tmp_4 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100001:
-        casez_tmp_4 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100010:
-        casez_tmp_4 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100011:
-        casez_tmp_4 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100100:
-        casez_tmp_4 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100101:
-        casez_tmp_4 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100110:
-        casez_tmp_4 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100111:
-        casez_tmp_4 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101000:
-        casez_tmp_4 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101001:
-        casez_tmp_4 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101010:
-        casez_tmp_4 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101011:
-        casez_tmp_4 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101100:
-        casez_tmp_4 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101101:
-        casez_tmp_4 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101110:
-        casez_tmp_4 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101111:
-        casez_tmp_4 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110000:
-        casez_tmp_4 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110001:
-        casez_tmp_4 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110010:
-        casez_tmp_4 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110011:
-        casez_tmp_4 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110100:
-        casez_tmp_4 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110101:
-        casez_tmp_4 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110110:
-        casez_tmp_4 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110111:
-        casez_tmp_4 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111000:
-        casez_tmp_4 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111001:
-        casez_tmp_4 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111010:
-        casez_tmp_4 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111011:
-        casez_tmp_4 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111100:
-        casez_tmp_4 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111101:
-        casez_tmp_4 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111110:
-        casez_tmp_4 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      default:
-        casez_tmp_4 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-    endcase	// frontend/src/zaqal/frontend/SC.scala:40:10
-  end // always_comb
-  reg  [5:0] casez_tmp_5;	// frontend/src/zaqal/frontend/SC.scala:40:10
-  always_comb begin	// frontend/src/zaqal/frontend/SC.scala:40:10
-    casez (_GEN)	// frontend/src/zaqal/frontend/SC.scala:40:10
-      6'b000000:
-        casez_tmp_5 = weightTable_0_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000001:
-        casez_tmp_5 = weightTable_1_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000010:
-        casez_tmp_5 = weightTable_2_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000011:
-        casez_tmp_5 = weightTable_3_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000100:
-        casez_tmp_5 = weightTable_4_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000101:
-        casez_tmp_5 = weightTable_5_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000110:
-        casez_tmp_5 = weightTable_6_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000111:
-        casez_tmp_5 = weightTable_7_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001000:
-        casez_tmp_5 = weightTable_8_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001001:
-        casez_tmp_5 = weightTable_9_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001010:
-        casez_tmp_5 = weightTable_10_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001011:
-        casez_tmp_5 = weightTable_11_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001100:
-        casez_tmp_5 = weightTable_12_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001101:
-        casez_tmp_5 = weightTable_13_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001110:
-        casez_tmp_5 = weightTable_14_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001111:
-        casez_tmp_5 = weightTable_15_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b010000:
-        casez_tmp_5 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010001:
-        casez_tmp_5 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010010:
-        casez_tmp_5 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010011:
-        casez_tmp_5 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010100:
-        casez_tmp_5 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010101:
-        casez_tmp_5 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010110:
-        casez_tmp_5 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010111:
-        casez_tmp_5 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011000:
-        casez_tmp_5 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011001:
-        casez_tmp_5 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011010:
-        casez_tmp_5 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011011:
-        casez_tmp_5 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011100:
-        casez_tmp_5 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011101:
-        casez_tmp_5 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011110:
-        casez_tmp_5 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011111:
-        casez_tmp_5 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100000:
-        casez_tmp_5 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100001:
-        casez_tmp_5 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100010:
-        casez_tmp_5 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100011:
-        casez_tmp_5 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100100:
-        casez_tmp_5 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100101:
-        casez_tmp_5 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100110:
-        casez_tmp_5 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100111:
-        casez_tmp_5 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101000:
-        casez_tmp_5 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101001:
-        casez_tmp_5 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101010:
-        casez_tmp_5 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101011:
-        casez_tmp_5 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101100:
-        casez_tmp_5 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101101:
-        casez_tmp_5 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101110:
-        casez_tmp_5 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101111:
-        casez_tmp_5 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110000:
-        casez_tmp_5 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110001:
-        casez_tmp_5 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110010:
-        casez_tmp_5 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110011:
-        casez_tmp_5 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110100:
-        casez_tmp_5 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110101:
-        casez_tmp_5 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110110:
-        casez_tmp_5 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110111:
-        casez_tmp_5 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111000:
-        casez_tmp_5 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111001:
-        casez_tmp_5 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111010:
-        casez_tmp_5 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111011:
-        casez_tmp_5 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111100:
-        casez_tmp_5 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111101:
-        casez_tmp_5 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111110:
-        casez_tmp_5 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      default:
-        casez_tmp_5 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-    endcase	// frontend/src/zaqal/frontend/SC.scala:40:10
-  end // always_comb
-  reg  [5:0] casez_tmp_6;	// frontend/src/zaqal/frontend/SC.scala:40:10
-  always_comb begin	// frontend/src/zaqal/frontend/SC.scala:40:10
-    casez (_GEN)	// frontend/src/zaqal/frontend/SC.scala:40:10
-      6'b000000:
-        casez_tmp_6 = weightTable_0_7;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000001:
-        casez_tmp_6 = weightTable_1_7;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000010:
-        casez_tmp_6 = weightTable_2_7;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000011:
-        casez_tmp_6 = weightTable_3_7;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000100:
-        casez_tmp_6 = weightTable_4_7;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000101:
-        casez_tmp_6 = weightTable_5_7;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000110:
-        casez_tmp_6 = weightTable_6_7;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000111:
-        casez_tmp_6 = weightTable_7_7;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001000:
-        casez_tmp_6 = weightTable_8_7;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001001:
-        casez_tmp_6 = weightTable_9_7;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001010:
-        casez_tmp_6 = weightTable_10_7;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001011:
-        casez_tmp_6 = weightTable_11_7;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001100:
-        casez_tmp_6 = weightTable_12_7;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001101:
-        casez_tmp_6 = weightTable_13_7;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001110:
-        casez_tmp_6 = weightTable_14_7;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001111:
-        casez_tmp_6 = weightTable_15_7;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b010000:
-        casez_tmp_6 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010001:
-        casez_tmp_6 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010010:
-        casez_tmp_6 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010011:
-        casez_tmp_6 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010100:
-        casez_tmp_6 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010101:
-        casez_tmp_6 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010110:
-        casez_tmp_6 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010111:
-        casez_tmp_6 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011000:
-        casez_tmp_6 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011001:
-        casez_tmp_6 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011010:
-        casez_tmp_6 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011011:
-        casez_tmp_6 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011100:
-        casez_tmp_6 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011101:
-        casez_tmp_6 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011110:
-        casez_tmp_6 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011111:
-        casez_tmp_6 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100000:
-        casez_tmp_6 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100001:
-        casez_tmp_6 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100010:
-        casez_tmp_6 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100011:
-        casez_tmp_6 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100100:
-        casez_tmp_6 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100101:
-        casez_tmp_6 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100110:
-        casez_tmp_6 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100111:
-        casez_tmp_6 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101000:
-        casez_tmp_6 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101001:
-        casez_tmp_6 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101010:
-        casez_tmp_6 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101011:
-        casez_tmp_6 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101100:
-        casez_tmp_6 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101101:
-        casez_tmp_6 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101110:
-        casez_tmp_6 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101111:
-        casez_tmp_6 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110000:
-        casez_tmp_6 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110001:
-        casez_tmp_6 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110010:
-        casez_tmp_6 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110011:
-        casez_tmp_6 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110100:
-        casez_tmp_6 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110101:
-        casez_tmp_6 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110110:
-        casez_tmp_6 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110111:
-        casez_tmp_6 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111000:
-        casez_tmp_6 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111001:
-        casez_tmp_6 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111010:
-        casez_tmp_6 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111011:
-        casez_tmp_6 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111100:
-        casez_tmp_6 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111101:
-        casez_tmp_6 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111110:
-        casez_tmp_6 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      default:
-        casez_tmp_6 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-    endcase	// frontend/src/zaqal/frontend/SC.scala:40:10
-  end // always_comb
-  reg  [5:0] casez_tmp_7;	// frontend/src/zaqal/frontend/SC.scala:40:10
-  always_comb begin	// frontend/src/zaqal/frontend/SC.scala:40:10
-    casez (_GEN)	// frontend/src/zaqal/frontend/SC.scala:40:10
-      6'b000000:
-        casez_tmp_7 = weightTable_0_8;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000001:
-        casez_tmp_7 = weightTable_1_8;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000010:
-        casez_tmp_7 = weightTable_2_8;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000011:
-        casez_tmp_7 = weightTable_3_8;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000100:
-        casez_tmp_7 = weightTable_4_8;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000101:
-        casez_tmp_7 = weightTable_5_8;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000110:
-        casez_tmp_7 = weightTable_6_8;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000111:
-        casez_tmp_7 = weightTable_7_8;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001000:
-        casez_tmp_7 = weightTable_8_8;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001001:
-        casez_tmp_7 = weightTable_9_8;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001010:
-        casez_tmp_7 = weightTable_10_8;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001011:
-        casez_tmp_7 = weightTable_11_8;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001100:
-        casez_tmp_7 = weightTable_12_8;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001101:
-        casez_tmp_7 = weightTable_13_8;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001110:
-        casez_tmp_7 = weightTable_14_8;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001111:
-        casez_tmp_7 = weightTable_15_8;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b010000:
-        casez_tmp_7 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010001:
-        casez_tmp_7 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010010:
-        casez_tmp_7 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010011:
-        casez_tmp_7 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010100:
-        casez_tmp_7 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010101:
-        casez_tmp_7 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010110:
-        casez_tmp_7 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010111:
-        casez_tmp_7 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011000:
-        casez_tmp_7 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011001:
-        casez_tmp_7 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011010:
-        casez_tmp_7 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011011:
-        casez_tmp_7 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011100:
-        casez_tmp_7 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011101:
-        casez_tmp_7 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011110:
-        casez_tmp_7 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011111:
-        casez_tmp_7 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100000:
-        casez_tmp_7 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100001:
-        casez_tmp_7 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100010:
-        casez_tmp_7 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100011:
-        casez_tmp_7 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100100:
-        casez_tmp_7 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100101:
-        casez_tmp_7 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100110:
-        casez_tmp_7 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100111:
-        casez_tmp_7 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101000:
-        casez_tmp_7 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101001:
-        casez_tmp_7 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101010:
-        casez_tmp_7 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101011:
-        casez_tmp_7 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101100:
-        casez_tmp_7 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101101:
-        casez_tmp_7 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101110:
-        casez_tmp_7 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101111:
-        casez_tmp_7 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110000:
-        casez_tmp_7 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110001:
-        casez_tmp_7 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110010:
-        casez_tmp_7 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110011:
-        casez_tmp_7 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110100:
-        casez_tmp_7 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110101:
-        casez_tmp_7 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110110:
-        casez_tmp_7 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110111:
-        casez_tmp_7 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111000:
-        casez_tmp_7 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111001:
-        casez_tmp_7 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111010:
-        casez_tmp_7 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111011:
-        casez_tmp_7 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111100:
-        casez_tmp_7 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111101:
-        casez_tmp_7 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111110:
-        casez_tmp_7 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      default:
-        casez_tmp_7 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-    endcase	// frontend/src/zaqal/frontend/SC.scala:40:10
-  end // always_comb
-  wire [5:0] _sum_1_T_3 = io_req_ghr[0] ? casez_tmp_0 : 6'h0 - casez_tmp_0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10, :42:25, :44:{29,38}
-  wire [5:0] _sum_2_T_3 = io_req_ghr[1] ? casez_tmp_1 : 6'h0 - casez_tmp_1;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10, :42:25, :44:{29,38}
-  wire [5:0] _sum_3_T_3 = io_req_ghr[2] ? casez_tmp_2 : 6'h0 - casez_tmp_2;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10, :42:25, :44:{29,38}
-  wire [5:0] _sum_4_T_3 = io_req_ghr[3] ? casez_tmp_3 : 6'h0 - casez_tmp_3;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10, :42:25, :44:{29,38}
-  wire [5:0] _sum_5_T_3 = io_req_ghr[4] ? casez_tmp_4 : 6'h0 - casez_tmp_4;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10, :42:25, :44:{29,38}
-  wire [5:0] _sum_6_T_3 = io_req_ghr[5] ? casez_tmp_5 : 6'h0 - casez_tmp_5;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10, :42:25, :44:{29,38}
-  wire [5:0] _sum_7_T_3 = io_req_ghr[6] ? casez_tmp_6 : 6'h0 - casez_tmp_6;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10, :42:25, :44:{29,38}
-  wire [5:0] _sum_8_T_3 = io_req_ghr[7] ? casez_tmp_7 : 6'h0 - casez_tmp_7;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10, :42:25, :44:{29,38}
-  wire [9:0] _sum_8_T_4 =
-    {{4{casez_tmp[5]}}, casez_tmp} + {{4{_sum_1_T_3[5]}}, _sum_1_T_3}
+  reg  [5:0]       weightTable_0_0;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_0_1;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_0_2;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_0_3;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_0_4;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_0_5;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_0_6;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_0_7;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_0_8;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_1_0;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_1_1;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_1_2;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_1_3;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_1_4;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_1_5;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_1_6;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_1_7;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_1_8;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_2_0;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_2_1;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_2_2;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_2_3;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_2_4;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_2_5;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_2_6;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_2_7;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_2_8;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_3_0;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_3_1;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_3_2;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_3_3;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_3_4;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_3_5;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_3_6;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_3_7;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_3_8;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_4_0;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_4_1;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_4_2;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_4_3;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_4_4;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_4_5;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_4_6;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_4_7;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_4_8;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_5_0;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_5_1;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_5_2;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_5_3;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_5_4;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_5_5;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_5_6;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_5_7;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_5_8;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_6_0;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_6_1;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_6_2;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_6_3;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_6_4;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_6_5;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_6_6;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_6_7;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_6_8;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_7_0;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_7_1;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_7_2;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_7_3;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_7_4;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_7_5;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_7_6;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_7_7;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_7_8;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_8_0;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_8_1;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_8_2;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_8_3;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_8_4;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_8_5;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_8_6;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_8_7;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_8_8;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_9_0;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_9_1;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_9_2;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_9_3;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_9_4;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_9_5;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_9_6;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_9_7;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_9_8;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_10_0;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_10_1;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_10_2;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_10_3;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_10_4;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_10_5;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_10_6;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_10_7;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_10_8;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_11_0;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_11_1;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_11_2;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_11_3;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_11_4;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_11_5;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_11_6;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_11_7;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_11_8;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_12_0;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_12_1;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_12_2;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_12_3;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_12_4;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_12_5;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_12_6;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_12_7;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_12_8;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_13_0;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_13_1;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_13_2;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_13_3;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_13_4;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_13_5;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_13_6;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_13_7;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_13_8;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_14_0;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_14_1;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_14_2;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_14_3;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_14_4;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_14_5;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_14_6;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_14_7;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_14_8;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_15_0;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_15_1;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_15_2;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_15_3;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_15_4;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_15_5;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_15_6;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_15_7;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  reg  [5:0]       weightTable_15_8;	// frontend/src/zaqal/frontend/SC.scala:33:28
+  wire [5:0]       _GEN = {2'h0, io_req_pc[5:2] ^ io_req_pc[9:6]};	// frontend/src/zaqal/frontend/SC.scala:36:{27,35,46}, :40:10
+  wire [63:0][5:0] _GEN_0 =
+    {{6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {weightTable_15_0},
+     {weightTable_14_0},
+     {weightTable_13_0},
+     {weightTable_12_0},
+     {weightTable_11_0},
+     {weightTable_10_0},
+     {weightTable_9_0},
+     {weightTable_8_0},
+     {weightTable_7_0},
+     {weightTable_6_0},
+     {weightTable_5_0},
+     {weightTable_4_0},
+     {weightTable_3_0},
+     {weightTable_2_0},
+     {weightTable_1_0},
+     {weightTable_0_0}};	// frontend/src/zaqal/frontend/SC.scala:33:{28,65}, :40:10
+  wire [63:0][5:0] _GEN_1 =
+    {{6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {weightTable_15_1},
+     {weightTable_14_1},
+     {weightTable_13_1},
+     {weightTable_12_1},
+     {weightTable_11_1},
+     {weightTable_10_1},
+     {weightTable_9_1},
+     {weightTable_8_1},
+     {weightTable_7_1},
+     {weightTable_6_1},
+     {weightTable_5_1},
+     {weightTable_4_1},
+     {weightTable_3_1},
+     {weightTable_2_1},
+     {weightTable_1_1},
+     {weightTable_0_1}};	// frontend/src/zaqal/frontend/SC.scala:33:{28,65}, :40:10
+  wire [63:0][5:0] _GEN_2 =
+    {{6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {weightTable_15_2},
+     {weightTable_14_2},
+     {weightTable_13_2},
+     {weightTable_12_2},
+     {weightTable_11_2},
+     {weightTable_10_2},
+     {weightTable_9_2},
+     {weightTable_8_2},
+     {weightTable_7_2},
+     {weightTable_6_2},
+     {weightTable_5_2},
+     {weightTable_4_2},
+     {weightTable_3_2},
+     {weightTable_2_2},
+     {weightTable_1_2},
+     {weightTable_0_2}};	// frontend/src/zaqal/frontend/SC.scala:33:{28,65}, :40:10
+  wire [63:0][5:0] _GEN_3 =
+    {{6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {weightTable_15_3},
+     {weightTable_14_3},
+     {weightTable_13_3},
+     {weightTable_12_3},
+     {weightTable_11_3},
+     {weightTable_10_3},
+     {weightTable_9_3},
+     {weightTable_8_3},
+     {weightTable_7_3},
+     {weightTable_6_3},
+     {weightTable_5_3},
+     {weightTable_4_3},
+     {weightTable_3_3},
+     {weightTable_2_3},
+     {weightTable_1_3},
+     {weightTable_0_3}};	// frontend/src/zaqal/frontend/SC.scala:33:{28,65}, :40:10
+  wire [63:0][5:0] _GEN_4 =
+    {{6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {weightTable_15_4},
+     {weightTable_14_4},
+     {weightTable_13_4},
+     {weightTable_12_4},
+     {weightTable_11_4},
+     {weightTable_10_4},
+     {weightTable_9_4},
+     {weightTable_8_4},
+     {weightTable_7_4},
+     {weightTable_6_4},
+     {weightTable_5_4},
+     {weightTable_4_4},
+     {weightTable_3_4},
+     {weightTable_2_4},
+     {weightTable_1_4},
+     {weightTable_0_4}};	// frontend/src/zaqal/frontend/SC.scala:33:{28,65}, :40:10
+  wire [63:0][5:0] _GEN_5 =
+    {{6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {weightTable_15_5},
+     {weightTable_14_5},
+     {weightTable_13_5},
+     {weightTable_12_5},
+     {weightTable_11_5},
+     {weightTable_10_5},
+     {weightTable_9_5},
+     {weightTable_8_5},
+     {weightTable_7_5},
+     {weightTable_6_5},
+     {weightTable_5_5},
+     {weightTable_4_5},
+     {weightTable_3_5},
+     {weightTable_2_5},
+     {weightTable_1_5},
+     {weightTable_0_5}};	// frontend/src/zaqal/frontend/SC.scala:33:{28,65}, :40:10
+  wire [63:0][5:0] _GEN_6 =
+    {{6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {weightTable_15_6},
+     {weightTable_14_6},
+     {weightTable_13_6},
+     {weightTable_12_6},
+     {weightTable_11_6},
+     {weightTable_10_6},
+     {weightTable_9_6},
+     {weightTable_8_6},
+     {weightTable_7_6},
+     {weightTable_6_6},
+     {weightTable_5_6},
+     {weightTable_4_6},
+     {weightTable_3_6},
+     {weightTable_2_6},
+     {weightTable_1_6},
+     {weightTable_0_6}};	// frontend/src/zaqal/frontend/SC.scala:33:{28,65}, :40:10
+  wire [63:0][5:0] _GEN_7 =
+    {{6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {weightTable_15_7},
+     {weightTable_14_7},
+     {weightTable_13_7},
+     {weightTable_12_7},
+     {weightTable_11_7},
+     {weightTable_10_7},
+     {weightTable_9_7},
+     {weightTable_8_7},
+     {weightTable_7_7},
+     {weightTable_6_7},
+     {weightTable_5_7},
+     {weightTable_4_7},
+     {weightTable_3_7},
+     {weightTable_2_7},
+     {weightTable_1_7},
+     {weightTable_0_7}};	// frontend/src/zaqal/frontend/SC.scala:33:{28,65}, :40:10
+  wire [63:0][5:0] _GEN_8 =
+    {{6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {6'h0},
+     {weightTable_15_8},
+     {weightTable_14_8},
+     {weightTable_13_8},
+     {weightTable_12_8},
+     {weightTable_11_8},
+     {weightTable_10_8},
+     {weightTable_9_8},
+     {weightTable_8_8},
+     {weightTable_7_8},
+     {weightTable_6_8},
+     {weightTable_5_8},
+     {weightTable_4_8},
+     {weightTable_3_8},
+     {weightTable_2_8},
+     {weightTable_1_8},
+     {weightTable_0_8}};	// frontend/src/zaqal/frontend/SC.scala:33:{28,65}, :40:10
+  wire [5:0]       _sum_1_T_3 = io_req_ghr[0] ? _GEN_1[_GEN] : 6'h0 - _GEN_1[_GEN];	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10, :42:25, :44:{29,38}
+  wire [5:0]       _sum_2_T_3 = io_req_ghr[1] ? _GEN_2[_GEN] : 6'h0 - _GEN_2[_GEN];	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10, :42:25, :44:{29,38}
+  wire [5:0]       _sum_3_T_3 = io_req_ghr[2] ? _GEN_3[_GEN] : 6'h0 - _GEN_3[_GEN];	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10, :42:25, :44:{29,38}
+  wire [5:0]       _sum_4_T_3 = io_req_ghr[3] ? _GEN_4[_GEN] : 6'h0 - _GEN_4[_GEN];	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10, :42:25, :44:{29,38}
+  wire [5:0]       _sum_5_T_3 = io_req_ghr[4] ? _GEN_5[_GEN] : 6'h0 - _GEN_5[_GEN];	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10, :42:25, :44:{29,38}
+  wire [5:0]       _sum_6_T_3 = io_req_ghr[5] ? _GEN_6[_GEN] : 6'h0 - _GEN_6[_GEN];	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10, :42:25, :44:{29,38}
+  wire [5:0]       _sum_7_T_3 = io_req_ghr[6] ? _GEN_7[_GEN] : 6'h0 - _GEN_7[_GEN];	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10, :42:25, :44:{29,38}
+  wire [5:0]       _sum_8_T_3 = io_req_ghr[7] ? _GEN_8[_GEN] : 6'h0 - _GEN_8[_GEN];	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10, :42:25, :44:{29,38}
+  wire [9:0]       _sum_8_T_4 =
+    {{4{_GEN_0[_GEN][5]}}, _GEN_0[_GEN]} + {{4{_sum_1_T_3[5]}}, _sum_1_T_3}
     + {{4{_sum_2_T_3[5]}}, _sum_2_T_3} + {{4{_sum_3_T_3[5]}}, _sum_3_T_3}
     + {{4{_sum_4_T_3[5]}}, _sum_4_T_3} + {{4{_sum_5_T_3[5]}}, _sum_5_T_3}
     + {{4{_sum_6_T_3[5]}}, _sum_6_T_3} + {{4{_sum_7_T_3[5]}}, _sum_7_T_3}
     + {{4{_sum_8_T_3[5]}}, _sum_8_T_3};	// frontend/src/zaqal/frontend/SC.scala:40:10, :44:{24,29}
-  wire [3:0] upd_idx = io_update_pc[5:2] ^ io_update_pc[9:6];	// frontend/src/zaqal/frontend/SC.scala:54:{30,38,52}
-  wire [5:0] _GEN_0 = {2'h0, upd_idx};	// frontend/src/zaqal/frontend/SC.scala:40:10, :54:38, :65:16
-  reg  [5:0] casez_tmp_8;	// frontend/src/zaqal/frontend/SC.scala:65:16
-  always_comb begin	// frontend/src/zaqal/frontend/SC.scala:40:10
-    casez (_GEN_0)	// frontend/src/zaqal/frontend/SC.scala:40:10, :65:16
-      6'b000000:
-        casez_tmp_8 = weightTable_0_0;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000001:
-        casez_tmp_8 = weightTable_1_0;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000010:
-        casez_tmp_8 = weightTable_2_0;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000011:
-        casez_tmp_8 = weightTable_3_0;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000100:
-        casez_tmp_8 = weightTable_4_0;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000101:
-        casez_tmp_8 = weightTable_5_0;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000110:
-        casez_tmp_8 = weightTable_6_0;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000111:
-        casez_tmp_8 = weightTable_7_0;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001000:
-        casez_tmp_8 = weightTable_8_0;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001001:
-        casez_tmp_8 = weightTable_9_0;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001010:
-        casez_tmp_8 = weightTable_10_0;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001011:
-        casez_tmp_8 = weightTable_11_0;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001100:
-        casez_tmp_8 = weightTable_12_0;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001101:
-        casez_tmp_8 = weightTable_13_0;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001110:
-        casez_tmp_8 = weightTable_14_0;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001111:
-        casez_tmp_8 = weightTable_15_0;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b010000:
-        casez_tmp_8 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010001:
-        casez_tmp_8 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010010:
-        casez_tmp_8 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010011:
-        casez_tmp_8 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010100:
-        casez_tmp_8 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010101:
-        casez_tmp_8 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010110:
-        casez_tmp_8 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010111:
-        casez_tmp_8 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011000:
-        casez_tmp_8 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011001:
-        casez_tmp_8 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011010:
-        casez_tmp_8 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011011:
-        casez_tmp_8 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011100:
-        casez_tmp_8 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011101:
-        casez_tmp_8 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011110:
-        casez_tmp_8 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011111:
-        casez_tmp_8 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100000:
-        casez_tmp_8 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100001:
-        casez_tmp_8 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100010:
-        casez_tmp_8 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100011:
-        casez_tmp_8 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100100:
-        casez_tmp_8 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100101:
-        casez_tmp_8 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100110:
-        casez_tmp_8 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100111:
-        casez_tmp_8 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101000:
-        casez_tmp_8 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101001:
-        casez_tmp_8 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101010:
-        casez_tmp_8 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101011:
-        casez_tmp_8 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101100:
-        casez_tmp_8 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101101:
-        casez_tmp_8 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101110:
-        casez_tmp_8 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101111:
-        casez_tmp_8 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110000:
-        casez_tmp_8 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110001:
-        casez_tmp_8 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110010:
-        casez_tmp_8 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110011:
-        casez_tmp_8 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110100:
-        casez_tmp_8 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110101:
-        casez_tmp_8 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110110:
-        casez_tmp_8 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110111:
-        casez_tmp_8 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111000:
-        casez_tmp_8 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111001:
-        casez_tmp_8 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111010:
-        casez_tmp_8 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111011:
-        casez_tmp_8 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111100:
-        casez_tmp_8 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111101:
-        casez_tmp_8 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111110:
-        casez_tmp_8 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      default:
-        casez_tmp_8 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-    endcase	// frontend/src/zaqal/frontend/SC.scala:40:10, :65:16
-  end // always_comb
-  reg  [5:0] casez_tmp_9;	// frontend/src/zaqal/frontend/SC.scala:65:16
-  always_comb begin	// frontend/src/zaqal/frontend/SC.scala:40:10
-    casez (_GEN_0)	// frontend/src/zaqal/frontend/SC.scala:40:10, :65:16
-      6'b000000:
-        casez_tmp_9 = weightTable_0_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000001:
-        casez_tmp_9 = weightTable_1_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000010:
-        casez_tmp_9 = weightTable_2_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000011:
-        casez_tmp_9 = weightTable_3_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000100:
-        casez_tmp_9 = weightTable_4_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000101:
-        casez_tmp_9 = weightTable_5_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000110:
-        casez_tmp_9 = weightTable_6_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000111:
-        casez_tmp_9 = weightTable_7_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001000:
-        casez_tmp_9 = weightTable_8_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001001:
-        casez_tmp_9 = weightTable_9_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001010:
-        casez_tmp_9 = weightTable_10_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001011:
-        casez_tmp_9 = weightTable_11_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001100:
-        casez_tmp_9 = weightTable_12_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001101:
-        casez_tmp_9 = weightTable_13_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001110:
-        casez_tmp_9 = weightTable_14_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001111:
-        casez_tmp_9 = weightTable_15_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b010000:
-        casez_tmp_9 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010001:
-        casez_tmp_9 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010010:
-        casez_tmp_9 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010011:
-        casez_tmp_9 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010100:
-        casez_tmp_9 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010101:
-        casez_tmp_9 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010110:
-        casez_tmp_9 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010111:
-        casez_tmp_9 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011000:
-        casez_tmp_9 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011001:
-        casez_tmp_9 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011010:
-        casez_tmp_9 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011011:
-        casez_tmp_9 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011100:
-        casez_tmp_9 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011101:
-        casez_tmp_9 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011110:
-        casez_tmp_9 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011111:
-        casez_tmp_9 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100000:
-        casez_tmp_9 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100001:
-        casez_tmp_9 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100010:
-        casez_tmp_9 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100011:
-        casez_tmp_9 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100100:
-        casez_tmp_9 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100101:
-        casez_tmp_9 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100110:
-        casez_tmp_9 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100111:
-        casez_tmp_9 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101000:
-        casez_tmp_9 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101001:
-        casez_tmp_9 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101010:
-        casez_tmp_9 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101011:
-        casez_tmp_9 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101100:
-        casez_tmp_9 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101101:
-        casez_tmp_9 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101110:
-        casez_tmp_9 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101111:
-        casez_tmp_9 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110000:
-        casez_tmp_9 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110001:
-        casez_tmp_9 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110010:
-        casez_tmp_9 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110011:
-        casez_tmp_9 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110100:
-        casez_tmp_9 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110101:
-        casez_tmp_9 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110110:
-        casez_tmp_9 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110111:
-        casez_tmp_9 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111000:
-        casez_tmp_9 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111001:
-        casez_tmp_9 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111010:
-        casez_tmp_9 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111011:
-        casez_tmp_9 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111100:
-        casez_tmp_9 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111101:
-        casez_tmp_9 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111110:
-        casez_tmp_9 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      default:
-        casez_tmp_9 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-    endcase	// frontend/src/zaqal/frontend/SC.scala:40:10, :65:16
-  end // always_comb
-  reg  [5:0] casez_tmp_10;	// frontend/src/zaqal/frontend/SC.scala:65:16
-  always_comb begin	// frontend/src/zaqal/frontend/SC.scala:40:10
-    casez (_GEN_0)	// frontend/src/zaqal/frontend/SC.scala:40:10, :65:16
-      6'b000000:
-        casez_tmp_10 = weightTable_0_2;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000001:
-        casez_tmp_10 = weightTable_1_2;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000010:
-        casez_tmp_10 = weightTable_2_2;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000011:
-        casez_tmp_10 = weightTable_3_2;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000100:
-        casez_tmp_10 = weightTable_4_2;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000101:
-        casez_tmp_10 = weightTable_5_2;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000110:
-        casez_tmp_10 = weightTable_6_2;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000111:
-        casez_tmp_10 = weightTable_7_2;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001000:
-        casez_tmp_10 = weightTable_8_2;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001001:
-        casez_tmp_10 = weightTable_9_2;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001010:
-        casez_tmp_10 = weightTable_10_2;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001011:
-        casez_tmp_10 = weightTable_11_2;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001100:
-        casez_tmp_10 = weightTable_12_2;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001101:
-        casez_tmp_10 = weightTable_13_2;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001110:
-        casez_tmp_10 = weightTable_14_2;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001111:
-        casez_tmp_10 = weightTable_15_2;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b010000:
-        casez_tmp_10 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010001:
-        casez_tmp_10 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010010:
-        casez_tmp_10 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010011:
-        casez_tmp_10 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010100:
-        casez_tmp_10 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010101:
-        casez_tmp_10 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010110:
-        casez_tmp_10 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010111:
-        casez_tmp_10 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011000:
-        casez_tmp_10 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011001:
-        casez_tmp_10 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011010:
-        casez_tmp_10 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011011:
-        casez_tmp_10 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011100:
-        casez_tmp_10 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011101:
-        casez_tmp_10 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011110:
-        casez_tmp_10 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011111:
-        casez_tmp_10 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100000:
-        casez_tmp_10 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100001:
-        casez_tmp_10 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100010:
-        casez_tmp_10 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100011:
-        casez_tmp_10 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100100:
-        casez_tmp_10 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100101:
-        casez_tmp_10 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100110:
-        casez_tmp_10 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100111:
-        casez_tmp_10 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101000:
-        casez_tmp_10 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101001:
-        casez_tmp_10 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101010:
-        casez_tmp_10 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101011:
-        casez_tmp_10 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101100:
-        casez_tmp_10 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101101:
-        casez_tmp_10 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101110:
-        casez_tmp_10 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101111:
-        casez_tmp_10 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110000:
-        casez_tmp_10 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110001:
-        casez_tmp_10 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110010:
-        casez_tmp_10 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110011:
-        casez_tmp_10 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110100:
-        casez_tmp_10 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110101:
-        casez_tmp_10 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110110:
-        casez_tmp_10 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110111:
-        casez_tmp_10 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111000:
-        casez_tmp_10 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111001:
-        casez_tmp_10 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111010:
-        casez_tmp_10 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111011:
-        casez_tmp_10 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111100:
-        casez_tmp_10 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111101:
-        casez_tmp_10 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111110:
-        casez_tmp_10 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      default:
-        casez_tmp_10 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-    endcase	// frontend/src/zaqal/frontend/SC.scala:40:10, :65:16
-  end // always_comb
-  reg  [5:0] casez_tmp_11;	// frontend/src/zaqal/frontend/SC.scala:65:16
-  always_comb begin	// frontend/src/zaqal/frontend/SC.scala:40:10
-    casez (_GEN_0)	// frontend/src/zaqal/frontend/SC.scala:40:10, :65:16
-      6'b000000:
-        casez_tmp_11 = weightTable_0_3;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000001:
-        casez_tmp_11 = weightTable_1_3;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000010:
-        casez_tmp_11 = weightTable_2_3;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000011:
-        casez_tmp_11 = weightTable_3_3;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000100:
-        casez_tmp_11 = weightTable_4_3;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000101:
-        casez_tmp_11 = weightTable_5_3;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000110:
-        casez_tmp_11 = weightTable_6_3;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000111:
-        casez_tmp_11 = weightTable_7_3;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001000:
-        casez_tmp_11 = weightTable_8_3;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001001:
-        casez_tmp_11 = weightTable_9_3;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001010:
-        casez_tmp_11 = weightTable_10_3;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001011:
-        casez_tmp_11 = weightTable_11_3;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001100:
-        casez_tmp_11 = weightTable_12_3;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001101:
-        casez_tmp_11 = weightTable_13_3;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001110:
-        casez_tmp_11 = weightTable_14_3;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001111:
-        casez_tmp_11 = weightTable_15_3;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b010000:
-        casez_tmp_11 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010001:
-        casez_tmp_11 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010010:
-        casez_tmp_11 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010011:
-        casez_tmp_11 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010100:
-        casez_tmp_11 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010101:
-        casez_tmp_11 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010110:
-        casez_tmp_11 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010111:
-        casez_tmp_11 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011000:
-        casez_tmp_11 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011001:
-        casez_tmp_11 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011010:
-        casez_tmp_11 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011011:
-        casez_tmp_11 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011100:
-        casez_tmp_11 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011101:
-        casez_tmp_11 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011110:
-        casez_tmp_11 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011111:
-        casez_tmp_11 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100000:
-        casez_tmp_11 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100001:
-        casez_tmp_11 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100010:
-        casez_tmp_11 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100011:
-        casez_tmp_11 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100100:
-        casez_tmp_11 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100101:
-        casez_tmp_11 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100110:
-        casez_tmp_11 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100111:
-        casez_tmp_11 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101000:
-        casez_tmp_11 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101001:
-        casez_tmp_11 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101010:
-        casez_tmp_11 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101011:
-        casez_tmp_11 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101100:
-        casez_tmp_11 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101101:
-        casez_tmp_11 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101110:
-        casez_tmp_11 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101111:
-        casez_tmp_11 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110000:
-        casez_tmp_11 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110001:
-        casez_tmp_11 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110010:
-        casez_tmp_11 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110011:
-        casez_tmp_11 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110100:
-        casez_tmp_11 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110101:
-        casez_tmp_11 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110110:
-        casez_tmp_11 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110111:
-        casez_tmp_11 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111000:
-        casez_tmp_11 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111001:
-        casez_tmp_11 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111010:
-        casez_tmp_11 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111011:
-        casez_tmp_11 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111100:
-        casez_tmp_11 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111101:
-        casez_tmp_11 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111110:
-        casez_tmp_11 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      default:
-        casez_tmp_11 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-    endcase	// frontend/src/zaqal/frontend/SC.scala:40:10, :65:16
-  end // always_comb
-  reg  [5:0] casez_tmp_12;	// frontend/src/zaqal/frontend/SC.scala:65:16
-  always_comb begin	// frontend/src/zaqal/frontend/SC.scala:40:10
-    casez (_GEN_0)	// frontend/src/zaqal/frontend/SC.scala:40:10, :65:16
-      6'b000000:
-        casez_tmp_12 = weightTable_0_4;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000001:
-        casez_tmp_12 = weightTable_1_4;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000010:
-        casez_tmp_12 = weightTable_2_4;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000011:
-        casez_tmp_12 = weightTable_3_4;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000100:
-        casez_tmp_12 = weightTable_4_4;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000101:
-        casez_tmp_12 = weightTable_5_4;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000110:
-        casez_tmp_12 = weightTable_6_4;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000111:
-        casez_tmp_12 = weightTable_7_4;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001000:
-        casez_tmp_12 = weightTable_8_4;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001001:
-        casez_tmp_12 = weightTable_9_4;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001010:
-        casez_tmp_12 = weightTable_10_4;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001011:
-        casez_tmp_12 = weightTable_11_4;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001100:
-        casez_tmp_12 = weightTable_12_4;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001101:
-        casez_tmp_12 = weightTable_13_4;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001110:
-        casez_tmp_12 = weightTable_14_4;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001111:
-        casez_tmp_12 = weightTable_15_4;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b010000:
-        casez_tmp_12 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010001:
-        casez_tmp_12 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010010:
-        casez_tmp_12 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010011:
-        casez_tmp_12 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010100:
-        casez_tmp_12 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010101:
-        casez_tmp_12 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010110:
-        casez_tmp_12 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010111:
-        casez_tmp_12 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011000:
-        casez_tmp_12 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011001:
-        casez_tmp_12 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011010:
-        casez_tmp_12 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011011:
-        casez_tmp_12 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011100:
-        casez_tmp_12 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011101:
-        casez_tmp_12 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011110:
-        casez_tmp_12 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011111:
-        casez_tmp_12 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100000:
-        casez_tmp_12 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100001:
-        casez_tmp_12 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100010:
-        casez_tmp_12 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100011:
-        casez_tmp_12 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100100:
-        casez_tmp_12 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100101:
-        casez_tmp_12 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100110:
-        casez_tmp_12 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100111:
-        casez_tmp_12 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101000:
-        casez_tmp_12 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101001:
-        casez_tmp_12 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101010:
-        casez_tmp_12 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101011:
-        casez_tmp_12 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101100:
-        casez_tmp_12 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101101:
-        casez_tmp_12 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101110:
-        casez_tmp_12 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101111:
-        casez_tmp_12 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110000:
-        casez_tmp_12 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110001:
-        casez_tmp_12 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110010:
-        casez_tmp_12 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110011:
-        casez_tmp_12 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110100:
-        casez_tmp_12 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110101:
-        casez_tmp_12 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110110:
-        casez_tmp_12 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110111:
-        casez_tmp_12 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111000:
-        casez_tmp_12 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111001:
-        casez_tmp_12 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111010:
-        casez_tmp_12 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111011:
-        casez_tmp_12 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111100:
-        casez_tmp_12 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111101:
-        casez_tmp_12 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111110:
-        casez_tmp_12 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      default:
-        casez_tmp_12 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-    endcase	// frontend/src/zaqal/frontend/SC.scala:40:10, :65:16
-  end // always_comb
-  reg  [5:0] casez_tmp_13;	// frontend/src/zaqal/frontend/SC.scala:65:16
-  always_comb begin	// frontend/src/zaqal/frontend/SC.scala:40:10
-    casez (_GEN_0)	// frontend/src/zaqal/frontend/SC.scala:40:10, :65:16
-      6'b000000:
-        casez_tmp_13 = weightTable_0_5;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000001:
-        casez_tmp_13 = weightTable_1_5;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000010:
-        casez_tmp_13 = weightTable_2_5;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000011:
-        casez_tmp_13 = weightTable_3_5;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000100:
-        casez_tmp_13 = weightTable_4_5;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000101:
-        casez_tmp_13 = weightTable_5_5;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000110:
-        casez_tmp_13 = weightTable_6_5;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000111:
-        casez_tmp_13 = weightTable_7_5;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001000:
-        casez_tmp_13 = weightTable_8_5;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001001:
-        casez_tmp_13 = weightTable_9_5;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001010:
-        casez_tmp_13 = weightTable_10_5;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001011:
-        casez_tmp_13 = weightTable_11_5;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001100:
-        casez_tmp_13 = weightTable_12_5;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001101:
-        casez_tmp_13 = weightTable_13_5;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001110:
-        casez_tmp_13 = weightTable_14_5;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001111:
-        casez_tmp_13 = weightTable_15_5;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b010000:
-        casez_tmp_13 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010001:
-        casez_tmp_13 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010010:
-        casez_tmp_13 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010011:
-        casez_tmp_13 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010100:
-        casez_tmp_13 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010101:
-        casez_tmp_13 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010110:
-        casez_tmp_13 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010111:
-        casez_tmp_13 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011000:
-        casez_tmp_13 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011001:
-        casez_tmp_13 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011010:
-        casez_tmp_13 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011011:
-        casez_tmp_13 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011100:
-        casez_tmp_13 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011101:
-        casez_tmp_13 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011110:
-        casez_tmp_13 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011111:
-        casez_tmp_13 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100000:
-        casez_tmp_13 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100001:
-        casez_tmp_13 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100010:
-        casez_tmp_13 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100011:
-        casez_tmp_13 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100100:
-        casez_tmp_13 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100101:
-        casez_tmp_13 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100110:
-        casez_tmp_13 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100111:
-        casez_tmp_13 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101000:
-        casez_tmp_13 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101001:
-        casez_tmp_13 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101010:
-        casez_tmp_13 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101011:
-        casez_tmp_13 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101100:
-        casez_tmp_13 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101101:
-        casez_tmp_13 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101110:
-        casez_tmp_13 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101111:
-        casez_tmp_13 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110000:
-        casez_tmp_13 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110001:
-        casez_tmp_13 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110010:
-        casez_tmp_13 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110011:
-        casez_tmp_13 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110100:
-        casez_tmp_13 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110101:
-        casez_tmp_13 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110110:
-        casez_tmp_13 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110111:
-        casez_tmp_13 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111000:
-        casez_tmp_13 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111001:
-        casez_tmp_13 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111010:
-        casez_tmp_13 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111011:
-        casez_tmp_13 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111100:
-        casez_tmp_13 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111101:
-        casez_tmp_13 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111110:
-        casez_tmp_13 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      default:
-        casez_tmp_13 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-    endcase	// frontend/src/zaqal/frontend/SC.scala:40:10, :65:16
-  end // always_comb
-  reg  [5:0] casez_tmp_14;	// frontend/src/zaqal/frontend/SC.scala:65:16
-  always_comb begin	// frontend/src/zaqal/frontend/SC.scala:40:10
-    casez (_GEN_0)	// frontend/src/zaqal/frontend/SC.scala:40:10, :65:16
-      6'b000000:
-        casez_tmp_14 = weightTable_0_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000001:
-        casez_tmp_14 = weightTable_1_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000010:
-        casez_tmp_14 = weightTable_2_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000011:
-        casez_tmp_14 = weightTable_3_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000100:
-        casez_tmp_14 = weightTable_4_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000101:
-        casez_tmp_14 = weightTable_5_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000110:
-        casez_tmp_14 = weightTable_6_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000111:
-        casez_tmp_14 = weightTable_7_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001000:
-        casez_tmp_14 = weightTable_8_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001001:
-        casez_tmp_14 = weightTable_9_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001010:
-        casez_tmp_14 = weightTable_10_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001011:
-        casez_tmp_14 = weightTable_11_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001100:
-        casez_tmp_14 = weightTable_12_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001101:
-        casez_tmp_14 = weightTable_13_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001110:
-        casez_tmp_14 = weightTable_14_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001111:
-        casez_tmp_14 = weightTable_15_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b010000:
-        casez_tmp_14 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010001:
-        casez_tmp_14 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010010:
-        casez_tmp_14 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010011:
-        casez_tmp_14 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010100:
-        casez_tmp_14 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010101:
-        casez_tmp_14 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010110:
-        casez_tmp_14 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010111:
-        casez_tmp_14 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011000:
-        casez_tmp_14 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011001:
-        casez_tmp_14 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011010:
-        casez_tmp_14 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011011:
-        casez_tmp_14 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011100:
-        casez_tmp_14 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011101:
-        casez_tmp_14 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011110:
-        casez_tmp_14 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011111:
-        casez_tmp_14 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100000:
-        casez_tmp_14 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100001:
-        casez_tmp_14 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100010:
-        casez_tmp_14 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100011:
-        casez_tmp_14 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100100:
-        casez_tmp_14 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100101:
-        casez_tmp_14 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100110:
-        casez_tmp_14 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100111:
-        casez_tmp_14 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101000:
-        casez_tmp_14 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101001:
-        casez_tmp_14 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101010:
-        casez_tmp_14 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101011:
-        casez_tmp_14 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101100:
-        casez_tmp_14 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101101:
-        casez_tmp_14 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101110:
-        casez_tmp_14 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101111:
-        casez_tmp_14 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110000:
-        casez_tmp_14 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110001:
-        casez_tmp_14 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110010:
-        casez_tmp_14 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110011:
-        casez_tmp_14 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110100:
-        casez_tmp_14 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110101:
-        casez_tmp_14 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110110:
-        casez_tmp_14 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110111:
-        casez_tmp_14 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111000:
-        casez_tmp_14 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111001:
-        casez_tmp_14 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111010:
-        casez_tmp_14 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111011:
-        casez_tmp_14 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111100:
-        casez_tmp_14 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111101:
-        casez_tmp_14 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111110:
-        casez_tmp_14 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      default:
-        casez_tmp_14 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-    endcase	// frontend/src/zaqal/frontend/SC.scala:40:10, :65:16
-  end // always_comb
-  reg  [5:0] casez_tmp_15;	// frontend/src/zaqal/frontend/SC.scala:65:16
-  always_comb begin	// frontend/src/zaqal/frontend/SC.scala:40:10
-    casez (_GEN_0)	// frontend/src/zaqal/frontend/SC.scala:40:10, :65:16
-      6'b000000:
-        casez_tmp_15 = weightTable_0_7;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000001:
-        casez_tmp_15 = weightTable_1_7;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000010:
-        casez_tmp_15 = weightTable_2_7;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000011:
-        casez_tmp_15 = weightTable_3_7;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000100:
-        casez_tmp_15 = weightTable_4_7;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000101:
-        casez_tmp_15 = weightTable_5_7;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000110:
-        casez_tmp_15 = weightTable_6_7;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000111:
-        casez_tmp_15 = weightTable_7_7;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001000:
-        casez_tmp_15 = weightTable_8_7;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001001:
-        casez_tmp_15 = weightTable_9_7;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001010:
-        casez_tmp_15 = weightTable_10_7;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001011:
-        casez_tmp_15 = weightTable_11_7;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001100:
-        casez_tmp_15 = weightTable_12_7;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001101:
-        casez_tmp_15 = weightTable_13_7;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001110:
-        casez_tmp_15 = weightTable_14_7;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001111:
-        casez_tmp_15 = weightTable_15_7;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b010000:
-        casez_tmp_15 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010001:
-        casez_tmp_15 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010010:
-        casez_tmp_15 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010011:
-        casez_tmp_15 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010100:
-        casez_tmp_15 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010101:
-        casez_tmp_15 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010110:
-        casez_tmp_15 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010111:
-        casez_tmp_15 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011000:
-        casez_tmp_15 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011001:
-        casez_tmp_15 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011010:
-        casez_tmp_15 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011011:
-        casez_tmp_15 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011100:
-        casez_tmp_15 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011101:
-        casez_tmp_15 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011110:
-        casez_tmp_15 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011111:
-        casez_tmp_15 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100000:
-        casez_tmp_15 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100001:
-        casez_tmp_15 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100010:
-        casez_tmp_15 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100011:
-        casez_tmp_15 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100100:
-        casez_tmp_15 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100101:
-        casez_tmp_15 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100110:
-        casez_tmp_15 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100111:
-        casez_tmp_15 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101000:
-        casez_tmp_15 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101001:
-        casez_tmp_15 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101010:
-        casez_tmp_15 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101011:
-        casez_tmp_15 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101100:
-        casez_tmp_15 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101101:
-        casez_tmp_15 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101110:
-        casez_tmp_15 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101111:
-        casez_tmp_15 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110000:
-        casez_tmp_15 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110001:
-        casez_tmp_15 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110010:
-        casez_tmp_15 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110011:
-        casez_tmp_15 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110100:
-        casez_tmp_15 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110101:
-        casez_tmp_15 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110110:
-        casez_tmp_15 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110111:
-        casez_tmp_15 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111000:
-        casez_tmp_15 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111001:
-        casez_tmp_15 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111010:
-        casez_tmp_15 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111011:
-        casez_tmp_15 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111100:
-        casez_tmp_15 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111101:
-        casez_tmp_15 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111110:
-        casez_tmp_15 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      default:
-        casez_tmp_15 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-    endcase	// frontend/src/zaqal/frontend/SC.scala:40:10, :65:16
-  end // always_comb
-  reg  [5:0] casez_tmp_16;	// frontend/src/zaqal/frontend/SC.scala:65:16
-  always_comb begin	// frontend/src/zaqal/frontend/SC.scala:40:10
-    casez (_GEN_0)	// frontend/src/zaqal/frontend/SC.scala:40:10, :65:16
-      6'b000000:
-        casez_tmp_16 = weightTable_0_8;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000001:
-        casez_tmp_16 = weightTable_1_8;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000010:
-        casez_tmp_16 = weightTable_2_8;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000011:
-        casez_tmp_16 = weightTable_3_8;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000100:
-        casez_tmp_16 = weightTable_4_8;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000101:
-        casez_tmp_16 = weightTable_5_8;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000110:
-        casez_tmp_16 = weightTable_6_8;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b000111:
-        casez_tmp_16 = weightTable_7_8;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001000:
-        casez_tmp_16 = weightTable_8_8;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001001:
-        casez_tmp_16 = weightTable_9_8;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001010:
-        casez_tmp_16 = weightTable_10_8;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001011:
-        casez_tmp_16 = weightTable_11_8;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001100:
-        casez_tmp_16 = weightTable_12_8;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001101:
-        casez_tmp_16 = weightTable_13_8;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001110:
-        casez_tmp_16 = weightTable_14_8;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b001111:
-        casez_tmp_16 = weightTable_15_8;	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10
-      6'b010000:
-        casez_tmp_16 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010001:
-        casez_tmp_16 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010010:
-        casez_tmp_16 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010011:
-        casez_tmp_16 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010100:
-        casez_tmp_16 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010101:
-        casez_tmp_16 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010110:
-        casez_tmp_16 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b010111:
-        casez_tmp_16 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011000:
-        casez_tmp_16 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011001:
-        casez_tmp_16 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011010:
-        casez_tmp_16 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011011:
-        casez_tmp_16 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011100:
-        casez_tmp_16 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011101:
-        casez_tmp_16 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011110:
-        casez_tmp_16 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b011111:
-        casez_tmp_16 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100000:
-        casez_tmp_16 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100001:
-        casez_tmp_16 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100010:
-        casez_tmp_16 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100011:
-        casez_tmp_16 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100100:
-        casez_tmp_16 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100101:
-        casez_tmp_16 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100110:
-        casez_tmp_16 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b100111:
-        casez_tmp_16 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101000:
-        casez_tmp_16 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101001:
-        casez_tmp_16 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101010:
-        casez_tmp_16 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101011:
-        casez_tmp_16 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101100:
-        casez_tmp_16 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101101:
-        casez_tmp_16 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101110:
-        casez_tmp_16 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b101111:
-        casez_tmp_16 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110000:
-        casez_tmp_16 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110001:
-        casez_tmp_16 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110010:
-        casez_tmp_16 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110011:
-        casez_tmp_16 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110100:
-        casez_tmp_16 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110101:
-        casez_tmp_16 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110110:
-        casez_tmp_16 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b110111:
-        casez_tmp_16 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111000:
-        casez_tmp_16 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111001:
-        casez_tmp_16 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111010:
-        casez_tmp_16 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111011:
-        casez_tmp_16 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111100:
-        casez_tmp_16 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111101:
-        casez_tmp_16 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      6'b111110:
-        casez_tmp_16 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-      default:
-        casez_tmp_16 = 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:65, :40:10
-    endcase	// frontend/src/zaqal/frontend/SC.scala:40:10, :65:16
-  end // always_comb
-  wire       upd_pred_taken = $signed(io_update_sum) > -10'sh1;	// frontend/src/zaqal/frontend/SC.scala:49:30, :57:38
-  wire       _GEN_1 =
+  wire [3:0]       upd_idx = io_update_pc[5:2] ^ io_update_pc[9:6];	// frontend/src/zaqal/frontend/SC.scala:54:{30,38,52}
+  wire             upd_pred_taken = $signed(io_update_sum) > -10'sh1;	// frontend/src/zaqal/frontend/SC.scala:49:30, :57:38
+  wire             _GEN_9 =
     io_update_valid
     & (upd_pred_taken != io_update_dir
        | $signed(upd_pred_taken ? io_update_sum : 10'h0 - io_update_sum) < 10'shD);	// frontend/src/zaqal/frontend/SC.scala:44:38, :57:38, :58:{24,56}, :59:37, :60:30, :62:{24,41}
-  wire       _weightTable_0_T = casez_tmp_8 != 6'h1F;	// frontend/src/zaqal/frontend/SC.scala:65:16
-  wire [5:0] _weightTable_0_T_1 = casez_tmp_8 + 6'h1;	// frontend/src/zaqal/frontend/SC.scala:64:29, :65:{16,34}
-  wire       _weightTable_0_T_5 = casez_tmp_8 != 6'h20;	// frontend/src/zaqal/frontend/SC.scala:65:16, :66:16
-  wire [5:0] _weightTable_0_T_6 = casez_tmp_8 - 6'h1;	// frontend/src/zaqal/frontend/SC.scala:65:16, :66:34
-  wire       inc = io_update_dir == io_update_ghr[0];	// frontend/src/zaqal/frontend/SC.scala:69:30, :71:31
-  wire       _weightTable_1_T = casez_tmp_9 != 6'h1F;	// frontend/src/zaqal/frontend/SC.scala:65:16, :73:15
-  wire [5:0] _weightTable_1_T_1 = casez_tmp_9 + 6'h1;	// frontend/src/zaqal/frontend/SC.scala:64:29, :65:16, :73:30
-  wire       _weightTable_1_T_5 = casez_tmp_9 != 6'h20;	// frontend/src/zaqal/frontend/SC.scala:65:16, :66:16, :74:15
-  wire [5:0] _weightTable_1_T_6 = casez_tmp_9 - 6'h1;	// frontend/src/zaqal/frontend/SC.scala:65:16, :74:30
-  wire       inc_1 = io_update_dir == io_update_ghr[1];	// frontend/src/zaqal/frontend/SC.scala:69:30, :71:31
-  wire       _weightTable_2_T = casez_tmp_10 != 6'h1F;	// frontend/src/zaqal/frontend/SC.scala:65:16, :73:15
-  wire [5:0] _weightTable_2_T_1 = casez_tmp_10 + 6'h1;	// frontend/src/zaqal/frontend/SC.scala:64:29, :65:16, :73:30
-  wire       _weightTable_2_T_5 = casez_tmp_10 != 6'h20;	// frontend/src/zaqal/frontend/SC.scala:65:16, :66:16, :74:15
-  wire [5:0] _weightTable_2_T_6 = casez_tmp_10 - 6'h1;	// frontend/src/zaqal/frontend/SC.scala:65:16, :74:30
-  wire       inc_2 = io_update_dir == io_update_ghr[2];	// frontend/src/zaqal/frontend/SC.scala:69:30, :71:31
-  wire       _weightTable_3_T = casez_tmp_11 != 6'h1F;	// frontend/src/zaqal/frontend/SC.scala:65:16, :73:15
-  wire [5:0] _weightTable_3_T_1 = casez_tmp_11 + 6'h1;	// frontend/src/zaqal/frontend/SC.scala:64:29, :65:16, :73:30
-  wire       _weightTable_3_T_5 = casez_tmp_11 != 6'h20;	// frontend/src/zaqal/frontend/SC.scala:65:16, :66:16, :74:15
-  wire [5:0] _weightTable_3_T_6 = casez_tmp_11 - 6'h1;	// frontend/src/zaqal/frontend/SC.scala:65:16, :74:30
-  wire       inc_3 = io_update_dir == io_update_ghr[3];	// frontend/src/zaqal/frontend/SC.scala:69:30, :71:31
-  wire       _weightTable_4_T = casez_tmp_12 != 6'h1F;	// frontend/src/zaqal/frontend/SC.scala:65:16, :73:15
-  wire [5:0] _weightTable_4_T_1 = casez_tmp_12 + 6'h1;	// frontend/src/zaqal/frontend/SC.scala:64:29, :65:16, :73:30
-  wire       _weightTable_4_T_5 = casez_tmp_12 != 6'h20;	// frontend/src/zaqal/frontend/SC.scala:65:16, :66:16, :74:15
-  wire [5:0] _weightTable_4_T_6 = casez_tmp_12 - 6'h1;	// frontend/src/zaqal/frontend/SC.scala:65:16, :74:30
-  wire       inc_4 = io_update_dir == io_update_ghr[4];	// frontend/src/zaqal/frontend/SC.scala:69:30, :71:31
-  wire       _weightTable_5_T = casez_tmp_13 != 6'h1F;	// frontend/src/zaqal/frontend/SC.scala:65:16, :73:15
-  wire [5:0] _weightTable_5_T_1 = casez_tmp_13 + 6'h1;	// frontend/src/zaqal/frontend/SC.scala:64:29, :65:16, :73:30
-  wire       _weightTable_5_T_5 = casez_tmp_13 != 6'h20;	// frontend/src/zaqal/frontend/SC.scala:65:16, :66:16, :74:15
-  wire [5:0] _weightTable_5_T_6 = casez_tmp_13 - 6'h1;	// frontend/src/zaqal/frontend/SC.scala:65:16, :74:30
-  wire       inc_5 = io_update_dir == io_update_ghr[5];	// frontend/src/zaqal/frontend/SC.scala:69:30, :71:31
-  wire       _weightTable_6_T = casez_tmp_14 != 6'h1F;	// frontend/src/zaqal/frontend/SC.scala:65:16, :73:15
-  wire [5:0] _weightTable_6_T_1 = casez_tmp_14 + 6'h1;	// frontend/src/zaqal/frontend/SC.scala:64:29, :65:16, :73:30
-  wire       _weightTable_6_T_5 = casez_tmp_14 != 6'h20;	// frontend/src/zaqal/frontend/SC.scala:65:16, :66:16, :74:15
-  wire [5:0] _weightTable_6_T_6 = casez_tmp_14 - 6'h1;	// frontend/src/zaqal/frontend/SC.scala:65:16, :74:30
-  wire       inc_6 = io_update_dir == io_update_ghr[6];	// frontend/src/zaqal/frontend/SC.scala:69:30, :71:31
-  wire       _weightTable_7_T = casez_tmp_15 != 6'h1F;	// frontend/src/zaqal/frontend/SC.scala:65:16, :73:15
-  wire [5:0] _weightTable_7_T_1 = casez_tmp_15 + 6'h1;	// frontend/src/zaqal/frontend/SC.scala:64:29, :65:16, :73:30
-  wire       _weightTable_7_T_5 = casez_tmp_15 != 6'h20;	// frontend/src/zaqal/frontend/SC.scala:65:16, :66:16, :74:15
-  wire [5:0] _weightTable_7_T_6 = casez_tmp_15 - 6'h1;	// frontend/src/zaqal/frontend/SC.scala:65:16, :74:30
-  wire       inc_7 = io_update_dir == io_update_ghr[7];	// frontend/src/zaqal/frontend/SC.scala:69:30, :71:31
-  wire       _weightTable_8_T = casez_tmp_16 != 6'h1F;	// frontend/src/zaqal/frontend/SC.scala:65:16, :73:15
-  wire [5:0] _weightTable_8_T_1 = casez_tmp_16 + 6'h1;	// frontend/src/zaqal/frontend/SC.scala:64:29, :65:16, :73:30
-  wire       _weightTable_8_T_5 = casez_tmp_16 != 6'h20;	// frontend/src/zaqal/frontend/SC.scala:65:16, :66:16, :74:15
-  wire [5:0] _weightTable_8_T_6 = casez_tmp_16 - 6'h1;	// frontend/src/zaqal/frontend/SC.scala:65:16, :74:30
+  wire [5:0]       _GEN_10 = {2'h0, upd_idx};	// frontend/src/zaqal/frontend/SC.scala:40:10, :54:38, :65:16
+  wire             _weightTable_0_T = _GEN_0[_GEN_10] != 6'h1F;	// frontend/src/zaqal/frontend/SC.scala:40:10, :65:16
+  wire [5:0]       _weightTable_0_T_1 = _GEN_0[_GEN_10] + 6'h1;	// frontend/src/zaqal/frontend/SC.scala:40:10, :64:29, :65:{16,34}
+  wire             _weightTable_0_T_5 = _GEN_0[_GEN_10] != 6'h20;	// frontend/src/zaqal/frontend/SC.scala:40:10, :65:16, :66:16
+  wire [5:0]       _weightTable_0_T_6 = _GEN_0[_GEN_10] - 6'h1;	// frontend/src/zaqal/frontend/SC.scala:40:10, :65:16, :66:34
+  wire             inc = io_update_dir == io_update_ghr[0];	// frontend/src/zaqal/frontend/SC.scala:69:30, :71:31
+  wire             _weightTable_1_T = _GEN_1[_GEN_10] != 6'h1F;	// frontend/src/zaqal/frontend/SC.scala:40:10, :65:16, :73:15
+  wire [5:0]       _weightTable_1_T_1 = _GEN_1[_GEN_10] + 6'h1;	// frontend/src/zaqal/frontend/SC.scala:40:10, :64:29, :65:16, :73:30
+  wire             _weightTable_1_T_5 = _GEN_1[_GEN_10] != 6'h20;	// frontend/src/zaqal/frontend/SC.scala:40:10, :65:16, :66:16, :74:15
+  wire [5:0]       _weightTable_1_T_6 = _GEN_1[_GEN_10] - 6'h1;	// frontend/src/zaqal/frontend/SC.scala:40:10, :65:16, :74:30
+  wire             inc_1 = io_update_dir == io_update_ghr[1];	// frontend/src/zaqal/frontend/SC.scala:69:30, :71:31
+  wire             _weightTable_2_T = _GEN_2[_GEN_10] != 6'h1F;	// frontend/src/zaqal/frontend/SC.scala:40:10, :65:16, :73:15
+  wire [5:0]       _weightTable_2_T_1 = _GEN_2[_GEN_10] + 6'h1;	// frontend/src/zaqal/frontend/SC.scala:40:10, :64:29, :65:16, :73:30
+  wire             _weightTable_2_T_5 = _GEN_2[_GEN_10] != 6'h20;	// frontend/src/zaqal/frontend/SC.scala:40:10, :65:16, :66:16, :74:15
+  wire [5:0]       _weightTable_2_T_6 = _GEN_2[_GEN_10] - 6'h1;	// frontend/src/zaqal/frontend/SC.scala:40:10, :65:16, :74:30
+  wire             inc_2 = io_update_dir == io_update_ghr[2];	// frontend/src/zaqal/frontend/SC.scala:69:30, :71:31
+  wire             _weightTable_3_T = _GEN_3[_GEN_10] != 6'h1F;	// frontend/src/zaqal/frontend/SC.scala:40:10, :65:16, :73:15
+  wire [5:0]       _weightTable_3_T_1 = _GEN_3[_GEN_10] + 6'h1;	// frontend/src/zaqal/frontend/SC.scala:40:10, :64:29, :65:16, :73:30
+  wire             _weightTable_3_T_5 = _GEN_3[_GEN_10] != 6'h20;	// frontend/src/zaqal/frontend/SC.scala:40:10, :65:16, :66:16, :74:15
+  wire [5:0]       _weightTable_3_T_6 = _GEN_3[_GEN_10] - 6'h1;	// frontend/src/zaqal/frontend/SC.scala:40:10, :65:16, :74:30
+  wire             inc_3 = io_update_dir == io_update_ghr[3];	// frontend/src/zaqal/frontend/SC.scala:69:30, :71:31
+  wire             _weightTable_4_T = _GEN_4[_GEN_10] != 6'h1F;	// frontend/src/zaqal/frontend/SC.scala:40:10, :65:16, :73:15
+  wire [5:0]       _weightTable_4_T_1 = _GEN_4[_GEN_10] + 6'h1;	// frontend/src/zaqal/frontend/SC.scala:40:10, :64:29, :65:16, :73:30
+  wire             _weightTable_4_T_5 = _GEN_4[_GEN_10] != 6'h20;	// frontend/src/zaqal/frontend/SC.scala:40:10, :65:16, :66:16, :74:15
+  wire [5:0]       _weightTable_4_T_6 = _GEN_4[_GEN_10] - 6'h1;	// frontend/src/zaqal/frontend/SC.scala:40:10, :65:16, :74:30
+  wire             inc_4 = io_update_dir == io_update_ghr[4];	// frontend/src/zaqal/frontend/SC.scala:69:30, :71:31
+  wire             _weightTable_5_T = _GEN_5[_GEN_10] != 6'h1F;	// frontend/src/zaqal/frontend/SC.scala:40:10, :65:16, :73:15
+  wire [5:0]       _weightTable_5_T_1 = _GEN_5[_GEN_10] + 6'h1;	// frontend/src/zaqal/frontend/SC.scala:40:10, :64:29, :65:16, :73:30
+  wire             _weightTable_5_T_5 = _GEN_5[_GEN_10] != 6'h20;	// frontend/src/zaqal/frontend/SC.scala:40:10, :65:16, :66:16, :74:15
+  wire [5:0]       _weightTable_5_T_6 = _GEN_5[_GEN_10] - 6'h1;	// frontend/src/zaqal/frontend/SC.scala:40:10, :65:16, :74:30
+  wire             inc_5 = io_update_dir == io_update_ghr[5];	// frontend/src/zaqal/frontend/SC.scala:69:30, :71:31
+  wire             _weightTable_6_T = _GEN_6[_GEN_10] != 6'h1F;	// frontend/src/zaqal/frontend/SC.scala:40:10, :65:16, :73:15
+  wire [5:0]       _weightTable_6_T_1 = _GEN_6[_GEN_10] + 6'h1;	// frontend/src/zaqal/frontend/SC.scala:40:10, :64:29, :65:16, :73:30
+  wire             _weightTable_6_T_5 = _GEN_6[_GEN_10] != 6'h20;	// frontend/src/zaqal/frontend/SC.scala:40:10, :65:16, :66:16, :74:15
+  wire [5:0]       _weightTable_6_T_6 = _GEN_6[_GEN_10] - 6'h1;	// frontend/src/zaqal/frontend/SC.scala:40:10, :65:16, :74:30
+  wire             inc_6 = io_update_dir == io_update_ghr[6];	// frontend/src/zaqal/frontend/SC.scala:69:30, :71:31
+  wire             _weightTable_7_T = _GEN_7[_GEN_10] != 6'h1F;	// frontend/src/zaqal/frontend/SC.scala:40:10, :65:16, :73:15
+  wire [5:0]       _weightTable_7_T_1 = _GEN_7[_GEN_10] + 6'h1;	// frontend/src/zaqal/frontend/SC.scala:40:10, :64:29, :65:16, :73:30
+  wire             _weightTable_7_T_5 = _GEN_7[_GEN_10] != 6'h20;	// frontend/src/zaqal/frontend/SC.scala:40:10, :65:16, :66:16, :74:15
+  wire [5:0]       _weightTable_7_T_6 = _GEN_7[_GEN_10] - 6'h1;	// frontend/src/zaqal/frontend/SC.scala:40:10, :65:16, :74:30
+  wire             inc_7 = io_update_dir == io_update_ghr[7];	// frontend/src/zaqal/frontend/SC.scala:69:30, :71:31
+  wire             _weightTable_8_T = _GEN_8[_GEN_10] != 6'h1F;	// frontend/src/zaqal/frontend/SC.scala:40:10, :65:16, :73:15
+  wire [5:0]       _weightTable_8_T_1 = _GEN_8[_GEN_10] + 6'h1;	// frontend/src/zaqal/frontend/SC.scala:40:10, :64:29, :65:16, :73:30
+  wire             _weightTable_8_T_5 = _GEN_8[_GEN_10] != 6'h20;	// frontend/src/zaqal/frontend/SC.scala:40:10, :65:16, :66:16, :74:15
+  wire [5:0]       _weightTable_8_T_6 = _GEN_8[_GEN_10] - 6'h1;	// frontend/src/zaqal/frontend/SC.scala:40:10, :65:16, :74:30
   always @(posedge clock) begin	// frontend/src/zaqal/frontend/SC.scala:8:7
     if (reset) begin	// frontend/src/zaqal/frontend/SC.scala:8:7
       weightTable_0_0 <= 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:{28,65}
@@ -2832,1477 +1023,1477 @@ module SCPredictor(	// frontend/src/zaqal/frontend/SC.scala:8:7
       weightTable_15_8 <= 6'h0;	// frontend/src/zaqal/frontend/SC.scala:33:{28,65}
     end
     else begin	// frontend/src/zaqal/frontend/SC.scala:8:7
-      if (_GEN_1 & upd_idx == 4'h0) begin	// frontend/src/zaqal/frontend/SC.scala:33:28, :54:38, :62:{24,55}, :64:29
+      if (_GEN_9 & upd_idx == 4'h0) begin	// frontend/src/zaqal/frontend/SC.scala:33:28, :54:38, :62:{24,55}, :64:29
         if (io_update_dir) begin	// frontend/src/zaqal/frontend/SC.scala:9:14
           if (_weightTable_0_T)	// frontend/src/zaqal/frontend/SC.scala:65:16
             weightTable_0_0 <= _weightTable_0_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:34
           else	// frontend/src/zaqal/frontend/SC.scala:65:16
-            weightTable_0_0 <= casez_tmp_8;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_0_0 <= _GEN_0[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_0_T_5)	// frontend/src/zaqal/frontend/SC.scala:66:16
           weightTable_0_0 <= _weightTable_0_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :66:34
         else	// frontend/src/zaqal/frontend/SC.scala:66:16
-          weightTable_0_0 <= casez_tmp_8;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_0_0 <= _GEN_0[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_1_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_0_1 <= _weightTable_1_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_0_1 <= casez_tmp_9;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_0_1 <= _GEN_1[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_1_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_0_1 <= _weightTable_1_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_0_1 <= casez_tmp_9;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_0_1 <= _GEN_1[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_1) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_2_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_0_2 <= _weightTable_2_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_0_2 <= casez_tmp_10;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_0_2 <= _GEN_2[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_2_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_0_2 <= _weightTable_2_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_0_2 <= casez_tmp_10;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_0_2 <= _GEN_2[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_2) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_3_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_0_3 <= _weightTable_3_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_0_3 <= casez_tmp_11;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_0_3 <= _GEN_3[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_3_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_0_3 <= _weightTable_3_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_0_3 <= casez_tmp_11;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_0_3 <= _GEN_3[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_3) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_4_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_0_4 <= _weightTable_4_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_0_4 <= casez_tmp_12;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_0_4 <= _GEN_4[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_4_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_0_4 <= _weightTable_4_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_0_4 <= casez_tmp_12;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_0_4 <= _GEN_4[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_4) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_5_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_0_5 <= _weightTable_5_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_0_5 <= casez_tmp_13;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_0_5 <= _GEN_5[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_5_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_0_5 <= _weightTable_5_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_0_5 <= casez_tmp_13;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_0_5 <= _GEN_5[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_5) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_6_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_0_6 <= _weightTable_6_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_0_6 <= casez_tmp_14;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_0_6 <= _GEN_6[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_6_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_0_6 <= _weightTable_6_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_0_6 <= casez_tmp_14;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_0_6 <= _GEN_6[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_6) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_7_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_0_7 <= _weightTable_7_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_0_7 <= casez_tmp_15;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_0_7 <= _GEN_7[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_7_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_0_7 <= _weightTable_7_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_0_7 <= casez_tmp_15;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_0_7 <= _GEN_7[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_7) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_8_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_0_8 <= _weightTable_8_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_0_8 <= casez_tmp_16;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_0_8 <= _GEN_8[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_8_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_0_8 <= _weightTable_8_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_0_8 <= casez_tmp_16;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_0_8 <= _GEN_8[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
       end
-      if (_GEN_1 & upd_idx == 4'h1) begin	// frontend/src/zaqal/frontend/SC.scala:33:28, :54:38, :62:{24,55}, :64:29
+      if (_GEN_9 & upd_idx == 4'h1) begin	// frontend/src/zaqal/frontend/SC.scala:33:28, :54:38, :62:{24,55}, :64:29
         if (io_update_dir) begin	// frontend/src/zaqal/frontend/SC.scala:9:14
           if (_weightTable_0_T)	// frontend/src/zaqal/frontend/SC.scala:65:16
             weightTable_1_0 <= _weightTable_0_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:34
           else	// frontend/src/zaqal/frontend/SC.scala:65:16
-            weightTable_1_0 <= casez_tmp_8;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_1_0 <= _GEN_0[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_0_T_5)	// frontend/src/zaqal/frontend/SC.scala:66:16
           weightTable_1_0 <= _weightTable_0_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :66:34
         else	// frontend/src/zaqal/frontend/SC.scala:66:16
-          weightTable_1_0 <= casez_tmp_8;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_1_0 <= _GEN_0[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_1_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_1_1 <= _weightTable_1_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_1_1 <= casez_tmp_9;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_1_1 <= _GEN_1[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_1_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_1_1 <= _weightTable_1_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_1_1 <= casez_tmp_9;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_1_1 <= _GEN_1[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_1) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_2_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_1_2 <= _weightTable_2_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_1_2 <= casez_tmp_10;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_1_2 <= _GEN_2[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_2_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_1_2 <= _weightTable_2_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_1_2 <= casez_tmp_10;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_1_2 <= _GEN_2[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_2) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_3_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_1_3 <= _weightTable_3_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_1_3 <= casez_tmp_11;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_1_3 <= _GEN_3[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_3_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_1_3 <= _weightTable_3_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_1_3 <= casez_tmp_11;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_1_3 <= _GEN_3[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_3) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_4_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_1_4 <= _weightTable_4_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_1_4 <= casez_tmp_12;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_1_4 <= _GEN_4[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_4_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_1_4 <= _weightTable_4_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_1_4 <= casez_tmp_12;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_1_4 <= _GEN_4[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_4) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_5_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_1_5 <= _weightTable_5_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_1_5 <= casez_tmp_13;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_1_5 <= _GEN_5[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_5_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_1_5 <= _weightTable_5_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_1_5 <= casez_tmp_13;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_1_5 <= _GEN_5[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_5) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_6_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_1_6 <= _weightTable_6_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_1_6 <= casez_tmp_14;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_1_6 <= _GEN_6[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_6_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_1_6 <= _weightTable_6_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_1_6 <= casez_tmp_14;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_1_6 <= _GEN_6[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_6) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_7_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_1_7 <= _weightTable_7_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_1_7 <= casez_tmp_15;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_1_7 <= _GEN_7[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_7_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_1_7 <= _weightTable_7_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_1_7 <= casez_tmp_15;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_1_7 <= _GEN_7[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_7) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_8_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_1_8 <= _weightTable_8_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_1_8 <= casez_tmp_16;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_1_8 <= _GEN_8[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_8_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_1_8 <= _weightTable_8_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_1_8 <= casez_tmp_16;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_1_8 <= _GEN_8[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
       end
-      if (_GEN_1 & upd_idx == 4'h2) begin	// frontend/src/zaqal/frontend/SC.scala:33:28, :54:38, :62:{24,55}, :64:29
+      if (_GEN_9 & upd_idx == 4'h2) begin	// frontend/src/zaqal/frontend/SC.scala:33:28, :54:38, :62:{24,55}, :64:29
         if (io_update_dir) begin	// frontend/src/zaqal/frontend/SC.scala:9:14
           if (_weightTable_0_T)	// frontend/src/zaqal/frontend/SC.scala:65:16
             weightTable_2_0 <= _weightTable_0_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:34
           else	// frontend/src/zaqal/frontend/SC.scala:65:16
-            weightTable_2_0 <= casez_tmp_8;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_2_0 <= _GEN_0[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_0_T_5)	// frontend/src/zaqal/frontend/SC.scala:66:16
           weightTable_2_0 <= _weightTable_0_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :66:34
         else	// frontend/src/zaqal/frontend/SC.scala:66:16
-          weightTable_2_0 <= casez_tmp_8;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_2_0 <= _GEN_0[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_1_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_2_1 <= _weightTable_1_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_2_1 <= casez_tmp_9;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_2_1 <= _GEN_1[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_1_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_2_1 <= _weightTable_1_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_2_1 <= casez_tmp_9;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_2_1 <= _GEN_1[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_1) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_2_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_2_2 <= _weightTable_2_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_2_2 <= casez_tmp_10;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_2_2 <= _GEN_2[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_2_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_2_2 <= _weightTable_2_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_2_2 <= casez_tmp_10;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_2_2 <= _GEN_2[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_2) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_3_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_2_3 <= _weightTable_3_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_2_3 <= casez_tmp_11;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_2_3 <= _GEN_3[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_3_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_2_3 <= _weightTable_3_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_2_3 <= casez_tmp_11;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_2_3 <= _GEN_3[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_3) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_4_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_2_4 <= _weightTable_4_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_2_4 <= casez_tmp_12;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_2_4 <= _GEN_4[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_4_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_2_4 <= _weightTable_4_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_2_4 <= casez_tmp_12;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_2_4 <= _GEN_4[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_4) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_5_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_2_5 <= _weightTable_5_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_2_5 <= casez_tmp_13;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_2_5 <= _GEN_5[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_5_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_2_5 <= _weightTable_5_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_2_5 <= casez_tmp_13;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_2_5 <= _GEN_5[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_5) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_6_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_2_6 <= _weightTable_6_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_2_6 <= casez_tmp_14;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_2_6 <= _GEN_6[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_6_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_2_6 <= _weightTable_6_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_2_6 <= casez_tmp_14;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_2_6 <= _GEN_6[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_6) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_7_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_2_7 <= _weightTable_7_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_2_7 <= casez_tmp_15;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_2_7 <= _GEN_7[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_7_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_2_7 <= _weightTable_7_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_2_7 <= casez_tmp_15;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_2_7 <= _GEN_7[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_7) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_8_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_2_8 <= _weightTable_8_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_2_8 <= casez_tmp_16;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_2_8 <= _GEN_8[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_8_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_2_8 <= _weightTable_8_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_2_8 <= casez_tmp_16;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_2_8 <= _GEN_8[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
       end
-      if (_GEN_1 & upd_idx == 4'h3) begin	// frontend/src/zaqal/frontend/SC.scala:33:28, :54:38, :62:{24,55}, :64:29
+      if (_GEN_9 & upd_idx == 4'h3) begin	// frontend/src/zaqal/frontend/SC.scala:33:28, :54:38, :62:{24,55}, :64:29
         if (io_update_dir) begin	// frontend/src/zaqal/frontend/SC.scala:9:14
           if (_weightTable_0_T)	// frontend/src/zaqal/frontend/SC.scala:65:16
             weightTable_3_0 <= _weightTable_0_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:34
           else	// frontend/src/zaqal/frontend/SC.scala:65:16
-            weightTable_3_0 <= casez_tmp_8;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_3_0 <= _GEN_0[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_0_T_5)	// frontend/src/zaqal/frontend/SC.scala:66:16
           weightTable_3_0 <= _weightTable_0_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :66:34
         else	// frontend/src/zaqal/frontend/SC.scala:66:16
-          weightTable_3_0 <= casez_tmp_8;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_3_0 <= _GEN_0[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_1_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_3_1 <= _weightTable_1_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_3_1 <= casez_tmp_9;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_3_1 <= _GEN_1[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_1_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_3_1 <= _weightTable_1_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_3_1 <= casez_tmp_9;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_3_1 <= _GEN_1[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_1) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_2_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_3_2 <= _weightTable_2_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_3_2 <= casez_tmp_10;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_3_2 <= _GEN_2[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_2_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_3_2 <= _weightTable_2_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_3_2 <= casez_tmp_10;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_3_2 <= _GEN_2[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_2) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_3_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_3_3 <= _weightTable_3_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_3_3 <= casez_tmp_11;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_3_3 <= _GEN_3[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_3_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_3_3 <= _weightTable_3_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_3_3 <= casez_tmp_11;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_3_3 <= _GEN_3[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_3) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_4_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_3_4 <= _weightTable_4_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_3_4 <= casez_tmp_12;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_3_4 <= _GEN_4[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_4_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_3_4 <= _weightTable_4_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_3_4 <= casez_tmp_12;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_3_4 <= _GEN_4[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_4) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_5_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_3_5 <= _weightTable_5_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_3_5 <= casez_tmp_13;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_3_5 <= _GEN_5[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_5_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_3_5 <= _weightTable_5_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_3_5 <= casez_tmp_13;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_3_5 <= _GEN_5[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_5) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_6_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_3_6 <= _weightTable_6_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_3_6 <= casez_tmp_14;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_3_6 <= _GEN_6[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_6_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_3_6 <= _weightTable_6_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_3_6 <= casez_tmp_14;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_3_6 <= _GEN_6[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_6) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_7_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_3_7 <= _weightTable_7_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_3_7 <= casez_tmp_15;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_3_7 <= _GEN_7[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_7_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_3_7 <= _weightTable_7_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_3_7 <= casez_tmp_15;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_3_7 <= _GEN_7[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_7) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_8_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_3_8 <= _weightTable_8_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_3_8 <= casez_tmp_16;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_3_8 <= _GEN_8[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_8_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_3_8 <= _weightTable_8_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_3_8 <= casez_tmp_16;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_3_8 <= _GEN_8[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
       end
-      if (_GEN_1 & upd_idx == 4'h4) begin	// frontend/src/zaqal/frontend/SC.scala:33:28, :54:38, :62:{24,55}, :64:29
+      if (_GEN_9 & upd_idx == 4'h4) begin	// frontend/src/zaqal/frontend/SC.scala:33:28, :54:38, :62:{24,55}, :64:29
         if (io_update_dir) begin	// frontend/src/zaqal/frontend/SC.scala:9:14
           if (_weightTable_0_T)	// frontend/src/zaqal/frontend/SC.scala:65:16
             weightTable_4_0 <= _weightTable_0_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:34
           else	// frontend/src/zaqal/frontend/SC.scala:65:16
-            weightTable_4_0 <= casez_tmp_8;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_4_0 <= _GEN_0[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_0_T_5)	// frontend/src/zaqal/frontend/SC.scala:66:16
           weightTable_4_0 <= _weightTable_0_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :66:34
         else	// frontend/src/zaqal/frontend/SC.scala:66:16
-          weightTable_4_0 <= casez_tmp_8;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_4_0 <= _GEN_0[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_1_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_4_1 <= _weightTable_1_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_4_1 <= casez_tmp_9;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_4_1 <= _GEN_1[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_1_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_4_1 <= _weightTable_1_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_4_1 <= casez_tmp_9;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_4_1 <= _GEN_1[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_1) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_2_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_4_2 <= _weightTable_2_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_4_2 <= casez_tmp_10;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_4_2 <= _GEN_2[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_2_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_4_2 <= _weightTable_2_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_4_2 <= casez_tmp_10;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_4_2 <= _GEN_2[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_2) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_3_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_4_3 <= _weightTable_3_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_4_3 <= casez_tmp_11;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_4_3 <= _GEN_3[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_3_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_4_3 <= _weightTable_3_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_4_3 <= casez_tmp_11;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_4_3 <= _GEN_3[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_3) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_4_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_4_4 <= _weightTable_4_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_4_4 <= casez_tmp_12;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_4_4 <= _GEN_4[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_4_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_4_4 <= _weightTable_4_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_4_4 <= casez_tmp_12;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_4_4 <= _GEN_4[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_4) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_5_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_4_5 <= _weightTable_5_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_4_5 <= casez_tmp_13;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_4_5 <= _GEN_5[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_5_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_4_5 <= _weightTable_5_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_4_5 <= casez_tmp_13;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_4_5 <= _GEN_5[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_5) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_6_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_4_6 <= _weightTable_6_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_4_6 <= casez_tmp_14;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_4_6 <= _GEN_6[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_6_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_4_6 <= _weightTable_6_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_4_6 <= casez_tmp_14;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_4_6 <= _GEN_6[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_6) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_7_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_4_7 <= _weightTable_7_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_4_7 <= casez_tmp_15;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_4_7 <= _GEN_7[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_7_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_4_7 <= _weightTable_7_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_4_7 <= casez_tmp_15;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_4_7 <= _GEN_7[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_7) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_8_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_4_8 <= _weightTable_8_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_4_8 <= casez_tmp_16;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_4_8 <= _GEN_8[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_8_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_4_8 <= _weightTable_8_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_4_8 <= casez_tmp_16;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_4_8 <= _GEN_8[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
       end
-      if (_GEN_1 & upd_idx == 4'h5) begin	// frontend/src/zaqal/frontend/SC.scala:33:28, :54:38, :62:{24,55}, :64:29
+      if (_GEN_9 & upd_idx == 4'h5) begin	// frontend/src/zaqal/frontend/SC.scala:33:28, :54:38, :62:{24,55}, :64:29
         if (io_update_dir) begin	// frontend/src/zaqal/frontend/SC.scala:9:14
           if (_weightTable_0_T)	// frontend/src/zaqal/frontend/SC.scala:65:16
             weightTable_5_0 <= _weightTable_0_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:34
           else	// frontend/src/zaqal/frontend/SC.scala:65:16
-            weightTable_5_0 <= casez_tmp_8;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_5_0 <= _GEN_0[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_0_T_5)	// frontend/src/zaqal/frontend/SC.scala:66:16
           weightTable_5_0 <= _weightTable_0_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :66:34
         else	// frontend/src/zaqal/frontend/SC.scala:66:16
-          weightTable_5_0 <= casez_tmp_8;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_5_0 <= _GEN_0[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_1_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_5_1 <= _weightTable_1_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_5_1 <= casez_tmp_9;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_5_1 <= _GEN_1[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_1_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_5_1 <= _weightTable_1_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_5_1 <= casez_tmp_9;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_5_1 <= _GEN_1[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_1) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_2_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_5_2 <= _weightTable_2_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_5_2 <= casez_tmp_10;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_5_2 <= _GEN_2[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_2_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_5_2 <= _weightTable_2_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_5_2 <= casez_tmp_10;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_5_2 <= _GEN_2[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_2) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_3_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_5_3 <= _weightTable_3_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_5_3 <= casez_tmp_11;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_5_3 <= _GEN_3[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_3_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_5_3 <= _weightTable_3_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_5_3 <= casez_tmp_11;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_5_3 <= _GEN_3[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_3) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_4_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_5_4 <= _weightTable_4_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_5_4 <= casez_tmp_12;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_5_4 <= _GEN_4[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_4_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_5_4 <= _weightTable_4_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_5_4 <= casez_tmp_12;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_5_4 <= _GEN_4[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_4) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_5_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_5_5 <= _weightTable_5_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_5_5 <= casez_tmp_13;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_5_5 <= _GEN_5[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_5_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_5_5 <= _weightTable_5_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_5_5 <= casez_tmp_13;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_5_5 <= _GEN_5[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_5) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_6_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_5_6 <= _weightTable_6_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_5_6 <= casez_tmp_14;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_5_6 <= _GEN_6[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_6_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_5_6 <= _weightTable_6_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_5_6 <= casez_tmp_14;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_5_6 <= _GEN_6[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_6) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_7_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_5_7 <= _weightTable_7_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_5_7 <= casez_tmp_15;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_5_7 <= _GEN_7[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_7_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_5_7 <= _weightTable_7_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_5_7 <= casez_tmp_15;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_5_7 <= _GEN_7[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_7) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_8_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_5_8 <= _weightTable_8_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_5_8 <= casez_tmp_16;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_5_8 <= _GEN_8[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_8_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_5_8 <= _weightTable_8_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_5_8 <= casez_tmp_16;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_5_8 <= _GEN_8[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
       end
-      if (_GEN_1 & upd_idx == 4'h6) begin	// frontend/src/zaqal/frontend/SC.scala:33:28, :54:38, :62:{24,55}, :64:29
+      if (_GEN_9 & upd_idx == 4'h6) begin	// frontend/src/zaqal/frontend/SC.scala:33:28, :54:38, :62:{24,55}, :64:29
         if (io_update_dir) begin	// frontend/src/zaqal/frontend/SC.scala:9:14
           if (_weightTable_0_T)	// frontend/src/zaqal/frontend/SC.scala:65:16
             weightTable_6_0 <= _weightTable_0_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:34
           else	// frontend/src/zaqal/frontend/SC.scala:65:16
-            weightTable_6_0 <= casez_tmp_8;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_6_0 <= _GEN_0[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_0_T_5)	// frontend/src/zaqal/frontend/SC.scala:66:16
           weightTable_6_0 <= _weightTable_0_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :66:34
         else	// frontend/src/zaqal/frontend/SC.scala:66:16
-          weightTable_6_0 <= casez_tmp_8;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_6_0 <= _GEN_0[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_1_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_6_1 <= _weightTable_1_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_6_1 <= casez_tmp_9;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_6_1 <= _GEN_1[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_1_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_6_1 <= _weightTable_1_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_6_1 <= casez_tmp_9;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_6_1 <= _GEN_1[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_1) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_2_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_6_2 <= _weightTable_2_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_6_2 <= casez_tmp_10;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_6_2 <= _GEN_2[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_2_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_6_2 <= _weightTable_2_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_6_2 <= casez_tmp_10;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_6_2 <= _GEN_2[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_2) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_3_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_6_3 <= _weightTable_3_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_6_3 <= casez_tmp_11;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_6_3 <= _GEN_3[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_3_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_6_3 <= _weightTable_3_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_6_3 <= casez_tmp_11;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_6_3 <= _GEN_3[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_3) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_4_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_6_4 <= _weightTable_4_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_6_4 <= casez_tmp_12;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_6_4 <= _GEN_4[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_4_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_6_4 <= _weightTable_4_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_6_4 <= casez_tmp_12;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_6_4 <= _GEN_4[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_4) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_5_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_6_5 <= _weightTable_5_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_6_5 <= casez_tmp_13;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_6_5 <= _GEN_5[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_5_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_6_5 <= _weightTable_5_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_6_5 <= casez_tmp_13;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_6_5 <= _GEN_5[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_5) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_6_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_6_6 <= _weightTable_6_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_6_6 <= casez_tmp_14;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_6_6 <= _GEN_6[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_6_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_6_6 <= _weightTable_6_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_6_6 <= casez_tmp_14;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_6_6 <= _GEN_6[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_6) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_7_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_6_7 <= _weightTable_7_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_6_7 <= casez_tmp_15;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_6_7 <= _GEN_7[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_7_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_6_7 <= _weightTable_7_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_6_7 <= casez_tmp_15;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_6_7 <= _GEN_7[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_7) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_8_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_6_8 <= _weightTable_8_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_6_8 <= casez_tmp_16;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_6_8 <= _GEN_8[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_8_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_6_8 <= _weightTable_8_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_6_8 <= casez_tmp_16;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_6_8 <= _GEN_8[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
       end
-      if (_GEN_1 & upd_idx == 4'h7) begin	// frontend/src/zaqal/frontend/SC.scala:33:28, :54:38, :62:{24,55}, :64:29
+      if (_GEN_9 & upd_idx == 4'h7) begin	// frontend/src/zaqal/frontend/SC.scala:33:28, :54:38, :62:{24,55}, :64:29
         if (io_update_dir) begin	// frontend/src/zaqal/frontend/SC.scala:9:14
           if (_weightTable_0_T)	// frontend/src/zaqal/frontend/SC.scala:65:16
             weightTable_7_0 <= _weightTable_0_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:34
           else	// frontend/src/zaqal/frontend/SC.scala:65:16
-            weightTable_7_0 <= casez_tmp_8;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_7_0 <= _GEN_0[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_0_T_5)	// frontend/src/zaqal/frontend/SC.scala:66:16
           weightTable_7_0 <= _weightTable_0_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :66:34
         else	// frontend/src/zaqal/frontend/SC.scala:66:16
-          weightTable_7_0 <= casez_tmp_8;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_7_0 <= _GEN_0[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_1_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_7_1 <= _weightTable_1_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_7_1 <= casez_tmp_9;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_7_1 <= _GEN_1[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_1_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_7_1 <= _weightTable_1_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_7_1 <= casez_tmp_9;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_7_1 <= _GEN_1[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_1) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_2_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_7_2 <= _weightTable_2_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_7_2 <= casez_tmp_10;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_7_2 <= _GEN_2[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_2_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_7_2 <= _weightTable_2_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_7_2 <= casez_tmp_10;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_7_2 <= _GEN_2[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_2) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_3_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_7_3 <= _weightTable_3_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_7_3 <= casez_tmp_11;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_7_3 <= _GEN_3[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_3_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_7_3 <= _weightTable_3_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_7_3 <= casez_tmp_11;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_7_3 <= _GEN_3[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_3) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_4_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_7_4 <= _weightTable_4_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_7_4 <= casez_tmp_12;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_7_4 <= _GEN_4[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_4_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_7_4 <= _weightTable_4_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_7_4 <= casez_tmp_12;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_7_4 <= _GEN_4[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_4) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_5_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_7_5 <= _weightTable_5_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_7_5 <= casez_tmp_13;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_7_5 <= _GEN_5[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_5_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_7_5 <= _weightTable_5_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_7_5 <= casez_tmp_13;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_7_5 <= _GEN_5[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_5) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_6_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_7_6 <= _weightTable_6_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_7_6 <= casez_tmp_14;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_7_6 <= _GEN_6[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_6_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_7_6 <= _weightTable_6_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_7_6 <= casez_tmp_14;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_7_6 <= _GEN_6[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_6) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_7_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_7_7 <= _weightTable_7_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_7_7 <= casez_tmp_15;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_7_7 <= _GEN_7[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_7_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_7_7 <= _weightTable_7_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_7_7 <= casez_tmp_15;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_7_7 <= _GEN_7[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_7) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_8_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_7_8 <= _weightTable_8_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_7_8 <= casez_tmp_16;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_7_8 <= _GEN_8[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_8_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_7_8 <= _weightTable_8_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_7_8 <= casez_tmp_16;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_7_8 <= _GEN_8[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
       end
-      if (_GEN_1 & upd_idx == 4'h8) begin	// frontend/src/zaqal/frontend/SC.scala:33:28, :54:38, :62:{24,55}, :64:29
+      if (_GEN_9 & upd_idx == 4'h8) begin	// frontend/src/zaqal/frontend/SC.scala:33:28, :54:38, :62:{24,55}, :64:29
         if (io_update_dir) begin	// frontend/src/zaqal/frontend/SC.scala:9:14
           if (_weightTable_0_T)	// frontend/src/zaqal/frontend/SC.scala:65:16
             weightTable_8_0 <= _weightTable_0_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:34
           else	// frontend/src/zaqal/frontend/SC.scala:65:16
-            weightTable_8_0 <= casez_tmp_8;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_8_0 <= _GEN_0[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_0_T_5)	// frontend/src/zaqal/frontend/SC.scala:66:16
           weightTable_8_0 <= _weightTable_0_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :66:34
         else	// frontend/src/zaqal/frontend/SC.scala:66:16
-          weightTable_8_0 <= casez_tmp_8;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_8_0 <= _GEN_0[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_1_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_8_1 <= _weightTable_1_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_8_1 <= casez_tmp_9;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_8_1 <= _GEN_1[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_1_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_8_1 <= _weightTable_1_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_8_1 <= casez_tmp_9;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_8_1 <= _GEN_1[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_1) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_2_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_8_2 <= _weightTable_2_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_8_2 <= casez_tmp_10;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_8_2 <= _GEN_2[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_2_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_8_2 <= _weightTable_2_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_8_2 <= casez_tmp_10;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_8_2 <= _GEN_2[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_2) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_3_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_8_3 <= _weightTable_3_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_8_3 <= casez_tmp_11;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_8_3 <= _GEN_3[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_3_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_8_3 <= _weightTable_3_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_8_3 <= casez_tmp_11;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_8_3 <= _GEN_3[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_3) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_4_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_8_4 <= _weightTable_4_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_8_4 <= casez_tmp_12;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_8_4 <= _GEN_4[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_4_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_8_4 <= _weightTable_4_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_8_4 <= casez_tmp_12;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_8_4 <= _GEN_4[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_4) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_5_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_8_5 <= _weightTable_5_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_8_5 <= casez_tmp_13;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_8_5 <= _GEN_5[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_5_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_8_5 <= _weightTable_5_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_8_5 <= casez_tmp_13;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_8_5 <= _GEN_5[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_5) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_6_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_8_6 <= _weightTable_6_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_8_6 <= casez_tmp_14;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_8_6 <= _GEN_6[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_6_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_8_6 <= _weightTable_6_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_8_6 <= casez_tmp_14;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_8_6 <= _GEN_6[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_6) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_7_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_8_7 <= _weightTable_7_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_8_7 <= casez_tmp_15;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_8_7 <= _GEN_7[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_7_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_8_7 <= _weightTable_7_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_8_7 <= casez_tmp_15;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_8_7 <= _GEN_7[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_7) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_8_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_8_8 <= _weightTable_8_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_8_8 <= casez_tmp_16;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_8_8 <= _GEN_8[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_8_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_8_8 <= _weightTable_8_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_8_8 <= casez_tmp_16;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_8_8 <= _GEN_8[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
       end
-      if (_GEN_1 & upd_idx == 4'h9) begin	// frontend/src/zaqal/frontend/SC.scala:33:28, :54:38, :62:{24,55}, :64:29
+      if (_GEN_9 & upd_idx == 4'h9) begin	// frontend/src/zaqal/frontend/SC.scala:33:28, :54:38, :62:{24,55}, :64:29
         if (io_update_dir) begin	// frontend/src/zaqal/frontend/SC.scala:9:14
           if (_weightTable_0_T)	// frontend/src/zaqal/frontend/SC.scala:65:16
             weightTable_9_0 <= _weightTable_0_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:34
           else	// frontend/src/zaqal/frontend/SC.scala:65:16
-            weightTable_9_0 <= casez_tmp_8;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_9_0 <= _GEN_0[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_0_T_5)	// frontend/src/zaqal/frontend/SC.scala:66:16
           weightTable_9_0 <= _weightTable_0_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :66:34
         else	// frontend/src/zaqal/frontend/SC.scala:66:16
-          weightTable_9_0 <= casez_tmp_8;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_9_0 <= _GEN_0[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_1_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_9_1 <= _weightTable_1_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_9_1 <= casez_tmp_9;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_9_1 <= _GEN_1[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_1_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_9_1 <= _weightTable_1_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_9_1 <= casez_tmp_9;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_9_1 <= _GEN_1[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_1) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_2_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_9_2 <= _weightTable_2_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_9_2 <= casez_tmp_10;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_9_2 <= _GEN_2[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_2_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_9_2 <= _weightTable_2_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_9_2 <= casez_tmp_10;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_9_2 <= _GEN_2[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_2) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_3_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_9_3 <= _weightTable_3_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_9_3 <= casez_tmp_11;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_9_3 <= _GEN_3[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_3_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_9_3 <= _weightTable_3_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_9_3 <= casez_tmp_11;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_9_3 <= _GEN_3[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_3) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_4_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_9_4 <= _weightTable_4_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_9_4 <= casez_tmp_12;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_9_4 <= _GEN_4[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_4_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_9_4 <= _weightTable_4_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_9_4 <= casez_tmp_12;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_9_4 <= _GEN_4[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_4) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_5_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_9_5 <= _weightTable_5_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_9_5 <= casez_tmp_13;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_9_5 <= _GEN_5[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_5_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_9_5 <= _weightTable_5_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_9_5 <= casez_tmp_13;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_9_5 <= _GEN_5[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_5) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_6_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_9_6 <= _weightTable_6_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_9_6 <= casez_tmp_14;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_9_6 <= _GEN_6[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_6_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_9_6 <= _weightTable_6_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_9_6 <= casez_tmp_14;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_9_6 <= _GEN_6[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_6) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_7_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_9_7 <= _weightTable_7_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_9_7 <= casez_tmp_15;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_9_7 <= _GEN_7[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_7_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_9_7 <= _weightTable_7_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_9_7 <= casez_tmp_15;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_9_7 <= _GEN_7[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_7) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_8_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_9_8 <= _weightTable_8_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_9_8 <= casez_tmp_16;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_9_8 <= _GEN_8[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_8_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_9_8 <= _weightTable_8_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_9_8 <= casez_tmp_16;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_9_8 <= _GEN_8[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
       end
-      if (_GEN_1 & upd_idx == 4'hA) begin	// frontend/src/zaqal/frontend/SC.scala:33:28, :54:38, :62:{24,55}, :64:29
+      if (_GEN_9 & upd_idx == 4'hA) begin	// frontend/src/zaqal/frontend/SC.scala:33:28, :54:38, :62:{24,55}, :64:29
         if (io_update_dir) begin	// frontend/src/zaqal/frontend/SC.scala:9:14
           if (_weightTable_0_T)	// frontend/src/zaqal/frontend/SC.scala:65:16
             weightTable_10_0 <= _weightTable_0_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:34
           else	// frontend/src/zaqal/frontend/SC.scala:65:16
-            weightTable_10_0 <= casez_tmp_8;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_10_0 <= _GEN_0[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_0_T_5)	// frontend/src/zaqal/frontend/SC.scala:66:16
           weightTable_10_0 <= _weightTable_0_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :66:34
         else	// frontend/src/zaqal/frontend/SC.scala:66:16
-          weightTable_10_0 <= casez_tmp_8;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_10_0 <= _GEN_0[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_1_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_10_1 <= _weightTable_1_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_10_1 <= casez_tmp_9;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_10_1 <= _GEN_1[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_1_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_10_1 <= _weightTable_1_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_10_1 <= casez_tmp_9;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_10_1 <= _GEN_1[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_1) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_2_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_10_2 <= _weightTable_2_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_10_2 <= casez_tmp_10;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_10_2 <= _GEN_2[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_2_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_10_2 <= _weightTable_2_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_10_2 <= casez_tmp_10;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_10_2 <= _GEN_2[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_2) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_3_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_10_3 <= _weightTable_3_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_10_3 <= casez_tmp_11;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_10_3 <= _GEN_3[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_3_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_10_3 <= _weightTable_3_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_10_3 <= casez_tmp_11;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_10_3 <= _GEN_3[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_3) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_4_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_10_4 <= _weightTable_4_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_10_4 <= casez_tmp_12;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_10_4 <= _GEN_4[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_4_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_10_4 <= _weightTable_4_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_10_4 <= casez_tmp_12;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_10_4 <= _GEN_4[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_4) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_5_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_10_5 <= _weightTable_5_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_10_5 <= casez_tmp_13;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_10_5 <= _GEN_5[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_5_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_10_5 <= _weightTable_5_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_10_5 <= casez_tmp_13;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_10_5 <= _GEN_5[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_5) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_6_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_10_6 <= _weightTable_6_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_10_6 <= casez_tmp_14;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_10_6 <= _GEN_6[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_6_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_10_6 <= _weightTable_6_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_10_6 <= casez_tmp_14;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_10_6 <= _GEN_6[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_6) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_7_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_10_7 <= _weightTable_7_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_10_7 <= casez_tmp_15;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_10_7 <= _GEN_7[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_7_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_10_7 <= _weightTable_7_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_10_7 <= casez_tmp_15;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_10_7 <= _GEN_7[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_7) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_8_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_10_8 <= _weightTable_8_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_10_8 <= casez_tmp_16;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_10_8 <= _GEN_8[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_8_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_10_8 <= _weightTable_8_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_10_8 <= casez_tmp_16;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_10_8 <= _GEN_8[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
       end
-      if (_GEN_1 & upd_idx == 4'hB) begin	// frontend/src/zaqal/frontend/SC.scala:33:28, :54:38, :62:{24,55}, :64:29
+      if (_GEN_9 & upd_idx == 4'hB) begin	// frontend/src/zaqal/frontend/SC.scala:33:28, :54:38, :62:{24,55}, :64:29
         if (io_update_dir) begin	// frontend/src/zaqal/frontend/SC.scala:9:14
           if (_weightTable_0_T)	// frontend/src/zaqal/frontend/SC.scala:65:16
             weightTable_11_0 <= _weightTable_0_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:34
           else	// frontend/src/zaqal/frontend/SC.scala:65:16
-            weightTable_11_0 <= casez_tmp_8;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_11_0 <= _GEN_0[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_0_T_5)	// frontend/src/zaqal/frontend/SC.scala:66:16
           weightTable_11_0 <= _weightTable_0_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :66:34
         else	// frontend/src/zaqal/frontend/SC.scala:66:16
-          weightTable_11_0 <= casez_tmp_8;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_11_0 <= _GEN_0[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_1_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_11_1 <= _weightTable_1_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_11_1 <= casez_tmp_9;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_11_1 <= _GEN_1[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_1_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_11_1 <= _weightTable_1_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_11_1 <= casez_tmp_9;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_11_1 <= _GEN_1[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_1) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_2_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_11_2 <= _weightTable_2_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_11_2 <= casez_tmp_10;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_11_2 <= _GEN_2[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_2_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_11_2 <= _weightTable_2_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_11_2 <= casez_tmp_10;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_11_2 <= _GEN_2[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_2) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_3_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_11_3 <= _weightTable_3_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_11_3 <= casez_tmp_11;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_11_3 <= _GEN_3[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_3_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_11_3 <= _weightTable_3_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_11_3 <= casez_tmp_11;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_11_3 <= _GEN_3[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_3) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_4_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_11_4 <= _weightTable_4_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_11_4 <= casez_tmp_12;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_11_4 <= _GEN_4[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_4_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_11_4 <= _weightTable_4_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_11_4 <= casez_tmp_12;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_11_4 <= _GEN_4[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_4) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_5_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_11_5 <= _weightTable_5_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_11_5 <= casez_tmp_13;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_11_5 <= _GEN_5[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_5_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_11_5 <= _weightTable_5_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_11_5 <= casez_tmp_13;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_11_5 <= _GEN_5[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_5) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_6_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_11_6 <= _weightTable_6_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_11_6 <= casez_tmp_14;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_11_6 <= _GEN_6[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_6_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_11_6 <= _weightTable_6_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_11_6 <= casez_tmp_14;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_11_6 <= _GEN_6[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_6) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_7_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_11_7 <= _weightTable_7_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_11_7 <= casez_tmp_15;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_11_7 <= _GEN_7[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_7_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_11_7 <= _weightTable_7_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_11_7 <= casez_tmp_15;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_11_7 <= _GEN_7[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_7) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_8_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_11_8 <= _weightTable_8_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_11_8 <= casez_tmp_16;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_11_8 <= _GEN_8[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_8_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_11_8 <= _weightTable_8_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_11_8 <= casez_tmp_16;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_11_8 <= _GEN_8[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
       end
-      if (_GEN_1 & upd_idx == 4'hC) begin	// frontend/src/zaqal/frontend/SC.scala:33:28, :54:38, :62:{24,55}, :64:29
+      if (_GEN_9 & upd_idx == 4'hC) begin	// frontend/src/zaqal/frontend/SC.scala:33:28, :54:38, :62:{24,55}, :64:29
         if (io_update_dir) begin	// frontend/src/zaqal/frontend/SC.scala:9:14
           if (_weightTable_0_T)	// frontend/src/zaqal/frontend/SC.scala:65:16
             weightTable_12_0 <= _weightTable_0_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:34
           else	// frontend/src/zaqal/frontend/SC.scala:65:16
-            weightTable_12_0 <= casez_tmp_8;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_12_0 <= _GEN_0[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_0_T_5)	// frontend/src/zaqal/frontend/SC.scala:66:16
           weightTable_12_0 <= _weightTable_0_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :66:34
         else	// frontend/src/zaqal/frontend/SC.scala:66:16
-          weightTable_12_0 <= casez_tmp_8;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_12_0 <= _GEN_0[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_1_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_12_1 <= _weightTable_1_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_12_1 <= casez_tmp_9;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_12_1 <= _GEN_1[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_1_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_12_1 <= _weightTable_1_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_12_1 <= casez_tmp_9;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_12_1 <= _GEN_1[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_1) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_2_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_12_2 <= _weightTable_2_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_12_2 <= casez_tmp_10;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_12_2 <= _GEN_2[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_2_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_12_2 <= _weightTable_2_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_12_2 <= casez_tmp_10;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_12_2 <= _GEN_2[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_2) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_3_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_12_3 <= _weightTable_3_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_12_3 <= casez_tmp_11;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_12_3 <= _GEN_3[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_3_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_12_3 <= _weightTable_3_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_12_3 <= casez_tmp_11;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_12_3 <= _GEN_3[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_3) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_4_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_12_4 <= _weightTable_4_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_12_4 <= casez_tmp_12;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_12_4 <= _GEN_4[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_4_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_12_4 <= _weightTable_4_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_12_4 <= casez_tmp_12;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_12_4 <= _GEN_4[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_4) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_5_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_12_5 <= _weightTable_5_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_12_5 <= casez_tmp_13;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_12_5 <= _GEN_5[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_5_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_12_5 <= _weightTable_5_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_12_5 <= casez_tmp_13;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_12_5 <= _GEN_5[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_5) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_6_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_12_6 <= _weightTable_6_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_12_6 <= casez_tmp_14;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_12_6 <= _GEN_6[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_6_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_12_6 <= _weightTable_6_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_12_6 <= casez_tmp_14;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_12_6 <= _GEN_6[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_6) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_7_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_12_7 <= _weightTable_7_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_12_7 <= casez_tmp_15;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_12_7 <= _GEN_7[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_7_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_12_7 <= _weightTable_7_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_12_7 <= casez_tmp_15;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_12_7 <= _GEN_7[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_7) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_8_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_12_8 <= _weightTable_8_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_12_8 <= casez_tmp_16;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_12_8 <= _GEN_8[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_8_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_12_8 <= _weightTable_8_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_12_8 <= casez_tmp_16;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_12_8 <= _GEN_8[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
       end
-      if (_GEN_1 & upd_idx == 4'hD) begin	// frontend/src/zaqal/frontend/SC.scala:33:28, :54:38, :62:{24,55}, :64:29
+      if (_GEN_9 & upd_idx == 4'hD) begin	// frontend/src/zaqal/frontend/SC.scala:33:28, :54:38, :62:{24,55}, :64:29
         if (io_update_dir) begin	// frontend/src/zaqal/frontend/SC.scala:9:14
           if (_weightTable_0_T)	// frontend/src/zaqal/frontend/SC.scala:65:16
             weightTable_13_0 <= _weightTable_0_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:34
           else	// frontend/src/zaqal/frontend/SC.scala:65:16
-            weightTable_13_0 <= casez_tmp_8;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_13_0 <= _GEN_0[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_0_T_5)	// frontend/src/zaqal/frontend/SC.scala:66:16
           weightTable_13_0 <= _weightTable_0_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :66:34
         else	// frontend/src/zaqal/frontend/SC.scala:66:16
-          weightTable_13_0 <= casez_tmp_8;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_13_0 <= _GEN_0[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_1_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_13_1 <= _weightTable_1_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_13_1 <= casez_tmp_9;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_13_1 <= _GEN_1[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_1_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_13_1 <= _weightTable_1_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_13_1 <= casez_tmp_9;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_13_1 <= _GEN_1[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_1) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_2_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_13_2 <= _weightTable_2_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_13_2 <= casez_tmp_10;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_13_2 <= _GEN_2[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_2_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_13_2 <= _weightTable_2_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_13_2 <= casez_tmp_10;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_13_2 <= _GEN_2[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_2) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_3_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_13_3 <= _weightTable_3_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_13_3 <= casez_tmp_11;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_13_3 <= _GEN_3[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_3_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_13_3 <= _weightTable_3_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_13_3 <= casez_tmp_11;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_13_3 <= _GEN_3[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_3) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_4_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_13_4 <= _weightTable_4_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_13_4 <= casez_tmp_12;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_13_4 <= _GEN_4[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_4_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_13_4 <= _weightTable_4_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_13_4 <= casez_tmp_12;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_13_4 <= _GEN_4[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_4) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_5_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_13_5 <= _weightTable_5_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_13_5 <= casez_tmp_13;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_13_5 <= _GEN_5[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_5_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_13_5 <= _weightTable_5_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_13_5 <= casez_tmp_13;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_13_5 <= _GEN_5[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_5) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_6_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_13_6 <= _weightTable_6_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_13_6 <= casez_tmp_14;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_13_6 <= _GEN_6[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_6_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_13_6 <= _weightTable_6_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_13_6 <= casez_tmp_14;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_13_6 <= _GEN_6[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_6) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_7_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_13_7 <= _weightTable_7_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_13_7 <= casez_tmp_15;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_13_7 <= _GEN_7[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_7_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_13_7 <= _weightTable_7_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_13_7 <= casez_tmp_15;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_13_7 <= _GEN_7[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_7) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_8_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_13_8 <= _weightTable_8_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_13_8 <= casez_tmp_16;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_13_8 <= _GEN_8[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_8_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_13_8 <= _weightTable_8_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_13_8 <= casez_tmp_16;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_13_8 <= _GEN_8[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
       end
-      if (_GEN_1 & upd_idx == 4'hE) begin	// frontend/src/zaqal/frontend/SC.scala:33:28, :54:38, :62:{24,55}, :64:29
+      if (_GEN_9 & upd_idx == 4'hE) begin	// frontend/src/zaqal/frontend/SC.scala:33:28, :54:38, :62:{24,55}, :64:29
         if (io_update_dir) begin	// frontend/src/zaqal/frontend/SC.scala:9:14
           if (_weightTable_0_T)	// frontend/src/zaqal/frontend/SC.scala:65:16
             weightTable_14_0 <= _weightTable_0_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:34
           else	// frontend/src/zaqal/frontend/SC.scala:65:16
-            weightTable_14_0 <= casez_tmp_8;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_14_0 <= _GEN_0[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_0_T_5)	// frontend/src/zaqal/frontend/SC.scala:66:16
           weightTable_14_0 <= _weightTable_0_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :66:34
         else	// frontend/src/zaqal/frontend/SC.scala:66:16
-          weightTable_14_0 <= casez_tmp_8;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_14_0 <= _GEN_0[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_1_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_14_1 <= _weightTable_1_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_14_1 <= casez_tmp_9;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_14_1 <= _GEN_1[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_1_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_14_1 <= _weightTable_1_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_14_1 <= casez_tmp_9;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_14_1 <= _GEN_1[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_1) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_2_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_14_2 <= _weightTable_2_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_14_2 <= casez_tmp_10;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_14_2 <= _GEN_2[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_2_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_14_2 <= _weightTable_2_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_14_2 <= casez_tmp_10;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_14_2 <= _GEN_2[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_2) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_3_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_14_3 <= _weightTable_3_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_14_3 <= casez_tmp_11;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_14_3 <= _GEN_3[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_3_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_14_3 <= _weightTable_3_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_14_3 <= casez_tmp_11;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_14_3 <= _GEN_3[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_3) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_4_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_14_4 <= _weightTable_4_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_14_4 <= casez_tmp_12;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_14_4 <= _GEN_4[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_4_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_14_4 <= _weightTable_4_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_14_4 <= casez_tmp_12;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_14_4 <= _GEN_4[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_4) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_5_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_14_5 <= _weightTable_5_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_14_5 <= casez_tmp_13;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_14_5 <= _GEN_5[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_5_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_14_5 <= _weightTable_5_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_14_5 <= casez_tmp_13;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_14_5 <= _GEN_5[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_5) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_6_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_14_6 <= _weightTable_6_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_14_6 <= casez_tmp_14;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_14_6 <= _GEN_6[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_6_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_14_6 <= _weightTable_6_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_14_6 <= casez_tmp_14;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_14_6 <= _GEN_6[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_6) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_7_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_14_7 <= _weightTable_7_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_14_7 <= casez_tmp_15;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_14_7 <= _GEN_7[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_7_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_14_7 <= _weightTable_7_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_14_7 <= casez_tmp_15;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_14_7 <= _GEN_7[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_7) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_8_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_14_8 <= _weightTable_8_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_14_8 <= casez_tmp_16;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_14_8 <= _GEN_8[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_8_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_14_8 <= _weightTable_8_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_14_8 <= casez_tmp_16;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_14_8 <= _GEN_8[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
       end
-      if (_GEN_1 & (&upd_idx)) begin	// frontend/src/zaqal/frontend/SC.scala:33:28, :54:38, :62:{24,55}, :64:29
+      if (_GEN_9 & (&upd_idx)) begin	// frontend/src/zaqal/frontend/SC.scala:33:28, :54:38, :62:{24,55}, :64:29
         if (io_update_dir) begin	// frontend/src/zaqal/frontend/SC.scala:9:14
           if (_weightTable_0_T)	// frontend/src/zaqal/frontend/SC.scala:65:16
             weightTable_15_0 <= _weightTable_0_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:34
           else	// frontend/src/zaqal/frontend/SC.scala:65:16
-            weightTable_15_0 <= casez_tmp_8;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_15_0 <= _GEN_0[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_0_T_5)	// frontend/src/zaqal/frontend/SC.scala:66:16
           weightTable_15_0 <= _weightTable_0_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :66:34
         else	// frontend/src/zaqal/frontend/SC.scala:66:16
-          weightTable_15_0 <= casez_tmp_8;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_15_0 <= _GEN_0[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_1_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_15_1 <= _weightTable_1_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_15_1 <= casez_tmp_9;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_15_1 <= _GEN_1[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_1_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_15_1 <= _weightTable_1_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_15_1 <= casez_tmp_9;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_15_1 <= _GEN_1[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_1) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_2_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_15_2 <= _weightTable_2_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_15_2 <= casez_tmp_10;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_15_2 <= _GEN_2[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_2_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_15_2 <= _weightTable_2_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_15_2 <= casez_tmp_10;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_15_2 <= _GEN_2[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_2) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_3_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_15_3 <= _weightTable_3_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_15_3 <= casez_tmp_11;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_15_3 <= _GEN_3[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_3_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_15_3 <= _weightTable_3_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_15_3 <= casez_tmp_11;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_15_3 <= _GEN_3[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_3) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_4_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_15_4 <= _weightTable_4_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_15_4 <= casez_tmp_12;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_15_4 <= _GEN_4[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_4_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_15_4 <= _weightTable_4_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_15_4 <= casez_tmp_12;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_15_4 <= _GEN_4[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_4) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_5_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_15_5 <= _weightTable_5_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_15_5 <= casez_tmp_13;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_15_5 <= _GEN_5[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_5_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_15_5 <= _weightTable_5_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_15_5 <= casez_tmp_13;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_15_5 <= _GEN_5[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_5) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_6_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_15_6 <= _weightTable_6_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_15_6 <= casez_tmp_14;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_15_6 <= _GEN_6[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_6_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_15_6 <= _weightTable_6_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_15_6 <= casez_tmp_14;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_15_6 <= _GEN_6[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_6) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_7_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_15_7 <= _weightTable_7_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_15_7 <= casez_tmp_15;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_15_7 <= _GEN_7[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_7_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_15_7 <= _weightTable_7_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_15_7 <= casez_tmp_15;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_15_7 <= _GEN_7[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         if (inc_7) begin	// frontend/src/zaqal/frontend/SC.scala:71:31
           if (_weightTable_8_T)	// frontend/src/zaqal/frontend/SC.scala:73:15
             weightTable_15_8 <= _weightTable_8_T_1;	// frontend/src/zaqal/frontend/SC.scala:33:28, :73:30
           else	// frontend/src/zaqal/frontend/SC.scala:73:15
-            weightTable_15_8 <= casez_tmp_16;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+            weightTable_15_8 <= _GEN_8[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
         end
         else if (_weightTable_8_T_5)	// frontend/src/zaqal/frontend/SC.scala:74:15
           weightTable_15_8 <= _weightTable_8_T_6;	// frontend/src/zaqal/frontend/SC.scala:33:28, :74:30
         else	// frontend/src/zaqal/frontend/SC.scala:74:15
-          weightTable_15_8 <= casez_tmp_16;	// frontend/src/zaqal/frontend/SC.scala:33:28, :65:16
+          weightTable_15_8 <= _GEN_8[_GEN_10];	// frontend/src/zaqal/frontend/SC.scala:33:28, :40:10, :65:16
       end
     end
   end // always @(posedge)

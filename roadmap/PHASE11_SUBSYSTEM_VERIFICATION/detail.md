@@ -1,5 +1,8 @@
 # Phase 11: Subsystem Unit & Integration Verification
 
+> **Status: [OPTIONAL / DEFERRED ON-DEMAND]**  
+> *Note: Subsystem unit tests in this phase are deferred and utilized on-demand as diagnostic isolation suites whenever Difftest co-simulation flags a divergence in Phase 12.*
+
 The goal of this phase is rigorous, exhaustive verification of every hardware module both in complete isolation and in full subsystem integration, prior to final SoC integration and silicon tapeout.
 
 ## Verification Philosophy: "Isolate First, Combine Second"

@@ -40,8 +40,8 @@ Development is driven by a comprehensive, 12-phase engineering roadmap. Every ph
 | **[Phase 7](roadmap/PHASE7_ENGINE_PERFORMANCE/detail.md)** | **Out-of-Order Engine** | 128-entry ROB, PRF/RAT dynamic renaming, distributed issue queues, LSQ. | **[COMPLETE]** |
 | **[Phase 8](roadmap/PHASE8_SYSTEM_PRIVILEGE/detail.md)** | **Privileged Arch & Sv39 MMU** | M/S modes, CSR state machine, Clint timer, PLIC, Sv39 Page Table Walker. | **[COMPLETE]** |
 | **[Phase 9](roadmap/PHASE9_VECTOR_ISA/detail.md)** | **AI, Vector & AMX Engines** | RVV 1.0 (Kunminghu 128-pv parity, VDQ, VIQ) + 2D Matrix AMX coprocessor. | **[COMPLETE]** |
-| **[Phase 10](roadmap/PHASE10_MULTI_CORE_COHERENCE/detail.md)** | **Multi-Core Cache Coherence** | 5-channel TileLink-C protocol, Directory Coherence Hub, L1/L2 snooping. | **[CURRENT]** |
-| **[Phase 11](roadmap/PHASE11_SUBSYSTEM_VERIFICATION/detail.md)** | **Subsystem Verification** | Pre-tapeout module isolation, randomized stress tests, formal assertions. | Planned |
+| **[Phase 10](roadmap/PHASE10_MULTI_CORE_COHERENCE/detail.md)** | **Multi-Core Cache Coherence** | 5-channel TileLink-C protocol, Directory Coherence Hub, L1/L2 snooping. | **[COMPLETE]** |
+| **[Phase 11](roadmap/PHASE11_SUBSYSTEM_VERIFICATION/detail.md)** | **Subsystem Verification** | Pre-tapeout module isolation, randomized stress tests, formal assertions. | **[OPTIONAL / DEFERRED ON-DEMAND]** |
 | **[Phase 12](roadmap/PHASE12_SOC_TAPE_OUT_SHIPPING/detail.md)** | **SoC Sign-off & Shipping** | Full SoC integration, Difftest co-simulation, P&R sign-off, Linux boot. | Planned |
 
 ### 🎯 XiangShan Parity Feature Checklist

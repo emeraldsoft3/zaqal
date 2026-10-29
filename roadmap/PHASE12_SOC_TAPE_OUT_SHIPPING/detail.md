@@ -5,7 +5,11 @@ The final milestone: integrating Zaqal into an industry-grade SoC, proving full-
 ## Goal: Silicon-Grade Verification, 14nm Tapeout & Linux Shipping
 
 ## Day 1-3: Difftest Integration (Golden Model Co-Simulation)
-- [ ] Connect Zaqal to the Difftest framework for co-simulation with Spike/NEMU.
+- [x] Connect Zaqal to the Difftest framework for co-simulation with Spike/NEMU.
+- [x] DPI-C Verification Hooks (DifftestInstrCommit, DifftestTrapEvent, DifftestCSRState, DifftestArchRegs) integrated into Rob.scala.
+- [x] Native C++ Co-Simulation Driver (emu) linking dynamic NEMU shared library with host DRAM bus controller.
+- [x] Stack alignment and Macro-op Fusion verification gating (enableFusion=false) calibrated for exact lockstep with NEMU.
+- [x] Multi-cycle lockstep execution verified against ready-to-run RISC-V workloads with zero divergence.
 - **Detailed Plan**: Testing a complex out-of-order processor requires co-simulation. We will integrate Zaqal into the XiangShan Difftest framework. As Zaqal executes instructions in hardware simulation, Difftest simultaneously executes the exact same program in a golden reference software emulator (like Spike or NEMU). After every committed instruction, Difftest compares Zaqal's architectural register state, memory state, and CSRs against the golden reference, immediately flagging any micro-architectural divergence.
 - **XiangShan Study**: [XSTile.scala](file:///home/emerald/xs-env/XiangShan/src/main/scala/xiangshan/XSTile.scala) - *See how the core is wrapped for testing.*
 

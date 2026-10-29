@@ -67,8 +67,6 @@
 `endif // not def PRINTF_COND_
 
 module BRU(	// backend/src/zaqal/backend/exu/BRU.scala:9:7
-  input         clock,	// backend/src/zaqal/backend/exu/BRU.scala:9:7
-                reset,	// backend/src/zaqal/backend/exu/BRU.scala:9:7
   input  [63:0] io_src1,	// backend/src/zaqal/backend/exu/BRU.scala:10:14
                 io_src2,	// backend/src/zaqal/backend/exu/BRU.scala:10:14
   input         io_dec_is_beq,	// backend/src/zaqal/backend/exu/BRU.scala:10:14
@@ -111,21 +109,7 @@ module BRU(	// backend/src/zaqal/backend/exu/BRU.scala:9:7
   wire [63:0] _target_pc_T_1 = io_pc + io_dec_imm;	// backend/src/zaqal/backend/exu/BRU.scala:48:33
   wire [63:0] redirect_target =
     io_dec_is_jalr ? io_src1 + io_dec_imm & 64'hFFFFFFFFFFFFFFFE : _target_pc_T_1;	// backend/src/zaqal/backend/exu/BRU.scala:48:33, :49:{30,51,53}, :50:28
-  wire        is_cfi = io_dec_is_branch | io_dec_is_jal | io_dec_is_jalr;	// backend/src/zaqal/backend/exu/BRU.scala:54:50
   wire        is_misaligned = io_taken_0 & _target_pc_T_1[0];	// backend/src/zaqal/backend/exu/BRU.scala:48:33, :59:36, :60:50, src/main/scala/chisel3/util/Mux.scala:126:16
-  wire        io_mispredict_0 =
-    io_taken_0 != io_pred_taken | io_pred_taken & ~is_cfi | io_taken_0
-    & redirect_target != io_pred_target | is_misaligned;	// backend/src/zaqal/backend/exu/BRU.scala:50:28, :54:50, :59:36, :64:{34,71,74,100,119,139}, src/main/scala/chisel3/util/Mux.scala:126:16
-  wire [63:0] io_target_0 =
-    io_taken_0 ? redirect_target : io_pc + {61'h0, io_is_rvc ? 3'h2 : 3'h4};	// backend/src/zaqal/backend/exu/BRU.scala:50:28, :52:{30,35}, :65:23, src/main/scala/chisel3/util/Mux.scala:126:16
-  `ifndef SYNTHESIS	// backend/src/zaqal/backend/exu/BRU.scala:70:11
-    always @(posedge clock) begin	// backend/src/zaqal/backend/exu/BRU.scala:70:11
-      if ((`PRINTF_COND_) & io_mispredict_0 & is_cfi & ~reset)	// backend/src/zaqal/backend/exu/BRU.scala:54:50, :64:139, :70:11
-        $fwrite(32'h80000002,
-                "[BRU REDIRECT] pc=%x target=%x actual_taken=%d is_rvc=%d\n", io_pc,
-                io_target_0, io_taken_0, io_is_rvc);	// backend/src/zaqal/backend/exu/BRU.scala:65:23, :70:11, src/main/scala/chisel3/util/Mux.scala:126:16
-    end // always @(posedge)
-  `endif // not def SYNTHESIS
   Comparator comparator (	// backend/src/zaqal/backend/exu/BRU.scala:26:26
     .io_src1 (io_src1),
     .io_src2 (io_src2),
@@ -134,8 +118,12 @@ module BRU(	// backend/src/zaqal/backend/exu/BRU.scala:9:7
     .io_ltu  (_comparator_io_ltu)
   );
   assign io_taken = io_taken_0;	// backend/src/zaqal/backend/exu/BRU.scala:9:7, src/main/scala/chisel3/util/Mux.scala:126:16
-  assign io_mispredict = io_mispredict_0;	// backend/src/zaqal/backend/exu/BRU.scala:9:7, :64:139
-  assign io_target = io_target_0;	// backend/src/zaqal/backend/exu/BRU.scala:9:7, :65:23
+  assign io_mispredict =
+    io_taken_0 != io_pred_taken | io_pred_taken
+    & ~(io_dec_is_branch | io_dec_is_jal | io_dec_is_jalr) | io_taken_0
+    & redirect_target != io_pred_target | is_misaligned;	// backend/src/zaqal/backend/exu/BRU.scala:9:7, :50:28, :54:50, :59:36, :64:{34,71,74,100,119,139}, src/main/scala/chisel3/util/Mux.scala:126:16
+  assign io_target =
+    io_taken_0 ? redirect_target : io_pc + {61'h0, io_is_rvc ? 3'h2 : 3'h4};	// backend/src/zaqal/backend/exu/BRU.scala:9:7, :50:28, :52:{30,35}, :65:23, src/main/scala/chisel3/util/Mux.scala:126:16
   assign io_exc_valid = is_misaligned;	// backend/src/zaqal/backend/exu/BRU.scala:9:7, :59:36
 endmodule
 

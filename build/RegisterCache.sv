@@ -76,6 +76,15 @@ module RegisterCache(	// backend/src/zaqal/backend/rename/RegisterCache.scala:8:
                 io_raddr_4,	// backend/src/zaqal/backend/rename/RegisterCache.scala:9:14
                 io_raddr_5,	// backend/src/zaqal/backend/rename/RegisterCache.scala:9:14
                 io_raddr_6,	// backend/src/zaqal/backend/rename/RegisterCache.scala:9:14
+                io_raddr_7,	// backend/src/zaqal/backend/rename/RegisterCache.scala:9:14
+                io_raddr_8,	// backend/src/zaqal/backend/rename/RegisterCache.scala:9:14
+                io_raddr_9,	// backend/src/zaqal/backend/rename/RegisterCache.scala:9:14
+                io_raddr_10,	// backend/src/zaqal/backend/rename/RegisterCache.scala:9:14
+                io_raddr_11,	// backend/src/zaqal/backend/rename/RegisterCache.scala:9:14
+                io_raddr_12,	// backend/src/zaqal/backend/rename/RegisterCache.scala:9:14
+                io_raddr_13,	// backend/src/zaqal/backend/rename/RegisterCache.scala:9:14
+                io_raddr_14,	// backend/src/zaqal/backend/rename/RegisterCache.scala:9:14
+                io_raddr_15,	// backend/src/zaqal/backend/rename/RegisterCache.scala:9:14
   output [63:0] io_rdata_0,	// backend/src/zaqal/backend/rename/RegisterCache.scala:9:14
                 io_rdata_1,	// backend/src/zaqal/backend/rename/RegisterCache.scala:9:14
                 io_rdata_2,	// backend/src/zaqal/backend/rename/RegisterCache.scala:9:14
@@ -83,6 +92,15 @@ module RegisterCache(	// backend/src/zaqal/backend/rename/RegisterCache.scala:8:
                 io_rdata_4,	// backend/src/zaqal/backend/rename/RegisterCache.scala:9:14
                 io_rdata_5,	// backend/src/zaqal/backend/rename/RegisterCache.scala:9:14
                 io_rdata_6,	// backend/src/zaqal/backend/rename/RegisterCache.scala:9:14
+                io_rdata_7,	// backend/src/zaqal/backend/rename/RegisterCache.scala:9:14
+                io_rdata_8,	// backend/src/zaqal/backend/rename/RegisterCache.scala:9:14
+                io_rdata_9,	// backend/src/zaqal/backend/rename/RegisterCache.scala:9:14
+                io_rdata_10,	// backend/src/zaqal/backend/rename/RegisterCache.scala:9:14
+                io_rdata_11,	// backend/src/zaqal/backend/rename/RegisterCache.scala:9:14
+                io_rdata_12,	// backend/src/zaqal/backend/rename/RegisterCache.scala:9:14
+                io_rdata_13,	// backend/src/zaqal/backend/rename/RegisterCache.scala:9:14
+                io_rdata_14,	// backend/src/zaqal/backend/rename/RegisterCache.scala:9:14
+                io_rdata_15,	// backend/src/zaqal/backend/rename/RegisterCache.scala:9:14
   output        io_rhits_0,	// backend/src/zaqal/backend/rename/RegisterCache.scala:9:14
                 io_rhits_1,	// backend/src/zaqal/backend/rename/RegisterCache.scala:9:14
                 io_rhits_2,	// backend/src/zaqal/backend/rename/RegisterCache.scala:9:14
@@ -90,1871 +108,876 @@ module RegisterCache(	// backend/src/zaqal/backend/rename/RegisterCache.scala:8:
                 io_rhits_4,	// backend/src/zaqal/backend/rename/RegisterCache.scala:9:14
                 io_rhits_5,	// backend/src/zaqal/backend/rename/RegisterCache.scala:9:14
                 io_rhits_6,	// backend/src/zaqal/backend/rename/RegisterCache.scala:9:14
+                io_rhits_7,	// backend/src/zaqal/backend/rename/RegisterCache.scala:9:14
+                io_rhits_8,	// backend/src/zaqal/backend/rename/RegisterCache.scala:9:14
+                io_rhits_9,	// backend/src/zaqal/backend/rename/RegisterCache.scala:9:14
+                io_rhits_10,	// backend/src/zaqal/backend/rename/RegisterCache.scala:9:14
+                io_rhits_11,	// backend/src/zaqal/backend/rename/RegisterCache.scala:9:14
+                io_rhits_12,	// backend/src/zaqal/backend/rename/RegisterCache.scala:9:14
+                io_rhits_13,	// backend/src/zaqal/backend/rename/RegisterCache.scala:9:14
+                io_rhits_14,	// backend/src/zaqal/backend/rename/RegisterCache.scala:9:14
+                io_rhits_15,	// backend/src/zaqal/backend/rename/RegisterCache.scala:9:14
   input         io_wen_0,	// backend/src/zaqal/backend/rename/RegisterCache.scala:9:14
                 io_wen_1,	// backend/src/zaqal/backend/rename/RegisterCache.scala:9:14
                 io_wen_2,	// backend/src/zaqal/backend/rename/RegisterCache.scala:9:14
                 io_wen_3,	// backend/src/zaqal/backend/rename/RegisterCache.scala:9:14
                 io_wen_4,	// backend/src/zaqal/backend/rename/RegisterCache.scala:9:14
                 io_wen_5,	// backend/src/zaqal/backend/rename/RegisterCache.scala:9:14
+                io_wen_6,	// backend/src/zaqal/backend/rename/RegisterCache.scala:9:14
+                io_wen_7,	// backend/src/zaqal/backend/rename/RegisterCache.scala:9:14
+                io_wen_8,	// backend/src/zaqal/backend/rename/RegisterCache.scala:9:14
+                io_wen_9,	// backend/src/zaqal/backend/rename/RegisterCache.scala:9:14
+                io_wen_10,	// backend/src/zaqal/backend/rename/RegisterCache.scala:9:14
   input  [7:0]  io_waddr_0,	// backend/src/zaqal/backend/rename/RegisterCache.scala:9:14
                 io_waddr_1,	// backend/src/zaqal/backend/rename/RegisterCache.scala:9:14
                 io_waddr_2,	// backend/src/zaqal/backend/rename/RegisterCache.scala:9:14
                 io_waddr_3,	// backend/src/zaqal/backend/rename/RegisterCache.scala:9:14
                 io_waddr_4,	// backend/src/zaqal/backend/rename/RegisterCache.scala:9:14
                 io_waddr_5,	// backend/src/zaqal/backend/rename/RegisterCache.scala:9:14
+                io_waddr_6,	// backend/src/zaqal/backend/rename/RegisterCache.scala:9:14
+                io_waddr_7,	// backend/src/zaqal/backend/rename/RegisterCache.scala:9:14
+                io_waddr_8,	// backend/src/zaqal/backend/rename/RegisterCache.scala:9:14
+                io_waddr_9,	// backend/src/zaqal/backend/rename/RegisterCache.scala:9:14
+                io_waddr_10,	// backend/src/zaqal/backend/rename/RegisterCache.scala:9:14
   input  [63:0] io_wdata_0,	// backend/src/zaqal/backend/rename/RegisterCache.scala:9:14
                 io_wdata_1,	// backend/src/zaqal/backend/rename/RegisterCache.scala:9:14
                 io_wdata_2,	// backend/src/zaqal/backend/rename/RegisterCache.scala:9:14
                 io_wdata_3,	// backend/src/zaqal/backend/rename/RegisterCache.scala:9:14
                 io_wdata_4,	// backend/src/zaqal/backend/rename/RegisterCache.scala:9:14
                 io_wdata_5,	// backend/src/zaqal/backend/rename/RegisterCache.scala:9:14
+                io_wdata_6,	// backend/src/zaqal/backend/rename/RegisterCache.scala:9:14
+                io_wdata_7,	// backend/src/zaqal/backend/rename/RegisterCache.scala:9:14
+                io_wdata_8,	// backend/src/zaqal/backend/rename/RegisterCache.scala:9:14
+                io_wdata_9,	// backend/src/zaqal/backend/rename/RegisterCache.scala:9:14
+                io_wdata_10,	// backend/src/zaqal/backend/rename/RegisterCache.scala:9:14
   input         io_flush	// backend/src/zaqal/backend/rename/RegisterCache.scala:9:14
 );
 
-  reg         validArray_0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27
-  reg         validArray_1;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27
-  reg         validArray_2;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27
-  reg         validArray_3;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27
-  reg         validArray_4;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27
-  reg         validArray_5;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27
-  reg         validArray_6;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27
-  reg         validArray_7;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27
-  reg         validArray_8;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27
-  reg         validArray_9;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27
-  reg         validArray_10;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27
-  reg         validArray_11;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27
-  reg         validArray_12;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27
-  reg         validArray_13;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27
-  reg         validArray_14;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27
-  reg         validArray_15;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27
-  reg         validArray_16;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27
-  reg         validArray_17;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27
-  reg         validArray_18;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27
-  reg         validArray_19;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27
-  reg         validArray_20;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27
-  reg         validArray_21;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27
-  reg         validArray_22;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27
-  reg         validArray_23;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27
-  reg         validArray_24;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27
-  reg         validArray_25;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27
-  reg         validArray_26;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27
-  reg         validArray_27;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27
-  reg         validArray_28;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27
-  reg         validArray_29;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27
-  reg         validArray_30;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27
-  reg         validArray_31;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27
-  reg  [2:0]  tagArray_0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23
-  reg  [2:0]  tagArray_1;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23
-  reg  [2:0]  tagArray_2;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23
-  reg  [2:0]  tagArray_3;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23
-  reg  [2:0]  tagArray_4;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23
-  reg  [2:0]  tagArray_5;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23
-  reg  [2:0]  tagArray_6;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23
-  reg  [2:0]  tagArray_7;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23
-  reg  [2:0]  tagArray_8;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23
-  reg  [2:0]  tagArray_9;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23
-  reg  [2:0]  tagArray_10;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23
-  reg  [2:0]  tagArray_11;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23
-  reg  [2:0]  tagArray_12;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23
-  reg  [2:0]  tagArray_13;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23
-  reg  [2:0]  tagArray_14;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23
-  reg  [2:0]  tagArray_15;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23
-  reg  [2:0]  tagArray_16;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23
-  reg  [2:0]  tagArray_17;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23
-  reg  [2:0]  tagArray_18;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23
-  reg  [2:0]  tagArray_19;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23
-  reg  [2:0]  tagArray_20;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23
-  reg  [2:0]  tagArray_21;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23
-  reg  [2:0]  tagArray_22;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23
-  reg  [2:0]  tagArray_23;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23
-  reg  [2:0]  tagArray_24;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23
-  reg  [2:0]  tagArray_25;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23
-  reg  [2:0]  tagArray_26;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23
-  reg  [2:0]  tagArray_27;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23
-  reg  [2:0]  tagArray_28;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23
-  reg  [2:0]  tagArray_29;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23
-  reg  [2:0]  tagArray_30;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23
-  reg  [2:0]  tagArray_31;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23
-  reg  [63:0] dataArray_0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
-  reg  [63:0] dataArray_1;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
-  reg  [63:0] dataArray_2;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
-  reg  [63:0] dataArray_3;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
-  reg  [63:0] dataArray_4;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
-  reg  [63:0] dataArray_5;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
-  reg  [63:0] dataArray_6;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
-  reg  [63:0] dataArray_7;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
-  reg  [63:0] dataArray_8;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
-  reg  [63:0] dataArray_9;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
-  reg  [63:0] dataArray_10;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
-  reg  [63:0] dataArray_11;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
-  reg  [63:0] dataArray_12;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
-  reg  [63:0] dataArray_13;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
-  reg  [63:0] dataArray_14;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
-  reg  [63:0] dataArray_15;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
-  reg  [63:0] dataArray_16;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
-  reg  [63:0] dataArray_17;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
-  reg  [63:0] dataArray_18;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
-  reg  [63:0] dataArray_19;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
-  reg  [63:0] dataArray_20;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
-  reg  [63:0] dataArray_21;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
-  reg  [63:0] dataArray_22;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
-  reg  [63:0] dataArray_23;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
-  reg  [63:0] dataArray_24;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
-  reg  [63:0] dataArray_25;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
-  reg  [63:0] dataArray_26;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
-  reg  [63:0] dataArray_27;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
-  reg  [63:0] dataArray_28;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
-  reg  [63:0] dataArray_29;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
-  reg  [63:0] dataArray_30;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
-  reg  [63:0] dataArray_31;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
-  wire        is_zero_reg = io_raddr_0 == 8'h0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:43:32
-  reg  [2:0]  casez_tmp;	// backend/src/zaqal/backend/rename/RegisterCache.scala:45:63
-  always_comb begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:45:63
-    casez (io_raddr_0[4:0])	// backend/src/zaqal/backend/rename/RegisterCache.scala:36:28, :45:63
-      5'b00000:
-        casez_tmp = tagArray_0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b00001:
-        casez_tmp = tagArray_1;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b00010:
-        casez_tmp = tagArray_2;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b00011:
-        casez_tmp = tagArray_3;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b00100:
-        casez_tmp = tagArray_4;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b00101:
-        casez_tmp = tagArray_5;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b00110:
-        casez_tmp = tagArray_6;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b00111:
-        casez_tmp = tagArray_7;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b01000:
-        casez_tmp = tagArray_8;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b01001:
-        casez_tmp = tagArray_9;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b01010:
-        casez_tmp = tagArray_10;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b01011:
-        casez_tmp = tagArray_11;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b01100:
-        casez_tmp = tagArray_12;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b01101:
-        casez_tmp = tagArray_13;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b01110:
-        casez_tmp = tagArray_14;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b01111:
-        casez_tmp = tagArray_15;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b10000:
-        casez_tmp = tagArray_16;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b10001:
-        casez_tmp = tagArray_17;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b10010:
-        casez_tmp = tagArray_18;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b10011:
-        casez_tmp = tagArray_19;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b10100:
-        casez_tmp = tagArray_20;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b10101:
-        casez_tmp = tagArray_21;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b10110:
-        casez_tmp = tagArray_22;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b10111:
-        casez_tmp = tagArray_23;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b11000:
-        casez_tmp = tagArray_24;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b11001:
-        casez_tmp = tagArray_25;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b11010:
-        casez_tmp = tagArray_26;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b11011:
-        casez_tmp = tagArray_27;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b11100:
-        casez_tmp = tagArray_28;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b11101:
-        casez_tmp = tagArray_29;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b11110:
-        casez_tmp = tagArray_30;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      default:
-        casez_tmp = tagArray_31;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-    endcase	// backend/src/zaqal/backend/rename/RegisterCache.scala:36:28, :45:63
-  end // always_comb
-  reg         casez_tmp_0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:45:49
-  always_comb begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:45:49
-    casez (io_raddr_0[4:0])	// backend/src/zaqal/backend/rename/RegisterCache.scala:36:28, :45:49
-      5'b00000:
-        casez_tmp_0 = validArray_0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b00001:
-        casez_tmp_0 = validArray_1;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b00010:
-        casez_tmp_0 = validArray_2;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b00011:
-        casez_tmp_0 = validArray_3;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b00100:
-        casez_tmp_0 = validArray_4;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b00101:
-        casez_tmp_0 = validArray_5;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b00110:
-        casez_tmp_0 = validArray_6;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b00111:
-        casez_tmp_0 = validArray_7;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b01000:
-        casez_tmp_0 = validArray_8;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b01001:
-        casez_tmp_0 = validArray_9;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b01010:
-        casez_tmp_0 = validArray_10;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b01011:
-        casez_tmp_0 = validArray_11;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b01100:
-        casez_tmp_0 = validArray_12;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b01101:
-        casez_tmp_0 = validArray_13;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b01110:
-        casez_tmp_0 = validArray_14;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b01111:
-        casez_tmp_0 = validArray_15;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b10000:
-        casez_tmp_0 = validArray_16;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b10001:
-        casez_tmp_0 = validArray_17;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b10010:
-        casez_tmp_0 = validArray_18;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b10011:
-        casez_tmp_0 = validArray_19;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b10100:
-        casez_tmp_0 = validArray_20;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b10101:
-        casez_tmp_0 = validArray_21;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b10110:
-        casez_tmp_0 = validArray_22;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b10111:
-        casez_tmp_0 = validArray_23;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b11000:
-        casez_tmp_0 = validArray_24;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b11001:
-        casez_tmp_0 = validArray_25;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b11010:
-        casez_tmp_0 = validArray_26;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b11011:
-        casez_tmp_0 = validArray_27;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b11100:
-        casez_tmp_0 = validArray_28;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b11101:
-        casez_tmp_0 = validArray_29;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b11110:
-        casez_tmp_0 = validArray_30;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      default:
-        casez_tmp_0 = validArray_31;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-    endcase	// backend/src/zaqal/backend/rename/RegisterCache.scala:36:28, :45:49
-  end // always_comb
-  reg  [63:0] casez_tmp_1;	// backend/src/zaqal/backend/rename/RegisterCache.scala:46:23
-  always_comb begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:46:23
-    casez (io_raddr_0[4:0])	// backend/src/zaqal/backend/rename/RegisterCache.scala:36:28, :46:23
-      5'b00000:
-        casez_tmp_1 = dataArray_0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b00001:
-        casez_tmp_1 = dataArray_1;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b00010:
-        casez_tmp_1 = dataArray_2;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b00011:
-        casez_tmp_1 = dataArray_3;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b00100:
-        casez_tmp_1 = dataArray_4;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b00101:
-        casez_tmp_1 = dataArray_5;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b00110:
-        casez_tmp_1 = dataArray_6;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b00111:
-        casez_tmp_1 = dataArray_7;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b01000:
-        casez_tmp_1 = dataArray_8;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b01001:
-        casez_tmp_1 = dataArray_9;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b01010:
-        casez_tmp_1 = dataArray_10;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b01011:
-        casez_tmp_1 = dataArray_11;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b01100:
-        casez_tmp_1 = dataArray_12;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b01101:
-        casez_tmp_1 = dataArray_13;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b01110:
-        casez_tmp_1 = dataArray_14;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b01111:
-        casez_tmp_1 = dataArray_15;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b10000:
-        casez_tmp_1 = dataArray_16;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b10001:
-        casez_tmp_1 = dataArray_17;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b10010:
-        casez_tmp_1 = dataArray_18;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b10011:
-        casez_tmp_1 = dataArray_19;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b10100:
-        casez_tmp_1 = dataArray_20;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b10101:
-        casez_tmp_1 = dataArray_21;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b10110:
-        casez_tmp_1 = dataArray_22;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b10111:
-        casez_tmp_1 = dataArray_23;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b11000:
-        casez_tmp_1 = dataArray_24;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b11001:
-        casez_tmp_1 = dataArray_25;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b11010:
-        casez_tmp_1 = dataArray_26;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b11011:
-        casez_tmp_1 = dataArray_27;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b11100:
-        casez_tmp_1 = dataArray_28;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b11101:
-        casez_tmp_1 = dataArray_29;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b11110:
-        casez_tmp_1 = dataArray_30;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      default:
-        casez_tmp_1 = dataArray_31;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-    endcase	// backend/src/zaqal/backend/rename/RegisterCache.scala:36:28, :46:23
-  end // always_comb
-  wire        is_zero_reg_1 = io_raddr_1 == 8'h0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:43:32
-  reg  [2:0]  casez_tmp_2;	// backend/src/zaqal/backend/rename/RegisterCache.scala:45:63
-  always_comb begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:45:63
-    casez (io_raddr_1[4:0])	// backend/src/zaqal/backend/rename/RegisterCache.scala:36:28, :45:63
-      5'b00000:
-        casez_tmp_2 = tagArray_0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b00001:
-        casez_tmp_2 = tagArray_1;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b00010:
-        casez_tmp_2 = tagArray_2;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b00011:
-        casez_tmp_2 = tagArray_3;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b00100:
-        casez_tmp_2 = tagArray_4;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b00101:
-        casez_tmp_2 = tagArray_5;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b00110:
-        casez_tmp_2 = tagArray_6;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b00111:
-        casez_tmp_2 = tagArray_7;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b01000:
-        casez_tmp_2 = tagArray_8;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b01001:
-        casez_tmp_2 = tagArray_9;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b01010:
-        casez_tmp_2 = tagArray_10;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b01011:
-        casez_tmp_2 = tagArray_11;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b01100:
-        casez_tmp_2 = tagArray_12;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b01101:
-        casez_tmp_2 = tagArray_13;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b01110:
-        casez_tmp_2 = tagArray_14;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b01111:
-        casez_tmp_2 = tagArray_15;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b10000:
-        casez_tmp_2 = tagArray_16;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b10001:
-        casez_tmp_2 = tagArray_17;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b10010:
-        casez_tmp_2 = tagArray_18;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b10011:
-        casez_tmp_2 = tagArray_19;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b10100:
-        casez_tmp_2 = tagArray_20;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b10101:
-        casez_tmp_2 = tagArray_21;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b10110:
-        casez_tmp_2 = tagArray_22;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b10111:
-        casez_tmp_2 = tagArray_23;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b11000:
-        casez_tmp_2 = tagArray_24;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b11001:
-        casez_tmp_2 = tagArray_25;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b11010:
-        casez_tmp_2 = tagArray_26;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b11011:
-        casez_tmp_2 = tagArray_27;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b11100:
-        casez_tmp_2 = tagArray_28;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b11101:
-        casez_tmp_2 = tagArray_29;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b11110:
-        casez_tmp_2 = tagArray_30;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      default:
-        casez_tmp_2 = tagArray_31;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-    endcase	// backend/src/zaqal/backend/rename/RegisterCache.scala:36:28, :45:63
-  end // always_comb
-  reg         casez_tmp_3;	// backend/src/zaqal/backend/rename/RegisterCache.scala:45:49
-  always_comb begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:45:49
-    casez (io_raddr_1[4:0])	// backend/src/zaqal/backend/rename/RegisterCache.scala:36:28, :45:49
-      5'b00000:
-        casez_tmp_3 = validArray_0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b00001:
-        casez_tmp_3 = validArray_1;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b00010:
-        casez_tmp_3 = validArray_2;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b00011:
-        casez_tmp_3 = validArray_3;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b00100:
-        casez_tmp_3 = validArray_4;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b00101:
-        casez_tmp_3 = validArray_5;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b00110:
-        casez_tmp_3 = validArray_6;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b00111:
-        casez_tmp_3 = validArray_7;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b01000:
-        casez_tmp_3 = validArray_8;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b01001:
-        casez_tmp_3 = validArray_9;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b01010:
-        casez_tmp_3 = validArray_10;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b01011:
-        casez_tmp_3 = validArray_11;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b01100:
-        casez_tmp_3 = validArray_12;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b01101:
-        casez_tmp_3 = validArray_13;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b01110:
-        casez_tmp_3 = validArray_14;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b01111:
-        casez_tmp_3 = validArray_15;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b10000:
-        casez_tmp_3 = validArray_16;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b10001:
-        casez_tmp_3 = validArray_17;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b10010:
-        casez_tmp_3 = validArray_18;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b10011:
-        casez_tmp_3 = validArray_19;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b10100:
-        casez_tmp_3 = validArray_20;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b10101:
-        casez_tmp_3 = validArray_21;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b10110:
-        casez_tmp_3 = validArray_22;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b10111:
-        casez_tmp_3 = validArray_23;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b11000:
-        casez_tmp_3 = validArray_24;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b11001:
-        casez_tmp_3 = validArray_25;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b11010:
-        casez_tmp_3 = validArray_26;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b11011:
-        casez_tmp_3 = validArray_27;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b11100:
-        casez_tmp_3 = validArray_28;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b11101:
-        casez_tmp_3 = validArray_29;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b11110:
-        casez_tmp_3 = validArray_30;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      default:
-        casez_tmp_3 = validArray_31;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-    endcase	// backend/src/zaqal/backend/rename/RegisterCache.scala:36:28, :45:49
-  end // always_comb
-  reg  [63:0] casez_tmp_4;	// backend/src/zaqal/backend/rename/RegisterCache.scala:46:23
-  always_comb begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:46:23
-    casez (io_raddr_1[4:0])	// backend/src/zaqal/backend/rename/RegisterCache.scala:36:28, :46:23
-      5'b00000:
-        casez_tmp_4 = dataArray_0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b00001:
-        casez_tmp_4 = dataArray_1;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b00010:
-        casez_tmp_4 = dataArray_2;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b00011:
-        casez_tmp_4 = dataArray_3;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b00100:
-        casez_tmp_4 = dataArray_4;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b00101:
-        casez_tmp_4 = dataArray_5;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b00110:
-        casez_tmp_4 = dataArray_6;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b00111:
-        casez_tmp_4 = dataArray_7;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b01000:
-        casez_tmp_4 = dataArray_8;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b01001:
-        casez_tmp_4 = dataArray_9;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b01010:
-        casez_tmp_4 = dataArray_10;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b01011:
-        casez_tmp_4 = dataArray_11;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b01100:
-        casez_tmp_4 = dataArray_12;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b01101:
-        casez_tmp_4 = dataArray_13;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b01110:
-        casez_tmp_4 = dataArray_14;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b01111:
-        casez_tmp_4 = dataArray_15;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b10000:
-        casez_tmp_4 = dataArray_16;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b10001:
-        casez_tmp_4 = dataArray_17;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b10010:
-        casez_tmp_4 = dataArray_18;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b10011:
-        casez_tmp_4 = dataArray_19;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b10100:
-        casez_tmp_4 = dataArray_20;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b10101:
-        casez_tmp_4 = dataArray_21;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b10110:
-        casez_tmp_4 = dataArray_22;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b10111:
-        casez_tmp_4 = dataArray_23;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b11000:
-        casez_tmp_4 = dataArray_24;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b11001:
-        casez_tmp_4 = dataArray_25;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b11010:
-        casez_tmp_4 = dataArray_26;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b11011:
-        casez_tmp_4 = dataArray_27;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b11100:
-        casez_tmp_4 = dataArray_28;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b11101:
-        casez_tmp_4 = dataArray_29;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b11110:
-        casez_tmp_4 = dataArray_30;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      default:
-        casez_tmp_4 = dataArray_31;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-    endcase	// backend/src/zaqal/backend/rename/RegisterCache.scala:36:28, :46:23
-  end // always_comb
-  wire        is_zero_reg_2 = io_raddr_2 == 8'h0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:43:32
-  reg  [2:0]  casez_tmp_5;	// backend/src/zaqal/backend/rename/RegisterCache.scala:45:63
-  always_comb begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:45:63
-    casez (io_raddr_2[4:0])	// backend/src/zaqal/backend/rename/RegisterCache.scala:36:28, :45:63
-      5'b00000:
-        casez_tmp_5 = tagArray_0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b00001:
-        casez_tmp_5 = tagArray_1;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b00010:
-        casez_tmp_5 = tagArray_2;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b00011:
-        casez_tmp_5 = tagArray_3;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b00100:
-        casez_tmp_5 = tagArray_4;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b00101:
-        casez_tmp_5 = tagArray_5;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b00110:
-        casez_tmp_5 = tagArray_6;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b00111:
-        casez_tmp_5 = tagArray_7;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b01000:
-        casez_tmp_5 = tagArray_8;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b01001:
-        casez_tmp_5 = tagArray_9;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b01010:
-        casez_tmp_5 = tagArray_10;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b01011:
-        casez_tmp_5 = tagArray_11;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b01100:
-        casez_tmp_5 = tagArray_12;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b01101:
-        casez_tmp_5 = tagArray_13;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b01110:
-        casez_tmp_5 = tagArray_14;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b01111:
-        casez_tmp_5 = tagArray_15;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b10000:
-        casez_tmp_5 = tagArray_16;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b10001:
-        casez_tmp_5 = tagArray_17;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b10010:
-        casez_tmp_5 = tagArray_18;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b10011:
-        casez_tmp_5 = tagArray_19;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b10100:
-        casez_tmp_5 = tagArray_20;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b10101:
-        casez_tmp_5 = tagArray_21;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b10110:
-        casez_tmp_5 = tagArray_22;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b10111:
-        casez_tmp_5 = tagArray_23;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b11000:
-        casez_tmp_5 = tagArray_24;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b11001:
-        casez_tmp_5 = tagArray_25;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b11010:
-        casez_tmp_5 = tagArray_26;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b11011:
-        casez_tmp_5 = tagArray_27;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b11100:
-        casez_tmp_5 = tagArray_28;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b11101:
-        casez_tmp_5 = tagArray_29;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b11110:
-        casez_tmp_5 = tagArray_30;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      default:
-        casez_tmp_5 = tagArray_31;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-    endcase	// backend/src/zaqal/backend/rename/RegisterCache.scala:36:28, :45:63
-  end // always_comb
-  reg         casez_tmp_6;	// backend/src/zaqal/backend/rename/RegisterCache.scala:45:49
-  always_comb begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:45:49
-    casez (io_raddr_2[4:0])	// backend/src/zaqal/backend/rename/RegisterCache.scala:36:28, :45:49
-      5'b00000:
-        casez_tmp_6 = validArray_0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b00001:
-        casez_tmp_6 = validArray_1;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b00010:
-        casez_tmp_6 = validArray_2;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b00011:
-        casez_tmp_6 = validArray_3;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b00100:
-        casez_tmp_6 = validArray_4;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b00101:
-        casez_tmp_6 = validArray_5;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b00110:
-        casez_tmp_6 = validArray_6;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b00111:
-        casez_tmp_6 = validArray_7;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b01000:
-        casez_tmp_6 = validArray_8;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b01001:
-        casez_tmp_6 = validArray_9;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b01010:
-        casez_tmp_6 = validArray_10;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b01011:
-        casez_tmp_6 = validArray_11;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b01100:
-        casez_tmp_6 = validArray_12;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b01101:
-        casez_tmp_6 = validArray_13;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b01110:
-        casez_tmp_6 = validArray_14;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b01111:
-        casez_tmp_6 = validArray_15;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b10000:
-        casez_tmp_6 = validArray_16;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b10001:
-        casez_tmp_6 = validArray_17;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b10010:
-        casez_tmp_6 = validArray_18;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b10011:
-        casez_tmp_6 = validArray_19;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b10100:
-        casez_tmp_6 = validArray_20;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b10101:
-        casez_tmp_6 = validArray_21;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b10110:
-        casez_tmp_6 = validArray_22;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b10111:
-        casez_tmp_6 = validArray_23;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b11000:
-        casez_tmp_6 = validArray_24;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b11001:
-        casez_tmp_6 = validArray_25;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b11010:
-        casez_tmp_6 = validArray_26;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b11011:
-        casez_tmp_6 = validArray_27;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b11100:
-        casez_tmp_6 = validArray_28;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b11101:
-        casez_tmp_6 = validArray_29;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b11110:
-        casez_tmp_6 = validArray_30;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      default:
-        casez_tmp_6 = validArray_31;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-    endcase	// backend/src/zaqal/backend/rename/RegisterCache.scala:36:28, :45:49
-  end // always_comb
-  reg  [63:0] casez_tmp_7;	// backend/src/zaqal/backend/rename/RegisterCache.scala:46:23
-  always_comb begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:46:23
-    casez (io_raddr_2[4:0])	// backend/src/zaqal/backend/rename/RegisterCache.scala:36:28, :46:23
-      5'b00000:
-        casez_tmp_7 = dataArray_0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b00001:
-        casez_tmp_7 = dataArray_1;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b00010:
-        casez_tmp_7 = dataArray_2;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b00011:
-        casez_tmp_7 = dataArray_3;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b00100:
-        casez_tmp_7 = dataArray_4;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b00101:
-        casez_tmp_7 = dataArray_5;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b00110:
-        casez_tmp_7 = dataArray_6;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b00111:
-        casez_tmp_7 = dataArray_7;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b01000:
-        casez_tmp_7 = dataArray_8;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b01001:
-        casez_tmp_7 = dataArray_9;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b01010:
-        casez_tmp_7 = dataArray_10;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b01011:
-        casez_tmp_7 = dataArray_11;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b01100:
-        casez_tmp_7 = dataArray_12;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b01101:
-        casez_tmp_7 = dataArray_13;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b01110:
-        casez_tmp_7 = dataArray_14;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b01111:
-        casez_tmp_7 = dataArray_15;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b10000:
-        casez_tmp_7 = dataArray_16;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b10001:
-        casez_tmp_7 = dataArray_17;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b10010:
-        casez_tmp_7 = dataArray_18;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b10011:
-        casez_tmp_7 = dataArray_19;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b10100:
-        casez_tmp_7 = dataArray_20;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b10101:
-        casez_tmp_7 = dataArray_21;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b10110:
-        casez_tmp_7 = dataArray_22;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b10111:
-        casez_tmp_7 = dataArray_23;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b11000:
-        casez_tmp_7 = dataArray_24;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b11001:
-        casez_tmp_7 = dataArray_25;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b11010:
-        casez_tmp_7 = dataArray_26;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b11011:
-        casez_tmp_7 = dataArray_27;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b11100:
-        casez_tmp_7 = dataArray_28;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b11101:
-        casez_tmp_7 = dataArray_29;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b11110:
-        casez_tmp_7 = dataArray_30;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      default:
-        casez_tmp_7 = dataArray_31;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-    endcase	// backend/src/zaqal/backend/rename/RegisterCache.scala:36:28, :46:23
-  end // always_comb
-  wire        is_zero_reg_3 = io_raddr_3 == 8'h0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:43:32
-  reg  [2:0]  casez_tmp_8;	// backend/src/zaqal/backend/rename/RegisterCache.scala:45:63
-  always_comb begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:45:63
-    casez (io_raddr_3[4:0])	// backend/src/zaqal/backend/rename/RegisterCache.scala:36:28, :45:63
-      5'b00000:
-        casez_tmp_8 = tagArray_0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b00001:
-        casez_tmp_8 = tagArray_1;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b00010:
-        casez_tmp_8 = tagArray_2;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b00011:
-        casez_tmp_8 = tagArray_3;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b00100:
-        casez_tmp_8 = tagArray_4;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b00101:
-        casez_tmp_8 = tagArray_5;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b00110:
-        casez_tmp_8 = tagArray_6;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b00111:
-        casez_tmp_8 = tagArray_7;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b01000:
-        casez_tmp_8 = tagArray_8;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b01001:
-        casez_tmp_8 = tagArray_9;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b01010:
-        casez_tmp_8 = tagArray_10;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b01011:
-        casez_tmp_8 = tagArray_11;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b01100:
-        casez_tmp_8 = tagArray_12;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b01101:
-        casez_tmp_8 = tagArray_13;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b01110:
-        casez_tmp_8 = tagArray_14;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b01111:
-        casez_tmp_8 = tagArray_15;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b10000:
-        casez_tmp_8 = tagArray_16;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b10001:
-        casez_tmp_8 = tagArray_17;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b10010:
-        casez_tmp_8 = tagArray_18;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b10011:
-        casez_tmp_8 = tagArray_19;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b10100:
-        casez_tmp_8 = tagArray_20;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b10101:
-        casez_tmp_8 = tagArray_21;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b10110:
-        casez_tmp_8 = tagArray_22;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b10111:
-        casez_tmp_8 = tagArray_23;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b11000:
-        casez_tmp_8 = tagArray_24;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b11001:
-        casez_tmp_8 = tagArray_25;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b11010:
-        casez_tmp_8 = tagArray_26;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b11011:
-        casez_tmp_8 = tagArray_27;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b11100:
-        casez_tmp_8 = tagArray_28;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b11101:
-        casez_tmp_8 = tagArray_29;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b11110:
-        casez_tmp_8 = tagArray_30;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      default:
-        casez_tmp_8 = tagArray_31;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-    endcase	// backend/src/zaqal/backend/rename/RegisterCache.scala:36:28, :45:63
-  end // always_comb
-  reg         casez_tmp_9;	// backend/src/zaqal/backend/rename/RegisterCache.scala:45:49
-  always_comb begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:45:49
-    casez (io_raddr_3[4:0])	// backend/src/zaqal/backend/rename/RegisterCache.scala:36:28, :45:49
-      5'b00000:
-        casez_tmp_9 = validArray_0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b00001:
-        casez_tmp_9 = validArray_1;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b00010:
-        casez_tmp_9 = validArray_2;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b00011:
-        casez_tmp_9 = validArray_3;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b00100:
-        casez_tmp_9 = validArray_4;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b00101:
-        casez_tmp_9 = validArray_5;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b00110:
-        casez_tmp_9 = validArray_6;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b00111:
-        casez_tmp_9 = validArray_7;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b01000:
-        casez_tmp_9 = validArray_8;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b01001:
-        casez_tmp_9 = validArray_9;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b01010:
-        casez_tmp_9 = validArray_10;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b01011:
-        casez_tmp_9 = validArray_11;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b01100:
-        casez_tmp_9 = validArray_12;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b01101:
-        casez_tmp_9 = validArray_13;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b01110:
-        casez_tmp_9 = validArray_14;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b01111:
-        casez_tmp_9 = validArray_15;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b10000:
-        casez_tmp_9 = validArray_16;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b10001:
-        casez_tmp_9 = validArray_17;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b10010:
-        casez_tmp_9 = validArray_18;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b10011:
-        casez_tmp_9 = validArray_19;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b10100:
-        casez_tmp_9 = validArray_20;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b10101:
-        casez_tmp_9 = validArray_21;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b10110:
-        casez_tmp_9 = validArray_22;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b10111:
-        casez_tmp_9 = validArray_23;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b11000:
-        casez_tmp_9 = validArray_24;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b11001:
-        casez_tmp_9 = validArray_25;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b11010:
-        casez_tmp_9 = validArray_26;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b11011:
-        casez_tmp_9 = validArray_27;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b11100:
-        casez_tmp_9 = validArray_28;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b11101:
-        casez_tmp_9 = validArray_29;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b11110:
-        casez_tmp_9 = validArray_30;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      default:
-        casez_tmp_9 = validArray_31;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-    endcase	// backend/src/zaqal/backend/rename/RegisterCache.scala:36:28, :45:49
-  end // always_comb
-  reg  [63:0] casez_tmp_10;	// backend/src/zaqal/backend/rename/RegisterCache.scala:46:23
-  always_comb begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:46:23
-    casez (io_raddr_3[4:0])	// backend/src/zaqal/backend/rename/RegisterCache.scala:36:28, :46:23
-      5'b00000:
-        casez_tmp_10 = dataArray_0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b00001:
-        casez_tmp_10 = dataArray_1;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b00010:
-        casez_tmp_10 = dataArray_2;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b00011:
-        casez_tmp_10 = dataArray_3;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b00100:
-        casez_tmp_10 = dataArray_4;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b00101:
-        casez_tmp_10 = dataArray_5;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b00110:
-        casez_tmp_10 = dataArray_6;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b00111:
-        casez_tmp_10 = dataArray_7;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b01000:
-        casez_tmp_10 = dataArray_8;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b01001:
-        casez_tmp_10 = dataArray_9;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b01010:
-        casez_tmp_10 = dataArray_10;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b01011:
-        casez_tmp_10 = dataArray_11;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b01100:
-        casez_tmp_10 = dataArray_12;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b01101:
-        casez_tmp_10 = dataArray_13;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b01110:
-        casez_tmp_10 = dataArray_14;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b01111:
-        casez_tmp_10 = dataArray_15;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b10000:
-        casez_tmp_10 = dataArray_16;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b10001:
-        casez_tmp_10 = dataArray_17;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b10010:
-        casez_tmp_10 = dataArray_18;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b10011:
-        casez_tmp_10 = dataArray_19;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b10100:
-        casez_tmp_10 = dataArray_20;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b10101:
-        casez_tmp_10 = dataArray_21;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b10110:
-        casez_tmp_10 = dataArray_22;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b10111:
-        casez_tmp_10 = dataArray_23;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b11000:
-        casez_tmp_10 = dataArray_24;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b11001:
-        casez_tmp_10 = dataArray_25;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b11010:
-        casez_tmp_10 = dataArray_26;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b11011:
-        casez_tmp_10 = dataArray_27;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b11100:
-        casez_tmp_10 = dataArray_28;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b11101:
-        casez_tmp_10 = dataArray_29;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b11110:
-        casez_tmp_10 = dataArray_30;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      default:
-        casez_tmp_10 = dataArray_31;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-    endcase	// backend/src/zaqal/backend/rename/RegisterCache.scala:36:28, :46:23
-  end // always_comb
-  wire        is_zero_reg_4 = io_raddr_4 == 8'h0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:43:32
-  reg  [2:0]  casez_tmp_11;	// backend/src/zaqal/backend/rename/RegisterCache.scala:45:63
-  always_comb begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:45:63
-    casez (io_raddr_4[4:0])	// backend/src/zaqal/backend/rename/RegisterCache.scala:36:28, :45:63
-      5'b00000:
-        casez_tmp_11 = tagArray_0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b00001:
-        casez_tmp_11 = tagArray_1;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b00010:
-        casez_tmp_11 = tagArray_2;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b00011:
-        casez_tmp_11 = tagArray_3;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b00100:
-        casez_tmp_11 = tagArray_4;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b00101:
-        casez_tmp_11 = tagArray_5;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b00110:
-        casez_tmp_11 = tagArray_6;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b00111:
-        casez_tmp_11 = tagArray_7;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b01000:
-        casez_tmp_11 = tagArray_8;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b01001:
-        casez_tmp_11 = tagArray_9;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b01010:
-        casez_tmp_11 = tagArray_10;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b01011:
-        casez_tmp_11 = tagArray_11;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b01100:
-        casez_tmp_11 = tagArray_12;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b01101:
-        casez_tmp_11 = tagArray_13;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b01110:
-        casez_tmp_11 = tagArray_14;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b01111:
-        casez_tmp_11 = tagArray_15;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b10000:
-        casez_tmp_11 = tagArray_16;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b10001:
-        casez_tmp_11 = tagArray_17;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b10010:
-        casez_tmp_11 = tagArray_18;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b10011:
-        casez_tmp_11 = tagArray_19;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b10100:
-        casez_tmp_11 = tagArray_20;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b10101:
-        casez_tmp_11 = tagArray_21;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b10110:
-        casez_tmp_11 = tagArray_22;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b10111:
-        casez_tmp_11 = tagArray_23;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b11000:
-        casez_tmp_11 = tagArray_24;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b11001:
-        casez_tmp_11 = tagArray_25;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b11010:
-        casez_tmp_11 = tagArray_26;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b11011:
-        casez_tmp_11 = tagArray_27;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b11100:
-        casez_tmp_11 = tagArray_28;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b11101:
-        casez_tmp_11 = tagArray_29;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b11110:
-        casez_tmp_11 = tagArray_30;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      default:
-        casez_tmp_11 = tagArray_31;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-    endcase	// backend/src/zaqal/backend/rename/RegisterCache.scala:36:28, :45:63
-  end // always_comb
-  reg         casez_tmp_12;	// backend/src/zaqal/backend/rename/RegisterCache.scala:45:49
-  always_comb begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:45:49
-    casez (io_raddr_4[4:0])	// backend/src/zaqal/backend/rename/RegisterCache.scala:36:28, :45:49
-      5'b00000:
-        casez_tmp_12 = validArray_0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b00001:
-        casez_tmp_12 = validArray_1;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b00010:
-        casez_tmp_12 = validArray_2;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b00011:
-        casez_tmp_12 = validArray_3;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b00100:
-        casez_tmp_12 = validArray_4;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b00101:
-        casez_tmp_12 = validArray_5;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b00110:
-        casez_tmp_12 = validArray_6;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b00111:
-        casez_tmp_12 = validArray_7;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b01000:
-        casez_tmp_12 = validArray_8;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b01001:
-        casez_tmp_12 = validArray_9;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b01010:
-        casez_tmp_12 = validArray_10;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b01011:
-        casez_tmp_12 = validArray_11;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b01100:
-        casez_tmp_12 = validArray_12;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b01101:
-        casez_tmp_12 = validArray_13;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b01110:
-        casez_tmp_12 = validArray_14;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b01111:
-        casez_tmp_12 = validArray_15;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b10000:
-        casez_tmp_12 = validArray_16;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b10001:
-        casez_tmp_12 = validArray_17;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b10010:
-        casez_tmp_12 = validArray_18;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b10011:
-        casez_tmp_12 = validArray_19;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b10100:
-        casez_tmp_12 = validArray_20;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b10101:
-        casez_tmp_12 = validArray_21;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b10110:
-        casez_tmp_12 = validArray_22;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b10111:
-        casez_tmp_12 = validArray_23;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b11000:
-        casez_tmp_12 = validArray_24;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b11001:
-        casez_tmp_12 = validArray_25;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b11010:
-        casez_tmp_12 = validArray_26;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b11011:
-        casez_tmp_12 = validArray_27;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b11100:
-        casez_tmp_12 = validArray_28;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b11101:
-        casez_tmp_12 = validArray_29;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b11110:
-        casez_tmp_12 = validArray_30;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      default:
-        casez_tmp_12 = validArray_31;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-    endcase	// backend/src/zaqal/backend/rename/RegisterCache.scala:36:28, :45:49
-  end // always_comb
-  reg  [63:0] casez_tmp_13;	// backend/src/zaqal/backend/rename/RegisterCache.scala:46:23
-  always_comb begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:46:23
-    casez (io_raddr_4[4:0])	// backend/src/zaqal/backend/rename/RegisterCache.scala:36:28, :46:23
-      5'b00000:
-        casez_tmp_13 = dataArray_0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b00001:
-        casez_tmp_13 = dataArray_1;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b00010:
-        casez_tmp_13 = dataArray_2;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b00011:
-        casez_tmp_13 = dataArray_3;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b00100:
-        casez_tmp_13 = dataArray_4;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b00101:
-        casez_tmp_13 = dataArray_5;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b00110:
-        casez_tmp_13 = dataArray_6;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b00111:
-        casez_tmp_13 = dataArray_7;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b01000:
-        casez_tmp_13 = dataArray_8;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b01001:
-        casez_tmp_13 = dataArray_9;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b01010:
-        casez_tmp_13 = dataArray_10;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b01011:
-        casez_tmp_13 = dataArray_11;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b01100:
-        casez_tmp_13 = dataArray_12;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b01101:
-        casez_tmp_13 = dataArray_13;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b01110:
-        casez_tmp_13 = dataArray_14;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b01111:
-        casez_tmp_13 = dataArray_15;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b10000:
-        casez_tmp_13 = dataArray_16;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b10001:
-        casez_tmp_13 = dataArray_17;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b10010:
-        casez_tmp_13 = dataArray_18;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b10011:
-        casez_tmp_13 = dataArray_19;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b10100:
-        casez_tmp_13 = dataArray_20;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b10101:
-        casez_tmp_13 = dataArray_21;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b10110:
-        casez_tmp_13 = dataArray_22;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b10111:
-        casez_tmp_13 = dataArray_23;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b11000:
-        casez_tmp_13 = dataArray_24;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b11001:
-        casez_tmp_13 = dataArray_25;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b11010:
-        casez_tmp_13 = dataArray_26;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b11011:
-        casez_tmp_13 = dataArray_27;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b11100:
-        casez_tmp_13 = dataArray_28;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b11101:
-        casez_tmp_13 = dataArray_29;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b11110:
-        casez_tmp_13 = dataArray_30;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      default:
-        casez_tmp_13 = dataArray_31;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-    endcase	// backend/src/zaqal/backend/rename/RegisterCache.scala:36:28, :46:23
-  end // always_comb
-  wire        is_zero_reg_5 = io_raddr_5 == 8'h0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:43:32
-  reg  [2:0]  casez_tmp_14;	// backend/src/zaqal/backend/rename/RegisterCache.scala:45:63
-  always_comb begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:45:63
-    casez (io_raddr_5[4:0])	// backend/src/zaqal/backend/rename/RegisterCache.scala:36:28, :45:63
-      5'b00000:
-        casez_tmp_14 = tagArray_0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b00001:
-        casez_tmp_14 = tagArray_1;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b00010:
-        casez_tmp_14 = tagArray_2;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b00011:
-        casez_tmp_14 = tagArray_3;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b00100:
-        casez_tmp_14 = tagArray_4;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b00101:
-        casez_tmp_14 = tagArray_5;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b00110:
-        casez_tmp_14 = tagArray_6;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b00111:
-        casez_tmp_14 = tagArray_7;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b01000:
-        casez_tmp_14 = tagArray_8;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b01001:
-        casez_tmp_14 = tagArray_9;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b01010:
-        casez_tmp_14 = tagArray_10;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b01011:
-        casez_tmp_14 = tagArray_11;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b01100:
-        casez_tmp_14 = tagArray_12;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b01101:
-        casez_tmp_14 = tagArray_13;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b01110:
-        casez_tmp_14 = tagArray_14;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b01111:
-        casez_tmp_14 = tagArray_15;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b10000:
-        casez_tmp_14 = tagArray_16;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b10001:
-        casez_tmp_14 = tagArray_17;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b10010:
-        casez_tmp_14 = tagArray_18;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b10011:
-        casez_tmp_14 = tagArray_19;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b10100:
-        casez_tmp_14 = tagArray_20;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b10101:
-        casez_tmp_14 = tagArray_21;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b10110:
-        casez_tmp_14 = tagArray_22;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b10111:
-        casez_tmp_14 = tagArray_23;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b11000:
-        casez_tmp_14 = tagArray_24;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b11001:
-        casez_tmp_14 = tagArray_25;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b11010:
-        casez_tmp_14 = tagArray_26;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b11011:
-        casez_tmp_14 = tagArray_27;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b11100:
-        casez_tmp_14 = tagArray_28;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b11101:
-        casez_tmp_14 = tagArray_29;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b11110:
-        casez_tmp_14 = tagArray_30;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      default:
-        casez_tmp_14 = tagArray_31;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-    endcase	// backend/src/zaqal/backend/rename/RegisterCache.scala:36:28, :45:63
-  end // always_comb
-  reg         casez_tmp_15;	// backend/src/zaqal/backend/rename/RegisterCache.scala:45:49
-  always_comb begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:45:49
-    casez (io_raddr_5[4:0])	// backend/src/zaqal/backend/rename/RegisterCache.scala:36:28, :45:49
-      5'b00000:
-        casez_tmp_15 = validArray_0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b00001:
-        casez_tmp_15 = validArray_1;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b00010:
-        casez_tmp_15 = validArray_2;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b00011:
-        casez_tmp_15 = validArray_3;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b00100:
-        casez_tmp_15 = validArray_4;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b00101:
-        casez_tmp_15 = validArray_5;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b00110:
-        casez_tmp_15 = validArray_6;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b00111:
-        casez_tmp_15 = validArray_7;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b01000:
-        casez_tmp_15 = validArray_8;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b01001:
-        casez_tmp_15 = validArray_9;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b01010:
-        casez_tmp_15 = validArray_10;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b01011:
-        casez_tmp_15 = validArray_11;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b01100:
-        casez_tmp_15 = validArray_12;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b01101:
-        casez_tmp_15 = validArray_13;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b01110:
-        casez_tmp_15 = validArray_14;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b01111:
-        casez_tmp_15 = validArray_15;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b10000:
-        casez_tmp_15 = validArray_16;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b10001:
-        casez_tmp_15 = validArray_17;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b10010:
-        casez_tmp_15 = validArray_18;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b10011:
-        casez_tmp_15 = validArray_19;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b10100:
-        casez_tmp_15 = validArray_20;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b10101:
-        casez_tmp_15 = validArray_21;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b10110:
-        casez_tmp_15 = validArray_22;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b10111:
-        casez_tmp_15 = validArray_23;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b11000:
-        casez_tmp_15 = validArray_24;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b11001:
-        casez_tmp_15 = validArray_25;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b11010:
-        casez_tmp_15 = validArray_26;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b11011:
-        casez_tmp_15 = validArray_27;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b11100:
-        casez_tmp_15 = validArray_28;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b11101:
-        casez_tmp_15 = validArray_29;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b11110:
-        casez_tmp_15 = validArray_30;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      default:
-        casez_tmp_15 = validArray_31;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-    endcase	// backend/src/zaqal/backend/rename/RegisterCache.scala:36:28, :45:49
-  end // always_comb
-  reg  [63:0] casez_tmp_16;	// backend/src/zaqal/backend/rename/RegisterCache.scala:46:23
-  always_comb begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:46:23
-    casez (io_raddr_5[4:0])	// backend/src/zaqal/backend/rename/RegisterCache.scala:36:28, :46:23
-      5'b00000:
-        casez_tmp_16 = dataArray_0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b00001:
-        casez_tmp_16 = dataArray_1;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b00010:
-        casez_tmp_16 = dataArray_2;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b00011:
-        casez_tmp_16 = dataArray_3;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b00100:
-        casez_tmp_16 = dataArray_4;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b00101:
-        casez_tmp_16 = dataArray_5;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b00110:
-        casez_tmp_16 = dataArray_6;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b00111:
-        casez_tmp_16 = dataArray_7;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b01000:
-        casez_tmp_16 = dataArray_8;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b01001:
-        casez_tmp_16 = dataArray_9;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b01010:
-        casez_tmp_16 = dataArray_10;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b01011:
-        casez_tmp_16 = dataArray_11;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b01100:
-        casez_tmp_16 = dataArray_12;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b01101:
-        casez_tmp_16 = dataArray_13;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b01110:
-        casez_tmp_16 = dataArray_14;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b01111:
-        casez_tmp_16 = dataArray_15;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b10000:
-        casez_tmp_16 = dataArray_16;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b10001:
-        casez_tmp_16 = dataArray_17;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b10010:
-        casez_tmp_16 = dataArray_18;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b10011:
-        casez_tmp_16 = dataArray_19;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b10100:
-        casez_tmp_16 = dataArray_20;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b10101:
-        casez_tmp_16 = dataArray_21;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b10110:
-        casez_tmp_16 = dataArray_22;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b10111:
-        casez_tmp_16 = dataArray_23;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b11000:
-        casez_tmp_16 = dataArray_24;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b11001:
-        casez_tmp_16 = dataArray_25;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b11010:
-        casez_tmp_16 = dataArray_26;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b11011:
-        casez_tmp_16 = dataArray_27;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b11100:
-        casez_tmp_16 = dataArray_28;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b11101:
-        casez_tmp_16 = dataArray_29;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b11110:
-        casez_tmp_16 = dataArray_30;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      default:
-        casez_tmp_16 = dataArray_31;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-    endcase	// backend/src/zaqal/backend/rename/RegisterCache.scala:36:28, :46:23
-  end // always_comb
-  wire        is_zero_reg_6 = io_raddr_6 == 8'h0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:43:32
-  reg  [2:0]  casez_tmp_17;	// backend/src/zaqal/backend/rename/RegisterCache.scala:45:63
-  always_comb begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:45:63
-    casez (io_raddr_6[4:0])	// backend/src/zaqal/backend/rename/RegisterCache.scala:36:28, :45:63
-      5'b00000:
-        casez_tmp_17 = tagArray_0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b00001:
-        casez_tmp_17 = tagArray_1;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b00010:
-        casez_tmp_17 = tagArray_2;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b00011:
-        casez_tmp_17 = tagArray_3;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b00100:
-        casez_tmp_17 = tagArray_4;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b00101:
-        casez_tmp_17 = tagArray_5;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b00110:
-        casez_tmp_17 = tagArray_6;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b00111:
-        casez_tmp_17 = tagArray_7;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b01000:
-        casez_tmp_17 = tagArray_8;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b01001:
-        casez_tmp_17 = tagArray_9;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b01010:
-        casez_tmp_17 = tagArray_10;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b01011:
-        casez_tmp_17 = tagArray_11;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b01100:
-        casez_tmp_17 = tagArray_12;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b01101:
-        casez_tmp_17 = tagArray_13;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b01110:
-        casez_tmp_17 = tagArray_14;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b01111:
-        casez_tmp_17 = tagArray_15;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b10000:
-        casez_tmp_17 = tagArray_16;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b10001:
-        casez_tmp_17 = tagArray_17;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b10010:
-        casez_tmp_17 = tagArray_18;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b10011:
-        casez_tmp_17 = tagArray_19;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b10100:
-        casez_tmp_17 = tagArray_20;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b10101:
-        casez_tmp_17 = tagArray_21;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b10110:
-        casez_tmp_17 = tagArray_22;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b10111:
-        casez_tmp_17 = tagArray_23;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b11000:
-        casez_tmp_17 = tagArray_24;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b11001:
-        casez_tmp_17 = tagArray_25;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b11010:
-        casez_tmp_17 = tagArray_26;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b11011:
-        casez_tmp_17 = tagArray_27;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b11100:
-        casez_tmp_17 = tagArray_28;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b11101:
-        casez_tmp_17 = tagArray_29;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      5'b11110:
-        casez_tmp_17 = tagArray_30;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-      default:
-        casez_tmp_17 = tagArray_31;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
-    endcase	// backend/src/zaqal/backend/rename/RegisterCache.scala:36:28, :45:63
-  end // always_comb
-  reg         casez_tmp_18;	// backend/src/zaqal/backend/rename/RegisterCache.scala:45:49
-  always_comb begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:45:49
-    casez (io_raddr_6[4:0])	// backend/src/zaqal/backend/rename/RegisterCache.scala:36:28, :45:49
-      5'b00000:
-        casez_tmp_18 = validArray_0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b00001:
-        casez_tmp_18 = validArray_1;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b00010:
-        casez_tmp_18 = validArray_2;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b00011:
-        casez_tmp_18 = validArray_3;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b00100:
-        casez_tmp_18 = validArray_4;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b00101:
-        casez_tmp_18 = validArray_5;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b00110:
-        casez_tmp_18 = validArray_6;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b00111:
-        casez_tmp_18 = validArray_7;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b01000:
-        casez_tmp_18 = validArray_8;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b01001:
-        casez_tmp_18 = validArray_9;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b01010:
-        casez_tmp_18 = validArray_10;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b01011:
-        casez_tmp_18 = validArray_11;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b01100:
-        casez_tmp_18 = validArray_12;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b01101:
-        casez_tmp_18 = validArray_13;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b01110:
-        casez_tmp_18 = validArray_14;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b01111:
-        casez_tmp_18 = validArray_15;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b10000:
-        casez_tmp_18 = validArray_16;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b10001:
-        casez_tmp_18 = validArray_17;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b10010:
-        casez_tmp_18 = validArray_18;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b10011:
-        casez_tmp_18 = validArray_19;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b10100:
-        casez_tmp_18 = validArray_20;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b10101:
-        casez_tmp_18 = validArray_21;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b10110:
-        casez_tmp_18 = validArray_22;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b10111:
-        casez_tmp_18 = validArray_23;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b11000:
-        casez_tmp_18 = validArray_24;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b11001:
-        casez_tmp_18 = validArray_25;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b11010:
-        casez_tmp_18 = validArray_26;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b11011:
-        casez_tmp_18 = validArray_27;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b11100:
-        casez_tmp_18 = validArray_28;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b11101:
-        casez_tmp_18 = validArray_29;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      5'b11110:
-        casez_tmp_18 = validArray_30;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-      default:
-        casez_tmp_18 = validArray_31;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
-    endcase	// backend/src/zaqal/backend/rename/RegisterCache.scala:36:28, :45:49
-  end // always_comb
-  reg  [63:0] casez_tmp_19;	// backend/src/zaqal/backend/rename/RegisterCache.scala:46:23
-  always_comb begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:46:23
-    casez (io_raddr_6[4:0])	// backend/src/zaqal/backend/rename/RegisterCache.scala:36:28, :46:23
-      5'b00000:
-        casez_tmp_19 = dataArray_0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b00001:
-        casez_tmp_19 = dataArray_1;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b00010:
-        casez_tmp_19 = dataArray_2;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b00011:
-        casez_tmp_19 = dataArray_3;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b00100:
-        casez_tmp_19 = dataArray_4;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b00101:
-        casez_tmp_19 = dataArray_5;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b00110:
-        casez_tmp_19 = dataArray_6;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b00111:
-        casez_tmp_19 = dataArray_7;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b01000:
-        casez_tmp_19 = dataArray_8;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b01001:
-        casez_tmp_19 = dataArray_9;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b01010:
-        casez_tmp_19 = dataArray_10;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b01011:
-        casez_tmp_19 = dataArray_11;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b01100:
-        casez_tmp_19 = dataArray_12;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b01101:
-        casez_tmp_19 = dataArray_13;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b01110:
-        casez_tmp_19 = dataArray_14;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b01111:
-        casez_tmp_19 = dataArray_15;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b10000:
-        casez_tmp_19 = dataArray_16;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b10001:
-        casez_tmp_19 = dataArray_17;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b10010:
-        casez_tmp_19 = dataArray_18;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b10011:
-        casez_tmp_19 = dataArray_19;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b10100:
-        casez_tmp_19 = dataArray_20;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b10101:
-        casez_tmp_19 = dataArray_21;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b10110:
-        casez_tmp_19 = dataArray_22;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b10111:
-        casez_tmp_19 = dataArray_23;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b11000:
-        casez_tmp_19 = dataArray_24;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b11001:
-        casez_tmp_19 = dataArray_25;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b11010:
-        casez_tmp_19 = dataArray_26;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b11011:
-        casez_tmp_19 = dataArray_27;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b11100:
-        casez_tmp_19 = dataArray_28;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b11101:
-        casez_tmp_19 = dataArray_29;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      5'b11110:
-        casez_tmp_19 = dataArray_30;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-      default:
-        casez_tmp_19 = dataArray_31;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
-    endcase	// backend/src/zaqal/backend/rename/RegisterCache.scala:36:28, :46:23
-  end // always_comb
-  wire        _GEN = io_wen_0 & (|io_waddr_0);	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,35}
-  wire        _GEN_0 = _GEN & io_waddr_0[4:0] == 5'h0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :52:30, :55:25
-  wire        _GEN_1 = _GEN & io_waddr_0[4:0] == 5'h1;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :52:30, :55:25
-  wire        _GEN_2 = _GEN & io_waddr_0[4:0] == 5'h2;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :52:30, :55:25
-  wire        _GEN_3 = _GEN & io_waddr_0[4:0] == 5'h3;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :52:30, :55:25
-  wire        _GEN_4 = _GEN & io_waddr_0[4:0] == 5'h4;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :52:30, :55:25
-  wire        _GEN_5 = _GEN & io_waddr_0[4:0] == 5'h5;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :52:30, :55:25
-  wire        _GEN_6 = _GEN & io_waddr_0[4:0] == 5'h6;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :52:30, :55:25
-  wire        _GEN_7 = _GEN & io_waddr_0[4:0] == 5'h7;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :52:30, :55:25
-  wire        _GEN_8 = _GEN & io_waddr_0[4:0] == 5'h8;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :52:30, :55:25
-  wire        _GEN_9 = _GEN & io_waddr_0[4:0] == 5'h9;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :52:30, :55:25
-  wire        _GEN_10 = _GEN & io_waddr_0[4:0] == 5'hA;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :52:30, :55:25
-  wire        _GEN_11 = _GEN & io_waddr_0[4:0] == 5'hB;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :52:30, :55:25
-  wire        _GEN_12 = _GEN & io_waddr_0[4:0] == 5'hC;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :52:30, :55:25
-  wire        _GEN_13 = _GEN & io_waddr_0[4:0] == 5'hD;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :52:30, :55:25
-  wire        _GEN_14 = _GEN & io_waddr_0[4:0] == 5'hE;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :52:30, :55:25
-  wire        _GEN_15 = _GEN & io_waddr_0[4:0] == 5'hF;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :52:30, :55:25
-  wire        _GEN_16 = _GEN & io_waddr_0[4:0] == 5'h10;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :52:30, :55:25
-  wire        _GEN_17 = _GEN & io_waddr_0[4:0] == 5'h11;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :52:30, :55:25
-  wire        _GEN_18 = _GEN & io_waddr_0[4:0] == 5'h12;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :52:30, :55:25
-  wire        _GEN_19 = _GEN & io_waddr_0[4:0] == 5'h13;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :52:30, :55:25
-  wire        _GEN_20 = _GEN & io_waddr_0[4:0] == 5'h14;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :52:30, :55:25
-  wire        _GEN_21 = _GEN & io_waddr_0[4:0] == 5'h15;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :52:30, :55:25
-  wire        _GEN_22 = _GEN & io_waddr_0[4:0] == 5'h16;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :52:30, :55:25
-  wire        _GEN_23 = _GEN & io_waddr_0[4:0] == 5'h17;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :52:30, :55:25
-  wire        _GEN_24 = _GEN & io_waddr_0[4:0] == 5'h18;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :52:30, :55:25
-  wire        _GEN_25 = _GEN & io_waddr_0[4:0] == 5'h19;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :52:30, :55:25
-  wire        _GEN_26 = _GEN & io_waddr_0[4:0] == 5'h1A;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :52:30, :55:25
-  wire        _GEN_27 = _GEN & io_waddr_0[4:0] == 5'h1B;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :52:30, :55:25
-  wire        _GEN_28 = _GEN & io_waddr_0[4:0] == 5'h1C;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :52:30, :55:25
-  wire        _GEN_29 = _GEN & io_waddr_0[4:0] == 5'h1D;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :52:30, :55:25
-  wire        _GEN_30 = _GEN & io_waddr_0[4:0] == 5'h1E;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :52:30, :55:25
-  wire        _GEN_31 = _GEN & (&(io_waddr_0[4:0]));	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :52:30, :55:25
-  wire        _GEN_32 = io_wen_1 & (|io_waddr_1);	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,35}
-  wire        _GEN_33 = io_waddr_1[4:0] == 5'h0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_34 = io_waddr_1[4:0] == 5'h1;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_35 = io_waddr_1[4:0] == 5'h2;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_36 = io_waddr_1[4:0] == 5'h3;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_37 = io_waddr_1[4:0] == 5'h4;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_38 = io_waddr_1[4:0] == 5'h5;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_39 = io_waddr_1[4:0] == 5'h6;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_40 = io_waddr_1[4:0] == 5'h7;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_41 = io_waddr_1[4:0] == 5'h8;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_42 = io_waddr_1[4:0] == 5'h9;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_43 = io_waddr_1[4:0] == 5'hA;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_44 = io_waddr_1[4:0] == 5'hB;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_45 = io_waddr_1[4:0] == 5'hC;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_46 = io_waddr_1[4:0] == 5'hD;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_47 = io_waddr_1[4:0] == 5'hE;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_48 = io_waddr_1[4:0] == 5'hF;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_49 = io_waddr_1[4:0] == 5'h10;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_50 = io_waddr_1[4:0] == 5'h11;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_51 = io_waddr_1[4:0] == 5'h12;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_52 = io_waddr_1[4:0] == 5'h13;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_53 = io_waddr_1[4:0] == 5'h14;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_54 = io_waddr_1[4:0] == 5'h15;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_55 = io_waddr_1[4:0] == 5'h16;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_56 = io_waddr_1[4:0] == 5'h17;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_57 = io_waddr_1[4:0] == 5'h18;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_58 = io_waddr_1[4:0] == 5'h19;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_59 = io_waddr_1[4:0] == 5'h1A;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_60 = io_waddr_1[4:0] == 5'h1B;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_61 = io_waddr_1[4:0] == 5'h1C;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_62 = io_waddr_1[4:0] == 5'h1D;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_63 = io_waddr_1[4:0] == 5'h1E;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_64 = io_wen_2 & (|io_waddr_2);	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,35}
-  wire        _GEN_65 = _GEN_64 & io_waddr_2[4:0] == 5'h0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
-  wire        _GEN_66 = _GEN_64 & io_waddr_2[4:0] == 5'h1;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
-  wire        _GEN_67 = _GEN_64 & io_waddr_2[4:0] == 5'h2;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
-  wire        _GEN_68 = _GEN_64 & io_waddr_2[4:0] == 5'h3;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
-  wire        _GEN_69 = _GEN_64 & io_waddr_2[4:0] == 5'h4;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
-  wire        _GEN_70 = _GEN_64 & io_waddr_2[4:0] == 5'h5;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
-  wire        _GEN_71 = _GEN_64 & io_waddr_2[4:0] == 5'h6;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
-  wire        _GEN_72 = _GEN_64 & io_waddr_2[4:0] == 5'h7;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
-  wire        _GEN_73 = _GEN_64 & io_waddr_2[4:0] == 5'h8;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
-  wire        _GEN_74 = _GEN_64 & io_waddr_2[4:0] == 5'h9;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
-  wire        _GEN_75 = _GEN_64 & io_waddr_2[4:0] == 5'hA;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
-  wire        _GEN_76 = _GEN_64 & io_waddr_2[4:0] == 5'hB;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
-  wire        _GEN_77 = _GEN_64 & io_waddr_2[4:0] == 5'hC;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
-  wire        _GEN_78 = _GEN_64 & io_waddr_2[4:0] == 5'hD;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
-  wire        _GEN_79 = _GEN_64 & io_waddr_2[4:0] == 5'hE;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
-  wire        _GEN_80 = _GEN_64 & io_waddr_2[4:0] == 5'hF;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
-  wire        _GEN_81 = _GEN_64 & io_waddr_2[4:0] == 5'h10;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
-  wire        _GEN_82 = _GEN_64 & io_waddr_2[4:0] == 5'h11;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
-  wire        _GEN_83 = _GEN_64 & io_waddr_2[4:0] == 5'h12;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
-  wire        _GEN_84 = _GEN_64 & io_waddr_2[4:0] == 5'h13;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
-  wire        _GEN_85 = _GEN_64 & io_waddr_2[4:0] == 5'h14;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
-  wire        _GEN_86 = _GEN_64 & io_waddr_2[4:0] == 5'h15;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
-  wire        _GEN_87 = _GEN_64 & io_waddr_2[4:0] == 5'h16;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
-  wire        _GEN_88 = _GEN_64 & io_waddr_2[4:0] == 5'h17;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
-  wire        _GEN_89 = _GEN_64 & io_waddr_2[4:0] == 5'h18;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
-  wire        _GEN_90 = _GEN_64 & io_waddr_2[4:0] == 5'h19;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
-  wire        _GEN_91 = _GEN_64 & io_waddr_2[4:0] == 5'h1A;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
-  wire        _GEN_92 = _GEN_64 & io_waddr_2[4:0] == 5'h1B;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
-  wire        _GEN_93 = _GEN_64 & io_waddr_2[4:0] == 5'h1C;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
-  wire        _GEN_94 = _GEN_64 & io_waddr_2[4:0] == 5'h1D;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
-  wire        _GEN_95 = _GEN_64 & io_waddr_2[4:0] == 5'h1E;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
-  wire        _GEN_96 = _GEN_64 & (&(io_waddr_2[4:0]));	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
-  wire        _GEN_97 = io_wen_3 & (|io_waddr_3);	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,35}
-  wire        _GEN_98 = io_waddr_3[4:0] == 5'h0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_99 = io_waddr_3[4:0] == 5'h1;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_100 = io_waddr_3[4:0] == 5'h2;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_101 = io_waddr_3[4:0] == 5'h3;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_102 = io_waddr_3[4:0] == 5'h4;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_103 = io_waddr_3[4:0] == 5'h5;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_104 = io_waddr_3[4:0] == 5'h6;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_105 = io_waddr_3[4:0] == 5'h7;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_106 = io_waddr_3[4:0] == 5'h8;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_107 = io_waddr_3[4:0] == 5'h9;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_108 = io_waddr_3[4:0] == 5'hA;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_109 = io_waddr_3[4:0] == 5'hB;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_110 = io_waddr_3[4:0] == 5'hC;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_111 = io_waddr_3[4:0] == 5'hD;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_112 = io_waddr_3[4:0] == 5'hE;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_113 = io_waddr_3[4:0] == 5'hF;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_114 = io_waddr_3[4:0] == 5'h10;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_115 = io_waddr_3[4:0] == 5'h11;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_116 = io_waddr_3[4:0] == 5'h12;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_117 = io_waddr_3[4:0] == 5'h13;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_118 = io_waddr_3[4:0] == 5'h14;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_119 = io_waddr_3[4:0] == 5'h15;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_120 = io_waddr_3[4:0] == 5'h16;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_121 = io_waddr_3[4:0] == 5'h17;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_122 = io_waddr_3[4:0] == 5'h18;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_123 = io_waddr_3[4:0] == 5'h19;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_124 = io_waddr_3[4:0] == 5'h1A;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_125 = io_waddr_3[4:0] == 5'h1B;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_126 = io_waddr_3[4:0] == 5'h1C;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_127 = io_waddr_3[4:0] == 5'h1D;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_128 = io_waddr_3[4:0] == 5'h1E;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_129 = io_wen_4 & (|io_waddr_4);	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,35}
-  wire        _GEN_130 = _GEN_129 & io_waddr_4[4:0] == 5'h0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
-  wire        _GEN_131 = _GEN_129 & io_waddr_4[4:0] == 5'h1;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
-  wire        _GEN_132 = _GEN_129 & io_waddr_4[4:0] == 5'h2;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
-  wire        _GEN_133 = _GEN_129 & io_waddr_4[4:0] == 5'h3;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
-  wire        _GEN_134 = _GEN_129 & io_waddr_4[4:0] == 5'h4;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
-  wire        _GEN_135 = _GEN_129 & io_waddr_4[4:0] == 5'h5;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
-  wire        _GEN_136 = _GEN_129 & io_waddr_4[4:0] == 5'h6;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
-  wire        _GEN_137 = _GEN_129 & io_waddr_4[4:0] == 5'h7;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
-  wire        _GEN_138 = _GEN_129 & io_waddr_4[4:0] == 5'h8;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
-  wire        _GEN_139 = _GEN_129 & io_waddr_4[4:0] == 5'h9;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
-  wire        _GEN_140 = _GEN_129 & io_waddr_4[4:0] == 5'hA;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
-  wire        _GEN_141 = _GEN_129 & io_waddr_4[4:0] == 5'hB;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
-  wire        _GEN_142 = _GEN_129 & io_waddr_4[4:0] == 5'hC;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
-  wire        _GEN_143 = _GEN_129 & io_waddr_4[4:0] == 5'hD;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
-  wire        _GEN_144 = _GEN_129 & io_waddr_4[4:0] == 5'hE;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
-  wire        _GEN_145 = _GEN_129 & io_waddr_4[4:0] == 5'hF;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
-  wire        _GEN_146 = _GEN_129 & io_waddr_4[4:0] == 5'h10;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
-  wire        _GEN_147 = _GEN_129 & io_waddr_4[4:0] == 5'h11;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
-  wire        _GEN_148 = _GEN_129 & io_waddr_4[4:0] == 5'h12;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
-  wire        _GEN_149 = _GEN_129 & io_waddr_4[4:0] == 5'h13;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
-  wire        _GEN_150 = _GEN_129 & io_waddr_4[4:0] == 5'h14;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
-  wire        _GEN_151 = _GEN_129 & io_waddr_4[4:0] == 5'h15;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
-  wire        _GEN_152 = _GEN_129 & io_waddr_4[4:0] == 5'h16;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
-  wire        _GEN_153 = _GEN_129 & io_waddr_4[4:0] == 5'h17;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
-  wire        _GEN_154 = _GEN_129 & io_waddr_4[4:0] == 5'h18;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
-  wire        _GEN_155 = _GEN_129 & io_waddr_4[4:0] == 5'h19;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
-  wire        _GEN_156 = _GEN_129 & io_waddr_4[4:0] == 5'h1A;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
-  wire        _GEN_157 = _GEN_129 & io_waddr_4[4:0] == 5'h1B;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
-  wire        _GEN_158 = _GEN_129 & io_waddr_4[4:0] == 5'h1C;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
-  wire        _GEN_159 = _GEN_129 & io_waddr_4[4:0] == 5'h1D;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
-  wire        _GEN_160 = _GEN_129 & io_waddr_4[4:0] == 5'h1E;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
-  wire        _GEN_161 = _GEN_129 & (&(io_waddr_4[4:0]));	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
-  wire        _GEN_162 = io_wen_5 & (|io_waddr_5);	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,35}
-  wire        _GEN_163 = io_waddr_5[4:0] == 5'h0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_164 = io_waddr_5[4:0] == 5'h1;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_165 = io_waddr_5[4:0] == 5'h2;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_166 = io_waddr_5[4:0] == 5'h3;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_167 = io_waddr_5[4:0] == 5'h4;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_168 = io_waddr_5[4:0] == 5'h5;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_169 = io_waddr_5[4:0] == 5'h6;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_170 = io_waddr_5[4:0] == 5'h7;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_171 = io_waddr_5[4:0] == 5'h8;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_172 = io_waddr_5[4:0] == 5'h9;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_173 = io_waddr_5[4:0] == 5'hA;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_174 = io_waddr_5[4:0] == 5'hB;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_175 = io_waddr_5[4:0] == 5'hC;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_176 = io_waddr_5[4:0] == 5'hD;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_177 = io_waddr_5[4:0] == 5'hE;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_178 = io_waddr_5[4:0] == 5'hF;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_179 = io_waddr_5[4:0] == 5'h10;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_180 = io_waddr_5[4:0] == 5'h11;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_181 = io_waddr_5[4:0] == 5'h12;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_182 = io_waddr_5[4:0] == 5'h13;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_183 = io_waddr_5[4:0] == 5'h14;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_184 = io_waddr_5[4:0] == 5'h15;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_185 = io_waddr_5[4:0] == 5'h16;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_186 = io_waddr_5[4:0] == 5'h17;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_187 = io_waddr_5[4:0] == 5'h18;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_188 = io_waddr_5[4:0] == 5'h19;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_189 = io_waddr_5[4:0] == 5'h1A;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_190 = io_waddr_5[4:0] == 5'h1B;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_191 = io_waddr_5[4:0] == 5'h1C;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_192 = io_waddr_5[4:0] == 5'h1D;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_193 = io_waddr_5[4:0] == 5'h1E;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
-  wire        _GEN_194 =
-    _GEN_32 ? _GEN_33 | _GEN_0 | validArray_0 : _GEN_0 | validArray_0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25
-  wire        _GEN_195 =
-    _GEN_32 ? _GEN_34 | _GEN_1 | validArray_1 : _GEN_1 | validArray_1;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25
-  wire        _GEN_196 =
-    _GEN_32 ? _GEN_35 | _GEN_2 | validArray_2 : _GEN_2 | validArray_2;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25
-  wire        _GEN_197 =
-    _GEN_32 ? _GEN_36 | _GEN_3 | validArray_3 : _GEN_3 | validArray_3;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25
-  wire        _GEN_198 =
-    _GEN_32 ? _GEN_37 | _GEN_4 | validArray_4 : _GEN_4 | validArray_4;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25
-  wire        _GEN_199 =
-    _GEN_32 ? _GEN_38 | _GEN_5 | validArray_5 : _GEN_5 | validArray_5;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25
-  wire        _GEN_200 =
-    _GEN_32 ? _GEN_39 | _GEN_6 | validArray_6 : _GEN_6 | validArray_6;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25
-  wire        _GEN_201 =
-    _GEN_32 ? _GEN_40 | _GEN_7 | validArray_7 : _GEN_7 | validArray_7;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25
-  wire        _GEN_202 =
-    _GEN_32 ? _GEN_41 | _GEN_8 | validArray_8 : _GEN_8 | validArray_8;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25
-  wire        _GEN_203 =
-    _GEN_32 ? _GEN_42 | _GEN_9 | validArray_9 : _GEN_9 | validArray_9;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25
-  wire        _GEN_204 =
-    _GEN_32 ? _GEN_43 | _GEN_10 | validArray_10 : _GEN_10 | validArray_10;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25
-  wire        _GEN_205 =
-    _GEN_32 ? _GEN_44 | _GEN_11 | validArray_11 : _GEN_11 | validArray_11;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25
-  wire        _GEN_206 =
-    _GEN_32 ? _GEN_45 | _GEN_12 | validArray_12 : _GEN_12 | validArray_12;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25
-  wire        _GEN_207 =
-    _GEN_32 ? _GEN_46 | _GEN_13 | validArray_13 : _GEN_13 | validArray_13;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25
-  wire        _GEN_208 =
-    _GEN_32 ? _GEN_47 | _GEN_14 | validArray_14 : _GEN_14 | validArray_14;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25
-  wire        _GEN_209 =
-    _GEN_32 ? _GEN_48 | _GEN_15 | validArray_15 : _GEN_15 | validArray_15;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25
-  wire        _GEN_210 =
-    _GEN_32 ? _GEN_49 | _GEN_16 | validArray_16 : _GEN_16 | validArray_16;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25
-  wire        _GEN_211 =
-    _GEN_32 ? _GEN_50 | _GEN_17 | validArray_17 : _GEN_17 | validArray_17;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25
-  wire        _GEN_212 =
-    _GEN_32 ? _GEN_51 | _GEN_18 | validArray_18 : _GEN_18 | validArray_18;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25
-  wire        _GEN_213 =
-    _GEN_32 ? _GEN_52 | _GEN_19 | validArray_19 : _GEN_19 | validArray_19;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25
-  wire        _GEN_214 =
-    _GEN_32 ? _GEN_53 | _GEN_20 | validArray_20 : _GEN_20 | validArray_20;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25
-  wire        _GEN_215 =
-    _GEN_32 ? _GEN_54 | _GEN_21 | validArray_21 : _GEN_21 | validArray_21;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25
-  wire        _GEN_216 =
-    _GEN_32 ? _GEN_55 | _GEN_22 | validArray_22 : _GEN_22 | validArray_22;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25
-  wire        _GEN_217 =
-    _GEN_32 ? _GEN_56 | _GEN_23 | validArray_23 : _GEN_23 | validArray_23;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25
-  wire        _GEN_218 =
-    _GEN_32 ? _GEN_57 | _GEN_24 | validArray_24 : _GEN_24 | validArray_24;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25
-  wire        _GEN_219 =
-    _GEN_32 ? _GEN_58 | _GEN_25 | validArray_25 : _GEN_25 | validArray_25;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25
-  wire        _GEN_220 =
-    _GEN_32 ? _GEN_59 | _GEN_26 | validArray_26 : _GEN_26 | validArray_26;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25
-  wire        _GEN_221 =
-    _GEN_32 ? _GEN_60 | _GEN_27 | validArray_27 : _GEN_27 | validArray_27;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25
-  wire        _GEN_222 =
-    _GEN_32 ? _GEN_61 | _GEN_28 | validArray_28 : _GEN_28 | validArray_28;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25
-  wire        _GEN_223 =
-    _GEN_32 ? _GEN_62 | _GEN_29 | validArray_29 : _GEN_29 | validArray_29;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25
-  wire        _GEN_224 =
-    _GEN_32 ? _GEN_63 | _GEN_30 | validArray_30 : _GEN_30 | validArray_30;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25
-  wire        _GEN_225 =
-    _GEN_32 ? (&(io_waddr_1[4:0])) | _GEN_31 | validArray_31 : _GEN_31 | validArray_31;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :52:30, :55:25
-  wire        _GEN_226 = _GEN_97 ? _GEN_98 | _GEN_65 | _GEN_194 : _GEN_65 | _GEN_194;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
-  wire        _GEN_227 = _GEN_97 ? _GEN_99 | _GEN_66 | _GEN_195 : _GEN_66 | _GEN_195;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
-  wire        _GEN_228 = _GEN_97 ? _GEN_100 | _GEN_67 | _GEN_196 : _GEN_67 | _GEN_196;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
-  wire        _GEN_229 = _GEN_97 ? _GEN_101 | _GEN_68 | _GEN_197 : _GEN_68 | _GEN_197;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
-  wire        _GEN_230 = _GEN_97 ? _GEN_102 | _GEN_69 | _GEN_198 : _GEN_69 | _GEN_198;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
-  wire        _GEN_231 = _GEN_97 ? _GEN_103 | _GEN_70 | _GEN_199 : _GEN_70 | _GEN_199;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
-  wire        _GEN_232 = _GEN_97 ? _GEN_104 | _GEN_71 | _GEN_200 : _GEN_71 | _GEN_200;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
-  wire        _GEN_233 = _GEN_97 ? _GEN_105 | _GEN_72 | _GEN_201 : _GEN_72 | _GEN_201;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
-  wire        _GEN_234 = _GEN_97 ? _GEN_106 | _GEN_73 | _GEN_202 : _GEN_73 | _GEN_202;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
-  wire        _GEN_235 = _GEN_97 ? _GEN_107 | _GEN_74 | _GEN_203 : _GEN_74 | _GEN_203;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
-  wire        _GEN_236 = _GEN_97 ? _GEN_108 | _GEN_75 | _GEN_204 : _GEN_75 | _GEN_204;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
-  wire        _GEN_237 = _GEN_97 ? _GEN_109 | _GEN_76 | _GEN_205 : _GEN_76 | _GEN_205;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
-  wire        _GEN_238 = _GEN_97 ? _GEN_110 | _GEN_77 | _GEN_206 : _GEN_77 | _GEN_206;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
-  wire        _GEN_239 = _GEN_97 ? _GEN_111 | _GEN_78 | _GEN_207 : _GEN_78 | _GEN_207;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
-  wire        _GEN_240 = _GEN_97 ? _GEN_112 | _GEN_79 | _GEN_208 : _GEN_79 | _GEN_208;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
-  wire        _GEN_241 = _GEN_97 ? _GEN_113 | _GEN_80 | _GEN_209 : _GEN_80 | _GEN_209;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
-  wire        _GEN_242 = _GEN_97 ? _GEN_114 | _GEN_81 | _GEN_210 : _GEN_81 | _GEN_210;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
-  wire        _GEN_243 = _GEN_97 ? _GEN_115 | _GEN_82 | _GEN_211 : _GEN_82 | _GEN_211;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
-  wire        _GEN_244 = _GEN_97 ? _GEN_116 | _GEN_83 | _GEN_212 : _GEN_83 | _GEN_212;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
-  wire        _GEN_245 = _GEN_97 ? _GEN_117 | _GEN_84 | _GEN_213 : _GEN_84 | _GEN_213;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
-  wire        _GEN_246 = _GEN_97 ? _GEN_118 | _GEN_85 | _GEN_214 : _GEN_85 | _GEN_214;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
-  wire        _GEN_247 = _GEN_97 ? _GEN_119 | _GEN_86 | _GEN_215 : _GEN_86 | _GEN_215;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
-  wire        _GEN_248 = _GEN_97 ? _GEN_120 | _GEN_87 | _GEN_216 : _GEN_87 | _GEN_216;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
-  wire        _GEN_249 = _GEN_97 ? _GEN_121 | _GEN_88 | _GEN_217 : _GEN_88 | _GEN_217;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
-  wire        _GEN_250 = _GEN_97 ? _GEN_122 | _GEN_89 | _GEN_218 : _GEN_89 | _GEN_218;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
-  wire        _GEN_251 = _GEN_97 ? _GEN_123 | _GEN_90 | _GEN_219 : _GEN_90 | _GEN_219;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
-  wire        _GEN_252 = _GEN_97 ? _GEN_124 | _GEN_91 | _GEN_220 : _GEN_91 | _GEN_220;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
-  wire        _GEN_253 = _GEN_97 ? _GEN_125 | _GEN_92 | _GEN_221 : _GEN_92 | _GEN_221;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
-  wire        _GEN_254 = _GEN_97 ? _GEN_126 | _GEN_93 | _GEN_222 : _GEN_93 | _GEN_222;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
-  wire        _GEN_255 = _GEN_97 ? _GEN_127 | _GEN_94 | _GEN_223 : _GEN_94 | _GEN_223;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
-  wire        _GEN_256 = _GEN_97 ? _GEN_128 | _GEN_95 | _GEN_224 : _GEN_95 | _GEN_224;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
-  wire        _GEN_257 =
-    _GEN_97 ? (&(io_waddr_3[4:0])) | _GEN_96 | _GEN_225 : _GEN_96 | _GEN_225;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  reg               validArray_0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27
+  reg               validArray_1;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27
+  reg               validArray_2;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27
+  reg               validArray_3;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27
+  reg               validArray_4;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27
+  reg               validArray_5;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27
+  reg               validArray_6;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27
+  reg               validArray_7;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27
+  reg               validArray_8;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27
+  reg               validArray_9;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27
+  reg               validArray_10;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27
+  reg               validArray_11;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27
+  reg               validArray_12;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27
+  reg               validArray_13;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27
+  reg               validArray_14;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27
+  reg               validArray_15;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27
+  reg               validArray_16;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27
+  reg               validArray_17;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27
+  reg               validArray_18;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27
+  reg               validArray_19;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27
+  reg               validArray_20;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27
+  reg               validArray_21;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27
+  reg               validArray_22;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27
+  reg               validArray_23;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27
+  reg               validArray_24;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27
+  reg               validArray_25;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27
+  reg               validArray_26;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27
+  reg               validArray_27;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27
+  reg               validArray_28;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27
+  reg               validArray_29;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27
+  reg               validArray_30;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27
+  reg               validArray_31;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27
+  reg  [2:0]        tagArray_0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23
+  reg  [2:0]        tagArray_1;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23
+  reg  [2:0]        tagArray_2;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23
+  reg  [2:0]        tagArray_3;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23
+  reg  [2:0]        tagArray_4;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23
+  reg  [2:0]        tagArray_5;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23
+  reg  [2:0]        tagArray_6;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23
+  reg  [2:0]        tagArray_7;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23
+  reg  [2:0]        tagArray_8;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23
+  reg  [2:0]        tagArray_9;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23
+  reg  [2:0]        tagArray_10;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23
+  reg  [2:0]        tagArray_11;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23
+  reg  [2:0]        tagArray_12;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23
+  reg  [2:0]        tagArray_13;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23
+  reg  [2:0]        tagArray_14;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23
+  reg  [2:0]        tagArray_15;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23
+  reg  [2:0]        tagArray_16;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23
+  reg  [2:0]        tagArray_17;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23
+  reg  [2:0]        tagArray_18;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23
+  reg  [2:0]        tagArray_19;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23
+  reg  [2:0]        tagArray_20;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23
+  reg  [2:0]        tagArray_21;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23
+  reg  [2:0]        tagArray_22;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23
+  reg  [2:0]        tagArray_23;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23
+  reg  [2:0]        tagArray_24;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23
+  reg  [2:0]        tagArray_25;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23
+  reg  [2:0]        tagArray_26;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23
+  reg  [2:0]        tagArray_27;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23
+  reg  [2:0]        tagArray_28;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23
+  reg  [2:0]        tagArray_29;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23
+  reg  [2:0]        tagArray_30;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23
+  reg  [2:0]        tagArray_31;	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23
+  reg  [63:0]       dataArray_0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+  reg  [63:0]       dataArray_1;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+  reg  [63:0]       dataArray_2;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+  reg  [63:0]       dataArray_3;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+  reg  [63:0]       dataArray_4;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+  reg  [63:0]       dataArray_5;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+  reg  [63:0]       dataArray_6;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+  reg  [63:0]       dataArray_7;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+  reg  [63:0]       dataArray_8;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+  reg  [63:0]       dataArray_9;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+  reg  [63:0]       dataArray_10;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+  reg  [63:0]       dataArray_11;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+  reg  [63:0]       dataArray_12;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+  reg  [63:0]       dataArray_13;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+  reg  [63:0]       dataArray_14;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+  reg  [63:0]       dataArray_15;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+  reg  [63:0]       dataArray_16;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+  reg  [63:0]       dataArray_17;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+  reg  [63:0]       dataArray_18;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+  reg  [63:0]       dataArray_19;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+  reg  [63:0]       dataArray_20;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+  reg  [63:0]       dataArray_21;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+  reg  [63:0]       dataArray_22;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+  reg  [63:0]       dataArray_23;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+  reg  [63:0]       dataArray_24;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+  reg  [63:0]       dataArray_25;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+  reg  [63:0]       dataArray_26;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+  reg  [63:0]       dataArray_27;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+  reg  [63:0]       dataArray_28;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+  reg  [63:0]       dataArray_29;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+  reg  [63:0]       dataArray_30;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+  reg  [63:0]       dataArray_31;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+  wire              is_zero_reg = io_raddr_0 == 8'h0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:43:32
+  wire [31:0][2:0]  _GEN =
+    {{tagArray_31},
+     {tagArray_30},
+     {tagArray_29},
+     {tagArray_28},
+     {tagArray_27},
+     {tagArray_26},
+     {tagArray_25},
+     {tagArray_24},
+     {tagArray_23},
+     {tagArray_22},
+     {tagArray_21},
+     {tagArray_20},
+     {tagArray_19},
+     {tagArray_18},
+     {tagArray_17},
+     {tagArray_16},
+     {tagArray_15},
+     {tagArray_14},
+     {tagArray_13},
+     {tagArray_12},
+     {tagArray_11},
+     {tagArray_10},
+     {tagArray_9},
+     {tagArray_8},
+     {tagArray_7},
+     {tagArray_6},
+     {tagArray_5},
+     {tagArray_4},
+     {tagArray_3},
+     {tagArray_2},
+     {tagArray_1},
+     {tagArray_0}};	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :45:63
+  wire [31:0]       _GEN_0 =
+    {{validArray_31},
+     {validArray_30},
+     {validArray_29},
+     {validArray_28},
+     {validArray_27},
+     {validArray_26},
+     {validArray_25},
+     {validArray_24},
+     {validArray_23},
+     {validArray_22},
+     {validArray_21},
+     {validArray_20},
+     {validArray_19},
+     {validArray_18},
+     {validArray_17},
+     {validArray_16},
+     {validArray_15},
+     {validArray_14},
+     {validArray_13},
+     {validArray_12},
+     {validArray_11},
+     {validArray_10},
+     {validArray_9},
+     {validArray_8},
+     {validArray_7},
+     {validArray_6},
+     {validArray_5},
+     {validArray_4},
+     {validArray_3},
+     {validArray_2},
+     {validArray_1},
+     {validArray_0}};	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :45:49
+  wire [31:0][63:0] _GEN_1 =
+    {{dataArray_31},
+     {dataArray_30},
+     {dataArray_29},
+     {dataArray_28},
+     {dataArray_27},
+     {dataArray_26},
+     {dataArray_25},
+     {dataArray_24},
+     {dataArray_23},
+     {dataArray_22},
+     {dataArray_21},
+     {dataArray_20},
+     {dataArray_19},
+     {dataArray_18},
+     {dataArray_17},
+     {dataArray_16},
+     {dataArray_15},
+     {dataArray_14},
+     {dataArray_13},
+     {dataArray_12},
+     {dataArray_11},
+     {dataArray_10},
+     {dataArray_9},
+     {dataArray_8},
+     {dataArray_7},
+     {dataArray_6},
+     {dataArray_5},
+     {dataArray_4},
+     {dataArray_3},
+     {dataArray_2},
+     {dataArray_1},
+     {dataArray_0}};	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23, :46:23
+  wire              is_zero_reg_1 = io_raddr_1 == 8'h0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:43:32
+  wire              is_zero_reg_2 = io_raddr_2 == 8'h0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:43:32
+  wire              is_zero_reg_3 = io_raddr_3 == 8'h0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:43:32
+  wire              is_zero_reg_4 = io_raddr_4 == 8'h0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:43:32
+  wire              is_zero_reg_5 = io_raddr_5 == 8'h0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:43:32
+  wire              is_zero_reg_6 = io_raddr_6 == 8'h0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:43:32
+  wire              is_zero_reg_7 = io_raddr_7 == 8'h0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:43:32
+  wire              is_zero_reg_8 = io_raddr_8 == 8'h0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:43:32
+  wire              is_zero_reg_9 = io_raddr_9 == 8'h0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:43:32
+  wire              is_zero_reg_10 = io_raddr_10 == 8'h0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:43:32
+  wire              is_zero_reg_11 = io_raddr_11 == 8'h0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:43:32
+  wire              is_zero_reg_12 = io_raddr_12 == 8'h0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:43:32
+  wire              is_zero_reg_13 = io_raddr_13 == 8'h0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:43:32
+  wire              is_zero_reg_14 = io_raddr_14 == 8'h0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:43:32
+  wire              is_zero_reg_15 = io_raddr_15 == 8'h0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:43:32
+  wire              _GEN_2 = io_wen_0 & (|io_waddr_0);	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,35}
+  wire              _GEN_3 = _GEN_2 & io_waddr_0[4:0] == 5'h0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :52:30, :55:25
+  wire              _GEN_4 = _GEN_2 & io_waddr_0[4:0] == 5'h1;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :52:30, :55:25
+  wire              _GEN_5 = _GEN_2 & io_waddr_0[4:0] == 5'h2;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :52:30, :55:25
+  wire              _GEN_6 = _GEN_2 & io_waddr_0[4:0] == 5'h3;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :52:30, :55:25
+  wire              _GEN_7 = _GEN_2 & io_waddr_0[4:0] == 5'h4;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :52:30, :55:25
+  wire              _GEN_8 = _GEN_2 & io_waddr_0[4:0] == 5'h5;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :52:30, :55:25
+  wire              _GEN_9 = _GEN_2 & io_waddr_0[4:0] == 5'h6;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :52:30, :55:25
+  wire              _GEN_10 = _GEN_2 & io_waddr_0[4:0] == 5'h7;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :52:30, :55:25
+  wire              _GEN_11 = _GEN_2 & io_waddr_0[4:0] == 5'h8;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :52:30, :55:25
+  wire              _GEN_12 = _GEN_2 & io_waddr_0[4:0] == 5'h9;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :52:30, :55:25
+  wire              _GEN_13 = _GEN_2 & io_waddr_0[4:0] == 5'hA;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :52:30, :55:25
+  wire              _GEN_14 = _GEN_2 & io_waddr_0[4:0] == 5'hB;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :52:30, :55:25
+  wire              _GEN_15 = _GEN_2 & io_waddr_0[4:0] == 5'hC;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :52:30, :55:25
+  wire              _GEN_16 = _GEN_2 & io_waddr_0[4:0] == 5'hD;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :52:30, :55:25
+  wire              _GEN_17 = _GEN_2 & io_waddr_0[4:0] == 5'hE;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :52:30, :55:25
+  wire              _GEN_18 = _GEN_2 & io_waddr_0[4:0] == 5'hF;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :52:30, :55:25
+  wire              _GEN_19 = _GEN_2 & io_waddr_0[4:0] == 5'h10;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :52:30, :55:25
+  wire              _GEN_20 = _GEN_2 & io_waddr_0[4:0] == 5'h11;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :52:30, :55:25
+  wire              _GEN_21 = _GEN_2 & io_waddr_0[4:0] == 5'h12;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :52:30, :55:25
+  wire              _GEN_22 = _GEN_2 & io_waddr_0[4:0] == 5'h13;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :52:30, :55:25
+  wire              _GEN_23 = _GEN_2 & io_waddr_0[4:0] == 5'h14;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :52:30, :55:25
+  wire              _GEN_24 = _GEN_2 & io_waddr_0[4:0] == 5'h15;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :52:30, :55:25
+  wire              _GEN_25 = _GEN_2 & io_waddr_0[4:0] == 5'h16;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :52:30, :55:25
+  wire              _GEN_26 = _GEN_2 & io_waddr_0[4:0] == 5'h17;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :52:30, :55:25
+  wire              _GEN_27 = _GEN_2 & io_waddr_0[4:0] == 5'h18;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :52:30, :55:25
+  wire              _GEN_28 = _GEN_2 & io_waddr_0[4:0] == 5'h19;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :52:30, :55:25
+  wire              _GEN_29 = _GEN_2 & io_waddr_0[4:0] == 5'h1A;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :52:30, :55:25
+  wire              _GEN_30 = _GEN_2 & io_waddr_0[4:0] == 5'h1B;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :52:30, :55:25
+  wire              _GEN_31 = _GEN_2 & io_waddr_0[4:0] == 5'h1C;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :52:30, :55:25
+  wire              _GEN_32 = _GEN_2 & io_waddr_0[4:0] == 5'h1D;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :52:30, :55:25
+  wire              _GEN_33 = _GEN_2 & io_waddr_0[4:0] == 5'h1E;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :52:30, :55:25
+  wire              _GEN_34 = _GEN_2 & (&(io_waddr_0[4:0]));	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :52:30, :55:25
+  wire              _GEN_35 = io_wen_1 & (|io_waddr_1);	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,35}
+  wire              _GEN_36 = io_waddr_1[4:0] == 5'h0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_37 = io_waddr_1[4:0] == 5'h1;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_38 = io_waddr_1[4:0] == 5'h2;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_39 = io_waddr_1[4:0] == 5'h3;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_40 = io_waddr_1[4:0] == 5'h4;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_41 = io_waddr_1[4:0] == 5'h5;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_42 = io_waddr_1[4:0] == 5'h6;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_43 = io_waddr_1[4:0] == 5'h7;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_44 = io_waddr_1[4:0] == 5'h8;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_45 = io_waddr_1[4:0] == 5'h9;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_46 = io_waddr_1[4:0] == 5'hA;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_47 = io_waddr_1[4:0] == 5'hB;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_48 = io_waddr_1[4:0] == 5'hC;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_49 = io_waddr_1[4:0] == 5'hD;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_50 = io_waddr_1[4:0] == 5'hE;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_51 = io_waddr_1[4:0] == 5'hF;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_52 = io_waddr_1[4:0] == 5'h10;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_53 = io_waddr_1[4:0] == 5'h11;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_54 = io_waddr_1[4:0] == 5'h12;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_55 = io_waddr_1[4:0] == 5'h13;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_56 = io_waddr_1[4:0] == 5'h14;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_57 = io_waddr_1[4:0] == 5'h15;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_58 = io_waddr_1[4:0] == 5'h16;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_59 = io_waddr_1[4:0] == 5'h17;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_60 = io_waddr_1[4:0] == 5'h18;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_61 = io_waddr_1[4:0] == 5'h19;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_62 = io_waddr_1[4:0] == 5'h1A;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_63 = io_waddr_1[4:0] == 5'h1B;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_64 = io_waddr_1[4:0] == 5'h1C;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_65 = io_waddr_1[4:0] == 5'h1D;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_66 = io_waddr_1[4:0] == 5'h1E;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_67 = io_wen_2 & (|io_waddr_2);	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,35}
+  wire              _GEN_68 = _GEN_67 & io_waddr_2[4:0] == 5'h0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_69 = _GEN_67 & io_waddr_2[4:0] == 5'h1;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_70 = _GEN_67 & io_waddr_2[4:0] == 5'h2;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_71 = _GEN_67 & io_waddr_2[4:0] == 5'h3;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_72 = _GEN_67 & io_waddr_2[4:0] == 5'h4;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_73 = _GEN_67 & io_waddr_2[4:0] == 5'h5;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_74 = _GEN_67 & io_waddr_2[4:0] == 5'h6;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_75 = _GEN_67 & io_waddr_2[4:0] == 5'h7;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_76 = _GEN_67 & io_waddr_2[4:0] == 5'h8;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_77 = _GEN_67 & io_waddr_2[4:0] == 5'h9;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_78 = _GEN_67 & io_waddr_2[4:0] == 5'hA;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_79 = _GEN_67 & io_waddr_2[4:0] == 5'hB;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_80 = _GEN_67 & io_waddr_2[4:0] == 5'hC;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_81 = _GEN_67 & io_waddr_2[4:0] == 5'hD;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_82 = _GEN_67 & io_waddr_2[4:0] == 5'hE;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_83 = _GEN_67 & io_waddr_2[4:0] == 5'hF;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_84 = _GEN_67 & io_waddr_2[4:0] == 5'h10;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_85 = _GEN_67 & io_waddr_2[4:0] == 5'h11;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_86 = _GEN_67 & io_waddr_2[4:0] == 5'h12;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_87 = _GEN_67 & io_waddr_2[4:0] == 5'h13;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_88 = _GEN_67 & io_waddr_2[4:0] == 5'h14;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_89 = _GEN_67 & io_waddr_2[4:0] == 5'h15;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_90 = _GEN_67 & io_waddr_2[4:0] == 5'h16;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_91 = _GEN_67 & io_waddr_2[4:0] == 5'h17;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_92 = _GEN_67 & io_waddr_2[4:0] == 5'h18;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_93 = _GEN_67 & io_waddr_2[4:0] == 5'h19;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_94 = _GEN_67 & io_waddr_2[4:0] == 5'h1A;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_95 = _GEN_67 & io_waddr_2[4:0] == 5'h1B;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_96 = _GEN_67 & io_waddr_2[4:0] == 5'h1C;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_97 = _GEN_67 & io_waddr_2[4:0] == 5'h1D;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_98 = _GEN_67 & io_waddr_2[4:0] == 5'h1E;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_99 = _GEN_67 & (&(io_waddr_2[4:0]));	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_100 = io_wen_3 & (|io_waddr_3);	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,35}
+  wire              _GEN_101 = io_waddr_3[4:0] == 5'h0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_102 = io_waddr_3[4:0] == 5'h1;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_103 = io_waddr_3[4:0] == 5'h2;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_104 = io_waddr_3[4:0] == 5'h3;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_105 = io_waddr_3[4:0] == 5'h4;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_106 = io_waddr_3[4:0] == 5'h5;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_107 = io_waddr_3[4:0] == 5'h6;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_108 = io_waddr_3[4:0] == 5'h7;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_109 = io_waddr_3[4:0] == 5'h8;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_110 = io_waddr_3[4:0] == 5'h9;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_111 = io_waddr_3[4:0] == 5'hA;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_112 = io_waddr_3[4:0] == 5'hB;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_113 = io_waddr_3[4:0] == 5'hC;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_114 = io_waddr_3[4:0] == 5'hD;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_115 = io_waddr_3[4:0] == 5'hE;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_116 = io_waddr_3[4:0] == 5'hF;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_117 = io_waddr_3[4:0] == 5'h10;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_118 = io_waddr_3[4:0] == 5'h11;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_119 = io_waddr_3[4:0] == 5'h12;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_120 = io_waddr_3[4:0] == 5'h13;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_121 = io_waddr_3[4:0] == 5'h14;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_122 = io_waddr_3[4:0] == 5'h15;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_123 = io_waddr_3[4:0] == 5'h16;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_124 = io_waddr_3[4:0] == 5'h17;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_125 = io_waddr_3[4:0] == 5'h18;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_126 = io_waddr_3[4:0] == 5'h19;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_127 = io_waddr_3[4:0] == 5'h1A;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_128 = io_waddr_3[4:0] == 5'h1B;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_129 = io_waddr_3[4:0] == 5'h1C;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_130 = io_waddr_3[4:0] == 5'h1D;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_131 = io_waddr_3[4:0] == 5'h1E;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_132 = io_wen_4 & (|io_waddr_4);	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,35}
+  wire              _GEN_133 = _GEN_132 & io_waddr_4[4:0] == 5'h0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_134 = _GEN_132 & io_waddr_4[4:0] == 5'h1;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_135 = _GEN_132 & io_waddr_4[4:0] == 5'h2;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_136 = _GEN_132 & io_waddr_4[4:0] == 5'h3;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_137 = _GEN_132 & io_waddr_4[4:0] == 5'h4;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_138 = _GEN_132 & io_waddr_4[4:0] == 5'h5;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_139 = _GEN_132 & io_waddr_4[4:0] == 5'h6;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_140 = _GEN_132 & io_waddr_4[4:0] == 5'h7;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_141 = _GEN_132 & io_waddr_4[4:0] == 5'h8;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_142 = _GEN_132 & io_waddr_4[4:0] == 5'h9;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_143 = _GEN_132 & io_waddr_4[4:0] == 5'hA;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_144 = _GEN_132 & io_waddr_4[4:0] == 5'hB;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_145 = _GEN_132 & io_waddr_4[4:0] == 5'hC;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_146 = _GEN_132 & io_waddr_4[4:0] == 5'hD;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_147 = _GEN_132 & io_waddr_4[4:0] == 5'hE;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_148 = _GEN_132 & io_waddr_4[4:0] == 5'hF;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_149 = _GEN_132 & io_waddr_4[4:0] == 5'h10;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_150 = _GEN_132 & io_waddr_4[4:0] == 5'h11;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_151 = _GEN_132 & io_waddr_4[4:0] == 5'h12;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_152 = _GEN_132 & io_waddr_4[4:0] == 5'h13;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_153 = _GEN_132 & io_waddr_4[4:0] == 5'h14;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_154 = _GEN_132 & io_waddr_4[4:0] == 5'h15;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_155 = _GEN_132 & io_waddr_4[4:0] == 5'h16;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_156 = _GEN_132 & io_waddr_4[4:0] == 5'h17;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_157 = _GEN_132 & io_waddr_4[4:0] == 5'h18;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_158 = _GEN_132 & io_waddr_4[4:0] == 5'h19;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_159 = _GEN_132 & io_waddr_4[4:0] == 5'h1A;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_160 = _GEN_132 & io_waddr_4[4:0] == 5'h1B;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_161 = _GEN_132 & io_waddr_4[4:0] == 5'h1C;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_162 = _GEN_132 & io_waddr_4[4:0] == 5'h1D;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_163 = _GEN_132 & io_waddr_4[4:0] == 5'h1E;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_164 = _GEN_132 & (&(io_waddr_4[4:0]));	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_165 = io_wen_5 & (|io_waddr_5);	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,35}
+  wire              _GEN_166 = io_waddr_5[4:0] == 5'h0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_167 = io_waddr_5[4:0] == 5'h1;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_168 = io_waddr_5[4:0] == 5'h2;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_169 = io_waddr_5[4:0] == 5'h3;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_170 = io_waddr_5[4:0] == 5'h4;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_171 = io_waddr_5[4:0] == 5'h5;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_172 = io_waddr_5[4:0] == 5'h6;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_173 = io_waddr_5[4:0] == 5'h7;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_174 = io_waddr_5[4:0] == 5'h8;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_175 = io_waddr_5[4:0] == 5'h9;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_176 = io_waddr_5[4:0] == 5'hA;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_177 = io_waddr_5[4:0] == 5'hB;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_178 = io_waddr_5[4:0] == 5'hC;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_179 = io_waddr_5[4:0] == 5'hD;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_180 = io_waddr_5[4:0] == 5'hE;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_181 = io_waddr_5[4:0] == 5'hF;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_182 = io_waddr_5[4:0] == 5'h10;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_183 = io_waddr_5[4:0] == 5'h11;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_184 = io_waddr_5[4:0] == 5'h12;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_185 = io_waddr_5[4:0] == 5'h13;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_186 = io_waddr_5[4:0] == 5'h14;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_187 = io_waddr_5[4:0] == 5'h15;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_188 = io_waddr_5[4:0] == 5'h16;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_189 = io_waddr_5[4:0] == 5'h17;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_190 = io_waddr_5[4:0] == 5'h18;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_191 = io_waddr_5[4:0] == 5'h19;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_192 = io_waddr_5[4:0] == 5'h1A;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_193 = io_waddr_5[4:0] == 5'h1B;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_194 = io_waddr_5[4:0] == 5'h1C;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_195 = io_waddr_5[4:0] == 5'h1D;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_196 = io_waddr_5[4:0] == 5'h1E;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_197 = io_wen_6 & (|io_waddr_6);	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,35}
+  wire              _GEN_198 = _GEN_197 & io_waddr_6[4:0] == 5'h0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_199 = _GEN_197 & io_waddr_6[4:0] == 5'h1;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_200 = _GEN_197 & io_waddr_6[4:0] == 5'h2;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_201 = _GEN_197 & io_waddr_6[4:0] == 5'h3;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_202 = _GEN_197 & io_waddr_6[4:0] == 5'h4;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_203 = _GEN_197 & io_waddr_6[4:0] == 5'h5;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_204 = _GEN_197 & io_waddr_6[4:0] == 5'h6;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_205 = _GEN_197 & io_waddr_6[4:0] == 5'h7;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_206 = _GEN_197 & io_waddr_6[4:0] == 5'h8;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_207 = _GEN_197 & io_waddr_6[4:0] == 5'h9;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_208 = _GEN_197 & io_waddr_6[4:0] == 5'hA;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_209 = _GEN_197 & io_waddr_6[4:0] == 5'hB;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_210 = _GEN_197 & io_waddr_6[4:0] == 5'hC;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_211 = _GEN_197 & io_waddr_6[4:0] == 5'hD;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_212 = _GEN_197 & io_waddr_6[4:0] == 5'hE;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_213 = _GEN_197 & io_waddr_6[4:0] == 5'hF;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_214 = _GEN_197 & io_waddr_6[4:0] == 5'h10;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_215 = _GEN_197 & io_waddr_6[4:0] == 5'h11;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_216 = _GEN_197 & io_waddr_6[4:0] == 5'h12;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_217 = _GEN_197 & io_waddr_6[4:0] == 5'h13;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_218 = _GEN_197 & io_waddr_6[4:0] == 5'h14;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_219 = _GEN_197 & io_waddr_6[4:0] == 5'h15;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_220 = _GEN_197 & io_waddr_6[4:0] == 5'h16;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_221 = _GEN_197 & io_waddr_6[4:0] == 5'h17;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_222 = _GEN_197 & io_waddr_6[4:0] == 5'h18;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_223 = _GEN_197 & io_waddr_6[4:0] == 5'h19;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_224 = _GEN_197 & io_waddr_6[4:0] == 5'h1A;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_225 = _GEN_197 & io_waddr_6[4:0] == 5'h1B;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_226 = _GEN_197 & io_waddr_6[4:0] == 5'h1C;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_227 = _GEN_197 & io_waddr_6[4:0] == 5'h1D;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_228 = _GEN_197 & io_waddr_6[4:0] == 5'h1E;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_229 = _GEN_197 & (&(io_waddr_6[4:0]));	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_230 = io_wen_7 & (|io_waddr_7);	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,35}
+  wire              _GEN_231 = io_waddr_7[4:0] == 5'h0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_232 = io_waddr_7[4:0] == 5'h1;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_233 = io_waddr_7[4:0] == 5'h2;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_234 = io_waddr_7[4:0] == 5'h3;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_235 = io_waddr_7[4:0] == 5'h4;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_236 = io_waddr_7[4:0] == 5'h5;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_237 = io_waddr_7[4:0] == 5'h6;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_238 = io_waddr_7[4:0] == 5'h7;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_239 = io_waddr_7[4:0] == 5'h8;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_240 = io_waddr_7[4:0] == 5'h9;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_241 = io_waddr_7[4:0] == 5'hA;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_242 = io_waddr_7[4:0] == 5'hB;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_243 = io_waddr_7[4:0] == 5'hC;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_244 = io_waddr_7[4:0] == 5'hD;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_245 = io_waddr_7[4:0] == 5'hE;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_246 = io_waddr_7[4:0] == 5'hF;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_247 = io_waddr_7[4:0] == 5'h10;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_248 = io_waddr_7[4:0] == 5'h11;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_249 = io_waddr_7[4:0] == 5'h12;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_250 = io_waddr_7[4:0] == 5'h13;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_251 = io_waddr_7[4:0] == 5'h14;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_252 = io_waddr_7[4:0] == 5'h15;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_253 = io_waddr_7[4:0] == 5'h16;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_254 = io_waddr_7[4:0] == 5'h17;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_255 = io_waddr_7[4:0] == 5'h18;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_256 = io_waddr_7[4:0] == 5'h19;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_257 = io_waddr_7[4:0] == 5'h1A;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_258 = io_waddr_7[4:0] == 5'h1B;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_259 = io_waddr_7[4:0] == 5'h1C;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_260 = io_waddr_7[4:0] == 5'h1D;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_261 = io_waddr_7[4:0] == 5'h1E;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_262 = io_wen_8 & (|io_waddr_8);	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,35}
+  wire              _GEN_263 = _GEN_262 & io_waddr_8[4:0] == 5'h0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_264 = _GEN_262 & io_waddr_8[4:0] == 5'h1;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_265 = _GEN_262 & io_waddr_8[4:0] == 5'h2;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_266 = _GEN_262 & io_waddr_8[4:0] == 5'h3;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_267 = _GEN_262 & io_waddr_8[4:0] == 5'h4;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_268 = _GEN_262 & io_waddr_8[4:0] == 5'h5;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_269 = _GEN_262 & io_waddr_8[4:0] == 5'h6;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_270 = _GEN_262 & io_waddr_8[4:0] == 5'h7;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_271 = _GEN_262 & io_waddr_8[4:0] == 5'h8;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_272 = _GEN_262 & io_waddr_8[4:0] == 5'h9;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_273 = _GEN_262 & io_waddr_8[4:0] == 5'hA;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_274 = _GEN_262 & io_waddr_8[4:0] == 5'hB;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_275 = _GEN_262 & io_waddr_8[4:0] == 5'hC;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_276 = _GEN_262 & io_waddr_8[4:0] == 5'hD;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_277 = _GEN_262 & io_waddr_8[4:0] == 5'hE;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_278 = _GEN_262 & io_waddr_8[4:0] == 5'hF;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_279 = _GEN_262 & io_waddr_8[4:0] == 5'h10;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_280 = _GEN_262 & io_waddr_8[4:0] == 5'h11;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_281 = _GEN_262 & io_waddr_8[4:0] == 5'h12;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_282 = _GEN_262 & io_waddr_8[4:0] == 5'h13;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_283 = _GEN_262 & io_waddr_8[4:0] == 5'h14;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_284 = _GEN_262 & io_waddr_8[4:0] == 5'h15;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_285 = _GEN_262 & io_waddr_8[4:0] == 5'h16;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_286 = _GEN_262 & io_waddr_8[4:0] == 5'h17;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_287 = _GEN_262 & io_waddr_8[4:0] == 5'h18;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_288 = _GEN_262 & io_waddr_8[4:0] == 5'h19;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_289 = _GEN_262 & io_waddr_8[4:0] == 5'h1A;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_290 = _GEN_262 & io_waddr_8[4:0] == 5'h1B;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_291 = _GEN_262 & io_waddr_8[4:0] == 5'h1C;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_292 = _GEN_262 & io_waddr_8[4:0] == 5'h1D;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_293 = _GEN_262 & io_waddr_8[4:0] == 5'h1E;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_294 = _GEN_262 & (&(io_waddr_8[4:0]));	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_295 = io_wen_9 & (|io_waddr_9);	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,35}
+  wire              _GEN_296 = io_waddr_9[4:0] == 5'h0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_297 = io_waddr_9[4:0] == 5'h1;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_298 = io_waddr_9[4:0] == 5'h2;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_299 = io_waddr_9[4:0] == 5'h3;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_300 = io_waddr_9[4:0] == 5'h4;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_301 = io_waddr_9[4:0] == 5'h5;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_302 = io_waddr_9[4:0] == 5'h6;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_303 = io_waddr_9[4:0] == 5'h7;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_304 = io_waddr_9[4:0] == 5'h8;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_305 = io_waddr_9[4:0] == 5'h9;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_306 = io_waddr_9[4:0] == 5'hA;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_307 = io_waddr_9[4:0] == 5'hB;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_308 = io_waddr_9[4:0] == 5'hC;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_309 = io_waddr_9[4:0] == 5'hD;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_310 = io_waddr_9[4:0] == 5'hE;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_311 = io_waddr_9[4:0] == 5'hF;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_312 = io_waddr_9[4:0] == 5'h10;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_313 = io_waddr_9[4:0] == 5'h11;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_314 = io_waddr_9[4:0] == 5'h12;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_315 = io_waddr_9[4:0] == 5'h13;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_316 = io_waddr_9[4:0] == 5'h14;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_317 = io_waddr_9[4:0] == 5'h15;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_318 = io_waddr_9[4:0] == 5'h16;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_319 = io_waddr_9[4:0] == 5'h17;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_320 = io_waddr_9[4:0] == 5'h18;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_321 = io_waddr_9[4:0] == 5'h19;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_322 = io_waddr_9[4:0] == 5'h1A;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_323 = io_waddr_9[4:0] == 5'h1B;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_324 = io_waddr_9[4:0] == 5'h1C;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_325 = io_waddr_9[4:0] == 5'h1D;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_326 = io_waddr_9[4:0] == 5'h1E;	// backend/src/zaqal/backend/rename/RegisterCache.scala:52:30, :55:25
+  wire              _GEN_327 = io_wen_10 & (|io_waddr_10);	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,35}
+  wire              _GEN_328 = _GEN_327 & io_waddr_10[4:0] == 5'h0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_329 = _GEN_327 & io_waddr_10[4:0] == 5'h1;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_330 = _GEN_327 & io_waddr_10[4:0] == 5'h2;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_331 = _GEN_327 & io_waddr_10[4:0] == 5'h3;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_332 = _GEN_327 & io_waddr_10[4:0] == 5'h4;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_333 = _GEN_327 & io_waddr_10[4:0] == 5'h5;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_334 = _GEN_327 & io_waddr_10[4:0] == 5'h6;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_335 = _GEN_327 & io_waddr_10[4:0] == 5'h7;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_336 = _GEN_327 & io_waddr_10[4:0] == 5'h8;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_337 = _GEN_327 & io_waddr_10[4:0] == 5'h9;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_338 = _GEN_327 & io_waddr_10[4:0] == 5'hA;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_339 = _GEN_327 & io_waddr_10[4:0] == 5'hB;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_340 = _GEN_327 & io_waddr_10[4:0] == 5'hC;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_341 = _GEN_327 & io_waddr_10[4:0] == 5'hD;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_342 = _GEN_327 & io_waddr_10[4:0] == 5'hE;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_343 = _GEN_327 & io_waddr_10[4:0] == 5'hF;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_344 = _GEN_327 & io_waddr_10[4:0] == 5'h10;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_345 = _GEN_327 & io_waddr_10[4:0] == 5'h11;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_346 = _GEN_327 & io_waddr_10[4:0] == 5'h12;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_347 = _GEN_327 & io_waddr_10[4:0] == 5'h13;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_348 = _GEN_327 & io_waddr_10[4:0] == 5'h14;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_349 = _GEN_327 & io_waddr_10[4:0] == 5'h15;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_350 = _GEN_327 & io_waddr_10[4:0] == 5'h16;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_351 = _GEN_327 & io_waddr_10[4:0] == 5'h17;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_352 = _GEN_327 & io_waddr_10[4:0] == 5'h18;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_353 = _GEN_327 & io_waddr_10[4:0] == 5'h19;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_354 = _GEN_327 & io_waddr_10[4:0] == 5'h1A;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_355 = _GEN_327 & io_waddr_10[4:0] == 5'h1B;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_356 = _GEN_327 & io_waddr_10[4:0] == 5'h1C;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_357 = _GEN_327 & io_waddr_10[4:0] == 5'h1D;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_358 = _GEN_327 & io_waddr_10[4:0] == 5'h1E;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_359 = _GEN_327 & (&(io_waddr_10[4:0]));	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_360 =
+    _GEN_35 ? _GEN_36 | _GEN_3 | validArray_0 : _GEN_3 | validArray_0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25
+  wire              _GEN_361 =
+    _GEN_35 ? _GEN_37 | _GEN_4 | validArray_1 : _GEN_4 | validArray_1;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25
+  wire              _GEN_362 =
+    _GEN_35 ? _GEN_38 | _GEN_5 | validArray_2 : _GEN_5 | validArray_2;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25
+  wire              _GEN_363 =
+    _GEN_35 ? _GEN_39 | _GEN_6 | validArray_3 : _GEN_6 | validArray_3;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25
+  wire              _GEN_364 =
+    _GEN_35 ? _GEN_40 | _GEN_7 | validArray_4 : _GEN_7 | validArray_4;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25
+  wire              _GEN_365 =
+    _GEN_35 ? _GEN_41 | _GEN_8 | validArray_5 : _GEN_8 | validArray_5;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25
+  wire              _GEN_366 =
+    _GEN_35 ? _GEN_42 | _GEN_9 | validArray_6 : _GEN_9 | validArray_6;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25
+  wire              _GEN_367 =
+    _GEN_35 ? _GEN_43 | _GEN_10 | validArray_7 : _GEN_10 | validArray_7;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25
+  wire              _GEN_368 =
+    _GEN_35 ? _GEN_44 | _GEN_11 | validArray_8 : _GEN_11 | validArray_8;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25
+  wire              _GEN_369 =
+    _GEN_35 ? _GEN_45 | _GEN_12 | validArray_9 : _GEN_12 | validArray_9;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25
+  wire              _GEN_370 =
+    _GEN_35 ? _GEN_46 | _GEN_13 | validArray_10 : _GEN_13 | validArray_10;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25
+  wire              _GEN_371 =
+    _GEN_35 ? _GEN_47 | _GEN_14 | validArray_11 : _GEN_14 | validArray_11;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25
+  wire              _GEN_372 =
+    _GEN_35 ? _GEN_48 | _GEN_15 | validArray_12 : _GEN_15 | validArray_12;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25
+  wire              _GEN_373 =
+    _GEN_35 ? _GEN_49 | _GEN_16 | validArray_13 : _GEN_16 | validArray_13;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25
+  wire              _GEN_374 =
+    _GEN_35 ? _GEN_50 | _GEN_17 | validArray_14 : _GEN_17 | validArray_14;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25
+  wire              _GEN_375 =
+    _GEN_35 ? _GEN_51 | _GEN_18 | validArray_15 : _GEN_18 | validArray_15;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25
+  wire              _GEN_376 =
+    _GEN_35 ? _GEN_52 | _GEN_19 | validArray_16 : _GEN_19 | validArray_16;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25
+  wire              _GEN_377 =
+    _GEN_35 ? _GEN_53 | _GEN_20 | validArray_17 : _GEN_20 | validArray_17;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25
+  wire              _GEN_378 =
+    _GEN_35 ? _GEN_54 | _GEN_21 | validArray_18 : _GEN_21 | validArray_18;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25
+  wire              _GEN_379 =
+    _GEN_35 ? _GEN_55 | _GEN_22 | validArray_19 : _GEN_22 | validArray_19;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25
+  wire              _GEN_380 =
+    _GEN_35 ? _GEN_56 | _GEN_23 | validArray_20 : _GEN_23 | validArray_20;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25
+  wire              _GEN_381 =
+    _GEN_35 ? _GEN_57 | _GEN_24 | validArray_21 : _GEN_24 | validArray_21;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25
+  wire              _GEN_382 =
+    _GEN_35 ? _GEN_58 | _GEN_25 | validArray_22 : _GEN_25 | validArray_22;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25
+  wire              _GEN_383 =
+    _GEN_35 ? _GEN_59 | _GEN_26 | validArray_23 : _GEN_26 | validArray_23;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25
+  wire              _GEN_384 =
+    _GEN_35 ? _GEN_60 | _GEN_27 | validArray_24 : _GEN_27 | validArray_24;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25
+  wire              _GEN_385 =
+    _GEN_35 ? _GEN_61 | _GEN_28 | validArray_25 : _GEN_28 | validArray_25;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25
+  wire              _GEN_386 =
+    _GEN_35 ? _GEN_62 | _GEN_29 | validArray_26 : _GEN_29 | validArray_26;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25
+  wire              _GEN_387 =
+    _GEN_35 ? _GEN_63 | _GEN_30 | validArray_27 : _GEN_30 | validArray_27;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25
+  wire              _GEN_388 =
+    _GEN_35 ? _GEN_64 | _GEN_31 | validArray_28 : _GEN_31 | validArray_28;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25
+  wire              _GEN_389 =
+    _GEN_35 ? _GEN_65 | _GEN_32 | validArray_29 : _GEN_32 | validArray_29;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25
+  wire              _GEN_390 =
+    _GEN_35 ? _GEN_66 | _GEN_33 | validArray_30 : _GEN_33 | validArray_30;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25
+  wire              _GEN_391 =
+    _GEN_35 ? (&(io_waddr_1[4:0])) | _GEN_34 | validArray_31 : _GEN_34 | validArray_31;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :52:30, :55:25
+  wire              _GEN_392 =
+    _GEN_100 ? _GEN_101 | _GEN_68 | _GEN_360 : _GEN_68 | _GEN_360;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_393 =
+    _GEN_100 ? _GEN_102 | _GEN_69 | _GEN_361 : _GEN_69 | _GEN_361;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_394 =
+    _GEN_100 ? _GEN_103 | _GEN_70 | _GEN_362 : _GEN_70 | _GEN_362;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_395 =
+    _GEN_100 ? _GEN_104 | _GEN_71 | _GEN_363 : _GEN_71 | _GEN_363;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_396 =
+    _GEN_100 ? _GEN_105 | _GEN_72 | _GEN_364 : _GEN_72 | _GEN_364;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_397 =
+    _GEN_100 ? _GEN_106 | _GEN_73 | _GEN_365 : _GEN_73 | _GEN_365;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_398 =
+    _GEN_100 ? _GEN_107 | _GEN_74 | _GEN_366 : _GEN_74 | _GEN_366;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_399 =
+    _GEN_100 ? _GEN_108 | _GEN_75 | _GEN_367 : _GEN_75 | _GEN_367;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_400 =
+    _GEN_100 ? _GEN_109 | _GEN_76 | _GEN_368 : _GEN_76 | _GEN_368;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_401 =
+    _GEN_100 ? _GEN_110 | _GEN_77 | _GEN_369 : _GEN_77 | _GEN_369;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_402 =
+    _GEN_100 ? _GEN_111 | _GEN_78 | _GEN_370 : _GEN_78 | _GEN_370;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_403 =
+    _GEN_100 ? _GEN_112 | _GEN_79 | _GEN_371 : _GEN_79 | _GEN_371;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_404 =
+    _GEN_100 ? _GEN_113 | _GEN_80 | _GEN_372 : _GEN_80 | _GEN_372;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_405 =
+    _GEN_100 ? _GEN_114 | _GEN_81 | _GEN_373 : _GEN_81 | _GEN_373;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_406 =
+    _GEN_100 ? _GEN_115 | _GEN_82 | _GEN_374 : _GEN_82 | _GEN_374;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_407 =
+    _GEN_100 ? _GEN_116 | _GEN_83 | _GEN_375 : _GEN_83 | _GEN_375;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_408 =
+    _GEN_100 ? _GEN_117 | _GEN_84 | _GEN_376 : _GEN_84 | _GEN_376;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_409 =
+    _GEN_100 ? _GEN_118 | _GEN_85 | _GEN_377 : _GEN_85 | _GEN_377;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_410 =
+    _GEN_100 ? _GEN_119 | _GEN_86 | _GEN_378 : _GEN_86 | _GEN_378;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_411 =
+    _GEN_100 ? _GEN_120 | _GEN_87 | _GEN_379 : _GEN_87 | _GEN_379;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_412 =
+    _GEN_100 ? _GEN_121 | _GEN_88 | _GEN_380 : _GEN_88 | _GEN_380;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_413 =
+    _GEN_100 ? _GEN_122 | _GEN_89 | _GEN_381 : _GEN_89 | _GEN_381;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_414 =
+    _GEN_100 ? _GEN_123 | _GEN_90 | _GEN_382 : _GEN_90 | _GEN_382;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_415 =
+    _GEN_100 ? _GEN_124 | _GEN_91 | _GEN_383 : _GEN_91 | _GEN_383;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_416 =
+    _GEN_100 ? _GEN_125 | _GEN_92 | _GEN_384 : _GEN_92 | _GEN_384;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_417 =
+    _GEN_100 ? _GEN_126 | _GEN_93 | _GEN_385 : _GEN_93 | _GEN_385;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_418 =
+    _GEN_100 ? _GEN_127 | _GEN_94 | _GEN_386 : _GEN_94 | _GEN_386;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_419 =
+    _GEN_100 ? _GEN_128 | _GEN_95 | _GEN_387 : _GEN_95 | _GEN_387;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_420 =
+    _GEN_100 ? _GEN_129 | _GEN_96 | _GEN_388 : _GEN_96 | _GEN_388;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_421 =
+    _GEN_100 ? _GEN_130 | _GEN_97 | _GEN_389 : _GEN_97 | _GEN_389;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_422 =
+    _GEN_100 ? _GEN_131 | _GEN_98 | _GEN_390 : _GEN_98 | _GEN_390;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_423 =
+    _GEN_100 ? (&(io_waddr_3[4:0])) | _GEN_99 | _GEN_391 : _GEN_99 | _GEN_391;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_424 =
+    _GEN_165 ? _GEN_166 | _GEN_133 | _GEN_392 : _GEN_133 | _GEN_392;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_425 =
+    _GEN_165 ? _GEN_167 | _GEN_134 | _GEN_393 : _GEN_134 | _GEN_393;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_426 =
+    _GEN_165 ? _GEN_168 | _GEN_135 | _GEN_394 : _GEN_135 | _GEN_394;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_427 =
+    _GEN_165 ? _GEN_169 | _GEN_136 | _GEN_395 : _GEN_136 | _GEN_395;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_428 =
+    _GEN_165 ? _GEN_170 | _GEN_137 | _GEN_396 : _GEN_137 | _GEN_396;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_429 =
+    _GEN_165 ? _GEN_171 | _GEN_138 | _GEN_397 : _GEN_138 | _GEN_397;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_430 =
+    _GEN_165 ? _GEN_172 | _GEN_139 | _GEN_398 : _GEN_139 | _GEN_398;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_431 =
+    _GEN_165 ? _GEN_173 | _GEN_140 | _GEN_399 : _GEN_140 | _GEN_399;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_432 =
+    _GEN_165 ? _GEN_174 | _GEN_141 | _GEN_400 : _GEN_141 | _GEN_400;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_433 =
+    _GEN_165 ? _GEN_175 | _GEN_142 | _GEN_401 : _GEN_142 | _GEN_401;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_434 =
+    _GEN_165 ? _GEN_176 | _GEN_143 | _GEN_402 : _GEN_143 | _GEN_402;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_435 =
+    _GEN_165 ? _GEN_177 | _GEN_144 | _GEN_403 : _GEN_144 | _GEN_403;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_436 =
+    _GEN_165 ? _GEN_178 | _GEN_145 | _GEN_404 : _GEN_145 | _GEN_404;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_437 =
+    _GEN_165 ? _GEN_179 | _GEN_146 | _GEN_405 : _GEN_146 | _GEN_405;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_438 =
+    _GEN_165 ? _GEN_180 | _GEN_147 | _GEN_406 : _GEN_147 | _GEN_406;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_439 =
+    _GEN_165 ? _GEN_181 | _GEN_148 | _GEN_407 : _GEN_148 | _GEN_407;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_440 =
+    _GEN_165 ? _GEN_182 | _GEN_149 | _GEN_408 : _GEN_149 | _GEN_408;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_441 =
+    _GEN_165 ? _GEN_183 | _GEN_150 | _GEN_409 : _GEN_150 | _GEN_409;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_442 =
+    _GEN_165 ? _GEN_184 | _GEN_151 | _GEN_410 : _GEN_151 | _GEN_410;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_443 =
+    _GEN_165 ? _GEN_185 | _GEN_152 | _GEN_411 : _GEN_152 | _GEN_411;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_444 =
+    _GEN_165 ? _GEN_186 | _GEN_153 | _GEN_412 : _GEN_153 | _GEN_412;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_445 =
+    _GEN_165 ? _GEN_187 | _GEN_154 | _GEN_413 : _GEN_154 | _GEN_413;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_446 =
+    _GEN_165 ? _GEN_188 | _GEN_155 | _GEN_414 : _GEN_155 | _GEN_414;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_447 =
+    _GEN_165 ? _GEN_189 | _GEN_156 | _GEN_415 : _GEN_156 | _GEN_415;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_448 =
+    _GEN_165 ? _GEN_190 | _GEN_157 | _GEN_416 : _GEN_157 | _GEN_416;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_449 =
+    _GEN_165 ? _GEN_191 | _GEN_158 | _GEN_417 : _GEN_158 | _GEN_417;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_450 =
+    _GEN_165 ? _GEN_192 | _GEN_159 | _GEN_418 : _GEN_159 | _GEN_418;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_451 =
+    _GEN_165 ? _GEN_193 | _GEN_160 | _GEN_419 : _GEN_160 | _GEN_419;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_452 =
+    _GEN_165 ? _GEN_194 | _GEN_161 | _GEN_420 : _GEN_161 | _GEN_420;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_453 =
+    _GEN_165 ? _GEN_195 | _GEN_162 | _GEN_421 : _GEN_162 | _GEN_421;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_454 =
+    _GEN_165 ? _GEN_196 | _GEN_163 | _GEN_422 : _GEN_163 | _GEN_422;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_455 =
+    _GEN_165 ? (&(io_waddr_5[4:0])) | _GEN_164 | _GEN_423 : _GEN_164 | _GEN_423;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
+  wire              _GEN_456 =
+    _GEN_230 ? _GEN_231 | _GEN_198 | _GEN_424 : _GEN_198 | _GEN_424;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_457 =
+    _GEN_230 ? _GEN_232 | _GEN_199 | _GEN_425 : _GEN_199 | _GEN_425;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_458 =
+    _GEN_230 ? _GEN_233 | _GEN_200 | _GEN_426 : _GEN_200 | _GEN_426;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_459 =
+    _GEN_230 ? _GEN_234 | _GEN_201 | _GEN_427 : _GEN_201 | _GEN_427;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_460 =
+    _GEN_230 ? _GEN_235 | _GEN_202 | _GEN_428 : _GEN_202 | _GEN_428;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_461 =
+    _GEN_230 ? _GEN_236 | _GEN_203 | _GEN_429 : _GEN_203 | _GEN_429;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_462 =
+    _GEN_230 ? _GEN_237 | _GEN_204 | _GEN_430 : _GEN_204 | _GEN_430;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_463 =
+    _GEN_230 ? _GEN_238 | _GEN_205 | _GEN_431 : _GEN_205 | _GEN_431;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_464 =
+    _GEN_230 ? _GEN_239 | _GEN_206 | _GEN_432 : _GEN_206 | _GEN_432;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_465 =
+    _GEN_230 ? _GEN_240 | _GEN_207 | _GEN_433 : _GEN_207 | _GEN_433;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_466 =
+    _GEN_230 ? _GEN_241 | _GEN_208 | _GEN_434 : _GEN_208 | _GEN_434;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_467 =
+    _GEN_230 ? _GEN_242 | _GEN_209 | _GEN_435 : _GEN_209 | _GEN_435;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_468 =
+    _GEN_230 ? _GEN_243 | _GEN_210 | _GEN_436 : _GEN_210 | _GEN_436;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_469 =
+    _GEN_230 ? _GEN_244 | _GEN_211 | _GEN_437 : _GEN_211 | _GEN_437;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_470 =
+    _GEN_230 ? _GEN_245 | _GEN_212 | _GEN_438 : _GEN_212 | _GEN_438;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_471 =
+    _GEN_230 ? _GEN_246 | _GEN_213 | _GEN_439 : _GEN_213 | _GEN_439;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_472 =
+    _GEN_230 ? _GEN_247 | _GEN_214 | _GEN_440 : _GEN_214 | _GEN_440;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_473 =
+    _GEN_230 ? _GEN_248 | _GEN_215 | _GEN_441 : _GEN_215 | _GEN_441;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_474 =
+    _GEN_230 ? _GEN_249 | _GEN_216 | _GEN_442 : _GEN_216 | _GEN_442;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_475 =
+    _GEN_230 ? _GEN_250 | _GEN_217 | _GEN_443 : _GEN_217 | _GEN_443;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_476 =
+    _GEN_230 ? _GEN_251 | _GEN_218 | _GEN_444 : _GEN_218 | _GEN_444;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_477 =
+    _GEN_230 ? _GEN_252 | _GEN_219 | _GEN_445 : _GEN_219 | _GEN_445;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_478 =
+    _GEN_230 ? _GEN_253 | _GEN_220 | _GEN_446 : _GEN_220 | _GEN_446;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_479 =
+    _GEN_230 ? _GEN_254 | _GEN_221 | _GEN_447 : _GEN_221 | _GEN_447;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_480 =
+    _GEN_230 ? _GEN_255 | _GEN_222 | _GEN_448 : _GEN_222 | _GEN_448;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_481 =
+    _GEN_230 ? _GEN_256 | _GEN_223 | _GEN_449 : _GEN_223 | _GEN_449;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_482 =
+    _GEN_230 ? _GEN_257 | _GEN_224 | _GEN_450 : _GEN_224 | _GEN_450;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_483 =
+    _GEN_230 ? _GEN_258 | _GEN_225 | _GEN_451 : _GEN_225 | _GEN_451;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_484 =
+    _GEN_230 ? _GEN_259 | _GEN_226 | _GEN_452 : _GEN_226 | _GEN_452;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_485 =
+    _GEN_230 ? _GEN_260 | _GEN_227 | _GEN_453 : _GEN_227 | _GEN_453;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_486 =
+    _GEN_230 ? _GEN_261 | _GEN_228 | _GEN_454 : _GEN_228 | _GEN_454;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25
+  wire              _GEN_487 =
+    _GEN_230 ? (&(io_waddr_7[4:0])) | _GEN_229 | _GEN_455 : _GEN_229 | _GEN_455;	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25
   always @(posedge clock) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:8:7
     if (reset) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:8:7
       validArray_0 <= 1'h0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:{27,35}
@@ -1992,836 +1015,1510 @@ module RegisterCache(	// backend/src/zaqal/backend/rename/RegisterCache.scala:8:
     end
     else begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:8:7
       validArray_0 <=
-        ~io_flush & (_GEN_162 ? _GEN_163 | _GEN_130 | _GEN_226 : _GEN_130 | _GEN_226);	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25, :63:18, :65:21
+        ~io_flush
+        & (_GEN_328 | (_GEN_295 ? _GEN_296 | _GEN_263 | _GEN_456 : _GEN_263 | _GEN_456));	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25, :63:18, :65:21
       validArray_1 <=
-        ~io_flush & (_GEN_162 ? _GEN_164 | _GEN_131 | _GEN_227 : _GEN_131 | _GEN_227);	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25, :63:18, :65:21
+        ~io_flush
+        & (_GEN_329 | (_GEN_295 ? _GEN_297 | _GEN_264 | _GEN_457 : _GEN_264 | _GEN_457));	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25, :63:18, :65:21
       validArray_2 <=
-        ~io_flush & (_GEN_162 ? _GEN_165 | _GEN_132 | _GEN_228 : _GEN_132 | _GEN_228);	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25, :63:18, :65:21
+        ~io_flush
+        & (_GEN_330 | (_GEN_295 ? _GEN_298 | _GEN_265 | _GEN_458 : _GEN_265 | _GEN_458));	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25, :63:18, :65:21
       validArray_3 <=
-        ~io_flush & (_GEN_162 ? _GEN_166 | _GEN_133 | _GEN_229 : _GEN_133 | _GEN_229);	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25, :63:18, :65:21
+        ~io_flush
+        & (_GEN_331 | (_GEN_295 ? _GEN_299 | _GEN_266 | _GEN_459 : _GEN_266 | _GEN_459));	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25, :63:18, :65:21
       validArray_4 <=
-        ~io_flush & (_GEN_162 ? _GEN_167 | _GEN_134 | _GEN_230 : _GEN_134 | _GEN_230);	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25, :63:18, :65:21
+        ~io_flush
+        & (_GEN_332 | (_GEN_295 ? _GEN_300 | _GEN_267 | _GEN_460 : _GEN_267 | _GEN_460));	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25, :63:18, :65:21
       validArray_5 <=
-        ~io_flush & (_GEN_162 ? _GEN_168 | _GEN_135 | _GEN_231 : _GEN_135 | _GEN_231);	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25, :63:18, :65:21
+        ~io_flush
+        & (_GEN_333 | (_GEN_295 ? _GEN_301 | _GEN_268 | _GEN_461 : _GEN_268 | _GEN_461));	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25, :63:18, :65:21
       validArray_6 <=
-        ~io_flush & (_GEN_162 ? _GEN_169 | _GEN_136 | _GEN_232 : _GEN_136 | _GEN_232);	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25, :63:18, :65:21
+        ~io_flush
+        & (_GEN_334 | (_GEN_295 ? _GEN_302 | _GEN_269 | _GEN_462 : _GEN_269 | _GEN_462));	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25, :63:18, :65:21
       validArray_7 <=
-        ~io_flush & (_GEN_162 ? _GEN_170 | _GEN_137 | _GEN_233 : _GEN_137 | _GEN_233);	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25, :63:18, :65:21
+        ~io_flush
+        & (_GEN_335 | (_GEN_295 ? _GEN_303 | _GEN_270 | _GEN_463 : _GEN_270 | _GEN_463));	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25, :63:18, :65:21
       validArray_8 <=
-        ~io_flush & (_GEN_162 ? _GEN_171 | _GEN_138 | _GEN_234 : _GEN_138 | _GEN_234);	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25, :63:18, :65:21
+        ~io_flush
+        & (_GEN_336 | (_GEN_295 ? _GEN_304 | _GEN_271 | _GEN_464 : _GEN_271 | _GEN_464));	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25, :63:18, :65:21
       validArray_9 <=
-        ~io_flush & (_GEN_162 ? _GEN_172 | _GEN_139 | _GEN_235 : _GEN_139 | _GEN_235);	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25, :63:18, :65:21
+        ~io_flush
+        & (_GEN_337 | (_GEN_295 ? _GEN_305 | _GEN_272 | _GEN_465 : _GEN_272 | _GEN_465));	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25, :63:18, :65:21
       validArray_10 <=
-        ~io_flush & (_GEN_162 ? _GEN_173 | _GEN_140 | _GEN_236 : _GEN_140 | _GEN_236);	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25, :63:18, :65:21
+        ~io_flush
+        & (_GEN_338 | (_GEN_295 ? _GEN_306 | _GEN_273 | _GEN_466 : _GEN_273 | _GEN_466));	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25, :63:18, :65:21
       validArray_11 <=
-        ~io_flush & (_GEN_162 ? _GEN_174 | _GEN_141 | _GEN_237 : _GEN_141 | _GEN_237);	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25, :63:18, :65:21
+        ~io_flush
+        & (_GEN_339 | (_GEN_295 ? _GEN_307 | _GEN_274 | _GEN_467 : _GEN_274 | _GEN_467));	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25, :63:18, :65:21
       validArray_12 <=
-        ~io_flush & (_GEN_162 ? _GEN_175 | _GEN_142 | _GEN_238 : _GEN_142 | _GEN_238);	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25, :63:18, :65:21
+        ~io_flush
+        & (_GEN_340 | (_GEN_295 ? _GEN_308 | _GEN_275 | _GEN_468 : _GEN_275 | _GEN_468));	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25, :63:18, :65:21
       validArray_13 <=
-        ~io_flush & (_GEN_162 ? _GEN_176 | _GEN_143 | _GEN_239 : _GEN_143 | _GEN_239);	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25, :63:18, :65:21
+        ~io_flush
+        & (_GEN_341 | (_GEN_295 ? _GEN_309 | _GEN_276 | _GEN_469 : _GEN_276 | _GEN_469));	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25, :63:18, :65:21
       validArray_14 <=
-        ~io_flush & (_GEN_162 ? _GEN_177 | _GEN_144 | _GEN_240 : _GEN_144 | _GEN_240);	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25, :63:18, :65:21
+        ~io_flush
+        & (_GEN_342 | (_GEN_295 ? _GEN_310 | _GEN_277 | _GEN_470 : _GEN_277 | _GEN_470));	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25, :63:18, :65:21
       validArray_15 <=
-        ~io_flush & (_GEN_162 ? _GEN_178 | _GEN_145 | _GEN_241 : _GEN_145 | _GEN_241);	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25, :63:18, :65:21
+        ~io_flush
+        & (_GEN_343 | (_GEN_295 ? _GEN_311 | _GEN_278 | _GEN_471 : _GEN_278 | _GEN_471));	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25, :63:18, :65:21
       validArray_16 <=
-        ~io_flush & (_GEN_162 ? _GEN_179 | _GEN_146 | _GEN_242 : _GEN_146 | _GEN_242);	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25, :63:18, :65:21
+        ~io_flush
+        & (_GEN_344 | (_GEN_295 ? _GEN_312 | _GEN_279 | _GEN_472 : _GEN_279 | _GEN_472));	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25, :63:18, :65:21
       validArray_17 <=
-        ~io_flush & (_GEN_162 ? _GEN_180 | _GEN_147 | _GEN_243 : _GEN_147 | _GEN_243);	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25, :63:18, :65:21
+        ~io_flush
+        & (_GEN_345 | (_GEN_295 ? _GEN_313 | _GEN_280 | _GEN_473 : _GEN_280 | _GEN_473));	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25, :63:18, :65:21
       validArray_18 <=
-        ~io_flush & (_GEN_162 ? _GEN_181 | _GEN_148 | _GEN_244 : _GEN_148 | _GEN_244);	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25, :63:18, :65:21
+        ~io_flush
+        & (_GEN_346 | (_GEN_295 ? _GEN_314 | _GEN_281 | _GEN_474 : _GEN_281 | _GEN_474));	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25, :63:18, :65:21
       validArray_19 <=
-        ~io_flush & (_GEN_162 ? _GEN_182 | _GEN_149 | _GEN_245 : _GEN_149 | _GEN_245);	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25, :63:18, :65:21
+        ~io_flush
+        & (_GEN_347 | (_GEN_295 ? _GEN_315 | _GEN_282 | _GEN_475 : _GEN_282 | _GEN_475));	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25, :63:18, :65:21
       validArray_20 <=
-        ~io_flush & (_GEN_162 ? _GEN_183 | _GEN_150 | _GEN_246 : _GEN_150 | _GEN_246);	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25, :63:18, :65:21
+        ~io_flush
+        & (_GEN_348 | (_GEN_295 ? _GEN_316 | _GEN_283 | _GEN_476 : _GEN_283 | _GEN_476));	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25, :63:18, :65:21
       validArray_21 <=
-        ~io_flush & (_GEN_162 ? _GEN_184 | _GEN_151 | _GEN_247 : _GEN_151 | _GEN_247);	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25, :63:18, :65:21
+        ~io_flush
+        & (_GEN_349 | (_GEN_295 ? _GEN_317 | _GEN_284 | _GEN_477 : _GEN_284 | _GEN_477));	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25, :63:18, :65:21
       validArray_22 <=
-        ~io_flush & (_GEN_162 ? _GEN_185 | _GEN_152 | _GEN_248 : _GEN_152 | _GEN_248);	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25, :63:18, :65:21
+        ~io_flush
+        & (_GEN_350 | (_GEN_295 ? _GEN_318 | _GEN_285 | _GEN_478 : _GEN_285 | _GEN_478));	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25, :63:18, :65:21
       validArray_23 <=
-        ~io_flush & (_GEN_162 ? _GEN_186 | _GEN_153 | _GEN_249 : _GEN_153 | _GEN_249);	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25, :63:18, :65:21
+        ~io_flush
+        & (_GEN_351 | (_GEN_295 ? _GEN_319 | _GEN_286 | _GEN_479 : _GEN_286 | _GEN_479));	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25, :63:18, :65:21
       validArray_24 <=
-        ~io_flush & (_GEN_162 ? _GEN_187 | _GEN_154 | _GEN_250 : _GEN_154 | _GEN_250);	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25, :63:18, :65:21
+        ~io_flush
+        & (_GEN_352 | (_GEN_295 ? _GEN_320 | _GEN_287 | _GEN_480 : _GEN_287 | _GEN_480));	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25, :63:18, :65:21
       validArray_25 <=
-        ~io_flush & (_GEN_162 ? _GEN_188 | _GEN_155 | _GEN_251 : _GEN_155 | _GEN_251);	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25, :63:18, :65:21
+        ~io_flush
+        & (_GEN_353 | (_GEN_295 ? _GEN_321 | _GEN_288 | _GEN_481 : _GEN_288 | _GEN_481));	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25, :63:18, :65:21
       validArray_26 <=
-        ~io_flush & (_GEN_162 ? _GEN_189 | _GEN_156 | _GEN_252 : _GEN_156 | _GEN_252);	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25, :63:18, :65:21
+        ~io_flush
+        & (_GEN_354 | (_GEN_295 ? _GEN_322 | _GEN_289 | _GEN_482 : _GEN_289 | _GEN_482));	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25, :63:18, :65:21
       validArray_27 <=
-        ~io_flush & (_GEN_162 ? _GEN_190 | _GEN_157 | _GEN_253 : _GEN_157 | _GEN_253);	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25, :63:18, :65:21
+        ~io_flush
+        & (_GEN_355 | (_GEN_295 ? _GEN_323 | _GEN_290 | _GEN_483 : _GEN_290 | _GEN_483));	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25, :63:18, :65:21
       validArray_28 <=
-        ~io_flush & (_GEN_162 ? _GEN_191 | _GEN_158 | _GEN_254 : _GEN_158 | _GEN_254);	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25, :63:18, :65:21
+        ~io_flush
+        & (_GEN_356 | (_GEN_295 ? _GEN_324 | _GEN_291 | _GEN_484 : _GEN_291 | _GEN_484));	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25, :63:18, :65:21
       validArray_29 <=
-        ~io_flush & (_GEN_162 ? _GEN_192 | _GEN_159 | _GEN_255 : _GEN_159 | _GEN_255);	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25, :63:18, :65:21
+        ~io_flush
+        & (_GEN_357 | (_GEN_295 ? _GEN_325 | _GEN_292 | _GEN_485 : _GEN_292 | _GEN_485));	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25, :63:18, :65:21
       validArray_30 <=
-        ~io_flush & (_GEN_162 ? _GEN_193 | _GEN_160 | _GEN_256 : _GEN_160 | _GEN_256);	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25, :63:18, :65:21
+        ~io_flush
+        & (_GEN_358 | (_GEN_295 ? _GEN_326 | _GEN_293 | _GEN_486 : _GEN_293 | _GEN_486));	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :55:25, :63:18, :65:21
       validArray_31 <=
         ~io_flush
-        & (_GEN_162 ? (&(io_waddr_5[4:0])) | _GEN_161 | _GEN_257 : _GEN_161 | _GEN_257);	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :52:30, :55:25, :63:18, :65:21
+        & (_GEN_359
+           | (_GEN_295
+                ? (&(io_waddr_9[4:0])) | _GEN_294 | _GEN_487
+                : _GEN_294 | _GEN_487));	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:{20,44}, :52:30, :55:25, :63:18, :65:21
     end
-    if (_GEN_162 & _GEN_163) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    if (_GEN_328) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_0 <= io_waddr_10[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_0 <= io_wdata_10;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_295 & _GEN_296) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+      tagArray_0 <= io_waddr_9[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_0 <= io_wdata_9;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_263) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_0 <= io_waddr_8[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_0 <= io_wdata_8;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_230 & _GEN_231) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+      tagArray_0 <= io_waddr_7[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_0 <= io_wdata_7;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_198) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_0 <= io_waddr_6[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_0 <= io_wdata_6;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_165 & _GEN_166) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_0 <= io_waddr_5[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_0 <= io_wdata_5;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_130) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+    else if (_GEN_133) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
       tagArray_0 <= io_waddr_4[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_0 <= io_wdata_4;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_97 & _GEN_98) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    else if (_GEN_100 & _GEN_101) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_0 <= io_waddr_3[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_0 <= io_wdata_3;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_65) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+    else if (_GEN_68) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
       tagArray_0 <= io_waddr_2[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_0 <= io_wdata_2;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_32 & _GEN_33) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    else if (_GEN_35 & _GEN_36) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_0 <= io_waddr_1[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_0 <= io_wdata_1;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_0) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:44, :55:25
+    else if (_GEN_3) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:44, :55:25
       tagArray_0 <= io_waddr_0[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_0 <= io_wdata_0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    if (_GEN_162 & _GEN_164) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    if (_GEN_329) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_1 <= io_waddr_10[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_1 <= io_wdata_10;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_295 & _GEN_297) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+      tagArray_1 <= io_waddr_9[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_1 <= io_wdata_9;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_264) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_1 <= io_waddr_8[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_1 <= io_wdata_8;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_230 & _GEN_232) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+      tagArray_1 <= io_waddr_7[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_1 <= io_wdata_7;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_199) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_1 <= io_waddr_6[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_1 <= io_wdata_6;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_165 & _GEN_167) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_1 <= io_waddr_5[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_1 <= io_wdata_5;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_131) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+    else if (_GEN_134) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
       tagArray_1 <= io_waddr_4[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_1 <= io_wdata_4;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_97 & _GEN_99) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    else if (_GEN_100 & _GEN_102) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_1 <= io_waddr_3[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_1 <= io_wdata_3;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_66) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+    else if (_GEN_69) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
       tagArray_1 <= io_waddr_2[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_1 <= io_wdata_2;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_32 & _GEN_34) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    else if (_GEN_35 & _GEN_37) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_1 <= io_waddr_1[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_1 <= io_wdata_1;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_1) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:44, :55:25
+    else if (_GEN_4) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:44, :55:25
       tagArray_1 <= io_waddr_0[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_1 <= io_wdata_0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    if (_GEN_162 & _GEN_165) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    if (_GEN_330) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_2 <= io_waddr_10[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_2 <= io_wdata_10;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_295 & _GEN_298) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+      tagArray_2 <= io_waddr_9[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_2 <= io_wdata_9;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_265) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_2 <= io_waddr_8[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_2 <= io_wdata_8;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_230 & _GEN_233) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+      tagArray_2 <= io_waddr_7[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_2 <= io_wdata_7;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_200) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_2 <= io_waddr_6[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_2 <= io_wdata_6;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_165 & _GEN_168) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_2 <= io_waddr_5[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_2 <= io_wdata_5;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_132) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+    else if (_GEN_135) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
       tagArray_2 <= io_waddr_4[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_2 <= io_wdata_4;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_97 & _GEN_100) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    else if (_GEN_100 & _GEN_103) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_2 <= io_waddr_3[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_2 <= io_wdata_3;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_67) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+    else if (_GEN_70) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
       tagArray_2 <= io_waddr_2[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_2 <= io_wdata_2;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_32 & _GEN_35) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    else if (_GEN_35 & _GEN_38) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_2 <= io_waddr_1[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_2 <= io_wdata_1;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_2) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:44, :55:25
+    else if (_GEN_5) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:44, :55:25
       tagArray_2 <= io_waddr_0[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_2 <= io_wdata_0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    if (_GEN_162 & _GEN_166) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    if (_GEN_331) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_3 <= io_waddr_10[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_3 <= io_wdata_10;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_295 & _GEN_299) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+      tagArray_3 <= io_waddr_9[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_3 <= io_wdata_9;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_266) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_3 <= io_waddr_8[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_3 <= io_wdata_8;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_230 & _GEN_234) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+      tagArray_3 <= io_waddr_7[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_3 <= io_wdata_7;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_201) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_3 <= io_waddr_6[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_3 <= io_wdata_6;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_165 & _GEN_169) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_3 <= io_waddr_5[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_3 <= io_wdata_5;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_133) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+    else if (_GEN_136) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
       tagArray_3 <= io_waddr_4[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_3 <= io_wdata_4;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_97 & _GEN_101) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    else if (_GEN_100 & _GEN_104) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_3 <= io_waddr_3[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_3 <= io_wdata_3;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_68) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+    else if (_GEN_71) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
       tagArray_3 <= io_waddr_2[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_3 <= io_wdata_2;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_32 & _GEN_36) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    else if (_GEN_35 & _GEN_39) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_3 <= io_waddr_1[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_3 <= io_wdata_1;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_3) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:44, :55:25
+    else if (_GEN_6) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:44, :55:25
       tagArray_3 <= io_waddr_0[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_3 <= io_wdata_0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    if (_GEN_162 & _GEN_167) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    if (_GEN_332) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_4 <= io_waddr_10[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_4 <= io_wdata_10;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_295 & _GEN_300) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+      tagArray_4 <= io_waddr_9[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_4 <= io_wdata_9;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_267) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_4 <= io_waddr_8[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_4 <= io_wdata_8;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_230 & _GEN_235) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+      tagArray_4 <= io_waddr_7[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_4 <= io_wdata_7;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_202) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_4 <= io_waddr_6[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_4 <= io_wdata_6;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_165 & _GEN_170) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_4 <= io_waddr_5[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_4 <= io_wdata_5;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_134) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+    else if (_GEN_137) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
       tagArray_4 <= io_waddr_4[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_4 <= io_wdata_4;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_97 & _GEN_102) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    else if (_GEN_100 & _GEN_105) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_4 <= io_waddr_3[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_4 <= io_wdata_3;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_69) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+    else if (_GEN_72) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
       tagArray_4 <= io_waddr_2[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_4 <= io_wdata_2;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_32 & _GEN_37) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    else if (_GEN_35 & _GEN_40) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_4 <= io_waddr_1[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_4 <= io_wdata_1;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_4) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:44, :55:25
+    else if (_GEN_7) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:44, :55:25
       tagArray_4 <= io_waddr_0[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_4 <= io_wdata_0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    if (_GEN_162 & _GEN_168) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    if (_GEN_333) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_5 <= io_waddr_10[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_5 <= io_wdata_10;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_295 & _GEN_301) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+      tagArray_5 <= io_waddr_9[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_5 <= io_wdata_9;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_268) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_5 <= io_waddr_8[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_5 <= io_wdata_8;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_230 & _GEN_236) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+      tagArray_5 <= io_waddr_7[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_5 <= io_wdata_7;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_203) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_5 <= io_waddr_6[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_5 <= io_wdata_6;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_165 & _GEN_171) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_5 <= io_waddr_5[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_5 <= io_wdata_5;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_135) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+    else if (_GEN_138) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
       tagArray_5 <= io_waddr_4[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_5 <= io_wdata_4;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_97 & _GEN_103) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    else if (_GEN_100 & _GEN_106) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_5 <= io_waddr_3[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_5 <= io_wdata_3;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_70) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+    else if (_GEN_73) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
       tagArray_5 <= io_waddr_2[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_5 <= io_wdata_2;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_32 & _GEN_38) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    else if (_GEN_35 & _GEN_41) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_5 <= io_waddr_1[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_5 <= io_wdata_1;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_5) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:44, :55:25
+    else if (_GEN_8) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:44, :55:25
       tagArray_5 <= io_waddr_0[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_5 <= io_wdata_0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    if (_GEN_162 & _GEN_169) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    if (_GEN_334) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_6 <= io_waddr_10[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_6 <= io_wdata_10;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_295 & _GEN_302) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+      tagArray_6 <= io_waddr_9[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_6 <= io_wdata_9;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_269) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_6 <= io_waddr_8[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_6 <= io_wdata_8;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_230 & _GEN_237) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+      tagArray_6 <= io_waddr_7[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_6 <= io_wdata_7;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_204) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_6 <= io_waddr_6[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_6 <= io_wdata_6;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_165 & _GEN_172) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_6 <= io_waddr_5[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_6 <= io_wdata_5;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_136) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+    else if (_GEN_139) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
       tagArray_6 <= io_waddr_4[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_6 <= io_wdata_4;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_97 & _GEN_104) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    else if (_GEN_100 & _GEN_107) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_6 <= io_waddr_3[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_6 <= io_wdata_3;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_71) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+    else if (_GEN_74) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
       tagArray_6 <= io_waddr_2[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_6 <= io_wdata_2;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_32 & _GEN_39) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    else if (_GEN_35 & _GEN_42) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_6 <= io_waddr_1[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_6 <= io_wdata_1;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_6) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:44, :55:25
+    else if (_GEN_9) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:44, :55:25
       tagArray_6 <= io_waddr_0[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_6 <= io_wdata_0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    if (_GEN_162 & _GEN_170) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    if (_GEN_335) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_7 <= io_waddr_10[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_7 <= io_wdata_10;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_295 & _GEN_303) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+      tagArray_7 <= io_waddr_9[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_7 <= io_wdata_9;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_270) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_7 <= io_waddr_8[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_7 <= io_wdata_8;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_230 & _GEN_238) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+      tagArray_7 <= io_waddr_7[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_7 <= io_wdata_7;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_205) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_7 <= io_waddr_6[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_7 <= io_wdata_6;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_165 & _GEN_173) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_7 <= io_waddr_5[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_7 <= io_wdata_5;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_137) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+    else if (_GEN_140) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
       tagArray_7 <= io_waddr_4[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_7 <= io_wdata_4;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_97 & _GEN_105) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    else if (_GEN_100 & _GEN_108) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_7 <= io_waddr_3[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_7 <= io_wdata_3;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_72) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+    else if (_GEN_75) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
       tagArray_7 <= io_waddr_2[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_7 <= io_wdata_2;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_32 & _GEN_40) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    else if (_GEN_35 & _GEN_43) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_7 <= io_waddr_1[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_7 <= io_wdata_1;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_7) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:44, :55:25
+    else if (_GEN_10) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:44, :55:25
       tagArray_7 <= io_waddr_0[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_7 <= io_wdata_0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    if (_GEN_162 & _GEN_171) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    if (_GEN_336) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_8 <= io_waddr_10[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_8 <= io_wdata_10;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_295 & _GEN_304) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+      tagArray_8 <= io_waddr_9[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_8 <= io_wdata_9;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_271) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_8 <= io_waddr_8[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_8 <= io_wdata_8;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_230 & _GEN_239) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+      tagArray_8 <= io_waddr_7[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_8 <= io_wdata_7;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_206) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_8 <= io_waddr_6[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_8 <= io_wdata_6;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_165 & _GEN_174) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_8 <= io_waddr_5[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_8 <= io_wdata_5;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_138) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+    else if (_GEN_141) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
       tagArray_8 <= io_waddr_4[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_8 <= io_wdata_4;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_97 & _GEN_106) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    else if (_GEN_100 & _GEN_109) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_8 <= io_waddr_3[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_8 <= io_wdata_3;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_73) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+    else if (_GEN_76) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
       tagArray_8 <= io_waddr_2[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_8 <= io_wdata_2;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_32 & _GEN_41) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    else if (_GEN_35 & _GEN_44) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_8 <= io_waddr_1[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_8 <= io_wdata_1;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_8) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:44, :55:25
+    else if (_GEN_11) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:44, :55:25
       tagArray_8 <= io_waddr_0[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_8 <= io_wdata_0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    if (_GEN_162 & _GEN_172) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    if (_GEN_337) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_9 <= io_waddr_10[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_9 <= io_wdata_10;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_295 & _GEN_305) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+      tagArray_9 <= io_waddr_9[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_9 <= io_wdata_9;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_272) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_9 <= io_waddr_8[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_9 <= io_wdata_8;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_230 & _GEN_240) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+      tagArray_9 <= io_waddr_7[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_9 <= io_wdata_7;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_207) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_9 <= io_waddr_6[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_9 <= io_wdata_6;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_165 & _GEN_175) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_9 <= io_waddr_5[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_9 <= io_wdata_5;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_139) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+    else if (_GEN_142) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
       tagArray_9 <= io_waddr_4[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_9 <= io_wdata_4;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_97 & _GEN_107) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    else if (_GEN_100 & _GEN_110) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_9 <= io_waddr_3[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_9 <= io_wdata_3;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_74) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+    else if (_GEN_77) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
       tagArray_9 <= io_waddr_2[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_9 <= io_wdata_2;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_32 & _GEN_42) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    else if (_GEN_35 & _GEN_45) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_9 <= io_waddr_1[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_9 <= io_wdata_1;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_9) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:44, :55:25
+    else if (_GEN_12) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:44, :55:25
       tagArray_9 <= io_waddr_0[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_9 <= io_wdata_0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    if (_GEN_162 & _GEN_173) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    if (_GEN_338) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_10 <= io_waddr_10[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_10 <= io_wdata_10;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_295 & _GEN_306) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+      tagArray_10 <= io_waddr_9[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_10 <= io_wdata_9;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_273) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_10 <= io_waddr_8[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_10 <= io_wdata_8;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_230 & _GEN_241) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+      tagArray_10 <= io_waddr_7[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_10 <= io_wdata_7;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_208) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_10 <= io_waddr_6[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_10 <= io_wdata_6;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_165 & _GEN_176) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_10 <= io_waddr_5[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_10 <= io_wdata_5;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_140) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+    else if (_GEN_143) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
       tagArray_10 <= io_waddr_4[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_10 <= io_wdata_4;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_97 & _GEN_108) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    else if (_GEN_100 & _GEN_111) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_10 <= io_waddr_3[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_10 <= io_wdata_3;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_75) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+    else if (_GEN_78) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
       tagArray_10 <= io_waddr_2[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_10 <= io_wdata_2;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_32 & _GEN_43) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    else if (_GEN_35 & _GEN_46) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_10 <= io_waddr_1[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_10 <= io_wdata_1;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_10) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:44, :55:25
+    else if (_GEN_13) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:44, :55:25
       tagArray_10 <= io_waddr_0[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_10 <= io_wdata_0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    if (_GEN_162 & _GEN_174) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    if (_GEN_339) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_11 <= io_waddr_10[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_11 <= io_wdata_10;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_295 & _GEN_307) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+      tagArray_11 <= io_waddr_9[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_11 <= io_wdata_9;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_274) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_11 <= io_waddr_8[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_11 <= io_wdata_8;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_230 & _GEN_242) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+      tagArray_11 <= io_waddr_7[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_11 <= io_wdata_7;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_209) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_11 <= io_waddr_6[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_11 <= io_wdata_6;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_165 & _GEN_177) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_11 <= io_waddr_5[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_11 <= io_wdata_5;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_141) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+    else if (_GEN_144) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
       tagArray_11 <= io_waddr_4[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_11 <= io_wdata_4;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_97 & _GEN_109) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    else if (_GEN_100 & _GEN_112) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_11 <= io_waddr_3[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_11 <= io_wdata_3;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_76) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+    else if (_GEN_79) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
       tagArray_11 <= io_waddr_2[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_11 <= io_wdata_2;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_32 & _GEN_44) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    else if (_GEN_35 & _GEN_47) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_11 <= io_waddr_1[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_11 <= io_wdata_1;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_11) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:44, :55:25
+    else if (_GEN_14) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:44, :55:25
       tagArray_11 <= io_waddr_0[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_11 <= io_wdata_0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    if (_GEN_162 & _GEN_175) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    if (_GEN_340) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_12 <= io_waddr_10[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_12 <= io_wdata_10;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_295 & _GEN_308) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+      tagArray_12 <= io_waddr_9[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_12 <= io_wdata_9;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_275) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_12 <= io_waddr_8[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_12 <= io_wdata_8;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_230 & _GEN_243) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+      tagArray_12 <= io_waddr_7[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_12 <= io_wdata_7;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_210) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_12 <= io_waddr_6[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_12 <= io_wdata_6;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_165 & _GEN_178) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_12 <= io_waddr_5[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_12 <= io_wdata_5;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_142) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+    else if (_GEN_145) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
       tagArray_12 <= io_waddr_4[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_12 <= io_wdata_4;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_97 & _GEN_110) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    else if (_GEN_100 & _GEN_113) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_12 <= io_waddr_3[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_12 <= io_wdata_3;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_77) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+    else if (_GEN_80) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
       tagArray_12 <= io_waddr_2[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_12 <= io_wdata_2;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_32 & _GEN_45) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    else if (_GEN_35 & _GEN_48) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_12 <= io_waddr_1[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_12 <= io_wdata_1;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_12) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:44, :55:25
+    else if (_GEN_15) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:44, :55:25
       tagArray_12 <= io_waddr_0[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_12 <= io_wdata_0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    if (_GEN_162 & _GEN_176) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    if (_GEN_341) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_13 <= io_waddr_10[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_13 <= io_wdata_10;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_295 & _GEN_309) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+      tagArray_13 <= io_waddr_9[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_13 <= io_wdata_9;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_276) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_13 <= io_waddr_8[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_13 <= io_wdata_8;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_230 & _GEN_244) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+      tagArray_13 <= io_waddr_7[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_13 <= io_wdata_7;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_211) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_13 <= io_waddr_6[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_13 <= io_wdata_6;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_165 & _GEN_179) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_13 <= io_waddr_5[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_13 <= io_wdata_5;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_143) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+    else if (_GEN_146) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
       tagArray_13 <= io_waddr_4[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_13 <= io_wdata_4;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_97 & _GEN_111) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    else if (_GEN_100 & _GEN_114) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_13 <= io_waddr_3[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_13 <= io_wdata_3;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_78) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+    else if (_GEN_81) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
       tagArray_13 <= io_waddr_2[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_13 <= io_wdata_2;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_32 & _GEN_46) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    else if (_GEN_35 & _GEN_49) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_13 <= io_waddr_1[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_13 <= io_wdata_1;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_13) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:44, :55:25
+    else if (_GEN_16) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:44, :55:25
       tagArray_13 <= io_waddr_0[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_13 <= io_wdata_0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    if (_GEN_162 & _GEN_177) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    if (_GEN_342) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_14 <= io_waddr_10[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_14 <= io_wdata_10;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_295 & _GEN_310) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+      tagArray_14 <= io_waddr_9[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_14 <= io_wdata_9;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_277) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_14 <= io_waddr_8[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_14 <= io_wdata_8;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_230 & _GEN_245) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+      tagArray_14 <= io_waddr_7[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_14 <= io_wdata_7;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_212) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_14 <= io_waddr_6[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_14 <= io_wdata_6;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_165 & _GEN_180) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_14 <= io_waddr_5[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_14 <= io_wdata_5;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_144) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+    else if (_GEN_147) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
       tagArray_14 <= io_waddr_4[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_14 <= io_wdata_4;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_97 & _GEN_112) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    else if (_GEN_100 & _GEN_115) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_14 <= io_waddr_3[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_14 <= io_wdata_3;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_79) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+    else if (_GEN_82) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
       tagArray_14 <= io_waddr_2[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_14 <= io_wdata_2;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_32 & _GEN_47) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    else if (_GEN_35 & _GEN_50) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_14 <= io_waddr_1[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_14 <= io_wdata_1;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_14) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:44, :55:25
+    else if (_GEN_17) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:44, :55:25
       tagArray_14 <= io_waddr_0[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_14 <= io_wdata_0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    if (_GEN_162 & _GEN_178) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    if (_GEN_343) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_15 <= io_waddr_10[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_15 <= io_wdata_10;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_295 & _GEN_311) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+      tagArray_15 <= io_waddr_9[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_15 <= io_wdata_9;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_278) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_15 <= io_waddr_8[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_15 <= io_wdata_8;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_230 & _GEN_246) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+      tagArray_15 <= io_waddr_7[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_15 <= io_wdata_7;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_213) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_15 <= io_waddr_6[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_15 <= io_wdata_6;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_165 & _GEN_181) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_15 <= io_waddr_5[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_15 <= io_wdata_5;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_145) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+    else if (_GEN_148) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
       tagArray_15 <= io_waddr_4[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_15 <= io_wdata_4;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_97 & _GEN_113) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    else if (_GEN_100 & _GEN_116) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_15 <= io_waddr_3[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_15 <= io_wdata_3;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_80) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+    else if (_GEN_83) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
       tagArray_15 <= io_waddr_2[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_15 <= io_wdata_2;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_32 & _GEN_48) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    else if (_GEN_35 & _GEN_51) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_15 <= io_waddr_1[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_15 <= io_wdata_1;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_15) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:44, :55:25
+    else if (_GEN_18) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:44, :55:25
       tagArray_15 <= io_waddr_0[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_15 <= io_wdata_0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    if (_GEN_162 & _GEN_179) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    if (_GEN_344) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_16 <= io_waddr_10[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_16 <= io_wdata_10;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_295 & _GEN_312) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+      tagArray_16 <= io_waddr_9[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_16 <= io_wdata_9;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_279) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_16 <= io_waddr_8[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_16 <= io_wdata_8;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_230 & _GEN_247) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+      tagArray_16 <= io_waddr_7[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_16 <= io_wdata_7;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_214) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_16 <= io_waddr_6[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_16 <= io_wdata_6;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_165 & _GEN_182) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_16 <= io_waddr_5[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_16 <= io_wdata_5;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_146) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+    else if (_GEN_149) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
       tagArray_16 <= io_waddr_4[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_16 <= io_wdata_4;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_97 & _GEN_114) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    else if (_GEN_100 & _GEN_117) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_16 <= io_waddr_3[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_16 <= io_wdata_3;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_81) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+    else if (_GEN_84) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
       tagArray_16 <= io_waddr_2[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_16 <= io_wdata_2;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_32 & _GEN_49) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    else if (_GEN_35 & _GEN_52) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_16 <= io_waddr_1[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_16 <= io_wdata_1;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_16) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:44, :55:25
+    else if (_GEN_19) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:44, :55:25
       tagArray_16 <= io_waddr_0[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_16 <= io_wdata_0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    if (_GEN_162 & _GEN_180) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    if (_GEN_345) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_17 <= io_waddr_10[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_17 <= io_wdata_10;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_295 & _GEN_313) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+      tagArray_17 <= io_waddr_9[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_17 <= io_wdata_9;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_280) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_17 <= io_waddr_8[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_17 <= io_wdata_8;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_230 & _GEN_248) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+      tagArray_17 <= io_waddr_7[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_17 <= io_wdata_7;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_215) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_17 <= io_waddr_6[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_17 <= io_wdata_6;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_165 & _GEN_183) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_17 <= io_waddr_5[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_17 <= io_wdata_5;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_147) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+    else if (_GEN_150) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
       tagArray_17 <= io_waddr_4[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_17 <= io_wdata_4;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_97 & _GEN_115) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    else if (_GEN_100 & _GEN_118) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_17 <= io_waddr_3[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_17 <= io_wdata_3;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_82) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+    else if (_GEN_85) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
       tagArray_17 <= io_waddr_2[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_17 <= io_wdata_2;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_32 & _GEN_50) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    else if (_GEN_35 & _GEN_53) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_17 <= io_waddr_1[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_17 <= io_wdata_1;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_17) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:44, :55:25
+    else if (_GEN_20) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:44, :55:25
       tagArray_17 <= io_waddr_0[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_17 <= io_wdata_0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    if (_GEN_162 & _GEN_181) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    if (_GEN_346) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_18 <= io_waddr_10[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_18 <= io_wdata_10;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_295 & _GEN_314) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+      tagArray_18 <= io_waddr_9[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_18 <= io_wdata_9;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_281) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_18 <= io_waddr_8[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_18 <= io_wdata_8;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_230 & _GEN_249) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+      tagArray_18 <= io_waddr_7[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_18 <= io_wdata_7;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_216) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_18 <= io_waddr_6[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_18 <= io_wdata_6;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_165 & _GEN_184) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_18 <= io_waddr_5[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_18 <= io_wdata_5;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_148) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+    else if (_GEN_151) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
       tagArray_18 <= io_waddr_4[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_18 <= io_wdata_4;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_97 & _GEN_116) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    else if (_GEN_100 & _GEN_119) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_18 <= io_waddr_3[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_18 <= io_wdata_3;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_83) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+    else if (_GEN_86) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
       tagArray_18 <= io_waddr_2[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_18 <= io_wdata_2;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_32 & _GEN_51) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    else if (_GEN_35 & _GEN_54) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_18 <= io_waddr_1[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_18 <= io_wdata_1;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_18) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:44, :55:25
+    else if (_GEN_21) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:44, :55:25
       tagArray_18 <= io_waddr_0[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_18 <= io_wdata_0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    if (_GEN_162 & _GEN_182) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    if (_GEN_347) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_19 <= io_waddr_10[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_19 <= io_wdata_10;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_295 & _GEN_315) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+      tagArray_19 <= io_waddr_9[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_19 <= io_wdata_9;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_282) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_19 <= io_waddr_8[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_19 <= io_wdata_8;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_230 & _GEN_250) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+      tagArray_19 <= io_waddr_7[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_19 <= io_wdata_7;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_217) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_19 <= io_waddr_6[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_19 <= io_wdata_6;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_165 & _GEN_185) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_19 <= io_waddr_5[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_19 <= io_wdata_5;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_149) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+    else if (_GEN_152) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
       tagArray_19 <= io_waddr_4[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_19 <= io_wdata_4;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_97 & _GEN_117) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    else if (_GEN_100 & _GEN_120) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_19 <= io_waddr_3[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_19 <= io_wdata_3;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_84) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+    else if (_GEN_87) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
       tagArray_19 <= io_waddr_2[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_19 <= io_wdata_2;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_32 & _GEN_52) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    else if (_GEN_35 & _GEN_55) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_19 <= io_waddr_1[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_19 <= io_wdata_1;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_19) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:44, :55:25
+    else if (_GEN_22) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:44, :55:25
       tagArray_19 <= io_waddr_0[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_19 <= io_wdata_0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    if (_GEN_162 & _GEN_183) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    if (_GEN_348) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_20 <= io_waddr_10[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_20 <= io_wdata_10;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_295 & _GEN_316) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+      tagArray_20 <= io_waddr_9[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_20 <= io_wdata_9;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_283) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_20 <= io_waddr_8[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_20 <= io_wdata_8;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_230 & _GEN_251) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+      tagArray_20 <= io_waddr_7[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_20 <= io_wdata_7;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_218) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_20 <= io_waddr_6[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_20 <= io_wdata_6;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_165 & _GEN_186) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_20 <= io_waddr_5[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_20 <= io_wdata_5;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_150) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+    else if (_GEN_153) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
       tagArray_20 <= io_waddr_4[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_20 <= io_wdata_4;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_97 & _GEN_118) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    else if (_GEN_100 & _GEN_121) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_20 <= io_waddr_3[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_20 <= io_wdata_3;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_85) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+    else if (_GEN_88) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
       tagArray_20 <= io_waddr_2[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_20 <= io_wdata_2;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_32 & _GEN_53) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    else if (_GEN_35 & _GEN_56) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_20 <= io_waddr_1[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_20 <= io_wdata_1;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_20) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:44, :55:25
+    else if (_GEN_23) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:44, :55:25
       tagArray_20 <= io_waddr_0[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_20 <= io_wdata_0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    if (_GEN_162 & _GEN_184) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    if (_GEN_349) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_21 <= io_waddr_10[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_21 <= io_wdata_10;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_295 & _GEN_317) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+      tagArray_21 <= io_waddr_9[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_21 <= io_wdata_9;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_284) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_21 <= io_waddr_8[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_21 <= io_wdata_8;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_230 & _GEN_252) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+      tagArray_21 <= io_waddr_7[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_21 <= io_wdata_7;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_219) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_21 <= io_waddr_6[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_21 <= io_wdata_6;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_165 & _GEN_187) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_21 <= io_waddr_5[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_21 <= io_wdata_5;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_151) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+    else if (_GEN_154) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
       tagArray_21 <= io_waddr_4[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_21 <= io_wdata_4;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_97 & _GEN_119) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    else if (_GEN_100 & _GEN_122) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_21 <= io_waddr_3[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_21 <= io_wdata_3;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_86) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+    else if (_GEN_89) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
       tagArray_21 <= io_waddr_2[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_21 <= io_wdata_2;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_32 & _GEN_54) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    else if (_GEN_35 & _GEN_57) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_21 <= io_waddr_1[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_21 <= io_wdata_1;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_21) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:44, :55:25
+    else if (_GEN_24) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:44, :55:25
       tagArray_21 <= io_waddr_0[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_21 <= io_wdata_0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    if (_GEN_162 & _GEN_185) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    if (_GEN_350) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_22 <= io_waddr_10[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_22 <= io_wdata_10;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_295 & _GEN_318) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+      tagArray_22 <= io_waddr_9[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_22 <= io_wdata_9;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_285) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_22 <= io_waddr_8[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_22 <= io_wdata_8;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_230 & _GEN_253) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+      tagArray_22 <= io_waddr_7[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_22 <= io_wdata_7;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_220) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_22 <= io_waddr_6[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_22 <= io_wdata_6;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_165 & _GEN_188) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_22 <= io_waddr_5[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_22 <= io_wdata_5;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_152) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+    else if (_GEN_155) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
       tagArray_22 <= io_waddr_4[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_22 <= io_wdata_4;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_97 & _GEN_120) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    else if (_GEN_100 & _GEN_123) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_22 <= io_waddr_3[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_22 <= io_wdata_3;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_87) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+    else if (_GEN_90) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
       tagArray_22 <= io_waddr_2[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_22 <= io_wdata_2;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_32 & _GEN_55) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    else if (_GEN_35 & _GEN_58) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_22 <= io_waddr_1[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_22 <= io_wdata_1;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_22) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:44, :55:25
+    else if (_GEN_25) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:44, :55:25
       tagArray_22 <= io_waddr_0[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_22 <= io_wdata_0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    if (_GEN_162 & _GEN_186) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    if (_GEN_351) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_23 <= io_waddr_10[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_23 <= io_wdata_10;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_295 & _GEN_319) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+      tagArray_23 <= io_waddr_9[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_23 <= io_wdata_9;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_286) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_23 <= io_waddr_8[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_23 <= io_wdata_8;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_230 & _GEN_254) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+      tagArray_23 <= io_waddr_7[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_23 <= io_wdata_7;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_221) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_23 <= io_waddr_6[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_23 <= io_wdata_6;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_165 & _GEN_189) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_23 <= io_waddr_5[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_23 <= io_wdata_5;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_153) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+    else if (_GEN_156) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
       tagArray_23 <= io_waddr_4[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_23 <= io_wdata_4;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_97 & _GEN_121) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    else if (_GEN_100 & _GEN_124) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_23 <= io_waddr_3[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_23 <= io_wdata_3;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_88) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+    else if (_GEN_91) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
       tagArray_23 <= io_waddr_2[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_23 <= io_wdata_2;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_32 & _GEN_56) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    else if (_GEN_35 & _GEN_59) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_23 <= io_waddr_1[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_23 <= io_wdata_1;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_23) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:44, :55:25
+    else if (_GEN_26) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:44, :55:25
       tagArray_23 <= io_waddr_0[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_23 <= io_wdata_0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    if (_GEN_162 & _GEN_187) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    if (_GEN_352) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_24 <= io_waddr_10[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_24 <= io_wdata_10;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_295 & _GEN_320) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+      tagArray_24 <= io_waddr_9[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_24 <= io_wdata_9;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_287) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_24 <= io_waddr_8[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_24 <= io_wdata_8;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_230 & _GEN_255) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+      tagArray_24 <= io_waddr_7[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_24 <= io_wdata_7;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_222) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_24 <= io_waddr_6[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_24 <= io_wdata_6;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_165 & _GEN_190) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_24 <= io_waddr_5[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_24 <= io_wdata_5;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_154) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+    else if (_GEN_157) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
       tagArray_24 <= io_waddr_4[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_24 <= io_wdata_4;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_97 & _GEN_122) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    else if (_GEN_100 & _GEN_125) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_24 <= io_waddr_3[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_24 <= io_wdata_3;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_89) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+    else if (_GEN_92) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
       tagArray_24 <= io_waddr_2[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_24 <= io_wdata_2;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_32 & _GEN_57) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    else if (_GEN_35 & _GEN_60) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_24 <= io_waddr_1[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_24 <= io_wdata_1;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_24) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:44, :55:25
+    else if (_GEN_27) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:44, :55:25
       tagArray_24 <= io_waddr_0[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_24 <= io_wdata_0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    if (_GEN_162 & _GEN_188) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    if (_GEN_353) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_25 <= io_waddr_10[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_25 <= io_wdata_10;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_295 & _GEN_321) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+      tagArray_25 <= io_waddr_9[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_25 <= io_wdata_9;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_288) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_25 <= io_waddr_8[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_25 <= io_wdata_8;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_230 & _GEN_256) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+      tagArray_25 <= io_waddr_7[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_25 <= io_wdata_7;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_223) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_25 <= io_waddr_6[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_25 <= io_wdata_6;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_165 & _GEN_191) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_25 <= io_waddr_5[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_25 <= io_wdata_5;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_155) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+    else if (_GEN_158) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
       tagArray_25 <= io_waddr_4[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_25 <= io_wdata_4;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_97 & _GEN_123) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    else if (_GEN_100 & _GEN_126) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_25 <= io_waddr_3[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_25 <= io_wdata_3;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_90) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+    else if (_GEN_93) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
       tagArray_25 <= io_waddr_2[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_25 <= io_wdata_2;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_32 & _GEN_58) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    else if (_GEN_35 & _GEN_61) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_25 <= io_waddr_1[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_25 <= io_wdata_1;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_25) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:44, :55:25
+    else if (_GEN_28) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:44, :55:25
       tagArray_25 <= io_waddr_0[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_25 <= io_wdata_0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    if (_GEN_162 & _GEN_189) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    if (_GEN_354) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_26 <= io_waddr_10[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_26 <= io_wdata_10;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_295 & _GEN_322) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+      tagArray_26 <= io_waddr_9[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_26 <= io_wdata_9;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_289) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_26 <= io_waddr_8[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_26 <= io_wdata_8;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_230 & _GEN_257) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+      tagArray_26 <= io_waddr_7[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_26 <= io_wdata_7;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_224) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_26 <= io_waddr_6[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_26 <= io_wdata_6;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_165 & _GEN_192) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_26 <= io_waddr_5[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_26 <= io_wdata_5;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_156) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+    else if (_GEN_159) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
       tagArray_26 <= io_waddr_4[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_26 <= io_wdata_4;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_97 & _GEN_124) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    else if (_GEN_100 & _GEN_127) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_26 <= io_waddr_3[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_26 <= io_wdata_3;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_91) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+    else if (_GEN_94) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
       tagArray_26 <= io_waddr_2[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_26 <= io_wdata_2;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_32 & _GEN_59) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    else if (_GEN_35 & _GEN_62) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_26 <= io_waddr_1[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_26 <= io_wdata_1;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_26) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:44, :55:25
+    else if (_GEN_29) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:44, :55:25
       tagArray_26 <= io_waddr_0[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_26 <= io_wdata_0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    if (_GEN_162 & _GEN_190) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    if (_GEN_355) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_27 <= io_waddr_10[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_27 <= io_wdata_10;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_295 & _GEN_323) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+      tagArray_27 <= io_waddr_9[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_27 <= io_wdata_9;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_290) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_27 <= io_waddr_8[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_27 <= io_wdata_8;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_230 & _GEN_258) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+      tagArray_27 <= io_waddr_7[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_27 <= io_wdata_7;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_225) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_27 <= io_waddr_6[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_27 <= io_wdata_6;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_165 & _GEN_193) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_27 <= io_waddr_5[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_27 <= io_wdata_5;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_157) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+    else if (_GEN_160) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
       tagArray_27 <= io_waddr_4[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_27 <= io_wdata_4;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_97 & _GEN_125) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    else if (_GEN_100 & _GEN_128) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_27 <= io_waddr_3[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_27 <= io_wdata_3;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_92) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+    else if (_GEN_95) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
       tagArray_27 <= io_waddr_2[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_27 <= io_wdata_2;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_32 & _GEN_60) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    else if (_GEN_35 & _GEN_63) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_27 <= io_waddr_1[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_27 <= io_wdata_1;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_27) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:44, :55:25
+    else if (_GEN_30) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:44, :55:25
       tagArray_27 <= io_waddr_0[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_27 <= io_wdata_0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    if (_GEN_162 & _GEN_191) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    if (_GEN_356) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_28 <= io_waddr_10[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_28 <= io_wdata_10;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_295 & _GEN_324) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+      tagArray_28 <= io_waddr_9[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_28 <= io_wdata_9;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_291) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_28 <= io_waddr_8[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_28 <= io_wdata_8;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_230 & _GEN_259) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+      tagArray_28 <= io_waddr_7[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_28 <= io_wdata_7;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_226) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_28 <= io_waddr_6[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_28 <= io_wdata_6;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_165 & _GEN_194) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_28 <= io_waddr_5[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_28 <= io_wdata_5;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_158) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+    else if (_GEN_161) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
       tagArray_28 <= io_waddr_4[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_28 <= io_wdata_4;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_97 & _GEN_126) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    else if (_GEN_100 & _GEN_129) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_28 <= io_waddr_3[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_28 <= io_wdata_3;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_93) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+    else if (_GEN_96) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
       tagArray_28 <= io_waddr_2[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_28 <= io_wdata_2;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_32 & _GEN_61) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    else if (_GEN_35 & _GEN_64) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_28 <= io_waddr_1[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_28 <= io_wdata_1;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_28) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:44, :55:25
+    else if (_GEN_31) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:44, :55:25
       tagArray_28 <= io_waddr_0[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_28 <= io_wdata_0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    if (_GEN_162 & _GEN_192) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    if (_GEN_357) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_29 <= io_waddr_10[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_29 <= io_wdata_10;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_295 & _GEN_325) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+      tagArray_29 <= io_waddr_9[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_29 <= io_wdata_9;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_292) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_29 <= io_waddr_8[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_29 <= io_wdata_8;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_230 & _GEN_260) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+      tagArray_29 <= io_waddr_7[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_29 <= io_wdata_7;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_227) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_29 <= io_waddr_6[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_29 <= io_wdata_6;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_165 & _GEN_195) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_29 <= io_waddr_5[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_29 <= io_wdata_5;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_159) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+    else if (_GEN_162) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
       tagArray_29 <= io_waddr_4[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_29 <= io_wdata_4;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_97 & _GEN_127) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    else if (_GEN_100 & _GEN_130) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_29 <= io_waddr_3[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_29 <= io_wdata_3;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_94) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+    else if (_GEN_97) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
       tagArray_29 <= io_waddr_2[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_29 <= io_wdata_2;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_32 & _GEN_62) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    else if (_GEN_35 & _GEN_65) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_29 <= io_waddr_1[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_29 <= io_wdata_1;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_29) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:44, :55:25
+    else if (_GEN_32) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:44, :55:25
       tagArray_29 <= io_waddr_0[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_29 <= io_wdata_0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    if (_GEN_162 & _GEN_193) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    if (_GEN_358) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_30 <= io_waddr_10[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_30 <= io_wdata_10;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_295 & _GEN_326) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+      tagArray_30 <= io_waddr_9[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_30 <= io_wdata_9;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_293) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_30 <= io_waddr_8[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_30 <= io_wdata_8;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_230 & _GEN_261) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+      tagArray_30 <= io_waddr_7[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_30 <= io_wdata_7;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_228) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_30 <= io_waddr_6[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_30 <= io_wdata_6;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_165 & _GEN_196) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_30 <= io_waddr_5[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_30 <= io_wdata_5;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_160) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+    else if (_GEN_163) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
       tagArray_30 <= io_waddr_4[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_30 <= io_wdata_4;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_97 & _GEN_128) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    else if (_GEN_100 & _GEN_131) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_30 <= io_waddr_3[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_30 <= io_wdata_3;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_95) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+    else if (_GEN_98) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
       tagArray_30 <= io_waddr_2[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_30 <= io_wdata_2;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_32 & _GEN_63) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
+    else if (_GEN_35 & _GEN_66) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :55:25, :56:25
       tagArray_30 <= io_waddr_1[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_30 <= io_wdata_1;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_30) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:44, :55:25
+    else if (_GEN_33) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:44, :55:25
       tagArray_30 <= io_waddr_0[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_30 <= io_wdata_0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    if (_GEN_162 & (&(io_waddr_5[4:0]))) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25, :56:25
+    if (_GEN_359) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_31 <= io_waddr_10[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_31 <= io_wdata_10;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_295 & (&(io_waddr_9[4:0]))) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25, :56:25
+      tagArray_31 <= io_waddr_9[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_31 <= io_wdata_9;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_294) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_31 <= io_waddr_8[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_31 <= io_wdata_8;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_230 & (&(io_waddr_7[4:0]))) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25, :56:25
+      tagArray_31 <= io_waddr_7[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_31 <= io_wdata_7;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_229) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+      tagArray_31 <= io_waddr_6[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
+      dataArray_31 <= io_wdata_6;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
+    end
+    else if (_GEN_165 & (&(io_waddr_5[4:0]))) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25, :56:25
       tagArray_31 <= io_waddr_5[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_31 <= io_wdata_5;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_161) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+    else if (_GEN_164) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
       tagArray_31 <= io_waddr_4[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_31 <= io_wdata_4;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_97 & (&(io_waddr_3[4:0]))) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25, :56:25
+    else if (_GEN_100 & (&(io_waddr_3[4:0]))) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25, :56:25
       tagArray_31 <= io_waddr_3[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_31 <= io_wdata_3;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_96) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
+    else if (_GEN_99) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:44, :55:25
       tagArray_31 <= io_waddr_2[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_31 <= io_wdata_2;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_32 & (&(io_waddr_1[4:0]))) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25, :56:25
+    else if (_GEN_35 & (&(io_waddr_1[4:0]))) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:51:{20,44}, :52:30, :55:25, :56:25
       tagArray_31 <= io_waddr_1[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_31 <= io_wdata_1;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
-    else if (_GEN_31) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:44, :55:25
+    else if (_GEN_34) begin	// backend/src/zaqal/backend/rename/RegisterCache.scala:29:27, :51:44, :55:25
       tagArray_31 <= io_waddr_0[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:30:23, :53:30
       dataArray_31 <= io_wdata_0;	// backend/src/zaqal/backend/rename/RegisterCache.scala:31:23
     end
@@ -2941,19 +2638,59 @@ module RegisterCache(	// backend/src/zaqal/backend/rename/RegisterCache.scala:8:
       `FIRRTL_AFTER_INITIAL	// backend/src/zaqal/backend/rename/RegisterCache.scala:8:7
     `endif // FIRRTL_AFTER_INITIAL
   `endif // ENABLE_INITIAL_REG_
-  assign io_rdata_0 = is_zero_reg ? 64'h0 : casez_tmp_1;	// backend/src/zaqal/backend/rename/RegisterCache.scala:8:7, :43:32, :46:23
-  assign io_rdata_1 = is_zero_reg_1 ? 64'h0 : casez_tmp_4;	// backend/src/zaqal/backend/rename/RegisterCache.scala:8:7, :43:32, :46:23
-  assign io_rdata_2 = is_zero_reg_2 ? 64'h0 : casez_tmp_7;	// backend/src/zaqal/backend/rename/RegisterCache.scala:8:7, :43:32, :46:23
-  assign io_rdata_3 = is_zero_reg_3 ? 64'h0 : casez_tmp_10;	// backend/src/zaqal/backend/rename/RegisterCache.scala:8:7, :43:32, :46:23
-  assign io_rdata_4 = is_zero_reg_4 ? 64'h0 : casez_tmp_13;	// backend/src/zaqal/backend/rename/RegisterCache.scala:8:7, :43:32, :46:23
-  assign io_rdata_5 = is_zero_reg_5 ? 64'h0 : casez_tmp_16;	// backend/src/zaqal/backend/rename/RegisterCache.scala:8:7, :43:32, :46:23
-  assign io_rdata_6 = is_zero_reg_6 ? 64'h0 : casez_tmp_19;	// backend/src/zaqal/backend/rename/RegisterCache.scala:8:7, :43:32, :46:23
-  assign io_rhits_0 = is_zero_reg | casez_tmp_0 & casez_tmp == io_raddr_0[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:8:7, :37:28, :43:32, :45:{32,49,63}
-  assign io_rhits_1 = is_zero_reg_1 | casez_tmp_3 & casez_tmp_2 == io_raddr_1[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:8:7, :37:28, :43:32, :45:{32,49,63}
-  assign io_rhits_2 = is_zero_reg_2 | casez_tmp_6 & casez_tmp_5 == io_raddr_2[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:8:7, :37:28, :43:32, :45:{32,49,63}
-  assign io_rhits_3 = is_zero_reg_3 | casez_tmp_9 & casez_tmp_8 == io_raddr_3[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:8:7, :37:28, :43:32, :45:{32,49,63}
-  assign io_rhits_4 = is_zero_reg_4 | casez_tmp_12 & casez_tmp_11 == io_raddr_4[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:8:7, :37:28, :43:32, :45:{32,49,63}
-  assign io_rhits_5 = is_zero_reg_5 | casez_tmp_15 & casez_tmp_14 == io_raddr_5[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:8:7, :37:28, :43:32, :45:{32,49,63}
-  assign io_rhits_6 = is_zero_reg_6 | casez_tmp_18 & casez_tmp_17 == io_raddr_6[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:8:7, :37:28, :43:32, :45:{32,49,63}
+  assign io_rdata_0 = is_zero_reg ? 64'h0 : _GEN_1[io_raddr_0[4:0]];	// backend/src/zaqal/backend/rename/RegisterCache.scala:8:7, :36:28, :43:32, :46:23
+  assign io_rdata_1 = is_zero_reg_1 ? 64'h0 : _GEN_1[io_raddr_1[4:0]];	// backend/src/zaqal/backend/rename/RegisterCache.scala:8:7, :36:28, :43:32, :46:23
+  assign io_rdata_2 = is_zero_reg_2 ? 64'h0 : _GEN_1[io_raddr_2[4:0]];	// backend/src/zaqal/backend/rename/RegisterCache.scala:8:7, :36:28, :43:32, :46:23
+  assign io_rdata_3 = is_zero_reg_3 ? 64'h0 : _GEN_1[io_raddr_3[4:0]];	// backend/src/zaqal/backend/rename/RegisterCache.scala:8:7, :36:28, :43:32, :46:23
+  assign io_rdata_4 = is_zero_reg_4 ? 64'h0 : _GEN_1[io_raddr_4[4:0]];	// backend/src/zaqal/backend/rename/RegisterCache.scala:8:7, :36:28, :43:32, :46:23
+  assign io_rdata_5 = is_zero_reg_5 ? 64'h0 : _GEN_1[io_raddr_5[4:0]];	// backend/src/zaqal/backend/rename/RegisterCache.scala:8:7, :36:28, :43:32, :46:23
+  assign io_rdata_6 = is_zero_reg_6 ? 64'h0 : _GEN_1[io_raddr_6[4:0]];	// backend/src/zaqal/backend/rename/RegisterCache.scala:8:7, :36:28, :43:32, :46:23
+  assign io_rdata_7 = is_zero_reg_7 ? 64'h0 : _GEN_1[io_raddr_7[4:0]];	// backend/src/zaqal/backend/rename/RegisterCache.scala:8:7, :36:28, :43:32, :46:23
+  assign io_rdata_8 = is_zero_reg_8 ? 64'h0 : _GEN_1[io_raddr_8[4:0]];	// backend/src/zaqal/backend/rename/RegisterCache.scala:8:7, :36:28, :43:32, :46:23
+  assign io_rdata_9 = is_zero_reg_9 ? 64'h0 : _GEN_1[io_raddr_9[4:0]];	// backend/src/zaqal/backend/rename/RegisterCache.scala:8:7, :36:28, :43:32, :46:23
+  assign io_rdata_10 = is_zero_reg_10 ? 64'h0 : _GEN_1[io_raddr_10[4:0]];	// backend/src/zaqal/backend/rename/RegisterCache.scala:8:7, :36:28, :43:32, :46:23
+  assign io_rdata_11 = is_zero_reg_11 ? 64'h0 : _GEN_1[io_raddr_11[4:0]];	// backend/src/zaqal/backend/rename/RegisterCache.scala:8:7, :36:28, :43:32, :46:23
+  assign io_rdata_12 = is_zero_reg_12 ? 64'h0 : _GEN_1[io_raddr_12[4:0]];	// backend/src/zaqal/backend/rename/RegisterCache.scala:8:7, :36:28, :43:32, :46:23
+  assign io_rdata_13 = is_zero_reg_13 ? 64'h0 : _GEN_1[io_raddr_13[4:0]];	// backend/src/zaqal/backend/rename/RegisterCache.scala:8:7, :36:28, :43:32, :46:23
+  assign io_rdata_14 = is_zero_reg_14 ? 64'h0 : _GEN_1[io_raddr_14[4:0]];	// backend/src/zaqal/backend/rename/RegisterCache.scala:8:7, :36:28, :43:32, :46:23
+  assign io_rdata_15 = is_zero_reg_15 ? 64'h0 : _GEN_1[io_raddr_15[4:0]];	// backend/src/zaqal/backend/rename/RegisterCache.scala:8:7, :36:28, :43:32, :46:23
+  assign io_rhits_0 =
+    is_zero_reg | _GEN_0[io_raddr_0[4:0]] & _GEN[io_raddr_0[4:0]] == io_raddr_0[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:8:7, :36:28, :37:28, :43:32, :45:{32,49,63}
+  assign io_rhits_1 =
+    is_zero_reg_1 | _GEN_0[io_raddr_1[4:0]] & _GEN[io_raddr_1[4:0]] == io_raddr_1[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:8:7, :36:28, :37:28, :43:32, :45:{32,49,63}
+  assign io_rhits_2 =
+    is_zero_reg_2 | _GEN_0[io_raddr_2[4:0]] & _GEN[io_raddr_2[4:0]] == io_raddr_2[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:8:7, :36:28, :37:28, :43:32, :45:{32,49,63}
+  assign io_rhits_3 =
+    is_zero_reg_3 | _GEN_0[io_raddr_3[4:0]] & _GEN[io_raddr_3[4:0]] == io_raddr_3[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:8:7, :36:28, :37:28, :43:32, :45:{32,49,63}
+  assign io_rhits_4 =
+    is_zero_reg_4 | _GEN_0[io_raddr_4[4:0]] & _GEN[io_raddr_4[4:0]] == io_raddr_4[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:8:7, :36:28, :37:28, :43:32, :45:{32,49,63}
+  assign io_rhits_5 =
+    is_zero_reg_5 | _GEN_0[io_raddr_5[4:0]] & _GEN[io_raddr_5[4:0]] == io_raddr_5[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:8:7, :36:28, :37:28, :43:32, :45:{32,49,63}
+  assign io_rhits_6 =
+    is_zero_reg_6 | _GEN_0[io_raddr_6[4:0]] & _GEN[io_raddr_6[4:0]] == io_raddr_6[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:8:7, :36:28, :37:28, :43:32, :45:{32,49,63}
+  assign io_rhits_7 =
+    is_zero_reg_7 | _GEN_0[io_raddr_7[4:0]] & _GEN[io_raddr_7[4:0]] == io_raddr_7[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:8:7, :36:28, :37:28, :43:32, :45:{32,49,63}
+  assign io_rhits_8 =
+    is_zero_reg_8 | _GEN_0[io_raddr_8[4:0]] & _GEN[io_raddr_8[4:0]] == io_raddr_8[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:8:7, :36:28, :37:28, :43:32, :45:{32,49,63}
+  assign io_rhits_9 =
+    is_zero_reg_9 | _GEN_0[io_raddr_9[4:0]] & _GEN[io_raddr_9[4:0]] == io_raddr_9[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:8:7, :36:28, :37:28, :43:32, :45:{32,49,63}
+  assign io_rhits_10 =
+    is_zero_reg_10 | _GEN_0[io_raddr_10[4:0]]
+    & _GEN[io_raddr_10[4:0]] == io_raddr_10[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:8:7, :36:28, :37:28, :43:32, :45:{32,49,63}
+  assign io_rhits_11 =
+    is_zero_reg_11 | _GEN_0[io_raddr_11[4:0]]
+    & _GEN[io_raddr_11[4:0]] == io_raddr_11[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:8:7, :36:28, :37:28, :43:32, :45:{32,49,63}
+  assign io_rhits_12 =
+    is_zero_reg_12 | _GEN_0[io_raddr_12[4:0]]
+    & _GEN[io_raddr_12[4:0]] == io_raddr_12[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:8:7, :36:28, :37:28, :43:32, :45:{32,49,63}
+  assign io_rhits_13 =
+    is_zero_reg_13 | _GEN_0[io_raddr_13[4:0]]
+    & _GEN[io_raddr_13[4:0]] == io_raddr_13[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:8:7, :36:28, :37:28, :43:32, :45:{32,49,63}
+  assign io_rhits_14 =
+    is_zero_reg_14 | _GEN_0[io_raddr_14[4:0]]
+    & _GEN[io_raddr_14[4:0]] == io_raddr_14[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:8:7, :36:28, :37:28, :43:32, :45:{32,49,63}
+  assign io_rhits_15 =
+    is_zero_reg_15 | _GEN_0[io_raddr_15[4:0]]
+    & _GEN[io_raddr_15[4:0]] == io_raddr_15[7:5];	// backend/src/zaqal/backend/rename/RegisterCache.scala:8:7, :36:28, :37:28, :43:32, :45:{32,49,63}
 endmodule
 

@@ -66,1039 +66,5185 @@
   `endif // PRINTF_COND
 `endif // not def PRINTF_COND_
 
-module DCache(	// cache/src/zaqal/cache/DCache.scala:8:7
-  input         clock,	// cache/src/zaqal/cache/DCache.scala:8:7
-                reset,	// cache/src/zaqal/cache/DCache.scala:8:7
-                io_req_valid,	// cache/src/zaqal/cache/DCache.scala:9:14
-  input  [63:0] io_req_bits_addr,	// cache/src/zaqal/cache/DCache.scala:9:14
-  input         io_req_bits_is_write,	// cache/src/zaqal/cache/DCache.scala:9:14
-  input  [5:0]  io_req_bits_load_id,	// cache/src/zaqal/cache/DCache.scala:9:14
-  output        io_resp_valid,	// cache/src/zaqal/cache/DCache.scala:9:14
-  output [5:0]  io_resp_bits_load_id,	// cache/src/zaqal/cache/DCache.scala:9:14
-  output        io_mem_req_valid,	// cache/src/zaqal/cache/DCache.scala:9:14
-  output [63:0] io_mem_req_bits_addr,	// cache/src/zaqal/cache/DCache.scala:9:14
-  output        io_mem_resp_ready,	// cache/src/zaqal/cache/DCache.scala:9:14
-  input         io_mem_resp_valid	// cache/src/zaqal/cache/DCache.scala:9:14
+module DCache(	// cache/src/zaqal/cache/DCache.scala:19:7
+  input          clock,	// cache/src/zaqal/cache/DCache.scala:19:7
+                 reset,	// cache/src/zaqal/cache/DCache.scala:19:7
+  output         io_req_ready,	// cache/src/zaqal/cache/DCache.scala:20:14
+  input          io_req_valid,	// cache/src/zaqal/cache/DCache.scala:20:14
+  input  [63:0]  io_req_bits_addr,	// cache/src/zaqal/cache/DCache.scala:20:14
+                 io_req_bits_data,	// cache/src/zaqal/cache/DCache.scala:20:14
+  input          io_req_bits_is_write,	// cache/src/zaqal/cache/DCache.scala:20:14
+  input  [5:0]   io_req_bits_load_id,	// cache/src/zaqal/cache/DCache.scala:20:14
+  output         io_resp_valid,	// cache/src/zaqal/cache/DCache.scala:20:14
+  output [63:0]  io_resp_bits_data,	// cache/src/zaqal/cache/DCache.scala:20:14
+  output [5:0]   io_resp_bits_load_id,	// cache/src/zaqal/cache/DCache.scala:20:14
+  input          io_tl_a_ready,	// cache/src/zaqal/cache/DCache.scala:20:14
+  output         io_tl_a_valid,	// cache/src/zaqal/cache/DCache.scala:20:14
+  output [2:0]   io_tl_a_bits_param,	// cache/src/zaqal/cache/DCache.scala:20:14
+  output [63:0]  io_tl_a_bits_address,	// cache/src/zaqal/cache/DCache.scala:20:14
+  output         io_tl_b_ready,	// cache/src/zaqal/cache/DCache.scala:20:14
+  input          io_tl_b_valid,	// cache/src/zaqal/cache/DCache.scala:20:14
+  input  [2:0]   io_tl_b_bits_param,	// cache/src/zaqal/cache/DCache.scala:20:14
+  input  [3:0]   io_tl_b_bits_size,	// cache/src/zaqal/cache/DCache.scala:20:14
+  input  [5:0]   io_tl_b_bits_source,	// cache/src/zaqal/cache/DCache.scala:20:14
+  input  [63:0]  io_tl_b_bits_address,	// cache/src/zaqal/cache/DCache.scala:20:14
+  input          io_tl_c_ready,	// cache/src/zaqal/cache/DCache.scala:20:14
+  output         io_tl_c_valid,	// cache/src/zaqal/cache/DCache.scala:20:14
+  output [2:0]   io_tl_c_bits_opcode,	// cache/src/zaqal/cache/DCache.scala:20:14
+                 io_tl_c_bits_param,	// cache/src/zaqal/cache/DCache.scala:20:14
+  output [3:0]   io_tl_c_bits_size,	// cache/src/zaqal/cache/DCache.scala:20:14
+  output [5:0]   io_tl_c_bits_source,	// cache/src/zaqal/cache/DCache.scala:20:14
+  output [63:0]  io_tl_c_bits_address,	// cache/src/zaqal/cache/DCache.scala:20:14
+  output [255:0] io_tl_c_bits_data,	// cache/src/zaqal/cache/DCache.scala:20:14
+  output         io_tl_d_ready,	// cache/src/zaqal/cache/DCache.scala:20:14
+  input          io_tl_d_valid,	// cache/src/zaqal/cache/DCache.scala:20:14
+  input  [2:0]   io_tl_d_bits_param,	// cache/src/zaqal/cache/DCache.scala:20:14
+  input  [5:0]   io_tl_d_bits_sink,	// cache/src/zaqal/cache/DCache.scala:20:14
+  input  [255:0] io_tl_d_bits_data,	// cache/src/zaqal/cache/DCache.scala:20:14
+  input          io_tl_e_ready,	// cache/src/zaqal/cache/DCache.scala:20:14
+  output         io_tl_e_valid,	// cache/src/zaqal/cache/DCache.scala:20:14
+  output [5:0]   io_tl_e_bits_sink,	// cache/src/zaqal/cache/DCache.scala:20:14
+  input          io_pf_train_valid,	// cache/src/zaqal/cache/DCache.scala:20:14
+  input  [63:0]  io_pf_train_bits_pc,	// cache/src/zaqal/cache/DCache.scala:20:14
+                 io_pf_train_bits_addr,	// cache/src/zaqal/cache/DCache.scala:20:14
+  input          io_branch_signal_valid,	// cache/src/zaqal/cache/DCache.scala:20:14
+  input  [63:0]  io_branch_signal_bits_pc,	// cache/src/zaqal/cache/DCache.scala:20:14
+                 io_branch_signal_bits_target,	// cache/src/zaqal/cache/DCache.scala:20:14
+  input          io_branch_signal_bits_taken,	// cache/src/zaqal/cache/DCache.scala:20:14
+                 io_flush,	// cache/src/zaqal/cache/DCache.scala:20:14
+  output         io_snoop_probe_valid,	// cache/src/zaqal/cache/DCache.scala:20:14
+  output [63:0]  io_snoop_probe_addr	// cache/src/zaqal/cache/DCache.scala:20:14
 );
 
-  wire        _mshr_io_refill_out_valid;	// cache/src/zaqal/cache/DCache.scala:42:20
-  wire [63:0] _mshr_io_refill_out_bits_addr;	// cache/src/zaqal/cache/DCache.scala:42:20
-  wire [5:0]  _mshr_io_refill_out_bits_load_id;	// cache/src/zaqal/cache/DCache.scala:42:20
-  reg         validArray_0;	// cache/src/zaqal/cache/DCache.scala:28:27
-  reg         validArray_1;	// cache/src/zaqal/cache/DCache.scala:28:27
-  reg         validArray_2;	// cache/src/zaqal/cache/DCache.scala:28:27
-  reg         validArray_3;	// cache/src/zaqal/cache/DCache.scala:28:27
-  reg         validArray_4;	// cache/src/zaqal/cache/DCache.scala:28:27
-  reg         validArray_5;	// cache/src/zaqal/cache/DCache.scala:28:27
-  reg         validArray_6;	// cache/src/zaqal/cache/DCache.scala:28:27
-  reg         validArray_7;	// cache/src/zaqal/cache/DCache.scala:28:27
-  reg         validArray_8;	// cache/src/zaqal/cache/DCache.scala:28:27
-  reg         validArray_9;	// cache/src/zaqal/cache/DCache.scala:28:27
-  reg         validArray_10;	// cache/src/zaqal/cache/DCache.scala:28:27
-  reg         validArray_11;	// cache/src/zaqal/cache/DCache.scala:28:27
-  reg         validArray_12;	// cache/src/zaqal/cache/DCache.scala:28:27
-  reg         validArray_13;	// cache/src/zaqal/cache/DCache.scala:28:27
-  reg         validArray_14;	// cache/src/zaqal/cache/DCache.scala:28:27
-  reg         validArray_15;	// cache/src/zaqal/cache/DCache.scala:28:27
-  reg         validArray_16;	// cache/src/zaqal/cache/DCache.scala:28:27
-  reg         validArray_17;	// cache/src/zaqal/cache/DCache.scala:28:27
-  reg         validArray_18;	// cache/src/zaqal/cache/DCache.scala:28:27
-  reg         validArray_19;	// cache/src/zaqal/cache/DCache.scala:28:27
-  reg         validArray_20;	// cache/src/zaqal/cache/DCache.scala:28:27
-  reg         validArray_21;	// cache/src/zaqal/cache/DCache.scala:28:27
-  reg         validArray_22;	// cache/src/zaqal/cache/DCache.scala:28:27
-  reg         validArray_23;	// cache/src/zaqal/cache/DCache.scala:28:27
-  reg         validArray_24;	// cache/src/zaqal/cache/DCache.scala:28:27
-  reg         validArray_25;	// cache/src/zaqal/cache/DCache.scala:28:27
-  reg         validArray_26;	// cache/src/zaqal/cache/DCache.scala:28:27
-  reg         validArray_27;	// cache/src/zaqal/cache/DCache.scala:28:27
-  reg         validArray_28;	// cache/src/zaqal/cache/DCache.scala:28:27
-  reg         validArray_29;	// cache/src/zaqal/cache/DCache.scala:28:27
-  reg         validArray_30;	// cache/src/zaqal/cache/DCache.scala:28:27
-  reg         validArray_31;	// cache/src/zaqal/cache/DCache.scala:28:27
-  reg         validArray_32;	// cache/src/zaqal/cache/DCache.scala:28:27
-  reg         validArray_33;	// cache/src/zaqal/cache/DCache.scala:28:27
-  reg         validArray_34;	// cache/src/zaqal/cache/DCache.scala:28:27
-  reg         validArray_35;	// cache/src/zaqal/cache/DCache.scala:28:27
-  reg         validArray_36;	// cache/src/zaqal/cache/DCache.scala:28:27
-  reg         validArray_37;	// cache/src/zaqal/cache/DCache.scala:28:27
-  reg         validArray_38;	// cache/src/zaqal/cache/DCache.scala:28:27
-  reg         validArray_39;	// cache/src/zaqal/cache/DCache.scala:28:27
-  reg         validArray_40;	// cache/src/zaqal/cache/DCache.scala:28:27
-  reg         validArray_41;	// cache/src/zaqal/cache/DCache.scala:28:27
-  reg         validArray_42;	// cache/src/zaqal/cache/DCache.scala:28:27
-  reg         validArray_43;	// cache/src/zaqal/cache/DCache.scala:28:27
-  reg         validArray_44;	// cache/src/zaqal/cache/DCache.scala:28:27
-  reg         validArray_45;	// cache/src/zaqal/cache/DCache.scala:28:27
-  reg         validArray_46;	// cache/src/zaqal/cache/DCache.scala:28:27
-  reg         validArray_47;	// cache/src/zaqal/cache/DCache.scala:28:27
-  reg         validArray_48;	// cache/src/zaqal/cache/DCache.scala:28:27
-  reg         validArray_49;	// cache/src/zaqal/cache/DCache.scala:28:27
-  reg         validArray_50;	// cache/src/zaqal/cache/DCache.scala:28:27
-  reg         validArray_51;	// cache/src/zaqal/cache/DCache.scala:28:27
-  reg         validArray_52;	// cache/src/zaqal/cache/DCache.scala:28:27
-  reg         validArray_53;	// cache/src/zaqal/cache/DCache.scala:28:27
-  reg         validArray_54;	// cache/src/zaqal/cache/DCache.scala:28:27
-  reg         validArray_55;	// cache/src/zaqal/cache/DCache.scala:28:27
-  reg         validArray_56;	// cache/src/zaqal/cache/DCache.scala:28:27
-  reg         validArray_57;	// cache/src/zaqal/cache/DCache.scala:28:27
-  reg         validArray_58;	// cache/src/zaqal/cache/DCache.scala:28:27
-  reg         validArray_59;	// cache/src/zaqal/cache/DCache.scala:28:27
-  reg         validArray_60;	// cache/src/zaqal/cache/DCache.scala:28:27
-  reg         validArray_61;	// cache/src/zaqal/cache/DCache.scala:28:27
-  reg         validArray_62;	// cache/src/zaqal/cache/DCache.scala:28:27
-  reg         validArray_63;	// cache/src/zaqal/cache/DCache.scala:28:27
-  reg  [52:0] tagArray_0;	// cache/src/zaqal/cache/DCache.scala:30:25
-  reg  [52:0] tagArray_1;	// cache/src/zaqal/cache/DCache.scala:30:25
-  reg  [52:0] tagArray_2;	// cache/src/zaqal/cache/DCache.scala:30:25
-  reg  [52:0] tagArray_3;	// cache/src/zaqal/cache/DCache.scala:30:25
-  reg  [52:0] tagArray_4;	// cache/src/zaqal/cache/DCache.scala:30:25
-  reg  [52:0] tagArray_5;	// cache/src/zaqal/cache/DCache.scala:30:25
-  reg  [52:0] tagArray_6;	// cache/src/zaqal/cache/DCache.scala:30:25
-  reg  [52:0] tagArray_7;	// cache/src/zaqal/cache/DCache.scala:30:25
-  reg  [52:0] tagArray_8;	// cache/src/zaqal/cache/DCache.scala:30:25
-  reg  [52:0] tagArray_9;	// cache/src/zaqal/cache/DCache.scala:30:25
-  reg  [52:0] tagArray_10;	// cache/src/zaqal/cache/DCache.scala:30:25
-  reg  [52:0] tagArray_11;	// cache/src/zaqal/cache/DCache.scala:30:25
-  reg  [52:0] tagArray_12;	// cache/src/zaqal/cache/DCache.scala:30:25
-  reg  [52:0] tagArray_13;	// cache/src/zaqal/cache/DCache.scala:30:25
-  reg  [52:0] tagArray_14;	// cache/src/zaqal/cache/DCache.scala:30:25
-  reg  [52:0] tagArray_15;	// cache/src/zaqal/cache/DCache.scala:30:25
-  reg  [52:0] tagArray_16;	// cache/src/zaqal/cache/DCache.scala:30:25
-  reg  [52:0] tagArray_17;	// cache/src/zaqal/cache/DCache.scala:30:25
-  reg  [52:0] tagArray_18;	// cache/src/zaqal/cache/DCache.scala:30:25
-  reg  [52:0] tagArray_19;	// cache/src/zaqal/cache/DCache.scala:30:25
-  reg  [52:0] tagArray_20;	// cache/src/zaqal/cache/DCache.scala:30:25
-  reg  [52:0] tagArray_21;	// cache/src/zaqal/cache/DCache.scala:30:25
-  reg  [52:0] tagArray_22;	// cache/src/zaqal/cache/DCache.scala:30:25
-  reg  [52:0] tagArray_23;	// cache/src/zaqal/cache/DCache.scala:30:25
-  reg  [52:0] tagArray_24;	// cache/src/zaqal/cache/DCache.scala:30:25
-  reg  [52:0] tagArray_25;	// cache/src/zaqal/cache/DCache.scala:30:25
-  reg  [52:0] tagArray_26;	// cache/src/zaqal/cache/DCache.scala:30:25
-  reg  [52:0] tagArray_27;	// cache/src/zaqal/cache/DCache.scala:30:25
-  reg  [52:0] tagArray_28;	// cache/src/zaqal/cache/DCache.scala:30:25
-  reg  [52:0] tagArray_29;	// cache/src/zaqal/cache/DCache.scala:30:25
-  reg  [52:0] tagArray_30;	// cache/src/zaqal/cache/DCache.scala:30:25
-  reg  [52:0] tagArray_31;	// cache/src/zaqal/cache/DCache.scala:30:25
-  reg  [52:0] tagArray_32;	// cache/src/zaqal/cache/DCache.scala:30:25
-  reg  [52:0] tagArray_33;	// cache/src/zaqal/cache/DCache.scala:30:25
-  reg  [52:0] tagArray_34;	// cache/src/zaqal/cache/DCache.scala:30:25
-  reg  [52:0] tagArray_35;	// cache/src/zaqal/cache/DCache.scala:30:25
-  reg  [52:0] tagArray_36;	// cache/src/zaqal/cache/DCache.scala:30:25
-  reg  [52:0] tagArray_37;	// cache/src/zaqal/cache/DCache.scala:30:25
-  reg  [52:0] tagArray_38;	// cache/src/zaqal/cache/DCache.scala:30:25
-  reg  [52:0] tagArray_39;	// cache/src/zaqal/cache/DCache.scala:30:25
-  reg  [52:0] tagArray_40;	// cache/src/zaqal/cache/DCache.scala:30:25
-  reg  [52:0] tagArray_41;	// cache/src/zaqal/cache/DCache.scala:30:25
-  reg  [52:0] tagArray_42;	// cache/src/zaqal/cache/DCache.scala:30:25
-  reg  [52:0] tagArray_43;	// cache/src/zaqal/cache/DCache.scala:30:25
-  reg  [52:0] tagArray_44;	// cache/src/zaqal/cache/DCache.scala:30:25
-  reg  [52:0] tagArray_45;	// cache/src/zaqal/cache/DCache.scala:30:25
-  reg  [52:0] tagArray_46;	// cache/src/zaqal/cache/DCache.scala:30:25
-  reg  [52:0] tagArray_47;	// cache/src/zaqal/cache/DCache.scala:30:25
-  reg  [52:0] tagArray_48;	// cache/src/zaqal/cache/DCache.scala:30:25
-  reg  [52:0] tagArray_49;	// cache/src/zaqal/cache/DCache.scala:30:25
-  reg  [52:0] tagArray_50;	// cache/src/zaqal/cache/DCache.scala:30:25
-  reg  [52:0] tagArray_51;	// cache/src/zaqal/cache/DCache.scala:30:25
-  reg  [52:0] tagArray_52;	// cache/src/zaqal/cache/DCache.scala:30:25
-  reg  [52:0] tagArray_53;	// cache/src/zaqal/cache/DCache.scala:30:25
-  reg  [52:0] tagArray_54;	// cache/src/zaqal/cache/DCache.scala:30:25
-  reg  [52:0] tagArray_55;	// cache/src/zaqal/cache/DCache.scala:30:25
-  reg  [52:0] tagArray_56;	// cache/src/zaqal/cache/DCache.scala:30:25
-  reg  [52:0] tagArray_57;	// cache/src/zaqal/cache/DCache.scala:30:25
-  reg  [52:0] tagArray_58;	// cache/src/zaqal/cache/DCache.scala:30:25
-  reg  [52:0] tagArray_59;	// cache/src/zaqal/cache/DCache.scala:30:25
-  reg  [52:0] tagArray_60;	// cache/src/zaqal/cache/DCache.scala:30:25
-  reg  [52:0] tagArray_61;	// cache/src/zaqal/cache/DCache.scala:30:25
-  reg  [52:0] tagArray_62;	// cache/src/zaqal/cache/DCache.scala:30:25
-  reg  [52:0] tagArray_63;	// cache/src/zaqal/cache/DCache.scala:30:25
-  reg  [52:0] casez_tmp;	// cache/src/zaqal/cache/DCache.scala:39:59
-  always_comb begin	// cache/src/zaqal/cache/DCache.scala:39:59
-    casez (io_req_bits_addr[10:5])	// cache/src/zaqal/cache/DCache.scala:34:34, :39:59
-      6'b000000:
-        casez_tmp = tagArray_0;	// cache/src/zaqal/cache/DCache.scala:30:25, :39:59
-      6'b000001:
-        casez_tmp = tagArray_1;	// cache/src/zaqal/cache/DCache.scala:30:25, :39:59
-      6'b000010:
-        casez_tmp = tagArray_2;	// cache/src/zaqal/cache/DCache.scala:30:25, :39:59
-      6'b000011:
-        casez_tmp = tagArray_3;	// cache/src/zaqal/cache/DCache.scala:30:25, :39:59
-      6'b000100:
-        casez_tmp = tagArray_4;	// cache/src/zaqal/cache/DCache.scala:30:25, :39:59
-      6'b000101:
-        casez_tmp = tagArray_5;	// cache/src/zaqal/cache/DCache.scala:30:25, :39:59
-      6'b000110:
-        casez_tmp = tagArray_6;	// cache/src/zaqal/cache/DCache.scala:30:25, :39:59
-      6'b000111:
-        casez_tmp = tagArray_7;	// cache/src/zaqal/cache/DCache.scala:30:25, :39:59
-      6'b001000:
-        casez_tmp = tagArray_8;	// cache/src/zaqal/cache/DCache.scala:30:25, :39:59
-      6'b001001:
-        casez_tmp = tagArray_9;	// cache/src/zaqal/cache/DCache.scala:30:25, :39:59
-      6'b001010:
-        casez_tmp = tagArray_10;	// cache/src/zaqal/cache/DCache.scala:30:25, :39:59
-      6'b001011:
-        casez_tmp = tagArray_11;	// cache/src/zaqal/cache/DCache.scala:30:25, :39:59
-      6'b001100:
-        casez_tmp = tagArray_12;	// cache/src/zaqal/cache/DCache.scala:30:25, :39:59
-      6'b001101:
-        casez_tmp = tagArray_13;	// cache/src/zaqal/cache/DCache.scala:30:25, :39:59
-      6'b001110:
-        casez_tmp = tagArray_14;	// cache/src/zaqal/cache/DCache.scala:30:25, :39:59
-      6'b001111:
-        casez_tmp = tagArray_15;	// cache/src/zaqal/cache/DCache.scala:30:25, :39:59
-      6'b010000:
-        casez_tmp = tagArray_16;	// cache/src/zaqal/cache/DCache.scala:30:25, :39:59
-      6'b010001:
-        casez_tmp = tagArray_17;	// cache/src/zaqal/cache/DCache.scala:30:25, :39:59
-      6'b010010:
-        casez_tmp = tagArray_18;	// cache/src/zaqal/cache/DCache.scala:30:25, :39:59
-      6'b010011:
-        casez_tmp = tagArray_19;	// cache/src/zaqal/cache/DCache.scala:30:25, :39:59
-      6'b010100:
-        casez_tmp = tagArray_20;	// cache/src/zaqal/cache/DCache.scala:30:25, :39:59
-      6'b010101:
-        casez_tmp = tagArray_21;	// cache/src/zaqal/cache/DCache.scala:30:25, :39:59
-      6'b010110:
-        casez_tmp = tagArray_22;	// cache/src/zaqal/cache/DCache.scala:30:25, :39:59
-      6'b010111:
-        casez_tmp = tagArray_23;	// cache/src/zaqal/cache/DCache.scala:30:25, :39:59
-      6'b011000:
-        casez_tmp = tagArray_24;	// cache/src/zaqal/cache/DCache.scala:30:25, :39:59
-      6'b011001:
-        casez_tmp = tagArray_25;	// cache/src/zaqal/cache/DCache.scala:30:25, :39:59
-      6'b011010:
-        casez_tmp = tagArray_26;	// cache/src/zaqal/cache/DCache.scala:30:25, :39:59
-      6'b011011:
-        casez_tmp = tagArray_27;	// cache/src/zaqal/cache/DCache.scala:30:25, :39:59
-      6'b011100:
-        casez_tmp = tagArray_28;	// cache/src/zaqal/cache/DCache.scala:30:25, :39:59
-      6'b011101:
-        casez_tmp = tagArray_29;	// cache/src/zaqal/cache/DCache.scala:30:25, :39:59
-      6'b011110:
-        casez_tmp = tagArray_30;	// cache/src/zaqal/cache/DCache.scala:30:25, :39:59
-      6'b011111:
-        casez_tmp = tagArray_31;	// cache/src/zaqal/cache/DCache.scala:30:25, :39:59
-      6'b100000:
-        casez_tmp = tagArray_32;	// cache/src/zaqal/cache/DCache.scala:30:25, :39:59
-      6'b100001:
-        casez_tmp = tagArray_33;	// cache/src/zaqal/cache/DCache.scala:30:25, :39:59
-      6'b100010:
-        casez_tmp = tagArray_34;	// cache/src/zaqal/cache/DCache.scala:30:25, :39:59
-      6'b100011:
-        casez_tmp = tagArray_35;	// cache/src/zaqal/cache/DCache.scala:30:25, :39:59
-      6'b100100:
-        casez_tmp = tagArray_36;	// cache/src/zaqal/cache/DCache.scala:30:25, :39:59
-      6'b100101:
-        casez_tmp = tagArray_37;	// cache/src/zaqal/cache/DCache.scala:30:25, :39:59
-      6'b100110:
-        casez_tmp = tagArray_38;	// cache/src/zaqal/cache/DCache.scala:30:25, :39:59
-      6'b100111:
-        casez_tmp = tagArray_39;	// cache/src/zaqal/cache/DCache.scala:30:25, :39:59
-      6'b101000:
-        casez_tmp = tagArray_40;	// cache/src/zaqal/cache/DCache.scala:30:25, :39:59
-      6'b101001:
-        casez_tmp = tagArray_41;	// cache/src/zaqal/cache/DCache.scala:30:25, :39:59
-      6'b101010:
-        casez_tmp = tagArray_42;	// cache/src/zaqal/cache/DCache.scala:30:25, :39:59
-      6'b101011:
-        casez_tmp = tagArray_43;	// cache/src/zaqal/cache/DCache.scala:30:25, :39:59
-      6'b101100:
-        casez_tmp = tagArray_44;	// cache/src/zaqal/cache/DCache.scala:30:25, :39:59
-      6'b101101:
-        casez_tmp = tagArray_45;	// cache/src/zaqal/cache/DCache.scala:30:25, :39:59
-      6'b101110:
-        casez_tmp = tagArray_46;	// cache/src/zaqal/cache/DCache.scala:30:25, :39:59
-      6'b101111:
-        casez_tmp = tagArray_47;	// cache/src/zaqal/cache/DCache.scala:30:25, :39:59
-      6'b110000:
-        casez_tmp = tagArray_48;	// cache/src/zaqal/cache/DCache.scala:30:25, :39:59
-      6'b110001:
-        casez_tmp = tagArray_49;	// cache/src/zaqal/cache/DCache.scala:30:25, :39:59
-      6'b110010:
-        casez_tmp = tagArray_50;	// cache/src/zaqal/cache/DCache.scala:30:25, :39:59
-      6'b110011:
-        casez_tmp = tagArray_51;	// cache/src/zaqal/cache/DCache.scala:30:25, :39:59
-      6'b110100:
-        casez_tmp = tagArray_52;	// cache/src/zaqal/cache/DCache.scala:30:25, :39:59
-      6'b110101:
-        casez_tmp = tagArray_53;	// cache/src/zaqal/cache/DCache.scala:30:25, :39:59
-      6'b110110:
-        casez_tmp = tagArray_54;	// cache/src/zaqal/cache/DCache.scala:30:25, :39:59
-      6'b110111:
-        casez_tmp = tagArray_55;	// cache/src/zaqal/cache/DCache.scala:30:25, :39:59
-      6'b111000:
-        casez_tmp = tagArray_56;	// cache/src/zaqal/cache/DCache.scala:30:25, :39:59
-      6'b111001:
-        casez_tmp = tagArray_57;	// cache/src/zaqal/cache/DCache.scala:30:25, :39:59
-      6'b111010:
-        casez_tmp = tagArray_58;	// cache/src/zaqal/cache/DCache.scala:30:25, :39:59
-      6'b111011:
-        casez_tmp = tagArray_59;	// cache/src/zaqal/cache/DCache.scala:30:25, :39:59
-      6'b111100:
-        casez_tmp = tagArray_60;	// cache/src/zaqal/cache/DCache.scala:30:25, :39:59
-      6'b111101:
-        casez_tmp = tagArray_61;	// cache/src/zaqal/cache/DCache.scala:30:25, :39:59
-      6'b111110:
-        casez_tmp = tagArray_62;	// cache/src/zaqal/cache/DCache.scala:30:25, :39:59
-      default:
-        casez_tmp = tagArray_63;	// cache/src/zaqal/cache/DCache.scala:30:25, :39:59
-    endcase	// cache/src/zaqal/cache/DCache.scala:34:34, :39:59
-  end // always_comb
-  reg         casez_tmp_0;	// cache/src/zaqal/cache/DCache.scala:39:36
-  always_comb begin	// cache/src/zaqal/cache/DCache.scala:39:36
-    casez (io_req_bits_addr[10:5])	// cache/src/zaqal/cache/DCache.scala:34:34, :39:36
-      6'b000000:
-        casez_tmp_0 = validArray_0;	// cache/src/zaqal/cache/DCache.scala:28:27, :39:36
-      6'b000001:
-        casez_tmp_0 = validArray_1;	// cache/src/zaqal/cache/DCache.scala:28:27, :39:36
-      6'b000010:
-        casez_tmp_0 = validArray_2;	// cache/src/zaqal/cache/DCache.scala:28:27, :39:36
-      6'b000011:
-        casez_tmp_0 = validArray_3;	// cache/src/zaqal/cache/DCache.scala:28:27, :39:36
-      6'b000100:
-        casez_tmp_0 = validArray_4;	// cache/src/zaqal/cache/DCache.scala:28:27, :39:36
-      6'b000101:
-        casez_tmp_0 = validArray_5;	// cache/src/zaqal/cache/DCache.scala:28:27, :39:36
-      6'b000110:
-        casez_tmp_0 = validArray_6;	// cache/src/zaqal/cache/DCache.scala:28:27, :39:36
-      6'b000111:
-        casez_tmp_0 = validArray_7;	// cache/src/zaqal/cache/DCache.scala:28:27, :39:36
-      6'b001000:
-        casez_tmp_0 = validArray_8;	// cache/src/zaqal/cache/DCache.scala:28:27, :39:36
-      6'b001001:
-        casez_tmp_0 = validArray_9;	// cache/src/zaqal/cache/DCache.scala:28:27, :39:36
-      6'b001010:
-        casez_tmp_0 = validArray_10;	// cache/src/zaqal/cache/DCache.scala:28:27, :39:36
-      6'b001011:
-        casez_tmp_0 = validArray_11;	// cache/src/zaqal/cache/DCache.scala:28:27, :39:36
-      6'b001100:
-        casez_tmp_0 = validArray_12;	// cache/src/zaqal/cache/DCache.scala:28:27, :39:36
-      6'b001101:
-        casez_tmp_0 = validArray_13;	// cache/src/zaqal/cache/DCache.scala:28:27, :39:36
-      6'b001110:
-        casez_tmp_0 = validArray_14;	// cache/src/zaqal/cache/DCache.scala:28:27, :39:36
-      6'b001111:
-        casez_tmp_0 = validArray_15;	// cache/src/zaqal/cache/DCache.scala:28:27, :39:36
-      6'b010000:
-        casez_tmp_0 = validArray_16;	// cache/src/zaqal/cache/DCache.scala:28:27, :39:36
-      6'b010001:
-        casez_tmp_0 = validArray_17;	// cache/src/zaqal/cache/DCache.scala:28:27, :39:36
-      6'b010010:
-        casez_tmp_0 = validArray_18;	// cache/src/zaqal/cache/DCache.scala:28:27, :39:36
-      6'b010011:
-        casez_tmp_0 = validArray_19;	// cache/src/zaqal/cache/DCache.scala:28:27, :39:36
-      6'b010100:
-        casez_tmp_0 = validArray_20;	// cache/src/zaqal/cache/DCache.scala:28:27, :39:36
-      6'b010101:
-        casez_tmp_0 = validArray_21;	// cache/src/zaqal/cache/DCache.scala:28:27, :39:36
-      6'b010110:
-        casez_tmp_0 = validArray_22;	// cache/src/zaqal/cache/DCache.scala:28:27, :39:36
-      6'b010111:
-        casez_tmp_0 = validArray_23;	// cache/src/zaqal/cache/DCache.scala:28:27, :39:36
-      6'b011000:
-        casez_tmp_0 = validArray_24;	// cache/src/zaqal/cache/DCache.scala:28:27, :39:36
-      6'b011001:
-        casez_tmp_0 = validArray_25;	// cache/src/zaqal/cache/DCache.scala:28:27, :39:36
-      6'b011010:
-        casez_tmp_0 = validArray_26;	// cache/src/zaqal/cache/DCache.scala:28:27, :39:36
-      6'b011011:
-        casez_tmp_0 = validArray_27;	// cache/src/zaqal/cache/DCache.scala:28:27, :39:36
-      6'b011100:
-        casez_tmp_0 = validArray_28;	// cache/src/zaqal/cache/DCache.scala:28:27, :39:36
-      6'b011101:
-        casez_tmp_0 = validArray_29;	// cache/src/zaqal/cache/DCache.scala:28:27, :39:36
-      6'b011110:
-        casez_tmp_0 = validArray_30;	// cache/src/zaqal/cache/DCache.scala:28:27, :39:36
-      6'b011111:
-        casez_tmp_0 = validArray_31;	// cache/src/zaqal/cache/DCache.scala:28:27, :39:36
-      6'b100000:
-        casez_tmp_0 = validArray_32;	// cache/src/zaqal/cache/DCache.scala:28:27, :39:36
-      6'b100001:
-        casez_tmp_0 = validArray_33;	// cache/src/zaqal/cache/DCache.scala:28:27, :39:36
-      6'b100010:
-        casez_tmp_0 = validArray_34;	// cache/src/zaqal/cache/DCache.scala:28:27, :39:36
-      6'b100011:
-        casez_tmp_0 = validArray_35;	// cache/src/zaqal/cache/DCache.scala:28:27, :39:36
-      6'b100100:
-        casez_tmp_0 = validArray_36;	// cache/src/zaqal/cache/DCache.scala:28:27, :39:36
-      6'b100101:
-        casez_tmp_0 = validArray_37;	// cache/src/zaqal/cache/DCache.scala:28:27, :39:36
-      6'b100110:
-        casez_tmp_0 = validArray_38;	// cache/src/zaqal/cache/DCache.scala:28:27, :39:36
-      6'b100111:
-        casez_tmp_0 = validArray_39;	// cache/src/zaqal/cache/DCache.scala:28:27, :39:36
-      6'b101000:
-        casez_tmp_0 = validArray_40;	// cache/src/zaqal/cache/DCache.scala:28:27, :39:36
-      6'b101001:
-        casez_tmp_0 = validArray_41;	// cache/src/zaqal/cache/DCache.scala:28:27, :39:36
-      6'b101010:
-        casez_tmp_0 = validArray_42;	// cache/src/zaqal/cache/DCache.scala:28:27, :39:36
-      6'b101011:
-        casez_tmp_0 = validArray_43;	// cache/src/zaqal/cache/DCache.scala:28:27, :39:36
-      6'b101100:
-        casez_tmp_0 = validArray_44;	// cache/src/zaqal/cache/DCache.scala:28:27, :39:36
-      6'b101101:
-        casez_tmp_0 = validArray_45;	// cache/src/zaqal/cache/DCache.scala:28:27, :39:36
-      6'b101110:
-        casez_tmp_0 = validArray_46;	// cache/src/zaqal/cache/DCache.scala:28:27, :39:36
-      6'b101111:
-        casez_tmp_0 = validArray_47;	// cache/src/zaqal/cache/DCache.scala:28:27, :39:36
-      6'b110000:
-        casez_tmp_0 = validArray_48;	// cache/src/zaqal/cache/DCache.scala:28:27, :39:36
-      6'b110001:
-        casez_tmp_0 = validArray_49;	// cache/src/zaqal/cache/DCache.scala:28:27, :39:36
-      6'b110010:
-        casez_tmp_0 = validArray_50;	// cache/src/zaqal/cache/DCache.scala:28:27, :39:36
-      6'b110011:
-        casez_tmp_0 = validArray_51;	// cache/src/zaqal/cache/DCache.scala:28:27, :39:36
-      6'b110100:
-        casez_tmp_0 = validArray_52;	// cache/src/zaqal/cache/DCache.scala:28:27, :39:36
-      6'b110101:
-        casez_tmp_0 = validArray_53;	// cache/src/zaqal/cache/DCache.scala:28:27, :39:36
-      6'b110110:
-        casez_tmp_0 = validArray_54;	// cache/src/zaqal/cache/DCache.scala:28:27, :39:36
-      6'b110111:
-        casez_tmp_0 = validArray_55;	// cache/src/zaqal/cache/DCache.scala:28:27, :39:36
-      6'b111000:
-        casez_tmp_0 = validArray_56;	// cache/src/zaqal/cache/DCache.scala:28:27, :39:36
-      6'b111001:
-        casez_tmp_0 = validArray_57;	// cache/src/zaqal/cache/DCache.scala:28:27, :39:36
-      6'b111010:
-        casez_tmp_0 = validArray_58;	// cache/src/zaqal/cache/DCache.scala:28:27, :39:36
-      6'b111011:
-        casez_tmp_0 = validArray_59;	// cache/src/zaqal/cache/DCache.scala:28:27, :39:36
-      6'b111100:
-        casez_tmp_0 = validArray_60;	// cache/src/zaqal/cache/DCache.scala:28:27, :39:36
-      6'b111101:
-        casez_tmp_0 = validArray_61;	// cache/src/zaqal/cache/DCache.scala:28:27, :39:36
-      6'b111110:
-        casez_tmp_0 = validArray_62;	// cache/src/zaqal/cache/DCache.scala:28:27, :39:36
-      default:
-        casez_tmp_0 = validArray_63;	// cache/src/zaqal/cache/DCache.scala:28:27, :39:36
-    endcase	// cache/src/zaqal/cache/DCache.scala:34:34, :39:36
-  end // always_comb
-  wire        isHit = casez_tmp_0 & casez_tmp == io_req_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:35:32, :39:{36,59}
-  wire        _GEN = io_req_valid & isHit;	// cache/src/zaqal/cache/DCache.scala:39:36, :48:17, :57:22, :58:17, :60:34
-  wire        _GEN_0 =
-    _mshr_io_refill_out_valid & _mshr_io_refill_out_bits_addr[10:5] == 6'h0;	// cache/src/zaqal/cache/DCache.scala:28:27, :42:20, :61:44, :76:33, :77:51, :80:29
-  wire        _GEN_1 =
-    _mshr_io_refill_out_valid & _mshr_io_refill_out_bits_addr[10:5] == 6'h1;	// cache/src/zaqal/cache/DCache.scala:28:27, :42:20, :61:44, :76:33, :77:51, :80:29
-  wire        _GEN_2 =
-    _mshr_io_refill_out_valid & _mshr_io_refill_out_bits_addr[10:5] == 6'h2;	// cache/src/zaqal/cache/DCache.scala:28:27, :42:20, :61:44, :76:33, :77:51, :80:29
-  wire        _GEN_3 =
-    _mshr_io_refill_out_valid & _mshr_io_refill_out_bits_addr[10:5] == 6'h3;	// cache/src/zaqal/cache/DCache.scala:28:27, :42:20, :61:44, :76:33, :77:51, :80:29
-  wire        _GEN_4 =
-    _mshr_io_refill_out_valid & _mshr_io_refill_out_bits_addr[10:5] == 6'h4;	// cache/src/zaqal/cache/DCache.scala:28:27, :42:20, :61:44, :76:33, :77:51, :80:29
-  wire        _GEN_5 =
-    _mshr_io_refill_out_valid & _mshr_io_refill_out_bits_addr[10:5] == 6'h5;	// cache/src/zaqal/cache/DCache.scala:28:27, :42:20, :61:44, :76:33, :77:51, :80:29
-  wire        _GEN_6 =
-    _mshr_io_refill_out_valid & _mshr_io_refill_out_bits_addr[10:5] == 6'h6;	// cache/src/zaqal/cache/DCache.scala:28:27, :42:20, :61:44, :76:33, :77:51, :80:29
-  wire        _GEN_7 =
-    _mshr_io_refill_out_valid & _mshr_io_refill_out_bits_addr[10:5] == 6'h7;	// cache/src/zaqal/cache/DCache.scala:28:27, :42:20, :61:44, :76:33, :77:51, :80:29
-  wire        _GEN_8 =
-    _mshr_io_refill_out_valid & _mshr_io_refill_out_bits_addr[10:5] == 6'h8;	// cache/src/zaqal/cache/DCache.scala:28:27, :42:20, :61:44, :76:33, :77:51, :80:29
-  wire        _GEN_9 =
-    _mshr_io_refill_out_valid & _mshr_io_refill_out_bits_addr[10:5] == 6'h9;	// cache/src/zaqal/cache/DCache.scala:28:27, :42:20, :61:44, :76:33, :77:51, :80:29
-  wire        _GEN_10 =
-    _mshr_io_refill_out_valid & _mshr_io_refill_out_bits_addr[10:5] == 6'hA;	// cache/src/zaqal/cache/DCache.scala:28:27, :42:20, :61:44, :76:33, :77:51, :80:29
-  wire        _GEN_11 =
-    _mshr_io_refill_out_valid & _mshr_io_refill_out_bits_addr[10:5] == 6'hB;	// cache/src/zaqal/cache/DCache.scala:28:27, :42:20, :61:44, :76:33, :77:51, :80:29
-  wire        _GEN_12 =
-    _mshr_io_refill_out_valid & _mshr_io_refill_out_bits_addr[10:5] == 6'hC;	// cache/src/zaqal/cache/DCache.scala:28:27, :42:20, :61:44, :76:33, :77:51, :80:29
-  wire        _GEN_13 =
-    _mshr_io_refill_out_valid & _mshr_io_refill_out_bits_addr[10:5] == 6'hD;	// cache/src/zaqal/cache/DCache.scala:28:27, :42:20, :61:44, :76:33, :77:51, :80:29
-  wire        _GEN_14 =
-    _mshr_io_refill_out_valid & _mshr_io_refill_out_bits_addr[10:5] == 6'hE;	// cache/src/zaqal/cache/DCache.scala:28:27, :42:20, :61:44, :76:33, :77:51, :80:29
-  wire        _GEN_15 =
-    _mshr_io_refill_out_valid & _mshr_io_refill_out_bits_addr[10:5] == 6'hF;	// cache/src/zaqal/cache/DCache.scala:28:27, :42:20, :61:44, :76:33, :77:51, :80:29
-  wire        _GEN_16 =
-    _mshr_io_refill_out_valid & _mshr_io_refill_out_bits_addr[10:5] == 6'h10;	// cache/src/zaqal/cache/DCache.scala:28:27, :42:20, :61:44, :76:33, :77:51, :80:29
-  wire        _GEN_17 =
-    _mshr_io_refill_out_valid & _mshr_io_refill_out_bits_addr[10:5] == 6'h11;	// cache/src/zaqal/cache/DCache.scala:28:27, :42:20, :61:44, :76:33, :77:51, :80:29
-  wire        _GEN_18 =
-    _mshr_io_refill_out_valid & _mshr_io_refill_out_bits_addr[10:5] == 6'h12;	// cache/src/zaqal/cache/DCache.scala:28:27, :42:20, :61:44, :76:33, :77:51, :80:29
-  wire        _GEN_19 =
-    _mshr_io_refill_out_valid & _mshr_io_refill_out_bits_addr[10:5] == 6'h13;	// cache/src/zaqal/cache/DCache.scala:28:27, :42:20, :61:44, :76:33, :77:51, :80:29
-  wire        _GEN_20 =
-    _mshr_io_refill_out_valid & _mshr_io_refill_out_bits_addr[10:5] == 6'h14;	// cache/src/zaqal/cache/DCache.scala:28:27, :42:20, :61:44, :76:33, :77:51, :80:29
-  wire        _GEN_21 =
-    _mshr_io_refill_out_valid & _mshr_io_refill_out_bits_addr[10:5] == 6'h15;	// cache/src/zaqal/cache/DCache.scala:28:27, :42:20, :61:44, :76:33, :77:51, :80:29
-  wire        _GEN_22 =
-    _mshr_io_refill_out_valid & _mshr_io_refill_out_bits_addr[10:5] == 6'h16;	// cache/src/zaqal/cache/DCache.scala:28:27, :42:20, :61:44, :76:33, :77:51, :80:29
-  wire        _GEN_23 =
-    _mshr_io_refill_out_valid & _mshr_io_refill_out_bits_addr[10:5] == 6'h17;	// cache/src/zaqal/cache/DCache.scala:28:27, :42:20, :61:44, :76:33, :77:51, :80:29
-  wire        _GEN_24 =
-    _mshr_io_refill_out_valid & _mshr_io_refill_out_bits_addr[10:5] == 6'h18;	// cache/src/zaqal/cache/DCache.scala:28:27, :42:20, :61:44, :76:33, :77:51, :80:29
-  wire        _GEN_25 =
-    _mshr_io_refill_out_valid & _mshr_io_refill_out_bits_addr[10:5] == 6'h19;	// cache/src/zaqal/cache/DCache.scala:28:27, :42:20, :61:44, :76:33, :77:51, :80:29
-  wire        _GEN_26 =
-    _mshr_io_refill_out_valid & _mshr_io_refill_out_bits_addr[10:5] == 6'h1A;	// cache/src/zaqal/cache/DCache.scala:28:27, :42:20, :61:44, :76:33, :77:51, :80:29
-  wire        _GEN_27 =
-    _mshr_io_refill_out_valid & _mshr_io_refill_out_bits_addr[10:5] == 6'h1B;	// cache/src/zaqal/cache/DCache.scala:28:27, :42:20, :61:44, :76:33, :77:51, :80:29
-  wire        _GEN_28 =
-    _mshr_io_refill_out_valid & _mshr_io_refill_out_bits_addr[10:5] == 6'h1C;	// cache/src/zaqal/cache/DCache.scala:28:27, :42:20, :61:44, :76:33, :77:51, :80:29
-  wire        _GEN_29 =
-    _mshr_io_refill_out_valid & _mshr_io_refill_out_bits_addr[10:5] == 6'h1D;	// cache/src/zaqal/cache/DCache.scala:28:27, :42:20, :61:44, :76:33, :77:51, :80:29
-  wire        _GEN_30 =
-    _mshr_io_refill_out_valid & _mshr_io_refill_out_bits_addr[10:5] == 6'h1E;	// cache/src/zaqal/cache/DCache.scala:28:27, :42:20, :61:44, :76:33, :77:51, :80:29
-  wire        _GEN_31 =
-    _mshr_io_refill_out_valid & _mshr_io_refill_out_bits_addr[10:5] == 6'h1F;	// cache/src/zaqal/cache/DCache.scala:28:27, :42:20, :61:44, :76:33, :77:51, :80:29
-  wire        _GEN_32 =
-    _mshr_io_refill_out_valid & _mshr_io_refill_out_bits_addr[10:5] == 6'h20;	// cache/src/zaqal/cache/DCache.scala:28:27, :42:20, :61:44, :76:33, :77:51, :80:29
-  wire        _GEN_33 =
-    _mshr_io_refill_out_valid & _mshr_io_refill_out_bits_addr[10:5] == 6'h21;	// cache/src/zaqal/cache/DCache.scala:28:27, :42:20, :61:44, :76:33, :77:51, :80:29
-  wire        _GEN_34 =
-    _mshr_io_refill_out_valid & _mshr_io_refill_out_bits_addr[10:5] == 6'h22;	// cache/src/zaqal/cache/DCache.scala:28:27, :42:20, :61:44, :76:33, :77:51, :80:29
-  wire        _GEN_35 =
-    _mshr_io_refill_out_valid & _mshr_io_refill_out_bits_addr[10:5] == 6'h23;	// cache/src/zaqal/cache/DCache.scala:28:27, :42:20, :61:44, :76:33, :77:51, :80:29
-  wire        _GEN_36 =
-    _mshr_io_refill_out_valid & _mshr_io_refill_out_bits_addr[10:5] == 6'h24;	// cache/src/zaqal/cache/DCache.scala:28:27, :42:20, :61:44, :76:33, :77:51, :80:29
-  wire        _GEN_37 =
-    _mshr_io_refill_out_valid & _mshr_io_refill_out_bits_addr[10:5] == 6'h25;	// cache/src/zaqal/cache/DCache.scala:28:27, :42:20, :61:44, :76:33, :77:51, :80:29
-  wire        _GEN_38 =
-    _mshr_io_refill_out_valid & _mshr_io_refill_out_bits_addr[10:5] == 6'h26;	// cache/src/zaqal/cache/DCache.scala:28:27, :42:20, :61:44, :76:33, :77:51, :80:29
-  wire        _GEN_39 =
-    _mshr_io_refill_out_valid & _mshr_io_refill_out_bits_addr[10:5] == 6'h27;	// cache/src/zaqal/cache/DCache.scala:28:27, :42:20, :61:44, :76:33, :77:51, :80:29
-  wire        _GEN_40 =
-    _mshr_io_refill_out_valid & _mshr_io_refill_out_bits_addr[10:5] == 6'h28;	// cache/src/zaqal/cache/DCache.scala:28:27, :42:20, :61:44, :76:33, :77:51, :80:29
-  wire        _GEN_41 =
-    _mshr_io_refill_out_valid & _mshr_io_refill_out_bits_addr[10:5] == 6'h29;	// cache/src/zaqal/cache/DCache.scala:28:27, :42:20, :61:44, :76:33, :77:51, :80:29
-  wire        _GEN_42 =
-    _mshr_io_refill_out_valid & _mshr_io_refill_out_bits_addr[10:5] == 6'h2A;	// cache/src/zaqal/cache/DCache.scala:28:27, :42:20, :61:44, :76:33, :77:51, :80:29
-  wire        _GEN_43 =
-    _mshr_io_refill_out_valid & _mshr_io_refill_out_bits_addr[10:5] == 6'h2B;	// cache/src/zaqal/cache/DCache.scala:28:27, :42:20, :61:44, :76:33, :77:51, :80:29
-  wire        _GEN_44 =
-    _mshr_io_refill_out_valid & _mshr_io_refill_out_bits_addr[10:5] == 6'h2C;	// cache/src/zaqal/cache/DCache.scala:28:27, :42:20, :61:44, :76:33, :77:51, :80:29
-  wire        _GEN_45 =
-    _mshr_io_refill_out_valid & _mshr_io_refill_out_bits_addr[10:5] == 6'h2D;	// cache/src/zaqal/cache/DCache.scala:28:27, :42:20, :61:44, :76:33, :77:51, :80:29
-  wire        _GEN_46 =
-    _mshr_io_refill_out_valid & _mshr_io_refill_out_bits_addr[10:5] == 6'h2E;	// cache/src/zaqal/cache/DCache.scala:28:27, :42:20, :61:44, :76:33, :77:51, :80:29
-  wire        _GEN_47 =
-    _mshr_io_refill_out_valid & _mshr_io_refill_out_bits_addr[10:5] == 6'h2F;	// cache/src/zaqal/cache/DCache.scala:28:27, :42:20, :61:44, :76:33, :77:51, :80:29
-  wire        _GEN_48 =
-    _mshr_io_refill_out_valid & _mshr_io_refill_out_bits_addr[10:5] == 6'h30;	// cache/src/zaqal/cache/DCache.scala:28:27, :42:20, :61:44, :76:33, :77:51, :80:29
-  wire        _GEN_49 =
-    _mshr_io_refill_out_valid & _mshr_io_refill_out_bits_addr[10:5] == 6'h31;	// cache/src/zaqal/cache/DCache.scala:28:27, :42:20, :61:44, :76:33, :77:51, :80:29
-  wire        _GEN_50 =
-    _mshr_io_refill_out_valid & _mshr_io_refill_out_bits_addr[10:5] == 6'h32;	// cache/src/zaqal/cache/DCache.scala:28:27, :42:20, :61:44, :76:33, :77:51, :80:29
-  wire        _GEN_51 =
-    _mshr_io_refill_out_valid & _mshr_io_refill_out_bits_addr[10:5] == 6'h33;	// cache/src/zaqal/cache/DCache.scala:28:27, :42:20, :61:44, :76:33, :77:51, :80:29
-  wire        _GEN_52 =
-    _mshr_io_refill_out_valid & _mshr_io_refill_out_bits_addr[10:5] == 6'h34;	// cache/src/zaqal/cache/DCache.scala:28:27, :42:20, :61:44, :76:33, :77:51, :80:29
-  wire        _GEN_53 =
-    _mshr_io_refill_out_valid & _mshr_io_refill_out_bits_addr[10:5] == 6'h35;	// cache/src/zaqal/cache/DCache.scala:28:27, :42:20, :61:44, :76:33, :77:51, :80:29
-  wire        _GEN_54 =
-    _mshr_io_refill_out_valid & _mshr_io_refill_out_bits_addr[10:5] == 6'h36;	// cache/src/zaqal/cache/DCache.scala:28:27, :42:20, :61:44, :76:33, :77:51, :80:29
-  wire        _GEN_55 =
-    _mshr_io_refill_out_valid & _mshr_io_refill_out_bits_addr[10:5] == 6'h37;	// cache/src/zaqal/cache/DCache.scala:28:27, :42:20, :61:44, :76:33, :77:51, :80:29
-  wire        _GEN_56 =
-    _mshr_io_refill_out_valid & _mshr_io_refill_out_bits_addr[10:5] == 6'h38;	// cache/src/zaqal/cache/DCache.scala:28:27, :42:20, :61:44, :76:33, :77:51, :80:29
-  wire        _GEN_57 =
-    _mshr_io_refill_out_valid & _mshr_io_refill_out_bits_addr[10:5] == 6'h39;	// cache/src/zaqal/cache/DCache.scala:28:27, :42:20, :61:44, :76:33, :77:51, :80:29
-  wire        _GEN_58 =
-    _mshr_io_refill_out_valid & _mshr_io_refill_out_bits_addr[10:5] == 6'h3A;	// cache/src/zaqal/cache/DCache.scala:28:27, :42:20, :61:44, :76:33, :77:51, :80:29
-  wire        _GEN_59 =
-    _mshr_io_refill_out_valid & _mshr_io_refill_out_bits_addr[10:5] == 6'h3B;	// cache/src/zaqal/cache/DCache.scala:28:27, :42:20, :61:44, :76:33, :77:51, :80:29
-  wire        _GEN_60 =
-    _mshr_io_refill_out_valid & _mshr_io_refill_out_bits_addr[10:5] == 6'h3C;	// cache/src/zaqal/cache/DCache.scala:28:27, :42:20, :61:44, :76:33, :77:51, :80:29
-  wire        _GEN_61 =
-    _mshr_io_refill_out_valid & _mshr_io_refill_out_bits_addr[10:5] == 6'h3D;	// cache/src/zaqal/cache/DCache.scala:28:27, :42:20, :61:44, :76:33, :77:51, :80:29
-  wire        _GEN_62 =
-    _mshr_io_refill_out_valid & _mshr_io_refill_out_bits_addr[10:5] == 6'h3E;	// cache/src/zaqal/cache/DCache.scala:28:27, :42:20, :61:44, :76:33, :77:51, :80:29
-  wire        _GEN_63 =
-    _mshr_io_refill_out_valid & (&(_mshr_io_refill_out_bits_addr[10:5]));	// cache/src/zaqal/cache/DCache.scala:28:27, :42:20, :76:33, :77:51, :80:29
-  always @(posedge clock) begin	// cache/src/zaqal/cache/DCache.scala:8:7
-    if (reset) begin	// cache/src/zaqal/cache/DCache.scala:8:7
-      validArray_0 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:28:{27,35}
-      validArray_1 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:28:{27,35}
-      validArray_2 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:28:{27,35}
-      validArray_3 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:28:{27,35}
-      validArray_4 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:28:{27,35}
-      validArray_5 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:28:{27,35}
-      validArray_6 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:28:{27,35}
-      validArray_7 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:28:{27,35}
-      validArray_8 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:28:{27,35}
-      validArray_9 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:28:{27,35}
-      validArray_10 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:28:{27,35}
-      validArray_11 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:28:{27,35}
-      validArray_12 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:28:{27,35}
-      validArray_13 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:28:{27,35}
-      validArray_14 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:28:{27,35}
-      validArray_15 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:28:{27,35}
-      validArray_16 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:28:{27,35}
-      validArray_17 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:28:{27,35}
-      validArray_18 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:28:{27,35}
-      validArray_19 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:28:{27,35}
-      validArray_20 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:28:{27,35}
-      validArray_21 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:28:{27,35}
-      validArray_22 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:28:{27,35}
-      validArray_23 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:28:{27,35}
-      validArray_24 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:28:{27,35}
-      validArray_25 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:28:{27,35}
-      validArray_26 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:28:{27,35}
-      validArray_27 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:28:{27,35}
-      validArray_28 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:28:{27,35}
-      validArray_29 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:28:{27,35}
-      validArray_30 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:28:{27,35}
-      validArray_31 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:28:{27,35}
-      validArray_32 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:28:{27,35}
-      validArray_33 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:28:{27,35}
-      validArray_34 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:28:{27,35}
-      validArray_35 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:28:{27,35}
-      validArray_36 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:28:{27,35}
-      validArray_37 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:28:{27,35}
-      validArray_38 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:28:{27,35}
-      validArray_39 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:28:{27,35}
-      validArray_40 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:28:{27,35}
-      validArray_41 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:28:{27,35}
-      validArray_42 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:28:{27,35}
-      validArray_43 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:28:{27,35}
-      validArray_44 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:28:{27,35}
-      validArray_45 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:28:{27,35}
-      validArray_46 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:28:{27,35}
-      validArray_47 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:28:{27,35}
-      validArray_48 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:28:{27,35}
-      validArray_49 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:28:{27,35}
-      validArray_50 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:28:{27,35}
-      validArray_51 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:28:{27,35}
-      validArray_52 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:28:{27,35}
-      validArray_53 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:28:{27,35}
-      validArray_54 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:28:{27,35}
-      validArray_55 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:28:{27,35}
-      validArray_56 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:28:{27,35}
-      validArray_57 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:28:{27,35}
-      validArray_58 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:28:{27,35}
-      validArray_59 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:28:{27,35}
-      validArray_60 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:28:{27,35}
-      validArray_61 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:28:{27,35}
-      validArray_62 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:28:{27,35}
-      validArray_63 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:28:{27,35}
-      tagArray_0 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:30:{25,33}
-      tagArray_1 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:30:{25,33}
-      tagArray_2 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:30:{25,33}
-      tagArray_3 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:30:{25,33}
-      tagArray_4 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:30:{25,33}
-      tagArray_5 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:30:{25,33}
-      tagArray_6 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:30:{25,33}
-      tagArray_7 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:30:{25,33}
-      tagArray_8 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:30:{25,33}
-      tagArray_9 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:30:{25,33}
-      tagArray_10 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:30:{25,33}
-      tagArray_11 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:30:{25,33}
-      tagArray_12 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:30:{25,33}
-      tagArray_13 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:30:{25,33}
-      tagArray_14 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:30:{25,33}
-      tagArray_15 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:30:{25,33}
-      tagArray_16 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:30:{25,33}
-      tagArray_17 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:30:{25,33}
-      tagArray_18 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:30:{25,33}
-      tagArray_19 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:30:{25,33}
-      tagArray_20 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:30:{25,33}
-      tagArray_21 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:30:{25,33}
-      tagArray_22 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:30:{25,33}
-      tagArray_23 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:30:{25,33}
-      tagArray_24 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:30:{25,33}
-      tagArray_25 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:30:{25,33}
-      tagArray_26 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:30:{25,33}
-      tagArray_27 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:30:{25,33}
-      tagArray_28 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:30:{25,33}
-      tagArray_29 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:30:{25,33}
-      tagArray_30 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:30:{25,33}
-      tagArray_31 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:30:{25,33}
-      tagArray_32 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:30:{25,33}
-      tagArray_33 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:30:{25,33}
-      tagArray_34 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:30:{25,33}
-      tagArray_35 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:30:{25,33}
-      tagArray_36 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:30:{25,33}
-      tagArray_37 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:30:{25,33}
-      tagArray_38 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:30:{25,33}
-      tagArray_39 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:30:{25,33}
-      tagArray_40 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:30:{25,33}
-      tagArray_41 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:30:{25,33}
-      tagArray_42 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:30:{25,33}
-      tagArray_43 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:30:{25,33}
-      tagArray_44 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:30:{25,33}
-      tagArray_45 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:30:{25,33}
-      tagArray_46 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:30:{25,33}
-      tagArray_47 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:30:{25,33}
-      tagArray_48 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:30:{25,33}
-      tagArray_49 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:30:{25,33}
-      tagArray_50 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:30:{25,33}
-      tagArray_51 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:30:{25,33}
-      tagArray_52 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:30:{25,33}
-      tagArray_53 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:30:{25,33}
-      tagArray_54 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:30:{25,33}
-      tagArray_55 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:30:{25,33}
-      tagArray_56 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:30:{25,33}
-      tagArray_57 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:30:{25,33}
-      tagArray_58 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:30:{25,33}
-      tagArray_59 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:30:{25,33}
-      tagArray_60 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:30:{25,33}
-      tagArray_61 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:30:{25,33}
-      tagArray_62 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:30:{25,33}
-      tagArray_63 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:30:{25,33}
+  wire              _prefetcher_io_prefetch_req_valid;	// cache/src/zaqal/cache/DCache.scala:84:26
+  wire [63:0]       _prefetcher_io_prefetch_req_bits_addr;	// cache/src/zaqal/cache/DCache.scala:84:26
+  wire              _prefetcher_io_prefetch_req_bits_sink_is_l2;	// cache/src/zaqal/cache/DCache.scala:84:26
+  wire              _tl_mshr_io_alloc_ready;	// cache/src/zaqal/cache/DCache.scala:73:23
+  wire              _tl_mshr_io_refill_out_valid;	// cache/src/zaqal/cache/DCache.scala:73:23
+  wire [63:0]       _tl_mshr_io_refill_out_bits_addr;	// cache/src/zaqal/cache/DCache.scala:73:23
+  wire [255:0]      _tl_mshr_io_refill_out_bits_data;	// cache/src/zaqal/cache/DCache.scala:73:23
+  wire [63:0]       _tl_mshr_io_refill_out_bits_write_data;	// cache/src/zaqal/cache/DCache.scala:73:23
+  wire [5:0]        _tl_mshr_io_refill_out_bits_load_id;	// cache/src/zaqal/cache/DCache.scala:73:23
+  wire              _tl_mshr_io_refill_out_bits_is_write;	// cache/src/zaqal/cache/DCache.scala:73:23
+  wire              _tl_mshr_io_refill_out_bits_is_prefetch;	// cache/src/zaqal/cache/DCache.scala:73:23
+  wire              _tl_mshr_io_refill_out_bits_sink_is_l2;	// cache/src/zaqal/cache/DCache.scala:73:23
+  wire [2:0]        _tl_mshr_io_refill_out_bits_granted_param;	// cache/src/zaqal/cache/DCache.scala:73:23
+  reg               validArray_0;	// cache/src/zaqal/cache/DCache.scala:52:27
+  reg               validArray_1;	// cache/src/zaqal/cache/DCache.scala:52:27
+  reg               validArray_2;	// cache/src/zaqal/cache/DCache.scala:52:27
+  reg               validArray_3;	// cache/src/zaqal/cache/DCache.scala:52:27
+  reg               validArray_4;	// cache/src/zaqal/cache/DCache.scala:52:27
+  reg               validArray_5;	// cache/src/zaqal/cache/DCache.scala:52:27
+  reg               validArray_6;	// cache/src/zaqal/cache/DCache.scala:52:27
+  reg               validArray_7;	// cache/src/zaqal/cache/DCache.scala:52:27
+  reg               validArray_8;	// cache/src/zaqal/cache/DCache.scala:52:27
+  reg               validArray_9;	// cache/src/zaqal/cache/DCache.scala:52:27
+  reg               validArray_10;	// cache/src/zaqal/cache/DCache.scala:52:27
+  reg               validArray_11;	// cache/src/zaqal/cache/DCache.scala:52:27
+  reg               validArray_12;	// cache/src/zaqal/cache/DCache.scala:52:27
+  reg               validArray_13;	// cache/src/zaqal/cache/DCache.scala:52:27
+  reg               validArray_14;	// cache/src/zaqal/cache/DCache.scala:52:27
+  reg               validArray_15;	// cache/src/zaqal/cache/DCache.scala:52:27
+  reg               validArray_16;	// cache/src/zaqal/cache/DCache.scala:52:27
+  reg               validArray_17;	// cache/src/zaqal/cache/DCache.scala:52:27
+  reg               validArray_18;	// cache/src/zaqal/cache/DCache.scala:52:27
+  reg               validArray_19;	// cache/src/zaqal/cache/DCache.scala:52:27
+  reg               validArray_20;	// cache/src/zaqal/cache/DCache.scala:52:27
+  reg               validArray_21;	// cache/src/zaqal/cache/DCache.scala:52:27
+  reg               validArray_22;	// cache/src/zaqal/cache/DCache.scala:52:27
+  reg               validArray_23;	// cache/src/zaqal/cache/DCache.scala:52:27
+  reg               validArray_24;	// cache/src/zaqal/cache/DCache.scala:52:27
+  reg               validArray_25;	// cache/src/zaqal/cache/DCache.scala:52:27
+  reg               validArray_26;	// cache/src/zaqal/cache/DCache.scala:52:27
+  reg               validArray_27;	// cache/src/zaqal/cache/DCache.scala:52:27
+  reg               validArray_28;	// cache/src/zaqal/cache/DCache.scala:52:27
+  reg               validArray_29;	// cache/src/zaqal/cache/DCache.scala:52:27
+  reg               validArray_30;	// cache/src/zaqal/cache/DCache.scala:52:27
+  reg               validArray_31;	// cache/src/zaqal/cache/DCache.scala:52:27
+  reg               validArray_32;	// cache/src/zaqal/cache/DCache.scala:52:27
+  reg               validArray_33;	// cache/src/zaqal/cache/DCache.scala:52:27
+  reg               validArray_34;	// cache/src/zaqal/cache/DCache.scala:52:27
+  reg               validArray_35;	// cache/src/zaqal/cache/DCache.scala:52:27
+  reg               validArray_36;	// cache/src/zaqal/cache/DCache.scala:52:27
+  reg               validArray_37;	// cache/src/zaqal/cache/DCache.scala:52:27
+  reg               validArray_38;	// cache/src/zaqal/cache/DCache.scala:52:27
+  reg               validArray_39;	// cache/src/zaqal/cache/DCache.scala:52:27
+  reg               validArray_40;	// cache/src/zaqal/cache/DCache.scala:52:27
+  reg               validArray_41;	// cache/src/zaqal/cache/DCache.scala:52:27
+  reg               validArray_42;	// cache/src/zaqal/cache/DCache.scala:52:27
+  reg               validArray_43;	// cache/src/zaqal/cache/DCache.scala:52:27
+  reg               validArray_44;	// cache/src/zaqal/cache/DCache.scala:52:27
+  reg               validArray_45;	// cache/src/zaqal/cache/DCache.scala:52:27
+  reg               validArray_46;	// cache/src/zaqal/cache/DCache.scala:52:27
+  reg               validArray_47;	// cache/src/zaqal/cache/DCache.scala:52:27
+  reg               validArray_48;	// cache/src/zaqal/cache/DCache.scala:52:27
+  reg               validArray_49;	// cache/src/zaqal/cache/DCache.scala:52:27
+  reg               validArray_50;	// cache/src/zaqal/cache/DCache.scala:52:27
+  reg               validArray_51;	// cache/src/zaqal/cache/DCache.scala:52:27
+  reg               validArray_52;	// cache/src/zaqal/cache/DCache.scala:52:27
+  reg               validArray_53;	// cache/src/zaqal/cache/DCache.scala:52:27
+  reg               validArray_54;	// cache/src/zaqal/cache/DCache.scala:52:27
+  reg               validArray_55;	// cache/src/zaqal/cache/DCache.scala:52:27
+  reg               validArray_56;	// cache/src/zaqal/cache/DCache.scala:52:27
+  reg               validArray_57;	// cache/src/zaqal/cache/DCache.scala:52:27
+  reg               validArray_58;	// cache/src/zaqal/cache/DCache.scala:52:27
+  reg               validArray_59;	// cache/src/zaqal/cache/DCache.scala:52:27
+  reg               validArray_60;	// cache/src/zaqal/cache/DCache.scala:52:27
+  reg               validArray_61;	// cache/src/zaqal/cache/DCache.scala:52:27
+  reg               validArray_62;	// cache/src/zaqal/cache/DCache.scala:52:27
+  reg               validArray_63;	// cache/src/zaqal/cache/DCache.scala:52:27
+  reg               dirtyArray_0;	// cache/src/zaqal/cache/DCache.scala:53:27
+  reg               dirtyArray_1;	// cache/src/zaqal/cache/DCache.scala:53:27
+  reg               dirtyArray_2;	// cache/src/zaqal/cache/DCache.scala:53:27
+  reg               dirtyArray_3;	// cache/src/zaqal/cache/DCache.scala:53:27
+  reg               dirtyArray_4;	// cache/src/zaqal/cache/DCache.scala:53:27
+  reg               dirtyArray_5;	// cache/src/zaqal/cache/DCache.scala:53:27
+  reg               dirtyArray_6;	// cache/src/zaqal/cache/DCache.scala:53:27
+  reg               dirtyArray_7;	// cache/src/zaqal/cache/DCache.scala:53:27
+  reg               dirtyArray_8;	// cache/src/zaqal/cache/DCache.scala:53:27
+  reg               dirtyArray_9;	// cache/src/zaqal/cache/DCache.scala:53:27
+  reg               dirtyArray_10;	// cache/src/zaqal/cache/DCache.scala:53:27
+  reg               dirtyArray_11;	// cache/src/zaqal/cache/DCache.scala:53:27
+  reg               dirtyArray_12;	// cache/src/zaqal/cache/DCache.scala:53:27
+  reg               dirtyArray_13;	// cache/src/zaqal/cache/DCache.scala:53:27
+  reg               dirtyArray_14;	// cache/src/zaqal/cache/DCache.scala:53:27
+  reg               dirtyArray_15;	// cache/src/zaqal/cache/DCache.scala:53:27
+  reg               dirtyArray_16;	// cache/src/zaqal/cache/DCache.scala:53:27
+  reg               dirtyArray_17;	// cache/src/zaqal/cache/DCache.scala:53:27
+  reg               dirtyArray_18;	// cache/src/zaqal/cache/DCache.scala:53:27
+  reg               dirtyArray_19;	// cache/src/zaqal/cache/DCache.scala:53:27
+  reg               dirtyArray_20;	// cache/src/zaqal/cache/DCache.scala:53:27
+  reg               dirtyArray_21;	// cache/src/zaqal/cache/DCache.scala:53:27
+  reg               dirtyArray_22;	// cache/src/zaqal/cache/DCache.scala:53:27
+  reg               dirtyArray_23;	// cache/src/zaqal/cache/DCache.scala:53:27
+  reg               dirtyArray_24;	// cache/src/zaqal/cache/DCache.scala:53:27
+  reg               dirtyArray_25;	// cache/src/zaqal/cache/DCache.scala:53:27
+  reg               dirtyArray_26;	// cache/src/zaqal/cache/DCache.scala:53:27
+  reg               dirtyArray_27;	// cache/src/zaqal/cache/DCache.scala:53:27
+  reg               dirtyArray_28;	// cache/src/zaqal/cache/DCache.scala:53:27
+  reg               dirtyArray_29;	// cache/src/zaqal/cache/DCache.scala:53:27
+  reg               dirtyArray_30;	// cache/src/zaqal/cache/DCache.scala:53:27
+  reg               dirtyArray_31;	// cache/src/zaqal/cache/DCache.scala:53:27
+  reg               dirtyArray_32;	// cache/src/zaqal/cache/DCache.scala:53:27
+  reg               dirtyArray_33;	// cache/src/zaqal/cache/DCache.scala:53:27
+  reg               dirtyArray_34;	// cache/src/zaqal/cache/DCache.scala:53:27
+  reg               dirtyArray_35;	// cache/src/zaqal/cache/DCache.scala:53:27
+  reg               dirtyArray_36;	// cache/src/zaqal/cache/DCache.scala:53:27
+  reg               dirtyArray_37;	// cache/src/zaqal/cache/DCache.scala:53:27
+  reg               dirtyArray_38;	// cache/src/zaqal/cache/DCache.scala:53:27
+  reg               dirtyArray_39;	// cache/src/zaqal/cache/DCache.scala:53:27
+  reg               dirtyArray_40;	// cache/src/zaqal/cache/DCache.scala:53:27
+  reg               dirtyArray_41;	// cache/src/zaqal/cache/DCache.scala:53:27
+  reg               dirtyArray_42;	// cache/src/zaqal/cache/DCache.scala:53:27
+  reg               dirtyArray_43;	// cache/src/zaqal/cache/DCache.scala:53:27
+  reg               dirtyArray_44;	// cache/src/zaqal/cache/DCache.scala:53:27
+  reg               dirtyArray_45;	// cache/src/zaqal/cache/DCache.scala:53:27
+  reg               dirtyArray_46;	// cache/src/zaqal/cache/DCache.scala:53:27
+  reg               dirtyArray_47;	// cache/src/zaqal/cache/DCache.scala:53:27
+  reg               dirtyArray_48;	// cache/src/zaqal/cache/DCache.scala:53:27
+  reg               dirtyArray_49;	// cache/src/zaqal/cache/DCache.scala:53:27
+  reg               dirtyArray_50;	// cache/src/zaqal/cache/DCache.scala:53:27
+  reg               dirtyArray_51;	// cache/src/zaqal/cache/DCache.scala:53:27
+  reg               dirtyArray_52;	// cache/src/zaqal/cache/DCache.scala:53:27
+  reg               dirtyArray_53;	// cache/src/zaqal/cache/DCache.scala:53:27
+  reg               dirtyArray_54;	// cache/src/zaqal/cache/DCache.scala:53:27
+  reg               dirtyArray_55;	// cache/src/zaqal/cache/DCache.scala:53:27
+  reg               dirtyArray_56;	// cache/src/zaqal/cache/DCache.scala:53:27
+  reg               dirtyArray_57;	// cache/src/zaqal/cache/DCache.scala:53:27
+  reg               dirtyArray_58;	// cache/src/zaqal/cache/DCache.scala:53:27
+  reg               dirtyArray_59;	// cache/src/zaqal/cache/DCache.scala:53:27
+  reg               dirtyArray_60;	// cache/src/zaqal/cache/DCache.scala:53:27
+  reg               dirtyArray_61;	// cache/src/zaqal/cache/DCache.scala:53:27
+  reg               dirtyArray_62;	// cache/src/zaqal/cache/DCache.scala:53:27
+  reg               dirtyArray_63;	// cache/src/zaqal/cache/DCache.scala:53:27
+  reg  [1:0]        stateArray_0;	// cache/src/zaqal/cache/DCache.scala:55:27
+  reg  [1:0]        stateArray_1;	// cache/src/zaqal/cache/DCache.scala:55:27
+  reg  [1:0]        stateArray_2;	// cache/src/zaqal/cache/DCache.scala:55:27
+  reg  [1:0]        stateArray_3;	// cache/src/zaqal/cache/DCache.scala:55:27
+  reg  [1:0]        stateArray_4;	// cache/src/zaqal/cache/DCache.scala:55:27
+  reg  [1:0]        stateArray_5;	// cache/src/zaqal/cache/DCache.scala:55:27
+  reg  [1:0]        stateArray_6;	// cache/src/zaqal/cache/DCache.scala:55:27
+  reg  [1:0]        stateArray_7;	// cache/src/zaqal/cache/DCache.scala:55:27
+  reg  [1:0]        stateArray_8;	// cache/src/zaqal/cache/DCache.scala:55:27
+  reg  [1:0]        stateArray_9;	// cache/src/zaqal/cache/DCache.scala:55:27
+  reg  [1:0]        stateArray_10;	// cache/src/zaqal/cache/DCache.scala:55:27
+  reg  [1:0]        stateArray_11;	// cache/src/zaqal/cache/DCache.scala:55:27
+  reg  [1:0]        stateArray_12;	// cache/src/zaqal/cache/DCache.scala:55:27
+  reg  [1:0]        stateArray_13;	// cache/src/zaqal/cache/DCache.scala:55:27
+  reg  [1:0]        stateArray_14;	// cache/src/zaqal/cache/DCache.scala:55:27
+  reg  [1:0]        stateArray_15;	// cache/src/zaqal/cache/DCache.scala:55:27
+  reg  [1:0]        stateArray_16;	// cache/src/zaqal/cache/DCache.scala:55:27
+  reg  [1:0]        stateArray_17;	// cache/src/zaqal/cache/DCache.scala:55:27
+  reg  [1:0]        stateArray_18;	// cache/src/zaqal/cache/DCache.scala:55:27
+  reg  [1:0]        stateArray_19;	// cache/src/zaqal/cache/DCache.scala:55:27
+  reg  [1:0]        stateArray_20;	// cache/src/zaqal/cache/DCache.scala:55:27
+  reg  [1:0]        stateArray_21;	// cache/src/zaqal/cache/DCache.scala:55:27
+  reg  [1:0]        stateArray_22;	// cache/src/zaqal/cache/DCache.scala:55:27
+  reg  [1:0]        stateArray_23;	// cache/src/zaqal/cache/DCache.scala:55:27
+  reg  [1:0]        stateArray_24;	// cache/src/zaqal/cache/DCache.scala:55:27
+  reg  [1:0]        stateArray_25;	// cache/src/zaqal/cache/DCache.scala:55:27
+  reg  [1:0]        stateArray_26;	// cache/src/zaqal/cache/DCache.scala:55:27
+  reg  [1:0]        stateArray_27;	// cache/src/zaqal/cache/DCache.scala:55:27
+  reg  [1:0]        stateArray_28;	// cache/src/zaqal/cache/DCache.scala:55:27
+  reg  [1:0]        stateArray_29;	// cache/src/zaqal/cache/DCache.scala:55:27
+  reg  [1:0]        stateArray_30;	// cache/src/zaqal/cache/DCache.scala:55:27
+  reg  [1:0]        stateArray_31;	// cache/src/zaqal/cache/DCache.scala:55:27
+  reg  [1:0]        stateArray_32;	// cache/src/zaqal/cache/DCache.scala:55:27
+  reg  [1:0]        stateArray_33;	// cache/src/zaqal/cache/DCache.scala:55:27
+  reg  [1:0]        stateArray_34;	// cache/src/zaqal/cache/DCache.scala:55:27
+  reg  [1:0]        stateArray_35;	// cache/src/zaqal/cache/DCache.scala:55:27
+  reg  [1:0]        stateArray_36;	// cache/src/zaqal/cache/DCache.scala:55:27
+  reg  [1:0]        stateArray_37;	// cache/src/zaqal/cache/DCache.scala:55:27
+  reg  [1:0]        stateArray_38;	// cache/src/zaqal/cache/DCache.scala:55:27
+  reg  [1:0]        stateArray_39;	// cache/src/zaqal/cache/DCache.scala:55:27
+  reg  [1:0]        stateArray_40;	// cache/src/zaqal/cache/DCache.scala:55:27
+  reg  [1:0]        stateArray_41;	// cache/src/zaqal/cache/DCache.scala:55:27
+  reg  [1:0]        stateArray_42;	// cache/src/zaqal/cache/DCache.scala:55:27
+  reg  [1:0]        stateArray_43;	// cache/src/zaqal/cache/DCache.scala:55:27
+  reg  [1:0]        stateArray_44;	// cache/src/zaqal/cache/DCache.scala:55:27
+  reg  [1:0]        stateArray_45;	// cache/src/zaqal/cache/DCache.scala:55:27
+  reg  [1:0]        stateArray_46;	// cache/src/zaqal/cache/DCache.scala:55:27
+  reg  [1:0]        stateArray_47;	// cache/src/zaqal/cache/DCache.scala:55:27
+  reg  [1:0]        stateArray_48;	// cache/src/zaqal/cache/DCache.scala:55:27
+  reg  [1:0]        stateArray_49;	// cache/src/zaqal/cache/DCache.scala:55:27
+  reg  [1:0]        stateArray_50;	// cache/src/zaqal/cache/DCache.scala:55:27
+  reg  [1:0]        stateArray_51;	// cache/src/zaqal/cache/DCache.scala:55:27
+  reg  [1:0]        stateArray_52;	// cache/src/zaqal/cache/DCache.scala:55:27
+  reg  [1:0]        stateArray_53;	// cache/src/zaqal/cache/DCache.scala:55:27
+  reg  [1:0]        stateArray_54;	// cache/src/zaqal/cache/DCache.scala:55:27
+  reg  [1:0]        stateArray_55;	// cache/src/zaqal/cache/DCache.scala:55:27
+  reg  [1:0]        stateArray_56;	// cache/src/zaqal/cache/DCache.scala:55:27
+  reg  [1:0]        stateArray_57;	// cache/src/zaqal/cache/DCache.scala:55:27
+  reg  [1:0]        stateArray_58;	// cache/src/zaqal/cache/DCache.scala:55:27
+  reg  [1:0]        stateArray_59;	// cache/src/zaqal/cache/DCache.scala:55:27
+  reg  [1:0]        stateArray_60;	// cache/src/zaqal/cache/DCache.scala:55:27
+  reg  [1:0]        stateArray_61;	// cache/src/zaqal/cache/DCache.scala:55:27
+  reg  [1:0]        stateArray_62;	// cache/src/zaqal/cache/DCache.scala:55:27
+  reg  [1:0]        stateArray_63;	// cache/src/zaqal/cache/DCache.scala:55:27
+  reg  [52:0]       tagArray_0;	// cache/src/zaqal/cache/DCache.scala:56:27
+  reg  [52:0]       tagArray_1;	// cache/src/zaqal/cache/DCache.scala:56:27
+  reg  [52:0]       tagArray_2;	// cache/src/zaqal/cache/DCache.scala:56:27
+  reg  [52:0]       tagArray_3;	// cache/src/zaqal/cache/DCache.scala:56:27
+  reg  [52:0]       tagArray_4;	// cache/src/zaqal/cache/DCache.scala:56:27
+  reg  [52:0]       tagArray_5;	// cache/src/zaqal/cache/DCache.scala:56:27
+  reg  [52:0]       tagArray_6;	// cache/src/zaqal/cache/DCache.scala:56:27
+  reg  [52:0]       tagArray_7;	// cache/src/zaqal/cache/DCache.scala:56:27
+  reg  [52:0]       tagArray_8;	// cache/src/zaqal/cache/DCache.scala:56:27
+  reg  [52:0]       tagArray_9;	// cache/src/zaqal/cache/DCache.scala:56:27
+  reg  [52:0]       tagArray_10;	// cache/src/zaqal/cache/DCache.scala:56:27
+  reg  [52:0]       tagArray_11;	// cache/src/zaqal/cache/DCache.scala:56:27
+  reg  [52:0]       tagArray_12;	// cache/src/zaqal/cache/DCache.scala:56:27
+  reg  [52:0]       tagArray_13;	// cache/src/zaqal/cache/DCache.scala:56:27
+  reg  [52:0]       tagArray_14;	// cache/src/zaqal/cache/DCache.scala:56:27
+  reg  [52:0]       tagArray_15;	// cache/src/zaqal/cache/DCache.scala:56:27
+  reg  [52:0]       tagArray_16;	// cache/src/zaqal/cache/DCache.scala:56:27
+  reg  [52:0]       tagArray_17;	// cache/src/zaqal/cache/DCache.scala:56:27
+  reg  [52:0]       tagArray_18;	// cache/src/zaqal/cache/DCache.scala:56:27
+  reg  [52:0]       tagArray_19;	// cache/src/zaqal/cache/DCache.scala:56:27
+  reg  [52:0]       tagArray_20;	// cache/src/zaqal/cache/DCache.scala:56:27
+  reg  [52:0]       tagArray_21;	// cache/src/zaqal/cache/DCache.scala:56:27
+  reg  [52:0]       tagArray_22;	// cache/src/zaqal/cache/DCache.scala:56:27
+  reg  [52:0]       tagArray_23;	// cache/src/zaqal/cache/DCache.scala:56:27
+  reg  [52:0]       tagArray_24;	// cache/src/zaqal/cache/DCache.scala:56:27
+  reg  [52:0]       tagArray_25;	// cache/src/zaqal/cache/DCache.scala:56:27
+  reg  [52:0]       tagArray_26;	// cache/src/zaqal/cache/DCache.scala:56:27
+  reg  [52:0]       tagArray_27;	// cache/src/zaqal/cache/DCache.scala:56:27
+  reg  [52:0]       tagArray_28;	// cache/src/zaqal/cache/DCache.scala:56:27
+  reg  [52:0]       tagArray_29;	// cache/src/zaqal/cache/DCache.scala:56:27
+  reg  [52:0]       tagArray_30;	// cache/src/zaqal/cache/DCache.scala:56:27
+  reg  [52:0]       tagArray_31;	// cache/src/zaqal/cache/DCache.scala:56:27
+  reg  [52:0]       tagArray_32;	// cache/src/zaqal/cache/DCache.scala:56:27
+  reg  [52:0]       tagArray_33;	// cache/src/zaqal/cache/DCache.scala:56:27
+  reg  [52:0]       tagArray_34;	// cache/src/zaqal/cache/DCache.scala:56:27
+  reg  [52:0]       tagArray_35;	// cache/src/zaqal/cache/DCache.scala:56:27
+  reg  [52:0]       tagArray_36;	// cache/src/zaqal/cache/DCache.scala:56:27
+  reg  [52:0]       tagArray_37;	// cache/src/zaqal/cache/DCache.scala:56:27
+  reg  [52:0]       tagArray_38;	// cache/src/zaqal/cache/DCache.scala:56:27
+  reg  [52:0]       tagArray_39;	// cache/src/zaqal/cache/DCache.scala:56:27
+  reg  [52:0]       tagArray_40;	// cache/src/zaqal/cache/DCache.scala:56:27
+  reg  [52:0]       tagArray_41;	// cache/src/zaqal/cache/DCache.scala:56:27
+  reg  [52:0]       tagArray_42;	// cache/src/zaqal/cache/DCache.scala:56:27
+  reg  [52:0]       tagArray_43;	// cache/src/zaqal/cache/DCache.scala:56:27
+  reg  [52:0]       tagArray_44;	// cache/src/zaqal/cache/DCache.scala:56:27
+  reg  [52:0]       tagArray_45;	// cache/src/zaqal/cache/DCache.scala:56:27
+  reg  [52:0]       tagArray_46;	// cache/src/zaqal/cache/DCache.scala:56:27
+  reg  [52:0]       tagArray_47;	// cache/src/zaqal/cache/DCache.scala:56:27
+  reg  [52:0]       tagArray_48;	// cache/src/zaqal/cache/DCache.scala:56:27
+  reg  [52:0]       tagArray_49;	// cache/src/zaqal/cache/DCache.scala:56:27
+  reg  [52:0]       tagArray_50;	// cache/src/zaqal/cache/DCache.scala:56:27
+  reg  [52:0]       tagArray_51;	// cache/src/zaqal/cache/DCache.scala:56:27
+  reg  [52:0]       tagArray_52;	// cache/src/zaqal/cache/DCache.scala:56:27
+  reg  [52:0]       tagArray_53;	// cache/src/zaqal/cache/DCache.scala:56:27
+  reg  [52:0]       tagArray_54;	// cache/src/zaqal/cache/DCache.scala:56:27
+  reg  [52:0]       tagArray_55;	// cache/src/zaqal/cache/DCache.scala:56:27
+  reg  [52:0]       tagArray_56;	// cache/src/zaqal/cache/DCache.scala:56:27
+  reg  [52:0]       tagArray_57;	// cache/src/zaqal/cache/DCache.scala:56:27
+  reg  [52:0]       tagArray_58;	// cache/src/zaqal/cache/DCache.scala:56:27
+  reg  [52:0]       tagArray_59;	// cache/src/zaqal/cache/DCache.scala:56:27
+  reg  [52:0]       tagArray_60;	// cache/src/zaqal/cache/DCache.scala:56:27
+  reg  [52:0]       tagArray_61;	// cache/src/zaqal/cache/DCache.scala:56:27
+  reg  [52:0]       tagArray_62;	// cache/src/zaqal/cache/DCache.scala:56:27
+  reg  [52:0]       tagArray_63;	// cache/src/zaqal/cache/DCache.scala:56:27
+  reg  [63:0]       dataArray_0_0;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_0_1;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_0_2;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_0_3;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_1_0;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_1_1;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_1_2;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_1_3;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_2_0;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_2_1;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_2_2;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_2_3;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_3_0;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_3_1;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_3_2;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_3_3;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_4_0;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_4_1;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_4_2;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_4_3;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_5_0;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_5_1;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_5_2;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_5_3;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_6_0;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_6_1;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_6_2;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_6_3;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_7_0;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_7_1;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_7_2;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_7_3;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_8_0;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_8_1;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_8_2;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_8_3;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_9_0;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_9_1;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_9_2;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_9_3;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_10_0;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_10_1;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_10_2;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_10_3;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_11_0;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_11_1;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_11_2;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_11_3;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_12_0;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_12_1;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_12_2;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_12_3;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_13_0;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_13_1;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_13_2;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_13_3;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_14_0;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_14_1;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_14_2;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_14_3;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_15_0;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_15_1;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_15_2;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_15_3;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_16_0;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_16_1;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_16_2;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_16_3;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_17_0;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_17_1;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_17_2;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_17_3;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_18_0;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_18_1;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_18_2;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_18_3;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_19_0;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_19_1;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_19_2;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_19_3;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_20_0;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_20_1;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_20_2;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_20_3;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_21_0;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_21_1;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_21_2;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_21_3;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_22_0;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_22_1;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_22_2;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_22_3;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_23_0;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_23_1;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_23_2;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_23_3;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_24_0;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_24_1;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_24_2;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_24_3;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_25_0;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_25_1;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_25_2;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_25_3;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_26_0;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_26_1;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_26_2;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_26_3;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_27_0;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_27_1;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_27_2;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_27_3;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_28_0;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_28_1;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_28_2;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_28_3;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_29_0;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_29_1;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_29_2;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_29_3;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_30_0;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_30_1;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_30_2;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_30_3;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_31_0;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_31_1;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_31_2;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_31_3;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_32_0;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_32_1;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_32_2;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_32_3;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_33_0;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_33_1;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_33_2;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_33_3;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_34_0;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_34_1;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_34_2;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_34_3;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_35_0;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_35_1;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_35_2;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_35_3;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_36_0;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_36_1;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_36_2;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_36_3;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_37_0;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_37_1;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_37_2;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_37_3;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_38_0;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_38_1;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_38_2;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_38_3;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_39_0;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_39_1;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_39_2;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_39_3;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_40_0;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_40_1;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_40_2;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_40_3;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_41_0;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_41_1;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_41_2;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_41_3;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_42_0;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_42_1;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_42_2;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_42_3;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_43_0;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_43_1;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_43_2;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_43_3;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_44_0;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_44_1;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_44_2;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_44_3;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_45_0;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_45_1;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_45_2;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_45_3;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_46_0;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_46_1;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_46_2;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_46_3;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_47_0;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_47_1;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_47_2;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_47_3;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_48_0;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_48_1;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_48_2;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_48_3;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_49_0;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_49_1;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_49_2;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_49_3;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_50_0;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_50_1;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_50_2;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_50_3;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_51_0;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_51_1;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_51_2;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_51_3;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_52_0;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_52_1;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_52_2;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_52_3;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_53_0;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_53_1;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_53_2;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_53_3;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_54_0;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_54_1;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_54_2;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_54_3;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_55_0;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_55_1;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_55_2;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_55_3;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_56_0;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_56_1;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_56_2;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_56_3;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_57_0;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_57_1;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_57_2;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_57_3;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_58_0;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_58_1;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_58_2;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_58_3;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_59_0;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_59_1;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_59_2;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_59_3;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_60_0;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_60_1;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_60_2;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_60_3;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_61_0;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_61_1;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_61_2;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_61_3;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_62_0;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_62_1;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_62_2;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_62_3;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_63_0;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_63_1;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_63_2;	// cache/src/zaqal/cache/DCache.scala:57:27
+  reg  [63:0]       dataArray_63_3;	// cache/src/zaqal/cache/DCache.scala:57:27
+  wire [63:0][52:0] _GEN =
+    {{tagArray_63},
+     {tagArray_62},
+     {tagArray_61},
+     {tagArray_60},
+     {tagArray_59},
+     {tagArray_58},
+     {tagArray_57},
+     {tagArray_56},
+     {tagArray_55},
+     {tagArray_54},
+     {tagArray_53},
+     {tagArray_52},
+     {tagArray_51},
+     {tagArray_50},
+     {tagArray_49},
+     {tagArray_48},
+     {tagArray_47},
+     {tagArray_46},
+     {tagArray_45},
+     {tagArray_44},
+     {tagArray_43},
+     {tagArray_42},
+     {tagArray_41},
+     {tagArray_40},
+     {tagArray_39},
+     {tagArray_38},
+     {tagArray_37},
+     {tagArray_36},
+     {tagArray_35},
+     {tagArray_34},
+     {tagArray_33},
+     {tagArray_32},
+     {tagArray_31},
+     {tagArray_30},
+     {tagArray_29},
+     {tagArray_28},
+     {tagArray_27},
+     {tagArray_26},
+     {tagArray_25},
+     {tagArray_24},
+     {tagArray_23},
+     {tagArray_22},
+     {tagArray_21},
+     {tagArray_20},
+     {tagArray_19},
+     {tagArray_18},
+     {tagArray_17},
+     {tagArray_16},
+     {tagArray_15},
+     {tagArray_14},
+     {tagArray_13},
+     {tagArray_12},
+     {tagArray_11},
+     {tagArray_10},
+     {tagArray_9},
+     {tagArray_8},
+     {tagArray_7},
+     {tagArray_6},
+     {tagArray_5},
+     {tagArray_4},
+     {tagArray_3},
+     {tagArray_2},
+     {tagArray_1},
+     {tagArray_0}};	// cache/src/zaqal/cache/DCache.scala:56:27, :67:65
+  wire [63:0]       _GEN_0 =
+    {{validArray_63},
+     {validArray_62},
+     {validArray_61},
+     {validArray_60},
+     {validArray_59},
+     {validArray_58},
+     {validArray_57},
+     {validArray_56},
+     {validArray_55},
+     {validArray_54},
+     {validArray_53},
+     {validArray_52},
+     {validArray_51},
+     {validArray_50},
+     {validArray_49},
+     {validArray_48},
+     {validArray_47},
+     {validArray_46},
+     {validArray_45},
+     {validArray_44},
+     {validArray_43},
+     {validArray_42},
+     {validArray_41},
+     {validArray_40},
+     {validArray_39},
+     {validArray_38},
+     {validArray_37},
+     {validArray_36},
+     {validArray_35},
+     {validArray_34},
+     {validArray_33},
+     {validArray_32},
+     {validArray_31},
+     {validArray_30},
+     {validArray_29},
+     {validArray_28},
+     {validArray_27},
+     {validArray_26},
+     {validArray_25},
+     {validArray_24},
+     {validArray_23},
+     {validArray_22},
+     {validArray_21},
+     {validArray_20},
+     {validArray_19},
+     {validArray_18},
+     {validArray_17},
+     {validArray_16},
+     {validArray_15},
+     {validArray_14},
+     {validArray_13},
+     {validArray_12},
+     {validArray_11},
+     {validArray_10},
+     {validArray_9},
+     {validArray_8},
+     {validArray_7},
+     {validArray_6},
+     {validArray_5},
+     {validArray_4},
+     {validArray_3},
+     {validArray_2},
+     {validArray_1},
+     {validArray_0}};	// cache/src/zaqal/cache/DCache.scala:52:27, :67:42
+  wire              isTagMatch =
+    _GEN_0[io_req_bits_addr[10:5]]
+    & _GEN[io_req_bits_addr[10:5]] == io_req_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:60:40, :61:40, :67:{42,65}
+  wire [63:0][1:0]  _GEN_1 =
+    {{stateArray_63},
+     {stateArray_62},
+     {stateArray_61},
+     {stateArray_60},
+     {stateArray_59},
+     {stateArray_58},
+     {stateArray_57},
+     {stateArray_56},
+     {stateArray_55},
+     {stateArray_54},
+     {stateArray_53},
+     {stateArray_52},
+     {stateArray_51},
+     {stateArray_50},
+     {stateArray_49},
+     {stateArray_48},
+     {stateArray_47},
+     {stateArray_46},
+     {stateArray_45},
+     {stateArray_44},
+     {stateArray_43},
+     {stateArray_42},
+     {stateArray_41},
+     {stateArray_40},
+     {stateArray_39},
+     {stateArray_38},
+     {stateArray_37},
+     {stateArray_36},
+     {stateArray_35},
+     {stateArray_34},
+     {stateArray_33},
+     {stateArray_32},
+     {stateArray_31},
+     {stateArray_30},
+     {stateArray_29},
+     {stateArray_28},
+     {stateArray_27},
+     {stateArray_26},
+     {stateArray_25},
+     {stateArray_24},
+     {stateArray_23},
+     {stateArray_22},
+     {stateArray_21},
+     {stateArray_20},
+     {stateArray_19},
+     {stateArray_18},
+     {stateArray_17},
+     {stateArray_16},
+     {stateArray_15},
+     {stateArray_14},
+     {stateArray_13},
+     {stateArray_12},
+     {stateArray_11},
+     {stateArray_10},
+     {stateArray_9},
+     {stateArray_8},
+     {stateArray_7},
+     {stateArray_6},
+     {stateArray_5},
+     {stateArray_4},
+     {stateArray_3},
+     {stateArray_2},
+     {stateArray_1},
+     {stateArray_0}};	// cache/src/zaqal/cache/DCache.scala:55:27, :68:43
+  wire              isExclusive = _GEN_1[io_req_bits_addr[10:5]] == 2'h2;	// cache/src/zaqal/cache/DCache.scala:60:40, :68:43
+  wire              isHit = isTagMatch & (~io_req_bits_is_write | isExclusive);	// cache/src/zaqal/cache/DCache.scala:67:42, :68:43, :69:{32,36,58}
+  wire              isPfHit =
+    _GEN_0[_prefetcher_io_prefetch_req_bits_addr[10:5]]
+    & _GEN[_prefetcher_io_prefetch_req_bits_addr[10:5]] == _prefetcher_io_prefetch_req_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:67:{42,65}, :84:26, :93:23, :94:21, :95:{37,59}
+  wire              _GEN_2 = io_req_valid & isHit;	// cache/src/zaqal/cache/DCache.scala:69:32, :99:17, :115:22, :116:17, :118:34
+  wire [63:0][63:0] _GEN_3 =
+    {{dataArray_63_0},
+     {dataArray_62_0},
+     {dataArray_61_0},
+     {dataArray_60_0},
+     {dataArray_59_0},
+     {dataArray_58_0},
+     {dataArray_57_0},
+     {dataArray_56_0},
+     {dataArray_55_0},
+     {dataArray_54_0},
+     {dataArray_53_0},
+     {dataArray_52_0},
+     {dataArray_51_0},
+     {dataArray_50_0},
+     {dataArray_49_0},
+     {dataArray_48_0},
+     {dataArray_47_0},
+     {dataArray_46_0},
+     {dataArray_45_0},
+     {dataArray_44_0},
+     {dataArray_43_0},
+     {dataArray_42_0},
+     {dataArray_41_0},
+     {dataArray_40_0},
+     {dataArray_39_0},
+     {dataArray_38_0},
+     {dataArray_37_0},
+     {dataArray_36_0},
+     {dataArray_35_0},
+     {dataArray_34_0},
+     {dataArray_33_0},
+     {dataArray_32_0},
+     {dataArray_31_0},
+     {dataArray_30_0},
+     {dataArray_29_0},
+     {dataArray_28_0},
+     {dataArray_27_0},
+     {dataArray_26_0},
+     {dataArray_25_0},
+     {dataArray_24_0},
+     {dataArray_23_0},
+     {dataArray_22_0},
+     {dataArray_21_0},
+     {dataArray_20_0},
+     {dataArray_19_0},
+     {dataArray_18_0},
+     {dataArray_17_0},
+     {dataArray_16_0},
+     {dataArray_15_0},
+     {dataArray_14_0},
+     {dataArray_13_0},
+     {dataArray_12_0},
+     {dataArray_11_0},
+     {dataArray_10_0},
+     {dataArray_9_0},
+     {dataArray_8_0},
+     {dataArray_7_0},
+     {dataArray_6_0},
+     {dataArray_5_0},
+     {dataArray_4_0},
+     {dataArray_3_0},
+     {dataArray_2_0},
+     {dataArray_1_0},
+     {dataArray_0_0}};	// cache/src/zaqal/cache/DCache.scala:57:27, :123:27
+  wire [63:0][63:0] _GEN_4 =
+    {{dataArray_63_1},
+     {dataArray_62_1},
+     {dataArray_61_1},
+     {dataArray_60_1},
+     {dataArray_59_1},
+     {dataArray_58_1},
+     {dataArray_57_1},
+     {dataArray_56_1},
+     {dataArray_55_1},
+     {dataArray_54_1},
+     {dataArray_53_1},
+     {dataArray_52_1},
+     {dataArray_51_1},
+     {dataArray_50_1},
+     {dataArray_49_1},
+     {dataArray_48_1},
+     {dataArray_47_1},
+     {dataArray_46_1},
+     {dataArray_45_1},
+     {dataArray_44_1},
+     {dataArray_43_1},
+     {dataArray_42_1},
+     {dataArray_41_1},
+     {dataArray_40_1},
+     {dataArray_39_1},
+     {dataArray_38_1},
+     {dataArray_37_1},
+     {dataArray_36_1},
+     {dataArray_35_1},
+     {dataArray_34_1},
+     {dataArray_33_1},
+     {dataArray_32_1},
+     {dataArray_31_1},
+     {dataArray_30_1},
+     {dataArray_29_1},
+     {dataArray_28_1},
+     {dataArray_27_1},
+     {dataArray_26_1},
+     {dataArray_25_1},
+     {dataArray_24_1},
+     {dataArray_23_1},
+     {dataArray_22_1},
+     {dataArray_21_1},
+     {dataArray_20_1},
+     {dataArray_19_1},
+     {dataArray_18_1},
+     {dataArray_17_1},
+     {dataArray_16_1},
+     {dataArray_15_1},
+     {dataArray_14_1},
+     {dataArray_13_1},
+     {dataArray_12_1},
+     {dataArray_11_1},
+     {dataArray_10_1},
+     {dataArray_9_1},
+     {dataArray_8_1},
+     {dataArray_7_1},
+     {dataArray_6_1},
+     {dataArray_5_1},
+     {dataArray_4_1},
+     {dataArray_3_1},
+     {dataArray_2_1},
+     {dataArray_1_1},
+     {dataArray_0_1}};	// cache/src/zaqal/cache/DCache.scala:57:27, :123:27
+  wire [63:0][63:0] _GEN_5 =
+    {{dataArray_63_2},
+     {dataArray_62_2},
+     {dataArray_61_2},
+     {dataArray_60_2},
+     {dataArray_59_2},
+     {dataArray_58_2},
+     {dataArray_57_2},
+     {dataArray_56_2},
+     {dataArray_55_2},
+     {dataArray_54_2},
+     {dataArray_53_2},
+     {dataArray_52_2},
+     {dataArray_51_2},
+     {dataArray_50_2},
+     {dataArray_49_2},
+     {dataArray_48_2},
+     {dataArray_47_2},
+     {dataArray_46_2},
+     {dataArray_45_2},
+     {dataArray_44_2},
+     {dataArray_43_2},
+     {dataArray_42_2},
+     {dataArray_41_2},
+     {dataArray_40_2},
+     {dataArray_39_2},
+     {dataArray_38_2},
+     {dataArray_37_2},
+     {dataArray_36_2},
+     {dataArray_35_2},
+     {dataArray_34_2},
+     {dataArray_33_2},
+     {dataArray_32_2},
+     {dataArray_31_2},
+     {dataArray_30_2},
+     {dataArray_29_2},
+     {dataArray_28_2},
+     {dataArray_27_2},
+     {dataArray_26_2},
+     {dataArray_25_2},
+     {dataArray_24_2},
+     {dataArray_23_2},
+     {dataArray_22_2},
+     {dataArray_21_2},
+     {dataArray_20_2},
+     {dataArray_19_2},
+     {dataArray_18_2},
+     {dataArray_17_2},
+     {dataArray_16_2},
+     {dataArray_15_2},
+     {dataArray_14_2},
+     {dataArray_13_2},
+     {dataArray_12_2},
+     {dataArray_11_2},
+     {dataArray_10_2},
+     {dataArray_9_2},
+     {dataArray_8_2},
+     {dataArray_7_2},
+     {dataArray_6_2},
+     {dataArray_5_2},
+     {dataArray_4_2},
+     {dataArray_3_2},
+     {dataArray_2_2},
+     {dataArray_1_2},
+     {dataArray_0_2}};	// cache/src/zaqal/cache/DCache.scala:57:27, :123:27
+  wire [63:0][63:0] _GEN_6 =
+    {{dataArray_63_3},
+     {dataArray_62_3},
+     {dataArray_61_3},
+     {dataArray_60_3},
+     {dataArray_59_3},
+     {dataArray_58_3},
+     {dataArray_57_3},
+     {dataArray_56_3},
+     {dataArray_55_3},
+     {dataArray_54_3},
+     {dataArray_53_3},
+     {dataArray_52_3},
+     {dataArray_51_3},
+     {dataArray_50_3},
+     {dataArray_49_3},
+     {dataArray_48_3},
+     {dataArray_47_3},
+     {dataArray_46_3},
+     {dataArray_45_3},
+     {dataArray_44_3},
+     {dataArray_43_3},
+     {dataArray_42_3},
+     {dataArray_41_3},
+     {dataArray_40_3},
+     {dataArray_39_3},
+     {dataArray_38_3},
+     {dataArray_37_3},
+     {dataArray_36_3},
+     {dataArray_35_3},
+     {dataArray_34_3},
+     {dataArray_33_3},
+     {dataArray_32_3},
+     {dataArray_31_3},
+     {dataArray_30_3},
+     {dataArray_29_3},
+     {dataArray_28_3},
+     {dataArray_27_3},
+     {dataArray_26_3},
+     {dataArray_25_3},
+     {dataArray_24_3},
+     {dataArray_23_3},
+     {dataArray_22_3},
+     {dataArray_21_3},
+     {dataArray_20_3},
+     {dataArray_19_3},
+     {dataArray_18_3},
+     {dataArray_17_3},
+     {dataArray_16_3},
+     {dataArray_15_3},
+     {dataArray_14_3},
+     {dataArray_13_3},
+     {dataArray_12_3},
+     {dataArray_11_3},
+     {dataArray_10_3},
+     {dataArray_9_3},
+     {dataArray_8_3},
+     {dataArray_7_3},
+     {dataArray_6_3},
+     {dataArray_5_3},
+     {dataArray_4_3},
+     {dataArray_3_3},
+     {dataArray_2_3},
+     {dataArray_1_3},
+     {dataArray_0_3}};	// cache/src/zaqal/cache/DCache.scala:57:27, :123:27
+  wire [3:0][63:0]  _GEN_7 =
+    {{_GEN_6[io_req_bits_addr[10:5]]},
+     {_GEN_5[io_req_bits_addr[10:5]]},
+     {_GEN_4[io_req_bits_addr[10:5]]},
+     {_GEN_3[io_req_bits_addr[10:5]]}};	// cache/src/zaqal/cache/DCache.scala:60:40, :123:27
+  wire              _GEN_8 = ~_GEN_2 | io_req_bits_is_write;	// cache/src/zaqal/cache/DCache.scala:99:17, :100:21, :115:22, :116:17, :118:34
+  wire              _GEN_9 =
+    _prefetcher_io_prefetch_req_valid & ~isPfHit & _tl_mshr_io_alloc_ready;	// cache/src/zaqal/cache/DCache.scala:73:23, :84:26, :95:37, :104:26, :140:44, :141:21, :144:38
+  wire              _GEN_10 =
+    io_req_valid | ~_prefetcher_io_prefetch_req_valid | isPfHit
+    | ~_tl_mshr_io_alloc_ready;	// cache/src/zaqal/cache/DCache.scala:73:23, :84:26, :95:37, :105:30, :115:22, :116:17, :140:44, :141:21, :144:38
+  wire              _GEN_11 =
+    _tl_mshr_io_refill_out_valid & ~_tl_mshr_io_refill_out_bits_is_prefetch
+    & ~_tl_mshr_io_refill_out_bits_is_write;	// cache/src/zaqal/cache/DCache.scala:73:23, :115:22, :160:36, :189:{10,53,91}, :190:21
+  wire [255:0]      _io_resp_bits_data_T_1 =
+    _tl_mshr_io_refill_out_bits_data
+    >> {248'h0, _tl_mshr_io_refill_out_bits_addr[4:3], 6'h0};	// cache/src/zaqal/cache/DCache.scala:73:23, :119:45, :163:60, :192:60
+  wire              _GEN_12 = io_tl_b_bits_param == 3'h1;	// cache/src/zaqal/cache/DCache.scala:223:31
+  wire [63:0]       _GEN_13 =
+    {{dirtyArray_63},
+     {dirtyArray_62},
+     {dirtyArray_61},
+     {dirtyArray_60},
+     {dirtyArray_59},
+     {dirtyArray_58},
+     {dirtyArray_57},
+     {dirtyArray_56},
+     {dirtyArray_55},
+     {dirtyArray_54},
+     {dirtyArray_53},
+     {dirtyArray_52},
+     {dirtyArray_51},
+     {dirtyArray_50},
+     {dirtyArray_49},
+     {dirtyArray_48},
+     {dirtyArray_47},
+     {dirtyArray_46},
+     {dirtyArray_45},
+     {dirtyArray_44},
+     {dirtyArray_43},
+     {dirtyArray_42},
+     {dirtyArray_41},
+     {dirtyArray_40},
+     {dirtyArray_39},
+     {dirtyArray_38},
+     {dirtyArray_37},
+     {dirtyArray_36},
+     {dirtyArray_35},
+     {dirtyArray_34},
+     {dirtyArray_33},
+     {dirtyArray_32},
+     {dirtyArray_31},
+     {dirtyArray_30},
+     {dirtyArray_29},
+     {dirtyArray_28},
+     {dirtyArray_27},
+     {dirtyArray_26},
+     {dirtyArray_25},
+     {dirtyArray_24},
+     {dirtyArray_23},
+     {dirtyArray_22},
+     {dirtyArray_21},
+     {dirtyArray_20},
+     {dirtyArray_19},
+     {dirtyArray_18},
+     {dirtyArray_17},
+     {dirtyArray_16},
+     {dirtyArray_15},
+     {dirtyArray_14},
+     {dirtyArray_13},
+     {dirtyArray_12},
+     {dirtyArray_11},
+     {dirtyArray_10},
+     {dirtyArray_9},
+     {dirtyArray_8},
+     {dirtyArray_7},
+     {dirtyArray_6},
+     {dirtyArray_5},
+     {dirtyArray_4},
+     {dirtyArray_3},
+     {dirtyArray_2},
+     {dirtyArray_1},
+     {dirtyArray_0}};	// cache/src/zaqal/cache/DCache.scala:53:27, :226:28
+  wire              _GEN_14 = _GEN_13[io_tl_b_bits_address[10:5]];	// cache/src/zaqal/cache/DCache.scala:204:31, :226:28
+  wire              _GEN_15 =
+    io_tl_b_valid & _GEN_0[io_tl_b_bits_address[10:5]]
+    & _GEN[io_tl_b_bits_address[10:5]] == io_tl_b_bits_address[63:11];	// cache/src/zaqal/cache/DCache.scala:67:{42,65}, :160:36, :204:31, :205:31, :206:{45,70}, :221:23, :222:22, :223:54
+  wire              _GEN_16 = io_req_bits_addr[10:5] == 6'h0;	// cache/src/zaqal/cache/DCache.scala:60:40, :119:45
+  wire              _GEN_17 = io_req_bits_addr[4:3] == 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:35, :62:40, :119:45
+  wire              _GEN_18 = io_req_bits_addr[4:3] == 2'h1;	// cache/src/zaqal/cache/DCache.scala:62:40, :119:45
+  wire              _GEN_19 = io_req_bits_addr[4:3] == 2'h2;	// cache/src/zaqal/cache/DCache.scala:62:40, :68:43, :119:45
+  wire              _GEN_20 = io_req_bits_addr[10:5] == 6'h1;	// cache/src/zaqal/cache/DCache.scala:60:40, :119:45
+  wire              _GEN_21 = io_req_bits_addr[10:5] == 6'h2;	// cache/src/zaqal/cache/DCache.scala:60:40, :119:45
+  wire              _GEN_22 = io_req_bits_addr[10:5] == 6'h3;	// cache/src/zaqal/cache/DCache.scala:60:40, :119:45
+  wire              _GEN_23 = io_req_bits_addr[10:5] == 6'h4;	// cache/src/zaqal/cache/DCache.scala:60:40, :119:45
+  wire              _GEN_24 = io_req_bits_addr[10:5] == 6'h5;	// cache/src/zaqal/cache/DCache.scala:60:40, :119:45
+  wire              _GEN_25 = io_req_bits_addr[10:5] == 6'h6;	// cache/src/zaqal/cache/DCache.scala:60:40, :119:45
+  wire              _GEN_26 = io_req_bits_addr[10:5] == 6'h7;	// cache/src/zaqal/cache/DCache.scala:60:40, :119:45
+  wire              _GEN_27 = io_req_bits_addr[10:5] == 6'h8;	// cache/src/zaqal/cache/DCache.scala:60:40, :119:45
+  wire              _GEN_28 = io_req_bits_addr[10:5] == 6'h9;	// cache/src/zaqal/cache/DCache.scala:60:40, :119:45
+  wire              _GEN_29 = io_req_bits_addr[10:5] == 6'hA;	// cache/src/zaqal/cache/DCache.scala:60:40, :119:45
+  wire              _GEN_30 = io_req_bits_addr[10:5] == 6'hB;	// cache/src/zaqal/cache/DCache.scala:60:40, :119:45
+  wire              _GEN_31 = io_req_bits_addr[10:5] == 6'hC;	// cache/src/zaqal/cache/DCache.scala:60:40, :119:45
+  wire              _GEN_32 = io_req_bits_addr[10:5] == 6'hD;	// cache/src/zaqal/cache/DCache.scala:60:40, :119:45
+  wire              _GEN_33 = io_req_bits_addr[10:5] == 6'hE;	// cache/src/zaqal/cache/DCache.scala:60:40, :119:45
+  wire              _GEN_34 = io_req_bits_addr[10:5] == 6'hF;	// cache/src/zaqal/cache/DCache.scala:60:40, :119:45
+  wire              _GEN_35 = io_req_bits_addr[10:5] == 6'h10;	// cache/src/zaqal/cache/DCache.scala:60:40, :119:45
+  wire              _GEN_36 = io_req_bits_addr[10:5] == 6'h11;	// cache/src/zaqal/cache/DCache.scala:60:40, :119:45
+  wire              _GEN_37 = io_req_bits_addr[10:5] == 6'h12;	// cache/src/zaqal/cache/DCache.scala:60:40, :119:45
+  wire              _GEN_38 = io_req_bits_addr[10:5] == 6'h13;	// cache/src/zaqal/cache/DCache.scala:60:40, :119:45
+  wire              _GEN_39 = io_req_bits_addr[10:5] == 6'h14;	// cache/src/zaqal/cache/DCache.scala:60:40, :119:45
+  wire              _GEN_40 = io_req_bits_addr[10:5] == 6'h15;	// cache/src/zaqal/cache/DCache.scala:60:40, :119:45
+  wire              _GEN_41 = io_req_bits_addr[10:5] == 6'h16;	// cache/src/zaqal/cache/DCache.scala:60:40, :119:45
+  wire              _GEN_42 = io_req_bits_addr[10:5] == 6'h17;	// cache/src/zaqal/cache/DCache.scala:60:40, :119:45
+  wire              _GEN_43 = io_req_bits_addr[10:5] == 6'h18;	// cache/src/zaqal/cache/DCache.scala:60:40, :119:45
+  wire              _GEN_44 = io_req_bits_addr[10:5] == 6'h19;	// cache/src/zaqal/cache/DCache.scala:60:40, :119:45
+  wire              _GEN_45 = io_req_bits_addr[10:5] == 6'h1A;	// cache/src/zaqal/cache/DCache.scala:60:40, :119:45
+  wire              _GEN_46 = io_req_bits_addr[10:5] == 6'h1B;	// cache/src/zaqal/cache/DCache.scala:60:40, :119:45
+  wire              _GEN_47 = io_req_bits_addr[10:5] == 6'h1C;	// cache/src/zaqal/cache/DCache.scala:60:40, :119:45
+  wire              _GEN_48 = io_req_bits_addr[10:5] == 6'h1D;	// cache/src/zaqal/cache/DCache.scala:60:40, :119:45
+  wire              _GEN_49 = io_req_bits_addr[10:5] == 6'h1E;	// cache/src/zaqal/cache/DCache.scala:60:40, :119:45
+  wire              _GEN_50 = io_req_bits_addr[10:5] == 6'h1F;	// cache/src/zaqal/cache/DCache.scala:60:40, :119:45
+  wire              _GEN_51 = io_req_bits_addr[10:5] == 6'h20;	// cache/src/zaqal/cache/DCache.scala:60:40, :119:45
+  wire              _GEN_52 = io_req_bits_addr[10:5] == 6'h21;	// cache/src/zaqal/cache/DCache.scala:60:40, :119:45
+  wire              _GEN_53 = io_req_bits_addr[10:5] == 6'h22;	// cache/src/zaqal/cache/DCache.scala:60:40, :119:45
+  wire              _GEN_54 = io_req_bits_addr[10:5] == 6'h23;	// cache/src/zaqal/cache/DCache.scala:60:40, :119:45
+  wire              _GEN_55 = io_req_bits_addr[10:5] == 6'h24;	// cache/src/zaqal/cache/DCache.scala:60:40, :119:45
+  wire              _GEN_56 = io_req_bits_addr[10:5] == 6'h25;	// cache/src/zaqal/cache/DCache.scala:60:40, :119:45
+  wire              _GEN_57 = io_req_bits_addr[10:5] == 6'h26;	// cache/src/zaqal/cache/DCache.scala:60:40, :119:45
+  wire              _GEN_58 = io_req_bits_addr[10:5] == 6'h27;	// cache/src/zaqal/cache/DCache.scala:60:40, :119:45
+  wire              _GEN_59 = io_req_bits_addr[10:5] == 6'h28;	// cache/src/zaqal/cache/DCache.scala:60:40, :119:45
+  wire              _GEN_60 = io_req_bits_addr[10:5] == 6'h29;	// cache/src/zaqal/cache/DCache.scala:60:40, :119:45
+  wire              _GEN_61 = io_req_bits_addr[10:5] == 6'h2A;	// cache/src/zaqal/cache/DCache.scala:60:40, :119:45
+  wire              _GEN_62 = io_req_bits_addr[10:5] == 6'h2B;	// cache/src/zaqal/cache/DCache.scala:60:40, :119:45
+  wire              _GEN_63 = io_req_bits_addr[10:5] == 6'h2C;	// cache/src/zaqal/cache/DCache.scala:60:40, :119:45
+  wire              _GEN_64 = io_req_bits_addr[10:5] == 6'h2D;	// cache/src/zaqal/cache/DCache.scala:60:40, :119:45
+  wire              _GEN_65 = io_req_bits_addr[10:5] == 6'h2E;	// cache/src/zaqal/cache/DCache.scala:60:40, :119:45
+  wire              _GEN_66 = io_req_bits_addr[10:5] == 6'h2F;	// cache/src/zaqal/cache/DCache.scala:60:40, :119:45
+  wire              _GEN_67 = io_req_bits_addr[10:5] == 6'h30;	// cache/src/zaqal/cache/DCache.scala:60:40, :119:45
+  wire              _GEN_68 = io_req_bits_addr[10:5] == 6'h31;	// cache/src/zaqal/cache/DCache.scala:60:40, :119:45
+  wire              _GEN_69 = io_req_bits_addr[10:5] == 6'h32;	// cache/src/zaqal/cache/DCache.scala:60:40, :119:45
+  wire              _GEN_70 = io_req_bits_addr[10:5] == 6'h33;	// cache/src/zaqal/cache/DCache.scala:60:40, :119:45
+  wire              _GEN_71 = io_req_bits_addr[10:5] == 6'h34;	// cache/src/zaqal/cache/DCache.scala:60:40, :119:45
+  wire              _GEN_72 = io_req_bits_addr[10:5] == 6'h35;	// cache/src/zaqal/cache/DCache.scala:60:40, :119:45
+  wire              _GEN_73 = io_req_bits_addr[10:5] == 6'h36;	// cache/src/zaqal/cache/DCache.scala:60:40, :119:45
+  wire              _GEN_74 = io_req_bits_addr[10:5] == 6'h37;	// cache/src/zaqal/cache/DCache.scala:60:40, :119:45
+  wire              _GEN_75 = io_req_bits_addr[10:5] == 6'h38;	// cache/src/zaqal/cache/DCache.scala:60:40, :119:45
+  wire              _GEN_76 = io_req_bits_addr[10:5] == 6'h39;	// cache/src/zaqal/cache/DCache.scala:60:40, :119:45
+  wire              _GEN_77 = io_req_bits_addr[10:5] == 6'h3A;	// cache/src/zaqal/cache/DCache.scala:60:40, :119:45
+  wire              _GEN_78 = io_req_bits_addr[10:5] == 6'h3B;	// cache/src/zaqal/cache/DCache.scala:60:40, :119:45
+  wire              _GEN_79 = io_req_bits_addr[10:5] == 6'h3C;	// cache/src/zaqal/cache/DCache.scala:60:40, :119:45
+  wire              _GEN_80 = io_req_bits_addr[10:5] == 6'h3D;	// cache/src/zaqal/cache/DCache.scala:60:40, :119:45
+  wire              _GEN_81 = io_req_bits_addr[10:5] == 6'h3E;	// cache/src/zaqal/cache/DCache.scala:60:40, :119:45
+  wire              _GEN_82 = io_req_valid & isHit & io_req_bits_is_write & _GEN_16;	// cache/src/zaqal/cache/DCache.scala:53:27, :69:32, :115:22, :116:17, :118:34, :119:45, :120:30
+  wire              _GEN_83 = _GEN_82 | dirtyArray_0;	// cache/src/zaqal/cache/DCache.scala:53:27, :115:22, :116:17, :118:34, :120:30
+  wire              _GEN_84 = io_req_valid & isHit & io_req_bits_is_write & _GEN_20;	// cache/src/zaqal/cache/DCache.scala:53:27, :69:32, :115:22, :116:17, :118:34, :119:45, :120:30
+  wire              _GEN_85 = _GEN_84 | dirtyArray_1;	// cache/src/zaqal/cache/DCache.scala:53:27, :115:22, :116:17, :118:34, :120:30
+  wire              _GEN_86 = io_req_valid & isHit & io_req_bits_is_write & _GEN_21;	// cache/src/zaqal/cache/DCache.scala:53:27, :69:32, :115:22, :116:17, :118:34, :119:45, :120:30
+  wire              _GEN_87 = _GEN_86 | dirtyArray_2;	// cache/src/zaqal/cache/DCache.scala:53:27, :115:22, :116:17, :118:34, :120:30
+  wire              _GEN_88 = io_req_valid & isHit & io_req_bits_is_write & _GEN_22;	// cache/src/zaqal/cache/DCache.scala:53:27, :69:32, :115:22, :116:17, :118:34, :119:45, :120:30
+  wire              _GEN_89 = _GEN_88 | dirtyArray_3;	// cache/src/zaqal/cache/DCache.scala:53:27, :115:22, :116:17, :118:34, :120:30
+  wire              _GEN_90 = io_req_valid & isHit & io_req_bits_is_write & _GEN_23;	// cache/src/zaqal/cache/DCache.scala:53:27, :69:32, :115:22, :116:17, :118:34, :119:45, :120:30
+  wire              _GEN_91 = _GEN_90 | dirtyArray_4;	// cache/src/zaqal/cache/DCache.scala:53:27, :115:22, :116:17, :118:34, :120:30
+  wire              _GEN_92 = io_req_valid & isHit & io_req_bits_is_write & _GEN_24;	// cache/src/zaqal/cache/DCache.scala:53:27, :69:32, :115:22, :116:17, :118:34, :119:45, :120:30
+  wire              _GEN_93 = _GEN_92 | dirtyArray_5;	// cache/src/zaqal/cache/DCache.scala:53:27, :115:22, :116:17, :118:34, :120:30
+  wire              _GEN_94 = io_req_valid & isHit & io_req_bits_is_write & _GEN_25;	// cache/src/zaqal/cache/DCache.scala:53:27, :69:32, :115:22, :116:17, :118:34, :119:45, :120:30
+  wire              _GEN_95 = _GEN_94 | dirtyArray_6;	// cache/src/zaqal/cache/DCache.scala:53:27, :115:22, :116:17, :118:34, :120:30
+  wire              _GEN_96 = io_req_valid & isHit & io_req_bits_is_write & _GEN_26;	// cache/src/zaqal/cache/DCache.scala:53:27, :69:32, :115:22, :116:17, :118:34, :119:45, :120:30
+  wire              _GEN_97 = _GEN_96 | dirtyArray_7;	// cache/src/zaqal/cache/DCache.scala:53:27, :115:22, :116:17, :118:34, :120:30
+  wire              _GEN_98 = io_req_valid & isHit & io_req_bits_is_write & _GEN_27;	// cache/src/zaqal/cache/DCache.scala:53:27, :69:32, :115:22, :116:17, :118:34, :119:45, :120:30
+  wire              _GEN_99 = _GEN_98 | dirtyArray_8;	// cache/src/zaqal/cache/DCache.scala:53:27, :115:22, :116:17, :118:34, :120:30
+  wire              _GEN_100 = io_req_valid & isHit & io_req_bits_is_write & _GEN_28;	// cache/src/zaqal/cache/DCache.scala:53:27, :69:32, :115:22, :116:17, :118:34, :119:45, :120:30
+  wire              _GEN_101 = _GEN_100 | dirtyArray_9;	// cache/src/zaqal/cache/DCache.scala:53:27, :115:22, :116:17, :118:34, :120:30
+  wire              _GEN_102 = io_req_valid & isHit & io_req_bits_is_write & _GEN_29;	// cache/src/zaqal/cache/DCache.scala:53:27, :69:32, :115:22, :116:17, :118:34, :119:45, :120:30
+  wire              _GEN_103 = _GEN_102 | dirtyArray_10;	// cache/src/zaqal/cache/DCache.scala:53:27, :115:22, :116:17, :118:34, :120:30
+  wire              _GEN_104 = io_req_valid & isHit & io_req_bits_is_write & _GEN_30;	// cache/src/zaqal/cache/DCache.scala:53:27, :69:32, :115:22, :116:17, :118:34, :119:45, :120:30
+  wire              _GEN_105 = _GEN_104 | dirtyArray_11;	// cache/src/zaqal/cache/DCache.scala:53:27, :115:22, :116:17, :118:34, :120:30
+  wire              _GEN_106 = io_req_valid & isHit & io_req_bits_is_write & _GEN_31;	// cache/src/zaqal/cache/DCache.scala:53:27, :69:32, :115:22, :116:17, :118:34, :119:45, :120:30
+  wire              _GEN_107 = _GEN_106 | dirtyArray_12;	// cache/src/zaqal/cache/DCache.scala:53:27, :115:22, :116:17, :118:34, :120:30
+  wire              _GEN_108 = io_req_valid & isHit & io_req_bits_is_write & _GEN_32;	// cache/src/zaqal/cache/DCache.scala:53:27, :69:32, :115:22, :116:17, :118:34, :119:45, :120:30
+  wire              _GEN_109 = _GEN_108 | dirtyArray_13;	// cache/src/zaqal/cache/DCache.scala:53:27, :115:22, :116:17, :118:34, :120:30
+  wire              _GEN_110 = io_req_valid & isHit & io_req_bits_is_write & _GEN_33;	// cache/src/zaqal/cache/DCache.scala:53:27, :69:32, :115:22, :116:17, :118:34, :119:45, :120:30
+  wire              _GEN_111 = _GEN_110 | dirtyArray_14;	// cache/src/zaqal/cache/DCache.scala:53:27, :115:22, :116:17, :118:34, :120:30
+  wire              _GEN_112 = io_req_valid & isHit & io_req_bits_is_write & _GEN_34;	// cache/src/zaqal/cache/DCache.scala:53:27, :69:32, :115:22, :116:17, :118:34, :119:45, :120:30
+  wire              _GEN_113 = _GEN_112 | dirtyArray_15;	// cache/src/zaqal/cache/DCache.scala:53:27, :115:22, :116:17, :118:34, :120:30
+  wire              _GEN_114 = io_req_valid & isHit & io_req_bits_is_write & _GEN_35;	// cache/src/zaqal/cache/DCache.scala:53:27, :69:32, :115:22, :116:17, :118:34, :119:45, :120:30
+  wire              _GEN_115 = _GEN_114 | dirtyArray_16;	// cache/src/zaqal/cache/DCache.scala:53:27, :115:22, :116:17, :118:34, :120:30
+  wire              _GEN_116 = io_req_valid & isHit & io_req_bits_is_write & _GEN_36;	// cache/src/zaqal/cache/DCache.scala:53:27, :69:32, :115:22, :116:17, :118:34, :119:45, :120:30
+  wire              _GEN_117 = _GEN_116 | dirtyArray_17;	// cache/src/zaqal/cache/DCache.scala:53:27, :115:22, :116:17, :118:34, :120:30
+  wire              _GEN_118 = io_req_valid & isHit & io_req_bits_is_write & _GEN_37;	// cache/src/zaqal/cache/DCache.scala:53:27, :69:32, :115:22, :116:17, :118:34, :119:45, :120:30
+  wire              _GEN_119 = _GEN_118 | dirtyArray_18;	// cache/src/zaqal/cache/DCache.scala:53:27, :115:22, :116:17, :118:34, :120:30
+  wire              _GEN_120 = io_req_valid & isHit & io_req_bits_is_write & _GEN_38;	// cache/src/zaqal/cache/DCache.scala:53:27, :69:32, :115:22, :116:17, :118:34, :119:45, :120:30
+  wire              _GEN_121 = _GEN_120 | dirtyArray_19;	// cache/src/zaqal/cache/DCache.scala:53:27, :115:22, :116:17, :118:34, :120:30
+  wire              _GEN_122 = io_req_valid & isHit & io_req_bits_is_write & _GEN_39;	// cache/src/zaqal/cache/DCache.scala:53:27, :69:32, :115:22, :116:17, :118:34, :119:45, :120:30
+  wire              _GEN_123 = _GEN_122 | dirtyArray_20;	// cache/src/zaqal/cache/DCache.scala:53:27, :115:22, :116:17, :118:34, :120:30
+  wire              _GEN_124 = io_req_valid & isHit & io_req_bits_is_write & _GEN_40;	// cache/src/zaqal/cache/DCache.scala:53:27, :69:32, :115:22, :116:17, :118:34, :119:45, :120:30
+  wire              _GEN_125 = _GEN_124 | dirtyArray_21;	// cache/src/zaqal/cache/DCache.scala:53:27, :115:22, :116:17, :118:34, :120:30
+  wire              _GEN_126 = io_req_valid & isHit & io_req_bits_is_write & _GEN_41;	// cache/src/zaqal/cache/DCache.scala:53:27, :69:32, :115:22, :116:17, :118:34, :119:45, :120:30
+  wire              _GEN_127 = _GEN_126 | dirtyArray_22;	// cache/src/zaqal/cache/DCache.scala:53:27, :115:22, :116:17, :118:34, :120:30
+  wire              _GEN_128 = io_req_valid & isHit & io_req_bits_is_write & _GEN_42;	// cache/src/zaqal/cache/DCache.scala:53:27, :69:32, :115:22, :116:17, :118:34, :119:45, :120:30
+  wire              _GEN_129 = _GEN_128 | dirtyArray_23;	// cache/src/zaqal/cache/DCache.scala:53:27, :115:22, :116:17, :118:34, :120:30
+  wire              _GEN_130 = io_req_valid & isHit & io_req_bits_is_write & _GEN_43;	// cache/src/zaqal/cache/DCache.scala:53:27, :69:32, :115:22, :116:17, :118:34, :119:45, :120:30
+  wire              _GEN_131 = _GEN_130 | dirtyArray_24;	// cache/src/zaqal/cache/DCache.scala:53:27, :115:22, :116:17, :118:34, :120:30
+  wire              _GEN_132 = io_req_valid & isHit & io_req_bits_is_write & _GEN_44;	// cache/src/zaqal/cache/DCache.scala:53:27, :69:32, :115:22, :116:17, :118:34, :119:45, :120:30
+  wire              _GEN_133 = _GEN_132 | dirtyArray_25;	// cache/src/zaqal/cache/DCache.scala:53:27, :115:22, :116:17, :118:34, :120:30
+  wire              _GEN_134 = io_req_valid & isHit & io_req_bits_is_write & _GEN_45;	// cache/src/zaqal/cache/DCache.scala:53:27, :69:32, :115:22, :116:17, :118:34, :119:45, :120:30
+  wire              _GEN_135 = _GEN_134 | dirtyArray_26;	// cache/src/zaqal/cache/DCache.scala:53:27, :115:22, :116:17, :118:34, :120:30
+  wire              _GEN_136 = io_req_valid & isHit & io_req_bits_is_write & _GEN_46;	// cache/src/zaqal/cache/DCache.scala:53:27, :69:32, :115:22, :116:17, :118:34, :119:45, :120:30
+  wire              _GEN_137 = _GEN_136 | dirtyArray_27;	// cache/src/zaqal/cache/DCache.scala:53:27, :115:22, :116:17, :118:34, :120:30
+  wire              _GEN_138 = io_req_valid & isHit & io_req_bits_is_write & _GEN_47;	// cache/src/zaqal/cache/DCache.scala:53:27, :69:32, :115:22, :116:17, :118:34, :119:45, :120:30
+  wire              _GEN_139 = _GEN_138 | dirtyArray_28;	// cache/src/zaqal/cache/DCache.scala:53:27, :115:22, :116:17, :118:34, :120:30
+  wire              _GEN_140 = io_req_valid & isHit & io_req_bits_is_write & _GEN_48;	// cache/src/zaqal/cache/DCache.scala:53:27, :69:32, :115:22, :116:17, :118:34, :119:45, :120:30
+  wire              _GEN_141 = _GEN_140 | dirtyArray_29;	// cache/src/zaqal/cache/DCache.scala:53:27, :115:22, :116:17, :118:34, :120:30
+  wire              _GEN_142 = io_req_valid & isHit & io_req_bits_is_write & _GEN_49;	// cache/src/zaqal/cache/DCache.scala:53:27, :69:32, :115:22, :116:17, :118:34, :119:45, :120:30
+  wire              _GEN_143 = _GEN_142 | dirtyArray_30;	// cache/src/zaqal/cache/DCache.scala:53:27, :115:22, :116:17, :118:34, :120:30
+  wire              _GEN_144 = io_req_valid & isHit & io_req_bits_is_write & _GEN_50;	// cache/src/zaqal/cache/DCache.scala:53:27, :69:32, :115:22, :116:17, :118:34, :119:45, :120:30
+  wire              _GEN_145 = _GEN_144 | dirtyArray_31;	// cache/src/zaqal/cache/DCache.scala:53:27, :115:22, :116:17, :118:34, :120:30
+  wire              _GEN_146 = io_req_valid & isHit & io_req_bits_is_write & _GEN_51;	// cache/src/zaqal/cache/DCache.scala:53:27, :69:32, :115:22, :116:17, :118:34, :119:45, :120:30
+  wire              _GEN_147 = _GEN_146 | dirtyArray_32;	// cache/src/zaqal/cache/DCache.scala:53:27, :115:22, :116:17, :118:34, :120:30
+  wire              _GEN_148 = io_req_valid & isHit & io_req_bits_is_write & _GEN_52;	// cache/src/zaqal/cache/DCache.scala:53:27, :69:32, :115:22, :116:17, :118:34, :119:45, :120:30
+  wire              _GEN_149 = _GEN_148 | dirtyArray_33;	// cache/src/zaqal/cache/DCache.scala:53:27, :115:22, :116:17, :118:34, :120:30
+  wire              _GEN_150 = io_req_valid & isHit & io_req_bits_is_write & _GEN_53;	// cache/src/zaqal/cache/DCache.scala:53:27, :69:32, :115:22, :116:17, :118:34, :119:45, :120:30
+  wire              _GEN_151 = _GEN_150 | dirtyArray_34;	// cache/src/zaqal/cache/DCache.scala:53:27, :115:22, :116:17, :118:34, :120:30
+  wire              _GEN_152 = io_req_valid & isHit & io_req_bits_is_write & _GEN_54;	// cache/src/zaqal/cache/DCache.scala:53:27, :69:32, :115:22, :116:17, :118:34, :119:45, :120:30
+  wire              _GEN_153 = _GEN_152 | dirtyArray_35;	// cache/src/zaqal/cache/DCache.scala:53:27, :115:22, :116:17, :118:34, :120:30
+  wire              _GEN_154 = io_req_valid & isHit & io_req_bits_is_write & _GEN_55;	// cache/src/zaqal/cache/DCache.scala:53:27, :69:32, :115:22, :116:17, :118:34, :119:45, :120:30
+  wire              _GEN_155 = _GEN_154 | dirtyArray_36;	// cache/src/zaqal/cache/DCache.scala:53:27, :115:22, :116:17, :118:34, :120:30
+  wire              _GEN_156 = io_req_valid & isHit & io_req_bits_is_write & _GEN_56;	// cache/src/zaqal/cache/DCache.scala:53:27, :69:32, :115:22, :116:17, :118:34, :119:45, :120:30
+  wire              _GEN_157 = _GEN_156 | dirtyArray_37;	// cache/src/zaqal/cache/DCache.scala:53:27, :115:22, :116:17, :118:34, :120:30
+  wire              _GEN_158 = io_req_valid & isHit & io_req_bits_is_write & _GEN_57;	// cache/src/zaqal/cache/DCache.scala:53:27, :69:32, :115:22, :116:17, :118:34, :119:45, :120:30
+  wire              _GEN_159 = _GEN_158 | dirtyArray_38;	// cache/src/zaqal/cache/DCache.scala:53:27, :115:22, :116:17, :118:34, :120:30
+  wire              _GEN_160 = io_req_valid & isHit & io_req_bits_is_write & _GEN_58;	// cache/src/zaqal/cache/DCache.scala:53:27, :69:32, :115:22, :116:17, :118:34, :119:45, :120:30
+  wire              _GEN_161 = _GEN_160 | dirtyArray_39;	// cache/src/zaqal/cache/DCache.scala:53:27, :115:22, :116:17, :118:34, :120:30
+  wire              _GEN_162 = io_req_valid & isHit & io_req_bits_is_write & _GEN_59;	// cache/src/zaqal/cache/DCache.scala:53:27, :69:32, :115:22, :116:17, :118:34, :119:45, :120:30
+  wire              _GEN_163 = _GEN_162 | dirtyArray_40;	// cache/src/zaqal/cache/DCache.scala:53:27, :115:22, :116:17, :118:34, :120:30
+  wire              _GEN_164 = io_req_valid & isHit & io_req_bits_is_write & _GEN_60;	// cache/src/zaqal/cache/DCache.scala:53:27, :69:32, :115:22, :116:17, :118:34, :119:45, :120:30
+  wire              _GEN_165 = _GEN_164 | dirtyArray_41;	// cache/src/zaqal/cache/DCache.scala:53:27, :115:22, :116:17, :118:34, :120:30
+  wire              _GEN_166 = io_req_valid & isHit & io_req_bits_is_write & _GEN_61;	// cache/src/zaqal/cache/DCache.scala:53:27, :69:32, :115:22, :116:17, :118:34, :119:45, :120:30
+  wire              _GEN_167 = _GEN_166 | dirtyArray_42;	// cache/src/zaqal/cache/DCache.scala:53:27, :115:22, :116:17, :118:34, :120:30
+  wire              _GEN_168 = io_req_valid & isHit & io_req_bits_is_write & _GEN_62;	// cache/src/zaqal/cache/DCache.scala:53:27, :69:32, :115:22, :116:17, :118:34, :119:45, :120:30
+  wire              _GEN_169 = _GEN_168 | dirtyArray_43;	// cache/src/zaqal/cache/DCache.scala:53:27, :115:22, :116:17, :118:34, :120:30
+  wire              _GEN_170 = io_req_valid & isHit & io_req_bits_is_write & _GEN_63;	// cache/src/zaqal/cache/DCache.scala:53:27, :69:32, :115:22, :116:17, :118:34, :119:45, :120:30
+  wire              _GEN_171 = _GEN_170 | dirtyArray_44;	// cache/src/zaqal/cache/DCache.scala:53:27, :115:22, :116:17, :118:34, :120:30
+  wire              _GEN_172 = io_req_valid & isHit & io_req_bits_is_write & _GEN_64;	// cache/src/zaqal/cache/DCache.scala:53:27, :69:32, :115:22, :116:17, :118:34, :119:45, :120:30
+  wire              _GEN_173 = _GEN_172 | dirtyArray_45;	// cache/src/zaqal/cache/DCache.scala:53:27, :115:22, :116:17, :118:34, :120:30
+  wire              _GEN_174 = io_req_valid & isHit & io_req_bits_is_write & _GEN_65;	// cache/src/zaqal/cache/DCache.scala:53:27, :69:32, :115:22, :116:17, :118:34, :119:45, :120:30
+  wire              _GEN_175 = _GEN_174 | dirtyArray_46;	// cache/src/zaqal/cache/DCache.scala:53:27, :115:22, :116:17, :118:34, :120:30
+  wire              _GEN_176 = io_req_valid & isHit & io_req_bits_is_write & _GEN_66;	// cache/src/zaqal/cache/DCache.scala:53:27, :69:32, :115:22, :116:17, :118:34, :119:45, :120:30
+  wire              _GEN_177 = _GEN_176 | dirtyArray_47;	// cache/src/zaqal/cache/DCache.scala:53:27, :115:22, :116:17, :118:34, :120:30
+  wire              _GEN_178 = io_req_valid & isHit & io_req_bits_is_write & _GEN_67;	// cache/src/zaqal/cache/DCache.scala:53:27, :69:32, :115:22, :116:17, :118:34, :119:45, :120:30
+  wire              _GEN_179 = _GEN_178 | dirtyArray_48;	// cache/src/zaqal/cache/DCache.scala:53:27, :115:22, :116:17, :118:34, :120:30
+  wire              _GEN_180 = io_req_valid & isHit & io_req_bits_is_write & _GEN_68;	// cache/src/zaqal/cache/DCache.scala:53:27, :69:32, :115:22, :116:17, :118:34, :119:45, :120:30
+  wire              _GEN_181 = _GEN_180 | dirtyArray_49;	// cache/src/zaqal/cache/DCache.scala:53:27, :115:22, :116:17, :118:34, :120:30
+  wire              _GEN_182 = io_req_valid & isHit & io_req_bits_is_write & _GEN_69;	// cache/src/zaqal/cache/DCache.scala:53:27, :69:32, :115:22, :116:17, :118:34, :119:45, :120:30
+  wire              _GEN_183 = _GEN_182 | dirtyArray_50;	// cache/src/zaqal/cache/DCache.scala:53:27, :115:22, :116:17, :118:34, :120:30
+  wire              _GEN_184 = io_req_valid & isHit & io_req_bits_is_write & _GEN_70;	// cache/src/zaqal/cache/DCache.scala:53:27, :69:32, :115:22, :116:17, :118:34, :119:45, :120:30
+  wire              _GEN_185 = _GEN_184 | dirtyArray_51;	// cache/src/zaqal/cache/DCache.scala:53:27, :115:22, :116:17, :118:34, :120:30
+  wire              _GEN_186 = io_req_valid & isHit & io_req_bits_is_write & _GEN_71;	// cache/src/zaqal/cache/DCache.scala:53:27, :69:32, :115:22, :116:17, :118:34, :119:45, :120:30
+  wire              _GEN_187 = _GEN_186 | dirtyArray_52;	// cache/src/zaqal/cache/DCache.scala:53:27, :115:22, :116:17, :118:34, :120:30
+  wire              _GEN_188 = io_req_valid & isHit & io_req_bits_is_write & _GEN_72;	// cache/src/zaqal/cache/DCache.scala:53:27, :69:32, :115:22, :116:17, :118:34, :119:45, :120:30
+  wire              _GEN_189 = _GEN_188 | dirtyArray_53;	// cache/src/zaqal/cache/DCache.scala:53:27, :115:22, :116:17, :118:34, :120:30
+  wire              _GEN_190 = io_req_valid & isHit & io_req_bits_is_write & _GEN_73;	// cache/src/zaqal/cache/DCache.scala:53:27, :69:32, :115:22, :116:17, :118:34, :119:45, :120:30
+  wire              _GEN_191 = _GEN_190 | dirtyArray_54;	// cache/src/zaqal/cache/DCache.scala:53:27, :115:22, :116:17, :118:34, :120:30
+  wire              _GEN_192 = io_req_valid & isHit & io_req_bits_is_write & _GEN_74;	// cache/src/zaqal/cache/DCache.scala:53:27, :69:32, :115:22, :116:17, :118:34, :119:45, :120:30
+  wire              _GEN_193 = _GEN_192 | dirtyArray_55;	// cache/src/zaqal/cache/DCache.scala:53:27, :115:22, :116:17, :118:34, :120:30
+  wire              _GEN_194 = io_req_valid & isHit & io_req_bits_is_write & _GEN_75;	// cache/src/zaqal/cache/DCache.scala:53:27, :69:32, :115:22, :116:17, :118:34, :119:45, :120:30
+  wire              _GEN_195 = _GEN_194 | dirtyArray_56;	// cache/src/zaqal/cache/DCache.scala:53:27, :115:22, :116:17, :118:34, :120:30
+  wire              _GEN_196 = io_req_valid & isHit & io_req_bits_is_write & _GEN_76;	// cache/src/zaqal/cache/DCache.scala:53:27, :69:32, :115:22, :116:17, :118:34, :119:45, :120:30
+  wire              _GEN_197 = _GEN_196 | dirtyArray_57;	// cache/src/zaqal/cache/DCache.scala:53:27, :115:22, :116:17, :118:34, :120:30
+  wire              _GEN_198 = io_req_valid & isHit & io_req_bits_is_write & _GEN_77;	// cache/src/zaqal/cache/DCache.scala:53:27, :69:32, :115:22, :116:17, :118:34, :119:45, :120:30
+  wire              _GEN_199 = _GEN_198 | dirtyArray_58;	// cache/src/zaqal/cache/DCache.scala:53:27, :115:22, :116:17, :118:34, :120:30
+  wire              _GEN_200 = io_req_valid & isHit & io_req_bits_is_write & _GEN_78;	// cache/src/zaqal/cache/DCache.scala:53:27, :69:32, :115:22, :116:17, :118:34, :119:45, :120:30
+  wire              _GEN_201 = _GEN_200 | dirtyArray_59;	// cache/src/zaqal/cache/DCache.scala:53:27, :115:22, :116:17, :118:34, :120:30
+  wire              _GEN_202 = io_req_valid & isHit & io_req_bits_is_write & _GEN_79;	// cache/src/zaqal/cache/DCache.scala:53:27, :69:32, :115:22, :116:17, :118:34, :119:45, :120:30
+  wire              _GEN_203 = _GEN_202 | dirtyArray_60;	// cache/src/zaqal/cache/DCache.scala:53:27, :115:22, :116:17, :118:34, :120:30
+  wire              _GEN_204 = io_req_valid & isHit & io_req_bits_is_write & _GEN_80;	// cache/src/zaqal/cache/DCache.scala:53:27, :69:32, :115:22, :116:17, :118:34, :119:45, :120:30
+  wire              _GEN_205 = _GEN_204 | dirtyArray_61;	// cache/src/zaqal/cache/DCache.scala:53:27, :115:22, :116:17, :118:34, :120:30
+  wire              _GEN_206 = io_req_valid & isHit & io_req_bits_is_write & _GEN_81;	// cache/src/zaqal/cache/DCache.scala:53:27, :69:32, :115:22, :116:17, :118:34, :119:45, :120:30
+  wire              _GEN_207 = _GEN_206 | dirtyArray_62;	// cache/src/zaqal/cache/DCache.scala:53:27, :115:22, :116:17, :118:34, :120:30
+  wire              _GEN_208 =
+    io_req_valid & isHit & io_req_bits_is_write & (&(io_req_bits_addr[10:5]));	// cache/src/zaqal/cache/DCache.scala:53:27, :60:40, :69:32, :115:22, :116:17, :118:34, :119:45, :120:30
+  wire              _GEN_209 = _GEN_208 | dirtyArray_63;	// cache/src/zaqal/cache/DCache.scala:53:27, :115:22, :116:17, :118:34, :120:30
+  wire              _GEN_210 = _tl_mshr_io_refill_out_bits_addr[10:5] == 6'h0;	// cache/src/zaqal/cache/DCache.scala:73:23, :119:45, :161:60, :166:31
+  wire              _GEN_211 =
+    _tl_mshr_io_refill_out_valid & ~_tl_mshr_io_refill_out_bits_sink_is_l2 & _GEN_210;	// cache/src/zaqal/cache/DCache.scala:52:27, :73:23, :160:36, :165:{10,50}, :166:31
+  wire              _GEN_212 = _tl_mshr_io_refill_out_bits_addr[10:5] == 6'h1;	// cache/src/zaqal/cache/DCache.scala:73:23, :119:45, :161:60, :166:31
+  wire              _GEN_213 =
+    _tl_mshr_io_refill_out_valid & ~_tl_mshr_io_refill_out_bits_sink_is_l2 & _GEN_212;	// cache/src/zaqal/cache/DCache.scala:52:27, :73:23, :160:36, :165:{10,50}, :166:31
+  wire              _GEN_214 = _tl_mshr_io_refill_out_bits_addr[10:5] == 6'h2;	// cache/src/zaqal/cache/DCache.scala:73:23, :119:45, :161:60, :166:31
+  wire              _GEN_215 =
+    _tl_mshr_io_refill_out_valid & ~_tl_mshr_io_refill_out_bits_sink_is_l2 & _GEN_214;	// cache/src/zaqal/cache/DCache.scala:52:27, :73:23, :160:36, :165:{10,50}, :166:31
+  wire              _GEN_216 = _tl_mshr_io_refill_out_bits_addr[10:5] == 6'h3;	// cache/src/zaqal/cache/DCache.scala:73:23, :119:45, :161:60, :166:31
+  wire              _GEN_217 =
+    _tl_mshr_io_refill_out_valid & ~_tl_mshr_io_refill_out_bits_sink_is_l2 & _GEN_216;	// cache/src/zaqal/cache/DCache.scala:52:27, :73:23, :160:36, :165:{10,50}, :166:31
+  wire              _GEN_218 = _tl_mshr_io_refill_out_bits_addr[10:5] == 6'h4;	// cache/src/zaqal/cache/DCache.scala:73:23, :119:45, :161:60, :166:31
+  wire              _GEN_219 =
+    _tl_mshr_io_refill_out_valid & ~_tl_mshr_io_refill_out_bits_sink_is_l2 & _GEN_218;	// cache/src/zaqal/cache/DCache.scala:52:27, :73:23, :160:36, :165:{10,50}, :166:31
+  wire              _GEN_220 = _tl_mshr_io_refill_out_bits_addr[10:5] == 6'h5;	// cache/src/zaqal/cache/DCache.scala:73:23, :119:45, :161:60, :166:31
+  wire              _GEN_221 =
+    _tl_mshr_io_refill_out_valid & ~_tl_mshr_io_refill_out_bits_sink_is_l2 & _GEN_220;	// cache/src/zaqal/cache/DCache.scala:52:27, :73:23, :160:36, :165:{10,50}, :166:31
+  wire              _GEN_222 = _tl_mshr_io_refill_out_bits_addr[10:5] == 6'h6;	// cache/src/zaqal/cache/DCache.scala:73:23, :119:45, :161:60, :166:31
+  wire              _GEN_223 =
+    _tl_mshr_io_refill_out_valid & ~_tl_mshr_io_refill_out_bits_sink_is_l2 & _GEN_222;	// cache/src/zaqal/cache/DCache.scala:52:27, :73:23, :160:36, :165:{10,50}, :166:31
+  wire              _GEN_224 = _tl_mshr_io_refill_out_bits_addr[10:5] == 6'h7;	// cache/src/zaqal/cache/DCache.scala:73:23, :119:45, :161:60, :166:31
+  wire              _GEN_225 =
+    _tl_mshr_io_refill_out_valid & ~_tl_mshr_io_refill_out_bits_sink_is_l2 & _GEN_224;	// cache/src/zaqal/cache/DCache.scala:52:27, :73:23, :160:36, :165:{10,50}, :166:31
+  wire              _GEN_226 = _tl_mshr_io_refill_out_bits_addr[10:5] == 6'h8;	// cache/src/zaqal/cache/DCache.scala:73:23, :119:45, :161:60, :166:31
+  wire              _GEN_227 =
+    _tl_mshr_io_refill_out_valid & ~_tl_mshr_io_refill_out_bits_sink_is_l2 & _GEN_226;	// cache/src/zaqal/cache/DCache.scala:52:27, :73:23, :160:36, :165:{10,50}, :166:31
+  wire              _GEN_228 = _tl_mshr_io_refill_out_bits_addr[10:5] == 6'h9;	// cache/src/zaqal/cache/DCache.scala:73:23, :119:45, :161:60, :166:31
+  wire              _GEN_229 =
+    _tl_mshr_io_refill_out_valid & ~_tl_mshr_io_refill_out_bits_sink_is_l2 & _GEN_228;	// cache/src/zaqal/cache/DCache.scala:52:27, :73:23, :160:36, :165:{10,50}, :166:31
+  wire              _GEN_230 = _tl_mshr_io_refill_out_bits_addr[10:5] == 6'hA;	// cache/src/zaqal/cache/DCache.scala:73:23, :119:45, :161:60, :166:31
+  wire              _GEN_231 =
+    _tl_mshr_io_refill_out_valid & ~_tl_mshr_io_refill_out_bits_sink_is_l2 & _GEN_230;	// cache/src/zaqal/cache/DCache.scala:52:27, :73:23, :160:36, :165:{10,50}, :166:31
+  wire              _GEN_232 = _tl_mshr_io_refill_out_bits_addr[10:5] == 6'hB;	// cache/src/zaqal/cache/DCache.scala:73:23, :119:45, :161:60, :166:31
+  wire              _GEN_233 =
+    _tl_mshr_io_refill_out_valid & ~_tl_mshr_io_refill_out_bits_sink_is_l2 & _GEN_232;	// cache/src/zaqal/cache/DCache.scala:52:27, :73:23, :160:36, :165:{10,50}, :166:31
+  wire              _GEN_234 = _tl_mshr_io_refill_out_bits_addr[10:5] == 6'hC;	// cache/src/zaqal/cache/DCache.scala:73:23, :119:45, :161:60, :166:31
+  wire              _GEN_235 =
+    _tl_mshr_io_refill_out_valid & ~_tl_mshr_io_refill_out_bits_sink_is_l2 & _GEN_234;	// cache/src/zaqal/cache/DCache.scala:52:27, :73:23, :160:36, :165:{10,50}, :166:31
+  wire              _GEN_236 = _tl_mshr_io_refill_out_bits_addr[10:5] == 6'hD;	// cache/src/zaqal/cache/DCache.scala:73:23, :119:45, :161:60, :166:31
+  wire              _GEN_237 =
+    _tl_mshr_io_refill_out_valid & ~_tl_mshr_io_refill_out_bits_sink_is_l2 & _GEN_236;	// cache/src/zaqal/cache/DCache.scala:52:27, :73:23, :160:36, :165:{10,50}, :166:31
+  wire              _GEN_238 = _tl_mshr_io_refill_out_bits_addr[10:5] == 6'hE;	// cache/src/zaqal/cache/DCache.scala:73:23, :119:45, :161:60, :166:31
+  wire              _GEN_239 =
+    _tl_mshr_io_refill_out_valid & ~_tl_mshr_io_refill_out_bits_sink_is_l2 & _GEN_238;	// cache/src/zaqal/cache/DCache.scala:52:27, :73:23, :160:36, :165:{10,50}, :166:31
+  wire              _GEN_240 = _tl_mshr_io_refill_out_bits_addr[10:5] == 6'hF;	// cache/src/zaqal/cache/DCache.scala:73:23, :119:45, :161:60, :166:31
+  wire              _GEN_241 =
+    _tl_mshr_io_refill_out_valid & ~_tl_mshr_io_refill_out_bits_sink_is_l2 & _GEN_240;	// cache/src/zaqal/cache/DCache.scala:52:27, :73:23, :160:36, :165:{10,50}, :166:31
+  wire              _GEN_242 = _tl_mshr_io_refill_out_bits_addr[10:5] == 6'h10;	// cache/src/zaqal/cache/DCache.scala:73:23, :119:45, :161:60, :166:31
+  wire              _GEN_243 =
+    _tl_mshr_io_refill_out_valid & ~_tl_mshr_io_refill_out_bits_sink_is_l2 & _GEN_242;	// cache/src/zaqal/cache/DCache.scala:52:27, :73:23, :160:36, :165:{10,50}, :166:31
+  wire              _GEN_244 = _tl_mshr_io_refill_out_bits_addr[10:5] == 6'h11;	// cache/src/zaqal/cache/DCache.scala:73:23, :119:45, :161:60, :166:31
+  wire              _GEN_245 =
+    _tl_mshr_io_refill_out_valid & ~_tl_mshr_io_refill_out_bits_sink_is_l2 & _GEN_244;	// cache/src/zaqal/cache/DCache.scala:52:27, :73:23, :160:36, :165:{10,50}, :166:31
+  wire              _GEN_246 = _tl_mshr_io_refill_out_bits_addr[10:5] == 6'h12;	// cache/src/zaqal/cache/DCache.scala:73:23, :119:45, :161:60, :166:31
+  wire              _GEN_247 =
+    _tl_mshr_io_refill_out_valid & ~_tl_mshr_io_refill_out_bits_sink_is_l2 & _GEN_246;	// cache/src/zaqal/cache/DCache.scala:52:27, :73:23, :160:36, :165:{10,50}, :166:31
+  wire              _GEN_248 = _tl_mshr_io_refill_out_bits_addr[10:5] == 6'h13;	// cache/src/zaqal/cache/DCache.scala:73:23, :119:45, :161:60, :166:31
+  wire              _GEN_249 =
+    _tl_mshr_io_refill_out_valid & ~_tl_mshr_io_refill_out_bits_sink_is_l2 & _GEN_248;	// cache/src/zaqal/cache/DCache.scala:52:27, :73:23, :160:36, :165:{10,50}, :166:31
+  wire              _GEN_250 = _tl_mshr_io_refill_out_bits_addr[10:5] == 6'h14;	// cache/src/zaqal/cache/DCache.scala:73:23, :119:45, :161:60, :166:31
+  wire              _GEN_251 =
+    _tl_mshr_io_refill_out_valid & ~_tl_mshr_io_refill_out_bits_sink_is_l2 & _GEN_250;	// cache/src/zaqal/cache/DCache.scala:52:27, :73:23, :160:36, :165:{10,50}, :166:31
+  wire              _GEN_252 = _tl_mshr_io_refill_out_bits_addr[10:5] == 6'h15;	// cache/src/zaqal/cache/DCache.scala:73:23, :119:45, :161:60, :166:31
+  wire              _GEN_253 =
+    _tl_mshr_io_refill_out_valid & ~_tl_mshr_io_refill_out_bits_sink_is_l2 & _GEN_252;	// cache/src/zaqal/cache/DCache.scala:52:27, :73:23, :160:36, :165:{10,50}, :166:31
+  wire              _GEN_254 = _tl_mshr_io_refill_out_bits_addr[10:5] == 6'h16;	// cache/src/zaqal/cache/DCache.scala:73:23, :119:45, :161:60, :166:31
+  wire              _GEN_255 =
+    _tl_mshr_io_refill_out_valid & ~_tl_mshr_io_refill_out_bits_sink_is_l2 & _GEN_254;	// cache/src/zaqal/cache/DCache.scala:52:27, :73:23, :160:36, :165:{10,50}, :166:31
+  wire              _GEN_256 = _tl_mshr_io_refill_out_bits_addr[10:5] == 6'h17;	// cache/src/zaqal/cache/DCache.scala:73:23, :119:45, :161:60, :166:31
+  wire              _GEN_257 =
+    _tl_mshr_io_refill_out_valid & ~_tl_mshr_io_refill_out_bits_sink_is_l2 & _GEN_256;	// cache/src/zaqal/cache/DCache.scala:52:27, :73:23, :160:36, :165:{10,50}, :166:31
+  wire              _GEN_258 = _tl_mshr_io_refill_out_bits_addr[10:5] == 6'h18;	// cache/src/zaqal/cache/DCache.scala:73:23, :119:45, :161:60, :166:31
+  wire              _GEN_259 =
+    _tl_mshr_io_refill_out_valid & ~_tl_mshr_io_refill_out_bits_sink_is_l2 & _GEN_258;	// cache/src/zaqal/cache/DCache.scala:52:27, :73:23, :160:36, :165:{10,50}, :166:31
+  wire              _GEN_260 = _tl_mshr_io_refill_out_bits_addr[10:5] == 6'h19;	// cache/src/zaqal/cache/DCache.scala:73:23, :119:45, :161:60, :166:31
+  wire              _GEN_261 =
+    _tl_mshr_io_refill_out_valid & ~_tl_mshr_io_refill_out_bits_sink_is_l2 & _GEN_260;	// cache/src/zaqal/cache/DCache.scala:52:27, :73:23, :160:36, :165:{10,50}, :166:31
+  wire              _GEN_262 = _tl_mshr_io_refill_out_bits_addr[10:5] == 6'h1A;	// cache/src/zaqal/cache/DCache.scala:73:23, :119:45, :161:60, :166:31
+  wire              _GEN_263 =
+    _tl_mshr_io_refill_out_valid & ~_tl_mshr_io_refill_out_bits_sink_is_l2 & _GEN_262;	// cache/src/zaqal/cache/DCache.scala:52:27, :73:23, :160:36, :165:{10,50}, :166:31
+  wire              _GEN_264 = _tl_mshr_io_refill_out_bits_addr[10:5] == 6'h1B;	// cache/src/zaqal/cache/DCache.scala:73:23, :119:45, :161:60, :166:31
+  wire              _GEN_265 =
+    _tl_mshr_io_refill_out_valid & ~_tl_mshr_io_refill_out_bits_sink_is_l2 & _GEN_264;	// cache/src/zaqal/cache/DCache.scala:52:27, :73:23, :160:36, :165:{10,50}, :166:31
+  wire              _GEN_266 = _tl_mshr_io_refill_out_bits_addr[10:5] == 6'h1C;	// cache/src/zaqal/cache/DCache.scala:73:23, :119:45, :161:60, :166:31
+  wire              _GEN_267 =
+    _tl_mshr_io_refill_out_valid & ~_tl_mshr_io_refill_out_bits_sink_is_l2 & _GEN_266;	// cache/src/zaqal/cache/DCache.scala:52:27, :73:23, :160:36, :165:{10,50}, :166:31
+  wire              _GEN_268 = _tl_mshr_io_refill_out_bits_addr[10:5] == 6'h1D;	// cache/src/zaqal/cache/DCache.scala:73:23, :119:45, :161:60, :166:31
+  wire              _GEN_269 =
+    _tl_mshr_io_refill_out_valid & ~_tl_mshr_io_refill_out_bits_sink_is_l2 & _GEN_268;	// cache/src/zaqal/cache/DCache.scala:52:27, :73:23, :160:36, :165:{10,50}, :166:31
+  wire              _GEN_270 = _tl_mshr_io_refill_out_bits_addr[10:5] == 6'h1E;	// cache/src/zaqal/cache/DCache.scala:73:23, :119:45, :161:60, :166:31
+  wire              _GEN_271 =
+    _tl_mshr_io_refill_out_valid & ~_tl_mshr_io_refill_out_bits_sink_is_l2 & _GEN_270;	// cache/src/zaqal/cache/DCache.scala:52:27, :73:23, :160:36, :165:{10,50}, :166:31
+  wire              _GEN_272 = _tl_mshr_io_refill_out_bits_addr[10:5] == 6'h1F;	// cache/src/zaqal/cache/DCache.scala:73:23, :119:45, :161:60, :166:31
+  wire              _GEN_273 =
+    _tl_mshr_io_refill_out_valid & ~_tl_mshr_io_refill_out_bits_sink_is_l2 & _GEN_272;	// cache/src/zaqal/cache/DCache.scala:52:27, :73:23, :160:36, :165:{10,50}, :166:31
+  wire              _GEN_274 = _tl_mshr_io_refill_out_bits_addr[10:5] == 6'h20;	// cache/src/zaqal/cache/DCache.scala:73:23, :119:45, :161:60, :166:31
+  wire              _GEN_275 =
+    _tl_mshr_io_refill_out_valid & ~_tl_mshr_io_refill_out_bits_sink_is_l2 & _GEN_274;	// cache/src/zaqal/cache/DCache.scala:52:27, :73:23, :160:36, :165:{10,50}, :166:31
+  wire              _GEN_276 = _tl_mshr_io_refill_out_bits_addr[10:5] == 6'h21;	// cache/src/zaqal/cache/DCache.scala:73:23, :119:45, :161:60, :166:31
+  wire              _GEN_277 =
+    _tl_mshr_io_refill_out_valid & ~_tl_mshr_io_refill_out_bits_sink_is_l2 & _GEN_276;	// cache/src/zaqal/cache/DCache.scala:52:27, :73:23, :160:36, :165:{10,50}, :166:31
+  wire              _GEN_278 = _tl_mshr_io_refill_out_bits_addr[10:5] == 6'h22;	// cache/src/zaqal/cache/DCache.scala:73:23, :119:45, :161:60, :166:31
+  wire              _GEN_279 =
+    _tl_mshr_io_refill_out_valid & ~_tl_mshr_io_refill_out_bits_sink_is_l2 & _GEN_278;	// cache/src/zaqal/cache/DCache.scala:52:27, :73:23, :160:36, :165:{10,50}, :166:31
+  wire              _GEN_280 = _tl_mshr_io_refill_out_bits_addr[10:5] == 6'h23;	// cache/src/zaqal/cache/DCache.scala:73:23, :119:45, :161:60, :166:31
+  wire              _GEN_281 =
+    _tl_mshr_io_refill_out_valid & ~_tl_mshr_io_refill_out_bits_sink_is_l2 & _GEN_280;	// cache/src/zaqal/cache/DCache.scala:52:27, :73:23, :160:36, :165:{10,50}, :166:31
+  wire              _GEN_282 = _tl_mshr_io_refill_out_bits_addr[10:5] == 6'h24;	// cache/src/zaqal/cache/DCache.scala:73:23, :119:45, :161:60, :166:31
+  wire              _GEN_283 =
+    _tl_mshr_io_refill_out_valid & ~_tl_mshr_io_refill_out_bits_sink_is_l2 & _GEN_282;	// cache/src/zaqal/cache/DCache.scala:52:27, :73:23, :160:36, :165:{10,50}, :166:31
+  wire              _GEN_284 = _tl_mshr_io_refill_out_bits_addr[10:5] == 6'h25;	// cache/src/zaqal/cache/DCache.scala:73:23, :119:45, :161:60, :166:31
+  wire              _GEN_285 =
+    _tl_mshr_io_refill_out_valid & ~_tl_mshr_io_refill_out_bits_sink_is_l2 & _GEN_284;	// cache/src/zaqal/cache/DCache.scala:52:27, :73:23, :160:36, :165:{10,50}, :166:31
+  wire              _GEN_286 = _tl_mshr_io_refill_out_bits_addr[10:5] == 6'h26;	// cache/src/zaqal/cache/DCache.scala:73:23, :119:45, :161:60, :166:31
+  wire              _GEN_287 =
+    _tl_mshr_io_refill_out_valid & ~_tl_mshr_io_refill_out_bits_sink_is_l2 & _GEN_286;	// cache/src/zaqal/cache/DCache.scala:52:27, :73:23, :160:36, :165:{10,50}, :166:31
+  wire              _GEN_288 = _tl_mshr_io_refill_out_bits_addr[10:5] == 6'h27;	// cache/src/zaqal/cache/DCache.scala:73:23, :119:45, :161:60, :166:31
+  wire              _GEN_289 =
+    _tl_mshr_io_refill_out_valid & ~_tl_mshr_io_refill_out_bits_sink_is_l2 & _GEN_288;	// cache/src/zaqal/cache/DCache.scala:52:27, :73:23, :160:36, :165:{10,50}, :166:31
+  wire              _GEN_290 = _tl_mshr_io_refill_out_bits_addr[10:5] == 6'h28;	// cache/src/zaqal/cache/DCache.scala:73:23, :119:45, :161:60, :166:31
+  wire              _GEN_291 =
+    _tl_mshr_io_refill_out_valid & ~_tl_mshr_io_refill_out_bits_sink_is_l2 & _GEN_290;	// cache/src/zaqal/cache/DCache.scala:52:27, :73:23, :160:36, :165:{10,50}, :166:31
+  wire              _GEN_292 = _tl_mshr_io_refill_out_bits_addr[10:5] == 6'h29;	// cache/src/zaqal/cache/DCache.scala:73:23, :119:45, :161:60, :166:31
+  wire              _GEN_293 =
+    _tl_mshr_io_refill_out_valid & ~_tl_mshr_io_refill_out_bits_sink_is_l2 & _GEN_292;	// cache/src/zaqal/cache/DCache.scala:52:27, :73:23, :160:36, :165:{10,50}, :166:31
+  wire              _GEN_294 = _tl_mshr_io_refill_out_bits_addr[10:5] == 6'h2A;	// cache/src/zaqal/cache/DCache.scala:73:23, :119:45, :161:60, :166:31
+  wire              _GEN_295 =
+    _tl_mshr_io_refill_out_valid & ~_tl_mshr_io_refill_out_bits_sink_is_l2 & _GEN_294;	// cache/src/zaqal/cache/DCache.scala:52:27, :73:23, :160:36, :165:{10,50}, :166:31
+  wire              _GEN_296 = _tl_mshr_io_refill_out_bits_addr[10:5] == 6'h2B;	// cache/src/zaqal/cache/DCache.scala:73:23, :119:45, :161:60, :166:31
+  wire              _GEN_297 =
+    _tl_mshr_io_refill_out_valid & ~_tl_mshr_io_refill_out_bits_sink_is_l2 & _GEN_296;	// cache/src/zaqal/cache/DCache.scala:52:27, :73:23, :160:36, :165:{10,50}, :166:31
+  wire              _GEN_298 = _tl_mshr_io_refill_out_bits_addr[10:5] == 6'h2C;	// cache/src/zaqal/cache/DCache.scala:73:23, :119:45, :161:60, :166:31
+  wire              _GEN_299 =
+    _tl_mshr_io_refill_out_valid & ~_tl_mshr_io_refill_out_bits_sink_is_l2 & _GEN_298;	// cache/src/zaqal/cache/DCache.scala:52:27, :73:23, :160:36, :165:{10,50}, :166:31
+  wire              _GEN_300 = _tl_mshr_io_refill_out_bits_addr[10:5] == 6'h2D;	// cache/src/zaqal/cache/DCache.scala:73:23, :119:45, :161:60, :166:31
+  wire              _GEN_301 =
+    _tl_mshr_io_refill_out_valid & ~_tl_mshr_io_refill_out_bits_sink_is_l2 & _GEN_300;	// cache/src/zaqal/cache/DCache.scala:52:27, :73:23, :160:36, :165:{10,50}, :166:31
+  wire              _GEN_302 = _tl_mshr_io_refill_out_bits_addr[10:5] == 6'h2E;	// cache/src/zaqal/cache/DCache.scala:73:23, :119:45, :161:60, :166:31
+  wire              _GEN_303 =
+    _tl_mshr_io_refill_out_valid & ~_tl_mshr_io_refill_out_bits_sink_is_l2 & _GEN_302;	// cache/src/zaqal/cache/DCache.scala:52:27, :73:23, :160:36, :165:{10,50}, :166:31
+  wire              _GEN_304 = _tl_mshr_io_refill_out_bits_addr[10:5] == 6'h2F;	// cache/src/zaqal/cache/DCache.scala:73:23, :119:45, :161:60, :166:31
+  wire              _GEN_305 =
+    _tl_mshr_io_refill_out_valid & ~_tl_mshr_io_refill_out_bits_sink_is_l2 & _GEN_304;	// cache/src/zaqal/cache/DCache.scala:52:27, :73:23, :160:36, :165:{10,50}, :166:31
+  wire              _GEN_306 = _tl_mshr_io_refill_out_bits_addr[10:5] == 6'h30;	// cache/src/zaqal/cache/DCache.scala:73:23, :119:45, :161:60, :166:31
+  wire              _GEN_307 =
+    _tl_mshr_io_refill_out_valid & ~_tl_mshr_io_refill_out_bits_sink_is_l2 & _GEN_306;	// cache/src/zaqal/cache/DCache.scala:52:27, :73:23, :160:36, :165:{10,50}, :166:31
+  wire              _GEN_308 = _tl_mshr_io_refill_out_bits_addr[10:5] == 6'h31;	// cache/src/zaqal/cache/DCache.scala:73:23, :119:45, :161:60, :166:31
+  wire              _GEN_309 =
+    _tl_mshr_io_refill_out_valid & ~_tl_mshr_io_refill_out_bits_sink_is_l2 & _GEN_308;	// cache/src/zaqal/cache/DCache.scala:52:27, :73:23, :160:36, :165:{10,50}, :166:31
+  wire              _GEN_310 = _tl_mshr_io_refill_out_bits_addr[10:5] == 6'h32;	// cache/src/zaqal/cache/DCache.scala:73:23, :119:45, :161:60, :166:31
+  wire              _GEN_311 =
+    _tl_mshr_io_refill_out_valid & ~_tl_mshr_io_refill_out_bits_sink_is_l2 & _GEN_310;	// cache/src/zaqal/cache/DCache.scala:52:27, :73:23, :160:36, :165:{10,50}, :166:31
+  wire              _GEN_312 = _tl_mshr_io_refill_out_bits_addr[10:5] == 6'h33;	// cache/src/zaqal/cache/DCache.scala:73:23, :119:45, :161:60, :166:31
+  wire              _GEN_313 =
+    _tl_mshr_io_refill_out_valid & ~_tl_mshr_io_refill_out_bits_sink_is_l2 & _GEN_312;	// cache/src/zaqal/cache/DCache.scala:52:27, :73:23, :160:36, :165:{10,50}, :166:31
+  wire              _GEN_314 = _tl_mshr_io_refill_out_bits_addr[10:5] == 6'h34;	// cache/src/zaqal/cache/DCache.scala:73:23, :119:45, :161:60, :166:31
+  wire              _GEN_315 =
+    _tl_mshr_io_refill_out_valid & ~_tl_mshr_io_refill_out_bits_sink_is_l2 & _GEN_314;	// cache/src/zaqal/cache/DCache.scala:52:27, :73:23, :160:36, :165:{10,50}, :166:31
+  wire              _GEN_316 = _tl_mshr_io_refill_out_bits_addr[10:5] == 6'h35;	// cache/src/zaqal/cache/DCache.scala:73:23, :119:45, :161:60, :166:31
+  wire              _GEN_317 =
+    _tl_mshr_io_refill_out_valid & ~_tl_mshr_io_refill_out_bits_sink_is_l2 & _GEN_316;	// cache/src/zaqal/cache/DCache.scala:52:27, :73:23, :160:36, :165:{10,50}, :166:31
+  wire              _GEN_318 = _tl_mshr_io_refill_out_bits_addr[10:5] == 6'h36;	// cache/src/zaqal/cache/DCache.scala:73:23, :119:45, :161:60, :166:31
+  wire              _GEN_319 =
+    _tl_mshr_io_refill_out_valid & ~_tl_mshr_io_refill_out_bits_sink_is_l2 & _GEN_318;	// cache/src/zaqal/cache/DCache.scala:52:27, :73:23, :160:36, :165:{10,50}, :166:31
+  wire              _GEN_320 = _tl_mshr_io_refill_out_bits_addr[10:5] == 6'h37;	// cache/src/zaqal/cache/DCache.scala:73:23, :119:45, :161:60, :166:31
+  wire              _GEN_321 =
+    _tl_mshr_io_refill_out_valid & ~_tl_mshr_io_refill_out_bits_sink_is_l2 & _GEN_320;	// cache/src/zaqal/cache/DCache.scala:52:27, :73:23, :160:36, :165:{10,50}, :166:31
+  wire              _GEN_322 = _tl_mshr_io_refill_out_bits_addr[10:5] == 6'h38;	// cache/src/zaqal/cache/DCache.scala:73:23, :119:45, :161:60, :166:31
+  wire              _GEN_323 =
+    _tl_mshr_io_refill_out_valid & ~_tl_mshr_io_refill_out_bits_sink_is_l2 & _GEN_322;	// cache/src/zaqal/cache/DCache.scala:52:27, :73:23, :160:36, :165:{10,50}, :166:31
+  wire              _GEN_324 = _tl_mshr_io_refill_out_bits_addr[10:5] == 6'h39;	// cache/src/zaqal/cache/DCache.scala:73:23, :119:45, :161:60, :166:31
+  wire              _GEN_325 =
+    _tl_mshr_io_refill_out_valid & ~_tl_mshr_io_refill_out_bits_sink_is_l2 & _GEN_324;	// cache/src/zaqal/cache/DCache.scala:52:27, :73:23, :160:36, :165:{10,50}, :166:31
+  wire              _GEN_326 = _tl_mshr_io_refill_out_bits_addr[10:5] == 6'h3A;	// cache/src/zaqal/cache/DCache.scala:73:23, :119:45, :161:60, :166:31
+  wire              _GEN_327 =
+    _tl_mshr_io_refill_out_valid & ~_tl_mshr_io_refill_out_bits_sink_is_l2 & _GEN_326;	// cache/src/zaqal/cache/DCache.scala:52:27, :73:23, :160:36, :165:{10,50}, :166:31
+  wire              _GEN_328 = _tl_mshr_io_refill_out_bits_addr[10:5] == 6'h3B;	// cache/src/zaqal/cache/DCache.scala:73:23, :119:45, :161:60, :166:31
+  wire              _GEN_329 =
+    _tl_mshr_io_refill_out_valid & ~_tl_mshr_io_refill_out_bits_sink_is_l2 & _GEN_328;	// cache/src/zaqal/cache/DCache.scala:52:27, :73:23, :160:36, :165:{10,50}, :166:31
+  wire              _GEN_330 = _tl_mshr_io_refill_out_bits_addr[10:5] == 6'h3C;	// cache/src/zaqal/cache/DCache.scala:73:23, :119:45, :161:60, :166:31
+  wire              _GEN_331 =
+    _tl_mshr_io_refill_out_valid & ~_tl_mshr_io_refill_out_bits_sink_is_l2 & _GEN_330;	// cache/src/zaqal/cache/DCache.scala:52:27, :73:23, :160:36, :165:{10,50}, :166:31
+  wire              _GEN_332 = _tl_mshr_io_refill_out_bits_addr[10:5] == 6'h3D;	// cache/src/zaqal/cache/DCache.scala:73:23, :119:45, :161:60, :166:31
+  wire              _GEN_333 =
+    _tl_mshr_io_refill_out_valid & ~_tl_mshr_io_refill_out_bits_sink_is_l2 & _GEN_332;	// cache/src/zaqal/cache/DCache.scala:52:27, :73:23, :160:36, :165:{10,50}, :166:31
+  wire              _GEN_334 = _tl_mshr_io_refill_out_bits_addr[10:5] == 6'h3E;	// cache/src/zaqal/cache/DCache.scala:73:23, :119:45, :161:60, :166:31
+  wire              _GEN_335 =
+    _tl_mshr_io_refill_out_valid & ~_tl_mshr_io_refill_out_bits_sink_is_l2 & _GEN_334;	// cache/src/zaqal/cache/DCache.scala:52:27, :73:23, :160:36, :165:{10,50}, :166:31
+  wire              _GEN_336 =
+    _tl_mshr_io_refill_out_valid & ~_tl_mshr_io_refill_out_bits_sink_is_l2
+    & (&(_tl_mshr_io_refill_out_bits_addr[10:5]));	// cache/src/zaqal/cache/DCache.scala:52:27, :73:23, :160:36, :161:60, :165:{10,50}, :166:31
+  wire [1:0]        _stateArray_T_1 =
+    _tl_mshr_io_refill_out_bits_granted_param == 3'h0 ? 2'h2 : 2'h1;	// cache/src/zaqal/cache/DCache.scala:68:43, :73:23, :119:45, :168:{37,79}
+  wire              _GEN_337 =
+    _tl_mshr_io_refill_out_valid & ~_tl_mshr_io_refill_out_bits_sink_is_l2;	// cache/src/zaqal/cache/DCache.scala:73:23, :115:22, :160:36, :165:{10,50}, :170:49
+  wire [63:0]       _GEN_338 =
+    _tl_mshr_io_refill_out_bits_is_write
+      ? (_tl_mshr_io_refill_out_bits_addr[4:3] == 2'h0
+           ? _tl_mshr_io_refill_out_bits_write_data
+           : _tl_mshr_io_refill_out_bits_data[63:0])
+      : _tl_mshr_io_refill_out_bits_data[63:0];	// cache/src/zaqal/cache/DCache.scala:55:35, :73:23, :115:22, :163:60, :174:{20,43}, :175:39, :177:{39,73}, :183:{37,71}
+  wire [63:0]       _GEN_339 =
+    _tl_mshr_io_refill_out_bits_is_write
+      ? (_tl_mshr_io_refill_out_bits_addr[4:3] == 2'h1
+           ? _tl_mshr_io_refill_out_bits_write_data
+           : _tl_mshr_io_refill_out_bits_data[127:64])
+      : _tl_mshr_io_refill_out_bits_data[127:64];	// cache/src/zaqal/cache/DCache.scala:73:23, :115:22, :119:45, :163:60, :174:{20,43}, :175:39, :177:{39,73}, :183:{37,71}
+  wire [63:0]       _GEN_340 =
+    _tl_mshr_io_refill_out_bits_is_write
+      ? (_tl_mshr_io_refill_out_bits_addr[4:3] == 2'h2
+           ? _tl_mshr_io_refill_out_bits_write_data
+           : _tl_mshr_io_refill_out_bits_data[191:128])
+      : _tl_mshr_io_refill_out_bits_data[191:128];	// cache/src/zaqal/cache/DCache.scala:68:43, :73:23, :115:22, :163:60, :174:{20,43}, :175:39, :177:{39,73}, :183:{37,71}
+  wire [63:0]       _GEN_341 =
+    _tl_mshr_io_refill_out_bits_is_write
+      ? ((&(_tl_mshr_io_refill_out_bits_addr[4:3]))
+           ? _tl_mshr_io_refill_out_bits_write_data
+           : _tl_mshr_io_refill_out_bits_data[255:192])
+      : _tl_mshr_io_refill_out_bits_data[255:192];	// cache/src/zaqal/cache/DCache.scala:73:23, :115:22, :163:60, :174:{20,43}, :175:39, :177:{39,73}, :183:{37,71}
+  wire              _GEN_342 = io_tl_b_bits_address[10:5] == 6'h0;	// cache/src/zaqal/cache/DCache.scala:119:45, :204:31, :225:32
+  wire              _GEN_343 = io_tl_b_bits_address[10:5] == 6'h1;	// cache/src/zaqal/cache/DCache.scala:119:45, :204:31, :225:32
+  wire              _GEN_344 = io_tl_b_bits_address[10:5] == 6'h2;	// cache/src/zaqal/cache/DCache.scala:119:45, :204:31, :225:32
+  wire              _GEN_345 = io_tl_b_bits_address[10:5] == 6'h3;	// cache/src/zaqal/cache/DCache.scala:119:45, :204:31, :225:32
+  wire              _GEN_346 = io_tl_b_bits_address[10:5] == 6'h4;	// cache/src/zaqal/cache/DCache.scala:119:45, :204:31, :225:32
+  wire              _GEN_347 = io_tl_b_bits_address[10:5] == 6'h5;	// cache/src/zaqal/cache/DCache.scala:119:45, :204:31, :225:32
+  wire              _GEN_348 = io_tl_b_bits_address[10:5] == 6'h6;	// cache/src/zaqal/cache/DCache.scala:119:45, :204:31, :225:32
+  wire              _GEN_349 = io_tl_b_bits_address[10:5] == 6'h7;	// cache/src/zaqal/cache/DCache.scala:119:45, :204:31, :225:32
+  wire              _GEN_350 = io_tl_b_bits_address[10:5] == 6'h8;	// cache/src/zaqal/cache/DCache.scala:119:45, :204:31, :225:32
+  wire              _GEN_351 = io_tl_b_bits_address[10:5] == 6'h9;	// cache/src/zaqal/cache/DCache.scala:119:45, :204:31, :225:32
+  wire              _GEN_352 = io_tl_b_bits_address[10:5] == 6'hA;	// cache/src/zaqal/cache/DCache.scala:119:45, :204:31, :225:32
+  wire              _GEN_353 = io_tl_b_bits_address[10:5] == 6'hB;	// cache/src/zaqal/cache/DCache.scala:119:45, :204:31, :225:32
+  wire              _GEN_354 = io_tl_b_bits_address[10:5] == 6'hC;	// cache/src/zaqal/cache/DCache.scala:119:45, :204:31, :225:32
+  wire              _GEN_355 = io_tl_b_bits_address[10:5] == 6'hD;	// cache/src/zaqal/cache/DCache.scala:119:45, :204:31, :225:32
+  wire              _GEN_356 = io_tl_b_bits_address[10:5] == 6'hE;	// cache/src/zaqal/cache/DCache.scala:119:45, :204:31, :225:32
+  wire              _GEN_357 = io_tl_b_bits_address[10:5] == 6'hF;	// cache/src/zaqal/cache/DCache.scala:119:45, :204:31, :225:32
+  wire              _GEN_358 = io_tl_b_bits_address[10:5] == 6'h10;	// cache/src/zaqal/cache/DCache.scala:119:45, :204:31, :225:32
+  wire              _GEN_359 = io_tl_b_bits_address[10:5] == 6'h11;	// cache/src/zaqal/cache/DCache.scala:119:45, :204:31, :225:32
+  wire              _GEN_360 = io_tl_b_bits_address[10:5] == 6'h12;	// cache/src/zaqal/cache/DCache.scala:119:45, :204:31, :225:32
+  wire              _GEN_361 = io_tl_b_bits_address[10:5] == 6'h13;	// cache/src/zaqal/cache/DCache.scala:119:45, :204:31, :225:32
+  wire              _GEN_362 = io_tl_b_bits_address[10:5] == 6'h14;	// cache/src/zaqal/cache/DCache.scala:119:45, :204:31, :225:32
+  wire              _GEN_363 = io_tl_b_bits_address[10:5] == 6'h15;	// cache/src/zaqal/cache/DCache.scala:119:45, :204:31, :225:32
+  wire              _GEN_364 = io_tl_b_bits_address[10:5] == 6'h16;	// cache/src/zaqal/cache/DCache.scala:119:45, :204:31, :225:32
+  wire              _GEN_365 = io_tl_b_bits_address[10:5] == 6'h17;	// cache/src/zaqal/cache/DCache.scala:119:45, :204:31, :225:32
+  wire              _GEN_366 = io_tl_b_bits_address[10:5] == 6'h18;	// cache/src/zaqal/cache/DCache.scala:119:45, :204:31, :225:32
+  wire              _GEN_367 = io_tl_b_bits_address[10:5] == 6'h19;	// cache/src/zaqal/cache/DCache.scala:119:45, :204:31, :225:32
+  wire              _GEN_368 = io_tl_b_bits_address[10:5] == 6'h1A;	// cache/src/zaqal/cache/DCache.scala:119:45, :204:31, :225:32
+  wire              _GEN_369 = io_tl_b_bits_address[10:5] == 6'h1B;	// cache/src/zaqal/cache/DCache.scala:119:45, :204:31, :225:32
+  wire              _GEN_370 = io_tl_b_bits_address[10:5] == 6'h1C;	// cache/src/zaqal/cache/DCache.scala:119:45, :204:31, :225:32
+  wire              _GEN_371 = io_tl_b_bits_address[10:5] == 6'h1D;	// cache/src/zaqal/cache/DCache.scala:119:45, :204:31, :225:32
+  wire              _GEN_372 = io_tl_b_bits_address[10:5] == 6'h1E;	// cache/src/zaqal/cache/DCache.scala:119:45, :204:31, :225:32
+  wire              _GEN_373 = io_tl_b_bits_address[10:5] == 6'h1F;	// cache/src/zaqal/cache/DCache.scala:119:45, :204:31, :225:32
+  wire              _GEN_374 = io_tl_b_bits_address[10:5] == 6'h20;	// cache/src/zaqal/cache/DCache.scala:119:45, :204:31, :225:32
+  wire              _GEN_375 = io_tl_b_bits_address[10:5] == 6'h21;	// cache/src/zaqal/cache/DCache.scala:119:45, :204:31, :225:32
+  wire              _GEN_376 = io_tl_b_bits_address[10:5] == 6'h22;	// cache/src/zaqal/cache/DCache.scala:119:45, :204:31, :225:32
+  wire              _GEN_377 = io_tl_b_bits_address[10:5] == 6'h23;	// cache/src/zaqal/cache/DCache.scala:119:45, :204:31, :225:32
+  wire              _GEN_378 = io_tl_b_bits_address[10:5] == 6'h24;	// cache/src/zaqal/cache/DCache.scala:119:45, :204:31, :225:32
+  wire              _GEN_379 = io_tl_b_bits_address[10:5] == 6'h25;	// cache/src/zaqal/cache/DCache.scala:119:45, :204:31, :225:32
+  wire              _GEN_380 = io_tl_b_bits_address[10:5] == 6'h26;	// cache/src/zaqal/cache/DCache.scala:119:45, :204:31, :225:32
+  wire              _GEN_381 = io_tl_b_bits_address[10:5] == 6'h27;	// cache/src/zaqal/cache/DCache.scala:119:45, :204:31, :225:32
+  wire              _GEN_382 = io_tl_b_bits_address[10:5] == 6'h28;	// cache/src/zaqal/cache/DCache.scala:119:45, :204:31, :225:32
+  wire              _GEN_383 = io_tl_b_bits_address[10:5] == 6'h29;	// cache/src/zaqal/cache/DCache.scala:119:45, :204:31, :225:32
+  wire              _GEN_384 = io_tl_b_bits_address[10:5] == 6'h2A;	// cache/src/zaqal/cache/DCache.scala:119:45, :204:31, :225:32
+  wire              _GEN_385 = io_tl_b_bits_address[10:5] == 6'h2B;	// cache/src/zaqal/cache/DCache.scala:119:45, :204:31, :225:32
+  wire              _GEN_386 = io_tl_b_bits_address[10:5] == 6'h2C;	// cache/src/zaqal/cache/DCache.scala:119:45, :204:31, :225:32
+  wire              _GEN_387 = io_tl_b_bits_address[10:5] == 6'h2D;	// cache/src/zaqal/cache/DCache.scala:119:45, :204:31, :225:32
+  wire              _GEN_388 = io_tl_b_bits_address[10:5] == 6'h2E;	// cache/src/zaqal/cache/DCache.scala:119:45, :204:31, :225:32
+  wire              _GEN_389 = io_tl_b_bits_address[10:5] == 6'h2F;	// cache/src/zaqal/cache/DCache.scala:119:45, :204:31, :225:32
+  wire              _GEN_390 = io_tl_b_bits_address[10:5] == 6'h30;	// cache/src/zaqal/cache/DCache.scala:119:45, :204:31, :225:32
+  wire              _GEN_391 = io_tl_b_bits_address[10:5] == 6'h31;	// cache/src/zaqal/cache/DCache.scala:119:45, :204:31, :225:32
+  wire              _GEN_392 = io_tl_b_bits_address[10:5] == 6'h32;	// cache/src/zaqal/cache/DCache.scala:119:45, :204:31, :225:32
+  wire              _GEN_393 = io_tl_b_bits_address[10:5] == 6'h33;	// cache/src/zaqal/cache/DCache.scala:119:45, :204:31, :225:32
+  wire              _GEN_394 = io_tl_b_bits_address[10:5] == 6'h34;	// cache/src/zaqal/cache/DCache.scala:119:45, :204:31, :225:32
+  wire              _GEN_395 = io_tl_b_bits_address[10:5] == 6'h35;	// cache/src/zaqal/cache/DCache.scala:119:45, :204:31, :225:32
+  wire              _GEN_396 = io_tl_b_bits_address[10:5] == 6'h36;	// cache/src/zaqal/cache/DCache.scala:119:45, :204:31, :225:32
+  wire              _GEN_397 = io_tl_b_bits_address[10:5] == 6'h37;	// cache/src/zaqal/cache/DCache.scala:119:45, :204:31, :225:32
+  wire              _GEN_398 = io_tl_b_bits_address[10:5] == 6'h38;	// cache/src/zaqal/cache/DCache.scala:119:45, :204:31, :225:32
+  wire              _GEN_399 = io_tl_b_bits_address[10:5] == 6'h39;	// cache/src/zaqal/cache/DCache.scala:119:45, :204:31, :225:32
+  wire              _GEN_400 = io_tl_b_bits_address[10:5] == 6'h3A;	// cache/src/zaqal/cache/DCache.scala:119:45, :204:31, :225:32
+  wire              _GEN_401 = io_tl_b_bits_address[10:5] == 6'h3B;	// cache/src/zaqal/cache/DCache.scala:119:45, :204:31, :225:32
+  wire              _GEN_402 = io_tl_b_bits_address[10:5] == 6'h3C;	// cache/src/zaqal/cache/DCache.scala:119:45, :204:31, :225:32
+  wire              _GEN_403 = io_tl_b_bits_address[10:5] == 6'h3D;	// cache/src/zaqal/cache/DCache.scala:119:45, :204:31, :225:32
+  wire              _GEN_404 = io_tl_b_bits_address[10:5] == 6'h3E;	// cache/src/zaqal/cache/DCache.scala:119:45, :204:31, :225:32
+  wire              _GEN_405 = io_tl_c_ready & io_tl_b_valid;	// src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_406 = _GEN_405 & _GEN_342;	// cache/src/zaqal/cache/DCache.scala:160:36, :225:32, :230:30, :231:36, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_407 = _GEN_405 & _GEN_343;	// cache/src/zaqal/cache/DCache.scala:160:36, :225:32, :230:30, :231:36, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_408 = _GEN_405 & _GEN_344;	// cache/src/zaqal/cache/DCache.scala:160:36, :225:32, :230:30, :231:36, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_409 = _GEN_405 & _GEN_345;	// cache/src/zaqal/cache/DCache.scala:160:36, :225:32, :230:30, :231:36, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_410 = _GEN_405 & _GEN_346;	// cache/src/zaqal/cache/DCache.scala:160:36, :225:32, :230:30, :231:36, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_411 = _GEN_405 & _GEN_347;	// cache/src/zaqal/cache/DCache.scala:160:36, :225:32, :230:30, :231:36, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_412 = _GEN_405 & _GEN_348;	// cache/src/zaqal/cache/DCache.scala:160:36, :225:32, :230:30, :231:36, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_413 = _GEN_405 & _GEN_349;	// cache/src/zaqal/cache/DCache.scala:160:36, :225:32, :230:30, :231:36, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_414 = _GEN_405 & _GEN_350;	// cache/src/zaqal/cache/DCache.scala:160:36, :225:32, :230:30, :231:36, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_415 = _GEN_405 & _GEN_351;	// cache/src/zaqal/cache/DCache.scala:160:36, :225:32, :230:30, :231:36, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_416 = _GEN_405 & _GEN_352;	// cache/src/zaqal/cache/DCache.scala:160:36, :225:32, :230:30, :231:36, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_417 = _GEN_405 & _GEN_353;	// cache/src/zaqal/cache/DCache.scala:160:36, :225:32, :230:30, :231:36, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_418 = _GEN_405 & _GEN_354;	// cache/src/zaqal/cache/DCache.scala:160:36, :225:32, :230:30, :231:36, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_419 = _GEN_405 & _GEN_355;	// cache/src/zaqal/cache/DCache.scala:160:36, :225:32, :230:30, :231:36, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_420 = _GEN_405 & _GEN_356;	// cache/src/zaqal/cache/DCache.scala:160:36, :225:32, :230:30, :231:36, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_421 = _GEN_405 & _GEN_357;	// cache/src/zaqal/cache/DCache.scala:160:36, :225:32, :230:30, :231:36, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_422 = _GEN_405 & _GEN_358;	// cache/src/zaqal/cache/DCache.scala:160:36, :225:32, :230:30, :231:36, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_423 = _GEN_405 & _GEN_359;	// cache/src/zaqal/cache/DCache.scala:160:36, :225:32, :230:30, :231:36, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_424 = _GEN_405 & _GEN_360;	// cache/src/zaqal/cache/DCache.scala:160:36, :225:32, :230:30, :231:36, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_425 = _GEN_405 & _GEN_361;	// cache/src/zaqal/cache/DCache.scala:160:36, :225:32, :230:30, :231:36, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_426 = _GEN_405 & _GEN_362;	// cache/src/zaqal/cache/DCache.scala:160:36, :225:32, :230:30, :231:36, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_427 = _GEN_405 & _GEN_363;	// cache/src/zaqal/cache/DCache.scala:160:36, :225:32, :230:30, :231:36, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_428 = _GEN_405 & _GEN_364;	// cache/src/zaqal/cache/DCache.scala:160:36, :225:32, :230:30, :231:36, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_429 = _GEN_405 & _GEN_365;	// cache/src/zaqal/cache/DCache.scala:160:36, :225:32, :230:30, :231:36, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_430 = _GEN_405 & _GEN_366;	// cache/src/zaqal/cache/DCache.scala:160:36, :225:32, :230:30, :231:36, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_431 = _GEN_405 & _GEN_367;	// cache/src/zaqal/cache/DCache.scala:160:36, :225:32, :230:30, :231:36, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_432 = _GEN_405 & _GEN_368;	// cache/src/zaqal/cache/DCache.scala:160:36, :225:32, :230:30, :231:36, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_433 = _GEN_405 & _GEN_369;	// cache/src/zaqal/cache/DCache.scala:160:36, :225:32, :230:30, :231:36, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_434 = _GEN_405 & _GEN_370;	// cache/src/zaqal/cache/DCache.scala:160:36, :225:32, :230:30, :231:36, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_435 = _GEN_405 & _GEN_371;	// cache/src/zaqal/cache/DCache.scala:160:36, :225:32, :230:30, :231:36, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_436 = _GEN_405 & _GEN_372;	// cache/src/zaqal/cache/DCache.scala:160:36, :225:32, :230:30, :231:36, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_437 = _GEN_405 & _GEN_373;	// cache/src/zaqal/cache/DCache.scala:160:36, :225:32, :230:30, :231:36, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_438 = _GEN_405 & _GEN_374;	// cache/src/zaqal/cache/DCache.scala:160:36, :225:32, :230:30, :231:36, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_439 = _GEN_405 & _GEN_375;	// cache/src/zaqal/cache/DCache.scala:160:36, :225:32, :230:30, :231:36, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_440 = _GEN_405 & _GEN_376;	// cache/src/zaqal/cache/DCache.scala:160:36, :225:32, :230:30, :231:36, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_441 = _GEN_405 & _GEN_377;	// cache/src/zaqal/cache/DCache.scala:160:36, :225:32, :230:30, :231:36, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_442 = _GEN_405 & _GEN_378;	// cache/src/zaqal/cache/DCache.scala:160:36, :225:32, :230:30, :231:36, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_443 = _GEN_405 & _GEN_379;	// cache/src/zaqal/cache/DCache.scala:160:36, :225:32, :230:30, :231:36, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_444 = _GEN_405 & _GEN_380;	// cache/src/zaqal/cache/DCache.scala:160:36, :225:32, :230:30, :231:36, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_445 = _GEN_405 & _GEN_381;	// cache/src/zaqal/cache/DCache.scala:160:36, :225:32, :230:30, :231:36, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_446 = _GEN_405 & _GEN_382;	// cache/src/zaqal/cache/DCache.scala:160:36, :225:32, :230:30, :231:36, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_447 = _GEN_405 & _GEN_383;	// cache/src/zaqal/cache/DCache.scala:160:36, :225:32, :230:30, :231:36, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_448 = _GEN_405 & _GEN_384;	// cache/src/zaqal/cache/DCache.scala:160:36, :225:32, :230:30, :231:36, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_449 = _GEN_405 & _GEN_385;	// cache/src/zaqal/cache/DCache.scala:160:36, :225:32, :230:30, :231:36, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_450 = _GEN_405 & _GEN_386;	// cache/src/zaqal/cache/DCache.scala:160:36, :225:32, :230:30, :231:36, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_451 = _GEN_405 & _GEN_387;	// cache/src/zaqal/cache/DCache.scala:160:36, :225:32, :230:30, :231:36, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_452 = _GEN_405 & _GEN_388;	// cache/src/zaqal/cache/DCache.scala:160:36, :225:32, :230:30, :231:36, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_453 = _GEN_405 & _GEN_389;	// cache/src/zaqal/cache/DCache.scala:160:36, :225:32, :230:30, :231:36, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_454 = _GEN_405 & _GEN_390;	// cache/src/zaqal/cache/DCache.scala:160:36, :225:32, :230:30, :231:36, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_455 = _GEN_405 & _GEN_391;	// cache/src/zaqal/cache/DCache.scala:160:36, :225:32, :230:30, :231:36, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_456 = _GEN_405 & _GEN_392;	// cache/src/zaqal/cache/DCache.scala:160:36, :225:32, :230:30, :231:36, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_457 = _GEN_405 & _GEN_393;	// cache/src/zaqal/cache/DCache.scala:160:36, :225:32, :230:30, :231:36, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_458 = _GEN_405 & _GEN_394;	// cache/src/zaqal/cache/DCache.scala:160:36, :225:32, :230:30, :231:36, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_459 = _GEN_405 & _GEN_395;	// cache/src/zaqal/cache/DCache.scala:160:36, :225:32, :230:30, :231:36, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_460 = _GEN_405 & _GEN_396;	// cache/src/zaqal/cache/DCache.scala:160:36, :225:32, :230:30, :231:36, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_461 = _GEN_405 & _GEN_397;	// cache/src/zaqal/cache/DCache.scala:160:36, :225:32, :230:30, :231:36, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_462 = _GEN_405 & _GEN_398;	// cache/src/zaqal/cache/DCache.scala:160:36, :225:32, :230:30, :231:36, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_463 = _GEN_405 & _GEN_399;	// cache/src/zaqal/cache/DCache.scala:160:36, :225:32, :230:30, :231:36, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_464 = _GEN_405 & _GEN_400;	// cache/src/zaqal/cache/DCache.scala:160:36, :225:32, :230:30, :231:36, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_465 = _GEN_405 & _GEN_401;	// cache/src/zaqal/cache/DCache.scala:160:36, :225:32, :230:30, :231:36, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_466 = _GEN_405 & _GEN_402;	// cache/src/zaqal/cache/DCache.scala:160:36, :225:32, :230:30, :231:36, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_467 = _GEN_405 & _GEN_403;	// cache/src/zaqal/cache/DCache.scala:160:36, :225:32, :230:30, :231:36, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_468 = _GEN_405 & _GEN_404;	// cache/src/zaqal/cache/DCache.scala:160:36, :225:32, :230:30, :231:36, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_469 = _GEN_405 & (&(io_tl_b_bits_address[10:5]));	// cache/src/zaqal/cache/DCache.scala:160:36, :204:31, :225:32, :230:30, :231:36, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  always @(posedge clock) begin	// cache/src/zaqal/cache/DCache.scala:19:7
+    if (reset) begin	// cache/src/zaqal/cache/DCache.scala:19:7
+      validArray_0 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:{27,35}
+      validArray_1 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:{27,35}
+      validArray_2 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:{27,35}
+      validArray_3 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:{27,35}
+      validArray_4 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:{27,35}
+      validArray_5 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:{27,35}
+      validArray_6 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:{27,35}
+      validArray_7 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:{27,35}
+      validArray_8 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:{27,35}
+      validArray_9 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:{27,35}
+      validArray_10 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:{27,35}
+      validArray_11 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:{27,35}
+      validArray_12 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:{27,35}
+      validArray_13 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:{27,35}
+      validArray_14 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:{27,35}
+      validArray_15 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:{27,35}
+      validArray_16 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:{27,35}
+      validArray_17 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:{27,35}
+      validArray_18 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:{27,35}
+      validArray_19 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:{27,35}
+      validArray_20 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:{27,35}
+      validArray_21 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:{27,35}
+      validArray_22 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:{27,35}
+      validArray_23 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:{27,35}
+      validArray_24 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:{27,35}
+      validArray_25 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:{27,35}
+      validArray_26 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:{27,35}
+      validArray_27 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:{27,35}
+      validArray_28 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:{27,35}
+      validArray_29 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:{27,35}
+      validArray_30 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:{27,35}
+      validArray_31 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:{27,35}
+      validArray_32 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:{27,35}
+      validArray_33 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:{27,35}
+      validArray_34 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:{27,35}
+      validArray_35 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:{27,35}
+      validArray_36 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:{27,35}
+      validArray_37 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:{27,35}
+      validArray_38 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:{27,35}
+      validArray_39 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:{27,35}
+      validArray_40 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:{27,35}
+      validArray_41 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:{27,35}
+      validArray_42 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:{27,35}
+      validArray_43 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:{27,35}
+      validArray_44 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:{27,35}
+      validArray_45 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:{27,35}
+      validArray_46 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:{27,35}
+      validArray_47 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:{27,35}
+      validArray_48 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:{27,35}
+      validArray_49 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:{27,35}
+      validArray_50 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:{27,35}
+      validArray_51 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:{27,35}
+      validArray_52 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:{27,35}
+      validArray_53 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:{27,35}
+      validArray_54 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:{27,35}
+      validArray_55 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:{27,35}
+      validArray_56 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:{27,35}
+      validArray_57 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:{27,35}
+      validArray_58 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:{27,35}
+      validArray_59 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:{27,35}
+      validArray_60 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:{27,35}
+      validArray_61 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:{27,35}
+      validArray_62 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:{27,35}
+      validArray_63 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:{27,35}
+      dirtyArray_0 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:35, :53:27
+      dirtyArray_1 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:35, :53:27
+      dirtyArray_2 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:35, :53:27
+      dirtyArray_3 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:35, :53:27
+      dirtyArray_4 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:35, :53:27
+      dirtyArray_5 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:35, :53:27
+      dirtyArray_6 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:35, :53:27
+      dirtyArray_7 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:35, :53:27
+      dirtyArray_8 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:35, :53:27
+      dirtyArray_9 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:35, :53:27
+      dirtyArray_10 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:35, :53:27
+      dirtyArray_11 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:35, :53:27
+      dirtyArray_12 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:35, :53:27
+      dirtyArray_13 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:35, :53:27
+      dirtyArray_14 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:35, :53:27
+      dirtyArray_15 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:35, :53:27
+      dirtyArray_16 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:35, :53:27
+      dirtyArray_17 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:35, :53:27
+      dirtyArray_18 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:35, :53:27
+      dirtyArray_19 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:35, :53:27
+      dirtyArray_20 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:35, :53:27
+      dirtyArray_21 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:35, :53:27
+      dirtyArray_22 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:35, :53:27
+      dirtyArray_23 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:35, :53:27
+      dirtyArray_24 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:35, :53:27
+      dirtyArray_25 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:35, :53:27
+      dirtyArray_26 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:35, :53:27
+      dirtyArray_27 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:35, :53:27
+      dirtyArray_28 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:35, :53:27
+      dirtyArray_29 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:35, :53:27
+      dirtyArray_30 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:35, :53:27
+      dirtyArray_31 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:35, :53:27
+      dirtyArray_32 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:35, :53:27
+      dirtyArray_33 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:35, :53:27
+      dirtyArray_34 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:35, :53:27
+      dirtyArray_35 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:35, :53:27
+      dirtyArray_36 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:35, :53:27
+      dirtyArray_37 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:35, :53:27
+      dirtyArray_38 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:35, :53:27
+      dirtyArray_39 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:35, :53:27
+      dirtyArray_40 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:35, :53:27
+      dirtyArray_41 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:35, :53:27
+      dirtyArray_42 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:35, :53:27
+      dirtyArray_43 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:35, :53:27
+      dirtyArray_44 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:35, :53:27
+      dirtyArray_45 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:35, :53:27
+      dirtyArray_46 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:35, :53:27
+      dirtyArray_47 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:35, :53:27
+      dirtyArray_48 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:35, :53:27
+      dirtyArray_49 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:35, :53:27
+      dirtyArray_50 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:35, :53:27
+      dirtyArray_51 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:35, :53:27
+      dirtyArray_52 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:35, :53:27
+      dirtyArray_53 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:35, :53:27
+      dirtyArray_54 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:35, :53:27
+      dirtyArray_55 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:35, :53:27
+      dirtyArray_56 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:35, :53:27
+      dirtyArray_57 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:35, :53:27
+      dirtyArray_58 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:35, :53:27
+      dirtyArray_59 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:35, :53:27
+      dirtyArray_60 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:35, :53:27
+      dirtyArray_61 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:35, :53:27
+      dirtyArray_62 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:35, :53:27
+      dirtyArray_63 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:52:35, :53:27
+      stateArray_0 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+      stateArray_1 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+      stateArray_2 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+      stateArray_3 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+      stateArray_4 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+      stateArray_5 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+      stateArray_6 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+      stateArray_7 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+      stateArray_8 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+      stateArray_9 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+      stateArray_10 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+      stateArray_11 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+      stateArray_12 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+      stateArray_13 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+      stateArray_14 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+      stateArray_15 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+      stateArray_16 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+      stateArray_17 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+      stateArray_18 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+      stateArray_19 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+      stateArray_20 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+      stateArray_21 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+      stateArray_22 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+      stateArray_23 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+      stateArray_24 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+      stateArray_25 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+      stateArray_26 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+      stateArray_27 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+      stateArray_28 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+      stateArray_29 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+      stateArray_30 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+      stateArray_31 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+      stateArray_32 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+      stateArray_33 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+      stateArray_34 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+      stateArray_35 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+      stateArray_36 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+      stateArray_37 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+      stateArray_38 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+      stateArray_39 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+      stateArray_40 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+      stateArray_41 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+      stateArray_42 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+      stateArray_43 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+      stateArray_44 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+      stateArray_45 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+      stateArray_46 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+      stateArray_47 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+      stateArray_48 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+      stateArray_49 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+      stateArray_50 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+      stateArray_51 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+      stateArray_52 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+      stateArray_53 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+      stateArray_54 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+      stateArray_55 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+      stateArray_56 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+      stateArray_57 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+      stateArray_58 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+      stateArray_59 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+      stateArray_60 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+      stateArray_61 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+      stateArray_62 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+      stateArray_63 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+      tagArray_0 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:56:{27,35}
+      tagArray_1 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:56:{27,35}
+      tagArray_2 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:56:{27,35}
+      tagArray_3 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:56:{27,35}
+      tagArray_4 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:56:{27,35}
+      tagArray_5 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:56:{27,35}
+      tagArray_6 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:56:{27,35}
+      tagArray_7 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:56:{27,35}
+      tagArray_8 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:56:{27,35}
+      tagArray_9 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:56:{27,35}
+      tagArray_10 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:56:{27,35}
+      tagArray_11 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:56:{27,35}
+      tagArray_12 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:56:{27,35}
+      tagArray_13 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:56:{27,35}
+      tagArray_14 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:56:{27,35}
+      tagArray_15 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:56:{27,35}
+      tagArray_16 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:56:{27,35}
+      tagArray_17 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:56:{27,35}
+      tagArray_18 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:56:{27,35}
+      tagArray_19 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:56:{27,35}
+      tagArray_20 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:56:{27,35}
+      tagArray_21 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:56:{27,35}
+      tagArray_22 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:56:{27,35}
+      tagArray_23 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:56:{27,35}
+      tagArray_24 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:56:{27,35}
+      tagArray_25 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:56:{27,35}
+      tagArray_26 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:56:{27,35}
+      tagArray_27 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:56:{27,35}
+      tagArray_28 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:56:{27,35}
+      tagArray_29 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:56:{27,35}
+      tagArray_30 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:56:{27,35}
+      tagArray_31 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:56:{27,35}
+      tagArray_32 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:56:{27,35}
+      tagArray_33 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:56:{27,35}
+      tagArray_34 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:56:{27,35}
+      tagArray_35 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:56:{27,35}
+      tagArray_36 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:56:{27,35}
+      tagArray_37 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:56:{27,35}
+      tagArray_38 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:56:{27,35}
+      tagArray_39 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:56:{27,35}
+      tagArray_40 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:56:{27,35}
+      tagArray_41 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:56:{27,35}
+      tagArray_42 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:56:{27,35}
+      tagArray_43 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:56:{27,35}
+      tagArray_44 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:56:{27,35}
+      tagArray_45 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:56:{27,35}
+      tagArray_46 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:56:{27,35}
+      tagArray_47 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:56:{27,35}
+      tagArray_48 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:56:{27,35}
+      tagArray_49 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:56:{27,35}
+      tagArray_50 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:56:{27,35}
+      tagArray_51 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:56:{27,35}
+      tagArray_52 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:56:{27,35}
+      tagArray_53 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:56:{27,35}
+      tagArray_54 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:56:{27,35}
+      tagArray_55 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:56:{27,35}
+      tagArray_56 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:56:{27,35}
+      tagArray_57 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:56:{27,35}
+      tagArray_58 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:56:{27,35}
+      tagArray_59 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:56:{27,35}
+      tagArray_60 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:56:{27,35}
+      tagArray_61 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:56:{27,35}
+      tagArray_62 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:56:{27,35}
+      tagArray_63 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:56:{27,35}
+      dataArray_0_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_0_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_0_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_0_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_1_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_1_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_1_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_1_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_2_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_2_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_2_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_2_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_3_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_3_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_3_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_3_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_4_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_4_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_4_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_4_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_5_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_5_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_5_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_5_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_6_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_6_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_6_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_6_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_7_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_7_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_7_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_7_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_8_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_8_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_8_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_8_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_9_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_9_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_9_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_9_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_10_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_10_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_10_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_10_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_11_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_11_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_11_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_11_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_12_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_12_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_12_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_12_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_13_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_13_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_13_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_13_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_14_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_14_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_14_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_14_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_15_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_15_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_15_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_15_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_16_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_16_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_16_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_16_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_17_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_17_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_17_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_17_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_18_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_18_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_18_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_18_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_19_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_19_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_19_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_19_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_20_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_20_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_20_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_20_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_21_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_21_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_21_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_21_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_22_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_22_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_22_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_22_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_23_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_23_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_23_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_23_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_24_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_24_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_24_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_24_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_25_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_25_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_25_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_25_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_26_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_26_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_26_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_26_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_27_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_27_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_27_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_27_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_28_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_28_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_28_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_28_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_29_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_29_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_29_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_29_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_30_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_30_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_30_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_30_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_31_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_31_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_31_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_31_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_32_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_32_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_32_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_32_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_33_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_33_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_33_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_33_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_34_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_34_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_34_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_34_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_35_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_35_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_35_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_35_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_36_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_36_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_36_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_36_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_37_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_37_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_37_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_37_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_38_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_38_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_38_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_38_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_39_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_39_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_39_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_39_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_40_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_40_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_40_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_40_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_41_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_41_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_41_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_41_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_42_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_42_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_42_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_42_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_43_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_43_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_43_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_43_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_44_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_44_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_44_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_44_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_45_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_45_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_45_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_45_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_46_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_46_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_46_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_46_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_47_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_47_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_47_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_47_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_48_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_48_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_48_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_48_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_49_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_49_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_49_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_49_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_50_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_50_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_50_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_50_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_51_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_51_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_51_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_51_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_52_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_52_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_52_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_52_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_53_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_53_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_53_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_53_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_54_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_54_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_54_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_54_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_55_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_55_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_55_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_55_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_56_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_56_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_56_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_56_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_57_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_57_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_57_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_57_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_58_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_58_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_58_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_58_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_59_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_59_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_59_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_59_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_60_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_60_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_60_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_60_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_61_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_61_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_61_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_61_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_62_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_62_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_62_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_62_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_63_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_63_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_63_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_63_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
     end
-    else begin	// cache/src/zaqal/cache/DCache.scala:8:7
-      validArray_0 <= _GEN_0 | validArray_0;	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-      validArray_1 <= _GEN_1 | validArray_1;	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-      validArray_2 <= _GEN_2 | validArray_2;	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-      validArray_3 <= _GEN_3 | validArray_3;	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-      validArray_4 <= _GEN_4 | validArray_4;	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-      validArray_5 <= _GEN_5 | validArray_5;	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-      validArray_6 <= _GEN_6 | validArray_6;	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-      validArray_7 <= _GEN_7 | validArray_7;	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-      validArray_8 <= _GEN_8 | validArray_8;	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-      validArray_9 <= _GEN_9 | validArray_9;	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-      validArray_10 <= _GEN_10 | validArray_10;	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-      validArray_11 <= _GEN_11 | validArray_11;	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-      validArray_12 <= _GEN_12 | validArray_12;	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-      validArray_13 <= _GEN_13 | validArray_13;	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-      validArray_14 <= _GEN_14 | validArray_14;	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-      validArray_15 <= _GEN_15 | validArray_15;	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-      validArray_16 <= _GEN_16 | validArray_16;	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-      validArray_17 <= _GEN_17 | validArray_17;	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-      validArray_18 <= _GEN_18 | validArray_18;	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-      validArray_19 <= _GEN_19 | validArray_19;	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-      validArray_20 <= _GEN_20 | validArray_20;	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-      validArray_21 <= _GEN_21 | validArray_21;	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-      validArray_22 <= _GEN_22 | validArray_22;	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-      validArray_23 <= _GEN_23 | validArray_23;	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-      validArray_24 <= _GEN_24 | validArray_24;	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-      validArray_25 <= _GEN_25 | validArray_25;	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-      validArray_26 <= _GEN_26 | validArray_26;	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-      validArray_27 <= _GEN_27 | validArray_27;	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-      validArray_28 <= _GEN_28 | validArray_28;	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-      validArray_29 <= _GEN_29 | validArray_29;	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-      validArray_30 <= _GEN_30 | validArray_30;	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-      validArray_31 <= _GEN_31 | validArray_31;	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-      validArray_32 <= _GEN_32 | validArray_32;	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-      validArray_33 <= _GEN_33 | validArray_33;	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-      validArray_34 <= _GEN_34 | validArray_34;	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-      validArray_35 <= _GEN_35 | validArray_35;	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-      validArray_36 <= _GEN_36 | validArray_36;	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-      validArray_37 <= _GEN_37 | validArray_37;	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-      validArray_38 <= _GEN_38 | validArray_38;	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-      validArray_39 <= _GEN_39 | validArray_39;	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-      validArray_40 <= _GEN_40 | validArray_40;	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-      validArray_41 <= _GEN_41 | validArray_41;	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-      validArray_42 <= _GEN_42 | validArray_42;	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-      validArray_43 <= _GEN_43 | validArray_43;	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-      validArray_44 <= _GEN_44 | validArray_44;	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-      validArray_45 <= _GEN_45 | validArray_45;	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-      validArray_46 <= _GEN_46 | validArray_46;	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-      validArray_47 <= _GEN_47 | validArray_47;	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-      validArray_48 <= _GEN_48 | validArray_48;	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-      validArray_49 <= _GEN_49 | validArray_49;	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-      validArray_50 <= _GEN_50 | validArray_50;	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-      validArray_51 <= _GEN_51 | validArray_51;	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-      validArray_52 <= _GEN_52 | validArray_52;	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-      validArray_53 <= _GEN_53 | validArray_53;	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-      validArray_54 <= _GEN_54 | validArray_54;	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-      validArray_55 <= _GEN_55 | validArray_55;	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-      validArray_56 <= _GEN_56 | validArray_56;	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-      validArray_57 <= _GEN_57 | validArray_57;	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-      validArray_58 <= _GEN_58 | validArray_58;	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-      validArray_59 <= _GEN_59 | validArray_59;	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-      validArray_60 <= _GEN_60 | validArray_60;	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-      validArray_61 <= _GEN_61 | validArray_61;	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-      validArray_62 <= _GEN_62 | validArray_62;	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-      validArray_63 <= _GEN_63 | validArray_63;	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-      if (_GEN_0)	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-        tagArray_0 <= _mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:30:25, :42:20, :78:49
-      if (_GEN_1)	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-        tagArray_1 <= _mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:30:25, :42:20, :78:49
-      if (_GEN_2)	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-        tagArray_2 <= _mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:30:25, :42:20, :78:49
-      if (_GEN_3)	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-        tagArray_3 <= _mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:30:25, :42:20, :78:49
-      if (_GEN_4)	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-        tagArray_4 <= _mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:30:25, :42:20, :78:49
-      if (_GEN_5)	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-        tagArray_5 <= _mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:30:25, :42:20, :78:49
-      if (_GEN_6)	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-        tagArray_6 <= _mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:30:25, :42:20, :78:49
-      if (_GEN_7)	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-        tagArray_7 <= _mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:30:25, :42:20, :78:49
-      if (_GEN_8)	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-        tagArray_8 <= _mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:30:25, :42:20, :78:49
-      if (_GEN_9)	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-        tagArray_9 <= _mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:30:25, :42:20, :78:49
-      if (_GEN_10)	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-        tagArray_10 <= _mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:30:25, :42:20, :78:49
-      if (_GEN_11)	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-        tagArray_11 <= _mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:30:25, :42:20, :78:49
-      if (_GEN_12)	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-        tagArray_12 <= _mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:30:25, :42:20, :78:49
-      if (_GEN_13)	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-        tagArray_13 <= _mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:30:25, :42:20, :78:49
-      if (_GEN_14)	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-        tagArray_14 <= _mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:30:25, :42:20, :78:49
-      if (_GEN_15)	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-        tagArray_15 <= _mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:30:25, :42:20, :78:49
-      if (_GEN_16)	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-        tagArray_16 <= _mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:30:25, :42:20, :78:49
-      if (_GEN_17)	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-        tagArray_17 <= _mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:30:25, :42:20, :78:49
-      if (_GEN_18)	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-        tagArray_18 <= _mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:30:25, :42:20, :78:49
-      if (_GEN_19)	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-        tagArray_19 <= _mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:30:25, :42:20, :78:49
-      if (_GEN_20)	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-        tagArray_20 <= _mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:30:25, :42:20, :78:49
-      if (_GEN_21)	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-        tagArray_21 <= _mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:30:25, :42:20, :78:49
-      if (_GEN_22)	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-        tagArray_22 <= _mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:30:25, :42:20, :78:49
-      if (_GEN_23)	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-        tagArray_23 <= _mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:30:25, :42:20, :78:49
-      if (_GEN_24)	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-        tagArray_24 <= _mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:30:25, :42:20, :78:49
-      if (_GEN_25)	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-        tagArray_25 <= _mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:30:25, :42:20, :78:49
-      if (_GEN_26)	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-        tagArray_26 <= _mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:30:25, :42:20, :78:49
-      if (_GEN_27)	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-        tagArray_27 <= _mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:30:25, :42:20, :78:49
-      if (_GEN_28)	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-        tagArray_28 <= _mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:30:25, :42:20, :78:49
-      if (_GEN_29)	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-        tagArray_29 <= _mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:30:25, :42:20, :78:49
-      if (_GEN_30)	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-        tagArray_30 <= _mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:30:25, :42:20, :78:49
-      if (_GEN_31)	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-        tagArray_31 <= _mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:30:25, :42:20, :78:49
-      if (_GEN_32)	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-        tagArray_32 <= _mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:30:25, :42:20, :78:49
-      if (_GEN_33)	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-        tagArray_33 <= _mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:30:25, :42:20, :78:49
-      if (_GEN_34)	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-        tagArray_34 <= _mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:30:25, :42:20, :78:49
-      if (_GEN_35)	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-        tagArray_35 <= _mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:30:25, :42:20, :78:49
-      if (_GEN_36)	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-        tagArray_36 <= _mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:30:25, :42:20, :78:49
-      if (_GEN_37)	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-        tagArray_37 <= _mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:30:25, :42:20, :78:49
-      if (_GEN_38)	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-        tagArray_38 <= _mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:30:25, :42:20, :78:49
-      if (_GEN_39)	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-        tagArray_39 <= _mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:30:25, :42:20, :78:49
-      if (_GEN_40)	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-        tagArray_40 <= _mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:30:25, :42:20, :78:49
-      if (_GEN_41)	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-        tagArray_41 <= _mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:30:25, :42:20, :78:49
-      if (_GEN_42)	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-        tagArray_42 <= _mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:30:25, :42:20, :78:49
-      if (_GEN_43)	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-        tagArray_43 <= _mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:30:25, :42:20, :78:49
-      if (_GEN_44)	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-        tagArray_44 <= _mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:30:25, :42:20, :78:49
-      if (_GEN_45)	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-        tagArray_45 <= _mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:30:25, :42:20, :78:49
-      if (_GEN_46)	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-        tagArray_46 <= _mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:30:25, :42:20, :78:49
-      if (_GEN_47)	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-        tagArray_47 <= _mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:30:25, :42:20, :78:49
-      if (_GEN_48)	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-        tagArray_48 <= _mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:30:25, :42:20, :78:49
-      if (_GEN_49)	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-        tagArray_49 <= _mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:30:25, :42:20, :78:49
-      if (_GEN_50)	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-        tagArray_50 <= _mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:30:25, :42:20, :78:49
-      if (_GEN_51)	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-        tagArray_51 <= _mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:30:25, :42:20, :78:49
-      if (_GEN_52)	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-        tagArray_52 <= _mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:30:25, :42:20, :78:49
-      if (_GEN_53)	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-        tagArray_53 <= _mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:30:25, :42:20, :78:49
-      if (_GEN_54)	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-        tagArray_54 <= _mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:30:25, :42:20, :78:49
-      if (_GEN_55)	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-        tagArray_55 <= _mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:30:25, :42:20, :78:49
-      if (_GEN_56)	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-        tagArray_56 <= _mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:30:25, :42:20, :78:49
-      if (_GEN_57)	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-        tagArray_57 <= _mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:30:25, :42:20, :78:49
-      if (_GEN_58)	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-        tagArray_58 <= _mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:30:25, :42:20, :78:49
-      if (_GEN_59)	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-        tagArray_59 <= _mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:30:25, :42:20, :78:49
-      if (_GEN_60)	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-        tagArray_60 <= _mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:30:25, :42:20, :78:49
-      if (_GEN_61)	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-        tagArray_61 <= _mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:30:25, :42:20, :78:49
-      if (_GEN_62)	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-        tagArray_62 <= _mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:30:25, :42:20, :78:49
-      if (_GEN_63)	// cache/src/zaqal/cache/DCache.scala:28:27, :76:33, :80:29
-        tagArray_63 <= _mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:30:25, :42:20, :78:49
+    else begin	// cache/src/zaqal/cache/DCache.scala:19:7
+      validArray_0 <= (~_GEN_15 | _GEN_12 | ~_GEN_406) & (_GEN_211 | validArray_0);	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31, :221:23, :222:22, :223:{31,54}, :230:30, :231:36, :240:28, :241:34
+      validArray_1 <= (~_GEN_15 | _GEN_12 | ~_GEN_407) & (_GEN_213 | validArray_1);	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31, :221:23, :222:22, :223:{31,54}, :230:30, :231:36, :240:28, :241:34
+      validArray_2 <= (~_GEN_15 | _GEN_12 | ~_GEN_408) & (_GEN_215 | validArray_2);	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31, :221:23, :222:22, :223:{31,54}, :230:30, :231:36, :240:28, :241:34
+      validArray_3 <= (~_GEN_15 | _GEN_12 | ~_GEN_409) & (_GEN_217 | validArray_3);	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31, :221:23, :222:22, :223:{31,54}, :230:30, :231:36, :240:28, :241:34
+      validArray_4 <= (~_GEN_15 | _GEN_12 | ~_GEN_410) & (_GEN_219 | validArray_4);	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31, :221:23, :222:22, :223:{31,54}, :230:30, :231:36, :240:28, :241:34
+      validArray_5 <= (~_GEN_15 | _GEN_12 | ~_GEN_411) & (_GEN_221 | validArray_5);	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31, :221:23, :222:22, :223:{31,54}, :230:30, :231:36, :240:28, :241:34
+      validArray_6 <= (~_GEN_15 | _GEN_12 | ~_GEN_412) & (_GEN_223 | validArray_6);	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31, :221:23, :222:22, :223:{31,54}, :230:30, :231:36, :240:28, :241:34
+      validArray_7 <= (~_GEN_15 | _GEN_12 | ~_GEN_413) & (_GEN_225 | validArray_7);	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31, :221:23, :222:22, :223:{31,54}, :230:30, :231:36, :240:28, :241:34
+      validArray_8 <= (~_GEN_15 | _GEN_12 | ~_GEN_414) & (_GEN_227 | validArray_8);	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31, :221:23, :222:22, :223:{31,54}, :230:30, :231:36, :240:28, :241:34
+      validArray_9 <= (~_GEN_15 | _GEN_12 | ~_GEN_415) & (_GEN_229 | validArray_9);	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31, :221:23, :222:22, :223:{31,54}, :230:30, :231:36, :240:28, :241:34
+      validArray_10 <= (~_GEN_15 | _GEN_12 | ~_GEN_416) & (_GEN_231 | validArray_10);	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31, :221:23, :222:22, :223:{31,54}, :230:30, :231:36, :240:28, :241:34
+      validArray_11 <= (~_GEN_15 | _GEN_12 | ~_GEN_417) & (_GEN_233 | validArray_11);	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31, :221:23, :222:22, :223:{31,54}, :230:30, :231:36, :240:28, :241:34
+      validArray_12 <= (~_GEN_15 | _GEN_12 | ~_GEN_418) & (_GEN_235 | validArray_12);	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31, :221:23, :222:22, :223:{31,54}, :230:30, :231:36, :240:28, :241:34
+      validArray_13 <= (~_GEN_15 | _GEN_12 | ~_GEN_419) & (_GEN_237 | validArray_13);	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31, :221:23, :222:22, :223:{31,54}, :230:30, :231:36, :240:28, :241:34
+      validArray_14 <= (~_GEN_15 | _GEN_12 | ~_GEN_420) & (_GEN_239 | validArray_14);	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31, :221:23, :222:22, :223:{31,54}, :230:30, :231:36, :240:28, :241:34
+      validArray_15 <= (~_GEN_15 | _GEN_12 | ~_GEN_421) & (_GEN_241 | validArray_15);	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31, :221:23, :222:22, :223:{31,54}, :230:30, :231:36, :240:28, :241:34
+      validArray_16 <= (~_GEN_15 | _GEN_12 | ~_GEN_422) & (_GEN_243 | validArray_16);	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31, :221:23, :222:22, :223:{31,54}, :230:30, :231:36, :240:28, :241:34
+      validArray_17 <= (~_GEN_15 | _GEN_12 | ~_GEN_423) & (_GEN_245 | validArray_17);	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31, :221:23, :222:22, :223:{31,54}, :230:30, :231:36, :240:28, :241:34
+      validArray_18 <= (~_GEN_15 | _GEN_12 | ~_GEN_424) & (_GEN_247 | validArray_18);	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31, :221:23, :222:22, :223:{31,54}, :230:30, :231:36, :240:28, :241:34
+      validArray_19 <= (~_GEN_15 | _GEN_12 | ~_GEN_425) & (_GEN_249 | validArray_19);	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31, :221:23, :222:22, :223:{31,54}, :230:30, :231:36, :240:28, :241:34
+      validArray_20 <= (~_GEN_15 | _GEN_12 | ~_GEN_426) & (_GEN_251 | validArray_20);	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31, :221:23, :222:22, :223:{31,54}, :230:30, :231:36, :240:28, :241:34
+      validArray_21 <= (~_GEN_15 | _GEN_12 | ~_GEN_427) & (_GEN_253 | validArray_21);	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31, :221:23, :222:22, :223:{31,54}, :230:30, :231:36, :240:28, :241:34
+      validArray_22 <= (~_GEN_15 | _GEN_12 | ~_GEN_428) & (_GEN_255 | validArray_22);	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31, :221:23, :222:22, :223:{31,54}, :230:30, :231:36, :240:28, :241:34
+      validArray_23 <= (~_GEN_15 | _GEN_12 | ~_GEN_429) & (_GEN_257 | validArray_23);	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31, :221:23, :222:22, :223:{31,54}, :230:30, :231:36, :240:28, :241:34
+      validArray_24 <= (~_GEN_15 | _GEN_12 | ~_GEN_430) & (_GEN_259 | validArray_24);	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31, :221:23, :222:22, :223:{31,54}, :230:30, :231:36, :240:28, :241:34
+      validArray_25 <= (~_GEN_15 | _GEN_12 | ~_GEN_431) & (_GEN_261 | validArray_25);	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31, :221:23, :222:22, :223:{31,54}, :230:30, :231:36, :240:28, :241:34
+      validArray_26 <= (~_GEN_15 | _GEN_12 | ~_GEN_432) & (_GEN_263 | validArray_26);	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31, :221:23, :222:22, :223:{31,54}, :230:30, :231:36, :240:28, :241:34
+      validArray_27 <= (~_GEN_15 | _GEN_12 | ~_GEN_433) & (_GEN_265 | validArray_27);	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31, :221:23, :222:22, :223:{31,54}, :230:30, :231:36, :240:28, :241:34
+      validArray_28 <= (~_GEN_15 | _GEN_12 | ~_GEN_434) & (_GEN_267 | validArray_28);	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31, :221:23, :222:22, :223:{31,54}, :230:30, :231:36, :240:28, :241:34
+      validArray_29 <= (~_GEN_15 | _GEN_12 | ~_GEN_435) & (_GEN_269 | validArray_29);	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31, :221:23, :222:22, :223:{31,54}, :230:30, :231:36, :240:28, :241:34
+      validArray_30 <= (~_GEN_15 | _GEN_12 | ~_GEN_436) & (_GEN_271 | validArray_30);	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31, :221:23, :222:22, :223:{31,54}, :230:30, :231:36, :240:28, :241:34
+      validArray_31 <= (~_GEN_15 | _GEN_12 | ~_GEN_437) & (_GEN_273 | validArray_31);	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31, :221:23, :222:22, :223:{31,54}, :230:30, :231:36, :240:28, :241:34
+      validArray_32 <= (~_GEN_15 | _GEN_12 | ~_GEN_438) & (_GEN_275 | validArray_32);	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31, :221:23, :222:22, :223:{31,54}, :230:30, :231:36, :240:28, :241:34
+      validArray_33 <= (~_GEN_15 | _GEN_12 | ~_GEN_439) & (_GEN_277 | validArray_33);	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31, :221:23, :222:22, :223:{31,54}, :230:30, :231:36, :240:28, :241:34
+      validArray_34 <= (~_GEN_15 | _GEN_12 | ~_GEN_440) & (_GEN_279 | validArray_34);	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31, :221:23, :222:22, :223:{31,54}, :230:30, :231:36, :240:28, :241:34
+      validArray_35 <= (~_GEN_15 | _GEN_12 | ~_GEN_441) & (_GEN_281 | validArray_35);	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31, :221:23, :222:22, :223:{31,54}, :230:30, :231:36, :240:28, :241:34
+      validArray_36 <= (~_GEN_15 | _GEN_12 | ~_GEN_442) & (_GEN_283 | validArray_36);	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31, :221:23, :222:22, :223:{31,54}, :230:30, :231:36, :240:28, :241:34
+      validArray_37 <= (~_GEN_15 | _GEN_12 | ~_GEN_443) & (_GEN_285 | validArray_37);	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31, :221:23, :222:22, :223:{31,54}, :230:30, :231:36, :240:28, :241:34
+      validArray_38 <= (~_GEN_15 | _GEN_12 | ~_GEN_444) & (_GEN_287 | validArray_38);	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31, :221:23, :222:22, :223:{31,54}, :230:30, :231:36, :240:28, :241:34
+      validArray_39 <= (~_GEN_15 | _GEN_12 | ~_GEN_445) & (_GEN_289 | validArray_39);	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31, :221:23, :222:22, :223:{31,54}, :230:30, :231:36, :240:28, :241:34
+      validArray_40 <= (~_GEN_15 | _GEN_12 | ~_GEN_446) & (_GEN_291 | validArray_40);	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31, :221:23, :222:22, :223:{31,54}, :230:30, :231:36, :240:28, :241:34
+      validArray_41 <= (~_GEN_15 | _GEN_12 | ~_GEN_447) & (_GEN_293 | validArray_41);	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31, :221:23, :222:22, :223:{31,54}, :230:30, :231:36, :240:28, :241:34
+      validArray_42 <= (~_GEN_15 | _GEN_12 | ~_GEN_448) & (_GEN_295 | validArray_42);	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31, :221:23, :222:22, :223:{31,54}, :230:30, :231:36, :240:28, :241:34
+      validArray_43 <= (~_GEN_15 | _GEN_12 | ~_GEN_449) & (_GEN_297 | validArray_43);	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31, :221:23, :222:22, :223:{31,54}, :230:30, :231:36, :240:28, :241:34
+      validArray_44 <= (~_GEN_15 | _GEN_12 | ~_GEN_450) & (_GEN_299 | validArray_44);	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31, :221:23, :222:22, :223:{31,54}, :230:30, :231:36, :240:28, :241:34
+      validArray_45 <= (~_GEN_15 | _GEN_12 | ~_GEN_451) & (_GEN_301 | validArray_45);	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31, :221:23, :222:22, :223:{31,54}, :230:30, :231:36, :240:28, :241:34
+      validArray_46 <= (~_GEN_15 | _GEN_12 | ~_GEN_452) & (_GEN_303 | validArray_46);	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31, :221:23, :222:22, :223:{31,54}, :230:30, :231:36, :240:28, :241:34
+      validArray_47 <= (~_GEN_15 | _GEN_12 | ~_GEN_453) & (_GEN_305 | validArray_47);	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31, :221:23, :222:22, :223:{31,54}, :230:30, :231:36, :240:28, :241:34
+      validArray_48 <= (~_GEN_15 | _GEN_12 | ~_GEN_454) & (_GEN_307 | validArray_48);	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31, :221:23, :222:22, :223:{31,54}, :230:30, :231:36, :240:28, :241:34
+      validArray_49 <= (~_GEN_15 | _GEN_12 | ~_GEN_455) & (_GEN_309 | validArray_49);	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31, :221:23, :222:22, :223:{31,54}, :230:30, :231:36, :240:28, :241:34
+      validArray_50 <= (~_GEN_15 | _GEN_12 | ~_GEN_456) & (_GEN_311 | validArray_50);	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31, :221:23, :222:22, :223:{31,54}, :230:30, :231:36, :240:28, :241:34
+      validArray_51 <= (~_GEN_15 | _GEN_12 | ~_GEN_457) & (_GEN_313 | validArray_51);	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31, :221:23, :222:22, :223:{31,54}, :230:30, :231:36, :240:28, :241:34
+      validArray_52 <= (~_GEN_15 | _GEN_12 | ~_GEN_458) & (_GEN_315 | validArray_52);	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31, :221:23, :222:22, :223:{31,54}, :230:30, :231:36, :240:28, :241:34
+      validArray_53 <= (~_GEN_15 | _GEN_12 | ~_GEN_459) & (_GEN_317 | validArray_53);	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31, :221:23, :222:22, :223:{31,54}, :230:30, :231:36, :240:28, :241:34
+      validArray_54 <= (~_GEN_15 | _GEN_12 | ~_GEN_460) & (_GEN_319 | validArray_54);	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31, :221:23, :222:22, :223:{31,54}, :230:30, :231:36, :240:28, :241:34
+      validArray_55 <= (~_GEN_15 | _GEN_12 | ~_GEN_461) & (_GEN_321 | validArray_55);	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31, :221:23, :222:22, :223:{31,54}, :230:30, :231:36, :240:28, :241:34
+      validArray_56 <= (~_GEN_15 | _GEN_12 | ~_GEN_462) & (_GEN_323 | validArray_56);	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31, :221:23, :222:22, :223:{31,54}, :230:30, :231:36, :240:28, :241:34
+      validArray_57 <= (~_GEN_15 | _GEN_12 | ~_GEN_463) & (_GEN_325 | validArray_57);	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31, :221:23, :222:22, :223:{31,54}, :230:30, :231:36, :240:28, :241:34
+      validArray_58 <= (~_GEN_15 | _GEN_12 | ~_GEN_464) & (_GEN_327 | validArray_58);	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31, :221:23, :222:22, :223:{31,54}, :230:30, :231:36, :240:28, :241:34
+      validArray_59 <= (~_GEN_15 | _GEN_12 | ~_GEN_465) & (_GEN_329 | validArray_59);	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31, :221:23, :222:22, :223:{31,54}, :230:30, :231:36, :240:28, :241:34
+      validArray_60 <= (~_GEN_15 | _GEN_12 | ~_GEN_466) & (_GEN_331 | validArray_60);	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31, :221:23, :222:22, :223:{31,54}, :230:30, :231:36, :240:28, :241:34
+      validArray_61 <= (~_GEN_15 | _GEN_12 | ~_GEN_467) & (_GEN_333 | validArray_61);	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31, :221:23, :222:22, :223:{31,54}, :230:30, :231:36, :240:28, :241:34
+      validArray_62 <= (~_GEN_15 | _GEN_12 | ~_GEN_468) & (_GEN_335 | validArray_62);	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31, :221:23, :222:22, :223:{31,54}, :230:30, :231:36, :240:28, :241:34
+      validArray_63 <= (~_GEN_15 | _GEN_12 | ~_GEN_469) & (_GEN_336 | validArray_63);	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31, :221:23, :222:22, :223:{31,54}, :230:30, :231:36, :240:28, :241:34
+      dirtyArray_0 <=
+        (~_GEN_15 | ~(_GEN_14 & _GEN_406))
+        & (_GEN_337
+             ? (_tl_mshr_io_refill_out_bits_is_write
+                  ? _GEN_210 | _GEN_82 | dirtyArray_0
+                  : ~_GEN_210 & _GEN_83)
+             : _GEN_83);	// cache/src/zaqal/cache/DCache.scala:53:27, :73:23, :115:22, :116:17, :118:34, :120:30, :160:36, :165:50, :166:31, :170:49, :172:33, :181:33, :221:23, :222:22, :223:54, :226:28, :230:30, :231:36
+      dirtyArray_1 <=
+        (~_GEN_15 | ~(_GEN_14 & _GEN_407))
+        & (_GEN_337
+             ? (_tl_mshr_io_refill_out_bits_is_write
+                  ? _GEN_212 | _GEN_84 | dirtyArray_1
+                  : ~_GEN_212 & _GEN_85)
+             : _GEN_85);	// cache/src/zaqal/cache/DCache.scala:53:27, :73:23, :115:22, :116:17, :118:34, :120:30, :160:36, :165:50, :166:31, :170:49, :172:33, :181:33, :221:23, :222:22, :223:54, :226:28, :230:30, :231:36
+      dirtyArray_2 <=
+        (~_GEN_15 | ~(_GEN_14 & _GEN_408))
+        & (_GEN_337
+             ? (_tl_mshr_io_refill_out_bits_is_write
+                  ? _GEN_214 | _GEN_86 | dirtyArray_2
+                  : ~_GEN_214 & _GEN_87)
+             : _GEN_87);	// cache/src/zaqal/cache/DCache.scala:53:27, :73:23, :115:22, :116:17, :118:34, :120:30, :160:36, :165:50, :166:31, :170:49, :172:33, :181:33, :221:23, :222:22, :223:54, :226:28, :230:30, :231:36
+      dirtyArray_3 <=
+        (~_GEN_15 | ~(_GEN_14 & _GEN_409))
+        & (_GEN_337
+             ? (_tl_mshr_io_refill_out_bits_is_write
+                  ? _GEN_216 | _GEN_88 | dirtyArray_3
+                  : ~_GEN_216 & _GEN_89)
+             : _GEN_89);	// cache/src/zaqal/cache/DCache.scala:53:27, :73:23, :115:22, :116:17, :118:34, :120:30, :160:36, :165:50, :166:31, :170:49, :172:33, :181:33, :221:23, :222:22, :223:54, :226:28, :230:30, :231:36
+      dirtyArray_4 <=
+        (~_GEN_15 | ~(_GEN_14 & _GEN_410))
+        & (_GEN_337
+             ? (_tl_mshr_io_refill_out_bits_is_write
+                  ? _GEN_218 | _GEN_90 | dirtyArray_4
+                  : ~_GEN_218 & _GEN_91)
+             : _GEN_91);	// cache/src/zaqal/cache/DCache.scala:53:27, :73:23, :115:22, :116:17, :118:34, :120:30, :160:36, :165:50, :166:31, :170:49, :172:33, :181:33, :221:23, :222:22, :223:54, :226:28, :230:30, :231:36
+      dirtyArray_5 <=
+        (~_GEN_15 | ~(_GEN_14 & _GEN_411))
+        & (_GEN_337
+             ? (_tl_mshr_io_refill_out_bits_is_write
+                  ? _GEN_220 | _GEN_92 | dirtyArray_5
+                  : ~_GEN_220 & _GEN_93)
+             : _GEN_93);	// cache/src/zaqal/cache/DCache.scala:53:27, :73:23, :115:22, :116:17, :118:34, :120:30, :160:36, :165:50, :166:31, :170:49, :172:33, :181:33, :221:23, :222:22, :223:54, :226:28, :230:30, :231:36
+      dirtyArray_6 <=
+        (~_GEN_15 | ~(_GEN_14 & _GEN_412))
+        & (_GEN_337
+             ? (_tl_mshr_io_refill_out_bits_is_write
+                  ? _GEN_222 | _GEN_94 | dirtyArray_6
+                  : ~_GEN_222 & _GEN_95)
+             : _GEN_95);	// cache/src/zaqal/cache/DCache.scala:53:27, :73:23, :115:22, :116:17, :118:34, :120:30, :160:36, :165:50, :166:31, :170:49, :172:33, :181:33, :221:23, :222:22, :223:54, :226:28, :230:30, :231:36
+      dirtyArray_7 <=
+        (~_GEN_15 | ~(_GEN_14 & _GEN_413))
+        & (_GEN_337
+             ? (_tl_mshr_io_refill_out_bits_is_write
+                  ? _GEN_224 | _GEN_96 | dirtyArray_7
+                  : ~_GEN_224 & _GEN_97)
+             : _GEN_97);	// cache/src/zaqal/cache/DCache.scala:53:27, :73:23, :115:22, :116:17, :118:34, :120:30, :160:36, :165:50, :166:31, :170:49, :172:33, :181:33, :221:23, :222:22, :223:54, :226:28, :230:30, :231:36
+      dirtyArray_8 <=
+        (~_GEN_15 | ~(_GEN_14 & _GEN_414))
+        & (_GEN_337
+             ? (_tl_mshr_io_refill_out_bits_is_write
+                  ? _GEN_226 | _GEN_98 | dirtyArray_8
+                  : ~_GEN_226 & _GEN_99)
+             : _GEN_99);	// cache/src/zaqal/cache/DCache.scala:53:27, :73:23, :115:22, :116:17, :118:34, :120:30, :160:36, :165:50, :166:31, :170:49, :172:33, :181:33, :221:23, :222:22, :223:54, :226:28, :230:30, :231:36
+      dirtyArray_9 <=
+        (~_GEN_15 | ~(_GEN_14 & _GEN_415))
+        & (_GEN_337
+             ? (_tl_mshr_io_refill_out_bits_is_write
+                  ? _GEN_228 | _GEN_100 | dirtyArray_9
+                  : ~_GEN_228 & _GEN_101)
+             : _GEN_101);	// cache/src/zaqal/cache/DCache.scala:53:27, :73:23, :115:22, :116:17, :118:34, :120:30, :160:36, :165:50, :166:31, :170:49, :172:33, :181:33, :221:23, :222:22, :223:54, :226:28, :230:30, :231:36
+      dirtyArray_10 <=
+        (~_GEN_15 | ~(_GEN_14 & _GEN_416))
+        & (_GEN_337
+             ? (_tl_mshr_io_refill_out_bits_is_write
+                  ? _GEN_230 | _GEN_102 | dirtyArray_10
+                  : ~_GEN_230 & _GEN_103)
+             : _GEN_103);	// cache/src/zaqal/cache/DCache.scala:53:27, :73:23, :115:22, :116:17, :118:34, :120:30, :160:36, :165:50, :166:31, :170:49, :172:33, :181:33, :221:23, :222:22, :223:54, :226:28, :230:30, :231:36
+      dirtyArray_11 <=
+        (~_GEN_15 | ~(_GEN_14 & _GEN_417))
+        & (_GEN_337
+             ? (_tl_mshr_io_refill_out_bits_is_write
+                  ? _GEN_232 | _GEN_104 | dirtyArray_11
+                  : ~_GEN_232 & _GEN_105)
+             : _GEN_105);	// cache/src/zaqal/cache/DCache.scala:53:27, :73:23, :115:22, :116:17, :118:34, :120:30, :160:36, :165:50, :166:31, :170:49, :172:33, :181:33, :221:23, :222:22, :223:54, :226:28, :230:30, :231:36
+      dirtyArray_12 <=
+        (~_GEN_15 | ~(_GEN_14 & _GEN_418))
+        & (_GEN_337
+             ? (_tl_mshr_io_refill_out_bits_is_write
+                  ? _GEN_234 | _GEN_106 | dirtyArray_12
+                  : ~_GEN_234 & _GEN_107)
+             : _GEN_107);	// cache/src/zaqal/cache/DCache.scala:53:27, :73:23, :115:22, :116:17, :118:34, :120:30, :160:36, :165:50, :166:31, :170:49, :172:33, :181:33, :221:23, :222:22, :223:54, :226:28, :230:30, :231:36
+      dirtyArray_13 <=
+        (~_GEN_15 | ~(_GEN_14 & _GEN_419))
+        & (_GEN_337
+             ? (_tl_mshr_io_refill_out_bits_is_write
+                  ? _GEN_236 | _GEN_108 | dirtyArray_13
+                  : ~_GEN_236 & _GEN_109)
+             : _GEN_109);	// cache/src/zaqal/cache/DCache.scala:53:27, :73:23, :115:22, :116:17, :118:34, :120:30, :160:36, :165:50, :166:31, :170:49, :172:33, :181:33, :221:23, :222:22, :223:54, :226:28, :230:30, :231:36
+      dirtyArray_14 <=
+        (~_GEN_15 | ~(_GEN_14 & _GEN_420))
+        & (_GEN_337
+             ? (_tl_mshr_io_refill_out_bits_is_write
+                  ? _GEN_238 | _GEN_110 | dirtyArray_14
+                  : ~_GEN_238 & _GEN_111)
+             : _GEN_111);	// cache/src/zaqal/cache/DCache.scala:53:27, :73:23, :115:22, :116:17, :118:34, :120:30, :160:36, :165:50, :166:31, :170:49, :172:33, :181:33, :221:23, :222:22, :223:54, :226:28, :230:30, :231:36
+      dirtyArray_15 <=
+        (~_GEN_15 | ~(_GEN_14 & _GEN_421))
+        & (_GEN_337
+             ? (_tl_mshr_io_refill_out_bits_is_write
+                  ? _GEN_240 | _GEN_112 | dirtyArray_15
+                  : ~_GEN_240 & _GEN_113)
+             : _GEN_113);	// cache/src/zaqal/cache/DCache.scala:53:27, :73:23, :115:22, :116:17, :118:34, :120:30, :160:36, :165:50, :166:31, :170:49, :172:33, :181:33, :221:23, :222:22, :223:54, :226:28, :230:30, :231:36
+      dirtyArray_16 <=
+        (~_GEN_15 | ~(_GEN_14 & _GEN_422))
+        & (_GEN_337
+             ? (_tl_mshr_io_refill_out_bits_is_write
+                  ? _GEN_242 | _GEN_114 | dirtyArray_16
+                  : ~_GEN_242 & _GEN_115)
+             : _GEN_115);	// cache/src/zaqal/cache/DCache.scala:53:27, :73:23, :115:22, :116:17, :118:34, :120:30, :160:36, :165:50, :166:31, :170:49, :172:33, :181:33, :221:23, :222:22, :223:54, :226:28, :230:30, :231:36
+      dirtyArray_17 <=
+        (~_GEN_15 | ~(_GEN_14 & _GEN_423))
+        & (_GEN_337
+             ? (_tl_mshr_io_refill_out_bits_is_write
+                  ? _GEN_244 | _GEN_116 | dirtyArray_17
+                  : ~_GEN_244 & _GEN_117)
+             : _GEN_117);	// cache/src/zaqal/cache/DCache.scala:53:27, :73:23, :115:22, :116:17, :118:34, :120:30, :160:36, :165:50, :166:31, :170:49, :172:33, :181:33, :221:23, :222:22, :223:54, :226:28, :230:30, :231:36
+      dirtyArray_18 <=
+        (~_GEN_15 | ~(_GEN_14 & _GEN_424))
+        & (_GEN_337
+             ? (_tl_mshr_io_refill_out_bits_is_write
+                  ? _GEN_246 | _GEN_118 | dirtyArray_18
+                  : ~_GEN_246 & _GEN_119)
+             : _GEN_119);	// cache/src/zaqal/cache/DCache.scala:53:27, :73:23, :115:22, :116:17, :118:34, :120:30, :160:36, :165:50, :166:31, :170:49, :172:33, :181:33, :221:23, :222:22, :223:54, :226:28, :230:30, :231:36
+      dirtyArray_19 <=
+        (~_GEN_15 | ~(_GEN_14 & _GEN_425))
+        & (_GEN_337
+             ? (_tl_mshr_io_refill_out_bits_is_write
+                  ? _GEN_248 | _GEN_120 | dirtyArray_19
+                  : ~_GEN_248 & _GEN_121)
+             : _GEN_121);	// cache/src/zaqal/cache/DCache.scala:53:27, :73:23, :115:22, :116:17, :118:34, :120:30, :160:36, :165:50, :166:31, :170:49, :172:33, :181:33, :221:23, :222:22, :223:54, :226:28, :230:30, :231:36
+      dirtyArray_20 <=
+        (~_GEN_15 | ~(_GEN_14 & _GEN_426))
+        & (_GEN_337
+             ? (_tl_mshr_io_refill_out_bits_is_write
+                  ? _GEN_250 | _GEN_122 | dirtyArray_20
+                  : ~_GEN_250 & _GEN_123)
+             : _GEN_123);	// cache/src/zaqal/cache/DCache.scala:53:27, :73:23, :115:22, :116:17, :118:34, :120:30, :160:36, :165:50, :166:31, :170:49, :172:33, :181:33, :221:23, :222:22, :223:54, :226:28, :230:30, :231:36
+      dirtyArray_21 <=
+        (~_GEN_15 | ~(_GEN_14 & _GEN_427))
+        & (_GEN_337
+             ? (_tl_mshr_io_refill_out_bits_is_write
+                  ? _GEN_252 | _GEN_124 | dirtyArray_21
+                  : ~_GEN_252 & _GEN_125)
+             : _GEN_125);	// cache/src/zaqal/cache/DCache.scala:53:27, :73:23, :115:22, :116:17, :118:34, :120:30, :160:36, :165:50, :166:31, :170:49, :172:33, :181:33, :221:23, :222:22, :223:54, :226:28, :230:30, :231:36
+      dirtyArray_22 <=
+        (~_GEN_15 | ~(_GEN_14 & _GEN_428))
+        & (_GEN_337
+             ? (_tl_mshr_io_refill_out_bits_is_write
+                  ? _GEN_254 | _GEN_126 | dirtyArray_22
+                  : ~_GEN_254 & _GEN_127)
+             : _GEN_127);	// cache/src/zaqal/cache/DCache.scala:53:27, :73:23, :115:22, :116:17, :118:34, :120:30, :160:36, :165:50, :166:31, :170:49, :172:33, :181:33, :221:23, :222:22, :223:54, :226:28, :230:30, :231:36
+      dirtyArray_23 <=
+        (~_GEN_15 | ~(_GEN_14 & _GEN_429))
+        & (_GEN_337
+             ? (_tl_mshr_io_refill_out_bits_is_write
+                  ? _GEN_256 | _GEN_128 | dirtyArray_23
+                  : ~_GEN_256 & _GEN_129)
+             : _GEN_129);	// cache/src/zaqal/cache/DCache.scala:53:27, :73:23, :115:22, :116:17, :118:34, :120:30, :160:36, :165:50, :166:31, :170:49, :172:33, :181:33, :221:23, :222:22, :223:54, :226:28, :230:30, :231:36
+      dirtyArray_24 <=
+        (~_GEN_15 | ~(_GEN_14 & _GEN_430))
+        & (_GEN_337
+             ? (_tl_mshr_io_refill_out_bits_is_write
+                  ? _GEN_258 | _GEN_130 | dirtyArray_24
+                  : ~_GEN_258 & _GEN_131)
+             : _GEN_131);	// cache/src/zaqal/cache/DCache.scala:53:27, :73:23, :115:22, :116:17, :118:34, :120:30, :160:36, :165:50, :166:31, :170:49, :172:33, :181:33, :221:23, :222:22, :223:54, :226:28, :230:30, :231:36
+      dirtyArray_25 <=
+        (~_GEN_15 | ~(_GEN_14 & _GEN_431))
+        & (_GEN_337
+             ? (_tl_mshr_io_refill_out_bits_is_write
+                  ? _GEN_260 | _GEN_132 | dirtyArray_25
+                  : ~_GEN_260 & _GEN_133)
+             : _GEN_133);	// cache/src/zaqal/cache/DCache.scala:53:27, :73:23, :115:22, :116:17, :118:34, :120:30, :160:36, :165:50, :166:31, :170:49, :172:33, :181:33, :221:23, :222:22, :223:54, :226:28, :230:30, :231:36
+      dirtyArray_26 <=
+        (~_GEN_15 | ~(_GEN_14 & _GEN_432))
+        & (_GEN_337
+             ? (_tl_mshr_io_refill_out_bits_is_write
+                  ? _GEN_262 | _GEN_134 | dirtyArray_26
+                  : ~_GEN_262 & _GEN_135)
+             : _GEN_135);	// cache/src/zaqal/cache/DCache.scala:53:27, :73:23, :115:22, :116:17, :118:34, :120:30, :160:36, :165:50, :166:31, :170:49, :172:33, :181:33, :221:23, :222:22, :223:54, :226:28, :230:30, :231:36
+      dirtyArray_27 <=
+        (~_GEN_15 | ~(_GEN_14 & _GEN_433))
+        & (_GEN_337
+             ? (_tl_mshr_io_refill_out_bits_is_write
+                  ? _GEN_264 | _GEN_136 | dirtyArray_27
+                  : ~_GEN_264 & _GEN_137)
+             : _GEN_137);	// cache/src/zaqal/cache/DCache.scala:53:27, :73:23, :115:22, :116:17, :118:34, :120:30, :160:36, :165:50, :166:31, :170:49, :172:33, :181:33, :221:23, :222:22, :223:54, :226:28, :230:30, :231:36
+      dirtyArray_28 <=
+        (~_GEN_15 | ~(_GEN_14 & _GEN_434))
+        & (_GEN_337
+             ? (_tl_mshr_io_refill_out_bits_is_write
+                  ? _GEN_266 | _GEN_138 | dirtyArray_28
+                  : ~_GEN_266 & _GEN_139)
+             : _GEN_139);	// cache/src/zaqal/cache/DCache.scala:53:27, :73:23, :115:22, :116:17, :118:34, :120:30, :160:36, :165:50, :166:31, :170:49, :172:33, :181:33, :221:23, :222:22, :223:54, :226:28, :230:30, :231:36
+      dirtyArray_29 <=
+        (~_GEN_15 | ~(_GEN_14 & _GEN_435))
+        & (_GEN_337
+             ? (_tl_mshr_io_refill_out_bits_is_write
+                  ? _GEN_268 | _GEN_140 | dirtyArray_29
+                  : ~_GEN_268 & _GEN_141)
+             : _GEN_141);	// cache/src/zaqal/cache/DCache.scala:53:27, :73:23, :115:22, :116:17, :118:34, :120:30, :160:36, :165:50, :166:31, :170:49, :172:33, :181:33, :221:23, :222:22, :223:54, :226:28, :230:30, :231:36
+      dirtyArray_30 <=
+        (~_GEN_15 | ~(_GEN_14 & _GEN_436))
+        & (_GEN_337
+             ? (_tl_mshr_io_refill_out_bits_is_write
+                  ? _GEN_270 | _GEN_142 | dirtyArray_30
+                  : ~_GEN_270 & _GEN_143)
+             : _GEN_143);	// cache/src/zaqal/cache/DCache.scala:53:27, :73:23, :115:22, :116:17, :118:34, :120:30, :160:36, :165:50, :166:31, :170:49, :172:33, :181:33, :221:23, :222:22, :223:54, :226:28, :230:30, :231:36
+      dirtyArray_31 <=
+        (~_GEN_15 | ~(_GEN_14 & _GEN_437))
+        & (_GEN_337
+             ? (_tl_mshr_io_refill_out_bits_is_write
+                  ? _GEN_272 | _GEN_144 | dirtyArray_31
+                  : ~_GEN_272 & _GEN_145)
+             : _GEN_145);	// cache/src/zaqal/cache/DCache.scala:53:27, :73:23, :115:22, :116:17, :118:34, :120:30, :160:36, :165:50, :166:31, :170:49, :172:33, :181:33, :221:23, :222:22, :223:54, :226:28, :230:30, :231:36
+      dirtyArray_32 <=
+        (~_GEN_15 | ~(_GEN_14 & _GEN_438))
+        & (_GEN_337
+             ? (_tl_mshr_io_refill_out_bits_is_write
+                  ? _GEN_274 | _GEN_146 | dirtyArray_32
+                  : ~_GEN_274 & _GEN_147)
+             : _GEN_147);	// cache/src/zaqal/cache/DCache.scala:53:27, :73:23, :115:22, :116:17, :118:34, :120:30, :160:36, :165:50, :166:31, :170:49, :172:33, :181:33, :221:23, :222:22, :223:54, :226:28, :230:30, :231:36
+      dirtyArray_33 <=
+        (~_GEN_15 | ~(_GEN_14 & _GEN_439))
+        & (_GEN_337
+             ? (_tl_mshr_io_refill_out_bits_is_write
+                  ? _GEN_276 | _GEN_148 | dirtyArray_33
+                  : ~_GEN_276 & _GEN_149)
+             : _GEN_149);	// cache/src/zaqal/cache/DCache.scala:53:27, :73:23, :115:22, :116:17, :118:34, :120:30, :160:36, :165:50, :166:31, :170:49, :172:33, :181:33, :221:23, :222:22, :223:54, :226:28, :230:30, :231:36
+      dirtyArray_34 <=
+        (~_GEN_15 | ~(_GEN_14 & _GEN_440))
+        & (_GEN_337
+             ? (_tl_mshr_io_refill_out_bits_is_write
+                  ? _GEN_278 | _GEN_150 | dirtyArray_34
+                  : ~_GEN_278 & _GEN_151)
+             : _GEN_151);	// cache/src/zaqal/cache/DCache.scala:53:27, :73:23, :115:22, :116:17, :118:34, :120:30, :160:36, :165:50, :166:31, :170:49, :172:33, :181:33, :221:23, :222:22, :223:54, :226:28, :230:30, :231:36
+      dirtyArray_35 <=
+        (~_GEN_15 | ~(_GEN_14 & _GEN_441))
+        & (_GEN_337
+             ? (_tl_mshr_io_refill_out_bits_is_write
+                  ? _GEN_280 | _GEN_152 | dirtyArray_35
+                  : ~_GEN_280 & _GEN_153)
+             : _GEN_153);	// cache/src/zaqal/cache/DCache.scala:53:27, :73:23, :115:22, :116:17, :118:34, :120:30, :160:36, :165:50, :166:31, :170:49, :172:33, :181:33, :221:23, :222:22, :223:54, :226:28, :230:30, :231:36
+      dirtyArray_36 <=
+        (~_GEN_15 | ~(_GEN_14 & _GEN_442))
+        & (_GEN_337
+             ? (_tl_mshr_io_refill_out_bits_is_write
+                  ? _GEN_282 | _GEN_154 | dirtyArray_36
+                  : ~_GEN_282 & _GEN_155)
+             : _GEN_155);	// cache/src/zaqal/cache/DCache.scala:53:27, :73:23, :115:22, :116:17, :118:34, :120:30, :160:36, :165:50, :166:31, :170:49, :172:33, :181:33, :221:23, :222:22, :223:54, :226:28, :230:30, :231:36
+      dirtyArray_37 <=
+        (~_GEN_15 | ~(_GEN_14 & _GEN_443))
+        & (_GEN_337
+             ? (_tl_mshr_io_refill_out_bits_is_write
+                  ? _GEN_284 | _GEN_156 | dirtyArray_37
+                  : ~_GEN_284 & _GEN_157)
+             : _GEN_157);	// cache/src/zaqal/cache/DCache.scala:53:27, :73:23, :115:22, :116:17, :118:34, :120:30, :160:36, :165:50, :166:31, :170:49, :172:33, :181:33, :221:23, :222:22, :223:54, :226:28, :230:30, :231:36
+      dirtyArray_38 <=
+        (~_GEN_15 | ~(_GEN_14 & _GEN_444))
+        & (_GEN_337
+             ? (_tl_mshr_io_refill_out_bits_is_write
+                  ? _GEN_286 | _GEN_158 | dirtyArray_38
+                  : ~_GEN_286 & _GEN_159)
+             : _GEN_159);	// cache/src/zaqal/cache/DCache.scala:53:27, :73:23, :115:22, :116:17, :118:34, :120:30, :160:36, :165:50, :166:31, :170:49, :172:33, :181:33, :221:23, :222:22, :223:54, :226:28, :230:30, :231:36
+      dirtyArray_39 <=
+        (~_GEN_15 | ~(_GEN_14 & _GEN_445))
+        & (_GEN_337
+             ? (_tl_mshr_io_refill_out_bits_is_write
+                  ? _GEN_288 | _GEN_160 | dirtyArray_39
+                  : ~_GEN_288 & _GEN_161)
+             : _GEN_161);	// cache/src/zaqal/cache/DCache.scala:53:27, :73:23, :115:22, :116:17, :118:34, :120:30, :160:36, :165:50, :166:31, :170:49, :172:33, :181:33, :221:23, :222:22, :223:54, :226:28, :230:30, :231:36
+      dirtyArray_40 <=
+        (~_GEN_15 | ~(_GEN_14 & _GEN_446))
+        & (_GEN_337
+             ? (_tl_mshr_io_refill_out_bits_is_write
+                  ? _GEN_290 | _GEN_162 | dirtyArray_40
+                  : ~_GEN_290 & _GEN_163)
+             : _GEN_163);	// cache/src/zaqal/cache/DCache.scala:53:27, :73:23, :115:22, :116:17, :118:34, :120:30, :160:36, :165:50, :166:31, :170:49, :172:33, :181:33, :221:23, :222:22, :223:54, :226:28, :230:30, :231:36
+      dirtyArray_41 <=
+        (~_GEN_15 | ~(_GEN_14 & _GEN_447))
+        & (_GEN_337
+             ? (_tl_mshr_io_refill_out_bits_is_write
+                  ? _GEN_292 | _GEN_164 | dirtyArray_41
+                  : ~_GEN_292 & _GEN_165)
+             : _GEN_165);	// cache/src/zaqal/cache/DCache.scala:53:27, :73:23, :115:22, :116:17, :118:34, :120:30, :160:36, :165:50, :166:31, :170:49, :172:33, :181:33, :221:23, :222:22, :223:54, :226:28, :230:30, :231:36
+      dirtyArray_42 <=
+        (~_GEN_15 | ~(_GEN_14 & _GEN_448))
+        & (_GEN_337
+             ? (_tl_mshr_io_refill_out_bits_is_write
+                  ? _GEN_294 | _GEN_166 | dirtyArray_42
+                  : ~_GEN_294 & _GEN_167)
+             : _GEN_167);	// cache/src/zaqal/cache/DCache.scala:53:27, :73:23, :115:22, :116:17, :118:34, :120:30, :160:36, :165:50, :166:31, :170:49, :172:33, :181:33, :221:23, :222:22, :223:54, :226:28, :230:30, :231:36
+      dirtyArray_43 <=
+        (~_GEN_15 | ~(_GEN_14 & _GEN_449))
+        & (_GEN_337
+             ? (_tl_mshr_io_refill_out_bits_is_write
+                  ? _GEN_296 | _GEN_168 | dirtyArray_43
+                  : ~_GEN_296 & _GEN_169)
+             : _GEN_169);	// cache/src/zaqal/cache/DCache.scala:53:27, :73:23, :115:22, :116:17, :118:34, :120:30, :160:36, :165:50, :166:31, :170:49, :172:33, :181:33, :221:23, :222:22, :223:54, :226:28, :230:30, :231:36
+      dirtyArray_44 <=
+        (~_GEN_15 | ~(_GEN_14 & _GEN_450))
+        & (_GEN_337
+             ? (_tl_mshr_io_refill_out_bits_is_write
+                  ? _GEN_298 | _GEN_170 | dirtyArray_44
+                  : ~_GEN_298 & _GEN_171)
+             : _GEN_171);	// cache/src/zaqal/cache/DCache.scala:53:27, :73:23, :115:22, :116:17, :118:34, :120:30, :160:36, :165:50, :166:31, :170:49, :172:33, :181:33, :221:23, :222:22, :223:54, :226:28, :230:30, :231:36
+      dirtyArray_45 <=
+        (~_GEN_15 | ~(_GEN_14 & _GEN_451))
+        & (_GEN_337
+             ? (_tl_mshr_io_refill_out_bits_is_write
+                  ? _GEN_300 | _GEN_172 | dirtyArray_45
+                  : ~_GEN_300 & _GEN_173)
+             : _GEN_173);	// cache/src/zaqal/cache/DCache.scala:53:27, :73:23, :115:22, :116:17, :118:34, :120:30, :160:36, :165:50, :166:31, :170:49, :172:33, :181:33, :221:23, :222:22, :223:54, :226:28, :230:30, :231:36
+      dirtyArray_46 <=
+        (~_GEN_15 | ~(_GEN_14 & _GEN_452))
+        & (_GEN_337
+             ? (_tl_mshr_io_refill_out_bits_is_write
+                  ? _GEN_302 | _GEN_174 | dirtyArray_46
+                  : ~_GEN_302 & _GEN_175)
+             : _GEN_175);	// cache/src/zaqal/cache/DCache.scala:53:27, :73:23, :115:22, :116:17, :118:34, :120:30, :160:36, :165:50, :166:31, :170:49, :172:33, :181:33, :221:23, :222:22, :223:54, :226:28, :230:30, :231:36
+      dirtyArray_47 <=
+        (~_GEN_15 | ~(_GEN_14 & _GEN_453))
+        & (_GEN_337
+             ? (_tl_mshr_io_refill_out_bits_is_write
+                  ? _GEN_304 | _GEN_176 | dirtyArray_47
+                  : ~_GEN_304 & _GEN_177)
+             : _GEN_177);	// cache/src/zaqal/cache/DCache.scala:53:27, :73:23, :115:22, :116:17, :118:34, :120:30, :160:36, :165:50, :166:31, :170:49, :172:33, :181:33, :221:23, :222:22, :223:54, :226:28, :230:30, :231:36
+      dirtyArray_48 <=
+        (~_GEN_15 | ~(_GEN_14 & _GEN_454))
+        & (_GEN_337
+             ? (_tl_mshr_io_refill_out_bits_is_write
+                  ? _GEN_306 | _GEN_178 | dirtyArray_48
+                  : ~_GEN_306 & _GEN_179)
+             : _GEN_179);	// cache/src/zaqal/cache/DCache.scala:53:27, :73:23, :115:22, :116:17, :118:34, :120:30, :160:36, :165:50, :166:31, :170:49, :172:33, :181:33, :221:23, :222:22, :223:54, :226:28, :230:30, :231:36
+      dirtyArray_49 <=
+        (~_GEN_15 | ~(_GEN_14 & _GEN_455))
+        & (_GEN_337
+             ? (_tl_mshr_io_refill_out_bits_is_write
+                  ? _GEN_308 | _GEN_180 | dirtyArray_49
+                  : ~_GEN_308 & _GEN_181)
+             : _GEN_181);	// cache/src/zaqal/cache/DCache.scala:53:27, :73:23, :115:22, :116:17, :118:34, :120:30, :160:36, :165:50, :166:31, :170:49, :172:33, :181:33, :221:23, :222:22, :223:54, :226:28, :230:30, :231:36
+      dirtyArray_50 <=
+        (~_GEN_15 | ~(_GEN_14 & _GEN_456))
+        & (_GEN_337
+             ? (_tl_mshr_io_refill_out_bits_is_write
+                  ? _GEN_310 | _GEN_182 | dirtyArray_50
+                  : ~_GEN_310 & _GEN_183)
+             : _GEN_183);	// cache/src/zaqal/cache/DCache.scala:53:27, :73:23, :115:22, :116:17, :118:34, :120:30, :160:36, :165:50, :166:31, :170:49, :172:33, :181:33, :221:23, :222:22, :223:54, :226:28, :230:30, :231:36
+      dirtyArray_51 <=
+        (~_GEN_15 | ~(_GEN_14 & _GEN_457))
+        & (_GEN_337
+             ? (_tl_mshr_io_refill_out_bits_is_write
+                  ? _GEN_312 | _GEN_184 | dirtyArray_51
+                  : ~_GEN_312 & _GEN_185)
+             : _GEN_185);	// cache/src/zaqal/cache/DCache.scala:53:27, :73:23, :115:22, :116:17, :118:34, :120:30, :160:36, :165:50, :166:31, :170:49, :172:33, :181:33, :221:23, :222:22, :223:54, :226:28, :230:30, :231:36
+      dirtyArray_52 <=
+        (~_GEN_15 | ~(_GEN_14 & _GEN_458))
+        & (_GEN_337
+             ? (_tl_mshr_io_refill_out_bits_is_write
+                  ? _GEN_314 | _GEN_186 | dirtyArray_52
+                  : ~_GEN_314 & _GEN_187)
+             : _GEN_187);	// cache/src/zaqal/cache/DCache.scala:53:27, :73:23, :115:22, :116:17, :118:34, :120:30, :160:36, :165:50, :166:31, :170:49, :172:33, :181:33, :221:23, :222:22, :223:54, :226:28, :230:30, :231:36
+      dirtyArray_53 <=
+        (~_GEN_15 | ~(_GEN_14 & _GEN_459))
+        & (_GEN_337
+             ? (_tl_mshr_io_refill_out_bits_is_write
+                  ? _GEN_316 | _GEN_188 | dirtyArray_53
+                  : ~_GEN_316 & _GEN_189)
+             : _GEN_189);	// cache/src/zaqal/cache/DCache.scala:53:27, :73:23, :115:22, :116:17, :118:34, :120:30, :160:36, :165:50, :166:31, :170:49, :172:33, :181:33, :221:23, :222:22, :223:54, :226:28, :230:30, :231:36
+      dirtyArray_54 <=
+        (~_GEN_15 | ~(_GEN_14 & _GEN_460))
+        & (_GEN_337
+             ? (_tl_mshr_io_refill_out_bits_is_write
+                  ? _GEN_318 | _GEN_190 | dirtyArray_54
+                  : ~_GEN_318 & _GEN_191)
+             : _GEN_191);	// cache/src/zaqal/cache/DCache.scala:53:27, :73:23, :115:22, :116:17, :118:34, :120:30, :160:36, :165:50, :166:31, :170:49, :172:33, :181:33, :221:23, :222:22, :223:54, :226:28, :230:30, :231:36
+      dirtyArray_55 <=
+        (~_GEN_15 | ~(_GEN_14 & _GEN_461))
+        & (_GEN_337
+             ? (_tl_mshr_io_refill_out_bits_is_write
+                  ? _GEN_320 | _GEN_192 | dirtyArray_55
+                  : ~_GEN_320 & _GEN_193)
+             : _GEN_193);	// cache/src/zaqal/cache/DCache.scala:53:27, :73:23, :115:22, :116:17, :118:34, :120:30, :160:36, :165:50, :166:31, :170:49, :172:33, :181:33, :221:23, :222:22, :223:54, :226:28, :230:30, :231:36
+      dirtyArray_56 <=
+        (~_GEN_15 | ~(_GEN_14 & _GEN_462))
+        & (_GEN_337
+             ? (_tl_mshr_io_refill_out_bits_is_write
+                  ? _GEN_322 | _GEN_194 | dirtyArray_56
+                  : ~_GEN_322 & _GEN_195)
+             : _GEN_195);	// cache/src/zaqal/cache/DCache.scala:53:27, :73:23, :115:22, :116:17, :118:34, :120:30, :160:36, :165:50, :166:31, :170:49, :172:33, :181:33, :221:23, :222:22, :223:54, :226:28, :230:30, :231:36
+      dirtyArray_57 <=
+        (~_GEN_15 | ~(_GEN_14 & _GEN_463))
+        & (_GEN_337
+             ? (_tl_mshr_io_refill_out_bits_is_write
+                  ? _GEN_324 | _GEN_196 | dirtyArray_57
+                  : ~_GEN_324 & _GEN_197)
+             : _GEN_197);	// cache/src/zaqal/cache/DCache.scala:53:27, :73:23, :115:22, :116:17, :118:34, :120:30, :160:36, :165:50, :166:31, :170:49, :172:33, :181:33, :221:23, :222:22, :223:54, :226:28, :230:30, :231:36
+      dirtyArray_58 <=
+        (~_GEN_15 | ~(_GEN_14 & _GEN_464))
+        & (_GEN_337
+             ? (_tl_mshr_io_refill_out_bits_is_write
+                  ? _GEN_326 | _GEN_198 | dirtyArray_58
+                  : ~_GEN_326 & _GEN_199)
+             : _GEN_199);	// cache/src/zaqal/cache/DCache.scala:53:27, :73:23, :115:22, :116:17, :118:34, :120:30, :160:36, :165:50, :166:31, :170:49, :172:33, :181:33, :221:23, :222:22, :223:54, :226:28, :230:30, :231:36
+      dirtyArray_59 <=
+        (~_GEN_15 | ~(_GEN_14 & _GEN_465))
+        & (_GEN_337
+             ? (_tl_mshr_io_refill_out_bits_is_write
+                  ? _GEN_328 | _GEN_200 | dirtyArray_59
+                  : ~_GEN_328 & _GEN_201)
+             : _GEN_201);	// cache/src/zaqal/cache/DCache.scala:53:27, :73:23, :115:22, :116:17, :118:34, :120:30, :160:36, :165:50, :166:31, :170:49, :172:33, :181:33, :221:23, :222:22, :223:54, :226:28, :230:30, :231:36
+      dirtyArray_60 <=
+        (~_GEN_15 | ~(_GEN_14 & _GEN_466))
+        & (_GEN_337
+             ? (_tl_mshr_io_refill_out_bits_is_write
+                  ? _GEN_330 | _GEN_202 | dirtyArray_60
+                  : ~_GEN_330 & _GEN_203)
+             : _GEN_203);	// cache/src/zaqal/cache/DCache.scala:53:27, :73:23, :115:22, :116:17, :118:34, :120:30, :160:36, :165:50, :166:31, :170:49, :172:33, :181:33, :221:23, :222:22, :223:54, :226:28, :230:30, :231:36
+      dirtyArray_61 <=
+        (~_GEN_15 | ~(_GEN_14 & _GEN_467))
+        & (_GEN_337
+             ? (_tl_mshr_io_refill_out_bits_is_write
+                  ? _GEN_332 | _GEN_204 | dirtyArray_61
+                  : ~_GEN_332 & _GEN_205)
+             : _GEN_205);	// cache/src/zaqal/cache/DCache.scala:53:27, :73:23, :115:22, :116:17, :118:34, :120:30, :160:36, :165:50, :166:31, :170:49, :172:33, :181:33, :221:23, :222:22, :223:54, :226:28, :230:30, :231:36
+      dirtyArray_62 <=
+        (~_GEN_15 | ~(_GEN_14 & _GEN_468))
+        & (_GEN_337
+             ? (_tl_mshr_io_refill_out_bits_is_write
+                  ? _GEN_334 | _GEN_206 | dirtyArray_62
+                  : ~_GEN_334 & _GEN_207)
+             : _GEN_207);	// cache/src/zaqal/cache/DCache.scala:53:27, :73:23, :115:22, :116:17, :118:34, :120:30, :160:36, :165:50, :166:31, :170:49, :172:33, :181:33, :221:23, :222:22, :223:54, :226:28, :230:30, :231:36
+      dirtyArray_63 <=
+        (~_GEN_15 | ~(_GEN_14 & _GEN_469))
+        & (_GEN_337
+             ? (_tl_mshr_io_refill_out_bits_is_write
+                  ? (&(_tl_mshr_io_refill_out_bits_addr[10:5])) | _GEN_208 | dirtyArray_63
+                  : ~(&(_tl_mshr_io_refill_out_bits_addr[10:5])) & _GEN_209)
+             : _GEN_209);	// cache/src/zaqal/cache/DCache.scala:53:27, :73:23, :115:22, :116:17, :118:34, :120:30, :160:36, :161:60, :165:50, :166:31, :170:49, :172:33, :181:33, :221:23, :222:22, :223:54, :226:28, :230:30, :231:36
+      if (_GEN_15) begin	// cache/src/zaqal/cache/DCache.scala:160:36, :221:23, :222:22, :223:54
+        if (_GEN_12) begin	// cache/src/zaqal/cache/DCache.scala:223:31
+          if (_GEN_342)	// cache/src/zaqal/cache/DCache.scala:225:32
+            stateArray_0 <= 2'h1;	// cache/src/zaqal/cache/DCache.scala:55:27, :119:45
+          else if (_GEN_211)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_0 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_343)	// cache/src/zaqal/cache/DCache.scala:225:32
+            stateArray_1 <= 2'h1;	// cache/src/zaqal/cache/DCache.scala:55:27, :119:45
+          else if (_GEN_213)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_1 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_344)	// cache/src/zaqal/cache/DCache.scala:225:32
+            stateArray_2 <= 2'h1;	// cache/src/zaqal/cache/DCache.scala:55:27, :119:45
+          else if (_GEN_215)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_2 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_345)	// cache/src/zaqal/cache/DCache.scala:225:32
+            stateArray_3 <= 2'h1;	// cache/src/zaqal/cache/DCache.scala:55:27, :119:45
+          else if (_GEN_217)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_3 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_346)	// cache/src/zaqal/cache/DCache.scala:225:32
+            stateArray_4 <= 2'h1;	// cache/src/zaqal/cache/DCache.scala:55:27, :119:45
+          else if (_GEN_219)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_4 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_347)	// cache/src/zaqal/cache/DCache.scala:225:32
+            stateArray_5 <= 2'h1;	// cache/src/zaqal/cache/DCache.scala:55:27, :119:45
+          else if (_GEN_221)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_5 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_348)	// cache/src/zaqal/cache/DCache.scala:225:32
+            stateArray_6 <= 2'h1;	// cache/src/zaqal/cache/DCache.scala:55:27, :119:45
+          else if (_GEN_223)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_6 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_349)	// cache/src/zaqal/cache/DCache.scala:225:32
+            stateArray_7 <= 2'h1;	// cache/src/zaqal/cache/DCache.scala:55:27, :119:45
+          else if (_GEN_225)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_7 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_350)	// cache/src/zaqal/cache/DCache.scala:225:32
+            stateArray_8 <= 2'h1;	// cache/src/zaqal/cache/DCache.scala:55:27, :119:45
+          else if (_GEN_227)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_8 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_351)	// cache/src/zaqal/cache/DCache.scala:225:32
+            stateArray_9 <= 2'h1;	// cache/src/zaqal/cache/DCache.scala:55:27, :119:45
+          else if (_GEN_229)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_9 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_352)	// cache/src/zaqal/cache/DCache.scala:225:32
+            stateArray_10 <= 2'h1;	// cache/src/zaqal/cache/DCache.scala:55:27, :119:45
+          else if (_GEN_231)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_10 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_353)	// cache/src/zaqal/cache/DCache.scala:225:32
+            stateArray_11 <= 2'h1;	// cache/src/zaqal/cache/DCache.scala:55:27, :119:45
+          else if (_GEN_233)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_11 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_354)	// cache/src/zaqal/cache/DCache.scala:225:32
+            stateArray_12 <= 2'h1;	// cache/src/zaqal/cache/DCache.scala:55:27, :119:45
+          else if (_GEN_235)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_12 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_355)	// cache/src/zaqal/cache/DCache.scala:225:32
+            stateArray_13 <= 2'h1;	// cache/src/zaqal/cache/DCache.scala:55:27, :119:45
+          else if (_GEN_237)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_13 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_356)	// cache/src/zaqal/cache/DCache.scala:225:32
+            stateArray_14 <= 2'h1;	// cache/src/zaqal/cache/DCache.scala:55:27, :119:45
+          else if (_GEN_239)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_14 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_357)	// cache/src/zaqal/cache/DCache.scala:225:32
+            stateArray_15 <= 2'h1;	// cache/src/zaqal/cache/DCache.scala:55:27, :119:45
+          else if (_GEN_241)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_15 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_358)	// cache/src/zaqal/cache/DCache.scala:225:32
+            stateArray_16 <= 2'h1;	// cache/src/zaqal/cache/DCache.scala:55:27, :119:45
+          else if (_GEN_243)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_16 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_359)	// cache/src/zaqal/cache/DCache.scala:225:32
+            stateArray_17 <= 2'h1;	// cache/src/zaqal/cache/DCache.scala:55:27, :119:45
+          else if (_GEN_245)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_17 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_360)	// cache/src/zaqal/cache/DCache.scala:225:32
+            stateArray_18 <= 2'h1;	// cache/src/zaqal/cache/DCache.scala:55:27, :119:45
+          else if (_GEN_247)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_18 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_361)	// cache/src/zaqal/cache/DCache.scala:225:32
+            stateArray_19 <= 2'h1;	// cache/src/zaqal/cache/DCache.scala:55:27, :119:45
+          else if (_GEN_249)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_19 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_362)	// cache/src/zaqal/cache/DCache.scala:225:32
+            stateArray_20 <= 2'h1;	// cache/src/zaqal/cache/DCache.scala:55:27, :119:45
+          else if (_GEN_251)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_20 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_363)	// cache/src/zaqal/cache/DCache.scala:225:32
+            stateArray_21 <= 2'h1;	// cache/src/zaqal/cache/DCache.scala:55:27, :119:45
+          else if (_GEN_253)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_21 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_364)	// cache/src/zaqal/cache/DCache.scala:225:32
+            stateArray_22 <= 2'h1;	// cache/src/zaqal/cache/DCache.scala:55:27, :119:45
+          else if (_GEN_255)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_22 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_365)	// cache/src/zaqal/cache/DCache.scala:225:32
+            stateArray_23 <= 2'h1;	// cache/src/zaqal/cache/DCache.scala:55:27, :119:45
+          else if (_GEN_257)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_23 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_366)	// cache/src/zaqal/cache/DCache.scala:225:32
+            stateArray_24 <= 2'h1;	// cache/src/zaqal/cache/DCache.scala:55:27, :119:45
+          else if (_GEN_259)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_24 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_367)	// cache/src/zaqal/cache/DCache.scala:225:32
+            stateArray_25 <= 2'h1;	// cache/src/zaqal/cache/DCache.scala:55:27, :119:45
+          else if (_GEN_261)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_25 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_368)	// cache/src/zaqal/cache/DCache.scala:225:32
+            stateArray_26 <= 2'h1;	// cache/src/zaqal/cache/DCache.scala:55:27, :119:45
+          else if (_GEN_263)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_26 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_369)	// cache/src/zaqal/cache/DCache.scala:225:32
+            stateArray_27 <= 2'h1;	// cache/src/zaqal/cache/DCache.scala:55:27, :119:45
+          else if (_GEN_265)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_27 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_370)	// cache/src/zaqal/cache/DCache.scala:225:32
+            stateArray_28 <= 2'h1;	// cache/src/zaqal/cache/DCache.scala:55:27, :119:45
+          else if (_GEN_267)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_28 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_371)	// cache/src/zaqal/cache/DCache.scala:225:32
+            stateArray_29 <= 2'h1;	// cache/src/zaqal/cache/DCache.scala:55:27, :119:45
+          else if (_GEN_269)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_29 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_372)	// cache/src/zaqal/cache/DCache.scala:225:32
+            stateArray_30 <= 2'h1;	// cache/src/zaqal/cache/DCache.scala:55:27, :119:45
+          else if (_GEN_271)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_30 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_373)	// cache/src/zaqal/cache/DCache.scala:225:32
+            stateArray_31 <= 2'h1;	// cache/src/zaqal/cache/DCache.scala:55:27, :119:45
+          else if (_GEN_273)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_31 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_374)	// cache/src/zaqal/cache/DCache.scala:225:32
+            stateArray_32 <= 2'h1;	// cache/src/zaqal/cache/DCache.scala:55:27, :119:45
+          else if (_GEN_275)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_32 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_375)	// cache/src/zaqal/cache/DCache.scala:225:32
+            stateArray_33 <= 2'h1;	// cache/src/zaqal/cache/DCache.scala:55:27, :119:45
+          else if (_GEN_277)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_33 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_376)	// cache/src/zaqal/cache/DCache.scala:225:32
+            stateArray_34 <= 2'h1;	// cache/src/zaqal/cache/DCache.scala:55:27, :119:45
+          else if (_GEN_279)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_34 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_377)	// cache/src/zaqal/cache/DCache.scala:225:32
+            stateArray_35 <= 2'h1;	// cache/src/zaqal/cache/DCache.scala:55:27, :119:45
+          else if (_GEN_281)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_35 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_378)	// cache/src/zaqal/cache/DCache.scala:225:32
+            stateArray_36 <= 2'h1;	// cache/src/zaqal/cache/DCache.scala:55:27, :119:45
+          else if (_GEN_283)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_36 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_379)	// cache/src/zaqal/cache/DCache.scala:225:32
+            stateArray_37 <= 2'h1;	// cache/src/zaqal/cache/DCache.scala:55:27, :119:45
+          else if (_GEN_285)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_37 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_380)	// cache/src/zaqal/cache/DCache.scala:225:32
+            stateArray_38 <= 2'h1;	// cache/src/zaqal/cache/DCache.scala:55:27, :119:45
+          else if (_GEN_287)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_38 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_381)	// cache/src/zaqal/cache/DCache.scala:225:32
+            stateArray_39 <= 2'h1;	// cache/src/zaqal/cache/DCache.scala:55:27, :119:45
+          else if (_GEN_289)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_39 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_382)	// cache/src/zaqal/cache/DCache.scala:225:32
+            stateArray_40 <= 2'h1;	// cache/src/zaqal/cache/DCache.scala:55:27, :119:45
+          else if (_GEN_291)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_40 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_383)	// cache/src/zaqal/cache/DCache.scala:225:32
+            stateArray_41 <= 2'h1;	// cache/src/zaqal/cache/DCache.scala:55:27, :119:45
+          else if (_GEN_293)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_41 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_384)	// cache/src/zaqal/cache/DCache.scala:225:32
+            stateArray_42 <= 2'h1;	// cache/src/zaqal/cache/DCache.scala:55:27, :119:45
+          else if (_GEN_295)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_42 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_385)	// cache/src/zaqal/cache/DCache.scala:225:32
+            stateArray_43 <= 2'h1;	// cache/src/zaqal/cache/DCache.scala:55:27, :119:45
+          else if (_GEN_297)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_43 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_386)	// cache/src/zaqal/cache/DCache.scala:225:32
+            stateArray_44 <= 2'h1;	// cache/src/zaqal/cache/DCache.scala:55:27, :119:45
+          else if (_GEN_299)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_44 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_387)	// cache/src/zaqal/cache/DCache.scala:225:32
+            stateArray_45 <= 2'h1;	// cache/src/zaqal/cache/DCache.scala:55:27, :119:45
+          else if (_GEN_301)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_45 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_388)	// cache/src/zaqal/cache/DCache.scala:225:32
+            stateArray_46 <= 2'h1;	// cache/src/zaqal/cache/DCache.scala:55:27, :119:45
+          else if (_GEN_303)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_46 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_389)	// cache/src/zaqal/cache/DCache.scala:225:32
+            stateArray_47 <= 2'h1;	// cache/src/zaqal/cache/DCache.scala:55:27, :119:45
+          else if (_GEN_305)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_47 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_390)	// cache/src/zaqal/cache/DCache.scala:225:32
+            stateArray_48 <= 2'h1;	// cache/src/zaqal/cache/DCache.scala:55:27, :119:45
+          else if (_GEN_307)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_48 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_391)	// cache/src/zaqal/cache/DCache.scala:225:32
+            stateArray_49 <= 2'h1;	// cache/src/zaqal/cache/DCache.scala:55:27, :119:45
+          else if (_GEN_309)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_49 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_392)	// cache/src/zaqal/cache/DCache.scala:225:32
+            stateArray_50 <= 2'h1;	// cache/src/zaqal/cache/DCache.scala:55:27, :119:45
+          else if (_GEN_311)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_50 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_393)	// cache/src/zaqal/cache/DCache.scala:225:32
+            stateArray_51 <= 2'h1;	// cache/src/zaqal/cache/DCache.scala:55:27, :119:45
+          else if (_GEN_313)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_51 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_394)	// cache/src/zaqal/cache/DCache.scala:225:32
+            stateArray_52 <= 2'h1;	// cache/src/zaqal/cache/DCache.scala:55:27, :119:45
+          else if (_GEN_315)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_52 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_395)	// cache/src/zaqal/cache/DCache.scala:225:32
+            stateArray_53 <= 2'h1;	// cache/src/zaqal/cache/DCache.scala:55:27, :119:45
+          else if (_GEN_317)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_53 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_396)	// cache/src/zaqal/cache/DCache.scala:225:32
+            stateArray_54 <= 2'h1;	// cache/src/zaqal/cache/DCache.scala:55:27, :119:45
+          else if (_GEN_319)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_54 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_397)	// cache/src/zaqal/cache/DCache.scala:225:32
+            stateArray_55 <= 2'h1;	// cache/src/zaqal/cache/DCache.scala:55:27, :119:45
+          else if (_GEN_321)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_55 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_398)	// cache/src/zaqal/cache/DCache.scala:225:32
+            stateArray_56 <= 2'h1;	// cache/src/zaqal/cache/DCache.scala:55:27, :119:45
+          else if (_GEN_323)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_56 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_399)	// cache/src/zaqal/cache/DCache.scala:225:32
+            stateArray_57 <= 2'h1;	// cache/src/zaqal/cache/DCache.scala:55:27, :119:45
+          else if (_GEN_325)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_57 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_400)	// cache/src/zaqal/cache/DCache.scala:225:32
+            stateArray_58 <= 2'h1;	// cache/src/zaqal/cache/DCache.scala:55:27, :119:45
+          else if (_GEN_327)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_58 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_401)	// cache/src/zaqal/cache/DCache.scala:225:32
+            stateArray_59 <= 2'h1;	// cache/src/zaqal/cache/DCache.scala:55:27, :119:45
+          else if (_GEN_329)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_59 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_402)	// cache/src/zaqal/cache/DCache.scala:225:32
+            stateArray_60 <= 2'h1;	// cache/src/zaqal/cache/DCache.scala:55:27, :119:45
+          else if (_GEN_331)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_60 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_403)	// cache/src/zaqal/cache/DCache.scala:225:32
+            stateArray_61 <= 2'h1;	// cache/src/zaqal/cache/DCache.scala:55:27, :119:45
+          else if (_GEN_333)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_61 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_404)	// cache/src/zaqal/cache/DCache.scala:225:32
+            stateArray_62 <= 2'h1;	// cache/src/zaqal/cache/DCache.scala:55:27, :119:45
+          else if (_GEN_335)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_62 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (&(io_tl_b_bits_address[10:5]))	// cache/src/zaqal/cache/DCache.scala:204:31, :225:32
+            stateArray_63 <= 2'h1;	// cache/src/zaqal/cache/DCache.scala:55:27, :119:45
+          else if (_GEN_336)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_63 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+        end
+        else begin	// cache/src/zaqal/cache/DCache.scala:223:31
+          if (_GEN_406)	// cache/src/zaqal/cache/DCache.scala:160:36, :230:30, :231:36
+            stateArray_0 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+          else if (_GEN_211)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_0 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_407)	// cache/src/zaqal/cache/DCache.scala:160:36, :230:30, :231:36
+            stateArray_1 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+          else if (_GEN_213)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_1 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_408)	// cache/src/zaqal/cache/DCache.scala:160:36, :230:30, :231:36
+            stateArray_2 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+          else if (_GEN_215)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_2 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_409)	// cache/src/zaqal/cache/DCache.scala:160:36, :230:30, :231:36
+            stateArray_3 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+          else if (_GEN_217)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_3 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_410)	// cache/src/zaqal/cache/DCache.scala:160:36, :230:30, :231:36
+            stateArray_4 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+          else if (_GEN_219)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_4 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_411)	// cache/src/zaqal/cache/DCache.scala:160:36, :230:30, :231:36
+            stateArray_5 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+          else if (_GEN_221)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_5 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_412)	// cache/src/zaqal/cache/DCache.scala:160:36, :230:30, :231:36
+            stateArray_6 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+          else if (_GEN_223)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_6 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_413)	// cache/src/zaqal/cache/DCache.scala:160:36, :230:30, :231:36
+            stateArray_7 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+          else if (_GEN_225)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_7 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_414)	// cache/src/zaqal/cache/DCache.scala:160:36, :230:30, :231:36
+            stateArray_8 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+          else if (_GEN_227)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_8 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_415)	// cache/src/zaqal/cache/DCache.scala:160:36, :230:30, :231:36
+            stateArray_9 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+          else if (_GEN_229)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_9 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_416)	// cache/src/zaqal/cache/DCache.scala:160:36, :230:30, :231:36
+            stateArray_10 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+          else if (_GEN_231)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_10 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_417)	// cache/src/zaqal/cache/DCache.scala:160:36, :230:30, :231:36
+            stateArray_11 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+          else if (_GEN_233)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_11 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_418)	// cache/src/zaqal/cache/DCache.scala:160:36, :230:30, :231:36
+            stateArray_12 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+          else if (_GEN_235)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_12 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_419)	// cache/src/zaqal/cache/DCache.scala:160:36, :230:30, :231:36
+            stateArray_13 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+          else if (_GEN_237)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_13 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_420)	// cache/src/zaqal/cache/DCache.scala:160:36, :230:30, :231:36
+            stateArray_14 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+          else if (_GEN_239)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_14 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_421)	// cache/src/zaqal/cache/DCache.scala:160:36, :230:30, :231:36
+            stateArray_15 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+          else if (_GEN_241)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_15 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_422)	// cache/src/zaqal/cache/DCache.scala:160:36, :230:30, :231:36
+            stateArray_16 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+          else if (_GEN_243)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_16 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_423)	// cache/src/zaqal/cache/DCache.scala:160:36, :230:30, :231:36
+            stateArray_17 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+          else if (_GEN_245)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_17 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_424)	// cache/src/zaqal/cache/DCache.scala:160:36, :230:30, :231:36
+            stateArray_18 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+          else if (_GEN_247)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_18 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_425)	// cache/src/zaqal/cache/DCache.scala:160:36, :230:30, :231:36
+            stateArray_19 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+          else if (_GEN_249)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_19 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_426)	// cache/src/zaqal/cache/DCache.scala:160:36, :230:30, :231:36
+            stateArray_20 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+          else if (_GEN_251)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_20 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_427)	// cache/src/zaqal/cache/DCache.scala:160:36, :230:30, :231:36
+            stateArray_21 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+          else if (_GEN_253)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_21 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_428)	// cache/src/zaqal/cache/DCache.scala:160:36, :230:30, :231:36
+            stateArray_22 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+          else if (_GEN_255)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_22 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_429)	// cache/src/zaqal/cache/DCache.scala:160:36, :230:30, :231:36
+            stateArray_23 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+          else if (_GEN_257)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_23 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_430)	// cache/src/zaqal/cache/DCache.scala:160:36, :230:30, :231:36
+            stateArray_24 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+          else if (_GEN_259)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_24 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_431)	// cache/src/zaqal/cache/DCache.scala:160:36, :230:30, :231:36
+            stateArray_25 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+          else if (_GEN_261)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_25 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_432)	// cache/src/zaqal/cache/DCache.scala:160:36, :230:30, :231:36
+            stateArray_26 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+          else if (_GEN_263)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_26 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_433)	// cache/src/zaqal/cache/DCache.scala:160:36, :230:30, :231:36
+            stateArray_27 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+          else if (_GEN_265)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_27 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_434)	// cache/src/zaqal/cache/DCache.scala:160:36, :230:30, :231:36
+            stateArray_28 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+          else if (_GEN_267)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_28 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_435)	// cache/src/zaqal/cache/DCache.scala:160:36, :230:30, :231:36
+            stateArray_29 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+          else if (_GEN_269)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_29 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_436)	// cache/src/zaqal/cache/DCache.scala:160:36, :230:30, :231:36
+            stateArray_30 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+          else if (_GEN_271)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_30 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_437)	// cache/src/zaqal/cache/DCache.scala:160:36, :230:30, :231:36
+            stateArray_31 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+          else if (_GEN_273)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_31 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_438)	// cache/src/zaqal/cache/DCache.scala:160:36, :230:30, :231:36
+            stateArray_32 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+          else if (_GEN_275)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_32 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_439)	// cache/src/zaqal/cache/DCache.scala:160:36, :230:30, :231:36
+            stateArray_33 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+          else if (_GEN_277)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_33 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_440)	// cache/src/zaqal/cache/DCache.scala:160:36, :230:30, :231:36
+            stateArray_34 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+          else if (_GEN_279)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_34 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_441)	// cache/src/zaqal/cache/DCache.scala:160:36, :230:30, :231:36
+            stateArray_35 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+          else if (_GEN_281)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_35 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_442)	// cache/src/zaqal/cache/DCache.scala:160:36, :230:30, :231:36
+            stateArray_36 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+          else if (_GEN_283)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_36 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_443)	// cache/src/zaqal/cache/DCache.scala:160:36, :230:30, :231:36
+            stateArray_37 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+          else if (_GEN_285)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_37 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_444)	// cache/src/zaqal/cache/DCache.scala:160:36, :230:30, :231:36
+            stateArray_38 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+          else if (_GEN_287)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_38 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_445)	// cache/src/zaqal/cache/DCache.scala:160:36, :230:30, :231:36
+            stateArray_39 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+          else if (_GEN_289)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_39 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_446)	// cache/src/zaqal/cache/DCache.scala:160:36, :230:30, :231:36
+            stateArray_40 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+          else if (_GEN_291)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_40 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_447)	// cache/src/zaqal/cache/DCache.scala:160:36, :230:30, :231:36
+            stateArray_41 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+          else if (_GEN_293)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_41 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_448)	// cache/src/zaqal/cache/DCache.scala:160:36, :230:30, :231:36
+            stateArray_42 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+          else if (_GEN_295)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_42 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_449)	// cache/src/zaqal/cache/DCache.scala:160:36, :230:30, :231:36
+            stateArray_43 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+          else if (_GEN_297)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_43 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_450)	// cache/src/zaqal/cache/DCache.scala:160:36, :230:30, :231:36
+            stateArray_44 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+          else if (_GEN_299)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_44 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_451)	// cache/src/zaqal/cache/DCache.scala:160:36, :230:30, :231:36
+            stateArray_45 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+          else if (_GEN_301)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_45 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_452)	// cache/src/zaqal/cache/DCache.scala:160:36, :230:30, :231:36
+            stateArray_46 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+          else if (_GEN_303)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_46 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_453)	// cache/src/zaqal/cache/DCache.scala:160:36, :230:30, :231:36
+            stateArray_47 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+          else if (_GEN_305)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_47 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_454)	// cache/src/zaqal/cache/DCache.scala:160:36, :230:30, :231:36
+            stateArray_48 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+          else if (_GEN_307)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_48 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_455)	// cache/src/zaqal/cache/DCache.scala:160:36, :230:30, :231:36
+            stateArray_49 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+          else if (_GEN_309)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_49 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_456)	// cache/src/zaqal/cache/DCache.scala:160:36, :230:30, :231:36
+            stateArray_50 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+          else if (_GEN_311)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_50 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_457)	// cache/src/zaqal/cache/DCache.scala:160:36, :230:30, :231:36
+            stateArray_51 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+          else if (_GEN_313)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_51 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_458)	// cache/src/zaqal/cache/DCache.scala:160:36, :230:30, :231:36
+            stateArray_52 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+          else if (_GEN_315)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_52 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_459)	// cache/src/zaqal/cache/DCache.scala:160:36, :230:30, :231:36
+            stateArray_53 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+          else if (_GEN_317)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_53 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_460)	// cache/src/zaqal/cache/DCache.scala:160:36, :230:30, :231:36
+            stateArray_54 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+          else if (_GEN_319)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_54 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_461)	// cache/src/zaqal/cache/DCache.scala:160:36, :230:30, :231:36
+            stateArray_55 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+          else if (_GEN_321)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_55 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_462)	// cache/src/zaqal/cache/DCache.scala:160:36, :230:30, :231:36
+            stateArray_56 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+          else if (_GEN_323)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_56 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_463)	// cache/src/zaqal/cache/DCache.scala:160:36, :230:30, :231:36
+            stateArray_57 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+          else if (_GEN_325)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_57 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_464)	// cache/src/zaqal/cache/DCache.scala:160:36, :230:30, :231:36
+            stateArray_58 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+          else if (_GEN_327)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_58 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_465)	// cache/src/zaqal/cache/DCache.scala:160:36, :230:30, :231:36
+            stateArray_59 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+          else if (_GEN_329)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_59 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_466)	// cache/src/zaqal/cache/DCache.scala:160:36, :230:30, :231:36
+            stateArray_60 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+          else if (_GEN_331)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_60 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_467)	// cache/src/zaqal/cache/DCache.scala:160:36, :230:30, :231:36
+            stateArray_61 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+          else if (_GEN_333)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_61 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_468)	// cache/src/zaqal/cache/DCache.scala:160:36, :230:30, :231:36
+            stateArray_62 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+          else if (_GEN_335)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_62 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+          if (_GEN_469)	// cache/src/zaqal/cache/DCache.scala:160:36, :230:30, :231:36
+            stateArray_63 <= 2'h0;	// cache/src/zaqal/cache/DCache.scala:55:{27,35}
+          else if (_GEN_336)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+            stateArray_63 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+        end
+      end
+      else begin	// cache/src/zaqal/cache/DCache.scala:160:36, :221:23, :222:22, :223:54
+        if (_GEN_211)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+          stateArray_0 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+        if (_GEN_213)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+          stateArray_1 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+        if (_GEN_215)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+          stateArray_2 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+        if (_GEN_217)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+          stateArray_3 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+        if (_GEN_219)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+          stateArray_4 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+        if (_GEN_221)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+          stateArray_5 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+        if (_GEN_223)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+          stateArray_6 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+        if (_GEN_225)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+          stateArray_7 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+        if (_GEN_227)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+          stateArray_8 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+        if (_GEN_229)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+          stateArray_9 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+        if (_GEN_231)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+          stateArray_10 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+        if (_GEN_233)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+          stateArray_11 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+        if (_GEN_235)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+          stateArray_12 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+        if (_GEN_237)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+          stateArray_13 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+        if (_GEN_239)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+          stateArray_14 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+        if (_GEN_241)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+          stateArray_15 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+        if (_GEN_243)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+          stateArray_16 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+        if (_GEN_245)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+          stateArray_17 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+        if (_GEN_247)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+          stateArray_18 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+        if (_GEN_249)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+          stateArray_19 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+        if (_GEN_251)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+          stateArray_20 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+        if (_GEN_253)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+          stateArray_21 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+        if (_GEN_255)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+          stateArray_22 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+        if (_GEN_257)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+          stateArray_23 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+        if (_GEN_259)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+          stateArray_24 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+        if (_GEN_261)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+          stateArray_25 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+        if (_GEN_263)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+          stateArray_26 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+        if (_GEN_265)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+          stateArray_27 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+        if (_GEN_267)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+          stateArray_28 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+        if (_GEN_269)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+          stateArray_29 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+        if (_GEN_271)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+          stateArray_30 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+        if (_GEN_273)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+          stateArray_31 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+        if (_GEN_275)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+          stateArray_32 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+        if (_GEN_277)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+          stateArray_33 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+        if (_GEN_279)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+          stateArray_34 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+        if (_GEN_281)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+          stateArray_35 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+        if (_GEN_283)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+          stateArray_36 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+        if (_GEN_285)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+          stateArray_37 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+        if (_GEN_287)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+          stateArray_38 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+        if (_GEN_289)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+          stateArray_39 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+        if (_GEN_291)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+          stateArray_40 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+        if (_GEN_293)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+          stateArray_41 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+        if (_GEN_295)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+          stateArray_42 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+        if (_GEN_297)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+          stateArray_43 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+        if (_GEN_299)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+          stateArray_44 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+        if (_GEN_301)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+          stateArray_45 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+        if (_GEN_303)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+          stateArray_46 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+        if (_GEN_305)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+          stateArray_47 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+        if (_GEN_307)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+          stateArray_48 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+        if (_GEN_309)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+          stateArray_49 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+        if (_GEN_311)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+          stateArray_50 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+        if (_GEN_313)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+          stateArray_51 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+        if (_GEN_315)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+          stateArray_52 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+        if (_GEN_317)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+          stateArray_53 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+        if (_GEN_319)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+          stateArray_54 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+        if (_GEN_321)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+          stateArray_55 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+        if (_GEN_323)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+          stateArray_56 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+        if (_GEN_325)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+          stateArray_57 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+        if (_GEN_327)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+          stateArray_58 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+        if (_GEN_329)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+          stateArray_59 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+        if (_GEN_331)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+          stateArray_60 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+        if (_GEN_333)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+          stateArray_61 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+        if (_GEN_335)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+          stateArray_62 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+        if (_GEN_336)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+          stateArray_63 <= _stateArray_T_1;	// cache/src/zaqal/cache/DCache.scala:55:27, :168:37
+      end
+      if (_GEN_211)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+        tagArray_0 <= _tl_mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:56:27, :73:23, :162:60
+      if (_GEN_213)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+        tagArray_1 <= _tl_mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:56:27, :73:23, :162:60
+      if (_GEN_215)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+        tagArray_2 <= _tl_mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:56:27, :73:23, :162:60
+      if (_GEN_217)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+        tagArray_3 <= _tl_mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:56:27, :73:23, :162:60
+      if (_GEN_219)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+        tagArray_4 <= _tl_mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:56:27, :73:23, :162:60
+      if (_GEN_221)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+        tagArray_5 <= _tl_mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:56:27, :73:23, :162:60
+      if (_GEN_223)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+        tagArray_6 <= _tl_mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:56:27, :73:23, :162:60
+      if (_GEN_225)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+        tagArray_7 <= _tl_mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:56:27, :73:23, :162:60
+      if (_GEN_227)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+        tagArray_8 <= _tl_mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:56:27, :73:23, :162:60
+      if (_GEN_229)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+        tagArray_9 <= _tl_mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:56:27, :73:23, :162:60
+      if (_GEN_231)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+        tagArray_10 <= _tl_mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:56:27, :73:23, :162:60
+      if (_GEN_233)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+        tagArray_11 <= _tl_mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:56:27, :73:23, :162:60
+      if (_GEN_235)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+        tagArray_12 <= _tl_mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:56:27, :73:23, :162:60
+      if (_GEN_237)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+        tagArray_13 <= _tl_mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:56:27, :73:23, :162:60
+      if (_GEN_239)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+        tagArray_14 <= _tl_mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:56:27, :73:23, :162:60
+      if (_GEN_241)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+        tagArray_15 <= _tl_mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:56:27, :73:23, :162:60
+      if (_GEN_243)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+        tagArray_16 <= _tl_mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:56:27, :73:23, :162:60
+      if (_GEN_245)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+        tagArray_17 <= _tl_mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:56:27, :73:23, :162:60
+      if (_GEN_247)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+        tagArray_18 <= _tl_mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:56:27, :73:23, :162:60
+      if (_GEN_249)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+        tagArray_19 <= _tl_mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:56:27, :73:23, :162:60
+      if (_GEN_251)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+        tagArray_20 <= _tl_mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:56:27, :73:23, :162:60
+      if (_GEN_253)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+        tagArray_21 <= _tl_mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:56:27, :73:23, :162:60
+      if (_GEN_255)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+        tagArray_22 <= _tl_mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:56:27, :73:23, :162:60
+      if (_GEN_257)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+        tagArray_23 <= _tl_mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:56:27, :73:23, :162:60
+      if (_GEN_259)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+        tagArray_24 <= _tl_mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:56:27, :73:23, :162:60
+      if (_GEN_261)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+        tagArray_25 <= _tl_mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:56:27, :73:23, :162:60
+      if (_GEN_263)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+        tagArray_26 <= _tl_mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:56:27, :73:23, :162:60
+      if (_GEN_265)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+        tagArray_27 <= _tl_mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:56:27, :73:23, :162:60
+      if (_GEN_267)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+        tagArray_28 <= _tl_mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:56:27, :73:23, :162:60
+      if (_GEN_269)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+        tagArray_29 <= _tl_mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:56:27, :73:23, :162:60
+      if (_GEN_271)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+        tagArray_30 <= _tl_mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:56:27, :73:23, :162:60
+      if (_GEN_273)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+        tagArray_31 <= _tl_mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:56:27, :73:23, :162:60
+      if (_GEN_275)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+        tagArray_32 <= _tl_mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:56:27, :73:23, :162:60
+      if (_GEN_277)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+        tagArray_33 <= _tl_mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:56:27, :73:23, :162:60
+      if (_GEN_279)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+        tagArray_34 <= _tl_mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:56:27, :73:23, :162:60
+      if (_GEN_281)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+        tagArray_35 <= _tl_mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:56:27, :73:23, :162:60
+      if (_GEN_283)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+        tagArray_36 <= _tl_mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:56:27, :73:23, :162:60
+      if (_GEN_285)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+        tagArray_37 <= _tl_mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:56:27, :73:23, :162:60
+      if (_GEN_287)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+        tagArray_38 <= _tl_mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:56:27, :73:23, :162:60
+      if (_GEN_289)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+        tagArray_39 <= _tl_mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:56:27, :73:23, :162:60
+      if (_GEN_291)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+        tagArray_40 <= _tl_mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:56:27, :73:23, :162:60
+      if (_GEN_293)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+        tagArray_41 <= _tl_mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:56:27, :73:23, :162:60
+      if (_GEN_295)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+        tagArray_42 <= _tl_mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:56:27, :73:23, :162:60
+      if (_GEN_297)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+        tagArray_43 <= _tl_mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:56:27, :73:23, :162:60
+      if (_GEN_299)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+        tagArray_44 <= _tl_mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:56:27, :73:23, :162:60
+      if (_GEN_301)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+        tagArray_45 <= _tl_mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:56:27, :73:23, :162:60
+      if (_GEN_303)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+        tagArray_46 <= _tl_mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:56:27, :73:23, :162:60
+      if (_GEN_305)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+        tagArray_47 <= _tl_mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:56:27, :73:23, :162:60
+      if (_GEN_307)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+        tagArray_48 <= _tl_mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:56:27, :73:23, :162:60
+      if (_GEN_309)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+        tagArray_49 <= _tl_mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:56:27, :73:23, :162:60
+      if (_GEN_311)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+        tagArray_50 <= _tl_mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:56:27, :73:23, :162:60
+      if (_GEN_313)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+        tagArray_51 <= _tl_mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:56:27, :73:23, :162:60
+      if (_GEN_315)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+        tagArray_52 <= _tl_mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:56:27, :73:23, :162:60
+      if (_GEN_317)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+        tagArray_53 <= _tl_mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:56:27, :73:23, :162:60
+      if (_GEN_319)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+        tagArray_54 <= _tl_mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:56:27, :73:23, :162:60
+      if (_GEN_321)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+        tagArray_55 <= _tl_mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:56:27, :73:23, :162:60
+      if (_GEN_323)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+        tagArray_56 <= _tl_mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:56:27, :73:23, :162:60
+      if (_GEN_325)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+        tagArray_57 <= _tl_mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:56:27, :73:23, :162:60
+      if (_GEN_327)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+        tagArray_58 <= _tl_mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:56:27, :73:23, :162:60
+      if (_GEN_329)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+        tagArray_59 <= _tl_mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:56:27, :73:23, :162:60
+      if (_GEN_331)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+        tagArray_60 <= _tl_mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:56:27, :73:23, :162:60
+      if (_GEN_333)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+        tagArray_61 <= _tl_mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:56:27, :73:23, :162:60
+      if (_GEN_335)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+        tagArray_62 <= _tl_mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:56:27, :73:23, :162:60
+      if (_GEN_336)	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
+        tagArray_63 <= _tl_mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:56:27, :73:23, :162:60
+      if (_GEN_337 & _GEN_210) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
+        dataArray_0_0 <= _GEN_338;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_0_1 <= _GEN_339;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_0_2 <= _GEN_340;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_0_3 <= _GEN_341;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+      end
+      else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_16 & _GEN_17)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_0_0 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_16 & _GEN_18)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_0_1 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_16 & _GEN_19)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_0_2 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_16
+            & (&(io_req_bits_addr[4:3])))	// cache/src/zaqal/cache/DCache.scala:57:27, :62:40, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_0_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+      end
+      if (_GEN_337 & _GEN_212) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
+        dataArray_1_0 <= _GEN_338;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_1_1 <= _GEN_339;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_1_2 <= _GEN_340;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_1_3 <= _GEN_341;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+      end
+      else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_20 & _GEN_17)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_1_0 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_20 & _GEN_18)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_1_1 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_20 & _GEN_19)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_1_2 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_20
+            & (&(io_req_bits_addr[4:3])))	// cache/src/zaqal/cache/DCache.scala:57:27, :62:40, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_1_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+      end
+      if (_GEN_337 & _GEN_214) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
+        dataArray_2_0 <= _GEN_338;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_2_1 <= _GEN_339;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_2_2 <= _GEN_340;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_2_3 <= _GEN_341;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+      end
+      else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_21 & _GEN_17)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_2_0 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_21 & _GEN_18)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_2_1 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_21 & _GEN_19)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_2_2 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_21
+            & (&(io_req_bits_addr[4:3])))	// cache/src/zaqal/cache/DCache.scala:57:27, :62:40, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_2_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+      end
+      if (_GEN_337 & _GEN_216) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
+        dataArray_3_0 <= _GEN_338;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_3_1 <= _GEN_339;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_3_2 <= _GEN_340;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_3_3 <= _GEN_341;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+      end
+      else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_22 & _GEN_17)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_3_0 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_22 & _GEN_18)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_3_1 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_22 & _GEN_19)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_3_2 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_22
+            & (&(io_req_bits_addr[4:3])))	// cache/src/zaqal/cache/DCache.scala:57:27, :62:40, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_3_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+      end
+      if (_GEN_337 & _GEN_218) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
+        dataArray_4_0 <= _GEN_338;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_4_1 <= _GEN_339;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_4_2 <= _GEN_340;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_4_3 <= _GEN_341;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+      end
+      else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_23 & _GEN_17)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_4_0 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_23 & _GEN_18)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_4_1 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_23 & _GEN_19)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_4_2 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_23
+            & (&(io_req_bits_addr[4:3])))	// cache/src/zaqal/cache/DCache.scala:57:27, :62:40, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_4_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+      end
+      if (_GEN_337 & _GEN_220) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
+        dataArray_5_0 <= _GEN_338;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_5_1 <= _GEN_339;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_5_2 <= _GEN_340;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_5_3 <= _GEN_341;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+      end
+      else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_24 & _GEN_17)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_5_0 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_24 & _GEN_18)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_5_1 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_24 & _GEN_19)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_5_2 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_24
+            & (&(io_req_bits_addr[4:3])))	// cache/src/zaqal/cache/DCache.scala:57:27, :62:40, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_5_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+      end
+      if (_GEN_337 & _GEN_222) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
+        dataArray_6_0 <= _GEN_338;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_6_1 <= _GEN_339;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_6_2 <= _GEN_340;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_6_3 <= _GEN_341;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+      end
+      else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_25 & _GEN_17)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_6_0 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_25 & _GEN_18)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_6_1 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_25 & _GEN_19)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_6_2 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_25
+            & (&(io_req_bits_addr[4:3])))	// cache/src/zaqal/cache/DCache.scala:57:27, :62:40, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_6_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+      end
+      if (_GEN_337 & _GEN_224) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
+        dataArray_7_0 <= _GEN_338;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_7_1 <= _GEN_339;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_7_2 <= _GEN_340;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_7_3 <= _GEN_341;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+      end
+      else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_26 & _GEN_17)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_7_0 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_26 & _GEN_18)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_7_1 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_26 & _GEN_19)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_7_2 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_26
+            & (&(io_req_bits_addr[4:3])))	// cache/src/zaqal/cache/DCache.scala:57:27, :62:40, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_7_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+      end
+      if (_GEN_337 & _GEN_226) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
+        dataArray_8_0 <= _GEN_338;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_8_1 <= _GEN_339;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_8_2 <= _GEN_340;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_8_3 <= _GEN_341;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+      end
+      else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_27 & _GEN_17)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_8_0 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_27 & _GEN_18)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_8_1 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_27 & _GEN_19)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_8_2 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_27
+            & (&(io_req_bits_addr[4:3])))	// cache/src/zaqal/cache/DCache.scala:57:27, :62:40, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_8_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+      end
+      if (_GEN_337 & _GEN_228) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
+        dataArray_9_0 <= _GEN_338;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_9_1 <= _GEN_339;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_9_2 <= _GEN_340;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_9_3 <= _GEN_341;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+      end
+      else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_28 & _GEN_17)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_9_0 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_28 & _GEN_18)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_9_1 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_28 & _GEN_19)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_9_2 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_28
+            & (&(io_req_bits_addr[4:3])))	// cache/src/zaqal/cache/DCache.scala:57:27, :62:40, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_9_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+      end
+      if (_GEN_337 & _GEN_230) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
+        dataArray_10_0 <= _GEN_338;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_10_1 <= _GEN_339;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_10_2 <= _GEN_340;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_10_3 <= _GEN_341;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+      end
+      else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_29 & _GEN_17)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_10_0 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_29 & _GEN_18)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_10_1 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_29 & _GEN_19)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_10_2 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_29
+            & (&(io_req_bits_addr[4:3])))	// cache/src/zaqal/cache/DCache.scala:57:27, :62:40, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_10_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+      end
+      if (_GEN_337 & _GEN_232) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
+        dataArray_11_0 <= _GEN_338;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_11_1 <= _GEN_339;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_11_2 <= _GEN_340;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_11_3 <= _GEN_341;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+      end
+      else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_30 & _GEN_17)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_11_0 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_30 & _GEN_18)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_11_1 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_30 & _GEN_19)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_11_2 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_30
+            & (&(io_req_bits_addr[4:3])))	// cache/src/zaqal/cache/DCache.scala:57:27, :62:40, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_11_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+      end
+      if (_GEN_337 & _GEN_234) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
+        dataArray_12_0 <= _GEN_338;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_12_1 <= _GEN_339;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_12_2 <= _GEN_340;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_12_3 <= _GEN_341;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+      end
+      else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_31 & _GEN_17)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_12_0 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_31 & _GEN_18)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_12_1 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_31 & _GEN_19)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_12_2 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_31
+            & (&(io_req_bits_addr[4:3])))	// cache/src/zaqal/cache/DCache.scala:57:27, :62:40, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_12_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+      end
+      if (_GEN_337 & _GEN_236) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
+        dataArray_13_0 <= _GEN_338;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_13_1 <= _GEN_339;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_13_2 <= _GEN_340;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_13_3 <= _GEN_341;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+      end
+      else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_32 & _GEN_17)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_13_0 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_32 & _GEN_18)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_13_1 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_32 & _GEN_19)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_13_2 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_32
+            & (&(io_req_bits_addr[4:3])))	// cache/src/zaqal/cache/DCache.scala:57:27, :62:40, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_13_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+      end
+      if (_GEN_337 & _GEN_238) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
+        dataArray_14_0 <= _GEN_338;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_14_1 <= _GEN_339;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_14_2 <= _GEN_340;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_14_3 <= _GEN_341;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+      end
+      else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_33 & _GEN_17)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_14_0 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_33 & _GEN_18)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_14_1 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_33 & _GEN_19)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_14_2 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_33
+            & (&(io_req_bits_addr[4:3])))	// cache/src/zaqal/cache/DCache.scala:57:27, :62:40, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_14_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+      end
+      if (_GEN_337 & _GEN_240) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
+        dataArray_15_0 <= _GEN_338;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_15_1 <= _GEN_339;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_15_2 <= _GEN_340;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_15_3 <= _GEN_341;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+      end
+      else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_34 & _GEN_17)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_15_0 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_34 & _GEN_18)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_15_1 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_34 & _GEN_19)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_15_2 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_34
+            & (&(io_req_bits_addr[4:3])))	// cache/src/zaqal/cache/DCache.scala:57:27, :62:40, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_15_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+      end
+      if (_GEN_337 & _GEN_242) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
+        dataArray_16_0 <= _GEN_338;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_16_1 <= _GEN_339;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_16_2 <= _GEN_340;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_16_3 <= _GEN_341;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+      end
+      else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_35 & _GEN_17)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_16_0 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_35 & _GEN_18)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_16_1 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_35 & _GEN_19)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_16_2 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_35
+            & (&(io_req_bits_addr[4:3])))	// cache/src/zaqal/cache/DCache.scala:57:27, :62:40, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_16_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+      end
+      if (_GEN_337 & _GEN_244) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
+        dataArray_17_0 <= _GEN_338;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_17_1 <= _GEN_339;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_17_2 <= _GEN_340;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_17_3 <= _GEN_341;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+      end
+      else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_36 & _GEN_17)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_17_0 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_36 & _GEN_18)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_17_1 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_36 & _GEN_19)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_17_2 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_36
+            & (&(io_req_bits_addr[4:3])))	// cache/src/zaqal/cache/DCache.scala:57:27, :62:40, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_17_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+      end
+      if (_GEN_337 & _GEN_246) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
+        dataArray_18_0 <= _GEN_338;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_18_1 <= _GEN_339;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_18_2 <= _GEN_340;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_18_3 <= _GEN_341;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+      end
+      else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_37 & _GEN_17)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_18_0 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_37 & _GEN_18)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_18_1 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_37 & _GEN_19)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_18_2 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_37
+            & (&(io_req_bits_addr[4:3])))	// cache/src/zaqal/cache/DCache.scala:57:27, :62:40, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_18_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+      end
+      if (_GEN_337 & _GEN_248) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
+        dataArray_19_0 <= _GEN_338;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_19_1 <= _GEN_339;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_19_2 <= _GEN_340;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_19_3 <= _GEN_341;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+      end
+      else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_38 & _GEN_17)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_19_0 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_38 & _GEN_18)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_19_1 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_38 & _GEN_19)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_19_2 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_38
+            & (&(io_req_bits_addr[4:3])))	// cache/src/zaqal/cache/DCache.scala:57:27, :62:40, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_19_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+      end
+      if (_GEN_337 & _GEN_250) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
+        dataArray_20_0 <= _GEN_338;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_20_1 <= _GEN_339;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_20_2 <= _GEN_340;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_20_3 <= _GEN_341;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+      end
+      else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_39 & _GEN_17)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_20_0 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_39 & _GEN_18)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_20_1 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_39 & _GEN_19)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_20_2 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_39
+            & (&(io_req_bits_addr[4:3])))	// cache/src/zaqal/cache/DCache.scala:57:27, :62:40, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_20_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+      end
+      if (_GEN_337 & _GEN_252) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
+        dataArray_21_0 <= _GEN_338;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_21_1 <= _GEN_339;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_21_2 <= _GEN_340;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_21_3 <= _GEN_341;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+      end
+      else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_40 & _GEN_17)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_21_0 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_40 & _GEN_18)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_21_1 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_40 & _GEN_19)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_21_2 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_40
+            & (&(io_req_bits_addr[4:3])))	// cache/src/zaqal/cache/DCache.scala:57:27, :62:40, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_21_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+      end
+      if (_GEN_337 & _GEN_254) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
+        dataArray_22_0 <= _GEN_338;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_22_1 <= _GEN_339;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_22_2 <= _GEN_340;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_22_3 <= _GEN_341;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+      end
+      else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_41 & _GEN_17)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_22_0 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_41 & _GEN_18)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_22_1 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_41 & _GEN_19)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_22_2 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_41
+            & (&(io_req_bits_addr[4:3])))	// cache/src/zaqal/cache/DCache.scala:57:27, :62:40, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_22_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+      end
+      if (_GEN_337 & _GEN_256) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
+        dataArray_23_0 <= _GEN_338;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_23_1 <= _GEN_339;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_23_2 <= _GEN_340;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_23_3 <= _GEN_341;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+      end
+      else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_42 & _GEN_17)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_23_0 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_42 & _GEN_18)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_23_1 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_42 & _GEN_19)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_23_2 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_42
+            & (&(io_req_bits_addr[4:3])))	// cache/src/zaqal/cache/DCache.scala:57:27, :62:40, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_23_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+      end
+      if (_GEN_337 & _GEN_258) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
+        dataArray_24_0 <= _GEN_338;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_24_1 <= _GEN_339;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_24_2 <= _GEN_340;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_24_3 <= _GEN_341;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+      end
+      else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_43 & _GEN_17)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_24_0 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_43 & _GEN_18)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_24_1 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_43 & _GEN_19)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_24_2 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_43
+            & (&(io_req_bits_addr[4:3])))	// cache/src/zaqal/cache/DCache.scala:57:27, :62:40, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_24_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+      end
+      if (_GEN_337 & _GEN_260) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
+        dataArray_25_0 <= _GEN_338;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_25_1 <= _GEN_339;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_25_2 <= _GEN_340;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_25_3 <= _GEN_341;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+      end
+      else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_44 & _GEN_17)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_25_0 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_44 & _GEN_18)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_25_1 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_44 & _GEN_19)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_25_2 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_44
+            & (&(io_req_bits_addr[4:3])))	// cache/src/zaqal/cache/DCache.scala:57:27, :62:40, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_25_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+      end
+      if (_GEN_337 & _GEN_262) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
+        dataArray_26_0 <= _GEN_338;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_26_1 <= _GEN_339;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_26_2 <= _GEN_340;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_26_3 <= _GEN_341;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+      end
+      else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_45 & _GEN_17)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_26_0 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_45 & _GEN_18)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_26_1 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_45 & _GEN_19)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_26_2 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_45
+            & (&(io_req_bits_addr[4:3])))	// cache/src/zaqal/cache/DCache.scala:57:27, :62:40, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_26_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+      end
+      if (_GEN_337 & _GEN_264) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
+        dataArray_27_0 <= _GEN_338;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_27_1 <= _GEN_339;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_27_2 <= _GEN_340;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_27_3 <= _GEN_341;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+      end
+      else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_46 & _GEN_17)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_27_0 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_46 & _GEN_18)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_27_1 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_46 & _GEN_19)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_27_2 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_46
+            & (&(io_req_bits_addr[4:3])))	// cache/src/zaqal/cache/DCache.scala:57:27, :62:40, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_27_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+      end
+      if (_GEN_337 & _GEN_266) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
+        dataArray_28_0 <= _GEN_338;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_28_1 <= _GEN_339;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_28_2 <= _GEN_340;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_28_3 <= _GEN_341;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+      end
+      else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_47 & _GEN_17)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_28_0 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_47 & _GEN_18)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_28_1 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_47 & _GEN_19)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_28_2 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_47
+            & (&(io_req_bits_addr[4:3])))	// cache/src/zaqal/cache/DCache.scala:57:27, :62:40, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_28_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+      end
+      if (_GEN_337 & _GEN_268) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
+        dataArray_29_0 <= _GEN_338;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_29_1 <= _GEN_339;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_29_2 <= _GEN_340;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_29_3 <= _GEN_341;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+      end
+      else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_48 & _GEN_17)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_29_0 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_48 & _GEN_18)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_29_1 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_48 & _GEN_19)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_29_2 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_48
+            & (&(io_req_bits_addr[4:3])))	// cache/src/zaqal/cache/DCache.scala:57:27, :62:40, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_29_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+      end
+      if (_GEN_337 & _GEN_270) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
+        dataArray_30_0 <= _GEN_338;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_30_1 <= _GEN_339;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_30_2 <= _GEN_340;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_30_3 <= _GEN_341;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+      end
+      else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_49 & _GEN_17)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_30_0 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_49 & _GEN_18)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_30_1 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_49 & _GEN_19)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_30_2 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_49
+            & (&(io_req_bits_addr[4:3])))	// cache/src/zaqal/cache/DCache.scala:57:27, :62:40, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_30_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+      end
+      if (_GEN_337 & _GEN_272) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
+        dataArray_31_0 <= _GEN_338;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_31_1 <= _GEN_339;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_31_2 <= _GEN_340;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_31_3 <= _GEN_341;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+      end
+      else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_50 & _GEN_17)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_31_0 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_50 & _GEN_18)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_31_1 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_50 & _GEN_19)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_31_2 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_50
+            & (&(io_req_bits_addr[4:3])))	// cache/src/zaqal/cache/DCache.scala:57:27, :62:40, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_31_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+      end
+      if (_GEN_337 & _GEN_274) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
+        dataArray_32_0 <= _GEN_338;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_32_1 <= _GEN_339;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_32_2 <= _GEN_340;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_32_3 <= _GEN_341;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+      end
+      else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_51 & _GEN_17)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_32_0 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_51 & _GEN_18)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_32_1 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_51 & _GEN_19)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_32_2 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_51
+            & (&(io_req_bits_addr[4:3])))	// cache/src/zaqal/cache/DCache.scala:57:27, :62:40, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_32_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+      end
+      if (_GEN_337 & _GEN_276) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
+        dataArray_33_0 <= _GEN_338;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_33_1 <= _GEN_339;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_33_2 <= _GEN_340;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_33_3 <= _GEN_341;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+      end
+      else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_52 & _GEN_17)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_33_0 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_52 & _GEN_18)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_33_1 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_52 & _GEN_19)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_33_2 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_52
+            & (&(io_req_bits_addr[4:3])))	// cache/src/zaqal/cache/DCache.scala:57:27, :62:40, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_33_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+      end
+      if (_GEN_337 & _GEN_278) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
+        dataArray_34_0 <= _GEN_338;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_34_1 <= _GEN_339;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_34_2 <= _GEN_340;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_34_3 <= _GEN_341;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+      end
+      else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_53 & _GEN_17)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_34_0 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_53 & _GEN_18)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_34_1 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_53 & _GEN_19)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_34_2 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_53
+            & (&(io_req_bits_addr[4:3])))	// cache/src/zaqal/cache/DCache.scala:57:27, :62:40, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_34_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+      end
+      if (_GEN_337 & _GEN_280) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
+        dataArray_35_0 <= _GEN_338;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_35_1 <= _GEN_339;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_35_2 <= _GEN_340;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_35_3 <= _GEN_341;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+      end
+      else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_54 & _GEN_17)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_35_0 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_54 & _GEN_18)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_35_1 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_54 & _GEN_19)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_35_2 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_54
+            & (&(io_req_bits_addr[4:3])))	// cache/src/zaqal/cache/DCache.scala:57:27, :62:40, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_35_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+      end
+      if (_GEN_337 & _GEN_282) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
+        dataArray_36_0 <= _GEN_338;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_36_1 <= _GEN_339;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_36_2 <= _GEN_340;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_36_3 <= _GEN_341;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+      end
+      else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_55 & _GEN_17)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_36_0 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_55 & _GEN_18)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_36_1 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_55 & _GEN_19)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_36_2 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_55
+            & (&(io_req_bits_addr[4:3])))	// cache/src/zaqal/cache/DCache.scala:57:27, :62:40, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_36_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+      end
+      if (_GEN_337 & _GEN_284) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
+        dataArray_37_0 <= _GEN_338;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_37_1 <= _GEN_339;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_37_2 <= _GEN_340;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_37_3 <= _GEN_341;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+      end
+      else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_56 & _GEN_17)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_37_0 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_56 & _GEN_18)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_37_1 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_56 & _GEN_19)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_37_2 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_56
+            & (&(io_req_bits_addr[4:3])))	// cache/src/zaqal/cache/DCache.scala:57:27, :62:40, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_37_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+      end
+      if (_GEN_337 & _GEN_286) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
+        dataArray_38_0 <= _GEN_338;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_38_1 <= _GEN_339;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_38_2 <= _GEN_340;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_38_3 <= _GEN_341;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+      end
+      else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_57 & _GEN_17)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_38_0 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_57 & _GEN_18)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_38_1 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_57 & _GEN_19)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_38_2 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_57
+            & (&(io_req_bits_addr[4:3])))	// cache/src/zaqal/cache/DCache.scala:57:27, :62:40, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_38_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+      end
+      if (_GEN_337 & _GEN_288) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
+        dataArray_39_0 <= _GEN_338;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_39_1 <= _GEN_339;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_39_2 <= _GEN_340;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_39_3 <= _GEN_341;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+      end
+      else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_58 & _GEN_17)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_39_0 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_58 & _GEN_18)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_39_1 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_58 & _GEN_19)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_39_2 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_58
+            & (&(io_req_bits_addr[4:3])))	// cache/src/zaqal/cache/DCache.scala:57:27, :62:40, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_39_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+      end
+      if (_GEN_337 & _GEN_290) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
+        dataArray_40_0 <= _GEN_338;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_40_1 <= _GEN_339;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_40_2 <= _GEN_340;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_40_3 <= _GEN_341;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+      end
+      else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_59 & _GEN_17)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_40_0 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_59 & _GEN_18)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_40_1 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_59 & _GEN_19)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_40_2 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_59
+            & (&(io_req_bits_addr[4:3])))	// cache/src/zaqal/cache/DCache.scala:57:27, :62:40, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_40_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+      end
+      if (_GEN_337 & _GEN_292) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
+        dataArray_41_0 <= _GEN_338;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_41_1 <= _GEN_339;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_41_2 <= _GEN_340;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_41_3 <= _GEN_341;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+      end
+      else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_60 & _GEN_17)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_41_0 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_60 & _GEN_18)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_41_1 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_60 & _GEN_19)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_41_2 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_60
+            & (&(io_req_bits_addr[4:3])))	// cache/src/zaqal/cache/DCache.scala:57:27, :62:40, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_41_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+      end
+      if (_GEN_337 & _GEN_294) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
+        dataArray_42_0 <= _GEN_338;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_42_1 <= _GEN_339;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_42_2 <= _GEN_340;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_42_3 <= _GEN_341;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+      end
+      else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_61 & _GEN_17)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_42_0 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_61 & _GEN_18)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_42_1 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_61 & _GEN_19)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_42_2 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_61
+            & (&(io_req_bits_addr[4:3])))	// cache/src/zaqal/cache/DCache.scala:57:27, :62:40, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_42_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+      end
+      if (_GEN_337 & _GEN_296) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
+        dataArray_43_0 <= _GEN_338;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_43_1 <= _GEN_339;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_43_2 <= _GEN_340;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_43_3 <= _GEN_341;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+      end
+      else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_62 & _GEN_17)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_43_0 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_62 & _GEN_18)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_43_1 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_62 & _GEN_19)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_43_2 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_62
+            & (&(io_req_bits_addr[4:3])))	// cache/src/zaqal/cache/DCache.scala:57:27, :62:40, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_43_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+      end
+      if (_GEN_337 & _GEN_298) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
+        dataArray_44_0 <= _GEN_338;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_44_1 <= _GEN_339;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_44_2 <= _GEN_340;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_44_3 <= _GEN_341;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+      end
+      else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_63 & _GEN_17)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_44_0 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_63 & _GEN_18)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_44_1 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_63 & _GEN_19)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_44_2 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_63
+            & (&(io_req_bits_addr[4:3])))	// cache/src/zaqal/cache/DCache.scala:57:27, :62:40, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_44_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+      end
+      if (_GEN_337 & _GEN_300) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
+        dataArray_45_0 <= _GEN_338;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_45_1 <= _GEN_339;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_45_2 <= _GEN_340;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_45_3 <= _GEN_341;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+      end
+      else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_64 & _GEN_17)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_45_0 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_64 & _GEN_18)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_45_1 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_64 & _GEN_19)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_45_2 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_64
+            & (&(io_req_bits_addr[4:3])))	// cache/src/zaqal/cache/DCache.scala:57:27, :62:40, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_45_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+      end
+      if (_GEN_337 & _GEN_302) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
+        dataArray_46_0 <= _GEN_338;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_46_1 <= _GEN_339;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_46_2 <= _GEN_340;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_46_3 <= _GEN_341;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+      end
+      else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_65 & _GEN_17)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_46_0 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_65 & _GEN_18)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_46_1 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_65 & _GEN_19)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_46_2 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_65
+            & (&(io_req_bits_addr[4:3])))	// cache/src/zaqal/cache/DCache.scala:57:27, :62:40, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_46_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+      end
+      if (_GEN_337 & _GEN_304) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
+        dataArray_47_0 <= _GEN_338;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_47_1 <= _GEN_339;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_47_2 <= _GEN_340;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_47_3 <= _GEN_341;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+      end
+      else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_66 & _GEN_17)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_47_0 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_66 & _GEN_18)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_47_1 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_66 & _GEN_19)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_47_2 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_66
+            & (&(io_req_bits_addr[4:3])))	// cache/src/zaqal/cache/DCache.scala:57:27, :62:40, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_47_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+      end
+      if (_GEN_337 & _GEN_306) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
+        dataArray_48_0 <= _GEN_338;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_48_1 <= _GEN_339;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_48_2 <= _GEN_340;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_48_3 <= _GEN_341;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+      end
+      else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_67 & _GEN_17)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_48_0 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_67 & _GEN_18)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_48_1 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_67 & _GEN_19)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_48_2 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_67
+            & (&(io_req_bits_addr[4:3])))	// cache/src/zaqal/cache/DCache.scala:57:27, :62:40, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_48_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+      end
+      if (_GEN_337 & _GEN_308) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
+        dataArray_49_0 <= _GEN_338;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_49_1 <= _GEN_339;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_49_2 <= _GEN_340;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_49_3 <= _GEN_341;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+      end
+      else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_68 & _GEN_17)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_49_0 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_68 & _GEN_18)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_49_1 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_68 & _GEN_19)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_49_2 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_68
+            & (&(io_req_bits_addr[4:3])))	// cache/src/zaqal/cache/DCache.scala:57:27, :62:40, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_49_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+      end
+      if (_GEN_337 & _GEN_310) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
+        dataArray_50_0 <= _GEN_338;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_50_1 <= _GEN_339;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_50_2 <= _GEN_340;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_50_3 <= _GEN_341;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+      end
+      else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_69 & _GEN_17)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_50_0 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_69 & _GEN_18)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_50_1 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_69 & _GEN_19)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_50_2 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_69
+            & (&(io_req_bits_addr[4:3])))	// cache/src/zaqal/cache/DCache.scala:57:27, :62:40, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_50_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+      end
+      if (_GEN_337 & _GEN_312) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
+        dataArray_51_0 <= _GEN_338;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_51_1 <= _GEN_339;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_51_2 <= _GEN_340;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_51_3 <= _GEN_341;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+      end
+      else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_70 & _GEN_17)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_51_0 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_70 & _GEN_18)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_51_1 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_70 & _GEN_19)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_51_2 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_70
+            & (&(io_req_bits_addr[4:3])))	// cache/src/zaqal/cache/DCache.scala:57:27, :62:40, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_51_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+      end
+      if (_GEN_337 & _GEN_314) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
+        dataArray_52_0 <= _GEN_338;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_52_1 <= _GEN_339;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_52_2 <= _GEN_340;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_52_3 <= _GEN_341;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+      end
+      else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_71 & _GEN_17)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_52_0 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_71 & _GEN_18)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_52_1 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_71 & _GEN_19)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_52_2 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_71
+            & (&(io_req_bits_addr[4:3])))	// cache/src/zaqal/cache/DCache.scala:57:27, :62:40, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_52_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+      end
+      if (_GEN_337 & _GEN_316) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
+        dataArray_53_0 <= _GEN_338;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_53_1 <= _GEN_339;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_53_2 <= _GEN_340;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_53_3 <= _GEN_341;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+      end
+      else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_72 & _GEN_17)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_53_0 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_72 & _GEN_18)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_53_1 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_72 & _GEN_19)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_53_2 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_72
+            & (&(io_req_bits_addr[4:3])))	// cache/src/zaqal/cache/DCache.scala:57:27, :62:40, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_53_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+      end
+      if (_GEN_337 & _GEN_318) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
+        dataArray_54_0 <= _GEN_338;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_54_1 <= _GEN_339;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_54_2 <= _GEN_340;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_54_3 <= _GEN_341;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+      end
+      else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_73 & _GEN_17)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_54_0 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_73 & _GEN_18)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_54_1 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_73 & _GEN_19)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_54_2 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_73
+            & (&(io_req_bits_addr[4:3])))	// cache/src/zaqal/cache/DCache.scala:57:27, :62:40, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_54_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+      end
+      if (_GEN_337 & _GEN_320) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
+        dataArray_55_0 <= _GEN_338;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_55_1 <= _GEN_339;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_55_2 <= _GEN_340;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_55_3 <= _GEN_341;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+      end
+      else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_74 & _GEN_17)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_55_0 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_74 & _GEN_18)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_55_1 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_74 & _GEN_19)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_55_2 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_74
+            & (&(io_req_bits_addr[4:3])))	// cache/src/zaqal/cache/DCache.scala:57:27, :62:40, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_55_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+      end
+      if (_GEN_337 & _GEN_322) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
+        dataArray_56_0 <= _GEN_338;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_56_1 <= _GEN_339;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_56_2 <= _GEN_340;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_56_3 <= _GEN_341;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+      end
+      else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_75 & _GEN_17)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_56_0 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_75 & _GEN_18)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_56_1 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_75 & _GEN_19)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_56_2 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_75
+            & (&(io_req_bits_addr[4:3])))	// cache/src/zaqal/cache/DCache.scala:57:27, :62:40, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_56_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+      end
+      if (_GEN_337 & _GEN_324) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
+        dataArray_57_0 <= _GEN_338;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_57_1 <= _GEN_339;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_57_2 <= _GEN_340;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_57_3 <= _GEN_341;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+      end
+      else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_76 & _GEN_17)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_57_0 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_76 & _GEN_18)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_57_1 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_76 & _GEN_19)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_57_2 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_76
+            & (&(io_req_bits_addr[4:3])))	// cache/src/zaqal/cache/DCache.scala:57:27, :62:40, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_57_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+      end
+      if (_GEN_337 & _GEN_326) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
+        dataArray_58_0 <= _GEN_338;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_58_1 <= _GEN_339;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_58_2 <= _GEN_340;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_58_3 <= _GEN_341;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+      end
+      else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_77 & _GEN_17)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_58_0 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_77 & _GEN_18)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_58_1 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_77 & _GEN_19)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_58_2 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_77
+            & (&(io_req_bits_addr[4:3])))	// cache/src/zaqal/cache/DCache.scala:57:27, :62:40, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_58_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+      end
+      if (_GEN_337 & _GEN_328) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
+        dataArray_59_0 <= _GEN_338;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_59_1 <= _GEN_339;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_59_2 <= _GEN_340;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_59_3 <= _GEN_341;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+      end
+      else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_78 & _GEN_17)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_59_0 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_78 & _GEN_18)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_59_1 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_78 & _GEN_19)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_59_2 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_78
+            & (&(io_req_bits_addr[4:3])))	// cache/src/zaqal/cache/DCache.scala:57:27, :62:40, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_59_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+      end
+      if (_GEN_337 & _GEN_330) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
+        dataArray_60_0 <= _GEN_338;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_60_1 <= _GEN_339;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_60_2 <= _GEN_340;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_60_3 <= _GEN_341;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+      end
+      else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_79 & _GEN_17)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_60_0 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_79 & _GEN_18)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_60_1 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_79 & _GEN_19)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_60_2 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_79
+            & (&(io_req_bits_addr[4:3])))	// cache/src/zaqal/cache/DCache.scala:57:27, :62:40, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_60_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+      end
+      if (_GEN_337 & _GEN_332) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
+        dataArray_61_0 <= _GEN_338;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_61_1 <= _GEN_339;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_61_2 <= _GEN_340;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_61_3 <= _GEN_341;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+      end
+      else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_80 & _GEN_17)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_61_0 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_80 & _GEN_18)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_61_1 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_80 & _GEN_19)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_61_2 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_80
+            & (&(io_req_bits_addr[4:3])))	// cache/src/zaqal/cache/DCache.scala:57:27, :62:40, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_61_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+      end
+      if (_GEN_337 & _GEN_334) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
+        dataArray_62_0 <= _GEN_338;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_62_1 <= _GEN_339;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_62_2 <= _GEN_340;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_62_3 <= _GEN_341;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+      end
+      else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_81 & _GEN_17)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_62_0 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_81 & _GEN_18)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_62_1 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_81 & _GEN_19)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_62_2 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & _GEN_81
+            & (&(io_req_bits_addr[4:3])))	// cache/src/zaqal/cache/DCache.scala:57:27, :62:40, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_62_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+      end
+      if (_GEN_337 & (&(_tl_mshr_io_refill_out_bits_addr[10:5]))) begin	// cache/src/zaqal/cache/DCache.scala:73:23, :115:22, :160:36, :161:60, :165:50, :166:31, :170:49
+        dataArray_63_0 <= _GEN_338;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_63_1 <= _GEN_339;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_63_2 <= _GEN_340;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_63_3 <= _GEN_341;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+      end
+      else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
+        if (io_req_valid & isHit & io_req_bits_is_write & (&(io_req_bits_addr[10:5]))
+            & _GEN_17)	// cache/src/zaqal/cache/DCache.scala:57:27, :60:40, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_63_0 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & (&(io_req_bits_addr[10:5]))
+            & _GEN_18)	// cache/src/zaqal/cache/DCache.scala:57:27, :60:40, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_63_1 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & (&(io_req_bits_addr[10:5]))
+            & _GEN_19)	// cache/src/zaqal/cache/DCache.scala:57:27, :60:40, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_63_2 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+        if (io_req_valid & isHit & io_req_bits_is_write & (&(io_req_bits_addr[10:5]))
+            & (&(io_req_bits_addr[4:3])))	// cache/src/zaqal/cache/DCache.scala:57:27, :60:40, :62:40, :69:32, :115:22, :116:17, :118:34, :119:45
+          dataArray_63_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
+      end
     end
   end // always @(posedge)
-  `ifdef ENABLE_INITIAL_REG_	// cache/src/zaqal/cache/DCache.scala:8:7
-    `ifdef FIRRTL_BEFORE_INITIAL	// cache/src/zaqal/cache/DCache.scala:8:7
-      `FIRRTL_BEFORE_INITIAL	// cache/src/zaqal/cache/DCache.scala:8:7
+  `ifdef ENABLE_INITIAL_REG_	// cache/src/zaqal/cache/DCache.scala:19:7
+    `ifdef FIRRTL_BEFORE_INITIAL	// cache/src/zaqal/cache/DCache.scala:19:7
+      `FIRRTL_BEFORE_INITIAL	// cache/src/zaqal/cache/DCache.scala:19:7
     `endif // FIRRTL_BEFORE_INITIAL
-    logic [31:0] _RANDOM[0:109];	// cache/src/zaqal/cache/DCache.scala:8:7
-    initial begin	// cache/src/zaqal/cache/DCache.scala:8:7
-      `ifdef INIT_RANDOM_PROLOG_	// cache/src/zaqal/cache/DCache.scala:8:7
-        `INIT_RANDOM_PROLOG_	// cache/src/zaqal/cache/DCache.scala:8:7
+    logic [31:0] _RANDOM[0:625];	// cache/src/zaqal/cache/DCache.scala:19:7
+    initial begin	// cache/src/zaqal/cache/DCache.scala:19:7
+      `ifdef INIT_RANDOM_PROLOG_	// cache/src/zaqal/cache/DCache.scala:19:7
+        `INIT_RANDOM_PROLOG_	// cache/src/zaqal/cache/DCache.scala:19:7
       `endif // INIT_RANDOM_PROLOG_
-      `ifdef RANDOMIZE_REG_INIT	// cache/src/zaqal/cache/DCache.scala:8:7
-        for (logic [6:0] i = 7'h0; i < 7'h6E; i += 7'h1) begin
-          _RANDOM[i] = `RANDOM;	// cache/src/zaqal/cache/DCache.scala:8:7
-        end	// cache/src/zaqal/cache/DCache.scala:8:7
-        validArray_0 = _RANDOM[7'h0][0];	// cache/src/zaqal/cache/DCache.scala:8:7, :28:27
-        validArray_1 = _RANDOM[7'h0][1];	// cache/src/zaqal/cache/DCache.scala:8:7, :28:27
-        validArray_2 = _RANDOM[7'h0][2];	// cache/src/zaqal/cache/DCache.scala:8:7, :28:27
-        validArray_3 = _RANDOM[7'h0][3];	// cache/src/zaqal/cache/DCache.scala:8:7, :28:27
-        validArray_4 = _RANDOM[7'h0][4];	// cache/src/zaqal/cache/DCache.scala:8:7, :28:27
-        validArray_5 = _RANDOM[7'h0][5];	// cache/src/zaqal/cache/DCache.scala:8:7, :28:27
-        validArray_6 = _RANDOM[7'h0][6];	// cache/src/zaqal/cache/DCache.scala:8:7, :28:27
-        validArray_7 = _RANDOM[7'h0][7];	// cache/src/zaqal/cache/DCache.scala:8:7, :28:27
-        validArray_8 = _RANDOM[7'h0][8];	// cache/src/zaqal/cache/DCache.scala:8:7, :28:27
-        validArray_9 = _RANDOM[7'h0][9];	// cache/src/zaqal/cache/DCache.scala:8:7, :28:27
-        validArray_10 = _RANDOM[7'h0][10];	// cache/src/zaqal/cache/DCache.scala:8:7, :28:27
-        validArray_11 = _RANDOM[7'h0][11];	// cache/src/zaqal/cache/DCache.scala:8:7, :28:27
-        validArray_12 = _RANDOM[7'h0][12];	// cache/src/zaqal/cache/DCache.scala:8:7, :28:27
-        validArray_13 = _RANDOM[7'h0][13];	// cache/src/zaqal/cache/DCache.scala:8:7, :28:27
-        validArray_14 = _RANDOM[7'h0][14];	// cache/src/zaqal/cache/DCache.scala:8:7, :28:27
-        validArray_15 = _RANDOM[7'h0][15];	// cache/src/zaqal/cache/DCache.scala:8:7, :28:27
-        validArray_16 = _RANDOM[7'h0][16];	// cache/src/zaqal/cache/DCache.scala:8:7, :28:27
-        validArray_17 = _RANDOM[7'h0][17];	// cache/src/zaqal/cache/DCache.scala:8:7, :28:27
-        validArray_18 = _RANDOM[7'h0][18];	// cache/src/zaqal/cache/DCache.scala:8:7, :28:27
-        validArray_19 = _RANDOM[7'h0][19];	// cache/src/zaqal/cache/DCache.scala:8:7, :28:27
-        validArray_20 = _RANDOM[7'h0][20];	// cache/src/zaqal/cache/DCache.scala:8:7, :28:27
-        validArray_21 = _RANDOM[7'h0][21];	// cache/src/zaqal/cache/DCache.scala:8:7, :28:27
-        validArray_22 = _RANDOM[7'h0][22];	// cache/src/zaqal/cache/DCache.scala:8:7, :28:27
-        validArray_23 = _RANDOM[7'h0][23];	// cache/src/zaqal/cache/DCache.scala:8:7, :28:27
-        validArray_24 = _RANDOM[7'h0][24];	// cache/src/zaqal/cache/DCache.scala:8:7, :28:27
-        validArray_25 = _RANDOM[7'h0][25];	// cache/src/zaqal/cache/DCache.scala:8:7, :28:27
-        validArray_26 = _RANDOM[7'h0][26];	// cache/src/zaqal/cache/DCache.scala:8:7, :28:27
-        validArray_27 = _RANDOM[7'h0][27];	// cache/src/zaqal/cache/DCache.scala:8:7, :28:27
-        validArray_28 = _RANDOM[7'h0][28];	// cache/src/zaqal/cache/DCache.scala:8:7, :28:27
-        validArray_29 = _RANDOM[7'h0][29];	// cache/src/zaqal/cache/DCache.scala:8:7, :28:27
-        validArray_30 = _RANDOM[7'h0][30];	// cache/src/zaqal/cache/DCache.scala:8:7, :28:27
-        validArray_31 = _RANDOM[7'h0][31];	// cache/src/zaqal/cache/DCache.scala:8:7, :28:27
-        validArray_32 = _RANDOM[7'h1][0];	// cache/src/zaqal/cache/DCache.scala:8:7, :28:27
-        validArray_33 = _RANDOM[7'h1][1];	// cache/src/zaqal/cache/DCache.scala:8:7, :28:27
-        validArray_34 = _RANDOM[7'h1][2];	// cache/src/zaqal/cache/DCache.scala:8:7, :28:27
-        validArray_35 = _RANDOM[7'h1][3];	// cache/src/zaqal/cache/DCache.scala:8:7, :28:27
-        validArray_36 = _RANDOM[7'h1][4];	// cache/src/zaqal/cache/DCache.scala:8:7, :28:27
-        validArray_37 = _RANDOM[7'h1][5];	// cache/src/zaqal/cache/DCache.scala:8:7, :28:27
-        validArray_38 = _RANDOM[7'h1][6];	// cache/src/zaqal/cache/DCache.scala:8:7, :28:27
-        validArray_39 = _RANDOM[7'h1][7];	// cache/src/zaqal/cache/DCache.scala:8:7, :28:27
-        validArray_40 = _RANDOM[7'h1][8];	// cache/src/zaqal/cache/DCache.scala:8:7, :28:27
-        validArray_41 = _RANDOM[7'h1][9];	// cache/src/zaqal/cache/DCache.scala:8:7, :28:27
-        validArray_42 = _RANDOM[7'h1][10];	// cache/src/zaqal/cache/DCache.scala:8:7, :28:27
-        validArray_43 = _RANDOM[7'h1][11];	// cache/src/zaqal/cache/DCache.scala:8:7, :28:27
-        validArray_44 = _RANDOM[7'h1][12];	// cache/src/zaqal/cache/DCache.scala:8:7, :28:27
-        validArray_45 = _RANDOM[7'h1][13];	// cache/src/zaqal/cache/DCache.scala:8:7, :28:27
-        validArray_46 = _RANDOM[7'h1][14];	// cache/src/zaqal/cache/DCache.scala:8:7, :28:27
-        validArray_47 = _RANDOM[7'h1][15];	// cache/src/zaqal/cache/DCache.scala:8:7, :28:27
-        validArray_48 = _RANDOM[7'h1][16];	// cache/src/zaqal/cache/DCache.scala:8:7, :28:27
-        validArray_49 = _RANDOM[7'h1][17];	// cache/src/zaqal/cache/DCache.scala:8:7, :28:27
-        validArray_50 = _RANDOM[7'h1][18];	// cache/src/zaqal/cache/DCache.scala:8:7, :28:27
-        validArray_51 = _RANDOM[7'h1][19];	// cache/src/zaqal/cache/DCache.scala:8:7, :28:27
-        validArray_52 = _RANDOM[7'h1][20];	// cache/src/zaqal/cache/DCache.scala:8:7, :28:27
-        validArray_53 = _RANDOM[7'h1][21];	// cache/src/zaqal/cache/DCache.scala:8:7, :28:27
-        validArray_54 = _RANDOM[7'h1][22];	// cache/src/zaqal/cache/DCache.scala:8:7, :28:27
-        validArray_55 = _RANDOM[7'h1][23];	// cache/src/zaqal/cache/DCache.scala:8:7, :28:27
-        validArray_56 = _RANDOM[7'h1][24];	// cache/src/zaqal/cache/DCache.scala:8:7, :28:27
-        validArray_57 = _RANDOM[7'h1][25];	// cache/src/zaqal/cache/DCache.scala:8:7, :28:27
-        validArray_58 = _RANDOM[7'h1][26];	// cache/src/zaqal/cache/DCache.scala:8:7, :28:27
-        validArray_59 = _RANDOM[7'h1][27];	// cache/src/zaqal/cache/DCache.scala:8:7, :28:27
-        validArray_60 = _RANDOM[7'h1][28];	// cache/src/zaqal/cache/DCache.scala:8:7, :28:27
-        validArray_61 = _RANDOM[7'h1][29];	// cache/src/zaqal/cache/DCache.scala:8:7, :28:27
-        validArray_62 = _RANDOM[7'h1][30];	// cache/src/zaqal/cache/DCache.scala:8:7, :28:27
-        validArray_63 = _RANDOM[7'h1][31];	// cache/src/zaqal/cache/DCache.scala:8:7, :28:27
-        tagArray_0 = {_RANDOM[7'h4], _RANDOM[7'h5][20:0]};	// cache/src/zaqal/cache/DCache.scala:8:7, :30:25
-        tagArray_1 = {_RANDOM[7'h5][31:21], _RANDOM[7'h6], _RANDOM[7'h7][9:0]};	// cache/src/zaqal/cache/DCache.scala:8:7, :30:25
-        tagArray_2 = {_RANDOM[7'h7][31:10], _RANDOM[7'h8][30:0]};	// cache/src/zaqal/cache/DCache.scala:8:7, :30:25
-        tagArray_3 = {_RANDOM[7'h8][31], _RANDOM[7'h9], _RANDOM[7'hA][19:0]};	// cache/src/zaqal/cache/DCache.scala:8:7, :30:25
-        tagArray_4 = {_RANDOM[7'hA][31:20], _RANDOM[7'hB], _RANDOM[7'hC][8:0]};	// cache/src/zaqal/cache/DCache.scala:8:7, :30:25
-        tagArray_5 = {_RANDOM[7'hC][31:9], _RANDOM[7'hD][29:0]};	// cache/src/zaqal/cache/DCache.scala:8:7, :30:25
-        tagArray_6 = {_RANDOM[7'hD][31:30], _RANDOM[7'hE], _RANDOM[7'hF][18:0]};	// cache/src/zaqal/cache/DCache.scala:8:7, :30:25
-        tagArray_7 = {_RANDOM[7'hF][31:19], _RANDOM[7'h10], _RANDOM[7'h11][7:0]};	// cache/src/zaqal/cache/DCache.scala:8:7, :30:25
-        tagArray_8 = {_RANDOM[7'h11][31:8], _RANDOM[7'h12][28:0]};	// cache/src/zaqal/cache/DCache.scala:8:7, :30:25
-        tagArray_9 = {_RANDOM[7'h12][31:29], _RANDOM[7'h13], _RANDOM[7'h14][17:0]};	// cache/src/zaqal/cache/DCache.scala:8:7, :30:25
-        tagArray_10 = {_RANDOM[7'h14][31:18], _RANDOM[7'h15], _RANDOM[7'h16][6:0]};	// cache/src/zaqal/cache/DCache.scala:8:7, :30:25
-        tagArray_11 = {_RANDOM[7'h16][31:7], _RANDOM[7'h17][27:0]};	// cache/src/zaqal/cache/DCache.scala:8:7, :30:25
-        tagArray_12 = {_RANDOM[7'h17][31:28], _RANDOM[7'h18], _RANDOM[7'h19][16:0]};	// cache/src/zaqal/cache/DCache.scala:8:7, :30:25
-        tagArray_13 = {_RANDOM[7'h19][31:17], _RANDOM[7'h1A], _RANDOM[7'h1B][5:0]};	// cache/src/zaqal/cache/DCache.scala:8:7, :30:25
-        tagArray_14 = {_RANDOM[7'h1B][31:6], _RANDOM[7'h1C][26:0]};	// cache/src/zaqal/cache/DCache.scala:8:7, :30:25
-        tagArray_15 = {_RANDOM[7'h1C][31:27], _RANDOM[7'h1D], _RANDOM[7'h1E][15:0]};	// cache/src/zaqal/cache/DCache.scala:8:7, :30:25
-        tagArray_16 = {_RANDOM[7'h1E][31:16], _RANDOM[7'h1F], _RANDOM[7'h20][4:0]};	// cache/src/zaqal/cache/DCache.scala:8:7, :30:25
-        tagArray_17 = {_RANDOM[7'h20][31:5], _RANDOM[7'h21][25:0]};	// cache/src/zaqal/cache/DCache.scala:8:7, :30:25
-        tagArray_18 = {_RANDOM[7'h21][31:26], _RANDOM[7'h22], _RANDOM[7'h23][14:0]};	// cache/src/zaqal/cache/DCache.scala:8:7, :30:25
-        tagArray_19 = {_RANDOM[7'h23][31:15], _RANDOM[7'h24], _RANDOM[7'h25][3:0]};	// cache/src/zaqal/cache/DCache.scala:8:7, :30:25
-        tagArray_20 = {_RANDOM[7'h25][31:4], _RANDOM[7'h26][24:0]};	// cache/src/zaqal/cache/DCache.scala:8:7, :30:25
-        tagArray_21 = {_RANDOM[7'h26][31:25], _RANDOM[7'h27], _RANDOM[7'h28][13:0]};	// cache/src/zaqal/cache/DCache.scala:8:7, :30:25
-        tagArray_22 = {_RANDOM[7'h28][31:14], _RANDOM[7'h29], _RANDOM[7'h2A][2:0]};	// cache/src/zaqal/cache/DCache.scala:8:7, :30:25
-        tagArray_23 = {_RANDOM[7'h2A][31:3], _RANDOM[7'h2B][23:0]};	// cache/src/zaqal/cache/DCache.scala:8:7, :30:25
-        tagArray_24 = {_RANDOM[7'h2B][31:24], _RANDOM[7'h2C], _RANDOM[7'h2D][12:0]};	// cache/src/zaqal/cache/DCache.scala:8:7, :30:25
-        tagArray_25 = {_RANDOM[7'h2D][31:13], _RANDOM[7'h2E], _RANDOM[7'h2F][1:0]};	// cache/src/zaqal/cache/DCache.scala:8:7, :30:25
-        tagArray_26 = {_RANDOM[7'h2F][31:2], _RANDOM[7'h30][22:0]};	// cache/src/zaqal/cache/DCache.scala:8:7, :30:25
-        tagArray_27 = {_RANDOM[7'h30][31:23], _RANDOM[7'h31], _RANDOM[7'h32][11:0]};	// cache/src/zaqal/cache/DCache.scala:8:7, :30:25
-        tagArray_28 = {_RANDOM[7'h32][31:12], _RANDOM[7'h33], _RANDOM[7'h34][0]};	// cache/src/zaqal/cache/DCache.scala:8:7, :30:25
-        tagArray_29 = {_RANDOM[7'h34][31:1], _RANDOM[7'h35][21:0]};	// cache/src/zaqal/cache/DCache.scala:8:7, :30:25
-        tagArray_30 = {_RANDOM[7'h35][31:22], _RANDOM[7'h36], _RANDOM[7'h37][10:0]};	// cache/src/zaqal/cache/DCache.scala:8:7, :30:25
-        tagArray_31 = {_RANDOM[7'h37][31:11], _RANDOM[7'h38]};	// cache/src/zaqal/cache/DCache.scala:8:7, :30:25
-        tagArray_32 = {_RANDOM[7'h39], _RANDOM[7'h3A][20:0]};	// cache/src/zaqal/cache/DCache.scala:8:7, :30:25
-        tagArray_33 = {_RANDOM[7'h3A][31:21], _RANDOM[7'h3B], _RANDOM[7'h3C][9:0]};	// cache/src/zaqal/cache/DCache.scala:8:7, :30:25
-        tagArray_34 = {_RANDOM[7'h3C][31:10], _RANDOM[7'h3D][30:0]};	// cache/src/zaqal/cache/DCache.scala:8:7, :30:25
-        tagArray_35 = {_RANDOM[7'h3D][31], _RANDOM[7'h3E], _RANDOM[7'h3F][19:0]};	// cache/src/zaqal/cache/DCache.scala:8:7, :30:25
-        tagArray_36 = {_RANDOM[7'h3F][31:20], _RANDOM[7'h40], _RANDOM[7'h41][8:0]};	// cache/src/zaqal/cache/DCache.scala:8:7, :30:25
-        tagArray_37 = {_RANDOM[7'h41][31:9], _RANDOM[7'h42][29:0]};	// cache/src/zaqal/cache/DCache.scala:8:7, :30:25
-        tagArray_38 = {_RANDOM[7'h42][31:30], _RANDOM[7'h43], _RANDOM[7'h44][18:0]};	// cache/src/zaqal/cache/DCache.scala:8:7, :30:25
-        tagArray_39 = {_RANDOM[7'h44][31:19], _RANDOM[7'h45], _RANDOM[7'h46][7:0]};	// cache/src/zaqal/cache/DCache.scala:8:7, :30:25
-        tagArray_40 = {_RANDOM[7'h46][31:8], _RANDOM[7'h47][28:0]};	// cache/src/zaqal/cache/DCache.scala:8:7, :30:25
-        tagArray_41 = {_RANDOM[7'h47][31:29], _RANDOM[7'h48], _RANDOM[7'h49][17:0]};	// cache/src/zaqal/cache/DCache.scala:8:7, :30:25
-        tagArray_42 = {_RANDOM[7'h49][31:18], _RANDOM[7'h4A], _RANDOM[7'h4B][6:0]};	// cache/src/zaqal/cache/DCache.scala:8:7, :30:25
-        tagArray_43 = {_RANDOM[7'h4B][31:7], _RANDOM[7'h4C][27:0]};	// cache/src/zaqal/cache/DCache.scala:8:7, :30:25
-        tagArray_44 = {_RANDOM[7'h4C][31:28], _RANDOM[7'h4D], _RANDOM[7'h4E][16:0]};	// cache/src/zaqal/cache/DCache.scala:8:7, :30:25
-        tagArray_45 = {_RANDOM[7'h4E][31:17], _RANDOM[7'h4F], _RANDOM[7'h50][5:0]};	// cache/src/zaqal/cache/DCache.scala:8:7, :30:25
-        tagArray_46 = {_RANDOM[7'h50][31:6], _RANDOM[7'h51][26:0]};	// cache/src/zaqal/cache/DCache.scala:8:7, :30:25
-        tagArray_47 = {_RANDOM[7'h51][31:27], _RANDOM[7'h52], _RANDOM[7'h53][15:0]};	// cache/src/zaqal/cache/DCache.scala:8:7, :30:25
-        tagArray_48 = {_RANDOM[7'h53][31:16], _RANDOM[7'h54], _RANDOM[7'h55][4:0]};	// cache/src/zaqal/cache/DCache.scala:8:7, :30:25
-        tagArray_49 = {_RANDOM[7'h55][31:5], _RANDOM[7'h56][25:0]};	// cache/src/zaqal/cache/DCache.scala:8:7, :30:25
-        tagArray_50 = {_RANDOM[7'h56][31:26], _RANDOM[7'h57], _RANDOM[7'h58][14:0]};	// cache/src/zaqal/cache/DCache.scala:8:7, :30:25
-        tagArray_51 = {_RANDOM[7'h58][31:15], _RANDOM[7'h59], _RANDOM[7'h5A][3:0]};	// cache/src/zaqal/cache/DCache.scala:8:7, :30:25
-        tagArray_52 = {_RANDOM[7'h5A][31:4], _RANDOM[7'h5B][24:0]};	// cache/src/zaqal/cache/DCache.scala:8:7, :30:25
-        tagArray_53 = {_RANDOM[7'h5B][31:25], _RANDOM[7'h5C], _RANDOM[7'h5D][13:0]};	// cache/src/zaqal/cache/DCache.scala:8:7, :30:25
-        tagArray_54 = {_RANDOM[7'h5D][31:14], _RANDOM[7'h5E], _RANDOM[7'h5F][2:0]};	// cache/src/zaqal/cache/DCache.scala:8:7, :30:25
-        tagArray_55 = {_RANDOM[7'h5F][31:3], _RANDOM[7'h60][23:0]};	// cache/src/zaqal/cache/DCache.scala:8:7, :30:25
-        tagArray_56 = {_RANDOM[7'h60][31:24], _RANDOM[7'h61], _RANDOM[7'h62][12:0]};	// cache/src/zaqal/cache/DCache.scala:8:7, :30:25
-        tagArray_57 = {_RANDOM[7'h62][31:13], _RANDOM[7'h63], _RANDOM[7'h64][1:0]};	// cache/src/zaqal/cache/DCache.scala:8:7, :30:25
-        tagArray_58 = {_RANDOM[7'h64][31:2], _RANDOM[7'h65][22:0]};	// cache/src/zaqal/cache/DCache.scala:8:7, :30:25
-        tagArray_59 = {_RANDOM[7'h65][31:23], _RANDOM[7'h66], _RANDOM[7'h67][11:0]};	// cache/src/zaqal/cache/DCache.scala:8:7, :30:25
-        tagArray_60 = {_RANDOM[7'h67][31:12], _RANDOM[7'h68], _RANDOM[7'h69][0]};	// cache/src/zaqal/cache/DCache.scala:8:7, :30:25
-        tagArray_61 = {_RANDOM[7'h69][31:1], _RANDOM[7'h6A][21:0]};	// cache/src/zaqal/cache/DCache.scala:8:7, :30:25
-        tagArray_62 = {_RANDOM[7'h6A][31:22], _RANDOM[7'h6B], _RANDOM[7'h6C][10:0]};	// cache/src/zaqal/cache/DCache.scala:8:7, :30:25
-        tagArray_63 = {_RANDOM[7'h6C][31:11], _RANDOM[7'h6D]};	// cache/src/zaqal/cache/DCache.scala:8:7, :30:25
+      `ifdef RANDOMIZE_REG_INIT	// cache/src/zaqal/cache/DCache.scala:19:7
+        for (logic [9:0] i = 10'h0; i < 10'h272; i += 10'h1) begin
+          _RANDOM[i] = `RANDOM;	// cache/src/zaqal/cache/DCache.scala:19:7
+        end	// cache/src/zaqal/cache/DCache.scala:19:7
+        validArray_0 = _RANDOM[10'h0][0];	// cache/src/zaqal/cache/DCache.scala:19:7, :52:27
+        validArray_1 = _RANDOM[10'h0][1];	// cache/src/zaqal/cache/DCache.scala:19:7, :52:27
+        validArray_2 = _RANDOM[10'h0][2];	// cache/src/zaqal/cache/DCache.scala:19:7, :52:27
+        validArray_3 = _RANDOM[10'h0][3];	// cache/src/zaqal/cache/DCache.scala:19:7, :52:27
+        validArray_4 = _RANDOM[10'h0][4];	// cache/src/zaqal/cache/DCache.scala:19:7, :52:27
+        validArray_5 = _RANDOM[10'h0][5];	// cache/src/zaqal/cache/DCache.scala:19:7, :52:27
+        validArray_6 = _RANDOM[10'h0][6];	// cache/src/zaqal/cache/DCache.scala:19:7, :52:27
+        validArray_7 = _RANDOM[10'h0][7];	// cache/src/zaqal/cache/DCache.scala:19:7, :52:27
+        validArray_8 = _RANDOM[10'h0][8];	// cache/src/zaqal/cache/DCache.scala:19:7, :52:27
+        validArray_9 = _RANDOM[10'h0][9];	// cache/src/zaqal/cache/DCache.scala:19:7, :52:27
+        validArray_10 = _RANDOM[10'h0][10];	// cache/src/zaqal/cache/DCache.scala:19:7, :52:27
+        validArray_11 = _RANDOM[10'h0][11];	// cache/src/zaqal/cache/DCache.scala:19:7, :52:27
+        validArray_12 = _RANDOM[10'h0][12];	// cache/src/zaqal/cache/DCache.scala:19:7, :52:27
+        validArray_13 = _RANDOM[10'h0][13];	// cache/src/zaqal/cache/DCache.scala:19:7, :52:27
+        validArray_14 = _RANDOM[10'h0][14];	// cache/src/zaqal/cache/DCache.scala:19:7, :52:27
+        validArray_15 = _RANDOM[10'h0][15];	// cache/src/zaqal/cache/DCache.scala:19:7, :52:27
+        validArray_16 = _RANDOM[10'h0][16];	// cache/src/zaqal/cache/DCache.scala:19:7, :52:27
+        validArray_17 = _RANDOM[10'h0][17];	// cache/src/zaqal/cache/DCache.scala:19:7, :52:27
+        validArray_18 = _RANDOM[10'h0][18];	// cache/src/zaqal/cache/DCache.scala:19:7, :52:27
+        validArray_19 = _RANDOM[10'h0][19];	// cache/src/zaqal/cache/DCache.scala:19:7, :52:27
+        validArray_20 = _RANDOM[10'h0][20];	// cache/src/zaqal/cache/DCache.scala:19:7, :52:27
+        validArray_21 = _RANDOM[10'h0][21];	// cache/src/zaqal/cache/DCache.scala:19:7, :52:27
+        validArray_22 = _RANDOM[10'h0][22];	// cache/src/zaqal/cache/DCache.scala:19:7, :52:27
+        validArray_23 = _RANDOM[10'h0][23];	// cache/src/zaqal/cache/DCache.scala:19:7, :52:27
+        validArray_24 = _RANDOM[10'h0][24];	// cache/src/zaqal/cache/DCache.scala:19:7, :52:27
+        validArray_25 = _RANDOM[10'h0][25];	// cache/src/zaqal/cache/DCache.scala:19:7, :52:27
+        validArray_26 = _RANDOM[10'h0][26];	// cache/src/zaqal/cache/DCache.scala:19:7, :52:27
+        validArray_27 = _RANDOM[10'h0][27];	// cache/src/zaqal/cache/DCache.scala:19:7, :52:27
+        validArray_28 = _RANDOM[10'h0][28];	// cache/src/zaqal/cache/DCache.scala:19:7, :52:27
+        validArray_29 = _RANDOM[10'h0][29];	// cache/src/zaqal/cache/DCache.scala:19:7, :52:27
+        validArray_30 = _RANDOM[10'h0][30];	// cache/src/zaqal/cache/DCache.scala:19:7, :52:27
+        validArray_31 = _RANDOM[10'h0][31];	// cache/src/zaqal/cache/DCache.scala:19:7, :52:27
+        validArray_32 = _RANDOM[10'h1][0];	// cache/src/zaqal/cache/DCache.scala:19:7, :52:27
+        validArray_33 = _RANDOM[10'h1][1];	// cache/src/zaqal/cache/DCache.scala:19:7, :52:27
+        validArray_34 = _RANDOM[10'h1][2];	// cache/src/zaqal/cache/DCache.scala:19:7, :52:27
+        validArray_35 = _RANDOM[10'h1][3];	// cache/src/zaqal/cache/DCache.scala:19:7, :52:27
+        validArray_36 = _RANDOM[10'h1][4];	// cache/src/zaqal/cache/DCache.scala:19:7, :52:27
+        validArray_37 = _RANDOM[10'h1][5];	// cache/src/zaqal/cache/DCache.scala:19:7, :52:27
+        validArray_38 = _RANDOM[10'h1][6];	// cache/src/zaqal/cache/DCache.scala:19:7, :52:27
+        validArray_39 = _RANDOM[10'h1][7];	// cache/src/zaqal/cache/DCache.scala:19:7, :52:27
+        validArray_40 = _RANDOM[10'h1][8];	// cache/src/zaqal/cache/DCache.scala:19:7, :52:27
+        validArray_41 = _RANDOM[10'h1][9];	// cache/src/zaqal/cache/DCache.scala:19:7, :52:27
+        validArray_42 = _RANDOM[10'h1][10];	// cache/src/zaqal/cache/DCache.scala:19:7, :52:27
+        validArray_43 = _RANDOM[10'h1][11];	// cache/src/zaqal/cache/DCache.scala:19:7, :52:27
+        validArray_44 = _RANDOM[10'h1][12];	// cache/src/zaqal/cache/DCache.scala:19:7, :52:27
+        validArray_45 = _RANDOM[10'h1][13];	// cache/src/zaqal/cache/DCache.scala:19:7, :52:27
+        validArray_46 = _RANDOM[10'h1][14];	// cache/src/zaqal/cache/DCache.scala:19:7, :52:27
+        validArray_47 = _RANDOM[10'h1][15];	// cache/src/zaqal/cache/DCache.scala:19:7, :52:27
+        validArray_48 = _RANDOM[10'h1][16];	// cache/src/zaqal/cache/DCache.scala:19:7, :52:27
+        validArray_49 = _RANDOM[10'h1][17];	// cache/src/zaqal/cache/DCache.scala:19:7, :52:27
+        validArray_50 = _RANDOM[10'h1][18];	// cache/src/zaqal/cache/DCache.scala:19:7, :52:27
+        validArray_51 = _RANDOM[10'h1][19];	// cache/src/zaqal/cache/DCache.scala:19:7, :52:27
+        validArray_52 = _RANDOM[10'h1][20];	// cache/src/zaqal/cache/DCache.scala:19:7, :52:27
+        validArray_53 = _RANDOM[10'h1][21];	// cache/src/zaqal/cache/DCache.scala:19:7, :52:27
+        validArray_54 = _RANDOM[10'h1][22];	// cache/src/zaqal/cache/DCache.scala:19:7, :52:27
+        validArray_55 = _RANDOM[10'h1][23];	// cache/src/zaqal/cache/DCache.scala:19:7, :52:27
+        validArray_56 = _RANDOM[10'h1][24];	// cache/src/zaqal/cache/DCache.scala:19:7, :52:27
+        validArray_57 = _RANDOM[10'h1][25];	// cache/src/zaqal/cache/DCache.scala:19:7, :52:27
+        validArray_58 = _RANDOM[10'h1][26];	// cache/src/zaqal/cache/DCache.scala:19:7, :52:27
+        validArray_59 = _RANDOM[10'h1][27];	// cache/src/zaqal/cache/DCache.scala:19:7, :52:27
+        validArray_60 = _RANDOM[10'h1][28];	// cache/src/zaqal/cache/DCache.scala:19:7, :52:27
+        validArray_61 = _RANDOM[10'h1][29];	// cache/src/zaqal/cache/DCache.scala:19:7, :52:27
+        validArray_62 = _RANDOM[10'h1][30];	// cache/src/zaqal/cache/DCache.scala:19:7, :52:27
+        validArray_63 = _RANDOM[10'h1][31];	// cache/src/zaqal/cache/DCache.scala:19:7, :52:27
+        dirtyArray_0 = _RANDOM[10'h2][0];	// cache/src/zaqal/cache/DCache.scala:19:7, :53:27
+        dirtyArray_1 = _RANDOM[10'h2][1];	// cache/src/zaqal/cache/DCache.scala:19:7, :53:27
+        dirtyArray_2 = _RANDOM[10'h2][2];	// cache/src/zaqal/cache/DCache.scala:19:7, :53:27
+        dirtyArray_3 = _RANDOM[10'h2][3];	// cache/src/zaqal/cache/DCache.scala:19:7, :53:27
+        dirtyArray_4 = _RANDOM[10'h2][4];	// cache/src/zaqal/cache/DCache.scala:19:7, :53:27
+        dirtyArray_5 = _RANDOM[10'h2][5];	// cache/src/zaqal/cache/DCache.scala:19:7, :53:27
+        dirtyArray_6 = _RANDOM[10'h2][6];	// cache/src/zaqal/cache/DCache.scala:19:7, :53:27
+        dirtyArray_7 = _RANDOM[10'h2][7];	// cache/src/zaqal/cache/DCache.scala:19:7, :53:27
+        dirtyArray_8 = _RANDOM[10'h2][8];	// cache/src/zaqal/cache/DCache.scala:19:7, :53:27
+        dirtyArray_9 = _RANDOM[10'h2][9];	// cache/src/zaqal/cache/DCache.scala:19:7, :53:27
+        dirtyArray_10 = _RANDOM[10'h2][10];	// cache/src/zaqal/cache/DCache.scala:19:7, :53:27
+        dirtyArray_11 = _RANDOM[10'h2][11];	// cache/src/zaqal/cache/DCache.scala:19:7, :53:27
+        dirtyArray_12 = _RANDOM[10'h2][12];	// cache/src/zaqal/cache/DCache.scala:19:7, :53:27
+        dirtyArray_13 = _RANDOM[10'h2][13];	// cache/src/zaqal/cache/DCache.scala:19:7, :53:27
+        dirtyArray_14 = _RANDOM[10'h2][14];	// cache/src/zaqal/cache/DCache.scala:19:7, :53:27
+        dirtyArray_15 = _RANDOM[10'h2][15];	// cache/src/zaqal/cache/DCache.scala:19:7, :53:27
+        dirtyArray_16 = _RANDOM[10'h2][16];	// cache/src/zaqal/cache/DCache.scala:19:7, :53:27
+        dirtyArray_17 = _RANDOM[10'h2][17];	// cache/src/zaqal/cache/DCache.scala:19:7, :53:27
+        dirtyArray_18 = _RANDOM[10'h2][18];	// cache/src/zaqal/cache/DCache.scala:19:7, :53:27
+        dirtyArray_19 = _RANDOM[10'h2][19];	// cache/src/zaqal/cache/DCache.scala:19:7, :53:27
+        dirtyArray_20 = _RANDOM[10'h2][20];	// cache/src/zaqal/cache/DCache.scala:19:7, :53:27
+        dirtyArray_21 = _RANDOM[10'h2][21];	// cache/src/zaqal/cache/DCache.scala:19:7, :53:27
+        dirtyArray_22 = _RANDOM[10'h2][22];	// cache/src/zaqal/cache/DCache.scala:19:7, :53:27
+        dirtyArray_23 = _RANDOM[10'h2][23];	// cache/src/zaqal/cache/DCache.scala:19:7, :53:27
+        dirtyArray_24 = _RANDOM[10'h2][24];	// cache/src/zaqal/cache/DCache.scala:19:7, :53:27
+        dirtyArray_25 = _RANDOM[10'h2][25];	// cache/src/zaqal/cache/DCache.scala:19:7, :53:27
+        dirtyArray_26 = _RANDOM[10'h2][26];	// cache/src/zaqal/cache/DCache.scala:19:7, :53:27
+        dirtyArray_27 = _RANDOM[10'h2][27];	// cache/src/zaqal/cache/DCache.scala:19:7, :53:27
+        dirtyArray_28 = _RANDOM[10'h2][28];	// cache/src/zaqal/cache/DCache.scala:19:7, :53:27
+        dirtyArray_29 = _RANDOM[10'h2][29];	// cache/src/zaqal/cache/DCache.scala:19:7, :53:27
+        dirtyArray_30 = _RANDOM[10'h2][30];	// cache/src/zaqal/cache/DCache.scala:19:7, :53:27
+        dirtyArray_31 = _RANDOM[10'h2][31];	// cache/src/zaqal/cache/DCache.scala:19:7, :53:27
+        dirtyArray_32 = _RANDOM[10'h3][0];	// cache/src/zaqal/cache/DCache.scala:19:7, :53:27
+        dirtyArray_33 = _RANDOM[10'h3][1];	// cache/src/zaqal/cache/DCache.scala:19:7, :53:27
+        dirtyArray_34 = _RANDOM[10'h3][2];	// cache/src/zaqal/cache/DCache.scala:19:7, :53:27
+        dirtyArray_35 = _RANDOM[10'h3][3];	// cache/src/zaqal/cache/DCache.scala:19:7, :53:27
+        dirtyArray_36 = _RANDOM[10'h3][4];	// cache/src/zaqal/cache/DCache.scala:19:7, :53:27
+        dirtyArray_37 = _RANDOM[10'h3][5];	// cache/src/zaqal/cache/DCache.scala:19:7, :53:27
+        dirtyArray_38 = _RANDOM[10'h3][6];	// cache/src/zaqal/cache/DCache.scala:19:7, :53:27
+        dirtyArray_39 = _RANDOM[10'h3][7];	// cache/src/zaqal/cache/DCache.scala:19:7, :53:27
+        dirtyArray_40 = _RANDOM[10'h3][8];	// cache/src/zaqal/cache/DCache.scala:19:7, :53:27
+        dirtyArray_41 = _RANDOM[10'h3][9];	// cache/src/zaqal/cache/DCache.scala:19:7, :53:27
+        dirtyArray_42 = _RANDOM[10'h3][10];	// cache/src/zaqal/cache/DCache.scala:19:7, :53:27
+        dirtyArray_43 = _RANDOM[10'h3][11];	// cache/src/zaqal/cache/DCache.scala:19:7, :53:27
+        dirtyArray_44 = _RANDOM[10'h3][12];	// cache/src/zaqal/cache/DCache.scala:19:7, :53:27
+        dirtyArray_45 = _RANDOM[10'h3][13];	// cache/src/zaqal/cache/DCache.scala:19:7, :53:27
+        dirtyArray_46 = _RANDOM[10'h3][14];	// cache/src/zaqal/cache/DCache.scala:19:7, :53:27
+        dirtyArray_47 = _RANDOM[10'h3][15];	// cache/src/zaqal/cache/DCache.scala:19:7, :53:27
+        dirtyArray_48 = _RANDOM[10'h3][16];	// cache/src/zaqal/cache/DCache.scala:19:7, :53:27
+        dirtyArray_49 = _RANDOM[10'h3][17];	// cache/src/zaqal/cache/DCache.scala:19:7, :53:27
+        dirtyArray_50 = _RANDOM[10'h3][18];	// cache/src/zaqal/cache/DCache.scala:19:7, :53:27
+        dirtyArray_51 = _RANDOM[10'h3][19];	// cache/src/zaqal/cache/DCache.scala:19:7, :53:27
+        dirtyArray_52 = _RANDOM[10'h3][20];	// cache/src/zaqal/cache/DCache.scala:19:7, :53:27
+        dirtyArray_53 = _RANDOM[10'h3][21];	// cache/src/zaqal/cache/DCache.scala:19:7, :53:27
+        dirtyArray_54 = _RANDOM[10'h3][22];	// cache/src/zaqal/cache/DCache.scala:19:7, :53:27
+        dirtyArray_55 = _RANDOM[10'h3][23];	// cache/src/zaqal/cache/DCache.scala:19:7, :53:27
+        dirtyArray_56 = _RANDOM[10'h3][24];	// cache/src/zaqal/cache/DCache.scala:19:7, :53:27
+        dirtyArray_57 = _RANDOM[10'h3][25];	// cache/src/zaqal/cache/DCache.scala:19:7, :53:27
+        dirtyArray_58 = _RANDOM[10'h3][26];	// cache/src/zaqal/cache/DCache.scala:19:7, :53:27
+        dirtyArray_59 = _RANDOM[10'h3][27];	// cache/src/zaqal/cache/DCache.scala:19:7, :53:27
+        dirtyArray_60 = _RANDOM[10'h3][28];	// cache/src/zaqal/cache/DCache.scala:19:7, :53:27
+        dirtyArray_61 = _RANDOM[10'h3][29];	// cache/src/zaqal/cache/DCache.scala:19:7, :53:27
+        dirtyArray_62 = _RANDOM[10'h3][30];	// cache/src/zaqal/cache/DCache.scala:19:7, :53:27
+        dirtyArray_63 = _RANDOM[10'h3][31];	// cache/src/zaqal/cache/DCache.scala:19:7, :53:27
+        stateArray_0 = _RANDOM[10'h4][1:0];	// cache/src/zaqal/cache/DCache.scala:19:7, :55:27
+        stateArray_1 = _RANDOM[10'h4][3:2];	// cache/src/zaqal/cache/DCache.scala:19:7, :55:27
+        stateArray_2 = _RANDOM[10'h4][5:4];	// cache/src/zaqal/cache/DCache.scala:19:7, :55:27
+        stateArray_3 = _RANDOM[10'h4][7:6];	// cache/src/zaqal/cache/DCache.scala:19:7, :55:27
+        stateArray_4 = _RANDOM[10'h4][9:8];	// cache/src/zaqal/cache/DCache.scala:19:7, :55:27
+        stateArray_5 = _RANDOM[10'h4][11:10];	// cache/src/zaqal/cache/DCache.scala:19:7, :55:27
+        stateArray_6 = _RANDOM[10'h4][13:12];	// cache/src/zaqal/cache/DCache.scala:19:7, :55:27
+        stateArray_7 = _RANDOM[10'h4][15:14];	// cache/src/zaqal/cache/DCache.scala:19:7, :55:27
+        stateArray_8 = _RANDOM[10'h4][17:16];	// cache/src/zaqal/cache/DCache.scala:19:7, :55:27
+        stateArray_9 = _RANDOM[10'h4][19:18];	// cache/src/zaqal/cache/DCache.scala:19:7, :55:27
+        stateArray_10 = _RANDOM[10'h4][21:20];	// cache/src/zaqal/cache/DCache.scala:19:7, :55:27
+        stateArray_11 = _RANDOM[10'h4][23:22];	// cache/src/zaqal/cache/DCache.scala:19:7, :55:27
+        stateArray_12 = _RANDOM[10'h4][25:24];	// cache/src/zaqal/cache/DCache.scala:19:7, :55:27
+        stateArray_13 = _RANDOM[10'h4][27:26];	// cache/src/zaqal/cache/DCache.scala:19:7, :55:27
+        stateArray_14 = _RANDOM[10'h4][29:28];	// cache/src/zaqal/cache/DCache.scala:19:7, :55:27
+        stateArray_15 = _RANDOM[10'h4][31:30];	// cache/src/zaqal/cache/DCache.scala:19:7, :55:27
+        stateArray_16 = _RANDOM[10'h5][1:0];	// cache/src/zaqal/cache/DCache.scala:19:7, :55:27
+        stateArray_17 = _RANDOM[10'h5][3:2];	// cache/src/zaqal/cache/DCache.scala:19:7, :55:27
+        stateArray_18 = _RANDOM[10'h5][5:4];	// cache/src/zaqal/cache/DCache.scala:19:7, :55:27
+        stateArray_19 = _RANDOM[10'h5][7:6];	// cache/src/zaqal/cache/DCache.scala:19:7, :55:27
+        stateArray_20 = _RANDOM[10'h5][9:8];	// cache/src/zaqal/cache/DCache.scala:19:7, :55:27
+        stateArray_21 = _RANDOM[10'h5][11:10];	// cache/src/zaqal/cache/DCache.scala:19:7, :55:27
+        stateArray_22 = _RANDOM[10'h5][13:12];	// cache/src/zaqal/cache/DCache.scala:19:7, :55:27
+        stateArray_23 = _RANDOM[10'h5][15:14];	// cache/src/zaqal/cache/DCache.scala:19:7, :55:27
+        stateArray_24 = _RANDOM[10'h5][17:16];	// cache/src/zaqal/cache/DCache.scala:19:7, :55:27
+        stateArray_25 = _RANDOM[10'h5][19:18];	// cache/src/zaqal/cache/DCache.scala:19:7, :55:27
+        stateArray_26 = _RANDOM[10'h5][21:20];	// cache/src/zaqal/cache/DCache.scala:19:7, :55:27
+        stateArray_27 = _RANDOM[10'h5][23:22];	// cache/src/zaqal/cache/DCache.scala:19:7, :55:27
+        stateArray_28 = _RANDOM[10'h5][25:24];	// cache/src/zaqal/cache/DCache.scala:19:7, :55:27
+        stateArray_29 = _RANDOM[10'h5][27:26];	// cache/src/zaqal/cache/DCache.scala:19:7, :55:27
+        stateArray_30 = _RANDOM[10'h5][29:28];	// cache/src/zaqal/cache/DCache.scala:19:7, :55:27
+        stateArray_31 = _RANDOM[10'h5][31:30];	// cache/src/zaqal/cache/DCache.scala:19:7, :55:27
+        stateArray_32 = _RANDOM[10'h6][1:0];	// cache/src/zaqal/cache/DCache.scala:19:7, :55:27
+        stateArray_33 = _RANDOM[10'h6][3:2];	// cache/src/zaqal/cache/DCache.scala:19:7, :55:27
+        stateArray_34 = _RANDOM[10'h6][5:4];	// cache/src/zaqal/cache/DCache.scala:19:7, :55:27
+        stateArray_35 = _RANDOM[10'h6][7:6];	// cache/src/zaqal/cache/DCache.scala:19:7, :55:27
+        stateArray_36 = _RANDOM[10'h6][9:8];	// cache/src/zaqal/cache/DCache.scala:19:7, :55:27
+        stateArray_37 = _RANDOM[10'h6][11:10];	// cache/src/zaqal/cache/DCache.scala:19:7, :55:27
+        stateArray_38 = _RANDOM[10'h6][13:12];	// cache/src/zaqal/cache/DCache.scala:19:7, :55:27
+        stateArray_39 = _RANDOM[10'h6][15:14];	// cache/src/zaqal/cache/DCache.scala:19:7, :55:27
+        stateArray_40 = _RANDOM[10'h6][17:16];	// cache/src/zaqal/cache/DCache.scala:19:7, :55:27
+        stateArray_41 = _RANDOM[10'h6][19:18];	// cache/src/zaqal/cache/DCache.scala:19:7, :55:27
+        stateArray_42 = _RANDOM[10'h6][21:20];	// cache/src/zaqal/cache/DCache.scala:19:7, :55:27
+        stateArray_43 = _RANDOM[10'h6][23:22];	// cache/src/zaqal/cache/DCache.scala:19:7, :55:27
+        stateArray_44 = _RANDOM[10'h6][25:24];	// cache/src/zaqal/cache/DCache.scala:19:7, :55:27
+        stateArray_45 = _RANDOM[10'h6][27:26];	// cache/src/zaqal/cache/DCache.scala:19:7, :55:27
+        stateArray_46 = _RANDOM[10'h6][29:28];	// cache/src/zaqal/cache/DCache.scala:19:7, :55:27
+        stateArray_47 = _RANDOM[10'h6][31:30];	// cache/src/zaqal/cache/DCache.scala:19:7, :55:27
+        stateArray_48 = _RANDOM[10'h7][1:0];	// cache/src/zaqal/cache/DCache.scala:19:7, :55:27
+        stateArray_49 = _RANDOM[10'h7][3:2];	// cache/src/zaqal/cache/DCache.scala:19:7, :55:27
+        stateArray_50 = _RANDOM[10'h7][5:4];	// cache/src/zaqal/cache/DCache.scala:19:7, :55:27
+        stateArray_51 = _RANDOM[10'h7][7:6];	// cache/src/zaqal/cache/DCache.scala:19:7, :55:27
+        stateArray_52 = _RANDOM[10'h7][9:8];	// cache/src/zaqal/cache/DCache.scala:19:7, :55:27
+        stateArray_53 = _RANDOM[10'h7][11:10];	// cache/src/zaqal/cache/DCache.scala:19:7, :55:27
+        stateArray_54 = _RANDOM[10'h7][13:12];	// cache/src/zaqal/cache/DCache.scala:19:7, :55:27
+        stateArray_55 = _RANDOM[10'h7][15:14];	// cache/src/zaqal/cache/DCache.scala:19:7, :55:27
+        stateArray_56 = _RANDOM[10'h7][17:16];	// cache/src/zaqal/cache/DCache.scala:19:7, :55:27
+        stateArray_57 = _RANDOM[10'h7][19:18];	// cache/src/zaqal/cache/DCache.scala:19:7, :55:27
+        stateArray_58 = _RANDOM[10'h7][21:20];	// cache/src/zaqal/cache/DCache.scala:19:7, :55:27
+        stateArray_59 = _RANDOM[10'h7][23:22];	// cache/src/zaqal/cache/DCache.scala:19:7, :55:27
+        stateArray_60 = _RANDOM[10'h7][25:24];	// cache/src/zaqal/cache/DCache.scala:19:7, :55:27
+        stateArray_61 = _RANDOM[10'h7][27:26];	// cache/src/zaqal/cache/DCache.scala:19:7, :55:27
+        stateArray_62 = _RANDOM[10'h7][29:28];	// cache/src/zaqal/cache/DCache.scala:19:7, :55:27
+        stateArray_63 = _RANDOM[10'h7][31:30];	// cache/src/zaqal/cache/DCache.scala:19:7, :55:27
+        tagArray_0 = {_RANDOM[10'h8], _RANDOM[10'h9][20:0]};	// cache/src/zaqal/cache/DCache.scala:19:7, :56:27
+        tagArray_1 = {_RANDOM[10'h9][31:21], _RANDOM[10'hA], _RANDOM[10'hB][9:0]};	// cache/src/zaqal/cache/DCache.scala:19:7, :56:27
+        tagArray_2 = {_RANDOM[10'hB][31:10], _RANDOM[10'hC][30:0]};	// cache/src/zaqal/cache/DCache.scala:19:7, :56:27
+        tagArray_3 = {_RANDOM[10'hC][31], _RANDOM[10'hD], _RANDOM[10'hE][19:0]};	// cache/src/zaqal/cache/DCache.scala:19:7, :56:27
+        tagArray_4 = {_RANDOM[10'hE][31:20], _RANDOM[10'hF], _RANDOM[10'h10][8:0]};	// cache/src/zaqal/cache/DCache.scala:19:7, :56:27
+        tagArray_5 = {_RANDOM[10'h10][31:9], _RANDOM[10'h11][29:0]};	// cache/src/zaqal/cache/DCache.scala:19:7, :56:27
+        tagArray_6 = {_RANDOM[10'h11][31:30], _RANDOM[10'h12], _RANDOM[10'h13][18:0]};	// cache/src/zaqal/cache/DCache.scala:19:7, :56:27
+        tagArray_7 = {_RANDOM[10'h13][31:19], _RANDOM[10'h14], _RANDOM[10'h15][7:0]};	// cache/src/zaqal/cache/DCache.scala:19:7, :56:27
+        tagArray_8 = {_RANDOM[10'h15][31:8], _RANDOM[10'h16][28:0]};	// cache/src/zaqal/cache/DCache.scala:19:7, :56:27
+        tagArray_9 = {_RANDOM[10'h16][31:29], _RANDOM[10'h17], _RANDOM[10'h18][17:0]};	// cache/src/zaqal/cache/DCache.scala:19:7, :56:27
+        tagArray_10 = {_RANDOM[10'h18][31:18], _RANDOM[10'h19], _RANDOM[10'h1A][6:0]};	// cache/src/zaqal/cache/DCache.scala:19:7, :56:27
+        tagArray_11 = {_RANDOM[10'h1A][31:7], _RANDOM[10'h1B][27:0]};	// cache/src/zaqal/cache/DCache.scala:19:7, :56:27
+        tagArray_12 = {_RANDOM[10'h1B][31:28], _RANDOM[10'h1C], _RANDOM[10'h1D][16:0]};	// cache/src/zaqal/cache/DCache.scala:19:7, :56:27
+        tagArray_13 = {_RANDOM[10'h1D][31:17], _RANDOM[10'h1E], _RANDOM[10'h1F][5:0]};	// cache/src/zaqal/cache/DCache.scala:19:7, :56:27
+        tagArray_14 = {_RANDOM[10'h1F][31:6], _RANDOM[10'h20][26:0]};	// cache/src/zaqal/cache/DCache.scala:19:7, :56:27
+        tagArray_15 = {_RANDOM[10'h20][31:27], _RANDOM[10'h21], _RANDOM[10'h22][15:0]};	// cache/src/zaqal/cache/DCache.scala:19:7, :56:27
+        tagArray_16 = {_RANDOM[10'h22][31:16], _RANDOM[10'h23], _RANDOM[10'h24][4:0]};	// cache/src/zaqal/cache/DCache.scala:19:7, :56:27
+        tagArray_17 = {_RANDOM[10'h24][31:5], _RANDOM[10'h25][25:0]};	// cache/src/zaqal/cache/DCache.scala:19:7, :56:27
+        tagArray_18 = {_RANDOM[10'h25][31:26], _RANDOM[10'h26], _RANDOM[10'h27][14:0]};	// cache/src/zaqal/cache/DCache.scala:19:7, :56:27
+        tagArray_19 = {_RANDOM[10'h27][31:15], _RANDOM[10'h28], _RANDOM[10'h29][3:0]};	// cache/src/zaqal/cache/DCache.scala:19:7, :56:27
+        tagArray_20 = {_RANDOM[10'h29][31:4], _RANDOM[10'h2A][24:0]};	// cache/src/zaqal/cache/DCache.scala:19:7, :56:27
+        tagArray_21 = {_RANDOM[10'h2A][31:25], _RANDOM[10'h2B], _RANDOM[10'h2C][13:0]};	// cache/src/zaqal/cache/DCache.scala:19:7, :56:27
+        tagArray_22 = {_RANDOM[10'h2C][31:14], _RANDOM[10'h2D], _RANDOM[10'h2E][2:0]};	// cache/src/zaqal/cache/DCache.scala:19:7, :56:27
+        tagArray_23 = {_RANDOM[10'h2E][31:3], _RANDOM[10'h2F][23:0]};	// cache/src/zaqal/cache/DCache.scala:19:7, :56:27
+        tagArray_24 = {_RANDOM[10'h2F][31:24], _RANDOM[10'h30], _RANDOM[10'h31][12:0]};	// cache/src/zaqal/cache/DCache.scala:19:7, :56:27
+        tagArray_25 = {_RANDOM[10'h31][31:13], _RANDOM[10'h32], _RANDOM[10'h33][1:0]};	// cache/src/zaqal/cache/DCache.scala:19:7, :56:27
+        tagArray_26 = {_RANDOM[10'h33][31:2], _RANDOM[10'h34][22:0]};	// cache/src/zaqal/cache/DCache.scala:19:7, :56:27
+        tagArray_27 = {_RANDOM[10'h34][31:23], _RANDOM[10'h35], _RANDOM[10'h36][11:0]};	// cache/src/zaqal/cache/DCache.scala:19:7, :56:27
+        tagArray_28 = {_RANDOM[10'h36][31:12], _RANDOM[10'h37], _RANDOM[10'h38][0]};	// cache/src/zaqal/cache/DCache.scala:19:7, :56:27
+        tagArray_29 = {_RANDOM[10'h38][31:1], _RANDOM[10'h39][21:0]};	// cache/src/zaqal/cache/DCache.scala:19:7, :56:27
+        tagArray_30 = {_RANDOM[10'h39][31:22], _RANDOM[10'h3A], _RANDOM[10'h3B][10:0]};	// cache/src/zaqal/cache/DCache.scala:19:7, :56:27
+        tagArray_31 = {_RANDOM[10'h3B][31:11], _RANDOM[10'h3C]};	// cache/src/zaqal/cache/DCache.scala:19:7, :56:27
+        tagArray_32 = {_RANDOM[10'h3D], _RANDOM[10'h3E][20:0]};	// cache/src/zaqal/cache/DCache.scala:19:7, :56:27
+        tagArray_33 = {_RANDOM[10'h3E][31:21], _RANDOM[10'h3F], _RANDOM[10'h40][9:0]};	// cache/src/zaqal/cache/DCache.scala:19:7, :56:27
+        tagArray_34 = {_RANDOM[10'h40][31:10], _RANDOM[10'h41][30:0]};	// cache/src/zaqal/cache/DCache.scala:19:7, :56:27
+        tagArray_35 = {_RANDOM[10'h41][31], _RANDOM[10'h42], _RANDOM[10'h43][19:0]};	// cache/src/zaqal/cache/DCache.scala:19:7, :56:27
+        tagArray_36 = {_RANDOM[10'h43][31:20], _RANDOM[10'h44], _RANDOM[10'h45][8:0]};	// cache/src/zaqal/cache/DCache.scala:19:7, :56:27
+        tagArray_37 = {_RANDOM[10'h45][31:9], _RANDOM[10'h46][29:0]};	// cache/src/zaqal/cache/DCache.scala:19:7, :56:27
+        tagArray_38 = {_RANDOM[10'h46][31:30], _RANDOM[10'h47], _RANDOM[10'h48][18:0]};	// cache/src/zaqal/cache/DCache.scala:19:7, :56:27
+        tagArray_39 = {_RANDOM[10'h48][31:19], _RANDOM[10'h49], _RANDOM[10'h4A][7:0]};	// cache/src/zaqal/cache/DCache.scala:19:7, :56:27
+        tagArray_40 = {_RANDOM[10'h4A][31:8], _RANDOM[10'h4B][28:0]};	// cache/src/zaqal/cache/DCache.scala:19:7, :56:27
+        tagArray_41 = {_RANDOM[10'h4B][31:29], _RANDOM[10'h4C], _RANDOM[10'h4D][17:0]};	// cache/src/zaqal/cache/DCache.scala:19:7, :56:27
+        tagArray_42 = {_RANDOM[10'h4D][31:18], _RANDOM[10'h4E], _RANDOM[10'h4F][6:0]};	// cache/src/zaqal/cache/DCache.scala:19:7, :56:27
+        tagArray_43 = {_RANDOM[10'h4F][31:7], _RANDOM[10'h50][27:0]};	// cache/src/zaqal/cache/DCache.scala:19:7, :56:27
+        tagArray_44 = {_RANDOM[10'h50][31:28], _RANDOM[10'h51], _RANDOM[10'h52][16:0]};	// cache/src/zaqal/cache/DCache.scala:19:7, :56:27
+        tagArray_45 = {_RANDOM[10'h52][31:17], _RANDOM[10'h53], _RANDOM[10'h54][5:0]};	// cache/src/zaqal/cache/DCache.scala:19:7, :56:27
+        tagArray_46 = {_RANDOM[10'h54][31:6], _RANDOM[10'h55][26:0]};	// cache/src/zaqal/cache/DCache.scala:19:7, :56:27
+        tagArray_47 = {_RANDOM[10'h55][31:27], _RANDOM[10'h56], _RANDOM[10'h57][15:0]};	// cache/src/zaqal/cache/DCache.scala:19:7, :56:27
+        tagArray_48 = {_RANDOM[10'h57][31:16], _RANDOM[10'h58], _RANDOM[10'h59][4:0]};	// cache/src/zaqal/cache/DCache.scala:19:7, :56:27
+        tagArray_49 = {_RANDOM[10'h59][31:5], _RANDOM[10'h5A][25:0]};	// cache/src/zaqal/cache/DCache.scala:19:7, :56:27
+        tagArray_50 = {_RANDOM[10'h5A][31:26], _RANDOM[10'h5B], _RANDOM[10'h5C][14:0]};	// cache/src/zaqal/cache/DCache.scala:19:7, :56:27
+        tagArray_51 = {_RANDOM[10'h5C][31:15], _RANDOM[10'h5D], _RANDOM[10'h5E][3:0]};	// cache/src/zaqal/cache/DCache.scala:19:7, :56:27
+        tagArray_52 = {_RANDOM[10'h5E][31:4], _RANDOM[10'h5F][24:0]};	// cache/src/zaqal/cache/DCache.scala:19:7, :56:27
+        tagArray_53 = {_RANDOM[10'h5F][31:25], _RANDOM[10'h60], _RANDOM[10'h61][13:0]};	// cache/src/zaqal/cache/DCache.scala:19:7, :56:27
+        tagArray_54 = {_RANDOM[10'h61][31:14], _RANDOM[10'h62], _RANDOM[10'h63][2:0]};	// cache/src/zaqal/cache/DCache.scala:19:7, :56:27
+        tagArray_55 = {_RANDOM[10'h63][31:3], _RANDOM[10'h64][23:0]};	// cache/src/zaqal/cache/DCache.scala:19:7, :56:27
+        tagArray_56 = {_RANDOM[10'h64][31:24], _RANDOM[10'h65], _RANDOM[10'h66][12:0]};	// cache/src/zaqal/cache/DCache.scala:19:7, :56:27
+        tagArray_57 = {_RANDOM[10'h66][31:13], _RANDOM[10'h67], _RANDOM[10'h68][1:0]};	// cache/src/zaqal/cache/DCache.scala:19:7, :56:27
+        tagArray_58 = {_RANDOM[10'h68][31:2], _RANDOM[10'h69][22:0]};	// cache/src/zaqal/cache/DCache.scala:19:7, :56:27
+        tagArray_59 = {_RANDOM[10'h69][31:23], _RANDOM[10'h6A], _RANDOM[10'h6B][11:0]};	// cache/src/zaqal/cache/DCache.scala:19:7, :56:27
+        tagArray_60 = {_RANDOM[10'h6B][31:12], _RANDOM[10'h6C], _RANDOM[10'h6D][0]};	// cache/src/zaqal/cache/DCache.scala:19:7, :56:27
+        tagArray_61 = {_RANDOM[10'h6D][31:1], _RANDOM[10'h6E][21:0]};	// cache/src/zaqal/cache/DCache.scala:19:7, :56:27
+        tagArray_62 = {_RANDOM[10'h6E][31:22], _RANDOM[10'h6F], _RANDOM[10'h70][10:0]};	// cache/src/zaqal/cache/DCache.scala:19:7, :56:27
+        tagArray_63 = {_RANDOM[10'h70][31:11], _RANDOM[10'h71]};	// cache/src/zaqal/cache/DCache.scala:19:7, :56:27
+        dataArray_0_0 = {_RANDOM[10'h72], _RANDOM[10'h73]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_0_1 = {_RANDOM[10'h74], _RANDOM[10'h75]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_0_2 = {_RANDOM[10'h76], _RANDOM[10'h77]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_0_3 = {_RANDOM[10'h78], _RANDOM[10'h79]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_1_0 = {_RANDOM[10'h7A], _RANDOM[10'h7B]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_1_1 = {_RANDOM[10'h7C], _RANDOM[10'h7D]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_1_2 = {_RANDOM[10'h7E], _RANDOM[10'h7F]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_1_3 = {_RANDOM[10'h80], _RANDOM[10'h81]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_2_0 = {_RANDOM[10'h82], _RANDOM[10'h83]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_2_1 = {_RANDOM[10'h84], _RANDOM[10'h85]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_2_2 = {_RANDOM[10'h86], _RANDOM[10'h87]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_2_3 = {_RANDOM[10'h88], _RANDOM[10'h89]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_3_0 = {_RANDOM[10'h8A], _RANDOM[10'h8B]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_3_1 = {_RANDOM[10'h8C], _RANDOM[10'h8D]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_3_2 = {_RANDOM[10'h8E], _RANDOM[10'h8F]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_3_3 = {_RANDOM[10'h90], _RANDOM[10'h91]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_4_0 = {_RANDOM[10'h92], _RANDOM[10'h93]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_4_1 = {_RANDOM[10'h94], _RANDOM[10'h95]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_4_2 = {_RANDOM[10'h96], _RANDOM[10'h97]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_4_3 = {_RANDOM[10'h98], _RANDOM[10'h99]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_5_0 = {_RANDOM[10'h9A], _RANDOM[10'h9B]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_5_1 = {_RANDOM[10'h9C], _RANDOM[10'h9D]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_5_2 = {_RANDOM[10'h9E], _RANDOM[10'h9F]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_5_3 = {_RANDOM[10'hA0], _RANDOM[10'hA1]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_6_0 = {_RANDOM[10'hA2], _RANDOM[10'hA3]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_6_1 = {_RANDOM[10'hA4], _RANDOM[10'hA5]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_6_2 = {_RANDOM[10'hA6], _RANDOM[10'hA7]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_6_3 = {_RANDOM[10'hA8], _RANDOM[10'hA9]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_7_0 = {_RANDOM[10'hAA], _RANDOM[10'hAB]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_7_1 = {_RANDOM[10'hAC], _RANDOM[10'hAD]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_7_2 = {_RANDOM[10'hAE], _RANDOM[10'hAF]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_7_3 = {_RANDOM[10'hB0], _RANDOM[10'hB1]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_8_0 = {_RANDOM[10'hB2], _RANDOM[10'hB3]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_8_1 = {_RANDOM[10'hB4], _RANDOM[10'hB5]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_8_2 = {_RANDOM[10'hB6], _RANDOM[10'hB7]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_8_3 = {_RANDOM[10'hB8], _RANDOM[10'hB9]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_9_0 = {_RANDOM[10'hBA], _RANDOM[10'hBB]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_9_1 = {_RANDOM[10'hBC], _RANDOM[10'hBD]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_9_2 = {_RANDOM[10'hBE], _RANDOM[10'hBF]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_9_3 = {_RANDOM[10'hC0], _RANDOM[10'hC1]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_10_0 = {_RANDOM[10'hC2], _RANDOM[10'hC3]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_10_1 = {_RANDOM[10'hC4], _RANDOM[10'hC5]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_10_2 = {_RANDOM[10'hC6], _RANDOM[10'hC7]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_10_3 = {_RANDOM[10'hC8], _RANDOM[10'hC9]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_11_0 = {_RANDOM[10'hCA], _RANDOM[10'hCB]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_11_1 = {_RANDOM[10'hCC], _RANDOM[10'hCD]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_11_2 = {_RANDOM[10'hCE], _RANDOM[10'hCF]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_11_3 = {_RANDOM[10'hD0], _RANDOM[10'hD1]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_12_0 = {_RANDOM[10'hD2], _RANDOM[10'hD3]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_12_1 = {_RANDOM[10'hD4], _RANDOM[10'hD5]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_12_2 = {_RANDOM[10'hD6], _RANDOM[10'hD7]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_12_3 = {_RANDOM[10'hD8], _RANDOM[10'hD9]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_13_0 = {_RANDOM[10'hDA], _RANDOM[10'hDB]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_13_1 = {_RANDOM[10'hDC], _RANDOM[10'hDD]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_13_2 = {_RANDOM[10'hDE], _RANDOM[10'hDF]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_13_3 = {_RANDOM[10'hE0], _RANDOM[10'hE1]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_14_0 = {_RANDOM[10'hE2], _RANDOM[10'hE3]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_14_1 = {_RANDOM[10'hE4], _RANDOM[10'hE5]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_14_2 = {_RANDOM[10'hE6], _RANDOM[10'hE7]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_14_3 = {_RANDOM[10'hE8], _RANDOM[10'hE9]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_15_0 = {_RANDOM[10'hEA], _RANDOM[10'hEB]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_15_1 = {_RANDOM[10'hEC], _RANDOM[10'hED]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_15_2 = {_RANDOM[10'hEE], _RANDOM[10'hEF]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_15_3 = {_RANDOM[10'hF0], _RANDOM[10'hF1]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_16_0 = {_RANDOM[10'hF2], _RANDOM[10'hF3]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_16_1 = {_RANDOM[10'hF4], _RANDOM[10'hF5]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_16_2 = {_RANDOM[10'hF6], _RANDOM[10'hF7]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_16_3 = {_RANDOM[10'hF8], _RANDOM[10'hF9]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_17_0 = {_RANDOM[10'hFA], _RANDOM[10'hFB]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_17_1 = {_RANDOM[10'hFC], _RANDOM[10'hFD]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_17_2 = {_RANDOM[10'hFE], _RANDOM[10'hFF]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_17_3 = {_RANDOM[10'h100], _RANDOM[10'h101]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_18_0 = {_RANDOM[10'h102], _RANDOM[10'h103]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_18_1 = {_RANDOM[10'h104], _RANDOM[10'h105]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_18_2 = {_RANDOM[10'h106], _RANDOM[10'h107]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_18_3 = {_RANDOM[10'h108], _RANDOM[10'h109]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_19_0 = {_RANDOM[10'h10A], _RANDOM[10'h10B]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_19_1 = {_RANDOM[10'h10C], _RANDOM[10'h10D]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_19_2 = {_RANDOM[10'h10E], _RANDOM[10'h10F]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_19_3 = {_RANDOM[10'h110], _RANDOM[10'h111]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_20_0 = {_RANDOM[10'h112], _RANDOM[10'h113]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_20_1 = {_RANDOM[10'h114], _RANDOM[10'h115]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_20_2 = {_RANDOM[10'h116], _RANDOM[10'h117]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_20_3 = {_RANDOM[10'h118], _RANDOM[10'h119]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_21_0 = {_RANDOM[10'h11A], _RANDOM[10'h11B]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_21_1 = {_RANDOM[10'h11C], _RANDOM[10'h11D]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_21_2 = {_RANDOM[10'h11E], _RANDOM[10'h11F]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_21_3 = {_RANDOM[10'h120], _RANDOM[10'h121]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_22_0 = {_RANDOM[10'h122], _RANDOM[10'h123]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_22_1 = {_RANDOM[10'h124], _RANDOM[10'h125]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_22_2 = {_RANDOM[10'h126], _RANDOM[10'h127]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_22_3 = {_RANDOM[10'h128], _RANDOM[10'h129]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_23_0 = {_RANDOM[10'h12A], _RANDOM[10'h12B]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_23_1 = {_RANDOM[10'h12C], _RANDOM[10'h12D]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_23_2 = {_RANDOM[10'h12E], _RANDOM[10'h12F]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_23_3 = {_RANDOM[10'h130], _RANDOM[10'h131]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_24_0 = {_RANDOM[10'h132], _RANDOM[10'h133]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_24_1 = {_RANDOM[10'h134], _RANDOM[10'h135]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_24_2 = {_RANDOM[10'h136], _RANDOM[10'h137]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_24_3 = {_RANDOM[10'h138], _RANDOM[10'h139]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_25_0 = {_RANDOM[10'h13A], _RANDOM[10'h13B]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_25_1 = {_RANDOM[10'h13C], _RANDOM[10'h13D]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_25_2 = {_RANDOM[10'h13E], _RANDOM[10'h13F]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_25_3 = {_RANDOM[10'h140], _RANDOM[10'h141]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_26_0 = {_RANDOM[10'h142], _RANDOM[10'h143]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_26_1 = {_RANDOM[10'h144], _RANDOM[10'h145]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_26_2 = {_RANDOM[10'h146], _RANDOM[10'h147]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_26_3 = {_RANDOM[10'h148], _RANDOM[10'h149]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_27_0 = {_RANDOM[10'h14A], _RANDOM[10'h14B]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_27_1 = {_RANDOM[10'h14C], _RANDOM[10'h14D]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_27_2 = {_RANDOM[10'h14E], _RANDOM[10'h14F]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_27_3 = {_RANDOM[10'h150], _RANDOM[10'h151]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_28_0 = {_RANDOM[10'h152], _RANDOM[10'h153]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_28_1 = {_RANDOM[10'h154], _RANDOM[10'h155]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_28_2 = {_RANDOM[10'h156], _RANDOM[10'h157]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_28_3 = {_RANDOM[10'h158], _RANDOM[10'h159]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_29_0 = {_RANDOM[10'h15A], _RANDOM[10'h15B]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_29_1 = {_RANDOM[10'h15C], _RANDOM[10'h15D]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_29_2 = {_RANDOM[10'h15E], _RANDOM[10'h15F]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_29_3 = {_RANDOM[10'h160], _RANDOM[10'h161]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_30_0 = {_RANDOM[10'h162], _RANDOM[10'h163]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_30_1 = {_RANDOM[10'h164], _RANDOM[10'h165]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_30_2 = {_RANDOM[10'h166], _RANDOM[10'h167]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_30_3 = {_RANDOM[10'h168], _RANDOM[10'h169]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_31_0 = {_RANDOM[10'h16A], _RANDOM[10'h16B]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_31_1 = {_RANDOM[10'h16C], _RANDOM[10'h16D]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_31_2 = {_RANDOM[10'h16E], _RANDOM[10'h16F]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_31_3 = {_RANDOM[10'h170], _RANDOM[10'h171]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_32_0 = {_RANDOM[10'h172], _RANDOM[10'h173]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_32_1 = {_RANDOM[10'h174], _RANDOM[10'h175]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_32_2 = {_RANDOM[10'h176], _RANDOM[10'h177]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_32_3 = {_RANDOM[10'h178], _RANDOM[10'h179]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_33_0 = {_RANDOM[10'h17A], _RANDOM[10'h17B]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_33_1 = {_RANDOM[10'h17C], _RANDOM[10'h17D]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_33_2 = {_RANDOM[10'h17E], _RANDOM[10'h17F]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_33_3 = {_RANDOM[10'h180], _RANDOM[10'h181]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_34_0 = {_RANDOM[10'h182], _RANDOM[10'h183]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_34_1 = {_RANDOM[10'h184], _RANDOM[10'h185]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_34_2 = {_RANDOM[10'h186], _RANDOM[10'h187]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_34_3 = {_RANDOM[10'h188], _RANDOM[10'h189]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_35_0 = {_RANDOM[10'h18A], _RANDOM[10'h18B]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_35_1 = {_RANDOM[10'h18C], _RANDOM[10'h18D]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_35_2 = {_RANDOM[10'h18E], _RANDOM[10'h18F]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_35_3 = {_RANDOM[10'h190], _RANDOM[10'h191]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_36_0 = {_RANDOM[10'h192], _RANDOM[10'h193]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_36_1 = {_RANDOM[10'h194], _RANDOM[10'h195]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_36_2 = {_RANDOM[10'h196], _RANDOM[10'h197]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_36_3 = {_RANDOM[10'h198], _RANDOM[10'h199]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_37_0 = {_RANDOM[10'h19A], _RANDOM[10'h19B]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_37_1 = {_RANDOM[10'h19C], _RANDOM[10'h19D]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_37_2 = {_RANDOM[10'h19E], _RANDOM[10'h19F]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_37_3 = {_RANDOM[10'h1A0], _RANDOM[10'h1A1]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_38_0 = {_RANDOM[10'h1A2], _RANDOM[10'h1A3]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_38_1 = {_RANDOM[10'h1A4], _RANDOM[10'h1A5]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_38_2 = {_RANDOM[10'h1A6], _RANDOM[10'h1A7]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_38_3 = {_RANDOM[10'h1A8], _RANDOM[10'h1A9]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_39_0 = {_RANDOM[10'h1AA], _RANDOM[10'h1AB]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_39_1 = {_RANDOM[10'h1AC], _RANDOM[10'h1AD]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_39_2 = {_RANDOM[10'h1AE], _RANDOM[10'h1AF]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_39_3 = {_RANDOM[10'h1B0], _RANDOM[10'h1B1]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_40_0 = {_RANDOM[10'h1B2], _RANDOM[10'h1B3]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_40_1 = {_RANDOM[10'h1B4], _RANDOM[10'h1B5]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_40_2 = {_RANDOM[10'h1B6], _RANDOM[10'h1B7]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_40_3 = {_RANDOM[10'h1B8], _RANDOM[10'h1B9]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_41_0 = {_RANDOM[10'h1BA], _RANDOM[10'h1BB]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_41_1 = {_RANDOM[10'h1BC], _RANDOM[10'h1BD]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_41_2 = {_RANDOM[10'h1BE], _RANDOM[10'h1BF]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_41_3 = {_RANDOM[10'h1C0], _RANDOM[10'h1C1]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_42_0 = {_RANDOM[10'h1C2], _RANDOM[10'h1C3]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_42_1 = {_RANDOM[10'h1C4], _RANDOM[10'h1C5]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_42_2 = {_RANDOM[10'h1C6], _RANDOM[10'h1C7]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_42_3 = {_RANDOM[10'h1C8], _RANDOM[10'h1C9]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_43_0 = {_RANDOM[10'h1CA], _RANDOM[10'h1CB]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_43_1 = {_RANDOM[10'h1CC], _RANDOM[10'h1CD]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_43_2 = {_RANDOM[10'h1CE], _RANDOM[10'h1CF]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_43_3 = {_RANDOM[10'h1D0], _RANDOM[10'h1D1]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_44_0 = {_RANDOM[10'h1D2], _RANDOM[10'h1D3]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_44_1 = {_RANDOM[10'h1D4], _RANDOM[10'h1D5]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_44_2 = {_RANDOM[10'h1D6], _RANDOM[10'h1D7]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_44_3 = {_RANDOM[10'h1D8], _RANDOM[10'h1D9]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_45_0 = {_RANDOM[10'h1DA], _RANDOM[10'h1DB]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_45_1 = {_RANDOM[10'h1DC], _RANDOM[10'h1DD]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_45_2 = {_RANDOM[10'h1DE], _RANDOM[10'h1DF]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_45_3 = {_RANDOM[10'h1E0], _RANDOM[10'h1E1]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_46_0 = {_RANDOM[10'h1E2], _RANDOM[10'h1E3]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_46_1 = {_RANDOM[10'h1E4], _RANDOM[10'h1E5]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_46_2 = {_RANDOM[10'h1E6], _RANDOM[10'h1E7]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_46_3 = {_RANDOM[10'h1E8], _RANDOM[10'h1E9]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_47_0 = {_RANDOM[10'h1EA], _RANDOM[10'h1EB]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_47_1 = {_RANDOM[10'h1EC], _RANDOM[10'h1ED]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_47_2 = {_RANDOM[10'h1EE], _RANDOM[10'h1EF]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_47_3 = {_RANDOM[10'h1F0], _RANDOM[10'h1F1]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_48_0 = {_RANDOM[10'h1F2], _RANDOM[10'h1F3]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_48_1 = {_RANDOM[10'h1F4], _RANDOM[10'h1F5]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_48_2 = {_RANDOM[10'h1F6], _RANDOM[10'h1F7]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_48_3 = {_RANDOM[10'h1F8], _RANDOM[10'h1F9]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_49_0 = {_RANDOM[10'h1FA], _RANDOM[10'h1FB]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_49_1 = {_RANDOM[10'h1FC], _RANDOM[10'h1FD]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_49_2 = {_RANDOM[10'h1FE], _RANDOM[10'h1FF]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_49_3 = {_RANDOM[10'h200], _RANDOM[10'h201]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_50_0 = {_RANDOM[10'h202], _RANDOM[10'h203]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_50_1 = {_RANDOM[10'h204], _RANDOM[10'h205]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_50_2 = {_RANDOM[10'h206], _RANDOM[10'h207]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_50_3 = {_RANDOM[10'h208], _RANDOM[10'h209]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_51_0 = {_RANDOM[10'h20A], _RANDOM[10'h20B]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_51_1 = {_RANDOM[10'h20C], _RANDOM[10'h20D]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_51_2 = {_RANDOM[10'h20E], _RANDOM[10'h20F]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_51_3 = {_RANDOM[10'h210], _RANDOM[10'h211]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_52_0 = {_RANDOM[10'h212], _RANDOM[10'h213]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_52_1 = {_RANDOM[10'h214], _RANDOM[10'h215]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_52_2 = {_RANDOM[10'h216], _RANDOM[10'h217]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_52_3 = {_RANDOM[10'h218], _RANDOM[10'h219]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_53_0 = {_RANDOM[10'h21A], _RANDOM[10'h21B]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_53_1 = {_RANDOM[10'h21C], _RANDOM[10'h21D]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_53_2 = {_RANDOM[10'h21E], _RANDOM[10'h21F]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_53_3 = {_RANDOM[10'h220], _RANDOM[10'h221]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_54_0 = {_RANDOM[10'h222], _RANDOM[10'h223]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_54_1 = {_RANDOM[10'h224], _RANDOM[10'h225]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_54_2 = {_RANDOM[10'h226], _RANDOM[10'h227]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_54_3 = {_RANDOM[10'h228], _RANDOM[10'h229]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_55_0 = {_RANDOM[10'h22A], _RANDOM[10'h22B]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_55_1 = {_RANDOM[10'h22C], _RANDOM[10'h22D]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_55_2 = {_RANDOM[10'h22E], _RANDOM[10'h22F]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_55_3 = {_RANDOM[10'h230], _RANDOM[10'h231]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_56_0 = {_RANDOM[10'h232], _RANDOM[10'h233]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_56_1 = {_RANDOM[10'h234], _RANDOM[10'h235]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_56_2 = {_RANDOM[10'h236], _RANDOM[10'h237]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_56_3 = {_RANDOM[10'h238], _RANDOM[10'h239]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_57_0 = {_RANDOM[10'h23A], _RANDOM[10'h23B]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_57_1 = {_RANDOM[10'h23C], _RANDOM[10'h23D]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_57_2 = {_RANDOM[10'h23E], _RANDOM[10'h23F]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_57_3 = {_RANDOM[10'h240], _RANDOM[10'h241]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_58_0 = {_RANDOM[10'h242], _RANDOM[10'h243]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_58_1 = {_RANDOM[10'h244], _RANDOM[10'h245]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_58_2 = {_RANDOM[10'h246], _RANDOM[10'h247]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_58_3 = {_RANDOM[10'h248], _RANDOM[10'h249]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_59_0 = {_RANDOM[10'h24A], _RANDOM[10'h24B]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_59_1 = {_RANDOM[10'h24C], _RANDOM[10'h24D]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_59_2 = {_RANDOM[10'h24E], _RANDOM[10'h24F]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_59_3 = {_RANDOM[10'h250], _RANDOM[10'h251]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_60_0 = {_RANDOM[10'h252], _RANDOM[10'h253]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_60_1 = {_RANDOM[10'h254], _RANDOM[10'h255]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_60_2 = {_RANDOM[10'h256], _RANDOM[10'h257]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_60_3 = {_RANDOM[10'h258], _RANDOM[10'h259]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_61_0 = {_RANDOM[10'h25A], _RANDOM[10'h25B]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_61_1 = {_RANDOM[10'h25C], _RANDOM[10'h25D]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_61_2 = {_RANDOM[10'h25E], _RANDOM[10'h25F]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_61_3 = {_RANDOM[10'h260], _RANDOM[10'h261]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_62_0 = {_RANDOM[10'h262], _RANDOM[10'h263]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_62_1 = {_RANDOM[10'h264], _RANDOM[10'h265]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_62_2 = {_RANDOM[10'h266], _RANDOM[10'h267]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_62_3 = {_RANDOM[10'h268], _RANDOM[10'h269]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_63_0 = {_RANDOM[10'h26A], _RANDOM[10'h26B]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_63_1 = {_RANDOM[10'h26C], _RANDOM[10'h26D]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_63_2 = {_RANDOM[10'h26E], _RANDOM[10'h26F]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
+        dataArray_63_3 = {_RANDOM[10'h270], _RANDOM[10'h271]};	// cache/src/zaqal/cache/DCache.scala:19:7, :57:27
       `endif // RANDOMIZE_REG_INIT
     end // initial
-    `ifdef FIRRTL_AFTER_INITIAL	// cache/src/zaqal/cache/DCache.scala:8:7
-      `FIRRTL_AFTER_INITIAL	// cache/src/zaqal/cache/DCache.scala:8:7
+    `ifdef FIRRTL_AFTER_INITIAL	// cache/src/zaqal/cache/DCache.scala:19:7
+      `FIRRTL_AFTER_INITIAL	// cache/src/zaqal/cache/DCache.scala:19:7
     `endif // FIRRTL_AFTER_INITIAL
   `endif // ENABLE_INITIAL_REG_
-  MSHR mshr (	// cache/src/zaqal/cache/DCache.scala:42:20
-    .clock                      (clock),
-    .reset                      (reset),
-    .io_alloc_valid             (io_req_valid & ~isHit),	// cache/src/zaqal/cache/DCache.scala:28:35, :39:36, :51:23, :54:28, :57:22, :58:17, :71:27
-    .io_alloc_bits_addr         (io_req_bits_addr),
-    .io_alloc_bits_load_id      (io_req_bits_load_id),
-    .io_mem_req_valid           (io_mem_req_valid),
-    .io_mem_req_bits_addr       (io_mem_req_bits_addr),
-    .io_mem_resp_ready          (io_mem_resp_ready),
-    .io_mem_resp_valid          (io_mem_resp_valid),
-    .io_refill_out_valid        (_mshr_io_refill_out_valid),
-    .io_refill_out_bits_addr    (_mshr_io_refill_out_bits_addr),
-    .io_refill_out_bits_load_id (_mshr_io_refill_out_bits_load_id)
+  TLMSHR tl_mshr (	// cache/src/zaqal/cache/DCache.scala:73:23
+    .clock                            (clock),
+    .reset                            (reset),
+    .io_alloc_ready                   (_tl_mshr_io_alloc_ready),
+    .io_alloc_valid                   (io_req_valid ? ~isHit : _GEN_9),	// cache/src/zaqal/cache/DCache.scala:52:35, :69:32, :81:24, :104:26, :115:22, :116:17, :129:30, :140:44, :141:21
+    .io_alloc_bits_addr
+      (_GEN_10 ? io_req_bits_addr : _prefetcher_io_prefetch_req_bits_addr),	// cache/src/zaqal/cache/DCache.scala:84:26, :115:22, :116:17, :140:44
+    .io_alloc_bits_data               (_GEN_10 ? io_req_bits_data : 64'h0),	// cache/src/zaqal/cache/DCache.scala:57:61, :115:22, :116:17, :140:44
+    .io_alloc_bits_load_id            (_GEN_10 ? io_req_bits_load_id : 6'h0),	// cache/src/zaqal/cache/DCache.scala:115:22, :116:17, :119:45, :140:44
+    .io_alloc_bits_is_write           (_GEN_10 & io_req_bits_is_write),	// cache/src/zaqal/cache/DCache.scala:115:22, :116:17, :140:44
+    .io_alloc_bits_is_upgrade
+      (_GEN_10 & isTagMatch & io_req_bits_is_write & ~isExclusive),	// cache/src/zaqal/cache/DCache.scala:67:42, :68:43, :70:59, :115:22, :116:17, :140:44
+    .io_alloc_bits_is_prefetch        (~io_req_valid & _GEN_9),	// cache/src/zaqal/cache/DCache.scala:102:36, :104:26, :115:22, :116:17, :140:44, :141:21
+    .io_alloc_bits_sink_is_l2
+      (~io_req_valid & _prefetcher_io_prefetch_req_valid & ~isPfHit
+       & _tl_mshr_io_alloc_ready & _prefetcher_io_prefetch_req_bits_sink_is_l2),	// cache/src/zaqal/cache/DCache.scala:73:23, :84:26, :95:37, :102:36, :104:26, :115:22, :116:17, :140:44, :141:21, :144:38
+    .io_tl_a_ready                    (io_tl_a_ready),
+    .io_tl_a_valid                    (io_tl_a_valid),
+    .io_tl_a_bits_param               (io_tl_a_bits_param),
+    .io_tl_a_bits_address             (io_tl_a_bits_address),
+    .io_tl_d_ready                    (io_tl_d_ready),
+    .io_tl_d_valid                    (io_tl_d_valid),
+    .io_tl_d_bits_param               (io_tl_d_bits_param),
+    .io_tl_d_bits_sink                (io_tl_d_bits_sink),
+    .io_tl_d_bits_data                (io_tl_d_bits_data),
+    .io_tl_e_ready                    (io_tl_e_ready),
+    .io_tl_e_valid                    (io_tl_e_valid),
+    .io_tl_e_bits_sink                (io_tl_e_bits_sink),
+    .io_refill_out_valid              (_tl_mshr_io_refill_out_valid),
+    .io_refill_out_bits_addr          (_tl_mshr_io_refill_out_bits_addr),
+    .io_refill_out_bits_data          (_tl_mshr_io_refill_out_bits_data),
+    .io_refill_out_bits_write_data    (_tl_mshr_io_refill_out_bits_write_data),
+    .io_refill_out_bits_load_id       (_tl_mshr_io_refill_out_bits_load_id),
+    .io_refill_out_bits_is_write      (_tl_mshr_io_refill_out_bits_is_write),
+    .io_refill_out_bits_is_prefetch   (_tl_mshr_io_refill_out_bits_is_prefetch),
+    .io_refill_out_bits_sink_is_l2    (_tl_mshr_io_refill_out_bits_sink_is_l2),
+    .io_refill_out_bits_granted_param (_tl_mshr_io_refill_out_bits_granted_param)
   );
-  assign io_resp_valid = _mshr_io_refill_out_valid | _GEN & ~io_req_bits_is_write;	// cache/src/zaqal/cache/DCache.scala:8:7, :28:35, :42:20, :48:17, :54:28, :57:22, :58:17, :60:34, :64:23, :76:33, :89:19
+  L1Prefetcher prefetcher (	// cache/src/zaqal/cache/DCache.scala:84:26
+    .clock                           (clock),
+    .reset                           (reset),
+    .io_train_valid                  (io_pf_train_valid),
+    .io_train_bits_pc                (io_pf_train_bits_pc),
+    .io_train_bits_addr              (io_pf_train_bits_addr),
+    .io_branch_signal_valid          (io_branch_signal_valid),
+    .io_branch_signal_bits_pc        (io_branch_signal_bits_pc),
+    .io_branch_signal_bits_target    (io_branch_signal_bits_target),
+    .io_branch_signal_bits_taken     (io_branch_signal_bits_taken),
+    .io_prefetch_req_ready
+      (~io_req_valid & _prefetcher_io_prefetch_req_valid
+       & (isPfHit | _tl_mshr_io_alloc_ready)),	// cache/src/zaqal/cache/DCache.scala:73:23, :84:26, :95:37, :102:36, :115:22, :140:44, :141:21, :142:42, :144:38
+    .io_prefetch_req_valid           (_prefetcher_io_prefetch_req_valid),
+    .io_prefetch_req_bits_addr       (_prefetcher_io_prefetch_req_bits_addr),
+    .io_prefetch_req_bits_sink_is_l2 (_prefetcher_io_prefetch_req_bits_sink_is_l2),
+    .io_mshr_busy                    (~_tl_mshr_io_alloc_ready),	// cache/src/zaqal/cache/DCache.scala:73:23, :87:30
+    .io_bus_ready                    (io_tl_a_ready),
+    .io_demand_miss_active           (io_req_valid & ~isHit),	// cache/src/zaqal/cache/DCache.scala:69:32, :89:{52,55}
+    .io_flush                        (io_flush)
+  );
+  assign io_req_ready = io_req_valid & (isHit | _tl_mshr_io_alloc_ready);	// cache/src/zaqal/cache/DCache.scala:19:7, :69:32, :73:23, :98:16, :115:22, :116:17, :117:20, :128:20
+  assign io_resp_valid = _GEN_11 | _GEN_2 & ~io_req_bits_is_write;	// cache/src/zaqal/cache/DCache.scala:19:7, :52:35, :81:24, :99:17, :115:22, :116:17, :118:34, :122:23, :160:36, :189:91, :190:21
+  assign io_resp_bits_data =
+    _GEN_11
+      ? _io_resp_bits_data_T_1[63:0]
+      : _GEN_8 ? 64'h0 : _GEN_7[io_req_bits_addr[4:3]];	// cache/src/zaqal/cache/DCache.scala:19:7, :57:61, :62:40, :100:21, :115:22, :116:17, :118:34, :123:27, :160:36, :189:91, :190:21, :192:{25,60}
   assign io_resp_bits_load_id =
-    _mshr_io_refill_out_valid
-      ? _mshr_io_refill_out_bits_load_id
-      : ~_GEN | io_req_bits_is_write ? 6'h0 : io_req_bits_load_id;	// cache/src/zaqal/cache/DCache.scala:8:7, :42:20, :48:17, :50:24, :57:22, :58:17, :60:34, :61:44, :76:33, :92:26
+    _GEN_11 ? _tl_mshr_io_refill_out_bits_load_id : _GEN_8 ? 6'h0 : io_req_bits_load_id;	// cache/src/zaqal/cache/DCache.scala:19:7, :73:23, :100:21, :101:24, :115:22, :116:17, :118:34, :119:45, :160:36, :189:91, :190:21, :193:28
+  assign io_tl_b_ready = io_tl_c_ready;	// cache/src/zaqal/cache/DCache.scala:19:7
+  assign io_tl_c_valid = io_tl_b_valid;	// cache/src/zaqal/cache/DCache.scala:19:7
+  assign io_tl_c_bits_opcode = _GEN_15 ? {2'h2, _GEN_14} : 3'h4;	// cache/src/zaqal/cache/DCache.scala:19:7, :68:43, :160:36, :221:23, :222:22, :223:54, :226:28, :227:31, :234:31, :259:27, :264:25
+  assign io_tl_c_bits_param = _GEN_15 ? (_GEN_12 ? 3'h0 : _GEN_14 ? 3'h1 : 3'h2) : 3'h5;	// cache/src/zaqal/cache/DCache.scala:19:7, :160:36, :168:79, :221:23, :222:22, :223:{31,54}, :226:28, :227:31, :244:28, :246:31, :253:31, :260:27, :265:25
+  assign io_tl_c_bits_size = io_tl_b_bits_size;	// cache/src/zaqal/cache/DCache.scala:19:7
+  assign io_tl_c_bits_source = io_tl_b_bits_source;	// cache/src/zaqal/cache/DCache.scala:19:7
+  assign io_tl_c_bits_address = io_tl_b_bits_address;	// cache/src/zaqal/cache/DCache.scala:19:7
+  assign io_tl_c_bits_data =
+    _GEN_15 & _GEN_14
+      ? {_GEN_6[io_tl_b_bits_address[10:5]],
+         _GEN_5[io_tl_b_bits_address[10:5]],
+         _GEN_4[io_tl_b_bits_address[10:5]],
+         _GEN_3[io_tl_b_bits_address[10:5]]}
+      : 256'h0;	// cache/src/zaqal/cache/DCache.scala:19:7, :123:27, :160:36, :204:31, :208:25, :221:23, :222:22, :223:54, :226:28, :236:31, :261:27, :266:25
+  assign io_snoop_probe_valid = io_tl_b_valid;	// cache/src/zaqal/cache/DCache.scala:19:7
+  assign io_snoop_probe_addr = io_tl_b_bits_address;	// cache/src/zaqal/cache/DCache.scala:19:7
 endmodule
 

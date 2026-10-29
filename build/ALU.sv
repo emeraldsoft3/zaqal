@@ -138,6 +138,7 @@ module ALU(	// backend/src/zaqal/backend/exu/ALU.scala:9:7
                 io_dec_is_binvi,	// backend/src/zaqal/backend/exu/ALU.scala:10:14
                 io_dec_is_bext,	// backend/src/zaqal/backend/exu/ALU.scala:10:14
                 io_dec_is_bexti,	// backend/src/zaqal/backend/exu/ALU.scala:10:14
+  input  [4:0]  io_dec_fused_type,	// backend/src/zaqal/backend/exu/ALU.scala:10:14
   output [63:0] io_result	// backend/src/zaqal/backend/exu/ALU.scala:10:14
 );
 
@@ -147,36 +148,44 @@ module ALU(	// backend/src/zaqal/backend/exu/ALU.scala:9:7
   wire [63:0] _shifter_io_result;	// backend/src/zaqal/backend/exu/ALU.scala:21:26
   wire [63:0] _logical_io_result;	// backend/src/zaqal/backend/exu/ALU.scala:20:26
   wire [63:0] _adder_io_result;	// backend/src/zaqal/backend/exu/ALU.scala:19:26
+  wire        _io_result_T = io_dec_fused_type == 5'h3;	// backend/src/zaqal/backend/exu/ALU.scala:26:39
+  wire        _io_result_T_1 = io_dec_fused_type == 5'h4;	// backend/src/zaqal/backend/exu/ALU.scala:27:39
+  wire        _io_result_T_3 = io_dec_fused_type == 5'h5;	// backend/src/zaqal/backend/exu/ALU.scala:28:39
+  wire        _io_result_T_5 = io_dec_fused_type == 5'h6;	// backend/src/zaqal/backend/exu/ALU.scala:29:39
   wire        is_zba =
     io_dec_is_sh1add | io_dec_is_sh2add | io_dec_is_sh3add | io_dec_is_sh1add_uw
-    | io_dec_is_sh2add_uw | io_dec_is_sh3add_uw;	// backend/src/zaqal/backend/exu/ALU.scala:27:59
+    | io_dec_is_sh2add_uw | io_dec_is_sh3add_uw | _io_result_T | _io_result_T_1
+    | _io_result_T_3 | _io_result_T_5;	// backend/src/zaqal/backend/exu/ALU.scala:26:39, :27:39, :28:39, :29:39, :32:82
   wire [63:0] zba_src1_base =
     io_dec_is_sh1add_uw | io_dec_is_sh2add_uw | io_dec_is_sh3add_uw
       ? {32'h0, io_src1[31:0]}
-      : io_src1;	// backend/src/zaqal/backend/exu/ALU.scala:29:{26,70}, :30:{30,49}
-  wire        _io_result_T_7 = io_dec_is_and | io_dec_is_andi;	// backend/src/zaqal/backend/exu/ALU.scala:47:40
+      : io_src1;	// backend/src/zaqal/backend/exu/ALU.scala:35:{26,70}, :36:{30,49}
+  wire        _io_result_T_91 = io_dec_is_and | io_dec_is_andi;	// backend/src/zaqal/backend/exu/ALU.scala:54:40
+  wire [63:0] _io_result_T_89 = io_pc + io_src2;	// backend/src/zaqal/backend/exu/ALU.scala:121:80
+  wire [31:0] _GEN = {31'h0, io_src1[0]};	// backend/src/zaqal/backend/exu/ALU.scala:127:56, :130:{63,70}
+  wire [31:0] _io_result_T_75 = _GEN + io_src2[31:0];	// backend/src/zaqal/backend/exu/ALU.scala:10:14, :130:{63,70}, :131:83
   Adder adder (	// backend/src/zaqal/backend/exu/ALU.scala:19:26
     .io_src1
       (is_zba
-         ? (io_dec_is_sh1add | io_dec_is_sh1add_uw
+         ? (io_dec_is_sh1add | io_dec_is_sh1add_uw | _io_result_T
               ? {zba_src1_base[62:0], 1'h0}
-              : io_dec_is_sh2add | io_dec_is_sh2add_uw
+              : io_dec_is_sh2add | io_dec_is_sh2add_uw | _io_result_T_1
                   ? {zba_src1_base[61:0], 2'h0}
-                  : io_dec_is_sh3add | io_dec_is_sh3add_uw
+                  : io_dec_is_sh3add | io_dec_is_sh3add_uw | _io_result_T_3
                       ? {zba_src1_base[60:0], 3'h0}
-                      : zba_src1_base)
-         : io_src1),	// backend/src/zaqal/backend/exu/ALU.scala:27:59, :29:26, :34:{23,65}, :35:{23,65}, :36:{23,65}, :40:26, src/main/scala/chisel3/util/Mux.scala:126:16
+                      : _io_result_T_5 ? {zba_src1_base[59:0], 4'h0} : zba_src1_base)
+         : io_src1),	// backend/src/zaqal/backend/exu/ALU.scala:26:39, :27:39, :28:39, :29:39, :32:82, :35:26, :40:46, :41:46, :42:46, :43:110, :47:26, :127:56, :128:56, :129:56, src/main/scala/chisel3/util/Mux.scala:126:16
     .io_src2    (io_src2),
-    .io_is_sub  (io_dec_is_sub | io_dec_is_subw),	// backend/src/zaqal/backend/exu/ALU.scala:42:37
-    .io_is_word (io_dec_is_addw | io_dec_is_subw | io_dec_is_addiw),	// backend/src/zaqal/backend/exu/ALU.scala:43:56
+    .io_is_sub  (io_dec_is_sub | io_dec_is_subw),	// backend/src/zaqal/backend/exu/ALU.scala:49:37
+    .io_is_word (io_dec_is_addw | io_dec_is_subw | io_dec_is_addiw),	// backend/src/zaqal/backend/exu/ALU.scala:50:56
     .io_result  (_adder_io_result)
   );
   Logical logical (	// backend/src/zaqal/backend/exu/ALU.scala:20:26
     .io_src1    (io_src1),
     .io_src2    (io_src2),
-    .io_is_and  (_io_result_T_7),	// backend/src/zaqal/backend/exu/ALU.scala:47:40
-    .io_is_or   (io_dec_is_or | io_dec_is_ori),	// backend/src/zaqal/backend/exu/ALU.scala:48:40
-    .io_is_xor  (io_dec_is_xor | io_dec_is_xori),	// backend/src/zaqal/backend/exu/ALU.scala:49:40
+    .io_is_and  (_io_result_T_91),	// backend/src/zaqal/backend/exu/ALU.scala:54:40
+    .io_is_or   (io_dec_is_or | io_dec_is_ori),	// backend/src/zaqal/backend/exu/ALU.scala:55:40
+    .io_is_xor  (io_dec_is_xor | io_dec_is_xori),	// backend/src/zaqal/backend/exu/ALU.scala:56:40
     .io_is_andn (io_dec_is_andn),
     .io_is_orn  (io_dec_is_orn),
     .io_is_xorn (io_dec_is_xorn),
@@ -184,13 +193,13 @@ module ALU(	// backend/src/zaqal/backend/exu/ALU.scala:9:7
   );
   Shifter shifter (	// backend/src/zaqal/backend/exu/ALU.scala:21:26
     .io_src1     (io_src1),
-    .io_shamt    (io_src2[5:0]),	// backend/src/zaqal/backend/exu/ALU.scala:55:31
-    .io_is_sll   (io_dec_is_sll | io_dec_is_slli),	// backend/src/zaqal/backend/exu/ALU.scala:56:39
-    .io_is_srl   (io_dec_is_srl | io_dec_is_srli),	// backend/src/zaqal/backend/exu/ALU.scala:57:39
-    .io_is_sra   (io_dec_is_sra | io_dec_is_srai),	// backend/src/zaqal/backend/exu/ALU.scala:58:39
-    .io_is_sllw  (io_dec_is_sllw | io_dec_is_slliw),	// backend/src/zaqal/backend/exu/ALU.scala:59:40
-    .io_is_srlw  (io_dec_is_srlw | io_dec_is_srliw),	// backend/src/zaqal/backend/exu/ALU.scala:60:40
-    .io_is_sraw  (io_dec_is_sraw | io_dec_is_sraiw),	// backend/src/zaqal/backend/exu/ALU.scala:61:40
+    .io_shamt    (io_src2[5:0]),	// backend/src/zaqal/backend/exu/ALU.scala:62:31
+    .io_is_sll   (io_dec_is_sll | io_dec_is_slli),	// backend/src/zaqal/backend/exu/ALU.scala:63:39
+    .io_is_srl   (io_dec_is_srl | io_dec_is_srli),	// backend/src/zaqal/backend/exu/ALU.scala:64:39
+    .io_is_sra   (io_dec_is_sra | io_dec_is_srai),	// backend/src/zaqal/backend/exu/ALU.scala:65:39
+    .io_is_sllw  (io_dec_is_sllw | io_dec_is_slliw),	// backend/src/zaqal/backend/exu/ALU.scala:66:40
+    .io_is_srlw  (io_dec_is_srlw | io_dec_is_srliw),	// backend/src/zaqal/backend/exu/ALU.scala:67:40
+    .io_is_sraw  (io_dec_is_sraw | io_dec_is_sraiw),	// backend/src/zaqal/backend/exu/ALU.scala:68:40
     .io_is_rol   (io_dec_is_rol),
     .io_is_ror   (io_dec_is_ror),
     .io_is_rori  (io_dec_is_rori),
@@ -235,37 +244,133 @@ module ALU(	// backend/src/zaqal/backend/exu/ALU.scala:9:7
     .io_result   (_bitmanip_io_result)
   );
   assign io_result =
-    io_dec_is_add | io_dec_is_addi | io_dec_is_sub | io_dec_is_addw | io_dec_is_subw
-    | io_dec_is_addiw
+    _io_result_T | _io_result_T_1 | _io_result_T_3 | _io_result_T_5
       ? _adder_io_result
-      : io_dec_is_auipc
-          ? io_pc + io_src2
-          : io_dec_is_lui
-              ? io_src2
-              : _io_result_T_7 | io_dec_is_or | io_dec_is_ori | io_dec_is_xor
-                | io_dec_is_xori | io_dec_is_andn | io_dec_is_orn | io_dec_is_xorn
-                  ? _logical_io_result
-                  : io_dec_is_sll | io_dec_is_srl | io_dec_is_sra | io_dec_is_slli
-                    | io_dec_is_srli | io_dec_is_srai | io_dec_is_sllw | io_dec_is_srlw
-                    | io_dec_is_sraw | io_dec_is_slliw | io_dec_is_srliw | io_dec_is_sraiw
-                    | io_dec_is_rol | io_dec_is_ror | io_dec_is_rori | io_dec_is_rolw
-                    | io_dec_is_rorw | io_dec_is_roriw
-                      ? _shifter_io_result
-                      : io_dec_is_slt | io_dec_is_slti
-                          ? {63'h0, _comparator_io_lt}
-                          : io_dec_is_sltu | io_dec_is_sltiu
-                              ? {63'h0, _comparator_io_ltu}
-                              : is_zba
-                                  ? _adder_io_result
-                                  : io_dec_is_clz | io_dec_is_ctz | io_dec_is_cpop
-                                    | io_dec_is_clzw | io_dec_is_ctzw | io_dec_is_cpopw
-                                    | io_dec_is_rev8 | io_dec_is_orc_b | io_dec_is_sextb
-                                    | io_dec_is_sexth | io_dec_is_zexth | io_dec_is_min
-                                    | io_dec_is_max | io_dec_is_minu | io_dec_is_maxu
-                                    | io_dec_is_bset | io_dec_is_bseti | io_dec_is_bclr
-                                    | io_dec_is_bclri | io_dec_is_binv | io_dec_is_binvi
-                                    | io_dec_is_bext | io_dec_is_bexti
-                                      ? _bitmanip_io_result
-                                      : 64'h0;	// backend/src/zaqal/backend/exu/ALU.scala:9:7, :19:26, :20:26, :21:26, :22:26, :23:26, :27:59, :47:40, :103:39, :104:33, :109:38, :115:39, :116:20, :117:21, :125:77, src/main/scala/chisel3/util/Mux.scala:126:16
+      : io_dec_fused_type == 5'h7
+          ? {32'h0, io_src1[31:0]}
+          : io_dec_fused_type == 5'h8
+              ? {48'h0, io_src1[15:0]}
+              : io_dec_fused_type == 5'h9
+                  ? {{48{io_src1[15]}}, io_src1[15:0]}
+                  : io_dec_fused_type == 5'hA
+                      ? {56'h0, io_src1[15:8]}
+                      : io_dec_fused_type == 5'hB
+                          ? {63'h0, _logical_io_result[0]}
+                          : io_dec_fused_type == 5'hC
+                              ? {63'h0, _adder_io_result[0]}
+                              : io_dec_fused_type == 5'hD
+                                  ? {56'h0, _adder_io_result[7:0]}
+                                  : io_dec_fused_type == 5'h1
+                                      ? (io_dec_is_auipc ? _io_result_T_89 : io_src2)
+                                      : io_dec_fused_type == 5'h2
+                                          ? {{32{io_dec_is_auipc
+                                                   ? _io_result_T_89[31]
+                                                   : io_src2[31]}},
+                                             io_dec_is_auipc
+                                               ? _io_result_T_89[31:0]
+                                               : io_src2[31:0]}
+                                          : io_dec_fused_type == 5'h11
+                                              ? {29'h0, io_src1[63:29]} + io_src2
+                                              : io_dec_fused_type == 5'h12
+                                                  ? {30'h0, io_src1[63:30]} + io_src2
+                                                  : io_dec_fused_type == 5'h13
+                                                      ? {31'h0, io_src1[63:31]} + io_src2
+                                                      : io_dec_fused_type == 5'h14
+                                                          ? {32'h0, io_src1[63:32]}
+                                                            + io_src2
+                                                          : io_dec_fused_type == 5'h15
+                                                              ? {31'h0,
+                                                                 io_src1[31:0],
+                                                                 1'h0}
+                                                              : io_dec_fused_type == 5'h16
+                                                                  ? {30'h0,
+                                                                     io_src1[31:0],
+                                                                     2'h0}
+                                                                  : io_dec_fused_type == 5'h17
+                                                                      ? {29'h0,
+                                                                         io_src1[31:0],
+                                                                         3'h0}
+                                                                      : io_dec_fused_type == 5'h18
+                                                                          ? {63'h0,
+                                                                             io_src1[0]}
+                                                                            + io_src2
+                                                                          : io_dec_fused_type == 5'h19
+                                                                              ? {{32{_io_result_T_75[31]}},
+                                                                                 _GEN
+                                                                                   + io_src2[31:0]}
+                                                                              : io_dec_is_add
+                                                                                | io_dec_is_addi
+                                                                                | io_dec_is_sub
+                                                                                | io_dec_is_addw
+                                                                                | io_dec_is_subw
+                                                                                | io_dec_is_addiw
+                                                                                  ? _adder_io_result
+                                                                                  : io_dec_is_auipc
+                                                                                      ? _io_result_T_89
+                                                                                      : io_dec_is_lui
+                                                                                          ? io_src2
+                                                                                          : _io_result_T_91
+                                                                                            | io_dec_is_or
+                                                                                            | io_dec_is_ori
+                                                                                            | io_dec_is_xor
+                                                                                            | io_dec_is_xori
+                                                                                            | io_dec_is_andn
+                                                                                            | io_dec_is_orn
+                                                                                            | io_dec_is_xorn
+                                                                                              ? _logical_io_result
+                                                                                              : io_dec_is_sll
+                                                                                                | io_dec_is_srl
+                                                                                                | io_dec_is_sra
+                                                                                                | io_dec_is_slli
+                                                                                                | io_dec_is_srli
+                                                                                                | io_dec_is_srai
+                                                                                                | io_dec_is_sllw
+                                                                                                | io_dec_is_srlw
+                                                                                                | io_dec_is_sraw
+                                                                                                | io_dec_is_slliw
+                                                                                                | io_dec_is_srliw
+                                                                                                | io_dec_is_sraiw
+                                                                                                | io_dec_is_rol
+                                                                                                | io_dec_is_ror
+                                                                                                | io_dec_is_rori
+                                                                                                | io_dec_is_rolw
+                                                                                                | io_dec_is_rorw
+                                                                                                | io_dec_is_roriw
+                                                                                                  ? _shifter_io_result
+                                                                                                  : io_dec_is_slt
+                                                                                                    | io_dec_is_slti
+                                                                                                      ? {63'h0,
+                                                                                                         _comparator_io_lt}
+                                                                                                      : io_dec_is_sltu
+                                                                                                        | io_dec_is_sltiu
+                                                                                                          ? {63'h0,
+                                                                                                             _comparator_io_ltu}
+                                                                                                          : is_zba
+                                                                                                              ? _adder_io_result
+                                                                                                              : io_dec_is_clz
+                                                                                                                | io_dec_is_ctz
+                                                                                                                | io_dec_is_cpop
+                                                                                                                | io_dec_is_clzw
+                                                                                                                | io_dec_is_ctzw
+                                                                                                                | io_dec_is_cpopw
+                                                                                                                | io_dec_is_rev8
+                                                                                                                | io_dec_is_orc_b
+                                                                                                                | io_dec_is_sextb
+                                                                                                                | io_dec_is_sexth
+                                                                                                                | io_dec_is_zexth
+                                                                                                                | io_dec_is_min
+                                                                                                                | io_dec_is_max
+                                                                                                                | io_dec_is_minu
+                                                                                                                | io_dec_is_maxu
+                                                                                                                | io_dec_is_bset
+                                                                                                                | io_dec_is_bseti
+                                                                                                                | io_dec_is_bclr
+                                                                                                                | io_dec_is_bclri
+                                                                                                                | io_dec_is_binv
+                                                                                                                | io_dec_is_binvi
+                                                                                                                | io_dec_is_bext
+                                                                                                                | io_dec_is_bexti
+                                                                                                                  ? _bitmanip_io_result
+                                                                                                                  : 64'h0;	// backend/src/zaqal/backend/exu/ALU.scala:9:7, :10:14, :19:26, :20:26, :21:26, :22:26, :23:26, :26:39, :27:39, :28:39, :29:39, :32:82, :36:{30,49}, :54:40, :112:46, :114:{24,56}, :115:{24,56,75}, :116:{24,56,61,73}, :117:{24,56,84}, :118:{24,72}, :119:{24,70}, :120:{24,70}, :121:{24,56,80}, :122:{24,56,61,69,94,104,117,128}, :123:{24,63,72}, :124:{24,63,72}, :125:{24,63,72}, :126:{24,63,72}, :127:{24,56}, :128:{24,56}, :129:{24,56}, :130:{24,63,70}, :131:{24,56,61,83,93,117}, :135:39, :141:38, :147:39, :148:20, :149:21, :157:77, src/main/scala/chisel3/util/Mux.scala:126:16
 endmodule
 

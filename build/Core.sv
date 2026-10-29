@@ -88,581 +88,605 @@ module Core(	// zaqal/src/zaqal/Core.scala:13:7
                  io_mem_d_resp_ready,	// zaqal/src/zaqal/Core.scala:14:14
   input          io_mem_d_resp_valid,	// zaqal/src/zaqal/Core.scala:14:14
   input  [255:0] io_mem_d_resp_bits_data,	// zaqal/src/zaqal/Core.scala:14:14
-  input          io_mem_d_resp_bits_last	// zaqal/src/zaqal/Core.scala:14:14
+  input          io_mem_d_resp_bits_last,	// zaqal/src/zaqal/Core.scala:14:14
+                 io_tl_d_a_ready,	// zaqal/src/zaqal/Core.scala:14:14
+  output         io_tl_d_a_valid,	// zaqal/src/zaqal/Core.scala:14:14
+  output [2:0]   io_tl_d_a_bits_opcode,	// zaqal/src/zaqal/Core.scala:14:14
+                 io_tl_d_a_bits_param,	// zaqal/src/zaqal/Core.scala:14:14
+  output [3:0]   io_tl_d_a_bits_size,	// zaqal/src/zaqal/Core.scala:14:14
+  output [5:0]   io_tl_d_a_bits_source,	// zaqal/src/zaqal/Core.scala:14:14
+  output [63:0]  io_tl_d_a_bits_address,	// zaqal/src/zaqal/Core.scala:14:14
+  output [31:0]  io_tl_d_a_bits_mask,	// zaqal/src/zaqal/Core.scala:14:14
+  output [255:0] io_tl_d_a_bits_data,	// zaqal/src/zaqal/Core.scala:14:14
+  output         io_tl_d_a_bits_corrupt,	// zaqal/src/zaqal/Core.scala:14:14
+                 io_tl_d_b_ready,	// zaqal/src/zaqal/Core.scala:14:14
+  input          io_tl_d_b_valid,	// zaqal/src/zaqal/Core.scala:14:14
+  input  [2:0]   io_tl_d_b_bits_opcode,	// zaqal/src/zaqal/Core.scala:14:14
+                 io_tl_d_b_bits_param,	// zaqal/src/zaqal/Core.scala:14:14
+  input  [3:0]   io_tl_d_b_bits_size,	// zaqal/src/zaqal/Core.scala:14:14
+  input  [5:0]   io_tl_d_b_bits_source,	// zaqal/src/zaqal/Core.scala:14:14
+  input  [63:0]  io_tl_d_b_bits_address,	// zaqal/src/zaqal/Core.scala:14:14
+  input  [31:0]  io_tl_d_b_bits_mask,	// zaqal/src/zaqal/Core.scala:14:14
+  input  [255:0] io_tl_d_b_bits_data,	// zaqal/src/zaqal/Core.scala:14:14
+  input          io_tl_d_b_bits_corrupt,	// zaqal/src/zaqal/Core.scala:14:14
+                 io_tl_d_c_ready,	// zaqal/src/zaqal/Core.scala:14:14
+  output         io_tl_d_c_valid,	// zaqal/src/zaqal/Core.scala:14:14
+  output [2:0]   io_tl_d_c_bits_opcode,	// zaqal/src/zaqal/Core.scala:14:14
+                 io_tl_d_c_bits_param,	// zaqal/src/zaqal/Core.scala:14:14
+  output [3:0]   io_tl_d_c_bits_size,	// zaqal/src/zaqal/Core.scala:14:14
+  output [5:0]   io_tl_d_c_bits_source,	// zaqal/src/zaqal/Core.scala:14:14
+  output [63:0]  io_tl_d_c_bits_address,	// zaqal/src/zaqal/Core.scala:14:14
+  output [255:0] io_tl_d_c_bits_data,	// zaqal/src/zaqal/Core.scala:14:14
+  output         io_tl_d_c_bits_corrupt,	// zaqal/src/zaqal/Core.scala:14:14
+                 io_tl_d_d_ready,	// zaqal/src/zaqal/Core.scala:14:14
+  input          io_tl_d_d_valid,	// zaqal/src/zaqal/Core.scala:14:14
+  input  [2:0]   io_tl_d_d_bits_opcode,	// zaqal/src/zaqal/Core.scala:14:14
+                 io_tl_d_d_bits_param,	// zaqal/src/zaqal/Core.scala:14:14
+  input  [3:0]   io_tl_d_d_bits_size,	// zaqal/src/zaqal/Core.scala:14:14
+  input  [5:0]   io_tl_d_d_bits_source,	// zaqal/src/zaqal/Core.scala:14:14
+                 io_tl_d_d_bits_sink,	// zaqal/src/zaqal/Core.scala:14:14
+  input          io_tl_d_d_bits_denied,	// zaqal/src/zaqal/Core.scala:14:14
+  input  [255:0] io_tl_d_d_bits_data,	// zaqal/src/zaqal/Core.scala:14:14
+  input          io_tl_d_d_bits_corrupt,	// zaqal/src/zaqal/Core.scala:14:14
+                 io_tl_d_e_ready,	// zaqal/src/zaqal/Core.scala:14:14
+  output         io_tl_d_e_valid,	// zaqal/src/zaqal/Core.scala:14:14
+  output [5:0]   io_tl_d_e_bits_sink,	// zaqal/src/zaqal/Core.scala:14:14
+  output         io_uart_tx_valid,	// zaqal/src/zaqal/Core.scala:14:14
+  output [7:0]   io_uart_tx_char,	// zaqal/src/zaqal/Core.scala:14:14
+  input  [31:0]  io_plic_ext_irq,	// zaqal/src/zaqal/Core.scala:14:14
+  output         io_clint_mtip,	// zaqal/src/zaqal/Core.scala:14:14
+                 io_plic_meip	// zaqal/src/zaqal/Core.scala:14:14
 );
 
-  wire        _backend_io_dispatch_0_ready;	// zaqal/src/zaqal/Core.scala:56:24
-  wire        _backend_io_dispatch_1_ready;	// zaqal/src/zaqal/Core.scala:56:24
-  wire        _backend_io_dispatch_2_ready;	// zaqal/src/zaqal/Core.scala:56:24
-  wire        _backend_io_dispatch_3_ready;	// zaqal/src/zaqal/Core.scala:56:24
-  wire        _backend_io_dispatch_4_ready;	// zaqal/src/zaqal/Core.scala:56:24
-  wire        _backend_io_dispatch_5_ready;	// zaqal/src/zaqal/Core.scala:56:24
-  wire        _backend_io_redirect_valid;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_redirect_target;	// zaqal/src/zaqal/Core.scala:56:24
-  wire        _backend_io_redirect_epoch;	// zaqal/src/zaqal/Core.scala:56:24
-  wire        _backend_io_redirect_is_exception;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_redirect_pc;	// zaqal/src/zaqal/Core.scala:56:24
-  wire        _backend_io_redirect_taken;	// zaqal/src/zaqal/Core.scala:56:24
-  wire        _backend_io_redirect_is_cfi;	// zaqal/src/zaqal/Core.scala:56:24
-  wire        _backend_io_redirect_is_jal;	// zaqal/src/zaqal/Core.scala:56:24
-  wire        _backend_io_redirect_is_jalr;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [5:0]  _backend_io_redirect_ftqPtr;	// zaqal/src/zaqal/Core.scala:56:24
-  wire        _backend_io_bpu_update_valid;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_bpu_update_pc;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_bpu_update_target;	// zaqal/src/zaqal/Core.scala:56:24
-  wire        _backend_io_bpu_update_taken;	// zaqal/src/zaqal/Core.scala:56:24
-  wire        _backend_io_bpu_update_is_cfi;	// zaqal/src/zaqal/Core.scala:56:24
-  wire        _backend_io_bpu_update_is_jal;	// zaqal/src/zaqal/Core.scala:56:24
-  wire        _backend_io_bpu_update_is_jalr;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [5:0]  _backend_io_bpu_update_ftqPtr;	// zaqal/src/zaqal/Core.scala:56:24
-  wire        _backend_io_commits_commitValid_0;	// zaqal/src/zaqal/Core.scala:56:24
-  wire        _backend_io_commits_commitValid_1;	// zaqal/src/zaqal/Core.scala:56:24
-  wire        _backend_io_commits_commitValid_2;	// zaqal/src/zaqal/Core.scala:56:24
-  wire        _backend_io_commits_commitValid_3;	// zaqal/src/zaqal/Core.scala:56:24
-  wire        _backend_io_commits_commitValid_4;	// zaqal/src/zaqal/Core.scala:56:24
-  wire        _backend_io_commits_commitValid_5;	// zaqal/src/zaqal/Core.scala:56:24
-  wire        _backend_io_commits_info_0_is_call;	// zaqal/src/zaqal/Core.scala:56:24
-  wire        _backend_io_commits_info_0_is_ret;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_commits_info_0_pc;	// zaqal/src/zaqal/Core.scala:56:24
-  wire        _backend_io_commits_info_1_is_call;	// zaqal/src/zaqal/Core.scala:56:24
-  wire        _backend_io_commits_info_1_is_ret;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_commits_info_1_pc;	// zaqal/src/zaqal/Core.scala:56:24
-  wire        _backend_io_commits_info_2_is_call;	// zaqal/src/zaqal/Core.scala:56:24
-  wire        _backend_io_commits_info_2_is_ret;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_commits_info_2_pc;	// zaqal/src/zaqal/Core.scala:56:24
-  wire        _backend_io_commits_info_3_is_call;	// zaqal/src/zaqal/Core.scala:56:24
-  wire        _backend_io_commits_info_3_is_ret;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_commits_info_3_pc;	// zaqal/src/zaqal/Core.scala:56:24
-  wire        _backend_io_commits_info_4_is_call;	// zaqal/src/zaqal/Core.scala:56:24
-  wire        _backend_io_commits_info_4_is_ret;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_commits_info_4_pc;	// zaqal/src/zaqal/Core.scala:56:24
-  wire        _backend_io_commits_info_5_is_call;	// zaqal/src/zaqal/Core.scala:56:24
-  wire        _backend_io_commits_info_5_is_ret;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_commits_info_5_pc;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_0;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_1;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_2;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_3;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_4;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_5;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_6;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_7;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_8;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_9;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_10;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_11;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_12;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_13;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_14;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_15;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_16;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_17;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_18;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_19;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_20;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_21;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_22;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_23;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_24;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_25;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_26;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_27;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_28;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_29;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_30;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_31;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_32;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_33;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_34;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_35;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_36;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_37;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_38;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_39;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_40;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_41;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_42;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_43;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_44;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_45;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_46;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_47;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_48;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_49;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_50;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_51;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_52;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_53;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_54;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_55;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_56;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_57;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_58;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_59;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_60;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_61;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_62;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_63;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_64;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_65;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_66;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_67;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_68;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_69;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_70;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_71;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_72;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_73;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_74;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_75;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_76;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_77;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_78;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_79;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_80;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_81;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_82;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_83;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_84;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_85;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_86;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_87;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_88;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_89;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_90;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_91;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_92;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_93;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_94;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_95;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_96;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_97;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_98;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_99;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_100;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_101;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_102;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_103;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_104;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_105;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_106;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_107;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_108;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_109;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_110;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_111;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_112;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_113;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_114;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_115;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_116;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_117;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_118;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_119;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_120;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_121;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_122;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_123;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_124;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_125;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_126;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_127;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_128;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_129;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_130;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_131;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_132;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_133;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_134;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_135;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_136;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_137;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_138;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_139;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_140;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_141;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_142;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_143;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_144;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_145;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_146;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_147;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_148;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_149;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_150;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_151;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_152;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_153;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_154;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_155;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_156;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_157;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_158;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_159;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_160;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_161;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_162;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_163;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_164;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_165;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_166;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_167;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_168;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_169;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_170;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_171;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_172;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_173;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_174;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_175;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_176;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_177;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_178;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_179;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_180;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_181;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_182;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_183;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_184;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_185;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_186;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_187;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_188;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_189;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_190;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_regs_191;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_0;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_1;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_2;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_3;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_4;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_5;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_6;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_7;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_8;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_9;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_10;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_11;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_12;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_13;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_14;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_15;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_16;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_17;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_18;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_19;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_20;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_21;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_22;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_23;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_24;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_25;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_26;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_27;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_28;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_29;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_30;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_31;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_32;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_33;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_34;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_35;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_36;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_37;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_38;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_39;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_40;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_41;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_42;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_43;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_44;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_45;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_46;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_47;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_48;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_49;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_50;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_51;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_52;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_53;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_54;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_55;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_56;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_57;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_58;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_59;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_60;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_61;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_62;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_63;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_64;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_65;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_66;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_67;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_68;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_69;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_70;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_71;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_72;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_73;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_74;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_75;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_76;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_77;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_78;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_79;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_80;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_81;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_82;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_83;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_84;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_85;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_86;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_87;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_88;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_89;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_90;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_91;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_92;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_93;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_94;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_95;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_96;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_97;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_98;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_99;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_100;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_101;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_102;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_103;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_104;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_105;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_106;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_107;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_108;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_109;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_110;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_111;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_112;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_113;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_114;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_115;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_116;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_117;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_118;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_119;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_120;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_121;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_122;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_123;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_124;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_125;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_126;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_127;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_128;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_129;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_130;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_131;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_132;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_133;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_134;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_135;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_136;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_137;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_138;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_139;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_140;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_141;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_142;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_143;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_144;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_145;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_146;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_147;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_148;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_149;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_150;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_151;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_152;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_153;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_154;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_155;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_156;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_157;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_158;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_159;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_160;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_161;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_162;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_163;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_164;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_165;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_166;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_167;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_168;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_169;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_170;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_171;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_172;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_173;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_174;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_175;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_176;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_177;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_178;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_179;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_180;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_181;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_182;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_183;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_184;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_185;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_186;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_187;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_188;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_189;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_190;	// zaqal/src/zaqal/Core.scala:56:24
-  wire [63:0] _backend_io_debug_fp_regs_191;	// zaqal/src/zaqal/Core.scala:56:24
-  wire        _frontend_io_dispatch_0_valid;	// zaqal/src/zaqal/Core.scala:55:24
-  wire [63:0] _frontend_io_dispatch_0_bits_pc;	// zaqal/src/zaqal/Core.scala:55:24
-  wire [31:0] _frontend_io_dispatch_0_bits_inst_raw;	// zaqal/src/zaqal/Core.scala:55:24
-  wire        _frontend_io_dispatch_0_bits_pre_is_rvc;	// zaqal/src/zaqal/Core.scala:55:24
-  wire        _frontend_io_dispatch_0_bits_pre_is_call;	// zaqal/src/zaqal/Core.scala:55:24
-  wire        _frontend_io_dispatch_0_bits_pre_is_ret;	// zaqal/src/zaqal/Core.scala:55:24
-  wire [31:0] _frontend_io_dispatch_0_bits_pre_expanded_inst;	// zaqal/src/zaqal/Core.scala:55:24
-  wire [5:0]  _frontend_io_dispatch_0_bits_ftqPtr;	// zaqal/src/zaqal/Core.scala:55:24
-  wire        _frontend_io_dispatch_0_bits_is_predicted_taken;	// zaqal/src/zaqal/Core.scala:55:24
-  wire [63:0] _frontend_io_dispatch_0_bits_predicted_target;	// zaqal/src/zaqal/Core.scala:55:24
-  wire        _frontend_io_dispatch_0_bits_epoch;	// zaqal/src/zaqal/Core.scala:55:24
-  wire        _frontend_io_dispatch_1_valid;	// zaqal/src/zaqal/Core.scala:55:24
-  wire [63:0] _frontend_io_dispatch_1_bits_pc;	// zaqal/src/zaqal/Core.scala:55:24
-  wire [31:0] _frontend_io_dispatch_1_bits_inst_raw;	// zaqal/src/zaqal/Core.scala:55:24
-  wire        _frontend_io_dispatch_1_bits_pre_is_rvc;	// zaqal/src/zaqal/Core.scala:55:24
-  wire        _frontend_io_dispatch_1_bits_pre_is_call;	// zaqal/src/zaqal/Core.scala:55:24
-  wire        _frontend_io_dispatch_1_bits_pre_is_ret;	// zaqal/src/zaqal/Core.scala:55:24
-  wire [31:0] _frontend_io_dispatch_1_bits_pre_expanded_inst;	// zaqal/src/zaqal/Core.scala:55:24
-  wire [5:0]  _frontend_io_dispatch_1_bits_ftqPtr;	// zaqal/src/zaqal/Core.scala:55:24
-  wire        _frontend_io_dispatch_1_bits_is_predicted_taken;	// zaqal/src/zaqal/Core.scala:55:24
-  wire [63:0] _frontend_io_dispatch_1_bits_predicted_target;	// zaqal/src/zaqal/Core.scala:55:24
-  wire        _frontend_io_dispatch_1_bits_epoch;	// zaqal/src/zaqal/Core.scala:55:24
-  wire        _frontend_io_dispatch_2_valid;	// zaqal/src/zaqal/Core.scala:55:24
-  wire [63:0] _frontend_io_dispatch_2_bits_pc;	// zaqal/src/zaqal/Core.scala:55:24
-  wire [31:0] _frontend_io_dispatch_2_bits_inst_raw;	// zaqal/src/zaqal/Core.scala:55:24
-  wire        _frontend_io_dispatch_2_bits_pre_is_rvc;	// zaqal/src/zaqal/Core.scala:55:24
-  wire        _frontend_io_dispatch_2_bits_pre_is_call;	// zaqal/src/zaqal/Core.scala:55:24
-  wire        _frontend_io_dispatch_2_bits_pre_is_ret;	// zaqal/src/zaqal/Core.scala:55:24
-  wire [31:0] _frontend_io_dispatch_2_bits_pre_expanded_inst;	// zaqal/src/zaqal/Core.scala:55:24
-  wire [5:0]  _frontend_io_dispatch_2_bits_ftqPtr;	// zaqal/src/zaqal/Core.scala:55:24
-  wire        _frontend_io_dispatch_2_bits_is_predicted_taken;	// zaqal/src/zaqal/Core.scala:55:24
-  wire [63:0] _frontend_io_dispatch_2_bits_predicted_target;	// zaqal/src/zaqal/Core.scala:55:24
-  wire        _frontend_io_dispatch_2_bits_epoch;	// zaqal/src/zaqal/Core.scala:55:24
-  wire        _frontend_io_dispatch_3_valid;	// zaqal/src/zaqal/Core.scala:55:24
-  wire [63:0] _frontend_io_dispatch_3_bits_pc;	// zaqal/src/zaqal/Core.scala:55:24
-  wire [31:0] _frontend_io_dispatch_3_bits_inst_raw;	// zaqal/src/zaqal/Core.scala:55:24
-  wire        _frontend_io_dispatch_3_bits_pre_is_rvc;	// zaqal/src/zaqal/Core.scala:55:24
-  wire        _frontend_io_dispatch_3_bits_pre_is_call;	// zaqal/src/zaqal/Core.scala:55:24
-  wire        _frontend_io_dispatch_3_bits_pre_is_ret;	// zaqal/src/zaqal/Core.scala:55:24
-  wire [31:0] _frontend_io_dispatch_3_bits_pre_expanded_inst;	// zaqal/src/zaqal/Core.scala:55:24
-  wire [5:0]  _frontend_io_dispatch_3_bits_ftqPtr;	// zaqal/src/zaqal/Core.scala:55:24
-  wire        _frontend_io_dispatch_3_bits_is_predicted_taken;	// zaqal/src/zaqal/Core.scala:55:24
-  wire [63:0] _frontend_io_dispatch_3_bits_predicted_target;	// zaqal/src/zaqal/Core.scala:55:24
-  wire        _frontend_io_dispatch_3_bits_epoch;	// zaqal/src/zaqal/Core.scala:55:24
-  wire        _frontend_io_dispatch_4_valid;	// zaqal/src/zaqal/Core.scala:55:24
-  wire [63:0] _frontend_io_dispatch_4_bits_pc;	// zaqal/src/zaqal/Core.scala:55:24
-  wire [31:0] _frontend_io_dispatch_4_bits_inst_raw;	// zaqal/src/zaqal/Core.scala:55:24
-  wire        _frontend_io_dispatch_4_bits_pre_is_rvc;	// zaqal/src/zaqal/Core.scala:55:24
-  wire        _frontend_io_dispatch_4_bits_pre_is_call;	// zaqal/src/zaqal/Core.scala:55:24
-  wire        _frontend_io_dispatch_4_bits_pre_is_ret;	// zaqal/src/zaqal/Core.scala:55:24
-  wire [31:0] _frontend_io_dispatch_4_bits_pre_expanded_inst;	// zaqal/src/zaqal/Core.scala:55:24
-  wire [5:0]  _frontend_io_dispatch_4_bits_ftqPtr;	// zaqal/src/zaqal/Core.scala:55:24
-  wire        _frontend_io_dispatch_4_bits_is_predicted_taken;	// zaqal/src/zaqal/Core.scala:55:24
-  wire [63:0] _frontend_io_dispatch_4_bits_predicted_target;	// zaqal/src/zaqal/Core.scala:55:24
-  wire        _frontend_io_dispatch_4_bits_epoch;	// zaqal/src/zaqal/Core.scala:55:24
-  wire        _frontend_io_dispatch_5_valid;	// zaqal/src/zaqal/Core.scala:55:24
-  wire [63:0] _frontend_io_dispatch_5_bits_pc;	// zaqal/src/zaqal/Core.scala:55:24
-  wire [31:0] _frontend_io_dispatch_5_bits_inst_raw;	// zaqal/src/zaqal/Core.scala:55:24
-  wire        _frontend_io_dispatch_5_bits_pre_is_rvc;	// zaqal/src/zaqal/Core.scala:55:24
-  wire        _frontend_io_dispatch_5_bits_pre_is_call;	// zaqal/src/zaqal/Core.scala:55:24
-  wire        _frontend_io_dispatch_5_bits_pre_is_ret;	// zaqal/src/zaqal/Core.scala:55:24
-  wire [31:0] _frontend_io_dispatch_5_bits_pre_expanded_inst;	// zaqal/src/zaqal/Core.scala:55:24
-  wire [5:0]  _frontend_io_dispatch_5_bits_ftqPtr;	// zaqal/src/zaqal/Core.scala:55:24
-  wire        _frontend_io_dispatch_5_bits_is_predicted_taken;	// zaqal/src/zaqal/Core.scala:55:24
-  wire [63:0] _frontend_io_dispatch_5_bits_predicted_target;	// zaqal/src/zaqal/Core.scala:55:24
-  wire        _frontend_io_dispatch_5_bits_epoch;	// zaqal/src/zaqal/Core.scala:55:24
-  wire [63:0] _frontend_io_debug_ftq_pc;	// zaqal/src/zaqal/Core.scala:55:24
-  reg  [63:0] cycle_reg;	// zaqal/src/zaqal/Core.scala:51:26
-  always @(posedge clock) begin	// zaqal/src/zaqal/Core.scala:13:7
-    if (reset)	// zaqal/src/zaqal/Core.scala:13:7
-      cycle_reg <= 64'h0;	// zaqal/src/zaqal/Core.scala:51:26
-    else	// zaqal/src/zaqal/Core.scala:13:7
-      cycle_reg <= cycle_reg + 64'h1;	// zaqal/src/zaqal/Core.scala:51:26, :52:26
-  end // always @(posedge)
-  `ifdef ENABLE_INITIAL_REG_	// zaqal/src/zaqal/Core.scala:13:7
-    `ifdef FIRRTL_BEFORE_INITIAL	// zaqal/src/zaqal/Core.scala:13:7
-      `FIRRTL_BEFORE_INITIAL	// zaqal/src/zaqal/Core.scala:13:7
-    `endif // FIRRTL_BEFORE_INITIAL
-    logic [31:0] _RANDOM[0:1];	// zaqal/src/zaqal/Core.scala:13:7
-    initial begin	// zaqal/src/zaqal/Core.scala:13:7
-      `ifdef INIT_RANDOM_PROLOG_	// zaqal/src/zaqal/Core.scala:13:7
-        `INIT_RANDOM_PROLOG_	// zaqal/src/zaqal/Core.scala:13:7
-      `endif // INIT_RANDOM_PROLOG_
-      `ifdef RANDOMIZE_REG_INIT	// zaqal/src/zaqal/Core.scala:13:7
-        for (logic [1:0] i = 2'h0; i < 2'h2; i += 2'h1) begin
-          _RANDOM[i[0]] = `RANDOM;	// zaqal/src/zaqal/Core.scala:13:7
-        end	// zaqal/src/zaqal/Core.scala:13:7
-        cycle_reg = {_RANDOM[1'h0], _RANDOM[1'h1]};	// zaqal/src/zaqal/Core.scala:13:7, :51:26
-      `endif // RANDOMIZE_REG_INIT
-    end // initial
-    `ifdef FIRRTL_AFTER_INITIAL	// zaqal/src/zaqal/Core.scala:13:7
-      `FIRRTL_AFTER_INITIAL	// zaqal/src/zaqal/Core.scala:13:7
-    `endif // FIRRTL_AFTER_INITIAL
-  `endif // ENABLE_INITIAL_REG_
-  Frontend frontend (	// zaqal/src/zaqal/Core.scala:55:24
+  wire        _backend_io_dispatch_0_ready;	// zaqal/src/zaqal/Core.scala:74:24
+  wire        _backend_io_dispatch_1_ready;	// zaqal/src/zaqal/Core.scala:74:24
+  wire        _backend_io_dispatch_2_ready;	// zaqal/src/zaqal/Core.scala:74:24
+  wire        _backend_io_dispatch_3_ready;	// zaqal/src/zaqal/Core.scala:74:24
+  wire        _backend_io_dispatch_4_ready;	// zaqal/src/zaqal/Core.scala:74:24
+  wire        _backend_io_dispatch_5_ready;	// zaqal/src/zaqal/Core.scala:74:24
+  wire        _backend_io_redirect_valid;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_redirect_target;	// zaqal/src/zaqal/Core.scala:74:24
+  wire        _backend_io_redirect_epoch;	// zaqal/src/zaqal/Core.scala:74:24
+  wire        _backend_io_redirect_is_exception;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_redirect_pc;	// zaqal/src/zaqal/Core.scala:74:24
+  wire        _backend_io_redirect_taken;	// zaqal/src/zaqal/Core.scala:74:24
+  wire        _backend_io_redirect_is_cfi;	// zaqal/src/zaqal/Core.scala:74:24
+  wire        _backend_io_redirect_is_jal;	// zaqal/src/zaqal/Core.scala:74:24
+  wire        _backend_io_redirect_is_jalr;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [5:0]  _backend_io_redirect_ftqPtr;	// zaqal/src/zaqal/Core.scala:74:24
+  wire        _backend_io_bpu_update_valid;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_bpu_update_pc;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_bpu_update_target;	// zaqal/src/zaqal/Core.scala:74:24
+  wire        _backend_io_bpu_update_taken;	// zaqal/src/zaqal/Core.scala:74:24
+  wire        _backend_io_bpu_update_is_cfi;	// zaqal/src/zaqal/Core.scala:74:24
+  wire        _backend_io_bpu_update_is_jal;	// zaqal/src/zaqal/Core.scala:74:24
+  wire        _backend_io_bpu_update_is_jalr;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [5:0]  _backend_io_bpu_update_ftqPtr;	// zaqal/src/zaqal/Core.scala:74:24
+  wire        _backend_io_commits_commitValid_0;	// zaqal/src/zaqal/Core.scala:74:24
+  wire        _backend_io_commits_commitValid_1;	// zaqal/src/zaqal/Core.scala:74:24
+  wire        _backend_io_commits_commitValid_2;	// zaqal/src/zaqal/Core.scala:74:24
+  wire        _backend_io_commits_commitValid_3;	// zaqal/src/zaqal/Core.scala:74:24
+  wire        _backend_io_commits_commitValid_4;	// zaqal/src/zaqal/Core.scala:74:24
+  wire        _backend_io_commits_commitValid_5;	// zaqal/src/zaqal/Core.scala:74:24
+  wire        _backend_io_commits_info_0_is_call;	// zaqal/src/zaqal/Core.scala:74:24
+  wire        _backend_io_commits_info_0_is_ret;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_commits_info_0_pc;	// zaqal/src/zaqal/Core.scala:74:24
+  wire        _backend_io_commits_info_1_is_call;	// zaqal/src/zaqal/Core.scala:74:24
+  wire        _backend_io_commits_info_1_is_ret;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_commits_info_1_pc;	// zaqal/src/zaqal/Core.scala:74:24
+  wire        _backend_io_commits_info_2_is_call;	// zaqal/src/zaqal/Core.scala:74:24
+  wire        _backend_io_commits_info_2_is_ret;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_commits_info_2_pc;	// zaqal/src/zaqal/Core.scala:74:24
+  wire        _backend_io_commits_info_3_is_call;	// zaqal/src/zaqal/Core.scala:74:24
+  wire        _backend_io_commits_info_3_is_ret;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_commits_info_3_pc;	// zaqal/src/zaqal/Core.scala:74:24
+  wire        _backend_io_commits_info_4_is_call;	// zaqal/src/zaqal/Core.scala:74:24
+  wire        _backend_io_commits_info_4_is_ret;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_commits_info_4_pc;	// zaqal/src/zaqal/Core.scala:74:24
+  wire        _backend_io_commits_info_5_is_call;	// zaqal/src/zaqal/Core.scala:74:24
+  wire        _backend_io_commits_info_5_is_ret;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_commits_info_5_pc;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_0;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_1;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_2;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_3;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_4;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_5;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_6;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_7;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_8;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_9;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_10;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_11;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_12;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_13;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_14;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_15;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_16;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_17;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_18;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_19;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_20;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_21;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_22;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_23;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_24;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_25;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_26;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_27;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_28;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_29;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_30;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_31;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_32;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_33;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_34;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_35;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_36;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_37;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_38;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_39;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_40;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_41;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_42;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_43;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_44;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_45;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_46;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_47;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_48;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_49;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_50;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_51;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_52;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_53;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_54;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_55;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_56;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_57;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_58;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_59;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_60;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_61;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_62;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_63;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_64;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_65;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_66;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_67;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_68;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_69;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_70;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_71;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_72;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_73;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_74;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_75;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_76;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_77;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_78;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_79;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_80;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_81;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_82;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_83;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_84;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_85;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_86;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_87;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_88;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_89;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_90;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_91;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_92;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_93;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_94;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_95;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_96;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_97;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_98;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_99;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_100;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_101;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_102;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_103;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_104;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_105;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_106;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_107;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_108;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_109;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_110;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_111;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_112;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_113;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_114;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_115;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_116;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_117;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_118;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_119;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_120;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_121;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_122;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_123;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_124;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_125;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_126;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_127;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_128;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_129;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_130;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_131;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_132;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_133;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_134;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_135;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_136;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_137;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_138;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_139;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_140;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_141;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_142;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_143;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_144;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_145;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_146;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_147;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_148;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_149;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_150;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_151;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_152;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_153;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_154;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_155;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_156;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_157;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_158;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_159;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_160;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_161;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_162;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_163;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_164;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_165;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_166;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_167;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_168;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_169;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_170;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_171;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_172;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_173;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_174;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_175;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_176;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_177;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_178;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_179;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_180;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_181;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_182;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_183;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_184;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_185;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_186;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_187;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_188;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_189;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_190;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_regs_191;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_0;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_1;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_2;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_3;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_4;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_5;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_6;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_7;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_8;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_9;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_10;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_11;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_12;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_13;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_14;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_15;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_16;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_17;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_18;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_19;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_20;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_21;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_22;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_23;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_24;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_25;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_26;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_27;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_28;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_29;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_30;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_31;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_32;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_33;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_34;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_35;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_36;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_37;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_38;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_39;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_40;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_41;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_42;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_43;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_44;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_45;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_46;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_47;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_48;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_49;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_50;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_51;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_52;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_53;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_54;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_55;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_56;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_57;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_58;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_59;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_60;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_61;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_62;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_63;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_64;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_65;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_66;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_67;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_68;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_69;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_70;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_71;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_72;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_73;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_74;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_75;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_76;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_77;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_78;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_79;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_80;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_81;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_82;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_83;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_84;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_85;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_86;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_87;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_88;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_89;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_90;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_91;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_92;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_93;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_94;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_95;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_96;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_97;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_98;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_99;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_100;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_101;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_102;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_103;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_104;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_105;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_106;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_107;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_108;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_109;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_110;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_111;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_112;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_113;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_114;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_115;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_116;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_117;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_118;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_119;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_120;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_121;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_122;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_123;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_124;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_125;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_126;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_127;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_128;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_129;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_130;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_131;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_132;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_133;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_134;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_135;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_136;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_137;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_138;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_139;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_140;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_141;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_142;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_143;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_144;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_145;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_146;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_147;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_148;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_149;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_150;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_151;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_152;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_153;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_154;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_155;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_156;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_157;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_158;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_159;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_160;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_161;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_162;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_163;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_164;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_165;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_166;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_167;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_168;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_169;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_170;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_171;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_172;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_173;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_174;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_175;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_176;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_177;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_178;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_179;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_180;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_181;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_182;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_183;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_184;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_185;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_186;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_187;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_188;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_189;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_190;	// zaqal/src/zaqal/Core.scala:74:24
+  wire [63:0] _backend_io_debug_fp_regs_191;	// zaqal/src/zaqal/Core.scala:74:24
+  wire        _frontend_io_dispatch_0_valid;	// zaqal/src/zaqal/Core.scala:73:24
+  wire [63:0] _frontend_io_dispatch_0_bits_pc;	// zaqal/src/zaqal/Core.scala:73:24
+  wire [31:0] _frontend_io_dispatch_0_bits_inst_raw;	// zaqal/src/zaqal/Core.scala:73:24
+  wire        _frontend_io_dispatch_0_bits_pre_is_rvc;	// zaqal/src/zaqal/Core.scala:73:24
+  wire        _frontend_io_dispatch_0_bits_pre_is_call;	// zaqal/src/zaqal/Core.scala:73:24
+  wire        _frontend_io_dispatch_0_bits_pre_is_ret;	// zaqal/src/zaqal/Core.scala:73:24
+  wire [31:0] _frontend_io_dispatch_0_bits_pre_expanded_inst;	// zaqal/src/zaqal/Core.scala:73:24
+  wire [5:0]  _frontend_io_dispatch_0_bits_ftqPtr;	// zaqal/src/zaqal/Core.scala:73:24
+  wire        _frontend_io_dispatch_0_bits_is_predicted_taken;	// zaqal/src/zaqal/Core.scala:73:24
+  wire [63:0] _frontend_io_dispatch_0_bits_predicted_target;	// zaqal/src/zaqal/Core.scala:73:24
+  wire        _frontend_io_dispatch_0_bits_epoch;	// zaqal/src/zaqal/Core.scala:73:24
+  wire        _frontend_io_dispatch_1_valid;	// zaqal/src/zaqal/Core.scala:73:24
+  wire [63:0] _frontend_io_dispatch_1_bits_pc;	// zaqal/src/zaqal/Core.scala:73:24
+  wire [31:0] _frontend_io_dispatch_1_bits_inst_raw;	// zaqal/src/zaqal/Core.scala:73:24
+  wire        _frontend_io_dispatch_1_bits_pre_is_rvc;	// zaqal/src/zaqal/Core.scala:73:24
+  wire        _frontend_io_dispatch_1_bits_pre_is_call;	// zaqal/src/zaqal/Core.scala:73:24
+  wire        _frontend_io_dispatch_1_bits_pre_is_ret;	// zaqal/src/zaqal/Core.scala:73:24
+  wire [31:0] _frontend_io_dispatch_1_bits_pre_expanded_inst;	// zaqal/src/zaqal/Core.scala:73:24
+  wire [5:0]  _frontend_io_dispatch_1_bits_ftqPtr;	// zaqal/src/zaqal/Core.scala:73:24
+  wire        _frontend_io_dispatch_1_bits_is_predicted_taken;	// zaqal/src/zaqal/Core.scala:73:24
+  wire [63:0] _frontend_io_dispatch_1_bits_predicted_target;	// zaqal/src/zaqal/Core.scala:73:24
+  wire        _frontend_io_dispatch_1_bits_epoch;	// zaqal/src/zaqal/Core.scala:73:24
+  wire        _frontend_io_dispatch_2_valid;	// zaqal/src/zaqal/Core.scala:73:24
+  wire [63:0] _frontend_io_dispatch_2_bits_pc;	// zaqal/src/zaqal/Core.scala:73:24
+  wire [31:0] _frontend_io_dispatch_2_bits_inst_raw;	// zaqal/src/zaqal/Core.scala:73:24
+  wire        _frontend_io_dispatch_2_bits_pre_is_rvc;	// zaqal/src/zaqal/Core.scala:73:24
+  wire        _frontend_io_dispatch_2_bits_pre_is_call;	// zaqal/src/zaqal/Core.scala:73:24
+  wire        _frontend_io_dispatch_2_bits_pre_is_ret;	// zaqal/src/zaqal/Core.scala:73:24
+  wire [31:0] _frontend_io_dispatch_2_bits_pre_expanded_inst;	// zaqal/src/zaqal/Core.scala:73:24
+  wire [5:0]  _frontend_io_dispatch_2_bits_ftqPtr;	// zaqal/src/zaqal/Core.scala:73:24
+  wire        _frontend_io_dispatch_2_bits_is_predicted_taken;	// zaqal/src/zaqal/Core.scala:73:24
+  wire [63:0] _frontend_io_dispatch_2_bits_predicted_target;	// zaqal/src/zaqal/Core.scala:73:24
+  wire        _frontend_io_dispatch_2_bits_epoch;	// zaqal/src/zaqal/Core.scala:73:24
+  wire        _frontend_io_dispatch_3_valid;	// zaqal/src/zaqal/Core.scala:73:24
+  wire [63:0] _frontend_io_dispatch_3_bits_pc;	// zaqal/src/zaqal/Core.scala:73:24
+  wire [31:0] _frontend_io_dispatch_3_bits_inst_raw;	// zaqal/src/zaqal/Core.scala:73:24
+  wire        _frontend_io_dispatch_3_bits_pre_is_rvc;	// zaqal/src/zaqal/Core.scala:73:24
+  wire        _frontend_io_dispatch_3_bits_pre_is_call;	// zaqal/src/zaqal/Core.scala:73:24
+  wire        _frontend_io_dispatch_3_bits_pre_is_ret;	// zaqal/src/zaqal/Core.scala:73:24
+  wire [31:0] _frontend_io_dispatch_3_bits_pre_expanded_inst;	// zaqal/src/zaqal/Core.scala:73:24
+  wire [5:0]  _frontend_io_dispatch_3_bits_ftqPtr;	// zaqal/src/zaqal/Core.scala:73:24
+  wire        _frontend_io_dispatch_3_bits_is_predicted_taken;	// zaqal/src/zaqal/Core.scala:73:24
+  wire [63:0] _frontend_io_dispatch_3_bits_predicted_target;	// zaqal/src/zaqal/Core.scala:73:24
+  wire        _frontend_io_dispatch_3_bits_epoch;	// zaqal/src/zaqal/Core.scala:73:24
+  wire        _frontend_io_dispatch_4_valid;	// zaqal/src/zaqal/Core.scala:73:24
+  wire [63:0] _frontend_io_dispatch_4_bits_pc;	// zaqal/src/zaqal/Core.scala:73:24
+  wire [31:0] _frontend_io_dispatch_4_bits_inst_raw;	// zaqal/src/zaqal/Core.scala:73:24
+  wire        _frontend_io_dispatch_4_bits_pre_is_rvc;	// zaqal/src/zaqal/Core.scala:73:24
+  wire        _frontend_io_dispatch_4_bits_pre_is_call;	// zaqal/src/zaqal/Core.scala:73:24
+  wire        _frontend_io_dispatch_4_bits_pre_is_ret;	// zaqal/src/zaqal/Core.scala:73:24
+  wire [31:0] _frontend_io_dispatch_4_bits_pre_expanded_inst;	// zaqal/src/zaqal/Core.scala:73:24
+  wire [5:0]  _frontend_io_dispatch_4_bits_ftqPtr;	// zaqal/src/zaqal/Core.scala:73:24
+  wire        _frontend_io_dispatch_4_bits_is_predicted_taken;	// zaqal/src/zaqal/Core.scala:73:24
+  wire [63:0] _frontend_io_dispatch_4_bits_predicted_target;	// zaqal/src/zaqal/Core.scala:73:24
+  wire        _frontend_io_dispatch_4_bits_epoch;	// zaqal/src/zaqal/Core.scala:73:24
+  wire        _frontend_io_dispatch_5_valid;	// zaqal/src/zaqal/Core.scala:73:24
+  wire [63:0] _frontend_io_dispatch_5_bits_pc;	// zaqal/src/zaqal/Core.scala:73:24
+  wire [31:0] _frontend_io_dispatch_5_bits_inst_raw;	// zaqal/src/zaqal/Core.scala:73:24
+  wire        _frontend_io_dispatch_5_bits_pre_is_rvc;	// zaqal/src/zaqal/Core.scala:73:24
+  wire        _frontend_io_dispatch_5_bits_pre_is_call;	// zaqal/src/zaqal/Core.scala:73:24
+  wire        _frontend_io_dispatch_5_bits_pre_is_ret;	// zaqal/src/zaqal/Core.scala:73:24
+  wire [31:0] _frontend_io_dispatch_5_bits_pre_expanded_inst;	// zaqal/src/zaqal/Core.scala:73:24
+  wire [5:0]  _frontend_io_dispatch_5_bits_ftqPtr;	// zaqal/src/zaqal/Core.scala:73:24
+  wire        _frontend_io_dispatch_5_bits_is_predicted_taken;	// zaqal/src/zaqal/Core.scala:73:24
+  wire [63:0] _frontend_io_dispatch_5_bits_predicted_target;	// zaqal/src/zaqal/Core.scala:73:24
+  wire        _frontend_io_dispatch_5_bits_epoch;	// zaqal/src/zaqal/Core.scala:73:24
+  wire        _frontend_io_branch_signal_valid;	// zaqal/src/zaqal/Core.scala:73:24
+  wire [63:0] _frontend_io_branch_signal_bits_pc;	// zaqal/src/zaqal/Core.scala:73:24
+  wire [63:0] _frontend_io_branch_signal_bits_target;	// zaqal/src/zaqal/Core.scala:73:24
+  wire        _frontend_io_branch_signal_bits_taken;	// zaqal/src/zaqal/Core.scala:73:24
+  wire [63:0] _frontend_io_debug_ftq_pc;	// zaqal/src/zaqal/Core.scala:73:24
+  Frontend frontend (	// zaqal/src/zaqal/Core.scala:73:24
     .clock                                         (clock),
     .reset                                         (reset),
-    .io_redirect_valid                             (_backend_io_redirect_valid),	// zaqal/src/zaqal/Core.scala:56:24
-    .io_redirect_target                            (_backend_io_redirect_target),	// zaqal/src/zaqal/Core.scala:56:24
-    .io_redirect_epoch                             (_backend_io_redirect_epoch),	// zaqal/src/zaqal/Core.scala:56:24
-    .io_redirect_is_exception                      (_backend_io_redirect_is_exception),	// zaqal/src/zaqal/Core.scala:56:24
-    .io_redirect_pc                                (_backend_io_redirect_pc),	// zaqal/src/zaqal/Core.scala:56:24
-    .io_redirect_taken                             (_backend_io_redirect_taken),	// zaqal/src/zaqal/Core.scala:56:24
-    .io_redirect_is_cfi                            (_backend_io_redirect_is_cfi),	// zaqal/src/zaqal/Core.scala:56:24
-    .io_redirect_is_jal                            (_backend_io_redirect_is_jal),	// zaqal/src/zaqal/Core.scala:56:24
-    .io_redirect_is_jalr                           (_backend_io_redirect_is_jalr),	// zaqal/src/zaqal/Core.scala:56:24
-    .io_redirect_ftqPtr                            (_backend_io_redirect_ftqPtr),	// zaqal/src/zaqal/Core.scala:56:24
-    .io_bpu_update_valid                           (_backend_io_bpu_update_valid),	// zaqal/src/zaqal/Core.scala:56:24
-    .io_bpu_update_pc                              (_backend_io_bpu_update_pc),	// zaqal/src/zaqal/Core.scala:56:24
-    .io_bpu_update_target                          (_backend_io_bpu_update_target),	// zaqal/src/zaqal/Core.scala:56:24
-    .io_bpu_update_taken                           (_backend_io_bpu_update_taken),	// zaqal/src/zaqal/Core.scala:56:24
-    .io_bpu_update_is_cfi                          (_backend_io_bpu_update_is_cfi),	// zaqal/src/zaqal/Core.scala:56:24
-    .io_bpu_update_is_jal                          (_backend_io_bpu_update_is_jal),	// zaqal/src/zaqal/Core.scala:56:24
-    .io_bpu_update_is_jalr                         (_backend_io_bpu_update_is_jalr),	// zaqal/src/zaqal/Core.scala:56:24
-    .io_bpu_update_ftqPtr                          (_backend_io_bpu_update_ftqPtr),	// zaqal/src/zaqal/Core.scala:56:24
-    .io_commits_commitValid_0                      (_backend_io_commits_commitValid_0),	// zaqal/src/zaqal/Core.scala:56:24
-    .io_commits_commitValid_1                      (_backend_io_commits_commitValid_1),	// zaqal/src/zaqal/Core.scala:56:24
-    .io_commits_commitValid_2                      (_backend_io_commits_commitValid_2),	// zaqal/src/zaqal/Core.scala:56:24
-    .io_commits_commitValid_3                      (_backend_io_commits_commitValid_3),	// zaqal/src/zaqal/Core.scala:56:24
-    .io_commits_commitValid_4                      (_backend_io_commits_commitValid_4),	// zaqal/src/zaqal/Core.scala:56:24
-    .io_commits_commitValid_5                      (_backend_io_commits_commitValid_5),	// zaqal/src/zaqal/Core.scala:56:24
-    .io_commits_info_0_is_call                     (_backend_io_commits_info_0_is_call),	// zaqal/src/zaqal/Core.scala:56:24
-    .io_commits_info_0_is_ret                      (_backend_io_commits_info_0_is_ret),	// zaqal/src/zaqal/Core.scala:56:24
-    .io_commits_info_0_pc                          (_backend_io_commits_info_0_pc),	// zaqal/src/zaqal/Core.scala:56:24
-    .io_commits_info_1_is_call                     (_backend_io_commits_info_1_is_call),	// zaqal/src/zaqal/Core.scala:56:24
-    .io_commits_info_1_is_ret                      (_backend_io_commits_info_1_is_ret),	// zaqal/src/zaqal/Core.scala:56:24
-    .io_commits_info_1_pc                          (_backend_io_commits_info_1_pc),	// zaqal/src/zaqal/Core.scala:56:24
-    .io_commits_info_2_is_call                     (_backend_io_commits_info_2_is_call),	// zaqal/src/zaqal/Core.scala:56:24
-    .io_commits_info_2_is_ret                      (_backend_io_commits_info_2_is_ret),	// zaqal/src/zaqal/Core.scala:56:24
-    .io_commits_info_2_pc                          (_backend_io_commits_info_2_pc),	// zaqal/src/zaqal/Core.scala:56:24
-    .io_commits_info_3_is_call                     (_backend_io_commits_info_3_is_call),	// zaqal/src/zaqal/Core.scala:56:24
-    .io_commits_info_3_is_ret                      (_backend_io_commits_info_3_is_ret),	// zaqal/src/zaqal/Core.scala:56:24
-    .io_commits_info_3_pc                          (_backend_io_commits_info_3_pc),	// zaqal/src/zaqal/Core.scala:56:24
-    .io_commits_info_4_is_call                     (_backend_io_commits_info_4_is_call),	// zaqal/src/zaqal/Core.scala:56:24
-    .io_commits_info_4_is_ret                      (_backend_io_commits_info_4_is_ret),	// zaqal/src/zaqal/Core.scala:56:24
-    .io_commits_info_4_pc                          (_backend_io_commits_info_4_pc),	// zaqal/src/zaqal/Core.scala:56:24
-    .io_commits_info_5_is_call                     (_backend_io_commits_info_5_is_call),	// zaqal/src/zaqal/Core.scala:56:24
-    .io_commits_info_5_is_ret                      (_backend_io_commits_info_5_is_ret),	// zaqal/src/zaqal/Core.scala:56:24
-    .io_commits_info_5_pc                          (_backend_io_commits_info_5_pc),	// zaqal/src/zaqal/Core.scala:56:24
-    .io_dispatch_0_ready                           (_backend_io_dispatch_0_ready),	// zaqal/src/zaqal/Core.scala:56:24
+    .io_redirect_valid                             (_backend_io_redirect_valid),	// zaqal/src/zaqal/Core.scala:74:24
+    .io_redirect_target                            (_backend_io_redirect_target),	// zaqal/src/zaqal/Core.scala:74:24
+    .io_redirect_epoch                             (_backend_io_redirect_epoch),	// zaqal/src/zaqal/Core.scala:74:24
+    .io_redirect_is_exception                      (_backend_io_redirect_is_exception),	// zaqal/src/zaqal/Core.scala:74:24
+    .io_redirect_pc                                (_backend_io_redirect_pc),	// zaqal/src/zaqal/Core.scala:74:24
+    .io_redirect_taken                             (_backend_io_redirect_taken),	// zaqal/src/zaqal/Core.scala:74:24
+    .io_redirect_is_cfi                            (_backend_io_redirect_is_cfi),	// zaqal/src/zaqal/Core.scala:74:24
+    .io_redirect_is_jal                            (_backend_io_redirect_is_jal),	// zaqal/src/zaqal/Core.scala:74:24
+    .io_redirect_is_jalr                           (_backend_io_redirect_is_jalr),	// zaqal/src/zaqal/Core.scala:74:24
+    .io_redirect_ftqPtr                            (_backend_io_redirect_ftqPtr),	// zaqal/src/zaqal/Core.scala:74:24
+    .io_bpu_update_valid                           (_backend_io_bpu_update_valid),	// zaqal/src/zaqal/Core.scala:74:24
+    .io_bpu_update_pc                              (_backend_io_bpu_update_pc),	// zaqal/src/zaqal/Core.scala:74:24
+    .io_bpu_update_target                          (_backend_io_bpu_update_target),	// zaqal/src/zaqal/Core.scala:74:24
+    .io_bpu_update_taken                           (_backend_io_bpu_update_taken),	// zaqal/src/zaqal/Core.scala:74:24
+    .io_bpu_update_is_cfi                          (_backend_io_bpu_update_is_cfi),	// zaqal/src/zaqal/Core.scala:74:24
+    .io_bpu_update_is_jal                          (_backend_io_bpu_update_is_jal),	// zaqal/src/zaqal/Core.scala:74:24
+    .io_bpu_update_is_jalr                         (_backend_io_bpu_update_is_jalr),	// zaqal/src/zaqal/Core.scala:74:24
+    .io_bpu_update_ftqPtr                          (_backend_io_bpu_update_ftqPtr),	// zaqal/src/zaqal/Core.scala:74:24
+    .io_commits_commitValid_0                      (_backend_io_commits_commitValid_0),	// zaqal/src/zaqal/Core.scala:74:24
+    .io_commits_commitValid_1                      (_backend_io_commits_commitValid_1),	// zaqal/src/zaqal/Core.scala:74:24
+    .io_commits_commitValid_2                      (_backend_io_commits_commitValid_2),	// zaqal/src/zaqal/Core.scala:74:24
+    .io_commits_commitValid_3                      (_backend_io_commits_commitValid_3),	// zaqal/src/zaqal/Core.scala:74:24
+    .io_commits_commitValid_4                      (_backend_io_commits_commitValid_4),	// zaqal/src/zaqal/Core.scala:74:24
+    .io_commits_commitValid_5                      (_backend_io_commits_commitValid_5),	// zaqal/src/zaqal/Core.scala:74:24
+    .io_commits_info_0_is_call                     (_backend_io_commits_info_0_is_call),	// zaqal/src/zaqal/Core.scala:74:24
+    .io_commits_info_0_is_ret                      (_backend_io_commits_info_0_is_ret),	// zaqal/src/zaqal/Core.scala:74:24
+    .io_commits_info_0_pc                          (_backend_io_commits_info_0_pc),	// zaqal/src/zaqal/Core.scala:74:24
+    .io_commits_info_1_is_call                     (_backend_io_commits_info_1_is_call),	// zaqal/src/zaqal/Core.scala:74:24
+    .io_commits_info_1_is_ret                      (_backend_io_commits_info_1_is_ret),	// zaqal/src/zaqal/Core.scala:74:24
+    .io_commits_info_1_pc                          (_backend_io_commits_info_1_pc),	// zaqal/src/zaqal/Core.scala:74:24
+    .io_commits_info_2_is_call                     (_backend_io_commits_info_2_is_call),	// zaqal/src/zaqal/Core.scala:74:24
+    .io_commits_info_2_is_ret                      (_backend_io_commits_info_2_is_ret),	// zaqal/src/zaqal/Core.scala:74:24
+    .io_commits_info_2_pc                          (_backend_io_commits_info_2_pc),	// zaqal/src/zaqal/Core.scala:74:24
+    .io_commits_info_3_is_call                     (_backend_io_commits_info_3_is_call),	// zaqal/src/zaqal/Core.scala:74:24
+    .io_commits_info_3_is_ret                      (_backend_io_commits_info_3_is_ret),	// zaqal/src/zaqal/Core.scala:74:24
+    .io_commits_info_3_pc                          (_backend_io_commits_info_3_pc),	// zaqal/src/zaqal/Core.scala:74:24
+    .io_commits_info_4_is_call                     (_backend_io_commits_info_4_is_call),	// zaqal/src/zaqal/Core.scala:74:24
+    .io_commits_info_4_is_ret                      (_backend_io_commits_info_4_is_ret),	// zaqal/src/zaqal/Core.scala:74:24
+    .io_commits_info_4_pc                          (_backend_io_commits_info_4_pc),	// zaqal/src/zaqal/Core.scala:74:24
+    .io_commits_info_5_is_call                     (_backend_io_commits_info_5_is_call),	// zaqal/src/zaqal/Core.scala:74:24
+    .io_commits_info_5_is_ret                      (_backend_io_commits_info_5_is_ret),	// zaqal/src/zaqal/Core.scala:74:24
+    .io_commits_info_5_pc                          (_backend_io_commits_info_5_pc),	// zaqal/src/zaqal/Core.scala:74:24
+    .io_dispatch_0_ready                           (_backend_io_dispatch_0_ready),	// zaqal/src/zaqal/Core.scala:74:24
     .io_dispatch_0_valid                           (_frontend_io_dispatch_0_valid),
     .io_dispatch_0_bits_pc                         (_frontend_io_dispatch_0_bits_pc),
     .io_dispatch_0_bits_inst_raw
@@ -681,7 +705,7 @@ module Core(	// zaqal/src/zaqal/Core.scala:13:7
     .io_dispatch_0_bits_predicted_target
       (_frontend_io_dispatch_0_bits_predicted_target),
     .io_dispatch_0_bits_epoch                      (_frontend_io_dispatch_0_bits_epoch),
-    .io_dispatch_1_ready                           (_backend_io_dispatch_1_ready),	// zaqal/src/zaqal/Core.scala:56:24
+    .io_dispatch_1_ready                           (_backend_io_dispatch_1_ready),	// zaqal/src/zaqal/Core.scala:74:24
     .io_dispatch_1_valid                           (_frontend_io_dispatch_1_valid),
     .io_dispatch_1_bits_pc                         (_frontend_io_dispatch_1_bits_pc),
     .io_dispatch_1_bits_inst_raw
@@ -700,7 +724,7 @@ module Core(	// zaqal/src/zaqal/Core.scala:13:7
     .io_dispatch_1_bits_predicted_target
       (_frontend_io_dispatch_1_bits_predicted_target),
     .io_dispatch_1_bits_epoch                      (_frontend_io_dispatch_1_bits_epoch),
-    .io_dispatch_2_ready                           (_backend_io_dispatch_2_ready),	// zaqal/src/zaqal/Core.scala:56:24
+    .io_dispatch_2_ready                           (_backend_io_dispatch_2_ready),	// zaqal/src/zaqal/Core.scala:74:24
     .io_dispatch_2_valid                           (_frontend_io_dispatch_2_valid),
     .io_dispatch_2_bits_pc                         (_frontend_io_dispatch_2_bits_pc),
     .io_dispatch_2_bits_inst_raw
@@ -719,7 +743,7 @@ module Core(	// zaqal/src/zaqal/Core.scala:13:7
     .io_dispatch_2_bits_predicted_target
       (_frontend_io_dispatch_2_bits_predicted_target),
     .io_dispatch_2_bits_epoch                      (_frontend_io_dispatch_2_bits_epoch),
-    .io_dispatch_3_ready                           (_backend_io_dispatch_3_ready),	// zaqal/src/zaqal/Core.scala:56:24
+    .io_dispatch_3_ready                           (_backend_io_dispatch_3_ready),	// zaqal/src/zaqal/Core.scala:74:24
     .io_dispatch_3_valid                           (_frontend_io_dispatch_3_valid),
     .io_dispatch_3_bits_pc                         (_frontend_io_dispatch_3_bits_pc),
     .io_dispatch_3_bits_inst_raw
@@ -738,7 +762,7 @@ module Core(	// zaqal/src/zaqal/Core.scala:13:7
     .io_dispatch_3_bits_predicted_target
       (_frontend_io_dispatch_3_bits_predicted_target),
     .io_dispatch_3_bits_epoch                      (_frontend_io_dispatch_3_bits_epoch),
-    .io_dispatch_4_ready                           (_backend_io_dispatch_4_ready),	// zaqal/src/zaqal/Core.scala:56:24
+    .io_dispatch_4_ready                           (_backend_io_dispatch_4_ready),	// zaqal/src/zaqal/Core.scala:74:24
     .io_dispatch_4_valid                           (_frontend_io_dispatch_4_valid),
     .io_dispatch_4_bits_pc                         (_frontend_io_dispatch_4_bits_pc),
     .io_dispatch_4_bits_inst_raw
@@ -757,7 +781,7 @@ module Core(	// zaqal/src/zaqal/Core.scala:13:7
     .io_dispatch_4_bits_predicted_target
       (_frontend_io_dispatch_4_bits_predicted_target),
     .io_dispatch_4_bits_epoch                      (_frontend_io_dispatch_4_bits_epoch),
-    .io_dispatch_5_ready                           (_backend_io_dispatch_5_ready),	// zaqal/src/zaqal/Core.scala:56:24
+    .io_dispatch_5_ready                           (_backend_io_dispatch_5_ready),	// zaqal/src/zaqal/Core.scala:74:24
     .io_dispatch_5_valid                           (_frontend_io_dispatch_5_valid),
     .io_dispatch_5_bits_pc                         (_frontend_io_dispatch_5_bits_pc),
     .io_dispatch_5_bits_inst_raw
@@ -782,6 +806,12 @@ module Core(	// zaqal/src/zaqal/Core.scala:13:7
     .io_mem_resp_ready                             (io_mem_resp_ready),
     .io_mem_resp_valid                             (io_mem_resp_valid),
     .io_mem_resp_bits_data                         (io_mem_resp_bits_data),
+    .io_branch_signal_valid                        (_frontend_io_branch_signal_valid),
+    .io_branch_signal_bits_pc                      (_frontend_io_branch_signal_bits_pc),
+    .io_branch_signal_bits_target
+      (_frontend_io_branch_signal_bits_target),
+    .io_branch_signal_bits_taken
+      (_frontend_io_branch_signal_bits_taken),
     .io_ftq_read_data_pc_0                         (/* unused */),
     .io_ftq_read_data_pc_1                         (/* unused */),
     .io_ftq_read_data_pc_2                         (/* unused */),
@@ -934,99 +964,99 @@ module Core(	// zaqal/src/zaqal/Core.scala:13:7
     .io_ftq_read_data_epoch                        (/* unused */),
     .io_debug_ftq_pc                               (_frontend_io_debug_ftq_pc)
   );
-  Backend backend (	// zaqal/src/zaqal/Core.scala:56:24
+  Backend backend (	// zaqal/src/zaqal/Core.scala:74:24
     .clock                                 (clock),
     .reset                                 (reset),
     .io_dispatch_0_ready                   (_backend_io_dispatch_0_ready),
-    .io_dispatch_0_valid                   (_frontend_io_dispatch_0_valid),	// zaqal/src/zaqal/Core.scala:55:24
-    .io_dispatch_0_bits_pc                 (_frontend_io_dispatch_0_bits_pc),	// zaqal/src/zaqal/Core.scala:55:24
-    .io_dispatch_0_bits_inst_raw           (_frontend_io_dispatch_0_bits_inst_raw),	// zaqal/src/zaqal/Core.scala:55:24
-    .io_dispatch_0_bits_pre_is_rvc         (_frontend_io_dispatch_0_bits_pre_is_rvc),	// zaqal/src/zaqal/Core.scala:55:24
-    .io_dispatch_0_bits_pre_is_call        (_frontend_io_dispatch_0_bits_pre_is_call),	// zaqal/src/zaqal/Core.scala:55:24
-    .io_dispatch_0_bits_pre_is_ret         (_frontend_io_dispatch_0_bits_pre_is_ret),	// zaqal/src/zaqal/Core.scala:55:24
+    .io_dispatch_0_valid                   (_frontend_io_dispatch_0_valid),	// zaqal/src/zaqal/Core.scala:73:24
+    .io_dispatch_0_bits_pc                 (_frontend_io_dispatch_0_bits_pc),	// zaqal/src/zaqal/Core.scala:73:24
+    .io_dispatch_0_bits_inst_raw           (_frontend_io_dispatch_0_bits_inst_raw),	// zaqal/src/zaqal/Core.scala:73:24
+    .io_dispatch_0_bits_pre_is_rvc         (_frontend_io_dispatch_0_bits_pre_is_rvc),	// zaqal/src/zaqal/Core.scala:73:24
+    .io_dispatch_0_bits_pre_is_call        (_frontend_io_dispatch_0_bits_pre_is_call),	// zaqal/src/zaqal/Core.scala:73:24
+    .io_dispatch_0_bits_pre_is_ret         (_frontend_io_dispatch_0_bits_pre_is_ret),	// zaqal/src/zaqal/Core.scala:73:24
     .io_dispatch_0_bits_pre_expanded_inst
-      (_frontend_io_dispatch_0_bits_pre_expanded_inst),	// zaqal/src/zaqal/Core.scala:55:24
-    .io_dispatch_0_bits_ftqPtr             (_frontend_io_dispatch_0_bits_ftqPtr),	// zaqal/src/zaqal/Core.scala:55:24
+      (_frontend_io_dispatch_0_bits_pre_expanded_inst),	// zaqal/src/zaqal/Core.scala:73:24
+    .io_dispatch_0_bits_ftqPtr             (_frontend_io_dispatch_0_bits_ftqPtr),	// zaqal/src/zaqal/Core.scala:73:24
     .io_dispatch_0_bits_is_predicted_taken
-      (_frontend_io_dispatch_0_bits_is_predicted_taken),	// zaqal/src/zaqal/Core.scala:55:24
+      (_frontend_io_dispatch_0_bits_is_predicted_taken),	// zaqal/src/zaqal/Core.scala:73:24
     .io_dispatch_0_bits_predicted_target
-      (_frontend_io_dispatch_0_bits_predicted_target),	// zaqal/src/zaqal/Core.scala:55:24
-    .io_dispatch_0_bits_epoch              (_frontend_io_dispatch_0_bits_epoch),	// zaqal/src/zaqal/Core.scala:55:24
+      (_frontend_io_dispatch_0_bits_predicted_target),	// zaqal/src/zaqal/Core.scala:73:24
+    .io_dispatch_0_bits_epoch              (_frontend_io_dispatch_0_bits_epoch),	// zaqal/src/zaqal/Core.scala:73:24
     .io_dispatch_1_ready                   (_backend_io_dispatch_1_ready),
-    .io_dispatch_1_valid                   (_frontend_io_dispatch_1_valid),	// zaqal/src/zaqal/Core.scala:55:24
-    .io_dispatch_1_bits_pc                 (_frontend_io_dispatch_1_bits_pc),	// zaqal/src/zaqal/Core.scala:55:24
-    .io_dispatch_1_bits_inst_raw           (_frontend_io_dispatch_1_bits_inst_raw),	// zaqal/src/zaqal/Core.scala:55:24
-    .io_dispatch_1_bits_pre_is_rvc         (_frontend_io_dispatch_1_bits_pre_is_rvc),	// zaqal/src/zaqal/Core.scala:55:24
-    .io_dispatch_1_bits_pre_is_call        (_frontend_io_dispatch_1_bits_pre_is_call),	// zaqal/src/zaqal/Core.scala:55:24
-    .io_dispatch_1_bits_pre_is_ret         (_frontend_io_dispatch_1_bits_pre_is_ret),	// zaqal/src/zaqal/Core.scala:55:24
+    .io_dispatch_1_valid                   (_frontend_io_dispatch_1_valid),	// zaqal/src/zaqal/Core.scala:73:24
+    .io_dispatch_1_bits_pc                 (_frontend_io_dispatch_1_bits_pc),	// zaqal/src/zaqal/Core.scala:73:24
+    .io_dispatch_1_bits_inst_raw           (_frontend_io_dispatch_1_bits_inst_raw),	// zaqal/src/zaqal/Core.scala:73:24
+    .io_dispatch_1_bits_pre_is_rvc         (_frontend_io_dispatch_1_bits_pre_is_rvc),	// zaqal/src/zaqal/Core.scala:73:24
+    .io_dispatch_1_bits_pre_is_call        (_frontend_io_dispatch_1_bits_pre_is_call),	// zaqal/src/zaqal/Core.scala:73:24
+    .io_dispatch_1_bits_pre_is_ret         (_frontend_io_dispatch_1_bits_pre_is_ret),	// zaqal/src/zaqal/Core.scala:73:24
     .io_dispatch_1_bits_pre_expanded_inst
-      (_frontend_io_dispatch_1_bits_pre_expanded_inst),	// zaqal/src/zaqal/Core.scala:55:24
-    .io_dispatch_1_bits_ftqPtr             (_frontend_io_dispatch_1_bits_ftqPtr),	// zaqal/src/zaqal/Core.scala:55:24
+      (_frontend_io_dispatch_1_bits_pre_expanded_inst),	// zaqal/src/zaqal/Core.scala:73:24
+    .io_dispatch_1_bits_ftqPtr             (_frontend_io_dispatch_1_bits_ftqPtr),	// zaqal/src/zaqal/Core.scala:73:24
     .io_dispatch_1_bits_is_predicted_taken
-      (_frontend_io_dispatch_1_bits_is_predicted_taken),	// zaqal/src/zaqal/Core.scala:55:24
+      (_frontend_io_dispatch_1_bits_is_predicted_taken),	// zaqal/src/zaqal/Core.scala:73:24
     .io_dispatch_1_bits_predicted_target
-      (_frontend_io_dispatch_1_bits_predicted_target),	// zaqal/src/zaqal/Core.scala:55:24
-    .io_dispatch_1_bits_epoch              (_frontend_io_dispatch_1_bits_epoch),	// zaqal/src/zaqal/Core.scala:55:24
+      (_frontend_io_dispatch_1_bits_predicted_target),	// zaqal/src/zaqal/Core.scala:73:24
+    .io_dispatch_1_bits_epoch              (_frontend_io_dispatch_1_bits_epoch),	// zaqal/src/zaqal/Core.scala:73:24
     .io_dispatch_2_ready                   (_backend_io_dispatch_2_ready),
-    .io_dispatch_2_valid                   (_frontend_io_dispatch_2_valid),	// zaqal/src/zaqal/Core.scala:55:24
-    .io_dispatch_2_bits_pc                 (_frontend_io_dispatch_2_bits_pc),	// zaqal/src/zaqal/Core.scala:55:24
-    .io_dispatch_2_bits_inst_raw           (_frontend_io_dispatch_2_bits_inst_raw),	// zaqal/src/zaqal/Core.scala:55:24
-    .io_dispatch_2_bits_pre_is_rvc         (_frontend_io_dispatch_2_bits_pre_is_rvc),	// zaqal/src/zaqal/Core.scala:55:24
-    .io_dispatch_2_bits_pre_is_call        (_frontend_io_dispatch_2_bits_pre_is_call),	// zaqal/src/zaqal/Core.scala:55:24
-    .io_dispatch_2_bits_pre_is_ret         (_frontend_io_dispatch_2_bits_pre_is_ret),	// zaqal/src/zaqal/Core.scala:55:24
+    .io_dispatch_2_valid                   (_frontend_io_dispatch_2_valid),	// zaqal/src/zaqal/Core.scala:73:24
+    .io_dispatch_2_bits_pc                 (_frontend_io_dispatch_2_bits_pc),	// zaqal/src/zaqal/Core.scala:73:24
+    .io_dispatch_2_bits_inst_raw           (_frontend_io_dispatch_2_bits_inst_raw),	// zaqal/src/zaqal/Core.scala:73:24
+    .io_dispatch_2_bits_pre_is_rvc         (_frontend_io_dispatch_2_bits_pre_is_rvc),	// zaqal/src/zaqal/Core.scala:73:24
+    .io_dispatch_2_bits_pre_is_call        (_frontend_io_dispatch_2_bits_pre_is_call),	// zaqal/src/zaqal/Core.scala:73:24
+    .io_dispatch_2_bits_pre_is_ret         (_frontend_io_dispatch_2_bits_pre_is_ret),	// zaqal/src/zaqal/Core.scala:73:24
     .io_dispatch_2_bits_pre_expanded_inst
-      (_frontend_io_dispatch_2_bits_pre_expanded_inst),	// zaqal/src/zaqal/Core.scala:55:24
-    .io_dispatch_2_bits_ftqPtr             (_frontend_io_dispatch_2_bits_ftqPtr),	// zaqal/src/zaqal/Core.scala:55:24
+      (_frontend_io_dispatch_2_bits_pre_expanded_inst),	// zaqal/src/zaqal/Core.scala:73:24
+    .io_dispatch_2_bits_ftqPtr             (_frontend_io_dispatch_2_bits_ftqPtr),	// zaqal/src/zaqal/Core.scala:73:24
     .io_dispatch_2_bits_is_predicted_taken
-      (_frontend_io_dispatch_2_bits_is_predicted_taken),	// zaqal/src/zaqal/Core.scala:55:24
+      (_frontend_io_dispatch_2_bits_is_predicted_taken),	// zaqal/src/zaqal/Core.scala:73:24
     .io_dispatch_2_bits_predicted_target
-      (_frontend_io_dispatch_2_bits_predicted_target),	// zaqal/src/zaqal/Core.scala:55:24
-    .io_dispatch_2_bits_epoch              (_frontend_io_dispatch_2_bits_epoch),	// zaqal/src/zaqal/Core.scala:55:24
+      (_frontend_io_dispatch_2_bits_predicted_target),	// zaqal/src/zaqal/Core.scala:73:24
+    .io_dispatch_2_bits_epoch              (_frontend_io_dispatch_2_bits_epoch),	// zaqal/src/zaqal/Core.scala:73:24
     .io_dispatch_3_ready                   (_backend_io_dispatch_3_ready),
-    .io_dispatch_3_valid                   (_frontend_io_dispatch_3_valid),	// zaqal/src/zaqal/Core.scala:55:24
-    .io_dispatch_3_bits_pc                 (_frontend_io_dispatch_3_bits_pc),	// zaqal/src/zaqal/Core.scala:55:24
-    .io_dispatch_3_bits_inst_raw           (_frontend_io_dispatch_3_bits_inst_raw),	// zaqal/src/zaqal/Core.scala:55:24
-    .io_dispatch_3_bits_pre_is_rvc         (_frontend_io_dispatch_3_bits_pre_is_rvc),	// zaqal/src/zaqal/Core.scala:55:24
-    .io_dispatch_3_bits_pre_is_call        (_frontend_io_dispatch_3_bits_pre_is_call),	// zaqal/src/zaqal/Core.scala:55:24
-    .io_dispatch_3_bits_pre_is_ret         (_frontend_io_dispatch_3_bits_pre_is_ret),	// zaqal/src/zaqal/Core.scala:55:24
+    .io_dispatch_3_valid                   (_frontend_io_dispatch_3_valid),	// zaqal/src/zaqal/Core.scala:73:24
+    .io_dispatch_3_bits_pc                 (_frontend_io_dispatch_3_bits_pc),	// zaqal/src/zaqal/Core.scala:73:24
+    .io_dispatch_3_bits_inst_raw           (_frontend_io_dispatch_3_bits_inst_raw),	// zaqal/src/zaqal/Core.scala:73:24
+    .io_dispatch_3_bits_pre_is_rvc         (_frontend_io_dispatch_3_bits_pre_is_rvc),	// zaqal/src/zaqal/Core.scala:73:24
+    .io_dispatch_3_bits_pre_is_call        (_frontend_io_dispatch_3_bits_pre_is_call),	// zaqal/src/zaqal/Core.scala:73:24
+    .io_dispatch_3_bits_pre_is_ret         (_frontend_io_dispatch_3_bits_pre_is_ret),	// zaqal/src/zaqal/Core.scala:73:24
     .io_dispatch_3_bits_pre_expanded_inst
-      (_frontend_io_dispatch_3_bits_pre_expanded_inst),	// zaqal/src/zaqal/Core.scala:55:24
-    .io_dispatch_3_bits_ftqPtr             (_frontend_io_dispatch_3_bits_ftqPtr),	// zaqal/src/zaqal/Core.scala:55:24
+      (_frontend_io_dispatch_3_bits_pre_expanded_inst),	// zaqal/src/zaqal/Core.scala:73:24
+    .io_dispatch_3_bits_ftqPtr             (_frontend_io_dispatch_3_bits_ftqPtr),	// zaqal/src/zaqal/Core.scala:73:24
     .io_dispatch_3_bits_is_predicted_taken
-      (_frontend_io_dispatch_3_bits_is_predicted_taken),	// zaqal/src/zaqal/Core.scala:55:24
+      (_frontend_io_dispatch_3_bits_is_predicted_taken),	// zaqal/src/zaqal/Core.scala:73:24
     .io_dispatch_3_bits_predicted_target
-      (_frontend_io_dispatch_3_bits_predicted_target),	// zaqal/src/zaqal/Core.scala:55:24
-    .io_dispatch_3_bits_epoch              (_frontend_io_dispatch_3_bits_epoch),	// zaqal/src/zaqal/Core.scala:55:24
+      (_frontend_io_dispatch_3_bits_predicted_target),	// zaqal/src/zaqal/Core.scala:73:24
+    .io_dispatch_3_bits_epoch              (_frontend_io_dispatch_3_bits_epoch),	// zaqal/src/zaqal/Core.scala:73:24
     .io_dispatch_4_ready                   (_backend_io_dispatch_4_ready),
-    .io_dispatch_4_valid                   (_frontend_io_dispatch_4_valid),	// zaqal/src/zaqal/Core.scala:55:24
-    .io_dispatch_4_bits_pc                 (_frontend_io_dispatch_4_bits_pc),	// zaqal/src/zaqal/Core.scala:55:24
-    .io_dispatch_4_bits_inst_raw           (_frontend_io_dispatch_4_bits_inst_raw),	// zaqal/src/zaqal/Core.scala:55:24
-    .io_dispatch_4_bits_pre_is_rvc         (_frontend_io_dispatch_4_bits_pre_is_rvc),	// zaqal/src/zaqal/Core.scala:55:24
-    .io_dispatch_4_bits_pre_is_call        (_frontend_io_dispatch_4_bits_pre_is_call),	// zaqal/src/zaqal/Core.scala:55:24
-    .io_dispatch_4_bits_pre_is_ret         (_frontend_io_dispatch_4_bits_pre_is_ret),	// zaqal/src/zaqal/Core.scala:55:24
+    .io_dispatch_4_valid                   (_frontend_io_dispatch_4_valid),	// zaqal/src/zaqal/Core.scala:73:24
+    .io_dispatch_4_bits_pc                 (_frontend_io_dispatch_4_bits_pc),	// zaqal/src/zaqal/Core.scala:73:24
+    .io_dispatch_4_bits_inst_raw           (_frontend_io_dispatch_4_bits_inst_raw),	// zaqal/src/zaqal/Core.scala:73:24
+    .io_dispatch_4_bits_pre_is_rvc         (_frontend_io_dispatch_4_bits_pre_is_rvc),	// zaqal/src/zaqal/Core.scala:73:24
+    .io_dispatch_4_bits_pre_is_call        (_frontend_io_dispatch_4_bits_pre_is_call),	// zaqal/src/zaqal/Core.scala:73:24
+    .io_dispatch_4_bits_pre_is_ret         (_frontend_io_dispatch_4_bits_pre_is_ret),	// zaqal/src/zaqal/Core.scala:73:24
     .io_dispatch_4_bits_pre_expanded_inst
-      (_frontend_io_dispatch_4_bits_pre_expanded_inst),	// zaqal/src/zaqal/Core.scala:55:24
-    .io_dispatch_4_bits_ftqPtr             (_frontend_io_dispatch_4_bits_ftqPtr),	// zaqal/src/zaqal/Core.scala:55:24
+      (_frontend_io_dispatch_4_bits_pre_expanded_inst),	// zaqal/src/zaqal/Core.scala:73:24
+    .io_dispatch_4_bits_ftqPtr             (_frontend_io_dispatch_4_bits_ftqPtr),	// zaqal/src/zaqal/Core.scala:73:24
     .io_dispatch_4_bits_is_predicted_taken
-      (_frontend_io_dispatch_4_bits_is_predicted_taken),	// zaqal/src/zaqal/Core.scala:55:24
+      (_frontend_io_dispatch_4_bits_is_predicted_taken),	// zaqal/src/zaqal/Core.scala:73:24
     .io_dispatch_4_bits_predicted_target
-      (_frontend_io_dispatch_4_bits_predicted_target),	// zaqal/src/zaqal/Core.scala:55:24
-    .io_dispatch_4_bits_epoch              (_frontend_io_dispatch_4_bits_epoch),	// zaqal/src/zaqal/Core.scala:55:24
+      (_frontend_io_dispatch_4_bits_predicted_target),	// zaqal/src/zaqal/Core.scala:73:24
+    .io_dispatch_4_bits_epoch              (_frontend_io_dispatch_4_bits_epoch),	// zaqal/src/zaqal/Core.scala:73:24
     .io_dispatch_5_ready                   (_backend_io_dispatch_5_ready),
-    .io_dispatch_5_valid                   (_frontend_io_dispatch_5_valid),	// zaqal/src/zaqal/Core.scala:55:24
-    .io_dispatch_5_bits_pc                 (_frontend_io_dispatch_5_bits_pc),	// zaqal/src/zaqal/Core.scala:55:24
-    .io_dispatch_5_bits_inst_raw           (_frontend_io_dispatch_5_bits_inst_raw),	// zaqal/src/zaqal/Core.scala:55:24
-    .io_dispatch_5_bits_pre_is_rvc         (_frontend_io_dispatch_5_bits_pre_is_rvc),	// zaqal/src/zaqal/Core.scala:55:24
-    .io_dispatch_5_bits_pre_is_call        (_frontend_io_dispatch_5_bits_pre_is_call),	// zaqal/src/zaqal/Core.scala:55:24
-    .io_dispatch_5_bits_pre_is_ret         (_frontend_io_dispatch_5_bits_pre_is_ret),	// zaqal/src/zaqal/Core.scala:55:24
+    .io_dispatch_5_valid                   (_frontend_io_dispatch_5_valid),	// zaqal/src/zaqal/Core.scala:73:24
+    .io_dispatch_5_bits_pc                 (_frontend_io_dispatch_5_bits_pc),	// zaqal/src/zaqal/Core.scala:73:24
+    .io_dispatch_5_bits_inst_raw           (_frontend_io_dispatch_5_bits_inst_raw),	// zaqal/src/zaqal/Core.scala:73:24
+    .io_dispatch_5_bits_pre_is_rvc         (_frontend_io_dispatch_5_bits_pre_is_rvc),	// zaqal/src/zaqal/Core.scala:73:24
+    .io_dispatch_5_bits_pre_is_call        (_frontend_io_dispatch_5_bits_pre_is_call),	// zaqal/src/zaqal/Core.scala:73:24
+    .io_dispatch_5_bits_pre_is_ret         (_frontend_io_dispatch_5_bits_pre_is_ret),	// zaqal/src/zaqal/Core.scala:73:24
     .io_dispatch_5_bits_pre_expanded_inst
-      (_frontend_io_dispatch_5_bits_pre_expanded_inst),	// zaqal/src/zaqal/Core.scala:55:24
-    .io_dispatch_5_bits_ftqPtr             (_frontend_io_dispatch_5_bits_ftqPtr),	// zaqal/src/zaqal/Core.scala:55:24
+      (_frontend_io_dispatch_5_bits_pre_expanded_inst),	// zaqal/src/zaqal/Core.scala:73:24
+    .io_dispatch_5_bits_ftqPtr             (_frontend_io_dispatch_5_bits_ftqPtr),	// zaqal/src/zaqal/Core.scala:73:24
     .io_dispatch_5_bits_is_predicted_taken
-      (_frontend_io_dispatch_5_bits_is_predicted_taken),	// zaqal/src/zaqal/Core.scala:55:24
+      (_frontend_io_dispatch_5_bits_is_predicted_taken),	// zaqal/src/zaqal/Core.scala:73:24
     .io_dispatch_5_bits_predicted_target
-      (_frontend_io_dispatch_5_bits_predicted_target),	// zaqal/src/zaqal/Core.scala:55:24
-    .io_dispatch_5_bits_epoch              (_frontend_io_dispatch_5_bits_epoch),	// zaqal/src/zaqal/Core.scala:55:24
+      (_frontend_io_dispatch_5_bits_predicted_target),	// zaqal/src/zaqal/Core.scala:73:24
+    .io_dispatch_5_bits_epoch              (_frontend_io_dispatch_5_bits_epoch),	// zaqal/src/zaqal/Core.scala:73:24
     .io_redirect_valid                     (_backend_io_redirect_valid),
     .io_redirect_target                    (_backend_io_redirect_target),
     .io_redirect_epoch                     (_backend_io_redirect_epoch),
@@ -1453,13 +1483,43 @@ module Core(	// zaqal/src/zaqal/Core.scala:13:7
     .io_debug_fp_regs_189                  (_backend_io_debug_fp_regs_189),
     .io_debug_fp_regs_190                  (_backend_io_debug_fp_regs_190),
     .io_debug_fp_regs_191                  (_backend_io_debug_fp_regs_191),
-    .io_debug_cycle                        (cycle_reg),	// zaqal/src/zaqal/Core.scala:51:26
-    .io_mem_d_req_valid                    (io_mem_d_req_valid),
-    .io_mem_d_req_bits_addr                (io_mem_d_req_bits_addr),
-    .io_mem_d_resp_ready                   (io_mem_d_resp_ready),
-    .io_mem_d_resp_valid                   (io_mem_d_resp_valid)
+    .io_tl_d_a_ready                       (io_tl_d_a_ready),
+    .io_tl_d_a_valid                       (io_tl_d_a_valid),
+    .io_tl_d_a_bits_param                  (io_tl_d_a_bits_param),
+    .io_tl_d_a_bits_address                (io_tl_d_a_bits_address),
+    .io_tl_d_b_ready                       (io_tl_d_b_ready),
+    .io_tl_d_b_valid                       (io_tl_d_b_valid),
+    .io_tl_d_b_bits_param                  (io_tl_d_b_bits_param),
+    .io_tl_d_b_bits_size                   (io_tl_d_b_bits_size),
+    .io_tl_d_b_bits_source                 (io_tl_d_b_bits_source),
+    .io_tl_d_b_bits_address                (io_tl_d_b_bits_address),
+    .io_tl_d_c_ready                       (io_tl_d_c_ready),
+    .io_tl_d_c_valid                       (io_tl_d_c_valid),
+    .io_tl_d_c_bits_opcode                 (io_tl_d_c_bits_opcode),
+    .io_tl_d_c_bits_param                  (io_tl_d_c_bits_param),
+    .io_tl_d_c_bits_size                   (io_tl_d_c_bits_size),
+    .io_tl_d_c_bits_source                 (io_tl_d_c_bits_source),
+    .io_tl_d_c_bits_address                (io_tl_d_c_bits_address),
+    .io_tl_d_c_bits_data                   (io_tl_d_c_bits_data),
+    .io_tl_d_d_ready                       (io_tl_d_d_ready),
+    .io_tl_d_d_valid                       (io_tl_d_d_valid),
+    .io_tl_d_d_bits_param                  (io_tl_d_d_bits_param),
+    .io_tl_d_d_bits_sink                   (io_tl_d_d_bits_sink),
+    .io_tl_d_d_bits_data                   (io_tl_d_d_bits_data),
+    .io_tl_d_e_ready                       (io_tl_d_e_ready),
+    .io_tl_d_e_valid                       (io_tl_d_e_valid),
+    .io_tl_d_e_bits_sink                   (io_tl_d_e_bits_sink),
+    .io_branch_signal_valid                (_frontend_io_branch_signal_valid),	// zaqal/src/zaqal/Core.scala:73:24
+    .io_branch_signal_bits_pc              (_frontend_io_branch_signal_bits_pc),	// zaqal/src/zaqal/Core.scala:73:24
+    .io_branch_signal_bits_target          (_frontend_io_branch_signal_bits_target),	// zaqal/src/zaqal/Core.scala:73:24
+    .io_branch_signal_bits_taken           (_frontend_io_branch_signal_bits_taken),	// zaqal/src/zaqal/Core.scala:73:24
+    .io_uart_tx_valid                      (io_uart_tx_valid),
+    .io_uart_tx_char                       (io_uart_tx_char),
+    .io_plic_ext_irq                       (io_plic_ext_irq),
+    .io_clint_mtip                         (io_clint_mtip),
+    .io_plic_meip                          (io_plic_meip)
   );
-  assign io_success = 1'h1;	// zaqal/src/zaqal/Core.scala:13:7
+  assign io_success = 1'h1;	// zaqal/src/zaqal/Core.scala:13:7, :74:24
   assign io_debug_sum =
     _backend_io_debug_regs_0 ^ _backend_io_debug_regs_1 ^ _backend_io_debug_regs_2
     ^ _backend_io_debug_regs_3 ^ _backend_io_debug_regs_4 ^ _backend_io_debug_regs_5
@@ -1621,10 +1681,20 @@ module Core(	// zaqal/src/zaqal/Core.scala:13:7
     ^ _backend_io_debug_fp_regs_186 ^ _backend_io_debug_fp_regs_187
     ^ _backend_io_debug_fp_regs_188 ^ _backend_io_debug_fp_regs_189
     ^ _backend_io_debug_fp_regs_190 ^ _backend_io_debug_fp_regs_191
-    ^ _frontend_io_debug_ftq_pc;	// zaqal/src/zaqal/Core.scala:13:7, :55:24, :56:24, :101:102
-  assign io_mem_req_bits_burstLen = 8'h1;	// zaqal/src/zaqal/Core.scala:13:7, :55:24, :56:24
-  assign io_mem_req_bits_isWrite = 1'h0;	// zaqal/src/zaqal/Core.scala:13:7
-  assign io_mem_d_req_bits_burstLen = 8'h1;	// zaqal/src/zaqal/Core.scala:13:7, :55:24, :56:24
-  assign io_mem_d_req_bits_isWrite = 1'h0;	// zaqal/src/zaqal/Core.scala:13:7
+    ^ _frontend_io_debug_ftq_pc;	// zaqal/src/zaqal/Core.scala:13:7, :73:24, :74:24, :132:102
+  assign io_mem_req_bits_burstLen = 8'h1;	// zaqal/src/zaqal/Core.scala:13:7, :73:24
+  assign io_mem_req_bits_isWrite = 1'h0;	// zaqal/src/zaqal/Core.scala:13:7, :73:24, :74:24
+  assign io_mem_d_req_valid = 1'h0;	// zaqal/src/zaqal/Core.scala:13:7, :73:24, :74:24
+  assign io_mem_d_req_bits_addr = 64'h0;	// zaqal/src/zaqal/Core.scala:13:7, :74:24
+  assign io_mem_d_req_bits_burstLen = 8'h0;	// zaqal/src/zaqal/Core.scala:13:7, :74:24
+  assign io_mem_d_req_bits_isWrite = 1'h0;	// zaqal/src/zaqal/Core.scala:13:7, :73:24, :74:24
+  assign io_mem_d_resp_ready = 1'h1;	// zaqal/src/zaqal/Core.scala:13:7, :74:24
+  assign io_tl_d_a_bits_opcode = 3'h6;	// zaqal/src/zaqal/Core.scala:13:7, :74:24
+  assign io_tl_d_a_bits_size = 4'h5;	// zaqal/src/zaqal/Core.scala:13:7, :74:24
+  assign io_tl_d_a_bits_source = 6'h0;	// zaqal/src/zaqal/Core.scala:13:7, :73:24, :74:24
+  assign io_tl_d_a_bits_mask = 32'hFFFFFFFF;	// zaqal/src/zaqal/Core.scala:13:7, :74:24
+  assign io_tl_d_a_bits_data = 256'h0;	// zaqal/src/zaqal/Core.scala:13:7, :74:24
+  assign io_tl_d_a_bits_corrupt = 1'h0;	// zaqal/src/zaqal/Core.scala:13:7, :73:24, :74:24
+  assign io_tl_d_c_bits_corrupt = 1'h0;	// zaqal/src/zaqal/Core.scala:13:7, :73:24, :74:24
 endmodule
 

@@ -39,7 +39,7 @@ class FusionDecoder(val fusionWidth: Int = 6)(implicit val p: Parameters) extend
     } else {
       val ui = io.in(i)
       val unext = io.in(i + 1)
-      val both_valid = io.dispatch_valid(i) && io.dispatch_valid(i + 1)
+      val both_valid = enableFusion.B && io.dispatch_valid(i) && io.dispatch_valid(i + 1)
 
       val is_imm_alu = unext.decode.is_addi || unext.decode.is_andi || unext.decode.is_ori ||
                        unext.decode.is_xori || unext.decode.is_slli || unext.decode.is_srli || unext.decode.is_srai
