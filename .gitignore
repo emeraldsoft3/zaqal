@@ -10,3 +10,12 @@ test_run_dir/
 *.gtkw
 !programs/vcd/Lithium.vcd
 !programs/vcd/Lithium.gtkw
+
+# Verilator & C++ Build Artifacts
+build/emu_obj/
+build/emu
+*.gch
+*.o
+*.a
+*.d
+*.so
