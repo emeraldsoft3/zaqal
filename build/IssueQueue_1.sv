@@ -495,7 +495,6 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
   input  [6:0]  io_enq_5_bits_robIdx,	// backend/src/zaqal/backend/issue/IssueQueue.scala:9:14
   input         io_enq_5_bits_loadWaitBit,	// backend/src/zaqal/backend/issue/IssueQueue.scala:9:14
   input  [6:0]  io_enq_5_bits_waitForRobIdx,	// backend/src/zaqal/backend/issue/IssueQueue.scala:9:14
-  input         io_deq_0_ready,	// backend/src/zaqal/backend/issue/IssueQueue.scala:9:14
   output        io_deq_0_valid,	// backend/src/zaqal/backend/issue/IssueQueue.scala:9:14
   output [63:0] io_deq_0_bits_uop_pc,	// backend/src/zaqal/backend/issue/IssueQueue.scala:9:14
   output [5:0]  io_deq_0_bits_uop_ftqPtr,	// backend/src/zaqal/backend/issue/IssueQueue.scala:9:14
@@ -546,7 +545,6 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
                 io_deq_0_bits_pdest,	// backend/src/zaqal/backend/issue/IssueQueue.scala:9:14
                 io_deq_0_bits_snapshotIdx,	// backend/src/zaqal/backend/issue/IssueQueue.scala:9:14
   output [6:0]  io_deq_0_bits_robIdx,	// backend/src/zaqal/backend/issue/IssueQueue.scala:9:14
-  input         io_deq_1_ready,	// backend/src/zaqal/backend/issue/IssueQueue.scala:9:14
   output        io_deq_1_valid,	// backend/src/zaqal/backend/issue/IssueQueue.scala:9:14
   output [63:0] io_deq_1_bits_uop_pc,	// backend/src/zaqal/backend/issue/IssueQueue.scala:9:14
   output [5:0]  io_deq_1_bits_uop_ftqPtr,	// backend/src/zaqal/backend/issue/IssueQueue.scala:9:14
@@ -597,7 +595,6 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
                 io_deq_1_bits_pdest,	// backend/src/zaqal/backend/issue/IssueQueue.scala:9:14
                 io_deq_1_bits_snapshotIdx,	// backend/src/zaqal/backend/issue/IssueQueue.scala:9:14
   output [6:0]  io_deq_1_bits_robIdx,	// backend/src/zaqal/backend/issue/IssueQueue.scala:9:14
-  input         io_deq_2_ready,	// backend/src/zaqal/backend/issue/IssueQueue.scala:9:14
   output        io_deq_2_valid,	// backend/src/zaqal/backend/issue/IssueQueue.scala:9:14
   output [63:0] io_deq_2_bits_uop_pc,	// backend/src/zaqal/backend/issue/IssueQueue.scala:9:14
   output [5:0]  io_deq_2_bits_uop_ftqPtr,	// backend/src/zaqal/backend/issue/IssueQueue.scala:9:14
@@ -6691,58 +6688,72 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
                    - _GEN_431) < (_entry_is_younger_T
                                     ? _GEN_433
                                     : _entry_is_younger_T_3 - _GEN_431)} == 15'h0};	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :53:33, :54:{127,142}, :55:{127,142}, :56:{127,142}, :63:43, :67:22, :82:{37,42,83,91}, :86:{50,82}, :89:{66,98}, :94:41, :95:33, :96:{8,15}, :99:49, :100:{25,36}, :104:{24,54,89}, :105:{8,15}, :108:21, :109:{21,30}, :110:35, :116:37
-  wire        deq_fire = (|_ageDetector_io_out_0) & io_deq_0_ready;	// backend/src/zaqal/backend/issue/IssueQueue.scala:61:27, :122:39, :127:36
-  wire [15:0] _GEN_448 = current_can_issue & ~(deq_fire ? _ageDetector_io_out_0 : 16'h0);	// backend/src/zaqal/backend/issue/IssueQueue.scala:61:27, :63:43, :116:37, :127:36, :131:{43,45,49}
-  wire        deq_fire_1 = (|_ageDetector_io_out_1) & io_deq_1_ready;	// backend/src/zaqal/backend/issue/IssueQueue.scala:61:27, :122:39, :127:36
-  wire        deq_fire_2 = (|_ageDetector_io_out_2) & io_deq_2_ready;	// backend/src/zaqal/backend/issue/IssueQueue.scala:61:27, :122:39, :127:36
+  wire [15:0] _GEN_448 =
+    current_can_issue & ~((|_ageDetector_io_out_0) ? _ageDetector_io_out_0 : 16'h0);	// backend/src/zaqal/backend/issue/IssueQueue.scala:61:27, :63:43, :116:37, :122:39, :131:{43,45,49}
   wire        is_empty_0 =
-    ~entries_0_valid | deq_fire & _ageDetector_io_out_0[0] | deq_fire_1
-    & _ageDetector_io_out_1[0] | deq_fire_2 & _ageDetector_io_out_2[0];	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :127:36, :136:90, :137:{20,38}, src/main/scala/chisel3/util/Mux.scala:32:36
+    ~entries_0_valid | (|_ageDetector_io_out_0) & _ageDetector_io_out_0[0]
+    | (|_ageDetector_io_out_1) & _ageDetector_io_out_1[0] | (|_ageDetector_io_out_2)
+    & _ageDetector_io_out_2[0];	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :122:39, :136:90, :137:{20,38}, src/main/scala/chisel3/util/Mux.scala:32:36
   wire        is_empty_1 =
-    ~entries_1_valid | deq_fire & _ageDetector_io_out_0[1] | deq_fire_1
-    & _ageDetector_io_out_1[1] | deq_fire_2 & _ageDetector_io_out_2[1];	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :127:36, :136:90, :137:{20,38}, src/main/scala/chisel3/util/Mux.scala:32:36
+    ~entries_1_valid | (|_ageDetector_io_out_0) & _ageDetector_io_out_0[1]
+    | (|_ageDetector_io_out_1) & _ageDetector_io_out_1[1] | (|_ageDetector_io_out_2)
+    & _ageDetector_io_out_2[1];	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :122:39, :136:90, :137:{20,38}, src/main/scala/chisel3/util/Mux.scala:32:36
   wire        is_empty_2 =
-    ~entries_2_valid | deq_fire & _ageDetector_io_out_0[2] | deq_fire_1
-    & _ageDetector_io_out_1[2] | deq_fire_2 & _ageDetector_io_out_2[2];	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :127:36, :136:90, :137:{20,38}, src/main/scala/chisel3/util/Mux.scala:32:36
+    ~entries_2_valid | (|_ageDetector_io_out_0) & _ageDetector_io_out_0[2]
+    | (|_ageDetector_io_out_1) & _ageDetector_io_out_1[2] | (|_ageDetector_io_out_2)
+    & _ageDetector_io_out_2[2];	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :122:39, :136:90, :137:{20,38}, src/main/scala/chisel3/util/Mux.scala:32:36
   wire        is_empty_3 =
-    ~entries_3_valid | deq_fire & _ageDetector_io_out_0[3] | deq_fire_1
-    & _ageDetector_io_out_1[3] | deq_fire_2 & _ageDetector_io_out_2[3];	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :127:36, :136:90, :137:{20,38}, src/main/scala/chisel3/util/Mux.scala:32:36
+    ~entries_3_valid | (|_ageDetector_io_out_0) & _ageDetector_io_out_0[3]
+    | (|_ageDetector_io_out_1) & _ageDetector_io_out_1[3] | (|_ageDetector_io_out_2)
+    & _ageDetector_io_out_2[3];	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :122:39, :136:90, :137:{20,38}, src/main/scala/chisel3/util/Mux.scala:32:36
   wire        is_empty_4 =
-    ~entries_4_valid | deq_fire & _ageDetector_io_out_0[4] | deq_fire_1
-    & _ageDetector_io_out_1[4] | deq_fire_2 & _ageDetector_io_out_2[4];	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :127:36, :136:90, :137:{20,38}, src/main/scala/chisel3/util/Mux.scala:32:36
+    ~entries_4_valid | (|_ageDetector_io_out_0) & _ageDetector_io_out_0[4]
+    | (|_ageDetector_io_out_1) & _ageDetector_io_out_1[4] | (|_ageDetector_io_out_2)
+    & _ageDetector_io_out_2[4];	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :122:39, :136:90, :137:{20,38}, src/main/scala/chisel3/util/Mux.scala:32:36
   wire        is_empty_5 =
-    ~entries_5_valid | deq_fire & _ageDetector_io_out_0[5] | deq_fire_1
-    & _ageDetector_io_out_1[5] | deq_fire_2 & _ageDetector_io_out_2[5];	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :127:36, :136:90, :137:{20,38}, src/main/scala/chisel3/util/Mux.scala:32:36
+    ~entries_5_valid | (|_ageDetector_io_out_0) & _ageDetector_io_out_0[5]
+    | (|_ageDetector_io_out_1) & _ageDetector_io_out_1[5] | (|_ageDetector_io_out_2)
+    & _ageDetector_io_out_2[5];	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :122:39, :136:90, :137:{20,38}, src/main/scala/chisel3/util/Mux.scala:32:36
   wire        is_empty_6 =
-    ~entries_6_valid | deq_fire & _ageDetector_io_out_0[6] | deq_fire_1
-    & _ageDetector_io_out_1[6] | deq_fire_2 & _ageDetector_io_out_2[6];	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :127:36, :136:90, :137:{20,38}, src/main/scala/chisel3/util/Mux.scala:32:36
+    ~entries_6_valid | (|_ageDetector_io_out_0) & _ageDetector_io_out_0[6]
+    | (|_ageDetector_io_out_1) & _ageDetector_io_out_1[6] | (|_ageDetector_io_out_2)
+    & _ageDetector_io_out_2[6];	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :122:39, :136:90, :137:{20,38}, src/main/scala/chisel3/util/Mux.scala:32:36
   wire        is_empty_7 =
-    ~entries_7_valid | deq_fire & _ageDetector_io_out_0[7] | deq_fire_1
-    & _ageDetector_io_out_1[7] | deq_fire_2 & _ageDetector_io_out_2[7];	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :127:36, :136:90, :137:{20,38}, src/main/scala/chisel3/util/Mux.scala:32:36
+    ~entries_7_valid | (|_ageDetector_io_out_0) & _ageDetector_io_out_0[7]
+    | (|_ageDetector_io_out_1) & _ageDetector_io_out_1[7] | (|_ageDetector_io_out_2)
+    & _ageDetector_io_out_2[7];	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :122:39, :136:90, :137:{20,38}, src/main/scala/chisel3/util/Mux.scala:32:36
   wire        is_empty_8 =
-    ~entries_8_valid | deq_fire & _ageDetector_io_out_0[8] | deq_fire_1
-    & _ageDetector_io_out_1[8] | deq_fire_2 & _ageDetector_io_out_2[8];	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :127:36, :136:90, :137:{20,38}, src/main/scala/chisel3/util/Mux.scala:32:36
+    ~entries_8_valid | (|_ageDetector_io_out_0) & _ageDetector_io_out_0[8]
+    | (|_ageDetector_io_out_1) & _ageDetector_io_out_1[8] | (|_ageDetector_io_out_2)
+    & _ageDetector_io_out_2[8];	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :122:39, :136:90, :137:{20,38}, src/main/scala/chisel3/util/Mux.scala:32:36
   wire        is_empty_9 =
-    ~entries_9_valid | deq_fire & _ageDetector_io_out_0[9] | deq_fire_1
-    & _ageDetector_io_out_1[9] | deq_fire_2 & _ageDetector_io_out_2[9];	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :127:36, :136:90, :137:{20,38}, src/main/scala/chisel3/util/Mux.scala:32:36
+    ~entries_9_valid | (|_ageDetector_io_out_0) & _ageDetector_io_out_0[9]
+    | (|_ageDetector_io_out_1) & _ageDetector_io_out_1[9] | (|_ageDetector_io_out_2)
+    & _ageDetector_io_out_2[9];	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :122:39, :136:90, :137:{20,38}, src/main/scala/chisel3/util/Mux.scala:32:36
   wire        is_empty_10 =
-    ~entries_10_valid | deq_fire & _ageDetector_io_out_0[10] | deq_fire_1
-    & _ageDetector_io_out_1[10] | deq_fire_2 & _ageDetector_io_out_2[10];	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :127:36, :136:90, :137:{20,38}, src/main/scala/chisel3/util/Mux.scala:32:36
+    ~entries_10_valid | (|_ageDetector_io_out_0) & _ageDetector_io_out_0[10]
+    | (|_ageDetector_io_out_1) & _ageDetector_io_out_1[10] | (|_ageDetector_io_out_2)
+    & _ageDetector_io_out_2[10];	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :122:39, :136:90, :137:{20,38}, src/main/scala/chisel3/util/Mux.scala:32:36
   wire        is_empty_11 =
-    ~entries_11_valid | deq_fire & _ageDetector_io_out_0[11] | deq_fire_1
-    & _ageDetector_io_out_1[11] | deq_fire_2 & _ageDetector_io_out_2[11];	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :127:36, :136:90, :137:{20,38}, src/main/scala/chisel3/util/Mux.scala:32:36
+    ~entries_11_valid | (|_ageDetector_io_out_0) & _ageDetector_io_out_0[11]
+    | (|_ageDetector_io_out_1) & _ageDetector_io_out_1[11] | (|_ageDetector_io_out_2)
+    & _ageDetector_io_out_2[11];	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :122:39, :136:90, :137:{20,38}, src/main/scala/chisel3/util/Mux.scala:32:36
   wire        is_empty_12 =
-    ~entries_12_valid | deq_fire & _ageDetector_io_out_0[12] | deq_fire_1
-    & _ageDetector_io_out_1[12] | deq_fire_2 & _ageDetector_io_out_2[12];	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :127:36, :136:90, :137:{20,38}, src/main/scala/chisel3/util/Mux.scala:32:36
+    ~entries_12_valid | (|_ageDetector_io_out_0) & _ageDetector_io_out_0[12]
+    | (|_ageDetector_io_out_1) & _ageDetector_io_out_1[12] | (|_ageDetector_io_out_2)
+    & _ageDetector_io_out_2[12];	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :122:39, :136:90, :137:{20,38}, src/main/scala/chisel3/util/Mux.scala:32:36
   wire        is_empty_13 =
-    ~entries_13_valid | deq_fire & _ageDetector_io_out_0[13] | deq_fire_1
-    & _ageDetector_io_out_1[13] | deq_fire_2 & _ageDetector_io_out_2[13];	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :127:36, :136:90, :137:{20,38}, src/main/scala/chisel3/util/Mux.scala:32:36
+    ~entries_13_valid | (|_ageDetector_io_out_0) & _ageDetector_io_out_0[13]
+    | (|_ageDetector_io_out_1) & _ageDetector_io_out_1[13] | (|_ageDetector_io_out_2)
+    & _ageDetector_io_out_2[13];	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :122:39, :136:90, :137:{20,38}, src/main/scala/chisel3/util/Mux.scala:32:36
   wire        is_empty_14 =
-    ~entries_14_valid | deq_fire & _ageDetector_io_out_0[14] | deq_fire_1
-    & _ageDetector_io_out_1[14] | deq_fire_2 & _ageDetector_io_out_2[14];	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :127:36, :136:90, :137:{20,38}, src/main/scala/chisel3/util/Mux.scala:32:36
+    ~entries_14_valid | (|_ageDetector_io_out_0) & _ageDetector_io_out_0[14]
+    | (|_ageDetector_io_out_1) & _ageDetector_io_out_1[14] | (|_ageDetector_io_out_2)
+    & _ageDetector_io_out_2[14];	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :122:39, :136:90, :137:{20,38}, src/main/scala/chisel3/util/Mux.scala:32:36
   wire [15:0] current_empty_mask =
-    {~entries_15_valid | deq_fire & _ageDetector_io_out_0[15] | deq_fire_1
-       & _ageDetector_io_out_1[15] | deq_fire_2 & _ageDetector_io_out_2[15],
+    {~entries_15_valid | (|_ageDetector_io_out_0) & _ageDetector_io_out_0[15]
+       | (|_ageDetector_io_out_1) & _ageDetector_io_out_1[15] | (|_ageDetector_io_out_2)
+       & _ageDetector_io_out_2[15],
      is_empty_14,
      is_empty_13,
      is_empty_12,
@@ -6757,7 +6768,7 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
      is_empty_3,
      is_empty_2,
      is_empty_1,
-     is_empty_0};	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :127:36, :136:90, :137:{20,38}, :143:37, src/main/scala/chisel3/util/Mux.scala:32:36
+     is_empty_0};	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :122:39, :136:90, :137:{20,38}, :143:37, src/main/scala/chisel3/util/Mux.scala:32:36
   wire [3:0]  alloc_idx_0 =
     is_empty_0
       ? 4'h0
@@ -8979,8 +8990,9 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
                : entries_0_uop_snapshotIdx < io_redirect_enq_ptr
                  & entries_0_uop_snapshotIdx > io_redirect_restore_idx))
         & (_GEN_670 | _GEN_639 | _GEN_608 | _GEN_577 | _GEN_546 | _GEN_515
-           | ~(deq_fire & _ageDetector_io_out_0[0] | deq_fire_1 & _ageDetector_io_out_1[0]
-               | deq_fire_2 & _ageDetector_io_out_2[0]) & entries_0_valid);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :82:{37,42,83,91}, :127:36, :163:{90,122}, :164:30, :165:24, :169:{48,73}, :170:26, :197:28, :212:40, :213:33, :214:40, :215:{25,38}, :220:31, :221:26, src/main/scala/chisel3/util/Mux.scala:32:36
+           | ~((|_ageDetector_io_out_0) & _ageDetector_io_out_0[0]
+               | (|_ageDetector_io_out_1) & _ageDetector_io_out_1[0]
+               | (|_ageDetector_io_out_2) & _ageDetector_io_out_2[0]) & entries_0_valid);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :82:{37,42,83,91}, :122:39, :163:{90,122}, :164:30, :165:24, :169:{48,73}, :170:26, :197:28, :212:40, :213:33, :214:40, :215:{25,38}, :220:31, :221:26, src/main/scala/chisel3/util/Mux.scala:32:36
       if (_GEN_670) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
         entries_0_uop_uop_pc <= io_enq_5_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_0_uop_uop_ftqPtr <= io_enq_5_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -9452,8 +9464,9 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
                : entries_1_uop_snapshotIdx < io_redirect_enq_ptr
                  & entries_1_uop_snapshotIdx > io_redirect_restore_idx))
         & (_GEN_706 | _GEN_705 | _GEN_704 | _GEN_703 | _GEN_702 | _GEN_701
-           | ~(deq_fire & _ageDetector_io_out_0[1] | deq_fire_1 & _ageDetector_io_out_1[1]
-               | deq_fire_2 & _ageDetector_io_out_2[1]) & entries_1_valid);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :82:{37,42,83,91}, :127:36, :163:{90,122}, :164:30, :165:24, :169:{48,73}, :170:26, :197:28, :212:40, :213:33, :214:40, :215:{25,38}, :220:31, :221:26, src/main/scala/chisel3/util/Mux.scala:32:36
+           | ~((|_ageDetector_io_out_0) & _ageDetector_io_out_0[1]
+               | (|_ageDetector_io_out_1) & _ageDetector_io_out_1[1]
+               | (|_ageDetector_io_out_2) & _ageDetector_io_out_2[1]) & entries_1_valid);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :82:{37,42,83,91}, :122:39, :163:{90,122}, :164:30, :165:24, :169:{48,73}, :170:26, :197:28, :212:40, :213:33, :214:40, :215:{25,38}, :220:31, :221:26, src/main/scala/chisel3/util/Mux.scala:32:36
       if (_GEN_706) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
         entries_1_uop_uop_pc <= io_enq_5_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_1_uop_uop_ftqPtr <= io_enq_5_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -9925,8 +9938,9 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
                : entries_2_uop_snapshotIdx < io_redirect_enq_ptr
                  & entries_2_uop_snapshotIdx > io_redirect_restore_idx))
         & (_GEN_712 | _GEN_711 | _GEN_710 | _GEN_709 | _GEN_708 | _GEN_707
-           | ~(deq_fire & _ageDetector_io_out_0[2] | deq_fire_1 & _ageDetector_io_out_1[2]
-               | deq_fire_2 & _ageDetector_io_out_2[2]) & entries_2_valid);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :82:{37,42,83,91}, :127:36, :163:{90,122}, :164:30, :165:24, :169:{48,73}, :170:26, :197:28, :212:40, :213:33, :214:40, :215:{25,38}, :220:31, :221:26, src/main/scala/chisel3/util/Mux.scala:32:36
+           | ~((|_ageDetector_io_out_0) & _ageDetector_io_out_0[2]
+               | (|_ageDetector_io_out_1) & _ageDetector_io_out_1[2]
+               | (|_ageDetector_io_out_2) & _ageDetector_io_out_2[2]) & entries_2_valid);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :82:{37,42,83,91}, :122:39, :163:{90,122}, :164:30, :165:24, :169:{48,73}, :170:26, :197:28, :212:40, :213:33, :214:40, :215:{25,38}, :220:31, :221:26, src/main/scala/chisel3/util/Mux.scala:32:36
       if (_GEN_712) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
         entries_2_uop_uop_pc <= io_enq_5_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_2_uop_uop_ftqPtr <= io_enq_5_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -10398,8 +10412,9 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
                : entries_3_uop_snapshotIdx < io_redirect_enq_ptr
                  & entries_3_uop_snapshotIdx > io_redirect_restore_idx))
         & (_GEN_718 | _GEN_717 | _GEN_716 | _GEN_715 | _GEN_714 | _GEN_713
-           | ~(deq_fire & _ageDetector_io_out_0[3] | deq_fire_1 & _ageDetector_io_out_1[3]
-               | deq_fire_2 & _ageDetector_io_out_2[3]) & entries_3_valid);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :82:{37,42,83,91}, :127:36, :163:{90,122}, :164:30, :165:24, :169:{48,73}, :170:26, :197:28, :212:40, :213:33, :214:40, :215:{25,38}, :220:31, :221:26, src/main/scala/chisel3/util/Mux.scala:32:36
+           | ~((|_ageDetector_io_out_0) & _ageDetector_io_out_0[3]
+               | (|_ageDetector_io_out_1) & _ageDetector_io_out_1[3]
+               | (|_ageDetector_io_out_2) & _ageDetector_io_out_2[3]) & entries_3_valid);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :82:{37,42,83,91}, :122:39, :163:{90,122}, :164:30, :165:24, :169:{48,73}, :170:26, :197:28, :212:40, :213:33, :214:40, :215:{25,38}, :220:31, :221:26, src/main/scala/chisel3/util/Mux.scala:32:36
       if (_GEN_718) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
         entries_3_uop_uop_pc <= io_enq_5_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_3_uop_uop_ftqPtr <= io_enq_5_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -10871,8 +10886,9 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
                : entries_4_uop_snapshotIdx < io_redirect_enq_ptr
                  & entries_4_uop_snapshotIdx > io_redirect_restore_idx))
         & (_GEN_724 | _GEN_723 | _GEN_722 | _GEN_721 | _GEN_720 | _GEN_719
-           | ~(deq_fire & _ageDetector_io_out_0[4] | deq_fire_1 & _ageDetector_io_out_1[4]
-               | deq_fire_2 & _ageDetector_io_out_2[4]) & entries_4_valid);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :82:{37,42,83,91}, :127:36, :163:{90,122}, :164:30, :165:24, :169:{48,73}, :170:26, :197:28, :212:40, :213:33, :214:40, :215:{25,38}, :220:31, :221:26, src/main/scala/chisel3/util/Mux.scala:32:36
+           | ~((|_ageDetector_io_out_0) & _ageDetector_io_out_0[4]
+               | (|_ageDetector_io_out_1) & _ageDetector_io_out_1[4]
+               | (|_ageDetector_io_out_2) & _ageDetector_io_out_2[4]) & entries_4_valid);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :82:{37,42,83,91}, :122:39, :163:{90,122}, :164:30, :165:24, :169:{48,73}, :170:26, :197:28, :212:40, :213:33, :214:40, :215:{25,38}, :220:31, :221:26, src/main/scala/chisel3/util/Mux.scala:32:36
       if (_GEN_724) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
         entries_4_uop_uop_pc <= io_enq_5_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_4_uop_uop_ftqPtr <= io_enq_5_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -11344,8 +11360,9 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
                : entries_5_uop_snapshotIdx < io_redirect_enq_ptr
                  & entries_5_uop_snapshotIdx > io_redirect_restore_idx))
         & (_GEN_730 | _GEN_729 | _GEN_728 | _GEN_727 | _GEN_726 | _GEN_725
-           | ~(deq_fire & _ageDetector_io_out_0[5] | deq_fire_1 & _ageDetector_io_out_1[5]
-               | deq_fire_2 & _ageDetector_io_out_2[5]) & entries_5_valid);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :82:{37,42,83,91}, :127:36, :163:{90,122}, :164:30, :165:24, :169:{48,73}, :170:26, :197:28, :212:40, :213:33, :214:40, :215:{25,38}, :220:31, :221:26, src/main/scala/chisel3/util/Mux.scala:32:36
+           | ~((|_ageDetector_io_out_0) & _ageDetector_io_out_0[5]
+               | (|_ageDetector_io_out_1) & _ageDetector_io_out_1[5]
+               | (|_ageDetector_io_out_2) & _ageDetector_io_out_2[5]) & entries_5_valid);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :82:{37,42,83,91}, :122:39, :163:{90,122}, :164:30, :165:24, :169:{48,73}, :170:26, :197:28, :212:40, :213:33, :214:40, :215:{25,38}, :220:31, :221:26, src/main/scala/chisel3/util/Mux.scala:32:36
       if (_GEN_730) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
         entries_5_uop_uop_pc <= io_enq_5_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_5_uop_uop_ftqPtr <= io_enq_5_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -11817,8 +11834,9 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
                : entries_6_uop_snapshotIdx < io_redirect_enq_ptr
                  & entries_6_uop_snapshotIdx > io_redirect_restore_idx))
         & (_GEN_736 | _GEN_735 | _GEN_734 | _GEN_733 | _GEN_732 | _GEN_731
-           | ~(deq_fire & _ageDetector_io_out_0[6] | deq_fire_1 & _ageDetector_io_out_1[6]
-               | deq_fire_2 & _ageDetector_io_out_2[6]) & entries_6_valid);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :82:{37,42,83,91}, :127:36, :163:{90,122}, :164:30, :165:24, :169:{48,73}, :170:26, :197:28, :212:40, :213:33, :214:40, :215:{25,38}, :220:31, :221:26, src/main/scala/chisel3/util/Mux.scala:32:36
+           | ~((|_ageDetector_io_out_0) & _ageDetector_io_out_0[6]
+               | (|_ageDetector_io_out_1) & _ageDetector_io_out_1[6]
+               | (|_ageDetector_io_out_2) & _ageDetector_io_out_2[6]) & entries_6_valid);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :82:{37,42,83,91}, :122:39, :163:{90,122}, :164:30, :165:24, :169:{48,73}, :170:26, :197:28, :212:40, :213:33, :214:40, :215:{25,38}, :220:31, :221:26, src/main/scala/chisel3/util/Mux.scala:32:36
       if (_GEN_736) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
         entries_6_uop_uop_pc <= io_enq_5_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_6_uop_uop_ftqPtr <= io_enq_5_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -12290,8 +12308,9 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
                : entries_7_uop_snapshotIdx < io_redirect_enq_ptr
                  & entries_7_uop_snapshotIdx > io_redirect_restore_idx))
         & (_GEN_742 | _GEN_741 | _GEN_740 | _GEN_739 | _GEN_738 | _GEN_737
-           | ~(deq_fire & _ageDetector_io_out_0[7] | deq_fire_1 & _ageDetector_io_out_1[7]
-               | deq_fire_2 & _ageDetector_io_out_2[7]) & entries_7_valid);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :82:{37,42,83,91}, :127:36, :163:{90,122}, :164:30, :165:24, :169:{48,73}, :170:26, :197:28, :212:40, :213:33, :214:40, :215:{25,38}, :220:31, :221:26, src/main/scala/chisel3/util/Mux.scala:32:36
+           | ~((|_ageDetector_io_out_0) & _ageDetector_io_out_0[7]
+               | (|_ageDetector_io_out_1) & _ageDetector_io_out_1[7]
+               | (|_ageDetector_io_out_2) & _ageDetector_io_out_2[7]) & entries_7_valid);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :82:{37,42,83,91}, :122:39, :163:{90,122}, :164:30, :165:24, :169:{48,73}, :170:26, :197:28, :212:40, :213:33, :214:40, :215:{25,38}, :220:31, :221:26, src/main/scala/chisel3/util/Mux.scala:32:36
       if (_GEN_742) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
         entries_7_uop_uop_pc <= io_enq_5_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_7_uop_uop_ftqPtr <= io_enq_5_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -12763,8 +12782,9 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
                : entries_8_uop_snapshotIdx < io_redirect_enq_ptr
                  & entries_8_uop_snapshotIdx > io_redirect_restore_idx))
         & (_GEN_748 | _GEN_747 | _GEN_746 | _GEN_745 | _GEN_744 | _GEN_743
-           | ~(deq_fire & _ageDetector_io_out_0[8] | deq_fire_1 & _ageDetector_io_out_1[8]
-               | deq_fire_2 & _ageDetector_io_out_2[8]) & entries_8_valid);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :82:{37,42,83,91}, :127:36, :163:{90,122}, :164:30, :165:24, :169:{48,73}, :170:26, :197:28, :212:40, :213:33, :214:40, :215:{25,38}, :220:31, :221:26, src/main/scala/chisel3/util/Mux.scala:32:36
+           | ~((|_ageDetector_io_out_0) & _ageDetector_io_out_0[8]
+               | (|_ageDetector_io_out_1) & _ageDetector_io_out_1[8]
+               | (|_ageDetector_io_out_2) & _ageDetector_io_out_2[8]) & entries_8_valid);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :82:{37,42,83,91}, :122:39, :163:{90,122}, :164:30, :165:24, :169:{48,73}, :170:26, :197:28, :212:40, :213:33, :214:40, :215:{25,38}, :220:31, :221:26, src/main/scala/chisel3/util/Mux.scala:32:36
       if (_GEN_748) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
         entries_8_uop_uop_pc <= io_enq_5_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_8_uop_uop_ftqPtr <= io_enq_5_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -13236,8 +13256,9 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
                : entries_9_uop_snapshotIdx < io_redirect_enq_ptr
                  & entries_9_uop_snapshotIdx > io_redirect_restore_idx))
         & (_GEN_754 | _GEN_753 | _GEN_752 | _GEN_751 | _GEN_750 | _GEN_749
-           | ~(deq_fire & _ageDetector_io_out_0[9] | deq_fire_1 & _ageDetector_io_out_1[9]
-               | deq_fire_2 & _ageDetector_io_out_2[9]) & entries_9_valid);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :82:{37,42,83,91}, :127:36, :163:{90,122}, :164:30, :165:24, :169:{48,73}, :170:26, :197:28, :212:40, :213:33, :214:40, :215:{25,38}, :220:31, :221:26, src/main/scala/chisel3/util/Mux.scala:32:36
+           | ~((|_ageDetector_io_out_0) & _ageDetector_io_out_0[9]
+               | (|_ageDetector_io_out_1) & _ageDetector_io_out_1[9]
+               | (|_ageDetector_io_out_2) & _ageDetector_io_out_2[9]) & entries_9_valid);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :82:{37,42,83,91}, :122:39, :163:{90,122}, :164:30, :165:24, :169:{48,73}, :170:26, :197:28, :212:40, :213:33, :214:40, :215:{25,38}, :220:31, :221:26, src/main/scala/chisel3/util/Mux.scala:32:36
       if (_GEN_754) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
         entries_9_uop_uop_pc <= io_enq_5_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_9_uop_uop_ftqPtr <= io_enq_5_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -13709,9 +13730,10 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
                : entries_10_uop_snapshotIdx < io_redirect_enq_ptr
                  & entries_10_uop_snapshotIdx > io_redirect_restore_idx))
         & (_GEN_760 | _GEN_759 | _GEN_758 | _GEN_757 | _GEN_756 | _GEN_755
-           | ~(deq_fire & _ageDetector_io_out_0[10] | deq_fire_1
-               & _ageDetector_io_out_1[10] | deq_fire_2 & _ageDetector_io_out_2[10])
-           & entries_10_valid);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :82:{37,42,83,91}, :127:36, :163:{90,122}, :164:30, :165:24, :169:{48,73}, :170:26, :197:28, :212:40, :213:33, :214:40, :215:{25,38}, :220:31, :221:26, src/main/scala/chisel3/util/Mux.scala:32:36
+           | ~((|_ageDetector_io_out_0) & _ageDetector_io_out_0[10]
+               | (|_ageDetector_io_out_1) & _ageDetector_io_out_1[10]
+               | (|_ageDetector_io_out_2) & _ageDetector_io_out_2[10])
+           & entries_10_valid);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :82:{37,42,83,91}, :122:39, :163:{90,122}, :164:30, :165:24, :169:{48,73}, :170:26, :197:28, :212:40, :213:33, :214:40, :215:{25,38}, :220:31, :221:26, src/main/scala/chisel3/util/Mux.scala:32:36
       if (_GEN_760) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
         entries_10_uop_uop_pc <= io_enq_5_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_10_uop_uop_ftqPtr <= io_enq_5_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -14183,9 +14205,10 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
                : entries_11_uop_snapshotIdx < io_redirect_enq_ptr
                  & entries_11_uop_snapshotIdx > io_redirect_restore_idx))
         & (_GEN_766 | _GEN_765 | _GEN_764 | _GEN_763 | _GEN_762 | _GEN_761
-           | ~(deq_fire & _ageDetector_io_out_0[11] | deq_fire_1
-               & _ageDetector_io_out_1[11] | deq_fire_2 & _ageDetector_io_out_2[11])
-           & entries_11_valid);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :82:{37,42,83,91}, :127:36, :163:{90,122}, :164:30, :165:24, :169:{48,73}, :170:26, :197:28, :212:40, :213:33, :214:40, :215:{25,38}, :220:31, :221:26, src/main/scala/chisel3/util/Mux.scala:32:36
+           | ~((|_ageDetector_io_out_0) & _ageDetector_io_out_0[11]
+               | (|_ageDetector_io_out_1) & _ageDetector_io_out_1[11]
+               | (|_ageDetector_io_out_2) & _ageDetector_io_out_2[11])
+           & entries_11_valid);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :82:{37,42,83,91}, :122:39, :163:{90,122}, :164:30, :165:24, :169:{48,73}, :170:26, :197:28, :212:40, :213:33, :214:40, :215:{25,38}, :220:31, :221:26, src/main/scala/chisel3/util/Mux.scala:32:36
       if (_GEN_766) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
         entries_11_uop_uop_pc <= io_enq_5_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_11_uop_uop_ftqPtr <= io_enq_5_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -14657,9 +14680,10 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
                : entries_12_uop_snapshotIdx < io_redirect_enq_ptr
                  & entries_12_uop_snapshotIdx > io_redirect_restore_idx))
         & (_GEN_772 | _GEN_771 | _GEN_770 | _GEN_769 | _GEN_768 | _GEN_767
-           | ~(deq_fire & _ageDetector_io_out_0[12] | deq_fire_1
-               & _ageDetector_io_out_1[12] | deq_fire_2 & _ageDetector_io_out_2[12])
-           & entries_12_valid);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :82:{37,42,83,91}, :127:36, :163:{90,122}, :164:30, :165:24, :169:{48,73}, :170:26, :197:28, :212:40, :213:33, :214:40, :215:{25,38}, :220:31, :221:26, src/main/scala/chisel3/util/Mux.scala:32:36
+           | ~((|_ageDetector_io_out_0) & _ageDetector_io_out_0[12]
+               | (|_ageDetector_io_out_1) & _ageDetector_io_out_1[12]
+               | (|_ageDetector_io_out_2) & _ageDetector_io_out_2[12])
+           & entries_12_valid);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :82:{37,42,83,91}, :122:39, :163:{90,122}, :164:30, :165:24, :169:{48,73}, :170:26, :197:28, :212:40, :213:33, :214:40, :215:{25,38}, :220:31, :221:26, src/main/scala/chisel3/util/Mux.scala:32:36
       if (_GEN_772) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
         entries_12_uop_uop_pc <= io_enq_5_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_12_uop_uop_ftqPtr <= io_enq_5_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -15131,9 +15155,10 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
                : entries_13_uop_snapshotIdx < io_redirect_enq_ptr
                  & entries_13_uop_snapshotIdx > io_redirect_restore_idx))
         & (_GEN_778 | _GEN_777 | _GEN_776 | _GEN_775 | _GEN_774 | _GEN_773
-           | ~(deq_fire & _ageDetector_io_out_0[13] | deq_fire_1
-               & _ageDetector_io_out_1[13] | deq_fire_2 & _ageDetector_io_out_2[13])
-           & entries_13_valid);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :82:{37,42,83,91}, :127:36, :163:{90,122}, :164:30, :165:24, :169:{48,73}, :170:26, :197:28, :212:40, :213:33, :214:40, :215:{25,38}, :220:31, :221:26, src/main/scala/chisel3/util/Mux.scala:32:36
+           | ~((|_ageDetector_io_out_0) & _ageDetector_io_out_0[13]
+               | (|_ageDetector_io_out_1) & _ageDetector_io_out_1[13]
+               | (|_ageDetector_io_out_2) & _ageDetector_io_out_2[13])
+           & entries_13_valid);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :82:{37,42,83,91}, :122:39, :163:{90,122}, :164:30, :165:24, :169:{48,73}, :170:26, :197:28, :212:40, :213:33, :214:40, :215:{25,38}, :220:31, :221:26, src/main/scala/chisel3/util/Mux.scala:32:36
       if (_GEN_778) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
         entries_13_uop_uop_pc <= io_enq_5_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_13_uop_uop_ftqPtr <= io_enq_5_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -15605,9 +15630,10 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
                : entries_14_uop_snapshotIdx < io_redirect_enq_ptr
                  & entries_14_uop_snapshotIdx > io_redirect_restore_idx))
         & (_GEN_784 | _GEN_783 | _GEN_782 | _GEN_781 | _GEN_780 | _GEN_779
-           | ~(deq_fire & _ageDetector_io_out_0[14] | deq_fire_1
-               & _ageDetector_io_out_1[14] | deq_fire_2 & _ageDetector_io_out_2[14])
-           & entries_14_valid);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :82:{37,42,83,91}, :127:36, :163:{90,122}, :164:30, :165:24, :169:{48,73}, :170:26, :197:28, :212:40, :213:33, :214:40, :215:{25,38}, :220:31, :221:26, src/main/scala/chisel3/util/Mux.scala:32:36
+           | ~((|_ageDetector_io_out_0) & _ageDetector_io_out_0[14]
+               | (|_ageDetector_io_out_1) & _ageDetector_io_out_1[14]
+               | (|_ageDetector_io_out_2) & _ageDetector_io_out_2[14])
+           & entries_14_valid);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :82:{37,42,83,91}, :122:39, :163:{90,122}, :164:30, :165:24, :169:{48,73}, :170:26, :197:28, :212:40, :213:33, :214:40, :215:{25,38}, :220:31, :221:26, src/main/scala/chisel3/util/Mux.scala:32:36
       if (_GEN_784) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
         entries_14_uop_uop_pc <= io_enq_5_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_14_uop_uop_ftqPtr <= io_enq_5_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -16079,9 +16105,10 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
                : entries_15_uop_snapshotIdx < io_redirect_enq_ptr
                  & entries_15_uop_snapshotIdx > io_redirect_restore_idx))
         & (_GEN_790 | _GEN_789 | _GEN_788 | _GEN_787 | _GEN_786 | _GEN_785
-           | ~(deq_fire & _ageDetector_io_out_0[15] | deq_fire_1
-               & _ageDetector_io_out_1[15] | deq_fire_2 & _ageDetector_io_out_2[15])
-           & entries_15_valid);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :82:{37,42,83,91}, :127:36, :163:{90,122}, :164:30, :165:24, :169:{48,73}, :170:26, :197:28, :212:40, :213:33, :214:40, :215:{25,38}, :220:31, :221:26, src/main/scala/chisel3/util/Mux.scala:32:36
+           | ~((|_ageDetector_io_out_0) & _ageDetector_io_out_0[15]
+               | (|_ageDetector_io_out_1) & _ageDetector_io_out_1[15]
+               | (|_ageDetector_io_out_2) & _ageDetector_io_out_2[15])
+           & entries_15_valid);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :82:{37,42,83,91}, :122:39, :163:{90,122}, :164:30, :165:24, :169:{48,73}, :170:26, :197:28, :212:40, :213:33, :214:40, :215:{25,38}, :220:31, :221:26, src/main/scala/chisel3/util/Mux.scala:32:36
       if (_GEN_790) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
         entries_15_uop_uop_pc <= io_enq_5_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_15_uop_uop_ftqPtr <= io_enq_5_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -17786,7 +17813,9 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
     .io_enq_5      (_GEN_514 ? 16'h1 << alloc_idx_5 : 16'h0),	// backend/src/zaqal/backend/issue/IssueQueue.scala:63:43, :149:{27,47}, :150:21, src/main/scala/chisel3/util/Mux.scala:50:70, src/main/scala/chisel3/util/OneHot.scala:58:35
     .io_canIssue_0 (current_can_issue),	// backend/src/zaqal/backend/issue/IssueQueue.scala:116:37
     .io_canIssue_1 (_GEN_448 & ~sys_mask),	// backend/src/zaqal/backend/issue/IssueQueue.scala:114:25, :119:{89,91}, :131:43
-    .io_canIssue_2 (_GEN_448 & ~(deq_fire_1 ? _ageDetector_io_out_1 : 16'h0) & ~sys_mask),	// backend/src/zaqal/backend/issue/IssueQueue.scala:61:27, :63:43, :114:25, :119:{89,91}, :127:36, :131:{43,45,49}
+    .io_canIssue_2
+      (_GEN_448 & ~((|_ageDetector_io_out_1) ? _ageDetector_io_out_1 : 16'h0)
+       & ~sys_mask),	// backend/src/zaqal/backend/issue/IssueQueue.scala:61:27, :63:43, :114:25, :119:{89,91}, :122:39, :131:{43,45,49}
     .io_out_0      (_ageDetector_io_out_0),
     .io_out_1      (_ageDetector_io_out_1),
     .io_out_2      (_ageDetector_io_out_2)

@@ -7712,14 +7712,6 @@ module Backend(	// backend/src/zaqal/backend/Backend.scala:14:7
   wire [6:0]  _dispatch_io_vecOut_5_bits_robIdx;	// backend/src/zaqal/backend/Backend.scala:262:24
   wire        _exec_io_int_in_0_ready;	// backend/src/zaqal/backend/Backend.scala:260:20
   wire        _exec_io_int_in_1_ready;	// backend/src/zaqal/backend/Backend.scala:260:20
-  wire        _exec_io_int_in_2_ready;	// backend/src/zaqal/backend/Backend.scala:260:20
-  wire        _exec_io_int_in_3_ready;	// backend/src/zaqal/backend/Backend.scala:260:20
-  wire        _exec_io_mem_in_0_ready;	// backend/src/zaqal/backend/Backend.scala:260:20
-  wire        _exec_io_mem_in_1_ready;	// backend/src/zaqal/backend/Backend.scala:260:20
-  wire        _exec_io_mem_in_2_ready;	// backend/src/zaqal/backend/Backend.scala:260:20
-  wire        _exec_io_fp_in_0_ready;	// backend/src/zaqal/backend/Backend.scala:260:20
-  wire        _exec_io_fp_in_1_ready;	// backend/src/zaqal/backend/Backend.scala:260:20
-  wire        _exec_io_fp_in_2_ready;	// backend/src/zaqal/backend/Backend.scala:260:20
   wire        _exec_io_fp_in_3_ready;	// backend/src/zaqal/backend/Backend.scala:260:20
   wire        _exec_io_redirect_valid;	// backend/src/zaqal/backend/Backend.scala:260:20
   wire        _exec_io_redirect_is_exception;	// backend/src/zaqal/backend/Backend.scala:260:20
@@ -17304,7 +17296,6 @@ module Backend(	// backend/src/zaqal/backend/Backend.scala:14:7
     .io_int_in_1_bits_pdest                    (_intIq_io_deq_1_bits_pdest),	// backend/src/zaqal/backend/Backend.scala:267:21
     .io_int_in_1_bits_snapshotIdx              (_intIq_io_deq_1_bits_snapshotIdx),	// backend/src/zaqal/backend/Backend.scala:267:21
     .io_int_in_1_bits_robIdx                   (_intIq_io_deq_1_bits_robIdx),	// backend/src/zaqal/backend/Backend.scala:267:21
-    .io_int_in_2_ready                         (_exec_io_int_in_2_ready),
     .io_int_in_2_valid                         (_intIq_io_deq_2_valid),	// backend/src/zaqal/backend/Backend.scala:267:21
     .io_int_in_2_bits_uop_pc                   (_intIq_io_deq_2_bits_uop_pc),	// backend/src/zaqal/backend/Backend.scala:267:21
     .io_int_in_2_bits_uop_inst_raw             (_intIq_io_deq_2_bits_uop_inst_raw),	// backend/src/zaqal/backend/Backend.scala:267:21
@@ -17400,7 +17391,6 @@ module Backend(	// backend/src/zaqal/backend/Backend.scala:14:7
     .io_int_in_2_bits_pdest                    (_intIq_io_deq_2_bits_pdest),	// backend/src/zaqal/backend/Backend.scala:267:21
     .io_int_in_2_bits_snapshotIdx              (_intIq_io_deq_2_bits_snapshotIdx),	// backend/src/zaqal/backend/Backend.scala:267:21
     .io_int_in_2_bits_robIdx                   (_intIq_io_deq_2_bits_robIdx),	// backend/src/zaqal/backend/Backend.scala:267:21
-    .io_int_in_3_ready                         (_exec_io_int_in_3_ready),
     .io_int_in_3_valid                         (_intIq_io_deq_3_valid),	// backend/src/zaqal/backend/Backend.scala:267:21
     .io_int_in_3_bits_uop_pc                   (_intIq_io_deq_3_bits_uop_pc),	// backend/src/zaqal/backend/Backend.scala:267:21
     .io_int_in_3_bits_uop_inst_raw             (_intIq_io_deq_3_bits_uop_inst_raw),	// backend/src/zaqal/backend/Backend.scala:267:21
@@ -17496,7 +17486,6 @@ module Backend(	// backend/src/zaqal/backend/Backend.scala:14:7
     .io_int_in_3_bits_pdest                    (_intIq_io_deq_3_bits_pdest),	// backend/src/zaqal/backend/Backend.scala:267:21
     .io_int_in_3_bits_snapshotIdx              (_intIq_io_deq_3_bits_snapshotIdx),	// backend/src/zaqal/backend/Backend.scala:267:21
     .io_int_in_3_bits_robIdx                   (_intIq_io_deq_3_bits_robIdx),	// backend/src/zaqal/backend/Backend.scala:267:21
-    .io_mem_in_0_ready                         (_exec_io_mem_in_0_ready),
     .io_mem_in_0_valid                         (_memIq_io_deq_0_valid),	// backend/src/zaqal/backend/Backend.scala:268:21
     .io_mem_in_0_bits_uop_pc                   (_memIq_io_deq_0_bits_uop_pc),	// backend/src/zaqal/backend/Backend.scala:268:21
     .io_mem_in_0_bits_uop_ftqPtr               (_memIq_io_deq_0_bits_uop_ftqPtr),	// backend/src/zaqal/backend/Backend.scala:268:21
@@ -17548,7 +17537,6 @@ module Backend(	// backend/src/zaqal/backend/Backend.scala:14:7
     .io_mem_in_0_bits_pdest                    (_memIq_io_deq_0_bits_pdest),	// backend/src/zaqal/backend/Backend.scala:268:21
     .io_mem_in_0_bits_snapshotIdx              (_memIq_io_deq_0_bits_snapshotIdx),	// backend/src/zaqal/backend/Backend.scala:268:21
     .io_mem_in_0_bits_robIdx                   (_memIq_io_deq_0_bits_robIdx),	// backend/src/zaqal/backend/Backend.scala:268:21
-    .io_mem_in_1_ready                         (_exec_io_mem_in_1_ready),
     .io_mem_in_1_valid                         (_memIq_io_deq_1_valid),	// backend/src/zaqal/backend/Backend.scala:268:21
     .io_mem_in_1_bits_uop_pc                   (_memIq_io_deq_1_bits_uop_pc),	// backend/src/zaqal/backend/Backend.scala:268:21
     .io_mem_in_1_bits_uop_ftqPtr               (_memIq_io_deq_1_bits_uop_ftqPtr),	// backend/src/zaqal/backend/Backend.scala:268:21
@@ -17600,7 +17588,6 @@ module Backend(	// backend/src/zaqal/backend/Backend.scala:14:7
     .io_mem_in_1_bits_pdest                    (_memIq_io_deq_1_bits_pdest),	// backend/src/zaqal/backend/Backend.scala:268:21
     .io_mem_in_1_bits_snapshotIdx              (_memIq_io_deq_1_bits_snapshotIdx),	// backend/src/zaqal/backend/Backend.scala:268:21
     .io_mem_in_1_bits_robIdx                   (_memIq_io_deq_1_bits_robIdx),	// backend/src/zaqal/backend/Backend.scala:268:21
-    .io_mem_in_2_ready                         (_exec_io_mem_in_2_ready),
     .io_mem_in_2_valid                         (_memIq_io_deq_2_valid),	// backend/src/zaqal/backend/Backend.scala:268:21
     .io_mem_in_2_bits_uop_pc                   (_memIq_io_deq_2_bits_uop_pc),	// backend/src/zaqal/backend/Backend.scala:268:21
     .io_mem_in_2_bits_uop_ftqPtr               (_memIq_io_deq_2_bits_uop_ftqPtr),	// backend/src/zaqal/backend/Backend.scala:268:21
@@ -17647,7 +17634,6 @@ module Backend(	// backend/src/zaqal/backend/Backend.scala:14:7
     .io_mem_in_2_bits_psrs2                    (_memIq_io_deq_2_bits_psrs2),	// backend/src/zaqal/backend/Backend.scala:268:21
     .io_mem_in_2_bits_snapshotIdx              (_memIq_io_deq_2_bits_snapshotIdx),	// backend/src/zaqal/backend/Backend.scala:268:21
     .io_mem_in_2_bits_robIdx                   (_memIq_io_deq_2_bits_robIdx),	// backend/src/zaqal/backend/Backend.scala:268:21
-    .io_fp_in_0_ready                          (_exec_io_fp_in_0_ready),
     .io_fp_in_0_valid                          (_fpIq_io_deq_0_valid),	// backend/src/zaqal/backend/Backend.scala:269:20
     .io_fp_in_0_bits_decode_is_fmadd           (_fpIq_io_deq_0_bits_decode_is_fmadd),	// backend/src/zaqal/backend/Backend.scala:269:20
     .io_fp_in_0_bits_decode_is_fmsub           (_fpIq_io_deq_0_bits_decode_is_fmsub),	// backend/src/zaqal/backend/Backend.scala:269:20
@@ -17672,7 +17658,6 @@ module Backend(	// backend/src/zaqal/backend/Backend.scala:14:7
     .io_fp_in_0_bits_pdest                     (_fpIq_io_deq_0_bits_pdest),	// backend/src/zaqal/backend/Backend.scala:269:20
     .io_fp_in_0_bits_snapshotIdx               (_fpIq_io_deq_0_bits_snapshotIdx),	// backend/src/zaqal/backend/Backend.scala:269:20
     .io_fp_in_0_bits_robIdx                    (_fpIq_io_deq_0_bits_robIdx),	// backend/src/zaqal/backend/Backend.scala:269:20
-    .io_fp_in_1_ready                          (_exec_io_fp_in_1_ready),
     .io_fp_in_1_valid                          (_fpIq_io_deq_1_valid),	// backend/src/zaqal/backend/Backend.scala:269:20
     .io_fp_in_1_bits_decode_is_fmadd           (_fpIq_io_deq_1_bits_decode_is_fmadd),	// backend/src/zaqal/backend/Backend.scala:269:20
     .io_fp_in_1_bits_decode_is_fmsub           (_fpIq_io_deq_1_bits_decode_is_fmsub),	// backend/src/zaqal/backend/Backend.scala:269:20
@@ -17697,7 +17682,6 @@ module Backend(	// backend/src/zaqal/backend/Backend.scala:14:7
     .io_fp_in_1_bits_pdest                     (_fpIq_io_deq_1_bits_pdest),	// backend/src/zaqal/backend/Backend.scala:269:20
     .io_fp_in_1_bits_snapshotIdx               (_fpIq_io_deq_1_bits_snapshotIdx),	// backend/src/zaqal/backend/Backend.scala:269:20
     .io_fp_in_1_bits_robIdx                    (_fpIq_io_deq_1_bits_robIdx),	// backend/src/zaqal/backend/Backend.scala:269:20
-    .io_fp_in_2_ready                          (_exec_io_fp_in_2_ready),
     .io_fp_in_2_valid                          (_fpIq_io_deq_2_valid),	// backend/src/zaqal/backend/Backend.scala:269:20
     .io_fp_in_2_bits_uop_inst_raw              (_fpIq_io_deq_2_bits_uop_inst_raw),	// backend/src/zaqal/backend/Backend.scala:269:20
     .io_fp_in_2_bits_decode_is_fmadd           (_fpIq_io_deq_2_bits_decode_is_fmadd),	// backend/src/zaqal/backend/Backend.scala:269:20
@@ -33911,7 +33895,6 @@ module Backend(	// backend/src/zaqal/backend/Backend.scala:14:7
     .io_deq_1_bits_pdest                    (_intIq_io_deq_1_bits_pdest),
     .io_deq_1_bits_snapshotIdx              (_intIq_io_deq_1_bits_snapshotIdx),
     .io_deq_1_bits_robIdx                   (_intIq_io_deq_1_bits_robIdx),
-    .io_deq_2_ready                         (_exec_io_int_in_2_ready),	// backend/src/zaqal/backend/Backend.scala:260:20
     .io_deq_2_valid                         (_intIq_io_deq_2_valid),
     .io_deq_2_bits_uop_pc                   (_intIq_io_deq_2_bits_uop_pc),
     .io_deq_2_bits_uop_inst_raw             (_intIq_io_deq_2_bits_uop_inst_raw),
@@ -34032,7 +34015,7 @@ module Backend(	// backend/src/zaqal/backend/Backend.scala:14:7
     .io_deq_2_bits_pdest                    (_intIq_io_deq_2_bits_pdest),
     .io_deq_2_bits_snapshotIdx              (_intIq_io_deq_2_bits_snapshotIdx),
     .io_deq_2_bits_robIdx                   (_intIq_io_deq_2_bits_robIdx),
-    .io_deq_3_ready                         (_exec_io_int_in_3_ready),	// backend/src/zaqal/backend/Backend.scala:260:20
+    .io_deq_3_ready                         (1'h1),	// backend/src/zaqal/backend/Backend.scala:171:15, :260:20, :267:21, :268:21, :269:20
     .io_deq_3_valid                         (_intIq_io_deq_3_valid),
     .io_deq_3_bits_uop_pc                   (_intIq_io_deq_3_bits_uop_pc),
     .io_deq_3_bits_uop_inst_raw             (_intIq_io_deq_3_bits_uop_inst_raw),
@@ -34732,7 +34715,6 @@ module Backend(	// backend/src/zaqal/backend/Backend.scala:14:7
       (_GEN_12
          ? _storeSet_io_dispatch_resp_5_robIdx
          : _dispatch_io_memOut_5_bits_waitForRobIdx),	// backend/src/zaqal/backend/Backend.scala:54:24, :262:24, :426:27, :427:{18,60}, :429:29
-    .io_deq_0_ready                         (_exec_io_mem_in_0_ready),	// backend/src/zaqal/backend/Backend.scala:260:20
     .io_deq_0_valid                         (_memIq_io_deq_0_valid),
     .io_deq_0_bits_uop_pc                   (_memIq_io_deq_0_bits_uop_pc),
     .io_deq_0_bits_uop_ftqPtr               (_memIq_io_deq_0_bits_uop_ftqPtr),
@@ -34784,7 +34766,6 @@ module Backend(	// backend/src/zaqal/backend/Backend.scala:14:7
     .io_deq_0_bits_pdest                    (_memIq_io_deq_0_bits_pdest),
     .io_deq_0_bits_snapshotIdx              (_memIq_io_deq_0_bits_snapshotIdx),
     .io_deq_0_bits_robIdx                   (_memIq_io_deq_0_bits_robIdx),
-    .io_deq_1_ready                         (_exec_io_mem_in_1_ready),	// backend/src/zaqal/backend/Backend.scala:260:20
     .io_deq_1_valid                         (_memIq_io_deq_1_valid),
     .io_deq_1_bits_uop_pc                   (_memIq_io_deq_1_bits_uop_pc),
     .io_deq_1_bits_uop_ftqPtr               (_memIq_io_deq_1_bits_uop_ftqPtr),
@@ -34836,7 +34817,6 @@ module Backend(	// backend/src/zaqal/backend/Backend.scala:14:7
     .io_deq_1_bits_pdest                    (_memIq_io_deq_1_bits_pdest),
     .io_deq_1_bits_snapshotIdx              (_memIq_io_deq_1_bits_snapshotIdx),
     .io_deq_1_bits_robIdx                   (_memIq_io_deq_1_bits_robIdx),
-    .io_deq_2_ready                         (_exec_io_mem_in_2_ready),	// backend/src/zaqal/backend/Backend.scala:260:20
     .io_deq_2_valid                         (_memIq_io_deq_2_valid),
     .io_deq_2_bits_uop_pc                   (_memIq_io_deq_2_bits_uop_pc),
     .io_deq_2_bits_uop_ftqPtr               (_memIq_io_deq_2_bits_uop_ftqPtr),
@@ -36232,7 +36212,7 @@ module Backend(	// backend/src/zaqal/backend/Backend.scala:14:7
     .io_enq_5_bits_snapshotIdx              (_dispatch_io_fpuOut_5_bits_snapshotIdx),	// backend/src/zaqal/backend/Backend.scala:262:24
     .io_enq_5_bits_robIdx                   (_dispatch_io_fpuOut_5_bits_robIdx),	// backend/src/zaqal/backend/Backend.scala:262:24
     .io_enq_5_bits_loadWaitBit              (_dispatch_io_fpuOut_5_bits_loadWaitBit),	// backend/src/zaqal/backend/Backend.scala:262:24
-    .io_deq_0_ready                         (_exec_io_fp_in_0_ready),	// backend/src/zaqal/backend/Backend.scala:260:20
+    .io_deq_0_ready                         (1'h1),	// backend/src/zaqal/backend/Backend.scala:171:15, :260:20, :267:21, :268:21, :269:20
     .io_deq_0_valid                         (_fpIq_io_deq_0_valid),
     .io_deq_0_bits_uop_pc                   (/* unused */),
     .io_deq_0_bits_uop_inst_raw             (/* unused */),
@@ -36401,7 +36381,7 @@ module Backend(	// backend/src/zaqal/backend/Backend.scala:14:7
     .io_deq_0_bits_old_pdest                (/* unused */),
     .io_deq_0_bits_snapshotIdx              (_fpIq_io_deq_0_bits_snapshotIdx),
     .io_deq_0_bits_robIdx                   (_fpIq_io_deq_0_bits_robIdx),
-    .io_deq_1_ready                         (_exec_io_fp_in_1_ready),	// backend/src/zaqal/backend/Backend.scala:260:20
+    .io_deq_1_ready                         (1'h1),	// backend/src/zaqal/backend/Backend.scala:171:15, :260:20, :267:21, :268:21, :269:20
     .io_deq_1_valid                         (_fpIq_io_deq_1_valid),
     .io_deq_1_bits_uop_pc                   (/* unused */),
     .io_deq_1_bits_uop_inst_raw             (/* unused */),
@@ -36538,7 +36518,6 @@ module Backend(	// backend/src/zaqal/backend/Backend.scala:14:7
     .io_deq_1_bits_pdest                    (_fpIq_io_deq_1_bits_pdest),
     .io_deq_1_bits_snapshotIdx              (_fpIq_io_deq_1_bits_snapshotIdx),
     .io_deq_1_bits_robIdx                   (_fpIq_io_deq_1_bits_robIdx),
-    .io_deq_2_ready                         (_exec_io_fp_in_2_ready),	// backend/src/zaqal/backend/Backend.scala:260:20
     .io_deq_2_valid                         (_fpIq_io_deq_2_valid),
     .io_deq_2_bits_uop_pc                   (/* unused */),
     .io_deq_2_bits_uop_inst_raw             (_fpIq_io_deq_2_bits_uop_inst_raw),
@@ -36841,6 +36820,9 @@ module Backend(	// backend/src/zaqal/backend/Backend.scala:14:7
     .io_enq_0_bits_uop_pre_is_call       (_fusionDecoder_io_out_0_uop_pre_is_call),	// backend/src/zaqal/backend/Backend.scala:81:29
     .io_enq_0_bits_uop_pre_is_ret        (_fusionDecoder_io_out_0_uop_pre_is_ret),	// backend/src/zaqal/backend/Backend.scala:81:29
     .io_enq_0_bits_decode_is_rvc         (_fusionDecoder_io_out_0_decode_is_rvc),	// backend/src/zaqal/backend/Backend.scala:81:29
+    .io_enq_0_bits_decode_is_branch      (_fusionDecoder_io_out_0_decode_is_branch),	// backend/src/zaqal/backend/Backend.scala:81:29
+    .io_enq_0_bits_decode_is_store       (_fusionDecoder_io_out_0_decode_is_store),	// backend/src/zaqal/backend/Backend.scala:81:29
+    .io_enq_0_bits_decode_is_fstore      (_fusionDecoder_io_out_0_decode_is_fstore),	// backend/src/zaqal/backend/Backend.scala:81:29
     .io_enq_0_bits_decode_rd             (_fusionDecoder_io_out_0_decode_rd),	// backend/src/zaqal/backend/Backend.scala:81:29
     .io_enq_0_bits_decode_rd_is_fp       (_fusionDecoder_io_out_0_decode_rd_is_fp),	// backend/src/zaqal/backend/Backend.scala:81:29
     .io_enq_0_bits_decode_rd_is_vec      (_fusionDecoder_io_out_0_decode_rd_is_vec),	// backend/src/zaqal/backend/Backend.scala:81:29
@@ -36852,6 +36834,9 @@ module Backend(	// backend/src/zaqal/backend/Backend.scala:14:7
     .io_enq_1_bits_uop_pre_is_call       (_fusionDecoder_io_out_1_uop_pre_is_call),	// backend/src/zaqal/backend/Backend.scala:81:29
     .io_enq_1_bits_uop_pre_is_ret        (_fusionDecoder_io_out_1_uop_pre_is_ret),	// backend/src/zaqal/backend/Backend.scala:81:29
     .io_enq_1_bits_decode_is_rvc         (_fusionDecoder_io_out_1_decode_is_rvc),	// backend/src/zaqal/backend/Backend.scala:81:29
+    .io_enq_1_bits_decode_is_branch      (_fusionDecoder_io_out_1_decode_is_branch),	// backend/src/zaqal/backend/Backend.scala:81:29
+    .io_enq_1_bits_decode_is_store       (_fusionDecoder_io_out_1_decode_is_store),	// backend/src/zaqal/backend/Backend.scala:81:29
+    .io_enq_1_bits_decode_is_fstore      (_fusionDecoder_io_out_1_decode_is_fstore),	// backend/src/zaqal/backend/Backend.scala:81:29
     .io_enq_1_bits_decode_rd             (_fusionDecoder_io_out_1_decode_rd),	// backend/src/zaqal/backend/Backend.scala:81:29
     .io_enq_1_bits_decode_rd_is_fp       (_fusionDecoder_io_out_1_decode_rd_is_fp),	// backend/src/zaqal/backend/Backend.scala:81:29
     .io_enq_1_bits_decode_rd_is_vec      (_fusionDecoder_io_out_1_decode_rd_is_vec),	// backend/src/zaqal/backend/Backend.scala:81:29
@@ -36863,6 +36848,9 @@ module Backend(	// backend/src/zaqal/backend/Backend.scala:14:7
     .io_enq_2_bits_uop_pre_is_call       (_fusionDecoder_io_out_2_uop_pre_is_call),	// backend/src/zaqal/backend/Backend.scala:81:29
     .io_enq_2_bits_uop_pre_is_ret        (_fusionDecoder_io_out_2_uop_pre_is_ret),	// backend/src/zaqal/backend/Backend.scala:81:29
     .io_enq_2_bits_decode_is_rvc         (_fusionDecoder_io_out_2_decode_is_rvc),	// backend/src/zaqal/backend/Backend.scala:81:29
+    .io_enq_2_bits_decode_is_branch      (_fusionDecoder_io_out_2_decode_is_branch),	// backend/src/zaqal/backend/Backend.scala:81:29
+    .io_enq_2_bits_decode_is_store       (_fusionDecoder_io_out_2_decode_is_store),	// backend/src/zaqal/backend/Backend.scala:81:29
+    .io_enq_2_bits_decode_is_fstore      (_fusionDecoder_io_out_2_decode_is_fstore),	// backend/src/zaqal/backend/Backend.scala:81:29
     .io_enq_2_bits_decode_rd             (_fusionDecoder_io_out_2_decode_rd),	// backend/src/zaqal/backend/Backend.scala:81:29
     .io_enq_2_bits_decode_rd_is_fp       (_fusionDecoder_io_out_2_decode_rd_is_fp),	// backend/src/zaqal/backend/Backend.scala:81:29
     .io_enq_2_bits_decode_rd_is_vec      (_fusionDecoder_io_out_2_decode_rd_is_vec),	// backend/src/zaqal/backend/Backend.scala:81:29
@@ -36874,6 +36862,9 @@ module Backend(	// backend/src/zaqal/backend/Backend.scala:14:7
     .io_enq_3_bits_uop_pre_is_call       (_fusionDecoder_io_out_3_uop_pre_is_call),	// backend/src/zaqal/backend/Backend.scala:81:29
     .io_enq_3_bits_uop_pre_is_ret        (_fusionDecoder_io_out_3_uop_pre_is_ret),	// backend/src/zaqal/backend/Backend.scala:81:29
     .io_enq_3_bits_decode_is_rvc         (_fusionDecoder_io_out_3_decode_is_rvc),	// backend/src/zaqal/backend/Backend.scala:81:29
+    .io_enq_3_bits_decode_is_branch      (_fusionDecoder_io_out_3_decode_is_branch),	// backend/src/zaqal/backend/Backend.scala:81:29
+    .io_enq_3_bits_decode_is_store       (_fusionDecoder_io_out_3_decode_is_store),	// backend/src/zaqal/backend/Backend.scala:81:29
+    .io_enq_3_bits_decode_is_fstore      (_fusionDecoder_io_out_3_decode_is_fstore),	// backend/src/zaqal/backend/Backend.scala:81:29
     .io_enq_3_bits_decode_rd             (_fusionDecoder_io_out_3_decode_rd),	// backend/src/zaqal/backend/Backend.scala:81:29
     .io_enq_3_bits_decode_rd_is_fp       (_fusionDecoder_io_out_3_decode_rd_is_fp),	// backend/src/zaqal/backend/Backend.scala:81:29
     .io_enq_3_bits_decode_rd_is_vec      (_fusionDecoder_io_out_3_decode_rd_is_vec),	// backend/src/zaqal/backend/Backend.scala:81:29
@@ -36885,6 +36876,9 @@ module Backend(	// backend/src/zaqal/backend/Backend.scala:14:7
     .io_enq_4_bits_uop_pre_is_call       (_fusionDecoder_io_out_4_uop_pre_is_call),	// backend/src/zaqal/backend/Backend.scala:81:29
     .io_enq_4_bits_uop_pre_is_ret        (_fusionDecoder_io_out_4_uop_pre_is_ret),	// backend/src/zaqal/backend/Backend.scala:81:29
     .io_enq_4_bits_decode_is_rvc         (_fusionDecoder_io_out_4_decode_is_rvc),	// backend/src/zaqal/backend/Backend.scala:81:29
+    .io_enq_4_bits_decode_is_branch      (_fusionDecoder_io_out_4_decode_is_branch),	// backend/src/zaqal/backend/Backend.scala:81:29
+    .io_enq_4_bits_decode_is_store       (_fusionDecoder_io_out_4_decode_is_store),	// backend/src/zaqal/backend/Backend.scala:81:29
+    .io_enq_4_bits_decode_is_fstore      (_fusionDecoder_io_out_4_decode_is_fstore),	// backend/src/zaqal/backend/Backend.scala:81:29
     .io_enq_4_bits_decode_rd             (_fusionDecoder_io_out_4_decode_rd),	// backend/src/zaqal/backend/Backend.scala:81:29
     .io_enq_4_bits_decode_rd_is_fp       (_fusionDecoder_io_out_4_decode_rd_is_fp),	// backend/src/zaqal/backend/Backend.scala:81:29
     .io_enq_4_bits_decode_rd_is_vec      (_fusionDecoder_io_out_4_decode_rd_is_vec),	// backend/src/zaqal/backend/Backend.scala:81:29
@@ -36896,6 +36890,9 @@ module Backend(	// backend/src/zaqal/backend/Backend.scala:14:7
     .io_enq_5_bits_uop_pre_is_call       (_fusionDecoder_io_out_5_uop_pre_is_call),	// backend/src/zaqal/backend/Backend.scala:81:29
     .io_enq_5_bits_uop_pre_is_ret        (_fusionDecoder_io_out_5_uop_pre_is_ret),	// backend/src/zaqal/backend/Backend.scala:81:29
     .io_enq_5_bits_decode_is_rvc         (_fusionDecoder_io_out_5_decode_is_rvc),	// backend/src/zaqal/backend/Backend.scala:81:29
+    .io_enq_5_bits_decode_is_branch      (_fusionDecoder_io_out_5_decode_is_branch),	// backend/src/zaqal/backend/Backend.scala:81:29
+    .io_enq_5_bits_decode_is_store       (_fusionDecoder_io_out_5_decode_is_store),	// backend/src/zaqal/backend/Backend.scala:81:29
+    .io_enq_5_bits_decode_is_fstore      (_fusionDecoder_io_out_5_decode_is_fstore),	// backend/src/zaqal/backend/Backend.scala:81:29
     .io_enq_5_bits_decode_rd             (_fusionDecoder_io_out_5_decode_rd),	// backend/src/zaqal/backend/Backend.scala:81:29
     .io_enq_5_bits_decode_rd_is_fp       (_fusionDecoder_io_out_5_decode_rd_is_fp),	// backend/src/zaqal/backend/Backend.scala:81:29
     .io_enq_5_bits_decode_rd_is_vec      (_fusionDecoder_io_out_5_decode_rd_is_vec),	// backend/src/zaqal/backend/Backend.scala:81:29

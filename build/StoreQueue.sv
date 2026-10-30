@@ -126,8 +126,7 @@ module StoreQueue(	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7
   output [63:0]  io_drain_paddr,	// backend/src/zaqal/backend/lsu/StoreQueue.scala:21:14
   output [15:0]  io_drain_wmask,	// backend/src/zaqal/backend/lsu/StoreQueue.scala:21:14
   output [127:0] io_drain_wdata,	// backend/src/zaqal/backend/lsu/StoreQueue.scala:21:14
-  input          io_drain_ready,	// backend/src/zaqal/backend/lsu/StoreQueue.scala:21:14
-                 io_redirect_valid,	// backend/src/zaqal/backend/lsu/StoreQueue.scala:21:14
+  input          io_redirect_valid,	// backend/src/zaqal/backend/lsu/StoreQueue.scala:21:14
                  io_redirect_is_exception,	// backend/src/zaqal/backend/lsu/StoreQueue.scala:21:14
   input  [7:0]   io_redirect_snapshotIdx,	// backend/src/zaqal/backend/lsu/StoreQueue.scala:21:14
   input  [6:0]   io_robHeadPtr	// backend/src/zaqal/backend/lsu/StoreQueue.scala:21:14
@@ -1889,23 +1888,22 @@ module StoreQueue(	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7
     io_commit_valid_4 & entries_14_valid & entries_14_robIdx == io_commit_robIdx_4;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :204:30, :206:{52,77}, :207:32
   wire               _GEN_491 =
     io_commit_valid_4 & entries_15_valid & entries_15_robIdx == io_commit_robIdx_4;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :204:30, :206:{52,77}, :207:32
-  wire               drained = canDrain & io_drain_ready;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:215:81, :222:26
-  wire               _GEN_492 = drained & deqPtr == 4'h0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:93:23, :94:23, :120:26, :222:26, :223:17, :224:25
-  wire               _GEN_493 = drained & deqPtr == 4'h1;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:94:23, :120:26, :121:38, :222:26, :223:17, :224:25
-  wire               _GEN_494 = drained & deqPtr == 4'h2;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:94:23, :120:26, :121:38, :222:26, :223:17, :224:25
-  wire               _GEN_495 = drained & deqPtr == 4'h3;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:94:23, :120:26, :121:38, :222:26, :223:17, :224:25
-  wire               _GEN_496 = drained & deqPtr == 4'h4;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:94:23, :120:26, :121:38, :222:26, :223:17, :224:25
-  wire               _GEN_497 = drained & deqPtr == 4'h5;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:94:23, :120:26, :121:38, :222:26, :223:17, :224:25
-  wire               _GEN_498 = drained & deqPtr == 4'h6;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:94:23, :120:26, :121:38, :222:26, :223:17, :224:25
-  wire               _GEN_499 = drained & deqPtr == 4'h7;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:94:23, :120:26, :121:38, :222:26, :223:17, :224:25
-  wire               _GEN_500 = drained & deqPtr == 4'h8;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:94:23, :120:26, :121:38, :222:26, :223:17, :224:25
-  wire               _GEN_501 = drained & deqPtr == 4'h9;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:94:23, :120:26, :121:38, :222:26, :223:17, :224:25
-  wire               _GEN_502 = drained & deqPtr == 4'hA;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:94:23, :120:26, :121:38, :222:26, :223:17, :224:25
-  wire               _GEN_503 = drained & deqPtr == 4'hB;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:94:23, :120:26, :121:38, :222:26, :223:17, :224:25
-  wire               _GEN_504 = drained & deqPtr == 4'hC;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:94:23, :120:26, :121:38, :222:26, :223:17, :224:25
-  wire               _GEN_505 = drained & deqPtr == 4'hD;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:94:23, :120:26, :121:38, :222:26, :223:17, :224:25
-  wire               _GEN_506 = drained & deqPtr == 4'hE;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:94:23, :120:26, :121:38, :222:26, :223:17, :224:25
-  wire               _GEN_507 = drained & (&deqPtr);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:94:23, :120:26, :222:26, :223:17, :224:25
+  wire               _GEN_492 = canDrain & deqPtr == 4'h0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:93:23, :94:23, :120:26, :215:81, :223:17, :224:25
+  wire               _GEN_493 = canDrain & deqPtr == 4'h1;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:94:23, :120:26, :121:38, :215:81, :223:17, :224:25
+  wire               _GEN_494 = canDrain & deqPtr == 4'h2;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:94:23, :120:26, :121:38, :215:81, :223:17, :224:25
+  wire               _GEN_495 = canDrain & deqPtr == 4'h3;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:94:23, :120:26, :121:38, :215:81, :223:17, :224:25
+  wire               _GEN_496 = canDrain & deqPtr == 4'h4;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:94:23, :120:26, :121:38, :215:81, :223:17, :224:25
+  wire               _GEN_497 = canDrain & deqPtr == 4'h5;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:94:23, :120:26, :121:38, :215:81, :223:17, :224:25
+  wire               _GEN_498 = canDrain & deqPtr == 4'h6;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:94:23, :120:26, :121:38, :215:81, :223:17, :224:25
+  wire               _GEN_499 = canDrain & deqPtr == 4'h7;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:94:23, :120:26, :121:38, :215:81, :223:17, :224:25
+  wire               _GEN_500 = canDrain & deqPtr == 4'h8;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:94:23, :120:26, :121:38, :215:81, :223:17, :224:25
+  wire               _GEN_501 = canDrain & deqPtr == 4'h9;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:94:23, :120:26, :121:38, :215:81, :223:17, :224:25
+  wire               _GEN_502 = canDrain & deqPtr == 4'hA;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:94:23, :120:26, :121:38, :215:81, :223:17, :224:25
+  wire               _GEN_503 = canDrain & deqPtr == 4'hB;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:94:23, :120:26, :121:38, :215:81, :223:17, :224:25
+  wire               _GEN_504 = canDrain & deqPtr == 4'hC;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:94:23, :120:26, :121:38, :215:81, :223:17, :224:25
+  wire               _GEN_505 = canDrain & deqPtr == 4'hD;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:94:23, :120:26, :121:38, :215:81, :223:17, :224:25
+  wire               _GEN_506 = canDrain & deqPtr == 4'hE;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:94:23, :120:26, :121:38, :215:81, :223:17, :224:25
+  wire               _GEN_507 = canDrain & (&deqPtr);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:94:23, :120:26, :215:81, :223:17, :224:25
   wire               _GEN_508 = enqFires_1 & _GEN_73 | _GEN_57;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :127:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
   wire               _GEN_509 = enqFires_3 ? _GEN_188 | _GEN_508 : _GEN_170 | _GEN_508;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :127:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
   wire               _GEN_510 = enqFires_1 & _GEN_76 | _GEN_58;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :127:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
@@ -2888,7 +2886,7 @@ module StoreQueue(	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7
           + {1'h0,
              {1'h0, _GEN_168 + _totalEnq_T_1}
                + {1'h0, _GEN_282 + _GEN_300 + {1'h0, enqFires_5}}};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:81:20, :93:23, :116:52, :133:26, :134:20, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      if (drained)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:222:26
+      if (canDrain)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:215:81
         deqPtr <= deqPtr + 4'h1;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:94:23, :121:38, :226:22
     end
   end // always @(posedge)

@@ -29,6 +29,9 @@ class Rob(val numWb: Int = 14)(implicit val p: Parameters) extends Module with H
   val enqPtr = RegInit(0.U(log2Up(robSize).W))
   val deqPtr = RegInit(0.U(log2Up(robSize).W))
 
+  val headEntry = robEntries(deqPtr)
+  val headHasException = headEntry.valid && headEntry.stdWritebacked && (headEntry.exceptionVec =/= 0.U)
+
   val maybeFull = RegInit(false.B)
   
   val isEmpty = (enqPtr === deqPtr) && !maybeFull
@@ -37,28 +40,32 @@ class Rob(val numWb: Int = 14)(implicit val p: Parameters) extends Module with H
   val elementsInRob = Mux(isFull, robSize.U,
                       Mux(enqPtr >= deqPtr, enqPtr - deqPtr,
                           robSize.U - (deqPtr - enqPtr)))
+
+  def robDist(idx: UInt): UInt = Mux(idx >= deqPtr, idx - deqPtr, idx + robSize.U - deqPtr)
                           
   val spaceAvailable = robSize.U - elementsInRob
   val canAcceptAll = spaceAvailable >= decodeWidth.U
+  val can_enq = canAcceptAll && !io.bpu_redirect.valid && !headHasException
   
-  val enqCount = PopCount(io.enq.map(req => req.valid && canAcceptAll))
+  val enqCount = PopCount(io.enq.map(req => req.valid && can_enq))
   
   io.allocPtrs(0) := enqPtr
   for (i <- 1 until decodeWidth) {
-    io.allocPtrs(i) := io.allocPtrs(i-1) + Mux(io.enq(i-1).valid && canAcceptAll, 1.U, 0.U)
+    io.allocPtrs(i) := io.allocPtrs(i-1) + Mux(io.enq(i-1).valid && can_enq, 1.U, 0.U)
   }
   
   for (i <- 0 until decodeWidth) {
-    io.enq(i).ready := canAcceptAll
-    when(io.enq(i).valid && canAcceptAll) {
+    io.enq(i).ready := can_enq
+    when(io.enq(i).valid && can_enq) {
       val idx = io.allocPtrs(i)
       val entry = robEntries(idx)
       entry.valid := true.B
       entry.vls := false.B
       entry.interrupt_safe := true.B
       entry.vecWen := io.enq(i).bits.decode.rd_is_vec
-      entry.fpWen := io.enq(i).bits.decode.rd_is_fp
-      entry.rfWen := (io.enq(i).bits.decode.rd =/= 0.U) && !io.enq(i).bits.decode.rd_is_fp && !io.enq(i).bits.decode.rd_is_vec
+      entry.fpWen  := io.enq(i).bits.decode.rd_is_fp
+      entry.rfWen  := (io.enq(i).bits.decode.rd =/= 0.U) && !io.enq(i).bits.decode.rd_is_fp && !io.enq(i).bits.decode.rd_is_vec && !io.enq(i).bits.decode.is_branch && !io.enq(i).bits.decode.is_store && !io.enq(i).bits.decode.is_fstore
+
       entry.wflags := false.B
       entry.isRVC := io.enq(i).bits.decode.is_rvc
       entry.fflags := 0.U
@@ -83,7 +90,7 @@ class Rob(val numWb: Int = 14)(implicit val p: Parameters) extends Module with H
     }
   }
   
-  when (enqCount > 0.U) {
+  when (enqCount > 0.U && !io.bpu_redirect.valid && !headHasException) {
     enqPtr := enqPtr + enqCount
   }
   
@@ -105,8 +112,6 @@ class Rob(val numWb: Int = 14)(implicit val p: Parameters) extends Module with H
   // -------------------------------------------------------------
   // 3. Exception & Flush Logic (Day 6-8)
   // -------------------------------------------------------------
-  val headEntry = robEntries(deqPtr)
-  val headHasException = headEntry.valid && headEntry.stdWritebacked && (headEntry.exceptionVec =/= 0.U)
 
   io.flushOut.valid := headHasException
   io.flushOut.bits.valid := headHasException
@@ -140,12 +145,11 @@ class Rob(val numWb: Int = 14)(implicit val p: Parameters) extends Module with H
       maybeFull := false.B
     } .otherwise {
       // Flush branch misprediction: only younger speculative entries
-      enqPtr := io.bpu_redirect.robIdx + 1.U
+      val dist_branch = robDist(io.bpu_redirect.robIdx)
+      enqPtr := Mux(io.bpu_redirect.robIdx === (robSize - 1).U, 0.U, io.bpu_redirect.robIdx + 1.U)
       for (i <- 0 until robSize) {
-        val d_i = i.U - deqPtr
-        val d_r = io.bpu_redirect.robIdx - deqPtr
-        val d_e = enqPtr - deqPtr
-        when(d_i > d_r && d_i < d_e) {
+        val dist_i = robDist(i.U)
+        when(robEntries(i).valid && (dist_i > dist_branch)) {
           robEntries(i).valid := false.B
         }
       }
@@ -166,9 +170,12 @@ class Rob(val numWb: Int = 14)(implicit val p: Parameters) extends Module with H
   // Cascade commit block signal to prevent out-of-order retirement
   val blockCommitCascade = Wire(Vec(decodeWidth, Bool()))
   
+  val dist_branch = robDist(io.bpu_redirect.robIdx)
   for (i <- 0 until decodeWidth) {
     val entry = robEntries(walkDeqPtrs(i))
-    val isReadyToCommit = entry.valid && entry.stdWritebacked && (entry.exceptionVec === 0.U)
+    val dist_commit = robDist(walkDeqPtrs(i))
+    val commit_is_killed_by_redirect = io.bpu_redirect.valid && (io.bpu_redirect.is_exception || (dist_commit > dist_branch))
+    val isReadyToCommit = entry.valid && entry.stdWritebacked && (entry.exceptionVec === 0.U) && !commit_is_killed_by_redirect
     
     // An instruction is blocked if an older instruction in the bundle couldn't commit, or if the head had an exception
     if (i == 0) {
@@ -210,7 +217,7 @@ class Rob(val numWb: Int = 14)(implicit val p: Parameters) extends Module with H
 
   val commitCount = PopCount(commitValidThisLine)
   // Only advance the deqPtr if we aren't currently flushing
-  when (commitCount > 0.U && !headHasException) {
+  when (commitCount > 0.U && !headHasException && !(io.bpu_redirect.valid && io.bpu_redirect.is_exception)) {
     deqPtr := deqPtr + commitCount
   }
   

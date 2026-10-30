@@ -1,6 +1,9 @@
 #include "refproxy.h"
 #include <iostream>
 #include <iomanip>
+#include <unistd.h>
+
+#define DEBUG_DIFF 1
 
 RefProxy g_ref;
 uint64_t g_commit_count = 0;
@@ -31,7 +34,14 @@ extern "C" void difftest_InstrCommit (
 
   g_commit_count++;
 
+  #ifdef DEBUG_DIFF
+  std::cout << "[Commit #" << std::dec << g_commit_count << " L" << (int)index << "] PC: 0x" 
+            << std::hex << pc << " (inst: 0x" << instr << ") rfwen: " << (int)rfwen 
+            << " wdest: " << (int)wdest << " data: 0x" << data << std::dec << std::endl;
+  #endif
+
   // If Golden model isn't active, just run free
+
   if (!g_ref.initialized) return;
 
   if (skip) {
@@ -69,9 +79,15 @@ extern "C" void difftest_InstrCommit (
 
       if (g_ref.display) {
         std::cerr << "--- Golden Model Dump ---\n";
-        g_ref.display();
+        try {
+          g_ref.display();
+        } catch (...) {
+          std::cerr << "[Difftest] Note: Golden model display ended.\n";
+        }
       }
-      exit(1);
+      std::fflush(stdout);
+      std::fflush(stderr);
+      _exit(1);
     }
   }
 

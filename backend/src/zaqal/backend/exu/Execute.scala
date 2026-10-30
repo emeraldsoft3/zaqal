@@ -238,39 +238,33 @@ class Execute(val hartId: Int = 0)(implicit val p: Parameters) extends Module wi
 
   // Register Cache Hits
   val hit_int = Wire(Vec(4, Bool()))
-  val wait_int = RegInit(VecInit(Seq.fill(4)(false.B)))
   for (i <- 0 until 4) {
     hit_int(i) := intRC.io.rhits(i * 2) && intRC.io.rhits(i * 2 + 1)
-    when(io.int_in(i).valid && !wait_int(i) && !hit_int(i)) { wait_int(i) := true.B } .otherwise { wait_int(i) := false.B }
   }
   val is_amx_0 = decInt(0).is_amx
-  io.int_in(0).ready := Mux(is_amx_0, amx.io.cmd_ready, Mux(is_div_op0, div(0).io.ready, true.B)) && (hit_int(0) || wait_int(0))
-  io.int_in(1).ready := Mux(is_div_op1, div(1).io.ready, true.B) && (hit_int(1) || wait_int(1))
-  io.int_in(2).ready := (hit_int(2) || wait_int(2))
-  io.int_in(3).ready := (hit_int(3) || wait_int(3))
+  io.int_in(0).ready := Mux(is_amx_0, amx.io.cmd_ready, Mux(is_div_op0, div(0).io.ready, true.B))
+  io.int_in(1).ready := Mux(is_div_op1, div(1).io.ready, true.B)
+  io.int_in(2).ready := true.B
+  io.int_in(3).ready := true.B
 
   val hit_mem = Wire(Vec(3, Bool()))
-  val wait_mem = RegInit(VecInit(Seq.fill(3)(false.B)))
   for (i <- 0 until 3) {
     hit_mem(i) := intRC.io.rhits(8 + i * 2) && intRC.io.rhits(8 + i * 2 + 1) && fpRC.io.rhits(12 + i)
-    when(io.mem_in(i).valid && !wait_mem(i) && !hit_mem(i)) { wait_mem(i) := true.B } .otherwise { wait_mem(i) := false.B }
-    io.mem_in(i).ready := (hit_mem(i) || wait_mem(i))
+    io.mem_in(i).ready := true.B
   }
 
   val hit_fp = Wire(Vec(4, Bool()))
-  val wait_fp = RegInit(VecInit(Seq.fill(4)(false.B)))
   for (i <- 0 until 4) {
     val is_fp_int_src = decFp(i).is_fmv_w_x || decFp(i).is_fmv_d_x || decFp(i).is_fcvt_i2f
     val is_fp_fma     = decFp(i).is_fmadd || decFp(i).is_fmsub || decFp(i).is_fnmadd || decFp(i).is_fnmsub
     val fp_int_hit    = if (i >= 2) intRC.io.rhits(14 + (i - 2)) else false.B
     val fp_src_hit    = fpRC.io.rhits(i * 3) && fpRC.io.rhits(i * 3 + 1) && Mux(is_fp_fma, fpRC.io.rhits(i * 3 + 2), true.B)
     hit_fp(i) := Mux(is_fp_int_src, fp_int_hit, fp_src_hit)
-    when(io.fp_in(i).valid && !wait_fp(i) && !hit_fp(i)) { wait_fp(i) := true.B } .otherwise { wait_fp(i) := false.B }
   }
-  io.fp_in(0).ready := (hit_fp(0) || wait_fp(0))
-  io.fp_in(1).ready := (hit_fp(1) || wait_fp(1))
-  io.fp_in(2).ready := (hit_fp(2) || wait_fp(2))
-  io.fp_in(3).ready := fpdiv.io.ready && (hit_fp(3) || wait_fp(3))
+  io.fp_in(0).ready := true.B
+  io.fp_in(1).ready := true.B
+  io.fp_in(2).ready := true.B
+  io.fp_in(3).ready := fpdiv.io.ready
 
   // ---------------- READ-TO-EXECUTE PIPELINE REGISTERS ----------------
   def is_younger_than_redirect(snapIdx: UInt): Bool = {
@@ -1123,11 +1117,9 @@ class Execute(val hartId: Int = 0)(implicit val p: Parameters) extends Module wi
     when(r_agu_val(i) && r_agu_uop(i).pdest =/= 0.U && !is_this_ld_fault) {
       when(r_agu_uop(i).decode.is_load || r_agu_uop(i).decode.is_atomic) {
         when(!r_agu_uop(i).decode.is_fload) {
-          if (i != 0) {
-            next_regFile_wen(4 + i)   := true.B
-            next_regFile_waddr(4 + i) := r_agu_uop(i).pdest
-            next_regFile_wdata(4 + i) := wb_ld_data(i)
-          }
+          next_regFile_wen(4 + i)   := true.B
+          next_regFile_waddr(4 + i) := r_agu_uop(i).pdest
+          next_regFile_wdata(4 + i) := wb_ld_data(i)
         } .otherwise {
           val fload_data = Mux(r_agu_uop(i).decode.is_fld, lsu(i).io.result(63, 0), Cat("hffffffff".U(32.W), lsu(i).io.result(31, 0)))
           fpRegFile.io.wen(4 + i)   := true.B
@@ -1147,8 +1139,8 @@ class Execute(val hartId: Int = 0)(implicit val p: Parameters) extends Module wi
     val r_wu_mem_fload = RegNext(decMem(i).is_fload, false.B)
 
     val dcache_wu_val = io.dcache_resp.valid && io.dcache_resp.bits.load_id =/= 0.U
-    io.wakeup(4 + i).valid := (if (i == 0) dcache_wu_val else r_wu_mem_val)
-    io.wakeup(4 + i).pdest := (if (i == 0) io.dcache_resp.bits.load_id else r_wu_mem_pdest)
+    io.wakeup(4 + i).valid := Mux(dcache_wu_val, true.B, r_wu_mem_val)
+    io.wakeup(4 + i).pdest := Mux(dcache_wu_val, io.dcache_resp.bits.load_id, r_wu_mem_pdest)
     io.wakeup(4 + i).is_fp := r_wu_mem_fload
   }
 
@@ -1188,7 +1180,7 @@ class Execute(val hartId: Int = 0)(implicit val p: Parameters) extends Module wi
   dmem.io.wen   := sq.io.drain.valid
   dmem.io.wmask := sq.io.drain.wmask
   dmem.io.wdata := sq.io.drain.wdata
-  sq.io.drain_ready := io.dcache_req.ready
+  sq.io.drain_ready := true.B
 
   io.uart_tx_valid := dmem.io.uart_tx_valid
   io.uart_tx_char  := dmem.io.uart_tx_char
@@ -1257,12 +1249,12 @@ class Execute(val hartId: Int = 0)(implicit val p: Parameters) extends Module wi
     io.dcache_req.bits.data := sq.io.drain.wdata
     io.dcache_req.bits.is_write := true.B
     io.dcache_req.bits.load_id := 0.U
-    sq.io.drain_ready := io.dcache_req.ready
+    sq.io.drain_ready := true.B
     load_q.io.deq.ready := false.B
   } .otherwise {
     io.dcache_req.valid := load_q.io.deq.valid
     io.dcache_req.bits := load_q.io.deq.bits
-    sq.io.drain_ready := false.B
+    sq.io.drain_ready := true.B
     load_q.io.deq.ready := io.dcache_req.ready
   }
   io.dcache_resp.ready := true.B
