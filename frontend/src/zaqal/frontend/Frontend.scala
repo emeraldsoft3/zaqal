@@ -73,9 +73,6 @@ class Frontend(implicit val p: Parameters) extends Module with HasZaqalParameter
   val ftq_skid  = Module(new SkidBuffer(new FetchRequest))
   ftq_skid.io.enq <> ftq.io.toIfu
   ftq_skid.io.flush := is_valid_redirect
-  // Forward declarations to avoid Scala forward reference errors
-  val ibuf_skids = Seq.fill(decodeWidth)(Module(new SkidBuffer(new MicroOp)))
-  val ibuf_out_ready = Wire(Vec(decodeWidth, Bool()))
 
   // uOp Cache Hit Evaluation (Moved up for bypass)
   val uop_hit = uopCache.io.read.resp.hit && ftq_skid.io.deq.valid && enableUOpCache.B
@@ -136,18 +133,9 @@ class Frontend(implicit val p: Parameters) extends Module with HasZaqalParameter
   ftq.io.redirect := io.redirect
   ftq.io.redirect.valid := is_valid_redirect
 
-  // 5. IBUF -> Backend (Dispatch Path - Pipelined Staging Boundary!)
-  ibuf_out_ready(0) := ibuf_skids(0).io.enq.ready
-  for (i <- 1 until decodeWidth) {
-    ibuf_out_ready(i) := ibuf_out_ready(i - 1) && ibuf_skids(i).io.enq.ready
-  }
-
+  // 5. IBUF -> Backend (Direct Dispatch Path from IBUF FIFO)
   for (i <- 0 until decodeWidth) {
-    ibuf.io.out(i).ready := ibuf_out_ready(i)
-    ibuf_skids(i).io.enq.valid := ibuf.io.out(i).valid && ibuf_out_ready(i)
-    ibuf_skids(i).io.enq.bits  := ibuf.io.out(i).bits
-    ibuf_skids(i).io.flush     := is_valid_redirect
-    io.dispatch(i) <> ibuf_skids(i).io.deq
+    io.dispatch(i) <> ibuf.io.out(i)
   }
 
   // 5. Backend -> FTQ (Metadata Read)

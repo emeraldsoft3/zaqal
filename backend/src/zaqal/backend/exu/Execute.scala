@@ -28,11 +28,11 @@ class Execute(val hartId: Int = 0)(implicit val p: Parameters) extends Module wi
       val addr = UInt(xLen.W)
       val data = UInt(xLen.W)
       val is_write = Bool()
-      val load_id = UInt(6.W)
+      val load_id = UInt(phyRegIdxWidth.W)
     })
     val dcache_resp = Flipped(Decoupled(new Bundle {
       val data = UInt(xLen.W)
-      val load_id = UInt(6.W)
+      val load_id = UInt(phyRegIdxWidth.W)
     }))
     val snoop_probe_valid = Input(Bool())
     val snoop_probe_addr  = Input(UInt(xLen.W))
@@ -267,11 +267,9 @@ class Execute(val hartId: Int = 0)(implicit val p: Parameters) extends Module wi
   io.fp_in(3).ready := fpdiv.io.ready
 
   // ---------------- READ-TO-EXECUTE PIPELINE REGISTERS ----------------
-  def is_younger_than_redirect(snapIdx: UInt): Bool = {
-    val deqPtr = io.snptDeqPtr
-    val restoreIdx = io.redirect.snapshotIdx
-    def circDist(ptr: UInt): UInt = Mux(ptr >= deqPtr, ptr - deqPtr, ptr + renameSnapshotNum.U - deqPtr)
-    circDist(snapIdx) > circDist(restoreIdx)
+  def is_younger_than_redirect(robIdx: UInt): Bool = {
+    def robDist(idx: UInt): UInt = Mux(idx >= io.robDeqPtr, idx - io.robDeqPtr, idx + 128.U - io.robDeqPtr)
+    robDist(robIdx) > robDist(io.redirect.robIdx)
   }
 
   val exe_val_int = RegInit(VecInit(Seq.fill(4)(false.B)))
@@ -279,7 +277,7 @@ class Execute(val hartId: Int = 0)(implicit val p: Parameters) extends Module wi
   for (i <- 0 until 4) {
     val next_val = io.int_in(i).fire
     val next_uop = Mux(io.int_in(i).ready, io.int_in(i).bits, exe_uop_int(i))
-    when(io.redirect.valid && is_younger_than_redirect(next_uop.snapshotIdx)) {
+    when(io.redirect.valid && is_younger_than_redirect(next_uop.robIdx)) {
       exe_val_int(i) := false.B
     } .otherwise {
       exe_val_int(i) := next_val
@@ -292,7 +290,7 @@ class Execute(val hartId: Int = 0)(implicit val p: Parameters) extends Module wi
   for (i <- 0 until 3) {
     val next_val = io.mem_in(i).fire
     val next_uop = Mux(io.mem_in(i).ready, io.mem_in(i).bits, exe_uop_mem(i))
-    when(io.redirect.valid && is_younger_than_redirect(next_uop.snapshotIdx)) {
+    when(io.redirect.valid && is_younger_than_redirect(next_uop.robIdx)) {
       exe_val_mem(i) := false.B
     } .otherwise {
       exe_val_mem(i) := next_val
@@ -305,7 +303,7 @@ class Execute(val hartId: Int = 0)(implicit val p: Parameters) extends Module wi
   for (i <- 0 until 4) {
     val next_val = io.fp_in(i).fire
     val next_uop = Mux(io.fp_in(i).ready, io.fp_in(i).bits, exe_uop_fp(i))
-    when(io.redirect.valid && is_younger_than_redirect(next_uop.snapshotIdx)) {
+    when(io.redirect.valid && is_younger_than_redirect(next_uop.robIdx)) {
       exe_val_fp(i) := false.B
     } .otherwise {
       exe_val_fp(i) := next_val
@@ -393,23 +391,25 @@ class Execute(val hartId: Int = 0)(implicit val p: Parameters) extends Module wi
   val wb_alu_dest = Wire(Vec(4, UInt(phyRegIdxWidth.W)))
   val wb_alu_data = Wire(Vec(4, UInt(xLen.W)))
 
-  wb_alu_val(0)  := exe_val_int(0) && exe_uop_int(0).pdest =/= 0.U && !exe_is_div_op0 && ((!exe_dec_int(0).is_branch) || exe_is_link0) && !is_async_interrupt && !exe_dec_int(0).rd_is_vec && !exe_dec_int(0).rd_is_fp
+  val exe_int_is_flushed = VecInit((0 until 4).map(i => io.redirect.valid && is_younger_than_redirect(exe_uop_int(i).robIdx)))
+
+  wb_alu_val(0)  := exe_val_int(0) && !exe_int_is_flushed(0) && exe_uop_int(0).pdest =/= 0.U && !exe_is_div_op0 && ((!exe_dec_int(0).is_branch) || exe_is_link0) && !is_async_interrupt && !exe_dec_int(0).rd_is_vec && !exe_dec_int(0).rd_is_fp
   wb_alu_dest(0) := exe_uop_int(0).pdest
   wb_alu_data(0) := Mux(exe_is_link0, exe_link_addr0,
                     Mux(exe_dec_int(0).is_vset, vcfg.io.vl_out,
                     Mux(exe_dec_int(0).is_vec_arith && valu.io.is_reduction, valu.io.red_scalar,
                     Mux(exe_dec_int(0).is_csr, csr.io.csr_rdata, alu(0).io.result))))
 
-  wb_alu_val(1)  := exe_val_int(1) && exe_uop_int(1).pdest =/= 0.U && !exe_is_div_op1 && ((!exe_dec_int(1).is_branch) || exe_is_link1) && !exe_dec_int(1).rd_is_vec && !exe_dec_int(1).rd_is_fp
+  wb_alu_val(1)  := exe_val_int(1) && !exe_int_is_flushed(1) && exe_uop_int(1).pdest =/= 0.U && !exe_is_div_op1 && ((!exe_dec_int(1).is_branch) || exe_is_link1) && !exe_dec_int(1).rd_is_vec && !exe_dec_int(1).rd_is_fp
   wb_alu_dest(1) := exe_uop_int(1).pdest
   wb_alu_data(1) := Mux(exe_is_link1, exe_link_addr1,
                     Mux(exe_dec_int(1).is_csr, csr.io.csr_rdata, alu(1).io.result))
 
-  wb_alu_val(2)  := exe_val_int(2) && exe_uop_int(2).pdest =/= 0.U && !exe_dec_int(2).is_branch && !exe_dec_int(2).rd_is_vec && !exe_dec_int(2).rd_is_fp
+  wb_alu_val(2)  := exe_val_int(2) && !exe_int_is_flushed(2) && exe_uop_int(2).pdest =/= 0.U && !exe_dec_int(2).is_branch && !exe_dec_int(2).rd_is_vec && !exe_dec_int(2).rd_is_fp
   wb_alu_dest(2) := exe_uop_int(2).pdest
   wb_alu_data(2) := Mux(exe_dec_int(2).is_csr, csr.io.csr_rdata, alu(2).io.result)
 
-  wb_alu_val(3)  := exe_val_int(3) && exe_uop_int(3).pdest =/= 0.U && !exe_dec_int(3).is_branch && !exe_dec_int(3).rd_is_vec && !exe_dec_int(3).rd_is_fp
+  wb_alu_val(3)  := exe_val_int(3) && !exe_int_is_flushed(3) && exe_uop_int(3).pdest =/= 0.U && !exe_dec_int(3).is_branch && !exe_dec_int(3).rd_is_vec && !exe_dec_int(3).rd_is_fp
   wb_alu_dest(3) := exe_uop_int(3).pdest
   wb_alu_data(3) := Mux(exe_dec_int(3).is_csr, csr.io.csr_rdata, alu(3).io.result)
 
@@ -758,7 +758,7 @@ class Execute(val hartId: Int = 0)(implicit val p: Parameters) extends Module wi
     div(i).io.src2 := src_int_2(i)
     div(i).io.dec  := exe_dec_int(i)
     div(i).io.fire := exe_val_int(i) && is_div_op
-    val div_is_younger = is_younger_than_redirect(div_snap_latch(i))
+    val div_is_younger = is_younger_than_redirect(div_robIdx_latch(i))
     div(i).io.flush := io.redirect.valid && (io.redirect.is_exception || div_is_younger)
     when(div(i).io.flush) { div_rd_latch(i) := 0.U }
   }
@@ -771,8 +771,8 @@ class Execute(val hartId: Int = 0)(implicit val p: Parameters) extends Module wi
   val dist1 = Mux(r1_snap >= io.snptDeqPtr, r1_snap - io.snptDeqPtr, r1_snap - io.snptDeqPtr + renameSnapshotNum.U)
   val lane0_is_older = dist0 < dist1
 
-  val r0_valid = exe_val_int(0) && (bru(0).io.exc_valid || bru(0).io.mispredict) && io.snptValids(r0_snap)
-  val r1_valid = exe_val_int(1) && (bru(1).io.exc_valid || bru(1).io.mispredict) && io.snptValids(r1_snap)
+  val r0_valid = exe_val_int(0) && (bru(0).io.exc_valid || bru(0).io.mispredict)
+  val r1_valid = exe_val_int(1) && (bru(1).io.exc_valid || bru(1).io.mispredict)
 
   when(r0_valid && r1_valid) {
     io.redirect.valid := true.B
@@ -912,8 +912,8 @@ class Execute(val hartId: Int = 0)(implicit val p: Parameters) extends Module wi
   }
 
   // Non-Flushing BPU Update
-  val update0_valid = exe_val_int(0) && (exe_dec_int(0).is_branch || exe_dec_int(0).is_jal || exe_dec_int(0).is_jalr) && !r0_valid && io.snptValids(r0_snap)
-  val update1_valid = exe_val_int(1) && (exe_dec_int(1).is_branch || exe_dec_int(1).is_jal || exe_dec_int(1).is_jalr) && !r1_valid && io.snptValids(r1_snap)
+  val update0_valid = exe_val_int(0) && (exe_dec_int(0).is_branch || exe_dec_int(0).is_jal || exe_dec_int(0).is_jalr) && !r0_valid
+  val update1_valid = exe_val_int(1) && (exe_dec_int(1).is_branch || exe_dec_int(1).is_jal || exe_dec_int(1).is_jalr) && !r1_valid
 
   when(update0_valid) {
     io.bpu_update.valid  := true.B
@@ -1034,7 +1034,7 @@ class Execute(val hartId: Int = 0)(implicit val p: Parameters) extends Module wi
     tlb(i).io.vaddr := agu_vaddr
 
     val next_r_val = exe_val_mem(i)
-    when(io.redirect.valid && is_younger_than_redirect(exe_uop_mem(i).snapshotIdx)) {
+    when(io.redirect.valid && is_younger_than_redirect(exe_uop_mem(i).robIdx)) {
       r_agu_val(i) := false.B
     } .otherwise {
       r_agu_val(i) := next_r_val
@@ -1044,6 +1044,7 @@ class Execute(val hartId: Int = 0)(implicit val p: Parameters) extends Module wi
     r_agu_paddr(i) := tlb(i).io.paddr
     r_agu_src2(i)  := src_mem_2(i)
     r_agu_fsrc2(i) := fsrc_mem_2(i)
+
   }
 
   // ---------------- PAGE TABLE WALKER (PTW) CONNECTIONS ----------------
@@ -1109,8 +1110,15 @@ class Execute(val hartId: Int = 0)(implicit val p: Parameters) extends Module wi
     lq.io.exec_update(i).mask   := ld_mask
     lq.io.exec_update(i).pc     := r_agu_uop(i).uop.pc
 
-    val stlf_hit = sq.io.stlf_resp(i).hit
-    lsu(i).io.mem_data := Mux(stlf_hit, sq.io.stlf_resp(i).wdata, dmem.io.rdata(i))
+    val stlf_resp = sq.io.stlf_resp(i)
+    val merged_mem_data = VecInit((0 until 16).map { b =>
+      val from_stlf = stlf_resp.hit && stlf_resp.wmask(b)
+      val stlf_byte = stlf_resp.wdata(8 * b + 7, 8 * b)
+      val dmem_byte = dmem.io.rdata(i)(8 * b + 7, 8 * b)
+      Mux(from_stlf, stlf_byte, dmem_byte)
+    })
+    lsu(i).io.mem_data := Cat(merged_mem_data.reverse)
+
 
     // Writeback to PRF / Write-back Staging (Port 4 for LSU 0, Port 5 for LSU 1)
     val is_this_ld_fault = load_pmp_fault(i)
@@ -1302,7 +1310,7 @@ class Execute(val hartId: Int = 0)(implicit val p: Parameters) extends Module wi
   fpdiv.io.src2 := fsrc2(3)
   fpdiv.io.dec  := exe_dec_fp(3)
   fpdiv.io.fire := exe_val_fp(3) && (exe_dec_fp(3).is_fdiv || exe_dec_fp(3).is_fsqrt)
-  val fpdiv_is_younger = is_younger_than_redirect(fpdiv_snap_latch)
+  val fpdiv_is_younger = is_younger_than_redirect(fpdiv_robIdx_latch)
   fpdiv.io.flush := io.redirect.valid && (io.redirect.is_exception || fpdiv_is_younger)
   when(fpdiv.io.flush) { fpdiv_rd_latch := 0.U }
 
@@ -1399,7 +1407,7 @@ class Execute(val hartId: Int = 0)(implicit val p: Parameters) extends Module wi
 
     val is_amx_multi = if (i == 0) is_amx_multi0 else false.B
     val is_vec_multi = if (i == 0) is_vec_multi0 else false.B
-    val wb_val_int = exe_val_int(i) && !is_div && !is_mul && !is_amx_multi && !is_vec_multi && (if (i == 0) !is_async_interrupt else true.B)
+    val wb_val_int = exe_val_int(i) && !exe_int_is_flushed(i) && !is_div && !is_mul && !is_amx_multi && !is_vec_multi && (if (i == 0) !is_async_interrupt else true.B)
 
     io.exuWriteback(i).valid := (if (i == 0) (wb_val_int || (amx.io.done && amx_inflight) || (vlsu.io.done && vec_inflight)) else wb_val_int)
     io.exuWriteback(i).bits.robIdx := (if (i == 0) Mux(vlsu.io.done && vec_inflight, vec_rob_idx, Mux(amx.io.done && amx_inflight, amx_rob_idx, exe_uop_int(i).robIdx)) else exe_uop_int(i).robIdx)

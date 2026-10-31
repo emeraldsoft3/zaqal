@@ -85,6 +85,16 @@ fuzz_br_8:
     ld      x17, 160(s0)
     lbu     x15, 64(s0)
     andi    x6, x30, 4
+    slliw   x23, x1, 3
+    addw    x7, x7, x17
+    lw      x25, 16(s0)
+    srai    x4, x21, 46
+    addiw   x11, x19, -51
+    addiw   x7, x5, -5
+    srl     x7, x27, x5
+    sraiw   x17, x12, 13
+    lb      x16, 104(s0)
+    slt     x31, x16, x21
 
     # 5. End of Random Sequence -> Infinite Loop
 fuzz_done:

@@ -74,10 +74,10 @@ module DCache(	// cache/src/zaqal/cache/DCache.scala:19:7
   input  [63:0]  io_req_bits_addr,	// cache/src/zaqal/cache/DCache.scala:20:14
                  io_req_bits_data,	// cache/src/zaqal/cache/DCache.scala:20:14
   input          io_req_bits_is_write,	// cache/src/zaqal/cache/DCache.scala:20:14
-  input  [5:0]   io_req_bits_load_id,	// cache/src/zaqal/cache/DCache.scala:20:14
+  input  [7:0]   io_req_bits_load_id,	// cache/src/zaqal/cache/DCache.scala:20:14
   output         io_resp_valid,	// cache/src/zaqal/cache/DCache.scala:20:14
   output [63:0]  io_resp_bits_data,	// cache/src/zaqal/cache/DCache.scala:20:14
-  output [5:0]   io_resp_bits_load_id,	// cache/src/zaqal/cache/DCache.scala:20:14
+  output [7:0]   io_resp_bits_load_id,	// cache/src/zaqal/cache/DCache.scala:20:14
   input          io_tl_a_ready,	// cache/src/zaqal/cache/DCache.scala:20:14
   output         io_tl_a_valid,	// cache/src/zaqal/cache/DCache.scala:20:14
   output [2:0]   io_tl_a_bits_param,	// cache/src/zaqal/cache/DCache.scala:20:14
@@ -124,7 +124,7 @@ module DCache(	// cache/src/zaqal/cache/DCache.scala:19:7
   wire [63:0]       _tl_mshr_io_refill_out_bits_addr;	// cache/src/zaqal/cache/DCache.scala:73:23
   wire [255:0]      _tl_mshr_io_refill_out_bits_data;	// cache/src/zaqal/cache/DCache.scala:73:23
   wire [63:0]       _tl_mshr_io_refill_out_bits_write_data;	// cache/src/zaqal/cache/DCache.scala:73:23
-  wire [5:0]        _tl_mshr_io_refill_out_bits_load_id;	// cache/src/zaqal/cache/DCache.scala:73:23
+  wire [7:0]        _tl_mshr_io_refill_out_bits_load_id;	// cache/src/zaqal/cache/DCache.scala:73:23
   wire              _tl_mshr_io_refill_out_bits_is_write;	// cache/src/zaqal/cache/DCache.scala:73:23
   wire              _tl_mshr_io_refill_out_bits_is_prefetch;	// cache/src/zaqal/cache/DCache.scala:73:23
   wire              _tl_mshr_io_refill_out_bits_sink_is_l2;	// cache/src/zaqal/cache/DCache.scala:73:23
@@ -5171,7 +5171,7 @@ module DCache(	// cache/src/zaqal/cache/DCache.scala:19:7
     .io_alloc_bits_addr
       (_GEN_10 ? io_req_bits_addr : _prefetcher_io_prefetch_req_bits_addr),	// cache/src/zaqal/cache/DCache.scala:84:26, :115:22, :116:17, :140:44
     .io_alloc_bits_data               (_GEN_10 ? io_req_bits_data : 64'h0),	// cache/src/zaqal/cache/DCache.scala:57:61, :115:22, :116:17, :140:44
-    .io_alloc_bits_load_id            (_GEN_10 ? io_req_bits_load_id : 6'h0),	// cache/src/zaqal/cache/DCache.scala:115:22, :116:17, :119:45, :140:44
+    .io_alloc_bits_load_id            (_GEN_10 ? io_req_bits_load_id : 8'h0),	// cache/src/zaqal/cache/DCache.scala:80:39, :115:22, :116:17, :140:44
     .io_alloc_bits_is_write           (_GEN_10 & io_req_bits_is_write),	// cache/src/zaqal/cache/DCache.scala:115:22, :116:17, :140:44
     .io_alloc_bits_is_upgrade
       (_GEN_10 & isTagMatch & io_req_bits_is_write & ~isExclusive),	// cache/src/zaqal/cache/DCache.scala:67:42, :68:43, :70:59, :115:22, :116:17, :140:44
@@ -5229,7 +5229,7 @@ module DCache(	// cache/src/zaqal/cache/DCache.scala:19:7
       ? _io_resp_bits_data_T_1[63:0]
       : _GEN_8 ? 64'h0 : _GEN_7[io_req_bits_addr[4:3]];	// cache/src/zaqal/cache/DCache.scala:19:7, :57:61, :62:40, :100:21, :115:22, :116:17, :118:34, :123:27, :160:36, :189:91, :190:21, :192:{25,60}
   assign io_resp_bits_load_id =
-    _GEN_11 ? _tl_mshr_io_refill_out_bits_load_id : _GEN_8 ? 6'h0 : io_req_bits_load_id;	// cache/src/zaqal/cache/DCache.scala:19:7, :73:23, :100:21, :101:24, :115:22, :116:17, :118:34, :119:45, :160:36, :189:91, :190:21, :193:28
+    _GEN_11 ? _tl_mshr_io_refill_out_bits_load_id : _GEN_8 ? 8'h0 : io_req_bits_load_id;	// cache/src/zaqal/cache/DCache.scala:19:7, :73:23, :80:39, :100:21, :101:24, :115:22, :116:17, :118:34, :160:36, :189:91, :190:21, :193:28
   assign io_tl_b_ready = io_tl_c_ready;	// cache/src/zaqal/cache/DCache.scala:19:7
   assign io_tl_c_valid = io_tl_b_valid;	// cache/src/zaqal/cache/DCache.scala:19:7
   assign io_tl_c_bits_opcode = _GEN_15 ? {2'h2, _GEN_14} : 3'h4;	// cache/src/zaqal/cache/DCache.scala:19:7, :68:43, :160:36, :221:23, :222:22, :223:54, :226:28, :227:31, :234:31, :259:27, :264:25

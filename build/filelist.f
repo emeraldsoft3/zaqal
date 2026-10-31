@@ -30,7 +30,6 @@ UOpCache.sv
 IBUF.sv
 SkidBuffer.sv
 SkidBuffer_2.sv
-SkidBuffer_8.sv
 Frontend.sv
 Decoder.sv
 SSIT.sv
@@ -78,7 +77,7 @@ RegFile.sv
 FPRegFile.sv
 RegisterCache.sv
 RegisterCache_1.sv
-ram_8x135.sv
+ram_8x137.sv
 Queue8_1_Anon.sv
 Execute.sv
 Dispatch.sv
@@ -89,7 +88,7 @@ AgeDetector_1.sv
 IssueQueue_1.sv
 extern_modules.sv
 Rob.sv
-SkidBuffer_9.sv
+SkidBuffer_3.sv
 VectorDispatchQueue.sv
 Arbiter2_DecodedMicroOp.sv
 TLMSHR.sv

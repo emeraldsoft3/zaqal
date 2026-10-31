@@ -151,6 +151,7 @@ class StoreQueue(val numEntries: Int = 16)(implicit val p: Parameters) extends M
   // Determines the youngest matching store older than the load in O(log2 N) gate levels.
   class StlfCandidate extends Bundle {
     val valid  = Bool()
+    val idx    = UInt(log2Up(numEntries).W)
     val robIdx = UInt(log2Up(128).W)
     val wdata  = UInt((xLen * 2).W)
     val wmask  = UInt(16.W)
@@ -168,15 +169,18 @@ class StoreQueue(val numEntries: Int = 16)(implicit val p: Parameters) extends M
     }
   }
 
+  def sqDist(idx: UInt): UInt = Mux(idx >= deqPtr, idx - deqPtr, idx + numEntries.U - deqPtr)
+
   for (q <- 0 until 2) {
     val leaves = (0 until numEntries).map { i =>
       val e = entries(i)
-      val is_older = e.valid && e.addr_valid && isOlderInRob(e.robIdx, io.stlf_query(q).robIdx, io.robHeadPtr)
+      val is_older = e.valid && e.addr_valid && (e.committed || isOlderInRob(e.robIdx, io.stlf_query(q).robIdx, io.robHeadPtr))
       val addr_match = (e.paddr(xLen - 1, 3) === io.stlf_query(q).paddr(xLen - 1, 3))
       val mask_overlap = (e.wmask & io.stlf_query(q).mask) =/= 0.U
 
       val cand = Wire(new StlfCandidate)
       cand.valid  := io.stlf_query(q).valid && is_older && addr_match && mask_overlap && e.data_valid
+      cand.idx    := i.U
       cand.robIdx := e.robIdx
       cand.wdata  := e.wdata
       cand.wmask  := e.wmask
@@ -185,12 +189,23 @@ class StoreQueue(val numEntries: Int = 16)(implicit val p: Parameters) extends M
 
     val winner = treeReduce(leaves)((a, b) => {
       val res = Wire(new StlfCandidate)
-      val b_is_younger = isOlderInRob(a.robIdx, b.robIdx, io.robHeadPtr)
-      val pick_b = !a.valid || (b.valid && b_is_younger)
+      val b_is_younger = sqDist(b.idx) > sqDist(a.idx)
+      val younger = Mux(b_is_younger, b, a)
+      val older   = Mux(b_is_younger, a, b)
+
       res.valid  := a.valid || b.valid
-      res.robIdx := Mux(pick_b, b.robIdx, a.robIdx)
-      res.wdata  := Mux(pick_b, b.wdata, a.wdata)
-      res.wmask  := Mux(pick_b, b.wmask, a.wmask)
+      res.idx    := Mux(younger.valid, younger.idx, older.idx)
+      res.robIdx := Mux(younger.valid, younger.robIdx, older.robIdx)
+      res.wmask  := Mux(older.valid, older.wmask, 0.U) | Mux(younger.valid, younger.wmask, 0.U)
+
+      val merged_bytes = VecInit((0 until 16).map { k =>
+        val younger_byte_val = younger.valid && younger.wmask(k)
+        val older_byte_val   = older.valid && older.wmask(k)
+        val younger_byte     = younger.wdata(8 * k + 7, 8 * k)
+        val older_byte       = older.wdata(8 * k + 7, 8 * k)
+        Mux(younger_byte_val, younger_byte, Mux(older_byte_val, older_byte, 0.U(8.W)))
+      })
+      res.wdata  := Cat(merged_bytes.reverse)
       res
     })
 
@@ -224,6 +239,10 @@ class StoreQueue(val numEntries: Int = 16)(implicit val p: Parameters) extends M
     headEntry.valid     := false.B
     headEntry.committed := false.B
     deqPtr := deqPtr + 1.U
+  } .elsewhen(!headEntry.valid && (currentCount =/= 0.U)) {
+    deqPtr := deqPtr + 1.U
+  } .elsewhen(currentCount === 0.U) {
+    deqPtr := enqPtr
   }
 
   // ---------------- 6. FLUSH & REDIRECTION HANDLING ----------------
@@ -239,7 +258,9 @@ class StoreQueue(val numEntries: Int = 16)(implicit val p: Parameters) extends M
       enqPtr := deqPtr
     } .otherwise {
       for (i <- 0 until numEntries) {
-        when(entries(i).valid && !entries(i).committed && isYoungerThanSnpt(entries(i).snapshotIdx, io.redirect.snapshotIdx, io.snptDeqPtr)) {
+        val distA = Mux(entries(i).robIdx >= io.robHeadPtr, entries(i).robIdx - io.robHeadPtr, entries(i).robIdx + 128.U - io.robHeadPtr)
+        val distB = Mux(io.redirect.robIdx >= io.robHeadPtr, io.redirect.robIdx - io.robHeadPtr, io.redirect.robIdx + 128.U - io.robHeadPtr)
+        when(entries(i).valid && !entries(i).committed && (distA > distB)) {
           entries(i).valid      := false.B
           entries(i).addr_valid := false.B
           entries(i).data_valid := false.B

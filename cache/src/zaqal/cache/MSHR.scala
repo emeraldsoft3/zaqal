@@ -9,7 +9,7 @@ class MSHR(implicit val p: Parameters) extends Module with HasZaqalParameter {
   val io = IO(new Bundle {
     val alloc = Flipped(Decoupled(new Bundle {
       val addr = UInt(xLen.W)
-      val load_id = UInt(6.W) // ID of the load instruction
+      val load_id = UInt(phyRegIdxWidth.W) // ID of the load instruction
       val is_prefetch = Bool()
       val sink_is_l2 = Bool()
     }))
@@ -18,7 +18,7 @@ class MSHR(implicit val p: Parameters) extends Module with HasZaqalParameter {
     val refill_out = Decoupled(new Bundle {
       val addr = UInt(xLen.W)
       val data = UInt(256.W) // Full cache line
-      val load_id = UInt(6.W)
+      val load_id = UInt(phyRegIdxWidth.W)
       val is_prefetch = Bool()
       val sink_is_l2 = Bool()
     })
@@ -28,7 +28,7 @@ class MSHR(implicit val p: Parameters) extends Module with HasZaqalParameter {
   val state = RegInit(s_IDLE)
 
   val reqAddr = Reg(UInt(xLen.W))
-  val reqLoadId = Reg(UInt(6.W))
+  val reqLoadId = Reg(UInt(phyRegIdxWidth.W))
   val reqIsPrefetch = RegInit(false.B)
   val reqSinkIsL2 = RegInit(false.B)
   val refillData = Reg(UInt(256.W))

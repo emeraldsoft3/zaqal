@@ -78,6 +78,21 @@ fuzz_br_3:
     addi    x23, x25, 7
     addi    x5, x22, 21
 fuzz_br_4:
+    bgeu    x29, x10, fuzz_br_5
+    addi    x28, x30, 11
+    addi    x4, x13, 48
+fuzz_br_5:
+    sd      x3, 224(s0)
+    sraw    x13, x28, x7
+    blt     x28, x29, fuzz_br_6
+    addi    x28, x22, 23
+fuzz_br_6:
+    srliw   x12, x19, 29
+    sraiw   x12, x16, 2
+    bne     x9, x1, fuzz_br_7
+    addi    x29, x31, 40
+    addi    x19, x16, 36
+fuzz_br_7:
 
     # 5. End of Random Sequence -> Infinite Loop
 fuzz_done:

@@ -5,7 +5,7 @@ import chisel3.util._
 import org.chipsalliance.cde.config.Parameters
 import zaqal.common._
 
-class IssueQueue(val numEntries: Int, val numEnq: Int, val numDeq: Int, val numWakeup: Int)(implicit val p: Parameters) extends Module with HasZaqalParameter {
+class IssueQueue(val numEntries: Int, val numEnq: Int, val numDeq: Int, val numWakeup: Int, val isMem: Boolean = false)(implicit val p: Parameters) extends Module with HasZaqalParameter {
   val io = IO(new Bundle {
     val enq = Vec(numEnq, Flipped(Decoupled(new DecodedMicroOp)))
     val deq = Vec(numDeq, Decoupled(new DecodedMicroOp))
@@ -113,10 +113,42 @@ class IssueQueue(val numEntries: Int, val numEnq: Int, val numDeq: Int, val numW
 
   val sys_mask = is_sys.asUInt
 
+  val cfi_mask = VecInit((0 until numEntries).map { i =>
+    entries(i).uop.decode.is_branch || entries(i).uop.decode.is_jal || entries(i).uop.decode.is_jalr
+  }).asUInt
+
+  val mul_div_mask = VecInit((0 until numEntries).map { i =>
+    val d = entries(i).uop.decode
+    d.is_mul || d.is_mulh || d.is_mulhsu || d.is_mulhu || d.is_mulw ||
+    d.is_div || d.is_divu || d.is_rem || d.is_remu || d.is_divw || d.is_divuw || d.is_remw || d.is_remuw
+  }).asUInt
+
+  val load_mask = VecInit((0 until numEntries).map { i =>
+    val d = entries(i).uop.decode
+    d.is_load || d.is_fload || d.is_atomic
+  }).asUInt
+
+  val store_mask = VecInit((0 until numEntries).map { i =>
+    val d = entries(i).uop.decode
+    d.is_store || d.is_fstore
+  }).asUInt
+
   var current_can_issue = can_issue.asUInt
   val issue_onehot = Wire(Vec(numDeq, UInt(numEntries.W)))
   for (k <- 0 until numDeq) {
-    ageDetector.io.canIssue(k) := (if (k == 0) current_can_issue else current_can_issue & ~sys_mask)
+    val port_can_issue = if (isMem) {
+      if (k < 2) current_can_issue & load_mask
+      else current_can_issue & store_mask
+    } else {
+      if (k == 0) {
+        current_can_issue
+      } else if (k == 1) {
+        current_can_issue & ~sys_mask
+      } else {
+        current_can_issue & ~sys_mask & ~cfi_mask & ~mul_div_mask
+      }
+    }
+    ageDetector.io.canIssue(k) := port_can_issue
     issue_onehot(k) := ageDetector.io.out(k)
     val issue_idx = OHToUInt(issue_onehot(k))
     val issue_valid = issue_onehot(k).orR
@@ -195,28 +227,8 @@ class IssueQueue(val numEntries: Int, val numEnq: Int, val numDeq: Int, val numW
   }
 
   when (io.redirect_valid) {
-    // printf(p"  [IQ REDIRECT] restore_idx=${io.redirect_restore_idx} enq_ptr=${io.redirect_enq_ptr}\n")
     for (i <- 0 until numEntries) {
-      // Circular-distance flush: flush entries whose snapIdx is >= restore_idx
-      // in circular order from deqPtr, up to (but not including) enqPtr.
-      // This handles wrap-around correctly (e.g. restore_idx=5, enqPtr=0).
-      val snapIdx = entries(i).uop.snapshotIdx
-      val deqPtr  = io.redirect_deq_ptr
-      val enqPtr  = io.redirect_enq_ptr
-      def circDist(ptr: UInt): UInt =
-        Mux(ptr >= deqPtr, ptr - deqPtr,
-            ptr + renameSnapshotNum.U - deqPtr)
-      val dist_snap    = circDist(snapIdx)
-      val dist_restore = circDist(io.redirect_restore_idx)
-      val dist_enq     = circDist(enqPtr)
-      val in_valid_window  = dist_snap < dist_enq
-      val entry_is_younger = Mux(io.redirect_is_exception,
-        robDist(entries(i).uop.robIdx) > robDist(io.redirect_robIdx),
-        in_valid_window && dist_snap > dist_restore
-      )
-      // when (entries(i).valid) {
-      //   printf(p"    Entry $i: pc=${Hexadecimal(entries(i).uop.uop.pc)} snapIdx=${entries(i).uop.snapshotIdx} is_younger=${entry_is_younger}\n")
-      // }
+      val entry_is_younger = robDist(entries(i).uop.robIdx) > robDist(io.redirect_robIdx)
       when (entry_is_younger) {
         entries(i).valid := false.B
       }

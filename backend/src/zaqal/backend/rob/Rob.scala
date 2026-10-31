@@ -100,11 +100,13 @@ class Rob(val numWb: Int = 14)(implicit val p: Parameters) extends Module with H
   for (wb <- io.exuWriteback) {
     when(wb.valid) {
       val idx = wb.bits.robIdx
-      robEntries(idx).stdWritebacked := true.B
-      robEntries(idx).wbData := wb.bits.data
-      robEntries(idx).exceptionVec := wb.bits.exceptionVec
-      when(robEntries(idx).is_jalr) {
-        robEntries(idx).target := wb.bits.data
+      when(robEntries(idx).valid) {
+        robEntries(idx).stdWritebacked := true.B
+        robEntries(idx).wbData := wb.bits.data
+        robEntries(idx).exceptionVec := wb.bits.exceptionVec
+        when(robEntries(idx).is_jalr) {
+          robEntries(idx).target := wb.bits.data
+        }
       }
     }
   }

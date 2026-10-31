@@ -80,6 +80,7 @@ class FreeList(val numPhyRegs: Int, val numLogicalRegs: Int)(implicit val p: Par
   snapshots.io.enqData := snpt_head_ptr
   snapshots.io.deq := io.snptDeq
   snapshots.io.redirect := io.redirect && io.useSnapshot
+  snapshots.io.redirect_idx := io.snptRestoreIdx
   snapshots.io.flushVec := io.snptFlushVec
 
   // 3. State Update with Fast One-Hot Multiplexing (Mux1H)

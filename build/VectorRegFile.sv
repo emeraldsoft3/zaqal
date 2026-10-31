@@ -340,7 +340,7 @@ module VectorRegFile(	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala
      {vregs_2},
      {vregs_1},
      {vregs_0}};	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :54:14
-  wire [127:0]        _GEN_0 = _GEN[io_waddr[6:0]];	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:54:14, :67:35
+  wire [127:0]        _GEN_0 = _GEN[io_waddr[6:0]];	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:54:14, :67:35
   wire [127:0]        _vregs_T =
     {io_wmask[15] ? io_wdata[127:120] : _GEN_0[127:120],
      io_wmask[14] ? io_wdata[119:112] : _GEN_0[119:112],
@@ -490,261 +490,261 @@ module VectorRegFile(	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala
       vregs_127 <= 128'h0;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:{22,30}
     end
     else begin	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:19:7
-      if (io_wen & io_waddr[6:0] == 7'h0)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h0)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_0 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h1)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h1)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_1 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h2)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h2)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_2 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h3)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h3)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_3 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h4)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h4)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_4 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h5)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h5)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_5 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h6)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h6)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_6 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h7)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h7)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_7 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h8)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h8)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_8 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h9)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h9)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_9 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'hA)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'hA)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_10 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'hB)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'hB)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_11 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'hC)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'hC)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_12 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'hD)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'hD)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_13 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'hE)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'hE)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_14 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'hF)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'hF)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_15 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h10)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h10)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_16 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h11)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h11)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_17 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h12)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h12)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_18 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h13)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h13)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_19 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h14)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h14)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_20 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h15)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h15)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_21 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h16)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h16)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_22 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h17)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h17)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_23 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h18)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h18)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_24 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h19)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h19)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_25 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h1A)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h1A)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_26 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h1B)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h1B)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_27 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h1C)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h1C)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_28 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h1D)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h1D)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_29 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h1E)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h1E)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_30 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h1F)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h1F)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_31 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h20)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h20)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_32 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h21)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h21)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_33 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h22)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h22)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_34 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h23)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h23)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_35 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h24)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h24)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_36 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h25)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h25)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_37 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h26)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h26)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_38 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h27)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h27)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_39 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h28)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h28)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_40 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h29)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h29)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_41 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h2A)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h2A)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_42 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h2B)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h2B)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_43 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h2C)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h2C)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_44 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h2D)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h2D)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_45 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h2E)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h2E)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_46 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h2F)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h2F)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_47 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h30)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h30)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_48 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h31)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h31)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_49 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h32)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h32)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_50 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h33)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h33)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_51 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h34)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h34)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_52 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h35)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h35)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_53 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h36)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h36)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_54 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h37)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h37)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_55 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h38)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h38)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_56 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h39)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h39)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_57 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h3A)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h3A)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_58 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h3B)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h3B)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_59 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h3C)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h3C)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_60 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h3D)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h3D)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_61 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h3E)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h3E)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_62 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h3F)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h3F)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_63 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h40)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h40)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_64 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h41)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h41)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_65 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h42)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h42)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_66 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h43)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h43)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_67 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h44)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h44)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_68 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h45)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h45)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_69 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h46)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h46)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_70 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h47)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h47)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_71 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h48)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h48)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_72 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h49)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h49)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_73 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h4A)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h4A)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_74 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h4B)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h4B)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_75 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h4C)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h4C)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_76 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h4D)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h4D)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_77 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h4E)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h4E)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_78 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h4F)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h4F)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_79 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h50)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h50)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_80 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h51)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h51)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_81 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h52)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h52)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_82 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h53)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h53)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_83 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h54)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h54)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_84 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h55)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h55)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_85 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h56)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h56)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_86 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h57)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h57)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_87 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h58)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h58)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_88 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h59)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h59)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_89 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h5A)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h5A)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_90 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h5B)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h5B)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_91 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h5C)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h5C)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_92 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h5D)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h5D)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_93 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h5E)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h5E)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_94 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h5F)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h5F)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_95 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h60)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h60)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_96 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h61)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h61)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_97 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h62)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h62)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_98 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h63)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h63)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_99 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h64)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h64)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_100 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h65)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h65)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_101 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h66)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h66)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_102 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h67)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h67)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_103 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h68)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h68)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_104 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h69)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h69)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_105 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h6A)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h6A)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_106 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h6B)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h6B)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_107 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h6C)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h6C)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_108 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h6D)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h6D)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_109 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h6E)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h6E)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_110 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h6F)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h6F)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_111 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h70)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h70)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_112 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h71)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h71)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_113 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h72)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h72)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_114 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h73)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h73)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_115 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h74)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h74)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_116 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h75)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h75)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_117 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h76)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h76)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_118 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h77)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h77)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_119 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h78)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h78)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_120 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h79)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h79)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_121 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h7A)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h7A)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_122 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h7B)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h7B)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_123 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h7C)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h7C)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_124 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h7D)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h7D)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_125 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & io_waddr[6:0] == 7'h7E)	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & io_waddr[6:0] == 7'h7E)	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_126 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
-      if (io_wen & (&(io_waddr[6:0])))	// <stdin>:180013:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
+      if (io_wen & (&(io_waddr[6:0])))	// <stdin>:159782:29, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :60:16, :71:21
         vregs_127 <= _vregs_T;	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:51:22, :71:27
     end
   end // always @(posedge)
@@ -895,9 +895,9 @@ module VectorRegFile(	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala
       `FIRRTL_AFTER_INITIAL	// backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:19:7
     `endif // FIRRTL_AFTER_INITIAL
   `endif // ENABLE_INITIAL_REG_
-  assign io_rdata1 = _GEN[io_raddr1[6:0]];	// <stdin>:180004:25, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:19:7, :54:14
-  assign io_rdata2 = _GEN[io_raddr2[6:0]];	// <stdin>:180006:25, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:19:7, :54:14, :55:14
-  assign io_rdata3 = _GEN[io_raddr3[6:0]];	// <stdin>:180008:25, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:19:7, :54:14, :56:14
-  assign io_mask_v0 = _GEN[io_mask_raddr[6:0]];	// <stdin>:180010:26, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:19:7, :54:14, :57:14
+  assign io_rdata1 = _GEN[io_raddr1[6:0]];	// <stdin>:159773:25, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:19:7, :54:14
+  assign io_rdata2 = _GEN[io_raddr2[6:0]];	// <stdin>:159775:25, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:19:7, :54:14, :55:14
+  assign io_rdata3 = _GEN[io_raddr3[6:0]];	// <stdin>:159777:25, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:19:7, :54:14, :56:14
+  assign io_mask_v0 = _GEN[io_mask_raddr[6:0]];	// <stdin>:159779:26, backend/src/zaqal/backend/fu/vector/VectorRegFile.scala:19:7, :54:14, :57:14
 endmodule
 

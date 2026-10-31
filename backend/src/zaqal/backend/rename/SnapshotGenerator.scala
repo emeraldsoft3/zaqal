@@ -10,6 +10,7 @@ class SnapshotGeneratorIO[T <: Data](dataType: T)(implicit val p: Parameters) ex
   val enqData = Input(dataType.cloneType)
   val deq = Input(Bool())
   val redirect = Input(Bool())
+  val redirect_idx = Input(UInt(log2Up(renameSnapshotNum).W))
   val flushVec = Input(Vec(renameSnapshotNum, Bool()))
   val snapshots = Output(Vec(renameSnapshotNum, dataType.cloneType))
   val enqPtr = Output(UInt(log2Up(renameSnapshotNum).W))
@@ -58,22 +59,8 @@ class SnapshotGenerator[T <: Data](dataType: T)(implicit val p: Parameters) exte
     }
   }
 
-  // Recover enqPtr when a redirect flushes valid entries
-  when((io.flushVec.asUInt & snptValids.asUInt).orR) {
-    val candidates = Wire(Vec(renameSnapshotNum, UInt(log2Up(renameSnapshotNum).W)))
-    val qualified = Wire(Vec(renameSnapshotNum, Bool()))
-    
-    for (i <- 0 until renameSnapshotNum) {
-      candidates(i) := ptrAdd(snptDeqPtr, i.U)
-    }
-    
-    qualified(0) := !snptValids(candidates(0)) || io.flushVec(candidates(0))
-    for (i <- 1 until renameSnapshotNum) {
-      val thiz = candidates(i)
-      val last = candidates(i-1)
-      qualified(i) := snptValids(last) && (!snptValids(thiz) || io.flushVec(thiz))
-    }
-    
-    snptEnqPtr := PriorityMux(qualified, candidates)
+  // Recover enqPtr directly from the checkpoint index
+  when(io.redirect) {
+    snptEnqPtr := ptrAdd(io.redirect_idx, 1.U)
   }
 }

@@ -73,7 +73,7 @@ module TLMSHR(	// cache/src/zaqal/cache/TLMSHR.scala:15:7
   input          io_alloc_valid,	// cache/src/zaqal/cache/TLMSHR.scala:16:14
   input  [63:0]  io_alloc_bits_addr,	// cache/src/zaqal/cache/TLMSHR.scala:16:14
                  io_alloc_bits_data,	// cache/src/zaqal/cache/TLMSHR.scala:16:14
-  input  [5:0]   io_alloc_bits_load_id,	// cache/src/zaqal/cache/TLMSHR.scala:16:14
+  input  [7:0]   io_alloc_bits_load_id,	// cache/src/zaqal/cache/TLMSHR.scala:16:14
   input          io_alloc_bits_is_write,	// cache/src/zaqal/cache/TLMSHR.scala:16:14
                  io_alloc_bits_is_upgrade,	// cache/src/zaqal/cache/TLMSHR.scala:16:14
                  io_alloc_bits_is_prefetch,	// cache/src/zaqal/cache/TLMSHR.scala:16:14
@@ -94,7 +94,7 @@ module TLMSHR(	// cache/src/zaqal/cache/TLMSHR.scala:15:7
   output [63:0]  io_refill_out_bits_addr,	// cache/src/zaqal/cache/TLMSHR.scala:16:14
   output [255:0] io_refill_out_bits_data,	// cache/src/zaqal/cache/TLMSHR.scala:16:14
   output [63:0]  io_refill_out_bits_write_data,	// cache/src/zaqal/cache/TLMSHR.scala:16:14
-  output [5:0]   io_refill_out_bits_load_id,	// cache/src/zaqal/cache/TLMSHR.scala:16:14
+  output [7:0]   io_refill_out_bits_load_id,	// cache/src/zaqal/cache/TLMSHR.scala:16:14
   output         io_refill_out_bits_is_write,	// cache/src/zaqal/cache/TLMSHR.scala:16:14
                  io_refill_out_bits_is_prefetch,	// cache/src/zaqal/cache/TLMSHR.scala:16:14
                  io_refill_out_bits_sink_is_l2,	// cache/src/zaqal/cache/TLMSHR.scala:16:14
@@ -104,7 +104,7 @@ module TLMSHR(	// cache/src/zaqal/cache/TLMSHR.scala:15:7
   reg  [2:0]   state;	// cache/src/zaqal/cache/TLMSHR.scala:46:22
   reg  [63:0]  reqAddr;	// cache/src/zaqal/cache/TLMSHR.scala:48:28
   reg  [63:0]  reqWriteData;	// cache/src/zaqal/cache/TLMSHR.scala:49:28
-  reg  [5:0]   reqLoadId;	// cache/src/zaqal/cache/TLMSHR.scala:50:28
+  reg  [7:0]   reqLoadId;	// cache/src/zaqal/cache/TLMSHR.scala:50:28
   reg          reqIsWrite;	// cache/src/zaqal/cache/TLMSHR.scala:51:32
   reg          reqIsUpgrade;	// cache/src/zaqal/cache/TLMSHR.scala:52:32
   reg          reqIsPrefetch;	// cache/src/zaqal/cache/TLMSHR.scala:53:32
@@ -172,13 +172,13 @@ module TLMSHR(	// cache/src/zaqal/cache/TLMSHR.scala:15:7
         state = _RANDOM[4'h0][2:0];	// cache/src/zaqal/cache/TLMSHR.scala:15:7, :46:22
         reqAddr = {_RANDOM[4'h0][31:3], _RANDOM[4'h1], _RANDOM[4'h2][2:0]};	// cache/src/zaqal/cache/TLMSHR.scala:15:7, :46:22, :48:28
         reqWriteData = {_RANDOM[4'h2][31:3], _RANDOM[4'h3], _RANDOM[4'h4][2:0]};	// cache/src/zaqal/cache/TLMSHR.scala:15:7, :48:28, :49:28
-        reqLoadId = _RANDOM[4'h4][8:3];	// cache/src/zaqal/cache/TLMSHR.scala:15:7, :49:28, :50:28
-        reqIsWrite = _RANDOM[4'h4][9];	// cache/src/zaqal/cache/TLMSHR.scala:15:7, :49:28, :51:32
-        reqIsUpgrade = _RANDOM[4'h4][10];	// cache/src/zaqal/cache/TLMSHR.scala:15:7, :49:28, :52:32
-        reqIsPrefetch = _RANDOM[4'h4][11];	// cache/src/zaqal/cache/TLMSHR.scala:15:7, :49:28, :53:32
-        reqSinkIsL2 = _RANDOM[4'h4][12];	// cache/src/zaqal/cache/TLMSHR.scala:15:7, :49:28, :54:32
+        reqLoadId = _RANDOM[4'h4][10:3];	// cache/src/zaqal/cache/TLMSHR.scala:15:7, :49:28, :50:28
+        reqIsWrite = _RANDOM[4'h4][11];	// cache/src/zaqal/cache/TLMSHR.scala:15:7, :49:28, :51:32
+        reqIsUpgrade = _RANDOM[4'h4][12];	// cache/src/zaqal/cache/TLMSHR.scala:15:7, :49:28, :52:32
+        reqIsPrefetch = _RANDOM[4'h4][13];	// cache/src/zaqal/cache/TLMSHR.scala:15:7, :49:28, :53:32
+        reqSinkIsL2 = _RANDOM[4'h4][14];	// cache/src/zaqal/cache/TLMSHR.scala:15:7, :49:28, :54:32
         refillData =
-          {_RANDOM[4'h4][31:13],
+          {_RANDOM[4'h4][31:15],
            _RANDOM[4'h5],
            _RANDOM[4'h6],
            _RANDOM[4'h7],
@@ -186,9 +186,9 @@ module TLMSHR(	// cache/src/zaqal/cache/TLMSHR.scala:15:7
            _RANDOM[4'h9],
            _RANDOM[4'hA],
            _RANDOM[4'hB],
-           _RANDOM[4'hC][12:0]};	// cache/src/zaqal/cache/TLMSHR.scala:15:7, :49:28, :55:28
-        grantSink = _RANDOM[4'hC][18:13];	// cache/src/zaqal/cache/TLMSHR.scala:15:7, :55:28, :56:28
-        grantParam = _RANDOM[4'hC][21:19];	// cache/src/zaqal/cache/TLMSHR.scala:15:7, :55:28, :57:28
+           _RANDOM[4'hC][14:0]};	// cache/src/zaqal/cache/TLMSHR.scala:15:7, :49:28, :55:28
+        grantSink = _RANDOM[4'hC][20:15];	// cache/src/zaqal/cache/TLMSHR.scala:15:7, :55:28, :56:28
+        grantParam = _RANDOM[4'hC][23:21];	// cache/src/zaqal/cache/TLMSHR.scala:15:7, :55:28, :57:28
       `endif // RANDOMIZE_REG_INIT
     end // initial
     `ifdef FIRRTL_AFTER_INITIAL	// cache/src/zaqal/cache/TLMSHR.scala:15:7

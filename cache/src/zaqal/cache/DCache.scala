@@ -22,11 +22,11 @@ class DCache(implicit val p: Parameters) extends Module with HasZaqalParameter {
       val addr = UInt(xLen.W)
       val data = UInt(xLen.W)
       val is_write = Bool()
-      val load_id = UInt(6.W)
+      val load_id = UInt(phyRegIdxWidth.W)
     }))
     val resp = Decoupled(new Bundle {
       val data = UInt(xLen.W)
-      val load_id = UInt(6.W)
+      val load_id = UInt(phyRegIdxWidth.W)
     })
 
     // Coherent TileLink-C Port (Phase 10 Multi-Core Bus)

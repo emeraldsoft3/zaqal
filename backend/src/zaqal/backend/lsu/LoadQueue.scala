@@ -175,7 +175,9 @@ class LoadQueue(val numEntries: Int = 16)(implicit val p: Parameters) extends Mo
       enqPtr := 0.U
     } .otherwise {
       for (i <- 0 until numEntries) {
-        when(entries(i).valid && isYoungerThanSnpt(entries(i).snapshotIdx, io.redirect.snapshotIdx, io.snptDeqPtr)) {
+        val distA = Mux(entries(i).robIdx >= io.robHeadPtr, entries(i).robIdx - io.robHeadPtr, entries(i).robIdx + 128.U - io.robHeadPtr)
+        val distB = Mux(io.redirect.robIdx >= io.robHeadPtr, io.redirect.robIdx - io.robHeadPtr, io.redirect.robIdx + 128.U - io.robHeadPtr)
+        when(entries(i).valid && (distA > distB)) {
           entries(i).valid    := false.B
           entries(i).executed := false.B
         }

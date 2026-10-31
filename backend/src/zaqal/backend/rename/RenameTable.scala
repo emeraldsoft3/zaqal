@@ -80,6 +80,7 @@ class RenameTable(val numLogicalRegs: Int, val isFP: Boolean = false, val isVec:
   snapshots.io.enqData := curr_spec_table(io.snptEnqIdx)
   snapshots.io.deq := io.snptDeq
   snapshots.io.redirect := io.redirect && io.useSnapshot
+  snapshots.io.redirect_idx := io.snptRestoreIdx
   snapshots.io.flushVec := io.snptFlushVec
   
   io.snptEnqPtr := snapshots.io.enqPtr

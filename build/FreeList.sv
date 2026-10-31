@@ -1332,7 +1332,7 @@ module FreeList(	// backend/src/zaqal/backend/rename/FreeList.scala:12:7
     | (io_snptRestoreIdx == 8'hFD ? _snapshots_io_snapshots_253 : 8'h0)
     | (io_snptRestoreIdx == 8'hFE ? _snapshots_io_snapshots_254 : 8'h0)
     | ((&io_snptRestoreIdx) ? _snapshots_io_snapshots_255 : 8'h0);	// backend/src/zaqal/backend/rename/FreeList.scala:41:33, :45:24, :51:25, src/main/scala/chisel3/util/Mux.scala:30:73, :32:36, src/main/scala/chisel3/util/OneHot.scala:65:12
-  wire [7:0]        targetHeadPtr = io_useSnapshot ? _GEN_8 | _GEN_9 : tailPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:46:24, :90:28, src/main/scala/chisel3/util/Mux.scala:30:73
+  wire [7:0]        targetHeadPtr = io_useSnapshot ? _GEN_8 | _GEN_9 : tailPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:46:24, :91:28, src/main/scala/chisel3/util/Mux.scala:30:73
   wire [2:0]        actualAlloc =
     io_doAllocate & io_canAllocate_0
       ? {1'h0,
@@ -1341,8 +1341,8 @@ module FreeList(	// backend/src/zaqal/backend/rename/FreeList.scala:12:7
         + {1'h0,
            {1'h0, io_allocateFire_3} + {1'h0, io_allocateFire_4}
              + {1'h0, io_allocateFire_5}}
-      : 3'h0;	// backend/src/zaqal/backend/rename/FreeList.scala:59:29, :60:31, :100:31, :101:{26,41}
-  wire [8:0]        headPtr_next = _GEN_4 + {6'h0, actualAlloc};	// backend/src/zaqal/backend/rename/FreeList.scala:12:7, :54:20, :101:26
+      : 3'h0;	// backend/src/zaqal/backend/rename/FreeList.scala:59:29, :60:31, :101:31, :102:{26,41}
+  wire [8:0]        headPtr_next = _GEN_4 + {6'h0, actualAlloc};	// backend/src/zaqal/backend/rename/FreeList.scala:12:7, :54:20, :102:26
   wire [1:0]        _GEN_10 = {1'h0, io_freeReq_1};	// backend/src/zaqal/backend/rename/FreeList.scala:59:29, :69:25
   wire [1:0]        _GEN_11 = {1'h0, io_freeReq_2};	// backend/src/zaqal/backend/rename/FreeList.scala:59:29, :69:25
   wire [1:0]        _offset_T_18 = _GEN_10 + _GEN_11;	// backend/src/zaqal/backend/rename/FreeList.scala:69:25
@@ -3455,18 +3455,18 @@ module FreeList(	// backend/src/zaqal/backend/rename/FreeList.scala:12:7
       else if (io_freeReq_0 & _GEN_16 == 8'h9F)	// backend/src/zaqal/backend/rename/FreeList.scala:41:{25,33}, :55:8, :72:26, :73:42
         freeList_159 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:41:25
       if (io_redirect) begin	// backend/src/zaqal/backend/rename/FreeList.scala:13:14
-        headPtr <= targetHeadPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:45:24, :90:28
+        headPtr <= targetHeadPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:45:24, :91:28
         freeCount <=
           tailPtr == targetHeadPtr
             ? 8'hA0
             : tailPtr > targetHeadPtr
                 ? tailPtr - targetHeadPtr
-                : 8'hA0 - (targetHeadPtr - tailPtr);	// backend/src/zaqal/backend/rename/FreeList.scala:41:33, :46:24, :49:26, :90:28, :93:{19,28}, :95:{23,32}, :96:32, :97:{31,48}
+                : 8'hA0 - (targetHeadPtr - tailPtr);	// backend/src/zaqal/backend/rename/FreeList.scala:41:33, :46:24, :49:26, :91:28, :94:{19,28}, :96:{23,32}, :97:32, :98:{31,48}
       end
       else begin	// backend/src/zaqal/backend/rename/FreeList.scala:13:14
         headPtr <= headPtr_next > 9'h9F ? headPtr_next[7:0] + 8'h60 : headPtr_next[7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:41:33, :45:24, :54:20, :55:{8,14,30}
         tailPtr <= tailPtr_next > 9'h9F ? tailPtr_next[7:0] + 8'h60 : tailPtr_next[7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:41:33, :46:24, :54:20, :55:{8,14,30}
-        freeCount <= freeCount - {5'h0, actualAlloc} + {5'h0, numFree};	// backend/src/zaqal/backend/rename/FreeList.scala:49:26, :54:20, :60:31, :69:25, :101:26, :104:{28,42}
+        freeCount <= freeCount - {5'h0, actualAlloc} + {5'h0, numFree};	// backend/src/zaqal/backend/rename/FreeList.scala:49:26, :54:20, :60:31, :69:25, :102:26, :105:{28,42}
       end
     end
   end // always @(posedge)
@@ -3660,6 +3660,8 @@ module FreeList(	// backend/src/zaqal/backend/rename/FreeList.scala:12:7
       (snpt_head_ptr_next > 9'h9F
          ? snpt_head_ptr_next[7:0] + 8'h60
          : snpt_head_ptr_next[7:0]),	// backend/src/zaqal/backend/rename/FreeList.scala:41:33, :54:20, :55:{8,14,30}
+    .io_redirect      (io_redirect & io_useSnapshot),	// backend/src/zaqal/backend/rename/FreeList.scala:82:40
+    .io_redirect_idx  (io_snptRestoreIdx),
     .io_flushVec_0    (io_snptFlushVec_0),
     .io_flushVec_1    (io_snptFlushVec_1),
     .io_flushVec_2    (io_snptFlushVec_2),

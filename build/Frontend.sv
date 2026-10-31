@@ -346,117 +346,127 @@ module Frontend(	// frontend/src/zaqal/frontend/Frontend.scala:11:7
   output [63:0]  io_debug_ftq_pc	// frontend/src/zaqal/frontend/Frontend.scala:12:14
 );
 
-  wire        _ifu_skid_io_enq_ready;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire        _ifu_skid_io_deq_valid;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire [63:0] _ifu_skid_io_deq_bits_pc_0;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire [63:0] _ifu_skid_io_deq_bits_pc_1;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire [63:0] _ifu_skid_io_deq_bits_pc_2;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire [63:0] _ifu_skid_io_deq_bits_pc_3;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire [63:0] _ifu_skid_io_deq_bits_pc_4;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire [63:0] _ifu_skid_io_deq_bits_pc_5;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire [63:0] _ifu_skid_io_deq_bits_pc_6;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire [63:0] _ifu_skid_io_deq_bits_pc_7;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire [63:0] _ifu_skid_io_deq_bits_pc_8;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire [63:0] _ifu_skid_io_deq_bits_pc_9;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire [63:0] _ifu_skid_io_deq_bits_pc_10;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire [63:0] _ifu_skid_io_deq_bits_pc_11;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire [63:0] _ifu_skid_io_deq_bits_pc_12;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire [63:0] _ifu_skid_io_deq_bits_pc_13;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire [63:0] _ifu_skid_io_deq_bits_pc_14;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire [63:0] _ifu_skid_io_deq_bits_pc_15;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire [31:0] _ifu_skid_io_deq_bits_instructions_0;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire [31:0] _ifu_skid_io_deq_bits_instructions_1;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire [31:0] _ifu_skid_io_deq_bits_instructions_2;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire [31:0] _ifu_skid_io_deq_bits_instructions_3;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire [31:0] _ifu_skid_io_deq_bits_instructions_4;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire [31:0] _ifu_skid_io_deq_bits_instructions_5;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire [31:0] _ifu_skid_io_deq_bits_instructions_6;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire [31:0] _ifu_skid_io_deq_bits_instructions_7;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire [31:0] _ifu_skid_io_deq_bits_instructions_8;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire [31:0] _ifu_skid_io_deq_bits_instructions_9;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire [31:0] _ifu_skid_io_deq_bits_instructions_10;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire [31:0] _ifu_skid_io_deq_bits_instructions_11;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire [31:0] _ifu_skid_io_deq_bits_instructions_12;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire [31:0] _ifu_skid_io_deq_bits_instructions_13;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire [31:0] _ifu_skid_io_deq_bits_instructions_14;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire [31:0] _ifu_skid_io_deq_bits_instructions_15;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire        _ifu_skid_io_deq_bits_pre_decoded_0_is_rvc;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire        _ifu_skid_io_deq_bits_pre_decoded_0_is_call;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire        _ifu_skid_io_deq_bits_pre_decoded_0_is_ret;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire [31:0] _ifu_skid_io_deq_bits_pre_decoded_0_expanded_inst;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire        _ifu_skid_io_deq_bits_pre_decoded_1_is_rvc;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire        _ifu_skid_io_deq_bits_pre_decoded_1_is_call;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire        _ifu_skid_io_deq_bits_pre_decoded_1_is_ret;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire [31:0] _ifu_skid_io_deq_bits_pre_decoded_1_expanded_inst;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire        _ifu_skid_io_deq_bits_pre_decoded_2_is_rvc;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire        _ifu_skid_io_deq_bits_pre_decoded_2_is_call;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire        _ifu_skid_io_deq_bits_pre_decoded_2_is_ret;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire [31:0] _ifu_skid_io_deq_bits_pre_decoded_2_expanded_inst;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire        _ifu_skid_io_deq_bits_pre_decoded_3_is_rvc;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire        _ifu_skid_io_deq_bits_pre_decoded_3_is_call;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire        _ifu_skid_io_deq_bits_pre_decoded_3_is_ret;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire [31:0] _ifu_skid_io_deq_bits_pre_decoded_3_expanded_inst;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire        _ifu_skid_io_deq_bits_pre_decoded_4_is_rvc;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire        _ifu_skid_io_deq_bits_pre_decoded_4_is_call;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire        _ifu_skid_io_deq_bits_pre_decoded_4_is_ret;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire [31:0] _ifu_skid_io_deq_bits_pre_decoded_4_expanded_inst;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire        _ifu_skid_io_deq_bits_pre_decoded_5_is_rvc;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire        _ifu_skid_io_deq_bits_pre_decoded_5_is_call;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire        _ifu_skid_io_deq_bits_pre_decoded_5_is_ret;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire [31:0] _ifu_skid_io_deq_bits_pre_decoded_5_expanded_inst;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire        _ifu_skid_io_deq_bits_pre_decoded_6_is_rvc;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire        _ifu_skid_io_deq_bits_pre_decoded_6_is_call;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire        _ifu_skid_io_deq_bits_pre_decoded_6_is_ret;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire [31:0] _ifu_skid_io_deq_bits_pre_decoded_6_expanded_inst;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire        _ifu_skid_io_deq_bits_pre_decoded_7_is_rvc;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire        _ifu_skid_io_deq_bits_pre_decoded_7_is_call;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire        _ifu_skid_io_deq_bits_pre_decoded_7_is_ret;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire [31:0] _ifu_skid_io_deq_bits_pre_decoded_7_expanded_inst;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire        _ifu_skid_io_deq_bits_pre_decoded_8_is_rvc;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire        _ifu_skid_io_deq_bits_pre_decoded_8_is_call;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire        _ifu_skid_io_deq_bits_pre_decoded_8_is_ret;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire [31:0] _ifu_skid_io_deq_bits_pre_decoded_8_expanded_inst;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire        _ifu_skid_io_deq_bits_pre_decoded_9_is_rvc;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire        _ifu_skid_io_deq_bits_pre_decoded_9_is_call;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire        _ifu_skid_io_deq_bits_pre_decoded_9_is_ret;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire [31:0] _ifu_skid_io_deq_bits_pre_decoded_9_expanded_inst;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire        _ifu_skid_io_deq_bits_pre_decoded_10_is_rvc;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire        _ifu_skid_io_deq_bits_pre_decoded_10_is_call;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire        _ifu_skid_io_deq_bits_pre_decoded_10_is_ret;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire [31:0] _ifu_skid_io_deq_bits_pre_decoded_10_expanded_inst;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire        _ifu_skid_io_deq_bits_pre_decoded_11_is_rvc;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire        _ifu_skid_io_deq_bits_pre_decoded_11_is_call;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire        _ifu_skid_io_deq_bits_pre_decoded_11_is_ret;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire [31:0] _ifu_skid_io_deq_bits_pre_decoded_11_expanded_inst;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire        _ifu_skid_io_deq_bits_pre_decoded_12_is_rvc;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire        _ifu_skid_io_deq_bits_pre_decoded_12_is_call;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire        _ifu_skid_io_deq_bits_pre_decoded_12_is_ret;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire [31:0] _ifu_skid_io_deq_bits_pre_decoded_12_expanded_inst;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire        _ifu_skid_io_deq_bits_pre_decoded_13_is_rvc;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire        _ifu_skid_io_deq_bits_pre_decoded_13_is_call;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire        _ifu_skid_io_deq_bits_pre_decoded_13_is_ret;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire [31:0] _ifu_skid_io_deq_bits_pre_decoded_13_expanded_inst;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire        _ifu_skid_io_deq_bits_pre_decoded_14_is_rvc;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire        _ifu_skid_io_deq_bits_pre_decoded_14_is_call;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire        _ifu_skid_io_deq_bits_pre_decoded_14_is_ret;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire [31:0] _ifu_skid_io_deq_bits_pre_decoded_14_expanded_inst;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire        _ifu_skid_io_deq_bits_pre_decoded_15_is_rvc;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire        _ifu_skid_io_deq_bits_pre_decoded_15_is_call;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire        _ifu_skid_io_deq_bits_pre_decoded_15_is_ret;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire [31:0] _ifu_skid_io_deq_bits_pre_decoded_15_expanded_inst;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire [15:0] _ifu_skid_io_deq_bits_mask;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire [63:0] _ifu_skid_io_deq_bits_prediction_target;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire        _ifu_skid_io_deq_bits_prediction_taken;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire [3:0]  _ifu_skid_io_deq_bits_prediction_slot;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire [5:0]  _ifu_skid_io_deq_bits_ftqPtr;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire        _ifu_skid_io_deq_bits_epoch;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire [1:0]  _ifu_skid_io_occupancy;	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-  wire        _ibuf_skids_5_io_enq_ready;	// frontend/src/zaqal/frontend/Frontend.scala:77:48
-  wire        _ibuf_skids_4_io_enq_ready;	// frontend/src/zaqal/frontend/Frontend.scala:77:48
-  wire        _ibuf_skids_3_io_enq_ready;	// frontend/src/zaqal/frontend/Frontend.scala:77:48
-  wire        _ibuf_skids_2_io_enq_ready;	// frontend/src/zaqal/frontend/Frontend.scala:77:48
-  wire        _ibuf_skids_1_io_enq_ready;	// frontend/src/zaqal/frontend/Frontend.scala:77:48
-  wire        _ibuf_skids_0_io_enq_ready;	// frontend/src/zaqal/frontend/Frontend.scala:77:48
+  wire        _ifu_skid_io_enq_ready;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire        _ifu_skid_io_deq_valid;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire [63:0] _ifu_skid_io_deq_bits_pc_0;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire [63:0] _ifu_skid_io_deq_bits_pc_1;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire [63:0] _ifu_skid_io_deq_bits_pc_2;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire [63:0] _ifu_skid_io_deq_bits_pc_3;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire [63:0] _ifu_skid_io_deq_bits_pc_4;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire [63:0] _ifu_skid_io_deq_bits_pc_5;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire [63:0] _ifu_skid_io_deq_bits_pc_6;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire [63:0] _ifu_skid_io_deq_bits_pc_7;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire [63:0] _ifu_skid_io_deq_bits_pc_8;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire [63:0] _ifu_skid_io_deq_bits_pc_9;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire [63:0] _ifu_skid_io_deq_bits_pc_10;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire [63:0] _ifu_skid_io_deq_bits_pc_11;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire [63:0] _ifu_skid_io_deq_bits_pc_12;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire [63:0] _ifu_skid_io_deq_bits_pc_13;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire [63:0] _ifu_skid_io_deq_bits_pc_14;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire [63:0] _ifu_skid_io_deq_bits_pc_15;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire [31:0] _ifu_skid_io_deq_bits_instructions_0;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire [31:0] _ifu_skid_io_deq_bits_instructions_1;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire [31:0] _ifu_skid_io_deq_bits_instructions_2;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire [31:0] _ifu_skid_io_deq_bits_instructions_3;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire [31:0] _ifu_skid_io_deq_bits_instructions_4;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire [31:0] _ifu_skid_io_deq_bits_instructions_5;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire [31:0] _ifu_skid_io_deq_bits_instructions_6;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire [31:0] _ifu_skid_io_deq_bits_instructions_7;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire [31:0] _ifu_skid_io_deq_bits_instructions_8;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire [31:0] _ifu_skid_io_deq_bits_instructions_9;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire [31:0] _ifu_skid_io_deq_bits_instructions_10;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire [31:0] _ifu_skid_io_deq_bits_instructions_11;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire [31:0] _ifu_skid_io_deq_bits_instructions_12;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire [31:0] _ifu_skid_io_deq_bits_instructions_13;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire [31:0] _ifu_skid_io_deq_bits_instructions_14;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire [31:0] _ifu_skid_io_deq_bits_instructions_15;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire        _ifu_skid_io_deq_bits_pre_decoded_0_is_rvc;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire        _ifu_skid_io_deq_bits_pre_decoded_0_is_cfi;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire        _ifu_skid_io_deq_bits_pre_decoded_0_is_call;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire        _ifu_skid_io_deq_bits_pre_decoded_0_is_ret;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire [31:0] _ifu_skid_io_deq_bits_pre_decoded_0_expanded_inst;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire        _ifu_skid_io_deq_bits_pre_decoded_1_is_rvc;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire        _ifu_skid_io_deq_bits_pre_decoded_1_is_cfi;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire        _ifu_skid_io_deq_bits_pre_decoded_1_is_call;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire        _ifu_skid_io_deq_bits_pre_decoded_1_is_ret;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire [31:0] _ifu_skid_io_deq_bits_pre_decoded_1_expanded_inst;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire        _ifu_skid_io_deq_bits_pre_decoded_2_is_rvc;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire        _ifu_skid_io_deq_bits_pre_decoded_2_is_cfi;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire        _ifu_skid_io_deq_bits_pre_decoded_2_is_call;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire        _ifu_skid_io_deq_bits_pre_decoded_2_is_ret;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire [31:0] _ifu_skid_io_deq_bits_pre_decoded_2_expanded_inst;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire        _ifu_skid_io_deq_bits_pre_decoded_3_is_rvc;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire        _ifu_skid_io_deq_bits_pre_decoded_3_is_cfi;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire        _ifu_skid_io_deq_bits_pre_decoded_3_is_call;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire        _ifu_skid_io_deq_bits_pre_decoded_3_is_ret;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire [31:0] _ifu_skid_io_deq_bits_pre_decoded_3_expanded_inst;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire        _ifu_skid_io_deq_bits_pre_decoded_4_is_rvc;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire        _ifu_skid_io_deq_bits_pre_decoded_4_is_cfi;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire        _ifu_skid_io_deq_bits_pre_decoded_4_is_call;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire        _ifu_skid_io_deq_bits_pre_decoded_4_is_ret;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire [31:0] _ifu_skid_io_deq_bits_pre_decoded_4_expanded_inst;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire        _ifu_skid_io_deq_bits_pre_decoded_5_is_rvc;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire        _ifu_skid_io_deq_bits_pre_decoded_5_is_cfi;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire        _ifu_skid_io_deq_bits_pre_decoded_5_is_call;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire        _ifu_skid_io_deq_bits_pre_decoded_5_is_ret;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire [31:0] _ifu_skid_io_deq_bits_pre_decoded_5_expanded_inst;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire        _ifu_skid_io_deq_bits_pre_decoded_6_is_rvc;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire        _ifu_skid_io_deq_bits_pre_decoded_6_is_cfi;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire        _ifu_skid_io_deq_bits_pre_decoded_6_is_call;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire        _ifu_skid_io_deq_bits_pre_decoded_6_is_ret;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire [31:0] _ifu_skid_io_deq_bits_pre_decoded_6_expanded_inst;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire        _ifu_skid_io_deq_bits_pre_decoded_7_is_rvc;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire        _ifu_skid_io_deq_bits_pre_decoded_7_is_cfi;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire        _ifu_skid_io_deq_bits_pre_decoded_7_is_call;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire        _ifu_skid_io_deq_bits_pre_decoded_7_is_ret;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire [31:0] _ifu_skid_io_deq_bits_pre_decoded_7_expanded_inst;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire        _ifu_skid_io_deq_bits_pre_decoded_8_is_rvc;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire        _ifu_skid_io_deq_bits_pre_decoded_8_is_cfi;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire        _ifu_skid_io_deq_bits_pre_decoded_8_is_call;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire        _ifu_skid_io_deq_bits_pre_decoded_8_is_ret;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire [31:0] _ifu_skid_io_deq_bits_pre_decoded_8_expanded_inst;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire        _ifu_skid_io_deq_bits_pre_decoded_9_is_rvc;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire        _ifu_skid_io_deq_bits_pre_decoded_9_is_cfi;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire        _ifu_skid_io_deq_bits_pre_decoded_9_is_call;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire        _ifu_skid_io_deq_bits_pre_decoded_9_is_ret;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire [31:0] _ifu_skid_io_deq_bits_pre_decoded_9_expanded_inst;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire        _ifu_skid_io_deq_bits_pre_decoded_10_is_rvc;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire        _ifu_skid_io_deq_bits_pre_decoded_10_is_cfi;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire        _ifu_skid_io_deq_bits_pre_decoded_10_is_call;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire        _ifu_skid_io_deq_bits_pre_decoded_10_is_ret;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire [31:0] _ifu_skid_io_deq_bits_pre_decoded_10_expanded_inst;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire        _ifu_skid_io_deq_bits_pre_decoded_11_is_rvc;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire        _ifu_skid_io_deq_bits_pre_decoded_11_is_cfi;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire        _ifu_skid_io_deq_bits_pre_decoded_11_is_call;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire        _ifu_skid_io_deq_bits_pre_decoded_11_is_ret;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire [31:0] _ifu_skid_io_deq_bits_pre_decoded_11_expanded_inst;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire        _ifu_skid_io_deq_bits_pre_decoded_12_is_rvc;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire        _ifu_skid_io_deq_bits_pre_decoded_12_is_cfi;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire        _ifu_skid_io_deq_bits_pre_decoded_12_is_call;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire        _ifu_skid_io_deq_bits_pre_decoded_12_is_ret;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire [31:0] _ifu_skid_io_deq_bits_pre_decoded_12_expanded_inst;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire        _ifu_skid_io_deq_bits_pre_decoded_13_is_rvc;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire        _ifu_skid_io_deq_bits_pre_decoded_13_is_cfi;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire        _ifu_skid_io_deq_bits_pre_decoded_13_is_call;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire        _ifu_skid_io_deq_bits_pre_decoded_13_is_ret;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire [31:0] _ifu_skid_io_deq_bits_pre_decoded_13_expanded_inst;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire        _ifu_skid_io_deq_bits_pre_decoded_14_is_rvc;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire        _ifu_skid_io_deq_bits_pre_decoded_14_is_cfi;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire        _ifu_skid_io_deq_bits_pre_decoded_14_is_call;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire        _ifu_skid_io_deq_bits_pre_decoded_14_is_ret;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire [31:0] _ifu_skid_io_deq_bits_pre_decoded_14_expanded_inst;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire        _ifu_skid_io_deq_bits_pre_decoded_15_is_rvc;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire        _ifu_skid_io_deq_bits_pre_decoded_15_is_cfi;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire        _ifu_skid_io_deq_bits_pre_decoded_15_is_call;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire        _ifu_skid_io_deq_bits_pre_decoded_15_is_ret;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire [31:0] _ifu_skid_io_deq_bits_pre_decoded_15_expanded_inst;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire [15:0] _ifu_skid_io_deq_bits_mask;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire [63:0] _ifu_skid_io_deq_bits_prediction_target;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire        _ifu_skid_io_deq_bits_prediction_taken;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire [3:0]  _ifu_skid_io_deq_bits_prediction_slot;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire [5:0]  _ifu_skid_io_deq_bits_ftqPtr;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire        _ifu_skid_io_deq_bits_epoch;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+  wire [1:0]  _ifu_skid_io_occupancy;	// frontend/src/zaqal/frontend/Frontend.scala:91:24
   wire        _ftq_skid_io_enq_ready;	// frontend/src/zaqal/frontend/Frontend.scala:73:25
   wire        _ftq_skid_io_deq_valid;	// frontend/src/zaqal/frontend/Frontend.scala:73:25
   wire [63:0] _ftq_skid_io_deq_bits_pc;	// frontend/src/zaqal/frontend/Frontend.scala:73:25
@@ -476,72 +486,6 @@ module Frontend(	// frontend/src/zaqal/frontend/Frontend.scala:11:7
   wire [3:0]  _bpu_skid_io_deq_bits_prediction_slot;	// frontend/src/zaqal/frontend/Frontend.scala:58:25
   wire [1:0]  _bpu_skid_io_occupancy;	// frontend/src/zaqal/frontend/Frontend.scala:58:25
   wire        _ibuf_io_inst_data_ready;	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-  wire        _ibuf_io_out_0_valid;	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-  wire [63:0] _ibuf_io_out_0_bits_pc;	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-  wire [31:0] _ibuf_io_out_0_bits_inst_raw;	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-  wire        _ibuf_io_out_0_bits_pre_is_rvc;	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-  wire        _ibuf_io_out_0_bits_pre_is_call;	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-  wire        _ibuf_io_out_0_bits_pre_is_ret;	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-  wire [31:0] _ibuf_io_out_0_bits_pre_expanded_inst;	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-  wire [5:0]  _ibuf_io_out_0_bits_ftqPtr;	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-  wire        _ibuf_io_out_0_bits_is_predicted_taken;	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-  wire [63:0] _ibuf_io_out_0_bits_predicted_target;	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-  wire        _ibuf_io_out_0_bits_epoch;	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-  wire        _ibuf_io_out_1_valid;	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-  wire [63:0] _ibuf_io_out_1_bits_pc;	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-  wire [31:0] _ibuf_io_out_1_bits_inst_raw;	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-  wire        _ibuf_io_out_1_bits_pre_is_rvc;	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-  wire        _ibuf_io_out_1_bits_pre_is_call;	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-  wire        _ibuf_io_out_1_bits_pre_is_ret;	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-  wire [31:0] _ibuf_io_out_1_bits_pre_expanded_inst;	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-  wire [5:0]  _ibuf_io_out_1_bits_ftqPtr;	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-  wire        _ibuf_io_out_1_bits_is_predicted_taken;	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-  wire [63:0] _ibuf_io_out_1_bits_predicted_target;	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-  wire        _ibuf_io_out_1_bits_epoch;	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-  wire        _ibuf_io_out_2_valid;	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-  wire [63:0] _ibuf_io_out_2_bits_pc;	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-  wire [31:0] _ibuf_io_out_2_bits_inst_raw;	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-  wire        _ibuf_io_out_2_bits_pre_is_rvc;	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-  wire        _ibuf_io_out_2_bits_pre_is_call;	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-  wire        _ibuf_io_out_2_bits_pre_is_ret;	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-  wire [31:0] _ibuf_io_out_2_bits_pre_expanded_inst;	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-  wire [5:0]  _ibuf_io_out_2_bits_ftqPtr;	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-  wire        _ibuf_io_out_2_bits_is_predicted_taken;	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-  wire [63:0] _ibuf_io_out_2_bits_predicted_target;	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-  wire        _ibuf_io_out_2_bits_epoch;	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-  wire        _ibuf_io_out_3_valid;	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-  wire [63:0] _ibuf_io_out_3_bits_pc;	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-  wire [31:0] _ibuf_io_out_3_bits_inst_raw;	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-  wire        _ibuf_io_out_3_bits_pre_is_rvc;	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-  wire        _ibuf_io_out_3_bits_pre_is_call;	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-  wire        _ibuf_io_out_3_bits_pre_is_ret;	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-  wire [31:0] _ibuf_io_out_3_bits_pre_expanded_inst;	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-  wire [5:0]  _ibuf_io_out_3_bits_ftqPtr;	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-  wire        _ibuf_io_out_3_bits_is_predicted_taken;	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-  wire [63:0] _ibuf_io_out_3_bits_predicted_target;	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-  wire        _ibuf_io_out_3_bits_epoch;	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-  wire        _ibuf_io_out_4_valid;	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-  wire [63:0] _ibuf_io_out_4_bits_pc;	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-  wire [31:0] _ibuf_io_out_4_bits_inst_raw;	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-  wire        _ibuf_io_out_4_bits_pre_is_rvc;	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-  wire        _ibuf_io_out_4_bits_pre_is_call;	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-  wire        _ibuf_io_out_4_bits_pre_is_ret;	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-  wire [31:0] _ibuf_io_out_4_bits_pre_expanded_inst;	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-  wire [5:0]  _ibuf_io_out_4_bits_ftqPtr;	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-  wire        _ibuf_io_out_4_bits_is_predicted_taken;	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-  wire [63:0] _ibuf_io_out_4_bits_predicted_target;	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-  wire        _ibuf_io_out_4_bits_epoch;	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-  wire        _ibuf_io_out_5_valid;	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-  wire [63:0] _ibuf_io_out_5_bits_pc;	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-  wire [31:0] _ibuf_io_out_5_bits_inst_raw;	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-  wire        _ibuf_io_out_5_bits_pre_is_rvc;	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-  wire        _ibuf_io_out_5_bits_pre_is_call;	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-  wire        _ibuf_io_out_5_bits_pre_is_ret;	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-  wire [31:0] _ibuf_io_out_5_bits_pre_expanded_inst;	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-  wire [5:0]  _ibuf_io_out_5_bits_ftqPtr;	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-  wire        _ibuf_io_out_5_bits_is_predicted_taken;	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-  wire [63:0] _ibuf_io_out_5_bits_predicted_target;	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-  wire        _ibuf_io_out_5_bits_epoch;	// frontend/src/zaqal/frontend/Frontend.scala:46:24
   wire        _uopCache_io_read_resp_hit;	// frontend/src/zaqal/frontend/Frontend.scala:44:24
   wire [63:0] _uopCache_io_read_resp_data_pc_0;	// frontend/src/zaqal/frontend/Frontend.scala:44:24
   wire [63:0] _uopCache_io_read_resp_data_pc_1;	// frontend/src/zaqal/frontend/Frontend.scala:44:24
@@ -576,66 +520,82 @@ module Frontend(	// frontend/src/zaqal/frontend/Frontend.scala:11:7
   wire [31:0] _uopCache_io_read_resp_data_instructions_14;	// frontend/src/zaqal/frontend/Frontend.scala:44:24
   wire [31:0] _uopCache_io_read_resp_data_instructions_15;	// frontend/src/zaqal/frontend/Frontend.scala:44:24
   wire        _uopCache_io_read_resp_data_pre_decoded_0_is_rvc;	// frontend/src/zaqal/frontend/Frontend.scala:44:24
+  wire        _uopCache_io_read_resp_data_pre_decoded_0_is_cfi;	// frontend/src/zaqal/frontend/Frontend.scala:44:24
   wire        _uopCache_io_read_resp_data_pre_decoded_0_is_call;	// frontend/src/zaqal/frontend/Frontend.scala:44:24
   wire        _uopCache_io_read_resp_data_pre_decoded_0_is_ret;	// frontend/src/zaqal/frontend/Frontend.scala:44:24
   wire [31:0] _uopCache_io_read_resp_data_pre_decoded_0_expanded_inst;	// frontend/src/zaqal/frontend/Frontend.scala:44:24
   wire        _uopCache_io_read_resp_data_pre_decoded_1_is_rvc;	// frontend/src/zaqal/frontend/Frontend.scala:44:24
+  wire        _uopCache_io_read_resp_data_pre_decoded_1_is_cfi;	// frontend/src/zaqal/frontend/Frontend.scala:44:24
   wire        _uopCache_io_read_resp_data_pre_decoded_1_is_call;	// frontend/src/zaqal/frontend/Frontend.scala:44:24
   wire        _uopCache_io_read_resp_data_pre_decoded_1_is_ret;	// frontend/src/zaqal/frontend/Frontend.scala:44:24
   wire [31:0] _uopCache_io_read_resp_data_pre_decoded_1_expanded_inst;	// frontend/src/zaqal/frontend/Frontend.scala:44:24
   wire        _uopCache_io_read_resp_data_pre_decoded_2_is_rvc;	// frontend/src/zaqal/frontend/Frontend.scala:44:24
+  wire        _uopCache_io_read_resp_data_pre_decoded_2_is_cfi;	// frontend/src/zaqal/frontend/Frontend.scala:44:24
   wire        _uopCache_io_read_resp_data_pre_decoded_2_is_call;	// frontend/src/zaqal/frontend/Frontend.scala:44:24
   wire        _uopCache_io_read_resp_data_pre_decoded_2_is_ret;	// frontend/src/zaqal/frontend/Frontend.scala:44:24
   wire [31:0] _uopCache_io_read_resp_data_pre_decoded_2_expanded_inst;	// frontend/src/zaqal/frontend/Frontend.scala:44:24
   wire        _uopCache_io_read_resp_data_pre_decoded_3_is_rvc;	// frontend/src/zaqal/frontend/Frontend.scala:44:24
+  wire        _uopCache_io_read_resp_data_pre_decoded_3_is_cfi;	// frontend/src/zaqal/frontend/Frontend.scala:44:24
   wire        _uopCache_io_read_resp_data_pre_decoded_3_is_call;	// frontend/src/zaqal/frontend/Frontend.scala:44:24
   wire        _uopCache_io_read_resp_data_pre_decoded_3_is_ret;	// frontend/src/zaqal/frontend/Frontend.scala:44:24
   wire [31:0] _uopCache_io_read_resp_data_pre_decoded_3_expanded_inst;	// frontend/src/zaqal/frontend/Frontend.scala:44:24
   wire        _uopCache_io_read_resp_data_pre_decoded_4_is_rvc;	// frontend/src/zaqal/frontend/Frontend.scala:44:24
+  wire        _uopCache_io_read_resp_data_pre_decoded_4_is_cfi;	// frontend/src/zaqal/frontend/Frontend.scala:44:24
   wire        _uopCache_io_read_resp_data_pre_decoded_4_is_call;	// frontend/src/zaqal/frontend/Frontend.scala:44:24
   wire        _uopCache_io_read_resp_data_pre_decoded_4_is_ret;	// frontend/src/zaqal/frontend/Frontend.scala:44:24
   wire [31:0] _uopCache_io_read_resp_data_pre_decoded_4_expanded_inst;	// frontend/src/zaqal/frontend/Frontend.scala:44:24
   wire        _uopCache_io_read_resp_data_pre_decoded_5_is_rvc;	// frontend/src/zaqal/frontend/Frontend.scala:44:24
+  wire        _uopCache_io_read_resp_data_pre_decoded_5_is_cfi;	// frontend/src/zaqal/frontend/Frontend.scala:44:24
   wire        _uopCache_io_read_resp_data_pre_decoded_5_is_call;	// frontend/src/zaqal/frontend/Frontend.scala:44:24
   wire        _uopCache_io_read_resp_data_pre_decoded_5_is_ret;	// frontend/src/zaqal/frontend/Frontend.scala:44:24
   wire [31:0] _uopCache_io_read_resp_data_pre_decoded_5_expanded_inst;	// frontend/src/zaqal/frontend/Frontend.scala:44:24
   wire        _uopCache_io_read_resp_data_pre_decoded_6_is_rvc;	// frontend/src/zaqal/frontend/Frontend.scala:44:24
+  wire        _uopCache_io_read_resp_data_pre_decoded_6_is_cfi;	// frontend/src/zaqal/frontend/Frontend.scala:44:24
   wire        _uopCache_io_read_resp_data_pre_decoded_6_is_call;	// frontend/src/zaqal/frontend/Frontend.scala:44:24
   wire        _uopCache_io_read_resp_data_pre_decoded_6_is_ret;	// frontend/src/zaqal/frontend/Frontend.scala:44:24
   wire [31:0] _uopCache_io_read_resp_data_pre_decoded_6_expanded_inst;	// frontend/src/zaqal/frontend/Frontend.scala:44:24
   wire        _uopCache_io_read_resp_data_pre_decoded_7_is_rvc;	// frontend/src/zaqal/frontend/Frontend.scala:44:24
+  wire        _uopCache_io_read_resp_data_pre_decoded_7_is_cfi;	// frontend/src/zaqal/frontend/Frontend.scala:44:24
   wire        _uopCache_io_read_resp_data_pre_decoded_7_is_call;	// frontend/src/zaqal/frontend/Frontend.scala:44:24
   wire        _uopCache_io_read_resp_data_pre_decoded_7_is_ret;	// frontend/src/zaqal/frontend/Frontend.scala:44:24
   wire [31:0] _uopCache_io_read_resp_data_pre_decoded_7_expanded_inst;	// frontend/src/zaqal/frontend/Frontend.scala:44:24
   wire        _uopCache_io_read_resp_data_pre_decoded_8_is_rvc;	// frontend/src/zaqal/frontend/Frontend.scala:44:24
+  wire        _uopCache_io_read_resp_data_pre_decoded_8_is_cfi;	// frontend/src/zaqal/frontend/Frontend.scala:44:24
   wire        _uopCache_io_read_resp_data_pre_decoded_8_is_call;	// frontend/src/zaqal/frontend/Frontend.scala:44:24
   wire        _uopCache_io_read_resp_data_pre_decoded_8_is_ret;	// frontend/src/zaqal/frontend/Frontend.scala:44:24
   wire [31:0] _uopCache_io_read_resp_data_pre_decoded_8_expanded_inst;	// frontend/src/zaqal/frontend/Frontend.scala:44:24
   wire        _uopCache_io_read_resp_data_pre_decoded_9_is_rvc;	// frontend/src/zaqal/frontend/Frontend.scala:44:24
+  wire        _uopCache_io_read_resp_data_pre_decoded_9_is_cfi;	// frontend/src/zaqal/frontend/Frontend.scala:44:24
   wire        _uopCache_io_read_resp_data_pre_decoded_9_is_call;	// frontend/src/zaqal/frontend/Frontend.scala:44:24
   wire        _uopCache_io_read_resp_data_pre_decoded_9_is_ret;	// frontend/src/zaqal/frontend/Frontend.scala:44:24
   wire [31:0] _uopCache_io_read_resp_data_pre_decoded_9_expanded_inst;	// frontend/src/zaqal/frontend/Frontend.scala:44:24
   wire        _uopCache_io_read_resp_data_pre_decoded_10_is_rvc;	// frontend/src/zaqal/frontend/Frontend.scala:44:24
+  wire        _uopCache_io_read_resp_data_pre_decoded_10_is_cfi;	// frontend/src/zaqal/frontend/Frontend.scala:44:24
   wire        _uopCache_io_read_resp_data_pre_decoded_10_is_call;	// frontend/src/zaqal/frontend/Frontend.scala:44:24
   wire        _uopCache_io_read_resp_data_pre_decoded_10_is_ret;	// frontend/src/zaqal/frontend/Frontend.scala:44:24
   wire [31:0] _uopCache_io_read_resp_data_pre_decoded_10_expanded_inst;	// frontend/src/zaqal/frontend/Frontend.scala:44:24
   wire        _uopCache_io_read_resp_data_pre_decoded_11_is_rvc;	// frontend/src/zaqal/frontend/Frontend.scala:44:24
+  wire        _uopCache_io_read_resp_data_pre_decoded_11_is_cfi;	// frontend/src/zaqal/frontend/Frontend.scala:44:24
   wire        _uopCache_io_read_resp_data_pre_decoded_11_is_call;	// frontend/src/zaqal/frontend/Frontend.scala:44:24
   wire        _uopCache_io_read_resp_data_pre_decoded_11_is_ret;	// frontend/src/zaqal/frontend/Frontend.scala:44:24
   wire [31:0] _uopCache_io_read_resp_data_pre_decoded_11_expanded_inst;	// frontend/src/zaqal/frontend/Frontend.scala:44:24
   wire        _uopCache_io_read_resp_data_pre_decoded_12_is_rvc;	// frontend/src/zaqal/frontend/Frontend.scala:44:24
+  wire        _uopCache_io_read_resp_data_pre_decoded_12_is_cfi;	// frontend/src/zaqal/frontend/Frontend.scala:44:24
   wire        _uopCache_io_read_resp_data_pre_decoded_12_is_call;	// frontend/src/zaqal/frontend/Frontend.scala:44:24
   wire        _uopCache_io_read_resp_data_pre_decoded_12_is_ret;	// frontend/src/zaqal/frontend/Frontend.scala:44:24
   wire [31:0] _uopCache_io_read_resp_data_pre_decoded_12_expanded_inst;	// frontend/src/zaqal/frontend/Frontend.scala:44:24
   wire        _uopCache_io_read_resp_data_pre_decoded_13_is_rvc;	// frontend/src/zaqal/frontend/Frontend.scala:44:24
+  wire        _uopCache_io_read_resp_data_pre_decoded_13_is_cfi;	// frontend/src/zaqal/frontend/Frontend.scala:44:24
   wire        _uopCache_io_read_resp_data_pre_decoded_13_is_call;	// frontend/src/zaqal/frontend/Frontend.scala:44:24
   wire        _uopCache_io_read_resp_data_pre_decoded_13_is_ret;	// frontend/src/zaqal/frontend/Frontend.scala:44:24
   wire [31:0] _uopCache_io_read_resp_data_pre_decoded_13_expanded_inst;	// frontend/src/zaqal/frontend/Frontend.scala:44:24
   wire        _uopCache_io_read_resp_data_pre_decoded_14_is_rvc;	// frontend/src/zaqal/frontend/Frontend.scala:44:24
+  wire        _uopCache_io_read_resp_data_pre_decoded_14_is_cfi;	// frontend/src/zaqal/frontend/Frontend.scala:44:24
   wire        _uopCache_io_read_resp_data_pre_decoded_14_is_call;	// frontend/src/zaqal/frontend/Frontend.scala:44:24
   wire        _uopCache_io_read_resp_data_pre_decoded_14_is_ret;	// frontend/src/zaqal/frontend/Frontend.scala:44:24
   wire [31:0] _uopCache_io_read_resp_data_pre_decoded_14_expanded_inst;	// frontend/src/zaqal/frontend/Frontend.scala:44:24
   wire        _uopCache_io_read_resp_data_pre_decoded_15_is_rvc;	// frontend/src/zaqal/frontend/Frontend.scala:44:24
+  wire        _uopCache_io_read_resp_data_pre_decoded_15_is_cfi;	// frontend/src/zaqal/frontend/Frontend.scala:44:24
   wire        _uopCache_io_read_resp_data_pre_decoded_15_is_call;	// frontend/src/zaqal/frontend/Frontend.scala:44:24
   wire        _uopCache_io_read_resp_data_pre_decoded_15_is_ret;	// frontend/src/zaqal/frontend/Frontend.scala:44:24
   wire [31:0] _uopCache_io_read_resp_data_pre_decoded_15_expanded_inst;	// frontend/src/zaqal/frontend/Frontend.scala:44:24
@@ -789,12 +749,7 @@ module Frontend(	// frontend/src/zaqal/frontend/Frontend.scala:11:7
   reg         fetch_epoch;	// frontend/src/zaqal/frontend/Frontend.scala:49:28
   wire        is_valid_redirect =
     io_redirect_valid & (io_redirect_is_exception | io_redirect_epoch == fetch_epoch);	// frontend/src/zaqal/frontend/Frontend.scala:49:28, :50:{45,74,96}
-  wire        uop_hit = _uopCache_io_read_resp_hit & _ftq_skid_io_deq_valid;	// frontend/src/zaqal/frontend/Frontend.scala:44:24, :73:25, :81:43
-  wire        ibuf_out_ready_1 = _ibuf_skids_0_io_enq_ready & _ibuf_skids_1_io_enq_ready;	// frontend/src/zaqal/frontend/Frontend.scala:77:48, :142:48
-  wire        ibuf_out_ready_2 = ibuf_out_ready_1 & _ibuf_skids_2_io_enq_ready;	// frontend/src/zaqal/frontend/Frontend.scala:77:48, :142:48
-  wire        ibuf_out_ready_3 = ibuf_out_ready_2 & _ibuf_skids_3_io_enq_ready;	// frontend/src/zaqal/frontend/Frontend.scala:77:48, :142:48
-  wire        ibuf_out_ready_4 = ibuf_out_ready_3 & _ibuf_skids_4_io_enq_ready;	// frontend/src/zaqal/frontend/Frontend.scala:77:48, :142:48
-  wire        ibuf_out_ready_5 = ibuf_out_ready_4 & _ibuf_skids_5_io_enq_ready;	// frontend/src/zaqal/frontend/Frontend.scala:77:48, :142:48
+  wire        uop_hit = _uopCache_io_read_resp_hit & _ftq_skid_io_deq_valid;	// frontend/src/zaqal/frontend/Frontend.scala:44:24, :73:25, :78:43
   always @(posedge clock) begin	// frontend/src/zaqal/frontend/Frontend.scala:11:7
     if (reset)	// frontend/src/zaqal/frontend/Frontend.scala:11:7
       fetch_epoch <= 1'h0;	// frontend/src/zaqal/frontend/Frontend.scala:11:7, :49:28
@@ -918,13 +873,13 @@ module Frontend(	// frontend/src/zaqal/frontend/Frontend.scala:11:7
     .io_flush                          (is_valid_redirect),	// frontend/src/zaqal/frontend/Frontend.scala:50:45
     .io_totalInFlight
       ({1'h0, {1'h0, _bpu_skid_io_occupancy} + {1'h0, _ftq_skid_io_occupancy}}
-       + {2'h0, _ifu_skid_io_occupancy}),	// frontend/src/zaqal/frontend/Frontend.scala:11:7, :40:24, :41:24, :44:24, :58:25, :73:25, :94:24, :132:{52,77}
+       + {2'h0, _ifu_skid_io_occupancy}),	// frontend/src/zaqal/frontend/Frontend.scala:11:7, :40:24, :41:24, :44:24, :58:25, :73:25, :91:24, :129:{52,77}
     .io_occupancy                      (/* unused */)
   );
   IFU ifu (	// frontend/src/zaqal/frontend/Frontend.scala:41:24
     .io_fetch_req_ready                             (_ifu_io_fetch_req_ready),
     .io_fetch_req_valid
-      (_ftq_skid_io_deq_valid & _icache_io_ready & ~uop_hit),	// frontend/src/zaqal/frontend/Frontend.scala:42:24, :73:25, :81:43, :100:{70,73}
+      (_ftq_skid_io_deq_valid & _icache_io_ready & ~uop_hit),	// frontend/src/zaqal/frontend/Frontend.scala:42:24, :73:25, :78:43, :97:{70,73}
     .io_fetch_req_bits_pc                           (_ftq_skid_io_deq_bits_pc),	// frontend/src/zaqal/frontend/Frontend.scala:73:25
     .io_fetch_req_bits_mask                         (_ftq_skid_io_deq_bits_mask),	// frontend/src/zaqal/frontend/Frontend.scala:73:25
     .io_fetch_req_bits_prediction_target
@@ -935,7 +890,7 @@ module Frontend(	// frontend/src/zaqal/frontend/Frontend.scala:11:7
       (_ftq_skid_io_deq_bits_prediction_slot),	// frontend/src/zaqal/frontend/Frontend.scala:73:25
     .io_fetch_req_bits_ftqPtr                       (_ftq_skid_io_deq_bits_ftqPtr),	// frontend/src/zaqal/frontend/Frontend.scala:73:25
     .io_fetch_req_bits_epoch                        (_ftq_skid_io_deq_bits_epoch),	// frontend/src/zaqal/frontend/Frontend.scala:73:25
-    .io_toIbuffer_ready                             (_ifu_skid_io_enq_ready & ~uop_hit),	// frontend/src/zaqal/frontend/Frontend.scala:81:43, :94:24, :100:73, :112:51
+    .io_toIbuffer_ready                             (_ifu_skid_io_enq_ready & ~uop_hit),	// frontend/src/zaqal/frontend/Frontend.scala:78:43, :91:24, :97:73, :109:51
     .io_toIbuffer_valid                             (_ifu_io_toIbuffer_valid),
     .io_toIbuffer_bits_pc_0                         (_ifu_io_toIbuffer_bits_pc_0),
     .io_toIbuffer_bits_pc_1                         (_ifu_io_toIbuffer_bits_pc_1),
@@ -1256,7 +1211,8 @@ module Frontend(	// frontend/src/zaqal/frontend/Frontend.scala:11:7
       (_uopCache_io_read_resp_data_instructions_15),
     .io_read_resp_data_pre_decoded_0_is_rvc
       (_uopCache_io_read_resp_data_pre_decoded_0_is_rvc),
-    .io_read_resp_data_pre_decoded_0_is_cfi              (/* unused */),
+    .io_read_resp_data_pre_decoded_0_is_cfi
+      (_uopCache_io_read_resp_data_pre_decoded_0_is_cfi),
     .io_read_resp_data_pre_decoded_0_is_call
       (_uopCache_io_read_resp_data_pre_decoded_0_is_call),
     .io_read_resp_data_pre_decoded_0_is_ret
@@ -1265,7 +1221,8 @@ module Frontend(	// frontend/src/zaqal/frontend/Frontend.scala:11:7
       (_uopCache_io_read_resp_data_pre_decoded_0_expanded_inst),
     .io_read_resp_data_pre_decoded_1_is_rvc
       (_uopCache_io_read_resp_data_pre_decoded_1_is_rvc),
-    .io_read_resp_data_pre_decoded_1_is_cfi              (/* unused */),
+    .io_read_resp_data_pre_decoded_1_is_cfi
+      (_uopCache_io_read_resp_data_pre_decoded_1_is_cfi),
     .io_read_resp_data_pre_decoded_1_is_call
       (_uopCache_io_read_resp_data_pre_decoded_1_is_call),
     .io_read_resp_data_pre_decoded_1_is_ret
@@ -1274,7 +1231,8 @@ module Frontend(	// frontend/src/zaqal/frontend/Frontend.scala:11:7
       (_uopCache_io_read_resp_data_pre_decoded_1_expanded_inst),
     .io_read_resp_data_pre_decoded_2_is_rvc
       (_uopCache_io_read_resp_data_pre_decoded_2_is_rvc),
-    .io_read_resp_data_pre_decoded_2_is_cfi              (/* unused */),
+    .io_read_resp_data_pre_decoded_2_is_cfi
+      (_uopCache_io_read_resp_data_pre_decoded_2_is_cfi),
     .io_read_resp_data_pre_decoded_2_is_call
       (_uopCache_io_read_resp_data_pre_decoded_2_is_call),
     .io_read_resp_data_pre_decoded_2_is_ret
@@ -1283,7 +1241,8 @@ module Frontend(	// frontend/src/zaqal/frontend/Frontend.scala:11:7
       (_uopCache_io_read_resp_data_pre_decoded_2_expanded_inst),
     .io_read_resp_data_pre_decoded_3_is_rvc
       (_uopCache_io_read_resp_data_pre_decoded_3_is_rvc),
-    .io_read_resp_data_pre_decoded_3_is_cfi              (/* unused */),
+    .io_read_resp_data_pre_decoded_3_is_cfi
+      (_uopCache_io_read_resp_data_pre_decoded_3_is_cfi),
     .io_read_resp_data_pre_decoded_3_is_call
       (_uopCache_io_read_resp_data_pre_decoded_3_is_call),
     .io_read_resp_data_pre_decoded_3_is_ret
@@ -1292,7 +1251,8 @@ module Frontend(	// frontend/src/zaqal/frontend/Frontend.scala:11:7
       (_uopCache_io_read_resp_data_pre_decoded_3_expanded_inst),
     .io_read_resp_data_pre_decoded_4_is_rvc
       (_uopCache_io_read_resp_data_pre_decoded_4_is_rvc),
-    .io_read_resp_data_pre_decoded_4_is_cfi              (/* unused */),
+    .io_read_resp_data_pre_decoded_4_is_cfi
+      (_uopCache_io_read_resp_data_pre_decoded_4_is_cfi),
     .io_read_resp_data_pre_decoded_4_is_call
       (_uopCache_io_read_resp_data_pre_decoded_4_is_call),
     .io_read_resp_data_pre_decoded_4_is_ret
@@ -1301,7 +1261,8 @@ module Frontend(	// frontend/src/zaqal/frontend/Frontend.scala:11:7
       (_uopCache_io_read_resp_data_pre_decoded_4_expanded_inst),
     .io_read_resp_data_pre_decoded_5_is_rvc
       (_uopCache_io_read_resp_data_pre_decoded_5_is_rvc),
-    .io_read_resp_data_pre_decoded_5_is_cfi              (/* unused */),
+    .io_read_resp_data_pre_decoded_5_is_cfi
+      (_uopCache_io_read_resp_data_pre_decoded_5_is_cfi),
     .io_read_resp_data_pre_decoded_5_is_call
       (_uopCache_io_read_resp_data_pre_decoded_5_is_call),
     .io_read_resp_data_pre_decoded_5_is_ret
@@ -1310,7 +1271,8 @@ module Frontend(	// frontend/src/zaqal/frontend/Frontend.scala:11:7
       (_uopCache_io_read_resp_data_pre_decoded_5_expanded_inst),
     .io_read_resp_data_pre_decoded_6_is_rvc
       (_uopCache_io_read_resp_data_pre_decoded_6_is_rvc),
-    .io_read_resp_data_pre_decoded_6_is_cfi              (/* unused */),
+    .io_read_resp_data_pre_decoded_6_is_cfi
+      (_uopCache_io_read_resp_data_pre_decoded_6_is_cfi),
     .io_read_resp_data_pre_decoded_6_is_call
       (_uopCache_io_read_resp_data_pre_decoded_6_is_call),
     .io_read_resp_data_pre_decoded_6_is_ret
@@ -1319,7 +1281,8 @@ module Frontend(	// frontend/src/zaqal/frontend/Frontend.scala:11:7
       (_uopCache_io_read_resp_data_pre_decoded_6_expanded_inst),
     .io_read_resp_data_pre_decoded_7_is_rvc
       (_uopCache_io_read_resp_data_pre_decoded_7_is_rvc),
-    .io_read_resp_data_pre_decoded_7_is_cfi              (/* unused */),
+    .io_read_resp_data_pre_decoded_7_is_cfi
+      (_uopCache_io_read_resp_data_pre_decoded_7_is_cfi),
     .io_read_resp_data_pre_decoded_7_is_call
       (_uopCache_io_read_resp_data_pre_decoded_7_is_call),
     .io_read_resp_data_pre_decoded_7_is_ret
@@ -1328,7 +1291,8 @@ module Frontend(	// frontend/src/zaqal/frontend/Frontend.scala:11:7
       (_uopCache_io_read_resp_data_pre_decoded_7_expanded_inst),
     .io_read_resp_data_pre_decoded_8_is_rvc
       (_uopCache_io_read_resp_data_pre_decoded_8_is_rvc),
-    .io_read_resp_data_pre_decoded_8_is_cfi              (/* unused */),
+    .io_read_resp_data_pre_decoded_8_is_cfi
+      (_uopCache_io_read_resp_data_pre_decoded_8_is_cfi),
     .io_read_resp_data_pre_decoded_8_is_call
       (_uopCache_io_read_resp_data_pre_decoded_8_is_call),
     .io_read_resp_data_pre_decoded_8_is_ret
@@ -1337,7 +1301,8 @@ module Frontend(	// frontend/src/zaqal/frontend/Frontend.scala:11:7
       (_uopCache_io_read_resp_data_pre_decoded_8_expanded_inst),
     .io_read_resp_data_pre_decoded_9_is_rvc
       (_uopCache_io_read_resp_data_pre_decoded_9_is_rvc),
-    .io_read_resp_data_pre_decoded_9_is_cfi              (/* unused */),
+    .io_read_resp_data_pre_decoded_9_is_cfi
+      (_uopCache_io_read_resp_data_pre_decoded_9_is_cfi),
     .io_read_resp_data_pre_decoded_9_is_call
       (_uopCache_io_read_resp_data_pre_decoded_9_is_call),
     .io_read_resp_data_pre_decoded_9_is_ret
@@ -1346,7 +1311,8 @@ module Frontend(	// frontend/src/zaqal/frontend/Frontend.scala:11:7
       (_uopCache_io_read_resp_data_pre_decoded_9_expanded_inst),
     .io_read_resp_data_pre_decoded_10_is_rvc
       (_uopCache_io_read_resp_data_pre_decoded_10_is_rvc),
-    .io_read_resp_data_pre_decoded_10_is_cfi             (/* unused */),
+    .io_read_resp_data_pre_decoded_10_is_cfi
+      (_uopCache_io_read_resp_data_pre_decoded_10_is_cfi),
     .io_read_resp_data_pre_decoded_10_is_call
       (_uopCache_io_read_resp_data_pre_decoded_10_is_call),
     .io_read_resp_data_pre_decoded_10_is_ret
@@ -1355,7 +1321,8 @@ module Frontend(	// frontend/src/zaqal/frontend/Frontend.scala:11:7
       (_uopCache_io_read_resp_data_pre_decoded_10_expanded_inst),
     .io_read_resp_data_pre_decoded_11_is_rvc
       (_uopCache_io_read_resp_data_pre_decoded_11_is_rvc),
-    .io_read_resp_data_pre_decoded_11_is_cfi             (/* unused */),
+    .io_read_resp_data_pre_decoded_11_is_cfi
+      (_uopCache_io_read_resp_data_pre_decoded_11_is_cfi),
     .io_read_resp_data_pre_decoded_11_is_call
       (_uopCache_io_read_resp_data_pre_decoded_11_is_call),
     .io_read_resp_data_pre_decoded_11_is_ret
@@ -1364,7 +1331,8 @@ module Frontend(	// frontend/src/zaqal/frontend/Frontend.scala:11:7
       (_uopCache_io_read_resp_data_pre_decoded_11_expanded_inst),
     .io_read_resp_data_pre_decoded_12_is_rvc
       (_uopCache_io_read_resp_data_pre_decoded_12_is_rvc),
-    .io_read_resp_data_pre_decoded_12_is_cfi             (/* unused */),
+    .io_read_resp_data_pre_decoded_12_is_cfi
+      (_uopCache_io_read_resp_data_pre_decoded_12_is_cfi),
     .io_read_resp_data_pre_decoded_12_is_call
       (_uopCache_io_read_resp_data_pre_decoded_12_is_call),
     .io_read_resp_data_pre_decoded_12_is_ret
@@ -1373,7 +1341,8 @@ module Frontend(	// frontend/src/zaqal/frontend/Frontend.scala:11:7
       (_uopCache_io_read_resp_data_pre_decoded_12_expanded_inst),
     .io_read_resp_data_pre_decoded_13_is_rvc
       (_uopCache_io_read_resp_data_pre_decoded_13_is_rvc),
-    .io_read_resp_data_pre_decoded_13_is_cfi             (/* unused */),
+    .io_read_resp_data_pre_decoded_13_is_cfi
+      (_uopCache_io_read_resp_data_pre_decoded_13_is_cfi),
     .io_read_resp_data_pre_decoded_13_is_call
       (_uopCache_io_read_resp_data_pre_decoded_13_is_call),
     .io_read_resp_data_pre_decoded_13_is_ret
@@ -1382,7 +1351,8 @@ module Frontend(	// frontend/src/zaqal/frontend/Frontend.scala:11:7
       (_uopCache_io_read_resp_data_pre_decoded_13_expanded_inst),
     .io_read_resp_data_pre_decoded_14_is_rvc
       (_uopCache_io_read_resp_data_pre_decoded_14_is_rvc),
-    .io_read_resp_data_pre_decoded_14_is_cfi             (/* unused */),
+    .io_read_resp_data_pre_decoded_14_is_cfi
+      (_uopCache_io_read_resp_data_pre_decoded_14_is_cfi),
     .io_read_resp_data_pre_decoded_14_is_call
       (_uopCache_io_read_resp_data_pre_decoded_14_is_call),
     .io_read_resp_data_pre_decoded_14_is_ret
@@ -1391,7 +1361,8 @@ module Frontend(	// frontend/src/zaqal/frontend/Frontend.scala:11:7
       (_uopCache_io_read_resp_data_pre_decoded_14_expanded_inst),
     .io_read_resp_data_pre_decoded_15_is_rvc
       (_uopCache_io_read_resp_data_pre_decoded_15_is_rvc),
-    .io_read_resp_data_pre_decoded_15_is_cfi             (/* unused */),
+    .io_read_resp_data_pre_decoded_15_is_cfi
+      (_uopCache_io_read_resp_data_pre_decoded_15_is_cfi),
     .io_read_resp_data_pre_decoded_15_is_call
       (_uopCache_io_read_resp_data_pre_decoded_15_is_call),
     .io_read_resp_data_pre_decoded_15_is_ret
@@ -1417,7 +1388,7 @@ module Frontend(	// frontend/src/zaqal/frontend/Frontend.scala:11:7
     .io_read_resp_data_exception_type_14                 (/* unused */),
     .io_read_resp_data_exception_type_15                 (/* unused */),
     .io_write_req_valid
-      (_ifu_io_toIbuffer_valid & ~is_valid_redirect),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :50:45, :67:100, :123:57
+      (_ifu_io_toIbuffer_valid & ~is_valid_redirect),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :50:45, :67:100, :120:57
     .io_write_req_bits_pc                                (_ifu_io_toIbuffer_bits_pc_0),	// frontend/src/zaqal/frontend/Frontend.scala:41:24
     .io_write_req_bits_data_pc_0                         (_ifu_io_toIbuffer_bits_pc_0),	// frontend/src/zaqal/frontend/Frontend.scala:41:24
     .io_write_req_bits_data_pc_1                         (_ifu_io_toIbuffer_bits_pc_1),	// frontend/src/zaqal/frontend/Frontend.scala:41:24
@@ -1650,283 +1621,309 @@ module Frontend(	// frontend/src/zaqal/frontend/Frontend.scala:11:7
     .clock                                          (clock),
     .reset                                          (reset),
     .io_inst_data_ready                             (_ibuf_io_inst_data_ready),
-    .io_inst_data_valid                             (_ifu_skid_io_deq_valid),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-    .io_inst_data_bits_pc_0                         (_ifu_skid_io_deq_bits_pc_0),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-    .io_inst_data_bits_pc_1                         (_ifu_skid_io_deq_bits_pc_1),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-    .io_inst_data_bits_pc_2                         (_ifu_skid_io_deq_bits_pc_2),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-    .io_inst_data_bits_pc_3                         (_ifu_skid_io_deq_bits_pc_3),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-    .io_inst_data_bits_pc_4                         (_ifu_skid_io_deq_bits_pc_4),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-    .io_inst_data_bits_pc_5                         (_ifu_skid_io_deq_bits_pc_5),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-    .io_inst_data_bits_pc_6                         (_ifu_skid_io_deq_bits_pc_6),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-    .io_inst_data_bits_pc_7                         (_ifu_skid_io_deq_bits_pc_7),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-    .io_inst_data_bits_pc_8                         (_ifu_skid_io_deq_bits_pc_8),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-    .io_inst_data_bits_pc_9                         (_ifu_skid_io_deq_bits_pc_9),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-    .io_inst_data_bits_pc_10                        (_ifu_skid_io_deq_bits_pc_10),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-    .io_inst_data_bits_pc_11                        (_ifu_skid_io_deq_bits_pc_11),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-    .io_inst_data_bits_pc_12                        (_ifu_skid_io_deq_bits_pc_12),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-    .io_inst_data_bits_pc_13                        (_ifu_skid_io_deq_bits_pc_13),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-    .io_inst_data_bits_pc_14                        (_ifu_skid_io_deq_bits_pc_14),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-    .io_inst_data_bits_pc_15                        (_ifu_skid_io_deq_bits_pc_15),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
+    .io_inst_data_valid                             (_ifu_skid_io_deq_valid),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+    .io_inst_data_bits_pc_0                         (_ifu_skid_io_deq_bits_pc_0),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+    .io_inst_data_bits_pc_1                         (_ifu_skid_io_deq_bits_pc_1),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+    .io_inst_data_bits_pc_2                         (_ifu_skid_io_deq_bits_pc_2),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+    .io_inst_data_bits_pc_3                         (_ifu_skid_io_deq_bits_pc_3),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+    .io_inst_data_bits_pc_4                         (_ifu_skid_io_deq_bits_pc_4),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+    .io_inst_data_bits_pc_5                         (_ifu_skid_io_deq_bits_pc_5),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+    .io_inst_data_bits_pc_6                         (_ifu_skid_io_deq_bits_pc_6),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+    .io_inst_data_bits_pc_7                         (_ifu_skid_io_deq_bits_pc_7),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+    .io_inst_data_bits_pc_8                         (_ifu_skid_io_deq_bits_pc_8),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+    .io_inst_data_bits_pc_9                         (_ifu_skid_io_deq_bits_pc_9),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+    .io_inst_data_bits_pc_10                        (_ifu_skid_io_deq_bits_pc_10),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+    .io_inst_data_bits_pc_11                        (_ifu_skid_io_deq_bits_pc_11),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+    .io_inst_data_bits_pc_12                        (_ifu_skid_io_deq_bits_pc_12),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+    .io_inst_data_bits_pc_13                        (_ifu_skid_io_deq_bits_pc_13),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+    .io_inst_data_bits_pc_14                        (_ifu_skid_io_deq_bits_pc_14),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+    .io_inst_data_bits_pc_15                        (_ifu_skid_io_deq_bits_pc_15),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
     .io_inst_data_bits_instructions_0
-      (_ifu_skid_io_deq_bits_instructions_0),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
+      (_ifu_skid_io_deq_bits_instructions_0),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
     .io_inst_data_bits_instructions_1
-      (_ifu_skid_io_deq_bits_instructions_1),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
+      (_ifu_skid_io_deq_bits_instructions_1),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
     .io_inst_data_bits_instructions_2
-      (_ifu_skid_io_deq_bits_instructions_2),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
+      (_ifu_skid_io_deq_bits_instructions_2),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
     .io_inst_data_bits_instructions_3
-      (_ifu_skid_io_deq_bits_instructions_3),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
+      (_ifu_skid_io_deq_bits_instructions_3),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
     .io_inst_data_bits_instructions_4
-      (_ifu_skid_io_deq_bits_instructions_4),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
+      (_ifu_skid_io_deq_bits_instructions_4),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
     .io_inst_data_bits_instructions_5
-      (_ifu_skid_io_deq_bits_instructions_5),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
+      (_ifu_skid_io_deq_bits_instructions_5),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
     .io_inst_data_bits_instructions_6
-      (_ifu_skid_io_deq_bits_instructions_6),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
+      (_ifu_skid_io_deq_bits_instructions_6),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
     .io_inst_data_bits_instructions_7
-      (_ifu_skid_io_deq_bits_instructions_7),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
+      (_ifu_skid_io_deq_bits_instructions_7),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
     .io_inst_data_bits_instructions_8
-      (_ifu_skid_io_deq_bits_instructions_8),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
+      (_ifu_skid_io_deq_bits_instructions_8),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
     .io_inst_data_bits_instructions_9
-      (_ifu_skid_io_deq_bits_instructions_9),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
+      (_ifu_skid_io_deq_bits_instructions_9),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
     .io_inst_data_bits_instructions_10
-      (_ifu_skid_io_deq_bits_instructions_10),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
+      (_ifu_skid_io_deq_bits_instructions_10),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
     .io_inst_data_bits_instructions_11
-      (_ifu_skid_io_deq_bits_instructions_11),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
+      (_ifu_skid_io_deq_bits_instructions_11),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
     .io_inst_data_bits_instructions_12
-      (_ifu_skid_io_deq_bits_instructions_12),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
+      (_ifu_skid_io_deq_bits_instructions_12),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
     .io_inst_data_bits_instructions_13
-      (_ifu_skid_io_deq_bits_instructions_13),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
+      (_ifu_skid_io_deq_bits_instructions_13),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
     .io_inst_data_bits_instructions_14
-      (_ifu_skid_io_deq_bits_instructions_14),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
+      (_ifu_skid_io_deq_bits_instructions_14),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
     .io_inst_data_bits_instructions_15
-      (_ifu_skid_io_deq_bits_instructions_15),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
+      (_ifu_skid_io_deq_bits_instructions_15),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
     .io_inst_data_bits_pre_decoded_0_is_rvc
-      (_ifu_skid_io_deq_bits_pre_decoded_0_is_rvc),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
+      (_ifu_skid_io_deq_bits_pre_decoded_0_is_rvc),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+    .io_inst_data_bits_pre_decoded_0_is_cfi
+      (_ifu_skid_io_deq_bits_pre_decoded_0_is_cfi),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
     .io_inst_data_bits_pre_decoded_0_is_call
-      (_ifu_skid_io_deq_bits_pre_decoded_0_is_call),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
+      (_ifu_skid_io_deq_bits_pre_decoded_0_is_call),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
     .io_inst_data_bits_pre_decoded_0_is_ret
-      (_ifu_skid_io_deq_bits_pre_decoded_0_is_ret),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
+      (_ifu_skid_io_deq_bits_pre_decoded_0_is_ret),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
     .io_inst_data_bits_pre_decoded_0_expanded_inst
-      (_ifu_skid_io_deq_bits_pre_decoded_0_expanded_inst),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
+      (_ifu_skid_io_deq_bits_pre_decoded_0_expanded_inst),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
     .io_inst_data_bits_pre_decoded_1_is_rvc
-      (_ifu_skid_io_deq_bits_pre_decoded_1_is_rvc),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
+      (_ifu_skid_io_deq_bits_pre_decoded_1_is_rvc),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+    .io_inst_data_bits_pre_decoded_1_is_cfi
+      (_ifu_skid_io_deq_bits_pre_decoded_1_is_cfi),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
     .io_inst_data_bits_pre_decoded_1_is_call
-      (_ifu_skid_io_deq_bits_pre_decoded_1_is_call),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
+      (_ifu_skid_io_deq_bits_pre_decoded_1_is_call),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
     .io_inst_data_bits_pre_decoded_1_is_ret
-      (_ifu_skid_io_deq_bits_pre_decoded_1_is_ret),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
+      (_ifu_skid_io_deq_bits_pre_decoded_1_is_ret),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
     .io_inst_data_bits_pre_decoded_1_expanded_inst
-      (_ifu_skid_io_deq_bits_pre_decoded_1_expanded_inst),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
+      (_ifu_skid_io_deq_bits_pre_decoded_1_expanded_inst),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
     .io_inst_data_bits_pre_decoded_2_is_rvc
-      (_ifu_skid_io_deq_bits_pre_decoded_2_is_rvc),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
+      (_ifu_skid_io_deq_bits_pre_decoded_2_is_rvc),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+    .io_inst_data_bits_pre_decoded_2_is_cfi
+      (_ifu_skid_io_deq_bits_pre_decoded_2_is_cfi),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
     .io_inst_data_bits_pre_decoded_2_is_call
-      (_ifu_skid_io_deq_bits_pre_decoded_2_is_call),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
+      (_ifu_skid_io_deq_bits_pre_decoded_2_is_call),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
     .io_inst_data_bits_pre_decoded_2_is_ret
-      (_ifu_skid_io_deq_bits_pre_decoded_2_is_ret),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
+      (_ifu_skid_io_deq_bits_pre_decoded_2_is_ret),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
     .io_inst_data_bits_pre_decoded_2_expanded_inst
-      (_ifu_skid_io_deq_bits_pre_decoded_2_expanded_inst),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
+      (_ifu_skid_io_deq_bits_pre_decoded_2_expanded_inst),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
     .io_inst_data_bits_pre_decoded_3_is_rvc
-      (_ifu_skid_io_deq_bits_pre_decoded_3_is_rvc),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
+      (_ifu_skid_io_deq_bits_pre_decoded_3_is_rvc),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+    .io_inst_data_bits_pre_decoded_3_is_cfi
+      (_ifu_skid_io_deq_bits_pre_decoded_3_is_cfi),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
     .io_inst_data_bits_pre_decoded_3_is_call
-      (_ifu_skid_io_deq_bits_pre_decoded_3_is_call),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
+      (_ifu_skid_io_deq_bits_pre_decoded_3_is_call),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
     .io_inst_data_bits_pre_decoded_3_is_ret
-      (_ifu_skid_io_deq_bits_pre_decoded_3_is_ret),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
+      (_ifu_skid_io_deq_bits_pre_decoded_3_is_ret),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
     .io_inst_data_bits_pre_decoded_3_expanded_inst
-      (_ifu_skid_io_deq_bits_pre_decoded_3_expanded_inst),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
+      (_ifu_skid_io_deq_bits_pre_decoded_3_expanded_inst),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
     .io_inst_data_bits_pre_decoded_4_is_rvc
-      (_ifu_skid_io_deq_bits_pre_decoded_4_is_rvc),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
+      (_ifu_skid_io_deq_bits_pre_decoded_4_is_rvc),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+    .io_inst_data_bits_pre_decoded_4_is_cfi
+      (_ifu_skid_io_deq_bits_pre_decoded_4_is_cfi),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
     .io_inst_data_bits_pre_decoded_4_is_call
-      (_ifu_skid_io_deq_bits_pre_decoded_4_is_call),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
+      (_ifu_skid_io_deq_bits_pre_decoded_4_is_call),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
     .io_inst_data_bits_pre_decoded_4_is_ret
-      (_ifu_skid_io_deq_bits_pre_decoded_4_is_ret),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
+      (_ifu_skid_io_deq_bits_pre_decoded_4_is_ret),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
     .io_inst_data_bits_pre_decoded_4_expanded_inst
-      (_ifu_skid_io_deq_bits_pre_decoded_4_expanded_inst),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
+      (_ifu_skid_io_deq_bits_pre_decoded_4_expanded_inst),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
     .io_inst_data_bits_pre_decoded_5_is_rvc
-      (_ifu_skid_io_deq_bits_pre_decoded_5_is_rvc),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
+      (_ifu_skid_io_deq_bits_pre_decoded_5_is_rvc),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+    .io_inst_data_bits_pre_decoded_5_is_cfi
+      (_ifu_skid_io_deq_bits_pre_decoded_5_is_cfi),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
     .io_inst_data_bits_pre_decoded_5_is_call
-      (_ifu_skid_io_deq_bits_pre_decoded_5_is_call),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
+      (_ifu_skid_io_deq_bits_pre_decoded_5_is_call),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
     .io_inst_data_bits_pre_decoded_5_is_ret
-      (_ifu_skid_io_deq_bits_pre_decoded_5_is_ret),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
+      (_ifu_skid_io_deq_bits_pre_decoded_5_is_ret),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
     .io_inst_data_bits_pre_decoded_5_expanded_inst
-      (_ifu_skid_io_deq_bits_pre_decoded_5_expanded_inst),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
+      (_ifu_skid_io_deq_bits_pre_decoded_5_expanded_inst),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
     .io_inst_data_bits_pre_decoded_6_is_rvc
-      (_ifu_skid_io_deq_bits_pre_decoded_6_is_rvc),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
+      (_ifu_skid_io_deq_bits_pre_decoded_6_is_rvc),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+    .io_inst_data_bits_pre_decoded_6_is_cfi
+      (_ifu_skid_io_deq_bits_pre_decoded_6_is_cfi),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
     .io_inst_data_bits_pre_decoded_6_is_call
-      (_ifu_skid_io_deq_bits_pre_decoded_6_is_call),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
+      (_ifu_skid_io_deq_bits_pre_decoded_6_is_call),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
     .io_inst_data_bits_pre_decoded_6_is_ret
-      (_ifu_skid_io_deq_bits_pre_decoded_6_is_ret),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
+      (_ifu_skid_io_deq_bits_pre_decoded_6_is_ret),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
     .io_inst_data_bits_pre_decoded_6_expanded_inst
-      (_ifu_skid_io_deq_bits_pre_decoded_6_expanded_inst),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
+      (_ifu_skid_io_deq_bits_pre_decoded_6_expanded_inst),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
     .io_inst_data_bits_pre_decoded_7_is_rvc
-      (_ifu_skid_io_deq_bits_pre_decoded_7_is_rvc),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
+      (_ifu_skid_io_deq_bits_pre_decoded_7_is_rvc),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+    .io_inst_data_bits_pre_decoded_7_is_cfi
+      (_ifu_skid_io_deq_bits_pre_decoded_7_is_cfi),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
     .io_inst_data_bits_pre_decoded_7_is_call
-      (_ifu_skid_io_deq_bits_pre_decoded_7_is_call),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
+      (_ifu_skid_io_deq_bits_pre_decoded_7_is_call),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
     .io_inst_data_bits_pre_decoded_7_is_ret
-      (_ifu_skid_io_deq_bits_pre_decoded_7_is_ret),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
+      (_ifu_skid_io_deq_bits_pre_decoded_7_is_ret),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
     .io_inst_data_bits_pre_decoded_7_expanded_inst
-      (_ifu_skid_io_deq_bits_pre_decoded_7_expanded_inst),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
+      (_ifu_skid_io_deq_bits_pre_decoded_7_expanded_inst),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
     .io_inst_data_bits_pre_decoded_8_is_rvc
-      (_ifu_skid_io_deq_bits_pre_decoded_8_is_rvc),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
+      (_ifu_skid_io_deq_bits_pre_decoded_8_is_rvc),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+    .io_inst_data_bits_pre_decoded_8_is_cfi
+      (_ifu_skid_io_deq_bits_pre_decoded_8_is_cfi),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
     .io_inst_data_bits_pre_decoded_8_is_call
-      (_ifu_skid_io_deq_bits_pre_decoded_8_is_call),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
+      (_ifu_skid_io_deq_bits_pre_decoded_8_is_call),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
     .io_inst_data_bits_pre_decoded_8_is_ret
-      (_ifu_skid_io_deq_bits_pre_decoded_8_is_ret),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
+      (_ifu_skid_io_deq_bits_pre_decoded_8_is_ret),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
     .io_inst_data_bits_pre_decoded_8_expanded_inst
-      (_ifu_skid_io_deq_bits_pre_decoded_8_expanded_inst),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
+      (_ifu_skid_io_deq_bits_pre_decoded_8_expanded_inst),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
     .io_inst_data_bits_pre_decoded_9_is_rvc
-      (_ifu_skid_io_deq_bits_pre_decoded_9_is_rvc),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
+      (_ifu_skid_io_deq_bits_pre_decoded_9_is_rvc),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+    .io_inst_data_bits_pre_decoded_9_is_cfi
+      (_ifu_skid_io_deq_bits_pre_decoded_9_is_cfi),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
     .io_inst_data_bits_pre_decoded_9_is_call
-      (_ifu_skid_io_deq_bits_pre_decoded_9_is_call),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
+      (_ifu_skid_io_deq_bits_pre_decoded_9_is_call),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
     .io_inst_data_bits_pre_decoded_9_is_ret
-      (_ifu_skid_io_deq_bits_pre_decoded_9_is_ret),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
+      (_ifu_skid_io_deq_bits_pre_decoded_9_is_ret),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
     .io_inst_data_bits_pre_decoded_9_expanded_inst
-      (_ifu_skid_io_deq_bits_pre_decoded_9_expanded_inst),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
+      (_ifu_skid_io_deq_bits_pre_decoded_9_expanded_inst),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
     .io_inst_data_bits_pre_decoded_10_is_rvc
-      (_ifu_skid_io_deq_bits_pre_decoded_10_is_rvc),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
+      (_ifu_skid_io_deq_bits_pre_decoded_10_is_rvc),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+    .io_inst_data_bits_pre_decoded_10_is_cfi
+      (_ifu_skid_io_deq_bits_pre_decoded_10_is_cfi),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
     .io_inst_data_bits_pre_decoded_10_is_call
-      (_ifu_skid_io_deq_bits_pre_decoded_10_is_call),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
+      (_ifu_skid_io_deq_bits_pre_decoded_10_is_call),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
     .io_inst_data_bits_pre_decoded_10_is_ret
-      (_ifu_skid_io_deq_bits_pre_decoded_10_is_ret),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
+      (_ifu_skid_io_deq_bits_pre_decoded_10_is_ret),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
     .io_inst_data_bits_pre_decoded_10_expanded_inst
-      (_ifu_skid_io_deq_bits_pre_decoded_10_expanded_inst),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
+      (_ifu_skid_io_deq_bits_pre_decoded_10_expanded_inst),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
     .io_inst_data_bits_pre_decoded_11_is_rvc
-      (_ifu_skid_io_deq_bits_pre_decoded_11_is_rvc),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
+      (_ifu_skid_io_deq_bits_pre_decoded_11_is_rvc),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+    .io_inst_data_bits_pre_decoded_11_is_cfi
+      (_ifu_skid_io_deq_bits_pre_decoded_11_is_cfi),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
     .io_inst_data_bits_pre_decoded_11_is_call
-      (_ifu_skid_io_deq_bits_pre_decoded_11_is_call),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
+      (_ifu_skid_io_deq_bits_pre_decoded_11_is_call),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
     .io_inst_data_bits_pre_decoded_11_is_ret
-      (_ifu_skid_io_deq_bits_pre_decoded_11_is_ret),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
+      (_ifu_skid_io_deq_bits_pre_decoded_11_is_ret),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
     .io_inst_data_bits_pre_decoded_11_expanded_inst
-      (_ifu_skid_io_deq_bits_pre_decoded_11_expanded_inst),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
+      (_ifu_skid_io_deq_bits_pre_decoded_11_expanded_inst),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
     .io_inst_data_bits_pre_decoded_12_is_rvc
-      (_ifu_skid_io_deq_bits_pre_decoded_12_is_rvc),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
+      (_ifu_skid_io_deq_bits_pre_decoded_12_is_rvc),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+    .io_inst_data_bits_pre_decoded_12_is_cfi
+      (_ifu_skid_io_deq_bits_pre_decoded_12_is_cfi),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
     .io_inst_data_bits_pre_decoded_12_is_call
-      (_ifu_skid_io_deq_bits_pre_decoded_12_is_call),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
+      (_ifu_skid_io_deq_bits_pre_decoded_12_is_call),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
     .io_inst_data_bits_pre_decoded_12_is_ret
-      (_ifu_skid_io_deq_bits_pre_decoded_12_is_ret),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
+      (_ifu_skid_io_deq_bits_pre_decoded_12_is_ret),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
     .io_inst_data_bits_pre_decoded_12_expanded_inst
-      (_ifu_skid_io_deq_bits_pre_decoded_12_expanded_inst),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
+      (_ifu_skid_io_deq_bits_pre_decoded_12_expanded_inst),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
     .io_inst_data_bits_pre_decoded_13_is_rvc
-      (_ifu_skid_io_deq_bits_pre_decoded_13_is_rvc),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
+      (_ifu_skid_io_deq_bits_pre_decoded_13_is_rvc),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+    .io_inst_data_bits_pre_decoded_13_is_cfi
+      (_ifu_skid_io_deq_bits_pre_decoded_13_is_cfi),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
     .io_inst_data_bits_pre_decoded_13_is_call
-      (_ifu_skid_io_deq_bits_pre_decoded_13_is_call),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
+      (_ifu_skid_io_deq_bits_pre_decoded_13_is_call),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
     .io_inst_data_bits_pre_decoded_13_is_ret
-      (_ifu_skid_io_deq_bits_pre_decoded_13_is_ret),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
+      (_ifu_skid_io_deq_bits_pre_decoded_13_is_ret),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
     .io_inst_data_bits_pre_decoded_13_expanded_inst
-      (_ifu_skid_io_deq_bits_pre_decoded_13_expanded_inst),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
+      (_ifu_skid_io_deq_bits_pre_decoded_13_expanded_inst),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
     .io_inst_data_bits_pre_decoded_14_is_rvc
-      (_ifu_skid_io_deq_bits_pre_decoded_14_is_rvc),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
+      (_ifu_skid_io_deq_bits_pre_decoded_14_is_rvc),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+    .io_inst_data_bits_pre_decoded_14_is_cfi
+      (_ifu_skid_io_deq_bits_pre_decoded_14_is_cfi),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
     .io_inst_data_bits_pre_decoded_14_is_call
-      (_ifu_skid_io_deq_bits_pre_decoded_14_is_call),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
+      (_ifu_skid_io_deq_bits_pre_decoded_14_is_call),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
     .io_inst_data_bits_pre_decoded_14_is_ret
-      (_ifu_skid_io_deq_bits_pre_decoded_14_is_ret),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
+      (_ifu_skid_io_deq_bits_pre_decoded_14_is_ret),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
     .io_inst_data_bits_pre_decoded_14_expanded_inst
-      (_ifu_skid_io_deq_bits_pre_decoded_14_expanded_inst),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
+      (_ifu_skid_io_deq_bits_pre_decoded_14_expanded_inst),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
     .io_inst_data_bits_pre_decoded_15_is_rvc
-      (_ifu_skid_io_deq_bits_pre_decoded_15_is_rvc),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
+      (_ifu_skid_io_deq_bits_pre_decoded_15_is_rvc),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+    .io_inst_data_bits_pre_decoded_15_is_cfi
+      (_ifu_skid_io_deq_bits_pre_decoded_15_is_cfi),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
     .io_inst_data_bits_pre_decoded_15_is_call
-      (_ifu_skid_io_deq_bits_pre_decoded_15_is_call),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
+      (_ifu_skid_io_deq_bits_pre_decoded_15_is_call),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
     .io_inst_data_bits_pre_decoded_15_is_ret
-      (_ifu_skid_io_deq_bits_pre_decoded_15_is_ret),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
+      (_ifu_skid_io_deq_bits_pre_decoded_15_is_ret),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
     .io_inst_data_bits_pre_decoded_15_expanded_inst
-      (_ifu_skid_io_deq_bits_pre_decoded_15_expanded_inst),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-    .io_inst_data_bits_mask                         (_ifu_skid_io_deq_bits_mask),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
+      (_ifu_skid_io_deq_bits_pre_decoded_15_expanded_inst),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+    .io_inst_data_bits_mask                         (_ifu_skid_io_deq_bits_mask),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
     .io_inst_data_bits_prediction_target
-      (_ifu_skid_io_deq_bits_prediction_target),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
+      (_ifu_skid_io_deq_bits_prediction_target),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
     .io_inst_data_bits_prediction_taken
-      (_ifu_skid_io_deq_bits_prediction_taken),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
+      (_ifu_skid_io_deq_bits_prediction_taken),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
     .io_inst_data_bits_prediction_slot
-      (_ifu_skid_io_deq_bits_prediction_slot),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-    .io_inst_data_bits_ftqPtr                       (_ifu_skid_io_deq_bits_ftqPtr),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
-    .io_inst_data_bits_epoch                        (_ifu_skid_io_deq_bits_epoch),	// frontend/src/zaqal/frontend/Frontend.scala:94:24
+      (_ifu_skid_io_deq_bits_prediction_slot),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+    .io_inst_data_bits_ftqPtr                       (_ifu_skid_io_deq_bits_ftqPtr),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
+    .io_inst_data_bits_epoch                        (_ifu_skid_io_deq_bits_epoch),	// frontend/src/zaqal/frontend/Frontend.scala:91:24
     .io_flush                                       (is_valid_redirect),	// frontend/src/zaqal/frontend/Frontend.scala:50:45
-    .io_out_0_ready                                 (_ibuf_skids_0_io_enq_ready),	// frontend/src/zaqal/frontend/Frontend.scala:77:48
-    .io_out_0_valid                                 (_ibuf_io_out_0_valid),
-    .io_out_0_bits_pc                               (_ibuf_io_out_0_bits_pc),
-    .io_out_0_bits_inst_raw                         (_ibuf_io_out_0_bits_inst_raw),
-    .io_out_0_bits_pre_is_rvc                       (_ibuf_io_out_0_bits_pre_is_rvc),
-    .io_out_0_bits_pre_is_call                      (_ibuf_io_out_0_bits_pre_is_call),
-    .io_out_0_bits_pre_is_ret                       (_ibuf_io_out_0_bits_pre_is_ret),
+    .io_out_0_ready                                 (io_dispatch_0_ready),
+    .io_out_0_valid                                 (io_dispatch_0_valid),
+    .io_out_0_bits_pc                               (io_dispatch_0_bits_pc),
+    .io_out_0_bits_inst_raw                         (io_dispatch_0_bits_inst_raw),
+    .io_out_0_bits_pre_is_rvc                       (io_dispatch_0_bits_pre_is_rvc),
+    .io_out_0_bits_pre_is_call                      (io_dispatch_0_bits_pre_is_call),
+    .io_out_0_bits_pre_is_ret                       (io_dispatch_0_bits_pre_is_ret),
     .io_out_0_bits_pre_expanded_inst
-      (_ibuf_io_out_0_bits_pre_expanded_inst),
-    .io_out_0_bits_ftqPtr                           (_ibuf_io_out_0_bits_ftqPtr),
+      (io_dispatch_0_bits_pre_expanded_inst),
+    .io_out_0_bits_ftqPtr                           (io_dispatch_0_bits_ftqPtr),
     .io_out_0_bits_is_predicted_taken
-      (_ibuf_io_out_0_bits_is_predicted_taken),
-    .io_out_0_bits_predicted_target
-      (_ibuf_io_out_0_bits_predicted_target),
-    .io_out_0_bits_epoch                            (_ibuf_io_out_0_bits_epoch),
-    .io_out_1_ready                                 (ibuf_out_ready_1),	// frontend/src/zaqal/frontend/Frontend.scala:142:48
-    .io_out_1_valid                                 (_ibuf_io_out_1_valid),
-    .io_out_1_bits_pc                               (_ibuf_io_out_1_bits_pc),
-    .io_out_1_bits_inst_raw                         (_ibuf_io_out_1_bits_inst_raw),
-    .io_out_1_bits_pre_is_rvc                       (_ibuf_io_out_1_bits_pre_is_rvc),
-    .io_out_1_bits_pre_is_call                      (_ibuf_io_out_1_bits_pre_is_call),
-    .io_out_1_bits_pre_is_ret                       (_ibuf_io_out_1_bits_pre_is_ret),
+      (io_dispatch_0_bits_is_predicted_taken),
+    .io_out_0_bits_predicted_target                 (io_dispatch_0_bits_predicted_target),
+    .io_out_0_bits_epoch                            (io_dispatch_0_bits_epoch),
+    .io_out_1_ready                                 (io_dispatch_1_ready),
+    .io_out_1_valid                                 (io_dispatch_1_valid),
+    .io_out_1_bits_pc                               (io_dispatch_1_bits_pc),
+    .io_out_1_bits_inst_raw                         (io_dispatch_1_bits_inst_raw),
+    .io_out_1_bits_pre_is_rvc                       (io_dispatch_1_bits_pre_is_rvc),
+    .io_out_1_bits_pre_is_call                      (io_dispatch_1_bits_pre_is_call),
+    .io_out_1_bits_pre_is_ret                       (io_dispatch_1_bits_pre_is_ret),
     .io_out_1_bits_pre_expanded_inst
-      (_ibuf_io_out_1_bits_pre_expanded_inst),
-    .io_out_1_bits_ftqPtr                           (_ibuf_io_out_1_bits_ftqPtr),
+      (io_dispatch_1_bits_pre_expanded_inst),
+    .io_out_1_bits_ftqPtr                           (io_dispatch_1_bits_ftqPtr),
     .io_out_1_bits_is_predicted_taken
-      (_ibuf_io_out_1_bits_is_predicted_taken),
-    .io_out_1_bits_predicted_target
-      (_ibuf_io_out_1_bits_predicted_target),
-    .io_out_1_bits_epoch                            (_ibuf_io_out_1_bits_epoch),
-    .io_out_2_ready                                 (ibuf_out_ready_2),	// frontend/src/zaqal/frontend/Frontend.scala:142:48
-    .io_out_2_valid                                 (_ibuf_io_out_2_valid),
-    .io_out_2_bits_pc                               (_ibuf_io_out_2_bits_pc),
-    .io_out_2_bits_inst_raw                         (_ibuf_io_out_2_bits_inst_raw),
-    .io_out_2_bits_pre_is_rvc                       (_ibuf_io_out_2_bits_pre_is_rvc),
-    .io_out_2_bits_pre_is_call                      (_ibuf_io_out_2_bits_pre_is_call),
-    .io_out_2_bits_pre_is_ret                       (_ibuf_io_out_2_bits_pre_is_ret),
+      (io_dispatch_1_bits_is_predicted_taken),
+    .io_out_1_bits_predicted_target                 (io_dispatch_1_bits_predicted_target),
+    .io_out_1_bits_epoch                            (io_dispatch_1_bits_epoch),
+    .io_out_2_ready                                 (io_dispatch_2_ready),
+    .io_out_2_valid                                 (io_dispatch_2_valid),
+    .io_out_2_bits_pc                               (io_dispatch_2_bits_pc),
+    .io_out_2_bits_inst_raw                         (io_dispatch_2_bits_inst_raw),
+    .io_out_2_bits_pre_is_rvc                       (io_dispatch_2_bits_pre_is_rvc),
+    .io_out_2_bits_pre_is_call                      (io_dispatch_2_bits_pre_is_call),
+    .io_out_2_bits_pre_is_ret                       (io_dispatch_2_bits_pre_is_ret),
     .io_out_2_bits_pre_expanded_inst
-      (_ibuf_io_out_2_bits_pre_expanded_inst),
-    .io_out_2_bits_ftqPtr                           (_ibuf_io_out_2_bits_ftqPtr),
+      (io_dispatch_2_bits_pre_expanded_inst),
+    .io_out_2_bits_ftqPtr                           (io_dispatch_2_bits_ftqPtr),
     .io_out_2_bits_is_predicted_taken
-      (_ibuf_io_out_2_bits_is_predicted_taken),
-    .io_out_2_bits_predicted_target
-      (_ibuf_io_out_2_bits_predicted_target),
-    .io_out_2_bits_epoch                            (_ibuf_io_out_2_bits_epoch),
-    .io_out_3_ready                                 (ibuf_out_ready_3),	// frontend/src/zaqal/frontend/Frontend.scala:142:48
-    .io_out_3_valid                                 (_ibuf_io_out_3_valid),
-    .io_out_3_bits_pc                               (_ibuf_io_out_3_bits_pc),
-    .io_out_3_bits_inst_raw                         (_ibuf_io_out_3_bits_inst_raw),
-    .io_out_3_bits_pre_is_rvc                       (_ibuf_io_out_3_bits_pre_is_rvc),
-    .io_out_3_bits_pre_is_call                      (_ibuf_io_out_3_bits_pre_is_call),
-    .io_out_3_bits_pre_is_ret                       (_ibuf_io_out_3_bits_pre_is_ret),
+      (io_dispatch_2_bits_is_predicted_taken),
+    .io_out_2_bits_predicted_target                 (io_dispatch_2_bits_predicted_target),
+    .io_out_2_bits_epoch                            (io_dispatch_2_bits_epoch),
+    .io_out_3_ready                                 (io_dispatch_3_ready),
+    .io_out_3_valid                                 (io_dispatch_3_valid),
+    .io_out_3_bits_pc                               (io_dispatch_3_bits_pc),
+    .io_out_3_bits_inst_raw                         (io_dispatch_3_bits_inst_raw),
+    .io_out_3_bits_pre_is_rvc                       (io_dispatch_3_bits_pre_is_rvc),
+    .io_out_3_bits_pre_is_call                      (io_dispatch_3_bits_pre_is_call),
+    .io_out_3_bits_pre_is_ret                       (io_dispatch_3_bits_pre_is_ret),
     .io_out_3_bits_pre_expanded_inst
-      (_ibuf_io_out_3_bits_pre_expanded_inst),
-    .io_out_3_bits_ftqPtr                           (_ibuf_io_out_3_bits_ftqPtr),
+      (io_dispatch_3_bits_pre_expanded_inst),
+    .io_out_3_bits_ftqPtr                           (io_dispatch_3_bits_ftqPtr),
     .io_out_3_bits_is_predicted_taken
-      (_ibuf_io_out_3_bits_is_predicted_taken),
-    .io_out_3_bits_predicted_target
-      (_ibuf_io_out_3_bits_predicted_target),
-    .io_out_3_bits_epoch                            (_ibuf_io_out_3_bits_epoch),
-    .io_out_4_ready                                 (ibuf_out_ready_4),	// frontend/src/zaqal/frontend/Frontend.scala:142:48
-    .io_out_4_valid                                 (_ibuf_io_out_4_valid),
-    .io_out_4_bits_pc                               (_ibuf_io_out_4_bits_pc),
-    .io_out_4_bits_inst_raw                         (_ibuf_io_out_4_bits_inst_raw),
-    .io_out_4_bits_pre_is_rvc                       (_ibuf_io_out_4_bits_pre_is_rvc),
-    .io_out_4_bits_pre_is_call                      (_ibuf_io_out_4_bits_pre_is_call),
-    .io_out_4_bits_pre_is_ret                       (_ibuf_io_out_4_bits_pre_is_ret),
+      (io_dispatch_3_bits_is_predicted_taken),
+    .io_out_3_bits_predicted_target                 (io_dispatch_3_bits_predicted_target),
+    .io_out_3_bits_epoch                            (io_dispatch_3_bits_epoch),
+    .io_out_4_ready                                 (io_dispatch_4_ready),
+    .io_out_4_valid                                 (io_dispatch_4_valid),
+    .io_out_4_bits_pc                               (io_dispatch_4_bits_pc),
+    .io_out_4_bits_inst_raw                         (io_dispatch_4_bits_inst_raw),
+    .io_out_4_bits_pre_is_rvc                       (io_dispatch_4_bits_pre_is_rvc),
+    .io_out_4_bits_pre_is_call                      (io_dispatch_4_bits_pre_is_call),
+    .io_out_4_bits_pre_is_ret                       (io_dispatch_4_bits_pre_is_ret),
     .io_out_4_bits_pre_expanded_inst
-      (_ibuf_io_out_4_bits_pre_expanded_inst),
-    .io_out_4_bits_ftqPtr                           (_ibuf_io_out_4_bits_ftqPtr),
+      (io_dispatch_4_bits_pre_expanded_inst),
+    .io_out_4_bits_ftqPtr                           (io_dispatch_4_bits_ftqPtr),
     .io_out_4_bits_is_predicted_taken
-      (_ibuf_io_out_4_bits_is_predicted_taken),
-    .io_out_4_bits_predicted_target
-      (_ibuf_io_out_4_bits_predicted_target),
-    .io_out_4_bits_epoch                            (_ibuf_io_out_4_bits_epoch),
-    .io_out_5_ready                                 (ibuf_out_ready_5),	// frontend/src/zaqal/frontend/Frontend.scala:142:48
-    .io_out_5_valid                                 (_ibuf_io_out_5_valid),
-    .io_out_5_bits_pc                               (_ibuf_io_out_5_bits_pc),
-    .io_out_5_bits_inst_raw                         (_ibuf_io_out_5_bits_inst_raw),
-    .io_out_5_bits_pre_is_rvc                       (_ibuf_io_out_5_bits_pre_is_rvc),
-    .io_out_5_bits_pre_is_call                      (_ibuf_io_out_5_bits_pre_is_call),
-    .io_out_5_bits_pre_is_ret                       (_ibuf_io_out_5_bits_pre_is_ret),
+      (io_dispatch_4_bits_is_predicted_taken),
+    .io_out_4_bits_predicted_target                 (io_dispatch_4_bits_predicted_target),
+    .io_out_4_bits_epoch                            (io_dispatch_4_bits_epoch),
+    .io_out_5_ready                                 (io_dispatch_5_ready),
+    .io_out_5_valid                                 (io_dispatch_5_valid),
+    .io_out_5_bits_pc                               (io_dispatch_5_bits_pc),
+    .io_out_5_bits_inst_raw                         (io_dispatch_5_bits_inst_raw),
+    .io_out_5_bits_pre_is_rvc                       (io_dispatch_5_bits_pre_is_rvc),
+    .io_out_5_bits_pre_is_call                      (io_dispatch_5_bits_pre_is_call),
+    .io_out_5_bits_pre_is_ret                       (io_dispatch_5_bits_pre_is_ret),
     .io_out_5_bits_pre_expanded_inst
-      (_ibuf_io_out_5_bits_pre_expanded_inst),
-    .io_out_5_bits_ftqPtr                           (_ibuf_io_out_5_bits_ftqPtr),
+      (io_dispatch_5_bits_pre_expanded_inst),
+    .io_out_5_bits_ftqPtr                           (io_dispatch_5_bits_ftqPtr),
     .io_out_5_bits_is_predicted_taken
-      (_ibuf_io_out_5_bits_is_predicted_taken),
-    .io_out_5_bits_predicted_target
-      (_ibuf_io_out_5_bits_predicted_target),
-    .io_out_5_bits_epoch                            (_ibuf_io_out_5_bits_epoch)
+      (io_dispatch_5_bits_is_predicted_taken),
+    .io_out_5_bits_predicted_target                 (io_dispatch_5_bits_predicted_target),
+    .io_out_5_bits_epoch                            (io_dispatch_5_bits_epoch)
   );
   SkidBuffer bpu_skid (	// frontend/src/zaqal/frontend/Frontend.scala:58:25
     .clock                         (clock),
@@ -1965,7 +1962,7 @@ module Frontend(	// frontend/src/zaqal/frontend/Frontend.scala:11:7
     .io_enq_bits_ftqPtr            (_ftq_io_toIfu_bits_ftqPtr),	// frontend/src/zaqal/frontend/Frontend.scala:40:24
     .io_enq_bits_epoch             (_ftq_io_toIfu_bits_epoch),	// frontend/src/zaqal/frontend/Frontend.scala:40:24
     .io_deq_ready
-      (uop_hit ? _ifu_skid_io_enq_ready : _ifu_io_fetch_req_ready & _icache_io_ready),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :42:24, :81:43, :94:24, :97:{31,87}
+      (uop_hit ? _ifu_skid_io_enq_ready : _ifu_io_fetch_req_ready & _icache_io_ready),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :42:24, :78:43, :91:24, :94:{31,87}
     .io_deq_valid                  (_ftq_skid_io_deq_valid),
     .io_deq_bits_pc                (_ftq_skid_io_deq_bits_pc),
     .io_deq_bits_mask              (_ftq_skid_io_deq_bits_mask),
@@ -1977,555 +1974,445 @@ module Frontend(	// frontend/src/zaqal/frontend/Frontend.scala:11:7
     .io_flush                      (is_valid_redirect),	// frontend/src/zaqal/frontend/Frontend.scala:50:45
     .io_occupancy                  (_ftq_skid_io_occupancy)
   );
-  SkidBuffer_2 ibuf_skids_0 (	// frontend/src/zaqal/frontend/Frontend.scala:77:48
-    .clock                          (clock),
-    .reset                          (reset),
-    .io_enq_ready                   (_ibuf_skids_0_io_enq_ready),
-    .io_enq_valid                   (_ibuf_io_out_0_valid & _ibuf_skids_0_io_enq_ready),	// frontend/src/zaqal/frontend/Frontend.scala:46:24, :77:48, :147:56
-    .io_enq_bits_pc                 (_ibuf_io_out_0_bits_pc),	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-    .io_enq_bits_inst_raw           (_ibuf_io_out_0_bits_inst_raw),	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-    .io_enq_bits_pre_is_rvc         (_ibuf_io_out_0_bits_pre_is_rvc),	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-    .io_enq_bits_pre_is_call        (_ibuf_io_out_0_bits_pre_is_call),	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-    .io_enq_bits_pre_is_ret         (_ibuf_io_out_0_bits_pre_is_ret),	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-    .io_enq_bits_pre_expanded_inst  (_ibuf_io_out_0_bits_pre_expanded_inst),	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-    .io_enq_bits_ftqPtr             (_ibuf_io_out_0_bits_ftqPtr),	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-    .io_enq_bits_is_predicted_taken (_ibuf_io_out_0_bits_is_predicted_taken),	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-    .io_enq_bits_predicted_target   (_ibuf_io_out_0_bits_predicted_target),	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-    .io_enq_bits_epoch              (_ibuf_io_out_0_bits_epoch),	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-    .io_deq_ready                   (io_dispatch_0_ready),
-    .io_deq_valid                   (io_dispatch_0_valid),
-    .io_deq_bits_pc                 (io_dispatch_0_bits_pc),
-    .io_deq_bits_inst_raw           (io_dispatch_0_bits_inst_raw),
-    .io_deq_bits_pre_is_rvc         (io_dispatch_0_bits_pre_is_rvc),
-    .io_deq_bits_pre_is_call        (io_dispatch_0_bits_pre_is_call),
-    .io_deq_bits_pre_is_ret         (io_dispatch_0_bits_pre_is_ret),
-    .io_deq_bits_pre_expanded_inst  (io_dispatch_0_bits_pre_expanded_inst),
-    .io_deq_bits_ftqPtr             (io_dispatch_0_bits_ftqPtr),
-    .io_deq_bits_is_predicted_taken (io_dispatch_0_bits_is_predicted_taken),
-    .io_deq_bits_predicted_target   (io_dispatch_0_bits_predicted_target),
-    .io_deq_bits_epoch              (io_dispatch_0_bits_epoch),
-    .io_flush                       (is_valid_redirect)	// frontend/src/zaqal/frontend/Frontend.scala:50:45
-  );
-  SkidBuffer_2 ibuf_skids_1 (	// frontend/src/zaqal/frontend/Frontend.scala:77:48
-    .clock                          (clock),
-    .reset                          (reset),
-    .io_enq_ready                   (_ibuf_skids_1_io_enq_ready),
-    .io_enq_valid                   (_ibuf_io_out_1_valid & ibuf_out_ready_1),	// frontend/src/zaqal/frontend/Frontend.scala:46:24, :142:48, :147:56
-    .io_enq_bits_pc                 (_ibuf_io_out_1_bits_pc),	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-    .io_enq_bits_inst_raw           (_ibuf_io_out_1_bits_inst_raw),	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-    .io_enq_bits_pre_is_rvc         (_ibuf_io_out_1_bits_pre_is_rvc),	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-    .io_enq_bits_pre_is_call        (_ibuf_io_out_1_bits_pre_is_call),	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-    .io_enq_bits_pre_is_ret         (_ibuf_io_out_1_bits_pre_is_ret),	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-    .io_enq_bits_pre_expanded_inst  (_ibuf_io_out_1_bits_pre_expanded_inst),	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-    .io_enq_bits_ftqPtr             (_ibuf_io_out_1_bits_ftqPtr),	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-    .io_enq_bits_is_predicted_taken (_ibuf_io_out_1_bits_is_predicted_taken),	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-    .io_enq_bits_predicted_target   (_ibuf_io_out_1_bits_predicted_target),	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-    .io_enq_bits_epoch              (_ibuf_io_out_1_bits_epoch),	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-    .io_deq_ready                   (io_dispatch_1_ready),
-    .io_deq_valid                   (io_dispatch_1_valid),
-    .io_deq_bits_pc                 (io_dispatch_1_bits_pc),
-    .io_deq_bits_inst_raw           (io_dispatch_1_bits_inst_raw),
-    .io_deq_bits_pre_is_rvc         (io_dispatch_1_bits_pre_is_rvc),
-    .io_deq_bits_pre_is_call        (io_dispatch_1_bits_pre_is_call),
-    .io_deq_bits_pre_is_ret         (io_dispatch_1_bits_pre_is_ret),
-    .io_deq_bits_pre_expanded_inst  (io_dispatch_1_bits_pre_expanded_inst),
-    .io_deq_bits_ftqPtr             (io_dispatch_1_bits_ftqPtr),
-    .io_deq_bits_is_predicted_taken (io_dispatch_1_bits_is_predicted_taken),
-    .io_deq_bits_predicted_target   (io_dispatch_1_bits_predicted_target),
-    .io_deq_bits_epoch              (io_dispatch_1_bits_epoch),
-    .io_flush                       (is_valid_redirect)	// frontend/src/zaqal/frontend/Frontend.scala:50:45
-  );
-  SkidBuffer_2 ibuf_skids_2 (	// frontend/src/zaqal/frontend/Frontend.scala:77:48
-    .clock                          (clock),
-    .reset                          (reset),
-    .io_enq_ready                   (_ibuf_skids_2_io_enq_ready),
-    .io_enq_valid                   (_ibuf_io_out_2_valid & ibuf_out_ready_2),	// frontend/src/zaqal/frontend/Frontend.scala:46:24, :142:48, :147:56
-    .io_enq_bits_pc                 (_ibuf_io_out_2_bits_pc),	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-    .io_enq_bits_inst_raw           (_ibuf_io_out_2_bits_inst_raw),	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-    .io_enq_bits_pre_is_rvc         (_ibuf_io_out_2_bits_pre_is_rvc),	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-    .io_enq_bits_pre_is_call        (_ibuf_io_out_2_bits_pre_is_call),	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-    .io_enq_bits_pre_is_ret         (_ibuf_io_out_2_bits_pre_is_ret),	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-    .io_enq_bits_pre_expanded_inst  (_ibuf_io_out_2_bits_pre_expanded_inst),	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-    .io_enq_bits_ftqPtr             (_ibuf_io_out_2_bits_ftqPtr),	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-    .io_enq_bits_is_predicted_taken (_ibuf_io_out_2_bits_is_predicted_taken),	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-    .io_enq_bits_predicted_target   (_ibuf_io_out_2_bits_predicted_target),	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-    .io_enq_bits_epoch              (_ibuf_io_out_2_bits_epoch),	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-    .io_deq_ready                   (io_dispatch_2_ready),
-    .io_deq_valid                   (io_dispatch_2_valid),
-    .io_deq_bits_pc                 (io_dispatch_2_bits_pc),
-    .io_deq_bits_inst_raw           (io_dispatch_2_bits_inst_raw),
-    .io_deq_bits_pre_is_rvc         (io_dispatch_2_bits_pre_is_rvc),
-    .io_deq_bits_pre_is_call        (io_dispatch_2_bits_pre_is_call),
-    .io_deq_bits_pre_is_ret         (io_dispatch_2_bits_pre_is_ret),
-    .io_deq_bits_pre_expanded_inst  (io_dispatch_2_bits_pre_expanded_inst),
-    .io_deq_bits_ftqPtr             (io_dispatch_2_bits_ftqPtr),
-    .io_deq_bits_is_predicted_taken (io_dispatch_2_bits_is_predicted_taken),
-    .io_deq_bits_predicted_target   (io_dispatch_2_bits_predicted_target),
-    .io_deq_bits_epoch              (io_dispatch_2_bits_epoch),
-    .io_flush                       (is_valid_redirect)	// frontend/src/zaqal/frontend/Frontend.scala:50:45
-  );
-  SkidBuffer_2 ibuf_skids_3 (	// frontend/src/zaqal/frontend/Frontend.scala:77:48
-    .clock                          (clock),
-    .reset                          (reset),
-    .io_enq_ready                   (_ibuf_skids_3_io_enq_ready),
-    .io_enq_valid                   (_ibuf_io_out_3_valid & ibuf_out_ready_3),	// frontend/src/zaqal/frontend/Frontend.scala:46:24, :142:48, :147:56
-    .io_enq_bits_pc                 (_ibuf_io_out_3_bits_pc),	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-    .io_enq_bits_inst_raw           (_ibuf_io_out_3_bits_inst_raw),	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-    .io_enq_bits_pre_is_rvc         (_ibuf_io_out_3_bits_pre_is_rvc),	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-    .io_enq_bits_pre_is_call        (_ibuf_io_out_3_bits_pre_is_call),	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-    .io_enq_bits_pre_is_ret         (_ibuf_io_out_3_bits_pre_is_ret),	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-    .io_enq_bits_pre_expanded_inst  (_ibuf_io_out_3_bits_pre_expanded_inst),	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-    .io_enq_bits_ftqPtr             (_ibuf_io_out_3_bits_ftqPtr),	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-    .io_enq_bits_is_predicted_taken (_ibuf_io_out_3_bits_is_predicted_taken),	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-    .io_enq_bits_predicted_target   (_ibuf_io_out_3_bits_predicted_target),	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-    .io_enq_bits_epoch              (_ibuf_io_out_3_bits_epoch),	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-    .io_deq_ready                   (io_dispatch_3_ready),
-    .io_deq_valid                   (io_dispatch_3_valid),
-    .io_deq_bits_pc                 (io_dispatch_3_bits_pc),
-    .io_deq_bits_inst_raw           (io_dispatch_3_bits_inst_raw),
-    .io_deq_bits_pre_is_rvc         (io_dispatch_3_bits_pre_is_rvc),
-    .io_deq_bits_pre_is_call        (io_dispatch_3_bits_pre_is_call),
-    .io_deq_bits_pre_is_ret         (io_dispatch_3_bits_pre_is_ret),
-    .io_deq_bits_pre_expanded_inst  (io_dispatch_3_bits_pre_expanded_inst),
-    .io_deq_bits_ftqPtr             (io_dispatch_3_bits_ftqPtr),
-    .io_deq_bits_is_predicted_taken (io_dispatch_3_bits_is_predicted_taken),
-    .io_deq_bits_predicted_target   (io_dispatch_3_bits_predicted_target),
-    .io_deq_bits_epoch              (io_dispatch_3_bits_epoch),
-    .io_flush                       (is_valid_redirect)	// frontend/src/zaqal/frontend/Frontend.scala:50:45
-  );
-  SkidBuffer_2 ibuf_skids_4 (	// frontend/src/zaqal/frontend/Frontend.scala:77:48
-    .clock                          (clock),
-    .reset                          (reset),
-    .io_enq_ready                   (_ibuf_skids_4_io_enq_ready),
-    .io_enq_valid                   (_ibuf_io_out_4_valid & ibuf_out_ready_4),	// frontend/src/zaqal/frontend/Frontend.scala:46:24, :142:48, :147:56
-    .io_enq_bits_pc                 (_ibuf_io_out_4_bits_pc),	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-    .io_enq_bits_inst_raw           (_ibuf_io_out_4_bits_inst_raw),	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-    .io_enq_bits_pre_is_rvc         (_ibuf_io_out_4_bits_pre_is_rvc),	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-    .io_enq_bits_pre_is_call        (_ibuf_io_out_4_bits_pre_is_call),	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-    .io_enq_bits_pre_is_ret         (_ibuf_io_out_4_bits_pre_is_ret),	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-    .io_enq_bits_pre_expanded_inst  (_ibuf_io_out_4_bits_pre_expanded_inst),	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-    .io_enq_bits_ftqPtr             (_ibuf_io_out_4_bits_ftqPtr),	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-    .io_enq_bits_is_predicted_taken (_ibuf_io_out_4_bits_is_predicted_taken),	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-    .io_enq_bits_predicted_target   (_ibuf_io_out_4_bits_predicted_target),	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-    .io_enq_bits_epoch              (_ibuf_io_out_4_bits_epoch),	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-    .io_deq_ready                   (io_dispatch_4_ready),
-    .io_deq_valid                   (io_dispatch_4_valid),
-    .io_deq_bits_pc                 (io_dispatch_4_bits_pc),
-    .io_deq_bits_inst_raw           (io_dispatch_4_bits_inst_raw),
-    .io_deq_bits_pre_is_rvc         (io_dispatch_4_bits_pre_is_rvc),
-    .io_deq_bits_pre_is_call        (io_dispatch_4_bits_pre_is_call),
-    .io_deq_bits_pre_is_ret         (io_dispatch_4_bits_pre_is_ret),
-    .io_deq_bits_pre_expanded_inst  (io_dispatch_4_bits_pre_expanded_inst),
-    .io_deq_bits_ftqPtr             (io_dispatch_4_bits_ftqPtr),
-    .io_deq_bits_is_predicted_taken (io_dispatch_4_bits_is_predicted_taken),
-    .io_deq_bits_predicted_target   (io_dispatch_4_bits_predicted_target),
-    .io_deq_bits_epoch              (io_dispatch_4_bits_epoch),
-    .io_flush                       (is_valid_redirect)	// frontend/src/zaqal/frontend/Frontend.scala:50:45
-  );
-  SkidBuffer_2 ibuf_skids_5 (	// frontend/src/zaqal/frontend/Frontend.scala:77:48
-    .clock                          (clock),
-    .reset                          (reset),
-    .io_enq_ready                   (_ibuf_skids_5_io_enq_ready),
-    .io_enq_valid                   (_ibuf_io_out_5_valid & ibuf_out_ready_5),	// frontend/src/zaqal/frontend/Frontend.scala:46:24, :142:48, :147:56
-    .io_enq_bits_pc                 (_ibuf_io_out_5_bits_pc),	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-    .io_enq_bits_inst_raw           (_ibuf_io_out_5_bits_inst_raw),	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-    .io_enq_bits_pre_is_rvc         (_ibuf_io_out_5_bits_pre_is_rvc),	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-    .io_enq_bits_pre_is_call        (_ibuf_io_out_5_bits_pre_is_call),	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-    .io_enq_bits_pre_is_ret         (_ibuf_io_out_5_bits_pre_is_ret),	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-    .io_enq_bits_pre_expanded_inst  (_ibuf_io_out_5_bits_pre_expanded_inst),	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-    .io_enq_bits_ftqPtr             (_ibuf_io_out_5_bits_ftqPtr),	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-    .io_enq_bits_is_predicted_taken (_ibuf_io_out_5_bits_is_predicted_taken),	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-    .io_enq_bits_predicted_target   (_ibuf_io_out_5_bits_predicted_target),	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-    .io_enq_bits_epoch              (_ibuf_io_out_5_bits_epoch),	// frontend/src/zaqal/frontend/Frontend.scala:46:24
-    .io_deq_ready                   (io_dispatch_5_ready),
-    .io_deq_valid                   (io_dispatch_5_valid),
-    .io_deq_bits_pc                 (io_dispatch_5_bits_pc),
-    .io_deq_bits_inst_raw           (io_dispatch_5_bits_inst_raw),
-    .io_deq_bits_pre_is_rvc         (io_dispatch_5_bits_pre_is_rvc),
-    .io_deq_bits_pre_is_call        (io_dispatch_5_bits_pre_is_call),
-    .io_deq_bits_pre_is_ret         (io_dispatch_5_bits_pre_is_ret),
-    .io_deq_bits_pre_expanded_inst  (io_dispatch_5_bits_pre_expanded_inst),
-    .io_deq_bits_ftqPtr             (io_dispatch_5_bits_ftqPtr),
-    .io_deq_bits_is_predicted_taken (io_dispatch_5_bits_is_predicted_taken),
-    .io_deq_bits_predicted_target   (io_dispatch_5_bits_predicted_target),
-    .io_deq_bits_epoch              (io_dispatch_5_bits_epoch),
-    .io_flush                       (is_valid_redirect)	// frontend/src/zaqal/frontend/Frontend.scala:50:45
-  );
-  SkidBuffer_8 ifu_skid (	// frontend/src/zaqal/frontend/Frontend.scala:94:24
+  SkidBuffer_2 ifu_skid (	// frontend/src/zaqal/frontend/Frontend.scala:91:24
     .clock                                    (clock),
     .reset                                    (reset),
     .io_enq_ready                             (_ifu_skid_io_enq_ready),
-    .io_enq_valid                             (_ifu_io_toIbuffer_valid | uop_hit),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :81:43, :110:51
+    .io_enq_valid                             (_ifu_io_toIbuffer_valid | uop_hit),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :78:43, :107:51
     .io_enq_bits_pc_0
-      (uop_hit ? _uopCache_io_read_resp_data_pc_0 : _ifu_io_toIbuffer_bits_pc_0),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+      (uop_hit ? _uopCache_io_read_resp_data_pc_0 : _ifu_io_toIbuffer_bits_pc_0),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_pc_1
-      (uop_hit ? _uopCache_io_read_resp_data_pc_1 : _ifu_io_toIbuffer_bits_pc_1),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+      (uop_hit ? _uopCache_io_read_resp_data_pc_1 : _ifu_io_toIbuffer_bits_pc_1),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_pc_2
-      (uop_hit ? _uopCache_io_read_resp_data_pc_2 : _ifu_io_toIbuffer_bits_pc_2),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+      (uop_hit ? _uopCache_io_read_resp_data_pc_2 : _ifu_io_toIbuffer_bits_pc_2),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_pc_3
-      (uop_hit ? _uopCache_io_read_resp_data_pc_3 : _ifu_io_toIbuffer_bits_pc_3),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+      (uop_hit ? _uopCache_io_read_resp_data_pc_3 : _ifu_io_toIbuffer_bits_pc_3),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_pc_4
-      (uop_hit ? _uopCache_io_read_resp_data_pc_4 : _ifu_io_toIbuffer_bits_pc_4),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+      (uop_hit ? _uopCache_io_read_resp_data_pc_4 : _ifu_io_toIbuffer_bits_pc_4),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_pc_5
-      (uop_hit ? _uopCache_io_read_resp_data_pc_5 : _ifu_io_toIbuffer_bits_pc_5),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+      (uop_hit ? _uopCache_io_read_resp_data_pc_5 : _ifu_io_toIbuffer_bits_pc_5),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_pc_6
-      (uop_hit ? _uopCache_io_read_resp_data_pc_6 : _ifu_io_toIbuffer_bits_pc_6),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+      (uop_hit ? _uopCache_io_read_resp_data_pc_6 : _ifu_io_toIbuffer_bits_pc_6),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_pc_7
-      (uop_hit ? _uopCache_io_read_resp_data_pc_7 : _ifu_io_toIbuffer_bits_pc_7),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+      (uop_hit ? _uopCache_io_read_resp_data_pc_7 : _ifu_io_toIbuffer_bits_pc_7),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_pc_8
-      (uop_hit ? _uopCache_io_read_resp_data_pc_8 : _ifu_io_toIbuffer_bits_pc_8),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+      (uop_hit ? _uopCache_io_read_resp_data_pc_8 : _ifu_io_toIbuffer_bits_pc_8),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_pc_9
-      (uop_hit ? _uopCache_io_read_resp_data_pc_9 : _ifu_io_toIbuffer_bits_pc_9),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+      (uop_hit ? _uopCache_io_read_resp_data_pc_9 : _ifu_io_toIbuffer_bits_pc_9),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_pc_10
-      (uop_hit ? _uopCache_io_read_resp_data_pc_10 : _ifu_io_toIbuffer_bits_pc_10),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+      (uop_hit ? _uopCache_io_read_resp_data_pc_10 : _ifu_io_toIbuffer_bits_pc_10),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_pc_11
-      (uop_hit ? _uopCache_io_read_resp_data_pc_11 : _ifu_io_toIbuffer_bits_pc_11),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+      (uop_hit ? _uopCache_io_read_resp_data_pc_11 : _ifu_io_toIbuffer_bits_pc_11),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_pc_12
-      (uop_hit ? _uopCache_io_read_resp_data_pc_12 : _ifu_io_toIbuffer_bits_pc_12),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+      (uop_hit ? _uopCache_io_read_resp_data_pc_12 : _ifu_io_toIbuffer_bits_pc_12),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_pc_13
-      (uop_hit ? _uopCache_io_read_resp_data_pc_13 : _ifu_io_toIbuffer_bits_pc_13),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+      (uop_hit ? _uopCache_io_read_resp_data_pc_13 : _ifu_io_toIbuffer_bits_pc_13),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_pc_14
-      (uop_hit ? _uopCache_io_read_resp_data_pc_14 : _ifu_io_toIbuffer_bits_pc_14),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+      (uop_hit ? _uopCache_io_read_resp_data_pc_14 : _ifu_io_toIbuffer_bits_pc_14),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_pc_15
-      (uop_hit ? _uopCache_io_read_resp_data_pc_15 : _ifu_io_toIbuffer_bits_pc_15),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+      (uop_hit ? _uopCache_io_read_resp_data_pc_15 : _ifu_io_toIbuffer_bits_pc_15),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_instructions_0
       (uop_hit
          ? _uopCache_io_read_resp_data_instructions_0
-         : _ifu_io_toIbuffer_bits_instructions_0),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+         : _ifu_io_toIbuffer_bits_instructions_0),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_instructions_1
       (uop_hit
          ? _uopCache_io_read_resp_data_instructions_1
-         : _ifu_io_toIbuffer_bits_instructions_1),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+         : _ifu_io_toIbuffer_bits_instructions_1),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_instructions_2
       (uop_hit
          ? _uopCache_io_read_resp_data_instructions_2
-         : _ifu_io_toIbuffer_bits_instructions_2),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+         : _ifu_io_toIbuffer_bits_instructions_2),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_instructions_3
       (uop_hit
          ? _uopCache_io_read_resp_data_instructions_3
-         : _ifu_io_toIbuffer_bits_instructions_3),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+         : _ifu_io_toIbuffer_bits_instructions_3),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_instructions_4
       (uop_hit
          ? _uopCache_io_read_resp_data_instructions_4
-         : _ifu_io_toIbuffer_bits_instructions_4),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+         : _ifu_io_toIbuffer_bits_instructions_4),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_instructions_5
       (uop_hit
          ? _uopCache_io_read_resp_data_instructions_5
-         : _ifu_io_toIbuffer_bits_instructions_5),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+         : _ifu_io_toIbuffer_bits_instructions_5),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_instructions_6
       (uop_hit
          ? _uopCache_io_read_resp_data_instructions_6
-         : _ifu_io_toIbuffer_bits_instructions_6),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+         : _ifu_io_toIbuffer_bits_instructions_6),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_instructions_7
       (uop_hit
          ? _uopCache_io_read_resp_data_instructions_7
-         : _ifu_io_toIbuffer_bits_instructions_7),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+         : _ifu_io_toIbuffer_bits_instructions_7),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_instructions_8
       (uop_hit
          ? _uopCache_io_read_resp_data_instructions_8
-         : _ifu_io_toIbuffer_bits_instructions_8),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+         : _ifu_io_toIbuffer_bits_instructions_8),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_instructions_9
       (uop_hit
          ? _uopCache_io_read_resp_data_instructions_9
-         : _ifu_io_toIbuffer_bits_instructions_9),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+         : _ifu_io_toIbuffer_bits_instructions_9),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_instructions_10
       (uop_hit
          ? _uopCache_io_read_resp_data_instructions_10
-         : _ifu_io_toIbuffer_bits_instructions_10),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+         : _ifu_io_toIbuffer_bits_instructions_10),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_instructions_11
       (uop_hit
          ? _uopCache_io_read_resp_data_instructions_11
-         : _ifu_io_toIbuffer_bits_instructions_11),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+         : _ifu_io_toIbuffer_bits_instructions_11),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_instructions_12
       (uop_hit
          ? _uopCache_io_read_resp_data_instructions_12
-         : _ifu_io_toIbuffer_bits_instructions_12),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+         : _ifu_io_toIbuffer_bits_instructions_12),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_instructions_13
       (uop_hit
          ? _uopCache_io_read_resp_data_instructions_13
-         : _ifu_io_toIbuffer_bits_instructions_13),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+         : _ifu_io_toIbuffer_bits_instructions_13),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_instructions_14
       (uop_hit
          ? _uopCache_io_read_resp_data_instructions_14
-         : _ifu_io_toIbuffer_bits_instructions_14),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+         : _ifu_io_toIbuffer_bits_instructions_14),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_instructions_15
       (uop_hit
          ? _uopCache_io_read_resp_data_instructions_15
-         : _ifu_io_toIbuffer_bits_instructions_15),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+         : _ifu_io_toIbuffer_bits_instructions_15),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_pre_decoded_0_is_rvc
       (uop_hit
          ? _uopCache_io_read_resp_data_pre_decoded_0_is_rvc
-         : _ifu_io_toIbuffer_bits_pre_decoded_0_is_rvc),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+         : _ifu_io_toIbuffer_bits_pre_decoded_0_is_rvc),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
+    .io_enq_bits_pre_decoded_0_is_cfi
+      (uop_hit
+         ? _uopCache_io_read_resp_data_pre_decoded_0_is_cfi
+         : _ifu_io_toIbuffer_bits_pre_decoded_0_is_cfi),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_pre_decoded_0_is_call
       (uop_hit
          ? _uopCache_io_read_resp_data_pre_decoded_0_is_call
-         : _ifu_io_toIbuffer_bits_pre_decoded_0_is_call),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+         : _ifu_io_toIbuffer_bits_pre_decoded_0_is_call),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_pre_decoded_0_is_ret
       (uop_hit
          ? _uopCache_io_read_resp_data_pre_decoded_0_is_ret
-         : _ifu_io_toIbuffer_bits_pre_decoded_0_is_ret),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+         : _ifu_io_toIbuffer_bits_pre_decoded_0_is_ret),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_pre_decoded_0_expanded_inst
       (uop_hit
          ? _uopCache_io_read_resp_data_pre_decoded_0_expanded_inst
-         : _ifu_io_toIbuffer_bits_pre_decoded_0_expanded_inst),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+         : _ifu_io_toIbuffer_bits_pre_decoded_0_expanded_inst),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_pre_decoded_1_is_rvc
       (uop_hit
          ? _uopCache_io_read_resp_data_pre_decoded_1_is_rvc
-         : _ifu_io_toIbuffer_bits_pre_decoded_1_is_rvc),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+         : _ifu_io_toIbuffer_bits_pre_decoded_1_is_rvc),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
+    .io_enq_bits_pre_decoded_1_is_cfi
+      (uop_hit
+         ? _uopCache_io_read_resp_data_pre_decoded_1_is_cfi
+         : _ifu_io_toIbuffer_bits_pre_decoded_1_is_cfi),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_pre_decoded_1_is_call
       (uop_hit
          ? _uopCache_io_read_resp_data_pre_decoded_1_is_call
-         : _ifu_io_toIbuffer_bits_pre_decoded_1_is_call),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+         : _ifu_io_toIbuffer_bits_pre_decoded_1_is_call),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_pre_decoded_1_is_ret
       (uop_hit
          ? _uopCache_io_read_resp_data_pre_decoded_1_is_ret
-         : _ifu_io_toIbuffer_bits_pre_decoded_1_is_ret),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+         : _ifu_io_toIbuffer_bits_pre_decoded_1_is_ret),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_pre_decoded_1_expanded_inst
       (uop_hit
          ? _uopCache_io_read_resp_data_pre_decoded_1_expanded_inst
-         : _ifu_io_toIbuffer_bits_pre_decoded_1_expanded_inst),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+         : _ifu_io_toIbuffer_bits_pre_decoded_1_expanded_inst),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_pre_decoded_2_is_rvc
       (uop_hit
          ? _uopCache_io_read_resp_data_pre_decoded_2_is_rvc
-         : _ifu_io_toIbuffer_bits_pre_decoded_2_is_rvc),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+         : _ifu_io_toIbuffer_bits_pre_decoded_2_is_rvc),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
+    .io_enq_bits_pre_decoded_2_is_cfi
+      (uop_hit
+         ? _uopCache_io_read_resp_data_pre_decoded_2_is_cfi
+         : _ifu_io_toIbuffer_bits_pre_decoded_2_is_cfi),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_pre_decoded_2_is_call
       (uop_hit
          ? _uopCache_io_read_resp_data_pre_decoded_2_is_call
-         : _ifu_io_toIbuffer_bits_pre_decoded_2_is_call),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+         : _ifu_io_toIbuffer_bits_pre_decoded_2_is_call),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_pre_decoded_2_is_ret
       (uop_hit
          ? _uopCache_io_read_resp_data_pre_decoded_2_is_ret
-         : _ifu_io_toIbuffer_bits_pre_decoded_2_is_ret),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+         : _ifu_io_toIbuffer_bits_pre_decoded_2_is_ret),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_pre_decoded_2_expanded_inst
       (uop_hit
          ? _uopCache_io_read_resp_data_pre_decoded_2_expanded_inst
-         : _ifu_io_toIbuffer_bits_pre_decoded_2_expanded_inst),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+         : _ifu_io_toIbuffer_bits_pre_decoded_2_expanded_inst),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_pre_decoded_3_is_rvc
       (uop_hit
          ? _uopCache_io_read_resp_data_pre_decoded_3_is_rvc
-         : _ifu_io_toIbuffer_bits_pre_decoded_3_is_rvc),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+         : _ifu_io_toIbuffer_bits_pre_decoded_3_is_rvc),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
+    .io_enq_bits_pre_decoded_3_is_cfi
+      (uop_hit
+         ? _uopCache_io_read_resp_data_pre_decoded_3_is_cfi
+         : _ifu_io_toIbuffer_bits_pre_decoded_3_is_cfi),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_pre_decoded_3_is_call
       (uop_hit
          ? _uopCache_io_read_resp_data_pre_decoded_3_is_call
-         : _ifu_io_toIbuffer_bits_pre_decoded_3_is_call),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+         : _ifu_io_toIbuffer_bits_pre_decoded_3_is_call),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_pre_decoded_3_is_ret
       (uop_hit
          ? _uopCache_io_read_resp_data_pre_decoded_3_is_ret
-         : _ifu_io_toIbuffer_bits_pre_decoded_3_is_ret),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+         : _ifu_io_toIbuffer_bits_pre_decoded_3_is_ret),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_pre_decoded_3_expanded_inst
       (uop_hit
          ? _uopCache_io_read_resp_data_pre_decoded_3_expanded_inst
-         : _ifu_io_toIbuffer_bits_pre_decoded_3_expanded_inst),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+         : _ifu_io_toIbuffer_bits_pre_decoded_3_expanded_inst),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_pre_decoded_4_is_rvc
       (uop_hit
          ? _uopCache_io_read_resp_data_pre_decoded_4_is_rvc
-         : _ifu_io_toIbuffer_bits_pre_decoded_4_is_rvc),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+         : _ifu_io_toIbuffer_bits_pre_decoded_4_is_rvc),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
+    .io_enq_bits_pre_decoded_4_is_cfi
+      (uop_hit
+         ? _uopCache_io_read_resp_data_pre_decoded_4_is_cfi
+         : _ifu_io_toIbuffer_bits_pre_decoded_4_is_cfi),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_pre_decoded_4_is_call
       (uop_hit
          ? _uopCache_io_read_resp_data_pre_decoded_4_is_call
-         : _ifu_io_toIbuffer_bits_pre_decoded_4_is_call),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+         : _ifu_io_toIbuffer_bits_pre_decoded_4_is_call),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_pre_decoded_4_is_ret
       (uop_hit
          ? _uopCache_io_read_resp_data_pre_decoded_4_is_ret
-         : _ifu_io_toIbuffer_bits_pre_decoded_4_is_ret),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+         : _ifu_io_toIbuffer_bits_pre_decoded_4_is_ret),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_pre_decoded_4_expanded_inst
       (uop_hit
          ? _uopCache_io_read_resp_data_pre_decoded_4_expanded_inst
-         : _ifu_io_toIbuffer_bits_pre_decoded_4_expanded_inst),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+         : _ifu_io_toIbuffer_bits_pre_decoded_4_expanded_inst),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_pre_decoded_5_is_rvc
       (uop_hit
          ? _uopCache_io_read_resp_data_pre_decoded_5_is_rvc
-         : _ifu_io_toIbuffer_bits_pre_decoded_5_is_rvc),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+         : _ifu_io_toIbuffer_bits_pre_decoded_5_is_rvc),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
+    .io_enq_bits_pre_decoded_5_is_cfi
+      (uop_hit
+         ? _uopCache_io_read_resp_data_pre_decoded_5_is_cfi
+         : _ifu_io_toIbuffer_bits_pre_decoded_5_is_cfi),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_pre_decoded_5_is_call
       (uop_hit
          ? _uopCache_io_read_resp_data_pre_decoded_5_is_call
-         : _ifu_io_toIbuffer_bits_pre_decoded_5_is_call),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+         : _ifu_io_toIbuffer_bits_pre_decoded_5_is_call),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_pre_decoded_5_is_ret
       (uop_hit
          ? _uopCache_io_read_resp_data_pre_decoded_5_is_ret
-         : _ifu_io_toIbuffer_bits_pre_decoded_5_is_ret),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+         : _ifu_io_toIbuffer_bits_pre_decoded_5_is_ret),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_pre_decoded_5_expanded_inst
       (uop_hit
          ? _uopCache_io_read_resp_data_pre_decoded_5_expanded_inst
-         : _ifu_io_toIbuffer_bits_pre_decoded_5_expanded_inst),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+         : _ifu_io_toIbuffer_bits_pre_decoded_5_expanded_inst),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_pre_decoded_6_is_rvc
       (uop_hit
          ? _uopCache_io_read_resp_data_pre_decoded_6_is_rvc
-         : _ifu_io_toIbuffer_bits_pre_decoded_6_is_rvc),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+         : _ifu_io_toIbuffer_bits_pre_decoded_6_is_rvc),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
+    .io_enq_bits_pre_decoded_6_is_cfi
+      (uop_hit
+         ? _uopCache_io_read_resp_data_pre_decoded_6_is_cfi
+         : _ifu_io_toIbuffer_bits_pre_decoded_6_is_cfi),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_pre_decoded_6_is_call
       (uop_hit
          ? _uopCache_io_read_resp_data_pre_decoded_6_is_call
-         : _ifu_io_toIbuffer_bits_pre_decoded_6_is_call),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+         : _ifu_io_toIbuffer_bits_pre_decoded_6_is_call),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_pre_decoded_6_is_ret
       (uop_hit
          ? _uopCache_io_read_resp_data_pre_decoded_6_is_ret
-         : _ifu_io_toIbuffer_bits_pre_decoded_6_is_ret),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+         : _ifu_io_toIbuffer_bits_pre_decoded_6_is_ret),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_pre_decoded_6_expanded_inst
       (uop_hit
          ? _uopCache_io_read_resp_data_pre_decoded_6_expanded_inst
-         : _ifu_io_toIbuffer_bits_pre_decoded_6_expanded_inst),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+         : _ifu_io_toIbuffer_bits_pre_decoded_6_expanded_inst),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_pre_decoded_7_is_rvc
       (uop_hit
          ? _uopCache_io_read_resp_data_pre_decoded_7_is_rvc
-         : _ifu_io_toIbuffer_bits_pre_decoded_7_is_rvc),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+         : _ifu_io_toIbuffer_bits_pre_decoded_7_is_rvc),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
+    .io_enq_bits_pre_decoded_7_is_cfi
+      (uop_hit
+         ? _uopCache_io_read_resp_data_pre_decoded_7_is_cfi
+         : _ifu_io_toIbuffer_bits_pre_decoded_7_is_cfi),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_pre_decoded_7_is_call
       (uop_hit
          ? _uopCache_io_read_resp_data_pre_decoded_7_is_call
-         : _ifu_io_toIbuffer_bits_pre_decoded_7_is_call),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+         : _ifu_io_toIbuffer_bits_pre_decoded_7_is_call),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_pre_decoded_7_is_ret
       (uop_hit
          ? _uopCache_io_read_resp_data_pre_decoded_7_is_ret
-         : _ifu_io_toIbuffer_bits_pre_decoded_7_is_ret),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+         : _ifu_io_toIbuffer_bits_pre_decoded_7_is_ret),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_pre_decoded_7_expanded_inst
       (uop_hit
          ? _uopCache_io_read_resp_data_pre_decoded_7_expanded_inst
-         : _ifu_io_toIbuffer_bits_pre_decoded_7_expanded_inst),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+         : _ifu_io_toIbuffer_bits_pre_decoded_7_expanded_inst),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_pre_decoded_8_is_rvc
       (uop_hit
          ? _uopCache_io_read_resp_data_pre_decoded_8_is_rvc
-         : _ifu_io_toIbuffer_bits_pre_decoded_8_is_rvc),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+         : _ifu_io_toIbuffer_bits_pre_decoded_8_is_rvc),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
+    .io_enq_bits_pre_decoded_8_is_cfi
+      (uop_hit
+         ? _uopCache_io_read_resp_data_pre_decoded_8_is_cfi
+         : _ifu_io_toIbuffer_bits_pre_decoded_8_is_cfi),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_pre_decoded_8_is_call
       (uop_hit
          ? _uopCache_io_read_resp_data_pre_decoded_8_is_call
-         : _ifu_io_toIbuffer_bits_pre_decoded_8_is_call),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+         : _ifu_io_toIbuffer_bits_pre_decoded_8_is_call),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_pre_decoded_8_is_ret
       (uop_hit
          ? _uopCache_io_read_resp_data_pre_decoded_8_is_ret
-         : _ifu_io_toIbuffer_bits_pre_decoded_8_is_ret),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+         : _ifu_io_toIbuffer_bits_pre_decoded_8_is_ret),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_pre_decoded_8_expanded_inst
       (uop_hit
          ? _uopCache_io_read_resp_data_pre_decoded_8_expanded_inst
-         : _ifu_io_toIbuffer_bits_pre_decoded_8_expanded_inst),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+         : _ifu_io_toIbuffer_bits_pre_decoded_8_expanded_inst),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_pre_decoded_9_is_rvc
       (uop_hit
          ? _uopCache_io_read_resp_data_pre_decoded_9_is_rvc
-         : _ifu_io_toIbuffer_bits_pre_decoded_9_is_rvc),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+         : _ifu_io_toIbuffer_bits_pre_decoded_9_is_rvc),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
+    .io_enq_bits_pre_decoded_9_is_cfi
+      (uop_hit
+         ? _uopCache_io_read_resp_data_pre_decoded_9_is_cfi
+         : _ifu_io_toIbuffer_bits_pre_decoded_9_is_cfi),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_pre_decoded_9_is_call
       (uop_hit
          ? _uopCache_io_read_resp_data_pre_decoded_9_is_call
-         : _ifu_io_toIbuffer_bits_pre_decoded_9_is_call),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+         : _ifu_io_toIbuffer_bits_pre_decoded_9_is_call),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_pre_decoded_9_is_ret
       (uop_hit
          ? _uopCache_io_read_resp_data_pre_decoded_9_is_ret
-         : _ifu_io_toIbuffer_bits_pre_decoded_9_is_ret),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+         : _ifu_io_toIbuffer_bits_pre_decoded_9_is_ret),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_pre_decoded_9_expanded_inst
       (uop_hit
          ? _uopCache_io_read_resp_data_pre_decoded_9_expanded_inst
-         : _ifu_io_toIbuffer_bits_pre_decoded_9_expanded_inst),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+         : _ifu_io_toIbuffer_bits_pre_decoded_9_expanded_inst),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_pre_decoded_10_is_rvc
       (uop_hit
          ? _uopCache_io_read_resp_data_pre_decoded_10_is_rvc
-         : _ifu_io_toIbuffer_bits_pre_decoded_10_is_rvc),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+         : _ifu_io_toIbuffer_bits_pre_decoded_10_is_rvc),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
+    .io_enq_bits_pre_decoded_10_is_cfi
+      (uop_hit
+         ? _uopCache_io_read_resp_data_pre_decoded_10_is_cfi
+         : _ifu_io_toIbuffer_bits_pre_decoded_10_is_cfi),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_pre_decoded_10_is_call
       (uop_hit
          ? _uopCache_io_read_resp_data_pre_decoded_10_is_call
-         : _ifu_io_toIbuffer_bits_pre_decoded_10_is_call),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+         : _ifu_io_toIbuffer_bits_pre_decoded_10_is_call),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_pre_decoded_10_is_ret
       (uop_hit
          ? _uopCache_io_read_resp_data_pre_decoded_10_is_ret
-         : _ifu_io_toIbuffer_bits_pre_decoded_10_is_ret),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+         : _ifu_io_toIbuffer_bits_pre_decoded_10_is_ret),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_pre_decoded_10_expanded_inst
       (uop_hit
          ? _uopCache_io_read_resp_data_pre_decoded_10_expanded_inst
-         : _ifu_io_toIbuffer_bits_pre_decoded_10_expanded_inst),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+         : _ifu_io_toIbuffer_bits_pre_decoded_10_expanded_inst),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_pre_decoded_11_is_rvc
       (uop_hit
          ? _uopCache_io_read_resp_data_pre_decoded_11_is_rvc
-         : _ifu_io_toIbuffer_bits_pre_decoded_11_is_rvc),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+         : _ifu_io_toIbuffer_bits_pre_decoded_11_is_rvc),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
+    .io_enq_bits_pre_decoded_11_is_cfi
+      (uop_hit
+         ? _uopCache_io_read_resp_data_pre_decoded_11_is_cfi
+         : _ifu_io_toIbuffer_bits_pre_decoded_11_is_cfi),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_pre_decoded_11_is_call
       (uop_hit
          ? _uopCache_io_read_resp_data_pre_decoded_11_is_call
-         : _ifu_io_toIbuffer_bits_pre_decoded_11_is_call),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+         : _ifu_io_toIbuffer_bits_pre_decoded_11_is_call),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_pre_decoded_11_is_ret
       (uop_hit
          ? _uopCache_io_read_resp_data_pre_decoded_11_is_ret
-         : _ifu_io_toIbuffer_bits_pre_decoded_11_is_ret),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+         : _ifu_io_toIbuffer_bits_pre_decoded_11_is_ret),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_pre_decoded_11_expanded_inst
       (uop_hit
          ? _uopCache_io_read_resp_data_pre_decoded_11_expanded_inst
-         : _ifu_io_toIbuffer_bits_pre_decoded_11_expanded_inst),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+         : _ifu_io_toIbuffer_bits_pre_decoded_11_expanded_inst),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_pre_decoded_12_is_rvc
       (uop_hit
          ? _uopCache_io_read_resp_data_pre_decoded_12_is_rvc
-         : _ifu_io_toIbuffer_bits_pre_decoded_12_is_rvc),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+         : _ifu_io_toIbuffer_bits_pre_decoded_12_is_rvc),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
+    .io_enq_bits_pre_decoded_12_is_cfi
+      (uop_hit
+         ? _uopCache_io_read_resp_data_pre_decoded_12_is_cfi
+         : _ifu_io_toIbuffer_bits_pre_decoded_12_is_cfi),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_pre_decoded_12_is_call
       (uop_hit
          ? _uopCache_io_read_resp_data_pre_decoded_12_is_call
-         : _ifu_io_toIbuffer_bits_pre_decoded_12_is_call),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+         : _ifu_io_toIbuffer_bits_pre_decoded_12_is_call),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_pre_decoded_12_is_ret
       (uop_hit
          ? _uopCache_io_read_resp_data_pre_decoded_12_is_ret
-         : _ifu_io_toIbuffer_bits_pre_decoded_12_is_ret),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+         : _ifu_io_toIbuffer_bits_pre_decoded_12_is_ret),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_pre_decoded_12_expanded_inst
       (uop_hit
          ? _uopCache_io_read_resp_data_pre_decoded_12_expanded_inst
-         : _ifu_io_toIbuffer_bits_pre_decoded_12_expanded_inst),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+         : _ifu_io_toIbuffer_bits_pre_decoded_12_expanded_inst),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_pre_decoded_13_is_rvc
       (uop_hit
          ? _uopCache_io_read_resp_data_pre_decoded_13_is_rvc
-         : _ifu_io_toIbuffer_bits_pre_decoded_13_is_rvc),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+         : _ifu_io_toIbuffer_bits_pre_decoded_13_is_rvc),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
+    .io_enq_bits_pre_decoded_13_is_cfi
+      (uop_hit
+         ? _uopCache_io_read_resp_data_pre_decoded_13_is_cfi
+         : _ifu_io_toIbuffer_bits_pre_decoded_13_is_cfi),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_pre_decoded_13_is_call
       (uop_hit
          ? _uopCache_io_read_resp_data_pre_decoded_13_is_call
-         : _ifu_io_toIbuffer_bits_pre_decoded_13_is_call),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+         : _ifu_io_toIbuffer_bits_pre_decoded_13_is_call),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_pre_decoded_13_is_ret
       (uop_hit
          ? _uopCache_io_read_resp_data_pre_decoded_13_is_ret
-         : _ifu_io_toIbuffer_bits_pre_decoded_13_is_ret),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+         : _ifu_io_toIbuffer_bits_pre_decoded_13_is_ret),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_pre_decoded_13_expanded_inst
       (uop_hit
          ? _uopCache_io_read_resp_data_pre_decoded_13_expanded_inst
-         : _ifu_io_toIbuffer_bits_pre_decoded_13_expanded_inst),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+         : _ifu_io_toIbuffer_bits_pre_decoded_13_expanded_inst),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_pre_decoded_14_is_rvc
       (uop_hit
          ? _uopCache_io_read_resp_data_pre_decoded_14_is_rvc
-         : _ifu_io_toIbuffer_bits_pre_decoded_14_is_rvc),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+         : _ifu_io_toIbuffer_bits_pre_decoded_14_is_rvc),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
+    .io_enq_bits_pre_decoded_14_is_cfi
+      (uop_hit
+         ? _uopCache_io_read_resp_data_pre_decoded_14_is_cfi
+         : _ifu_io_toIbuffer_bits_pre_decoded_14_is_cfi),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_pre_decoded_14_is_call
       (uop_hit
          ? _uopCache_io_read_resp_data_pre_decoded_14_is_call
-         : _ifu_io_toIbuffer_bits_pre_decoded_14_is_call),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+         : _ifu_io_toIbuffer_bits_pre_decoded_14_is_call),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_pre_decoded_14_is_ret
       (uop_hit
          ? _uopCache_io_read_resp_data_pre_decoded_14_is_ret
-         : _ifu_io_toIbuffer_bits_pre_decoded_14_is_ret),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+         : _ifu_io_toIbuffer_bits_pre_decoded_14_is_ret),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_pre_decoded_14_expanded_inst
       (uop_hit
          ? _uopCache_io_read_resp_data_pre_decoded_14_expanded_inst
-         : _ifu_io_toIbuffer_bits_pre_decoded_14_expanded_inst),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+         : _ifu_io_toIbuffer_bits_pre_decoded_14_expanded_inst),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_pre_decoded_15_is_rvc
       (uop_hit
          ? _uopCache_io_read_resp_data_pre_decoded_15_is_rvc
-         : _ifu_io_toIbuffer_bits_pre_decoded_15_is_rvc),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+         : _ifu_io_toIbuffer_bits_pre_decoded_15_is_rvc),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
+    .io_enq_bits_pre_decoded_15_is_cfi
+      (uop_hit
+         ? _uopCache_io_read_resp_data_pre_decoded_15_is_cfi
+         : _ifu_io_toIbuffer_bits_pre_decoded_15_is_cfi),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_pre_decoded_15_is_call
       (uop_hit
          ? _uopCache_io_read_resp_data_pre_decoded_15_is_call
-         : _ifu_io_toIbuffer_bits_pre_decoded_15_is_call),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+         : _ifu_io_toIbuffer_bits_pre_decoded_15_is_call),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_pre_decoded_15_is_ret
       (uop_hit
          ? _uopCache_io_read_resp_data_pre_decoded_15_is_ret
-         : _ifu_io_toIbuffer_bits_pre_decoded_15_is_ret),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+         : _ifu_io_toIbuffer_bits_pre_decoded_15_is_ret),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_pre_decoded_15_expanded_inst
       (uop_hit
          ? _uopCache_io_read_resp_data_pre_decoded_15_expanded_inst
-         : _ifu_io_toIbuffer_bits_pre_decoded_15_expanded_inst),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+         : _ifu_io_toIbuffer_bits_pre_decoded_15_expanded_inst),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_mask
-      (uop_hit ? _uopCache_io_read_resp_data_mask : _ifu_io_toIbuffer_bits_mask),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :81:43, :111:30
+      (uop_hit ? _uopCache_io_read_resp_data_mask : _ifu_io_toIbuffer_bits_mask),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :44:24, :78:43, :108:30
     .io_enq_bits_prediction_target
       (uop_hit
          ? _ftq_skid_io_deq_bits_prediction_target
-         : _ifu_io_toIbuffer_bits_prediction_target),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :73:25, :81:43, :111:30
+         : _ifu_io_toIbuffer_bits_prediction_target),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :73:25, :78:43, :108:30
     .io_enq_bits_prediction_taken
       (uop_hit
          ? _ftq_skid_io_deq_bits_prediction_taken
-         : _ifu_io_toIbuffer_bits_prediction_taken),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :73:25, :81:43, :111:30
+         : _ifu_io_toIbuffer_bits_prediction_taken),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :73:25, :78:43, :108:30
     .io_enq_bits_prediction_slot
       (uop_hit
          ? _ftq_skid_io_deq_bits_prediction_slot
-         : _ifu_io_toIbuffer_bits_prediction_slot),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :73:25, :81:43, :111:30
+         : _ifu_io_toIbuffer_bits_prediction_slot),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :73:25, :78:43, :108:30
     .io_enq_bits_ftqPtr
-      (uop_hit ? _ftq_skid_io_deq_bits_ftqPtr : _ifu_io_toIbuffer_bits_ftqPtr),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :73:25, :81:43, :111:30
+      (uop_hit ? _ftq_skid_io_deq_bits_ftqPtr : _ifu_io_toIbuffer_bits_ftqPtr),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :73:25, :78:43, :108:30
     .io_enq_bits_epoch
-      (uop_hit ? _ftq_skid_io_deq_bits_epoch : _ifu_io_toIbuffer_bits_epoch),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :73:25, :81:43, :111:30
+      (uop_hit ? _ftq_skid_io_deq_bits_epoch : _ifu_io_toIbuffer_bits_epoch),	// frontend/src/zaqal/frontend/Frontend.scala:41:24, :73:25, :78:43, :108:30
     .io_deq_ready                             (_ibuf_io_inst_data_ready),	// frontend/src/zaqal/frontend/Frontend.scala:46:24
     .io_deq_valid                             (_ifu_skid_io_deq_valid),
     .io_deq_bits_pc_0                         (_ifu_skid_io_deq_bits_pc_0),
@@ -2562,6 +2449,8 @@ module Frontend(	// frontend/src/zaqal/frontend/Frontend.scala:11:7
     .io_deq_bits_instructions_15              (_ifu_skid_io_deq_bits_instructions_15),
     .io_deq_bits_pre_decoded_0_is_rvc
       (_ifu_skid_io_deq_bits_pre_decoded_0_is_rvc),
+    .io_deq_bits_pre_decoded_0_is_cfi
+      (_ifu_skid_io_deq_bits_pre_decoded_0_is_cfi),
     .io_deq_bits_pre_decoded_0_is_call
       (_ifu_skid_io_deq_bits_pre_decoded_0_is_call),
     .io_deq_bits_pre_decoded_0_is_ret
@@ -2570,6 +2459,8 @@ module Frontend(	// frontend/src/zaqal/frontend/Frontend.scala:11:7
       (_ifu_skid_io_deq_bits_pre_decoded_0_expanded_inst),
     .io_deq_bits_pre_decoded_1_is_rvc
       (_ifu_skid_io_deq_bits_pre_decoded_1_is_rvc),
+    .io_deq_bits_pre_decoded_1_is_cfi
+      (_ifu_skid_io_deq_bits_pre_decoded_1_is_cfi),
     .io_deq_bits_pre_decoded_1_is_call
       (_ifu_skid_io_deq_bits_pre_decoded_1_is_call),
     .io_deq_bits_pre_decoded_1_is_ret
@@ -2578,6 +2469,8 @@ module Frontend(	// frontend/src/zaqal/frontend/Frontend.scala:11:7
       (_ifu_skid_io_deq_bits_pre_decoded_1_expanded_inst),
     .io_deq_bits_pre_decoded_2_is_rvc
       (_ifu_skid_io_deq_bits_pre_decoded_2_is_rvc),
+    .io_deq_bits_pre_decoded_2_is_cfi
+      (_ifu_skid_io_deq_bits_pre_decoded_2_is_cfi),
     .io_deq_bits_pre_decoded_2_is_call
       (_ifu_skid_io_deq_bits_pre_decoded_2_is_call),
     .io_deq_bits_pre_decoded_2_is_ret
@@ -2586,6 +2479,8 @@ module Frontend(	// frontend/src/zaqal/frontend/Frontend.scala:11:7
       (_ifu_skid_io_deq_bits_pre_decoded_2_expanded_inst),
     .io_deq_bits_pre_decoded_3_is_rvc
       (_ifu_skid_io_deq_bits_pre_decoded_3_is_rvc),
+    .io_deq_bits_pre_decoded_3_is_cfi
+      (_ifu_skid_io_deq_bits_pre_decoded_3_is_cfi),
     .io_deq_bits_pre_decoded_3_is_call
       (_ifu_skid_io_deq_bits_pre_decoded_3_is_call),
     .io_deq_bits_pre_decoded_3_is_ret
@@ -2594,6 +2489,8 @@ module Frontend(	// frontend/src/zaqal/frontend/Frontend.scala:11:7
       (_ifu_skid_io_deq_bits_pre_decoded_3_expanded_inst),
     .io_deq_bits_pre_decoded_4_is_rvc
       (_ifu_skid_io_deq_bits_pre_decoded_4_is_rvc),
+    .io_deq_bits_pre_decoded_4_is_cfi
+      (_ifu_skid_io_deq_bits_pre_decoded_4_is_cfi),
     .io_deq_bits_pre_decoded_4_is_call
       (_ifu_skid_io_deq_bits_pre_decoded_4_is_call),
     .io_deq_bits_pre_decoded_4_is_ret
@@ -2602,6 +2499,8 @@ module Frontend(	// frontend/src/zaqal/frontend/Frontend.scala:11:7
       (_ifu_skid_io_deq_bits_pre_decoded_4_expanded_inst),
     .io_deq_bits_pre_decoded_5_is_rvc
       (_ifu_skid_io_deq_bits_pre_decoded_5_is_rvc),
+    .io_deq_bits_pre_decoded_5_is_cfi
+      (_ifu_skid_io_deq_bits_pre_decoded_5_is_cfi),
     .io_deq_bits_pre_decoded_5_is_call
       (_ifu_skid_io_deq_bits_pre_decoded_5_is_call),
     .io_deq_bits_pre_decoded_5_is_ret
@@ -2610,6 +2509,8 @@ module Frontend(	// frontend/src/zaqal/frontend/Frontend.scala:11:7
       (_ifu_skid_io_deq_bits_pre_decoded_5_expanded_inst),
     .io_deq_bits_pre_decoded_6_is_rvc
       (_ifu_skid_io_deq_bits_pre_decoded_6_is_rvc),
+    .io_deq_bits_pre_decoded_6_is_cfi
+      (_ifu_skid_io_deq_bits_pre_decoded_6_is_cfi),
     .io_deq_bits_pre_decoded_6_is_call
       (_ifu_skid_io_deq_bits_pre_decoded_6_is_call),
     .io_deq_bits_pre_decoded_6_is_ret
@@ -2618,6 +2519,8 @@ module Frontend(	// frontend/src/zaqal/frontend/Frontend.scala:11:7
       (_ifu_skid_io_deq_bits_pre_decoded_6_expanded_inst),
     .io_deq_bits_pre_decoded_7_is_rvc
       (_ifu_skid_io_deq_bits_pre_decoded_7_is_rvc),
+    .io_deq_bits_pre_decoded_7_is_cfi
+      (_ifu_skid_io_deq_bits_pre_decoded_7_is_cfi),
     .io_deq_bits_pre_decoded_7_is_call
       (_ifu_skid_io_deq_bits_pre_decoded_7_is_call),
     .io_deq_bits_pre_decoded_7_is_ret
@@ -2626,6 +2529,8 @@ module Frontend(	// frontend/src/zaqal/frontend/Frontend.scala:11:7
       (_ifu_skid_io_deq_bits_pre_decoded_7_expanded_inst),
     .io_deq_bits_pre_decoded_8_is_rvc
       (_ifu_skid_io_deq_bits_pre_decoded_8_is_rvc),
+    .io_deq_bits_pre_decoded_8_is_cfi
+      (_ifu_skid_io_deq_bits_pre_decoded_8_is_cfi),
     .io_deq_bits_pre_decoded_8_is_call
       (_ifu_skid_io_deq_bits_pre_decoded_8_is_call),
     .io_deq_bits_pre_decoded_8_is_ret
@@ -2634,6 +2539,8 @@ module Frontend(	// frontend/src/zaqal/frontend/Frontend.scala:11:7
       (_ifu_skid_io_deq_bits_pre_decoded_8_expanded_inst),
     .io_deq_bits_pre_decoded_9_is_rvc
       (_ifu_skid_io_deq_bits_pre_decoded_9_is_rvc),
+    .io_deq_bits_pre_decoded_9_is_cfi
+      (_ifu_skid_io_deq_bits_pre_decoded_9_is_cfi),
     .io_deq_bits_pre_decoded_9_is_call
       (_ifu_skid_io_deq_bits_pre_decoded_9_is_call),
     .io_deq_bits_pre_decoded_9_is_ret
@@ -2642,6 +2549,8 @@ module Frontend(	// frontend/src/zaqal/frontend/Frontend.scala:11:7
       (_ifu_skid_io_deq_bits_pre_decoded_9_expanded_inst),
     .io_deq_bits_pre_decoded_10_is_rvc
       (_ifu_skid_io_deq_bits_pre_decoded_10_is_rvc),
+    .io_deq_bits_pre_decoded_10_is_cfi
+      (_ifu_skid_io_deq_bits_pre_decoded_10_is_cfi),
     .io_deq_bits_pre_decoded_10_is_call
       (_ifu_skid_io_deq_bits_pre_decoded_10_is_call),
     .io_deq_bits_pre_decoded_10_is_ret
@@ -2650,6 +2559,8 @@ module Frontend(	// frontend/src/zaqal/frontend/Frontend.scala:11:7
       (_ifu_skid_io_deq_bits_pre_decoded_10_expanded_inst),
     .io_deq_bits_pre_decoded_11_is_rvc
       (_ifu_skid_io_deq_bits_pre_decoded_11_is_rvc),
+    .io_deq_bits_pre_decoded_11_is_cfi
+      (_ifu_skid_io_deq_bits_pre_decoded_11_is_cfi),
     .io_deq_bits_pre_decoded_11_is_call
       (_ifu_skid_io_deq_bits_pre_decoded_11_is_call),
     .io_deq_bits_pre_decoded_11_is_ret
@@ -2658,6 +2569,8 @@ module Frontend(	// frontend/src/zaqal/frontend/Frontend.scala:11:7
       (_ifu_skid_io_deq_bits_pre_decoded_11_expanded_inst),
     .io_deq_bits_pre_decoded_12_is_rvc
       (_ifu_skid_io_deq_bits_pre_decoded_12_is_rvc),
+    .io_deq_bits_pre_decoded_12_is_cfi
+      (_ifu_skid_io_deq_bits_pre_decoded_12_is_cfi),
     .io_deq_bits_pre_decoded_12_is_call
       (_ifu_skid_io_deq_bits_pre_decoded_12_is_call),
     .io_deq_bits_pre_decoded_12_is_ret
@@ -2666,6 +2579,8 @@ module Frontend(	// frontend/src/zaqal/frontend/Frontend.scala:11:7
       (_ifu_skid_io_deq_bits_pre_decoded_12_expanded_inst),
     .io_deq_bits_pre_decoded_13_is_rvc
       (_ifu_skid_io_deq_bits_pre_decoded_13_is_rvc),
+    .io_deq_bits_pre_decoded_13_is_cfi
+      (_ifu_skid_io_deq_bits_pre_decoded_13_is_cfi),
     .io_deq_bits_pre_decoded_13_is_call
       (_ifu_skid_io_deq_bits_pre_decoded_13_is_call),
     .io_deq_bits_pre_decoded_13_is_ret
@@ -2674,6 +2589,8 @@ module Frontend(	// frontend/src/zaqal/frontend/Frontend.scala:11:7
       (_ifu_skid_io_deq_bits_pre_decoded_13_expanded_inst),
     .io_deq_bits_pre_decoded_14_is_rvc
       (_ifu_skid_io_deq_bits_pre_decoded_14_is_rvc),
+    .io_deq_bits_pre_decoded_14_is_cfi
+      (_ifu_skid_io_deq_bits_pre_decoded_14_is_cfi),
     .io_deq_bits_pre_decoded_14_is_call
       (_ifu_skid_io_deq_bits_pre_decoded_14_is_call),
     .io_deq_bits_pre_decoded_14_is_ret
@@ -2682,6 +2599,8 @@ module Frontend(	// frontend/src/zaqal/frontend/Frontend.scala:11:7
       (_ifu_skid_io_deq_bits_pre_decoded_14_expanded_inst),
     .io_deq_bits_pre_decoded_15_is_rvc
       (_ifu_skid_io_deq_bits_pre_decoded_15_is_rvc),
+    .io_deq_bits_pre_decoded_15_is_cfi
+      (_ifu_skid_io_deq_bits_pre_decoded_15_is_cfi),
     .io_deq_bits_pre_decoded_15_is_call
       (_ifu_skid_io_deq_bits_pre_decoded_15_is_call),
     .io_deq_bits_pre_decoded_15_is_ret
@@ -2815,22 +2734,22 @@ module Frontend(	// frontend/src/zaqal/frontend/Frontend.scala:11:7
   assign io_ftq_read_data_exception_type_13 = 2'h0;	// frontend/src/zaqal/frontend/Frontend.scala:11:7, :40:24, :41:24, :44:24
   assign io_ftq_read_data_exception_type_14 = 2'h0;	// frontend/src/zaqal/frontend/Frontend.scala:11:7, :40:24, :41:24, :44:24
   assign io_ftq_read_data_exception_type_15 = 2'h0;	// frontend/src/zaqal/frontend/Frontend.scala:11:7, :40:24, :41:24, :44:24
-  assign io_ftq_read_data_debug_seqNum_0 = 64'h0;	// frontend/src/zaqal/frontend/Frontend.scala:11:7, :40:24, :41:24, :94:24
-  assign io_ftq_read_data_debug_seqNum_1 = 64'h0;	// frontend/src/zaqal/frontend/Frontend.scala:11:7, :40:24, :41:24, :94:24
-  assign io_ftq_read_data_debug_seqNum_2 = 64'h0;	// frontend/src/zaqal/frontend/Frontend.scala:11:7, :40:24, :41:24, :94:24
-  assign io_ftq_read_data_debug_seqNum_3 = 64'h0;	// frontend/src/zaqal/frontend/Frontend.scala:11:7, :40:24, :41:24, :94:24
-  assign io_ftq_read_data_debug_seqNum_4 = 64'h0;	// frontend/src/zaqal/frontend/Frontend.scala:11:7, :40:24, :41:24, :94:24
-  assign io_ftq_read_data_debug_seqNum_5 = 64'h0;	// frontend/src/zaqal/frontend/Frontend.scala:11:7, :40:24, :41:24, :94:24
-  assign io_ftq_read_data_debug_seqNum_6 = 64'h0;	// frontend/src/zaqal/frontend/Frontend.scala:11:7, :40:24, :41:24, :94:24
-  assign io_ftq_read_data_debug_seqNum_7 = 64'h0;	// frontend/src/zaqal/frontend/Frontend.scala:11:7, :40:24, :41:24, :94:24
-  assign io_ftq_read_data_debug_seqNum_8 = 64'h0;	// frontend/src/zaqal/frontend/Frontend.scala:11:7, :40:24, :41:24, :94:24
-  assign io_ftq_read_data_debug_seqNum_9 = 64'h0;	// frontend/src/zaqal/frontend/Frontend.scala:11:7, :40:24, :41:24, :94:24
-  assign io_ftq_read_data_debug_seqNum_10 = 64'h0;	// frontend/src/zaqal/frontend/Frontend.scala:11:7, :40:24, :41:24, :94:24
-  assign io_ftq_read_data_debug_seqNum_11 = 64'h0;	// frontend/src/zaqal/frontend/Frontend.scala:11:7, :40:24, :41:24, :94:24
-  assign io_ftq_read_data_debug_seqNum_12 = 64'h0;	// frontend/src/zaqal/frontend/Frontend.scala:11:7, :40:24, :41:24, :94:24
-  assign io_ftq_read_data_debug_seqNum_13 = 64'h0;	// frontend/src/zaqal/frontend/Frontend.scala:11:7, :40:24, :41:24, :94:24
-  assign io_ftq_read_data_debug_seqNum_14 = 64'h0;	// frontend/src/zaqal/frontend/Frontend.scala:11:7, :40:24, :41:24, :94:24
-  assign io_ftq_read_data_debug_seqNum_15 = 64'h0;	// frontend/src/zaqal/frontend/Frontend.scala:11:7, :40:24, :41:24, :94:24
+  assign io_ftq_read_data_debug_seqNum_0 = 64'h0;	// frontend/src/zaqal/frontend/Frontend.scala:11:7, :40:24, :41:24, :91:24
+  assign io_ftq_read_data_debug_seqNum_1 = 64'h0;	// frontend/src/zaqal/frontend/Frontend.scala:11:7, :40:24, :41:24, :91:24
+  assign io_ftq_read_data_debug_seqNum_2 = 64'h0;	// frontend/src/zaqal/frontend/Frontend.scala:11:7, :40:24, :41:24, :91:24
+  assign io_ftq_read_data_debug_seqNum_3 = 64'h0;	// frontend/src/zaqal/frontend/Frontend.scala:11:7, :40:24, :41:24, :91:24
+  assign io_ftq_read_data_debug_seqNum_4 = 64'h0;	// frontend/src/zaqal/frontend/Frontend.scala:11:7, :40:24, :41:24, :91:24
+  assign io_ftq_read_data_debug_seqNum_5 = 64'h0;	// frontend/src/zaqal/frontend/Frontend.scala:11:7, :40:24, :41:24, :91:24
+  assign io_ftq_read_data_debug_seqNum_6 = 64'h0;	// frontend/src/zaqal/frontend/Frontend.scala:11:7, :40:24, :41:24, :91:24
+  assign io_ftq_read_data_debug_seqNum_7 = 64'h0;	// frontend/src/zaqal/frontend/Frontend.scala:11:7, :40:24, :41:24, :91:24
+  assign io_ftq_read_data_debug_seqNum_8 = 64'h0;	// frontend/src/zaqal/frontend/Frontend.scala:11:7, :40:24, :41:24, :91:24
+  assign io_ftq_read_data_debug_seqNum_9 = 64'h0;	// frontend/src/zaqal/frontend/Frontend.scala:11:7, :40:24, :41:24, :91:24
+  assign io_ftq_read_data_debug_seqNum_10 = 64'h0;	// frontend/src/zaqal/frontend/Frontend.scala:11:7, :40:24, :41:24, :91:24
+  assign io_ftq_read_data_debug_seqNum_11 = 64'h0;	// frontend/src/zaqal/frontend/Frontend.scala:11:7, :40:24, :41:24, :91:24
+  assign io_ftq_read_data_debug_seqNum_12 = 64'h0;	// frontend/src/zaqal/frontend/Frontend.scala:11:7, :40:24, :41:24, :91:24
+  assign io_ftq_read_data_debug_seqNum_13 = 64'h0;	// frontend/src/zaqal/frontend/Frontend.scala:11:7, :40:24, :41:24, :91:24
+  assign io_ftq_read_data_debug_seqNum_14 = 64'h0;	// frontend/src/zaqal/frontend/Frontend.scala:11:7, :40:24, :41:24, :91:24
+  assign io_ftq_read_data_debug_seqNum_15 = 64'h0;	// frontend/src/zaqal/frontend/Frontend.scala:11:7, :40:24, :41:24, :91:24
   assign io_ftq_read_data_ftqPtr = 6'h0;	// frontend/src/zaqal/frontend/Frontend.scala:11:7, :12:14, :40:24
   assign io_ftq_read_data_epoch = 1'h0;	// frontend/src/zaqal/frontend/Frontend.scala:11:7
   assign io_debug_ftq_pc = _bpu_io_out_bits_pc;	// frontend/src/zaqal/frontend/Frontend.scala:11:7, :39:24

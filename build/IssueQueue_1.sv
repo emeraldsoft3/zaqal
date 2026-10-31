@@ -671,9 +671,6 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
                 io_wakeup_12_valid,	// backend/src/zaqal/backend/issue/IssueQueue.scala:9:14
   input  [7:0]  io_wakeup_12_pdest,	// backend/src/zaqal/backend/issue/IssueQueue.scala:9:14
   input         io_redirect_valid,	// backend/src/zaqal/backend/issue/IssueQueue.scala:9:14
-  input  [7:0]  io_redirect_restore_idx,	// backend/src/zaqal/backend/issue/IssueQueue.scala:9:14
-                io_redirect_enq_ptr,	// backend/src/zaqal/backend/issue/IssueQueue.scala:9:14
-  input         io_redirect_is_exception,	// backend/src/zaqal/backend/issue/IssueQueue.scala:9:14
   input  [6:0]  io_redirect_robIdx,	// backend/src/zaqal/backend/issue/IssueQueue.scala:9:14
   input         io_rs1_ready_in_0,	// backend/src/zaqal/backend/issue/IssueQueue.scala:9:14
                 io_rs1_ready_in_1,	// backend/src/zaqal/backend/issue/IssueQueue.scala:9:14
@@ -4109,2647 +4106,2422 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
        | entries_15_uop_decode_is_sfence_vma | entries_15_uop_decode_is_amx
        | entries_15_uop_decode_is_vset | entries_15_uop_decode_is_vec_arith
        | entries_15_uop_decode_is_vec_mem);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :67:22, :77:42
-  wire        _has_older_cfi_j_is_cfi_T_480 =
-    entries_0_uop_decode_is_branch | entries_0_uop_decode_is_jal;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :86:50
-  wire        _has_older_cfi_j_is_cfi_T_482 =
+  wire        _cfi_mask_T = entries_0_uop_decode_is_branch | entries_0_uop_decode_is_jal;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :86:50
+  wire        _cfi_mask_T_2 =
     entries_1_uop_decode_is_branch | entries_1_uop_decode_is_jal;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :89:66
-  wire        _has_older_cfi_j_is_cfi_T_484 =
+  wire        _cfi_mask_T_4 =
     entries_2_uop_decode_is_branch | entries_2_uop_decode_is_jal;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :89:66
-  wire        _has_older_cfi_j_is_cfi_T_486 =
+  wire        _cfi_mask_T_6 =
     entries_3_uop_decode_is_branch | entries_3_uop_decode_is_jal;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :89:66
-  wire        _has_older_cfi_j_is_cfi_T_488 =
+  wire        _cfi_mask_T_8 =
     entries_4_uop_decode_is_branch | entries_4_uop_decode_is_jal;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :89:66
-  wire        _has_older_cfi_j_is_cfi_T_490 =
+  wire        _cfi_mask_T_10 =
     entries_5_uop_decode_is_branch | entries_5_uop_decode_is_jal;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :89:66
-  wire        _has_older_cfi_j_is_cfi_T_492 =
+  wire        _cfi_mask_T_12 =
     entries_6_uop_decode_is_branch | entries_6_uop_decode_is_jal;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :89:66
-  wire        _has_older_cfi_j_is_cfi_T_494 =
+  wire        _cfi_mask_T_14 =
     entries_7_uop_decode_is_branch | entries_7_uop_decode_is_jal;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :89:66
-  wire        _has_older_cfi_j_is_cfi_T_496 =
+  wire        _cfi_mask_T_16 =
     entries_8_uop_decode_is_branch | entries_8_uop_decode_is_jal;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :89:66
-  wire        _has_older_cfi_j_is_cfi_T_498 =
+  wire        _cfi_mask_T_18 =
     entries_9_uop_decode_is_branch | entries_9_uop_decode_is_jal;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :89:66
-  wire        _has_older_cfi_j_is_cfi_T_500 =
+  wire        _cfi_mask_T_20 =
     entries_10_uop_decode_is_branch | entries_10_uop_decode_is_jal;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :89:66
-  wire        _has_older_cfi_j_is_cfi_T_502 =
+  wire        _cfi_mask_T_22 =
     entries_11_uop_decode_is_branch | entries_11_uop_decode_is_jal;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :89:66
-  wire        _has_older_cfi_j_is_cfi_T_504 =
+  wire        _cfi_mask_T_24 =
     entries_12_uop_decode_is_branch | entries_12_uop_decode_is_jal;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :89:66
-  wire        _has_older_cfi_j_is_cfi_T_506 =
+  wire        _cfi_mask_T_26 =
     entries_13_uop_decode_is_branch | entries_13_uop_decode_is_jal;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :89:66
-  wire        _has_older_cfi_j_is_cfi_T_508 =
+  wire        _cfi_mask_T_28 =
     entries_14_uop_decode_is_branch | entries_14_uop_decode_is_jal;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :89:66
-  wire        _has_older_cfi_j_is_cfi_T_510 =
+  wire        _cfi_mask_T_30 =
     entries_15_uop_decode_is_branch | entries_15_uop_decode_is_jal;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :89:66
   wire        _has_older_sys_T_5057 = entries_0_valid & is_sys_0;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :67:22, :104:24
   wire        _entry_is_younger_T = entries_0_uop_robIdx >= io_robDeqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :82:42
   wire [7:0]  _entry_is_younger_T_3 = {1'h0, entries_0_uop_robIdx} - 8'h80;	// backend/src/zaqal/backend/issue/IssueQueue.scala:9:14, :37:24, :82:83
   wire        _has_older_sys_T_5078 = entries_1_valid & is_sys_1;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :67:22, :104:24
-  wire        _entry_is_younger_T_19 = entries_1_uop_robIdx >= io_robDeqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :82:42
-  wire [7:0]  _entry_is_younger_T_22 = {1'h0, entries_1_uop_robIdx} - 8'h80;	// backend/src/zaqal/backend/issue/IssueQueue.scala:9:14, :37:24, :82:83
+  wire        _entry_is_younger_T_16 = entries_1_uop_robIdx >= io_robDeqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :82:42
+  wire [7:0]  _entry_is_younger_T_19 = {1'h0, entries_1_uop_robIdx} - 8'h80;	// backend/src/zaqal/backend/issue/IssueQueue.scala:9:14, :37:24, :82:83
   wire [7:0]  _GEN_431 = {1'h0, io_robDeqPtr};	// backend/src/zaqal/backend/issue/IssueQueue.scala:9:14, :82:91
   wire [7:0]  _GEN_432 = {1'h0, entries_1_uop_robIdx - io_robDeqPtr};	// backend/src/zaqal/backend/issue/IssueQueue.scala:9:14, :37:24, :82:{37,63}
   wire [7:0]  _GEN_433 = {1'h0, entries_0_uop_robIdx - io_robDeqPtr};	// backend/src/zaqal/backend/issue/IssueQueue.scala:9:14, :37:24, :82:{37,63}
   wire        _has_older_sys_T_5099 = entries_2_valid & is_sys_2;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :67:22, :104:24
-  wire        _entry_is_younger_T_38 = entries_2_uop_robIdx >= io_robDeqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :82:42
-  wire [7:0]  _entry_is_younger_T_41 = {1'h0, entries_2_uop_robIdx} - 8'h80;	// backend/src/zaqal/backend/issue/IssueQueue.scala:9:14, :37:24, :82:83
+  wire        _entry_is_younger_T_32 = entries_2_uop_robIdx >= io_robDeqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :82:42
+  wire [7:0]  _entry_is_younger_T_35 = {1'h0, entries_2_uop_robIdx} - 8'h80;	// backend/src/zaqal/backend/issue/IssueQueue.scala:9:14, :37:24, :82:83
   wire [7:0]  _GEN_434 = {1'h0, entries_2_uop_robIdx - io_robDeqPtr};	// backend/src/zaqal/backend/issue/IssueQueue.scala:9:14, :37:24, :82:{37,63}
   wire        _has_older_sys_T_5120 = entries_3_valid & is_sys_3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :67:22, :104:24
-  wire        _entry_is_younger_T_57 = entries_3_uop_robIdx >= io_robDeqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :82:42
-  wire [7:0]  _entry_is_younger_T_60 = {1'h0, entries_3_uop_robIdx} - 8'h80;	// backend/src/zaqal/backend/issue/IssueQueue.scala:9:14, :37:24, :82:83
+  wire        _entry_is_younger_T_48 = entries_3_uop_robIdx >= io_robDeqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :82:42
+  wire [7:0]  _entry_is_younger_T_51 = {1'h0, entries_3_uop_robIdx} - 8'h80;	// backend/src/zaqal/backend/issue/IssueQueue.scala:9:14, :37:24, :82:83
   wire [7:0]  _GEN_435 = {1'h0, entries_3_uop_robIdx - io_robDeqPtr};	// backend/src/zaqal/backend/issue/IssueQueue.scala:9:14, :37:24, :82:{37,63}
   wire        _has_older_sys_T_5141 = entries_4_valid & is_sys_4;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :67:22, :104:24
-  wire        _entry_is_younger_T_76 = entries_4_uop_robIdx >= io_robDeqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :82:42
-  wire [7:0]  _entry_is_younger_T_79 = {1'h0, entries_4_uop_robIdx} - 8'h80;	// backend/src/zaqal/backend/issue/IssueQueue.scala:9:14, :37:24, :82:83
+  wire        _entry_is_younger_T_64 = entries_4_uop_robIdx >= io_robDeqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :82:42
+  wire [7:0]  _entry_is_younger_T_67 = {1'h0, entries_4_uop_robIdx} - 8'h80;	// backend/src/zaqal/backend/issue/IssueQueue.scala:9:14, :37:24, :82:83
   wire [7:0]  _GEN_436 = {1'h0, entries_4_uop_robIdx - io_robDeqPtr};	// backend/src/zaqal/backend/issue/IssueQueue.scala:9:14, :37:24, :82:{37,63}
   wire        _has_older_sys_T_5162 = entries_5_valid & is_sys_5;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :67:22, :104:24
-  wire        _entry_is_younger_T_95 = entries_5_uop_robIdx >= io_robDeqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :82:42
-  wire [7:0]  _entry_is_younger_T_98 = {1'h0, entries_5_uop_robIdx} - 8'h80;	// backend/src/zaqal/backend/issue/IssueQueue.scala:9:14, :37:24, :82:83
+  wire        _entry_is_younger_T_80 = entries_5_uop_robIdx >= io_robDeqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :82:42
+  wire [7:0]  _entry_is_younger_T_83 = {1'h0, entries_5_uop_robIdx} - 8'h80;	// backend/src/zaqal/backend/issue/IssueQueue.scala:9:14, :37:24, :82:83
   wire [7:0]  _GEN_437 = {1'h0, entries_5_uop_robIdx - io_robDeqPtr};	// backend/src/zaqal/backend/issue/IssueQueue.scala:9:14, :37:24, :82:{37,63}
   wire        _has_older_sys_T_5183 = entries_6_valid & is_sys_6;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :67:22, :104:24
-  wire        _entry_is_younger_T_114 = entries_6_uop_robIdx >= io_robDeqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :82:42
-  wire [7:0]  _entry_is_younger_T_117 = {1'h0, entries_6_uop_robIdx} - 8'h80;	// backend/src/zaqal/backend/issue/IssueQueue.scala:9:14, :37:24, :82:83
+  wire        _entry_is_younger_T_96 = entries_6_uop_robIdx >= io_robDeqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :82:42
+  wire [7:0]  _entry_is_younger_T_99 = {1'h0, entries_6_uop_robIdx} - 8'h80;	// backend/src/zaqal/backend/issue/IssueQueue.scala:9:14, :37:24, :82:83
   wire [7:0]  _GEN_438 = {1'h0, entries_6_uop_robIdx - io_robDeqPtr};	// backend/src/zaqal/backend/issue/IssueQueue.scala:9:14, :37:24, :82:{37,63}
   wire        _has_older_sys_T_5204 = entries_7_valid & is_sys_7;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :67:22, :104:24
-  wire        _entry_is_younger_T_133 = entries_7_uop_robIdx >= io_robDeqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :82:42
-  wire [7:0]  _entry_is_younger_T_136 = {1'h0, entries_7_uop_robIdx} - 8'h80;	// backend/src/zaqal/backend/issue/IssueQueue.scala:9:14, :37:24, :82:83
+  wire        _entry_is_younger_T_112 = entries_7_uop_robIdx >= io_robDeqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :82:42
+  wire [7:0]  _entry_is_younger_T_115 = {1'h0, entries_7_uop_robIdx} - 8'h80;	// backend/src/zaqal/backend/issue/IssueQueue.scala:9:14, :37:24, :82:83
   wire [7:0]  _GEN_439 = {1'h0, entries_7_uop_robIdx - io_robDeqPtr};	// backend/src/zaqal/backend/issue/IssueQueue.scala:9:14, :37:24, :82:{37,63}
   wire        _has_older_sys_T_5225 = entries_8_valid & is_sys_8;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :67:22, :104:24
-  wire        _entry_is_younger_T_152 = entries_8_uop_robIdx >= io_robDeqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :82:42
-  wire [7:0]  _entry_is_younger_T_155 = {1'h0, entries_8_uop_robIdx} - 8'h80;	// backend/src/zaqal/backend/issue/IssueQueue.scala:9:14, :37:24, :82:83
+  wire        _entry_is_younger_T_128 = entries_8_uop_robIdx >= io_robDeqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :82:42
+  wire [7:0]  _entry_is_younger_T_131 = {1'h0, entries_8_uop_robIdx} - 8'h80;	// backend/src/zaqal/backend/issue/IssueQueue.scala:9:14, :37:24, :82:83
   wire [7:0]  _GEN_440 = {1'h0, entries_8_uop_robIdx - io_robDeqPtr};	// backend/src/zaqal/backend/issue/IssueQueue.scala:9:14, :37:24, :82:{37,63}
   wire        _has_older_sys_T_5246 = entries_9_valid & is_sys_9;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :67:22, :104:24
-  wire        _entry_is_younger_T_171 = entries_9_uop_robIdx >= io_robDeqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :82:42
-  wire [7:0]  _entry_is_younger_T_174 = {1'h0, entries_9_uop_robIdx} - 8'h80;	// backend/src/zaqal/backend/issue/IssueQueue.scala:9:14, :37:24, :82:83
+  wire        _entry_is_younger_T_144 = entries_9_uop_robIdx >= io_robDeqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :82:42
+  wire [7:0]  _entry_is_younger_T_147 = {1'h0, entries_9_uop_robIdx} - 8'h80;	// backend/src/zaqal/backend/issue/IssueQueue.scala:9:14, :37:24, :82:83
   wire [7:0]  _GEN_441 = {1'h0, entries_9_uop_robIdx - io_robDeqPtr};	// backend/src/zaqal/backend/issue/IssueQueue.scala:9:14, :37:24, :82:{37,63}
   wire        _has_older_sys_T_5267 = entries_10_valid & is_sys_10;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :67:22, :104:24
-  wire        _entry_is_younger_T_190 = entries_10_uop_robIdx >= io_robDeqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :82:42
-  wire [7:0]  _entry_is_younger_T_193 = {1'h0, entries_10_uop_robIdx} - 8'h80;	// backend/src/zaqal/backend/issue/IssueQueue.scala:9:14, :37:24, :82:83
+  wire        _entry_is_younger_T_160 = entries_10_uop_robIdx >= io_robDeqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :82:42
+  wire [7:0]  _entry_is_younger_T_163 = {1'h0, entries_10_uop_robIdx} - 8'h80;	// backend/src/zaqal/backend/issue/IssueQueue.scala:9:14, :37:24, :82:83
   wire [7:0]  _GEN_442 = {1'h0, entries_10_uop_robIdx - io_robDeqPtr};	// backend/src/zaqal/backend/issue/IssueQueue.scala:9:14, :37:24, :82:{37,63}
   wire        _has_older_sys_T_5288 = entries_11_valid & is_sys_11;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :67:22, :104:24
-  wire        _entry_is_younger_T_209 = entries_11_uop_robIdx >= io_robDeqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :82:42
-  wire [7:0]  _entry_is_younger_T_212 = {1'h0, entries_11_uop_robIdx} - 8'h80;	// backend/src/zaqal/backend/issue/IssueQueue.scala:9:14, :37:24, :82:83
+  wire        _entry_is_younger_T_176 = entries_11_uop_robIdx >= io_robDeqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :82:42
+  wire [7:0]  _entry_is_younger_T_179 = {1'h0, entries_11_uop_robIdx} - 8'h80;	// backend/src/zaqal/backend/issue/IssueQueue.scala:9:14, :37:24, :82:83
   wire [7:0]  _GEN_443 = {1'h0, entries_11_uop_robIdx - io_robDeqPtr};	// backend/src/zaqal/backend/issue/IssueQueue.scala:9:14, :37:24, :82:{37,63}
   wire        _has_older_sys_T_5309 = entries_12_valid & is_sys_12;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :67:22, :104:24
-  wire        _entry_is_younger_T_228 = entries_12_uop_robIdx >= io_robDeqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :82:42
-  wire [7:0]  _entry_is_younger_T_231 = {1'h0, entries_12_uop_robIdx} - 8'h80;	// backend/src/zaqal/backend/issue/IssueQueue.scala:9:14, :37:24, :82:83
+  wire        _entry_is_younger_T_192 = entries_12_uop_robIdx >= io_robDeqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :82:42
+  wire [7:0]  _entry_is_younger_T_195 = {1'h0, entries_12_uop_robIdx} - 8'h80;	// backend/src/zaqal/backend/issue/IssueQueue.scala:9:14, :37:24, :82:83
   wire [7:0]  _GEN_444 = {1'h0, entries_12_uop_robIdx - io_robDeqPtr};	// backend/src/zaqal/backend/issue/IssueQueue.scala:9:14, :37:24, :82:{37,63}
   wire        _has_older_sys_T_5330 = entries_13_valid & is_sys_13;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :67:22, :104:24
-  wire        _entry_is_younger_T_247 = entries_13_uop_robIdx >= io_robDeqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :82:42
-  wire [7:0]  _entry_is_younger_T_250 = {1'h0, entries_13_uop_robIdx} - 8'h80;	// backend/src/zaqal/backend/issue/IssueQueue.scala:9:14, :37:24, :82:83
+  wire        _entry_is_younger_T_208 = entries_13_uop_robIdx >= io_robDeqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :82:42
+  wire [7:0]  _entry_is_younger_T_211 = {1'h0, entries_13_uop_robIdx} - 8'h80;	// backend/src/zaqal/backend/issue/IssueQueue.scala:9:14, :37:24, :82:83
   wire [7:0]  _GEN_445 = {1'h0, entries_13_uop_robIdx - io_robDeqPtr};	// backend/src/zaqal/backend/issue/IssueQueue.scala:9:14, :37:24, :82:{37,63}
   wire        _has_older_sys_T_5351 = entries_14_valid & is_sys_14;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :67:22, :104:24
-  wire        _entry_is_younger_T_266 = entries_14_uop_robIdx >= io_robDeqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :82:42
-  wire [7:0]  _entry_is_younger_T_269 = {1'h0, entries_14_uop_robIdx} - 8'h80;	// backend/src/zaqal/backend/issue/IssueQueue.scala:9:14, :37:24, :82:83
+  wire        _entry_is_younger_T_224 = entries_14_uop_robIdx >= io_robDeqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :82:42
+  wire [7:0]  _entry_is_younger_T_227 = {1'h0, entries_14_uop_robIdx} - 8'h80;	// backend/src/zaqal/backend/issue/IssueQueue.scala:9:14, :37:24, :82:83
   wire [7:0]  _GEN_446 = {1'h0, entries_14_uop_robIdx - io_robDeqPtr};	// backend/src/zaqal/backend/issue/IssueQueue.scala:9:14, :37:24, :82:{37,63}
   wire        _has_older_sys_T_5370 = entries_15_valid & is_sys_15;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :67:22, :104:24
-  wire        _entry_is_younger_T_285 = entries_15_uop_robIdx >= io_robDeqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :82:42
-  wire [7:0]  _entry_is_younger_T_288 = {1'h0, entries_15_uop_robIdx} - 8'h80;	// backend/src/zaqal/backend/issue/IssueQueue.scala:9:14, :37:24, :82:83
+  wire        _entry_is_younger_T_240 = entries_15_uop_robIdx >= io_robDeqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :82:42
+  wire [7:0]  _entry_is_younger_T_243 = {1'h0, entries_15_uop_robIdx} - 8'h80;	// backend/src/zaqal/backend/issue/IssueQueue.scala:9:14, :37:24, :82:83
   wire [7:0]  _GEN_447 = {1'h0, entries_15_uop_robIdx - io_robDeqPtr};	// backend/src/zaqal/backend/issue/IssueQueue.scala:9:14, :37:24, :82:{37,63}
-  wire [15:0] sys_mask =
-    {is_sys_15,
-     is_sys_14,
-     is_sys_13,
-     is_sys_12,
-     is_sys_11,
-     is_sys_10,
-     is_sys_9,
-     is_sys_8,
-     is_sys_7,
-     is_sys_6,
-     is_sys_5,
-     is_sys_4,
-     is_sys_3,
-     is_sys_2,
-     is_sys_1,
-     is_sys_0};	// backend/src/zaqal/backend/issue/IssueQueue.scala:67:22, :114:25
+  wire [15:0] load_mask =
+    {entries_15_uop_decode_is_load | entries_15_uop_decode_is_fload
+       | entries_15_uop_decode_is_atomic,
+     entries_14_uop_decode_is_load | entries_14_uop_decode_is_fload
+       | entries_14_uop_decode_is_atomic,
+     entries_13_uop_decode_is_load | entries_13_uop_decode_is_fload
+       | entries_13_uop_decode_is_atomic,
+     entries_12_uop_decode_is_load | entries_12_uop_decode_is_fload
+       | entries_12_uop_decode_is_atomic,
+     entries_11_uop_decode_is_load | entries_11_uop_decode_is_fload
+       | entries_11_uop_decode_is_atomic,
+     entries_10_uop_decode_is_load | entries_10_uop_decode_is_fload
+       | entries_10_uop_decode_is_atomic,
+     entries_9_uop_decode_is_load | entries_9_uop_decode_is_fload
+       | entries_9_uop_decode_is_atomic,
+     entries_8_uop_decode_is_load | entries_8_uop_decode_is_fload
+       | entries_8_uop_decode_is_atomic,
+     entries_7_uop_decode_is_load | entries_7_uop_decode_is_fload
+       | entries_7_uop_decode_is_atomic,
+     entries_6_uop_decode_is_load | entries_6_uop_decode_is_fload
+       | entries_6_uop_decode_is_atomic,
+     entries_5_uop_decode_is_load | entries_5_uop_decode_is_fload
+       | entries_5_uop_decode_is_atomic,
+     entries_4_uop_decode_is_load | entries_4_uop_decode_is_fload
+       | entries_4_uop_decode_is_atomic,
+     entries_3_uop_decode_is_load | entries_3_uop_decode_is_fload
+       | entries_3_uop_decode_is_atomic,
+     entries_2_uop_decode_is_load | entries_2_uop_decode_is_fload
+       | entries_2_uop_decode_is_atomic,
+     entries_1_uop_decode_is_load | entries_1_uop_decode_is_fload
+       | entries_1_uop_decode_is_atomic,
+     entries_0_uop_decode_is_load | entries_0_uop_decode_is_fload
+       | entries_0_uop_decode_is_atomic};	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :128:29, :129:6
   wire [15:0] current_can_issue =
     {entries_15_valid & woken_rs1_15 & woken_rs2_15 & woken_rs3_15
        & ~entries_15_uop_loadWaitBit
-       & ~((_has_older_cfi_j_is_cfi_T_510 | entries_15_uop_decode_is_jalr)
-           & (|{entries_14_valid
-                  & (_has_older_cfi_j_is_cfi_T_508 | entries_14_uop_decode_is_jalr)
+       & ~((_cfi_mask_T_30 | entries_15_uop_decode_is_jalr)
+           & (|{entries_14_valid & (_cfi_mask_T_28 | entries_14_uop_decode_is_jalr)
                   & entries_14_uop_snapshotIdx < entries_15_uop_snapshotIdx,
-                entries_13_valid
-                  & (_has_older_cfi_j_is_cfi_T_506 | entries_13_uop_decode_is_jalr)
+                entries_13_valid & (_cfi_mask_T_26 | entries_13_uop_decode_is_jalr)
                   & entries_13_uop_snapshotIdx < entries_15_uop_snapshotIdx,
-                entries_12_valid
-                  & (_has_older_cfi_j_is_cfi_T_504 | entries_12_uop_decode_is_jalr)
+                entries_12_valid & (_cfi_mask_T_24 | entries_12_uop_decode_is_jalr)
                   & entries_12_uop_snapshotIdx < entries_15_uop_snapshotIdx,
-                entries_11_valid
-                  & (_has_older_cfi_j_is_cfi_T_502 | entries_11_uop_decode_is_jalr)
+                entries_11_valid & (_cfi_mask_T_22 | entries_11_uop_decode_is_jalr)
                   & entries_11_uop_snapshotIdx < entries_15_uop_snapshotIdx,
-                entries_10_valid
-                  & (_has_older_cfi_j_is_cfi_T_500 | entries_10_uop_decode_is_jalr)
+                entries_10_valid & (_cfi_mask_T_20 | entries_10_uop_decode_is_jalr)
                   & entries_10_uop_snapshotIdx < entries_15_uop_snapshotIdx,
-                entries_9_valid
-                  & (_has_older_cfi_j_is_cfi_T_498 | entries_9_uop_decode_is_jalr)
+                entries_9_valid & (_cfi_mask_T_18 | entries_9_uop_decode_is_jalr)
                   & entries_9_uop_snapshotIdx < entries_15_uop_snapshotIdx,
-                entries_8_valid
-                  & (_has_older_cfi_j_is_cfi_T_496 | entries_8_uop_decode_is_jalr)
+                entries_8_valid & (_cfi_mask_T_16 | entries_8_uop_decode_is_jalr)
                   & entries_8_uop_snapshotIdx < entries_15_uop_snapshotIdx,
-                entries_7_valid
-                  & (_has_older_cfi_j_is_cfi_T_494 | entries_7_uop_decode_is_jalr)
+                entries_7_valid & (_cfi_mask_T_14 | entries_7_uop_decode_is_jalr)
                   & entries_7_uop_snapshotIdx < entries_15_uop_snapshotIdx,
-                entries_6_valid
-                  & (_has_older_cfi_j_is_cfi_T_492 | entries_6_uop_decode_is_jalr)
+                entries_6_valid & (_cfi_mask_T_12 | entries_6_uop_decode_is_jalr)
                   & entries_6_uop_snapshotIdx < entries_15_uop_snapshotIdx,
-                entries_5_valid
-                  & (_has_older_cfi_j_is_cfi_T_490 | entries_5_uop_decode_is_jalr)
+                entries_5_valid & (_cfi_mask_T_10 | entries_5_uop_decode_is_jalr)
                   & entries_5_uop_snapshotIdx < entries_15_uop_snapshotIdx,
-                entries_4_valid
-                  & (_has_older_cfi_j_is_cfi_T_488 | entries_4_uop_decode_is_jalr)
+                entries_4_valid & (_cfi_mask_T_8 | entries_4_uop_decode_is_jalr)
                   & entries_4_uop_snapshotIdx < entries_15_uop_snapshotIdx,
-                entries_3_valid
-                  & (_has_older_cfi_j_is_cfi_T_486 | entries_3_uop_decode_is_jalr)
+                entries_3_valid & (_cfi_mask_T_6 | entries_3_uop_decode_is_jalr)
                   & entries_3_uop_snapshotIdx < entries_15_uop_snapshotIdx,
-                entries_2_valid
-                  & (_has_older_cfi_j_is_cfi_T_484 | entries_2_uop_decode_is_jalr)
+                entries_2_valid & (_cfi_mask_T_4 | entries_2_uop_decode_is_jalr)
                   & entries_2_uop_snapshotIdx < entries_15_uop_snapshotIdx,
-                entries_1_valid
-                  & (_has_older_cfi_j_is_cfi_T_482 | entries_1_uop_decode_is_jalr)
+                entries_1_valid & (_cfi_mask_T_2 | entries_1_uop_decode_is_jalr)
                   & entries_1_uop_snapshotIdx < entries_15_uop_snapshotIdx,
-                entries_0_valid
-                  & (_has_older_cfi_j_is_cfi_T_480 | entries_0_uop_decode_is_jalr)
+                entries_0_valid & (_cfi_mask_T | entries_0_uop_decode_is_jalr)
                   & entries_0_uop_snapshotIdx < entries_15_uop_snapshotIdx}))
        & (~is_sys_15 | entries_15_uop_robIdx == io_robDeqPtr)
        & {_has_older_sys_T_5351
-            & (_entry_is_younger_T_266
+            & (_entry_is_younger_T_224
                  ? _GEN_446
-                 : _entry_is_younger_T_269
-                   - _GEN_431) < (_entry_is_younger_T_285
+                 : _entry_is_younger_T_227
+                   - _GEN_431) < (_entry_is_younger_T_240
                                     ? _GEN_447
-                                    : _entry_is_younger_T_288 - _GEN_431),
+                                    : _entry_is_younger_T_243 - _GEN_431),
           _has_older_sys_T_5330
-            & (_entry_is_younger_T_247
+            & (_entry_is_younger_T_208
                  ? _GEN_445
-                 : _entry_is_younger_T_250
-                   - _GEN_431) < (_entry_is_younger_T_285
+                 : _entry_is_younger_T_211
+                   - _GEN_431) < (_entry_is_younger_T_240
                                     ? _GEN_447
-                                    : _entry_is_younger_T_288 - _GEN_431),
+                                    : _entry_is_younger_T_243 - _GEN_431),
           _has_older_sys_T_5309
-            & (_entry_is_younger_T_228
+            & (_entry_is_younger_T_192
                  ? _GEN_444
-                 : _entry_is_younger_T_231
-                   - _GEN_431) < (_entry_is_younger_T_285
+                 : _entry_is_younger_T_195
+                   - _GEN_431) < (_entry_is_younger_T_240
                                     ? _GEN_447
-                                    : _entry_is_younger_T_288 - _GEN_431),
+                                    : _entry_is_younger_T_243 - _GEN_431),
           _has_older_sys_T_5288
-            & (_entry_is_younger_T_209
+            & (_entry_is_younger_T_176
                  ? _GEN_443
-                 : _entry_is_younger_T_212
-                   - _GEN_431) < (_entry_is_younger_T_285
+                 : _entry_is_younger_T_179
+                   - _GEN_431) < (_entry_is_younger_T_240
                                     ? _GEN_447
-                                    : _entry_is_younger_T_288 - _GEN_431),
+                                    : _entry_is_younger_T_243 - _GEN_431),
           _has_older_sys_T_5267
-            & (_entry_is_younger_T_190
+            & (_entry_is_younger_T_160
                  ? _GEN_442
-                 : _entry_is_younger_T_193
-                   - _GEN_431) < (_entry_is_younger_T_285
+                 : _entry_is_younger_T_163
+                   - _GEN_431) < (_entry_is_younger_T_240
                                     ? _GEN_447
-                                    : _entry_is_younger_T_288 - _GEN_431),
+                                    : _entry_is_younger_T_243 - _GEN_431),
           _has_older_sys_T_5246
-            & (_entry_is_younger_T_171
+            & (_entry_is_younger_T_144
                  ? _GEN_441
-                 : _entry_is_younger_T_174
-                   - _GEN_431) < (_entry_is_younger_T_285
+                 : _entry_is_younger_T_147
+                   - _GEN_431) < (_entry_is_younger_T_240
                                     ? _GEN_447
-                                    : _entry_is_younger_T_288 - _GEN_431),
+                                    : _entry_is_younger_T_243 - _GEN_431),
           _has_older_sys_T_5225
-            & (_entry_is_younger_T_152
+            & (_entry_is_younger_T_128
                  ? _GEN_440
-                 : _entry_is_younger_T_155
-                   - _GEN_431) < (_entry_is_younger_T_285
+                 : _entry_is_younger_T_131
+                   - _GEN_431) < (_entry_is_younger_T_240
                                     ? _GEN_447
-                                    : _entry_is_younger_T_288 - _GEN_431),
+                                    : _entry_is_younger_T_243 - _GEN_431),
           _has_older_sys_T_5204
-            & (_entry_is_younger_T_133
+            & (_entry_is_younger_T_112
                  ? _GEN_439
-                 : _entry_is_younger_T_136
-                   - _GEN_431) < (_entry_is_younger_T_285
+                 : _entry_is_younger_T_115
+                   - _GEN_431) < (_entry_is_younger_T_240
                                     ? _GEN_447
-                                    : _entry_is_younger_T_288 - _GEN_431),
+                                    : _entry_is_younger_T_243 - _GEN_431),
           _has_older_sys_T_5183
-            & (_entry_is_younger_T_114
+            & (_entry_is_younger_T_96
                  ? _GEN_438
-                 : _entry_is_younger_T_117
-                   - _GEN_431) < (_entry_is_younger_T_285
+                 : _entry_is_younger_T_99
+                   - _GEN_431) < (_entry_is_younger_T_240
                                     ? _GEN_447
-                                    : _entry_is_younger_T_288 - _GEN_431),
+                                    : _entry_is_younger_T_243 - _GEN_431),
           _has_older_sys_T_5162
-            & (_entry_is_younger_T_95
+            & (_entry_is_younger_T_80
                  ? _GEN_437
-                 : _entry_is_younger_T_98
-                   - _GEN_431) < (_entry_is_younger_T_285
+                 : _entry_is_younger_T_83
+                   - _GEN_431) < (_entry_is_younger_T_240
                                     ? _GEN_447
-                                    : _entry_is_younger_T_288 - _GEN_431),
+                                    : _entry_is_younger_T_243 - _GEN_431),
           _has_older_sys_T_5141
-            & (_entry_is_younger_T_76
+            & (_entry_is_younger_T_64
                  ? _GEN_436
-                 : _entry_is_younger_T_79
-                   - _GEN_431) < (_entry_is_younger_T_285
+                 : _entry_is_younger_T_67
+                   - _GEN_431) < (_entry_is_younger_T_240
                                     ? _GEN_447
-                                    : _entry_is_younger_T_288 - _GEN_431),
+                                    : _entry_is_younger_T_243 - _GEN_431),
           _has_older_sys_T_5120
-            & (_entry_is_younger_T_57
+            & (_entry_is_younger_T_48
                  ? _GEN_435
-                 : _entry_is_younger_T_60
-                   - _GEN_431) < (_entry_is_younger_T_285
+                 : _entry_is_younger_T_51
+                   - _GEN_431) < (_entry_is_younger_T_240
                                     ? _GEN_447
-                                    : _entry_is_younger_T_288 - _GEN_431),
+                                    : _entry_is_younger_T_243 - _GEN_431),
           _has_older_sys_T_5099
-            & (_entry_is_younger_T_38
+            & (_entry_is_younger_T_32
                  ? _GEN_434
-                 : _entry_is_younger_T_41
-                   - _GEN_431) < (_entry_is_younger_T_285
+                 : _entry_is_younger_T_35
+                   - _GEN_431) < (_entry_is_younger_T_240
                                     ? _GEN_447
-                                    : _entry_is_younger_T_288 - _GEN_431),
+                                    : _entry_is_younger_T_243 - _GEN_431),
           _has_older_sys_T_5078
-            & (_entry_is_younger_T_19
+            & (_entry_is_younger_T_16
                  ? _GEN_432
-                 : _entry_is_younger_T_22
-                   - _GEN_431) < (_entry_is_younger_T_285
+                 : _entry_is_younger_T_19
+                   - _GEN_431) < (_entry_is_younger_T_240
                                     ? _GEN_447
-                                    : _entry_is_younger_T_288 - _GEN_431),
+                                    : _entry_is_younger_T_243 - _GEN_431),
           _has_older_sys_T_5057
             & (_entry_is_younger_T
                  ? _GEN_433
                  : _entry_is_younger_T_3
-                   - _GEN_431) < (_entry_is_younger_T_285
+                   - _GEN_431) < (_entry_is_younger_T_240
                                     ? _GEN_447
-                                    : _entry_is_younger_T_288 - _GEN_431)} == 15'h0,
+                                    : _entry_is_younger_T_243 - _GEN_431)} == 15'h0,
      entries_14_valid & woken_rs1_14 & woken_rs2_14 & woken_rs3_14
        & ~entries_14_uop_loadWaitBit
-       & ~((_has_older_cfi_j_is_cfi_T_508 | entries_14_uop_decode_is_jalr)
-           & (|{entries_15_valid
-                  & (_has_older_cfi_j_is_cfi_T_510 | entries_15_uop_decode_is_jalr)
+       & ~((_cfi_mask_T_28 | entries_14_uop_decode_is_jalr)
+           & (|{entries_15_valid & (_cfi_mask_T_30 | entries_15_uop_decode_is_jalr)
                   & entries_15_uop_snapshotIdx < entries_14_uop_snapshotIdx,
-                entries_13_valid
-                  & (_has_older_cfi_j_is_cfi_T_506 | entries_13_uop_decode_is_jalr)
+                entries_13_valid & (_cfi_mask_T_26 | entries_13_uop_decode_is_jalr)
                   & entries_13_uop_snapshotIdx < entries_14_uop_snapshotIdx,
-                entries_12_valid
-                  & (_has_older_cfi_j_is_cfi_T_504 | entries_12_uop_decode_is_jalr)
+                entries_12_valid & (_cfi_mask_T_24 | entries_12_uop_decode_is_jalr)
                   & entries_12_uop_snapshotIdx < entries_14_uop_snapshotIdx,
-                entries_11_valid
-                  & (_has_older_cfi_j_is_cfi_T_502 | entries_11_uop_decode_is_jalr)
+                entries_11_valid & (_cfi_mask_T_22 | entries_11_uop_decode_is_jalr)
                   & entries_11_uop_snapshotIdx < entries_14_uop_snapshotIdx,
-                entries_10_valid
-                  & (_has_older_cfi_j_is_cfi_T_500 | entries_10_uop_decode_is_jalr)
+                entries_10_valid & (_cfi_mask_T_20 | entries_10_uop_decode_is_jalr)
                   & entries_10_uop_snapshotIdx < entries_14_uop_snapshotIdx,
-                entries_9_valid
-                  & (_has_older_cfi_j_is_cfi_T_498 | entries_9_uop_decode_is_jalr)
+                entries_9_valid & (_cfi_mask_T_18 | entries_9_uop_decode_is_jalr)
                   & entries_9_uop_snapshotIdx < entries_14_uop_snapshotIdx,
-                entries_8_valid
-                  & (_has_older_cfi_j_is_cfi_T_496 | entries_8_uop_decode_is_jalr)
+                entries_8_valid & (_cfi_mask_T_16 | entries_8_uop_decode_is_jalr)
                   & entries_8_uop_snapshotIdx < entries_14_uop_snapshotIdx,
-                entries_7_valid
-                  & (_has_older_cfi_j_is_cfi_T_494 | entries_7_uop_decode_is_jalr)
+                entries_7_valid & (_cfi_mask_T_14 | entries_7_uop_decode_is_jalr)
                   & entries_7_uop_snapshotIdx < entries_14_uop_snapshotIdx,
-                entries_6_valid
-                  & (_has_older_cfi_j_is_cfi_T_492 | entries_6_uop_decode_is_jalr)
+                entries_6_valid & (_cfi_mask_T_12 | entries_6_uop_decode_is_jalr)
                   & entries_6_uop_snapshotIdx < entries_14_uop_snapshotIdx,
-                entries_5_valid
-                  & (_has_older_cfi_j_is_cfi_T_490 | entries_5_uop_decode_is_jalr)
+                entries_5_valid & (_cfi_mask_T_10 | entries_5_uop_decode_is_jalr)
                   & entries_5_uop_snapshotIdx < entries_14_uop_snapshotIdx,
-                entries_4_valid
-                  & (_has_older_cfi_j_is_cfi_T_488 | entries_4_uop_decode_is_jalr)
+                entries_4_valid & (_cfi_mask_T_8 | entries_4_uop_decode_is_jalr)
                   & entries_4_uop_snapshotIdx < entries_14_uop_snapshotIdx,
-                entries_3_valid
-                  & (_has_older_cfi_j_is_cfi_T_486 | entries_3_uop_decode_is_jalr)
+                entries_3_valid & (_cfi_mask_T_6 | entries_3_uop_decode_is_jalr)
                   & entries_3_uop_snapshotIdx < entries_14_uop_snapshotIdx,
-                entries_2_valid
-                  & (_has_older_cfi_j_is_cfi_T_484 | entries_2_uop_decode_is_jalr)
+                entries_2_valid & (_cfi_mask_T_4 | entries_2_uop_decode_is_jalr)
                   & entries_2_uop_snapshotIdx < entries_14_uop_snapshotIdx,
-                entries_1_valid
-                  & (_has_older_cfi_j_is_cfi_T_482 | entries_1_uop_decode_is_jalr)
+                entries_1_valid & (_cfi_mask_T_2 | entries_1_uop_decode_is_jalr)
                   & entries_1_uop_snapshotIdx < entries_14_uop_snapshotIdx,
-                entries_0_valid
-                  & (_has_older_cfi_j_is_cfi_T_480 | entries_0_uop_decode_is_jalr)
+                entries_0_valid & (_cfi_mask_T | entries_0_uop_decode_is_jalr)
                   & entries_0_uop_snapshotIdx < entries_14_uop_snapshotIdx}))
        & (~is_sys_14 | entries_14_uop_robIdx == io_robDeqPtr)
        & {_has_older_sys_T_5370
-            & (_entry_is_younger_T_285
+            & (_entry_is_younger_T_240
                  ? _GEN_447
-                 : _entry_is_younger_T_288
-                   - _GEN_431) < (_entry_is_younger_T_266
+                 : _entry_is_younger_T_243
+                   - _GEN_431) < (_entry_is_younger_T_224
                                     ? _GEN_446
-                                    : _entry_is_younger_T_269 - _GEN_431),
+                                    : _entry_is_younger_T_227 - _GEN_431),
           _has_older_sys_T_5330
-            & (_entry_is_younger_T_247
+            & (_entry_is_younger_T_208
                  ? _GEN_445
-                 : _entry_is_younger_T_250
-                   - _GEN_431) < (_entry_is_younger_T_266
+                 : _entry_is_younger_T_211
+                   - _GEN_431) < (_entry_is_younger_T_224
                                     ? _GEN_446
-                                    : _entry_is_younger_T_269 - _GEN_431),
+                                    : _entry_is_younger_T_227 - _GEN_431),
           _has_older_sys_T_5309
-            & (_entry_is_younger_T_228
+            & (_entry_is_younger_T_192
                  ? _GEN_444
-                 : _entry_is_younger_T_231
-                   - _GEN_431) < (_entry_is_younger_T_266
+                 : _entry_is_younger_T_195
+                   - _GEN_431) < (_entry_is_younger_T_224
                                     ? _GEN_446
-                                    : _entry_is_younger_T_269 - _GEN_431),
+                                    : _entry_is_younger_T_227 - _GEN_431),
           _has_older_sys_T_5288
-            & (_entry_is_younger_T_209
+            & (_entry_is_younger_T_176
                  ? _GEN_443
-                 : _entry_is_younger_T_212
-                   - _GEN_431) < (_entry_is_younger_T_266
+                 : _entry_is_younger_T_179
+                   - _GEN_431) < (_entry_is_younger_T_224
                                     ? _GEN_446
-                                    : _entry_is_younger_T_269 - _GEN_431),
+                                    : _entry_is_younger_T_227 - _GEN_431),
           _has_older_sys_T_5267
-            & (_entry_is_younger_T_190
+            & (_entry_is_younger_T_160
                  ? _GEN_442
-                 : _entry_is_younger_T_193
-                   - _GEN_431) < (_entry_is_younger_T_266
+                 : _entry_is_younger_T_163
+                   - _GEN_431) < (_entry_is_younger_T_224
                                     ? _GEN_446
-                                    : _entry_is_younger_T_269 - _GEN_431),
+                                    : _entry_is_younger_T_227 - _GEN_431),
           _has_older_sys_T_5246
-            & (_entry_is_younger_T_171
+            & (_entry_is_younger_T_144
                  ? _GEN_441
-                 : _entry_is_younger_T_174
-                   - _GEN_431) < (_entry_is_younger_T_266
+                 : _entry_is_younger_T_147
+                   - _GEN_431) < (_entry_is_younger_T_224
                                     ? _GEN_446
-                                    : _entry_is_younger_T_269 - _GEN_431),
+                                    : _entry_is_younger_T_227 - _GEN_431),
           _has_older_sys_T_5225
-            & (_entry_is_younger_T_152
+            & (_entry_is_younger_T_128
                  ? _GEN_440
-                 : _entry_is_younger_T_155
-                   - _GEN_431) < (_entry_is_younger_T_266
+                 : _entry_is_younger_T_131
+                   - _GEN_431) < (_entry_is_younger_T_224
                                     ? _GEN_446
-                                    : _entry_is_younger_T_269 - _GEN_431),
+                                    : _entry_is_younger_T_227 - _GEN_431),
           _has_older_sys_T_5204
-            & (_entry_is_younger_T_133
+            & (_entry_is_younger_T_112
                  ? _GEN_439
-                 : _entry_is_younger_T_136
-                   - _GEN_431) < (_entry_is_younger_T_266
+                 : _entry_is_younger_T_115
+                   - _GEN_431) < (_entry_is_younger_T_224
                                     ? _GEN_446
-                                    : _entry_is_younger_T_269 - _GEN_431),
+                                    : _entry_is_younger_T_227 - _GEN_431),
           _has_older_sys_T_5183
-            & (_entry_is_younger_T_114
+            & (_entry_is_younger_T_96
                  ? _GEN_438
-                 : _entry_is_younger_T_117
-                   - _GEN_431) < (_entry_is_younger_T_266
+                 : _entry_is_younger_T_99
+                   - _GEN_431) < (_entry_is_younger_T_224
                                     ? _GEN_446
-                                    : _entry_is_younger_T_269 - _GEN_431),
+                                    : _entry_is_younger_T_227 - _GEN_431),
           _has_older_sys_T_5162
-            & (_entry_is_younger_T_95
+            & (_entry_is_younger_T_80
                  ? _GEN_437
-                 : _entry_is_younger_T_98
-                   - _GEN_431) < (_entry_is_younger_T_266
+                 : _entry_is_younger_T_83
+                   - _GEN_431) < (_entry_is_younger_T_224
                                     ? _GEN_446
-                                    : _entry_is_younger_T_269 - _GEN_431),
+                                    : _entry_is_younger_T_227 - _GEN_431),
           _has_older_sys_T_5141
-            & (_entry_is_younger_T_76
+            & (_entry_is_younger_T_64
                  ? _GEN_436
-                 : _entry_is_younger_T_79
-                   - _GEN_431) < (_entry_is_younger_T_266
+                 : _entry_is_younger_T_67
+                   - _GEN_431) < (_entry_is_younger_T_224
                                     ? _GEN_446
-                                    : _entry_is_younger_T_269 - _GEN_431),
+                                    : _entry_is_younger_T_227 - _GEN_431),
           _has_older_sys_T_5120
-            & (_entry_is_younger_T_57
+            & (_entry_is_younger_T_48
                  ? _GEN_435
-                 : _entry_is_younger_T_60
-                   - _GEN_431) < (_entry_is_younger_T_266
+                 : _entry_is_younger_T_51
+                   - _GEN_431) < (_entry_is_younger_T_224
                                     ? _GEN_446
-                                    : _entry_is_younger_T_269 - _GEN_431),
+                                    : _entry_is_younger_T_227 - _GEN_431),
           _has_older_sys_T_5099
-            & (_entry_is_younger_T_38
+            & (_entry_is_younger_T_32
                  ? _GEN_434
-                 : _entry_is_younger_T_41
-                   - _GEN_431) < (_entry_is_younger_T_266
+                 : _entry_is_younger_T_35
+                   - _GEN_431) < (_entry_is_younger_T_224
                                     ? _GEN_446
-                                    : _entry_is_younger_T_269 - _GEN_431),
+                                    : _entry_is_younger_T_227 - _GEN_431),
           _has_older_sys_T_5078
-            & (_entry_is_younger_T_19
+            & (_entry_is_younger_T_16
                  ? _GEN_432
-                 : _entry_is_younger_T_22
-                   - _GEN_431) < (_entry_is_younger_T_266
+                 : _entry_is_younger_T_19
+                   - _GEN_431) < (_entry_is_younger_T_224
                                     ? _GEN_446
-                                    : _entry_is_younger_T_269 - _GEN_431),
+                                    : _entry_is_younger_T_227 - _GEN_431),
           _has_older_sys_T_5057
             & (_entry_is_younger_T
                  ? _GEN_433
                  : _entry_is_younger_T_3
-                   - _GEN_431) < (_entry_is_younger_T_266
+                   - _GEN_431) < (_entry_is_younger_T_224
                                     ? _GEN_446
-                                    : _entry_is_younger_T_269 - _GEN_431)} == 15'h0,
+                                    : _entry_is_younger_T_227 - _GEN_431)} == 15'h0,
      entries_13_valid & woken_rs1_13 & woken_rs2_13 & woken_rs3_13
        & ~entries_13_uop_loadWaitBit
-       & ~((_has_older_cfi_j_is_cfi_T_506 | entries_13_uop_decode_is_jalr)
-           & (|{entries_15_valid
-                  & (_has_older_cfi_j_is_cfi_T_510 | entries_15_uop_decode_is_jalr)
+       & ~((_cfi_mask_T_26 | entries_13_uop_decode_is_jalr)
+           & (|{entries_15_valid & (_cfi_mask_T_30 | entries_15_uop_decode_is_jalr)
                   & entries_15_uop_snapshotIdx < entries_13_uop_snapshotIdx,
-                entries_14_valid
-                  & (_has_older_cfi_j_is_cfi_T_508 | entries_14_uop_decode_is_jalr)
+                entries_14_valid & (_cfi_mask_T_28 | entries_14_uop_decode_is_jalr)
                   & entries_14_uop_snapshotIdx < entries_13_uop_snapshotIdx,
-                entries_12_valid
-                  & (_has_older_cfi_j_is_cfi_T_504 | entries_12_uop_decode_is_jalr)
+                entries_12_valid & (_cfi_mask_T_24 | entries_12_uop_decode_is_jalr)
                   & entries_12_uop_snapshotIdx < entries_13_uop_snapshotIdx,
-                entries_11_valid
-                  & (_has_older_cfi_j_is_cfi_T_502 | entries_11_uop_decode_is_jalr)
+                entries_11_valid & (_cfi_mask_T_22 | entries_11_uop_decode_is_jalr)
                   & entries_11_uop_snapshotIdx < entries_13_uop_snapshotIdx,
-                entries_10_valid
-                  & (_has_older_cfi_j_is_cfi_T_500 | entries_10_uop_decode_is_jalr)
+                entries_10_valid & (_cfi_mask_T_20 | entries_10_uop_decode_is_jalr)
                   & entries_10_uop_snapshotIdx < entries_13_uop_snapshotIdx,
-                entries_9_valid
-                  & (_has_older_cfi_j_is_cfi_T_498 | entries_9_uop_decode_is_jalr)
+                entries_9_valid & (_cfi_mask_T_18 | entries_9_uop_decode_is_jalr)
                   & entries_9_uop_snapshotIdx < entries_13_uop_snapshotIdx,
-                entries_8_valid
-                  & (_has_older_cfi_j_is_cfi_T_496 | entries_8_uop_decode_is_jalr)
+                entries_8_valid & (_cfi_mask_T_16 | entries_8_uop_decode_is_jalr)
                   & entries_8_uop_snapshotIdx < entries_13_uop_snapshotIdx,
-                entries_7_valid
-                  & (_has_older_cfi_j_is_cfi_T_494 | entries_7_uop_decode_is_jalr)
+                entries_7_valid & (_cfi_mask_T_14 | entries_7_uop_decode_is_jalr)
                   & entries_7_uop_snapshotIdx < entries_13_uop_snapshotIdx,
-                entries_6_valid
-                  & (_has_older_cfi_j_is_cfi_T_492 | entries_6_uop_decode_is_jalr)
+                entries_6_valid & (_cfi_mask_T_12 | entries_6_uop_decode_is_jalr)
                   & entries_6_uop_snapshotIdx < entries_13_uop_snapshotIdx,
-                entries_5_valid
-                  & (_has_older_cfi_j_is_cfi_T_490 | entries_5_uop_decode_is_jalr)
+                entries_5_valid & (_cfi_mask_T_10 | entries_5_uop_decode_is_jalr)
                   & entries_5_uop_snapshotIdx < entries_13_uop_snapshotIdx,
-                entries_4_valid
-                  & (_has_older_cfi_j_is_cfi_T_488 | entries_4_uop_decode_is_jalr)
+                entries_4_valid & (_cfi_mask_T_8 | entries_4_uop_decode_is_jalr)
                   & entries_4_uop_snapshotIdx < entries_13_uop_snapshotIdx,
-                entries_3_valid
-                  & (_has_older_cfi_j_is_cfi_T_486 | entries_3_uop_decode_is_jalr)
+                entries_3_valid & (_cfi_mask_T_6 | entries_3_uop_decode_is_jalr)
                   & entries_3_uop_snapshotIdx < entries_13_uop_snapshotIdx,
-                entries_2_valid
-                  & (_has_older_cfi_j_is_cfi_T_484 | entries_2_uop_decode_is_jalr)
+                entries_2_valid & (_cfi_mask_T_4 | entries_2_uop_decode_is_jalr)
                   & entries_2_uop_snapshotIdx < entries_13_uop_snapshotIdx,
-                entries_1_valid
-                  & (_has_older_cfi_j_is_cfi_T_482 | entries_1_uop_decode_is_jalr)
+                entries_1_valid & (_cfi_mask_T_2 | entries_1_uop_decode_is_jalr)
                   & entries_1_uop_snapshotIdx < entries_13_uop_snapshotIdx,
-                entries_0_valid
-                  & (_has_older_cfi_j_is_cfi_T_480 | entries_0_uop_decode_is_jalr)
+                entries_0_valid & (_cfi_mask_T | entries_0_uop_decode_is_jalr)
                   & entries_0_uop_snapshotIdx < entries_13_uop_snapshotIdx}))
        & (~is_sys_13 | entries_13_uop_robIdx == io_robDeqPtr)
        & {_has_older_sys_T_5370
-            & (_entry_is_younger_T_285
+            & (_entry_is_younger_T_240
                  ? _GEN_447
-                 : _entry_is_younger_T_288
-                   - _GEN_431) < (_entry_is_younger_T_247
+                 : _entry_is_younger_T_243
+                   - _GEN_431) < (_entry_is_younger_T_208
                                     ? _GEN_445
-                                    : _entry_is_younger_T_250 - _GEN_431),
+                                    : _entry_is_younger_T_211 - _GEN_431),
           _has_older_sys_T_5351
-            & (_entry_is_younger_T_266
+            & (_entry_is_younger_T_224
                  ? _GEN_446
-                 : _entry_is_younger_T_269
-                   - _GEN_431) < (_entry_is_younger_T_247
+                 : _entry_is_younger_T_227
+                   - _GEN_431) < (_entry_is_younger_T_208
                                     ? _GEN_445
-                                    : _entry_is_younger_T_250 - _GEN_431),
+                                    : _entry_is_younger_T_211 - _GEN_431),
           _has_older_sys_T_5309
-            & (_entry_is_younger_T_228
+            & (_entry_is_younger_T_192
                  ? _GEN_444
-                 : _entry_is_younger_T_231
-                   - _GEN_431) < (_entry_is_younger_T_247
+                 : _entry_is_younger_T_195
+                   - _GEN_431) < (_entry_is_younger_T_208
                                     ? _GEN_445
-                                    : _entry_is_younger_T_250 - _GEN_431),
+                                    : _entry_is_younger_T_211 - _GEN_431),
           _has_older_sys_T_5288
-            & (_entry_is_younger_T_209
+            & (_entry_is_younger_T_176
                  ? _GEN_443
-                 : _entry_is_younger_T_212
-                   - _GEN_431) < (_entry_is_younger_T_247
+                 : _entry_is_younger_T_179
+                   - _GEN_431) < (_entry_is_younger_T_208
                                     ? _GEN_445
-                                    : _entry_is_younger_T_250 - _GEN_431),
+                                    : _entry_is_younger_T_211 - _GEN_431),
           _has_older_sys_T_5267
-            & (_entry_is_younger_T_190
+            & (_entry_is_younger_T_160
                  ? _GEN_442
-                 : _entry_is_younger_T_193
-                   - _GEN_431) < (_entry_is_younger_T_247
+                 : _entry_is_younger_T_163
+                   - _GEN_431) < (_entry_is_younger_T_208
                                     ? _GEN_445
-                                    : _entry_is_younger_T_250 - _GEN_431),
+                                    : _entry_is_younger_T_211 - _GEN_431),
           _has_older_sys_T_5246
-            & (_entry_is_younger_T_171
+            & (_entry_is_younger_T_144
                  ? _GEN_441
-                 : _entry_is_younger_T_174
-                   - _GEN_431) < (_entry_is_younger_T_247
+                 : _entry_is_younger_T_147
+                   - _GEN_431) < (_entry_is_younger_T_208
                                     ? _GEN_445
-                                    : _entry_is_younger_T_250 - _GEN_431),
+                                    : _entry_is_younger_T_211 - _GEN_431),
           _has_older_sys_T_5225
-            & (_entry_is_younger_T_152
+            & (_entry_is_younger_T_128
                  ? _GEN_440
-                 : _entry_is_younger_T_155
-                   - _GEN_431) < (_entry_is_younger_T_247
+                 : _entry_is_younger_T_131
+                   - _GEN_431) < (_entry_is_younger_T_208
                                     ? _GEN_445
-                                    : _entry_is_younger_T_250 - _GEN_431),
+                                    : _entry_is_younger_T_211 - _GEN_431),
           _has_older_sys_T_5204
-            & (_entry_is_younger_T_133
+            & (_entry_is_younger_T_112
                  ? _GEN_439
-                 : _entry_is_younger_T_136
-                   - _GEN_431) < (_entry_is_younger_T_247
+                 : _entry_is_younger_T_115
+                   - _GEN_431) < (_entry_is_younger_T_208
                                     ? _GEN_445
-                                    : _entry_is_younger_T_250 - _GEN_431),
+                                    : _entry_is_younger_T_211 - _GEN_431),
           _has_older_sys_T_5183
-            & (_entry_is_younger_T_114
+            & (_entry_is_younger_T_96
                  ? _GEN_438
-                 : _entry_is_younger_T_117
-                   - _GEN_431) < (_entry_is_younger_T_247
+                 : _entry_is_younger_T_99
+                   - _GEN_431) < (_entry_is_younger_T_208
                                     ? _GEN_445
-                                    : _entry_is_younger_T_250 - _GEN_431),
+                                    : _entry_is_younger_T_211 - _GEN_431),
           _has_older_sys_T_5162
-            & (_entry_is_younger_T_95
+            & (_entry_is_younger_T_80
                  ? _GEN_437
-                 : _entry_is_younger_T_98
-                   - _GEN_431) < (_entry_is_younger_T_247
+                 : _entry_is_younger_T_83
+                   - _GEN_431) < (_entry_is_younger_T_208
                                     ? _GEN_445
-                                    : _entry_is_younger_T_250 - _GEN_431),
+                                    : _entry_is_younger_T_211 - _GEN_431),
           _has_older_sys_T_5141
-            & (_entry_is_younger_T_76
+            & (_entry_is_younger_T_64
                  ? _GEN_436
-                 : _entry_is_younger_T_79
-                   - _GEN_431) < (_entry_is_younger_T_247
+                 : _entry_is_younger_T_67
+                   - _GEN_431) < (_entry_is_younger_T_208
                                     ? _GEN_445
-                                    : _entry_is_younger_T_250 - _GEN_431),
+                                    : _entry_is_younger_T_211 - _GEN_431),
           _has_older_sys_T_5120
-            & (_entry_is_younger_T_57
+            & (_entry_is_younger_T_48
                  ? _GEN_435
-                 : _entry_is_younger_T_60
-                   - _GEN_431) < (_entry_is_younger_T_247
+                 : _entry_is_younger_T_51
+                   - _GEN_431) < (_entry_is_younger_T_208
                                     ? _GEN_445
-                                    : _entry_is_younger_T_250 - _GEN_431),
+                                    : _entry_is_younger_T_211 - _GEN_431),
           _has_older_sys_T_5099
-            & (_entry_is_younger_T_38
+            & (_entry_is_younger_T_32
                  ? _GEN_434
-                 : _entry_is_younger_T_41
-                   - _GEN_431) < (_entry_is_younger_T_247
+                 : _entry_is_younger_T_35
+                   - _GEN_431) < (_entry_is_younger_T_208
                                     ? _GEN_445
-                                    : _entry_is_younger_T_250 - _GEN_431),
+                                    : _entry_is_younger_T_211 - _GEN_431),
           _has_older_sys_T_5078
-            & (_entry_is_younger_T_19
+            & (_entry_is_younger_T_16
                  ? _GEN_432
-                 : _entry_is_younger_T_22
-                   - _GEN_431) < (_entry_is_younger_T_247
+                 : _entry_is_younger_T_19
+                   - _GEN_431) < (_entry_is_younger_T_208
                                     ? _GEN_445
-                                    : _entry_is_younger_T_250 - _GEN_431),
+                                    : _entry_is_younger_T_211 - _GEN_431),
           _has_older_sys_T_5057
             & (_entry_is_younger_T
                  ? _GEN_433
                  : _entry_is_younger_T_3
-                   - _GEN_431) < (_entry_is_younger_T_247
+                   - _GEN_431) < (_entry_is_younger_T_208
                                     ? _GEN_445
-                                    : _entry_is_younger_T_250 - _GEN_431)} == 15'h0,
+                                    : _entry_is_younger_T_211 - _GEN_431)} == 15'h0,
      entries_12_valid & woken_rs1_12 & woken_rs2_12 & woken_rs3_12
        & ~entries_12_uop_loadWaitBit
-       & ~((_has_older_cfi_j_is_cfi_T_504 | entries_12_uop_decode_is_jalr)
-           & (|{entries_15_valid
-                  & (_has_older_cfi_j_is_cfi_T_510 | entries_15_uop_decode_is_jalr)
+       & ~((_cfi_mask_T_24 | entries_12_uop_decode_is_jalr)
+           & (|{entries_15_valid & (_cfi_mask_T_30 | entries_15_uop_decode_is_jalr)
                   & entries_15_uop_snapshotIdx < entries_12_uop_snapshotIdx,
-                entries_14_valid
-                  & (_has_older_cfi_j_is_cfi_T_508 | entries_14_uop_decode_is_jalr)
+                entries_14_valid & (_cfi_mask_T_28 | entries_14_uop_decode_is_jalr)
                   & entries_14_uop_snapshotIdx < entries_12_uop_snapshotIdx,
-                entries_13_valid
-                  & (_has_older_cfi_j_is_cfi_T_506 | entries_13_uop_decode_is_jalr)
+                entries_13_valid & (_cfi_mask_T_26 | entries_13_uop_decode_is_jalr)
                   & entries_13_uop_snapshotIdx < entries_12_uop_snapshotIdx,
-                entries_11_valid
-                  & (_has_older_cfi_j_is_cfi_T_502 | entries_11_uop_decode_is_jalr)
+                entries_11_valid & (_cfi_mask_T_22 | entries_11_uop_decode_is_jalr)
                   & entries_11_uop_snapshotIdx < entries_12_uop_snapshotIdx,
-                entries_10_valid
-                  & (_has_older_cfi_j_is_cfi_T_500 | entries_10_uop_decode_is_jalr)
+                entries_10_valid & (_cfi_mask_T_20 | entries_10_uop_decode_is_jalr)
                   & entries_10_uop_snapshotIdx < entries_12_uop_snapshotIdx,
-                entries_9_valid
-                  & (_has_older_cfi_j_is_cfi_T_498 | entries_9_uop_decode_is_jalr)
+                entries_9_valid & (_cfi_mask_T_18 | entries_9_uop_decode_is_jalr)
                   & entries_9_uop_snapshotIdx < entries_12_uop_snapshotIdx,
-                entries_8_valid
-                  & (_has_older_cfi_j_is_cfi_T_496 | entries_8_uop_decode_is_jalr)
+                entries_8_valid & (_cfi_mask_T_16 | entries_8_uop_decode_is_jalr)
                   & entries_8_uop_snapshotIdx < entries_12_uop_snapshotIdx,
-                entries_7_valid
-                  & (_has_older_cfi_j_is_cfi_T_494 | entries_7_uop_decode_is_jalr)
+                entries_7_valid & (_cfi_mask_T_14 | entries_7_uop_decode_is_jalr)
                   & entries_7_uop_snapshotIdx < entries_12_uop_snapshotIdx,
-                entries_6_valid
-                  & (_has_older_cfi_j_is_cfi_T_492 | entries_6_uop_decode_is_jalr)
+                entries_6_valid & (_cfi_mask_T_12 | entries_6_uop_decode_is_jalr)
                   & entries_6_uop_snapshotIdx < entries_12_uop_snapshotIdx,
-                entries_5_valid
-                  & (_has_older_cfi_j_is_cfi_T_490 | entries_5_uop_decode_is_jalr)
+                entries_5_valid & (_cfi_mask_T_10 | entries_5_uop_decode_is_jalr)
                   & entries_5_uop_snapshotIdx < entries_12_uop_snapshotIdx,
-                entries_4_valid
-                  & (_has_older_cfi_j_is_cfi_T_488 | entries_4_uop_decode_is_jalr)
+                entries_4_valid & (_cfi_mask_T_8 | entries_4_uop_decode_is_jalr)
                   & entries_4_uop_snapshotIdx < entries_12_uop_snapshotIdx,
-                entries_3_valid
-                  & (_has_older_cfi_j_is_cfi_T_486 | entries_3_uop_decode_is_jalr)
+                entries_3_valid & (_cfi_mask_T_6 | entries_3_uop_decode_is_jalr)
                   & entries_3_uop_snapshotIdx < entries_12_uop_snapshotIdx,
-                entries_2_valid
-                  & (_has_older_cfi_j_is_cfi_T_484 | entries_2_uop_decode_is_jalr)
+                entries_2_valid & (_cfi_mask_T_4 | entries_2_uop_decode_is_jalr)
                   & entries_2_uop_snapshotIdx < entries_12_uop_snapshotIdx,
-                entries_1_valid
-                  & (_has_older_cfi_j_is_cfi_T_482 | entries_1_uop_decode_is_jalr)
+                entries_1_valid & (_cfi_mask_T_2 | entries_1_uop_decode_is_jalr)
                   & entries_1_uop_snapshotIdx < entries_12_uop_snapshotIdx,
-                entries_0_valid
-                  & (_has_older_cfi_j_is_cfi_T_480 | entries_0_uop_decode_is_jalr)
+                entries_0_valid & (_cfi_mask_T | entries_0_uop_decode_is_jalr)
                   & entries_0_uop_snapshotIdx < entries_12_uop_snapshotIdx}))
        & (~is_sys_12 | entries_12_uop_robIdx == io_robDeqPtr)
        & {_has_older_sys_T_5370
-            & (_entry_is_younger_T_285
+            & (_entry_is_younger_T_240
                  ? _GEN_447
-                 : _entry_is_younger_T_288
-                   - _GEN_431) < (_entry_is_younger_T_228
+                 : _entry_is_younger_T_243
+                   - _GEN_431) < (_entry_is_younger_T_192
                                     ? _GEN_444
-                                    : _entry_is_younger_T_231 - _GEN_431),
+                                    : _entry_is_younger_T_195 - _GEN_431),
           _has_older_sys_T_5351
-            & (_entry_is_younger_T_266
+            & (_entry_is_younger_T_224
                  ? _GEN_446
-                 : _entry_is_younger_T_269
-                   - _GEN_431) < (_entry_is_younger_T_228
+                 : _entry_is_younger_T_227
+                   - _GEN_431) < (_entry_is_younger_T_192
                                     ? _GEN_444
-                                    : _entry_is_younger_T_231 - _GEN_431),
+                                    : _entry_is_younger_T_195 - _GEN_431),
           _has_older_sys_T_5330
-            & (_entry_is_younger_T_247
+            & (_entry_is_younger_T_208
                  ? _GEN_445
-                 : _entry_is_younger_T_250
-                   - _GEN_431) < (_entry_is_younger_T_228
+                 : _entry_is_younger_T_211
+                   - _GEN_431) < (_entry_is_younger_T_192
                                     ? _GEN_444
-                                    : _entry_is_younger_T_231 - _GEN_431),
+                                    : _entry_is_younger_T_195 - _GEN_431),
           _has_older_sys_T_5288
-            & (_entry_is_younger_T_209
+            & (_entry_is_younger_T_176
                  ? _GEN_443
-                 : _entry_is_younger_T_212
-                   - _GEN_431) < (_entry_is_younger_T_228
+                 : _entry_is_younger_T_179
+                   - _GEN_431) < (_entry_is_younger_T_192
                                     ? _GEN_444
-                                    : _entry_is_younger_T_231 - _GEN_431),
+                                    : _entry_is_younger_T_195 - _GEN_431),
           _has_older_sys_T_5267
-            & (_entry_is_younger_T_190
+            & (_entry_is_younger_T_160
                  ? _GEN_442
-                 : _entry_is_younger_T_193
-                   - _GEN_431) < (_entry_is_younger_T_228
+                 : _entry_is_younger_T_163
+                   - _GEN_431) < (_entry_is_younger_T_192
                                     ? _GEN_444
-                                    : _entry_is_younger_T_231 - _GEN_431),
+                                    : _entry_is_younger_T_195 - _GEN_431),
           _has_older_sys_T_5246
-            & (_entry_is_younger_T_171
+            & (_entry_is_younger_T_144
                  ? _GEN_441
-                 : _entry_is_younger_T_174
-                   - _GEN_431) < (_entry_is_younger_T_228
+                 : _entry_is_younger_T_147
+                   - _GEN_431) < (_entry_is_younger_T_192
                                     ? _GEN_444
-                                    : _entry_is_younger_T_231 - _GEN_431),
+                                    : _entry_is_younger_T_195 - _GEN_431),
           _has_older_sys_T_5225
-            & (_entry_is_younger_T_152
+            & (_entry_is_younger_T_128
                  ? _GEN_440
-                 : _entry_is_younger_T_155
-                   - _GEN_431) < (_entry_is_younger_T_228
+                 : _entry_is_younger_T_131
+                   - _GEN_431) < (_entry_is_younger_T_192
                                     ? _GEN_444
-                                    : _entry_is_younger_T_231 - _GEN_431),
+                                    : _entry_is_younger_T_195 - _GEN_431),
           _has_older_sys_T_5204
-            & (_entry_is_younger_T_133
+            & (_entry_is_younger_T_112
                  ? _GEN_439
-                 : _entry_is_younger_T_136
-                   - _GEN_431) < (_entry_is_younger_T_228
+                 : _entry_is_younger_T_115
+                   - _GEN_431) < (_entry_is_younger_T_192
                                     ? _GEN_444
-                                    : _entry_is_younger_T_231 - _GEN_431),
+                                    : _entry_is_younger_T_195 - _GEN_431),
           _has_older_sys_T_5183
-            & (_entry_is_younger_T_114
+            & (_entry_is_younger_T_96
                  ? _GEN_438
-                 : _entry_is_younger_T_117
-                   - _GEN_431) < (_entry_is_younger_T_228
+                 : _entry_is_younger_T_99
+                   - _GEN_431) < (_entry_is_younger_T_192
                                     ? _GEN_444
-                                    : _entry_is_younger_T_231 - _GEN_431),
+                                    : _entry_is_younger_T_195 - _GEN_431),
           _has_older_sys_T_5162
-            & (_entry_is_younger_T_95
+            & (_entry_is_younger_T_80
                  ? _GEN_437
-                 : _entry_is_younger_T_98
-                   - _GEN_431) < (_entry_is_younger_T_228
+                 : _entry_is_younger_T_83
+                   - _GEN_431) < (_entry_is_younger_T_192
                                     ? _GEN_444
-                                    : _entry_is_younger_T_231 - _GEN_431),
+                                    : _entry_is_younger_T_195 - _GEN_431),
           _has_older_sys_T_5141
-            & (_entry_is_younger_T_76
+            & (_entry_is_younger_T_64
                  ? _GEN_436
-                 : _entry_is_younger_T_79
-                   - _GEN_431) < (_entry_is_younger_T_228
+                 : _entry_is_younger_T_67
+                   - _GEN_431) < (_entry_is_younger_T_192
                                     ? _GEN_444
-                                    : _entry_is_younger_T_231 - _GEN_431),
+                                    : _entry_is_younger_T_195 - _GEN_431),
           _has_older_sys_T_5120
-            & (_entry_is_younger_T_57
+            & (_entry_is_younger_T_48
                  ? _GEN_435
-                 : _entry_is_younger_T_60
-                   - _GEN_431) < (_entry_is_younger_T_228
+                 : _entry_is_younger_T_51
+                   - _GEN_431) < (_entry_is_younger_T_192
                                     ? _GEN_444
-                                    : _entry_is_younger_T_231 - _GEN_431),
+                                    : _entry_is_younger_T_195 - _GEN_431),
           _has_older_sys_T_5099
-            & (_entry_is_younger_T_38
+            & (_entry_is_younger_T_32
                  ? _GEN_434
-                 : _entry_is_younger_T_41
-                   - _GEN_431) < (_entry_is_younger_T_228
+                 : _entry_is_younger_T_35
+                   - _GEN_431) < (_entry_is_younger_T_192
                                     ? _GEN_444
-                                    : _entry_is_younger_T_231 - _GEN_431),
+                                    : _entry_is_younger_T_195 - _GEN_431),
           _has_older_sys_T_5078
-            & (_entry_is_younger_T_19
+            & (_entry_is_younger_T_16
                  ? _GEN_432
-                 : _entry_is_younger_T_22
-                   - _GEN_431) < (_entry_is_younger_T_228
+                 : _entry_is_younger_T_19
+                   - _GEN_431) < (_entry_is_younger_T_192
                                     ? _GEN_444
-                                    : _entry_is_younger_T_231 - _GEN_431),
+                                    : _entry_is_younger_T_195 - _GEN_431),
           _has_older_sys_T_5057
             & (_entry_is_younger_T
                  ? _GEN_433
                  : _entry_is_younger_T_3
-                   - _GEN_431) < (_entry_is_younger_T_228
+                   - _GEN_431) < (_entry_is_younger_T_192
                                     ? _GEN_444
-                                    : _entry_is_younger_T_231 - _GEN_431)} == 15'h0,
+                                    : _entry_is_younger_T_195 - _GEN_431)} == 15'h0,
      entries_11_valid & woken_rs1_11 & woken_rs2_11 & woken_rs3_11
        & ~entries_11_uop_loadWaitBit
-       & ~((_has_older_cfi_j_is_cfi_T_502 | entries_11_uop_decode_is_jalr)
-           & (|{entries_15_valid
-                  & (_has_older_cfi_j_is_cfi_T_510 | entries_15_uop_decode_is_jalr)
+       & ~((_cfi_mask_T_22 | entries_11_uop_decode_is_jalr)
+           & (|{entries_15_valid & (_cfi_mask_T_30 | entries_15_uop_decode_is_jalr)
                   & entries_15_uop_snapshotIdx < entries_11_uop_snapshotIdx,
-                entries_14_valid
-                  & (_has_older_cfi_j_is_cfi_T_508 | entries_14_uop_decode_is_jalr)
+                entries_14_valid & (_cfi_mask_T_28 | entries_14_uop_decode_is_jalr)
                   & entries_14_uop_snapshotIdx < entries_11_uop_snapshotIdx,
-                entries_13_valid
-                  & (_has_older_cfi_j_is_cfi_T_506 | entries_13_uop_decode_is_jalr)
+                entries_13_valid & (_cfi_mask_T_26 | entries_13_uop_decode_is_jalr)
                   & entries_13_uop_snapshotIdx < entries_11_uop_snapshotIdx,
-                entries_12_valid
-                  & (_has_older_cfi_j_is_cfi_T_504 | entries_12_uop_decode_is_jalr)
+                entries_12_valid & (_cfi_mask_T_24 | entries_12_uop_decode_is_jalr)
                   & entries_12_uop_snapshotIdx < entries_11_uop_snapshotIdx,
-                entries_10_valid
-                  & (_has_older_cfi_j_is_cfi_T_500 | entries_10_uop_decode_is_jalr)
+                entries_10_valid & (_cfi_mask_T_20 | entries_10_uop_decode_is_jalr)
                   & entries_10_uop_snapshotIdx < entries_11_uop_snapshotIdx,
-                entries_9_valid
-                  & (_has_older_cfi_j_is_cfi_T_498 | entries_9_uop_decode_is_jalr)
+                entries_9_valid & (_cfi_mask_T_18 | entries_9_uop_decode_is_jalr)
                   & entries_9_uop_snapshotIdx < entries_11_uop_snapshotIdx,
-                entries_8_valid
-                  & (_has_older_cfi_j_is_cfi_T_496 | entries_8_uop_decode_is_jalr)
+                entries_8_valid & (_cfi_mask_T_16 | entries_8_uop_decode_is_jalr)
                   & entries_8_uop_snapshotIdx < entries_11_uop_snapshotIdx,
-                entries_7_valid
-                  & (_has_older_cfi_j_is_cfi_T_494 | entries_7_uop_decode_is_jalr)
+                entries_7_valid & (_cfi_mask_T_14 | entries_7_uop_decode_is_jalr)
                   & entries_7_uop_snapshotIdx < entries_11_uop_snapshotIdx,
-                entries_6_valid
-                  & (_has_older_cfi_j_is_cfi_T_492 | entries_6_uop_decode_is_jalr)
+                entries_6_valid & (_cfi_mask_T_12 | entries_6_uop_decode_is_jalr)
                   & entries_6_uop_snapshotIdx < entries_11_uop_snapshotIdx,
-                entries_5_valid
-                  & (_has_older_cfi_j_is_cfi_T_490 | entries_5_uop_decode_is_jalr)
+                entries_5_valid & (_cfi_mask_T_10 | entries_5_uop_decode_is_jalr)
                   & entries_5_uop_snapshotIdx < entries_11_uop_snapshotIdx,
-                entries_4_valid
-                  & (_has_older_cfi_j_is_cfi_T_488 | entries_4_uop_decode_is_jalr)
+                entries_4_valid & (_cfi_mask_T_8 | entries_4_uop_decode_is_jalr)
                   & entries_4_uop_snapshotIdx < entries_11_uop_snapshotIdx,
-                entries_3_valid
-                  & (_has_older_cfi_j_is_cfi_T_486 | entries_3_uop_decode_is_jalr)
+                entries_3_valid & (_cfi_mask_T_6 | entries_3_uop_decode_is_jalr)
                   & entries_3_uop_snapshotIdx < entries_11_uop_snapshotIdx,
-                entries_2_valid
-                  & (_has_older_cfi_j_is_cfi_T_484 | entries_2_uop_decode_is_jalr)
+                entries_2_valid & (_cfi_mask_T_4 | entries_2_uop_decode_is_jalr)
                   & entries_2_uop_snapshotIdx < entries_11_uop_snapshotIdx,
-                entries_1_valid
-                  & (_has_older_cfi_j_is_cfi_T_482 | entries_1_uop_decode_is_jalr)
+                entries_1_valid & (_cfi_mask_T_2 | entries_1_uop_decode_is_jalr)
                   & entries_1_uop_snapshotIdx < entries_11_uop_snapshotIdx,
-                entries_0_valid
-                  & (_has_older_cfi_j_is_cfi_T_480 | entries_0_uop_decode_is_jalr)
+                entries_0_valid & (_cfi_mask_T | entries_0_uop_decode_is_jalr)
                   & entries_0_uop_snapshotIdx < entries_11_uop_snapshotIdx}))
        & (~is_sys_11 | entries_11_uop_robIdx == io_robDeqPtr)
        & {_has_older_sys_T_5370
-            & (_entry_is_younger_T_285
+            & (_entry_is_younger_T_240
                  ? _GEN_447
-                 : _entry_is_younger_T_288
-                   - _GEN_431) < (_entry_is_younger_T_209
+                 : _entry_is_younger_T_243
+                   - _GEN_431) < (_entry_is_younger_T_176
                                     ? _GEN_443
-                                    : _entry_is_younger_T_212 - _GEN_431),
+                                    : _entry_is_younger_T_179 - _GEN_431),
           _has_older_sys_T_5351
-            & (_entry_is_younger_T_266
+            & (_entry_is_younger_T_224
                  ? _GEN_446
-                 : _entry_is_younger_T_269
-                   - _GEN_431) < (_entry_is_younger_T_209
+                 : _entry_is_younger_T_227
+                   - _GEN_431) < (_entry_is_younger_T_176
                                     ? _GEN_443
-                                    : _entry_is_younger_T_212 - _GEN_431),
+                                    : _entry_is_younger_T_179 - _GEN_431),
           _has_older_sys_T_5330
-            & (_entry_is_younger_T_247
+            & (_entry_is_younger_T_208
                  ? _GEN_445
-                 : _entry_is_younger_T_250
-                   - _GEN_431) < (_entry_is_younger_T_209
+                 : _entry_is_younger_T_211
+                   - _GEN_431) < (_entry_is_younger_T_176
                                     ? _GEN_443
-                                    : _entry_is_younger_T_212 - _GEN_431),
+                                    : _entry_is_younger_T_179 - _GEN_431),
           _has_older_sys_T_5309
-            & (_entry_is_younger_T_228
+            & (_entry_is_younger_T_192
                  ? _GEN_444
-                 : _entry_is_younger_T_231
-                   - _GEN_431) < (_entry_is_younger_T_209
+                 : _entry_is_younger_T_195
+                   - _GEN_431) < (_entry_is_younger_T_176
                                     ? _GEN_443
-                                    : _entry_is_younger_T_212 - _GEN_431),
+                                    : _entry_is_younger_T_179 - _GEN_431),
           _has_older_sys_T_5267
-            & (_entry_is_younger_T_190
+            & (_entry_is_younger_T_160
                  ? _GEN_442
-                 : _entry_is_younger_T_193
-                   - _GEN_431) < (_entry_is_younger_T_209
+                 : _entry_is_younger_T_163
+                   - _GEN_431) < (_entry_is_younger_T_176
                                     ? _GEN_443
-                                    : _entry_is_younger_T_212 - _GEN_431),
+                                    : _entry_is_younger_T_179 - _GEN_431),
           _has_older_sys_T_5246
-            & (_entry_is_younger_T_171
+            & (_entry_is_younger_T_144
                  ? _GEN_441
-                 : _entry_is_younger_T_174
-                   - _GEN_431) < (_entry_is_younger_T_209
+                 : _entry_is_younger_T_147
+                   - _GEN_431) < (_entry_is_younger_T_176
                                     ? _GEN_443
-                                    : _entry_is_younger_T_212 - _GEN_431),
+                                    : _entry_is_younger_T_179 - _GEN_431),
           _has_older_sys_T_5225
-            & (_entry_is_younger_T_152
+            & (_entry_is_younger_T_128
                  ? _GEN_440
-                 : _entry_is_younger_T_155
-                   - _GEN_431) < (_entry_is_younger_T_209
+                 : _entry_is_younger_T_131
+                   - _GEN_431) < (_entry_is_younger_T_176
                                     ? _GEN_443
-                                    : _entry_is_younger_T_212 - _GEN_431),
+                                    : _entry_is_younger_T_179 - _GEN_431),
           _has_older_sys_T_5204
-            & (_entry_is_younger_T_133
+            & (_entry_is_younger_T_112
                  ? _GEN_439
-                 : _entry_is_younger_T_136
-                   - _GEN_431) < (_entry_is_younger_T_209
+                 : _entry_is_younger_T_115
+                   - _GEN_431) < (_entry_is_younger_T_176
                                     ? _GEN_443
-                                    : _entry_is_younger_T_212 - _GEN_431),
+                                    : _entry_is_younger_T_179 - _GEN_431),
           _has_older_sys_T_5183
-            & (_entry_is_younger_T_114
+            & (_entry_is_younger_T_96
                  ? _GEN_438
-                 : _entry_is_younger_T_117
-                   - _GEN_431) < (_entry_is_younger_T_209
+                 : _entry_is_younger_T_99
+                   - _GEN_431) < (_entry_is_younger_T_176
                                     ? _GEN_443
-                                    : _entry_is_younger_T_212 - _GEN_431),
+                                    : _entry_is_younger_T_179 - _GEN_431),
           _has_older_sys_T_5162
-            & (_entry_is_younger_T_95
+            & (_entry_is_younger_T_80
                  ? _GEN_437
-                 : _entry_is_younger_T_98
-                   - _GEN_431) < (_entry_is_younger_T_209
+                 : _entry_is_younger_T_83
+                   - _GEN_431) < (_entry_is_younger_T_176
                                     ? _GEN_443
-                                    : _entry_is_younger_T_212 - _GEN_431),
+                                    : _entry_is_younger_T_179 - _GEN_431),
           _has_older_sys_T_5141
-            & (_entry_is_younger_T_76
+            & (_entry_is_younger_T_64
                  ? _GEN_436
-                 : _entry_is_younger_T_79
-                   - _GEN_431) < (_entry_is_younger_T_209
+                 : _entry_is_younger_T_67
+                   - _GEN_431) < (_entry_is_younger_T_176
                                     ? _GEN_443
-                                    : _entry_is_younger_T_212 - _GEN_431),
+                                    : _entry_is_younger_T_179 - _GEN_431),
           _has_older_sys_T_5120
-            & (_entry_is_younger_T_57
+            & (_entry_is_younger_T_48
                  ? _GEN_435
-                 : _entry_is_younger_T_60
-                   - _GEN_431) < (_entry_is_younger_T_209
+                 : _entry_is_younger_T_51
+                   - _GEN_431) < (_entry_is_younger_T_176
                                     ? _GEN_443
-                                    : _entry_is_younger_T_212 - _GEN_431),
+                                    : _entry_is_younger_T_179 - _GEN_431),
           _has_older_sys_T_5099
-            & (_entry_is_younger_T_38
+            & (_entry_is_younger_T_32
                  ? _GEN_434
-                 : _entry_is_younger_T_41
-                   - _GEN_431) < (_entry_is_younger_T_209
+                 : _entry_is_younger_T_35
+                   - _GEN_431) < (_entry_is_younger_T_176
                                     ? _GEN_443
-                                    : _entry_is_younger_T_212 - _GEN_431),
+                                    : _entry_is_younger_T_179 - _GEN_431),
           _has_older_sys_T_5078
-            & (_entry_is_younger_T_19
+            & (_entry_is_younger_T_16
                  ? _GEN_432
-                 : _entry_is_younger_T_22
-                   - _GEN_431) < (_entry_is_younger_T_209
+                 : _entry_is_younger_T_19
+                   - _GEN_431) < (_entry_is_younger_T_176
                                     ? _GEN_443
-                                    : _entry_is_younger_T_212 - _GEN_431),
+                                    : _entry_is_younger_T_179 - _GEN_431),
           _has_older_sys_T_5057
             & (_entry_is_younger_T
                  ? _GEN_433
                  : _entry_is_younger_T_3
-                   - _GEN_431) < (_entry_is_younger_T_209
+                   - _GEN_431) < (_entry_is_younger_T_176
                                     ? _GEN_443
-                                    : _entry_is_younger_T_212 - _GEN_431)} == 15'h0,
+                                    : _entry_is_younger_T_179 - _GEN_431)} == 15'h0,
      entries_10_valid & woken_rs1_10 & woken_rs2_10 & woken_rs3_10
        & ~entries_10_uop_loadWaitBit
-       & ~((_has_older_cfi_j_is_cfi_T_500 | entries_10_uop_decode_is_jalr)
-           & (|{entries_15_valid
-                  & (_has_older_cfi_j_is_cfi_T_510 | entries_15_uop_decode_is_jalr)
+       & ~((_cfi_mask_T_20 | entries_10_uop_decode_is_jalr)
+           & (|{entries_15_valid & (_cfi_mask_T_30 | entries_15_uop_decode_is_jalr)
                   & entries_15_uop_snapshotIdx < entries_10_uop_snapshotIdx,
-                entries_14_valid
-                  & (_has_older_cfi_j_is_cfi_T_508 | entries_14_uop_decode_is_jalr)
+                entries_14_valid & (_cfi_mask_T_28 | entries_14_uop_decode_is_jalr)
                   & entries_14_uop_snapshotIdx < entries_10_uop_snapshotIdx,
-                entries_13_valid
-                  & (_has_older_cfi_j_is_cfi_T_506 | entries_13_uop_decode_is_jalr)
+                entries_13_valid & (_cfi_mask_T_26 | entries_13_uop_decode_is_jalr)
                   & entries_13_uop_snapshotIdx < entries_10_uop_snapshotIdx,
-                entries_12_valid
-                  & (_has_older_cfi_j_is_cfi_T_504 | entries_12_uop_decode_is_jalr)
+                entries_12_valid & (_cfi_mask_T_24 | entries_12_uop_decode_is_jalr)
                   & entries_12_uop_snapshotIdx < entries_10_uop_snapshotIdx,
-                entries_11_valid
-                  & (_has_older_cfi_j_is_cfi_T_502 | entries_11_uop_decode_is_jalr)
+                entries_11_valid & (_cfi_mask_T_22 | entries_11_uop_decode_is_jalr)
                   & entries_11_uop_snapshotIdx < entries_10_uop_snapshotIdx,
-                entries_9_valid
-                  & (_has_older_cfi_j_is_cfi_T_498 | entries_9_uop_decode_is_jalr)
+                entries_9_valid & (_cfi_mask_T_18 | entries_9_uop_decode_is_jalr)
                   & entries_9_uop_snapshotIdx < entries_10_uop_snapshotIdx,
-                entries_8_valid
-                  & (_has_older_cfi_j_is_cfi_T_496 | entries_8_uop_decode_is_jalr)
+                entries_8_valid & (_cfi_mask_T_16 | entries_8_uop_decode_is_jalr)
                   & entries_8_uop_snapshotIdx < entries_10_uop_snapshotIdx,
-                entries_7_valid
-                  & (_has_older_cfi_j_is_cfi_T_494 | entries_7_uop_decode_is_jalr)
+                entries_7_valid & (_cfi_mask_T_14 | entries_7_uop_decode_is_jalr)
                   & entries_7_uop_snapshotIdx < entries_10_uop_snapshotIdx,
-                entries_6_valid
-                  & (_has_older_cfi_j_is_cfi_T_492 | entries_6_uop_decode_is_jalr)
+                entries_6_valid & (_cfi_mask_T_12 | entries_6_uop_decode_is_jalr)
                   & entries_6_uop_snapshotIdx < entries_10_uop_snapshotIdx,
-                entries_5_valid
-                  & (_has_older_cfi_j_is_cfi_T_490 | entries_5_uop_decode_is_jalr)
+                entries_5_valid & (_cfi_mask_T_10 | entries_5_uop_decode_is_jalr)
                   & entries_5_uop_snapshotIdx < entries_10_uop_snapshotIdx,
-                entries_4_valid
-                  & (_has_older_cfi_j_is_cfi_T_488 | entries_4_uop_decode_is_jalr)
+                entries_4_valid & (_cfi_mask_T_8 | entries_4_uop_decode_is_jalr)
                   & entries_4_uop_snapshotIdx < entries_10_uop_snapshotIdx,
-                entries_3_valid
-                  & (_has_older_cfi_j_is_cfi_T_486 | entries_3_uop_decode_is_jalr)
+                entries_3_valid & (_cfi_mask_T_6 | entries_3_uop_decode_is_jalr)
                   & entries_3_uop_snapshotIdx < entries_10_uop_snapshotIdx,
-                entries_2_valid
-                  & (_has_older_cfi_j_is_cfi_T_484 | entries_2_uop_decode_is_jalr)
+                entries_2_valid & (_cfi_mask_T_4 | entries_2_uop_decode_is_jalr)
                   & entries_2_uop_snapshotIdx < entries_10_uop_snapshotIdx,
-                entries_1_valid
-                  & (_has_older_cfi_j_is_cfi_T_482 | entries_1_uop_decode_is_jalr)
+                entries_1_valid & (_cfi_mask_T_2 | entries_1_uop_decode_is_jalr)
                   & entries_1_uop_snapshotIdx < entries_10_uop_snapshotIdx,
-                entries_0_valid
-                  & (_has_older_cfi_j_is_cfi_T_480 | entries_0_uop_decode_is_jalr)
+                entries_0_valid & (_cfi_mask_T | entries_0_uop_decode_is_jalr)
                   & entries_0_uop_snapshotIdx < entries_10_uop_snapshotIdx}))
        & (~is_sys_10 | entries_10_uop_robIdx == io_robDeqPtr)
        & {_has_older_sys_T_5370
-            & (_entry_is_younger_T_285
+            & (_entry_is_younger_T_240
                  ? _GEN_447
-                 : _entry_is_younger_T_288
-                   - _GEN_431) < (_entry_is_younger_T_190
+                 : _entry_is_younger_T_243
+                   - _GEN_431) < (_entry_is_younger_T_160
                                     ? _GEN_442
-                                    : _entry_is_younger_T_193 - _GEN_431),
+                                    : _entry_is_younger_T_163 - _GEN_431),
           _has_older_sys_T_5351
-            & (_entry_is_younger_T_266
+            & (_entry_is_younger_T_224
                  ? _GEN_446
-                 : _entry_is_younger_T_269
-                   - _GEN_431) < (_entry_is_younger_T_190
+                 : _entry_is_younger_T_227
+                   - _GEN_431) < (_entry_is_younger_T_160
                                     ? _GEN_442
-                                    : _entry_is_younger_T_193 - _GEN_431),
+                                    : _entry_is_younger_T_163 - _GEN_431),
           _has_older_sys_T_5330
-            & (_entry_is_younger_T_247
+            & (_entry_is_younger_T_208
                  ? _GEN_445
-                 : _entry_is_younger_T_250
-                   - _GEN_431) < (_entry_is_younger_T_190
+                 : _entry_is_younger_T_211
+                   - _GEN_431) < (_entry_is_younger_T_160
                                     ? _GEN_442
-                                    : _entry_is_younger_T_193 - _GEN_431),
+                                    : _entry_is_younger_T_163 - _GEN_431),
           _has_older_sys_T_5309
-            & (_entry_is_younger_T_228
+            & (_entry_is_younger_T_192
                  ? _GEN_444
-                 : _entry_is_younger_T_231
-                   - _GEN_431) < (_entry_is_younger_T_190
+                 : _entry_is_younger_T_195
+                   - _GEN_431) < (_entry_is_younger_T_160
                                     ? _GEN_442
-                                    : _entry_is_younger_T_193 - _GEN_431),
+                                    : _entry_is_younger_T_163 - _GEN_431),
           _has_older_sys_T_5288
-            & (_entry_is_younger_T_209
+            & (_entry_is_younger_T_176
                  ? _GEN_443
-                 : _entry_is_younger_T_212
-                   - _GEN_431) < (_entry_is_younger_T_190
+                 : _entry_is_younger_T_179
+                   - _GEN_431) < (_entry_is_younger_T_160
                                     ? _GEN_442
-                                    : _entry_is_younger_T_193 - _GEN_431),
+                                    : _entry_is_younger_T_163 - _GEN_431),
           _has_older_sys_T_5246
-            & (_entry_is_younger_T_171
+            & (_entry_is_younger_T_144
                  ? _GEN_441
-                 : _entry_is_younger_T_174
-                   - _GEN_431) < (_entry_is_younger_T_190
+                 : _entry_is_younger_T_147
+                   - _GEN_431) < (_entry_is_younger_T_160
                                     ? _GEN_442
-                                    : _entry_is_younger_T_193 - _GEN_431),
+                                    : _entry_is_younger_T_163 - _GEN_431),
           _has_older_sys_T_5225
-            & (_entry_is_younger_T_152
+            & (_entry_is_younger_T_128
                  ? _GEN_440
-                 : _entry_is_younger_T_155
-                   - _GEN_431) < (_entry_is_younger_T_190
+                 : _entry_is_younger_T_131
+                   - _GEN_431) < (_entry_is_younger_T_160
                                     ? _GEN_442
-                                    : _entry_is_younger_T_193 - _GEN_431),
+                                    : _entry_is_younger_T_163 - _GEN_431),
           _has_older_sys_T_5204
-            & (_entry_is_younger_T_133
+            & (_entry_is_younger_T_112
                  ? _GEN_439
-                 : _entry_is_younger_T_136
-                   - _GEN_431) < (_entry_is_younger_T_190
+                 : _entry_is_younger_T_115
+                   - _GEN_431) < (_entry_is_younger_T_160
                                     ? _GEN_442
-                                    : _entry_is_younger_T_193 - _GEN_431),
+                                    : _entry_is_younger_T_163 - _GEN_431),
           _has_older_sys_T_5183
-            & (_entry_is_younger_T_114
+            & (_entry_is_younger_T_96
                  ? _GEN_438
-                 : _entry_is_younger_T_117
-                   - _GEN_431) < (_entry_is_younger_T_190
+                 : _entry_is_younger_T_99
+                   - _GEN_431) < (_entry_is_younger_T_160
                                     ? _GEN_442
-                                    : _entry_is_younger_T_193 - _GEN_431),
+                                    : _entry_is_younger_T_163 - _GEN_431),
           _has_older_sys_T_5162
-            & (_entry_is_younger_T_95
+            & (_entry_is_younger_T_80
                  ? _GEN_437
-                 : _entry_is_younger_T_98
-                   - _GEN_431) < (_entry_is_younger_T_190
+                 : _entry_is_younger_T_83
+                   - _GEN_431) < (_entry_is_younger_T_160
                                     ? _GEN_442
-                                    : _entry_is_younger_T_193 - _GEN_431),
+                                    : _entry_is_younger_T_163 - _GEN_431),
           _has_older_sys_T_5141
-            & (_entry_is_younger_T_76
+            & (_entry_is_younger_T_64
                  ? _GEN_436
-                 : _entry_is_younger_T_79
-                   - _GEN_431) < (_entry_is_younger_T_190
+                 : _entry_is_younger_T_67
+                   - _GEN_431) < (_entry_is_younger_T_160
                                     ? _GEN_442
-                                    : _entry_is_younger_T_193 - _GEN_431),
+                                    : _entry_is_younger_T_163 - _GEN_431),
           _has_older_sys_T_5120
-            & (_entry_is_younger_T_57
+            & (_entry_is_younger_T_48
                  ? _GEN_435
-                 : _entry_is_younger_T_60
-                   - _GEN_431) < (_entry_is_younger_T_190
+                 : _entry_is_younger_T_51
+                   - _GEN_431) < (_entry_is_younger_T_160
                                     ? _GEN_442
-                                    : _entry_is_younger_T_193 - _GEN_431),
+                                    : _entry_is_younger_T_163 - _GEN_431),
           _has_older_sys_T_5099
-            & (_entry_is_younger_T_38
+            & (_entry_is_younger_T_32
                  ? _GEN_434
-                 : _entry_is_younger_T_41
-                   - _GEN_431) < (_entry_is_younger_T_190
+                 : _entry_is_younger_T_35
+                   - _GEN_431) < (_entry_is_younger_T_160
                                     ? _GEN_442
-                                    : _entry_is_younger_T_193 - _GEN_431),
+                                    : _entry_is_younger_T_163 - _GEN_431),
           _has_older_sys_T_5078
-            & (_entry_is_younger_T_19
+            & (_entry_is_younger_T_16
                  ? _GEN_432
-                 : _entry_is_younger_T_22
-                   - _GEN_431) < (_entry_is_younger_T_190
+                 : _entry_is_younger_T_19
+                   - _GEN_431) < (_entry_is_younger_T_160
                                     ? _GEN_442
-                                    : _entry_is_younger_T_193 - _GEN_431),
+                                    : _entry_is_younger_T_163 - _GEN_431),
           _has_older_sys_T_5057
             & (_entry_is_younger_T
                  ? _GEN_433
                  : _entry_is_younger_T_3
-                   - _GEN_431) < (_entry_is_younger_T_190
+                   - _GEN_431) < (_entry_is_younger_T_160
                                     ? _GEN_442
-                                    : _entry_is_younger_T_193 - _GEN_431)} == 15'h0,
+                                    : _entry_is_younger_T_163 - _GEN_431)} == 15'h0,
      entries_9_valid & woken_rs1_9 & woken_rs2_9 & woken_rs3_9
        & ~entries_9_uop_loadWaitBit
-       & ~((_has_older_cfi_j_is_cfi_T_498 | entries_9_uop_decode_is_jalr)
-           & (|{entries_15_valid
-                  & (_has_older_cfi_j_is_cfi_T_510 | entries_15_uop_decode_is_jalr)
+       & ~((_cfi_mask_T_18 | entries_9_uop_decode_is_jalr)
+           & (|{entries_15_valid & (_cfi_mask_T_30 | entries_15_uop_decode_is_jalr)
                   & entries_15_uop_snapshotIdx < entries_9_uop_snapshotIdx,
-                entries_14_valid
-                  & (_has_older_cfi_j_is_cfi_T_508 | entries_14_uop_decode_is_jalr)
+                entries_14_valid & (_cfi_mask_T_28 | entries_14_uop_decode_is_jalr)
                   & entries_14_uop_snapshotIdx < entries_9_uop_snapshotIdx,
-                entries_13_valid
-                  & (_has_older_cfi_j_is_cfi_T_506 | entries_13_uop_decode_is_jalr)
+                entries_13_valid & (_cfi_mask_T_26 | entries_13_uop_decode_is_jalr)
                   & entries_13_uop_snapshotIdx < entries_9_uop_snapshotIdx,
-                entries_12_valid
-                  & (_has_older_cfi_j_is_cfi_T_504 | entries_12_uop_decode_is_jalr)
+                entries_12_valid & (_cfi_mask_T_24 | entries_12_uop_decode_is_jalr)
                   & entries_12_uop_snapshotIdx < entries_9_uop_snapshotIdx,
-                entries_11_valid
-                  & (_has_older_cfi_j_is_cfi_T_502 | entries_11_uop_decode_is_jalr)
+                entries_11_valid & (_cfi_mask_T_22 | entries_11_uop_decode_is_jalr)
                   & entries_11_uop_snapshotIdx < entries_9_uop_snapshotIdx,
-                entries_10_valid
-                  & (_has_older_cfi_j_is_cfi_T_500 | entries_10_uop_decode_is_jalr)
+                entries_10_valid & (_cfi_mask_T_20 | entries_10_uop_decode_is_jalr)
                   & entries_10_uop_snapshotIdx < entries_9_uop_snapshotIdx,
-                entries_8_valid
-                  & (_has_older_cfi_j_is_cfi_T_496 | entries_8_uop_decode_is_jalr)
+                entries_8_valid & (_cfi_mask_T_16 | entries_8_uop_decode_is_jalr)
                   & entries_8_uop_snapshotIdx < entries_9_uop_snapshotIdx,
-                entries_7_valid
-                  & (_has_older_cfi_j_is_cfi_T_494 | entries_7_uop_decode_is_jalr)
+                entries_7_valid & (_cfi_mask_T_14 | entries_7_uop_decode_is_jalr)
                   & entries_7_uop_snapshotIdx < entries_9_uop_snapshotIdx,
-                entries_6_valid
-                  & (_has_older_cfi_j_is_cfi_T_492 | entries_6_uop_decode_is_jalr)
+                entries_6_valid & (_cfi_mask_T_12 | entries_6_uop_decode_is_jalr)
                   & entries_6_uop_snapshotIdx < entries_9_uop_snapshotIdx,
-                entries_5_valid
-                  & (_has_older_cfi_j_is_cfi_T_490 | entries_5_uop_decode_is_jalr)
+                entries_5_valid & (_cfi_mask_T_10 | entries_5_uop_decode_is_jalr)
                   & entries_5_uop_snapshotIdx < entries_9_uop_snapshotIdx,
-                entries_4_valid
-                  & (_has_older_cfi_j_is_cfi_T_488 | entries_4_uop_decode_is_jalr)
+                entries_4_valid & (_cfi_mask_T_8 | entries_4_uop_decode_is_jalr)
                   & entries_4_uop_snapshotIdx < entries_9_uop_snapshotIdx,
-                entries_3_valid
-                  & (_has_older_cfi_j_is_cfi_T_486 | entries_3_uop_decode_is_jalr)
+                entries_3_valid & (_cfi_mask_T_6 | entries_3_uop_decode_is_jalr)
                   & entries_3_uop_snapshotIdx < entries_9_uop_snapshotIdx,
-                entries_2_valid
-                  & (_has_older_cfi_j_is_cfi_T_484 | entries_2_uop_decode_is_jalr)
+                entries_2_valid & (_cfi_mask_T_4 | entries_2_uop_decode_is_jalr)
                   & entries_2_uop_snapshotIdx < entries_9_uop_snapshotIdx,
-                entries_1_valid
-                  & (_has_older_cfi_j_is_cfi_T_482 | entries_1_uop_decode_is_jalr)
+                entries_1_valid & (_cfi_mask_T_2 | entries_1_uop_decode_is_jalr)
                   & entries_1_uop_snapshotIdx < entries_9_uop_snapshotIdx,
-                entries_0_valid
-                  & (_has_older_cfi_j_is_cfi_T_480 | entries_0_uop_decode_is_jalr)
+                entries_0_valid & (_cfi_mask_T | entries_0_uop_decode_is_jalr)
                   & entries_0_uop_snapshotIdx < entries_9_uop_snapshotIdx}))
        & (~is_sys_9 | entries_9_uop_robIdx == io_robDeqPtr)
        & {_has_older_sys_T_5370
-            & (_entry_is_younger_T_285
+            & (_entry_is_younger_T_240
                  ? _GEN_447
-                 : _entry_is_younger_T_288
-                   - _GEN_431) < (_entry_is_younger_T_171
+                 : _entry_is_younger_T_243
+                   - _GEN_431) < (_entry_is_younger_T_144
                                     ? _GEN_441
-                                    : _entry_is_younger_T_174 - _GEN_431),
+                                    : _entry_is_younger_T_147 - _GEN_431),
           _has_older_sys_T_5351
-            & (_entry_is_younger_T_266
+            & (_entry_is_younger_T_224
                  ? _GEN_446
-                 : _entry_is_younger_T_269
-                   - _GEN_431) < (_entry_is_younger_T_171
+                 : _entry_is_younger_T_227
+                   - _GEN_431) < (_entry_is_younger_T_144
                                     ? _GEN_441
-                                    : _entry_is_younger_T_174 - _GEN_431),
+                                    : _entry_is_younger_T_147 - _GEN_431),
           _has_older_sys_T_5330
-            & (_entry_is_younger_T_247
+            & (_entry_is_younger_T_208
                  ? _GEN_445
-                 : _entry_is_younger_T_250
-                   - _GEN_431) < (_entry_is_younger_T_171
+                 : _entry_is_younger_T_211
+                   - _GEN_431) < (_entry_is_younger_T_144
                                     ? _GEN_441
-                                    : _entry_is_younger_T_174 - _GEN_431),
+                                    : _entry_is_younger_T_147 - _GEN_431),
           _has_older_sys_T_5309
-            & (_entry_is_younger_T_228
+            & (_entry_is_younger_T_192
                  ? _GEN_444
-                 : _entry_is_younger_T_231
-                   - _GEN_431) < (_entry_is_younger_T_171
+                 : _entry_is_younger_T_195
+                   - _GEN_431) < (_entry_is_younger_T_144
                                     ? _GEN_441
-                                    : _entry_is_younger_T_174 - _GEN_431),
+                                    : _entry_is_younger_T_147 - _GEN_431),
           _has_older_sys_T_5288
-            & (_entry_is_younger_T_209
+            & (_entry_is_younger_T_176
                  ? _GEN_443
-                 : _entry_is_younger_T_212
-                   - _GEN_431) < (_entry_is_younger_T_171
+                 : _entry_is_younger_T_179
+                   - _GEN_431) < (_entry_is_younger_T_144
                                     ? _GEN_441
-                                    : _entry_is_younger_T_174 - _GEN_431),
+                                    : _entry_is_younger_T_147 - _GEN_431),
           _has_older_sys_T_5267
-            & (_entry_is_younger_T_190
+            & (_entry_is_younger_T_160
                  ? _GEN_442
-                 : _entry_is_younger_T_193
-                   - _GEN_431) < (_entry_is_younger_T_171
+                 : _entry_is_younger_T_163
+                   - _GEN_431) < (_entry_is_younger_T_144
                                     ? _GEN_441
-                                    : _entry_is_younger_T_174 - _GEN_431),
+                                    : _entry_is_younger_T_147 - _GEN_431),
           _has_older_sys_T_5225
-            & (_entry_is_younger_T_152
+            & (_entry_is_younger_T_128
                  ? _GEN_440
-                 : _entry_is_younger_T_155
-                   - _GEN_431) < (_entry_is_younger_T_171
+                 : _entry_is_younger_T_131
+                   - _GEN_431) < (_entry_is_younger_T_144
                                     ? _GEN_441
-                                    : _entry_is_younger_T_174 - _GEN_431),
+                                    : _entry_is_younger_T_147 - _GEN_431),
           _has_older_sys_T_5204
-            & (_entry_is_younger_T_133
+            & (_entry_is_younger_T_112
                  ? _GEN_439
-                 : _entry_is_younger_T_136
-                   - _GEN_431) < (_entry_is_younger_T_171
+                 : _entry_is_younger_T_115
+                   - _GEN_431) < (_entry_is_younger_T_144
                                     ? _GEN_441
-                                    : _entry_is_younger_T_174 - _GEN_431),
+                                    : _entry_is_younger_T_147 - _GEN_431),
           _has_older_sys_T_5183
-            & (_entry_is_younger_T_114
+            & (_entry_is_younger_T_96
                  ? _GEN_438
-                 : _entry_is_younger_T_117
-                   - _GEN_431) < (_entry_is_younger_T_171
+                 : _entry_is_younger_T_99
+                   - _GEN_431) < (_entry_is_younger_T_144
                                     ? _GEN_441
-                                    : _entry_is_younger_T_174 - _GEN_431),
+                                    : _entry_is_younger_T_147 - _GEN_431),
           _has_older_sys_T_5162
-            & (_entry_is_younger_T_95
+            & (_entry_is_younger_T_80
                  ? _GEN_437
-                 : _entry_is_younger_T_98
-                   - _GEN_431) < (_entry_is_younger_T_171
+                 : _entry_is_younger_T_83
+                   - _GEN_431) < (_entry_is_younger_T_144
                                     ? _GEN_441
-                                    : _entry_is_younger_T_174 - _GEN_431),
+                                    : _entry_is_younger_T_147 - _GEN_431),
           _has_older_sys_T_5141
-            & (_entry_is_younger_T_76
+            & (_entry_is_younger_T_64
                  ? _GEN_436
-                 : _entry_is_younger_T_79
-                   - _GEN_431) < (_entry_is_younger_T_171
+                 : _entry_is_younger_T_67
+                   - _GEN_431) < (_entry_is_younger_T_144
                                     ? _GEN_441
-                                    : _entry_is_younger_T_174 - _GEN_431),
+                                    : _entry_is_younger_T_147 - _GEN_431),
           _has_older_sys_T_5120
-            & (_entry_is_younger_T_57
+            & (_entry_is_younger_T_48
                  ? _GEN_435
-                 : _entry_is_younger_T_60
-                   - _GEN_431) < (_entry_is_younger_T_171
+                 : _entry_is_younger_T_51
+                   - _GEN_431) < (_entry_is_younger_T_144
                                     ? _GEN_441
-                                    : _entry_is_younger_T_174 - _GEN_431),
+                                    : _entry_is_younger_T_147 - _GEN_431),
           _has_older_sys_T_5099
-            & (_entry_is_younger_T_38
+            & (_entry_is_younger_T_32
                  ? _GEN_434
-                 : _entry_is_younger_T_41
-                   - _GEN_431) < (_entry_is_younger_T_171
+                 : _entry_is_younger_T_35
+                   - _GEN_431) < (_entry_is_younger_T_144
                                     ? _GEN_441
-                                    : _entry_is_younger_T_174 - _GEN_431),
+                                    : _entry_is_younger_T_147 - _GEN_431),
           _has_older_sys_T_5078
-            & (_entry_is_younger_T_19
+            & (_entry_is_younger_T_16
                  ? _GEN_432
-                 : _entry_is_younger_T_22
-                   - _GEN_431) < (_entry_is_younger_T_171
+                 : _entry_is_younger_T_19
+                   - _GEN_431) < (_entry_is_younger_T_144
                                     ? _GEN_441
-                                    : _entry_is_younger_T_174 - _GEN_431),
+                                    : _entry_is_younger_T_147 - _GEN_431),
           _has_older_sys_T_5057
             & (_entry_is_younger_T
                  ? _GEN_433
                  : _entry_is_younger_T_3
-                   - _GEN_431) < (_entry_is_younger_T_171
+                   - _GEN_431) < (_entry_is_younger_T_144
                                     ? _GEN_441
-                                    : _entry_is_younger_T_174 - _GEN_431)} == 15'h0,
+                                    : _entry_is_younger_T_147 - _GEN_431)} == 15'h0,
      entries_8_valid & woken_rs1_8 & woken_rs2_8 & woken_rs3_8
        & ~entries_8_uop_loadWaitBit
-       & ~((_has_older_cfi_j_is_cfi_T_496 | entries_8_uop_decode_is_jalr)
-           & (|{entries_15_valid
-                  & (_has_older_cfi_j_is_cfi_T_510 | entries_15_uop_decode_is_jalr)
+       & ~((_cfi_mask_T_16 | entries_8_uop_decode_is_jalr)
+           & (|{entries_15_valid & (_cfi_mask_T_30 | entries_15_uop_decode_is_jalr)
                   & entries_15_uop_snapshotIdx < entries_8_uop_snapshotIdx,
-                entries_14_valid
-                  & (_has_older_cfi_j_is_cfi_T_508 | entries_14_uop_decode_is_jalr)
+                entries_14_valid & (_cfi_mask_T_28 | entries_14_uop_decode_is_jalr)
                   & entries_14_uop_snapshotIdx < entries_8_uop_snapshotIdx,
-                entries_13_valid
-                  & (_has_older_cfi_j_is_cfi_T_506 | entries_13_uop_decode_is_jalr)
+                entries_13_valid & (_cfi_mask_T_26 | entries_13_uop_decode_is_jalr)
                   & entries_13_uop_snapshotIdx < entries_8_uop_snapshotIdx,
-                entries_12_valid
-                  & (_has_older_cfi_j_is_cfi_T_504 | entries_12_uop_decode_is_jalr)
+                entries_12_valid & (_cfi_mask_T_24 | entries_12_uop_decode_is_jalr)
                   & entries_12_uop_snapshotIdx < entries_8_uop_snapshotIdx,
-                entries_11_valid
-                  & (_has_older_cfi_j_is_cfi_T_502 | entries_11_uop_decode_is_jalr)
+                entries_11_valid & (_cfi_mask_T_22 | entries_11_uop_decode_is_jalr)
                   & entries_11_uop_snapshotIdx < entries_8_uop_snapshotIdx,
-                entries_10_valid
-                  & (_has_older_cfi_j_is_cfi_T_500 | entries_10_uop_decode_is_jalr)
+                entries_10_valid & (_cfi_mask_T_20 | entries_10_uop_decode_is_jalr)
                   & entries_10_uop_snapshotIdx < entries_8_uop_snapshotIdx,
-                entries_9_valid
-                  & (_has_older_cfi_j_is_cfi_T_498 | entries_9_uop_decode_is_jalr)
+                entries_9_valid & (_cfi_mask_T_18 | entries_9_uop_decode_is_jalr)
                   & entries_9_uop_snapshotIdx < entries_8_uop_snapshotIdx,
-                entries_7_valid
-                  & (_has_older_cfi_j_is_cfi_T_494 | entries_7_uop_decode_is_jalr)
+                entries_7_valid & (_cfi_mask_T_14 | entries_7_uop_decode_is_jalr)
                   & entries_7_uop_snapshotIdx < entries_8_uop_snapshotIdx,
-                entries_6_valid
-                  & (_has_older_cfi_j_is_cfi_T_492 | entries_6_uop_decode_is_jalr)
+                entries_6_valid & (_cfi_mask_T_12 | entries_6_uop_decode_is_jalr)
                   & entries_6_uop_snapshotIdx < entries_8_uop_snapshotIdx,
-                entries_5_valid
-                  & (_has_older_cfi_j_is_cfi_T_490 | entries_5_uop_decode_is_jalr)
+                entries_5_valid & (_cfi_mask_T_10 | entries_5_uop_decode_is_jalr)
                   & entries_5_uop_snapshotIdx < entries_8_uop_snapshotIdx,
-                entries_4_valid
-                  & (_has_older_cfi_j_is_cfi_T_488 | entries_4_uop_decode_is_jalr)
+                entries_4_valid & (_cfi_mask_T_8 | entries_4_uop_decode_is_jalr)
                   & entries_4_uop_snapshotIdx < entries_8_uop_snapshotIdx,
-                entries_3_valid
-                  & (_has_older_cfi_j_is_cfi_T_486 | entries_3_uop_decode_is_jalr)
+                entries_3_valid & (_cfi_mask_T_6 | entries_3_uop_decode_is_jalr)
                   & entries_3_uop_snapshotIdx < entries_8_uop_snapshotIdx,
-                entries_2_valid
-                  & (_has_older_cfi_j_is_cfi_T_484 | entries_2_uop_decode_is_jalr)
+                entries_2_valid & (_cfi_mask_T_4 | entries_2_uop_decode_is_jalr)
                   & entries_2_uop_snapshotIdx < entries_8_uop_snapshotIdx,
-                entries_1_valid
-                  & (_has_older_cfi_j_is_cfi_T_482 | entries_1_uop_decode_is_jalr)
+                entries_1_valid & (_cfi_mask_T_2 | entries_1_uop_decode_is_jalr)
                   & entries_1_uop_snapshotIdx < entries_8_uop_snapshotIdx,
-                entries_0_valid
-                  & (_has_older_cfi_j_is_cfi_T_480 | entries_0_uop_decode_is_jalr)
+                entries_0_valid & (_cfi_mask_T | entries_0_uop_decode_is_jalr)
                   & entries_0_uop_snapshotIdx < entries_8_uop_snapshotIdx}))
        & (~is_sys_8 | entries_8_uop_robIdx == io_robDeqPtr)
        & {_has_older_sys_T_5370
-            & (_entry_is_younger_T_285
+            & (_entry_is_younger_T_240
                  ? _GEN_447
-                 : _entry_is_younger_T_288
-                   - _GEN_431) < (_entry_is_younger_T_152
+                 : _entry_is_younger_T_243
+                   - _GEN_431) < (_entry_is_younger_T_128
                                     ? _GEN_440
-                                    : _entry_is_younger_T_155 - _GEN_431),
+                                    : _entry_is_younger_T_131 - _GEN_431),
           _has_older_sys_T_5351
-            & (_entry_is_younger_T_266
+            & (_entry_is_younger_T_224
                  ? _GEN_446
-                 : _entry_is_younger_T_269
-                   - _GEN_431) < (_entry_is_younger_T_152
+                 : _entry_is_younger_T_227
+                   - _GEN_431) < (_entry_is_younger_T_128
                                     ? _GEN_440
-                                    : _entry_is_younger_T_155 - _GEN_431),
+                                    : _entry_is_younger_T_131 - _GEN_431),
           _has_older_sys_T_5330
-            & (_entry_is_younger_T_247
+            & (_entry_is_younger_T_208
                  ? _GEN_445
-                 : _entry_is_younger_T_250
-                   - _GEN_431) < (_entry_is_younger_T_152
+                 : _entry_is_younger_T_211
+                   - _GEN_431) < (_entry_is_younger_T_128
                                     ? _GEN_440
-                                    : _entry_is_younger_T_155 - _GEN_431),
+                                    : _entry_is_younger_T_131 - _GEN_431),
           _has_older_sys_T_5309
-            & (_entry_is_younger_T_228
+            & (_entry_is_younger_T_192
                  ? _GEN_444
-                 : _entry_is_younger_T_231
-                   - _GEN_431) < (_entry_is_younger_T_152
+                 : _entry_is_younger_T_195
+                   - _GEN_431) < (_entry_is_younger_T_128
                                     ? _GEN_440
-                                    : _entry_is_younger_T_155 - _GEN_431),
+                                    : _entry_is_younger_T_131 - _GEN_431),
           _has_older_sys_T_5288
-            & (_entry_is_younger_T_209
+            & (_entry_is_younger_T_176
                  ? _GEN_443
-                 : _entry_is_younger_T_212
-                   - _GEN_431) < (_entry_is_younger_T_152
+                 : _entry_is_younger_T_179
+                   - _GEN_431) < (_entry_is_younger_T_128
                                     ? _GEN_440
-                                    : _entry_is_younger_T_155 - _GEN_431),
+                                    : _entry_is_younger_T_131 - _GEN_431),
           _has_older_sys_T_5267
-            & (_entry_is_younger_T_190
+            & (_entry_is_younger_T_160
                  ? _GEN_442
-                 : _entry_is_younger_T_193
-                   - _GEN_431) < (_entry_is_younger_T_152
+                 : _entry_is_younger_T_163
+                   - _GEN_431) < (_entry_is_younger_T_128
                                     ? _GEN_440
-                                    : _entry_is_younger_T_155 - _GEN_431),
+                                    : _entry_is_younger_T_131 - _GEN_431),
           _has_older_sys_T_5246
-            & (_entry_is_younger_T_171
+            & (_entry_is_younger_T_144
                  ? _GEN_441
-                 : _entry_is_younger_T_174
-                   - _GEN_431) < (_entry_is_younger_T_152
+                 : _entry_is_younger_T_147
+                   - _GEN_431) < (_entry_is_younger_T_128
                                     ? _GEN_440
-                                    : _entry_is_younger_T_155 - _GEN_431),
+                                    : _entry_is_younger_T_131 - _GEN_431),
           _has_older_sys_T_5204
-            & (_entry_is_younger_T_133
+            & (_entry_is_younger_T_112
                  ? _GEN_439
-                 : _entry_is_younger_T_136
-                   - _GEN_431) < (_entry_is_younger_T_152
+                 : _entry_is_younger_T_115
+                   - _GEN_431) < (_entry_is_younger_T_128
                                     ? _GEN_440
-                                    : _entry_is_younger_T_155 - _GEN_431),
+                                    : _entry_is_younger_T_131 - _GEN_431),
           _has_older_sys_T_5183
-            & (_entry_is_younger_T_114
+            & (_entry_is_younger_T_96
                  ? _GEN_438
-                 : _entry_is_younger_T_117
-                   - _GEN_431) < (_entry_is_younger_T_152
+                 : _entry_is_younger_T_99
+                   - _GEN_431) < (_entry_is_younger_T_128
                                     ? _GEN_440
-                                    : _entry_is_younger_T_155 - _GEN_431),
+                                    : _entry_is_younger_T_131 - _GEN_431),
           _has_older_sys_T_5162
-            & (_entry_is_younger_T_95
+            & (_entry_is_younger_T_80
                  ? _GEN_437
-                 : _entry_is_younger_T_98
-                   - _GEN_431) < (_entry_is_younger_T_152
+                 : _entry_is_younger_T_83
+                   - _GEN_431) < (_entry_is_younger_T_128
                                     ? _GEN_440
-                                    : _entry_is_younger_T_155 - _GEN_431),
+                                    : _entry_is_younger_T_131 - _GEN_431),
           _has_older_sys_T_5141
-            & (_entry_is_younger_T_76
+            & (_entry_is_younger_T_64
                  ? _GEN_436
-                 : _entry_is_younger_T_79
-                   - _GEN_431) < (_entry_is_younger_T_152
+                 : _entry_is_younger_T_67
+                   - _GEN_431) < (_entry_is_younger_T_128
                                     ? _GEN_440
-                                    : _entry_is_younger_T_155 - _GEN_431),
+                                    : _entry_is_younger_T_131 - _GEN_431),
           _has_older_sys_T_5120
-            & (_entry_is_younger_T_57
+            & (_entry_is_younger_T_48
                  ? _GEN_435
-                 : _entry_is_younger_T_60
-                   - _GEN_431) < (_entry_is_younger_T_152
+                 : _entry_is_younger_T_51
+                   - _GEN_431) < (_entry_is_younger_T_128
                                     ? _GEN_440
-                                    : _entry_is_younger_T_155 - _GEN_431),
+                                    : _entry_is_younger_T_131 - _GEN_431),
           _has_older_sys_T_5099
-            & (_entry_is_younger_T_38
+            & (_entry_is_younger_T_32
                  ? _GEN_434
-                 : _entry_is_younger_T_41
-                   - _GEN_431) < (_entry_is_younger_T_152
+                 : _entry_is_younger_T_35
+                   - _GEN_431) < (_entry_is_younger_T_128
                                     ? _GEN_440
-                                    : _entry_is_younger_T_155 - _GEN_431),
+                                    : _entry_is_younger_T_131 - _GEN_431),
           _has_older_sys_T_5078
-            & (_entry_is_younger_T_19
+            & (_entry_is_younger_T_16
                  ? _GEN_432
-                 : _entry_is_younger_T_22
-                   - _GEN_431) < (_entry_is_younger_T_152
+                 : _entry_is_younger_T_19
+                   - _GEN_431) < (_entry_is_younger_T_128
                                     ? _GEN_440
-                                    : _entry_is_younger_T_155 - _GEN_431),
+                                    : _entry_is_younger_T_131 - _GEN_431),
           _has_older_sys_T_5057
             & (_entry_is_younger_T
                  ? _GEN_433
                  : _entry_is_younger_T_3
-                   - _GEN_431) < (_entry_is_younger_T_152
+                   - _GEN_431) < (_entry_is_younger_T_128
                                     ? _GEN_440
-                                    : _entry_is_younger_T_155 - _GEN_431)} == 15'h0,
+                                    : _entry_is_younger_T_131 - _GEN_431)} == 15'h0,
      entries_7_valid & woken_rs1_7 & woken_rs2_7 & woken_rs3_7
        & ~entries_7_uop_loadWaitBit
-       & ~((_has_older_cfi_j_is_cfi_T_494 | entries_7_uop_decode_is_jalr)
-           & (|{entries_15_valid
-                  & (_has_older_cfi_j_is_cfi_T_510 | entries_15_uop_decode_is_jalr)
+       & ~((_cfi_mask_T_14 | entries_7_uop_decode_is_jalr)
+           & (|{entries_15_valid & (_cfi_mask_T_30 | entries_15_uop_decode_is_jalr)
                   & entries_15_uop_snapshotIdx < entries_7_uop_snapshotIdx,
-                entries_14_valid
-                  & (_has_older_cfi_j_is_cfi_T_508 | entries_14_uop_decode_is_jalr)
+                entries_14_valid & (_cfi_mask_T_28 | entries_14_uop_decode_is_jalr)
                   & entries_14_uop_snapshotIdx < entries_7_uop_snapshotIdx,
-                entries_13_valid
-                  & (_has_older_cfi_j_is_cfi_T_506 | entries_13_uop_decode_is_jalr)
+                entries_13_valid & (_cfi_mask_T_26 | entries_13_uop_decode_is_jalr)
                   & entries_13_uop_snapshotIdx < entries_7_uop_snapshotIdx,
-                entries_12_valid
-                  & (_has_older_cfi_j_is_cfi_T_504 | entries_12_uop_decode_is_jalr)
+                entries_12_valid & (_cfi_mask_T_24 | entries_12_uop_decode_is_jalr)
                   & entries_12_uop_snapshotIdx < entries_7_uop_snapshotIdx,
-                entries_11_valid
-                  & (_has_older_cfi_j_is_cfi_T_502 | entries_11_uop_decode_is_jalr)
+                entries_11_valid & (_cfi_mask_T_22 | entries_11_uop_decode_is_jalr)
                   & entries_11_uop_snapshotIdx < entries_7_uop_snapshotIdx,
-                entries_10_valid
-                  & (_has_older_cfi_j_is_cfi_T_500 | entries_10_uop_decode_is_jalr)
+                entries_10_valid & (_cfi_mask_T_20 | entries_10_uop_decode_is_jalr)
                   & entries_10_uop_snapshotIdx < entries_7_uop_snapshotIdx,
-                entries_9_valid
-                  & (_has_older_cfi_j_is_cfi_T_498 | entries_9_uop_decode_is_jalr)
+                entries_9_valid & (_cfi_mask_T_18 | entries_9_uop_decode_is_jalr)
                   & entries_9_uop_snapshotIdx < entries_7_uop_snapshotIdx,
-                entries_8_valid
-                  & (_has_older_cfi_j_is_cfi_T_496 | entries_8_uop_decode_is_jalr)
+                entries_8_valid & (_cfi_mask_T_16 | entries_8_uop_decode_is_jalr)
                   & entries_8_uop_snapshotIdx < entries_7_uop_snapshotIdx,
-                entries_6_valid
-                  & (_has_older_cfi_j_is_cfi_T_492 | entries_6_uop_decode_is_jalr)
+                entries_6_valid & (_cfi_mask_T_12 | entries_6_uop_decode_is_jalr)
                   & entries_6_uop_snapshotIdx < entries_7_uop_snapshotIdx,
-                entries_5_valid
-                  & (_has_older_cfi_j_is_cfi_T_490 | entries_5_uop_decode_is_jalr)
+                entries_5_valid & (_cfi_mask_T_10 | entries_5_uop_decode_is_jalr)
                   & entries_5_uop_snapshotIdx < entries_7_uop_snapshotIdx,
-                entries_4_valid
-                  & (_has_older_cfi_j_is_cfi_T_488 | entries_4_uop_decode_is_jalr)
+                entries_4_valid & (_cfi_mask_T_8 | entries_4_uop_decode_is_jalr)
                   & entries_4_uop_snapshotIdx < entries_7_uop_snapshotIdx,
-                entries_3_valid
-                  & (_has_older_cfi_j_is_cfi_T_486 | entries_3_uop_decode_is_jalr)
+                entries_3_valid & (_cfi_mask_T_6 | entries_3_uop_decode_is_jalr)
                   & entries_3_uop_snapshotIdx < entries_7_uop_snapshotIdx,
-                entries_2_valid
-                  & (_has_older_cfi_j_is_cfi_T_484 | entries_2_uop_decode_is_jalr)
+                entries_2_valid & (_cfi_mask_T_4 | entries_2_uop_decode_is_jalr)
                   & entries_2_uop_snapshotIdx < entries_7_uop_snapshotIdx,
-                entries_1_valid
-                  & (_has_older_cfi_j_is_cfi_T_482 | entries_1_uop_decode_is_jalr)
+                entries_1_valid & (_cfi_mask_T_2 | entries_1_uop_decode_is_jalr)
                   & entries_1_uop_snapshotIdx < entries_7_uop_snapshotIdx,
-                entries_0_valid
-                  & (_has_older_cfi_j_is_cfi_T_480 | entries_0_uop_decode_is_jalr)
+                entries_0_valid & (_cfi_mask_T | entries_0_uop_decode_is_jalr)
                   & entries_0_uop_snapshotIdx < entries_7_uop_snapshotIdx}))
        & (~is_sys_7 | entries_7_uop_robIdx == io_robDeqPtr)
        & {_has_older_sys_T_5370
-            & (_entry_is_younger_T_285
+            & (_entry_is_younger_T_240
                  ? _GEN_447
-                 : _entry_is_younger_T_288
-                   - _GEN_431) < (_entry_is_younger_T_133
+                 : _entry_is_younger_T_243
+                   - _GEN_431) < (_entry_is_younger_T_112
                                     ? _GEN_439
-                                    : _entry_is_younger_T_136 - _GEN_431),
+                                    : _entry_is_younger_T_115 - _GEN_431),
           _has_older_sys_T_5351
-            & (_entry_is_younger_T_266
+            & (_entry_is_younger_T_224
                  ? _GEN_446
-                 : _entry_is_younger_T_269
-                   - _GEN_431) < (_entry_is_younger_T_133
+                 : _entry_is_younger_T_227
+                   - _GEN_431) < (_entry_is_younger_T_112
                                     ? _GEN_439
-                                    : _entry_is_younger_T_136 - _GEN_431),
+                                    : _entry_is_younger_T_115 - _GEN_431),
           _has_older_sys_T_5330
-            & (_entry_is_younger_T_247
+            & (_entry_is_younger_T_208
                  ? _GEN_445
-                 : _entry_is_younger_T_250
-                   - _GEN_431) < (_entry_is_younger_T_133
+                 : _entry_is_younger_T_211
+                   - _GEN_431) < (_entry_is_younger_T_112
                                     ? _GEN_439
-                                    : _entry_is_younger_T_136 - _GEN_431),
+                                    : _entry_is_younger_T_115 - _GEN_431),
           _has_older_sys_T_5309
-            & (_entry_is_younger_T_228
+            & (_entry_is_younger_T_192
                  ? _GEN_444
-                 : _entry_is_younger_T_231
-                   - _GEN_431) < (_entry_is_younger_T_133
+                 : _entry_is_younger_T_195
+                   - _GEN_431) < (_entry_is_younger_T_112
                                     ? _GEN_439
-                                    : _entry_is_younger_T_136 - _GEN_431),
+                                    : _entry_is_younger_T_115 - _GEN_431),
           _has_older_sys_T_5288
-            & (_entry_is_younger_T_209
+            & (_entry_is_younger_T_176
                  ? _GEN_443
-                 : _entry_is_younger_T_212
-                   - _GEN_431) < (_entry_is_younger_T_133
+                 : _entry_is_younger_T_179
+                   - _GEN_431) < (_entry_is_younger_T_112
                                     ? _GEN_439
-                                    : _entry_is_younger_T_136 - _GEN_431),
+                                    : _entry_is_younger_T_115 - _GEN_431),
           _has_older_sys_T_5267
-            & (_entry_is_younger_T_190
+            & (_entry_is_younger_T_160
                  ? _GEN_442
-                 : _entry_is_younger_T_193
-                   - _GEN_431) < (_entry_is_younger_T_133
+                 : _entry_is_younger_T_163
+                   - _GEN_431) < (_entry_is_younger_T_112
                                     ? _GEN_439
-                                    : _entry_is_younger_T_136 - _GEN_431),
+                                    : _entry_is_younger_T_115 - _GEN_431),
           _has_older_sys_T_5246
-            & (_entry_is_younger_T_171
+            & (_entry_is_younger_T_144
                  ? _GEN_441
-                 : _entry_is_younger_T_174
-                   - _GEN_431) < (_entry_is_younger_T_133
+                 : _entry_is_younger_T_147
+                   - _GEN_431) < (_entry_is_younger_T_112
                                     ? _GEN_439
-                                    : _entry_is_younger_T_136 - _GEN_431),
+                                    : _entry_is_younger_T_115 - _GEN_431),
           _has_older_sys_T_5225
-            & (_entry_is_younger_T_152
+            & (_entry_is_younger_T_128
                  ? _GEN_440
-                 : _entry_is_younger_T_155
-                   - _GEN_431) < (_entry_is_younger_T_133
+                 : _entry_is_younger_T_131
+                   - _GEN_431) < (_entry_is_younger_T_112
                                     ? _GEN_439
-                                    : _entry_is_younger_T_136 - _GEN_431),
+                                    : _entry_is_younger_T_115 - _GEN_431),
           _has_older_sys_T_5183
-            & (_entry_is_younger_T_114
+            & (_entry_is_younger_T_96
                  ? _GEN_438
-                 : _entry_is_younger_T_117
-                   - _GEN_431) < (_entry_is_younger_T_133
+                 : _entry_is_younger_T_99
+                   - _GEN_431) < (_entry_is_younger_T_112
                                     ? _GEN_439
-                                    : _entry_is_younger_T_136 - _GEN_431),
+                                    : _entry_is_younger_T_115 - _GEN_431),
           _has_older_sys_T_5162
-            & (_entry_is_younger_T_95
+            & (_entry_is_younger_T_80
                  ? _GEN_437
-                 : _entry_is_younger_T_98
-                   - _GEN_431) < (_entry_is_younger_T_133
+                 : _entry_is_younger_T_83
+                   - _GEN_431) < (_entry_is_younger_T_112
                                     ? _GEN_439
-                                    : _entry_is_younger_T_136 - _GEN_431),
+                                    : _entry_is_younger_T_115 - _GEN_431),
           _has_older_sys_T_5141
-            & (_entry_is_younger_T_76
+            & (_entry_is_younger_T_64
                  ? _GEN_436
-                 : _entry_is_younger_T_79
-                   - _GEN_431) < (_entry_is_younger_T_133
+                 : _entry_is_younger_T_67
+                   - _GEN_431) < (_entry_is_younger_T_112
                                     ? _GEN_439
-                                    : _entry_is_younger_T_136 - _GEN_431),
+                                    : _entry_is_younger_T_115 - _GEN_431),
           _has_older_sys_T_5120
-            & (_entry_is_younger_T_57
+            & (_entry_is_younger_T_48
                  ? _GEN_435
-                 : _entry_is_younger_T_60
-                   - _GEN_431) < (_entry_is_younger_T_133
+                 : _entry_is_younger_T_51
+                   - _GEN_431) < (_entry_is_younger_T_112
                                     ? _GEN_439
-                                    : _entry_is_younger_T_136 - _GEN_431),
+                                    : _entry_is_younger_T_115 - _GEN_431),
           _has_older_sys_T_5099
-            & (_entry_is_younger_T_38
+            & (_entry_is_younger_T_32
                  ? _GEN_434
-                 : _entry_is_younger_T_41
-                   - _GEN_431) < (_entry_is_younger_T_133
+                 : _entry_is_younger_T_35
+                   - _GEN_431) < (_entry_is_younger_T_112
                                     ? _GEN_439
-                                    : _entry_is_younger_T_136 - _GEN_431),
+                                    : _entry_is_younger_T_115 - _GEN_431),
           _has_older_sys_T_5078
-            & (_entry_is_younger_T_19
+            & (_entry_is_younger_T_16
                  ? _GEN_432
-                 : _entry_is_younger_T_22
-                   - _GEN_431) < (_entry_is_younger_T_133
+                 : _entry_is_younger_T_19
+                   - _GEN_431) < (_entry_is_younger_T_112
                                     ? _GEN_439
-                                    : _entry_is_younger_T_136 - _GEN_431),
+                                    : _entry_is_younger_T_115 - _GEN_431),
           _has_older_sys_T_5057
             & (_entry_is_younger_T
                  ? _GEN_433
                  : _entry_is_younger_T_3
-                   - _GEN_431) < (_entry_is_younger_T_133
+                   - _GEN_431) < (_entry_is_younger_T_112
                                     ? _GEN_439
-                                    : _entry_is_younger_T_136 - _GEN_431)} == 15'h0,
+                                    : _entry_is_younger_T_115 - _GEN_431)} == 15'h0,
      entries_6_valid & woken_rs1_6 & woken_rs2_6 & woken_rs3_6
        & ~entries_6_uop_loadWaitBit
-       & ~((_has_older_cfi_j_is_cfi_T_492 | entries_6_uop_decode_is_jalr)
-           & (|{entries_15_valid
-                  & (_has_older_cfi_j_is_cfi_T_510 | entries_15_uop_decode_is_jalr)
+       & ~((_cfi_mask_T_12 | entries_6_uop_decode_is_jalr)
+           & (|{entries_15_valid & (_cfi_mask_T_30 | entries_15_uop_decode_is_jalr)
                   & entries_15_uop_snapshotIdx < entries_6_uop_snapshotIdx,
-                entries_14_valid
-                  & (_has_older_cfi_j_is_cfi_T_508 | entries_14_uop_decode_is_jalr)
+                entries_14_valid & (_cfi_mask_T_28 | entries_14_uop_decode_is_jalr)
                   & entries_14_uop_snapshotIdx < entries_6_uop_snapshotIdx,
-                entries_13_valid
-                  & (_has_older_cfi_j_is_cfi_T_506 | entries_13_uop_decode_is_jalr)
+                entries_13_valid & (_cfi_mask_T_26 | entries_13_uop_decode_is_jalr)
                   & entries_13_uop_snapshotIdx < entries_6_uop_snapshotIdx,
-                entries_12_valid
-                  & (_has_older_cfi_j_is_cfi_T_504 | entries_12_uop_decode_is_jalr)
+                entries_12_valid & (_cfi_mask_T_24 | entries_12_uop_decode_is_jalr)
                   & entries_12_uop_snapshotIdx < entries_6_uop_snapshotIdx,
-                entries_11_valid
-                  & (_has_older_cfi_j_is_cfi_T_502 | entries_11_uop_decode_is_jalr)
+                entries_11_valid & (_cfi_mask_T_22 | entries_11_uop_decode_is_jalr)
                   & entries_11_uop_snapshotIdx < entries_6_uop_snapshotIdx,
-                entries_10_valid
-                  & (_has_older_cfi_j_is_cfi_T_500 | entries_10_uop_decode_is_jalr)
+                entries_10_valid & (_cfi_mask_T_20 | entries_10_uop_decode_is_jalr)
                   & entries_10_uop_snapshotIdx < entries_6_uop_snapshotIdx,
-                entries_9_valid
-                  & (_has_older_cfi_j_is_cfi_T_498 | entries_9_uop_decode_is_jalr)
+                entries_9_valid & (_cfi_mask_T_18 | entries_9_uop_decode_is_jalr)
                   & entries_9_uop_snapshotIdx < entries_6_uop_snapshotIdx,
-                entries_8_valid
-                  & (_has_older_cfi_j_is_cfi_T_496 | entries_8_uop_decode_is_jalr)
+                entries_8_valid & (_cfi_mask_T_16 | entries_8_uop_decode_is_jalr)
                   & entries_8_uop_snapshotIdx < entries_6_uop_snapshotIdx,
-                entries_7_valid
-                  & (_has_older_cfi_j_is_cfi_T_494 | entries_7_uop_decode_is_jalr)
+                entries_7_valid & (_cfi_mask_T_14 | entries_7_uop_decode_is_jalr)
                   & entries_7_uop_snapshotIdx < entries_6_uop_snapshotIdx,
-                entries_5_valid
-                  & (_has_older_cfi_j_is_cfi_T_490 | entries_5_uop_decode_is_jalr)
+                entries_5_valid & (_cfi_mask_T_10 | entries_5_uop_decode_is_jalr)
                   & entries_5_uop_snapshotIdx < entries_6_uop_snapshotIdx,
-                entries_4_valid
-                  & (_has_older_cfi_j_is_cfi_T_488 | entries_4_uop_decode_is_jalr)
+                entries_4_valid & (_cfi_mask_T_8 | entries_4_uop_decode_is_jalr)
                   & entries_4_uop_snapshotIdx < entries_6_uop_snapshotIdx,
-                entries_3_valid
-                  & (_has_older_cfi_j_is_cfi_T_486 | entries_3_uop_decode_is_jalr)
+                entries_3_valid & (_cfi_mask_T_6 | entries_3_uop_decode_is_jalr)
                   & entries_3_uop_snapshotIdx < entries_6_uop_snapshotIdx,
-                entries_2_valid
-                  & (_has_older_cfi_j_is_cfi_T_484 | entries_2_uop_decode_is_jalr)
+                entries_2_valid & (_cfi_mask_T_4 | entries_2_uop_decode_is_jalr)
                   & entries_2_uop_snapshotIdx < entries_6_uop_snapshotIdx,
-                entries_1_valid
-                  & (_has_older_cfi_j_is_cfi_T_482 | entries_1_uop_decode_is_jalr)
+                entries_1_valid & (_cfi_mask_T_2 | entries_1_uop_decode_is_jalr)
                   & entries_1_uop_snapshotIdx < entries_6_uop_snapshotIdx,
-                entries_0_valid
-                  & (_has_older_cfi_j_is_cfi_T_480 | entries_0_uop_decode_is_jalr)
+                entries_0_valid & (_cfi_mask_T | entries_0_uop_decode_is_jalr)
                   & entries_0_uop_snapshotIdx < entries_6_uop_snapshotIdx}))
        & (~is_sys_6 | entries_6_uop_robIdx == io_robDeqPtr)
        & {_has_older_sys_T_5370
-            & (_entry_is_younger_T_285
+            & (_entry_is_younger_T_240
                  ? _GEN_447
-                 : _entry_is_younger_T_288
-                   - _GEN_431) < (_entry_is_younger_T_114
+                 : _entry_is_younger_T_243
+                   - _GEN_431) < (_entry_is_younger_T_96
                                     ? _GEN_438
-                                    : _entry_is_younger_T_117 - _GEN_431),
+                                    : _entry_is_younger_T_99 - _GEN_431),
           _has_older_sys_T_5351
-            & (_entry_is_younger_T_266
+            & (_entry_is_younger_T_224
                  ? _GEN_446
-                 : _entry_is_younger_T_269
-                   - _GEN_431) < (_entry_is_younger_T_114
+                 : _entry_is_younger_T_227
+                   - _GEN_431) < (_entry_is_younger_T_96
                                     ? _GEN_438
-                                    : _entry_is_younger_T_117 - _GEN_431),
+                                    : _entry_is_younger_T_99 - _GEN_431),
           _has_older_sys_T_5330
-            & (_entry_is_younger_T_247
+            & (_entry_is_younger_T_208
                  ? _GEN_445
-                 : _entry_is_younger_T_250
-                   - _GEN_431) < (_entry_is_younger_T_114
+                 : _entry_is_younger_T_211
+                   - _GEN_431) < (_entry_is_younger_T_96
                                     ? _GEN_438
-                                    : _entry_is_younger_T_117 - _GEN_431),
+                                    : _entry_is_younger_T_99 - _GEN_431),
           _has_older_sys_T_5309
-            & (_entry_is_younger_T_228
+            & (_entry_is_younger_T_192
                  ? _GEN_444
-                 : _entry_is_younger_T_231
-                   - _GEN_431) < (_entry_is_younger_T_114
+                 : _entry_is_younger_T_195
+                   - _GEN_431) < (_entry_is_younger_T_96
                                     ? _GEN_438
-                                    : _entry_is_younger_T_117 - _GEN_431),
+                                    : _entry_is_younger_T_99 - _GEN_431),
           _has_older_sys_T_5288
-            & (_entry_is_younger_T_209
+            & (_entry_is_younger_T_176
                  ? _GEN_443
-                 : _entry_is_younger_T_212
-                   - _GEN_431) < (_entry_is_younger_T_114
+                 : _entry_is_younger_T_179
+                   - _GEN_431) < (_entry_is_younger_T_96
                                     ? _GEN_438
-                                    : _entry_is_younger_T_117 - _GEN_431),
+                                    : _entry_is_younger_T_99 - _GEN_431),
           _has_older_sys_T_5267
-            & (_entry_is_younger_T_190
+            & (_entry_is_younger_T_160
                  ? _GEN_442
-                 : _entry_is_younger_T_193
-                   - _GEN_431) < (_entry_is_younger_T_114
+                 : _entry_is_younger_T_163
+                   - _GEN_431) < (_entry_is_younger_T_96
                                     ? _GEN_438
-                                    : _entry_is_younger_T_117 - _GEN_431),
+                                    : _entry_is_younger_T_99 - _GEN_431),
           _has_older_sys_T_5246
-            & (_entry_is_younger_T_171
+            & (_entry_is_younger_T_144
                  ? _GEN_441
-                 : _entry_is_younger_T_174
-                   - _GEN_431) < (_entry_is_younger_T_114
+                 : _entry_is_younger_T_147
+                   - _GEN_431) < (_entry_is_younger_T_96
                                     ? _GEN_438
-                                    : _entry_is_younger_T_117 - _GEN_431),
+                                    : _entry_is_younger_T_99 - _GEN_431),
           _has_older_sys_T_5225
-            & (_entry_is_younger_T_152
+            & (_entry_is_younger_T_128
                  ? _GEN_440
-                 : _entry_is_younger_T_155
-                   - _GEN_431) < (_entry_is_younger_T_114
+                 : _entry_is_younger_T_131
+                   - _GEN_431) < (_entry_is_younger_T_96
                                     ? _GEN_438
-                                    : _entry_is_younger_T_117 - _GEN_431),
+                                    : _entry_is_younger_T_99 - _GEN_431),
           _has_older_sys_T_5204
-            & (_entry_is_younger_T_133
+            & (_entry_is_younger_T_112
                  ? _GEN_439
-                 : _entry_is_younger_T_136
-                   - _GEN_431) < (_entry_is_younger_T_114
+                 : _entry_is_younger_T_115
+                   - _GEN_431) < (_entry_is_younger_T_96
                                     ? _GEN_438
-                                    : _entry_is_younger_T_117 - _GEN_431),
+                                    : _entry_is_younger_T_99 - _GEN_431),
           _has_older_sys_T_5162
-            & (_entry_is_younger_T_95
+            & (_entry_is_younger_T_80
                  ? _GEN_437
-                 : _entry_is_younger_T_98
-                   - _GEN_431) < (_entry_is_younger_T_114
+                 : _entry_is_younger_T_83
+                   - _GEN_431) < (_entry_is_younger_T_96
                                     ? _GEN_438
-                                    : _entry_is_younger_T_117 - _GEN_431),
+                                    : _entry_is_younger_T_99 - _GEN_431),
           _has_older_sys_T_5141
-            & (_entry_is_younger_T_76
+            & (_entry_is_younger_T_64
                  ? _GEN_436
-                 : _entry_is_younger_T_79
-                   - _GEN_431) < (_entry_is_younger_T_114
+                 : _entry_is_younger_T_67
+                   - _GEN_431) < (_entry_is_younger_T_96
                                     ? _GEN_438
-                                    : _entry_is_younger_T_117 - _GEN_431),
+                                    : _entry_is_younger_T_99 - _GEN_431),
           _has_older_sys_T_5120
-            & (_entry_is_younger_T_57
+            & (_entry_is_younger_T_48
                  ? _GEN_435
-                 : _entry_is_younger_T_60
-                   - _GEN_431) < (_entry_is_younger_T_114
+                 : _entry_is_younger_T_51
+                   - _GEN_431) < (_entry_is_younger_T_96
                                     ? _GEN_438
-                                    : _entry_is_younger_T_117 - _GEN_431),
+                                    : _entry_is_younger_T_99 - _GEN_431),
           _has_older_sys_T_5099
-            & (_entry_is_younger_T_38
+            & (_entry_is_younger_T_32
                  ? _GEN_434
-                 : _entry_is_younger_T_41
-                   - _GEN_431) < (_entry_is_younger_T_114
+                 : _entry_is_younger_T_35
+                   - _GEN_431) < (_entry_is_younger_T_96
                                     ? _GEN_438
-                                    : _entry_is_younger_T_117 - _GEN_431),
+                                    : _entry_is_younger_T_99 - _GEN_431),
           _has_older_sys_T_5078
-            & (_entry_is_younger_T_19
+            & (_entry_is_younger_T_16
                  ? _GEN_432
-                 : _entry_is_younger_T_22
-                   - _GEN_431) < (_entry_is_younger_T_114
+                 : _entry_is_younger_T_19
+                   - _GEN_431) < (_entry_is_younger_T_96
                                     ? _GEN_438
-                                    : _entry_is_younger_T_117 - _GEN_431),
+                                    : _entry_is_younger_T_99 - _GEN_431),
           _has_older_sys_T_5057
             & (_entry_is_younger_T
                  ? _GEN_433
                  : _entry_is_younger_T_3
-                   - _GEN_431) < (_entry_is_younger_T_114
+                   - _GEN_431) < (_entry_is_younger_T_96
                                     ? _GEN_438
-                                    : _entry_is_younger_T_117 - _GEN_431)} == 15'h0,
+                                    : _entry_is_younger_T_99 - _GEN_431)} == 15'h0,
      entries_5_valid & woken_rs1_5 & woken_rs2_5 & woken_rs3_5
        & ~entries_5_uop_loadWaitBit
-       & ~((_has_older_cfi_j_is_cfi_T_490 | entries_5_uop_decode_is_jalr)
-           & (|{entries_15_valid
-                  & (_has_older_cfi_j_is_cfi_T_510 | entries_15_uop_decode_is_jalr)
+       & ~((_cfi_mask_T_10 | entries_5_uop_decode_is_jalr)
+           & (|{entries_15_valid & (_cfi_mask_T_30 | entries_15_uop_decode_is_jalr)
                   & entries_15_uop_snapshotIdx < entries_5_uop_snapshotIdx,
-                entries_14_valid
-                  & (_has_older_cfi_j_is_cfi_T_508 | entries_14_uop_decode_is_jalr)
+                entries_14_valid & (_cfi_mask_T_28 | entries_14_uop_decode_is_jalr)
                   & entries_14_uop_snapshotIdx < entries_5_uop_snapshotIdx,
-                entries_13_valid
-                  & (_has_older_cfi_j_is_cfi_T_506 | entries_13_uop_decode_is_jalr)
+                entries_13_valid & (_cfi_mask_T_26 | entries_13_uop_decode_is_jalr)
                   & entries_13_uop_snapshotIdx < entries_5_uop_snapshotIdx,
-                entries_12_valid
-                  & (_has_older_cfi_j_is_cfi_T_504 | entries_12_uop_decode_is_jalr)
+                entries_12_valid & (_cfi_mask_T_24 | entries_12_uop_decode_is_jalr)
                   & entries_12_uop_snapshotIdx < entries_5_uop_snapshotIdx,
-                entries_11_valid
-                  & (_has_older_cfi_j_is_cfi_T_502 | entries_11_uop_decode_is_jalr)
+                entries_11_valid & (_cfi_mask_T_22 | entries_11_uop_decode_is_jalr)
                   & entries_11_uop_snapshotIdx < entries_5_uop_snapshotIdx,
-                entries_10_valid
-                  & (_has_older_cfi_j_is_cfi_T_500 | entries_10_uop_decode_is_jalr)
+                entries_10_valid & (_cfi_mask_T_20 | entries_10_uop_decode_is_jalr)
                   & entries_10_uop_snapshotIdx < entries_5_uop_snapshotIdx,
-                entries_9_valid
-                  & (_has_older_cfi_j_is_cfi_T_498 | entries_9_uop_decode_is_jalr)
+                entries_9_valid & (_cfi_mask_T_18 | entries_9_uop_decode_is_jalr)
                   & entries_9_uop_snapshotIdx < entries_5_uop_snapshotIdx,
-                entries_8_valid
-                  & (_has_older_cfi_j_is_cfi_T_496 | entries_8_uop_decode_is_jalr)
+                entries_8_valid & (_cfi_mask_T_16 | entries_8_uop_decode_is_jalr)
                   & entries_8_uop_snapshotIdx < entries_5_uop_snapshotIdx,
-                entries_7_valid
-                  & (_has_older_cfi_j_is_cfi_T_494 | entries_7_uop_decode_is_jalr)
+                entries_7_valid & (_cfi_mask_T_14 | entries_7_uop_decode_is_jalr)
                   & entries_7_uop_snapshotIdx < entries_5_uop_snapshotIdx,
-                entries_6_valid
-                  & (_has_older_cfi_j_is_cfi_T_492 | entries_6_uop_decode_is_jalr)
+                entries_6_valid & (_cfi_mask_T_12 | entries_6_uop_decode_is_jalr)
                   & entries_6_uop_snapshotIdx < entries_5_uop_snapshotIdx,
-                entries_4_valid
-                  & (_has_older_cfi_j_is_cfi_T_488 | entries_4_uop_decode_is_jalr)
+                entries_4_valid & (_cfi_mask_T_8 | entries_4_uop_decode_is_jalr)
                   & entries_4_uop_snapshotIdx < entries_5_uop_snapshotIdx,
-                entries_3_valid
-                  & (_has_older_cfi_j_is_cfi_T_486 | entries_3_uop_decode_is_jalr)
+                entries_3_valid & (_cfi_mask_T_6 | entries_3_uop_decode_is_jalr)
                   & entries_3_uop_snapshotIdx < entries_5_uop_snapshotIdx,
-                entries_2_valid
-                  & (_has_older_cfi_j_is_cfi_T_484 | entries_2_uop_decode_is_jalr)
+                entries_2_valid & (_cfi_mask_T_4 | entries_2_uop_decode_is_jalr)
                   & entries_2_uop_snapshotIdx < entries_5_uop_snapshotIdx,
-                entries_1_valid
-                  & (_has_older_cfi_j_is_cfi_T_482 | entries_1_uop_decode_is_jalr)
+                entries_1_valid & (_cfi_mask_T_2 | entries_1_uop_decode_is_jalr)
                   & entries_1_uop_snapshotIdx < entries_5_uop_snapshotIdx,
-                entries_0_valid
-                  & (_has_older_cfi_j_is_cfi_T_480 | entries_0_uop_decode_is_jalr)
+                entries_0_valid & (_cfi_mask_T | entries_0_uop_decode_is_jalr)
                   & entries_0_uop_snapshotIdx < entries_5_uop_snapshotIdx}))
        & (~is_sys_5 | entries_5_uop_robIdx == io_robDeqPtr)
        & {_has_older_sys_T_5370
-            & (_entry_is_younger_T_285
+            & (_entry_is_younger_T_240
                  ? _GEN_447
-                 : _entry_is_younger_T_288
-                   - _GEN_431) < (_entry_is_younger_T_95
+                 : _entry_is_younger_T_243
+                   - _GEN_431) < (_entry_is_younger_T_80
                                     ? _GEN_437
-                                    : _entry_is_younger_T_98 - _GEN_431),
+                                    : _entry_is_younger_T_83 - _GEN_431),
           _has_older_sys_T_5351
-            & (_entry_is_younger_T_266
+            & (_entry_is_younger_T_224
                  ? _GEN_446
-                 : _entry_is_younger_T_269
-                   - _GEN_431) < (_entry_is_younger_T_95
+                 : _entry_is_younger_T_227
+                   - _GEN_431) < (_entry_is_younger_T_80
                                     ? _GEN_437
-                                    : _entry_is_younger_T_98 - _GEN_431),
+                                    : _entry_is_younger_T_83 - _GEN_431),
           _has_older_sys_T_5330
-            & (_entry_is_younger_T_247
+            & (_entry_is_younger_T_208
                  ? _GEN_445
-                 : _entry_is_younger_T_250
-                   - _GEN_431) < (_entry_is_younger_T_95
+                 : _entry_is_younger_T_211
+                   - _GEN_431) < (_entry_is_younger_T_80
                                     ? _GEN_437
-                                    : _entry_is_younger_T_98 - _GEN_431),
+                                    : _entry_is_younger_T_83 - _GEN_431),
           _has_older_sys_T_5309
-            & (_entry_is_younger_T_228
+            & (_entry_is_younger_T_192
                  ? _GEN_444
-                 : _entry_is_younger_T_231
-                   - _GEN_431) < (_entry_is_younger_T_95
+                 : _entry_is_younger_T_195
+                   - _GEN_431) < (_entry_is_younger_T_80
                                     ? _GEN_437
-                                    : _entry_is_younger_T_98 - _GEN_431),
+                                    : _entry_is_younger_T_83 - _GEN_431),
           _has_older_sys_T_5288
-            & (_entry_is_younger_T_209
+            & (_entry_is_younger_T_176
                  ? _GEN_443
-                 : _entry_is_younger_T_212
-                   - _GEN_431) < (_entry_is_younger_T_95
+                 : _entry_is_younger_T_179
+                   - _GEN_431) < (_entry_is_younger_T_80
                                     ? _GEN_437
-                                    : _entry_is_younger_T_98 - _GEN_431),
+                                    : _entry_is_younger_T_83 - _GEN_431),
           _has_older_sys_T_5267
-            & (_entry_is_younger_T_190
+            & (_entry_is_younger_T_160
                  ? _GEN_442
-                 : _entry_is_younger_T_193
-                   - _GEN_431) < (_entry_is_younger_T_95
+                 : _entry_is_younger_T_163
+                   - _GEN_431) < (_entry_is_younger_T_80
                                     ? _GEN_437
-                                    : _entry_is_younger_T_98 - _GEN_431),
+                                    : _entry_is_younger_T_83 - _GEN_431),
           _has_older_sys_T_5246
-            & (_entry_is_younger_T_171
+            & (_entry_is_younger_T_144
                  ? _GEN_441
-                 : _entry_is_younger_T_174
-                   - _GEN_431) < (_entry_is_younger_T_95
+                 : _entry_is_younger_T_147
+                   - _GEN_431) < (_entry_is_younger_T_80
                                     ? _GEN_437
-                                    : _entry_is_younger_T_98 - _GEN_431),
+                                    : _entry_is_younger_T_83 - _GEN_431),
           _has_older_sys_T_5225
-            & (_entry_is_younger_T_152
+            & (_entry_is_younger_T_128
                  ? _GEN_440
-                 : _entry_is_younger_T_155
-                   - _GEN_431) < (_entry_is_younger_T_95
+                 : _entry_is_younger_T_131
+                   - _GEN_431) < (_entry_is_younger_T_80
                                     ? _GEN_437
-                                    : _entry_is_younger_T_98 - _GEN_431),
+                                    : _entry_is_younger_T_83 - _GEN_431),
           _has_older_sys_T_5204
-            & (_entry_is_younger_T_133
+            & (_entry_is_younger_T_112
                  ? _GEN_439
-                 : _entry_is_younger_T_136
-                   - _GEN_431) < (_entry_is_younger_T_95
+                 : _entry_is_younger_T_115
+                   - _GEN_431) < (_entry_is_younger_T_80
                                     ? _GEN_437
-                                    : _entry_is_younger_T_98 - _GEN_431),
+                                    : _entry_is_younger_T_83 - _GEN_431),
           _has_older_sys_T_5183
-            & (_entry_is_younger_T_114
+            & (_entry_is_younger_T_96
                  ? _GEN_438
-                 : _entry_is_younger_T_117
-                   - _GEN_431) < (_entry_is_younger_T_95
+                 : _entry_is_younger_T_99
+                   - _GEN_431) < (_entry_is_younger_T_80
                                     ? _GEN_437
-                                    : _entry_is_younger_T_98 - _GEN_431),
+                                    : _entry_is_younger_T_83 - _GEN_431),
           _has_older_sys_T_5141
-            & (_entry_is_younger_T_76
+            & (_entry_is_younger_T_64
                  ? _GEN_436
-                 : _entry_is_younger_T_79
-                   - _GEN_431) < (_entry_is_younger_T_95
+                 : _entry_is_younger_T_67
+                   - _GEN_431) < (_entry_is_younger_T_80
                                     ? _GEN_437
-                                    : _entry_is_younger_T_98 - _GEN_431),
+                                    : _entry_is_younger_T_83 - _GEN_431),
           _has_older_sys_T_5120
-            & (_entry_is_younger_T_57
+            & (_entry_is_younger_T_48
                  ? _GEN_435
-                 : _entry_is_younger_T_60
-                   - _GEN_431) < (_entry_is_younger_T_95
+                 : _entry_is_younger_T_51
+                   - _GEN_431) < (_entry_is_younger_T_80
                                     ? _GEN_437
-                                    : _entry_is_younger_T_98 - _GEN_431),
+                                    : _entry_is_younger_T_83 - _GEN_431),
           _has_older_sys_T_5099
-            & (_entry_is_younger_T_38
+            & (_entry_is_younger_T_32
                  ? _GEN_434
-                 : _entry_is_younger_T_41
-                   - _GEN_431) < (_entry_is_younger_T_95
+                 : _entry_is_younger_T_35
+                   - _GEN_431) < (_entry_is_younger_T_80
                                     ? _GEN_437
-                                    : _entry_is_younger_T_98 - _GEN_431),
+                                    : _entry_is_younger_T_83 - _GEN_431),
           _has_older_sys_T_5078
-            & (_entry_is_younger_T_19
+            & (_entry_is_younger_T_16
                  ? _GEN_432
-                 : _entry_is_younger_T_22
-                   - _GEN_431) < (_entry_is_younger_T_95
+                 : _entry_is_younger_T_19
+                   - _GEN_431) < (_entry_is_younger_T_80
                                     ? _GEN_437
-                                    : _entry_is_younger_T_98 - _GEN_431),
+                                    : _entry_is_younger_T_83 - _GEN_431),
           _has_older_sys_T_5057
             & (_entry_is_younger_T
                  ? _GEN_433
                  : _entry_is_younger_T_3
-                   - _GEN_431) < (_entry_is_younger_T_95
+                   - _GEN_431) < (_entry_is_younger_T_80
                                     ? _GEN_437
-                                    : _entry_is_younger_T_98 - _GEN_431)} == 15'h0,
+                                    : _entry_is_younger_T_83 - _GEN_431)} == 15'h0,
      entries_4_valid & woken_rs1_4 & woken_rs2_4 & woken_rs3_4
        & ~entries_4_uop_loadWaitBit
-       & ~((_has_older_cfi_j_is_cfi_T_488 | entries_4_uop_decode_is_jalr)
-           & (|{entries_15_valid
-                  & (_has_older_cfi_j_is_cfi_T_510 | entries_15_uop_decode_is_jalr)
+       & ~((_cfi_mask_T_8 | entries_4_uop_decode_is_jalr)
+           & (|{entries_15_valid & (_cfi_mask_T_30 | entries_15_uop_decode_is_jalr)
                   & entries_15_uop_snapshotIdx < entries_4_uop_snapshotIdx,
-                entries_14_valid
-                  & (_has_older_cfi_j_is_cfi_T_508 | entries_14_uop_decode_is_jalr)
+                entries_14_valid & (_cfi_mask_T_28 | entries_14_uop_decode_is_jalr)
                   & entries_14_uop_snapshotIdx < entries_4_uop_snapshotIdx,
-                entries_13_valid
-                  & (_has_older_cfi_j_is_cfi_T_506 | entries_13_uop_decode_is_jalr)
+                entries_13_valid & (_cfi_mask_T_26 | entries_13_uop_decode_is_jalr)
                   & entries_13_uop_snapshotIdx < entries_4_uop_snapshotIdx,
-                entries_12_valid
-                  & (_has_older_cfi_j_is_cfi_T_504 | entries_12_uop_decode_is_jalr)
+                entries_12_valid & (_cfi_mask_T_24 | entries_12_uop_decode_is_jalr)
                   & entries_12_uop_snapshotIdx < entries_4_uop_snapshotIdx,
-                entries_11_valid
-                  & (_has_older_cfi_j_is_cfi_T_502 | entries_11_uop_decode_is_jalr)
+                entries_11_valid & (_cfi_mask_T_22 | entries_11_uop_decode_is_jalr)
                   & entries_11_uop_snapshotIdx < entries_4_uop_snapshotIdx,
-                entries_10_valid
-                  & (_has_older_cfi_j_is_cfi_T_500 | entries_10_uop_decode_is_jalr)
+                entries_10_valid & (_cfi_mask_T_20 | entries_10_uop_decode_is_jalr)
                   & entries_10_uop_snapshotIdx < entries_4_uop_snapshotIdx,
-                entries_9_valid
-                  & (_has_older_cfi_j_is_cfi_T_498 | entries_9_uop_decode_is_jalr)
+                entries_9_valid & (_cfi_mask_T_18 | entries_9_uop_decode_is_jalr)
                   & entries_9_uop_snapshotIdx < entries_4_uop_snapshotIdx,
-                entries_8_valid
-                  & (_has_older_cfi_j_is_cfi_T_496 | entries_8_uop_decode_is_jalr)
+                entries_8_valid & (_cfi_mask_T_16 | entries_8_uop_decode_is_jalr)
                   & entries_8_uop_snapshotIdx < entries_4_uop_snapshotIdx,
-                entries_7_valid
-                  & (_has_older_cfi_j_is_cfi_T_494 | entries_7_uop_decode_is_jalr)
+                entries_7_valid & (_cfi_mask_T_14 | entries_7_uop_decode_is_jalr)
                   & entries_7_uop_snapshotIdx < entries_4_uop_snapshotIdx,
-                entries_6_valid
-                  & (_has_older_cfi_j_is_cfi_T_492 | entries_6_uop_decode_is_jalr)
+                entries_6_valid & (_cfi_mask_T_12 | entries_6_uop_decode_is_jalr)
                   & entries_6_uop_snapshotIdx < entries_4_uop_snapshotIdx,
-                entries_5_valid
-                  & (_has_older_cfi_j_is_cfi_T_490 | entries_5_uop_decode_is_jalr)
+                entries_5_valid & (_cfi_mask_T_10 | entries_5_uop_decode_is_jalr)
                   & entries_5_uop_snapshotIdx < entries_4_uop_snapshotIdx,
-                entries_3_valid
-                  & (_has_older_cfi_j_is_cfi_T_486 | entries_3_uop_decode_is_jalr)
+                entries_3_valid & (_cfi_mask_T_6 | entries_3_uop_decode_is_jalr)
                   & entries_3_uop_snapshotIdx < entries_4_uop_snapshotIdx,
-                entries_2_valid
-                  & (_has_older_cfi_j_is_cfi_T_484 | entries_2_uop_decode_is_jalr)
+                entries_2_valid & (_cfi_mask_T_4 | entries_2_uop_decode_is_jalr)
                   & entries_2_uop_snapshotIdx < entries_4_uop_snapshotIdx,
-                entries_1_valid
-                  & (_has_older_cfi_j_is_cfi_T_482 | entries_1_uop_decode_is_jalr)
+                entries_1_valid & (_cfi_mask_T_2 | entries_1_uop_decode_is_jalr)
                   & entries_1_uop_snapshotIdx < entries_4_uop_snapshotIdx,
-                entries_0_valid
-                  & (_has_older_cfi_j_is_cfi_T_480 | entries_0_uop_decode_is_jalr)
+                entries_0_valid & (_cfi_mask_T | entries_0_uop_decode_is_jalr)
                   & entries_0_uop_snapshotIdx < entries_4_uop_snapshotIdx}))
        & (~is_sys_4 | entries_4_uop_robIdx == io_robDeqPtr)
        & {_has_older_sys_T_5370
-            & (_entry_is_younger_T_285
+            & (_entry_is_younger_T_240
                  ? _GEN_447
-                 : _entry_is_younger_T_288
-                   - _GEN_431) < (_entry_is_younger_T_76
+                 : _entry_is_younger_T_243
+                   - _GEN_431) < (_entry_is_younger_T_64
                                     ? _GEN_436
-                                    : _entry_is_younger_T_79 - _GEN_431),
+                                    : _entry_is_younger_T_67 - _GEN_431),
           _has_older_sys_T_5351
-            & (_entry_is_younger_T_266
+            & (_entry_is_younger_T_224
                  ? _GEN_446
-                 : _entry_is_younger_T_269
-                   - _GEN_431) < (_entry_is_younger_T_76
+                 : _entry_is_younger_T_227
+                   - _GEN_431) < (_entry_is_younger_T_64
                                     ? _GEN_436
-                                    : _entry_is_younger_T_79 - _GEN_431),
+                                    : _entry_is_younger_T_67 - _GEN_431),
           _has_older_sys_T_5330
-            & (_entry_is_younger_T_247
+            & (_entry_is_younger_T_208
                  ? _GEN_445
-                 : _entry_is_younger_T_250
-                   - _GEN_431) < (_entry_is_younger_T_76
+                 : _entry_is_younger_T_211
+                   - _GEN_431) < (_entry_is_younger_T_64
                                     ? _GEN_436
-                                    : _entry_is_younger_T_79 - _GEN_431),
+                                    : _entry_is_younger_T_67 - _GEN_431),
           _has_older_sys_T_5309
-            & (_entry_is_younger_T_228
+            & (_entry_is_younger_T_192
                  ? _GEN_444
-                 : _entry_is_younger_T_231
-                   - _GEN_431) < (_entry_is_younger_T_76
+                 : _entry_is_younger_T_195
+                   - _GEN_431) < (_entry_is_younger_T_64
                                     ? _GEN_436
-                                    : _entry_is_younger_T_79 - _GEN_431),
+                                    : _entry_is_younger_T_67 - _GEN_431),
           _has_older_sys_T_5288
-            & (_entry_is_younger_T_209
+            & (_entry_is_younger_T_176
                  ? _GEN_443
-                 : _entry_is_younger_T_212
-                   - _GEN_431) < (_entry_is_younger_T_76
+                 : _entry_is_younger_T_179
+                   - _GEN_431) < (_entry_is_younger_T_64
                                     ? _GEN_436
-                                    : _entry_is_younger_T_79 - _GEN_431),
+                                    : _entry_is_younger_T_67 - _GEN_431),
           _has_older_sys_T_5267
-            & (_entry_is_younger_T_190
+            & (_entry_is_younger_T_160
                  ? _GEN_442
-                 : _entry_is_younger_T_193
-                   - _GEN_431) < (_entry_is_younger_T_76
+                 : _entry_is_younger_T_163
+                   - _GEN_431) < (_entry_is_younger_T_64
                                     ? _GEN_436
-                                    : _entry_is_younger_T_79 - _GEN_431),
+                                    : _entry_is_younger_T_67 - _GEN_431),
           _has_older_sys_T_5246
-            & (_entry_is_younger_T_171
+            & (_entry_is_younger_T_144
                  ? _GEN_441
-                 : _entry_is_younger_T_174
-                   - _GEN_431) < (_entry_is_younger_T_76
+                 : _entry_is_younger_T_147
+                   - _GEN_431) < (_entry_is_younger_T_64
                                     ? _GEN_436
-                                    : _entry_is_younger_T_79 - _GEN_431),
+                                    : _entry_is_younger_T_67 - _GEN_431),
           _has_older_sys_T_5225
-            & (_entry_is_younger_T_152
+            & (_entry_is_younger_T_128
                  ? _GEN_440
-                 : _entry_is_younger_T_155
-                   - _GEN_431) < (_entry_is_younger_T_76
+                 : _entry_is_younger_T_131
+                   - _GEN_431) < (_entry_is_younger_T_64
                                     ? _GEN_436
-                                    : _entry_is_younger_T_79 - _GEN_431),
+                                    : _entry_is_younger_T_67 - _GEN_431),
           _has_older_sys_T_5204
-            & (_entry_is_younger_T_133
+            & (_entry_is_younger_T_112
                  ? _GEN_439
-                 : _entry_is_younger_T_136
-                   - _GEN_431) < (_entry_is_younger_T_76
+                 : _entry_is_younger_T_115
+                   - _GEN_431) < (_entry_is_younger_T_64
                                     ? _GEN_436
-                                    : _entry_is_younger_T_79 - _GEN_431),
+                                    : _entry_is_younger_T_67 - _GEN_431),
           _has_older_sys_T_5183
-            & (_entry_is_younger_T_114
+            & (_entry_is_younger_T_96
                  ? _GEN_438
-                 : _entry_is_younger_T_117
-                   - _GEN_431) < (_entry_is_younger_T_76
+                 : _entry_is_younger_T_99
+                   - _GEN_431) < (_entry_is_younger_T_64
                                     ? _GEN_436
-                                    : _entry_is_younger_T_79 - _GEN_431),
+                                    : _entry_is_younger_T_67 - _GEN_431),
           _has_older_sys_T_5162
-            & (_entry_is_younger_T_95
+            & (_entry_is_younger_T_80
                  ? _GEN_437
-                 : _entry_is_younger_T_98
-                   - _GEN_431) < (_entry_is_younger_T_76
+                 : _entry_is_younger_T_83
+                   - _GEN_431) < (_entry_is_younger_T_64
                                     ? _GEN_436
-                                    : _entry_is_younger_T_79 - _GEN_431),
+                                    : _entry_is_younger_T_67 - _GEN_431),
           _has_older_sys_T_5120
-            & (_entry_is_younger_T_57
+            & (_entry_is_younger_T_48
                  ? _GEN_435
-                 : _entry_is_younger_T_60
-                   - _GEN_431) < (_entry_is_younger_T_76
+                 : _entry_is_younger_T_51
+                   - _GEN_431) < (_entry_is_younger_T_64
                                     ? _GEN_436
-                                    : _entry_is_younger_T_79 - _GEN_431),
+                                    : _entry_is_younger_T_67 - _GEN_431),
           _has_older_sys_T_5099
-            & (_entry_is_younger_T_38
+            & (_entry_is_younger_T_32
                  ? _GEN_434
-                 : _entry_is_younger_T_41
-                   - _GEN_431) < (_entry_is_younger_T_76
+                 : _entry_is_younger_T_35
+                   - _GEN_431) < (_entry_is_younger_T_64
                                     ? _GEN_436
-                                    : _entry_is_younger_T_79 - _GEN_431),
+                                    : _entry_is_younger_T_67 - _GEN_431),
           _has_older_sys_T_5078
-            & (_entry_is_younger_T_19
+            & (_entry_is_younger_T_16
                  ? _GEN_432
-                 : _entry_is_younger_T_22
-                   - _GEN_431) < (_entry_is_younger_T_76
+                 : _entry_is_younger_T_19
+                   - _GEN_431) < (_entry_is_younger_T_64
                                     ? _GEN_436
-                                    : _entry_is_younger_T_79 - _GEN_431),
+                                    : _entry_is_younger_T_67 - _GEN_431),
           _has_older_sys_T_5057
             & (_entry_is_younger_T
                  ? _GEN_433
                  : _entry_is_younger_T_3
-                   - _GEN_431) < (_entry_is_younger_T_76
+                   - _GEN_431) < (_entry_is_younger_T_64
                                     ? _GEN_436
-                                    : _entry_is_younger_T_79 - _GEN_431)} == 15'h0,
+                                    : _entry_is_younger_T_67 - _GEN_431)} == 15'h0,
      entries_3_valid & woken_rs1_3 & woken_rs2_3 & woken_rs3_3
        & ~entries_3_uop_loadWaitBit
-       & ~((_has_older_cfi_j_is_cfi_T_486 | entries_3_uop_decode_is_jalr)
-           & (|{entries_15_valid
-                  & (_has_older_cfi_j_is_cfi_T_510 | entries_15_uop_decode_is_jalr)
+       & ~((_cfi_mask_T_6 | entries_3_uop_decode_is_jalr)
+           & (|{entries_15_valid & (_cfi_mask_T_30 | entries_15_uop_decode_is_jalr)
                   & entries_15_uop_snapshotIdx < entries_3_uop_snapshotIdx,
-                entries_14_valid
-                  & (_has_older_cfi_j_is_cfi_T_508 | entries_14_uop_decode_is_jalr)
+                entries_14_valid & (_cfi_mask_T_28 | entries_14_uop_decode_is_jalr)
                   & entries_14_uop_snapshotIdx < entries_3_uop_snapshotIdx,
-                entries_13_valid
-                  & (_has_older_cfi_j_is_cfi_T_506 | entries_13_uop_decode_is_jalr)
+                entries_13_valid & (_cfi_mask_T_26 | entries_13_uop_decode_is_jalr)
                   & entries_13_uop_snapshotIdx < entries_3_uop_snapshotIdx,
-                entries_12_valid
-                  & (_has_older_cfi_j_is_cfi_T_504 | entries_12_uop_decode_is_jalr)
+                entries_12_valid & (_cfi_mask_T_24 | entries_12_uop_decode_is_jalr)
                   & entries_12_uop_snapshotIdx < entries_3_uop_snapshotIdx,
-                entries_11_valid
-                  & (_has_older_cfi_j_is_cfi_T_502 | entries_11_uop_decode_is_jalr)
+                entries_11_valid & (_cfi_mask_T_22 | entries_11_uop_decode_is_jalr)
                   & entries_11_uop_snapshotIdx < entries_3_uop_snapshotIdx,
-                entries_10_valid
-                  & (_has_older_cfi_j_is_cfi_T_500 | entries_10_uop_decode_is_jalr)
+                entries_10_valid & (_cfi_mask_T_20 | entries_10_uop_decode_is_jalr)
                   & entries_10_uop_snapshotIdx < entries_3_uop_snapshotIdx,
-                entries_9_valid
-                  & (_has_older_cfi_j_is_cfi_T_498 | entries_9_uop_decode_is_jalr)
+                entries_9_valid & (_cfi_mask_T_18 | entries_9_uop_decode_is_jalr)
                   & entries_9_uop_snapshotIdx < entries_3_uop_snapshotIdx,
-                entries_8_valid
-                  & (_has_older_cfi_j_is_cfi_T_496 | entries_8_uop_decode_is_jalr)
+                entries_8_valid & (_cfi_mask_T_16 | entries_8_uop_decode_is_jalr)
                   & entries_8_uop_snapshotIdx < entries_3_uop_snapshotIdx,
-                entries_7_valid
-                  & (_has_older_cfi_j_is_cfi_T_494 | entries_7_uop_decode_is_jalr)
+                entries_7_valid & (_cfi_mask_T_14 | entries_7_uop_decode_is_jalr)
                   & entries_7_uop_snapshotIdx < entries_3_uop_snapshotIdx,
-                entries_6_valid
-                  & (_has_older_cfi_j_is_cfi_T_492 | entries_6_uop_decode_is_jalr)
+                entries_6_valid & (_cfi_mask_T_12 | entries_6_uop_decode_is_jalr)
                   & entries_6_uop_snapshotIdx < entries_3_uop_snapshotIdx,
-                entries_5_valid
-                  & (_has_older_cfi_j_is_cfi_T_490 | entries_5_uop_decode_is_jalr)
+                entries_5_valid & (_cfi_mask_T_10 | entries_5_uop_decode_is_jalr)
                   & entries_5_uop_snapshotIdx < entries_3_uop_snapshotIdx,
-                entries_4_valid
-                  & (_has_older_cfi_j_is_cfi_T_488 | entries_4_uop_decode_is_jalr)
+                entries_4_valid & (_cfi_mask_T_8 | entries_4_uop_decode_is_jalr)
                   & entries_4_uop_snapshotIdx < entries_3_uop_snapshotIdx,
-                entries_2_valid
-                  & (_has_older_cfi_j_is_cfi_T_484 | entries_2_uop_decode_is_jalr)
+                entries_2_valid & (_cfi_mask_T_4 | entries_2_uop_decode_is_jalr)
                   & entries_2_uop_snapshotIdx < entries_3_uop_snapshotIdx,
-                entries_1_valid
-                  & (_has_older_cfi_j_is_cfi_T_482 | entries_1_uop_decode_is_jalr)
+                entries_1_valid & (_cfi_mask_T_2 | entries_1_uop_decode_is_jalr)
                   & entries_1_uop_snapshotIdx < entries_3_uop_snapshotIdx,
-                entries_0_valid
-                  & (_has_older_cfi_j_is_cfi_T_480 | entries_0_uop_decode_is_jalr)
+                entries_0_valid & (_cfi_mask_T | entries_0_uop_decode_is_jalr)
                   & entries_0_uop_snapshotIdx < entries_3_uop_snapshotIdx}))
        & (~is_sys_3 | entries_3_uop_robIdx == io_robDeqPtr)
        & {_has_older_sys_T_5370
-            & (_entry_is_younger_T_285
+            & (_entry_is_younger_T_240
                  ? _GEN_447
-                 : _entry_is_younger_T_288
-                   - _GEN_431) < (_entry_is_younger_T_57
+                 : _entry_is_younger_T_243
+                   - _GEN_431) < (_entry_is_younger_T_48
                                     ? _GEN_435
-                                    : _entry_is_younger_T_60 - _GEN_431),
+                                    : _entry_is_younger_T_51 - _GEN_431),
           _has_older_sys_T_5351
-            & (_entry_is_younger_T_266
+            & (_entry_is_younger_T_224
                  ? _GEN_446
-                 : _entry_is_younger_T_269
-                   - _GEN_431) < (_entry_is_younger_T_57
+                 : _entry_is_younger_T_227
+                   - _GEN_431) < (_entry_is_younger_T_48
                                     ? _GEN_435
-                                    : _entry_is_younger_T_60 - _GEN_431),
+                                    : _entry_is_younger_T_51 - _GEN_431),
           _has_older_sys_T_5330
-            & (_entry_is_younger_T_247
+            & (_entry_is_younger_T_208
                  ? _GEN_445
-                 : _entry_is_younger_T_250
-                   - _GEN_431) < (_entry_is_younger_T_57
+                 : _entry_is_younger_T_211
+                   - _GEN_431) < (_entry_is_younger_T_48
                                     ? _GEN_435
-                                    : _entry_is_younger_T_60 - _GEN_431),
+                                    : _entry_is_younger_T_51 - _GEN_431),
           _has_older_sys_T_5309
-            & (_entry_is_younger_T_228
+            & (_entry_is_younger_T_192
                  ? _GEN_444
-                 : _entry_is_younger_T_231
-                   - _GEN_431) < (_entry_is_younger_T_57
+                 : _entry_is_younger_T_195
+                   - _GEN_431) < (_entry_is_younger_T_48
                                     ? _GEN_435
-                                    : _entry_is_younger_T_60 - _GEN_431),
+                                    : _entry_is_younger_T_51 - _GEN_431),
           _has_older_sys_T_5288
-            & (_entry_is_younger_T_209
+            & (_entry_is_younger_T_176
                  ? _GEN_443
-                 : _entry_is_younger_T_212
-                   - _GEN_431) < (_entry_is_younger_T_57
+                 : _entry_is_younger_T_179
+                   - _GEN_431) < (_entry_is_younger_T_48
                                     ? _GEN_435
-                                    : _entry_is_younger_T_60 - _GEN_431),
+                                    : _entry_is_younger_T_51 - _GEN_431),
           _has_older_sys_T_5267
-            & (_entry_is_younger_T_190
+            & (_entry_is_younger_T_160
                  ? _GEN_442
-                 : _entry_is_younger_T_193
-                   - _GEN_431) < (_entry_is_younger_T_57
+                 : _entry_is_younger_T_163
+                   - _GEN_431) < (_entry_is_younger_T_48
                                     ? _GEN_435
-                                    : _entry_is_younger_T_60 - _GEN_431),
+                                    : _entry_is_younger_T_51 - _GEN_431),
           _has_older_sys_T_5246
-            & (_entry_is_younger_T_171
+            & (_entry_is_younger_T_144
                  ? _GEN_441
-                 : _entry_is_younger_T_174
-                   - _GEN_431) < (_entry_is_younger_T_57
+                 : _entry_is_younger_T_147
+                   - _GEN_431) < (_entry_is_younger_T_48
                                     ? _GEN_435
-                                    : _entry_is_younger_T_60 - _GEN_431),
+                                    : _entry_is_younger_T_51 - _GEN_431),
           _has_older_sys_T_5225
-            & (_entry_is_younger_T_152
+            & (_entry_is_younger_T_128
                  ? _GEN_440
-                 : _entry_is_younger_T_155
-                   - _GEN_431) < (_entry_is_younger_T_57
+                 : _entry_is_younger_T_131
+                   - _GEN_431) < (_entry_is_younger_T_48
                                     ? _GEN_435
-                                    : _entry_is_younger_T_60 - _GEN_431),
+                                    : _entry_is_younger_T_51 - _GEN_431),
           _has_older_sys_T_5204
-            & (_entry_is_younger_T_133
+            & (_entry_is_younger_T_112
                  ? _GEN_439
-                 : _entry_is_younger_T_136
-                   - _GEN_431) < (_entry_is_younger_T_57
+                 : _entry_is_younger_T_115
+                   - _GEN_431) < (_entry_is_younger_T_48
                                     ? _GEN_435
-                                    : _entry_is_younger_T_60 - _GEN_431),
+                                    : _entry_is_younger_T_51 - _GEN_431),
           _has_older_sys_T_5183
-            & (_entry_is_younger_T_114
+            & (_entry_is_younger_T_96
                  ? _GEN_438
-                 : _entry_is_younger_T_117
-                   - _GEN_431) < (_entry_is_younger_T_57
+                 : _entry_is_younger_T_99
+                   - _GEN_431) < (_entry_is_younger_T_48
                                     ? _GEN_435
-                                    : _entry_is_younger_T_60 - _GEN_431),
+                                    : _entry_is_younger_T_51 - _GEN_431),
           _has_older_sys_T_5162
-            & (_entry_is_younger_T_95
+            & (_entry_is_younger_T_80
                  ? _GEN_437
-                 : _entry_is_younger_T_98
-                   - _GEN_431) < (_entry_is_younger_T_57
+                 : _entry_is_younger_T_83
+                   - _GEN_431) < (_entry_is_younger_T_48
                                     ? _GEN_435
-                                    : _entry_is_younger_T_60 - _GEN_431),
+                                    : _entry_is_younger_T_51 - _GEN_431),
           _has_older_sys_T_5141
-            & (_entry_is_younger_T_76
+            & (_entry_is_younger_T_64
                  ? _GEN_436
-                 : _entry_is_younger_T_79
-                   - _GEN_431) < (_entry_is_younger_T_57
+                 : _entry_is_younger_T_67
+                   - _GEN_431) < (_entry_is_younger_T_48
                                     ? _GEN_435
-                                    : _entry_is_younger_T_60 - _GEN_431),
+                                    : _entry_is_younger_T_51 - _GEN_431),
           _has_older_sys_T_5099
-            & (_entry_is_younger_T_38
+            & (_entry_is_younger_T_32
                  ? _GEN_434
-                 : _entry_is_younger_T_41
-                   - _GEN_431) < (_entry_is_younger_T_57
+                 : _entry_is_younger_T_35
+                   - _GEN_431) < (_entry_is_younger_T_48
                                     ? _GEN_435
-                                    : _entry_is_younger_T_60 - _GEN_431),
+                                    : _entry_is_younger_T_51 - _GEN_431),
           _has_older_sys_T_5078
-            & (_entry_is_younger_T_19
+            & (_entry_is_younger_T_16
                  ? _GEN_432
-                 : _entry_is_younger_T_22
-                   - _GEN_431) < (_entry_is_younger_T_57
+                 : _entry_is_younger_T_19
+                   - _GEN_431) < (_entry_is_younger_T_48
                                     ? _GEN_435
-                                    : _entry_is_younger_T_60 - _GEN_431),
+                                    : _entry_is_younger_T_51 - _GEN_431),
           _has_older_sys_T_5057
             & (_entry_is_younger_T
                  ? _GEN_433
                  : _entry_is_younger_T_3
-                   - _GEN_431) < (_entry_is_younger_T_57
+                   - _GEN_431) < (_entry_is_younger_T_48
                                     ? _GEN_435
-                                    : _entry_is_younger_T_60 - _GEN_431)} == 15'h0,
+                                    : _entry_is_younger_T_51 - _GEN_431)} == 15'h0,
      entries_2_valid & woken_rs1_2 & woken_rs2_2 & woken_rs3_2
        & ~entries_2_uop_loadWaitBit
-       & ~((_has_older_cfi_j_is_cfi_T_484 | entries_2_uop_decode_is_jalr)
-           & (|{entries_15_valid
-                  & (_has_older_cfi_j_is_cfi_T_510 | entries_15_uop_decode_is_jalr)
+       & ~((_cfi_mask_T_4 | entries_2_uop_decode_is_jalr)
+           & (|{entries_15_valid & (_cfi_mask_T_30 | entries_15_uop_decode_is_jalr)
                   & entries_15_uop_snapshotIdx < entries_2_uop_snapshotIdx,
-                entries_14_valid
-                  & (_has_older_cfi_j_is_cfi_T_508 | entries_14_uop_decode_is_jalr)
+                entries_14_valid & (_cfi_mask_T_28 | entries_14_uop_decode_is_jalr)
                   & entries_14_uop_snapshotIdx < entries_2_uop_snapshotIdx,
-                entries_13_valid
-                  & (_has_older_cfi_j_is_cfi_T_506 | entries_13_uop_decode_is_jalr)
+                entries_13_valid & (_cfi_mask_T_26 | entries_13_uop_decode_is_jalr)
                   & entries_13_uop_snapshotIdx < entries_2_uop_snapshotIdx,
-                entries_12_valid
-                  & (_has_older_cfi_j_is_cfi_T_504 | entries_12_uop_decode_is_jalr)
+                entries_12_valid & (_cfi_mask_T_24 | entries_12_uop_decode_is_jalr)
                   & entries_12_uop_snapshotIdx < entries_2_uop_snapshotIdx,
-                entries_11_valid
-                  & (_has_older_cfi_j_is_cfi_T_502 | entries_11_uop_decode_is_jalr)
+                entries_11_valid & (_cfi_mask_T_22 | entries_11_uop_decode_is_jalr)
                   & entries_11_uop_snapshotIdx < entries_2_uop_snapshotIdx,
-                entries_10_valid
-                  & (_has_older_cfi_j_is_cfi_T_500 | entries_10_uop_decode_is_jalr)
+                entries_10_valid & (_cfi_mask_T_20 | entries_10_uop_decode_is_jalr)
                   & entries_10_uop_snapshotIdx < entries_2_uop_snapshotIdx,
-                entries_9_valid
-                  & (_has_older_cfi_j_is_cfi_T_498 | entries_9_uop_decode_is_jalr)
+                entries_9_valid & (_cfi_mask_T_18 | entries_9_uop_decode_is_jalr)
                   & entries_9_uop_snapshotIdx < entries_2_uop_snapshotIdx,
-                entries_8_valid
-                  & (_has_older_cfi_j_is_cfi_T_496 | entries_8_uop_decode_is_jalr)
+                entries_8_valid & (_cfi_mask_T_16 | entries_8_uop_decode_is_jalr)
                   & entries_8_uop_snapshotIdx < entries_2_uop_snapshotIdx,
-                entries_7_valid
-                  & (_has_older_cfi_j_is_cfi_T_494 | entries_7_uop_decode_is_jalr)
+                entries_7_valid & (_cfi_mask_T_14 | entries_7_uop_decode_is_jalr)
                   & entries_7_uop_snapshotIdx < entries_2_uop_snapshotIdx,
-                entries_6_valid
-                  & (_has_older_cfi_j_is_cfi_T_492 | entries_6_uop_decode_is_jalr)
+                entries_6_valid & (_cfi_mask_T_12 | entries_6_uop_decode_is_jalr)
                   & entries_6_uop_snapshotIdx < entries_2_uop_snapshotIdx,
-                entries_5_valid
-                  & (_has_older_cfi_j_is_cfi_T_490 | entries_5_uop_decode_is_jalr)
+                entries_5_valid & (_cfi_mask_T_10 | entries_5_uop_decode_is_jalr)
                   & entries_5_uop_snapshotIdx < entries_2_uop_snapshotIdx,
-                entries_4_valid
-                  & (_has_older_cfi_j_is_cfi_T_488 | entries_4_uop_decode_is_jalr)
+                entries_4_valid & (_cfi_mask_T_8 | entries_4_uop_decode_is_jalr)
                   & entries_4_uop_snapshotIdx < entries_2_uop_snapshotIdx,
-                entries_3_valid
-                  & (_has_older_cfi_j_is_cfi_T_486 | entries_3_uop_decode_is_jalr)
+                entries_3_valid & (_cfi_mask_T_6 | entries_3_uop_decode_is_jalr)
                   & entries_3_uop_snapshotIdx < entries_2_uop_snapshotIdx,
-                entries_1_valid
-                  & (_has_older_cfi_j_is_cfi_T_482 | entries_1_uop_decode_is_jalr)
+                entries_1_valid & (_cfi_mask_T_2 | entries_1_uop_decode_is_jalr)
                   & entries_1_uop_snapshotIdx < entries_2_uop_snapshotIdx,
-                entries_0_valid
-                  & (_has_older_cfi_j_is_cfi_T_480 | entries_0_uop_decode_is_jalr)
+                entries_0_valid & (_cfi_mask_T | entries_0_uop_decode_is_jalr)
                   & entries_0_uop_snapshotIdx < entries_2_uop_snapshotIdx}))
        & (~is_sys_2 | entries_2_uop_robIdx == io_robDeqPtr)
        & {_has_older_sys_T_5370
-            & (_entry_is_younger_T_285
+            & (_entry_is_younger_T_240
                  ? _GEN_447
-                 : _entry_is_younger_T_288
-                   - _GEN_431) < (_entry_is_younger_T_38
+                 : _entry_is_younger_T_243
+                   - _GEN_431) < (_entry_is_younger_T_32
                                     ? _GEN_434
-                                    : _entry_is_younger_T_41 - _GEN_431),
+                                    : _entry_is_younger_T_35 - _GEN_431),
           _has_older_sys_T_5351
-            & (_entry_is_younger_T_266
+            & (_entry_is_younger_T_224
                  ? _GEN_446
-                 : _entry_is_younger_T_269
-                   - _GEN_431) < (_entry_is_younger_T_38
+                 : _entry_is_younger_T_227
+                   - _GEN_431) < (_entry_is_younger_T_32
                                     ? _GEN_434
-                                    : _entry_is_younger_T_41 - _GEN_431),
+                                    : _entry_is_younger_T_35 - _GEN_431),
           _has_older_sys_T_5330
-            & (_entry_is_younger_T_247
+            & (_entry_is_younger_T_208
                  ? _GEN_445
-                 : _entry_is_younger_T_250
-                   - _GEN_431) < (_entry_is_younger_T_38
+                 : _entry_is_younger_T_211
+                   - _GEN_431) < (_entry_is_younger_T_32
                                     ? _GEN_434
-                                    : _entry_is_younger_T_41 - _GEN_431),
+                                    : _entry_is_younger_T_35 - _GEN_431),
           _has_older_sys_T_5309
-            & (_entry_is_younger_T_228
+            & (_entry_is_younger_T_192
                  ? _GEN_444
-                 : _entry_is_younger_T_231
-                   - _GEN_431) < (_entry_is_younger_T_38
+                 : _entry_is_younger_T_195
+                   - _GEN_431) < (_entry_is_younger_T_32
                                     ? _GEN_434
-                                    : _entry_is_younger_T_41 - _GEN_431),
+                                    : _entry_is_younger_T_35 - _GEN_431),
           _has_older_sys_T_5288
-            & (_entry_is_younger_T_209
+            & (_entry_is_younger_T_176
                  ? _GEN_443
-                 : _entry_is_younger_T_212
-                   - _GEN_431) < (_entry_is_younger_T_38
+                 : _entry_is_younger_T_179
+                   - _GEN_431) < (_entry_is_younger_T_32
                                     ? _GEN_434
-                                    : _entry_is_younger_T_41 - _GEN_431),
+                                    : _entry_is_younger_T_35 - _GEN_431),
           _has_older_sys_T_5267
-            & (_entry_is_younger_T_190
+            & (_entry_is_younger_T_160
                  ? _GEN_442
-                 : _entry_is_younger_T_193
-                   - _GEN_431) < (_entry_is_younger_T_38
+                 : _entry_is_younger_T_163
+                   - _GEN_431) < (_entry_is_younger_T_32
                                     ? _GEN_434
-                                    : _entry_is_younger_T_41 - _GEN_431),
+                                    : _entry_is_younger_T_35 - _GEN_431),
           _has_older_sys_T_5246
-            & (_entry_is_younger_T_171
+            & (_entry_is_younger_T_144
                  ? _GEN_441
-                 : _entry_is_younger_T_174
-                   - _GEN_431) < (_entry_is_younger_T_38
+                 : _entry_is_younger_T_147
+                   - _GEN_431) < (_entry_is_younger_T_32
                                     ? _GEN_434
-                                    : _entry_is_younger_T_41 - _GEN_431),
+                                    : _entry_is_younger_T_35 - _GEN_431),
           _has_older_sys_T_5225
-            & (_entry_is_younger_T_152
+            & (_entry_is_younger_T_128
                  ? _GEN_440
-                 : _entry_is_younger_T_155
-                   - _GEN_431) < (_entry_is_younger_T_38
+                 : _entry_is_younger_T_131
+                   - _GEN_431) < (_entry_is_younger_T_32
                                     ? _GEN_434
-                                    : _entry_is_younger_T_41 - _GEN_431),
+                                    : _entry_is_younger_T_35 - _GEN_431),
           _has_older_sys_T_5204
-            & (_entry_is_younger_T_133
+            & (_entry_is_younger_T_112
                  ? _GEN_439
-                 : _entry_is_younger_T_136
-                   - _GEN_431) < (_entry_is_younger_T_38
+                 : _entry_is_younger_T_115
+                   - _GEN_431) < (_entry_is_younger_T_32
                                     ? _GEN_434
-                                    : _entry_is_younger_T_41 - _GEN_431),
+                                    : _entry_is_younger_T_35 - _GEN_431),
           _has_older_sys_T_5183
-            & (_entry_is_younger_T_114
+            & (_entry_is_younger_T_96
                  ? _GEN_438
-                 : _entry_is_younger_T_117
-                   - _GEN_431) < (_entry_is_younger_T_38
+                 : _entry_is_younger_T_99
+                   - _GEN_431) < (_entry_is_younger_T_32
                                     ? _GEN_434
-                                    : _entry_is_younger_T_41 - _GEN_431),
+                                    : _entry_is_younger_T_35 - _GEN_431),
           _has_older_sys_T_5162
-            & (_entry_is_younger_T_95
+            & (_entry_is_younger_T_80
                  ? _GEN_437
-                 : _entry_is_younger_T_98
-                   - _GEN_431) < (_entry_is_younger_T_38
+                 : _entry_is_younger_T_83
+                   - _GEN_431) < (_entry_is_younger_T_32
                                     ? _GEN_434
-                                    : _entry_is_younger_T_41 - _GEN_431),
+                                    : _entry_is_younger_T_35 - _GEN_431),
           _has_older_sys_T_5141
-            & (_entry_is_younger_T_76
+            & (_entry_is_younger_T_64
                  ? _GEN_436
-                 : _entry_is_younger_T_79
-                   - _GEN_431) < (_entry_is_younger_T_38
+                 : _entry_is_younger_T_67
+                   - _GEN_431) < (_entry_is_younger_T_32
                                     ? _GEN_434
-                                    : _entry_is_younger_T_41 - _GEN_431),
+                                    : _entry_is_younger_T_35 - _GEN_431),
           _has_older_sys_T_5120
-            & (_entry_is_younger_T_57
+            & (_entry_is_younger_T_48
                  ? _GEN_435
-                 : _entry_is_younger_T_60
-                   - _GEN_431) < (_entry_is_younger_T_38
+                 : _entry_is_younger_T_51
+                   - _GEN_431) < (_entry_is_younger_T_32
                                     ? _GEN_434
-                                    : _entry_is_younger_T_41 - _GEN_431),
+                                    : _entry_is_younger_T_35 - _GEN_431),
           _has_older_sys_T_5078
-            & (_entry_is_younger_T_19
+            & (_entry_is_younger_T_16
                  ? _GEN_432
-                 : _entry_is_younger_T_22
-                   - _GEN_431) < (_entry_is_younger_T_38
+                 : _entry_is_younger_T_19
+                   - _GEN_431) < (_entry_is_younger_T_32
                                     ? _GEN_434
-                                    : _entry_is_younger_T_41 - _GEN_431),
+                                    : _entry_is_younger_T_35 - _GEN_431),
           _has_older_sys_T_5057
             & (_entry_is_younger_T
                  ? _GEN_433
                  : _entry_is_younger_T_3
-                   - _GEN_431) < (_entry_is_younger_T_38
+                   - _GEN_431) < (_entry_is_younger_T_32
                                     ? _GEN_434
-                                    : _entry_is_younger_T_41 - _GEN_431)} == 15'h0,
+                                    : _entry_is_younger_T_35 - _GEN_431)} == 15'h0,
      entries_1_valid & woken_rs1_1 & woken_rs2_1 & woken_rs3_1
        & ~entries_1_uop_loadWaitBit
-       & ~((_has_older_cfi_j_is_cfi_T_482 | entries_1_uop_decode_is_jalr)
-           & (|{entries_15_valid
-                  & (_has_older_cfi_j_is_cfi_T_510 | entries_15_uop_decode_is_jalr)
+       & ~((_cfi_mask_T_2 | entries_1_uop_decode_is_jalr)
+           & (|{entries_15_valid & (_cfi_mask_T_30 | entries_15_uop_decode_is_jalr)
                   & entries_15_uop_snapshotIdx < entries_1_uop_snapshotIdx,
-                entries_14_valid
-                  & (_has_older_cfi_j_is_cfi_T_508 | entries_14_uop_decode_is_jalr)
+                entries_14_valid & (_cfi_mask_T_28 | entries_14_uop_decode_is_jalr)
                   & entries_14_uop_snapshotIdx < entries_1_uop_snapshotIdx,
-                entries_13_valid
-                  & (_has_older_cfi_j_is_cfi_T_506 | entries_13_uop_decode_is_jalr)
+                entries_13_valid & (_cfi_mask_T_26 | entries_13_uop_decode_is_jalr)
                   & entries_13_uop_snapshotIdx < entries_1_uop_snapshotIdx,
-                entries_12_valid
-                  & (_has_older_cfi_j_is_cfi_T_504 | entries_12_uop_decode_is_jalr)
+                entries_12_valid & (_cfi_mask_T_24 | entries_12_uop_decode_is_jalr)
                   & entries_12_uop_snapshotIdx < entries_1_uop_snapshotIdx,
-                entries_11_valid
-                  & (_has_older_cfi_j_is_cfi_T_502 | entries_11_uop_decode_is_jalr)
+                entries_11_valid & (_cfi_mask_T_22 | entries_11_uop_decode_is_jalr)
                   & entries_11_uop_snapshotIdx < entries_1_uop_snapshotIdx,
-                entries_10_valid
-                  & (_has_older_cfi_j_is_cfi_T_500 | entries_10_uop_decode_is_jalr)
+                entries_10_valid & (_cfi_mask_T_20 | entries_10_uop_decode_is_jalr)
                   & entries_10_uop_snapshotIdx < entries_1_uop_snapshotIdx,
-                entries_9_valid
-                  & (_has_older_cfi_j_is_cfi_T_498 | entries_9_uop_decode_is_jalr)
+                entries_9_valid & (_cfi_mask_T_18 | entries_9_uop_decode_is_jalr)
                   & entries_9_uop_snapshotIdx < entries_1_uop_snapshotIdx,
-                entries_8_valid
-                  & (_has_older_cfi_j_is_cfi_T_496 | entries_8_uop_decode_is_jalr)
+                entries_8_valid & (_cfi_mask_T_16 | entries_8_uop_decode_is_jalr)
                   & entries_8_uop_snapshotIdx < entries_1_uop_snapshotIdx,
-                entries_7_valid
-                  & (_has_older_cfi_j_is_cfi_T_494 | entries_7_uop_decode_is_jalr)
+                entries_7_valid & (_cfi_mask_T_14 | entries_7_uop_decode_is_jalr)
                   & entries_7_uop_snapshotIdx < entries_1_uop_snapshotIdx,
-                entries_6_valid
-                  & (_has_older_cfi_j_is_cfi_T_492 | entries_6_uop_decode_is_jalr)
+                entries_6_valid & (_cfi_mask_T_12 | entries_6_uop_decode_is_jalr)
                   & entries_6_uop_snapshotIdx < entries_1_uop_snapshotIdx,
-                entries_5_valid
-                  & (_has_older_cfi_j_is_cfi_T_490 | entries_5_uop_decode_is_jalr)
+                entries_5_valid & (_cfi_mask_T_10 | entries_5_uop_decode_is_jalr)
                   & entries_5_uop_snapshotIdx < entries_1_uop_snapshotIdx,
-                entries_4_valid
-                  & (_has_older_cfi_j_is_cfi_T_488 | entries_4_uop_decode_is_jalr)
+                entries_4_valid & (_cfi_mask_T_8 | entries_4_uop_decode_is_jalr)
                   & entries_4_uop_snapshotIdx < entries_1_uop_snapshotIdx,
-                entries_3_valid
-                  & (_has_older_cfi_j_is_cfi_T_486 | entries_3_uop_decode_is_jalr)
+                entries_3_valid & (_cfi_mask_T_6 | entries_3_uop_decode_is_jalr)
                   & entries_3_uop_snapshotIdx < entries_1_uop_snapshotIdx,
-                entries_2_valid
-                  & (_has_older_cfi_j_is_cfi_T_484 | entries_2_uop_decode_is_jalr)
+                entries_2_valid & (_cfi_mask_T_4 | entries_2_uop_decode_is_jalr)
                   & entries_2_uop_snapshotIdx < entries_1_uop_snapshotIdx,
-                entries_0_valid
-                  & (_has_older_cfi_j_is_cfi_T_480 | entries_0_uop_decode_is_jalr)
+                entries_0_valid & (_cfi_mask_T | entries_0_uop_decode_is_jalr)
                   & entries_0_uop_snapshotIdx < entries_1_uop_snapshotIdx}))
        & (~is_sys_1 | entries_1_uop_robIdx == io_robDeqPtr)
        & {_has_older_sys_T_5370
-            & (_entry_is_younger_T_285
+            & (_entry_is_younger_T_240
                  ? _GEN_447
-                 : _entry_is_younger_T_288
-                   - _GEN_431) < (_entry_is_younger_T_19
+                 : _entry_is_younger_T_243
+                   - _GEN_431) < (_entry_is_younger_T_16
                                     ? _GEN_432
-                                    : _entry_is_younger_T_22 - _GEN_431),
+                                    : _entry_is_younger_T_19 - _GEN_431),
           _has_older_sys_T_5351
-            & (_entry_is_younger_T_266
+            & (_entry_is_younger_T_224
                  ? _GEN_446
-                 : _entry_is_younger_T_269
-                   - _GEN_431) < (_entry_is_younger_T_19
+                 : _entry_is_younger_T_227
+                   - _GEN_431) < (_entry_is_younger_T_16
                                     ? _GEN_432
-                                    : _entry_is_younger_T_22 - _GEN_431),
+                                    : _entry_is_younger_T_19 - _GEN_431),
           _has_older_sys_T_5330
-            & (_entry_is_younger_T_247
+            & (_entry_is_younger_T_208
                  ? _GEN_445
-                 : _entry_is_younger_T_250
-                   - _GEN_431) < (_entry_is_younger_T_19
+                 : _entry_is_younger_T_211
+                   - _GEN_431) < (_entry_is_younger_T_16
                                     ? _GEN_432
-                                    : _entry_is_younger_T_22 - _GEN_431),
+                                    : _entry_is_younger_T_19 - _GEN_431),
           _has_older_sys_T_5309
-            & (_entry_is_younger_T_228
+            & (_entry_is_younger_T_192
                  ? _GEN_444
-                 : _entry_is_younger_T_231
-                   - _GEN_431) < (_entry_is_younger_T_19
+                 : _entry_is_younger_T_195
+                   - _GEN_431) < (_entry_is_younger_T_16
                                     ? _GEN_432
-                                    : _entry_is_younger_T_22 - _GEN_431),
+                                    : _entry_is_younger_T_19 - _GEN_431),
           _has_older_sys_T_5288
-            & (_entry_is_younger_T_209
+            & (_entry_is_younger_T_176
                  ? _GEN_443
-                 : _entry_is_younger_T_212
-                   - _GEN_431) < (_entry_is_younger_T_19
+                 : _entry_is_younger_T_179
+                   - _GEN_431) < (_entry_is_younger_T_16
                                     ? _GEN_432
-                                    : _entry_is_younger_T_22 - _GEN_431),
+                                    : _entry_is_younger_T_19 - _GEN_431),
           _has_older_sys_T_5267
-            & (_entry_is_younger_T_190
+            & (_entry_is_younger_T_160
                  ? _GEN_442
-                 : _entry_is_younger_T_193
-                   - _GEN_431) < (_entry_is_younger_T_19
+                 : _entry_is_younger_T_163
+                   - _GEN_431) < (_entry_is_younger_T_16
                                     ? _GEN_432
-                                    : _entry_is_younger_T_22 - _GEN_431),
+                                    : _entry_is_younger_T_19 - _GEN_431),
           _has_older_sys_T_5246
-            & (_entry_is_younger_T_171
+            & (_entry_is_younger_T_144
                  ? _GEN_441
-                 : _entry_is_younger_T_174
-                   - _GEN_431) < (_entry_is_younger_T_19
+                 : _entry_is_younger_T_147
+                   - _GEN_431) < (_entry_is_younger_T_16
                                     ? _GEN_432
-                                    : _entry_is_younger_T_22 - _GEN_431),
+                                    : _entry_is_younger_T_19 - _GEN_431),
           _has_older_sys_T_5225
-            & (_entry_is_younger_T_152
+            & (_entry_is_younger_T_128
                  ? _GEN_440
-                 : _entry_is_younger_T_155
-                   - _GEN_431) < (_entry_is_younger_T_19
+                 : _entry_is_younger_T_131
+                   - _GEN_431) < (_entry_is_younger_T_16
                                     ? _GEN_432
-                                    : _entry_is_younger_T_22 - _GEN_431),
+                                    : _entry_is_younger_T_19 - _GEN_431),
           _has_older_sys_T_5204
-            & (_entry_is_younger_T_133
+            & (_entry_is_younger_T_112
                  ? _GEN_439
-                 : _entry_is_younger_T_136
-                   - _GEN_431) < (_entry_is_younger_T_19
+                 : _entry_is_younger_T_115
+                   - _GEN_431) < (_entry_is_younger_T_16
                                     ? _GEN_432
-                                    : _entry_is_younger_T_22 - _GEN_431),
+                                    : _entry_is_younger_T_19 - _GEN_431),
           _has_older_sys_T_5183
-            & (_entry_is_younger_T_114
+            & (_entry_is_younger_T_96
                  ? _GEN_438
-                 : _entry_is_younger_T_117
-                   - _GEN_431) < (_entry_is_younger_T_19
+                 : _entry_is_younger_T_99
+                   - _GEN_431) < (_entry_is_younger_T_16
                                     ? _GEN_432
-                                    : _entry_is_younger_T_22 - _GEN_431),
+                                    : _entry_is_younger_T_19 - _GEN_431),
           _has_older_sys_T_5162
-            & (_entry_is_younger_T_95
+            & (_entry_is_younger_T_80
                  ? _GEN_437
-                 : _entry_is_younger_T_98
-                   - _GEN_431) < (_entry_is_younger_T_19
+                 : _entry_is_younger_T_83
+                   - _GEN_431) < (_entry_is_younger_T_16
                                     ? _GEN_432
-                                    : _entry_is_younger_T_22 - _GEN_431),
+                                    : _entry_is_younger_T_19 - _GEN_431),
           _has_older_sys_T_5141
-            & (_entry_is_younger_T_76
+            & (_entry_is_younger_T_64
                  ? _GEN_436
-                 : _entry_is_younger_T_79
-                   - _GEN_431) < (_entry_is_younger_T_19
+                 : _entry_is_younger_T_67
+                   - _GEN_431) < (_entry_is_younger_T_16
                                     ? _GEN_432
-                                    : _entry_is_younger_T_22 - _GEN_431),
+                                    : _entry_is_younger_T_19 - _GEN_431),
           _has_older_sys_T_5120
-            & (_entry_is_younger_T_57
+            & (_entry_is_younger_T_48
                  ? _GEN_435
-                 : _entry_is_younger_T_60
-                   - _GEN_431) < (_entry_is_younger_T_19
+                 : _entry_is_younger_T_51
+                   - _GEN_431) < (_entry_is_younger_T_16
                                     ? _GEN_432
-                                    : _entry_is_younger_T_22 - _GEN_431),
+                                    : _entry_is_younger_T_19 - _GEN_431),
           _has_older_sys_T_5099
-            & (_entry_is_younger_T_38
+            & (_entry_is_younger_T_32
                  ? _GEN_434
-                 : _entry_is_younger_T_41
-                   - _GEN_431) < (_entry_is_younger_T_19
+                 : _entry_is_younger_T_35
+                   - _GEN_431) < (_entry_is_younger_T_16
                                     ? _GEN_432
-                                    : _entry_is_younger_T_22 - _GEN_431),
+                                    : _entry_is_younger_T_19 - _GEN_431),
           _has_older_sys_T_5057
             & (_entry_is_younger_T
                  ? _GEN_433
                  : _entry_is_younger_T_3
-                   - _GEN_431) < (_entry_is_younger_T_19
+                   - _GEN_431) < (_entry_is_younger_T_16
                                     ? _GEN_432
-                                    : _entry_is_younger_T_22 - _GEN_431)} == 15'h0,
+                                    : _entry_is_younger_T_19 - _GEN_431)} == 15'h0,
      entries_0_valid & woken_rs1_0 & woken_rs2_0 & woken_rs3_0
        & ~entries_0_uop_loadWaitBit
-       & ~((_has_older_cfi_j_is_cfi_T_480 | entries_0_uop_decode_is_jalr)
-           & (|{entries_15_valid
-                  & (_has_older_cfi_j_is_cfi_T_510 | entries_15_uop_decode_is_jalr)
+       & ~((_cfi_mask_T | entries_0_uop_decode_is_jalr)
+           & (|{entries_15_valid & (_cfi_mask_T_30 | entries_15_uop_decode_is_jalr)
                   & entries_15_uop_snapshotIdx < entries_0_uop_snapshotIdx,
-                entries_14_valid
-                  & (_has_older_cfi_j_is_cfi_T_508 | entries_14_uop_decode_is_jalr)
+                entries_14_valid & (_cfi_mask_T_28 | entries_14_uop_decode_is_jalr)
                   & entries_14_uop_snapshotIdx < entries_0_uop_snapshotIdx,
-                entries_13_valid
-                  & (_has_older_cfi_j_is_cfi_T_506 | entries_13_uop_decode_is_jalr)
+                entries_13_valid & (_cfi_mask_T_26 | entries_13_uop_decode_is_jalr)
                   & entries_13_uop_snapshotIdx < entries_0_uop_snapshotIdx,
-                entries_12_valid
-                  & (_has_older_cfi_j_is_cfi_T_504 | entries_12_uop_decode_is_jalr)
+                entries_12_valid & (_cfi_mask_T_24 | entries_12_uop_decode_is_jalr)
                   & entries_12_uop_snapshotIdx < entries_0_uop_snapshotIdx,
-                entries_11_valid
-                  & (_has_older_cfi_j_is_cfi_T_502 | entries_11_uop_decode_is_jalr)
+                entries_11_valid & (_cfi_mask_T_22 | entries_11_uop_decode_is_jalr)
                   & entries_11_uop_snapshotIdx < entries_0_uop_snapshotIdx,
-                entries_10_valid
-                  & (_has_older_cfi_j_is_cfi_T_500 | entries_10_uop_decode_is_jalr)
+                entries_10_valid & (_cfi_mask_T_20 | entries_10_uop_decode_is_jalr)
                   & entries_10_uop_snapshotIdx < entries_0_uop_snapshotIdx,
-                entries_9_valid
-                  & (_has_older_cfi_j_is_cfi_T_498 | entries_9_uop_decode_is_jalr)
+                entries_9_valid & (_cfi_mask_T_18 | entries_9_uop_decode_is_jalr)
                   & entries_9_uop_snapshotIdx < entries_0_uop_snapshotIdx,
-                entries_8_valid
-                  & (_has_older_cfi_j_is_cfi_T_496 | entries_8_uop_decode_is_jalr)
+                entries_8_valid & (_cfi_mask_T_16 | entries_8_uop_decode_is_jalr)
                   & entries_8_uop_snapshotIdx < entries_0_uop_snapshotIdx,
-                entries_7_valid
-                  & (_has_older_cfi_j_is_cfi_T_494 | entries_7_uop_decode_is_jalr)
+                entries_7_valid & (_cfi_mask_T_14 | entries_7_uop_decode_is_jalr)
                   & entries_7_uop_snapshotIdx < entries_0_uop_snapshotIdx,
-                entries_6_valid
-                  & (_has_older_cfi_j_is_cfi_T_492 | entries_6_uop_decode_is_jalr)
+                entries_6_valid & (_cfi_mask_T_12 | entries_6_uop_decode_is_jalr)
                   & entries_6_uop_snapshotIdx < entries_0_uop_snapshotIdx,
-                entries_5_valid
-                  & (_has_older_cfi_j_is_cfi_T_490 | entries_5_uop_decode_is_jalr)
+                entries_5_valid & (_cfi_mask_T_10 | entries_5_uop_decode_is_jalr)
                   & entries_5_uop_snapshotIdx < entries_0_uop_snapshotIdx,
-                entries_4_valid
-                  & (_has_older_cfi_j_is_cfi_T_488 | entries_4_uop_decode_is_jalr)
+                entries_4_valid & (_cfi_mask_T_8 | entries_4_uop_decode_is_jalr)
                   & entries_4_uop_snapshotIdx < entries_0_uop_snapshotIdx,
-                entries_3_valid
-                  & (_has_older_cfi_j_is_cfi_T_486 | entries_3_uop_decode_is_jalr)
+                entries_3_valid & (_cfi_mask_T_6 | entries_3_uop_decode_is_jalr)
                   & entries_3_uop_snapshotIdx < entries_0_uop_snapshotIdx,
-                entries_2_valid
-                  & (_has_older_cfi_j_is_cfi_T_484 | entries_2_uop_decode_is_jalr)
+                entries_2_valid & (_cfi_mask_T_4 | entries_2_uop_decode_is_jalr)
                   & entries_2_uop_snapshotIdx < entries_0_uop_snapshotIdx,
-                entries_1_valid
-                  & (_has_older_cfi_j_is_cfi_T_482 | entries_1_uop_decode_is_jalr)
+                entries_1_valid & (_cfi_mask_T_2 | entries_1_uop_decode_is_jalr)
                   & entries_1_uop_snapshotIdx < entries_0_uop_snapshotIdx}))
        & (~is_sys_0 | entries_0_uop_robIdx == io_robDeqPtr)
        & {_has_older_sys_T_5370
-            & (_entry_is_younger_T_285
+            & (_entry_is_younger_T_240
                  ? _GEN_447
-                 : _entry_is_younger_T_288
+                 : _entry_is_younger_T_243
                    - _GEN_431) < (_entry_is_younger_T
                                     ? _GEN_433
                                     : _entry_is_younger_T_3 - _GEN_431),
           _has_older_sys_T_5351
-            & (_entry_is_younger_T_266
+            & (_entry_is_younger_T_224
                  ? _GEN_446
-                 : _entry_is_younger_T_269
+                 : _entry_is_younger_T_227
                    - _GEN_431) < (_entry_is_younger_T
                                     ? _GEN_433
                                     : _entry_is_younger_T_3 - _GEN_431),
           _has_older_sys_T_5330
-            & (_entry_is_younger_T_247
+            & (_entry_is_younger_T_208
                  ? _GEN_445
-                 : _entry_is_younger_T_250
+                 : _entry_is_younger_T_211
                    - _GEN_431) < (_entry_is_younger_T
                                     ? _GEN_433
                                     : _entry_is_younger_T_3 - _GEN_431),
           _has_older_sys_T_5309
-            & (_entry_is_younger_T_228
+            & (_entry_is_younger_T_192
                  ? _GEN_444
-                 : _entry_is_younger_T_231
+                 : _entry_is_younger_T_195
                    - _GEN_431) < (_entry_is_younger_T
                                     ? _GEN_433
                                     : _entry_is_younger_T_3 - _GEN_431),
           _has_older_sys_T_5288
-            & (_entry_is_younger_T_209
+            & (_entry_is_younger_T_176
                  ? _GEN_443
-                 : _entry_is_younger_T_212
+                 : _entry_is_younger_T_179
                    - _GEN_431) < (_entry_is_younger_T
                                     ? _GEN_433
                                     : _entry_is_younger_T_3 - _GEN_431),
           _has_older_sys_T_5267
-            & (_entry_is_younger_T_190
+            & (_entry_is_younger_T_160
                  ? _GEN_442
-                 : _entry_is_younger_T_193
+                 : _entry_is_younger_T_163
                    - _GEN_431) < (_entry_is_younger_T
                                     ? _GEN_433
                                     : _entry_is_younger_T_3 - _GEN_431),
           _has_older_sys_T_5246
-            & (_entry_is_younger_T_171
+            & (_entry_is_younger_T_144
                  ? _GEN_441
-                 : _entry_is_younger_T_174
+                 : _entry_is_younger_T_147
                    - _GEN_431) < (_entry_is_younger_T
                                     ? _GEN_433
                                     : _entry_is_younger_T_3 - _GEN_431),
           _has_older_sys_T_5225
-            & (_entry_is_younger_T_152
+            & (_entry_is_younger_T_128
                  ? _GEN_440
-                 : _entry_is_younger_T_155
+                 : _entry_is_younger_T_131
                    - _GEN_431) < (_entry_is_younger_T
                                     ? _GEN_433
                                     : _entry_is_younger_T_3 - _GEN_431),
           _has_older_sys_T_5204
-            & (_entry_is_younger_T_133
+            & (_entry_is_younger_T_112
                  ? _GEN_439
-                 : _entry_is_younger_T_136
+                 : _entry_is_younger_T_115
                    - _GEN_431) < (_entry_is_younger_T
                                     ? _GEN_433
                                     : _entry_is_younger_T_3 - _GEN_431),
           _has_older_sys_T_5183
-            & (_entry_is_younger_T_114
+            & (_entry_is_younger_T_96
                  ? _GEN_438
-                 : _entry_is_younger_T_117
+                 : _entry_is_younger_T_99
                    - _GEN_431) < (_entry_is_younger_T
                                     ? _GEN_433
                                     : _entry_is_younger_T_3 - _GEN_431),
           _has_older_sys_T_5162
-            & (_entry_is_younger_T_95
+            & (_entry_is_younger_T_80
                  ? _GEN_437
-                 : _entry_is_younger_T_98
+                 : _entry_is_younger_T_83
                    - _GEN_431) < (_entry_is_younger_T
                                     ? _GEN_433
                                     : _entry_is_younger_T_3 - _GEN_431),
           _has_older_sys_T_5141
-            & (_entry_is_younger_T_76
+            & (_entry_is_younger_T_64
                  ? _GEN_436
-                 : _entry_is_younger_T_79
+                 : _entry_is_younger_T_67
                    - _GEN_431) < (_entry_is_younger_T
                                     ? _GEN_433
                                     : _entry_is_younger_T_3 - _GEN_431),
           _has_older_sys_T_5120
-            & (_entry_is_younger_T_57
+            & (_entry_is_younger_T_48
                  ? _GEN_435
-                 : _entry_is_younger_T_60
+                 : _entry_is_younger_T_51
                    - _GEN_431) < (_entry_is_younger_T
                                     ? _GEN_433
                                     : _entry_is_younger_T_3 - _GEN_431),
           _has_older_sys_T_5099
-            & (_entry_is_younger_T_38
+            & (_entry_is_younger_T_32
                  ? _GEN_434
-                 : _entry_is_younger_T_41
+                 : _entry_is_younger_T_35
                    - _GEN_431) < (_entry_is_younger_T
                                     ? _GEN_433
                                     : _entry_is_younger_T_3 - _GEN_431),
           _has_older_sys_T_5078
-            & (_entry_is_younger_T_19
+            & (_entry_is_younger_T_16
                  ? _GEN_432
-                 : _entry_is_younger_T_22
+                 : _entry_is_younger_T_19
                    - _GEN_431) < (_entry_is_younger_T
                                     ? _GEN_433
-                                    : _entry_is_younger_T_3 - _GEN_431)} == 15'h0};	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :53:33, :54:{127,142}, :55:{127,142}, :56:{127,142}, :63:43, :67:22, :82:{37,42,83,91}, :86:{50,82}, :89:{66,98}, :94:41, :95:33, :96:{8,15}, :99:49, :100:{25,36}, :104:{24,54,89}, :105:{8,15}, :108:21, :109:{21,30}, :110:35, :116:37
+                                    : _entry_is_younger_T_3 - _GEN_431)} == 15'h0};	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :53:33, :54:{127,142}, :55:{127,142}, :56:{127,142}, :63:43, :67:22, :82:{37,42,83,91}, :86:{50,82}, :89:{66,98}, :94:41, :95:33, :96:{8,15}, :99:49, :100:{25,36}, :104:{24,54,89}, :105:{8,15}, :108:21, :109:{21,30}, :110:35, :136:37
   wire [15:0] _GEN_448 =
-    current_can_issue & ~((|_ageDetector_io_out_0) ? _ageDetector_io_out_0 : 16'h0);	// backend/src/zaqal/backend/issue/IssueQueue.scala:61:27, :63:43, :116:37, :122:39, :131:{43,45,49}
+    current_can_issue & ~((|_ageDetector_io_out_0) ? _ageDetector_io_out_0 : 16'h0);	// backend/src/zaqal/backend/issue/IssueQueue.scala:61:27, :63:43, :136:37, :154:39, :163:{43,45,49}
   wire        is_empty_0 =
     ~entries_0_valid | (|_ageDetector_io_out_0) & _ageDetector_io_out_0[0]
     | (|_ageDetector_io_out_1) & _ageDetector_io_out_1[0] | (|_ageDetector_io_out_2)
-    & _ageDetector_io_out_2[0];	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :122:39, :136:90, :137:{20,38}, src/main/scala/chisel3/util/Mux.scala:32:36
+    & _ageDetector_io_out_2[0];	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :154:39, :168:90, :169:{20,38}, src/main/scala/chisel3/util/Mux.scala:32:36
   wire        is_empty_1 =
     ~entries_1_valid | (|_ageDetector_io_out_0) & _ageDetector_io_out_0[1]
     | (|_ageDetector_io_out_1) & _ageDetector_io_out_1[1] | (|_ageDetector_io_out_2)
-    & _ageDetector_io_out_2[1];	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :122:39, :136:90, :137:{20,38}, src/main/scala/chisel3/util/Mux.scala:32:36
+    & _ageDetector_io_out_2[1];	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :154:39, :168:90, :169:{20,38}, src/main/scala/chisel3/util/Mux.scala:32:36
   wire        is_empty_2 =
     ~entries_2_valid | (|_ageDetector_io_out_0) & _ageDetector_io_out_0[2]
     | (|_ageDetector_io_out_1) & _ageDetector_io_out_1[2] | (|_ageDetector_io_out_2)
-    & _ageDetector_io_out_2[2];	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :122:39, :136:90, :137:{20,38}, src/main/scala/chisel3/util/Mux.scala:32:36
+    & _ageDetector_io_out_2[2];	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :154:39, :168:90, :169:{20,38}, src/main/scala/chisel3/util/Mux.scala:32:36
   wire        is_empty_3 =
     ~entries_3_valid | (|_ageDetector_io_out_0) & _ageDetector_io_out_0[3]
     | (|_ageDetector_io_out_1) & _ageDetector_io_out_1[3] | (|_ageDetector_io_out_2)
-    & _ageDetector_io_out_2[3];	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :122:39, :136:90, :137:{20,38}, src/main/scala/chisel3/util/Mux.scala:32:36
+    & _ageDetector_io_out_2[3];	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :154:39, :168:90, :169:{20,38}, src/main/scala/chisel3/util/Mux.scala:32:36
   wire        is_empty_4 =
     ~entries_4_valid | (|_ageDetector_io_out_0) & _ageDetector_io_out_0[4]
     | (|_ageDetector_io_out_1) & _ageDetector_io_out_1[4] | (|_ageDetector_io_out_2)
-    & _ageDetector_io_out_2[4];	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :122:39, :136:90, :137:{20,38}, src/main/scala/chisel3/util/Mux.scala:32:36
+    & _ageDetector_io_out_2[4];	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :154:39, :168:90, :169:{20,38}, src/main/scala/chisel3/util/Mux.scala:32:36
   wire        is_empty_5 =
     ~entries_5_valid | (|_ageDetector_io_out_0) & _ageDetector_io_out_0[5]
     | (|_ageDetector_io_out_1) & _ageDetector_io_out_1[5] | (|_ageDetector_io_out_2)
-    & _ageDetector_io_out_2[5];	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :122:39, :136:90, :137:{20,38}, src/main/scala/chisel3/util/Mux.scala:32:36
+    & _ageDetector_io_out_2[5];	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :154:39, :168:90, :169:{20,38}, src/main/scala/chisel3/util/Mux.scala:32:36
   wire        is_empty_6 =
     ~entries_6_valid | (|_ageDetector_io_out_0) & _ageDetector_io_out_0[6]
     | (|_ageDetector_io_out_1) & _ageDetector_io_out_1[6] | (|_ageDetector_io_out_2)
-    & _ageDetector_io_out_2[6];	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :122:39, :136:90, :137:{20,38}, src/main/scala/chisel3/util/Mux.scala:32:36
+    & _ageDetector_io_out_2[6];	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :154:39, :168:90, :169:{20,38}, src/main/scala/chisel3/util/Mux.scala:32:36
   wire        is_empty_7 =
     ~entries_7_valid | (|_ageDetector_io_out_0) & _ageDetector_io_out_0[7]
     | (|_ageDetector_io_out_1) & _ageDetector_io_out_1[7] | (|_ageDetector_io_out_2)
-    & _ageDetector_io_out_2[7];	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :122:39, :136:90, :137:{20,38}, src/main/scala/chisel3/util/Mux.scala:32:36
+    & _ageDetector_io_out_2[7];	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :154:39, :168:90, :169:{20,38}, src/main/scala/chisel3/util/Mux.scala:32:36
   wire        is_empty_8 =
     ~entries_8_valid | (|_ageDetector_io_out_0) & _ageDetector_io_out_0[8]
     | (|_ageDetector_io_out_1) & _ageDetector_io_out_1[8] | (|_ageDetector_io_out_2)
-    & _ageDetector_io_out_2[8];	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :122:39, :136:90, :137:{20,38}, src/main/scala/chisel3/util/Mux.scala:32:36
+    & _ageDetector_io_out_2[8];	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :154:39, :168:90, :169:{20,38}, src/main/scala/chisel3/util/Mux.scala:32:36
   wire        is_empty_9 =
     ~entries_9_valid | (|_ageDetector_io_out_0) & _ageDetector_io_out_0[9]
     | (|_ageDetector_io_out_1) & _ageDetector_io_out_1[9] | (|_ageDetector_io_out_2)
-    & _ageDetector_io_out_2[9];	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :122:39, :136:90, :137:{20,38}, src/main/scala/chisel3/util/Mux.scala:32:36
+    & _ageDetector_io_out_2[9];	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :154:39, :168:90, :169:{20,38}, src/main/scala/chisel3/util/Mux.scala:32:36
   wire        is_empty_10 =
     ~entries_10_valid | (|_ageDetector_io_out_0) & _ageDetector_io_out_0[10]
     | (|_ageDetector_io_out_1) & _ageDetector_io_out_1[10] | (|_ageDetector_io_out_2)
-    & _ageDetector_io_out_2[10];	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :122:39, :136:90, :137:{20,38}, src/main/scala/chisel3/util/Mux.scala:32:36
+    & _ageDetector_io_out_2[10];	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :154:39, :168:90, :169:{20,38}, src/main/scala/chisel3/util/Mux.scala:32:36
   wire        is_empty_11 =
     ~entries_11_valid | (|_ageDetector_io_out_0) & _ageDetector_io_out_0[11]
     | (|_ageDetector_io_out_1) & _ageDetector_io_out_1[11] | (|_ageDetector_io_out_2)
-    & _ageDetector_io_out_2[11];	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :122:39, :136:90, :137:{20,38}, src/main/scala/chisel3/util/Mux.scala:32:36
+    & _ageDetector_io_out_2[11];	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :154:39, :168:90, :169:{20,38}, src/main/scala/chisel3/util/Mux.scala:32:36
   wire        is_empty_12 =
     ~entries_12_valid | (|_ageDetector_io_out_0) & _ageDetector_io_out_0[12]
     | (|_ageDetector_io_out_1) & _ageDetector_io_out_1[12] | (|_ageDetector_io_out_2)
-    & _ageDetector_io_out_2[12];	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :122:39, :136:90, :137:{20,38}, src/main/scala/chisel3/util/Mux.scala:32:36
+    & _ageDetector_io_out_2[12];	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :154:39, :168:90, :169:{20,38}, src/main/scala/chisel3/util/Mux.scala:32:36
   wire        is_empty_13 =
     ~entries_13_valid | (|_ageDetector_io_out_0) & _ageDetector_io_out_0[13]
     | (|_ageDetector_io_out_1) & _ageDetector_io_out_1[13] | (|_ageDetector_io_out_2)
-    & _ageDetector_io_out_2[13];	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :122:39, :136:90, :137:{20,38}, src/main/scala/chisel3/util/Mux.scala:32:36
+    & _ageDetector_io_out_2[13];	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :154:39, :168:90, :169:{20,38}, src/main/scala/chisel3/util/Mux.scala:32:36
   wire        is_empty_14 =
     ~entries_14_valid | (|_ageDetector_io_out_0) & _ageDetector_io_out_0[14]
     | (|_ageDetector_io_out_1) & _ageDetector_io_out_1[14] | (|_ageDetector_io_out_2)
-    & _ageDetector_io_out_2[14];	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :122:39, :136:90, :137:{20,38}, src/main/scala/chisel3/util/Mux.scala:32:36
+    & _ageDetector_io_out_2[14];	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :154:39, :168:90, :169:{20,38}, src/main/scala/chisel3/util/Mux.scala:32:36
   wire [15:0] current_empty_mask =
     {~entries_15_valid | (|_ageDetector_io_out_0) & _ageDetector_io_out_0[15]
        | (|_ageDetector_io_out_1) & _ageDetector_io_out_1[15] | (|_ageDetector_io_out_2)
@@ -6768,7 +6540,7 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
      is_empty_3,
      is_empty_2,
      is_empty_1,
-     is_empty_0};	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :122:39, :136:90, :137:{20,38}, :143:37, src/main/scala/chisel3/util/Mux.scala:32:36
+     is_empty_0};	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :154:39, :168:90, :169:{20,38}, :175:37, src/main/scala/chisel3/util/Mux.scala:32:36
   wire [3:0]  alloc_idx_0 =
     is_empty_0
       ? 4'h0
@@ -6798,11 +6570,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
                                                       ? 4'hC
                                                       : is_empty_13
                                                           ? 4'hD
-                                                          : {3'h7, ~is_empty_14};	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :137:38, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_449 = io_enq_0_valid & (|current_empty_mask);	// backend/src/zaqal/backend/issue/IssueQueue.scala:143:37, :145:42, :149:27
+                                                          : {3'h7, ~is_empty_14};	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :169:38, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_449 = io_enq_0_valid & (|current_empty_mask);	// backend/src/zaqal/backend/issue/IssueQueue.scala:175:37, :177:42, :181:27
   wire [15:0] _GEN_450 = {12'h0, alloc_idx_0};	// src/main/scala/chisel3/util/Mux.scala:50:70, src/main/scala/chisel3/util/OneHot.scala:58:35
-  wire [15:0] _GEN_451 = ~(16'h1 << _GEN_450);	// backend/src/zaqal/backend/issue/IssueQueue.scala:153:47, src/main/scala/chisel3/util/OneHot.scala:58:35
-  wire [15:0] _GEN_452 = current_empty_mask & _GEN_451;	// backend/src/zaqal/backend/issue/IssueQueue.scala:143:37, :153:{45,47}
+  wire [15:0] _GEN_451 = ~(16'h1 << _GEN_450);	// backend/src/zaqal/backend/issue/IssueQueue.scala:185:47, src/main/scala/chisel3/util/OneHot.scala:58:35
+  wire [15:0] _GEN_452 = current_empty_mask & _GEN_451;	// backend/src/zaqal/backend/issue/IssueQueue.scala:175:37, :185:{45,47}
   wire [3:0]  alloc_idx_1 =
     is_empty_0 & _GEN_451[0]
       ? 4'h0
@@ -6834,26 +6606,26 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
                                                           ? 4'hD
                                                           : {3'h7,
                                                              ~(is_empty_14
-                                                               & _GEN_451[14])};	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :137:38, :153:{45,47}, src/main/scala/chisel3/util/Mux.scala:50:70, src/main/scala/chisel3/util/OneHot.scala:48:45
-  wire        _GEN_453 = io_enq_1_valid & (|_GEN_452);	// backend/src/zaqal/backend/issue/IssueQueue.scala:145:42, :149:27, :153:45
+                                                               & _GEN_451[14])};	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :169:38, :185:{45,47}, src/main/scala/chisel3/util/Mux.scala:50:70, src/main/scala/chisel3/util/OneHot.scala:48:45
+  wire        _GEN_453 = io_enq_1_valid & (|_GEN_452);	// backend/src/zaqal/backend/issue/IssueQueue.scala:177:42, :181:27, :185:45
   wire [15:0] _GEN_454 = {12'h0, alloc_idx_1};	// src/main/scala/chisel3/util/Mux.scala:50:70, src/main/scala/chisel3/util/OneHot.scala:58:35
-  wire [15:0] _GEN_455 = ~(16'h1 << _GEN_454);	// backend/src/zaqal/backend/issue/IssueQueue.scala:153:47, src/main/scala/chisel3/util/OneHot.scala:58:35
-  wire [15:0] _GEN_456 = _GEN_452 & _GEN_455;	// backend/src/zaqal/backend/issue/IssueQueue.scala:153:{45,47}
-  wire        _GEN_457 = is_empty_0 & _GEN_451[0];	// backend/src/zaqal/backend/issue/IssueQueue.scala:137:38, :153:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
-  wire        _GEN_458 = is_empty_1 & _GEN_451[1];	// backend/src/zaqal/backend/issue/IssueQueue.scala:137:38, :153:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
-  wire        _GEN_459 = is_empty_2 & _GEN_451[2];	// backend/src/zaqal/backend/issue/IssueQueue.scala:137:38, :153:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
-  wire        _GEN_460 = is_empty_3 & _GEN_451[3];	// backend/src/zaqal/backend/issue/IssueQueue.scala:137:38, :153:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
-  wire        _GEN_461 = is_empty_4 & _GEN_451[4];	// backend/src/zaqal/backend/issue/IssueQueue.scala:137:38, :153:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
-  wire        _GEN_462 = is_empty_5 & _GEN_451[5];	// backend/src/zaqal/backend/issue/IssueQueue.scala:137:38, :153:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
-  wire        _GEN_463 = is_empty_6 & _GEN_451[6];	// backend/src/zaqal/backend/issue/IssueQueue.scala:137:38, :153:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
-  wire        _GEN_464 = is_empty_7 & _GEN_451[7];	// backend/src/zaqal/backend/issue/IssueQueue.scala:137:38, :153:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
-  wire        _GEN_465 = is_empty_8 & _GEN_451[8];	// backend/src/zaqal/backend/issue/IssueQueue.scala:137:38, :153:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
-  wire        _GEN_466 = is_empty_9 & _GEN_451[9];	// backend/src/zaqal/backend/issue/IssueQueue.scala:137:38, :153:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
-  wire        _GEN_467 = is_empty_10 & _GEN_451[10];	// backend/src/zaqal/backend/issue/IssueQueue.scala:137:38, :153:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
-  wire        _GEN_468 = is_empty_11 & _GEN_451[11];	// backend/src/zaqal/backend/issue/IssueQueue.scala:137:38, :153:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
-  wire        _GEN_469 = is_empty_12 & _GEN_451[12];	// backend/src/zaqal/backend/issue/IssueQueue.scala:137:38, :153:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
-  wire        _GEN_470 = is_empty_13 & _GEN_451[13];	// backend/src/zaqal/backend/issue/IssueQueue.scala:137:38, :153:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
-  wire        _GEN_471 = is_empty_14 & _GEN_451[14];	// backend/src/zaqal/backend/issue/IssueQueue.scala:137:38, :153:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
+  wire [15:0] _GEN_455 = ~(16'h1 << _GEN_454);	// backend/src/zaqal/backend/issue/IssueQueue.scala:185:47, src/main/scala/chisel3/util/OneHot.scala:58:35
+  wire [15:0] _GEN_456 = _GEN_452 & _GEN_455;	// backend/src/zaqal/backend/issue/IssueQueue.scala:185:{45,47}
+  wire        _GEN_457 = is_empty_0 & _GEN_451[0];	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:38, :185:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
+  wire        _GEN_458 = is_empty_1 & _GEN_451[1];	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:38, :185:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
+  wire        _GEN_459 = is_empty_2 & _GEN_451[2];	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:38, :185:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
+  wire        _GEN_460 = is_empty_3 & _GEN_451[3];	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:38, :185:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
+  wire        _GEN_461 = is_empty_4 & _GEN_451[4];	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:38, :185:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
+  wire        _GEN_462 = is_empty_5 & _GEN_451[5];	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:38, :185:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
+  wire        _GEN_463 = is_empty_6 & _GEN_451[6];	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:38, :185:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
+  wire        _GEN_464 = is_empty_7 & _GEN_451[7];	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:38, :185:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
+  wire        _GEN_465 = is_empty_8 & _GEN_451[8];	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:38, :185:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
+  wire        _GEN_466 = is_empty_9 & _GEN_451[9];	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:38, :185:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
+  wire        _GEN_467 = is_empty_10 & _GEN_451[10];	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:38, :185:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
+  wire        _GEN_468 = is_empty_11 & _GEN_451[11];	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:38, :185:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
+  wire        _GEN_469 = is_empty_12 & _GEN_451[12];	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:38, :185:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
+  wire        _GEN_470 = is_empty_13 & _GEN_451[13];	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:38, :185:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
+  wire        _GEN_471 = is_empty_14 & _GEN_451[14];	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:38, :185:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
   wire [3:0]  alloc_idx_2 =
     _GEN_457 & _GEN_455[0]
       ? 4'h0
@@ -6884,26 +6656,26 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
                                                       : _GEN_470 & _GEN_455[13]
                                                           ? 4'hD
                                                           : {3'h7,
-                                                             ~(_GEN_471 & _GEN_455[14])};	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :153:{45,47}, src/main/scala/chisel3/util/Mux.scala:50:70, src/main/scala/chisel3/util/OneHot.scala:48:45
-  wire        _GEN_472 = io_enq_2_valid & (|_GEN_456);	// backend/src/zaqal/backend/issue/IssueQueue.scala:145:42, :149:27, :153:45
+                                                             ~(_GEN_471 & _GEN_455[14])};	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :185:{45,47}, src/main/scala/chisel3/util/Mux.scala:50:70, src/main/scala/chisel3/util/OneHot.scala:48:45
+  wire        _GEN_472 = io_enq_2_valid & (|_GEN_456);	// backend/src/zaqal/backend/issue/IssueQueue.scala:177:42, :181:27, :185:45
   wire [15:0] _GEN_473 = {12'h0, alloc_idx_2};	// src/main/scala/chisel3/util/Mux.scala:50:70, src/main/scala/chisel3/util/OneHot.scala:58:35
-  wire [15:0] _GEN_474 = ~(16'h1 << _GEN_473);	// backend/src/zaqal/backend/issue/IssueQueue.scala:153:47, src/main/scala/chisel3/util/OneHot.scala:58:35
-  wire [15:0] _GEN_475 = _GEN_456 & _GEN_474;	// backend/src/zaqal/backend/issue/IssueQueue.scala:153:{45,47}
-  wire        _GEN_476 = _GEN_457 & _GEN_455[0];	// backend/src/zaqal/backend/issue/IssueQueue.scala:153:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
-  wire        _GEN_477 = _GEN_458 & _GEN_455[1];	// backend/src/zaqal/backend/issue/IssueQueue.scala:153:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
-  wire        _GEN_478 = _GEN_459 & _GEN_455[2];	// backend/src/zaqal/backend/issue/IssueQueue.scala:153:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
-  wire        _GEN_479 = _GEN_460 & _GEN_455[3];	// backend/src/zaqal/backend/issue/IssueQueue.scala:153:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
-  wire        _GEN_480 = _GEN_461 & _GEN_455[4];	// backend/src/zaqal/backend/issue/IssueQueue.scala:153:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
-  wire        _GEN_481 = _GEN_462 & _GEN_455[5];	// backend/src/zaqal/backend/issue/IssueQueue.scala:153:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
-  wire        _GEN_482 = _GEN_463 & _GEN_455[6];	// backend/src/zaqal/backend/issue/IssueQueue.scala:153:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
-  wire        _GEN_483 = _GEN_464 & _GEN_455[7];	// backend/src/zaqal/backend/issue/IssueQueue.scala:153:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
-  wire        _GEN_484 = _GEN_465 & _GEN_455[8];	// backend/src/zaqal/backend/issue/IssueQueue.scala:153:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
-  wire        _GEN_485 = _GEN_466 & _GEN_455[9];	// backend/src/zaqal/backend/issue/IssueQueue.scala:153:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
-  wire        _GEN_486 = _GEN_467 & _GEN_455[10];	// backend/src/zaqal/backend/issue/IssueQueue.scala:153:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
-  wire        _GEN_487 = _GEN_468 & _GEN_455[11];	// backend/src/zaqal/backend/issue/IssueQueue.scala:153:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
-  wire        _GEN_488 = _GEN_469 & _GEN_455[12];	// backend/src/zaqal/backend/issue/IssueQueue.scala:153:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
-  wire        _GEN_489 = _GEN_470 & _GEN_455[13];	// backend/src/zaqal/backend/issue/IssueQueue.scala:153:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
-  wire        _GEN_490 = _GEN_471 & _GEN_455[14];	// backend/src/zaqal/backend/issue/IssueQueue.scala:153:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
+  wire [15:0] _GEN_474 = ~(16'h1 << _GEN_473);	// backend/src/zaqal/backend/issue/IssueQueue.scala:185:47, src/main/scala/chisel3/util/OneHot.scala:58:35
+  wire [15:0] _GEN_475 = _GEN_456 & _GEN_474;	// backend/src/zaqal/backend/issue/IssueQueue.scala:185:{45,47}
+  wire        _GEN_476 = _GEN_457 & _GEN_455[0];	// backend/src/zaqal/backend/issue/IssueQueue.scala:185:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
+  wire        _GEN_477 = _GEN_458 & _GEN_455[1];	// backend/src/zaqal/backend/issue/IssueQueue.scala:185:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
+  wire        _GEN_478 = _GEN_459 & _GEN_455[2];	// backend/src/zaqal/backend/issue/IssueQueue.scala:185:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
+  wire        _GEN_479 = _GEN_460 & _GEN_455[3];	// backend/src/zaqal/backend/issue/IssueQueue.scala:185:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
+  wire        _GEN_480 = _GEN_461 & _GEN_455[4];	// backend/src/zaqal/backend/issue/IssueQueue.scala:185:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
+  wire        _GEN_481 = _GEN_462 & _GEN_455[5];	// backend/src/zaqal/backend/issue/IssueQueue.scala:185:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
+  wire        _GEN_482 = _GEN_463 & _GEN_455[6];	// backend/src/zaqal/backend/issue/IssueQueue.scala:185:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
+  wire        _GEN_483 = _GEN_464 & _GEN_455[7];	// backend/src/zaqal/backend/issue/IssueQueue.scala:185:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
+  wire        _GEN_484 = _GEN_465 & _GEN_455[8];	// backend/src/zaqal/backend/issue/IssueQueue.scala:185:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
+  wire        _GEN_485 = _GEN_466 & _GEN_455[9];	// backend/src/zaqal/backend/issue/IssueQueue.scala:185:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
+  wire        _GEN_486 = _GEN_467 & _GEN_455[10];	// backend/src/zaqal/backend/issue/IssueQueue.scala:185:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
+  wire        _GEN_487 = _GEN_468 & _GEN_455[11];	// backend/src/zaqal/backend/issue/IssueQueue.scala:185:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
+  wire        _GEN_488 = _GEN_469 & _GEN_455[12];	// backend/src/zaqal/backend/issue/IssueQueue.scala:185:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
+  wire        _GEN_489 = _GEN_470 & _GEN_455[13];	// backend/src/zaqal/backend/issue/IssueQueue.scala:185:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
+  wire        _GEN_490 = _GEN_471 & _GEN_455[14];	// backend/src/zaqal/backend/issue/IssueQueue.scala:185:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
   wire [3:0]  alloc_idx_3 =
     _GEN_476 & _GEN_474[0]
       ? 4'h0
@@ -6934,26 +6706,26 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
                                                       : _GEN_489 & _GEN_474[13]
                                                           ? 4'hD
                                                           : {3'h7,
-                                                             ~(_GEN_490 & _GEN_474[14])};	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :153:{45,47}, src/main/scala/chisel3/util/Mux.scala:50:70, src/main/scala/chisel3/util/OneHot.scala:48:45
-  wire        _GEN_491 = io_enq_3_valid & (|_GEN_475);	// backend/src/zaqal/backend/issue/IssueQueue.scala:145:42, :149:27, :153:45
+                                                             ~(_GEN_490 & _GEN_474[14])};	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :185:{45,47}, src/main/scala/chisel3/util/Mux.scala:50:70, src/main/scala/chisel3/util/OneHot.scala:48:45
+  wire        _GEN_491 = io_enq_3_valid & (|_GEN_475);	// backend/src/zaqal/backend/issue/IssueQueue.scala:177:42, :181:27, :185:45
   wire [15:0] _GEN_492 = {12'h0, alloc_idx_3};	// src/main/scala/chisel3/util/Mux.scala:50:70, src/main/scala/chisel3/util/OneHot.scala:58:35
-  wire [15:0] _GEN_493 = ~(16'h1 << _GEN_492);	// backend/src/zaqal/backend/issue/IssueQueue.scala:153:47, src/main/scala/chisel3/util/OneHot.scala:58:35
-  wire [15:0] _GEN_494 = _GEN_475 & _GEN_493;	// backend/src/zaqal/backend/issue/IssueQueue.scala:153:{45,47}
-  wire        _GEN_495 = _GEN_476 & _GEN_474[0];	// backend/src/zaqal/backend/issue/IssueQueue.scala:153:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
-  wire        _GEN_496 = _GEN_477 & _GEN_474[1];	// backend/src/zaqal/backend/issue/IssueQueue.scala:153:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
-  wire        _GEN_497 = _GEN_478 & _GEN_474[2];	// backend/src/zaqal/backend/issue/IssueQueue.scala:153:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
-  wire        _GEN_498 = _GEN_479 & _GEN_474[3];	// backend/src/zaqal/backend/issue/IssueQueue.scala:153:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
-  wire        _GEN_499 = _GEN_480 & _GEN_474[4];	// backend/src/zaqal/backend/issue/IssueQueue.scala:153:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
-  wire        _GEN_500 = _GEN_481 & _GEN_474[5];	// backend/src/zaqal/backend/issue/IssueQueue.scala:153:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
-  wire        _GEN_501 = _GEN_482 & _GEN_474[6];	// backend/src/zaqal/backend/issue/IssueQueue.scala:153:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
-  wire        _GEN_502 = _GEN_483 & _GEN_474[7];	// backend/src/zaqal/backend/issue/IssueQueue.scala:153:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
-  wire        _GEN_503 = _GEN_484 & _GEN_474[8];	// backend/src/zaqal/backend/issue/IssueQueue.scala:153:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
-  wire        _GEN_504 = _GEN_485 & _GEN_474[9];	// backend/src/zaqal/backend/issue/IssueQueue.scala:153:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
-  wire        _GEN_505 = _GEN_486 & _GEN_474[10];	// backend/src/zaqal/backend/issue/IssueQueue.scala:153:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
-  wire        _GEN_506 = _GEN_487 & _GEN_474[11];	// backend/src/zaqal/backend/issue/IssueQueue.scala:153:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
-  wire        _GEN_507 = _GEN_488 & _GEN_474[12];	// backend/src/zaqal/backend/issue/IssueQueue.scala:153:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
-  wire        _GEN_508 = _GEN_489 & _GEN_474[13];	// backend/src/zaqal/backend/issue/IssueQueue.scala:153:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
-  wire        _GEN_509 = _GEN_490 & _GEN_474[14];	// backend/src/zaqal/backend/issue/IssueQueue.scala:153:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
+  wire [15:0] _GEN_493 = ~(16'h1 << _GEN_492);	// backend/src/zaqal/backend/issue/IssueQueue.scala:185:47, src/main/scala/chisel3/util/OneHot.scala:58:35
+  wire [15:0] _GEN_494 = _GEN_475 & _GEN_493;	// backend/src/zaqal/backend/issue/IssueQueue.scala:185:{45,47}
+  wire        _GEN_495 = _GEN_476 & _GEN_474[0];	// backend/src/zaqal/backend/issue/IssueQueue.scala:185:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
+  wire        _GEN_496 = _GEN_477 & _GEN_474[1];	// backend/src/zaqal/backend/issue/IssueQueue.scala:185:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
+  wire        _GEN_497 = _GEN_478 & _GEN_474[2];	// backend/src/zaqal/backend/issue/IssueQueue.scala:185:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
+  wire        _GEN_498 = _GEN_479 & _GEN_474[3];	// backend/src/zaqal/backend/issue/IssueQueue.scala:185:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
+  wire        _GEN_499 = _GEN_480 & _GEN_474[4];	// backend/src/zaqal/backend/issue/IssueQueue.scala:185:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
+  wire        _GEN_500 = _GEN_481 & _GEN_474[5];	// backend/src/zaqal/backend/issue/IssueQueue.scala:185:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
+  wire        _GEN_501 = _GEN_482 & _GEN_474[6];	// backend/src/zaqal/backend/issue/IssueQueue.scala:185:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
+  wire        _GEN_502 = _GEN_483 & _GEN_474[7];	// backend/src/zaqal/backend/issue/IssueQueue.scala:185:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
+  wire        _GEN_503 = _GEN_484 & _GEN_474[8];	// backend/src/zaqal/backend/issue/IssueQueue.scala:185:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
+  wire        _GEN_504 = _GEN_485 & _GEN_474[9];	// backend/src/zaqal/backend/issue/IssueQueue.scala:185:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
+  wire        _GEN_505 = _GEN_486 & _GEN_474[10];	// backend/src/zaqal/backend/issue/IssueQueue.scala:185:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
+  wire        _GEN_506 = _GEN_487 & _GEN_474[11];	// backend/src/zaqal/backend/issue/IssueQueue.scala:185:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
+  wire        _GEN_507 = _GEN_488 & _GEN_474[12];	// backend/src/zaqal/backend/issue/IssueQueue.scala:185:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
+  wire        _GEN_508 = _GEN_489 & _GEN_474[13];	// backend/src/zaqal/backend/issue/IssueQueue.scala:185:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
+  wire        _GEN_509 = _GEN_490 & _GEN_474[14];	// backend/src/zaqal/backend/issue/IssueQueue.scala:185:{45,47}, src/main/scala/chisel3/util/OneHot.scala:48:45
   wire [3:0]  alloc_idx_4 =
     _GEN_495 & _GEN_493[0]
       ? 4'h0
@@ -6984,11 +6756,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
                                                       : _GEN_508 & _GEN_493[13]
                                                           ? 4'hD
                                                           : {3'h7,
-                                                             ~(_GEN_509 & _GEN_493[14])};	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :153:{45,47}, src/main/scala/chisel3/util/Mux.scala:50:70, src/main/scala/chisel3/util/OneHot.scala:48:45
-  wire        _GEN_510 = io_enq_4_valid & (|_GEN_494);	// backend/src/zaqal/backend/issue/IssueQueue.scala:145:42, :149:27, :153:45
+                                                             ~(_GEN_509 & _GEN_493[14])};	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :185:{45,47}, src/main/scala/chisel3/util/Mux.scala:50:70, src/main/scala/chisel3/util/OneHot.scala:48:45
+  wire        _GEN_510 = io_enq_4_valid & (|_GEN_494);	// backend/src/zaqal/backend/issue/IssueQueue.scala:177:42, :181:27, :185:45
   wire [15:0] _GEN_511 = {12'h0, alloc_idx_4};	// src/main/scala/chisel3/util/Mux.scala:50:70, src/main/scala/chisel3/util/OneHot.scala:58:35
-  wire [15:0] _GEN_512 = ~(16'h1 << _GEN_511);	// backend/src/zaqal/backend/issue/IssueQueue.scala:153:47, src/main/scala/chisel3/util/OneHot.scala:58:35
-  wire [15:0] _GEN_513 = _GEN_494 & _GEN_512;	// backend/src/zaqal/backend/issue/IssueQueue.scala:153:{45,47}
+  wire [15:0] _GEN_512 = ~(16'h1 << _GEN_511);	// backend/src/zaqal/backend/issue/IssueQueue.scala:185:47, src/main/scala/chisel3/util/OneHot.scala:58:35
+  wire [15:0] _GEN_513 = _GEN_494 & _GEN_512;	// backend/src/zaqal/backend/issue/IssueQueue.scala:185:{45,47}
   wire [3:0]  alloc_idx_5 =
     _GEN_495 & _GEN_493[0] & _GEN_512[0]
       ? 4'h0
@@ -7021,99 +6793,99 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
                                                           ? 4'hD
                                                           : {3'h7,
                                                              ~(_GEN_509 & _GEN_493[14]
-                                                               & _GEN_512[14])};	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :153:{45,47}, src/main/scala/chisel3/util/Mux.scala:50:70, src/main/scala/chisel3/util/OneHot.scala:48:45
-  wire        _GEN_514 = io_enq_5_valid & (|_GEN_513);	// backend/src/zaqal/backend/issue/IssueQueue.scala:145:42, :149:27, :153:45
-  wire        _GEN_515 = _GEN_449 & alloc_idx_0 == 4'h0;	// backend/src/zaqal/backend/issue/IssueQueue.scala:149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+                                                               & _GEN_512[14])};	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :185:{45,47}, src/main/scala/chisel3/util/Mux.scala:50:70, src/main/scala/chisel3/util/OneHot.scala:48:45
+  wire        _GEN_514 = io_enq_5_valid & (|_GEN_513);	// backend/src/zaqal/backend/issue/IssueQueue.scala:177:42, :181:27, :185:45
+  wire        _GEN_515 = _GEN_449 & alloc_idx_0 == 4'h0;	// backend/src/zaqal/backend/issue/IssueQueue.scala:181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
   wire        _GEN_516 =
-    io_wakeup_0_valid & io_enq_0_bits_psrs1 == io_wakeup_0_pdest & (|io_enq_0_bits_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:173:30, :178:37, :179:{40,87,96,119}
+    io_wakeup_0_valid & io_enq_0_bits_psrs1 == io_wakeup_0_pdest & (|io_enq_0_bits_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:205:30, :210:37, :211:{40,87,96,119}
   wire        _GEN_517 =
-    io_wakeup_0_valid & io_enq_0_bits_psrs2 == io_wakeup_0_pdest & (|io_enq_0_bits_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:174:30, :178:37, :180:{40,87,96,119}
+    io_wakeup_0_valid & io_enq_0_bits_psrs2 == io_wakeup_0_pdest & (|io_enq_0_bits_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:206:30, :210:37, :212:{40,87,96,119}
   wire        _GEN_518 =
-    io_wakeup_0_valid & io_enq_0_bits_psrs3 == io_wakeup_0_pdest & (|io_enq_0_bits_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:175:30, :178:37, :181:{40,87,96,119}
+    io_wakeup_0_valid & io_enq_0_bits_psrs3 == io_wakeup_0_pdest & (|io_enq_0_bits_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:207:30, :210:37, :213:{40,87,96,119}
   wire        _GEN_519 =
     io_wakeup_1_valid
       ? io_enq_0_bits_psrs1 == io_wakeup_1_pdest & (|io_enq_0_bits_psrs1) | _GEN_516
         | io_rs1_ready_in_0
-      : _GEN_516 | io_rs1_ready_in_0;	// backend/src/zaqal/backend/issue/IssueQueue.scala:173:30, :178:37, :179:{40,63,87,96,119}
+      : _GEN_516 | io_rs1_ready_in_0;	// backend/src/zaqal/backend/issue/IssueQueue.scala:205:30, :210:37, :211:{40,63,87,96,119}
   wire        _GEN_520 =
     io_wakeup_1_valid
       ? io_enq_0_bits_psrs2 == io_wakeup_1_pdest & (|io_enq_0_bits_psrs2) | _GEN_517
         | io_rs2_ready_in_0
-      : _GEN_517 | io_rs2_ready_in_0;	// backend/src/zaqal/backend/issue/IssueQueue.scala:174:30, :178:37, :180:{40,63,87,96,119}
+      : _GEN_517 | io_rs2_ready_in_0;	// backend/src/zaqal/backend/issue/IssueQueue.scala:206:30, :210:37, :212:{40,63,87,96,119}
   wire        _GEN_521 =
     io_wakeup_1_valid
       ? io_enq_0_bits_psrs3 == io_wakeup_1_pdest & (|io_enq_0_bits_psrs3) | _GEN_518
         | io_rs3_ready_in_0
-      : _GEN_518 | io_rs3_ready_in_0;	// backend/src/zaqal/backend/issue/IssueQueue.scala:175:30, :178:37, :181:{40,63,87,96,119}
+      : _GEN_518 | io_rs3_ready_in_0;	// backend/src/zaqal/backend/issue/IssueQueue.scala:207:30, :210:37, :213:{40,63,87,96,119}
   wire        _GEN_522 =
-    io_wakeup_2_valid & io_enq_0_bits_psrs1 == io_wakeup_2_pdest & (|io_enq_0_bits_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :179:{40,87,96,119}
+    io_wakeup_2_valid & io_enq_0_bits_psrs1 == io_wakeup_2_pdest & (|io_enq_0_bits_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :211:{40,87,96,119}
   wire        _GEN_523 =
-    io_wakeup_2_valid & io_enq_0_bits_psrs2 == io_wakeup_2_pdest & (|io_enq_0_bits_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :180:{40,87,96,119}
+    io_wakeup_2_valid & io_enq_0_bits_psrs2 == io_wakeup_2_pdest & (|io_enq_0_bits_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :212:{40,87,96,119}
   wire        _GEN_524 =
-    io_wakeup_2_valid & io_enq_0_bits_psrs3 == io_wakeup_2_pdest & (|io_enq_0_bits_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :181:{40,87,96,119}
+    io_wakeup_2_valid & io_enq_0_bits_psrs3 == io_wakeup_2_pdest & (|io_enq_0_bits_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :213:{40,87,96,119}
   wire        _GEN_525 =
     io_wakeup_3_valid
       ? io_enq_0_bits_psrs1 == io_wakeup_3_pdest & (|io_enq_0_bits_psrs1) | _GEN_522
         | _GEN_519
-      : _GEN_522 | _GEN_519;	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :179:{40,63,87,96,119}
+      : _GEN_522 | _GEN_519;	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :211:{40,63,87,96,119}
   wire        _GEN_526 =
     io_wakeup_3_valid
       ? io_enq_0_bits_psrs2 == io_wakeup_3_pdest & (|io_enq_0_bits_psrs2) | _GEN_523
         | _GEN_520
-      : _GEN_523 | _GEN_520;	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :180:{40,63,87,96,119}
+      : _GEN_523 | _GEN_520;	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :212:{40,63,87,96,119}
   wire        _GEN_527 =
     io_wakeup_3_valid
       ? io_enq_0_bits_psrs3 == io_wakeup_3_pdest & (|io_enq_0_bits_psrs3) | _GEN_524
         | _GEN_521
-      : _GEN_524 | _GEN_521;	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :181:{40,63,87,96,119}
+      : _GEN_524 | _GEN_521;	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :213:{40,63,87,96,119}
   wire        _GEN_528 =
-    io_wakeup_4_valid & io_enq_0_bits_psrs1 == io_wakeup_4_pdest & (|io_enq_0_bits_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :179:{40,87,96,119}
+    io_wakeup_4_valid & io_enq_0_bits_psrs1 == io_wakeup_4_pdest & (|io_enq_0_bits_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :211:{40,87,96,119}
   wire        _GEN_529 =
-    io_wakeup_4_valid & io_enq_0_bits_psrs2 == io_wakeup_4_pdest & (|io_enq_0_bits_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :180:{40,87,96,119}
+    io_wakeup_4_valid & io_enq_0_bits_psrs2 == io_wakeup_4_pdest & (|io_enq_0_bits_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :212:{40,87,96,119}
   wire        _GEN_530 =
-    io_wakeup_4_valid & io_enq_0_bits_psrs3 == io_wakeup_4_pdest & (|io_enq_0_bits_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :181:{40,87,96,119}
+    io_wakeup_4_valid & io_enq_0_bits_psrs3 == io_wakeup_4_pdest & (|io_enq_0_bits_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :213:{40,87,96,119}
   wire        _GEN_531 =
     io_wakeup_5_valid
       ? io_enq_0_bits_psrs1 == io_wakeup_5_pdest & (|io_enq_0_bits_psrs1) | _GEN_528
         | _GEN_525
-      : _GEN_528 | _GEN_525;	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :179:{40,63,87,96,119}
+      : _GEN_528 | _GEN_525;	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :211:{40,63,87,96,119}
   wire        _GEN_532 =
     io_wakeup_5_valid
       ? io_enq_0_bits_psrs2 == io_wakeup_5_pdest & (|io_enq_0_bits_psrs2) | _GEN_529
         | _GEN_526
-      : _GEN_529 | _GEN_526;	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :180:{40,63,87,96,119}
+      : _GEN_529 | _GEN_526;	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :212:{40,63,87,96,119}
   wire        _GEN_533 =
     io_wakeup_5_valid
       ? io_enq_0_bits_psrs3 == io_wakeup_5_pdest & (|io_enq_0_bits_psrs3) | _GEN_530
         | _GEN_527
-      : _GEN_530 | _GEN_527;	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :181:{40,63,87,96,119}
+      : _GEN_530 | _GEN_527;	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :213:{40,63,87,96,119}
   wire        _GEN_534 =
-    io_wakeup_6_valid & io_enq_0_bits_psrs1 == io_wakeup_6_pdest & (|io_enq_0_bits_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :179:{40,87,96,119}
+    io_wakeup_6_valid & io_enq_0_bits_psrs1 == io_wakeup_6_pdest & (|io_enq_0_bits_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :211:{40,87,96,119}
   wire        _GEN_535 =
-    io_wakeup_6_valid & io_enq_0_bits_psrs2 == io_wakeup_6_pdest & (|io_enq_0_bits_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :180:{40,87,96,119}
+    io_wakeup_6_valid & io_enq_0_bits_psrs2 == io_wakeup_6_pdest & (|io_enq_0_bits_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :212:{40,87,96,119}
   wire        _GEN_536 =
-    io_wakeup_6_valid & io_enq_0_bits_psrs3 == io_wakeup_6_pdest & (|io_enq_0_bits_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :181:{40,87,96,119}
+    io_wakeup_6_valid & io_enq_0_bits_psrs3 == io_wakeup_6_pdest & (|io_enq_0_bits_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :213:{40,87,96,119}
   wire        _GEN_537 =
     io_wakeup_7_valid
       ? io_enq_0_bits_psrs1 == io_wakeup_7_pdest & (|io_enq_0_bits_psrs1) | _GEN_534
         | _GEN_531
-      : _GEN_534 | _GEN_531;	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :179:{40,63,87,96,119}
+      : _GEN_534 | _GEN_531;	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :211:{40,63,87,96,119}
   wire        _GEN_538 =
     io_wakeup_7_valid
       ? io_enq_0_bits_psrs2 == io_wakeup_7_pdest & (|io_enq_0_bits_psrs2) | _GEN_535
         | _GEN_532
-      : _GEN_535 | _GEN_532;	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :180:{40,63,87,96,119}
+      : _GEN_535 | _GEN_532;	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :212:{40,63,87,96,119}
   wire        _GEN_539 =
     io_wakeup_7_valid
       ? io_enq_0_bits_psrs3 == io_wakeup_7_pdest & (|io_enq_0_bits_psrs3) | _GEN_536
         | _GEN_533
-      : _GEN_536 | _GEN_533;	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :181:{40,63,87,96,119}
+      : _GEN_536 | _GEN_533;	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :213:{40,63,87,96,119}
   wire        _GEN_540 =
-    io_wakeup_8_valid & io_enq_0_bits_psrs1 == io_wakeup_8_pdest & (|io_enq_0_bits_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :179:{40,87,96,119}
+    io_wakeup_8_valid & io_enq_0_bits_psrs1 == io_wakeup_8_pdest & (|io_enq_0_bits_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :211:{40,87,96,119}
   wire        _GEN_541 =
-    io_wakeup_8_valid & io_enq_0_bits_psrs2 == io_wakeup_8_pdest & (|io_enq_0_bits_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :180:{40,87,96,119}
+    io_wakeup_8_valid & io_enq_0_bits_psrs2 == io_wakeup_8_pdest & (|io_enq_0_bits_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :212:{40,87,96,119}
   wire        _GEN_542 =
-    io_wakeup_8_valid & io_enq_0_bits_psrs3 == io_wakeup_8_pdest & (|io_enq_0_bits_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :181:{40,87,96,119}
+    io_wakeup_8_valid & io_enq_0_bits_psrs3 == io_wakeup_8_pdest & (|io_enq_0_bits_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :213:{40,87,96,119}
   wire        _GEN_543 =
     io_wakeup_12_valid & io_enq_0_bits_psrs1 == io_wakeup_12_pdest
     & (|io_enq_0_bits_psrs1) | io_wakeup_10_valid
@@ -7121,7 +6893,7 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
     | (io_wakeup_9_valid
          ? io_enq_0_bits_psrs1 == io_wakeup_9_pdest & (|io_enq_0_bits_psrs1) | _GEN_540
            | _GEN_537
-         : _GEN_540 | _GEN_537);	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :179:{40,63,87,96,119}
+         : _GEN_540 | _GEN_537);	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :211:{40,63,87,96,119}
   wire        _GEN_544 =
     io_wakeup_12_valid & io_enq_0_bits_psrs2 == io_wakeup_12_pdest
     & (|io_enq_0_bits_psrs2) | io_wakeup_10_valid
@@ -7129,7 +6901,7 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
     | (io_wakeup_9_valid
          ? io_enq_0_bits_psrs2 == io_wakeup_9_pdest & (|io_enq_0_bits_psrs2) | _GEN_541
            | _GEN_538
-         : _GEN_541 | _GEN_538);	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :180:{40,63,87,96,119}
+         : _GEN_541 | _GEN_538);	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :212:{40,63,87,96,119}
   wire        _GEN_545 =
     io_wakeup_12_valid & io_enq_0_bits_psrs3 == io_wakeup_12_pdest
     & (|io_enq_0_bits_psrs3) | io_wakeup_10_valid
@@ -7137,98 +6909,98 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
     | (io_wakeup_9_valid
          ? io_enq_0_bits_psrs3 == io_wakeup_9_pdest & (|io_enq_0_bits_psrs3) | _GEN_542
            | _GEN_539
-         : _GEN_542 | _GEN_539);	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :181:{40,63,87,96,119}
-  wire        _GEN_546 = _GEN_453 & alloc_idx_1 == 4'h0;	// backend/src/zaqal/backend/issue/IssueQueue.scala:149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+         : _GEN_542 | _GEN_539);	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :213:{40,63,87,96,119}
+  wire        _GEN_546 = _GEN_453 & alloc_idx_1 == 4'h0;	// backend/src/zaqal/backend/issue/IssueQueue.scala:181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
   wire        _GEN_547 =
-    io_wakeup_0_valid & io_enq_1_bits_psrs1 == io_wakeup_0_pdest & (|io_enq_1_bits_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:173:30, :178:37, :179:{40,87,96,119}
+    io_wakeup_0_valid & io_enq_1_bits_psrs1 == io_wakeup_0_pdest & (|io_enq_1_bits_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:205:30, :210:37, :211:{40,87,96,119}
   wire        _GEN_548 =
-    io_wakeup_0_valid & io_enq_1_bits_psrs2 == io_wakeup_0_pdest & (|io_enq_1_bits_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:174:30, :178:37, :180:{40,87,96,119}
+    io_wakeup_0_valid & io_enq_1_bits_psrs2 == io_wakeup_0_pdest & (|io_enq_1_bits_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:206:30, :210:37, :212:{40,87,96,119}
   wire        _GEN_549 =
-    io_wakeup_0_valid & io_enq_1_bits_psrs3 == io_wakeup_0_pdest & (|io_enq_1_bits_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:175:30, :178:37, :181:{40,87,96,119}
+    io_wakeup_0_valid & io_enq_1_bits_psrs3 == io_wakeup_0_pdest & (|io_enq_1_bits_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:207:30, :210:37, :213:{40,87,96,119}
   wire        _GEN_550 =
     io_wakeup_1_valid
       ? io_enq_1_bits_psrs1 == io_wakeup_1_pdest & (|io_enq_1_bits_psrs1) | _GEN_547
         | io_rs1_ready_in_1
-      : _GEN_547 | io_rs1_ready_in_1;	// backend/src/zaqal/backend/issue/IssueQueue.scala:173:30, :178:37, :179:{40,63,87,96,119}
+      : _GEN_547 | io_rs1_ready_in_1;	// backend/src/zaqal/backend/issue/IssueQueue.scala:205:30, :210:37, :211:{40,63,87,96,119}
   wire        _GEN_551 =
     io_wakeup_1_valid
       ? io_enq_1_bits_psrs2 == io_wakeup_1_pdest & (|io_enq_1_bits_psrs2) | _GEN_548
         | io_rs2_ready_in_1
-      : _GEN_548 | io_rs2_ready_in_1;	// backend/src/zaqal/backend/issue/IssueQueue.scala:174:30, :178:37, :180:{40,63,87,96,119}
+      : _GEN_548 | io_rs2_ready_in_1;	// backend/src/zaqal/backend/issue/IssueQueue.scala:206:30, :210:37, :212:{40,63,87,96,119}
   wire        _GEN_552 =
     io_wakeup_1_valid
       ? io_enq_1_bits_psrs3 == io_wakeup_1_pdest & (|io_enq_1_bits_psrs3) | _GEN_549
         | io_rs3_ready_in_1
-      : _GEN_549 | io_rs3_ready_in_1;	// backend/src/zaqal/backend/issue/IssueQueue.scala:175:30, :178:37, :181:{40,63,87,96,119}
+      : _GEN_549 | io_rs3_ready_in_1;	// backend/src/zaqal/backend/issue/IssueQueue.scala:207:30, :210:37, :213:{40,63,87,96,119}
   wire        _GEN_553 =
-    io_wakeup_2_valid & io_enq_1_bits_psrs1 == io_wakeup_2_pdest & (|io_enq_1_bits_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :179:{40,87,96,119}
+    io_wakeup_2_valid & io_enq_1_bits_psrs1 == io_wakeup_2_pdest & (|io_enq_1_bits_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :211:{40,87,96,119}
   wire        _GEN_554 =
-    io_wakeup_2_valid & io_enq_1_bits_psrs2 == io_wakeup_2_pdest & (|io_enq_1_bits_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :180:{40,87,96,119}
+    io_wakeup_2_valid & io_enq_1_bits_psrs2 == io_wakeup_2_pdest & (|io_enq_1_bits_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :212:{40,87,96,119}
   wire        _GEN_555 =
-    io_wakeup_2_valid & io_enq_1_bits_psrs3 == io_wakeup_2_pdest & (|io_enq_1_bits_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :181:{40,87,96,119}
+    io_wakeup_2_valid & io_enq_1_bits_psrs3 == io_wakeup_2_pdest & (|io_enq_1_bits_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :213:{40,87,96,119}
   wire        _GEN_556 =
     io_wakeup_3_valid
       ? io_enq_1_bits_psrs1 == io_wakeup_3_pdest & (|io_enq_1_bits_psrs1) | _GEN_553
         | _GEN_550
-      : _GEN_553 | _GEN_550;	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :179:{40,63,87,96,119}
+      : _GEN_553 | _GEN_550;	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :211:{40,63,87,96,119}
   wire        _GEN_557 =
     io_wakeup_3_valid
       ? io_enq_1_bits_psrs2 == io_wakeup_3_pdest & (|io_enq_1_bits_psrs2) | _GEN_554
         | _GEN_551
-      : _GEN_554 | _GEN_551;	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :180:{40,63,87,96,119}
+      : _GEN_554 | _GEN_551;	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :212:{40,63,87,96,119}
   wire        _GEN_558 =
     io_wakeup_3_valid
       ? io_enq_1_bits_psrs3 == io_wakeup_3_pdest & (|io_enq_1_bits_psrs3) | _GEN_555
         | _GEN_552
-      : _GEN_555 | _GEN_552;	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :181:{40,63,87,96,119}
+      : _GEN_555 | _GEN_552;	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :213:{40,63,87,96,119}
   wire        _GEN_559 =
-    io_wakeup_4_valid & io_enq_1_bits_psrs1 == io_wakeup_4_pdest & (|io_enq_1_bits_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :179:{40,87,96,119}
+    io_wakeup_4_valid & io_enq_1_bits_psrs1 == io_wakeup_4_pdest & (|io_enq_1_bits_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :211:{40,87,96,119}
   wire        _GEN_560 =
-    io_wakeup_4_valid & io_enq_1_bits_psrs2 == io_wakeup_4_pdest & (|io_enq_1_bits_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :180:{40,87,96,119}
+    io_wakeup_4_valid & io_enq_1_bits_psrs2 == io_wakeup_4_pdest & (|io_enq_1_bits_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :212:{40,87,96,119}
   wire        _GEN_561 =
-    io_wakeup_4_valid & io_enq_1_bits_psrs3 == io_wakeup_4_pdest & (|io_enq_1_bits_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :181:{40,87,96,119}
+    io_wakeup_4_valid & io_enq_1_bits_psrs3 == io_wakeup_4_pdest & (|io_enq_1_bits_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :213:{40,87,96,119}
   wire        _GEN_562 =
     io_wakeup_5_valid
       ? io_enq_1_bits_psrs1 == io_wakeup_5_pdest & (|io_enq_1_bits_psrs1) | _GEN_559
         | _GEN_556
-      : _GEN_559 | _GEN_556;	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :179:{40,63,87,96,119}
+      : _GEN_559 | _GEN_556;	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :211:{40,63,87,96,119}
   wire        _GEN_563 =
     io_wakeup_5_valid
       ? io_enq_1_bits_psrs2 == io_wakeup_5_pdest & (|io_enq_1_bits_psrs2) | _GEN_560
         | _GEN_557
-      : _GEN_560 | _GEN_557;	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :180:{40,63,87,96,119}
+      : _GEN_560 | _GEN_557;	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :212:{40,63,87,96,119}
   wire        _GEN_564 =
     io_wakeup_5_valid
       ? io_enq_1_bits_psrs3 == io_wakeup_5_pdest & (|io_enq_1_bits_psrs3) | _GEN_561
         | _GEN_558
-      : _GEN_561 | _GEN_558;	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :181:{40,63,87,96,119}
+      : _GEN_561 | _GEN_558;	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :213:{40,63,87,96,119}
   wire        _GEN_565 =
-    io_wakeup_6_valid & io_enq_1_bits_psrs1 == io_wakeup_6_pdest & (|io_enq_1_bits_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :179:{40,87,96,119}
+    io_wakeup_6_valid & io_enq_1_bits_psrs1 == io_wakeup_6_pdest & (|io_enq_1_bits_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :211:{40,87,96,119}
   wire        _GEN_566 =
-    io_wakeup_6_valid & io_enq_1_bits_psrs2 == io_wakeup_6_pdest & (|io_enq_1_bits_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :180:{40,87,96,119}
+    io_wakeup_6_valid & io_enq_1_bits_psrs2 == io_wakeup_6_pdest & (|io_enq_1_bits_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :212:{40,87,96,119}
   wire        _GEN_567 =
-    io_wakeup_6_valid & io_enq_1_bits_psrs3 == io_wakeup_6_pdest & (|io_enq_1_bits_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :181:{40,87,96,119}
+    io_wakeup_6_valid & io_enq_1_bits_psrs3 == io_wakeup_6_pdest & (|io_enq_1_bits_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :213:{40,87,96,119}
   wire        _GEN_568 =
     io_wakeup_7_valid
       ? io_enq_1_bits_psrs1 == io_wakeup_7_pdest & (|io_enq_1_bits_psrs1) | _GEN_565
         | _GEN_562
-      : _GEN_565 | _GEN_562;	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :179:{40,63,87,96,119}
+      : _GEN_565 | _GEN_562;	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :211:{40,63,87,96,119}
   wire        _GEN_569 =
     io_wakeup_7_valid
       ? io_enq_1_bits_psrs2 == io_wakeup_7_pdest & (|io_enq_1_bits_psrs2) | _GEN_566
         | _GEN_563
-      : _GEN_566 | _GEN_563;	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :180:{40,63,87,96,119}
+      : _GEN_566 | _GEN_563;	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :212:{40,63,87,96,119}
   wire        _GEN_570 =
     io_wakeup_7_valid
       ? io_enq_1_bits_psrs3 == io_wakeup_7_pdest & (|io_enq_1_bits_psrs3) | _GEN_567
         | _GEN_564
-      : _GEN_567 | _GEN_564;	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :181:{40,63,87,96,119}
+      : _GEN_567 | _GEN_564;	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :213:{40,63,87,96,119}
   wire        _GEN_571 =
-    io_wakeup_8_valid & io_enq_1_bits_psrs1 == io_wakeup_8_pdest & (|io_enq_1_bits_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :179:{40,87,96,119}
+    io_wakeup_8_valid & io_enq_1_bits_psrs1 == io_wakeup_8_pdest & (|io_enq_1_bits_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :211:{40,87,96,119}
   wire        _GEN_572 =
-    io_wakeup_8_valid & io_enq_1_bits_psrs2 == io_wakeup_8_pdest & (|io_enq_1_bits_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :180:{40,87,96,119}
+    io_wakeup_8_valid & io_enq_1_bits_psrs2 == io_wakeup_8_pdest & (|io_enq_1_bits_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :212:{40,87,96,119}
   wire        _GEN_573 =
-    io_wakeup_8_valid & io_enq_1_bits_psrs3 == io_wakeup_8_pdest & (|io_enq_1_bits_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :181:{40,87,96,119}
+    io_wakeup_8_valid & io_enq_1_bits_psrs3 == io_wakeup_8_pdest & (|io_enq_1_bits_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :213:{40,87,96,119}
   wire        _GEN_574 =
     io_wakeup_12_valid & io_enq_1_bits_psrs1 == io_wakeup_12_pdest
     & (|io_enq_1_bits_psrs1) | io_wakeup_10_valid
@@ -7236,7 +7008,7 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
     | (io_wakeup_9_valid
          ? io_enq_1_bits_psrs1 == io_wakeup_9_pdest & (|io_enq_1_bits_psrs1) | _GEN_571
            | _GEN_568
-         : _GEN_571 | _GEN_568);	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :179:{40,63,87,96,119}
+         : _GEN_571 | _GEN_568);	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :211:{40,63,87,96,119}
   wire        _GEN_575 =
     io_wakeup_12_valid & io_enq_1_bits_psrs2 == io_wakeup_12_pdest
     & (|io_enq_1_bits_psrs2) | io_wakeup_10_valid
@@ -7244,7 +7016,7 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
     | (io_wakeup_9_valid
          ? io_enq_1_bits_psrs2 == io_wakeup_9_pdest & (|io_enq_1_bits_psrs2) | _GEN_572
            | _GEN_569
-         : _GEN_572 | _GEN_569);	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :180:{40,63,87,96,119}
+         : _GEN_572 | _GEN_569);	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :212:{40,63,87,96,119}
   wire        _GEN_576 =
     io_wakeup_12_valid & io_enq_1_bits_psrs3 == io_wakeup_12_pdest
     & (|io_enq_1_bits_psrs3) | io_wakeup_10_valid
@@ -7252,98 +7024,98 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
     | (io_wakeup_9_valid
          ? io_enq_1_bits_psrs3 == io_wakeup_9_pdest & (|io_enq_1_bits_psrs3) | _GEN_573
            | _GEN_570
-         : _GEN_573 | _GEN_570);	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :181:{40,63,87,96,119}
-  wire        _GEN_577 = _GEN_472 & alloc_idx_2 == 4'h0;	// backend/src/zaqal/backend/issue/IssueQueue.scala:149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+         : _GEN_573 | _GEN_570);	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :213:{40,63,87,96,119}
+  wire        _GEN_577 = _GEN_472 & alloc_idx_2 == 4'h0;	// backend/src/zaqal/backend/issue/IssueQueue.scala:181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
   wire        _GEN_578 =
-    io_wakeup_0_valid & io_enq_2_bits_psrs1 == io_wakeup_0_pdest & (|io_enq_2_bits_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:173:30, :178:37, :179:{40,87,96,119}
+    io_wakeup_0_valid & io_enq_2_bits_psrs1 == io_wakeup_0_pdest & (|io_enq_2_bits_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:205:30, :210:37, :211:{40,87,96,119}
   wire        _GEN_579 =
-    io_wakeup_0_valid & io_enq_2_bits_psrs2 == io_wakeup_0_pdest & (|io_enq_2_bits_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:174:30, :178:37, :180:{40,87,96,119}
+    io_wakeup_0_valid & io_enq_2_bits_psrs2 == io_wakeup_0_pdest & (|io_enq_2_bits_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:206:30, :210:37, :212:{40,87,96,119}
   wire        _GEN_580 =
-    io_wakeup_0_valid & io_enq_2_bits_psrs3 == io_wakeup_0_pdest & (|io_enq_2_bits_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:175:30, :178:37, :181:{40,87,96,119}
+    io_wakeup_0_valid & io_enq_2_bits_psrs3 == io_wakeup_0_pdest & (|io_enq_2_bits_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:207:30, :210:37, :213:{40,87,96,119}
   wire        _GEN_581 =
     io_wakeup_1_valid
       ? io_enq_2_bits_psrs1 == io_wakeup_1_pdest & (|io_enq_2_bits_psrs1) | _GEN_578
         | io_rs1_ready_in_2
-      : _GEN_578 | io_rs1_ready_in_2;	// backend/src/zaqal/backend/issue/IssueQueue.scala:173:30, :178:37, :179:{40,63,87,96,119}
+      : _GEN_578 | io_rs1_ready_in_2;	// backend/src/zaqal/backend/issue/IssueQueue.scala:205:30, :210:37, :211:{40,63,87,96,119}
   wire        _GEN_582 =
     io_wakeup_1_valid
       ? io_enq_2_bits_psrs2 == io_wakeup_1_pdest & (|io_enq_2_bits_psrs2) | _GEN_579
         | io_rs2_ready_in_2
-      : _GEN_579 | io_rs2_ready_in_2;	// backend/src/zaqal/backend/issue/IssueQueue.scala:174:30, :178:37, :180:{40,63,87,96,119}
+      : _GEN_579 | io_rs2_ready_in_2;	// backend/src/zaqal/backend/issue/IssueQueue.scala:206:30, :210:37, :212:{40,63,87,96,119}
   wire        _GEN_583 =
     io_wakeup_1_valid
       ? io_enq_2_bits_psrs3 == io_wakeup_1_pdest & (|io_enq_2_bits_psrs3) | _GEN_580
         | io_rs3_ready_in_2
-      : _GEN_580 | io_rs3_ready_in_2;	// backend/src/zaqal/backend/issue/IssueQueue.scala:175:30, :178:37, :181:{40,63,87,96,119}
+      : _GEN_580 | io_rs3_ready_in_2;	// backend/src/zaqal/backend/issue/IssueQueue.scala:207:30, :210:37, :213:{40,63,87,96,119}
   wire        _GEN_584 =
-    io_wakeup_2_valid & io_enq_2_bits_psrs1 == io_wakeup_2_pdest & (|io_enq_2_bits_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :179:{40,87,96,119}
+    io_wakeup_2_valid & io_enq_2_bits_psrs1 == io_wakeup_2_pdest & (|io_enq_2_bits_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :211:{40,87,96,119}
   wire        _GEN_585 =
-    io_wakeup_2_valid & io_enq_2_bits_psrs2 == io_wakeup_2_pdest & (|io_enq_2_bits_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :180:{40,87,96,119}
+    io_wakeup_2_valid & io_enq_2_bits_psrs2 == io_wakeup_2_pdest & (|io_enq_2_bits_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :212:{40,87,96,119}
   wire        _GEN_586 =
-    io_wakeup_2_valid & io_enq_2_bits_psrs3 == io_wakeup_2_pdest & (|io_enq_2_bits_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :181:{40,87,96,119}
+    io_wakeup_2_valid & io_enq_2_bits_psrs3 == io_wakeup_2_pdest & (|io_enq_2_bits_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :213:{40,87,96,119}
   wire        _GEN_587 =
     io_wakeup_3_valid
       ? io_enq_2_bits_psrs1 == io_wakeup_3_pdest & (|io_enq_2_bits_psrs1) | _GEN_584
         | _GEN_581
-      : _GEN_584 | _GEN_581;	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :179:{40,63,87,96,119}
+      : _GEN_584 | _GEN_581;	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :211:{40,63,87,96,119}
   wire        _GEN_588 =
     io_wakeup_3_valid
       ? io_enq_2_bits_psrs2 == io_wakeup_3_pdest & (|io_enq_2_bits_psrs2) | _GEN_585
         | _GEN_582
-      : _GEN_585 | _GEN_582;	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :180:{40,63,87,96,119}
+      : _GEN_585 | _GEN_582;	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :212:{40,63,87,96,119}
   wire        _GEN_589 =
     io_wakeup_3_valid
       ? io_enq_2_bits_psrs3 == io_wakeup_3_pdest & (|io_enq_2_bits_psrs3) | _GEN_586
         | _GEN_583
-      : _GEN_586 | _GEN_583;	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :181:{40,63,87,96,119}
+      : _GEN_586 | _GEN_583;	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :213:{40,63,87,96,119}
   wire        _GEN_590 =
-    io_wakeup_4_valid & io_enq_2_bits_psrs1 == io_wakeup_4_pdest & (|io_enq_2_bits_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :179:{40,87,96,119}
+    io_wakeup_4_valid & io_enq_2_bits_psrs1 == io_wakeup_4_pdest & (|io_enq_2_bits_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :211:{40,87,96,119}
   wire        _GEN_591 =
-    io_wakeup_4_valid & io_enq_2_bits_psrs2 == io_wakeup_4_pdest & (|io_enq_2_bits_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :180:{40,87,96,119}
+    io_wakeup_4_valid & io_enq_2_bits_psrs2 == io_wakeup_4_pdest & (|io_enq_2_bits_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :212:{40,87,96,119}
   wire        _GEN_592 =
-    io_wakeup_4_valid & io_enq_2_bits_psrs3 == io_wakeup_4_pdest & (|io_enq_2_bits_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :181:{40,87,96,119}
+    io_wakeup_4_valid & io_enq_2_bits_psrs3 == io_wakeup_4_pdest & (|io_enq_2_bits_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :213:{40,87,96,119}
   wire        _GEN_593 =
     io_wakeup_5_valid
       ? io_enq_2_bits_psrs1 == io_wakeup_5_pdest & (|io_enq_2_bits_psrs1) | _GEN_590
         | _GEN_587
-      : _GEN_590 | _GEN_587;	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :179:{40,63,87,96,119}
+      : _GEN_590 | _GEN_587;	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :211:{40,63,87,96,119}
   wire        _GEN_594 =
     io_wakeup_5_valid
       ? io_enq_2_bits_psrs2 == io_wakeup_5_pdest & (|io_enq_2_bits_psrs2) | _GEN_591
         | _GEN_588
-      : _GEN_591 | _GEN_588;	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :180:{40,63,87,96,119}
+      : _GEN_591 | _GEN_588;	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :212:{40,63,87,96,119}
   wire        _GEN_595 =
     io_wakeup_5_valid
       ? io_enq_2_bits_psrs3 == io_wakeup_5_pdest & (|io_enq_2_bits_psrs3) | _GEN_592
         | _GEN_589
-      : _GEN_592 | _GEN_589;	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :181:{40,63,87,96,119}
+      : _GEN_592 | _GEN_589;	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :213:{40,63,87,96,119}
   wire        _GEN_596 =
-    io_wakeup_6_valid & io_enq_2_bits_psrs1 == io_wakeup_6_pdest & (|io_enq_2_bits_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :179:{40,87,96,119}
+    io_wakeup_6_valid & io_enq_2_bits_psrs1 == io_wakeup_6_pdest & (|io_enq_2_bits_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :211:{40,87,96,119}
   wire        _GEN_597 =
-    io_wakeup_6_valid & io_enq_2_bits_psrs2 == io_wakeup_6_pdest & (|io_enq_2_bits_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :180:{40,87,96,119}
+    io_wakeup_6_valid & io_enq_2_bits_psrs2 == io_wakeup_6_pdest & (|io_enq_2_bits_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :212:{40,87,96,119}
   wire        _GEN_598 =
-    io_wakeup_6_valid & io_enq_2_bits_psrs3 == io_wakeup_6_pdest & (|io_enq_2_bits_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :181:{40,87,96,119}
+    io_wakeup_6_valid & io_enq_2_bits_psrs3 == io_wakeup_6_pdest & (|io_enq_2_bits_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :213:{40,87,96,119}
   wire        _GEN_599 =
     io_wakeup_7_valid
       ? io_enq_2_bits_psrs1 == io_wakeup_7_pdest & (|io_enq_2_bits_psrs1) | _GEN_596
         | _GEN_593
-      : _GEN_596 | _GEN_593;	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :179:{40,63,87,96,119}
+      : _GEN_596 | _GEN_593;	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :211:{40,63,87,96,119}
   wire        _GEN_600 =
     io_wakeup_7_valid
       ? io_enq_2_bits_psrs2 == io_wakeup_7_pdest & (|io_enq_2_bits_psrs2) | _GEN_597
         | _GEN_594
-      : _GEN_597 | _GEN_594;	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :180:{40,63,87,96,119}
+      : _GEN_597 | _GEN_594;	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :212:{40,63,87,96,119}
   wire        _GEN_601 =
     io_wakeup_7_valid
       ? io_enq_2_bits_psrs3 == io_wakeup_7_pdest & (|io_enq_2_bits_psrs3) | _GEN_598
         | _GEN_595
-      : _GEN_598 | _GEN_595;	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :181:{40,63,87,96,119}
+      : _GEN_598 | _GEN_595;	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :213:{40,63,87,96,119}
   wire        _GEN_602 =
-    io_wakeup_8_valid & io_enq_2_bits_psrs1 == io_wakeup_8_pdest & (|io_enq_2_bits_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :179:{40,87,96,119}
+    io_wakeup_8_valid & io_enq_2_bits_psrs1 == io_wakeup_8_pdest & (|io_enq_2_bits_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :211:{40,87,96,119}
   wire        _GEN_603 =
-    io_wakeup_8_valid & io_enq_2_bits_psrs2 == io_wakeup_8_pdest & (|io_enq_2_bits_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :180:{40,87,96,119}
+    io_wakeup_8_valid & io_enq_2_bits_psrs2 == io_wakeup_8_pdest & (|io_enq_2_bits_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :212:{40,87,96,119}
   wire        _GEN_604 =
-    io_wakeup_8_valid & io_enq_2_bits_psrs3 == io_wakeup_8_pdest & (|io_enq_2_bits_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :181:{40,87,96,119}
+    io_wakeup_8_valid & io_enq_2_bits_psrs3 == io_wakeup_8_pdest & (|io_enq_2_bits_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :213:{40,87,96,119}
   wire        _GEN_605 =
     io_wakeup_12_valid & io_enq_2_bits_psrs1 == io_wakeup_12_pdest
     & (|io_enq_2_bits_psrs1) | io_wakeup_10_valid
@@ -7351,7 +7123,7 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
     | (io_wakeup_9_valid
          ? io_enq_2_bits_psrs1 == io_wakeup_9_pdest & (|io_enq_2_bits_psrs1) | _GEN_602
            | _GEN_599
-         : _GEN_602 | _GEN_599);	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :179:{40,63,87,96,119}
+         : _GEN_602 | _GEN_599);	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :211:{40,63,87,96,119}
   wire        _GEN_606 =
     io_wakeup_12_valid & io_enq_2_bits_psrs2 == io_wakeup_12_pdest
     & (|io_enq_2_bits_psrs2) | io_wakeup_10_valid
@@ -7359,7 +7131,7 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
     | (io_wakeup_9_valid
          ? io_enq_2_bits_psrs2 == io_wakeup_9_pdest & (|io_enq_2_bits_psrs2) | _GEN_603
            | _GEN_600
-         : _GEN_603 | _GEN_600);	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :180:{40,63,87,96,119}
+         : _GEN_603 | _GEN_600);	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :212:{40,63,87,96,119}
   wire        _GEN_607 =
     io_wakeup_12_valid & io_enq_2_bits_psrs3 == io_wakeup_12_pdest
     & (|io_enq_2_bits_psrs3) | io_wakeup_10_valid
@@ -7367,98 +7139,98 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
     | (io_wakeup_9_valid
          ? io_enq_2_bits_psrs3 == io_wakeup_9_pdest & (|io_enq_2_bits_psrs3) | _GEN_604
            | _GEN_601
-         : _GEN_604 | _GEN_601);	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :181:{40,63,87,96,119}
-  wire        _GEN_608 = _GEN_491 & alloc_idx_3 == 4'h0;	// backend/src/zaqal/backend/issue/IssueQueue.scala:149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+         : _GEN_604 | _GEN_601);	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :213:{40,63,87,96,119}
+  wire        _GEN_608 = _GEN_491 & alloc_idx_3 == 4'h0;	// backend/src/zaqal/backend/issue/IssueQueue.scala:181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
   wire        _GEN_609 =
-    io_wakeup_0_valid & io_enq_3_bits_psrs1 == io_wakeup_0_pdest & (|io_enq_3_bits_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:173:30, :178:37, :179:{40,87,96,119}
+    io_wakeup_0_valid & io_enq_3_bits_psrs1 == io_wakeup_0_pdest & (|io_enq_3_bits_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:205:30, :210:37, :211:{40,87,96,119}
   wire        _GEN_610 =
-    io_wakeup_0_valid & io_enq_3_bits_psrs2 == io_wakeup_0_pdest & (|io_enq_3_bits_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:174:30, :178:37, :180:{40,87,96,119}
+    io_wakeup_0_valid & io_enq_3_bits_psrs2 == io_wakeup_0_pdest & (|io_enq_3_bits_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:206:30, :210:37, :212:{40,87,96,119}
   wire        _GEN_611 =
-    io_wakeup_0_valid & io_enq_3_bits_psrs3 == io_wakeup_0_pdest & (|io_enq_3_bits_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:175:30, :178:37, :181:{40,87,96,119}
+    io_wakeup_0_valid & io_enq_3_bits_psrs3 == io_wakeup_0_pdest & (|io_enq_3_bits_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:207:30, :210:37, :213:{40,87,96,119}
   wire        _GEN_612 =
     io_wakeup_1_valid
       ? io_enq_3_bits_psrs1 == io_wakeup_1_pdest & (|io_enq_3_bits_psrs1) | _GEN_609
         | io_rs1_ready_in_3
-      : _GEN_609 | io_rs1_ready_in_3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:173:30, :178:37, :179:{40,63,87,96,119}
+      : _GEN_609 | io_rs1_ready_in_3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:205:30, :210:37, :211:{40,63,87,96,119}
   wire        _GEN_613 =
     io_wakeup_1_valid
       ? io_enq_3_bits_psrs2 == io_wakeup_1_pdest & (|io_enq_3_bits_psrs2) | _GEN_610
         | io_rs2_ready_in_3
-      : _GEN_610 | io_rs2_ready_in_3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:174:30, :178:37, :180:{40,63,87,96,119}
+      : _GEN_610 | io_rs2_ready_in_3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:206:30, :210:37, :212:{40,63,87,96,119}
   wire        _GEN_614 =
     io_wakeup_1_valid
       ? io_enq_3_bits_psrs3 == io_wakeup_1_pdest & (|io_enq_3_bits_psrs3) | _GEN_611
         | io_rs3_ready_in_3
-      : _GEN_611 | io_rs3_ready_in_3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:175:30, :178:37, :181:{40,63,87,96,119}
+      : _GEN_611 | io_rs3_ready_in_3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:207:30, :210:37, :213:{40,63,87,96,119}
   wire        _GEN_615 =
-    io_wakeup_2_valid & io_enq_3_bits_psrs1 == io_wakeup_2_pdest & (|io_enq_3_bits_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :179:{40,87,96,119}
+    io_wakeup_2_valid & io_enq_3_bits_psrs1 == io_wakeup_2_pdest & (|io_enq_3_bits_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :211:{40,87,96,119}
   wire        _GEN_616 =
-    io_wakeup_2_valid & io_enq_3_bits_psrs2 == io_wakeup_2_pdest & (|io_enq_3_bits_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :180:{40,87,96,119}
+    io_wakeup_2_valid & io_enq_3_bits_psrs2 == io_wakeup_2_pdest & (|io_enq_3_bits_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :212:{40,87,96,119}
   wire        _GEN_617 =
-    io_wakeup_2_valid & io_enq_3_bits_psrs3 == io_wakeup_2_pdest & (|io_enq_3_bits_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :181:{40,87,96,119}
+    io_wakeup_2_valid & io_enq_3_bits_psrs3 == io_wakeup_2_pdest & (|io_enq_3_bits_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :213:{40,87,96,119}
   wire        _GEN_618 =
     io_wakeup_3_valid
       ? io_enq_3_bits_psrs1 == io_wakeup_3_pdest & (|io_enq_3_bits_psrs1) | _GEN_615
         | _GEN_612
-      : _GEN_615 | _GEN_612;	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :179:{40,63,87,96,119}
+      : _GEN_615 | _GEN_612;	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :211:{40,63,87,96,119}
   wire        _GEN_619 =
     io_wakeup_3_valid
       ? io_enq_3_bits_psrs2 == io_wakeup_3_pdest & (|io_enq_3_bits_psrs2) | _GEN_616
         | _GEN_613
-      : _GEN_616 | _GEN_613;	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :180:{40,63,87,96,119}
+      : _GEN_616 | _GEN_613;	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :212:{40,63,87,96,119}
   wire        _GEN_620 =
     io_wakeup_3_valid
       ? io_enq_3_bits_psrs3 == io_wakeup_3_pdest & (|io_enq_3_bits_psrs3) | _GEN_617
         | _GEN_614
-      : _GEN_617 | _GEN_614;	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :181:{40,63,87,96,119}
+      : _GEN_617 | _GEN_614;	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :213:{40,63,87,96,119}
   wire        _GEN_621 =
-    io_wakeup_4_valid & io_enq_3_bits_psrs1 == io_wakeup_4_pdest & (|io_enq_3_bits_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :179:{40,87,96,119}
+    io_wakeup_4_valid & io_enq_3_bits_psrs1 == io_wakeup_4_pdest & (|io_enq_3_bits_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :211:{40,87,96,119}
   wire        _GEN_622 =
-    io_wakeup_4_valid & io_enq_3_bits_psrs2 == io_wakeup_4_pdest & (|io_enq_3_bits_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :180:{40,87,96,119}
+    io_wakeup_4_valid & io_enq_3_bits_psrs2 == io_wakeup_4_pdest & (|io_enq_3_bits_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :212:{40,87,96,119}
   wire        _GEN_623 =
-    io_wakeup_4_valid & io_enq_3_bits_psrs3 == io_wakeup_4_pdest & (|io_enq_3_bits_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :181:{40,87,96,119}
+    io_wakeup_4_valid & io_enq_3_bits_psrs3 == io_wakeup_4_pdest & (|io_enq_3_bits_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :213:{40,87,96,119}
   wire        _GEN_624 =
     io_wakeup_5_valid
       ? io_enq_3_bits_psrs1 == io_wakeup_5_pdest & (|io_enq_3_bits_psrs1) | _GEN_621
         | _GEN_618
-      : _GEN_621 | _GEN_618;	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :179:{40,63,87,96,119}
+      : _GEN_621 | _GEN_618;	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :211:{40,63,87,96,119}
   wire        _GEN_625 =
     io_wakeup_5_valid
       ? io_enq_3_bits_psrs2 == io_wakeup_5_pdest & (|io_enq_3_bits_psrs2) | _GEN_622
         | _GEN_619
-      : _GEN_622 | _GEN_619;	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :180:{40,63,87,96,119}
+      : _GEN_622 | _GEN_619;	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :212:{40,63,87,96,119}
   wire        _GEN_626 =
     io_wakeup_5_valid
       ? io_enq_3_bits_psrs3 == io_wakeup_5_pdest & (|io_enq_3_bits_psrs3) | _GEN_623
         | _GEN_620
-      : _GEN_623 | _GEN_620;	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :181:{40,63,87,96,119}
+      : _GEN_623 | _GEN_620;	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :213:{40,63,87,96,119}
   wire        _GEN_627 =
-    io_wakeup_6_valid & io_enq_3_bits_psrs1 == io_wakeup_6_pdest & (|io_enq_3_bits_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :179:{40,87,96,119}
+    io_wakeup_6_valid & io_enq_3_bits_psrs1 == io_wakeup_6_pdest & (|io_enq_3_bits_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :211:{40,87,96,119}
   wire        _GEN_628 =
-    io_wakeup_6_valid & io_enq_3_bits_psrs2 == io_wakeup_6_pdest & (|io_enq_3_bits_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :180:{40,87,96,119}
+    io_wakeup_6_valid & io_enq_3_bits_psrs2 == io_wakeup_6_pdest & (|io_enq_3_bits_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :212:{40,87,96,119}
   wire        _GEN_629 =
-    io_wakeup_6_valid & io_enq_3_bits_psrs3 == io_wakeup_6_pdest & (|io_enq_3_bits_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :181:{40,87,96,119}
+    io_wakeup_6_valid & io_enq_3_bits_psrs3 == io_wakeup_6_pdest & (|io_enq_3_bits_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :213:{40,87,96,119}
   wire        _GEN_630 =
     io_wakeup_7_valid
       ? io_enq_3_bits_psrs1 == io_wakeup_7_pdest & (|io_enq_3_bits_psrs1) | _GEN_627
         | _GEN_624
-      : _GEN_627 | _GEN_624;	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :179:{40,63,87,96,119}
+      : _GEN_627 | _GEN_624;	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :211:{40,63,87,96,119}
   wire        _GEN_631 =
     io_wakeup_7_valid
       ? io_enq_3_bits_psrs2 == io_wakeup_7_pdest & (|io_enq_3_bits_psrs2) | _GEN_628
         | _GEN_625
-      : _GEN_628 | _GEN_625;	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :180:{40,63,87,96,119}
+      : _GEN_628 | _GEN_625;	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :212:{40,63,87,96,119}
   wire        _GEN_632 =
     io_wakeup_7_valid
       ? io_enq_3_bits_psrs3 == io_wakeup_7_pdest & (|io_enq_3_bits_psrs3) | _GEN_629
         | _GEN_626
-      : _GEN_629 | _GEN_626;	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :181:{40,63,87,96,119}
+      : _GEN_629 | _GEN_626;	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :213:{40,63,87,96,119}
   wire        _GEN_633 =
-    io_wakeup_8_valid & io_enq_3_bits_psrs1 == io_wakeup_8_pdest & (|io_enq_3_bits_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :179:{40,87,96,119}
+    io_wakeup_8_valid & io_enq_3_bits_psrs1 == io_wakeup_8_pdest & (|io_enq_3_bits_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :211:{40,87,96,119}
   wire        _GEN_634 =
-    io_wakeup_8_valid & io_enq_3_bits_psrs2 == io_wakeup_8_pdest & (|io_enq_3_bits_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :180:{40,87,96,119}
+    io_wakeup_8_valid & io_enq_3_bits_psrs2 == io_wakeup_8_pdest & (|io_enq_3_bits_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :212:{40,87,96,119}
   wire        _GEN_635 =
-    io_wakeup_8_valid & io_enq_3_bits_psrs3 == io_wakeup_8_pdest & (|io_enq_3_bits_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :181:{40,87,96,119}
+    io_wakeup_8_valid & io_enq_3_bits_psrs3 == io_wakeup_8_pdest & (|io_enq_3_bits_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :213:{40,87,96,119}
   wire        _GEN_636 =
     io_wakeup_12_valid & io_enq_3_bits_psrs1 == io_wakeup_12_pdest
     & (|io_enq_3_bits_psrs1) | io_wakeup_10_valid
@@ -7466,7 +7238,7 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
     | (io_wakeup_9_valid
          ? io_enq_3_bits_psrs1 == io_wakeup_9_pdest & (|io_enq_3_bits_psrs1) | _GEN_633
            | _GEN_630
-         : _GEN_633 | _GEN_630);	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :179:{40,63,87,96,119}
+         : _GEN_633 | _GEN_630);	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :211:{40,63,87,96,119}
   wire        _GEN_637 =
     io_wakeup_12_valid & io_enq_3_bits_psrs2 == io_wakeup_12_pdest
     & (|io_enq_3_bits_psrs2) | io_wakeup_10_valid
@@ -7474,7 +7246,7 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
     | (io_wakeup_9_valid
          ? io_enq_3_bits_psrs2 == io_wakeup_9_pdest & (|io_enq_3_bits_psrs2) | _GEN_634
            | _GEN_631
-         : _GEN_634 | _GEN_631);	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :180:{40,63,87,96,119}
+         : _GEN_634 | _GEN_631);	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :212:{40,63,87,96,119}
   wire        _GEN_638 =
     io_wakeup_12_valid & io_enq_3_bits_psrs3 == io_wakeup_12_pdest
     & (|io_enq_3_bits_psrs3) | io_wakeup_10_valid
@@ -7482,98 +7254,98 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
     | (io_wakeup_9_valid
          ? io_enq_3_bits_psrs3 == io_wakeup_9_pdest & (|io_enq_3_bits_psrs3) | _GEN_635
            | _GEN_632
-         : _GEN_635 | _GEN_632);	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :181:{40,63,87,96,119}
-  wire        _GEN_639 = _GEN_510 & alloc_idx_4 == 4'h0;	// backend/src/zaqal/backend/issue/IssueQueue.scala:149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+         : _GEN_635 | _GEN_632);	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :213:{40,63,87,96,119}
+  wire        _GEN_639 = _GEN_510 & alloc_idx_4 == 4'h0;	// backend/src/zaqal/backend/issue/IssueQueue.scala:181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
   wire        _GEN_640 =
-    io_wakeup_0_valid & io_enq_4_bits_psrs1 == io_wakeup_0_pdest & (|io_enq_4_bits_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:173:30, :178:37, :179:{40,87,96,119}
+    io_wakeup_0_valid & io_enq_4_bits_psrs1 == io_wakeup_0_pdest & (|io_enq_4_bits_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:205:30, :210:37, :211:{40,87,96,119}
   wire        _GEN_641 =
-    io_wakeup_0_valid & io_enq_4_bits_psrs2 == io_wakeup_0_pdest & (|io_enq_4_bits_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:174:30, :178:37, :180:{40,87,96,119}
+    io_wakeup_0_valid & io_enq_4_bits_psrs2 == io_wakeup_0_pdest & (|io_enq_4_bits_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:206:30, :210:37, :212:{40,87,96,119}
   wire        _GEN_642 =
-    io_wakeup_0_valid & io_enq_4_bits_psrs3 == io_wakeup_0_pdest & (|io_enq_4_bits_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:175:30, :178:37, :181:{40,87,96,119}
+    io_wakeup_0_valid & io_enq_4_bits_psrs3 == io_wakeup_0_pdest & (|io_enq_4_bits_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:207:30, :210:37, :213:{40,87,96,119}
   wire        _GEN_643 =
     io_wakeup_1_valid
       ? io_enq_4_bits_psrs1 == io_wakeup_1_pdest & (|io_enq_4_bits_psrs1) | _GEN_640
         | io_rs1_ready_in_4
-      : _GEN_640 | io_rs1_ready_in_4;	// backend/src/zaqal/backend/issue/IssueQueue.scala:173:30, :178:37, :179:{40,63,87,96,119}
+      : _GEN_640 | io_rs1_ready_in_4;	// backend/src/zaqal/backend/issue/IssueQueue.scala:205:30, :210:37, :211:{40,63,87,96,119}
   wire        _GEN_644 =
     io_wakeup_1_valid
       ? io_enq_4_bits_psrs2 == io_wakeup_1_pdest & (|io_enq_4_bits_psrs2) | _GEN_641
         | io_rs2_ready_in_4
-      : _GEN_641 | io_rs2_ready_in_4;	// backend/src/zaqal/backend/issue/IssueQueue.scala:174:30, :178:37, :180:{40,63,87,96,119}
+      : _GEN_641 | io_rs2_ready_in_4;	// backend/src/zaqal/backend/issue/IssueQueue.scala:206:30, :210:37, :212:{40,63,87,96,119}
   wire        _GEN_645 =
     io_wakeup_1_valid
       ? io_enq_4_bits_psrs3 == io_wakeup_1_pdest & (|io_enq_4_bits_psrs3) | _GEN_642
         | io_rs3_ready_in_4
-      : _GEN_642 | io_rs3_ready_in_4;	// backend/src/zaqal/backend/issue/IssueQueue.scala:175:30, :178:37, :181:{40,63,87,96,119}
+      : _GEN_642 | io_rs3_ready_in_4;	// backend/src/zaqal/backend/issue/IssueQueue.scala:207:30, :210:37, :213:{40,63,87,96,119}
   wire        _GEN_646 =
-    io_wakeup_2_valid & io_enq_4_bits_psrs1 == io_wakeup_2_pdest & (|io_enq_4_bits_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :179:{40,87,96,119}
+    io_wakeup_2_valid & io_enq_4_bits_psrs1 == io_wakeup_2_pdest & (|io_enq_4_bits_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :211:{40,87,96,119}
   wire        _GEN_647 =
-    io_wakeup_2_valid & io_enq_4_bits_psrs2 == io_wakeup_2_pdest & (|io_enq_4_bits_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :180:{40,87,96,119}
+    io_wakeup_2_valid & io_enq_4_bits_psrs2 == io_wakeup_2_pdest & (|io_enq_4_bits_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :212:{40,87,96,119}
   wire        _GEN_648 =
-    io_wakeup_2_valid & io_enq_4_bits_psrs3 == io_wakeup_2_pdest & (|io_enq_4_bits_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :181:{40,87,96,119}
+    io_wakeup_2_valid & io_enq_4_bits_psrs3 == io_wakeup_2_pdest & (|io_enq_4_bits_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :213:{40,87,96,119}
   wire        _GEN_649 =
     io_wakeup_3_valid
       ? io_enq_4_bits_psrs1 == io_wakeup_3_pdest & (|io_enq_4_bits_psrs1) | _GEN_646
         | _GEN_643
-      : _GEN_646 | _GEN_643;	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :179:{40,63,87,96,119}
+      : _GEN_646 | _GEN_643;	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :211:{40,63,87,96,119}
   wire        _GEN_650 =
     io_wakeup_3_valid
       ? io_enq_4_bits_psrs2 == io_wakeup_3_pdest & (|io_enq_4_bits_psrs2) | _GEN_647
         | _GEN_644
-      : _GEN_647 | _GEN_644;	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :180:{40,63,87,96,119}
+      : _GEN_647 | _GEN_644;	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :212:{40,63,87,96,119}
   wire        _GEN_651 =
     io_wakeup_3_valid
       ? io_enq_4_bits_psrs3 == io_wakeup_3_pdest & (|io_enq_4_bits_psrs3) | _GEN_648
         | _GEN_645
-      : _GEN_648 | _GEN_645;	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :181:{40,63,87,96,119}
+      : _GEN_648 | _GEN_645;	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :213:{40,63,87,96,119}
   wire        _GEN_652 =
-    io_wakeup_4_valid & io_enq_4_bits_psrs1 == io_wakeup_4_pdest & (|io_enq_4_bits_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :179:{40,87,96,119}
+    io_wakeup_4_valid & io_enq_4_bits_psrs1 == io_wakeup_4_pdest & (|io_enq_4_bits_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :211:{40,87,96,119}
   wire        _GEN_653 =
-    io_wakeup_4_valid & io_enq_4_bits_psrs2 == io_wakeup_4_pdest & (|io_enq_4_bits_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :180:{40,87,96,119}
+    io_wakeup_4_valid & io_enq_4_bits_psrs2 == io_wakeup_4_pdest & (|io_enq_4_bits_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :212:{40,87,96,119}
   wire        _GEN_654 =
-    io_wakeup_4_valid & io_enq_4_bits_psrs3 == io_wakeup_4_pdest & (|io_enq_4_bits_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :181:{40,87,96,119}
+    io_wakeup_4_valid & io_enq_4_bits_psrs3 == io_wakeup_4_pdest & (|io_enq_4_bits_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :213:{40,87,96,119}
   wire        _GEN_655 =
     io_wakeup_5_valid
       ? io_enq_4_bits_psrs1 == io_wakeup_5_pdest & (|io_enq_4_bits_psrs1) | _GEN_652
         | _GEN_649
-      : _GEN_652 | _GEN_649;	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :179:{40,63,87,96,119}
+      : _GEN_652 | _GEN_649;	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :211:{40,63,87,96,119}
   wire        _GEN_656 =
     io_wakeup_5_valid
       ? io_enq_4_bits_psrs2 == io_wakeup_5_pdest & (|io_enq_4_bits_psrs2) | _GEN_653
         | _GEN_650
-      : _GEN_653 | _GEN_650;	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :180:{40,63,87,96,119}
+      : _GEN_653 | _GEN_650;	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :212:{40,63,87,96,119}
   wire        _GEN_657 =
     io_wakeup_5_valid
       ? io_enq_4_bits_psrs3 == io_wakeup_5_pdest & (|io_enq_4_bits_psrs3) | _GEN_654
         | _GEN_651
-      : _GEN_654 | _GEN_651;	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :181:{40,63,87,96,119}
+      : _GEN_654 | _GEN_651;	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :213:{40,63,87,96,119}
   wire        _GEN_658 =
-    io_wakeup_6_valid & io_enq_4_bits_psrs1 == io_wakeup_6_pdest & (|io_enq_4_bits_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :179:{40,87,96,119}
+    io_wakeup_6_valid & io_enq_4_bits_psrs1 == io_wakeup_6_pdest & (|io_enq_4_bits_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :211:{40,87,96,119}
   wire        _GEN_659 =
-    io_wakeup_6_valid & io_enq_4_bits_psrs2 == io_wakeup_6_pdest & (|io_enq_4_bits_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :180:{40,87,96,119}
+    io_wakeup_6_valid & io_enq_4_bits_psrs2 == io_wakeup_6_pdest & (|io_enq_4_bits_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :212:{40,87,96,119}
   wire        _GEN_660 =
-    io_wakeup_6_valid & io_enq_4_bits_psrs3 == io_wakeup_6_pdest & (|io_enq_4_bits_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :181:{40,87,96,119}
+    io_wakeup_6_valid & io_enq_4_bits_psrs3 == io_wakeup_6_pdest & (|io_enq_4_bits_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :213:{40,87,96,119}
   wire        _GEN_661 =
     io_wakeup_7_valid
       ? io_enq_4_bits_psrs1 == io_wakeup_7_pdest & (|io_enq_4_bits_psrs1) | _GEN_658
         | _GEN_655
-      : _GEN_658 | _GEN_655;	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :179:{40,63,87,96,119}
+      : _GEN_658 | _GEN_655;	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :211:{40,63,87,96,119}
   wire        _GEN_662 =
     io_wakeup_7_valid
       ? io_enq_4_bits_psrs2 == io_wakeup_7_pdest & (|io_enq_4_bits_psrs2) | _GEN_659
         | _GEN_656
-      : _GEN_659 | _GEN_656;	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :180:{40,63,87,96,119}
+      : _GEN_659 | _GEN_656;	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :212:{40,63,87,96,119}
   wire        _GEN_663 =
     io_wakeup_7_valid
       ? io_enq_4_bits_psrs3 == io_wakeup_7_pdest & (|io_enq_4_bits_psrs3) | _GEN_660
         | _GEN_657
-      : _GEN_660 | _GEN_657;	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :181:{40,63,87,96,119}
+      : _GEN_660 | _GEN_657;	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :213:{40,63,87,96,119}
   wire        _GEN_664 =
-    io_wakeup_8_valid & io_enq_4_bits_psrs1 == io_wakeup_8_pdest & (|io_enq_4_bits_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :179:{40,87,96,119}
+    io_wakeup_8_valid & io_enq_4_bits_psrs1 == io_wakeup_8_pdest & (|io_enq_4_bits_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :211:{40,87,96,119}
   wire        _GEN_665 =
-    io_wakeup_8_valid & io_enq_4_bits_psrs2 == io_wakeup_8_pdest & (|io_enq_4_bits_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :180:{40,87,96,119}
+    io_wakeup_8_valid & io_enq_4_bits_psrs2 == io_wakeup_8_pdest & (|io_enq_4_bits_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :212:{40,87,96,119}
   wire        _GEN_666 =
-    io_wakeup_8_valid & io_enq_4_bits_psrs3 == io_wakeup_8_pdest & (|io_enq_4_bits_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :181:{40,87,96,119}
+    io_wakeup_8_valid & io_enq_4_bits_psrs3 == io_wakeup_8_pdest & (|io_enq_4_bits_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :213:{40,87,96,119}
   wire        _GEN_667 =
     io_wakeup_12_valid & io_enq_4_bits_psrs1 == io_wakeup_12_pdest
     & (|io_enq_4_bits_psrs1) | io_wakeup_10_valid
@@ -7581,7 +7353,7 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
     | (io_wakeup_9_valid
          ? io_enq_4_bits_psrs1 == io_wakeup_9_pdest & (|io_enq_4_bits_psrs1) | _GEN_664
            | _GEN_661
-         : _GEN_664 | _GEN_661);	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :179:{40,63,87,96,119}
+         : _GEN_664 | _GEN_661);	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :211:{40,63,87,96,119}
   wire        _GEN_668 =
     io_wakeup_12_valid & io_enq_4_bits_psrs2 == io_wakeup_12_pdest
     & (|io_enq_4_bits_psrs2) | io_wakeup_10_valid
@@ -7589,7 +7361,7 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
     | (io_wakeup_9_valid
          ? io_enq_4_bits_psrs2 == io_wakeup_9_pdest & (|io_enq_4_bits_psrs2) | _GEN_665
            | _GEN_662
-         : _GEN_665 | _GEN_662);	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :180:{40,63,87,96,119}
+         : _GEN_665 | _GEN_662);	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :212:{40,63,87,96,119}
   wire        _GEN_669 =
     io_wakeup_12_valid & io_enq_4_bits_psrs3 == io_wakeup_12_pdest
     & (|io_enq_4_bits_psrs3) | io_wakeup_10_valid
@@ -7597,98 +7369,98 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
     | (io_wakeup_9_valid
          ? io_enq_4_bits_psrs3 == io_wakeup_9_pdest & (|io_enq_4_bits_psrs3) | _GEN_666
            | _GEN_663
-         : _GEN_666 | _GEN_663);	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :181:{40,63,87,96,119}
-  wire        _GEN_670 = _GEN_514 & alloc_idx_5 == 4'h0;	// backend/src/zaqal/backend/issue/IssueQueue.scala:149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+         : _GEN_666 | _GEN_663);	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :213:{40,63,87,96,119}
+  wire        _GEN_670 = _GEN_514 & alloc_idx_5 == 4'h0;	// backend/src/zaqal/backend/issue/IssueQueue.scala:181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
   wire        _GEN_671 =
-    io_wakeup_0_valid & io_enq_5_bits_psrs1 == io_wakeup_0_pdest & (|io_enq_5_bits_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:173:30, :178:37, :179:{40,87,96,119}
+    io_wakeup_0_valid & io_enq_5_bits_psrs1 == io_wakeup_0_pdest & (|io_enq_5_bits_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:205:30, :210:37, :211:{40,87,96,119}
   wire        _GEN_672 =
-    io_wakeup_0_valid & io_enq_5_bits_psrs2 == io_wakeup_0_pdest & (|io_enq_5_bits_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:174:30, :178:37, :180:{40,87,96,119}
+    io_wakeup_0_valid & io_enq_5_bits_psrs2 == io_wakeup_0_pdest & (|io_enq_5_bits_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:206:30, :210:37, :212:{40,87,96,119}
   wire        _GEN_673 =
-    io_wakeup_0_valid & io_enq_5_bits_psrs3 == io_wakeup_0_pdest & (|io_enq_5_bits_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:175:30, :178:37, :181:{40,87,96,119}
+    io_wakeup_0_valid & io_enq_5_bits_psrs3 == io_wakeup_0_pdest & (|io_enq_5_bits_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:207:30, :210:37, :213:{40,87,96,119}
   wire        _GEN_674 =
     io_wakeup_1_valid
       ? io_enq_5_bits_psrs1 == io_wakeup_1_pdest & (|io_enq_5_bits_psrs1) | _GEN_671
         | io_rs1_ready_in_5
-      : _GEN_671 | io_rs1_ready_in_5;	// backend/src/zaqal/backend/issue/IssueQueue.scala:173:30, :178:37, :179:{40,63,87,96,119}
+      : _GEN_671 | io_rs1_ready_in_5;	// backend/src/zaqal/backend/issue/IssueQueue.scala:205:30, :210:37, :211:{40,63,87,96,119}
   wire        _GEN_675 =
     io_wakeup_1_valid
       ? io_enq_5_bits_psrs2 == io_wakeup_1_pdest & (|io_enq_5_bits_psrs2) | _GEN_672
         | io_rs2_ready_in_5
-      : _GEN_672 | io_rs2_ready_in_5;	// backend/src/zaqal/backend/issue/IssueQueue.scala:174:30, :178:37, :180:{40,63,87,96,119}
+      : _GEN_672 | io_rs2_ready_in_5;	// backend/src/zaqal/backend/issue/IssueQueue.scala:206:30, :210:37, :212:{40,63,87,96,119}
   wire        _GEN_676 =
     io_wakeup_1_valid
       ? io_enq_5_bits_psrs3 == io_wakeup_1_pdest & (|io_enq_5_bits_psrs3) | _GEN_673
         | io_rs3_ready_in_5
-      : _GEN_673 | io_rs3_ready_in_5;	// backend/src/zaqal/backend/issue/IssueQueue.scala:175:30, :178:37, :181:{40,63,87,96,119}
+      : _GEN_673 | io_rs3_ready_in_5;	// backend/src/zaqal/backend/issue/IssueQueue.scala:207:30, :210:37, :213:{40,63,87,96,119}
   wire        _GEN_677 =
-    io_wakeup_2_valid & io_enq_5_bits_psrs1 == io_wakeup_2_pdest & (|io_enq_5_bits_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :179:{40,87,96,119}
+    io_wakeup_2_valid & io_enq_5_bits_psrs1 == io_wakeup_2_pdest & (|io_enq_5_bits_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :211:{40,87,96,119}
   wire        _GEN_678 =
-    io_wakeup_2_valid & io_enq_5_bits_psrs2 == io_wakeup_2_pdest & (|io_enq_5_bits_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :180:{40,87,96,119}
+    io_wakeup_2_valid & io_enq_5_bits_psrs2 == io_wakeup_2_pdest & (|io_enq_5_bits_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :212:{40,87,96,119}
   wire        _GEN_679 =
-    io_wakeup_2_valid & io_enq_5_bits_psrs3 == io_wakeup_2_pdest & (|io_enq_5_bits_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :181:{40,87,96,119}
+    io_wakeup_2_valid & io_enq_5_bits_psrs3 == io_wakeup_2_pdest & (|io_enq_5_bits_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :213:{40,87,96,119}
   wire        _GEN_680 =
     io_wakeup_3_valid
       ? io_enq_5_bits_psrs1 == io_wakeup_3_pdest & (|io_enq_5_bits_psrs1) | _GEN_677
         | _GEN_674
-      : _GEN_677 | _GEN_674;	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :179:{40,63,87,96,119}
+      : _GEN_677 | _GEN_674;	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :211:{40,63,87,96,119}
   wire        _GEN_681 =
     io_wakeup_3_valid
       ? io_enq_5_bits_psrs2 == io_wakeup_3_pdest & (|io_enq_5_bits_psrs2) | _GEN_678
         | _GEN_675
-      : _GEN_678 | _GEN_675;	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :180:{40,63,87,96,119}
+      : _GEN_678 | _GEN_675;	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :212:{40,63,87,96,119}
   wire        _GEN_682 =
     io_wakeup_3_valid
       ? io_enq_5_bits_psrs3 == io_wakeup_3_pdest & (|io_enq_5_bits_psrs3) | _GEN_679
         | _GEN_676
-      : _GEN_679 | _GEN_676;	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :181:{40,63,87,96,119}
+      : _GEN_679 | _GEN_676;	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :213:{40,63,87,96,119}
   wire        _GEN_683 =
-    io_wakeup_4_valid & io_enq_5_bits_psrs1 == io_wakeup_4_pdest & (|io_enq_5_bits_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :179:{40,87,96,119}
+    io_wakeup_4_valid & io_enq_5_bits_psrs1 == io_wakeup_4_pdest & (|io_enq_5_bits_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :211:{40,87,96,119}
   wire        _GEN_684 =
-    io_wakeup_4_valid & io_enq_5_bits_psrs2 == io_wakeup_4_pdest & (|io_enq_5_bits_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :180:{40,87,96,119}
+    io_wakeup_4_valid & io_enq_5_bits_psrs2 == io_wakeup_4_pdest & (|io_enq_5_bits_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :212:{40,87,96,119}
   wire        _GEN_685 =
-    io_wakeup_4_valid & io_enq_5_bits_psrs3 == io_wakeup_4_pdest & (|io_enq_5_bits_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :181:{40,87,96,119}
+    io_wakeup_4_valid & io_enq_5_bits_psrs3 == io_wakeup_4_pdest & (|io_enq_5_bits_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :213:{40,87,96,119}
   wire        _GEN_686 =
     io_wakeup_5_valid
       ? io_enq_5_bits_psrs1 == io_wakeup_5_pdest & (|io_enq_5_bits_psrs1) | _GEN_683
         | _GEN_680
-      : _GEN_683 | _GEN_680;	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :179:{40,63,87,96,119}
+      : _GEN_683 | _GEN_680;	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :211:{40,63,87,96,119}
   wire        _GEN_687 =
     io_wakeup_5_valid
       ? io_enq_5_bits_psrs2 == io_wakeup_5_pdest & (|io_enq_5_bits_psrs2) | _GEN_684
         | _GEN_681
-      : _GEN_684 | _GEN_681;	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :180:{40,63,87,96,119}
+      : _GEN_684 | _GEN_681;	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :212:{40,63,87,96,119}
   wire        _GEN_688 =
     io_wakeup_5_valid
       ? io_enq_5_bits_psrs3 == io_wakeup_5_pdest & (|io_enq_5_bits_psrs3) | _GEN_685
         | _GEN_682
-      : _GEN_685 | _GEN_682;	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :181:{40,63,87,96,119}
+      : _GEN_685 | _GEN_682;	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :213:{40,63,87,96,119}
   wire        _GEN_689 =
-    io_wakeup_6_valid & io_enq_5_bits_psrs1 == io_wakeup_6_pdest & (|io_enq_5_bits_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :179:{40,87,96,119}
+    io_wakeup_6_valid & io_enq_5_bits_psrs1 == io_wakeup_6_pdest & (|io_enq_5_bits_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :211:{40,87,96,119}
   wire        _GEN_690 =
-    io_wakeup_6_valid & io_enq_5_bits_psrs2 == io_wakeup_6_pdest & (|io_enq_5_bits_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :180:{40,87,96,119}
+    io_wakeup_6_valid & io_enq_5_bits_psrs2 == io_wakeup_6_pdest & (|io_enq_5_bits_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :212:{40,87,96,119}
   wire        _GEN_691 =
-    io_wakeup_6_valid & io_enq_5_bits_psrs3 == io_wakeup_6_pdest & (|io_enq_5_bits_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :181:{40,87,96,119}
+    io_wakeup_6_valid & io_enq_5_bits_psrs3 == io_wakeup_6_pdest & (|io_enq_5_bits_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :213:{40,87,96,119}
   wire        _GEN_692 =
     io_wakeup_7_valid
       ? io_enq_5_bits_psrs1 == io_wakeup_7_pdest & (|io_enq_5_bits_psrs1) | _GEN_689
         | _GEN_686
-      : _GEN_689 | _GEN_686;	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :179:{40,63,87,96,119}
+      : _GEN_689 | _GEN_686;	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :211:{40,63,87,96,119}
   wire        _GEN_693 =
     io_wakeup_7_valid
       ? io_enq_5_bits_psrs2 == io_wakeup_7_pdest & (|io_enq_5_bits_psrs2) | _GEN_690
         | _GEN_687
-      : _GEN_690 | _GEN_687;	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :180:{40,63,87,96,119}
+      : _GEN_690 | _GEN_687;	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :212:{40,63,87,96,119}
   wire        _GEN_694 =
     io_wakeup_7_valid
       ? io_enq_5_bits_psrs3 == io_wakeup_7_pdest & (|io_enq_5_bits_psrs3) | _GEN_691
         | _GEN_688
-      : _GEN_691 | _GEN_688;	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :181:{40,63,87,96,119}
+      : _GEN_691 | _GEN_688;	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :213:{40,63,87,96,119}
   wire        _GEN_695 =
-    io_wakeup_8_valid & io_enq_5_bits_psrs1 == io_wakeup_8_pdest & (|io_enq_5_bits_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :179:{40,87,96,119}
+    io_wakeup_8_valid & io_enq_5_bits_psrs1 == io_wakeup_8_pdest & (|io_enq_5_bits_psrs1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :211:{40,87,96,119}
   wire        _GEN_696 =
-    io_wakeup_8_valid & io_enq_5_bits_psrs2 == io_wakeup_8_pdest & (|io_enq_5_bits_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :180:{40,87,96,119}
+    io_wakeup_8_valid & io_enq_5_bits_psrs2 == io_wakeup_8_pdest & (|io_enq_5_bits_psrs2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :212:{40,87,96,119}
   wire        _GEN_697 =
-    io_wakeup_8_valid & io_enq_5_bits_psrs3 == io_wakeup_8_pdest & (|io_enq_5_bits_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :181:{40,87,96,119}
+    io_wakeup_8_valid & io_enq_5_bits_psrs3 == io_wakeup_8_pdest & (|io_enq_5_bits_psrs3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :213:{40,87,96,119}
   wire        _GEN_698 =
     io_wakeup_12_valid & io_enq_5_bits_psrs1 == io_wakeup_12_pdest
     & (|io_enq_5_bits_psrs1) | io_wakeup_10_valid
@@ -7696,7 +7468,7 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
     | (io_wakeup_9_valid
          ? io_enq_5_bits_psrs1 == io_wakeup_9_pdest & (|io_enq_5_bits_psrs1) | _GEN_695
            | _GEN_692
-         : _GEN_695 | _GEN_692);	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :179:{40,63,87,96,119}
+         : _GEN_695 | _GEN_692);	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :211:{40,63,87,96,119}
   wire        _GEN_699 =
     io_wakeup_12_valid & io_enq_5_bits_psrs2 == io_wakeup_12_pdest
     & (|io_enq_5_bits_psrs2) | io_wakeup_10_valid
@@ -7704,7 +7476,7 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
     | (io_wakeup_9_valid
          ? io_enq_5_bits_psrs2 == io_wakeup_9_pdest & (|io_enq_5_bits_psrs2) | _GEN_696
            | _GEN_693
-         : _GEN_696 | _GEN_693);	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :180:{40,63,87,96,119}
+         : _GEN_696 | _GEN_693);	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :212:{40,63,87,96,119}
   wire        _GEN_700 =
     io_wakeup_12_valid & io_enq_5_bits_psrs3 == io_wakeup_12_pdest
     & (|io_enq_5_bits_psrs3) | io_wakeup_10_valid
@@ -7712,99 +7484,99 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
     | (io_wakeup_9_valid
          ? io_enq_5_bits_psrs3 == io_wakeup_9_pdest & (|io_enq_5_bits_psrs3) | _GEN_697
            | _GEN_694
-         : _GEN_697 | _GEN_694);	// backend/src/zaqal/backend/issue/IssueQueue.scala:178:37, :181:{40,63,87,96,119}
-  wire        _GEN_701 = _GEN_449 & alloc_idx_0 == 4'h1;	// backend/src/zaqal/backend/issue/IssueQueue.scala:149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_702 = _GEN_453 & alloc_idx_1 == 4'h1;	// backend/src/zaqal/backend/issue/IssueQueue.scala:149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_703 = _GEN_472 & alloc_idx_2 == 4'h1;	// backend/src/zaqal/backend/issue/IssueQueue.scala:149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_704 = _GEN_491 & alloc_idx_3 == 4'h1;	// backend/src/zaqal/backend/issue/IssueQueue.scala:149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_705 = _GEN_510 & alloc_idx_4 == 4'h1;	// backend/src/zaqal/backend/issue/IssueQueue.scala:149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_706 = _GEN_514 & alloc_idx_5 == 4'h1;	// backend/src/zaqal/backend/issue/IssueQueue.scala:149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_707 = _GEN_449 & alloc_idx_0 == 4'h2;	// backend/src/zaqal/backend/issue/IssueQueue.scala:149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_708 = _GEN_453 & alloc_idx_1 == 4'h2;	// backend/src/zaqal/backend/issue/IssueQueue.scala:149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_709 = _GEN_472 & alloc_idx_2 == 4'h2;	// backend/src/zaqal/backend/issue/IssueQueue.scala:149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_710 = _GEN_491 & alloc_idx_3 == 4'h2;	// backend/src/zaqal/backend/issue/IssueQueue.scala:149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_711 = _GEN_510 & alloc_idx_4 == 4'h2;	// backend/src/zaqal/backend/issue/IssueQueue.scala:149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_712 = _GEN_514 & alloc_idx_5 == 4'h2;	// backend/src/zaqal/backend/issue/IssueQueue.scala:149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_713 = _GEN_449 & alloc_idx_0 == 4'h3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_714 = _GEN_453 & alloc_idx_1 == 4'h3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_715 = _GEN_472 & alloc_idx_2 == 4'h3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_716 = _GEN_491 & alloc_idx_3 == 4'h3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_717 = _GEN_510 & alloc_idx_4 == 4'h3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_718 = _GEN_514 & alloc_idx_5 == 4'h3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_719 = _GEN_449 & alloc_idx_0 == 4'h4;	// backend/src/zaqal/backend/issue/IssueQueue.scala:149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_720 = _GEN_453 & alloc_idx_1 == 4'h4;	// backend/src/zaqal/backend/issue/IssueQueue.scala:149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_721 = _GEN_472 & alloc_idx_2 == 4'h4;	// backend/src/zaqal/backend/issue/IssueQueue.scala:149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_722 = _GEN_491 & alloc_idx_3 == 4'h4;	// backend/src/zaqal/backend/issue/IssueQueue.scala:149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_723 = _GEN_510 & alloc_idx_4 == 4'h4;	// backend/src/zaqal/backend/issue/IssueQueue.scala:149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_724 = _GEN_514 & alloc_idx_5 == 4'h4;	// backend/src/zaqal/backend/issue/IssueQueue.scala:149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_725 = _GEN_449 & alloc_idx_0 == 4'h5;	// backend/src/zaqal/backend/issue/IssueQueue.scala:149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_726 = _GEN_453 & alloc_idx_1 == 4'h5;	// backend/src/zaqal/backend/issue/IssueQueue.scala:149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_727 = _GEN_472 & alloc_idx_2 == 4'h5;	// backend/src/zaqal/backend/issue/IssueQueue.scala:149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_728 = _GEN_491 & alloc_idx_3 == 4'h5;	// backend/src/zaqal/backend/issue/IssueQueue.scala:149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_729 = _GEN_510 & alloc_idx_4 == 4'h5;	// backend/src/zaqal/backend/issue/IssueQueue.scala:149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_730 = _GEN_514 & alloc_idx_5 == 4'h5;	// backend/src/zaqal/backend/issue/IssueQueue.scala:149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_731 = _GEN_449 & alloc_idx_0 == 4'h6;	// backend/src/zaqal/backend/issue/IssueQueue.scala:149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_732 = _GEN_453 & alloc_idx_1 == 4'h6;	// backend/src/zaqal/backend/issue/IssueQueue.scala:149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_733 = _GEN_472 & alloc_idx_2 == 4'h6;	// backend/src/zaqal/backend/issue/IssueQueue.scala:149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_734 = _GEN_491 & alloc_idx_3 == 4'h6;	// backend/src/zaqal/backend/issue/IssueQueue.scala:149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_735 = _GEN_510 & alloc_idx_4 == 4'h6;	// backend/src/zaqal/backend/issue/IssueQueue.scala:149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_736 = _GEN_514 & alloc_idx_5 == 4'h6;	// backend/src/zaqal/backend/issue/IssueQueue.scala:149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_737 = _GEN_449 & alloc_idx_0 == 4'h7;	// backend/src/zaqal/backend/issue/IssueQueue.scala:149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_738 = _GEN_453 & alloc_idx_1 == 4'h7;	// backend/src/zaqal/backend/issue/IssueQueue.scala:149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_739 = _GEN_472 & alloc_idx_2 == 4'h7;	// backend/src/zaqal/backend/issue/IssueQueue.scala:149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_740 = _GEN_491 & alloc_idx_3 == 4'h7;	// backend/src/zaqal/backend/issue/IssueQueue.scala:149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_741 = _GEN_510 & alloc_idx_4 == 4'h7;	// backend/src/zaqal/backend/issue/IssueQueue.scala:149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_742 = _GEN_514 & alloc_idx_5 == 4'h7;	// backend/src/zaqal/backend/issue/IssueQueue.scala:149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_743 = _GEN_449 & alloc_idx_0 == 4'h8;	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_744 = _GEN_453 & alloc_idx_1 == 4'h8;	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_745 = _GEN_472 & alloc_idx_2 == 4'h8;	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_746 = _GEN_491 & alloc_idx_3 == 4'h8;	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_747 = _GEN_510 & alloc_idx_4 == 4'h8;	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_748 = _GEN_514 & alloc_idx_5 == 4'h8;	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_749 = _GEN_449 & alloc_idx_0 == 4'h9;	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_750 = _GEN_453 & alloc_idx_1 == 4'h9;	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_751 = _GEN_472 & alloc_idx_2 == 4'h9;	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_752 = _GEN_491 & alloc_idx_3 == 4'h9;	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_753 = _GEN_510 & alloc_idx_4 == 4'h9;	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_754 = _GEN_514 & alloc_idx_5 == 4'h9;	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_755 = _GEN_449 & alloc_idx_0 == 4'hA;	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_756 = _GEN_453 & alloc_idx_1 == 4'hA;	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_757 = _GEN_472 & alloc_idx_2 == 4'hA;	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_758 = _GEN_491 & alloc_idx_3 == 4'hA;	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_759 = _GEN_510 & alloc_idx_4 == 4'hA;	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_760 = _GEN_514 & alloc_idx_5 == 4'hA;	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_761 = _GEN_449 & alloc_idx_0 == 4'hB;	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_762 = _GEN_453 & alloc_idx_1 == 4'hB;	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_763 = _GEN_472 & alloc_idx_2 == 4'hB;	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_764 = _GEN_491 & alloc_idx_3 == 4'hB;	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_765 = _GEN_510 & alloc_idx_4 == 4'hB;	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_766 = _GEN_514 & alloc_idx_5 == 4'hB;	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_767 = _GEN_449 & alloc_idx_0 == 4'hC;	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_768 = _GEN_453 & alloc_idx_1 == 4'hC;	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_769 = _GEN_472 & alloc_idx_2 == 4'hC;	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_770 = _GEN_491 & alloc_idx_3 == 4'hC;	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_771 = _GEN_510 & alloc_idx_4 == 4'hC;	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_772 = _GEN_514 & alloc_idx_5 == 4'hC;	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_773 = _GEN_449 & alloc_idx_0 == 4'hD;	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_774 = _GEN_453 & alloc_idx_1 == 4'hD;	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_775 = _GEN_472 & alloc_idx_2 == 4'hD;	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_776 = _GEN_491 & alloc_idx_3 == 4'hD;	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_777 = _GEN_510 & alloc_idx_4 == 4'hD;	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_778 = _GEN_514 & alloc_idx_5 == 4'hD;	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_779 = _GEN_449 & alloc_idx_0 == 4'hE;	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_780 = _GEN_453 & alloc_idx_1 == 4'hE;	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_781 = _GEN_472 & alloc_idx_2 == 4'hE;	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_782 = _GEN_491 & alloc_idx_3 == 4'hE;	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_783 = _GEN_510 & alloc_idx_4 == 4'hE;	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_784 = _GEN_514 & alloc_idx_5 == 4'hE;	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_785 = _GEN_449 & (&alloc_idx_0);	// backend/src/zaqal/backend/issue/IssueQueue.scala:149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_786 = _GEN_453 & (&alloc_idx_1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_787 = _GEN_472 & (&alloc_idx_2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_788 = _GEN_491 & (&alloc_idx_3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_789 = _GEN_510 & (&alloc_idx_4);	// backend/src/zaqal/backend/issue/IssueQueue.scala:149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _GEN_790 = _GEN_514 & (&alloc_idx_5);	// backend/src/zaqal/backend/issue/IssueQueue.scala:149:27, :169:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
-  wire        _entry_is_younger_T_293 = io_redirect_robIdx >= io_robDeqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:82:42
-  wire [7:0]  _entry_is_younger_T_296 = {1'h0, io_redirect_robIdx} - 8'h80;	// backend/src/zaqal/backend/issue/IssueQueue.scala:9:14, :82:83
+         : _GEN_697 | _GEN_694);	// backend/src/zaqal/backend/issue/IssueQueue.scala:210:37, :213:{40,63,87,96,119}
+  wire        _GEN_701 = _GEN_449 & alloc_idx_0 == 4'h1;	// backend/src/zaqal/backend/issue/IssueQueue.scala:181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_702 = _GEN_453 & alloc_idx_1 == 4'h1;	// backend/src/zaqal/backend/issue/IssueQueue.scala:181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_703 = _GEN_472 & alloc_idx_2 == 4'h1;	// backend/src/zaqal/backend/issue/IssueQueue.scala:181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_704 = _GEN_491 & alloc_idx_3 == 4'h1;	// backend/src/zaqal/backend/issue/IssueQueue.scala:181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_705 = _GEN_510 & alloc_idx_4 == 4'h1;	// backend/src/zaqal/backend/issue/IssueQueue.scala:181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_706 = _GEN_514 & alloc_idx_5 == 4'h1;	// backend/src/zaqal/backend/issue/IssueQueue.scala:181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_707 = _GEN_449 & alloc_idx_0 == 4'h2;	// backend/src/zaqal/backend/issue/IssueQueue.scala:181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_708 = _GEN_453 & alloc_idx_1 == 4'h2;	// backend/src/zaqal/backend/issue/IssueQueue.scala:181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_709 = _GEN_472 & alloc_idx_2 == 4'h2;	// backend/src/zaqal/backend/issue/IssueQueue.scala:181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_710 = _GEN_491 & alloc_idx_3 == 4'h2;	// backend/src/zaqal/backend/issue/IssueQueue.scala:181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_711 = _GEN_510 & alloc_idx_4 == 4'h2;	// backend/src/zaqal/backend/issue/IssueQueue.scala:181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_712 = _GEN_514 & alloc_idx_5 == 4'h2;	// backend/src/zaqal/backend/issue/IssueQueue.scala:181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_713 = _GEN_449 & alloc_idx_0 == 4'h3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_714 = _GEN_453 & alloc_idx_1 == 4'h3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_715 = _GEN_472 & alloc_idx_2 == 4'h3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_716 = _GEN_491 & alloc_idx_3 == 4'h3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_717 = _GEN_510 & alloc_idx_4 == 4'h3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_718 = _GEN_514 & alloc_idx_5 == 4'h3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_719 = _GEN_449 & alloc_idx_0 == 4'h4;	// backend/src/zaqal/backend/issue/IssueQueue.scala:181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_720 = _GEN_453 & alloc_idx_1 == 4'h4;	// backend/src/zaqal/backend/issue/IssueQueue.scala:181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_721 = _GEN_472 & alloc_idx_2 == 4'h4;	// backend/src/zaqal/backend/issue/IssueQueue.scala:181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_722 = _GEN_491 & alloc_idx_3 == 4'h4;	// backend/src/zaqal/backend/issue/IssueQueue.scala:181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_723 = _GEN_510 & alloc_idx_4 == 4'h4;	// backend/src/zaqal/backend/issue/IssueQueue.scala:181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_724 = _GEN_514 & alloc_idx_5 == 4'h4;	// backend/src/zaqal/backend/issue/IssueQueue.scala:181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_725 = _GEN_449 & alloc_idx_0 == 4'h5;	// backend/src/zaqal/backend/issue/IssueQueue.scala:181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_726 = _GEN_453 & alloc_idx_1 == 4'h5;	// backend/src/zaqal/backend/issue/IssueQueue.scala:181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_727 = _GEN_472 & alloc_idx_2 == 4'h5;	// backend/src/zaqal/backend/issue/IssueQueue.scala:181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_728 = _GEN_491 & alloc_idx_3 == 4'h5;	// backend/src/zaqal/backend/issue/IssueQueue.scala:181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_729 = _GEN_510 & alloc_idx_4 == 4'h5;	// backend/src/zaqal/backend/issue/IssueQueue.scala:181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_730 = _GEN_514 & alloc_idx_5 == 4'h5;	// backend/src/zaqal/backend/issue/IssueQueue.scala:181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_731 = _GEN_449 & alloc_idx_0 == 4'h6;	// backend/src/zaqal/backend/issue/IssueQueue.scala:181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_732 = _GEN_453 & alloc_idx_1 == 4'h6;	// backend/src/zaqal/backend/issue/IssueQueue.scala:181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_733 = _GEN_472 & alloc_idx_2 == 4'h6;	// backend/src/zaqal/backend/issue/IssueQueue.scala:181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_734 = _GEN_491 & alloc_idx_3 == 4'h6;	// backend/src/zaqal/backend/issue/IssueQueue.scala:181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_735 = _GEN_510 & alloc_idx_4 == 4'h6;	// backend/src/zaqal/backend/issue/IssueQueue.scala:181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_736 = _GEN_514 & alloc_idx_5 == 4'h6;	// backend/src/zaqal/backend/issue/IssueQueue.scala:181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_737 = _GEN_449 & alloc_idx_0 == 4'h7;	// backend/src/zaqal/backend/issue/IssueQueue.scala:181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_738 = _GEN_453 & alloc_idx_1 == 4'h7;	// backend/src/zaqal/backend/issue/IssueQueue.scala:181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_739 = _GEN_472 & alloc_idx_2 == 4'h7;	// backend/src/zaqal/backend/issue/IssueQueue.scala:181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_740 = _GEN_491 & alloc_idx_3 == 4'h7;	// backend/src/zaqal/backend/issue/IssueQueue.scala:181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_741 = _GEN_510 & alloc_idx_4 == 4'h7;	// backend/src/zaqal/backend/issue/IssueQueue.scala:181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_742 = _GEN_514 & alloc_idx_5 == 4'h7;	// backend/src/zaqal/backend/issue/IssueQueue.scala:181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_743 = _GEN_449 & alloc_idx_0 == 4'h8;	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_744 = _GEN_453 & alloc_idx_1 == 4'h8;	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_745 = _GEN_472 & alloc_idx_2 == 4'h8;	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_746 = _GEN_491 & alloc_idx_3 == 4'h8;	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_747 = _GEN_510 & alloc_idx_4 == 4'h8;	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_748 = _GEN_514 & alloc_idx_5 == 4'h8;	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_749 = _GEN_449 & alloc_idx_0 == 4'h9;	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_750 = _GEN_453 & alloc_idx_1 == 4'h9;	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_751 = _GEN_472 & alloc_idx_2 == 4'h9;	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_752 = _GEN_491 & alloc_idx_3 == 4'h9;	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_753 = _GEN_510 & alloc_idx_4 == 4'h9;	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_754 = _GEN_514 & alloc_idx_5 == 4'h9;	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_755 = _GEN_449 & alloc_idx_0 == 4'hA;	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_756 = _GEN_453 & alloc_idx_1 == 4'hA;	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_757 = _GEN_472 & alloc_idx_2 == 4'hA;	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_758 = _GEN_491 & alloc_idx_3 == 4'hA;	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_759 = _GEN_510 & alloc_idx_4 == 4'hA;	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_760 = _GEN_514 & alloc_idx_5 == 4'hA;	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_761 = _GEN_449 & alloc_idx_0 == 4'hB;	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_762 = _GEN_453 & alloc_idx_1 == 4'hB;	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_763 = _GEN_472 & alloc_idx_2 == 4'hB;	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_764 = _GEN_491 & alloc_idx_3 == 4'hB;	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_765 = _GEN_510 & alloc_idx_4 == 4'hB;	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_766 = _GEN_514 & alloc_idx_5 == 4'hB;	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_767 = _GEN_449 & alloc_idx_0 == 4'hC;	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_768 = _GEN_453 & alloc_idx_1 == 4'hC;	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_769 = _GEN_472 & alloc_idx_2 == 4'hC;	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_770 = _GEN_491 & alloc_idx_3 == 4'hC;	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_771 = _GEN_510 & alloc_idx_4 == 4'hC;	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_772 = _GEN_514 & alloc_idx_5 == 4'hC;	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_773 = _GEN_449 & alloc_idx_0 == 4'hD;	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_774 = _GEN_453 & alloc_idx_1 == 4'hD;	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_775 = _GEN_472 & alloc_idx_2 == 4'hD;	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_776 = _GEN_491 & alloc_idx_3 == 4'hD;	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_777 = _GEN_510 & alloc_idx_4 == 4'hD;	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_778 = _GEN_514 & alloc_idx_5 == 4'hD;	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_779 = _GEN_449 & alloc_idx_0 == 4'hE;	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_780 = _GEN_453 & alloc_idx_1 == 4'hE;	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_781 = _GEN_472 & alloc_idx_2 == 4'hE;	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_782 = _GEN_491 & alloc_idx_3 == 4'hE;	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_783 = _GEN_510 & alloc_idx_4 == 4'hE;	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_784 = _GEN_514 & alloc_idx_5 == 4'hE;	// backend/src/zaqal/backend/issue/IssueQueue.scala:95:12, :181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_785 = _GEN_449 & (&alloc_idx_0);	// backend/src/zaqal/backend/issue/IssueQueue.scala:181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_786 = _GEN_453 & (&alloc_idx_1);	// backend/src/zaqal/backend/issue/IssueQueue.scala:181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_787 = _GEN_472 & (&alloc_idx_2);	// backend/src/zaqal/backend/issue/IssueQueue.scala:181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_788 = _GEN_491 & (&alloc_idx_3);	// backend/src/zaqal/backend/issue/IssueQueue.scala:181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_789 = _GEN_510 & (&alloc_idx_4);	// backend/src/zaqal/backend/issue/IssueQueue.scala:181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _GEN_790 = _GEN_514 & (&alloc_idx_5);	// backend/src/zaqal/backend/issue/IssueQueue.scala:181:27, :201:{48,64}, src/main/scala/chisel3/util/Mux.scala:50:70
+  wire        _entry_is_younger_T_248 = io_redirect_robIdx >= io_robDeqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:82:42
+  wire [7:0]  _entry_is_younger_T_251 = {1'h0, io_redirect_robIdx} - 8'h80;	// backend/src/zaqal/backend/issue/IssueQueue.scala:9:14, :82:83
   wire [7:0]  _GEN_791 = {1'h0, io_redirect_robIdx - io_robDeqPtr};	// backend/src/zaqal/backend/issue/IssueQueue.scala:9:14, :82:{37,63}
   always @(posedge clock) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
     if (reset) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
@@ -8980,20 +8752,17 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
     else begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
       entries_0_valid <=
         ~(io_redirect_valid
-          & (io_redirect_is_exception
-               ? (_entry_is_younger_T
-                    ? _GEN_433
-                    : _entry_is_younger_T_3
-                      - _GEN_431) > (_entry_is_younger_T_293
-                                       ? _GEN_791
-                                       : _entry_is_younger_T_296 - _GEN_431)
-               : entries_0_uop_snapshotIdx < io_redirect_enq_ptr
-                 & entries_0_uop_snapshotIdx > io_redirect_restore_idx))
+          & (_entry_is_younger_T
+               ? _GEN_433
+               : _entry_is_younger_T_3
+                 - _GEN_431) > (_entry_is_younger_T_248
+                                  ? _GEN_791
+                                  : _entry_is_younger_T_251 - _GEN_431))
         & (_GEN_670 | _GEN_639 | _GEN_608 | _GEN_577 | _GEN_546 | _GEN_515
            | ~((|_ageDetector_io_out_0) & _ageDetector_io_out_0[0]
                | (|_ageDetector_io_out_1) & _ageDetector_io_out_1[0]
-               | (|_ageDetector_io_out_2) & _ageDetector_io_out_2[0]) & entries_0_valid);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :82:{37,42,83,91}, :122:39, :163:{90,122}, :164:30, :165:24, :169:{48,73}, :170:26, :197:28, :212:40, :213:33, :214:40, :215:{25,38}, :220:31, :221:26, src/main/scala/chisel3/util/Mux.scala:32:36
-      if (_GEN_670) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+               | (|_ageDetector_io_out_2) & _ageDetector_io_out_2[0]) & entries_0_valid);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :82:{37,42,83,91}, :154:39, :195:{90,122}, :196:30, :197:24, :201:{48,73}, :202:26, :229:28, :231:61, :232:31, :233:26, src/main/scala/chisel3/util/Mux.scala:32:36
+      if (_GEN_670) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_0_uop_uop_pc <= io_enq_5_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_0_uop_uop_ftqPtr <= io_enq_5_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_0_uop_uop_epoch <= io_enq_5_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -9062,11 +8831,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_0_uop_snapshotIdx <= io_enq_5_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_0_uop_robIdx <= io_enq_5_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_0_uop_waitForRobIdx <= io_enq_5_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_0_rs1_ready <= _GEN_698;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_0_rs2_ready <= _GEN_699;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_0_rs3_ready <= _GEN_700;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_0_rs1_ready <= _GEN_698;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_0_rs2_ready <= _GEN_699;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_0_rs3_ready <= _GEN_700;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
-      else if (_GEN_639) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+      else if (_GEN_639) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_0_uop_uop_pc <= io_enq_4_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_0_uop_uop_ftqPtr <= io_enq_4_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_0_uop_uop_epoch <= io_enq_4_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -9135,11 +8904,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_0_uop_snapshotIdx <= io_enq_4_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_0_uop_robIdx <= io_enq_4_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_0_uop_waitForRobIdx <= io_enq_4_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_0_rs1_ready <= _GEN_667;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_0_rs2_ready <= _GEN_668;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_0_rs3_ready <= _GEN_669;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_0_rs1_ready <= _GEN_667;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_0_rs2_ready <= _GEN_668;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_0_rs3_ready <= _GEN_669;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
-      else if (_GEN_608) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+      else if (_GEN_608) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_0_uop_uop_pc <= io_enq_3_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_0_uop_uop_ftqPtr <= io_enq_3_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_0_uop_uop_epoch <= io_enq_3_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -9208,11 +8977,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_0_uop_snapshotIdx <= io_enq_3_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_0_uop_robIdx <= io_enq_3_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_0_uop_waitForRobIdx <= io_enq_3_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_0_rs1_ready <= _GEN_636;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_0_rs2_ready <= _GEN_637;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_0_rs3_ready <= _GEN_638;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_0_rs1_ready <= _GEN_636;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_0_rs2_ready <= _GEN_637;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_0_rs3_ready <= _GEN_638;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
-      else if (_GEN_577) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+      else if (_GEN_577) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_0_uop_uop_pc <= io_enq_2_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_0_uop_uop_ftqPtr <= io_enq_2_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_0_uop_uop_epoch <= io_enq_2_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -9281,11 +9050,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_0_uop_snapshotIdx <= io_enq_2_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_0_uop_robIdx <= io_enq_2_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_0_uop_waitForRobIdx <= io_enq_2_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_0_rs1_ready <= _GEN_605;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_0_rs2_ready <= _GEN_606;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_0_rs3_ready <= _GEN_607;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_0_rs1_ready <= _GEN_605;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_0_rs2_ready <= _GEN_606;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_0_rs3_ready <= _GEN_607;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
-      else if (_GEN_546) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+      else if (_GEN_546) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_0_uop_uop_pc <= io_enq_1_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_0_uop_uop_ftqPtr <= io_enq_1_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_0_uop_uop_epoch <= io_enq_1_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -9354,11 +9123,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_0_uop_snapshotIdx <= io_enq_1_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_0_uop_robIdx <= io_enq_1_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_0_uop_waitForRobIdx <= io_enq_1_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_0_rs1_ready <= _GEN_574;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_0_rs2_ready <= _GEN_575;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_0_rs3_ready <= _GEN_576;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_0_rs1_ready <= _GEN_574;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_0_rs2_ready <= _GEN_575;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_0_rs3_ready <= _GEN_576;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
-      else if (_GEN_515) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+      else if (_GEN_515) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_0_uop_uop_pc <= io_enq_0_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_0_uop_uop_ftqPtr <= io_enq_0_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_0_uop_uop_epoch <= io_enq_0_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -9427,9 +9196,9 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_0_uop_snapshotIdx <= io_enq_0_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_0_uop_robIdx <= io_enq_0_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_0_uop_waitForRobIdx <= io_enq_0_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_0_rs1_ready <= _GEN_543;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_0_rs2_ready <= _GEN_544;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_0_rs3_ready <= _GEN_545;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_0_rs1_ready <= _GEN_543;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_0_rs2_ready <= _GEN_544;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_0_rs3_ready <= _GEN_545;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
       else if (entries_0_valid) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_0_rs1_ready <= woken_rs1_0;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :53:33, :54:{127,142}
@@ -9451,23 +9220,20 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
                              ? io_enq_1_bits_loadWaitBit
                              : _GEN_515
                                  ? io_enq_0_bits_loadWaitBit
-                                 : entries_0_uop_loadWaitBit);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :169:{48,73}, :171:24, :189:34, :191:{93,122}, :192:36
+                                 : entries_0_uop_loadWaitBit);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :201:{48,73}, :203:24, :221:34, :223:{93,122}, :224:36
       entries_1_valid <=
         ~(io_redirect_valid
-          & (io_redirect_is_exception
-               ? (_entry_is_younger_T_19
-                    ? _GEN_432
-                    : _entry_is_younger_T_22
-                      - _GEN_431) > (_entry_is_younger_T_293
-                                       ? _GEN_791
-                                       : _entry_is_younger_T_296 - _GEN_431)
-               : entries_1_uop_snapshotIdx < io_redirect_enq_ptr
-                 & entries_1_uop_snapshotIdx > io_redirect_restore_idx))
+          & (_entry_is_younger_T_16
+               ? _GEN_432
+               : _entry_is_younger_T_19
+                 - _GEN_431) > (_entry_is_younger_T_248
+                                  ? _GEN_791
+                                  : _entry_is_younger_T_251 - _GEN_431))
         & (_GEN_706 | _GEN_705 | _GEN_704 | _GEN_703 | _GEN_702 | _GEN_701
            | ~((|_ageDetector_io_out_0) & _ageDetector_io_out_0[1]
                | (|_ageDetector_io_out_1) & _ageDetector_io_out_1[1]
-               | (|_ageDetector_io_out_2) & _ageDetector_io_out_2[1]) & entries_1_valid);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :82:{37,42,83,91}, :122:39, :163:{90,122}, :164:30, :165:24, :169:{48,73}, :170:26, :197:28, :212:40, :213:33, :214:40, :215:{25,38}, :220:31, :221:26, src/main/scala/chisel3/util/Mux.scala:32:36
-      if (_GEN_706) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+               | (|_ageDetector_io_out_2) & _ageDetector_io_out_2[1]) & entries_1_valid);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :82:{37,42,83,91}, :154:39, :195:{90,122}, :196:30, :197:24, :201:{48,73}, :202:26, :229:28, :231:61, :232:31, :233:26, src/main/scala/chisel3/util/Mux.scala:32:36
+      if (_GEN_706) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_1_uop_uop_pc <= io_enq_5_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_1_uop_uop_ftqPtr <= io_enq_5_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_1_uop_uop_epoch <= io_enq_5_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -9536,11 +9302,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_1_uop_snapshotIdx <= io_enq_5_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_1_uop_robIdx <= io_enq_5_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_1_uop_waitForRobIdx <= io_enq_5_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_1_rs1_ready <= _GEN_698;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_1_rs2_ready <= _GEN_699;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_1_rs3_ready <= _GEN_700;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_1_rs1_ready <= _GEN_698;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_1_rs2_ready <= _GEN_699;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_1_rs3_ready <= _GEN_700;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
-      else if (_GEN_705) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+      else if (_GEN_705) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_1_uop_uop_pc <= io_enq_4_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_1_uop_uop_ftqPtr <= io_enq_4_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_1_uop_uop_epoch <= io_enq_4_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -9609,11 +9375,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_1_uop_snapshotIdx <= io_enq_4_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_1_uop_robIdx <= io_enq_4_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_1_uop_waitForRobIdx <= io_enq_4_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_1_rs1_ready <= _GEN_667;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_1_rs2_ready <= _GEN_668;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_1_rs3_ready <= _GEN_669;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_1_rs1_ready <= _GEN_667;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_1_rs2_ready <= _GEN_668;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_1_rs3_ready <= _GEN_669;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
-      else if (_GEN_704) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+      else if (_GEN_704) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_1_uop_uop_pc <= io_enq_3_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_1_uop_uop_ftqPtr <= io_enq_3_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_1_uop_uop_epoch <= io_enq_3_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -9682,11 +9448,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_1_uop_snapshotIdx <= io_enq_3_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_1_uop_robIdx <= io_enq_3_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_1_uop_waitForRobIdx <= io_enq_3_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_1_rs1_ready <= _GEN_636;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_1_rs2_ready <= _GEN_637;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_1_rs3_ready <= _GEN_638;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_1_rs1_ready <= _GEN_636;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_1_rs2_ready <= _GEN_637;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_1_rs3_ready <= _GEN_638;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
-      else if (_GEN_703) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+      else if (_GEN_703) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_1_uop_uop_pc <= io_enq_2_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_1_uop_uop_ftqPtr <= io_enq_2_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_1_uop_uop_epoch <= io_enq_2_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -9755,11 +9521,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_1_uop_snapshotIdx <= io_enq_2_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_1_uop_robIdx <= io_enq_2_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_1_uop_waitForRobIdx <= io_enq_2_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_1_rs1_ready <= _GEN_605;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_1_rs2_ready <= _GEN_606;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_1_rs3_ready <= _GEN_607;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_1_rs1_ready <= _GEN_605;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_1_rs2_ready <= _GEN_606;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_1_rs3_ready <= _GEN_607;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
-      else if (_GEN_702) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+      else if (_GEN_702) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_1_uop_uop_pc <= io_enq_1_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_1_uop_uop_ftqPtr <= io_enq_1_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_1_uop_uop_epoch <= io_enq_1_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -9828,11 +9594,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_1_uop_snapshotIdx <= io_enq_1_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_1_uop_robIdx <= io_enq_1_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_1_uop_waitForRobIdx <= io_enq_1_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_1_rs1_ready <= _GEN_574;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_1_rs2_ready <= _GEN_575;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_1_rs3_ready <= _GEN_576;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_1_rs1_ready <= _GEN_574;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_1_rs2_ready <= _GEN_575;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_1_rs3_ready <= _GEN_576;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
-      else if (_GEN_701) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+      else if (_GEN_701) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_1_uop_uop_pc <= io_enq_0_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_1_uop_uop_ftqPtr <= io_enq_0_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_1_uop_uop_epoch <= io_enq_0_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -9901,9 +9667,9 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_1_uop_snapshotIdx <= io_enq_0_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_1_uop_robIdx <= io_enq_0_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_1_uop_waitForRobIdx <= io_enq_0_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_1_rs1_ready <= _GEN_543;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_1_rs2_ready <= _GEN_544;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_1_rs3_ready <= _GEN_545;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_1_rs1_ready <= _GEN_543;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_1_rs2_ready <= _GEN_544;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_1_rs3_ready <= _GEN_545;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
       else if (entries_1_valid) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_1_rs1_ready <= woken_rs1_1;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :53:33, :54:{127,142}
@@ -9925,23 +9691,20 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
                              ? io_enq_1_bits_loadWaitBit
                              : _GEN_701
                                  ? io_enq_0_bits_loadWaitBit
-                                 : entries_1_uop_loadWaitBit);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :169:{48,73}, :171:24, :189:34, :191:{93,122}, :192:36
+                                 : entries_1_uop_loadWaitBit);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :201:{48,73}, :203:24, :221:34, :223:{93,122}, :224:36
       entries_2_valid <=
         ~(io_redirect_valid
-          & (io_redirect_is_exception
-               ? (_entry_is_younger_T_38
-                    ? _GEN_434
-                    : _entry_is_younger_T_41
-                      - _GEN_431) > (_entry_is_younger_T_293
-                                       ? _GEN_791
-                                       : _entry_is_younger_T_296 - _GEN_431)
-               : entries_2_uop_snapshotIdx < io_redirect_enq_ptr
-                 & entries_2_uop_snapshotIdx > io_redirect_restore_idx))
+          & (_entry_is_younger_T_32
+               ? _GEN_434
+               : _entry_is_younger_T_35
+                 - _GEN_431) > (_entry_is_younger_T_248
+                                  ? _GEN_791
+                                  : _entry_is_younger_T_251 - _GEN_431))
         & (_GEN_712 | _GEN_711 | _GEN_710 | _GEN_709 | _GEN_708 | _GEN_707
            | ~((|_ageDetector_io_out_0) & _ageDetector_io_out_0[2]
                | (|_ageDetector_io_out_1) & _ageDetector_io_out_1[2]
-               | (|_ageDetector_io_out_2) & _ageDetector_io_out_2[2]) & entries_2_valid);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :82:{37,42,83,91}, :122:39, :163:{90,122}, :164:30, :165:24, :169:{48,73}, :170:26, :197:28, :212:40, :213:33, :214:40, :215:{25,38}, :220:31, :221:26, src/main/scala/chisel3/util/Mux.scala:32:36
-      if (_GEN_712) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+               | (|_ageDetector_io_out_2) & _ageDetector_io_out_2[2]) & entries_2_valid);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :82:{37,42,83,91}, :154:39, :195:{90,122}, :196:30, :197:24, :201:{48,73}, :202:26, :229:28, :231:61, :232:31, :233:26, src/main/scala/chisel3/util/Mux.scala:32:36
+      if (_GEN_712) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_2_uop_uop_pc <= io_enq_5_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_2_uop_uop_ftqPtr <= io_enq_5_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_2_uop_uop_epoch <= io_enq_5_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -10010,11 +9773,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_2_uop_snapshotIdx <= io_enq_5_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_2_uop_robIdx <= io_enq_5_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_2_uop_waitForRobIdx <= io_enq_5_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_2_rs1_ready <= _GEN_698;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_2_rs2_ready <= _GEN_699;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_2_rs3_ready <= _GEN_700;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_2_rs1_ready <= _GEN_698;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_2_rs2_ready <= _GEN_699;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_2_rs3_ready <= _GEN_700;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
-      else if (_GEN_711) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+      else if (_GEN_711) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_2_uop_uop_pc <= io_enq_4_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_2_uop_uop_ftqPtr <= io_enq_4_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_2_uop_uop_epoch <= io_enq_4_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -10083,11 +9846,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_2_uop_snapshotIdx <= io_enq_4_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_2_uop_robIdx <= io_enq_4_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_2_uop_waitForRobIdx <= io_enq_4_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_2_rs1_ready <= _GEN_667;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_2_rs2_ready <= _GEN_668;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_2_rs3_ready <= _GEN_669;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_2_rs1_ready <= _GEN_667;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_2_rs2_ready <= _GEN_668;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_2_rs3_ready <= _GEN_669;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
-      else if (_GEN_710) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+      else if (_GEN_710) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_2_uop_uop_pc <= io_enq_3_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_2_uop_uop_ftqPtr <= io_enq_3_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_2_uop_uop_epoch <= io_enq_3_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -10156,11 +9919,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_2_uop_snapshotIdx <= io_enq_3_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_2_uop_robIdx <= io_enq_3_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_2_uop_waitForRobIdx <= io_enq_3_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_2_rs1_ready <= _GEN_636;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_2_rs2_ready <= _GEN_637;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_2_rs3_ready <= _GEN_638;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_2_rs1_ready <= _GEN_636;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_2_rs2_ready <= _GEN_637;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_2_rs3_ready <= _GEN_638;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
-      else if (_GEN_709) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+      else if (_GEN_709) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_2_uop_uop_pc <= io_enq_2_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_2_uop_uop_ftqPtr <= io_enq_2_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_2_uop_uop_epoch <= io_enq_2_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -10229,11 +9992,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_2_uop_snapshotIdx <= io_enq_2_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_2_uop_robIdx <= io_enq_2_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_2_uop_waitForRobIdx <= io_enq_2_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_2_rs1_ready <= _GEN_605;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_2_rs2_ready <= _GEN_606;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_2_rs3_ready <= _GEN_607;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_2_rs1_ready <= _GEN_605;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_2_rs2_ready <= _GEN_606;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_2_rs3_ready <= _GEN_607;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
-      else if (_GEN_708) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+      else if (_GEN_708) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_2_uop_uop_pc <= io_enq_1_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_2_uop_uop_ftqPtr <= io_enq_1_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_2_uop_uop_epoch <= io_enq_1_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -10302,11 +10065,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_2_uop_snapshotIdx <= io_enq_1_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_2_uop_robIdx <= io_enq_1_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_2_uop_waitForRobIdx <= io_enq_1_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_2_rs1_ready <= _GEN_574;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_2_rs2_ready <= _GEN_575;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_2_rs3_ready <= _GEN_576;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_2_rs1_ready <= _GEN_574;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_2_rs2_ready <= _GEN_575;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_2_rs3_ready <= _GEN_576;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
-      else if (_GEN_707) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+      else if (_GEN_707) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_2_uop_uop_pc <= io_enq_0_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_2_uop_uop_ftqPtr <= io_enq_0_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_2_uop_uop_epoch <= io_enq_0_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -10375,9 +10138,9 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_2_uop_snapshotIdx <= io_enq_0_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_2_uop_robIdx <= io_enq_0_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_2_uop_waitForRobIdx <= io_enq_0_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_2_rs1_ready <= _GEN_543;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_2_rs2_ready <= _GEN_544;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_2_rs3_ready <= _GEN_545;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_2_rs1_ready <= _GEN_543;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_2_rs2_ready <= _GEN_544;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_2_rs3_ready <= _GEN_545;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
       else if (entries_2_valid) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_2_rs1_ready <= woken_rs1_2;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :53:33, :54:{127,142}
@@ -10399,23 +10162,20 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
                              ? io_enq_1_bits_loadWaitBit
                              : _GEN_707
                                  ? io_enq_0_bits_loadWaitBit
-                                 : entries_2_uop_loadWaitBit);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :169:{48,73}, :171:24, :189:34, :191:{93,122}, :192:36
+                                 : entries_2_uop_loadWaitBit);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :201:{48,73}, :203:24, :221:34, :223:{93,122}, :224:36
       entries_3_valid <=
         ~(io_redirect_valid
-          & (io_redirect_is_exception
-               ? (_entry_is_younger_T_57
-                    ? _GEN_435
-                    : _entry_is_younger_T_60
-                      - _GEN_431) > (_entry_is_younger_T_293
-                                       ? _GEN_791
-                                       : _entry_is_younger_T_296 - _GEN_431)
-               : entries_3_uop_snapshotIdx < io_redirect_enq_ptr
-                 & entries_3_uop_snapshotIdx > io_redirect_restore_idx))
+          & (_entry_is_younger_T_48
+               ? _GEN_435
+               : _entry_is_younger_T_51
+                 - _GEN_431) > (_entry_is_younger_T_248
+                                  ? _GEN_791
+                                  : _entry_is_younger_T_251 - _GEN_431))
         & (_GEN_718 | _GEN_717 | _GEN_716 | _GEN_715 | _GEN_714 | _GEN_713
            | ~((|_ageDetector_io_out_0) & _ageDetector_io_out_0[3]
                | (|_ageDetector_io_out_1) & _ageDetector_io_out_1[3]
-               | (|_ageDetector_io_out_2) & _ageDetector_io_out_2[3]) & entries_3_valid);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :82:{37,42,83,91}, :122:39, :163:{90,122}, :164:30, :165:24, :169:{48,73}, :170:26, :197:28, :212:40, :213:33, :214:40, :215:{25,38}, :220:31, :221:26, src/main/scala/chisel3/util/Mux.scala:32:36
-      if (_GEN_718) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+               | (|_ageDetector_io_out_2) & _ageDetector_io_out_2[3]) & entries_3_valid);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :82:{37,42,83,91}, :154:39, :195:{90,122}, :196:30, :197:24, :201:{48,73}, :202:26, :229:28, :231:61, :232:31, :233:26, src/main/scala/chisel3/util/Mux.scala:32:36
+      if (_GEN_718) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_3_uop_uop_pc <= io_enq_5_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_3_uop_uop_ftqPtr <= io_enq_5_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_3_uop_uop_epoch <= io_enq_5_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -10484,11 +10244,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_3_uop_snapshotIdx <= io_enq_5_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_3_uop_robIdx <= io_enq_5_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_3_uop_waitForRobIdx <= io_enq_5_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_3_rs1_ready <= _GEN_698;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_3_rs2_ready <= _GEN_699;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_3_rs3_ready <= _GEN_700;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_3_rs1_ready <= _GEN_698;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_3_rs2_ready <= _GEN_699;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_3_rs3_ready <= _GEN_700;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
-      else if (_GEN_717) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+      else if (_GEN_717) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_3_uop_uop_pc <= io_enq_4_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_3_uop_uop_ftqPtr <= io_enq_4_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_3_uop_uop_epoch <= io_enq_4_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -10557,11 +10317,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_3_uop_snapshotIdx <= io_enq_4_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_3_uop_robIdx <= io_enq_4_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_3_uop_waitForRobIdx <= io_enq_4_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_3_rs1_ready <= _GEN_667;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_3_rs2_ready <= _GEN_668;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_3_rs3_ready <= _GEN_669;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_3_rs1_ready <= _GEN_667;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_3_rs2_ready <= _GEN_668;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_3_rs3_ready <= _GEN_669;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
-      else if (_GEN_716) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+      else if (_GEN_716) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_3_uop_uop_pc <= io_enq_3_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_3_uop_uop_ftqPtr <= io_enq_3_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_3_uop_uop_epoch <= io_enq_3_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -10630,11 +10390,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_3_uop_snapshotIdx <= io_enq_3_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_3_uop_robIdx <= io_enq_3_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_3_uop_waitForRobIdx <= io_enq_3_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_3_rs1_ready <= _GEN_636;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_3_rs2_ready <= _GEN_637;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_3_rs3_ready <= _GEN_638;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_3_rs1_ready <= _GEN_636;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_3_rs2_ready <= _GEN_637;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_3_rs3_ready <= _GEN_638;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
-      else if (_GEN_715) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+      else if (_GEN_715) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_3_uop_uop_pc <= io_enq_2_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_3_uop_uop_ftqPtr <= io_enq_2_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_3_uop_uop_epoch <= io_enq_2_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -10703,11 +10463,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_3_uop_snapshotIdx <= io_enq_2_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_3_uop_robIdx <= io_enq_2_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_3_uop_waitForRobIdx <= io_enq_2_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_3_rs1_ready <= _GEN_605;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_3_rs2_ready <= _GEN_606;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_3_rs3_ready <= _GEN_607;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_3_rs1_ready <= _GEN_605;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_3_rs2_ready <= _GEN_606;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_3_rs3_ready <= _GEN_607;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
-      else if (_GEN_714) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+      else if (_GEN_714) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_3_uop_uop_pc <= io_enq_1_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_3_uop_uop_ftqPtr <= io_enq_1_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_3_uop_uop_epoch <= io_enq_1_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -10776,11 +10536,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_3_uop_snapshotIdx <= io_enq_1_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_3_uop_robIdx <= io_enq_1_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_3_uop_waitForRobIdx <= io_enq_1_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_3_rs1_ready <= _GEN_574;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_3_rs2_ready <= _GEN_575;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_3_rs3_ready <= _GEN_576;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_3_rs1_ready <= _GEN_574;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_3_rs2_ready <= _GEN_575;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_3_rs3_ready <= _GEN_576;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
-      else if (_GEN_713) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+      else if (_GEN_713) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_3_uop_uop_pc <= io_enq_0_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_3_uop_uop_ftqPtr <= io_enq_0_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_3_uop_uop_epoch <= io_enq_0_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -10849,9 +10609,9 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_3_uop_snapshotIdx <= io_enq_0_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_3_uop_robIdx <= io_enq_0_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_3_uop_waitForRobIdx <= io_enq_0_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_3_rs1_ready <= _GEN_543;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_3_rs2_ready <= _GEN_544;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_3_rs3_ready <= _GEN_545;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_3_rs1_ready <= _GEN_543;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_3_rs2_ready <= _GEN_544;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_3_rs3_ready <= _GEN_545;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
       else if (entries_3_valid) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_3_rs1_ready <= woken_rs1_3;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :53:33, :54:{127,142}
@@ -10873,23 +10633,20 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
                              ? io_enq_1_bits_loadWaitBit
                              : _GEN_713
                                  ? io_enq_0_bits_loadWaitBit
-                                 : entries_3_uop_loadWaitBit);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :169:{48,73}, :171:24, :189:34, :191:{93,122}, :192:36
+                                 : entries_3_uop_loadWaitBit);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :201:{48,73}, :203:24, :221:34, :223:{93,122}, :224:36
       entries_4_valid <=
         ~(io_redirect_valid
-          & (io_redirect_is_exception
-               ? (_entry_is_younger_T_76
-                    ? _GEN_436
-                    : _entry_is_younger_T_79
-                      - _GEN_431) > (_entry_is_younger_T_293
-                                       ? _GEN_791
-                                       : _entry_is_younger_T_296 - _GEN_431)
-               : entries_4_uop_snapshotIdx < io_redirect_enq_ptr
-                 & entries_4_uop_snapshotIdx > io_redirect_restore_idx))
+          & (_entry_is_younger_T_64
+               ? _GEN_436
+               : _entry_is_younger_T_67
+                 - _GEN_431) > (_entry_is_younger_T_248
+                                  ? _GEN_791
+                                  : _entry_is_younger_T_251 - _GEN_431))
         & (_GEN_724 | _GEN_723 | _GEN_722 | _GEN_721 | _GEN_720 | _GEN_719
            | ~((|_ageDetector_io_out_0) & _ageDetector_io_out_0[4]
                | (|_ageDetector_io_out_1) & _ageDetector_io_out_1[4]
-               | (|_ageDetector_io_out_2) & _ageDetector_io_out_2[4]) & entries_4_valid);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :82:{37,42,83,91}, :122:39, :163:{90,122}, :164:30, :165:24, :169:{48,73}, :170:26, :197:28, :212:40, :213:33, :214:40, :215:{25,38}, :220:31, :221:26, src/main/scala/chisel3/util/Mux.scala:32:36
-      if (_GEN_724) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+               | (|_ageDetector_io_out_2) & _ageDetector_io_out_2[4]) & entries_4_valid);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :82:{37,42,83,91}, :154:39, :195:{90,122}, :196:30, :197:24, :201:{48,73}, :202:26, :229:28, :231:61, :232:31, :233:26, src/main/scala/chisel3/util/Mux.scala:32:36
+      if (_GEN_724) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_4_uop_uop_pc <= io_enq_5_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_4_uop_uop_ftqPtr <= io_enq_5_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_4_uop_uop_epoch <= io_enq_5_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -10958,11 +10715,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_4_uop_snapshotIdx <= io_enq_5_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_4_uop_robIdx <= io_enq_5_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_4_uop_waitForRobIdx <= io_enq_5_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_4_rs1_ready <= _GEN_698;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_4_rs2_ready <= _GEN_699;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_4_rs3_ready <= _GEN_700;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_4_rs1_ready <= _GEN_698;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_4_rs2_ready <= _GEN_699;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_4_rs3_ready <= _GEN_700;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
-      else if (_GEN_723) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+      else if (_GEN_723) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_4_uop_uop_pc <= io_enq_4_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_4_uop_uop_ftqPtr <= io_enq_4_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_4_uop_uop_epoch <= io_enq_4_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -11031,11 +10788,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_4_uop_snapshotIdx <= io_enq_4_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_4_uop_robIdx <= io_enq_4_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_4_uop_waitForRobIdx <= io_enq_4_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_4_rs1_ready <= _GEN_667;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_4_rs2_ready <= _GEN_668;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_4_rs3_ready <= _GEN_669;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_4_rs1_ready <= _GEN_667;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_4_rs2_ready <= _GEN_668;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_4_rs3_ready <= _GEN_669;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
-      else if (_GEN_722) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+      else if (_GEN_722) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_4_uop_uop_pc <= io_enq_3_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_4_uop_uop_ftqPtr <= io_enq_3_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_4_uop_uop_epoch <= io_enq_3_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -11104,11 +10861,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_4_uop_snapshotIdx <= io_enq_3_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_4_uop_robIdx <= io_enq_3_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_4_uop_waitForRobIdx <= io_enq_3_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_4_rs1_ready <= _GEN_636;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_4_rs2_ready <= _GEN_637;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_4_rs3_ready <= _GEN_638;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_4_rs1_ready <= _GEN_636;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_4_rs2_ready <= _GEN_637;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_4_rs3_ready <= _GEN_638;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
-      else if (_GEN_721) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+      else if (_GEN_721) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_4_uop_uop_pc <= io_enq_2_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_4_uop_uop_ftqPtr <= io_enq_2_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_4_uop_uop_epoch <= io_enq_2_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -11177,11 +10934,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_4_uop_snapshotIdx <= io_enq_2_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_4_uop_robIdx <= io_enq_2_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_4_uop_waitForRobIdx <= io_enq_2_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_4_rs1_ready <= _GEN_605;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_4_rs2_ready <= _GEN_606;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_4_rs3_ready <= _GEN_607;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_4_rs1_ready <= _GEN_605;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_4_rs2_ready <= _GEN_606;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_4_rs3_ready <= _GEN_607;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
-      else if (_GEN_720) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+      else if (_GEN_720) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_4_uop_uop_pc <= io_enq_1_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_4_uop_uop_ftqPtr <= io_enq_1_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_4_uop_uop_epoch <= io_enq_1_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -11250,11 +11007,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_4_uop_snapshotIdx <= io_enq_1_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_4_uop_robIdx <= io_enq_1_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_4_uop_waitForRobIdx <= io_enq_1_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_4_rs1_ready <= _GEN_574;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_4_rs2_ready <= _GEN_575;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_4_rs3_ready <= _GEN_576;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_4_rs1_ready <= _GEN_574;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_4_rs2_ready <= _GEN_575;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_4_rs3_ready <= _GEN_576;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
-      else if (_GEN_719) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+      else if (_GEN_719) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_4_uop_uop_pc <= io_enq_0_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_4_uop_uop_ftqPtr <= io_enq_0_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_4_uop_uop_epoch <= io_enq_0_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -11323,9 +11080,9 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_4_uop_snapshotIdx <= io_enq_0_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_4_uop_robIdx <= io_enq_0_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_4_uop_waitForRobIdx <= io_enq_0_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_4_rs1_ready <= _GEN_543;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_4_rs2_ready <= _GEN_544;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_4_rs3_ready <= _GEN_545;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_4_rs1_ready <= _GEN_543;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_4_rs2_ready <= _GEN_544;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_4_rs3_ready <= _GEN_545;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
       else if (entries_4_valid) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_4_rs1_ready <= woken_rs1_4;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :53:33, :54:{127,142}
@@ -11347,23 +11104,20 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
                              ? io_enq_1_bits_loadWaitBit
                              : _GEN_719
                                  ? io_enq_0_bits_loadWaitBit
-                                 : entries_4_uop_loadWaitBit);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :169:{48,73}, :171:24, :189:34, :191:{93,122}, :192:36
+                                 : entries_4_uop_loadWaitBit);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :201:{48,73}, :203:24, :221:34, :223:{93,122}, :224:36
       entries_5_valid <=
         ~(io_redirect_valid
-          & (io_redirect_is_exception
-               ? (_entry_is_younger_T_95
-                    ? _GEN_437
-                    : _entry_is_younger_T_98
-                      - _GEN_431) > (_entry_is_younger_T_293
-                                       ? _GEN_791
-                                       : _entry_is_younger_T_296 - _GEN_431)
-               : entries_5_uop_snapshotIdx < io_redirect_enq_ptr
-                 & entries_5_uop_snapshotIdx > io_redirect_restore_idx))
+          & (_entry_is_younger_T_80
+               ? _GEN_437
+               : _entry_is_younger_T_83
+                 - _GEN_431) > (_entry_is_younger_T_248
+                                  ? _GEN_791
+                                  : _entry_is_younger_T_251 - _GEN_431))
         & (_GEN_730 | _GEN_729 | _GEN_728 | _GEN_727 | _GEN_726 | _GEN_725
            | ~((|_ageDetector_io_out_0) & _ageDetector_io_out_0[5]
                | (|_ageDetector_io_out_1) & _ageDetector_io_out_1[5]
-               | (|_ageDetector_io_out_2) & _ageDetector_io_out_2[5]) & entries_5_valid);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :82:{37,42,83,91}, :122:39, :163:{90,122}, :164:30, :165:24, :169:{48,73}, :170:26, :197:28, :212:40, :213:33, :214:40, :215:{25,38}, :220:31, :221:26, src/main/scala/chisel3/util/Mux.scala:32:36
-      if (_GEN_730) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+               | (|_ageDetector_io_out_2) & _ageDetector_io_out_2[5]) & entries_5_valid);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :82:{37,42,83,91}, :154:39, :195:{90,122}, :196:30, :197:24, :201:{48,73}, :202:26, :229:28, :231:61, :232:31, :233:26, src/main/scala/chisel3/util/Mux.scala:32:36
+      if (_GEN_730) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_5_uop_uop_pc <= io_enq_5_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_5_uop_uop_ftqPtr <= io_enq_5_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_5_uop_uop_epoch <= io_enq_5_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -11432,11 +11186,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_5_uop_snapshotIdx <= io_enq_5_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_5_uop_robIdx <= io_enq_5_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_5_uop_waitForRobIdx <= io_enq_5_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_5_rs1_ready <= _GEN_698;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_5_rs2_ready <= _GEN_699;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_5_rs3_ready <= _GEN_700;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_5_rs1_ready <= _GEN_698;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_5_rs2_ready <= _GEN_699;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_5_rs3_ready <= _GEN_700;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
-      else if (_GEN_729) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+      else if (_GEN_729) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_5_uop_uop_pc <= io_enq_4_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_5_uop_uop_ftqPtr <= io_enq_4_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_5_uop_uop_epoch <= io_enq_4_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -11505,11 +11259,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_5_uop_snapshotIdx <= io_enq_4_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_5_uop_robIdx <= io_enq_4_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_5_uop_waitForRobIdx <= io_enq_4_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_5_rs1_ready <= _GEN_667;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_5_rs2_ready <= _GEN_668;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_5_rs3_ready <= _GEN_669;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_5_rs1_ready <= _GEN_667;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_5_rs2_ready <= _GEN_668;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_5_rs3_ready <= _GEN_669;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
-      else if (_GEN_728) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+      else if (_GEN_728) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_5_uop_uop_pc <= io_enq_3_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_5_uop_uop_ftqPtr <= io_enq_3_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_5_uop_uop_epoch <= io_enq_3_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -11578,11 +11332,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_5_uop_snapshotIdx <= io_enq_3_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_5_uop_robIdx <= io_enq_3_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_5_uop_waitForRobIdx <= io_enq_3_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_5_rs1_ready <= _GEN_636;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_5_rs2_ready <= _GEN_637;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_5_rs3_ready <= _GEN_638;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_5_rs1_ready <= _GEN_636;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_5_rs2_ready <= _GEN_637;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_5_rs3_ready <= _GEN_638;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
-      else if (_GEN_727) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+      else if (_GEN_727) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_5_uop_uop_pc <= io_enq_2_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_5_uop_uop_ftqPtr <= io_enq_2_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_5_uop_uop_epoch <= io_enq_2_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -11651,11 +11405,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_5_uop_snapshotIdx <= io_enq_2_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_5_uop_robIdx <= io_enq_2_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_5_uop_waitForRobIdx <= io_enq_2_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_5_rs1_ready <= _GEN_605;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_5_rs2_ready <= _GEN_606;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_5_rs3_ready <= _GEN_607;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_5_rs1_ready <= _GEN_605;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_5_rs2_ready <= _GEN_606;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_5_rs3_ready <= _GEN_607;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
-      else if (_GEN_726) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+      else if (_GEN_726) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_5_uop_uop_pc <= io_enq_1_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_5_uop_uop_ftqPtr <= io_enq_1_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_5_uop_uop_epoch <= io_enq_1_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -11724,11 +11478,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_5_uop_snapshotIdx <= io_enq_1_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_5_uop_robIdx <= io_enq_1_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_5_uop_waitForRobIdx <= io_enq_1_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_5_rs1_ready <= _GEN_574;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_5_rs2_ready <= _GEN_575;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_5_rs3_ready <= _GEN_576;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_5_rs1_ready <= _GEN_574;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_5_rs2_ready <= _GEN_575;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_5_rs3_ready <= _GEN_576;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
-      else if (_GEN_725) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+      else if (_GEN_725) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_5_uop_uop_pc <= io_enq_0_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_5_uop_uop_ftqPtr <= io_enq_0_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_5_uop_uop_epoch <= io_enq_0_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -11797,9 +11551,9 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_5_uop_snapshotIdx <= io_enq_0_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_5_uop_robIdx <= io_enq_0_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_5_uop_waitForRobIdx <= io_enq_0_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_5_rs1_ready <= _GEN_543;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_5_rs2_ready <= _GEN_544;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_5_rs3_ready <= _GEN_545;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_5_rs1_ready <= _GEN_543;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_5_rs2_ready <= _GEN_544;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_5_rs3_ready <= _GEN_545;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
       else if (entries_5_valid) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_5_rs1_ready <= woken_rs1_5;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :53:33, :54:{127,142}
@@ -11821,23 +11575,20 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
                              ? io_enq_1_bits_loadWaitBit
                              : _GEN_725
                                  ? io_enq_0_bits_loadWaitBit
-                                 : entries_5_uop_loadWaitBit);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :169:{48,73}, :171:24, :189:34, :191:{93,122}, :192:36
+                                 : entries_5_uop_loadWaitBit);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :201:{48,73}, :203:24, :221:34, :223:{93,122}, :224:36
       entries_6_valid <=
         ~(io_redirect_valid
-          & (io_redirect_is_exception
-               ? (_entry_is_younger_T_114
-                    ? _GEN_438
-                    : _entry_is_younger_T_117
-                      - _GEN_431) > (_entry_is_younger_T_293
-                                       ? _GEN_791
-                                       : _entry_is_younger_T_296 - _GEN_431)
-               : entries_6_uop_snapshotIdx < io_redirect_enq_ptr
-                 & entries_6_uop_snapshotIdx > io_redirect_restore_idx))
+          & (_entry_is_younger_T_96
+               ? _GEN_438
+               : _entry_is_younger_T_99
+                 - _GEN_431) > (_entry_is_younger_T_248
+                                  ? _GEN_791
+                                  : _entry_is_younger_T_251 - _GEN_431))
         & (_GEN_736 | _GEN_735 | _GEN_734 | _GEN_733 | _GEN_732 | _GEN_731
            | ~((|_ageDetector_io_out_0) & _ageDetector_io_out_0[6]
                | (|_ageDetector_io_out_1) & _ageDetector_io_out_1[6]
-               | (|_ageDetector_io_out_2) & _ageDetector_io_out_2[6]) & entries_6_valid);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :82:{37,42,83,91}, :122:39, :163:{90,122}, :164:30, :165:24, :169:{48,73}, :170:26, :197:28, :212:40, :213:33, :214:40, :215:{25,38}, :220:31, :221:26, src/main/scala/chisel3/util/Mux.scala:32:36
-      if (_GEN_736) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+               | (|_ageDetector_io_out_2) & _ageDetector_io_out_2[6]) & entries_6_valid);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :82:{37,42,83,91}, :154:39, :195:{90,122}, :196:30, :197:24, :201:{48,73}, :202:26, :229:28, :231:61, :232:31, :233:26, src/main/scala/chisel3/util/Mux.scala:32:36
+      if (_GEN_736) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_6_uop_uop_pc <= io_enq_5_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_6_uop_uop_ftqPtr <= io_enq_5_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_6_uop_uop_epoch <= io_enq_5_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -11906,11 +11657,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_6_uop_snapshotIdx <= io_enq_5_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_6_uop_robIdx <= io_enq_5_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_6_uop_waitForRobIdx <= io_enq_5_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_6_rs1_ready <= _GEN_698;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_6_rs2_ready <= _GEN_699;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_6_rs3_ready <= _GEN_700;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_6_rs1_ready <= _GEN_698;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_6_rs2_ready <= _GEN_699;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_6_rs3_ready <= _GEN_700;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
-      else if (_GEN_735) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+      else if (_GEN_735) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_6_uop_uop_pc <= io_enq_4_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_6_uop_uop_ftqPtr <= io_enq_4_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_6_uop_uop_epoch <= io_enq_4_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -11979,11 +11730,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_6_uop_snapshotIdx <= io_enq_4_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_6_uop_robIdx <= io_enq_4_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_6_uop_waitForRobIdx <= io_enq_4_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_6_rs1_ready <= _GEN_667;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_6_rs2_ready <= _GEN_668;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_6_rs3_ready <= _GEN_669;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_6_rs1_ready <= _GEN_667;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_6_rs2_ready <= _GEN_668;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_6_rs3_ready <= _GEN_669;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
-      else if (_GEN_734) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+      else if (_GEN_734) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_6_uop_uop_pc <= io_enq_3_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_6_uop_uop_ftqPtr <= io_enq_3_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_6_uop_uop_epoch <= io_enq_3_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -12052,11 +11803,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_6_uop_snapshotIdx <= io_enq_3_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_6_uop_robIdx <= io_enq_3_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_6_uop_waitForRobIdx <= io_enq_3_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_6_rs1_ready <= _GEN_636;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_6_rs2_ready <= _GEN_637;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_6_rs3_ready <= _GEN_638;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_6_rs1_ready <= _GEN_636;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_6_rs2_ready <= _GEN_637;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_6_rs3_ready <= _GEN_638;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
-      else if (_GEN_733) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+      else if (_GEN_733) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_6_uop_uop_pc <= io_enq_2_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_6_uop_uop_ftqPtr <= io_enq_2_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_6_uop_uop_epoch <= io_enq_2_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -12125,11 +11876,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_6_uop_snapshotIdx <= io_enq_2_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_6_uop_robIdx <= io_enq_2_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_6_uop_waitForRobIdx <= io_enq_2_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_6_rs1_ready <= _GEN_605;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_6_rs2_ready <= _GEN_606;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_6_rs3_ready <= _GEN_607;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_6_rs1_ready <= _GEN_605;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_6_rs2_ready <= _GEN_606;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_6_rs3_ready <= _GEN_607;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
-      else if (_GEN_732) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+      else if (_GEN_732) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_6_uop_uop_pc <= io_enq_1_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_6_uop_uop_ftqPtr <= io_enq_1_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_6_uop_uop_epoch <= io_enq_1_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -12198,11 +11949,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_6_uop_snapshotIdx <= io_enq_1_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_6_uop_robIdx <= io_enq_1_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_6_uop_waitForRobIdx <= io_enq_1_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_6_rs1_ready <= _GEN_574;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_6_rs2_ready <= _GEN_575;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_6_rs3_ready <= _GEN_576;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_6_rs1_ready <= _GEN_574;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_6_rs2_ready <= _GEN_575;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_6_rs3_ready <= _GEN_576;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
-      else if (_GEN_731) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+      else if (_GEN_731) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_6_uop_uop_pc <= io_enq_0_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_6_uop_uop_ftqPtr <= io_enq_0_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_6_uop_uop_epoch <= io_enq_0_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -12271,9 +12022,9 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_6_uop_snapshotIdx <= io_enq_0_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_6_uop_robIdx <= io_enq_0_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_6_uop_waitForRobIdx <= io_enq_0_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_6_rs1_ready <= _GEN_543;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_6_rs2_ready <= _GEN_544;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_6_rs3_ready <= _GEN_545;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_6_rs1_ready <= _GEN_543;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_6_rs2_ready <= _GEN_544;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_6_rs3_ready <= _GEN_545;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
       else if (entries_6_valid) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_6_rs1_ready <= woken_rs1_6;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :53:33, :54:{127,142}
@@ -12295,23 +12046,20 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
                              ? io_enq_1_bits_loadWaitBit
                              : _GEN_731
                                  ? io_enq_0_bits_loadWaitBit
-                                 : entries_6_uop_loadWaitBit);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :169:{48,73}, :171:24, :189:34, :191:{93,122}, :192:36
+                                 : entries_6_uop_loadWaitBit);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :201:{48,73}, :203:24, :221:34, :223:{93,122}, :224:36
       entries_7_valid <=
         ~(io_redirect_valid
-          & (io_redirect_is_exception
-               ? (_entry_is_younger_T_133
-                    ? _GEN_439
-                    : _entry_is_younger_T_136
-                      - _GEN_431) > (_entry_is_younger_T_293
-                                       ? _GEN_791
-                                       : _entry_is_younger_T_296 - _GEN_431)
-               : entries_7_uop_snapshotIdx < io_redirect_enq_ptr
-                 & entries_7_uop_snapshotIdx > io_redirect_restore_idx))
+          & (_entry_is_younger_T_112
+               ? _GEN_439
+               : _entry_is_younger_T_115
+                 - _GEN_431) > (_entry_is_younger_T_248
+                                  ? _GEN_791
+                                  : _entry_is_younger_T_251 - _GEN_431))
         & (_GEN_742 | _GEN_741 | _GEN_740 | _GEN_739 | _GEN_738 | _GEN_737
            | ~((|_ageDetector_io_out_0) & _ageDetector_io_out_0[7]
                | (|_ageDetector_io_out_1) & _ageDetector_io_out_1[7]
-               | (|_ageDetector_io_out_2) & _ageDetector_io_out_2[7]) & entries_7_valid);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :82:{37,42,83,91}, :122:39, :163:{90,122}, :164:30, :165:24, :169:{48,73}, :170:26, :197:28, :212:40, :213:33, :214:40, :215:{25,38}, :220:31, :221:26, src/main/scala/chisel3/util/Mux.scala:32:36
-      if (_GEN_742) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+               | (|_ageDetector_io_out_2) & _ageDetector_io_out_2[7]) & entries_7_valid);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :82:{37,42,83,91}, :154:39, :195:{90,122}, :196:30, :197:24, :201:{48,73}, :202:26, :229:28, :231:61, :232:31, :233:26, src/main/scala/chisel3/util/Mux.scala:32:36
+      if (_GEN_742) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_7_uop_uop_pc <= io_enq_5_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_7_uop_uop_ftqPtr <= io_enq_5_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_7_uop_uop_epoch <= io_enq_5_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -12380,11 +12128,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_7_uop_snapshotIdx <= io_enq_5_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_7_uop_robIdx <= io_enq_5_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_7_uop_waitForRobIdx <= io_enq_5_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_7_rs1_ready <= _GEN_698;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_7_rs2_ready <= _GEN_699;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_7_rs3_ready <= _GEN_700;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_7_rs1_ready <= _GEN_698;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_7_rs2_ready <= _GEN_699;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_7_rs3_ready <= _GEN_700;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
-      else if (_GEN_741) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+      else if (_GEN_741) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_7_uop_uop_pc <= io_enq_4_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_7_uop_uop_ftqPtr <= io_enq_4_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_7_uop_uop_epoch <= io_enq_4_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -12453,11 +12201,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_7_uop_snapshotIdx <= io_enq_4_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_7_uop_robIdx <= io_enq_4_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_7_uop_waitForRobIdx <= io_enq_4_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_7_rs1_ready <= _GEN_667;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_7_rs2_ready <= _GEN_668;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_7_rs3_ready <= _GEN_669;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_7_rs1_ready <= _GEN_667;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_7_rs2_ready <= _GEN_668;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_7_rs3_ready <= _GEN_669;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
-      else if (_GEN_740) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+      else if (_GEN_740) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_7_uop_uop_pc <= io_enq_3_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_7_uop_uop_ftqPtr <= io_enq_3_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_7_uop_uop_epoch <= io_enq_3_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -12526,11 +12274,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_7_uop_snapshotIdx <= io_enq_3_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_7_uop_robIdx <= io_enq_3_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_7_uop_waitForRobIdx <= io_enq_3_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_7_rs1_ready <= _GEN_636;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_7_rs2_ready <= _GEN_637;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_7_rs3_ready <= _GEN_638;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_7_rs1_ready <= _GEN_636;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_7_rs2_ready <= _GEN_637;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_7_rs3_ready <= _GEN_638;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
-      else if (_GEN_739) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+      else if (_GEN_739) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_7_uop_uop_pc <= io_enq_2_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_7_uop_uop_ftqPtr <= io_enq_2_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_7_uop_uop_epoch <= io_enq_2_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -12599,11 +12347,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_7_uop_snapshotIdx <= io_enq_2_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_7_uop_robIdx <= io_enq_2_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_7_uop_waitForRobIdx <= io_enq_2_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_7_rs1_ready <= _GEN_605;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_7_rs2_ready <= _GEN_606;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_7_rs3_ready <= _GEN_607;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_7_rs1_ready <= _GEN_605;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_7_rs2_ready <= _GEN_606;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_7_rs3_ready <= _GEN_607;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
-      else if (_GEN_738) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+      else if (_GEN_738) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_7_uop_uop_pc <= io_enq_1_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_7_uop_uop_ftqPtr <= io_enq_1_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_7_uop_uop_epoch <= io_enq_1_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -12672,11 +12420,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_7_uop_snapshotIdx <= io_enq_1_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_7_uop_robIdx <= io_enq_1_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_7_uop_waitForRobIdx <= io_enq_1_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_7_rs1_ready <= _GEN_574;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_7_rs2_ready <= _GEN_575;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_7_rs3_ready <= _GEN_576;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_7_rs1_ready <= _GEN_574;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_7_rs2_ready <= _GEN_575;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_7_rs3_ready <= _GEN_576;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
-      else if (_GEN_737) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+      else if (_GEN_737) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_7_uop_uop_pc <= io_enq_0_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_7_uop_uop_ftqPtr <= io_enq_0_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_7_uop_uop_epoch <= io_enq_0_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -12745,9 +12493,9 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_7_uop_snapshotIdx <= io_enq_0_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_7_uop_robIdx <= io_enq_0_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_7_uop_waitForRobIdx <= io_enq_0_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_7_rs1_ready <= _GEN_543;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_7_rs2_ready <= _GEN_544;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_7_rs3_ready <= _GEN_545;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_7_rs1_ready <= _GEN_543;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_7_rs2_ready <= _GEN_544;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_7_rs3_ready <= _GEN_545;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
       else if (entries_7_valid) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_7_rs1_ready <= woken_rs1_7;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :53:33, :54:{127,142}
@@ -12769,23 +12517,20 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
                              ? io_enq_1_bits_loadWaitBit
                              : _GEN_737
                                  ? io_enq_0_bits_loadWaitBit
-                                 : entries_7_uop_loadWaitBit);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :169:{48,73}, :171:24, :189:34, :191:{93,122}, :192:36
+                                 : entries_7_uop_loadWaitBit);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :201:{48,73}, :203:24, :221:34, :223:{93,122}, :224:36
       entries_8_valid <=
         ~(io_redirect_valid
-          & (io_redirect_is_exception
-               ? (_entry_is_younger_T_152
-                    ? _GEN_440
-                    : _entry_is_younger_T_155
-                      - _GEN_431) > (_entry_is_younger_T_293
-                                       ? _GEN_791
-                                       : _entry_is_younger_T_296 - _GEN_431)
-               : entries_8_uop_snapshotIdx < io_redirect_enq_ptr
-                 & entries_8_uop_snapshotIdx > io_redirect_restore_idx))
+          & (_entry_is_younger_T_128
+               ? _GEN_440
+               : _entry_is_younger_T_131
+                 - _GEN_431) > (_entry_is_younger_T_248
+                                  ? _GEN_791
+                                  : _entry_is_younger_T_251 - _GEN_431))
         & (_GEN_748 | _GEN_747 | _GEN_746 | _GEN_745 | _GEN_744 | _GEN_743
            | ~((|_ageDetector_io_out_0) & _ageDetector_io_out_0[8]
                | (|_ageDetector_io_out_1) & _ageDetector_io_out_1[8]
-               | (|_ageDetector_io_out_2) & _ageDetector_io_out_2[8]) & entries_8_valid);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :82:{37,42,83,91}, :122:39, :163:{90,122}, :164:30, :165:24, :169:{48,73}, :170:26, :197:28, :212:40, :213:33, :214:40, :215:{25,38}, :220:31, :221:26, src/main/scala/chisel3/util/Mux.scala:32:36
-      if (_GEN_748) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+               | (|_ageDetector_io_out_2) & _ageDetector_io_out_2[8]) & entries_8_valid);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :82:{37,42,83,91}, :154:39, :195:{90,122}, :196:30, :197:24, :201:{48,73}, :202:26, :229:28, :231:61, :232:31, :233:26, src/main/scala/chisel3/util/Mux.scala:32:36
+      if (_GEN_748) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_8_uop_uop_pc <= io_enq_5_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_8_uop_uop_ftqPtr <= io_enq_5_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_8_uop_uop_epoch <= io_enq_5_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -12854,11 +12599,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_8_uop_snapshotIdx <= io_enq_5_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_8_uop_robIdx <= io_enq_5_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_8_uop_waitForRobIdx <= io_enq_5_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_8_rs1_ready <= _GEN_698;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_8_rs2_ready <= _GEN_699;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_8_rs3_ready <= _GEN_700;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_8_rs1_ready <= _GEN_698;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_8_rs2_ready <= _GEN_699;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_8_rs3_ready <= _GEN_700;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
-      else if (_GEN_747) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+      else if (_GEN_747) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_8_uop_uop_pc <= io_enq_4_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_8_uop_uop_ftqPtr <= io_enq_4_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_8_uop_uop_epoch <= io_enq_4_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -12927,11 +12672,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_8_uop_snapshotIdx <= io_enq_4_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_8_uop_robIdx <= io_enq_4_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_8_uop_waitForRobIdx <= io_enq_4_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_8_rs1_ready <= _GEN_667;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_8_rs2_ready <= _GEN_668;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_8_rs3_ready <= _GEN_669;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_8_rs1_ready <= _GEN_667;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_8_rs2_ready <= _GEN_668;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_8_rs3_ready <= _GEN_669;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
-      else if (_GEN_746) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+      else if (_GEN_746) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_8_uop_uop_pc <= io_enq_3_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_8_uop_uop_ftqPtr <= io_enq_3_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_8_uop_uop_epoch <= io_enq_3_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -13000,11 +12745,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_8_uop_snapshotIdx <= io_enq_3_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_8_uop_robIdx <= io_enq_3_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_8_uop_waitForRobIdx <= io_enq_3_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_8_rs1_ready <= _GEN_636;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_8_rs2_ready <= _GEN_637;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_8_rs3_ready <= _GEN_638;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_8_rs1_ready <= _GEN_636;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_8_rs2_ready <= _GEN_637;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_8_rs3_ready <= _GEN_638;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
-      else if (_GEN_745) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+      else if (_GEN_745) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_8_uop_uop_pc <= io_enq_2_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_8_uop_uop_ftqPtr <= io_enq_2_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_8_uop_uop_epoch <= io_enq_2_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -13073,11 +12818,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_8_uop_snapshotIdx <= io_enq_2_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_8_uop_robIdx <= io_enq_2_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_8_uop_waitForRobIdx <= io_enq_2_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_8_rs1_ready <= _GEN_605;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_8_rs2_ready <= _GEN_606;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_8_rs3_ready <= _GEN_607;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_8_rs1_ready <= _GEN_605;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_8_rs2_ready <= _GEN_606;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_8_rs3_ready <= _GEN_607;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
-      else if (_GEN_744) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+      else if (_GEN_744) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_8_uop_uop_pc <= io_enq_1_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_8_uop_uop_ftqPtr <= io_enq_1_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_8_uop_uop_epoch <= io_enq_1_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -13146,11 +12891,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_8_uop_snapshotIdx <= io_enq_1_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_8_uop_robIdx <= io_enq_1_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_8_uop_waitForRobIdx <= io_enq_1_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_8_rs1_ready <= _GEN_574;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_8_rs2_ready <= _GEN_575;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_8_rs3_ready <= _GEN_576;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_8_rs1_ready <= _GEN_574;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_8_rs2_ready <= _GEN_575;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_8_rs3_ready <= _GEN_576;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
-      else if (_GEN_743) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+      else if (_GEN_743) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_8_uop_uop_pc <= io_enq_0_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_8_uop_uop_ftqPtr <= io_enq_0_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_8_uop_uop_epoch <= io_enq_0_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -13219,9 +12964,9 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_8_uop_snapshotIdx <= io_enq_0_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_8_uop_robIdx <= io_enq_0_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_8_uop_waitForRobIdx <= io_enq_0_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_8_rs1_ready <= _GEN_543;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_8_rs2_ready <= _GEN_544;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_8_rs3_ready <= _GEN_545;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_8_rs1_ready <= _GEN_543;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_8_rs2_ready <= _GEN_544;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_8_rs3_ready <= _GEN_545;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
       else if (entries_8_valid) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_8_rs1_ready <= woken_rs1_8;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :53:33, :54:{127,142}
@@ -13243,23 +12988,20 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
                              ? io_enq_1_bits_loadWaitBit
                              : _GEN_743
                                  ? io_enq_0_bits_loadWaitBit
-                                 : entries_8_uop_loadWaitBit);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :169:{48,73}, :171:24, :189:34, :191:{93,122}, :192:36
+                                 : entries_8_uop_loadWaitBit);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :201:{48,73}, :203:24, :221:34, :223:{93,122}, :224:36
       entries_9_valid <=
         ~(io_redirect_valid
-          & (io_redirect_is_exception
-               ? (_entry_is_younger_T_171
-                    ? _GEN_441
-                    : _entry_is_younger_T_174
-                      - _GEN_431) > (_entry_is_younger_T_293
-                                       ? _GEN_791
-                                       : _entry_is_younger_T_296 - _GEN_431)
-               : entries_9_uop_snapshotIdx < io_redirect_enq_ptr
-                 & entries_9_uop_snapshotIdx > io_redirect_restore_idx))
+          & (_entry_is_younger_T_144
+               ? _GEN_441
+               : _entry_is_younger_T_147
+                 - _GEN_431) > (_entry_is_younger_T_248
+                                  ? _GEN_791
+                                  : _entry_is_younger_T_251 - _GEN_431))
         & (_GEN_754 | _GEN_753 | _GEN_752 | _GEN_751 | _GEN_750 | _GEN_749
            | ~((|_ageDetector_io_out_0) & _ageDetector_io_out_0[9]
                | (|_ageDetector_io_out_1) & _ageDetector_io_out_1[9]
-               | (|_ageDetector_io_out_2) & _ageDetector_io_out_2[9]) & entries_9_valid);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :82:{37,42,83,91}, :122:39, :163:{90,122}, :164:30, :165:24, :169:{48,73}, :170:26, :197:28, :212:40, :213:33, :214:40, :215:{25,38}, :220:31, :221:26, src/main/scala/chisel3/util/Mux.scala:32:36
-      if (_GEN_754) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+               | (|_ageDetector_io_out_2) & _ageDetector_io_out_2[9]) & entries_9_valid);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :82:{37,42,83,91}, :154:39, :195:{90,122}, :196:30, :197:24, :201:{48,73}, :202:26, :229:28, :231:61, :232:31, :233:26, src/main/scala/chisel3/util/Mux.scala:32:36
+      if (_GEN_754) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_9_uop_uop_pc <= io_enq_5_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_9_uop_uop_ftqPtr <= io_enq_5_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_9_uop_uop_epoch <= io_enq_5_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -13328,11 +13070,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_9_uop_snapshotIdx <= io_enq_5_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_9_uop_robIdx <= io_enq_5_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_9_uop_waitForRobIdx <= io_enq_5_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_9_rs1_ready <= _GEN_698;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_9_rs2_ready <= _GEN_699;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_9_rs3_ready <= _GEN_700;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_9_rs1_ready <= _GEN_698;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_9_rs2_ready <= _GEN_699;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_9_rs3_ready <= _GEN_700;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
-      else if (_GEN_753) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+      else if (_GEN_753) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_9_uop_uop_pc <= io_enq_4_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_9_uop_uop_ftqPtr <= io_enq_4_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_9_uop_uop_epoch <= io_enq_4_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -13401,11 +13143,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_9_uop_snapshotIdx <= io_enq_4_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_9_uop_robIdx <= io_enq_4_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_9_uop_waitForRobIdx <= io_enq_4_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_9_rs1_ready <= _GEN_667;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_9_rs2_ready <= _GEN_668;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_9_rs3_ready <= _GEN_669;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_9_rs1_ready <= _GEN_667;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_9_rs2_ready <= _GEN_668;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_9_rs3_ready <= _GEN_669;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
-      else if (_GEN_752) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+      else if (_GEN_752) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_9_uop_uop_pc <= io_enq_3_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_9_uop_uop_ftqPtr <= io_enq_3_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_9_uop_uop_epoch <= io_enq_3_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -13474,11 +13216,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_9_uop_snapshotIdx <= io_enq_3_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_9_uop_robIdx <= io_enq_3_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_9_uop_waitForRobIdx <= io_enq_3_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_9_rs1_ready <= _GEN_636;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_9_rs2_ready <= _GEN_637;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_9_rs3_ready <= _GEN_638;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_9_rs1_ready <= _GEN_636;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_9_rs2_ready <= _GEN_637;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_9_rs3_ready <= _GEN_638;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
-      else if (_GEN_751) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+      else if (_GEN_751) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_9_uop_uop_pc <= io_enq_2_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_9_uop_uop_ftqPtr <= io_enq_2_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_9_uop_uop_epoch <= io_enq_2_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -13547,11 +13289,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_9_uop_snapshotIdx <= io_enq_2_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_9_uop_robIdx <= io_enq_2_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_9_uop_waitForRobIdx <= io_enq_2_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_9_rs1_ready <= _GEN_605;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_9_rs2_ready <= _GEN_606;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_9_rs3_ready <= _GEN_607;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_9_rs1_ready <= _GEN_605;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_9_rs2_ready <= _GEN_606;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_9_rs3_ready <= _GEN_607;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
-      else if (_GEN_750) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+      else if (_GEN_750) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_9_uop_uop_pc <= io_enq_1_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_9_uop_uop_ftqPtr <= io_enq_1_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_9_uop_uop_epoch <= io_enq_1_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -13620,11 +13362,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_9_uop_snapshotIdx <= io_enq_1_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_9_uop_robIdx <= io_enq_1_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_9_uop_waitForRobIdx <= io_enq_1_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_9_rs1_ready <= _GEN_574;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_9_rs2_ready <= _GEN_575;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_9_rs3_ready <= _GEN_576;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_9_rs1_ready <= _GEN_574;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_9_rs2_ready <= _GEN_575;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_9_rs3_ready <= _GEN_576;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
-      else if (_GEN_749) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+      else if (_GEN_749) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_9_uop_uop_pc <= io_enq_0_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_9_uop_uop_ftqPtr <= io_enq_0_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_9_uop_uop_epoch <= io_enq_0_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -13693,9 +13435,9 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_9_uop_snapshotIdx <= io_enq_0_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_9_uop_robIdx <= io_enq_0_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_9_uop_waitForRobIdx <= io_enq_0_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_9_rs1_ready <= _GEN_543;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_9_rs2_ready <= _GEN_544;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_9_rs3_ready <= _GEN_545;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_9_rs1_ready <= _GEN_543;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_9_rs2_ready <= _GEN_544;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_9_rs3_ready <= _GEN_545;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
       else if (entries_9_valid) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_9_rs1_ready <= woken_rs1_9;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :53:33, :54:{127,142}
@@ -13717,24 +13459,21 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
                              ? io_enq_1_bits_loadWaitBit
                              : _GEN_749
                                  ? io_enq_0_bits_loadWaitBit
-                                 : entries_9_uop_loadWaitBit);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :169:{48,73}, :171:24, :189:34, :191:{93,122}, :192:36
+                                 : entries_9_uop_loadWaitBit);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :201:{48,73}, :203:24, :221:34, :223:{93,122}, :224:36
       entries_10_valid <=
         ~(io_redirect_valid
-          & (io_redirect_is_exception
-               ? (_entry_is_younger_T_190
-                    ? _GEN_442
-                    : _entry_is_younger_T_193
-                      - _GEN_431) > (_entry_is_younger_T_293
-                                       ? _GEN_791
-                                       : _entry_is_younger_T_296 - _GEN_431)
-               : entries_10_uop_snapshotIdx < io_redirect_enq_ptr
-                 & entries_10_uop_snapshotIdx > io_redirect_restore_idx))
+          & (_entry_is_younger_T_160
+               ? _GEN_442
+               : _entry_is_younger_T_163
+                 - _GEN_431) > (_entry_is_younger_T_248
+                                  ? _GEN_791
+                                  : _entry_is_younger_T_251 - _GEN_431))
         & (_GEN_760 | _GEN_759 | _GEN_758 | _GEN_757 | _GEN_756 | _GEN_755
            | ~((|_ageDetector_io_out_0) & _ageDetector_io_out_0[10]
                | (|_ageDetector_io_out_1) & _ageDetector_io_out_1[10]
                | (|_ageDetector_io_out_2) & _ageDetector_io_out_2[10])
-           & entries_10_valid);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :82:{37,42,83,91}, :122:39, :163:{90,122}, :164:30, :165:24, :169:{48,73}, :170:26, :197:28, :212:40, :213:33, :214:40, :215:{25,38}, :220:31, :221:26, src/main/scala/chisel3/util/Mux.scala:32:36
-      if (_GEN_760) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+           & entries_10_valid);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :82:{37,42,83,91}, :154:39, :195:{90,122}, :196:30, :197:24, :201:{48,73}, :202:26, :229:28, :231:61, :232:31, :233:26, src/main/scala/chisel3/util/Mux.scala:32:36
+      if (_GEN_760) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_10_uop_uop_pc <= io_enq_5_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_10_uop_uop_ftqPtr <= io_enq_5_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_10_uop_uop_epoch <= io_enq_5_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -13803,11 +13542,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_10_uop_snapshotIdx <= io_enq_5_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_10_uop_robIdx <= io_enq_5_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_10_uop_waitForRobIdx <= io_enq_5_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_10_rs1_ready <= _GEN_698;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_10_rs2_ready <= _GEN_699;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_10_rs3_ready <= _GEN_700;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_10_rs1_ready <= _GEN_698;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_10_rs2_ready <= _GEN_699;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_10_rs3_ready <= _GEN_700;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
-      else if (_GEN_759) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+      else if (_GEN_759) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_10_uop_uop_pc <= io_enq_4_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_10_uop_uop_ftqPtr <= io_enq_4_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_10_uop_uop_epoch <= io_enq_4_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -13876,11 +13615,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_10_uop_snapshotIdx <= io_enq_4_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_10_uop_robIdx <= io_enq_4_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_10_uop_waitForRobIdx <= io_enq_4_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_10_rs1_ready <= _GEN_667;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_10_rs2_ready <= _GEN_668;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_10_rs3_ready <= _GEN_669;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_10_rs1_ready <= _GEN_667;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_10_rs2_ready <= _GEN_668;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_10_rs3_ready <= _GEN_669;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
-      else if (_GEN_758) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+      else if (_GEN_758) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_10_uop_uop_pc <= io_enq_3_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_10_uop_uop_ftqPtr <= io_enq_3_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_10_uop_uop_epoch <= io_enq_3_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -13949,11 +13688,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_10_uop_snapshotIdx <= io_enq_3_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_10_uop_robIdx <= io_enq_3_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_10_uop_waitForRobIdx <= io_enq_3_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_10_rs1_ready <= _GEN_636;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_10_rs2_ready <= _GEN_637;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_10_rs3_ready <= _GEN_638;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_10_rs1_ready <= _GEN_636;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_10_rs2_ready <= _GEN_637;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_10_rs3_ready <= _GEN_638;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
-      else if (_GEN_757) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+      else if (_GEN_757) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_10_uop_uop_pc <= io_enq_2_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_10_uop_uop_ftqPtr <= io_enq_2_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_10_uop_uop_epoch <= io_enq_2_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -14022,11 +13761,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_10_uop_snapshotIdx <= io_enq_2_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_10_uop_robIdx <= io_enq_2_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_10_uop_waitForRobIdx <= io_enq_2_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_10_rs1_ready <= _GEN_605;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_10_rs2_ready <= _GEN_606;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_10_rs3_ready <= _GEN_607;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_10_rs1_ready <= _GEN_605;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_10_rs2_ready <= _GEN_606;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_10_rs3_ready <= _GEN_607;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
-      else if (_GEN_756) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+      else if (_GEN_756) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_10_uop_uop_pc <= io_enq_1_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_10_uop_uop_ftqPtr <= io_enq_1_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_10_uop_uop_epoch <= io_enq_1_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -14095,11 +13834,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_10_uop_snapshotIdx <= io_enq_1_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_10_uop_robIdx <= io_enq_1_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_10_uop_waitForRobIdx <= io_enq_1_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_10_rs1_ready <= _GEN_574;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_10_rs2_ready <= _GEN_575;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_10_rs3_ready <= _GEN_576;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_10_rs1_ready <= _GEN_574;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_10_rs2_ready <= _GEN_575;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_10_rs3_ready <= _GEN_576;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
-      else if (_GEN_755) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+      else if (_GEN_755) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_10_uop_uop_pc <= io_enq_0_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_10_uop_uop_ftqPtr <= io_enq_0_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_10_uop_uop_epoch <= io_enq_0_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -14168,9 +13907,9 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_10_uop_snapshotIdx <= io_enq_0_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_10_uop_robIdx <= io_enq_0_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_10_uop_waitForRobIdx <= io_enq_0_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_10_rs1_ready <= _GEN_543;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_10_rs2_ready <= _GEN_544;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_10_rs3_ready <= _GEN_545;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_10_rs1_ready <= _GEN_543;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_10_rs2_ready <= _GEN_544;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_10_rs3_ready <= _GEN_545;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
       else if (entries_10_valid) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_10_rs1_ready <= woken_rs1_10;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :53:33, :54:{127,142}
@@ -14192,24 +13931,21 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
                              ? io_enq_1_bits_loadWaitBit
                              : _GEN_755
                                  ? io_enq_0_bits_loadWaitBit
-                                 : entries_10_uop_loadWaitBit);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :169:{48,73}, :171:24, :189:34, :191:{93,122}, :192:36
+                                 : entries_10_uop_loadWaitBit);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :201:{48,73}, :203:24, :221:34, :223:{93,122}, :224:36
       entries_11_valid <=
         ~(io_redirect_valid
-          & (io_redirect_is_exception
-               ? (_entry_is_younger_T_209
-                    ? _GEN_443
-                    : _entry_is_younger_T_212
-                      - _GEN_431) > (_entry_is_younger_T_293
-                                       ? _GEN_791
-                                       : _entry_is_younger_T_296 - _GEN_431)
-               : entries_11_uop_snapshotIdx < io_redirect_enq_ptr
-                 & entries_11_uop_snapshotIdx > io_redirect_restore_idx))
+          & (_entry_is_younger_T_176
+               ? _GEN_443
+               : _entry_is_younger_T_179
+                 - _GEN_431) > (_entry_is_younger_T_248
+                                  ? _GEN_791
+                                  : _entry_is_younger_T_251 - _GEN_431))
         & (_GEN_766 | _GEN_765 | _GEN_764 | _GEN_763 | _GEN_762 | _GEN_761
            | ~((|_ageDetector_io_out_0) & _ageDetector_io_out_0[11]
                | (|_ageDetector_io_out_1) & _ageDetector_io_out_1[11]
                | (|_ageDetector_io_out_2) & _ageDetector_io_out_2[11])
-           & entries_11_valid);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :82:{37,42,83,91}, :122:39, :163:{90,122}, :164:30, :165:24, :169:{48,73}, :170:26, :197:28, :212:40, :213:33, :214:40, :215:{25,38}, :220:31, :221:26, src/main/scala/chisel3/util/Mux.scala:32:36
-      if (_GEN_766) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+           & entries_11_valid);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :82:{37,42,83,91}, :154:39, :195:{90,122}, :196:30, :197:24, :201:{48,73}, :202:26, :229:28, :231:61, :232:31, :233:26, src/main/scala/chisel3/util/Mux.scala:32:36
+      if (_GEN_766) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_11_uop_uop_pc <= io_enq_5_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_11_uop_uop_ftqPtr <= io_enq_5_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_11_uop_uop_epoch <= io_enq_5_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -14278,11 +14014,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_11_uop_snapshotIdx <= io_enq_5_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_11_uop_robIdx <= io_enq_5_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_11_uop_waitForRobIdx <= io_enq_5_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_11_rs1_ready <= _GEN_698;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_11_rs2_ready <= _GEN_699;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_11_rs3_ready <= _GEN_700;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_11_rs1_ready <= _GEN_698;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_11_rs2_ready <= _GEN_699;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_11_rs3_ready <= _GEN_700;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
-      else if (_GEN_765) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+      else if (_GEN_765) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_11_uop_uop_pc <= io_enq_4_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_11_uop_uop_ftqPtr <= io_enq_4_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_11_uop_uop_epoch <= io_enq_4_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -14351,11 +14087,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_11_uop_snapshotIdx <= io_enq_4_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_11_uop_robIdx <= io_enq_4_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_11_uop_waitForRobIdx <= io_enq_4_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_11_rs1_ready <= _GEN_667;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_11_rs2_ready <= _GEN_668;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_11_rs3_ready <= _GEN_669;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_11_rs1_ready <= _GEN_667;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_11_rs2_ready <= _GEN_668;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_11_rs3_ready <= _GEN_669;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
-      else if (_GEN_764) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+      else if (_GEN_764) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_11_uop_uop_pc <= io_enq_3_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_11_uop_uop_ftqPtr <= io_enq_3_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_11_uop_uop_epoch <= io_enq_3_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -14424,11 +14160,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_11_uop_snapshotIdx <= io_enq_3_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_11_uop_robIdx <= io_enq_3_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_11_uop_waitForRobIdx <= io_enq_3_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_11_rs1_ready <= _GEN_636;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_11_rs2_ready <= _GEN_637;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_11_rs3_ready <= _GEN_638;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_11_rs1_ready <= _GEN_636;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_11_rs2_ready <= _GEN_637;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_11_rs3_ready <= _GEN_638;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
-      else if (_GEN_763) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+      else if (_GEN_763) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_11_uop_uop_pc <= io_enq_2_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_11_uop_uop_ftqPtr <= io_enq_2_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_11_uop_uop_epoch <= io_enq_2_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -14497,11 +14233,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_11_uop_snapshotIdx <= io_enq_2_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_11_uop_robIdx <= io_enq_2_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_11_uop_waitForRobIdx <= io_enq_2_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_11_rs1_ready <= _GEN_605;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_11_rs2_ready <= _GEN_606;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_11_rs3_ready <= _GEN_607;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_11_rs1_ready <= _GEN_605;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_11_rs2_ready <= _GEN_606;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_11_rs3_ready <= _GEN_607;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
-      else if (_GEN_762) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+      else if (_GEN_762) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_11_uop_uop_pc <= io_enq_1_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_11_uop_uop_ftqPtr <= io_enq_1_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_11_uop_uop_epoch <= io_enq_1_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -14570,11 +14306,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_11_uop_snapshotIdx <= io_enq_1_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_11_uop_robIdx <= io_enq_1_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_11_uop_waitForRobIdx <= io_enq_1_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_11_rs1_ready <= _GEN_574;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_11_rs2_ready <= _GEN_575;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_11_rs3_ready <= _GEN_576;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_11_rs1_ready <= _GEN_574;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_11_rs2_ready <= _GEN_575;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_11_rs3_ready <= _GEN_576;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
-      else if (_GEN_761) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+      else if (_GEN_761) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_11_uop_uop_pc <= io_enq_0_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_11_uop_uop_ftqPtr <= io_enq_0_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_11_uop_uop_epoch <= io_enq_0_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -14643,9 +14379,9 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_11_uop_snapshotIdx <= io_enq_0_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_11_uop_robIdx <= io_enq_0_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_11_uop_waitForRobIdx <= io_enq_0_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_11_rs1_ready <= _GEN_543;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_11_rs2_ready <= _GEN_544;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_11_rs3_ready <= _GEN_545;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_11_rs1_ready <= _GEN_543;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_11_rs2_ready <= _GEN_544;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_11_rs3_ready <= _GEN_545;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
       else if (entries_11_valid) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_11_rs1_ready <= woken_rs1_11;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :53:33, :54:{127,142}
@@ -14667,24 +14403,21 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
                              ? io_enq_1_bits_loadWaitBit
                              : _GEN_761
                                  ? io_enq_0_bits_loadWaitBit
-                                 : entries_11_uop_loadWaitBit);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :169:{48,73}, :171:24, :189:34, :191:{93,122}, :192:36
+                                 : entries_11_uop_loadWaitBit);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :201:{48,73}, :203:24, :221:34, :223:{93,122}, :224:36
       entries_12_valid <=
         ~(io_redirect_valid
-          & (io_redirect_is_exception
-               ? (_entry_is_younger_T_228
-                    ? _GEN_444
-                    : _entry_is_younger_T_231
-                      - _GEN_431) > (_entry_is_younger_T_293
-                                       ? _GEN_791
-                                       : _entry_is_younger_T_296 - _GEN_431)
-               : entries_12_uop_snapshotIdx < io_redirect_enq_ptr
-                 & entries_12_uop_snapshotIdx > io_redirect_restore_idx))
+          & (_entry_is_younger_T_192
+               ? _GEN_444
+               : _entry_is_younger_T_195
+                 - _GEN_431) > (_entry_is_younger_T_248
+                                  ? _GEN_791
+                                  : _entry_is_younger_T_251 - _GEN_431))
         & (_GEN_772 | _GEN_771 | _GEN_770 | _GEN_769 | _GEN_768 | _GEN_767
            | ~((|_ageDetector_io_out_0) & _ageDetector_io_out_0[12]
                | (|_ageDetector_io_out_1) & _ageDetector_io_out_1[12]
                | (|_ageDetector_io_out_2) & _ageDetector_io_out_2[12])
-           & entries_12_valid);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :82:{37,42,83,91}, :122:39, :163:{90,122}, :164:30, :165:24, :169:{48,73}, :170:26, :197:28, :212:40, :213:33, :214:40, :215:{25,38}, :220:31, :221:26, src/main/scala/chisel3/util/Mux.scala:32:36
-      if (_GEN_772) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+           & entries_12_valid);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :82:{37,42,83,91}, :154:39, :195:{90,122}, :196:30, :197:24, :201:{48,73}, :202:26, :229:28, :231:61, :232:31, :233:26, src/main/scala/chisel3/util/Mux.scala:32:36
+      if (_GEN_772) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_12_uop_uop_pc <= io_enq_5_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_12_uop_uop_ftqPtr <= io_enq_5_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_12_uop_uop_epoch <= io_enq_5_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -14753,11 +14486,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_12_uop_snapshotIdx <= io_enq_5_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_12_uop_robIdx <= io_enq_5_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_12_uop_waitForRobIdx <= io_enq_5_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_12_rs1_ready <= _GEN_698;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_12_rs2_ready <= _GEN_699;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_12_rs3_ready <= _GEN_700;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_12_rs1_ready <= _GEN_698;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_12_rs2_ready <= _GEN_699;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_12_rs3_ready <= _GEN_700;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
-      else if (_GEN_771) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+      else if (_GEN_771) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_12_uop_uop_pc <= io_enq_4_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_12_uop_uop_ftqPtr <= io_enq_4_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_12_uop_uop_epoch <= io_enq_4_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -14826,11 +14559,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_12_uop_snapshotIdx <= io_enq_4_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_12_uop_robIdx <= io_enq_4_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_12_uop_waitForRobIdx <= io_enq_4_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_12_rs1_ready <= _GEN_667;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_12_rs2_ready <= _GEN_668;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_12_rs3_ready <= _GEN_669;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_12_rs1_ready <= _GEN_667;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_12_rs2_ready <= _GEN_668;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_12_rs3_ready <= _GEN_669;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
-      else if (_GEN_770) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+      else if (_GEN_770) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_12_uop_uop_pc <= io_enq_3_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_12_uop_uop_ftqPtr <= io_enq_3_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_12_uop_uop_epoch <= io_enq_3_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -14899,11 +14632,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_12_uop_snapshotIdx <= io_enq_3_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_12_uop_robIdx <= io_enq_3_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_12_uop_waitForRobIdx <= io_enq_3_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_12_rs1_ready <= _GEN_636;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_12_rs2_ready <= _GEN_637;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_12_rs3_ready <= _GEN_638;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_12_rs1_ready <= _GEN_636;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_12_rs2_ready <= _GEN_637;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_12_rs3_ready <= _GEN_638;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
-      else if (_GEN_769) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+      else if (_GEN_769) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_12_uop_uop_pc <= io_enq_2_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_12_uop_uop_ftqPtr <= io_enq_2_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_12_uop_uop_epoch <= io_enq_2_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -14972,11 +14705,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_12_uop_snapshotIdx <= io_enq_2_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_12_uop_robIdx <= io_enq_2_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_12_uop_waitForRobIdx <= io_enq_2_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_12_rs1_ready <= _GEN_605;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_12_rs2_ready <= _GEN_606;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_12_rs3_ready <= _GEN_607;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_12_rs1_ready <= _GEN_605;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_12_rs2_ready <= _GEN_606;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_12_rs3_ready <= _GEN_607;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
-      else if (_GEN_768) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+      else if (_GEN_768) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_12_uop_uop_pc <= io_enq_1_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_12_uop_uop_ftqPtr <= io_enq_1_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_12_uop_uop_epoch <= io_enq_1_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -15045,11 +14778,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_12_uop_snapshotIdx <= io_enq_1_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_12_uop_robIdx <= io_enq_1_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_12_uop_waitForRobIdx <= io_enq_1_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_12_rs1_ready <= _GEN_574;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_12_rs2_ready <= _GEN_575;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_12_rs3_ready <= _GEN_576;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_12_rs1_ready <= _GEN_574;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_12_rs2_ready <= _GEN_575;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_12_rs3_ready <= _GEN_576;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
-      else if (_GEN_767) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+      else if (_GEN_767) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_12_uop_uop_pc <= io_enq_0_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_12_uop_uop_ftqPtr <= io_enq_0_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_12_uop_uop_epoch <= io_enq_0_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -15118,9 +14851,9 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_12_uop_snapshotIdx <= io_enq_0_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_12_uop_robIdx <= io_enq_0_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_12_uop_waitForRobIdx <= io_enq_0_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_12_rs1_ready <= _GEN_543;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_12_rs2_ready <= _GEN_544;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_12_rs3_ready <= _GEN_545;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_12_rs1_ready <= _GEN_543;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_12_rs2_ready <= _GEN_544;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_12_rs3_ready <= _GEN_545;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
       else if (entries_12_valid) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_12_rs1_ready <= woken_rs1_12;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :53:33, :54:{127,142}
@@ -15142,24 +14875,21 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
                              ? io_enq_1_bits_loadWaitBit
                              : _GEN_767
                                  ? io_enq_0_bits_loadWaitBit
-                                 : entries_12_uop_loadWaitBit);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :169:{48,73}, :171:24, :189:34, :191:{93,122}, :192:36
+                                 : entries_12_uop_loadWaitBit);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :201:{48,73}, :203:24, :221:34, :223:{93,122}, :224:36
       entries_13_valid <=
         ~(io_redirect_valid
-          & (io_redirect_is_exception
-               ? (_entry_is_younger_T_247
-                    ? _GEN_445
-                    : _entry_is_younger_T_250
-                      - _GEN_431) > (_entry_is_younger_T_293
-                                       ? _GEN_791
-                                       : _entry_is_younger_T_296 - _GEN_431)
-               : entries_13_uop_snapshotIdx < io_redirect_enq_ptr
-                 & entries_13_uop_snapshotIdx > io_redirect_restore_idx))
+          & (_entry_is_younger_T_208
+               ? _GEN_445
+               : _entry_is_younger_T_211
+                 - _GEN_431) > (_entry_is_younger_T_248
+                                  ? _GEN_791
+                                  : _entry_is_younger_T_251 - _GEN_431))
         & (_GEN_778 | _GEN_777 | _GEN_776 | _GEN_775 | _GEN_774 | _GEN_773
            | ~((|_ageDetector_io_out_0) & _ageDetector_io_out_0[13]
                | (|_ageDetector_io_out_1) & _ageDetector_io_out_1[13]
                | (|_ageDetector_io_out_2) & _ageDetector_io_out_2[13])
-           & entries_13_valid);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :82:{37,42,83,91}, :122:39, :163:{90,122}, :164:30, :165:24, :169:{48,73}, :170:26, :197:28, :212:40, :213:33, :214:40, :215:{25,38}, :220:31, :221:26, src/main/scala/chisel3/util/Mux.scala:32:36
-      if (_GEN_778) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+           & entries_13_valid);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :82:{37,42,83,91}, :154:39, :195:{90,122}, :196:30, :197:24, :201:{48,73}, :202:26, :229:28, :231:61, :232:31, :233:26, src/main/scala/chisel3/util/Mux.scala:32:36
+      if (_GEN_778) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_13_uop_uop_pc <= io_enq_5_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_13_uop_uop_ftqPtr <= io_enq_5_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_13_uop_uop_epoch <= io_enq_5_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -15228,11 +14958,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_13_uop_snapshotIdx <= io_enq_5_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_13_uop_robIdx <= io_enq_5_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_13_uop_waitForRobIdx <= io_enq_5_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_13_rs1_ready <= _GEN_698;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_13_rs2_ready <= _GEN_699;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_13_rs3_ready <= _GEN_700;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_13_rs1_ready <= _GEN_698;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_13_rs2_ready <= _GEN_699;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_13_rs3_ready <= _GEN_700;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
-      else if (_GEN_777) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+      else if (_GEN_777) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_13_uop_uop_pc <= io_enq_4_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_13_uop_uop_ftqPtr <= io_enq_4_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_13_uop_uop_epoch <= io_enq_4_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -15301,11 +15031,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_13_uop_snapshotIdx <= io_enq_4_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_13_uop_robIdx <= io_enq_4_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_13_uop_waitForRobIdx <= io_enq_4_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_13_rs1_ready <= _GEN_667;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_13_rs2_ready <= _GEN_668;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_13_rs3_ready <= _GEN_669;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_13_rs1_ready <= _GEN_667;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_13_rs2_ready <= _GEN_668;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_13_rs3_ready <= _GEN_669;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
-      else if (_GEN_776) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+      else if (_GEN_776) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_13_uop_uop_pc <= io_enq_3_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_13_uop_uop_ftqPtr <= io_enq_3_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_13_uop_uop_epoch <= io_enq_3_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -15374,11 +15104,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_13_uop_snapshotIdx <= io_enq_3_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_13_uop_robIdx <= io_enq_3_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_13_uop_waitForRobIdx <= io_enq_3_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_13_rs1_ready <= _GEN_636;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_13_rs2_ready <= _GEN_637;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_13_rs3_ready <= _GEN_638;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_13_rs1_ready <= _GEN_636;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_13_rs2_ready <= _GEN_637;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_13_rs3_ready <= _GEN_638;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
-      else if (_GEN_775) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+      else if (_GEN_775) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_13_uop_uop_pc <= io_enq_2_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_13_uop_uop_ftqPtr <= io_enq_2_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_13_uop_uop_epoch <= io_enq_2_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -15447,11 +15177,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_13_uop_snapshotIdx <= io_enq_2_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_13_uop_robIdx <= io_enq_2_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_13_uop_waitForRobIdx <= io_enq_2_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_13_rs1_ready <= _GEN_605;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_13_rs2_ready <= _GEN_606;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_13_rs3_ready <= _GEN_607;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_13_rs1_ready <= _GEN_605;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_13_rs2_ready <= _GEN_606;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_13_rs3_ready <= _GEN_607;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
-      else if (_GEN_774) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+      else if (_GEN_774) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_13_uop_uop_pc <= io_enq_1_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_13_uop_uop_ftqPtr <= io_enq_1_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_13_uop_uop_epoch <= io_enq_1_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -15520,11 +15250,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_13_uop_snapshotIdx <= io_enq_1_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_13_uop_robIdx <= io_enq_1_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_13_uop_waitForRobIdx <= io_enq_1_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_13_rs1_ready <= _GEN_574;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_13_rs2_ready <= _GEN_575;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_13_rs3_ready <= _GEN_576;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_13_rs1_ready <= _GEN_574;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_13_rs2_ready <= _GEN_575;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_13_rs3_ready <= _GEN_576;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
-      else if (_GEN_773) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+      else if (_GEN_773) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_13_uop_uop_pc <= io_enq_0_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_13_uop_uop_ftqPtr <= io_enq_0_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_13_uop_uop_epoch <= io_enq_0_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -15593,9 +15323,9 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_13_uop_snapshotIdx <= io_enq_0_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_13_uop_robIdx <= io_enq_0_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_13_uop_waitForRobIdx <= io_enq_0_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_13_rs1_ready <= _GEN_543;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_13_rs2_ready <= _GEN_544;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_13_rs3_ready <= _GEN_545;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_13_rs1_ready <= _GEN_543;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_13_rs2_ready <= _GEN_544;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_13_rs3_ready <= _GEN_545;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
       else if (entries_13_valid) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_13_rs1_ready <= woken_rs1_13;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :53:33, :54:{127,142}
@@ -15617,24 +15347,21 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
                              ? io_enq_1_bits_loadWaitBit
                              : _GEN_773
                                  ? io_enq_0_bits_loadWaitBit
-                                 : entries_13_uop_loadWaitBit);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :169:{48,73}, :171:24, :189:34, :191:{93,122}, :192:36
+                                 : entries_13_uop_loadWaitBit);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :201:{48,73}, :203:24, :221:34, :223:{93,122}, :224:36
       entries_14_valid <=
         ~(io_redirect_valid
-          & (io_redirect_is_exception
-               ? (_entry_is_younger_T_266
-                    ? _GEN_446
-                    : _entry_is_younger_T_269
-                      - _GEN_431) > (_entry_is_younger_T_293
-                                       ? _GEN_791
-                                       : _entry_is_younger_T_296 - _GEN_431)
-               : entries_14_uop_snapshotIdx < io_redirect_enq_ptr
-                 & entries_14_uop_snapshotIdx > io_redirect_restore_idx))
+          & (_entry_is_younger_T_224
+               ? _GEN_446
+               : _entry_is_younger_T_227
+                 - _GEN_431) > (_entry_is_younger_T_248
+                                  ? _GEN_791
+                                  : _entry_is_younger_T_251 - _GEN_431))
         & (_GEN_784 | _GEN_783 | _GEN_782 | _GEN_781 | _GEN_780 | _GEN_779
            | ~((|_ageDetector_io_out_0) & _ageDetector_io_out_0[14]
                | (|_ageDetector_io_out_1) & _ageDetector_io_out_1[14]
                | (|_ageDetector_io_out_2) & _ageDetector_io_out_2[14])
-           & entries_14_valid);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :82:{37,42,83,91}, :122:39, :163:{90,122}, :164:30, :165:24, :169:{48,73}, :170:26, :197:28, :212:40, :213:33, :214:40, :215:{25,38}, :220:31, :221:26, src/main/scala/chisel3/util/Mux.scala:32:36
-      if (_GEN_784) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+           & entries_14_valid);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :82:{37,42,83,91}, :154:39, :195:{90,122}, :196:30, :197:24, :201:{48,73}, :202:26, :229:28, :231:61, :232:31, :233:26, src/main/scala/chisel3/util/Mux.scala:32:36
+      if (_GEN_784) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_14_uop_uop_pc <= io_enq_5_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_14_uop_uop_ftqPtr <= io_enq_5_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_14_uop_uop_epoch <= io_enq_5_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -15703,11 +15430,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_14_uop_snapshotIdx <= io_enq_5_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_14_uop_robIdx <= io_enq_5_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_14_uop_waitForRobIdx <= io_enq_5_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_14_rs1_ready <= _GEN_698;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_14_rs2_ready <= _GEN_699;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_14_rs3_ready <= _GEN_700;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_14_rs1_ready <= _GEN_698;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_14_rs2_ready <= _GEN_699;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_14_rs3_ready <= _GEN_700;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
-      else if (_GEN_783) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+      else if (_GEN_783) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_14_uop_uop_pc <= io_enq_4_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_14_uop_uop_ftqPtr <= io_enq_4_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_14_uop_uop_epoch <= io_enq_4_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -15776,11 +15503,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_14_uop_snapshotIdx <= io_enq_4_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_14_uop_robIdx <= io_enq_4_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_14_uop_waitForRobIdx <= io_enq_4_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_14_rs1_ready <= _GEN_667;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_14_rs2_ready <= _GEN_668;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_14_rs3_ready <= _GEN_669;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_14_rs1_ready <= _GEN_667;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_14_rs2_ready <= _GEN_668;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_14_rs3_ready <= _GEN_669;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
-      else if (_GEN_782) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+      else if (_GEN_782) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_14_uop_uop_pc <= io_enq_3_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_14_uop_uop_ftqPtr <= io_enq_3_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_14_uop_uop_epoch <= io_enq_3_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -15849,11 +15576,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_14_uop_snapshotIdx <= io_enq_3_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_14_uop_robIdx <= io_enq_3_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_14_uop_waitForRobIdx <= io_enq_3_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_14_rs1_ready <= _GEN_636;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_14_rs2_ready <= _GEN_637;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_14_rs3_ready <= _GEN_638;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_14_rs1_ready <= _GEN_636;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_14_rs2_ready <= _GEN_637;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_14_rs3_ready <= _GEN_638;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
-      else if (_GEN_781) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+      else if (_GEN_781) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_14_uop_uop_pc <= io_enq_2_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_14_uop_uop_ftqPtr <= io_enq_2_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_14_uop_uop_epoch <= io_enq_2_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -15922,11 +15649,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_14_uop_snapshotIdx <= io_enq_2_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_14_uop_robIdx <= io_enq_2_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_14_uop_waitForRobIdx <= io_enq_2_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_14_rs1_ready <= _GEN_605;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_14_rs2_ready <= _GEN_606;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_14_rs3_ready <= _GEN_607;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_14_rs1_ready <= _GEN_605;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_14_rs2_ready <= _GEN_606;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_14_rs3_ready <= _GEN_607;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
-      else if (_GEN_780) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+      else if (_GEN_780) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_14_uop_uop_pc <= io_enq_1_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_14_uop_uop_ftqPtr <= io_enq_1_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_14_uop_uop_epoch <= io_enq_1_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -15995,11 +15722,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_14_uop_snapshotIdx <= io_enq_1_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_14_uop_robIdx <= io_enq_1_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_14_uop_waitForRobIdx <= io_enq_1_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_14_rs1_ready <= _GEN_574;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_14_rs2_ready <= _GEN_575;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_14_rs3_ready <= _GEN_576;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_14_rs1_ready <= _GEN_574;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_14_rs2_ready <= _GEN_575;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_14_rs3_ready <= _GEN_576;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
-      else if (_GEN_779) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+      else if (_GEN_779) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_14_uop_uop_pc <= io_enq_0_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_14_uop_uop_ftqPtr <= io_enq_0_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_14_uop_uop_epoch <= io_enq_0_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -16068,9 +15795,9 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_14_uop_snapshotIdx <= io_enq_0_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_14_uop_robIdx <= io_enq_0_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_14_uop_waitForRobIdx <= io_enq_0_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_14_rs1_ready <= _GEN_543;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_14_rs2_ready <= _GEN_544;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_14_rs3_ready <= _GEN_545;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_14_rs1_ready <= _GEN_543;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_14_rs2_ready <= _GEN_544;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_14_rs3_ready <= _GEN_545;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
       else if (entries_14_valid) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_14_rs1_ready <= woken_rs1_14;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :53:33, :54:{127,142}
@@ -16092,24 +15819,21 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
                              ? io_enq_1_bits_loadWaitBit
                              : _GEN_779
                                  ? io_enq_0_bits_loadWaitBit
-                                 : entries_14_uop_loadWaitBit);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :169:{48,73}, :171:24, :189:34, :191:{93,122}, :192:36
+                                 : entries_14_uop_loadWaitBit);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :201:{48,73}, :203:24, :221:34, :223:{93,122}, :224:36
       entries_15_valid <=
         ~(io_redirect_valid
-          & (io_redirect_is_exception
-               ? (_entry_is_younger_T_285
-                    ? _GEN_447
-                    : _entry_is_younger_T_288
-                      - _GEN_431) > (_entry_is_younger_T_293
-                                       ? _GEN_791
-                                       : _entry_is_younger_T_296 - _GEN_431)
-               : entries_15_uop_snapshotIdx < io_redirect_enq_ptr
-                 & entries_15_uop_snapshotIdx > io_redirect_restore_idx))
+          & (_entry_is_younger_T_240
+               ? _GEN_447
+               : _entry_is_younger_T_243
+                 - _GEN_431) > (_entry_is_younger_T_248
+                                  ? _GEN_791
+                                  : _entry_is_younger_T_251 - _GEN_431))
         & (_GEN_790 | _GEN_789 | _GEN_788 | _GEN_787 | _GEN_786 | _GEN_785
            | ~((|_ageDetector_io_out_0) & _ageDetector_io_out_0[15]
                | (|_ageDetector_io_out_1) & _ageDetector_io_out_1[15]
                | (|_ageDetector_io_out_2) & _ageDetector_io_out_2[15])
-           & entries_15_valid);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :82:{37,42,83,91}, :122:39, :163:{90,122}, :164:30, :165:24, :169:{48,73}, :170:26, :197:28, :212:40, :213:33, :214:40, :215:{25,38}, :220:31, :221:26, src/main/scala/chisel3/util/Mux.scala:32:36
-      if (_GEN_790) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+           & entries_15_valid);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :82:{37,42,83,91}, :154:39, :195:{90,122}, :196:30, :197:24, :201:{48,73}, :202:26, :229:28, :231:61, :232:31, :233:26, src/main/scala/chisel3/util/Mux.scala:32:36
+      if (_GEN_790) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_15_uop_uop_pc <= io_enq_5_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_15_uop_uop_ftqPtr <= io_enq_5_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_15_uop_uop_epoch <= io_enq_5_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -16178,11 +15902,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_15_uop_snapshotIdx <= io_enq_5_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_15_uop_robIdx <= io_enq_5_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_15_uop_waitForRobIdx <= io_enq_5_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_15_rs1_ready <= _GEN_698;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_15_rs2_ready <= _GEN_699;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_15_rs3_ready <= _GEN_700;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_15_rs1_ready <= _GEN_698;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_15_rs2_ready <= _GEN_699;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_15_rs3_ready <= _GEN_700;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
-      else if (_GEN_789) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+      else if (_GEN_789) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_15_uop_uop_pc <= io_enq_4_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_15_uop_uop_ftqPtr <= io_enq_4_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_15_uop_uop_epoch <= io_enq_4_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -16251,11 +15975,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_15_uop_snapshotIdx <= io_enq_4_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_15_uop_robIdx <= io_enq_4_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_15_uop_waitForRobIdx <= io_enq_4_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_15_rs1_ready <= _GEN_667;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_15_rs2_ready <= _GEN_668;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_15_rs3_ready <= _GEN_669;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_15_rs1_ready <= _GEN_667;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_15_rs2_ready <= _GEN_668;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_15_rs3_ready <= _GEN_669;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
-      else if (_GEN_788) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+      else if (_GEN_788) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_15_uop_uop_pc <= io_enq_3_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_15_uop_uop_ftqPtr <= io_enq_3_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_15_uop_uop_epoch <= io_enq_3_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -16324,11 +16048,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_15_uop_snapshotIdx <= io_enq_3_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_15_uop_robIdx <= io_enq_3_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_15_uop_waitForRobIdx <= io_enq_3_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_15_rs1_ready <= _GEN_636;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_15_rs2_ready <= _GEN_637;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_15_rs3_ready <= _GEN_638;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_15_rs1_ready <= _GEN_636;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_15_rs2_ready <= _GEN_637;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_15_rs3_ready <= _GEN_638;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
-      else if (_GEN_787) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+      else if (_GEN_787) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_15_uop_uop_pc <= io_enq_2_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_15_uop_uop_ftqPtr <= io_enq_2_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_15_uop_uop_epoch <= io_enq_2_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -16397,11 +16121,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_15_uop_snapshotIdx <= io_enq_2_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_15_uop_robIdx <= io_enq_2_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_15_uop_waitForRobIdx <= io_enq_2_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_15_rs1_ready <= _GEN_605;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_15_rs2_ready <= _GEN_606;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_15_rs3_ready <= _GEN_607;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_15_rs1_ready <= _GEN_605;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_15_rs2_ready <= _GEN_606;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_15_rs3_ready <= _GEN_607;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
-      else if (_GEN_786) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+      else if (_GEN_786) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_15_uop_uop_pc <= io_enq_1_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_15_uop_uop_ftqPtr <= io_enq_1_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_15_uop_uop_epoch <= io_enq_1_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -16470,11 +16194,11 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_15_uop_snapshotIdx <= io_enq_1_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_15_uop_robIdx <= io_enq_1_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_15_uop_waitForRobIdx <= io_enq_1_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_15_rs1_ready <= _GEN_574;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_15_rs2_ready <= _GEN_575;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_15_rs3_ready <= _GEN_576;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_15_rs1_ready <= _GEN_574;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_15_rs2_ready <= _GEN_575;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_15_rs3_ready <= _GEN_576;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
-      else if (_GEN_785) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:169:48
+      else if (_GEN_785) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:201:48
         entries_15_uop_uop_pc <= io_enq_0_bits_uop_pc;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_15_uop_uop_ftqPtr <= io_enq_0_bits_uop_ftqPtr;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_15_uop_uop_epoch <= io_enq_0_bits_uop_epoch;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
@@ -16543,9 +16267,9 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
         entries_15_uop_snapshotIdx <= io_enq_0_bits_snapshotIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_15_uop_robIdx <= io_enq_0_bits_robIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_15_uop_waitForRobIdx <= io_enq_0_bits_waitForRobIdx;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
-        entries_15_rs1_ready <= _GEN_543;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :179:{96,119}
-        entries_15_rs2_ready <= _GEN_544;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :180:{96,119}
-        entries_15_rs3_ready <= _GEN_545;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :178:37, :181:{96,119}
+        entries_15_rs1_ready <= _GEN_543;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :211:{96,119}
+        entries_15_rs2_ready <= _GEN_544;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :212:{96,119}
+        entries_15_rs3_ready <= _GEN_545;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :210:37, :213:{96,119}
       end
       else if (entries_15_valid) begin	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24
         entries_15_rs1_ready <= woken_rs1_15;	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :53:33, :54:{127,142}
@@ -16567,7 +16291,7 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
                              ? io_enq_1_bits_loadWaitBit
                              : _GEN_785
                                  ? io_enq_0_bits_loadWaitBit
-                                 : entries_15_uop_loadWaitBit);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :169:{48,73}, :171:24, :189:34, :191:{93,122}, :192:36
+                                 : entries_15_uop_loadWaitBit);	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :201:{48,73}, :203:24, :221:34, :223:{93,122}, :224:36
     end
   end // always @(posedge)
   `ifdef ENABLE_INITIAL_REG_	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
@@ -17805,28 +17529,43 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
   AgeDetector_1 ageDetector (	// backend/src/zaqal/backend/issue/IssueQueue.scala:61:27
     .clock         (clock),
     .reset         (reset),
-    .io_enq_0      (_GEN_449 ? 16'h1 << _GEN_450 : 16'h0),	// backend/src/zaqal/backend/issue/IssueQueue.scala:63:43, :149:{27,47}, :150:21, src/main/scala/chisel3/util/OneHot.scala:58:35
-    .io_enq_1      (_GEN_453 ? 16'h1 << _GEN_454 : 16'h0),	// backend/src/zaqal/backend/issue/IssueQueue.scala:63:43, :149:{27,47}, :150:21, src/main/scala/chisel3/util/OneHot.scala:58:35
-    .io_enq_2      (_GEN_472 ? 16'h1 << _GEN_473 : 16'h0),	// backend/src/zaqal/backend/issue/IssueQueue.scala:63:43, :149:{27,47}, :150:21, src/main/scala/chisel3/util/OneHot.scala:58:35
-    .io_enq_3      (_GEN_491 ? 16'h1 << _GEN_492 : 16'h0),	// backend/src/zaqal/backend/issue/IssueQueue.scala:63:43, :149:{27,47}, :150:21, src/main/scala/chisel3/util/OneHot.scala:58:35
-    .io_enq_4      (_GEN_510 ? 16'h1 << _GEN_511 : 16'h0),	// backend/src/zaqal/backend/issue/IssueQueue.scala:63:43, :149:{27,47}, :150:21, src/main/scala/chisel3/util/OneHot.scala:58:35
-    .io_enq_5      (_GEN_514 ? 16'h1 << alloc_idx_5 : 16'h0),	// backend/src/zaqal/backend/issue/IssueQueue.scala:63:43, :149:{27,47}, :150:21, src/main/scala/chisel3/util/Mux.scala:50:70, src/main/scala/chisel3/util/OneHot.scala:58:35
-    .io_canIssue_0 (current_can_issue),	// backend/src/zaqal/backend/issue/IssueQueue.scala:116:37
-    .io_canIssue_1 (_GEN_448 & ~sys_mask),	// backend/src/zaqal/backend/issue/IssueQueue.scala:114:25, :119:{89,91}, :131:43
+    .io_enq_0      (_GEN_449 ? 16'h1 << _GEN_450 : 16'h0),	// backend/src/zaqal/backend/issue/IssueQueue.scala:63:43, :181:{27,47}, :182:21, src/main/scala/chisel3/util/OneHot.scala:58:35
+    .io_enq_1      (_GEN_453 ? 16'h1 << _GEN_454 : 16'h0),	// backend/src/zaqal/backend/issue/IssueQueue.scala:63:43, :181:{27,47}, :182:21, src/main/scala/chisel3/util/OneHot.scala:58:35
+    .io_enq_2      (_GEN_472 ? 16'h1 << _GEN_473 : 16'h0),	// backend/src/zaqal/backend/issue/IssueQueue.scala:63:43, :181:{27,47}, :182:21, src/main/scala/chisel3/util/OneHot.scala:58:35
+    .io_enq_3      (_GEN_491 ? 16'h1 << _GEN_492 : 16'h0),	// backend/src/zaqal/backend/issue/IssueQueue.scala:63:43, :181:{27,47}, :182:21, src/main/scala/chisel3/util/OneHot.scala:58:35
+    .io_enq_4      (_GEN_510 ? 16'h1 << _GEN_511 : 16'h0),	// backend/src/zaqal/backend/issue/IssueQueue.scala:63:43, :181:{27,47}, :182:21, src/main/scala/chisel3/util/OneHot.scala:58:35
+    .io_enq_5      (_GEN_514 ? 16'h1 << alloc_idx_5 : 16'h0),	// backend/src/zaqal/backend/issue/IssueQueue.scala:63:43, :181:{27,47}, :182:21, src/main/scala/chisel3/util/Mux.scala:50:70, src/main/scala/chisel3/util/OneHot.scala:58:35
+    .io_canIssue_0 (current_can_issue & load_mask),	// backend/src/zaqal/backend/issue/IssueQueue.scala:129:6, :136:37, :140:36
+    .io_canIssue_1 (_GEN_448 & load_mask),	// backend/src/zaqal/backend/issue/IssueQueue.scala:129:6, :140:36, :163:43
     .io_canIssue_2
       (_GEN_448 & ~((|_ageDetector_io_out_1) ? _ageDetector_io_out_1 : 16'h0)
-       & ~sys_mask),	// backend/src/zaqal/backend/issue/IssueQueue.scala:61:27, :63:43, :114:25, :119:{89,91}, :122:39, :131:{43,45,49}
+       & {entries_15_uop_decode_is_store | entries_15_uop_decode_is_fstore,
+          entries_14_uop_decode_is_store | entries_14_uop_decode_is_fstore,
+          entries_13_uop_decode_is_store | entries_13_uop_decode_is_fstore,
+          entries_12_uop_decode_is_store | entries_12_uop_decode_is_fstore,
+          entries_11_uop_decode_is_store | entries_11_uop_decode_is_fstore,
+          entries_10_uop_decode_is_store | entries_10_uop_decode_is_fstore,
+          entries_9_uop_decode_is_store | entries_9_uop_decode_is_fstore,
+          entries_8_uop_decode_is_store | entries_8_uop_decode_is_fstore,
+          entries_7_uop_decode_is_store | entries_7_uop_decode_is_fstore,
+          entries_6_uop_decode_is_store | entries_6_uop_decode_is_fstore,
+          entries_5_uop_decode_is_store | entries_5_uop_decode_is_fstore,
+          entries_4_uop_decode_is_store | entries_4_uop_decode_is_fstore,
+          entries_3_uop_decode_is_store | entries_3_uop_decode_is_fstore,
+          entries_2_uop_decode_is_store | entries_2_uop_decode_is_fstore,
+          entries_1_uop_decode_is_store | entries_1_uop_decode_is_fstore,
+          entries_0_uop_decode_is_store | entries_0_uop_decode_is_fstore}),	// backend/src/zaqal/backend/issue/IssueQueue.scala:37:24, :61:27, :63:43, :133:16, :134:6, :141:30, :154:39, :163:{43,45,49}
     .io_out_0      (_ageDetector_io_out_0),
     .io_out_1      (_ageDetector_io_out_1),
     .io_out_2      (_ageDetector_io_out_2)
   );
-  assign io_enq_0_ready = |current_empty_mask;	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :143:37, :145:42
-  assign io_enq_1_ready = |_GEN_452;	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :145:42, :153:45
-  assign io_enq_2_ready = |_GEN_456;	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :145:42, :153:45
-  assign io_enq_3_ready = |_GEN_475;	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :145:42, :153:45
-  assign io_enq_4_ready = |_GEN_494;	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :145:42, :153:45
-  assign io_enq_5_ready = |_GEN_513;	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :145:42, :153:45
-  assign io_deq_0_valid = |_ageDetector_io_out_0;	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :61:27, :122:39
+  assign io_enq_0_ready = |current_empty_mask;	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :175:37, :177:42
+  assign io_enq_1_ready = |_GEN_452;	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :177:42, :185:45
+  assign io_enq_2_ready = |_GEN_456;	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :177:42, :185:45
+  assign io_enq_3_ready = |_GEN_475;	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :177:42, :185:45
+  assign io_enq_4_ready = |_GEN_494;	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :177:42, :185:45
+  assign io_enq_5_ready = |_GEN_513;	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :177:42, :185:45
+  assign io_deq_0_valid = |_ageDetector_io_out_0;	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :61:27, :154:39
   assign io_deq_0_bits_uop_pc =
     (_ageDetector_io_out_0[0] ? entries_0_uop_uop_pc : 64'h0)
     | (_ageDetector_io_out_0[1] ? entries_1_uop_uop_pc : 64'h0)
@@ -18604,7 +18343,7 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
     | (_ageDetector_io_out_0[13] ? entries_13_uop_robIdx : 7'h0)
     | (_ageDetector_io_out_0[14] ? entries_14_uop_robIdx : 7'h0)
     | (_ageDetector_io_out_0[15] ? entries_15_uop_robIdx : 7'h0);	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :37:{24,66}, :61:27, src/main/scala/chisel3/util/Mux.scala:30:73, :32:36
-  assign io_deq_1_valid = |_ageDetector_io_out_1;	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :61:27, :122:39
+  assign io_deq_1_valid = |_ageDetector_io_out_1;	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :61:27, :154:39
   assign io_deq_1_bits_uop_pc =
     (_ageDetector_io_out_1[0] ? entries_0_uop_uop_pc : 64'h0)
     | (_ageDetector_io_out_1[1] ? entries_1_uop_uop_pc : 64'h0)
@@ -19382,7 +19121,7 @@ module IssueQueue_1(	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7
     | (_ageDetector_io_out_1[13] ? entries_13_uop_robIdx : 7'h0)
     | (_ageDetector_io_out_1[14] ? entries_14_uop_robIdx : 7'h0)
     | (_ageDetector_io_out_1[15] ? entries_15_uop_robIdx : 7'h0);	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :37:{24,66}, :61:27, src/main/scala/chisel3/util/Mux.scala:30:73, :32:36
-  assign io_deq_2_valid = |_ageDetector_io_out_2;	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :61:27, :122:39
+  assign io_deq_2_valid = |_ageDetector_io_out_2;	// backend/src/zaqal/backend/issue/IssueQueue.scala:8:7, :61:27, :154:39
   assign io_deq_2_bits_uop_pc =
     (_ageDetector_io_out_2[0] ? entries_0_uop_uop_pc : 64'h0)
     | (_ageDetector_io_out_2[1] ? entries_1_uop_uop_pc : 64'h0)

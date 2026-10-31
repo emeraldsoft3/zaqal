@@ -17,7 +17,7 @@ class TLMSHR(implicit val p: Parameters) extends Module with HasZaqalParameter {
     val alloc = Flipped(Decoupled(new Bundle {
       val addr        = UInt(xLen.W)
       val data        = UInt(xLen.W) // Latched 64-bit write data for store misses
-      val load_id     = UInt(6.W)
+      val load_id     = UInt(phyRegIdxWidth.W)
       val is_write    = Bool()
       val is_upgrade  = Bool()       // True if upgrading existing Shared line to Exclusive (BtoT)
       val is_prefetch = Bool()
@@ -34,7 +34,7 @@ class TLMSHR(implicit val p: Parameters) extends Module with HasZaqalParameter {
       val addr          = UInt(xLen.W)
       val data          = UInt(256.W)
       val write_data    = UInt(xLen.W)
-      val load_id       = UInt(6.W)
+      val load_id       = UInt(phyRegIdxWidth.W)
       val is_write      = Bool()
       val is_prefetch   = Bool()
       val sink_is_l2    = Bool()
@@ -47,7 +47,7 @@ class TLMSHR(implicit val p: Parameters) extends Module with HasZaqalParameter {
 
   val reqAddr         = Reg(UInt(xLen.W))
   val reqWriteData    = Reg(UInt(xLen.W))
-  val reqLoadId       = Reg(UInt(6.W))
+  val reqLoadId       = Reg(UInt(phyRegIdxWidth.W))
   val reqIsWrite      = RegInit(false.B)
   val reqIsUpgrade    = RegInit(false.B)
   val reqIsPrefetch   = RegInit(false.B)

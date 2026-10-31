@@ -51,15 +51,29 @@ class IBUF(implicit val p: Parameters) extends Module with HasZaqalParameter {
     tail := Mux(tail +& enq_count >= ibufSize.U, tail +& enq_count - ibufSize.U, tail +& enq_count)
   }
 
-  // Dequeue Logic
-  val deq_fire_mask = VecInit(io.out.map(_.fire))
-  val deq_count = PopCount(deq_fire_mask)
-
-  val deq_valid_mask = (0 until decodeWidth).map { i =>
+  // Dequeue Logic (at most 1 CFI per decode bundle so rename snapshots are 1:1)
+  val deq_valid_raw = (0 until decodeWidth).map { i =>
     val ptr = head +& i.U
     val wrapped_ptr = Mux(ptr >= ibufSize.U, ptr - ibufSize.U, ptr)
     valid(wrapped_ptr(log2Ceil(ibufSize) - 1, 0))
   }.scanLeft(true.B)(_ && _).tail
+
+  val is_cfi = (0 until decodeWidth).map { i =>
+    val ptr = head +& i.U
+    val wrapped_ptr = Mux(ptr >= ibufSize.U, ptr - ibufSize.U, ptr)
+    buffer(wrapped_ptr(log2Ceil(ibufSize) - 1, 0)).pre.is_cfi
+  }
+
+  val has_older_cfi = (0 until decodeWidth).map { i =>
+    if (i == 0) false.B else (0 until i).map(j => deq_valid_raw(j) && is_cfi(j)).reduce(_ || _)
+  }
+
+  val deq_valid_mask = (0 until decodeWidth).map { i =>
+    deq_valid_raw(i) && !has_older_cfi(i)
+  }
+
+  val deq_fire_mask = VecInit(io.out.map(_.fire))
+  val deq_count = PopCount(deq_fire_mask)
 
   for (i <- 0 until decodeWidth) {
     val ptr = head +& i.U

@@ -112,10 +112,19 @@ class Backend(val hartId: Int = 0)(implicit val p: Parameters) extends Module wi
   vecFreeList.io.archHeadPtr := 0.U
   vecFreeList.io.doAllocate := false.B
 
-  // Define has_branch and branch_slot
+  // Define has_branch, branch_slot, and older CFI gating (at most 1 branch dispatched per cycle)
+  val cfi_mask = Wire(Vec(decodeWidth, Bool()))
+  for (i <- 0 until decodeWidth) {
+    cfi_mask(i) := io.dispatch(i).valid && (decoded_uops(i).decode.is_branch || decoded_uops(i).decode.is_jalr || decoded_uops(i).decode.is_jal)
+  }
+  val has_older_cfi = Wire(Vec(decodeWidth, Bool()))
+  for (i <- 0 until decodeWidth) {
+    has_older_cfi(i) := (if (i == 0) false.B else (0 until i).map(cfi_mask(_)).reduce(_ || _))
+  }
+
   val branch_mask = Wire(Vec(decodeWidth, Bool()))
   for (i <- 0 until decodeWidth) {
-    branch_mask(i) := (decoded_uops(i).decode.is_branch || decoded_uops(i).decode.is_jalr || decoded_uops(i).decode.is_jal) && io.dispatch(i).fire
+    branch_mask(i) := cfi_mask(i) && io.dispatch(i).fire
   }
   val has_branch = branch_mask.asUInt.orR
   val branch_slot = PriorityEncoder(branch_mask)
@@ -211,11 +220,11 @@ class Backend(val hartId: Int = 0)(implicit val p: Parameters) extends Module wi
     val fp_wen = dec.rd_is_fp && !dec.is_branch && !dec.is_store && !dec.is_fstore && !dec.is_atomic && !is_fused_away && !is_shadow
     val vec_wen = dec.rd_is_vec && !dec.is_branch && !dec.is_store && !dec.is_fstore && !dec.is_atomic && !is_fused_away && !is_shadow
 
-    intFreeList.io.allocateReq(i) := rf_wen && io.dispatch(i).valid
+    intFreeList.io.allocateReq(i) := rf_wen && io.dispatch(i).valid && !redirect_valid
     intFreeList.io.allocateFire(i) := rf_wen && io.dispatch(i).fire
-    fpFreeList.io.allocateReq(i)  := fp_wen && io.dispatch(i).valid
+    fpFreeList.io.allocateReq(i)  := fp_wen && io.dispatch(i).valid && !redirect_valid
     fpFreeList.io.allocateFire(i) := fp_wen && io.dispatch(i).fire
-    vecFreeList.io.allocateReq(i) := vec_wen && io.dispatch(i).valid
+    vecFreeList.io.allocateReq(i) := vec_wen && io.dispatch(i).valid && !redirect_valid
     vecFreeList.io.allocateFire(i) := vec_wen && io.dispatch(i).fire
 
     decoded_uops(i).pdest := MuxCase(0.U, Seq(
@@ -265,7 +274,7 @@ class Backend(val hartId: Int = 0)(implicit val p: Parameters) extends Module wi
   val intBusyTable = Module(new BusyTable(numWakeup = 14))
   val fpBusyTable  = Module(new BusyTable(numWakeup = 14))
   val intIq = Module(new IssueQueue(16, decodeWidth, 4, 14))
-  val memIq = Module(new IssueQueue(16, decodeWidth, 3, 14))
+  val memIq = Module(new IssueQueue(16, decodeWidth, 3, 14, isMem = true))
   val fpIq = Module(new IssueQueue(16, decodeWidth, 4, 14))
   val rob = Module(new zaqal.backend.rob.Rob(numWb = 14))
   intIq.io.robDeqPtr := rob.io.robDeqPtr
@@ -300,7 +309,7 @@ class Backend(val hartId: Int = 0)(implicit val p: Parameters) extends Module wi
   val all_skids_ready = rename_out.map(_.ready).reduce(_ && _)
 
   for (i <- 0 until decodeWidth) {
-    rename_out(i).valid := io.dispatch(i).valid && all_skids_ready && can_allocate_all
+    rename_out(i).valid := io.dispatch(i).valid && all_skids_ready && can_allocate_all && !redirect_valid
     rename_out(i).bits  := decoded_uops(i)
     rename_out(i).bits.robIdx := rob.io.allocPtrs(i)
     
@@ -483,9 +492,9 @@ class Backend(val hartId: Int = 0)(implicit val p: Parameters) extends Module wi
   exec.io.robDeqPtr := rob.io.robDeqPtr
   exec.io.debug_vec_rat := rat.io.debug_vec_rat
 
-  // Dispatch Ready Logic (Dynamic Backpressure) - Enforce lock-step dispatch
+  // Dispatch Ready Logic (Dynamic Backpressure) - Enforce at most 1 branch per cycle
   for (i <- 0 until decodeWidth) {
-    io.dispatch(i).ready := all_skids_ready && can_allocate_all
+    io.dispatch(i).ready := all_skids_ready && can_allocate_all && !redirect_valid
   }
 
   // Route redirection from Execute to Frontend
