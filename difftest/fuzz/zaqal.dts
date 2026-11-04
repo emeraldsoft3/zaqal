@@ -1,0 +1,82 @@
+/dts-v1/;
+
+/ {
+    #address-cells = <2>;
+    #size-cells = <2>;
+    compatible = "zaqal,rv64-soc";
+    model = "Zaqal 6-Wide Out-of-Order RV64GCV SoC";
+
+    chosen {
+        bootargs = "earlycon=uart8250,mmio,0x10000000,115200 console=ttyS0,115200 root=/dev/ram0 rw";
+        stdout-path = "/soc/serial@10000000:115200";
+    };
+
+    cpus {
+        #address-cells = <1>;
+        #size-cells = <0>;
+        timebase-frequency = <10000000>; // 10 MHz timer
+
+        cpu0: cpu@0 {
+            device_type = "cpu";
+            reg = <0>;
+            status = "okay";
+            compatible = "riscv";
+            riscv,isa = "rv64imafdc_zba_zbb_zbc_zbs_v";
+            mmu-type = "riscv,sv39";
+            clock-frequency = <100000000>; // 100 MHz clock
+
+            cpu0_intc: interrupt-controller {
+                #interrupt-cells = <1>;
+                compatible = "riscv,cpu-intc";
+                interrupt-controller;
+            };
+        };
+    };
+
+    memory@80000000 {
+        device_type = "memory";
+        reg = <0x0 0x80000000 0x0 0x10000000>; // 256MB DRAM
+    };
+
+    soc {
+        #address-cells = <2>;
+        #size-cells = <2>;
+        compatible = "simple-bus";
+        ranges;
+
+        clint: clint@2000000 {
+            compatible = "riscv,clint0";
+            reg = <0x0 0x02000000 0x0 0x10000>;
+            interrupts-extended = <&cpu0_intc 3 &cpu0_intc 7>; // Software (3) & Timer (7)
+        };
+
+        plic: plic@c000000 {
+            #interrupt-cells = <1>;
+            compatible = "riscv,plic0";
+            reg = <0x0 0x0c000000 0x0 0x400000>;
+            riscv,ndev = <32>;
+            interrupt-controller;
+            interrupts-extended = <&cpu0_intc 11 &cpu0_intc 9>; // M-mode (11) & S-mode (9)
+        };
+
+        serial: serial@10000000 {
+            compatible = "ns16550a";
+            reg = <0x0 0x10000000 0x0 0x1000>;
+            clock-frequency = <100000000>;
+            current-speed = <115200>;
+            reg-shift = <0>;
+            reg-io-width = <1>;
+            interrupt-parent = <&plic>;
+            interrupts = <1>;
+            status = "okay";
+        };
+
+        spi: spi@10040000 {
+            compatible = "zaqal,spi0";
+            reg = <0x0 0x10040000 0x0 0x10000>;
+            interrupt-parent = <&plic>;
+            interrupts = <2>;
+            status = "okay";
+        };
+    };
+};

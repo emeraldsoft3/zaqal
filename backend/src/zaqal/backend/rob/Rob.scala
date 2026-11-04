@@ -19,6 +19,7 @@ class Rob(val numWb: Int = 14)(implicit val p: Parameters) extends Module with H
     val robFull = Output(Bool())
     val headNotReady = Output(Bool())
     val cpu_halt = Output(Bool())
+    val flushed_pdest = Output(Vec(128, Valid(UInt(phyRegIdxWidth.W))))
   })
   
   // Phase 7 Day 1-5: ROB Core buffer logic, Pointer Management, & Circular Commitment
@@ -67,7 +68,7 @@ class Rob(val numWb: Int = 14)(implicit val p: Parameters) extends Module with H
       entry.rfWen  := (io.enq(i).bits.decode.rd =/= 0.U) && !io.enq(i).bits.decode.rd_is_fp && !io.enq(i).bits.decode.rd_is_vec && !io.enq(i).bits.decode.is_branch && !io.enq(i).bits.decode.is_store && !io.enq(i).bits.decode.is_fstore
 
       entry.wflags := false.B
-      entry.isRVC := io.enq(i).bits.decode.is_rvc
+      entry.isRVC := io.enq(i).bits.uop.pre.is_rvc
       entry.fflags := 0.U
       entry.mmio := false.B
       entry.stdWritebacked := false.B
@@ -159,6 +160,14 @@ class Rob(val numWb: Int = 14)(implicit val p: Parameters) extends Module with H
     }
   }
 
+  val dist_branch_flush = robDist(io.bpu_redirect.robIdx)
+  for (i <- 0 until robSize) {
+    val dist_i = robDist(i.U)
+    val is_flushed = headHasException || (io.bpu_redirect.valid && (io.bpu_redirect.is_exception || (dist_i > dist_branch_flush)))
+    io.flushed_pdest(i).valid := is_flushed && robEntries(i).valid && robEntries(i).rfWen && (robEntries(i).pdest =/= 0.U)
+    io.flushed_pdest(i).bits  := robEntries(i).pdest
+  }
+
   // -------------------------------------------------------------
   // 4. In-Order Commit (Graduation) Logic
   // -------------------------------------------------------------
@@ -201,6 +210,7 @@ class Rob(val numWb: Int = 14)(implicit val p: Parameters) extends Module with H
     io.commits.info(i).vecWen := entry.vecWen
     io.commits.info(i).is_call := entry.is_call
     io.commits.info(i).is_ret := entry.is_ret
+    io.commits.info(i).is_cfi := entry.is_cfi
     io.commits.info(i).target := entry.target
     io.commits.info(i).pc := entry.pc
     io.commits.info(i).instr := entry.instr

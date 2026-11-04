@@ -771,8 +771,8 @@ class Execute(val hartId: Int = 0)(implicit val p: Parameters) extends Module wi
   val dist1 = Mux(r1_snap >= io.snptDeqPtr, r1_snap - io.snptDeqPtr, r1_snap - io.snptDeqPtr + renameSnapshotNum.U)
   val lane0_is_older = dist0 < dist1
 
-  val r0_valid = exe_val_int(0) && (bru(0).io.exc_valid || bru(0).io.mispredict)
-  val r1_valid = exe_val_int(1) && (bru(1).io.exc_valid || bru(1).io.mispredict)
+  val r0_valid = exe_val_int(0) && (bru(0).io.exc_valid || (bru(0).io.mispredict && io.snptValids(r0_snap)))
+  val r1_valid = exe_val_int(1) && (bru(1).io.exc_valid || (bru(1).io.mispredict && io.snptValids(r1_snap)))
 
   when(r0_valid && r1_valid) {
     io.redirect.valid := true.B

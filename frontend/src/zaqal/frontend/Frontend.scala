@@ -98,10 +98,12 @@ class Frontend(implicit val p: Parameters) extends Module with HasZaqalParameter
   ifu.io.fetch_req.bits  := ftq_skid.io.deq.bits
 
   icache.io.pc := ftq_skid.io.deq.bits.pc
+  icache.io.req_valid := ftq_skid.io.deq.valid
 
   // 3. ICache -> IFU (Instruction Data Path)
   ifu.io.icache_ready := icache.io.ready
   ifu.io.insts_in     := icache.io.insts
+  ifu.io.flush        := is_valid_redirect
 
   // 4. IFU -> IBUF (Data Path - Buffered!)
   ifu_skid.io.enq.valid := ifu.io.toIbuffer.valid || uop_hit

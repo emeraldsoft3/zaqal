@@ -35,6 +35,7 @@ class RenameTable(val numLogicalRegs: Int, val isFP: Boolean = false, val isVec:
     val snptEnqPtr     = Output(UInt(log2Up(renameSnapshotNum).W))
     val snptDeqPtr     = Output(UInt(log2Up(renameSnapshotNum).W))
     val snptValids     = Output(Vec(renameSnapshotNum, Bool()))
+    val isFull         = Output(Bool())
     
     // Debug
     val debug_rat   = Output(Vec(numLogicalRegs, UInt(phyRegIdxWidth.W)))
@@ -79,13 +80,15 @@ class RenameTable(val numLogicalRegs: Int, val isFP: Boolean = false, val isVec:
   snapshots.io.enq := io.snptEnq
   snapshots.io.enqData := curr_spec_table(io.snptEnqIdx)
   snapshots.io.deq := io.snptDeq
-  snapshots.io.redirect := io.redirect && io.useSnapshot
+  snapshots.io.redirect := io.redirect
+  snapshots.io.useSnapshot := io.useSnapshot
   snapshots.io.redirect_idx := io.snptRestoreIdx
   snapshots.io.flushVec := io.snptFlushVec
   
   io.snptEnqPtr := snapshots.io.enqPtr
   io.snptDeqPtr := snapshots.io.deqPtr
   io.snptValids := snapshots.io.valids
+  io.isFull     := snapshots.io.isFull
 
   // State Update with Fast One-Hot Multiplexing (Mux1H)
   val restoreOH = UIntToOH(io.snptRestoreIdx, renameSnapshotNum)

@@ -430,6 +430,7 @@ class RobCommitEntryBundle(implicit val p: Parameters) extends Bundle with HasZa
   val needFlush = Bool()
   val is_call = Bool()
   val is_ret = Bool()
+  val is_cfi = Bool()
   val pc = UInt(64.W)
   val instr = UInt(32.W)
   val data = UInt(64.W)

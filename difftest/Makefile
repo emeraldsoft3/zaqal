@@ -1,7 +1,11 @@
-BUILD_DIR = $(abspath ../build)
-EMU_BIN   = $(BUILD_DIR)/emu
-OBJ_DIR   = $(BUILD_DIR)/emu_obj
-CSRC_DIR  = $(abspath ./csrc)
+BUILD_DIR     = $(abspath ../build)
+EMU_BIN       = $(BUILD_DIR)/emu
+OBJ_DIR       = $(BUILD_DIR)/emu_obj
+CSRC_DIR      = $(abspath ./csrc)
+
+BUILD_SOC_DIR = $(abspath ../build_soc)
+SOC_EMU_BIN   = $(BUILD_SOC_DIR)/soc_emu
+SOC_OBJ_DIR   = $(BUILD_SOC_DIR)/soc_emu_obj
 
 VERILATOR ?= verilator
 MILL      ?= ./mill
@@ -25,15 +29,41 @@ VERILATOR_FLAGS = \
 	-CFLAGS "-O3 -std=c++17 -I$(CSRC_DIR)" \
 	-LDFLAGS "-ldl"
 
+VERILATOR_SOC_FLAGS = \
+	--cc \
+	--exe \
+	--threads 4 \
+	-O3 \
+	--trace \
+	--top-module ZaqalSoCTop \
+	-Mdir $(SOC_OBJ_DIR) \
+	-Wno-fatal \
+	-Wno-WIDTH \
+	-Wno-CASEINCOMPLETE \
+	-Wno-TIMESCALEMOD \
+	-Wno-UNOPTFLAT \
+	-Wno-PINMISSING \
+	--x-initial 0 \
+	--x-assign 0 \
+	--autoflush \
+	-CFLAGS "-O3 -std=c++17 -I$(CSRC_DIR)" \
+	-LDFLAGS "-ldl"
+
 SRCS_V = $(wildcard $(BUILD_DIR)/*.v) $(wildcard $(BUILD_DIR)/*.sv)
 SRCS_C = $(CSRC_DIR)/emu_main.cpp $(CSRC_DIR)/difftest_bridge.cpp
 
-.PHONY: all emu elaborate clean
+SRCS_SOC_V = $(wildcard $(BUILD_SOC_DIR)/*.v) $(wildcard $(BUILD_SOC_DIR)/*.sv)
+SRCS_SOC_C = $(CSRC_DIR)/soc_emu.cpp $(CSRC_DIR)/difftest_bridge.cpp
+
+.PHONY: all emu soc_emu elaborate elaborate_soc clean
 
 all: emu
 
 elaborate:
 	cd .. && $(MILL) zaqal.runMain zaqal.Elaborate
+
+elaborate_soc:
+	cd .. && $(MILL) zaqal.runMain zaqal.ElaborateSoC --target-dir build_soc
 
 $(EMU_BIN): $(SRCS_V) $(SRCS_C)
 	@mkdir -p $(OBJ_DIR)
@@ -46,7 +76,19 @@ $(EMU_BIN): $(SRCS_V) $(SRCS_C)
 	@echo "  SUCCESS: Native Difftest Binary Built at: $(EMU_BIN)"
 	@echo "==============================================================="
 
+$(SOC_EMU_BIN): $(SRCS_SOC_V) $(SRCS_SOC_C)
+	@mkdir -p $(SOC_OBJ_DIR)
+	@echo "--- [1/2] Verilating Zaqal SoC RTL (with Trace) ---"
+	$(VERILATOR) $(VERILATOR_SOC_FLAGS) $(SRCS_SOC_V) $(SRCS_SOC_C)
+	@echo "--- [2/2] Compiling SoC Simulation Binary ($(SOC_EMU_BIN)) ---"
+	$(MAKE) -j$$(nproc) -C $(SOC_OBJ_DIR) -f VZaqalSoCTop.mk VZaqalSoCTop
+	@cp $(SOC_OBJ_DIR)/VZaqalSoCTop $(SOC_EMU_BIN)
+	@echo "==============================================================="
+	@echo "  SUCCESS: Zaqal SoC Binary Built at: $(SOC_EMU_BIN)"
+	@echo "==============================================================="
+
 emu: $(EMU_BIN)
+soc_emu: $(SOC_EMU_BIN)
 
 clean:
-	rm -rf $(OBJ_DIR) $(EMU_BIN)
+	rm -rf $(OBJ_DIR) $(EMU_BIN) $(SOC_OBJ_DIR) $(SOC_EMU_BIN)

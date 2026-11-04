@@ -66,6 +66,12 @@ class BRU(implicit val p: Parameters) extends Module with HasZaqalParameter {
   io.exc_valid  := is_misaligned
   io.exc_cause  := 0.U // Fixed later
 
+  when(io.dec.is_branch && io.pc === "h800100f8".U) {
+    printf(p"[BRU DEBUG 0x800100f8] src1=0x${Hexadecimal(io.src1)} src2=0x${Hexadecimal(io.src2)} eq=${comparator.io.eq} taken=$actual_taken\n")
+  }
+  when(io.pc === "h8001e8d2".U || io.pc === "h8001e8e6".U) {
+    printf(p"[BRU DEBUG 0x${Hexadecimal(io.pc)}] src1=0x${Hexadecimal(io.src1)} src2=0x${Hexadecimal(io.src2)} is_beq=${io.dec.is_beq} eq=${comparator.io.eq} taken=$actual_taken pred_taken=${io.pred_taken} mispred=${io.mispredict}\n")
+  }
   when(io.mispredict && is_cfi) {
     // printf(p"[BRU REDIRECT] pc=${Hexadecimal(io.pc)} target=${Hexadecimal(io.target)} actual_taken=$actual_taken is_rvc=${io.is_rvc}\n")
   }

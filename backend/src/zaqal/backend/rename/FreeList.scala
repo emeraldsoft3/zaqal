@@ -5,6 +5,11 @@ import chisel3.util._
 import org.chipsalliance.cde.config.Parameters
 import zaqal.common._
 
+class FreeListSnapshot(val ptrWidth: Int, val countWidth: Int) extends Bundle {
+  val headPtr   = UInt(ptrWidth.W)
+  val freeCount = UInt(countWidth.W)
+}
+
 /**
   * FreeList module to manage physical registers.
   * Initially contains physical registers from numLogicalRegs to numPhyRegs - 1.
@@ -48,7 +53,7 @@ class FreeList(val numPhyRegs: Int, val numLogicalRegs: Int)(implicit val p: Par
   // Available count tracking
   val freeCount = RegInit(size.U(log2Up(size + 1).W))
 
-  val snapshots = Module(new SnapshotGenerator(UInt(log2Up(size).W)))
+  val snapshots = Module(new SnapshotGenerator(new FreeListSnapshot(log2Up(size), log2Up(size + 1))))
 
   def wrapAdd(ptr: UInt, add: UInt): UInt = {
     val next = ptr +& add
@@ -61,7 +66,6 @@ class FreeList(val numPhyRegs: Int, val numLogicalRegs: Int)(implicit val p: Par
 
   for (i <- 0 until decodeWidth) {
     val offset = PopCount(io.allocateReq.take(i))
-    // We always output the candidates, but they are only "taken" if doAllocate is high
     io.allocatePhyReg(i) := freeList(wrapAdd(headPtr, offset))
   }
 
@@ -75,36 +79,31 @@ class FreeList(val numPhyRegs: Int, val numLogicalRegs: Int)(implicit val p: Par
   }
 
   val allocMask = (1.U(decodeWidth.W) << io.snptEnqIdx) - 1.U
-  val snpt_head_ptr = wrapAdd(headPtr, PopCount(io.allocateReq.asUInt & allocMask))
+  val numAllocPre = PopCount(io.allocateReq.asUInt & allocMask)
+  val snpt_data = Wire(new FreeListSnapshot(log2Up(size), log2Up(size + 1)))
+  snpt_data.headPtr   := wrapAdd(headPtr, numAllocPre)
+  snpt_data.freeCount := freeCount - numAllocPre
+
   snapshots.io.enq := io.snptEnq
-  snapshots.io.enqData := snpt_head_ptr
+  snapshots.io.enqData := snpt_data
   snapshots.io.deq := io.snptDeq
-  snapshots.io.redirect := io.redirect && io.useSnapshot
+  snapshots.io.redirect := io.redirect
+  snapshots.io.useSnapshot := io.useSnapshot
   snapshots.io.redirect_idx := io.snptRestoreIdx
   snapshots.io.flushVec := io.snptFlushVec
 
   // 3. State Update with Fast One-Hot Multiplexing (Mux1H)
+  tailPtr := wrapAdd(tailPtr, numFree)
   when (io.redirect) {
     // Restore speculative state from architectural state or snapshot
     val restoreOH = UIntToOH(io.snptRestoreIdx, renameSnapshotNum)
-    val restoredHeadPtr = Mux1H(restoreOH, snapshots.io.snapshots)
-    val targetHeadPtr = Mux(io.useSnapshot, restoredHeadPtr, tailPtr)
-    headPtr := targetHeadPtr
-    // Recalculate freeCount based on distance between tailPtr and archHeadPtr
-    val dist = Mux(tailPtr === targetHeadPtr,
-                   size.U,
-                   Mux(tailPtr > targetHeadPtr, 
-                       tailPtr - targetHeadPtr, 
-                       size.U - (targetHeadPtr - tailPtr)))
-    freeCount := dist 
+    val restoredSnpt = Mux1H(restoreOH, snapshots.io.snapshots)
+    headPtr   := Mux(io.useSnapshot, restoredSnpt.headPtr, tailPtr)
+    freeCount := Mux(io.useSnapshot, restoredSnpt.freeCount, size.U) + numFree
   } .otherwise {
     val numFiredReq = PopCount(io.allocateFire)
     val actualAlloc = Mux(io.doAllocate && io.canAllocate, numFiredReq, 0.U)
     headPtr := wrapAdd(headPtr, actualAlloc)
-    tailPtr := wrapAdd(tailPtr, numFree)
     freeCount := freeCount - actualAlloc + numFree
   }
-
-  // Debug
-  // assert(freeCount <= size.U, "FreeList overflow")
 }

@@ -10,12 +10,14 @@ class SnapshotGeneratorIO[T <: Data](dataType: T)(implicit val p: Parameters) ex
   val enqData = Input(dataType.cloneType)
   val deq = Input(Bool())
   val redirect = Input(Bool())
+  val useSnapshot = Input(Bool())
   val redirect_idx = Input(UInt(log2Up(renameSnapshotNum).W))
   val flushVec = Input(Vec(renameSnapshotNum, Bool()))
   val snapshots = Output(Vec(renameSnapshotNum, dataType.cloneType))
   val enqPtr = Output(UInt(log2Up(renameSnapshotNum).W))
   val deqPtr = Output(UInt(log2Up(renameSnapshotNum).W))
   val valids = Output(Vec(renameSnapshotNum, Bool()))
+  val isFull = Output(Bool())
 }
 
 class SnapshotGenerator[T <: Data](dataType: T)(implicit val p: Parameters) extends Module with HasZaqalParameter {
@@ -40,6 +42,7 @@ class SnapshotGenerator[T <: Data](dataType: T)(implicit val p: Parameters) exte
 
   val isFull = snptValids(snptEnqPtr) && (snptEnqPtr === snptDeqPtr)
   val isEmpty = !snptValids(snptDeqPtr)
+  io.isFull := isFull
 
   when(!isFull && io.enq) {
     snapshots(snptEnqPtr) := io.enqData
@@ -59,8 +62,16 @@ class SnapshotGenerator[T <: Data](dataType: T)(implicit val p: Parameters) exte
     }
   }
 
-  // Recover enqPtr directly from the checkpoint index
+  // Recover enqPtr directly from the checkpoint index, or reset on arch flush
   when(io.redirect) {
-    snptEnqPtr := ptrAdd(io.redirect_idx, 1.U)
+    when(io.useSnapshot) {
+      snptEnqPtr := ptrAdd(io.redirect_idx, 1.U)
+    } .otherwise {
+      snptEnqPtr := 0.U
+      snptDeqPtr := 0.U
+      for (i <- 0 until renameSnapshotNum) {
+        snptValids(i) := false.B
+      }
+    }
   }
 }

@@ -30,6 +30,7 @@ class RenameTableWrapper(implicit val p: Parameters) extends Module with HasZaqa
     val snptEnqPtr     = Output(UInt(log2Up(renameSnapshotNum).W))
     val snptDeqPtr     = Output(UInt(log2Up(renameSnapshotNum).W))
     val snptValids     = Output(Vec(renameSnapshotNum, Bool()))
+    val isFull         = Output(Bool())
     
     // Debug
     val debug_int_rat = Output(Vec(32, UInt(phyRegIdxWidth.W)))
@@ -70,6 +71,7 @@ class RenameTableWrapper(implicit val p: Parameters) extends Module with HasZaqa
   io.snptEnqPtr := intRat.io.snptEnqPtr
   io.snptDeqPtr := intRat.io.snptDeqPtr
   io.snptValids := intRat.io.snptValids
+  io.isFull     := intRat.io.isFull
 
   for (i <- 0 until decodeWidth) {
     // 1. Route Read Ports based on DecodeSignals

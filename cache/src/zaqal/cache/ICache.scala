@@ -7,6 +7,7 @@ import zaqal.common._
 
 class ICache(implicit val p: Parameters) extends Module with HasZaqalParameter {
   val io = IO(new Bundle {
+    val req_valid = Input(Bool())
     val pc = Input(UInt(xLen.W))
     val insts = Output(Vec(fetchWidth, UInt(instBits.W)))
     val ready = Output(Bool())
@@ -58,8 +59,8 @@ class ICache(implicit val p: Parameters) extends Module with HasZaqalParameter {
   // FSM Logic
   switch(state) {
     is(s_IDLE) {
-      // If we have a PC but no hit, we need to fetch from memory
-      when(!isHit) {
+      // Only fetch when request is valid and not a hit
+      when(io.req_valid && !isHit) {
         missAddress := io.pc
         state := s_MISS_REQ
       }

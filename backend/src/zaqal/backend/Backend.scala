@@ -59,6 +59,11 @@ class Backend(val hartId: Int = 0)(implicit val p: Parameters) extends Module wi
     decoders(i).io.inst := io.dispatch(i).bits.pre.expanded_inst
     decoded_uops_raw(i).uop    := io.dispatch(i).bits
     decoded_uops_raw(i).decode := decoders(i).io.out
+    decoded_uops_raw(i).decode.is_rvc := io.dispatch(i).bits.pre.is_rvc
+
+    when(io.dispatch(i).valid && (io.dispatch(i).bits.pc === "h8001e8d2".U || io.dispatch(i).bits.pc === "h8001e8e6".U)) {
+      printf(p"[DISPATCH DEBUG 0x${Hexadecimal(io.dispatch(i).bits.pc)}] exp=0x${Hexadecimal(io.dispatch(i).bits.pre.expanded_inst)} is_rvc=${io.dispatch(i).bits.pre.is_rvc} is_beq=${decoders(i).io.out.is_beq} is_br=${decoders(i).io.out.is_branch} op=0x${Hexadecimal(decoders(i).io.inst(6,0))} f3=${decoders(i).io.inst(14,12)}\n")
+    }
     
     // Default to raw
     decoded_uops_raw(i).psrs1 := 0.U
@@ -102,6 +107,9 @@ class Backend(val hartId: Int = 0)(implicit val p: Parameters) extends Module wi
   val fpFreeList  = Module(new FreeList(phyRegs, logicalRegs))
   val vecFreeList = Module(new FreeList(vecPhyRegs, numVRegs))
 
+  val intBusyTable = Module(new BusyTable(numWakeup = 14))
+  val fpBusyTable  = Module(new BusyTable(numWakeup = 14))
+
   // Tie off redirect and archHeadPtr for now
   intFreeList.io.archHeadPtr := 0.U
   intFreeList.io.doAllocate := false.B // Will be set below
@@ -134,19 +142,17 @@ class Backend(val hartId: Int = 0)(implicit val p: Parameters) extends Module wi
   // When a branch is renamed/dispatched, we enqueue a snapshot
   rat.io.snptEnq := is_branch_op
   rat.io.snptEnqIdx := branch_slot + 1.U
-  rat.io.snptDeq := false.B
 
   intFreeList.io.snptEnq := is_branch_op
   intFreeList.io.snptEnqIdx := branch_slot + 1.U
-  intFreeList.io.snptDeq := false.B
 
   fpFreeList.io.snptEnq := is_branch_op
   fpFreeList.io.snptEnqIdx := branch_slot + 1.U
-  fpFreeList.io.snptDeq := false.B
 
   vecFreeList.io.snptEnq := is_branch_op
   vecFreeList.io.snptEnqIdx := branch_slot + 1.U
-  vecFreeList.io.snptDeq := false.B
+
+
 
   // Wires for Execute redirection feedback
   val redirect_valid = Wire(Bool())
@@ -170,6 +176,10 @@ class Backend(val hartId: Int = 0)(implicit val p: Parameters) extends Module wi
   vecFreeList.io.useSnapshot := use_snapshot
   vecFreeList.io.snptRestoreIdx := restore_idx
 
+
+
+
+
   // Compute younger snapshot flush mask using circular distance from deqPtr.
   // This correctly handles wrap-around (e.g. restore_idx=5, enqPtr=0).
   // An entry is "younger" if its circular distance from deqPtr is >= that of restore_idx.
@@ -190,6 +200,8 @@ class Backend(val hartId: Int = 0)(implicit val p: Parameters) extends Module wi
     intFreeList.io.snptFlushVec(i) := flush
     fpFreeList.io.snptFlushVec(i) := flush
     vecFreeList.io.snptFlushVec(i) := flush
+
+
   }
 
   val can_allocate_all = intFreeList.io.canAllocate && fpFreeList.io.canAllocate && vecFreeList.io.canAllocate
@@ -216,7 +228,7 @@ class Backend(val hartId: Int = 0)(implicit val p: Parameters) extends Module wi
     // Identify shadow parcel slots (second half of a 32-bit instruction)
     val is_shadow = is_shadow_vec(i)
 
-    val rf_wen = dec.rd =/= 0.U && !dec.rd_is_fp && !dec.rd_is_vec && !dec.is_branch && !dec.is_store && !dec.is_fstore && !dec.is_atomic && !dec.is_amx && !is_fused_away && !is_shadow
+    val rf_wen = dec.rd =/= 0.U && !dec.rd_is_fp && !dec.rd_is_vec && !dec.is_branch && !dec.is_store && !dec.is_fstore && !dec.is_amx && !is_fused_away && !is_shadow
     val fp_wen = dec.rd_is_fp && !dec.is_branch && !dec.is_store && !dec.is_fstore && !dec.is_atomic && !is_fused_away && !is_shadow
     val vec_wen = dec.rd_is_vec && !dec.is_branch && !dec.is_store && !dec.is_fstore && !dec.is_atomic && !is_fused_away && !is_shadow
 
@@ -271,12 +283,15 @@ class Backend(val hartId: Int = 0)(implicit val p: Parameters) extends Module wi
   val dispatch = Module(new Dispatch)
   
   val rename_out = Wire(Vec(decodeWidth, Decoupled(new DecodedMicroOp)))
-  val intBusyTable = Module(new BusyTable(numWakeup = 14))
-  val fpBusyTable  = Module(new BusyTable(numWakeup = 14))
   val intIq = Module(new IssueQueue(16, decodeWidth, 4, 14))
   val memIq = Module(new IssueQueue(16, decodeWidth, 3, 14, isMem = true))
   val fpIq = Module(new IssueQueue(16, decodeWidth, 4, 14))
   val rob = Module(new zaqal.backend.rob.Rob(numWb = 14))
+  intBusyTable.io.flushedPorts <> rob.io.flushed_pdest
+  for (i <- 0 until 128) {
+    fpBusyTable.io.flushedPorts(i).valid := false.B
+    fpBusyTable.io.flushedPorts(i).bits  := 0.U
+  }
   intIq.io.robDeqPtr := rob.io.robDeqPtr
   memIq.io.robDeqPtr := rob.io.robDeqPtr
   fpIq.io.robDeqPtr  := rob.io.robDeqPtr
@@ -371,6 +386,11 @@ class Backend(val hartId: Int = 0)(implicit val p: Parameters) extends Module wi
   redirect_valid := exec.io.redirect.valid
   restore_idx := exec.io.redirect.snapshotIdx
   use_snapshot := !exec.io.redirect.is_exception
+
+  rat.io.snptDeq := false.B
+  intFreeList.io.snptDeq := false.B
+  fpFreeList.io.snptDeq := false.B
+  vecFreeList.io.snptDeq := false.B
 
   intIq.io.redirect_valid := redirect_valid
   intIq.io.redirect_restore_idx := restore_idx

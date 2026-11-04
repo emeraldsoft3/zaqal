@@ -99,9 +99,9 @@ class RVCExpander(implicit val p: Parameters) extends Module with HasZaqalParame
           val funct2 = inst(11, 10)
           val imm = Cat(inst(12), inst(6, 2))
           switch(funct2) {
-            is("b00".U) { expanded := Cat("b000000".U, imm, rs1_p, "b101".U, rs1_p, "b0010011".U) } // c.srli
-            is("b01".U) { expanded := Cat("b010000".U, imm, rs1_p, "b101".U, rs1_p, "b0010011".U) } // c.srai
-            is("b10".U) { expanded := Cat(Fill(6, imm(5)), imm, rs1_p, "b111".U, rs1_p, "b0010011".U) } // c.andi
+            is("b00".U) { expanded := Cat(0.U(6.W), imm, rs1_p, 5.U(3.W), rs1_p, "b0010011".U(7.W)) } // c.srli
+            is("b01".U) { expanded := Cat("b010000".U(6.W), imm, rs1_p, 5.U(3.W), rs1_p, "b0010011".U(7.W)) } // c.srai
+            is("b10".U) { expanded := Cat(Fill(6, imm(5)), imm, rs1_p, 7.U(3.W), rs1_p, "b0010011".U(7.W)) } // c.andi
             is("b11".U) {
               val is_w = inst(12) === 1.U
               val f2_low = inst(6, 5)
@@ -121,15 +121,15 @@ class RVCExpander(implicit val p: Parameters) extends Module with HasZaqalParame
         }
         is("b101".U) { // c.j
           val imm = Cat(Fill(20, inst(12)), inst(12), inst(8), inst(10, 9), inst(6), inst(7), inst(2), inst(11), inst(5, 3), 0.U(1.W))
-          expanded := Cat(imm(20), imm(10, 1), imm(11), imm(19, 12), 0.U(5.W), "b1101111".U)
+          expanded := Cat(imm(20), imm(10, 1), imm(11), imm(19, 12), 0.U(5.W), "b1101111".U(7.W))
         }
         is("b110".U) { // c.beqz
           val imm = Cat(Fill(23, inst(12)), inst(12), inst(6, 5), inst(2), inst(11, 10), inst(4, 3), 0.U(1.W))
-          expanded := Cat(imm(12), imm(10, 5), 0.U(5.W), rs1_p, "b000".U, imm(4, 1), imm(11), "b1100011".U)
+          expanded := Cat(imm(12), imm(10, 5), 0.U(5.W), rs1_p, 0.U(3.W), imm(4, 1), imm(11), "b1100011".U(7.W))
         }
         is("b111".U) { // c.bnez
           val imm = Cat(Fill(23, inst(12)), inst(12), inst(6, 5), inst(2), inst(11, 10), inst(4, 3), 0.U(1.W))
-          expanded := Cat(imm(12), imm(10, 5), 0.U(5.W), rs1_p, "b001".U, imm(4, 1), imm(11), "b1100011".U)
+          expanded := Cat(imm(12), imm(10, 5), 0.U(5.W), rs1_p, 1.U(3.W), imm(4, 1), imm(11), "b1100011".U(7.W))
         }
       }
     }

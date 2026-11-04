@@ -104,19 +104,7 @@ class DataMem(implicit val p: Parameters) extends Module with HasZaqalParameter 
   // Page 0 (0x0000 - 0x0FF8): Root Level 2 Page Table (PPN=0)
   // Page 1 (0x1000 - 0x1FF8): Level 1 Page Table (PPN=1)
   // Page 2 (0x2000 - 0x2FF8): Level 0 Page Table (PPN=2)
-  val memInit = Seq.tabulate(2048) { i =>
-    if (i == 0) "h00000000200000DF".U(64.W)       // 0x0000: Sv39 1GB Root Leaf PTE for VPN[2]=0 -> PA 0x80000000 (Test 1)
-    else if (i == 1) "h0000000000000401".U(64.W) // 0x0008: Sv39 Level 2 Pointer PTE for VPN[2]=1 -> Points to Level 1 table at PPN=1 (0x1000) (Tests 2 & 3)
-    else if (i == 2) "hFFEEDDCCBBAA9988".U(64.W) // 0x0010: Test 1 loaded data (at PA 0x80000010)
-    else if (i == 3) "h706050403020100F".U(64.W) // 0x0018: Offset test
-    else if (i == 4) "h1122334455667788".U(64.W) // 0x0020: Test 2 loaded data (at PA 0x80000020)
-    else if (i == 6) "hAABBCCDDEEFF0011".U(64.W) // 0x0030: Test 3 loaded data (at PA 0x80000030)
-    else if (i == 513) "h00000000200000DF".U(64.W) // 0x1008: Sv39 Level 1 2MB Megapage Leaf PTE for VPN[1]=1 -> PA 0x80000000 (Test 2)
-    else if (i == 514) "h0000000000000801".U(64.W) // 0x1010: Sv39 Level 1 Pointer PTE for VPN[1]=2 -> Points to Level 0 table at PPN=2 (0x2000) (Test 3)
-    else if (i == 515) "h0000000020000059".U(64.W) // 0x1018: Sv39 Level 1 2MB Execute-Only Leaf PTE (R=0, X=1, V=1) for VPN[1]=3 (Test 6 Permission Violation)
-    else if (i == 1025) "h00000000200000DF".U(64.W) // 0x2008: Sv39 Level 0 4KB Standard Page Leaf PTE for VPN[0]=1 -> PA 0x80000000 (Test 3)
-    else 0.U(64.W)
-  }
+  val memInit = Seq.fill(2048)(0.U(64.W))
   val mem = RegInit(VecInit(memInit))
 
   for (p <- 0 until 2) {
